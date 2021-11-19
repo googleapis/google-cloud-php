@@ -15,9 +15,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The URL for a specific instance.
+     * The URL for a specific instance. &#64;required compute.instancegroups.addInstances/removeInstances
      *
-     * Generated from protobuf field <code>string instance = 18257045;</code>
+     * Generated from protobuf field <code>optional string instance = 18257045;</code>
      */
     private $instance = null;
 
@@ -28,7 +28,7 @@ class InstanceReference extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $instance
-     *           The URL for a specific instance.
+     *           The URL for a specific instance. &#64;required compute.instancegroups.addInstances/removeInstances
      * }
      */
     public function __construct($data = NULL) {
@@ -37,9 +37,9 @@ class InstanceReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL for a specific instance.
+     * The URL for a specific instance. &#64;required compute.instancegroups.addInstances/removeInstances
      *
-     * Generated from protobuf field <code>string instance = 18257045;</code>
+     * Generated from protobuf field <code>optional string instance = 18257045;</code>
      * @return string
      */
     public function getInstance()
@@ -58,9 +58,9 @@ class InstanceReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL for a specific instance.
+     * The URL for a specific instance. &#64;required compute.instancegroups.addInstances/removeInstances
      *
-     * Generated from protobuf field <code>string instance = 18257045;</code>
+     * Generated from protobuf field <code>optional string instance = 18257045;</code>
      * @param string $var
      * @return $this
      */

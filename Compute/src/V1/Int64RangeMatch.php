@@ -18,13 +18,13 @@ class Int64RangeMatch extends \Google\Protobuf\Internal\Message
     /**
      * The end of the range (exclusive) in signed long integer format.
      *
-     * Generated from protobuf field <code>int64 range_end = 322439897;</code>
+     * Generated from protobuf field <code>optional int64 range_end = 322439897;</code>
      */
     private $range_end = null;
     /**
      * The start of the range (inclusive) in signed long integer format.
      *
-     * Generated from protobuf field <code>int64 range_start = 103333600;</code>
+     * Generated from protobuf field <code>optional int64 range_start = 103333600;</code>
      */
     private $range_start = null;
 
@@ -48,7 +48,7 @@ class Int64RangeMatch extends \Google\Protobuf\Internal\Message
     /**
      * The end of the range (exclusive) in signed long integer format.
      *
-     * Generated from protobuf field <code>int64 range_end = 322439897;</code>
+     * Generated from protobuf field <code>optional int64 range_end = 322439897;</code>
      * @return int|string
      */
     public function getRangeEnd()
@@ -69,7 +69,7 @@ class Int64RangeMatch extends \Google\Protobuf\Internal\Message
     /**
      * The end of the range (exclusive) in signed long integer format.
      *
-     * Generated from protobuf field <code>int64 range_end = 322439897;</code>
+     * Generated from protobuf field <code>optional int64 range_end = 322439897;</code>
      * @param int|string $var
      * @return $this
      */
@@ -84,7 +84,7 @@ class Int64RangeMatch extends \Google\Protobuf\Internal\Message
     /**
      * The start of the range (inclusive) in signed long integer format.
      *
-     * Generated from protobuf field <code>int64 range_start = 103333600;</code>
+     * Generated from protobuf field <code>optional int64 range_start = 103333600;</code>
      * @return int|string
      */
     public function getRangeStart()
@@ -105,7 +105,7 @@ class Int64RangeMatch extends \Google\Protobuf\Internal\Message
     /**
      * The start of the range (inclusive) in signed long integer format.
      *
-     * Generated from protobuf field <code>int64 range_start = 103333600;</code>
+     * Generated from protobuf field <code>optional int64 range_start = 103333600;</code>
      * @param int|string $var
      * @return $this
      */

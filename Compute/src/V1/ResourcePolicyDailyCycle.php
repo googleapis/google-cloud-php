@@ -18,19 +18,19 @@ class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
     /**
      * Defines a schedule with units measured in months. The value determines how many months pass between the start of each cycle.
      *
-     * Generated from protobuf field <code>int32 days_in_cycle = 369790004;</code>
+     * Generated from protobuf field <code>optional int32 days_in_cycle = 369790004;</code>
      */
     private $days_in_cycle = null;
     /**
      * [Output only] A predetermined duration for the window, automatically chosen to be the smallest possible in the given scenario.
      *
-     * Generated from protobuf field <code>string duration = 155471252;</code>
+     * Generated from protobuf field <code>optional string duration = 155471252;</code>
      */
     private $duration = null;
     /**
      * Start time of the window. This must be in UTC format that resolves to one of 00:00, 04:00, 08:00, 12:00, 16:00, or 20:00. For example, both 13:00-5 and 08:00 are valid.
      *
-     * Generated from protobuf field <code>string start_time = 37467274;</code>
+     * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      */
     private $start_time = null;
 
@@ -56,7 +56,7 @@ class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
     /**
      * Defines a schedule with units measured in months. The value determines how many months pass between the start of each cycle.
      *
-     * Generated from protobuf field <code>int32 days_in_cycle = 369790004;</code>
+     * Generated from protobuf field <code>optional int32 days_in_cycle = 369790004;</code>
      * @return int
      */
     public function getDaysInCycle()
@@ -77,7 +77,7 @@ class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
     /**
      * Defines a schedule with units measured in months. The value determines how many months pass between the start of each cycle.
      *
-     * Generated from protobuf field <code>int32 days_in_cycle = 369790004;</code>
+     * Generated from protobuf field <code>optional int32 days_in_cycle = 369790004;</code>
      * @param int $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] A predetermined duration for the window, automatically chosen to be the smallest possible in the given scenario.
      *
-     * Generated from protobuf field <code>string duration = 155471252;</code>
+     * Generated from protobuf field <code>optional string duration = 155471252;</code>
      * @return string
      */
     public function getDuration()
@@ -113,7 +113,7 @@ class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] A predetermined duration for the window, automatically chosen to be the smallest possible in the given scenario.
      *
-     * Generated from protobuf field <code>string duration = 155471252;</code>
+     * Generated from protobuf field <code>optional string duration = 155471252;</code>
      * @param string $var
      * @return $this
      */
@@ -128,7 +128,7 @@ class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
     /**
      * Start time of the window. This must be in UTC format that resolves to one of 00:00, 04:00, 08:00, 12:00, 16:00, or 20:00. For example, both 13:00-5 and 08:00 are valid.
      *
-     * Generated from protobuf field <code>string start_time = 37467274;</code>
+     * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      * @return string
      */
     public function getStartTime()
@@ -149,7 +149,7 @@ class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
     /**
      * Start time of the window. This must be in UTC format that resolves to one of 00:00, 04:00, 08:00, 12:00, 16:00, or 20:00. For example, both 13:00-5 and 08:00 are valid.
      *
-     * Generated from protobuf field <code>string start_time = 37467274;</code>
+     * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      * @param string $var
      * @return $this
      */

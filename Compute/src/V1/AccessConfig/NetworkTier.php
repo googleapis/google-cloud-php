@@ -7,9 +7,7 @@ namespace Google\Cloud\Compute\V1\AccessConfig;
 use UnexpectedValueException;
 
 /**
- * This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD.
- * If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier.
- * If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
+ * This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD. If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier. If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
  *
  * Protobuf type <code>google.cloud.compute.v1.AccessConfig.NetworkTier</code>
  */
@@ -22,10 +20,14 @@ class NetworkTier
      */
     const UNDEFINED_NETWORK_TIER = 0;
     /**
+     * High quality, Google-grade network tier, support for all networking products.
+     *
      * Generated from protobuf enum <code>PREMIUM = 399530551;</code>
      */
     const PREMIUM = 399530551;
     /**
+     * Public internet quality, only limited support for other networking products.
+     *
      * Generated from protobuf enum <code>STANDARD = 484642493;</code>
      */
     const STANDARD = 484642493;

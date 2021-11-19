@@ -18,55 +18,56 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
      *
-     * Generated from protobuf field <code>string action = 187661878;</code>
+     * Generated from protobuf field <code>optional string action = 187661878;</code>
      */
     private $action = null;
     /**
      * An optional description for this resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * The direction in which this rule applies.
+     * Check the Direction enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FirewallPolicyRule.Direction direction = 111150975;</code>
+     * Generated from protobuf field <code>optional string direction = 111150975;</code>
      */
     private $direction = null;
     /**
      * Denotes whether the firewall policy rule is disabled. When set to true, the firewall policy rule is not enforced and traffic behaves as if it did not exist. If this is unspecified, the firewall policy rule will be enabled.
      *
-     * Generated from protobuf field <code>bool disabled = 270940796;</code>
+     * Generated from protobuf field <code>optional bool disabled = 270940796;</code>
      */
     private $disabled = null;
     /**
      * Denotes whether to enable logging for a particular rule. If logging is enabled, logs will be exported to the configured export destination in Stackdriver. Logs may be exported to BigQuery or Pub/Sub. Note: you cannot enable logging on "goto_next" rules.
      *
-     * Generated from protobuf field <code>bool enable_logging = 295396515;</code>
+     * Generated from protobuf field <code>optional bool enable_logging = 295396515;</code>
      */
     private $enable_logging = null;
     /**
      * [Output only] Type of the resource. Always compute#firewallPolicyRule for firewall policy rules
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding 'action' is enforced.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FirewallPolicyRuleMatcher match = 103668165;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FirewallPolicyRuleMatcher match = 103668165;</code>
      */
     private $match = null;
     /**
      * An integer indicating the priority of a rule in the list. The priority must be a positive value between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the highest priority and 2147483647 is the lowest prority.
      *
-     * Generated from protobuf field <code>int32 priority = 445151652;</code>
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      */
     private $priority = null;
     /**
      * [Output Only] Calculation of the complexity of a single firewall policy rule.
      *
-     * Generated from protobuf field <code>int32 rule_tuple_count = 388342037;</code>
+     * Generated from protobuf field <code>optional int32 rule_tuple_count = 388342037;</code>
      */
     private $rule_tuple_count = null;
     /**
@@ -92,8 +93,9 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      *           The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
      *     @type string $description
      *           An optional description for this resource.
-     *     @type int $direction
+     *     @type string $direction
      *           The direction in which this rule applies.
+     *           Check the Direction enum for the list of possible values.
      *     @type bool $disabled
      *           Denotes whether the firewall policy rule is disabled. When set to true, the firewall policy rule is not enforced and traffic behaves as if it did not exist. If this is unspecified, the firewall policy rule will be enabled.
      *     @type bool $enable_logging
@@ -120,7 +122,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
      *
-     * Generated from protobuf field <code>string action = 187661878;</code>
+     * Generated from protobuf field <code>optional string action = 187661878;</code>
      * @return string
      */
     public function getAction()
@@ -141,7 +143,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
      *
-     * Generated from protobuf field <code>string action = 187661878;</code>
+     * Generated from protobuf field <code>optional string action = 187661878;</code>
      * @param string $var
      * @return $this
      */
@@ -156,7 +158,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * An optional description for this resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -177,7 +179,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * An optional description for this resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -191,13 +193,14 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
 
     /**
      * The direction in which this rule applies.
+     * Check the Direction enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FirewallPolicyRule.Direction direction = 111150975;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string direction = 111150975;</code>
+     * @return string
      */
     public function getDirection()
     {
-        return isset($this->direction) ? $this->direction : 0;
+        return isset($this->direction) ? $this->direction : '';
     }
 
     public function hasDirection()
@@ -212,14 +215,15 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
 
     /**
      * The direction in which this rule applies.
+     * Check the Direction enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FirewallPolicyRule.Direction direction = 111150975;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string direction = 111150975;</code>
+     * @param string $var
      * @return $this
      */
     public function setDirection($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\FirewallPolicyRule\Direction::class);
+        GPBUtil::checkString($var, True);
         $this->direction = $var;
 
         return $this;
@@ -228,7 +232,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * Denotes whether the firewall policy rule is disabled. When set to true, the firewall policy rule is not enforced and traffic behaves as if it did not exist. If this is unspecified, the firewall policy rule will be enabled.
      *
-     * Generated from protobuf field <code>bool disabled = 270940796;</code>
+     * Generated from protobuf field <code>optional bool disabled = 270940796;</code>
      * @return bool
      */
     public function getDisabled()
@@ -249,7 +253,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * Denotes whether the firewall policy rule is disabled. When set to true, the firewall policy rule is not enforced and traffic behaves as if it did not exist. If this is unspecified, the firewall policy rule will be enabled.
      *
-     * Generated from protobuf field <code>bool disabled = 270940796;</code>
+     * Generated from protobuf field <code>optional bool disabled = 270940796;</code>
      * @param bool $var
      * @return $this
      */
@@ -264,7 +268,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * Denotes whether to enable logging for a particular rule. If logging is enabled, logs will be exported to the configured export destination in Stackdriver. Logs may be exported to BigQuery or Pub/Sub. Note: you cannot enable logging on "goto_next" rules.
      *
-     * Generated from protobuf field <code>bool enable_logging = 295396515;</code>
+     * Generated from protobuf field <code>optional bool enable_logging = 295396515;</code>
      * @return bool
      */
     public function getEnableLogging()
@@ -285,7 +289,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * Denotes whether to enable logging for a particular rule. If logging is enabled, logs will be exported to the configured export destination in Stackdriver. Logs may be exported to BigQuery or Pub/Sub. Note: you cannot enable logging on "goto_next" rules.
      *
-     * Generated from protobuf field <code>bool enable_logging = 295396515;</code>
+     * Generated from protobuf field <code>optional bool enable_logging = 295396515;</code>
      * @param bool $var
      * @return $this
      */
@@ -300,7 +304,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] Type of the resource. Always compute#firewallPolicyRule for firewall policy rules
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -321,7 +325,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] Type of the resource. Always compute#firewallPolicyRule for firewall policy rules
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -336,12 +340,12 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding 'action' is enforced.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FirewallPolicyRuleMatcher match = 103668165;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FirewallPolicyRuleMatcher match = 103668165;</code>
      * @return \Google\Cloud\Compute\V1\FirewallPolicyRuleMatcher|null
      */
     public function getMatch()
     {
-        return isset($this->match) ? $this->match : null;
+        return $this->match;
     }
 
     public function hasMatch()
@@ -357,7 +361,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding 'action' is enforced.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FirewallPolicyRuleMatcher match = 103668165;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FirewallPolicyRuleMatcher match = 103668165;</code>
      * @param \Google\Cloud\Compute\V1\FirewallPolicyRuleMatcher $var
      * @return $this
      */
@@ -372,7 +376,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * An integer indicating the priority of a rule in the list. The priority must be a positive value between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the highest priority and 2147483647 is the lowest prority.
      *
-     * Generated from protobuf field <code>int32 priority = 445151652;</code>
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      * @return int
      */
     public function getPriority()
@@ -393,7 +397,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * An integer indicating the priority of a rule in the list. The priority must be a positive value between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the highest priority and 2147483647 is the lowest prority.
      *
-     * Generated from protobuf field <code>int32 priority = 445151652;</code>
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      * @param int $var
      * @return $this
      */
@@ -408,7 +412,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Calculation of the complexity of a single firewall policy rule.
      *
-     * Generated from protobuf field <code>int32 rule_tuple_count = 388342037;</code>
+     * Generated from protobuf field <code>optional int32 rule_tuple_count = 388342037;</code>
      * @return int
      */
     public function getRuleTupleCount()
@@ -429,7 +433,7 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Calculation of the complexity of a single firewall policy rule.
      *
-     * Generated from protobuf field <code>int32 rule_tuple_count = 388342037;</code>
+     * Generated from protobuf field <code>optional int32 rule_tuple_count = 388342037;</code>
      * @param int $var
      * @return $this
      */

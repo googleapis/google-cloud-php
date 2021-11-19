@@ -9,32 +9,28 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Increment a streamz counter with the specified metric and field names.
- * Metric names should start with a '/', generally be lowercase-only, and end in "_count". Field names should not contain an initial slash. The actual exported metric names will have "/iam/policy" prepended.
- * Field names correspond to IAM request parameters and field values are their respective values.
- * Supported field names: - "authority", which is "[token]" if IAMContext.token is present, otherwise the value of IAMContext.authority_selector if present, and otherwise a representation of IAMContext.principal; or - "iam_principal", a representation of IAMContext.principal even if a token or authority selector is present; or - "" (empty string), resulting in a counter with no fields.
- * Examples: counter { metric: "/debug_access_count" field: "iam_principal" } ==> increment counter /iam/policy/debug_access_count {iam_principal=[value of IAMContext.principal]}
+ * This is deprecated and has no effect. Do not use.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.LogConfigCounterOptions</code>
  */
 class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Custom fields.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LogConfigCounterOptionsCustomField custom_fields = 249651015;</code>
      */
     private $custom_fields;
     /**
-     * The field value to attribute.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>string field = 97427706;</code>
+     * Generated from protobuf field <code>optional string field = 97427706;</code>
      */
     private $field = null;
     /**
-     * The metric to update.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>string metric = 533067184;</code>
+     * Generated from protobuf field <code>optional string metric = 533067184;</code>
      */
     private $metric = null;
 
@@ -45,11 +41,11 @@ class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\LogConfigCounterOptionsCustomField[]|\Google\Protobuf\Internal\RepeatedField $custom_fields
-     *           Custom fields.
+     *           This is deprecated and has no effect. Do not use.
      *     @type string $field
-     *           The field value to attribute.
+     *           This is deprecated and has no effect. Do not use.
      *     @type string $metric
-     *           The metric to update.
+     *           This is deprecated and has no effect. Do not use.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,7 +54,7 @@ class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Custom fields.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LogConfigCounterOptionsCustomField custom_fields = 249651015;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -69,7 +65,7 @@ class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Custom fields.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LogConfigCounterOptionsCustomField custom_fields = 249651015;</code>
      * @param \Google\Cloud\Compute\V1\LogConfigCounterOptionsCustomField[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -84,9 +80,9 @@ class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The field value to attribute.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>string field = 97427706;</code>
+     * Generated from protobuf field <code>optional string field = 97427706;</code>
      * @return string
      */
     public function getField()
@@ -105,9 +101,9 @@ class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The field value to attribute.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>string field = 97427706;</code>
+     * Generated from protobuf field <code>optional string field = 97427706;</code>
      * @param string $var
      * @return $this
      */
@@ -120,9 +116,9 @@ class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The metric to update.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>string metric = 533067184;</code>
+     * Generated from protobuf field <code>optional string metric = 533067184;</code>
      * @return string
      */
     public function getMetric()
@@ -141,9 +137,9 @@ class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The metric to update.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>string metric = 533067184;</code>
+     * Generated from protobuf field <code>optional string metric = 533067184;</code>
      * @param string $var
      * @return $this
      */

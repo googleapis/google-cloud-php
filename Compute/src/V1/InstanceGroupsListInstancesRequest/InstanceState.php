@@ -20,10 +20,14 @@ class InstanceState
      */
     const UNDEFINED_INSTANCE_STATE = 0;
     /**
+     * Includes all instances in the generated list regardless of their state.
+     *
      * Generated from protobuf enum <code>ALL = 64897;</code>
      */
     const ALL = 64897;
     /**
+     * Includes instances in the generated list only if they have a RUNNING state.
+     *
      * Generated from protobuf enum <code>RUNNING = 121282975;</code>
      */
     const RUNNING = 121282975;

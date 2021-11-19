@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Cloud Storage Bucket resource.
- * This Cloud Storage bucket resource is referenced by a URL map of a load balancer. For more information, read Backend Buckets.
+ * Represents a Cloud Storage Bucket resource. This Cloud Storage bucket resource is referenced by a URL map of a load balancer. For more information, read Backend Buckets.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.BackendBucket</code>
  */
@@ -19,19 +18,19 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * Cloud Storage bucket name.
      *
-     * Generated from protobuf field <code>string bucket_name = 283610048;</code>
+     * Generated from protobuf field <code>optional string bucket_name = 283610048;</code>
      */
     private $bucket_name = null;
     /**
      * Cloud CDN configuration for this BackendBucket.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.BackendBucketCdnPolicy cdn_policy = 213976452;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendBucketCdnPolicy cdn_policy = 213976452;</code>
      */
     private $cdn_policy = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
@@ -43,37 +42,37 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * An optional textual description of the resource; provided by the client when the resource is created.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * If true, enable Cloud CDN for this BackendBucket.
      *
-     * Generated from protobuf field <code>bool enable_cdn = 282942321;</code>
+     * Generated from protobuf field <code>optional bool enable_cdn = 282942321;</code>
      */
     private $enable_cdn = null;
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * Type of the resource.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
 
@@ -113,7 +112,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * Cloud Storage bucket name.
      *
-     * Generated from protobuf field <code>string bucket_name = 283610048;</code>
+     * Generated from protobuf field <code>optional string bucket_name = 283610048;</code>
      * @return string
      */
     public function getBucketName()
@@ -134,7 +133,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * Cloud Storage bucket name.
      *
-     * Generated from protobuf field <code>string bucket_name = 283610048;</code>
+     * Generated from protobuf field <code>optional string bucket_name = 283610048;</code>
      * @param string $var
      * @return $this
      */
@@ -149,12 +148,12 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * Cloud CDN configuration for this BackendBucket.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.BackendBucketCdnPolicy cdn_policy = 213976452;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendBucketCdnPolicy cdn_policy = 213976452;</code>
      * @return \Google\Cloud\Compute\V1\BackendBucketCdnPolicy|null
      */
     public function getCdnPolicy()
     {
-        return isset($this->cdn_policy) ? $this->cdn_policy : null;
+        return $this->cdn_policy;
     }
 
     public function hasCdnPolicy()
@@ -170,7 +169,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * Cloud CDN configuration for this BackendBucket.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.BackendBucketCdnPolicy cdn_policy = 213976452;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendBucketCdnPolicy cdn_policy = 213976452;</code>
      * @param \Google\Cloud\Compute\V1\BackendBucketCdnPolicy $var
      * @return $this
      */
@@ -185,7 +184,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -206,7 +205,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -247,7 +246,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * An optional textual description of the resource; provided by the client when the resource is created.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -268,7 +267,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * An optional textual description of the resource; provided by the client when the resource is created.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -283,7 +282,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * If true, enable Cloud CDN for this BackendBucket.
      *
-     * Generated from protobuf field <code>bool enable_cdn = 282942321;</code>
+     * Generated from protobuf field <code>optional bool enable_cdn = 282942321;</code>
      * @return bool
      */
     public function getEnableCdn()
@@ -304,7 +303,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * If true, enable Cloud CDN for this BackendBucket.
      *
-     * Generated from protobuf field <code>bool enable_cdn = 282942321;</code>
+     * Generated from protobuf field <code>optional bool enable_cdn = 282942321;</code>
      * @param bool $var
      * @return $this
      */
@@ -319,7 +318,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -340,7 +339,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -355,7 +354,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * Type of the resource.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -376,7 +375,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * Type of the resource.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -391,7 +390,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -412,7 +411,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -427,7 +426,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -448,7 +447,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */

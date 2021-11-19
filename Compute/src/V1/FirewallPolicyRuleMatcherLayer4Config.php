@@ -17,12 +17,11 @@ class FirewallPolicyRuleMatcherLayer4Config extends \Google\Protobuf\Internal\Me
     /**
      * The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp), or the IP protocol number.
      *
-     * Generated from protobuf field <code>string ip_protocol = 475958960;</code>
+     * Generated from protobuf field <code>optional string ip_protocol = 475958960;</code>
      */
     private $ip_protocol = null;
     /**
-     * An optional list of ports to which this rule applies. This field is only applicable for UDP or TCP protocol. Each entry must be either an integer or a range. If not specified, this rule applies to connections through any port.
-     * Example inputs include: ["22"], ["80","443"], and ["12345-12349"].
+     * An optional list of ports to which this rule applies. This field is only applicable for UDP or TCP protocol. Each entry must be either an integer or a range. If not specified, this rule applies to connections through any port. Example inputs include: ["22"], ["80","443"], and ["12345-12349"].
      *
      * Generated from protobuf field <code>repeated string ports = 106854418;</code>
      */
@@ -37,8 +36,7 @@ class FirewallPolicyRuleMatcherLayer4Config extends \Google\Protobuf\Internal\Me
      *     @type string $ip_protocol
      *           The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp), or the IP protocol number.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ports
-     *           An optional list of ports to which this rule applies. This field is only applicable for UDP or TCP protocol. Each entry must be either an integer or a range. If not specified, this rule applies to connections through any port.
-     *           Example inputs include: ["22"], ["80","443"], and ["12345-12349"].
+     *           An optional list of ports to which this rule applies. This field is only applicable for UDP or TCP protocol. Each entry must be either an integer or a range. If not specified, this rule applies to connections through any port. Example inputs include: ["22"], ["80","443"], and ["12345-12349"].
      * }
      */
     public function __construct($data = NULL) {
@@ -49,7 +47,7 @@ class FirewallPolicyRuleMatcherLayer4Config extends \Google\Protobuf\Internal\Me
     /**
      * The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp), or the IP protocol number.
      *
-     * Generated from protobuf field <code>string ip_protocol = 475958960;</code>
+     * Generated from protobuf field <code>optional string ip_protocol = 475958960;</code>
      * @return string
      */
     public function getIpProtocol()
@@ -70,7 +68,7 @@ class FirewallPolicyRuleMatcherLayer4Config extends \Google\Protobuf\Internal\Me
     /**
      * The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp), or the IP protocol number.
      *
-     * Generated from protobuf field <code>string ip_protocol = 475958960;</code>
+     * Generated from protobuf field <code>optional string ip_protocol = 475958960;</code>
      * @param string $var
      * @return $this
      */
@@ -83,8 +81,7 @@ class FirewallPolicyRuleMatcherLayer4Config extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * An optional list of ports to which this rule applies. This field is only applicable for UDP or TCP protocol. Each entry must be either an integer or a range. If not specified, this rule applies to connections through any port.
-     * Example inputs include: ["22"], ["80","443"], and ["12345-12349"].
+     * An optional list of ports to which this rule applies. This field is only applicable for UDP or TCP protocol. Each entry must be either an integer or a range. If not specified, this rule applies to connections through any port. Example inputs include: ["22"], ["80","443"], and ["12345-12349"].
      *
      * Generated from protobuf field <code>repeated string ports = 106854418;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -95,8 +92,7 @@ class FirewallPolicyRuleMatcherLayer4Config extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * An optional list of ports to which this rule applies. This field is only applicable for UDP or TCP protocol. Each entry must be either an integer or a range. If not specified, this rule applies to connections through any port.
-     * Example inputs include: ["22"], ["80","443"], and ["12345-12349"].
+     * An optional list of ports to which this rule applies. This field is only applicable for UDP or TCP protocol. Each entry must be either an integer or a range. If not specified, this rule applies to connections through any port. Example inputs include: ["22"], ["80","443"], and ["12345-12349"].
      *
      * Generated from protobuf field <code>repeated string ports = 106854418;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

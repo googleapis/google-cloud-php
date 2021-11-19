@@ -18,7 +18,7 @@ class ListAssociationsFirewallPolicyRequest extends \Google\Protobuf\Internal\Me
     /**
      * The target resource to list associations. It is an organization, or a folder.
      *
-     * Generated from protobuf field <code>string target_resource = 467318524;</code>
+     * Generated from protobuf field <code>optional string target_resource = 467318524;</code>
      */
     private $target_resource = null;
 
@@ -40,7 +40,7 @@ class ListAssociationsFirewallPolicyRequest extends \Google\Protobuf\Internal\Me
     /**
      * The target resource to list associations. It is an organization, or a folder.
      *
-     * Generated from protobuf field <code>string target_resource = 467318524;</code>
+     * Generated from protobuf field <code>optional string target_resource = 467318524;</code>
      * @return string
      */
     public function getTargetResource()
@@ -61,7 +61,7 @@ class ListAssociationsFirewallPolicyRequest extends \Google\Protobuf\Internal\Me
     /**
      * The target resource to list associations. It is an organization, or a folder.
      *
-     * Generated from protobuf field <code>string target_resource = 467318524;</code>
+     * Generated from protobuf field <code>optional string target_resource = 467318524;</code>
      * @param string $var
      * @return $this
      */

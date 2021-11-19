@@ -7,10 +7,7 @@ namespace Google\Cloud\Compute\V1\RouterNatLogConfig;
 use UnexpectedValueException;
 
 /**
- * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values:
- * - ERRORS_ONLY: Export logs only for connection failures.
- * - TRANSLATIONS_ONLY: Export logs only for successful connections.
- * - ALL: Export logs for all connections, successful and unsuccessful.
+ * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values: - ERRORS_ONLY: Export logs only for connection failures. - TRANSLATIONS_ONLY: Export logs only for successful connections. - ALL: Export logs for all connections, successful and unsuccessful. 
  *
  * Protobuf type <code>google.cloud.compute.v1.RouterNatLogConfig.Filter</code>
  */
@@ -23,14 +20,20 @@ class Filter
      */
     const UNDEFINED_FILTER = 0;
     /**
+     * Export logs for all (successful and unsuccessful) connections.
+     *
      * Generated from protobuf enum <code>ALL = 64897;</code>
      */
     const ALL = 64897;
     /**
+     * Export logs for connection failures only.
+     *
      * Generated from protobuf enum <code>ERRORS_ONLY = 307484672;</code>
      */
     const ERRORS_ONLY = 307484672;
     /**
+     * Export logs for successful connections only.
+     *
      * Generated from protobuf enum <code>TRANSLATIONS_ONLY = 357212649;</code>
      */
     const TRANSLATIONS_ONLY = 357212649;

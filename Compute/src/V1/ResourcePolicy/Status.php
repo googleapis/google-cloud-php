@@ -20,14 +20,20 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
+     * Resource policy is being created.
+     *
      * Generated from protobuf enum <code>CREATING = 455564985;</code>
      */
     const CREATING = 455564985;
     /**
+     * Resource policy is being deleted.
+     *
      * Generated from protobuf enum <code>DELETING = 528602024;</code>
      */
     const DELETING = 528602024;
     /**
+     * Resource policy is expired and will not run again.
+     *
      * Generated from protobuf enum <code>EXPIRED = 482489093;</code>
      */
     const EXPIRED = 482489093;
@@ -36,6 +42,8 @@ class Status
      */
     const INVALID = 530283991;
     /**
+     * Resource policy is ready to be used.
+     *
      * Generated from protobuf enum <code>READY = 77848963;</code>
      */
     const READY = 77848963;

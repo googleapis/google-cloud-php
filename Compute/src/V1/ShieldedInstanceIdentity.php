@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A shielded Instance identity entry.
+ * A Shielded Instance Identity.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.ShieldedInstanceIdentity</code>
  */
@@ -18,19 +18,19 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
     /**
      * An Endorsement Key (EK) made by the RSA 2048 algorithm issued to the Shielded Instance's vTPM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIdentityEntry encryption_key = 488268707;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShieldedInstanceIdentityEntry encryption_key = 488268707;</code>
      */
     private $encryption_key = null;
     /**
      * [Output Only] Type of the resource. Always compute#shieldedInstanceIdentity for shielded Instance identity entry.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * An Attestation Key (AK) made by the RSA 2048 algorithm issued to the Shielded Instance's vTPM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIdentityEntry signing_key = 320948261;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShieldedInstanceIdentityEntry signing_key = 320948261;</code>
      */
     private $signing_key = null;
 
@@ -56,12 +56,12 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
     /**
      * An Endorsement Key (EK) made by the RSA 2048 algorithm issued to the Shielded Instance's vTPM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIdentityEntry encryption_key = 488268707;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShieldedInstanceIdentityEntry encryption_key = 488268707;</code>
      * @return \Google\Cloud\Compute\V1\ShieldedInstanceIdentityEntry|null
      */
     public function getEncryptionKey()
     {
-        return isset($this->encryption_key) ? $this->encryption_key : null;
+        return $this->encryption_key;
     }
 
     public function hasEncryptionKey()
@@ -77,7 +77,7 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
     /**
      * An Endorsement Key (EK) made by the RSA 2048 algorithm issued to the Shielded Instance's vTPM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIdentityEntry encryption_key = 488268707;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShieldedInstanceIdentityEntry encryption_key = 488268707;</code>
      * @param \Google\Cloud\Compute\V1\ShieldedInstanceIdentityEntry $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#shieldedInstanceIdentity for shielded Instance identity entry.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -113,7 +113,7 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#shieldedInstanceIdentity for shielded Instance identity entry.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -128,12 +128,12 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
     /**
      * An Attestation Key (AK) made by the RSA 2048 algorithm issued to the Shielded Instance's vTPM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIdentityEntry signing_key = 320948261;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShieldedInstanceIdentityEntry signing_key = 320948261;</code>
      * @return \Google\Cloud\Compute\V1\ShieldedInstanceIdentityEntry|null
      */
     public function getSigningKey()
     {
-        return isset($this->signing_key) ? $this->signing_key : null;
+        return $this->signing_key;
     }
 
     public function hasSigningKey()
@@ -149,7 +149,7 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
     /**
      * An Attestation Key (AK) made by the RSA 2048 algorithm issued to the Shielded Instance's vTPM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIdentityEntry signing_key = 320948261;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShieldedInstanceIdentityEntry signing_key = 320948261;</code>
      * @param \Google\Cloud\Compute\V1\ShieldedInstanceIdentityEntry $var
      * @return $this
      */

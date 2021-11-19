@@ -17,11 +17,11 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
     /**
      * If set, this invalidation rule will only apply to requests with a Host header matching host.
      *
-     * Generated from protobuf field <code>string host = 3208616;</code>
+     * Generated from protobuf field <code>optional string host = 3208616;</code>
      */
     private $host = null;
     /**
-     * Generated from protobuf field <code>string path = 3433509;</code>
+     * Generated from protobuf field <code>optional string path = 3433509;</code>
      */
     private $path = null;
 
@@ -44,7 +44,7 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
     /**
      * If set, this invalidation rule will only apply to requests with a Host header matching host.
      *
-     * Generated from protobuf field <code>string host = 3208616;</code>
+     * Generated from protobuf field <code>optional string host = 3208616;</code>
      * @return string
      */
     public function getHost()
@@ -65,7 +65,7 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
     /**
      * If set, this invalidation rule will only apply to requests with a Host header matching host.
      *
-     * Generated from protobuf field <code>string host = 3208616;</code>
+     * Generated from protobuf field <code>optional string host = 3208616;</code>
      * @param string $var
      * @return $this
      */
@@ -78,7 +78,7 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string path = 3433509;</code>
+     * Generated from protobuf field <code>optional string path = 3433509;</code>
      * @return string
      */
     public function getPath()
@@ -97,7 +97,7 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string path = 3433509;</code>
+     * Generated from protobuf field <code>optional string path = 3433509;</code>
      * @param string $var
      * @return $this
      */

@@ -18,7 +18,7 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
     /**
      * URL for the subnetwork resource that will use NAT.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
@@ -29,8 +29,9 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
     private $secondary_ip_range_names;
     /**
      * Specify the options for NAT ranges in the Subnetwork. All options of a single value are valid except NAT_IP_RANGE_OPTION_UNSPECIFIED. The only valid option with multiple values is: ["PRIMARY_IP_RANGE", "LIST_OF_SECONDARY_IP_RANGES"] Default: [ALL_IP_RANGES]
+     * Check the SourceIpRangesToNat enum for the list of possible values.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat.SourceIpRangesToNat source_ip_ranges_to_nat = 388310386;</code>
+     * Generated from protobuf field <code>repeated string source_ip_ranges_to_nat = 388310386;</code>
      */
     private $source_ip_ranges_to_nat;
 
@@ -44,8 +45,9 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
      *           URL for the subnetwork resource that will use NAT.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $secondary_ip_range_names
      *           A list of the secondary ranges of the Subnetwork that are allowed to use NAT. This can be populated only if "LIST_OF_SECONDARY_IP_RANGES" is one of the values in source_ip_ranges_to_nat.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $source_ip_ranges_to_nat
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $source_ip_ranges_to_nat
      *           Specify the options for NAT ranges in the Subnetwork. All options of a single value are valid except NAT_IP_RANGE_OPTION_UNSPECIFIED. The only valid option with multiple values is: ["PRIMARY_IP_RANGE", "LIST_OF_SECONDARY_IP_RANGES"] Default: [ALL_IP_RANGES]
+     *           Check the SourceIpRangesToNat enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +58,7 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
     /**
      * URL for the subnetwork resource that will use NAT.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -77,7 +79,7 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
     /**
      * URL for the subnetwork resource that will use NAT.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -117,8 +119,9 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
 
     /**
      * Specify the options for NAT ranges in the Subnetwork. All options of a single value are valid except NAT_IP_RANGE_OPTION_UNSPECIFIED. The only valid option with multiple values is: ["PRIMARY_IP_RANGE", "LIST_OF_SECONDARY_IP_RANGES"] Default: [ALL_IP_RANGES]
+     * Check the SourceIpRangesToNat enum for the list of possible values.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat.SourceIpRangesToNat source_ip_ranges_to_nat = 388310386;</code>
+     * Generated from protobuf field <code>repeated string source_ip_ranges_to_nat = 388310386;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSourceIpRangesToNat()
@@ -128,14 +131,15 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
 
     /**
      * Specify the options for NAT ranges in the Subnetwork. All options of a single value are valid except NAT_IP_RANGE_OPTION_UNSPECIFIED. The only valid option with multiple values is: ["PRIMARY_IP_RANGE", "LIST_OF_SECONDARY_IP_RANGES"] Default: [ALL_IP_RANGES]
+     * Check the SourceIpRangesToNat enum for the list of possible values.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat.SourceIpRangesToNat source_ip_ranges_to_nat = 388310386;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated string source_ip_ranges_to_nat = 388310386;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSourceIpRangesToNat($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Compute\V1\RouterNatSubnetworkToNat\SourceIpRangesToNat::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->source_ip_ranges_to_nat = $arr;
 
         return $this;

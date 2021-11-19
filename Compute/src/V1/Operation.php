@@ -9,15 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an Operation resource.
- * Google Compute Engine has three Operation resources:
- * * [Global](/compute/docs/reference/rest/{$api_version}/globalOperations) * [Regional](/compute/docs/reference/rest/{$api_version}/regionOperations) * [Zonal](https://cloud.google.com/compute/docs/reference/rest/{$api_version}/zoneOperations)
- * You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses.
- * Operations can be global, regional or zonal.
- * - For global operations, use the `globalOperations` resource.
- * - For regional operations, use the `regionOperations` resource.
- * - For zonal operations, use the `zonalOperations` resource.
- * For more information, read  Global, Regional, and Zonal Resources. (== resource_for {$api_version}.globalOperations ==) (== resource_for {$api_version}.regionOperations ==) (== resource_for {$api_version}.zoneOperations ==)
+ * Represents an Operation resource. Google Compute Engine has three Operation resources: * [Global](/compute/docs/reference/rest/v1/globalOperations) * [Regional](/compute/docs/reference/rest/v1/regionOperations) * [Zonal](https://cloud.google.com/compute/docs/reference/rest/v1/zoneOperations) You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses. Operations can be global, regional or zonal. - For global operations, use the `globalOperations` resource. - For regional operations, use the `regionOperations` resource. - For zonal operations, use the `zonalOperations` resource. For more information, read Global, Regional, and Zonal Resources.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Operation</code>
  */
@@ -26,133 +18,133 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The value of `requestId` if you provided it in the request. Not present otherwise.
      *
-     * Generated from protobuf field <code>string client_operation_id = 297240295;</code>
+     * Generated from protobuf field <code>optional string client_operation_id = 297240295;</code>
      */
     private $client_operation_id = null;
     /**
      * [Deprecated] This field is deprecated.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * [Output Only] A textual description of the operation, which is set when the operation is created.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * [Output Only] The time that this operation was completed. This value is in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string end_time = 114938801;</code>
+     * Generated from protobuf field <code>optional string end_time = 114938801;</code>
      */
     private $end_time = null;
     /**
      * [Output Only] If errors are generated during processing of the operation, this field will be populated.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Error error = 96784904;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Error error = 96784904;</code>
      */
     private $error = null;
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as `NOT FOUND`.
      *
-     * Generated from protobuf field <code>string http_error_message = 202521945;</code>
+     * Generated from protobuf field <code>optional string http_error_message = 202521945 [(.google.cloud.operation_field) = ERROR_MESSAGE];</code>
      */
     private $http_error_message = null;
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error status code that was returned. For example, a `404` means the resource was not found.
      *
-     * Generated from protobuf field <code>int32 http_error_status_code = 312345196;</code>
+     * Generated from protobuf field <code>optional int32 http_error_status_code = 312345196 [(.google.cloud.operation_field) = ERROR_CODE];</code>
      */
     private $http_error_status_code = null;
     /**
      * [Output Only] The unique identifier for the operation. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] The time that this operation was requested. This value is in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string insert_time = 433722515;</code>
+     * Generated from protobuf field <code>optional string insert_time = 433722515;</code>
      */
     private $insert_time = null;
     /**
      * [Output Only] Type of the resource. Always `compute#operation` for Operation resources.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * [Output Only] Name of the operation.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707 [(.google.cloud.operation_field) = NAME];</code>
      */
     private $name = null;
     /**
      * [Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.
      *
-     * Generated from protobuf field <code>string operation_group_id = 40171187;</code>
+     * Generated from protobuf field <code>optional string operation_group_id = 40171187;</code>
      */
     private $operation_group_id = null;
     /**
      * [Output Only] The type of operation, such as `insert`, `update`, or `delete`, and so on.
      *
-     * Generated from protobuf field <code>string operation_type = 177650450;</code>
+     * Generated from protobuf field <code>optional string operation_type = 177650450;</code>
      */
     private $operation_type = null;
     /**
      * [Output Only] An optional progress indicator that ranges from 0 to 100. There is no requirement that this be linear or support any granularity of operations. This should not be used to guess when the operation will be complete. This number should monotonically increase as the operation progresses.
      *
-     * Generated from protobuf field <code>int32 progress = 72663597;</code>
+     * Generated from protobuf field <code>optional int32 progress = 72663597;</code>
      */
     private $progress = null;
     /**
      * [Output Only] The URL of the region where the operation resides. Only applicable when performing regional operations.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
     private $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * [Output Only] The time that this operation was started by the server. This value is in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string start_time = 37467274;</code>
+     * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      */
     private $start_time = null;
     /**
      * [Output Only] The status of the operation, which can be one of the following: `PENDING`, `RUNNING`, or `DONE`.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Operation.Status status = 181260274;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Operation.Status status = 181260274 [(.google.cloud.operation_field) = STATUS];</code>
      */
     private $status = null;
     /**
      * [Output Only] An optional textual description of the current status of the operation.
      *
-     * Generated from protobuf field <code>string status_message = 297428154;</code>
+     * Generated from protobuf field <code>optional string status_message = 297428154;</code>
      */
     private $status_message = null;
     /**
      * [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
      *
-     * Generated from protobuf field <code>uint64 target_id = 258165385;</code>
+     * Generated from protobuf field <code>optional uint64 target_id = 258165385;</code>
      */
     private $target_id = null;
     /**
      * [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
      *
-     * Generated from protobuf field <code>string target_link = 62671336;</code>
+     * Generated from protobuf field <code>optional string target_link = 62671336;</code>
      */
     private $target_link = null;
     /**
      * [Output Only] User who requested the operation, for example: `user&#64;example.com`.
      *
-     * Generated from protobuf field <code>string user = 3599307;</code>
+     * Generated from protobuf field <code>optional string user = 3599307;</code>
      */
     private $user = null;
     /**
@@ -164,7 +156,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the zone where the operation resides. Only applicable when performing per-zone operations.
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
     private $zone = null;
 
@@ -232,7 +224,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The value of `requestId` if you provided it in the request. Not present otherwise.
      *
-     * Generated from protobuf field <code>string client_operation_id = 297240295;</code>
+     * Generated from protobuf field <code>optional string client_operation_id = 297240295;</code>
      * @return string
      */
     public function getClientOperationId()
@@ -253,7 +245,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The value of `requestId` if you provided it in the request. Not present otherwise.
      *
-     * Generated from protobuf field <code>string client_operation_id = 297240295;</code>
+     * Generated from protobuf field <code>optional string client_operation_id = 297240295;</code>
      * @param string $var
      * @return $this
      */
@@ -268,7 +260,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Deprecated] This field is deprecated.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -289,7 +281,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Deprecated] This field is deprecated.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -304,7 +296,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A textual description of the operation, which is set when the operation is created.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -325,7 +317,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A textual description of the operation, which is set when the operation is created.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -340,7 +332,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The time that this operation was completed. This value is in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string end_time = 114938801;</code>
+     * Generated from protobuf field <code>optional string end_time = 114938801;</code>
      * @return string
      */
     public function getEndTime()
@@ -361,7 +353,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The time that this operation was completed. This value is in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string end_time = 114938801;</code>
+     * Generated from protobuf field <code>optional string end_time = 114938801;</code>
      * @param string $var
      * @return $this
      */
@@ -376,12 +368,12 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] If errors are generated during processing of the operation, this field will be populated.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Error error = 96784904;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Error error = 96784904;</code>
      * @return \Google\Cloud\Compute\V1\Error|null
      */
     public function getError()
     {
-        return isset($this->error) ? $this->error : null;
+        return $this->error;
     }
 
     public function hasError()
@@ -397,7 +389,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] If errors are generated during processing of the operation, this field will be populated.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Error error = 96784904;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Error error = 96784904;</code>
      * @param \Google\Cloud\Compute\V1\Error $var
      * @return $this
      */
@@ -412,7 +404,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as `NOT FOUND`.
      *
-     * Generated from protobuf field <code>string http_error_message = 202521945;</code>
+     * Generated from protobuf field <code>optional string http_error_message = 202521945 [(.google.cloud.operation_field) = ERROR_MESSAGE];</code>
      * @return string
      */
     public function getHttpErrorMessage()
@@ -433,7 +425,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as `NOT FOUND`.
      *
-     * Generated from protobuf field <code>string http_error_message = 202521945;</code>
+     * Generated from protobuf field <code>optional string http_error_message = 202521945 [(.google.cloud.operation_field) = ERROR_MESSAGE];</code>
      * @param string $var
      * @return $this
      */
@@ -448,7 +440,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error status code that was returned. For example, a `404` means the resource was not found.
      *
-     * Generated from protobuf field <code>int32 http_error_status_code = 312345196;</code>
+     * Generated from protobuf field <code>optional int32 http_error_status_code = 312345196 [(.google.cloud.operation_field) = ERROR_CODE];</code>
      * @return int
      */
     public function getHttpErrorStatusCode()
@@ -469,7 +461,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error status code that was returned. For example, a `404` means the resource was not found.
      *
-     * Generated from protobuf field <code>int32 http_error_status_code = 312345196;</code>
+     * Generated from protobuf field <code>optional int32 http_error_status_code = 312345196 [(.google.cloud.operation_field) = ERROR_CODE];</code>
      * @param int $var
      * @return $this
      */
@@ -484,7 +476,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the operation. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -505,7 +497,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the operation. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -520,7 +512,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The time that this operation was requested. This value is in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string insert_time = 433722515;</code>
+     * Generated from protobuf field <code>optional string insert_time = 433722515;</code>
      * @return string
      */
     public function getInsertTime()
@@ -541,7 +533,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The time that this operation was requested. This value is in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string insert_time = 433722515;</code>
+     * Generated from protobuf field <code>optional string insert_time = 433722515;</code>
      * @param string $var
      * @return $this
      */
@@ -556,7 +548,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always `compute#operation` for Operation resources.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -577,7 +569,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always `compute#operation` for Operation resources.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -592,7 +584,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Name of the operation.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707 [(.google.cloud.operation_field) = NAME];</code>
      * @return string
      */
     public function getName()
@@ -613,7 +605,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Name of the operation.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707 [(.google.cloud.operation_field) = NAME];</code>
      * @param string $var
      * @return $this
      */
@@ -628,7 +620,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.
      *
-     * Generated from protobuf field <code>string operation_group_id = 40171187;</code>
+     * Generated from protobuf field <code>optional string operation_group_id = 40171187;</code>
      * @return string
      */
     public function getOperationGroupId()
@@ -649,7 +641,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.
      *
-     * Generated from protobuf field <code>string operation_group_id = 40171187;</code>
+     * Generated from protobuf field <code>optional string operation_group_id = 40171187;</code>
      * @param string $var
      * @return $this
      */
@@ -664,7 +656,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The type of operation, such as `insert`, `update`, or `delete`, and so on.
      *
-     * Generated from protobuf field <code>string operation_type = 177650450;</code>
+     * Generated from protobuf field <code>optional string operation_type = 177650450;</code>
      * @return string
      */
     public function getOperationType()
@@ -685,7 +677,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The type of operation, such as `insert`, `update`, or `delete`, and so on.
      *
-     * Generated from protobuf field <code>string operation_type = 177650450;</code>
+     * Generated from protobuf field <code>optional string operation_type = 177650450;</code>
      * @param string $var
      * @return $this
      */
@@ -700,7 +692,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional progress indicator that ranges from 0 to 100. There is no requirement that this be linear or support any granularity of operations. This should not be used to guess when the operation will be complete. This number should monotonically increase as the operation progresses.
      *
-     * Generated from protobuf field <code>int32 progress = 72663597;</code>
+     * Generated from protobuf field <code>optional int32 progress = 72663597;</code>
      * @return int
      */
     public function getProgress()
@@ -721,7 +713,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional progress indicator that ranges from 0 to 100. There is no requirement that this be linear or support any granularity of operations. This should not be used to guess when the operation will be complete. This number should monotonically increase as the operation progresses.
      *
-     * Generated from protobuf field <code>int32 progress = 72663597;</code>
+     * Generated from protobuf field <code>optional int32 progress = 72663597;</code>
      * @param int $var
      * @return $this
      */
@@ -736,7 +728,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the region where the operation resides. Only applicable when performing regional operations.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
      */
     public function getRegion()
@@ -757,7 +749,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the region where the operation resides. Only applicable when performing regional operations.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var
      * @return $this
      */
@@ -772,7 +764,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -793,7 +785,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -808,7 +800,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The time that this operation was started by the server. This value is in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string start_time = 37467274;</code>
+     * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      * @return string
      */
     public function getStartTime()
@@ -829,7 +821,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The time that this operation was started by the server. This value is in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string start_time = 37467274;</code>
+     * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      * @param string $var
      * @return $this
      */
@@ -844,7 +836,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The status of the operation, which can be one of the following: `PENDING`, `RUNNING`, or `DONE`.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Operation.Status status = 181260274;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Operation.Status status = 181260274 [(.google.cloud.operation_field) = STATUS];</code>
      * @return int
      */
     public function getStatus()
@@ -865,7 +857,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The status of the operation, which can be one of the following: `PENDING`, `RUNNING`, or `DONE`.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Operation.Status status = 181260274;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Operation.Status status = 181260274 [(.google.cloud.operation_field) = STATUS];</code>
      * @param int $var
      * @return $this
      */
@@ -880,7 +872,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional textual description of the current status of the operation.
      *
-     * Generated from protobuf field <code>string status_message = 297428154;</code>
+     * Generated from protobuf field <code>optional string status_message = 297428154;</code>
      * @return string
      */
     public function getStatusMessage()
@@ -901,7 +893,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional textual description of the current status of the operation.
      *
-     * Generated from protobuf field <code>string status_message = 297428154;</code>
+     * Generated from protobuf field <code>optional string status_message = 297428154;</code>
      * @param string $var
      * @return $this
      */
@@ -916,7 +908,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
      *
-     * Generated from protobuf field <code>uint64 target_id = 258165385;</code>
+     * Generated from protobuf field <code>optional uint64 target_id = 258165385;</code>
      * @return int|string
      */
     public function getTargetId()
@@ -937,7 +929,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
      *
-     * Generated from protobuf field <code>uint64 target_id = 258165385;</code>
+     * Generated from protobuf field <code>optional uint64 target_id = 258165385;</code>
      * @param int|string $var
      * @return $this
      */
@@ -952,7 +944,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
      *
-     * Generated from protobuf field <code>string target_link = 62671336;</code>
+     * Generated from protobuf field <code>optional string target_link = 62671336;</code>
      * @return string
      */
     public function getTargetLink()
@@ -973,7 +965,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
      *
-     * Generated from protobuf field <code>string target_link = 62671336;</code>
+     * Generated from protobuf field <code>optional string target_link = 62671336;</code>
      * @param string $var
      * @return $this
      */
@@ -988,7 +980,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] User who requested the operation, for example: `user&#64;example.com`.
      *
-     * Generated from protobuf field <code>string user = 3599307;</code>
+     * Generated from protobuf field <code>optional string user = 3599307;</code>
      * @return string
      */
     public function getUser()
@@ -1009,7 +1001,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] User who requested the operation, for example: `user&#64;example.com`.
      *
-     * Generated from protobuf field <code>string user = 3599307;</code>
+     * Generated from protobuf field <code>optional string user = 3599307;</code>
      * @param string $var
      * @return $this
      */
@@ -1050,7 +1042,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the zone where the operation resides. Only applicable when performing per-zone operations.
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @return string
      */
     public function getZone()
@@ -1071,7 +1063,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the zone where the operation resides. Only applicable when performing per-zone operations.
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @param string $var
      * @return $this
      */

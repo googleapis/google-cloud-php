@@ -7,14 +7,7 @@ namespace Google\Cloud\Compute\V1\ForwardingRule;
 use UnexpectedValueException;
 
 /**
- * The IP protocol to which this rule applies.
- * For protocol forwarding, valid options are TCP, UDP, ESP, AH, SCTP and ICMP.
- * The valid IP protocols are different for different load balancing products:
- * - Internal TCP/UDP Load Balancing: The load balancing scheme is INTERNAL, and one of TCP, UDP or ALL is valid.
- * - Traffic Director: The load balancing scheme is INTERNAL_SELF_MANAGED, and only TCP is valid.
- * - Internal HTTP(S) Load Balancing: The load balancing scheme is INTERNAL_MANAGED, and only TCP is valid.
- * - HTTP(S), SSL Proxy, and TCP Proxy Load Balancing: The load balancing scheme is EXTERNAL and only TCP is valid.
- * - Network Load Balancing: The load balancing scheme is EXTERNAL, and one of TCP or UDP is valid.
+ * The IP protocol to which this rule applies. For protocol forwarding, valid options are TCP, UDP, ESP, AH, SCTP, ICMP and L3_DEFAULT. The valid IP protocols are different for different load balancing products as described in [Load balancing features](https://cloud.google.com/load-balancing/docs/features#protocols_from_the_load_balancer_to_the_backends).
  *
  * Protobuf type <code>google.cloud.compute.v1.ForwardingRule.IPProtocol</code>
  */

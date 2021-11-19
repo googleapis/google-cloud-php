@@ -18,19 +18,19 @@ class GuestAttributesEntry extends \Google\Protobuf\Internal\Message
     /**
      * Key for the guest attribute entry.
      *
-     * Generated from protobuf field <code>string key = 106079;</code>
+     * Generated from protobuf field <code>optional string key = 106079;</code>
      */
     private $key = null;
     /**
      * Namespace for the guest attribute entry.
      *
-     * Generated from protobuf field <code>string namespace = 178476379;</code>
+     * Generated from protobuf field <code>optional string namespace = 178476379;</code>
      */
     private $namespace = null;
     /**
      * Value for the guest attribute entry.
      *
-     * Generated from protobuf field <code>string value = 111972721;</code>
+     * Generated from protobuf field <code>optional string value = 111972721;</code>
      */
     private $value = null;
 
@@ -56,7 +56,7 @@ class GuestAttributesEntry extends \Google\Protobuf\Internal\Message
     /**
      * Key for the guest attribute entry.
      *
-     * Generated from protobuf field <code>string key = 106079;</code>
+     * Generated from protobuf field <code>optional string key = 106079;</code>
      * @return string
      */
     public function getKey()
@@ -77,7 +77,7 @@ class GuestAttributesEntry extends \Google\Protobuf\Internal\Message
     /**
      * Key for the guest attribute entry.
      *
-     * Generated from protobuf field <code>string key = 106079;</code>
+     * Generated from protobuf field <code>optional string key = 106079;</code>
      * @param string $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class GuestAttributesEntry extends \Google\Protobuf\Internal\Message
     /**
      * Namespace for the guest attribute entry.
      *
-     * Generated from protobuf field <code>string namespace = 178476379;</code>
+     * Generated from protobuf field <code>optional string namespace = 178476379;</code>
      * @return string
      */
     public function getNamespace()
@@ -113,7 +113,7 @@ class GuestAttributesEntry extends \Google\Protobuf\Internal\Message
     /**
      * Namespace for the guest attribute entry.
      *
-     * Generated from protobuf field <code>string namespace = 178476379;</code>
+     * Generated from protobuf field <code>optional string namespace = 178476379;</code>
      * @param string $var
      * @return $this
      */
@@ -128,7 +128,7 @@ class GuestAttributesEntry extends \Google\Protobuf\Internal\Message
     /**
      * Value for the guest attribute entry.
      *
-     * Generated from protobuf field <code>string value = 111972721;</code>
+     * Generated from protobuf field <code>optional string value = 111972721;</code>
      * @return string
      */
     public function getValue()
@@ -149,7 +149,7 @@ class GuestAttributesEntry extends \Google\Protobuf\Internal\Message
     /**
      * Value for the guest attribute entry.
      *
-     * Generated from protobuf field <code>string value = 111972721;</code>
+     * Generated from protobuf field <code>optional string value = 111972721;</code>
      * @param string $var
      * @return $this
      */

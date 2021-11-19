@@ -23,7 +23,7 @@ class FirewallPoliciesListAssociationsResponse extends \Google\Protobuf\Internal
     /**
      * [Output Only] Type of firewallPolicy associations. Always compute#FirewallPoliciesListAssociations for lists of firewallPolicy associations.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
 
@@ -73,7 +73,7 @@ class FirewallPoliciesListAssociationsResponse extends \Google\Protobuf\Internal
     /**
      * [Output Only] Type of firewallPolicy associations. Always compute#FirewallPoliciesListAssociations for lists of firewallPolicy associations.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -94,7 +94,7 @@ class FirewallPoliciesListAssociationsResponse extends \Google\Protobuf\Internal
     /**
      * [Output Only] Type of firewallPolicy associations. Always compute#FirewallPoliciesListAssociations for lists of firewallPolicy associations.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */

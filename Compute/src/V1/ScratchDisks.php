@@ -17,7 +17,7 @@ class ScratchDisks extends \Google\Protobuf\Internal\Message
     /**
      * Size of the scratch disk, defined in GB.
      *
-     * Generated from protobuf field <code>int32 disk_gb = 60990141;</code>
+     * Generated from protobuf field <code>optional int32 disk_gb = 60990141;</code>
      */
     private $disk_gb = null;
 
@@ -39,7 +39,7 @@ class ScratchDisks extends \Google\Protobuf\Internal\Message
     /**
      * Size of the scratch disk, defined in GB.
      *
-     * Generated from protobuf field <code>int32 disk_gb = 60990141;</code>
+     * Generated from protobuf field <code>optional int32 disk_gb = 60990141;</code>
      * @return int
      */
     public function getDiskGb()
@@ -60,7 +60,7 @@ class ScratchDisks extends \Google\Protobuf\Internal\Message
     /**
      * Size of the scratch disk, defined in GB.
      *
-     * Generated from protobuf field <code>int32 disk_gb = 60990141;</code>
+     * Generated from protobuf field <code>optional int32 disk_gb = 60990141;</code>
      * @param int $var
      * @return $this
      */

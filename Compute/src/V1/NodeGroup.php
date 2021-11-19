@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represent a sole-tenant Node Group resource.
- * A sole-tenant node is a physical server that is dedicated to hosting VM instances only for your specific project. Use sole-tenant nodes to keep your instances physically separated from instances in other projects, or to group your instances together on the same host hardware. For more information, read Sole-tenant nodes. (== resource_for {$api_version}.nodeGroups ==)
+ * Represents a sole-tenant Node Group resource. A sole-tenant node is a physical server that is dedicated to hosting VM instances only for your specific project. Use sole-tenant nodes to keep your instances physically separated from instances in other projects, or to group your instances together on the same host hardware. For more information, read Sole-tenant nodes.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.NodeGroup</code>
  */
@@ -19,85 +18,89 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * Specifies how autoscaling should behave.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroupAutoscalingPolicy autoscaling_policy = 221950041;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NodeGroupAutoscalingPolicy autoscaling_policy = 221950041;</code>
      */
     private $autoscaling_policy = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
     private $fingerprint = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] The type of the resource. Always compute#nodeGroup for node group.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * An opaque location hint used to place the Node close to other resources. This field is for use by internal tools that use the public API. The location hint here on the NodeGroup overrides any location_hint present in the NodeTemplate.
      *
-     * Generated from protobuf field <code>string location_hint = 350519505;</code>
+     * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
      */
     private $location_hint = null;
     /**
-     * Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see  Maintenance policies.
+     * Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see Maintenance policies.
+     * Check the MaintenancePolicy enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroup.MaintenancePolicy maintenance_policy = 528327646;</code>
+     * Generated from protobuf field <code>optional string maintenance_policy = 528327646;</code>
      */
     private $maintenance_policy = null;
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroupMaintenanceWindow maintenance_window = 186374812;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NodeGroupMaintenanceWindow maintenance_window = 186374812;</code>
      */
     private $maintenance_window = null;
     /**
      * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
      * URL of the node template to create the node group from.
      *
-     * Generated from protobuf field <code>string node_template = 323154455;</code>
+     * Generated from protobuf field <code>optional string node_template = 323154455;</code>
      */
     private $node_template = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * [Output Only] The total number of nodes in the node group.
      *
-     * Generated from protobuf field <code>int32 size = 3530753;</code>
+     * Generated from protobuf field <code>optional int32 size = 3530753;</code>
      */
     private $size = null;
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroup.Status status = 181260274;</code>
+     * 
+     * Check the Status enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
     private $status = null;
     /**
      * [Output Only] The name of the zone where the node group resides, such as us-central1-a.
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
     private $zone = null;
 
@@ -120,8 +123,9 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      *           [Output Only] The type of the resource. Always compute#nodeGroup for node group.
      *     @type string $location_hint
      *           An opaque location hint used to place the Node close to other resources. This field is for use by internal tools that use the public API. The location hint here on the NodeGroup overrides any location_hint present in the NodeTemplate.
-     *     @type int $maintenance_policy
-     *           Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see  Maintenance policies.
+     *     @type string $maintenance_policy
+     *           Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see Maintenance policies.
+     *           Check the MaintenancePolicy enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\NodeGroupMaintenanceWindow $maintenance_window
      *     @type string $name
      *           The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
@@ -131,7 +135,9 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      *           [Output Only] Server-defined URL for the resource.
      *     @type int $size
      *           [Output Only] The total number of nodes in the node group.
-     *     @type int $status
+     *     @type string $status
+     *           
+     *           Check the Status enum for the list of possible values.
      *     @type string $zone
      *           [Output Only] The name of the zone where the node group resides, such as us-central1-a.
      * }
@@ -144,12 +150,12 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * Specifies how autoscaling should behave.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroupAutoscalingPolicy autoscaling_policy = 221950041;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NodeGroupAutoscalingPolicy autoscaling_policy = 221950041;</code>
      * @return \Google\Cloud\Compute\V1\NodeGroupAutoscalingPolicy|null
      */
     public function getAutoscalingPolicy()
     {
-        return isset($this->autoscaling_policy) ? $this->autoscaling_policy : null;
+        return $this->autoscaling_policy;
     }
 
     public function hasAutoscalingPolicy()
@@ -165,7 +171,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * Specifies how autoscaling should behave.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroupAutoscalingPolicy autoscaling_policy = 221950041;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NodeGroupAutoscalingPolicy autoscaling_policy = 221950041;</code>
      * @param \Google\Cloud\Compute\V1\NodeGroupAutoscalingPolicy $var
      * @return $this
      */
@@ -180,7 +186,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -201,7 +207,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -216,7 +222,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -237,7 +243,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -250,7 +256,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @return string
      */
     public function getFingerprint()
@@ -269,7 +275,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @param string $var
      * @return $this
      */
@@ -284,7 +290,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -305,7 +311,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -320,7 +326,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The type of the resource. Always compute#nodeGroup for node group.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -341,7 +347,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The type of the resource. Always compute#nodeGroup for node group.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -356,7 +362,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * An opaque location hint used to place the Node close to other resources. This field is for use by internal tools that use the public API. The location hint here on the NodeGroup overrides any location_hint present in the NodeTemplate.
      *
-     * Generated from protobuf field <code>string location_hint = 350519505;</code>
+     * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
      * @return string
      */
     public function getLocationHint()
@@ -377,7 +383,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * An opaque location hint used to place the Node close to other resources. This field is for use by internal tools that use the public API. The location hint here on the NodeGroup overrides any location_hint present in the NodeTemplate.
      *
-     * Generated from protobuf field <code>string location_hint = 350519505;</code>
+     * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
      * @param string $var
      * @return $this
      */
@@ -390,14 +396,15 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see  Maintenance policies.
+     * Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see Maintenance policies.
+     * Check the MaintenancePolicy enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroup.MaintenancePolicy maintenance_policy = 528327646;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string maintenance_policy = 528327646;</code>
+     * @return string
      */
     public function getMaintenancePolicy()
     {
-        return isset($this->maintenance_policy) ? $this->maintenance_policy : 0;
+        return isset($this->maintenance_policy) ? $this->maintenance_policy : '';
     }
 
     public function hasMaintenancePolicy()
@@ -411,27 +418,28 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see  Maintenance policies.
+     * Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see Maintenance policies.
+     * Check the MaintenancePolicy enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroup.MaintenancePolicy maintenance_policy = 528327646;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string maintenance_policy = 528327646;</code>
+     * @param string $var
      * @return $this
      */
     public function setMaintenancePolicy($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\NodeGroup\MaintenancePolicy::class);
+        GPBUtil::checkString($var, True);
         $this->maintenance_policy = $var;
 
         return $this;
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroupMaintenanceWindow maintenance_window = 186374812;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NodeGroupMaintenanceWindow maintenance_window = 186374812;</code>
      * @return \Google\Cloud\Compute\V1\NodeGroupMaintenanceWindow|null
      */
     public function getMaintenanceWindow()
     {
-        return isset($this->maintenance_window) ? $this->maintenance_window : null;
+        return $this->maintenance_window;
     }
 
     public function hasMaintenanceWindow()
@@ -445,7 +453,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroupMaintenanceWindow maintenance_window = 186374812;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NodeGroupMaintenanceWindow maintenance_window = 186374812;</code>
      * @param \Google\Cloud\Compute\V1\NodeGroupMaintenanceWindow $var
      * @return $this
      */
@@ -460,7 +468,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -481,7 +489,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -496,7 +504,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * URL of the node template to create the node group from.
      *
-     * Generated from protobuf field <code>string node_template = 323154455;</code>
+     * Generated from protobuf field <code>optional string node_template = 323154455;</code>
      * @return string
      */
     public function getNodeTemplate()
@@ -517,7 +525,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * URL of the node template to create the node group from.
      *
-     * Generated from protobuf field <code>string node_template = 323154455;</code>
+     * Generated from protobuf field <code>optional string node_template = 323154455;</code>
      * @param string $var
      * @return $this
      */
@@ -532,7 +540,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -553,7 +561,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -568,7 +576,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The total number of nodes in the node group.
      *
-     * Generated from protobuf field <code>int32 size = 3530753;</code>
+     * Generated from protobuf field <code>optional int32 size = 3530753;</code>
      * @return int
      */
     public function getSize()
@@ -589,7 +597,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The total number of nodes in the node group.
      *
-     * Generated from protobuf field <code>int32 size = 3530753;</code>
+     * Generated from protobuf field <code>optional int32 size = 3530753;</code>
      * @param int $var
      * @return $this
      */
@@ -602,12 +610,15 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroup.Status status = 181260274;</code>
-     * @return int
+     * 
+     * Check the Status enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
+     * @return string
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : 0;
+        return isset($this->status) ? $this->status : '';
     }
 
     public function hasStatus()
@@ -621,13 +632,16 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroup.Status status = 181260274;</code>
-     * @param int $var
+     * 
+     * Check the Status enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
+     * @param string $var
      * @return $this
      */
     public function setStatus($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\NodeGroup\Status::class);
+        GPBUtil::checkString($var, True);
         $this->status = $var;
 
         return $this;
@@ -636,7 +650,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The name of the zone where the node group resides, such as us-central1-a.
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @return string
      */
     public function getZone()
@@ -657,7 +671,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The name of the zone where the node group resides, such as us-central1-a.
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @param string $var
      * @return $this
      */
