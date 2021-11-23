@@ -139,7 +139,7 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getRecognitionResult()
     {
-        return isset($this->recognition_result) ? $this->recognition_result : null;
+        return $this->recognition_result;
     }
 
     public function hasRecognitionResult()
@@ -175,7 +175,7 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getQueryResult()
     {
-        return isset($this->query_result) ? $this->query_result : null;
+        return $this->query_result;
     }
 
     public function hasQueryResult()
@@ -211,7 +211,7 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getWebhookStatus()
     {
-        return isset($this->webhook_status) ? $this->webhook_status : null;
+        return $this->webhook_status;
     }
 
     public function hasWebhookStatus()
@@ -289,7 +289,7 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getOutputAudioConfig()
     {
-        return isset($this->output_audio_config) ? $this->output_audio_config : null;
+        return $this->output_audio_config;
     }
 
     public function hasOutputAudioConfig()

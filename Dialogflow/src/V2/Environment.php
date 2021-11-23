@@ -257,7 +257,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -294,7 +294,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     public function getTextToSpeechSettings()
     {
-        return isset($this->text_to_speech_settings) ? $this->text_to_speech_settings : null;
+        return $this->text_to_speech_settings;
     }
 
     public function hasTextToSpeechSettings()
@@ -330,7 +330,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     public function getFulfillment()
     {
-        return isset($this->fulfillment) ? $this->fulfillment : null;
+        return $this->fulfillment;
     }
 
     public function hasFulfillment()

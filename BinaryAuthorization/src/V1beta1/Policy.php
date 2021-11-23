@@ -275,7 +275,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      */
     public function getDefaultAdmissionRule()
     {
-        return isset($this->default_admission_rule) ? $this->default_admission_rule : null;
+        return $this->default_admission_rule;
     }
 
     public function hasDefaultAdmissionRule()
@@ -312,7 +312,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

@@ -203,7 +203,7 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -239,7 +239,7 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -275,7 +275,7 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      */
     public function getAutomatedAgentConfig()
     {
-        return isset($this->automated_agent_config) ? $this->automated_agent_config : null;
+        return $this->automated_agent_config;
     }
 
     public function hasAutomatedAgentConfig()
@@ -311,7 +311,7 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      */
     public function getHumanAgentAssistantConfig()
     {
-        return isset($this->human_agent_assistant_config) ? $this->human_agent_assistant_config : null;
+        return $this->human_agent_assistant_config;
     }
 
     public function hasHumanAgentAssistantConfig()
@@ -349,7 +349,7 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      */
     public function getHumanAgentHandoffConfig()
     {
-        return isset($this->human_agent_handoff_config) ? $this->human_agent_handoff_config : null;
+        return $this->human_agent_handoff_config;
     }
 
     public function hasHumanAgentHandoffConfig()
@@ -387,7 +387,7 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      */
     public function getNotificationConfig()
     {
-        return isset($this->notification_config) ? $this->notification_config : null;
+        return $this->notification_config;
     }
 
     public function hasNotificationConfig()
@@ -423,7 +423,7 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      */
     public function getLoggingConfig()
     {
-        return isset($this->logging_config) ? $this->logging_config : null;
+        return $this->logging_config;
     }
 
     public function hasLoggingConfig()
@@ -460,7 +460,7 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      */
     public function getNewMessageEventNotificationConfig()
     {
-        return isset($this->new_message_event_notification_config) ? $this->new_message_event_notification_config : null;
+        return $this->new_message_event_notification_config;
     }
 
     public function hasNewMessageEventNotificationConfig()
@@ -497,7 +497,7 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      */
     public function getSttConfig()
     {
-        return isset($this->stt_config) ? $this->stt_config : null;
+        return $this->stt_config;
     }
 
     public function hasSttConfig()

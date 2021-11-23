@@ -113,7 +113,7 @@ class ExecutionStageState extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentStateTime()
     {
-        return isset($this->current_state_time) ? $this->current_state_time : null;
+        return $this->current_state_time;
     }
 
     public function hasCurrentStateTime()

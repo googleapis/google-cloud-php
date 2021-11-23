@@ -173,7 +173,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      */
     public function getGeoLocation()
     {
-        return isset($this->geo_location) ? $this->geo_location : null;
+        return $this->geo_location;
     }
 
     public function hasGeoLocation()
@@ -299,7 +299,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      */
     public function getPayload()
     {
-        return isset($this->payload) ? $this->payload : null;
+        return $this->payload;
     }
 
     public function hasPayload()
@@ -340,7 +340,7 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      */
     public function getSentimentAnalysisRequestConfig()
     {
-        return isset($this->sentiment_analysis_request_config) ? $this->sentiment_analysis_request_config : null;
+        return $this->sentiment_analysis_request_config;
     }
 
     public function hasSentimentAnalysisRequestConfig()

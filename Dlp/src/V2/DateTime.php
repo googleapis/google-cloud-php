@@ -73,7 +73,7 @@ class DateTime extends \Google\Protobuf\Internal\Message
      */
     public function getDate()
     {
-        return isset($this->date) ? $this->date : null;
+        return $this->date;
     }
 
     public function hasDate()
@@ -136,7 +136,7 @@ class DateTime extends \Google\Protobuf\Internal\Message
      */
     public function getTime()
     {
-        return isset($this->time) ? $this->time : null;
+        return $this->time;
     }
 
     public function hasTime()
@@ -172,7 +172,7 @@ class DateTime extends \Google\Protobuf\Internal\Message
      */
     public function getTimeZone()
     {
-        return isset($this->time_zone) ? $this->time_zone : null;
+        return $this->time_zone;
     }
 
     public function hasTimeZone()

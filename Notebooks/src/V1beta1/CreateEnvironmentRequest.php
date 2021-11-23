@@ -125,7 +125,7 @@ class CreateEnvironmentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEnvironment()
     {
-        return isset($this->environment) ? $this->environment : null;
+        return $this->environment;
     }
 
     public function hasEnvironment()

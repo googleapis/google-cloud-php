@@ -57,7 +57,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      */
     public function getCommitTimestamp()
     {
-        return isset($this->commit_timestamp) ? $this->commit_timestamp : null;
+        return $this->commit_timestamp;
     }
 
     public function hasCommitTimestamp()
@@ -95,7 +95,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      */
     public function getCommitStats()
     {
-        return isset($this->commit_stats) ? $this->commit_stats : null;
+        return $this->commit_stats;
     }
 
     public function hasCommitStats()

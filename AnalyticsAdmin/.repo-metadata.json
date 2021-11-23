@@ -1,5 +1,6 @@
 {
     "distribution_name": "google/analytics-admin",
     "release_level": "beta",
-    "client_documentation": "https://googleapis.github.io/google-cloud-php/#/docs/analytics-admin/latest"
+    "client_documentation": "https://googleapis.github.io/google-cloud-php/#/docs/analytics-admin/latest",
+    "library_type": "GAPIC_AUTO"
 }

@@ -128,7 +128,7 @@ class ConversationEvent extends \Google\Protobuf\Internal\Message
      */
     public function getErrorStatus()
     {
-        return isset($this->error_status) ? $this->error_status : null;
+        return $this->error_status;
     }
 
     public function hasErrorStatus()

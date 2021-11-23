@@ -61,7 +61,7 @@ class UpdateTopicRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTopic()
     {
-        return isset($this->topic) ? $this->topic : null;
+        return $this->topic;
     }
 
     public function hasTopic()
@@ -101,7 +101,7 @@ class UpdateTopicRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

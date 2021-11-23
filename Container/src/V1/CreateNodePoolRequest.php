@@ -198,7 +198,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     public function getNodePool()
     {
-        return isset($this->node_pool) ? $this->node_pool : null;
+        return $this->node_pool;
     }
 
     public function hasNodePool()

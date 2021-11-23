@@ -173,7 +173,7 @@ class AssetReference extends \Google\Protobuf\Internal\Message
      */
     public function getInputs()
     {
-        return isset($this->inputs) ? $this->inputs : null;
+        return $this->inputs;
     }
 
     public function hasInputs()
@@ -235,7 +235,7 @@ class AssetReference extends \Google\Protobuf\Internal\Message
      */
     public function getValidationOperation()
     {
-        return isset($this->validation_operation) ? $this->validation_operation : null;
+        return $this->validation_operation;
     }
 
     public function hasValidationOperation()
@@ -369,7 +369,7 @@ class AssetReference extends \Google\Protobuf\Internal\Message
      */
     public function getGcsSource()
     {
-        return isset($this->gcs_source) ? $this->gcs_source : null;
+        return $this->gcs_source;
     }
 
     public function hasGcsSource()
@@ -405,7 +405,7 @@ class AssetReference extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -441,7 +441,7 @@ class AssetReference extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

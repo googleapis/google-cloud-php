@@ -38,7 +38,7 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      */
     public function getEncryptionOptions()
     {
-        return isset($this->encryption_options) ? $this->encryption_options : null;
+        return $this->encryption_options;
     }
 
     public function hasEncryptionOptions()

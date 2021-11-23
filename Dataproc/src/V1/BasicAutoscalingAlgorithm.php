@@ -57,7 +57,7 @@ class BasicAutoscalingAlgorithm extends \Google\Protobuf\Internal\Message
      */
     public function getYarnConfig()
     {
-        return isset($this->yarn_config) ? $this->yarn_config : null;
+        return $this->yarn_config;
     }
 
     public function hasYarnConfig()
@@ -95,7 +95,7 @@ class BasicAutoscalingAlgorithm extends \Google\Protobuf\Internal\Message
      */
     public function getCooldownPeriod()
     {
-        return isset($this->cooldown_period) ? $this->cooldown_period : null;
+        return $this->cooldown_period;
     }
 
     public function hasCooldownPeriod()

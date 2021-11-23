@@ -192,7 +192,7 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAction()
     {
-        return isset($this->action) ? $this->action : null;
+        return $this->action;
     }
 
     public function hasAction()

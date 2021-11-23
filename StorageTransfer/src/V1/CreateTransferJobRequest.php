@@ -45,7 +45,7 @@ class CreateTransferJobRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTransferJob()
     {
-        return isset($this->transfer_job) ? $this->transfer_job : null;
+        return $this->transfer_job;
     }
 
     public function hasTransferJob()

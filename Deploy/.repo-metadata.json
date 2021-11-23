@@ -1,0 +1,6 @@
+{
+    "distribution_name": "google/cloud-deploy",
+    "release_level": "beta",
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-deploy/latest",
+    "library_type": "GAPIC_AUTO"
+}

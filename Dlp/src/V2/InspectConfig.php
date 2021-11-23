@@ -205,7 +205,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      */
     public function getLimits()
     {
-        return isset($this->limits) ? $this->limits : null;
+        return $this->limits;
     }
 
     public function hasLimits()

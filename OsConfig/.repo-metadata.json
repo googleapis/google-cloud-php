@@ -1,5 +1,6 @@
 {
     "distribution_name": "google/cloud-osconfig",
     "release_level": "beta",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-osconfig/latest"
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-osconfig/latest",
+    "library_type": "GAPIC_AUTO"
 }

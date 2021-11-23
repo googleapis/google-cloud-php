@@ -61,7 +61,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getOriginalRequest()
     {
-        return isset($this->original_request) ? $this->original_request : null;
+        return $this->original_request;
     }
 
     public function hasOriginalRequest()
@@ -97,7 +97,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getRequestTime()
     {
-        return isset($this->request_time) ? $this->request_time : null;
+        return $this->request_time;
     }
 
     public function hasRequestTime()
@@ -133,7 +133,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getFinishTime()
     {
-        return isset($this->finish_time) ? $this->finish_time : null;
+        return $this->finish_time;
     }
 
     public function hasFinishTime()

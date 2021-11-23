@@ -143,7 +143,7 @@ class CreateHubRequest extends \Google\Protobuf\Internal\Message
      */
     public function getHub()
     {
-        return isset($this->hub) ? $this->hub : null;
+        return $this->hub;
     }
 
     public function hasHub()

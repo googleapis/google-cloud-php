@@ -107,7 +107,7 @@ class CreateConversationRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConversation()
     {
-        return isset($this->conversation) ? $this->conversation : null;
+        return $this->conversation;
     }
 
     public function hasConversation()

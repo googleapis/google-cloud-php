@@ -104,7 +104,7 @@ class CreateIngressRuleRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRule()
     {
-        return isset($this->rule) ? $this->rule : null;
+        return $this->rule;
     }
 
     public function hasRule()

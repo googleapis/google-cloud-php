@@ -130,7 +130,7 @@ class AwsS3Data extends \Google\Protobuf\Internal\Message
      */
     public function getAwsAccessKey()
     {
-        return isset($this->aws_access_key) ? $this->aws_access_key : null;
+        return $this->aws_access_key;
     }
 
     public function hasAwsAccessKey()

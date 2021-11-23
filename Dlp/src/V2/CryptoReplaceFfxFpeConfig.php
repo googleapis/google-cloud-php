@@ -156,7 +156,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getCryptoKey()
     {
-        return isset($this->crypto_key) ? $this->crypto_key : null;
+        return $this->crypto_key;
     }
 
     public function hasCryptoKey()
@@ -205,7 +205,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getContext()
     {
-        return isset($this->context) ? $this->context : null;
+        return $this->context;
     }
 
     public function hasContext()
@@ -386,7 +386,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSurrogateInfoType()
     {
-        return isset($this->surrogate_info_type) ? $this->surrogate_info_type : null;
+        return $this->surrogate_info_type;
     }
 
     public function hasSurrogateInfoType()

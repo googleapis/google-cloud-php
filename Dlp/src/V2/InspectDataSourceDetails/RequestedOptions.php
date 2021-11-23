@@ -56,7 +56,7 @@ class RequestedOptions extends \Google\Protobuf\Internal\Message
      */
     public function getSnapshotInspectTemplate()
     {
-        return isset($this->snapshot_inspect_template) ? $this->snapshot_inspect_template : null;
+        return $this->snapshot_inspect_template;
     }
 
     public function hasSnapshotInspectTemplate()
@@ -93,7 +93,7 @@ class RequestedOptions extends \Google\Protobuf\Internal\Message
      */
     public function getJobConfig()
     {
-        return isset($this->job_config) ? $this->job_config : null;
+        return $this->job_config;
     }
 
     public function hasJobConfig()

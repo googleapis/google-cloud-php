@@ -73,7 +73,7 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
      */
     public function getAnalysisQuery()
     {
-        return isset($this->analysis_query) ? $this->analysis_query : null;
+        return $this->analysis_query;
     }
 
     public function hasAnalysisQuery()

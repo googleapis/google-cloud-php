@@ -1,0 +1,73 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.functions.v1",
+    "libraryPackage": "Google\\Cloud\\Functions\\V1",
+    "services": {
+        "CloudFunctionsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CloudFunctionsServiceGapicClient",
+                    "rpcs": {
+                        "CallFunction": {
+                            "methods": [
+                                "callFunction"
+                            ]
+                        },
+                        "CreateFunction": {
+                            "methods": [
+                                "createFunction"
+                            ]
+                        },
+                        "DeleteFunction": {
+                            "methods": [
+                                "deleteFunction"
+                            ]
+                        },
+                        "GenerateDownloadUrl": {
+                            "methods": [
+                                "generateDownloadUrl"
+                            ]
+                        },
+                        "GenerateUploadUrl": {
+                            "methods": [
+                                "generateUploadUrl"
+                            ]
+                        },
+                        "GetFunction": {
+                            "methods": [
+                                "getFunction"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "ListFunctions": {
+                            "methods": [
+                                "listFunctions"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateFunction": {
+                            "methods": [
+                                "updateFunction"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

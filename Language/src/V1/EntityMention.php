@@ -68,7 +68,7 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      */
     public function getText()
     {
-        return isset($this->text) ? $this->text : null;
+        return $this->text;
     }
 
     public function hasText()
@@ -133,7 +133,7 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      */
     public function getSentiment()
     {
-        return isset($this->sentiment) ? $this->sentiment : null;
+        return $this->sentiment;
     }
 
     public function hasSentiment()

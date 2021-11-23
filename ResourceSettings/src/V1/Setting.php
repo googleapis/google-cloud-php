@@ -147,7 +147,7 @@ class Setting extends \Google\Protobuf\Internal\Message
      */
     public function getMetadata()
     {
-        return isset($this->metadata) ? $this->metadata : null;
+        return $this->metadata;
     }
 
     public function hasMetadata()
@@ -185,7 +185,7 @@ class Setting extends \Google\Protobuf\Internal\Message
      */
     public function getLocalValue()
     {
-        return isset($this->local_value) ? $this->local_value : null;
+        return $this->local_value;
     }
 
     public function hasLocalValue()
@@ -233,7 +233,7 @@ class Setting extends \Google\Protobuf\Internal\Message
      */
     public function getEffectiveValue()
     {
-        return isset($this->effective_value) ? $this->effective_value : null;
+        return $this->effective_value;
     }
 
     public function hasEffectiveValue()

@@ -97,7 +97,7 @@ class CreateTriggerRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTrigger()
     {
-        return isset($this->trigger) ? $this->trigger : null;
+        return $this->trigger;
     }
 
     public function hasTrigger()

@@ -853,7 +853,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getWorkloadMetadataConfig()
     {
-        return isset($this->workload_metadata_config) ? $this->workload_metadata_config : null;
+        return $this->workload_metadata_config;
     }
 
     public function hasWorkloadMetadataConfig()
@@ -919,7 +919,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSandboxConfig()
     {
-        return isset($this->sandbox_config) ? $this->sandbox_config : null;
+        return $this->sandbox_config;
     }
 
     public function hasSandboxConfig()
@@ -990,7 +990,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getReservationAffinity()
     {
-        return isset($this->reservation_affinity) ? $this->reservation_affinity : null;
+        return $this->reservation_affinity;
     }
 
     public function hasReservationAffinity()
@@ -1029,7 +1029,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getShieldedInstanceConfig()
     {
-        return isset($this->shielded_instance_config) ? $this->shielded_instance_config : null;
+        return $this->shielded_instance_config;
     }
 
     public function hasShieldedInstanceConfig()

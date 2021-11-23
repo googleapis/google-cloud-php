@@ -186,7 +186,7 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getReplyAudioConfig()
     {
-        return isset($this->reply_audio_config) ? $this->reply_audio_config : null;
+        return $this->reply_audio_config;
     }
 
     public function hasReplyAudioConfig()
@@ -226,7 +226,7 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getQueryParams()
     {
-        return isset($this->query_params) ? $this->query_params : null;
+        return $this->query_params;
     }
 
     public function hasQueryParams()

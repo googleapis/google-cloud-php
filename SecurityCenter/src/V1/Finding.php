@@ -140,6 +140,14 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Indicator indicator = 18;</code>
      */
     private $indicator = null;
+    /**
+     * Represents vulnerability specific fields like cve, cvss scores etc.
+     * CVE stands for Common Vulnerabilities and Exposures
+     * (https://cve.mitre.org/about/)
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Vulnerability vulnerability = 20;</code>
+     */
+    private $vulnerability = null;
 
     /**
      * Constructor.
@@ -211,6 +219,10 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           operating system that, with high confidence, indicates a computer
      *           intrusion.
      *           Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+     *     @type \Google\Cloud\SecurityCenter\V1\Vulnerability $vulnerability
+     *           Represents vulnerability specific fields like cve, cvss scores etc.
+     *           CVE stands for Common Vulnerabilities and Exposures
+     *           (https://cve.mitre.org/about/)
      * }
      */
     public function __construct($data = NULL) {
@@ -448,7 +460,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getSecurityMarks()
     {
-        return isset($this->security_marks) ? $this->security_marks : null;
+        return $this->security_marks;
     }
 
     public function hasSecurityMarks()
@@ -491,7 +503,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getEventTime()
     {
-        return isset($this->event_time) ? $this->event_time : null;
+        return $this->event_time;
     }
 
     public function hasEventTime()
@@ -532,7 +544,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -662,7 +674,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getIndicator()
     {
-        return isset($this->indicator) ? $this->indicator : null;
+        return $this->indicator;
     }
 
     public function hasIndicator()
@@ -690,6 +702,46 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Indicator::class);
         $this->indicator = $var;
+
+        return $this;
+    }
+
+    /**
+     * Represents vulnerability specific fields like cve, cvss scores etc.
+     * CVE stands for Common Vulnerabilities and Exposures
+     * (https://cve.mitre.org/about/)
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Vulnerability vulnerability = 20;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\Vulnerability|null
+     */
+    public function getVulnerability()
+    {
+        return $this->vulnerability;
+    }
+
+    public function hasVulnerability()
+    {
+        return isset($this->vulnerability);
+    }
+
+    public function clearVulnerability()
+    {
+        unset($this->vulnerability);
+    }
+
+    /**
+     * Represents vulnerability specific fields like cve, cvss scores etc.
+     * CVE stands for Common Vulnerabilities and Exposures
+     * (https://cve.mitre.org/about/)
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Vulnerability vulnerability = 20;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\Vulnerability $var
+     * @return $this
+     */
+    public function setVulnerability($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Vulnerability::class);
+        $this->vulnerability = $var;
 
         return $this;
     }

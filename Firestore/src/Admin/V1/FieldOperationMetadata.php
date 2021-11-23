@@ -100,7 +100,7 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -137,7 +137,7 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -256,7 +256,7 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getProgressDocuments()
     {
-        return isset($this->progress_documents) ? $this->progress_documents : null;
+        return $this->progress_documents;
     }
 
     public function hasProgressDocuments()
@@ -292,7 +292,7 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getProgressBytes()
     {
-        return isset($this->progress_bytes) ? $this->progress_bytes : null;
+        return $this->progress_bytes;
     }
 
     public function hasProgressBytes()

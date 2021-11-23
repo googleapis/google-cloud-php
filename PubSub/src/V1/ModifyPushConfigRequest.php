@@ -95,7 +95,7 @@ class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getPushConfig()
     {
-        return isset($this->push_config) ? $this->push_config : null;
+        return $this->push_config;
     }
 
     public function hasPushConfig()

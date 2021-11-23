@@ -53,7 +53,7 @@ class LatLongRect extends \Google\Protobuf\Internal\Message
      */
     public function getMinLatLng()
     {
-        return isset($this->min_lat_lng) ? $this->min_lat_lng : null;
+        return $this->min_lat_lng;
     }
 
     public function hasMinLatLng()
@@ -89,7 +89,7 @@ class LatLongRect extends \Google\Protobuf\Internal\Message
      */
     public function getMaxLatLng()
     {
-        return isset($this->max_lat_lng) ? $this->max_lat_lng : null;
+        return $this->max_lat_lng;
     }
 
     public function hasMaxLatLng()

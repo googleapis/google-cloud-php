@@ -69,7 +69,7 @@ class UpdateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEntityType()
     {
-        return isset($this->entity_type) ? $this->entity_type : null;
+        return $this->entity_type;
     }
 
     public function hasEntityType()
@@ -139,7 +139,7 @@ class UpdateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

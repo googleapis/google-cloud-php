@@ -111,7 +111,7 @@ class IamConfigurationTest extends StorageTestCase
     public function testTogglePublicAccessPrevention($enableInitially)
     {
         $expected = function ($enabled) {
-            return $enabled ? 'enforced' : 'unspecified';
+            return $enabled ? 'enforced' : 'inherited';
         };
 
         $bucket = self::createBucket(
@@ -241,7 +241,7 @@ class IamConfigurationTest extends StorageTestCase
             'iamConfiguration' => [
                 'publicAccessPrevention' => $enabled ?
                     'enforced' :
-                    'unspecified'
+                    'inherited'
             ]
         ];
     }

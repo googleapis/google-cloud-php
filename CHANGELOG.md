@@ -1,5 +1,1321 @@
 # Changelog
 
+## 0.171.1
+
+<details><summary>google/cloud-access-approval 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/access-context-manager 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/analytics-admin 0.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/analytics-data 0.7.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-api-gateway 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-asset 1.6.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 0.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-automl 1.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.23.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.5.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* added SECURITY.md and CODE_OF_CONDUCT.md for BigQueryDataTransfer, Dataproc and Datatstore ([#4686](https://www.github.com/googleapis/google-cloud-php/issues/4686)) ([850126f](https://www.github.com/googleapis/google-cloud-php/commit/850126fc94eb756707ea1eeb5180f029dc0272f5))
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 0.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.11.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-billing 1.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-build 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-channel 0.5.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-common-protos 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-compute 0.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-container 1.5.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-core 1.43.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.0.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-data-fusion 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-datalabeling 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-dataflow 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* added SECURITY.md and CODE_OF_CONDUCT.md for BigQueryDataTransfer, Dataproc and Datatstore ([#4686](https://www.github.com/googleapis/google-cloud-php/issues/4686)) ([850126f](https://www.github.com/googleapis/google-cloud-php/commit/850126fc94eb756707ea1eeb5180f029dc0272f5))
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.13.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* added SECURITY.md and CODE_OF_CONDUCT.md for BigQueryDataTransfer, Dataproc and Datatstore ([#4686](https://www.github.com/googleapis/google-cloud-php/issues/4686)) ([850126f](https://www.github.com/googleapis/google-cloud-php/commit/850126fc94eb756707ea1eeb5180f029dc0272f5))
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.1.1</summary>
+
+
+
+### Documentation
+
+* fix docstring formatting ([#4683](https://www.github.com/googleapis/google-cloud-php/issues/4683)) ([f255c5b](https://www.github.com/googleapis/google-cloud-php/commit/f255c5b642381dd3b2f379a84167706b6880821e))
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.23.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-dms 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-document-ai 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-domains 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.18.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-essential-contacts 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-eventarc 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-filestore 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.20.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-functions 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-game-servers 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-gke-connect-gateway 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/grafeas 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-iam-credentials 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-iap 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-iot 1.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-kms 1.12.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-language 0.26.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-life-sciences 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-logging 1.22.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-managed-identities 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-media-translation 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.5.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.0.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-network-management 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-network-security 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-notebooks 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-org-policy 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-osconfig 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-private-catalog 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-profiler 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.34.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.5.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-redis 1.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-resource-manager 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-resource-settings 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-retail 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.5.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.7.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-service-control 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.6.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-service-management 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-service-usage 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-shell 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.46.1</summary>
+
+
+
+### Bug Fixes
+
+* avoid setting transaction tag as null ([#4685](https://www.github.com/googleapis/google-cloud-php/issues/4685)) ([dbde7ff](https://www.github.com/googleapis/google-cloud-php/commit/dbde7ff14af235f4ed4566bf1a4c66adf3736563))
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-speech 1.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-storage 1.25.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-talent 0.16.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.9.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-tpu 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-trace 1.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-translate 1.12.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf from 3.15.3 to 3.18.1 ([#4676](https://www.github.com/googleapis/google-cloud-php/issues/4676)) ([69f9a17](https://www.github.com/googleapis/google-cloud-php/commit/69f9a1747deb4f89fe0cede8182e05f93f3d99a3))
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.12.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-vision 1.5.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-vpc-access 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf from 3.15.3 to 3.18.1 ([#4678](https://www.github.com/googleapis/google-cloud-php/issues/4678)) ([8b1134b](https://www.github.com/googleapis/google-cloud-php/commit/8b1134b2746312cf92fc83494c789c111c0bdcde))
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf from 3.15.3 to 3.18.1 ([#4679](https://www.github.com/googleapis/google-cloud-php/issues/4679)) ([3e77319](https://www.github.com/googleapis/google-cloud-php/commit/3e773194c96fc7325923c76772efe93e3e6e4da3))
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.7.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf from 3.15.3 to 3.18.1 ([#4680](https://www.github.com/googleapis/google-cloud-php/issues/4680)) ([8a5fddb](https://www.github.com/googleapis/google-cloud-php/commit/8a5fddbe04644d8971e5fe235f1c59a30c826a18))
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+<details><summary>google/cloud-workflows 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update repo metadata ([#4684](https://www.github.com/googleapis/google-cloud-php/issues/4684)) ([c3af31e](https://www.github.com/googleapis/google-cloud-php/commit/c3af31e51881a1428998a5f56ee8635a4ab66b0a))
+
+</details>
+
+## 0.171.0
+
+<details><summary>google/cloud-channel 0.5.1</summary>
+
+
+
+### Bug Fixes
+
+* add service metadata ([#4555](https://www.github.com/googleapis/google-cloud-php/issues/4555)) ([c5d9dde](https://www.github.com/googleapis/google-cloud-php/commit/c5d9ddef93d2bcdc179329069f8f3379138aee8c))
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 0.1.0</summary>
+
+
+
+### Features
+
+* introduce contact center insights client ([#4548](https://www.github.com/googleapis/google-cloud-php/issues/4548)) ([43bec94](https://www.github.com/googleapis/google-cloud-php/commit/43bec94cd05ddcce98c193170e2a567332c62a2a))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.3.0</summary>
+
+
+
+### Features
+
+* add Dataproc Serverless for Spark Batches API ([#4560](https://www.github.com/googleapis/google-cloud-php/issues/4560)) ([6458677](https://www.github.com/googleapis/google-cloud-php/commit/6458677e52ec8166e899df674fd9c36594eab22a))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.1.0</summary>
+
+
+
+### Features
+
+* introduce cloud deploy client ([#4562](https://www.github.com/googleapis/google-cloud-php/issues/4562)) ([67d9728](https://www.github.com/googleapis/google-cloud-php/commit/67d972868c298dc07540e0e6f829898699907fa3))
+
+</details>
+
+## 0.170.0
+
+<details><summary>google/cloud-dialogflow 0.23.2</summary>
+
+
+
+### Documentation
+
+* recommend AnalyzeContent for future users ([#4556](https://www.github.com/googleapis/google-cloud-php/issues/4556)) ([03c7521](https://www.github.com/googleapis/google-cloud-php/commit/03c75212e602f97a3b3cb0095acf034ebfe0f0a0))
+
+</details>
+
+<details><summary>google/cloud-dms 0.2.1</summary>
+
+
+
+### Documentation
+
+* Fix NOT_STARTED state documentation in MigrationJob resource ([#4557](https://www.github.com/googleapis/google-cloud-php/issues/4557)) ([f4109a3](https://www.github.com/googleapis/google-cloud-php/commit/f4109a38bf66fe3cb4d563c5887e9f8550fc6a7d))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.4.0</summary>
+
+
+
+### Features
+
+* added vulnerability field to the finding ([#4553](https://www.github.com/googleapis/google-cloud-php/issues/4553)) ([6c45e01](https://www.github.com/googleapis/google-cloud-php/commit/6c45e0116a5f4788d254fe53891c4e8a633d2017))
+
+</details>
+
+<details><summary>google/cloud-translate 1.12.0</summary>
+
+
+
+### Features
+
+* introduce online/batch translation ([#4098](https://www.github.com/googleapis/google-cloud-php/issues/4098)) ([17cb14c](https://www.github.com/googleapis/google-cloud-php/commit/17cb14cdee16beb9bc2502e124445760cf82137b))
+
+</details>
+
+## 0.169.0
+
+<details><summary>google/cloud-container-analysis 0.1.0</summary>
+
+
+
+### Features
+
+* introduce grafeas/container analysis clients ([#4544](https://www.github.com/googleapis/google-cloud-php/issues/4544)) ([3631d20](https://www.github.com/googleapis/google-cloud-php/commit/3631d20547df7bb2c5047c0bf4224fb2da81697e))
+
+</details>
+
+<details><summary>google/cloud-document-ai 0.1.0</summary>
+
+
+
+### Features
+
+* introduce document ai client ([#4547](https://www.github.com/googleapis/google-cloud-php/issues/4547)) ([3495cac](https://www.github.com/googleapis/google-cloud-php/commit/3495cace4cef88c5e9d8ee0de0c5350a31f870ec))
+
+</details>
+
+<details><summary>google/cloud-functions 0.1.0</summary>
+
+
+
+### Features
+
+* introduce functions client ([#4546](https://www.github.com/googleapis/google-cloud-php/issues/4546)) ([22ff955](https://www.github.com/googleapis/google-cloud-php/commit/22ff95593e025a132ab67eb52cee1564b7d2c5b9))
+
+</details>
+
+<details><summary>google/grafeas 0.1.0</summary>
+
+
+
+### Features
+
+* introduce grafeas/container analysis clients ([#4544](https://www.github.com/googleapis/google-cloud-php/issues/4544)) ([3631d20](https://www.github.com/googleapis/google-cloud-php/commit/3631d20547df7bb2c5047c0bf4224fb2da81697e))
+
+</details>
+
+<details><summary>google/cloud-network-security 0.1.0</summary>
+
+
+
+### Features
+
+* introduce network security client ([#4545](https://www.github.com/googleapis/google-cloud-php/issues/4545)) ([ee368dc](https://www.github.com/googleapis/google-cloud-php/commit/ee368dc339b2c33c45c83de9c207c01ffcf9a78b))
+
+</details>
+
+## 0.168.0
+
+<details><summary>google/cloud-spanner 1.46.0</summary>
+
+
+
+### Features
+
+* **spanner:** add support for tagging ([#4254](https://www.github.com/googleapis/google-cloud-php/issues/4254)) ([483b2ca](https://www.github.com/googleapis/google-cloud-php/commit/483b2ca4a9c97fea64989a7234dd433621315dc6))
+
+</details>
+
+## 0.167.1
+
+<details><summary>google/cloud-dataproc 2.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* correct dataproc readme ([#4523](https://www.github.com/googleapis/google-cloud-php/issues/4523)) ([e858011](https://www.github.com/googleapis/google-cloud-php/commit/e8580111e9622623fc61c3844ddf3ee01377cadd))
+
+</details>
+
+<details><summary>google/cloud-logging 1.22.1</summary>
+
+
+
+### Bug Fixes
+
+* use conflict for unsupported psr/log version ([#4534](https://www.github.com/googleapis/google-cloud-php/issues/4534)) ([1d6a173](https://www.github.com/googleapis/google-cloud-php/commit/1d6a173f044f47a5f0d57ddf4e63f83ea4032ab7))
+
+</details>
+
+<details><summary>google/cloud-storage 1.25.1</summary>
+
+
+
+### Documentation
+
+* changed references to 'unspecified' PublicAccessPrevention to 'inherited' ([#4526](https://www.github.com/googleapis/google-cloud-php/issues/4526)) ([9e608f0](https://www.github.com/googleapis/google-cloud-php/commit/9e608f03666d8bb0bfc3278e9a7ebde83ccf92f1))
+
+</details>
+
+## 0.167.0
+
+<details><summary>google/cloud-video-transcoder 0.3.0</summary>
+
+
+
+### Features
+
+* add transcoder v1 client ([#4530](https://www.github.com/googleapis/google-cloud-php/issues/4530)) ([1942296](https://www.github.com/googleapis/google-cloud-php/commit/1942296ab013f81e132bc0ffe1e61d170fb04088))
+
+
+### Miscellaneous Chores
+
+* add generated transcoder v1 code ([#4532](https://www.github.com/googleapis/google-cloud-php/issues/4532)) ([40faf6d](https://www.github.com/googleapis/google-cloud-php/commit/40faf6d67f28ee7573c9946e85b4e670d4205dfd))
+
+</details>
+
 ## 0.166.0
 
 <details><summary>google/analytics-data 0.7.0</summary>

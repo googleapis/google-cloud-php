@@ -53,7 +53,7 @@ class ApproveDecision extends \Google\Protobuf\Internal\Message
      */
     public function getApproveTime()
     {
-        return isset($this->approve_time) ? $this->approve_time : null;
+        return $this->approve_time;
     }
 
     public function hasApproveTime()
@@ -89,7 +89,7 @@ class ApproveDecision extends \Google\Protobuf\Internal\Message
      */
     public function getExpireTime()
     {
-        return isset($this->expire_time) ? $this->expire_time : null;
+        return $this->expire_time;
     }
 
     public function hasExpireTime()

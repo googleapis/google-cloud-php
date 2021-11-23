@@ -45,7 +45,7 @@ class UpdateSettingRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSetting()
     {
-        return isset($this->setting) ? $this->setting : null;
+        return $this->setting;
     }
 
     public function hasSetting()

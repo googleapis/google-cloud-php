@@ -49,6 +49,18 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupAutoscalingPolicyConfig secondary_worker_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $secondary_worker_config = null;
+    /**
+     * Optional. The labels to associate with this autoscaling policy.
+     * Label **keys** must contain 1 to 63 characters, and must conform to
+     * [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
+     * Label **values** may be empty, but, if present, must contain 1 to 63
+     * characters, and must conform to [RFC
+     * 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
+     * associated with an autoscaling policy.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $labels;
     protected $algorithm;
 
     /**
@@ -76,6 +88,14 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      *           Required. Describes how the autoscaler will operate for primary workers.
      *     @type \Google\Cloud\Dataproc\V1\InstanceGroupAutoscalingPolicyConfig $secondary_worker_config
      *           Optional. Describes how the autoscaler will operate for secondary workers.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Optional. The labels to associate with this autoscaling policy.
+     *           Label **keys** must contain 1 to 63 characters, and must conform to
+     *           [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
+     *           Label **values** may be empty, but, if present, must contain 1 to 63
+     *           characters, and must conform to [RFC
+     *           1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
+     *           associated with an autoscaling policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -190,7 +210,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getWorkerConfig()
     {
-        return isset($this->worker_config) ? $this->worker_config : null;
+        return $this->worker_config;
     }
 
     public function hasWorkerConfig()
@@ -226,7 +246,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getSecondaryWorkerConfig()
     {
-        return isset($this->secondary_worker_config) ? $this->secondary_worker_config : null;
+        return $this->secondary_worker_config;
     }
 
     public function hasSecondaryWorkerConfig()
@@ -250,6 +270,44 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\InstanceGroupAutoscalingPolicyConfig::class);
         $this->secondary_worker_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The labels to associate with this autoscaling policy.
+     * Label **keys** must contain 1 to 63 characters, and must conform to
+     * [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
+     * Label **values** may be empty, but, if present, must contain 1 to 63
+     * characters, and must conform to [RFC
+     * 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
+     * associated with an autoscaling policy.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Optional. The labels to associate with this autoscaling policy.
+     * Label **keys** must contain 1 to 63 characters, and must conform to
+     * [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
+     * Label **values** may be empty, but, if present, must contain 1 to 63
+     * characters, and must conform to [RFC
+     * 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
+     * associated with an autoscaling policy.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
 
         return $this;
     }

@@ -278,7 +278,7 @@ class SuggestionQueryConfig extends \Google\Protobuf\Internal\Message
      */
     public function getContextFilterSettings()
     {
-        return isset($this->context_filter_settings) ? $this->context_filter_settings : null;
+        return $this->context_filter_settings;
     }
 
     public function hasContextFilterSettings()

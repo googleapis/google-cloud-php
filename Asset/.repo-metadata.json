@@ -1,5 +1,6 @@
 {
     "distribution_name": "google/cloud-asset",
     "release_level": "ga",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-asset/latest"
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-asset/latest",
+    "library_type": "GAPIC_AUTO"
 }

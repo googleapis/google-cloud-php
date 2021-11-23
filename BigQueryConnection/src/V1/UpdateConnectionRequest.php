@@ -91,7 +91,7 @@ class UpdateConnectionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConnection()
     {
-        return isset($this->connection) ? $this->connection : null;
+        return $this->connection;
     }
 
     public function hasConnection()
@@ -127,7 +127,7 @@ class UpdateConnectionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

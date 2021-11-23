@@ -73,7 +73,7 @@ class HumanAgentAssistantConfig extends \Google\Protobuf\Internal\Message
      */
     public function getNotificationConfig()
     {
-        return isset($this->notification_config) ? $this->notification_config : null;
+        return $this->notification_config;
     }
 
     public function hasNotificationConfig()
@@ -109,7 +109,7 @@ class HumanAgentAssistantConfig extends \Google\Protobuf\Internal\Message
      */
     public function getHumanAgentSuggestionConfig()
     {
-        return isset($this->human_agent_suggestion_config) ? $this->human_agent_suggestion_config : null;
+        return $this->human_agent_suggestion_config;
     }
 
     public function hasHumanAgentSuggestionConfig()
@@ -147,7 +147,7 @@ class HumanAgentAssistantConfig extends \Google\Protobuf\Internal\Message
      */
     public function getEndUserSuggestionConfig()
     {
-        return isset($this->end_user_suggestion_config) ? $this->end_user_suggestion_config : null;
+        return $this->end_user_suggestion_config;
     }
 
     public function hasEndUserSuggestionConfig()
@@ -185,7 +185,7 @@ class HumanAgentAssistantConfig extends \Google\Protobuf\Internal\Message
      */
     public function getMessageAnalysisConfig()
     {
-        return isset($this->message_analysis_config) ? $this->message_analysis_config : null;
+        return $this->message_analysis_config;
     }
 
     public function hasMessageAnalysisConfig()

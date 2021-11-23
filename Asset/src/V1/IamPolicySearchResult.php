@@ -370,7 +370,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getPolicy()
     {
-        return isset($this->policy) ? $this->policy : null;
+        return $this->policy;
     }
 
     public function hasPolicy()
@@ -418,7 +418,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getExplanation()
     {
-        return isset($this->explanation) ? $this->explanation : null;
+        return $this->explanation;
     }
 
     public function hasExplanation()

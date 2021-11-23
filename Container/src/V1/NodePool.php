@@ -221,7 +221,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     public function getConfig()
     {
-        return isset($this->config) ? $this->config : null;
+        return $this->config;
     }
 
     public function hasConfig()
@@ -472,7 +472,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     public function getAutoscaling()
     {
-        return isset($this->autoscaling) ? $this->autoscaling : null;
+        return $this->autoscaling;
     }
 
     public function hasAutoscaling()
@@ -509,7 +509,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     public function getManagement()
     {
-        return isset($this->management) ? $this->management : null;
+        return $this->management;
     }
 
     public function hasManagement()
@@ -546,7 +546,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     public function getMaxPodsConstraint()
     {
-        return isset($this->max_pods_constraint) ? $this->max_pods_constraint : null;
+        return $this->max_pods_constraint;
     }
 
     public function hasMaxPodsConstraint()
@@ -635,7 +635,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     public function getUpgradeSettings()
     {
-        return isset($this->upgrade_settings) ? $this->upgrade_settings : null;
+        return $this->upgrade_settings;
     }
 
     public function hasUpgradeSettings()

@@ -83,7 +83,7 @@ class CreateConversationProfileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConversationProfile()
     {
-        return isset($this->conversation_profile) ? $this->conversation_profile : null;
+        return $this->conversation_profile;
     }
 
     public function hasConversationProfile()

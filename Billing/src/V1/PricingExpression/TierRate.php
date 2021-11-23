@@ -90,7 +90,7 @@ class TierRate extends \Google\Protobuf\Internal\Message
      */
     public function getUnitPrice()
     {
-        return isset($this->unit_price) ? $this->unit_price : null;
+        return $this->unit_price;
     }
 
     public function hasUnitPrice()

@@ -83,7 +83,7 @@ class CreateBudgetRequest extends \Google\Protobuf\Internal\Message
      */
     public function getBudget()
     {
-        return isset($this->budget) ? $this->budget : null;
+        return $this->budget;
     }
 
     public function hasBudget()

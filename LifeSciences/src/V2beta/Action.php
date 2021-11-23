@@ -693,7 +693,7 @@ class Action extends \Google\Protobuf\Internal\Message
      */
     public function getCredentials()
     {
-        return isset($this->credentials) ? $this->credentials : null;
+        return $this->credentials;
     }
 
     public function hasCredentials()
@@ -736,7 +736,7 @@ class Action extends \Google\Protobuf\Internal\Message
      */
     public function getTimeout()
     {
-        return isset($this->timeout) ? $this->timeout : null;
+        return $this->timeout;
     }
 
     public function hasTimeout()

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for [UpdateInstance][google.cloud.redis.v1beta1.CloudRedis.UpdateInstance].
+ * Request for
+ * [UpdateInstance][google.cloud.redis.v1beta1.CloudRedis.UpdateInstance].
  *
  * Generated from protobuf message <code>google.cloud.redis.v1beta1.UpdateInstanceRequest</code>
  */
@@ -23,6 +24,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *  *   `labels`
      *  *   `memorySizeGb`
      *  *   `redisConfig`
+     *  *   `replica_count`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -49,6 +51,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *            *   `labels`
      *            *   `memorySizeGb`
      *            *   `redisConfig`
+     *            *   `replica_count`
      *     @type \Google\Cloud\Redis\V1beta1\Instance $instance
      *           Required. Update description.
      *           Only fields specified in update_mask are updated.
@@ -67,13 +70,14 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *  *   `labels`
      *  *   `memorySizeGb`
      *  *   `redisConfig`
+     *  *   `replica_count`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -94,6 +98,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *  *   `labels`
      *  *   `memorySizeGb`
      *  *   `redisConfig`
+     *  *   `replica_count`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
@@ -116,7 +121,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInstance()
     {
-        return isset($this->instance) ? $this->instance : null;
+        return $this->instance;
     }
 
     public function hasInstance()

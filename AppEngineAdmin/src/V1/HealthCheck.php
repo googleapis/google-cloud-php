@@ -241,7 +241,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      */
     public function getCheckInterval()
     {
-        return isset($this->check_interval) ? $this->check_interval : null;
+        return $this->check_interval;
     }
 
     public function hasCheckInterval()
@@ -277,7 +277,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      */
     public function getTimeout()
     {
-        return isset($this->timeout) ? $this->timeout : null;
+        return $this->timeout;
     }
 
     public function hasTimeout()

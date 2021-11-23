@@ -205,7 +205,7 @@ class LaunchTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getLaunchParameters()
     {
-        return isset($this->launch_parameters) ? $this->launch_parameters : null;
+        return $this->launch_parameters;
     }
 
     public function hasLaunchParameters()

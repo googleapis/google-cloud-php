@@ -530,7 +530,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getIpAllocationPolicy()
     {
-        return isset($this->ip_allocation_policy) ? $this->ip_allocation_policy : null;
+        return $this->ip_allocation_policy;
     }
 
     public function hasIpAllocationPolicy()

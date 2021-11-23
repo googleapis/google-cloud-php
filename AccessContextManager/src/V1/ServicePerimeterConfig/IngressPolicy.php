@@ -86,7 +86,7 @@ class IngressPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getIngressFrom()
     {
-        return isset($this->ingress_from) ? $this->ingress_from : null;
+        return $this->ingress_from;
     }
 
     public function hasIngressFrom()
@@ -129,7 +129,7 @@ class IngressPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getIngressTo()
     {
-        return isset($this->ingress_to) ? $this->ingress_to : null;
+        return $this->ingress_to;
     }
 
     public function hasIngressTo()

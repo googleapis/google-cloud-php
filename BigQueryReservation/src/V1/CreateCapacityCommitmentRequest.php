@@ -109,7 +109,7 @@ class CreateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCapacityCommitment()
     {
-        return isset($this->capacity_commitment) ? $this->capacity_commitment : null;
+        return $this->capacity_commitment;
     }
 
     public function hasCapacityCommitment()

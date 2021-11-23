@@ -891,7 +891,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -944,7 +944,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -1060,7 +1060,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getAdditionalAttributes()
     {
-        return isset($this->additional_attributes) ? $this->additional_attributes : null;
+        return $this->additional_attributes;
     }
 
     public function hasAdditionalAttributes()

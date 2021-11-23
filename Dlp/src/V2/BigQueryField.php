@@ -53,7 +53,7 @@ class BigQueryField extends \Google\Protobuf\Internal\Message
      */
     public function getTable()
     {
-        return isset($this->table) ? $this->table : null;
+        return $this->table;
     }
 
     public function hasTable()
@@ -89,7 +89,7 @@ class BigQueryField extends \Google\Protobuf\Internal\Message
      */
     public function getField()
     {
-        return isset($this->field) ? $this->field : null;
+        return $this->field;
     }
 
     public function hasField()

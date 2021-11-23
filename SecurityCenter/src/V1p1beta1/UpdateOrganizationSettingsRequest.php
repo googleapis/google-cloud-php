@@ -23,7 +23,7 @@ class UpdateOrganizationSettingsRequest extends \Google\Protobuf\Internal\Messag
     private $organization_settings = null;
     /**
      * The FieldMask to use when updating the settings resource.
-     *  If empty all mutable fields will be updated.
+     * If empty all mutable fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -39,7 +39,7 @@ class UpdateOrganizationSettingsRequest extends \Google\Protobuf\Internal\Messag
      *           Required. The organization settings resource to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The FieldMask to use when updating the settings resource.
-     *            If empty all mutable fields will be updated.
+     *           If empty all mutable fields will be updated.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,7 +55,7 @@ class UpdateOrganizationSettingsRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getOrganizationSettings()
     {
-        return isset($this->organization_settings) ? $this->organization_settings : null;
+        return $this->organization_settings;
     }
 
     public function hasOrganizationSettings()
@@ -85,14 +85,14 @@ class UpdateOrganizationSettingsRequest extends \Google\Protobuf\Internal\Messag
 
     /**
      * The FieldMask to use when updating the settings resource.
-     *  If empty all mutable fields will be updated.
+     * If empty all mutable fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -107,7 +107,7 @@ class UpdateOrganizationSettingsRequest extends \Google\Protobuf\Internal\Messag
 
     /**
      * The FieldMask to use when updating the settings resource.
-     *  If empty all mutable fields will be updated.
+     * If empty all mutable fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

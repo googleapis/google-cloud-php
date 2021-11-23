@@ -123,7 +123,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -159,7 +159,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -221,7 +221,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     public function getServiceRevision()
     {
-        return isset($this->service_revision) ? $this->service_revision : null;
+        return $this->service_revision;
     }
 
     public function hasServiceRevision()

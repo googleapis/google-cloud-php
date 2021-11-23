@@ -213,7 +213,7 @@ class KubernetesResource extends \Google\Protobuf\Internal\Message
      */
     public function getResourceOptions()
     {
-        return isset($this->resource_options) ? $this->resource_options : null;
+        return $this->resource_options;
     }
 
     public function hasResourceOptions()

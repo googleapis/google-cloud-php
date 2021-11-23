@@ -99,7 +99,7 @@ class ProvisionCloudIdentityRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCloudIdentityInfo()
     {
-        return isset($this->cloud_identity_info) ? $this->cloud_identity_info : null;
+        return $this->cloud_identity_info;
     }
 
     public function hasCloudIdentityInfo()
@@ -135,7 +135,7 @@ class ProvisionCloudIdentityRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUser()
     {
-        return isset($this->user) ? $this->user : null;
+        return $this->user;
     }
 
     public function hasUser()

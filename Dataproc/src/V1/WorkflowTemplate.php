@@ -282,7 +282,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -318,7 +318,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -396,7 +396,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getPlacement()
     {
-        return isset($this->placement) ? $this->placement : null;
+        return $this->placement;
     }
 
     public function hasPlacement()
@@ -497,7 +497,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getDagTimeout()
     {
-        return isset($this->dag_timeout) ? $this->dag_timeout : null;
+        return $this->dag_timeout;
     }
 
     public function hasDagTimeout()

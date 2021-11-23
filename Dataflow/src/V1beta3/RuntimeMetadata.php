@@ -53,7 +53,7 @@ class RuntimeMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getSdkInfo()
     {
-        return isset($this->sdk_info) ? $this->sdk_info : null;
+        return $this->sdk_info;
     }
 
     public function hasSdkInfo()

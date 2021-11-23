@@ -90,25 +90,22 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     private $cluster_uuid = '';
     /**
-     * Output only. The timeout duration for the DAG of jobs, expressed in seconds
-     * (see [JSON representation of
+     * Output only. The timeout duration for the DAG of jobs, expressed in seconds (see
+     * [JSON representation of
      * duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration dag_timeout = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $dag_timeout = null;
     /**
-     * Output only. DAG start time, only set for workflows with
-     * [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when
-     * DAG begins.
+     * Output only. DAG start time, only set for workflows with [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when DAG
+     * begins.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp dag_start_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $dag_start_time = null;
     /**
-     * Output only. DAG end time, only set for workflows with
-     * [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when
-     * DAG ends.
+     * Output only. DAG end time, only set for workflows with [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when DAG ends.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp dag_end_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -151,17 +148,14 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      *     @type string $cluster_uuid
      *           Output only. The UUID of target cluster.
      *     @type \Google\Protobuf\Duration $dag_timeout
-     *           Output only. The timeout duration for the DAG of jobs, expressed in seconds
-     *           (see [JSON representation of
+     *           Output only. The timeout duration for the DAG of jobs, expressed in seconds (see
+     *           [JSON representation of
      *           duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *     @type \Google\Protobuf\Timestamp $dag_start_time
-     *           Output only. DAG start time, only set for workflows with
-     *           [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when
-     *           DAG begins.
+     *           Output only. DAG start time, only set for workflows with [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when DAG
+     *           begins.
      *     @type \Google\Protobuf\Timestamp $dag_end_time
-     *           Output only. DAG end time, only set for workflows with
-     *           [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when
-     *           DAG ends.
+     *           Output only. DAG end time, only set for workflows with [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when DAG ends.
      * }
      */
     public function __construct($data = NULL) {
@@ -245,7 +239,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCreateCluster()
     {
-        return isset($this->create_cluster) ? $this->create_cluster : null;
+        return $this->create_cluster;
     }
 
     public function hasCreateCluster()
@@ -281,7 +275,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getGraph()
     {
-        return isset($this->graph) ? $this->graph : null;
+        return $this->graph;
     }
 
     public function hasGraph()
@@ -317,7 +311,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getDeleteCluster()
     {
-        return isset($this->delete_cluster) ? $this->delete_cluster : null;
+        return $this->delete_cluster;
     }
 
     public function hasDeleteCluster()
@@ -431,7 +425,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -467,7 +461,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -522,8 +516,8 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The timeout duration for the DAG of jobs, expressed in seconds
-     * (see [JSON representation of
+     * Output only. The timeout duration for the DAG of jobs, expressed in seconds (see
+     * [JSON representation of
      * duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration dag_timeout = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -531,7 +525,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getDagTimeout()
     {
-        return isset($this->dag_timeout) ? $this->dag_timeout : null;
+        return $this->dag_timeout;
     }
 
     public function hasDagTimeout()
@@ -545,8 +539,8 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The timeout duration for the DAG of jobs, expressed in seconds
-     * (see [JSON representation of
+     * Output only. The timeout duration for the DAG of jobs, expressed in seconds (see
+     * [JSON representation of
      * duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration dag_timeout = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -562,16 +556,15 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. DAG start time, only set for workflows with
-     * [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when
-     * DAG begins.
+     * Output only. DAG start time, only set for workflows with [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when DAG
+     * begins.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp dag_start_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getDagStartTime()
     {
-        return isset($this->dag_start_time) ? $this->dag_start_time : null;
+        return $this->dag_start_time;
     }
 
     public function hasDagStartTime()
@@ -585,9 +578,8 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. DAG start time, only set for workflows with
-     * [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when
-     * DAG begins.
+     * Output only. DAG start time, only set for workflows with [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when DAG
+     * begins.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp dag_start_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -602,16 +594,14 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. DAG end time, only set for workflows with
-     * [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when
-     * DAG ends.
+     * Output only. DAG end time, only set for workflows with [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when DAG ends.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp dag_end_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getDagEndTime()
     {
-        return isset($this->dag_end_time) ? $this->dag_end_time : null;
+        return $this->dag_end_time;
     }
 
     public function hasDagEndTime()
@@ -625,9 +615,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. DAG end time, only set for workflows with
-     * [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when
-     * DAG ends.
+     * Output only. DAG end time, only set for workflows with [dag_timeout][google.cloud.dataproc.v1.WorkflowMetadata.dag_timeout] when DAG ends.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp dag_end_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

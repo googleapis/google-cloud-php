@@ -142,7 +142,7 @@ class DomainMapping extends \Google\Protobuf\Internal\Message
      */
     public function getSslSettings()
     {
-        return isset($this->ssl_settings) ? $this->ssl_settings : null;
+        return $this->ssl_settings;
     }
 
     public function hasSslSettings()

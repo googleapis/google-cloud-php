@@ -218,7 +218,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      */
     public function getOrgPostalAddress()
     {
-        return isset($this->org_postal_address) ? $this->org_postal_address : null;
+        return $this->org_postal_address;
     }
 
     public function hasOrgPostalAddress()
@@ -257,7 +257,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      */
     public function getPrimaryContactInfo()
     {
-        return isset($this->primary_contact_info) ? $this->primary_contact_info : null;
+        return $this->primary_contact_info;
     }
 
     public function hasPrimaryContactInfo()
@@ -355,7 +355,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -391,7 +391,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -486,7 +486,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      */
     public function getCloudIdentityInfo()
     {
-        return isset($this->cloud_identity_info) ? $this->cloud_identity_info : null;
+        return $this->cloud_identity_info;
     }
 
     public function hasCloudIdentityInfo()

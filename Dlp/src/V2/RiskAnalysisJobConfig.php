@@ -64,7 +64,7 @@ class RiskAnalysisJobConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPrivacyMetric()
     {
-        return isset($this->privacy_metric) ? $this->privacy_metric : null;
+        return $this->privacy_metric;
     }
 
     public function hasPrivacyMetric()
@@ -100,7 +100,7 @@ class RiskAnalysisJobConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSourceTable()
     {
-        return isset($this->source_table) ? $this->source_table : null;
+        return $this->source_table;
     }
 
     public function hasSourceTable()

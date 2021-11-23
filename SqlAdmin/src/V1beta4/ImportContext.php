@@ -229,7 +229,7 @@ class ImportContext extends \Google\Protobuf\Internal\Message
      */
     public function getCsvImportOptions()
     {
-        return isset($this->csv_import_options) ? $this->csv_import_options : null;
+        return $this->csv_import_options;
     }
 
     public function hasCsvImportOptions()
@@ -291,7 +291,7 @@ class ImportContext extends \Google\Protobuf\Internal\Message
      */
     public function getBakImportOptions()
     {
-        return isset($this->bak_import_options) ? $this->bak_import_options : null;
+        return $this->bak_import_options;
     }
 
     public function hasBakImportOptions()

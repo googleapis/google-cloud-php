@@ -204,7 +204,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      */
     public function getUpgradeSettings()
     {
-        return isset($this->upgrade_settings) ? $this->upgrade_settings : null;
+        return $this->upgrade_settings;
     }
 
     public function hasUpgradeSettings()
@@ -240,7 +240,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      */
     public function getManagement()
     {
-        return isset($this->management) ? $this->management : null;
+        return $this->management;
     }
 
     public function hasManagement()
@@ -378,7 +378,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      */
     public function getShieldedInstanceConfig()
     {
-        return isset($this->shielded_instance_config) ? $this->shielded_instance_config : null;
+        return $this->shielded_instance_config;
     }
 
     public function hasShieldedInstanceConfig()

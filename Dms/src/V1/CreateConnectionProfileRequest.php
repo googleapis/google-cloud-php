@@ -129,7 +129,7 @@ class CreateConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConnectionProfile()
     {
-        return isset($this->connection_profile) ? $this->connection_profile : null;
+        return $this->connection_profile;
     }
 
     public function hasConnectionProfile()

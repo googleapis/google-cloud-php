@@ -199,7 +199,7 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAddonsConfig()
     {
-        return isset($this->addons_config) ? $this->addons_config : null;
+        return $this->addons_config;
     }
 
     public function hasAddonsConfig()

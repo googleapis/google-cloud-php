@@ -112,7 +112,7 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
      */
     public function getMysqlReplicaConfiguration()
     {
-        return isset($this->mysql_replica_configuration) ? $this->mysql_replica_configuration : null;
+        return $this->mysql_replica_configuration;
     }
 
     public function hasMysqlReplicaConfiguration()
@@ -158,7 +158,7 @@ class ReplicaConfiguration extends \Google\Protobuf\Internal\Message
      */
     public function getFailoverTarget()
     {
-        return isset($this->failover_target) ? $this->failover_target : null;
+        return $this->failover_target;
     }
 
     public function hasFailoverTarget()

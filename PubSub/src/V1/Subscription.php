@@ -353,7 +353,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     public function getPushConfig()
     {
-        return isset($this->push_config) ? $this->push_config : null;
+        return $this->push_config;
     }
 
     public function hasPushConfig()
@@ -490,7 +490,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     public function getMessageRetentionDuration()
     {
-        return isset($this->message_retention_duration) ? $this->message_retention_duration : null;
+        return $this->message_retention_duration;
     }
 
     public function hasMessageRetentionDuration()
@@ -596,7 +596,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     public function getExpirationPolicy()
     {
-        return isset($this->expiration_policy) ? $this->expiration_policy : null;
+        return $this->expiration_policy;
     }
 
     public function hasExpirationPolicy()
@@ -677,7 +677,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     public function getDeadLetterPolicy()
     {
-        return isset($this->dead_letter_policy) ? $this->dead_letter_policy : null;
+        return $this->dead_letter_policy;
     }
 
     public function hasDeadLetterPolicy()
@@ -724,7 +724,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     public function getRetryPolicy()
     {
-        return isset($this->retry_policy) ? $this->retry_policy : null;
+        return $this->retry_policy;
     }
 
     public function hasRetryPolicy()
@@ -804,7 +804,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      */
     public function getTopicMessageRetentionDuration()
     {
-        return isset($this->topic_message_retention_duration) ? $this->topic_message_retention_duration : null;
+        return $this->topic_message_retention_duration;
     }
 
     public function hasTopicMessageRetentionDuration()

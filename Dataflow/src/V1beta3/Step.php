@@ -139,7 +139,7 @@ class Step extends \Google\Protobuf\Internal\Message
      */
     public function getProperties()
     {
-        return isset($this->properties) ? $this->properties : null;
+        return $this->properties;
     }
 
     public function hasProperties()

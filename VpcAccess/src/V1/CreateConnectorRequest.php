@@ -117,7 +117,7 @@ class CreateConnectorRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConnector()
     {
-        return isset($this->connector) ? $this->connector : null;
+        return $this->connector;
     }
 
     public function hasConnector()

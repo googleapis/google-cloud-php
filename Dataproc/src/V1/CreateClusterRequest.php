@@ -35,19 +35,25 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      */
     private $cluster = null;
     /**
-     * Optional. A unique id used to identify the request. If the server receives two
+     * Optional. A unique ID used to identify the request. If the server receives two
      * [CreateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateClusterRequest)s
      * with the same id, then the second request will be ignored and the
      * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the backend
      * is returned.
      * It is recommended to always set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
-     * The id must contain only letters (a-z, A-Z), numbers (0-9),
+     * The ID must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). The maximum length is 40 characters.
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $request_id = '';
+    /**
+     * Optional. Failure action when primary worker creation fails.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.FailureAction action_on_failed_primary_workers = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $action_on_failed_primary_workers = 0;
 
     /**
      * Constructor.
@@ -63,15 +69,17 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1\Cluster $cluster
      *           Required. The cluster to create.
      *     @type string $request_id
-     *           Optional. A unique id used to identify the request. If the server receives two
+     *           Optional. A unique ID used to identify the request. If the server receives two
      *           [CreateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateClusterRequest)s
      *           with the same id, then the second request will be ignored and the
      *           first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the backend
      *           is returned.
      *           It is recommended to always set this value to a
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
-     *           The id must contain only letters (a-z, A-Z), numbers (0-9),
+     *           The ID must contain only letters (a-z, A-Z), numbers (0-9),
      *           underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *     @type int $action_on_failed_primary_workers
+     *           Optional. Failure action when primary worker creation fails.
      * }
      */
     public function __construct($data = NULL) {
@@ -141,7 +149,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCluster()
     {
-        return isset($this->cluster) ? $this->cluster : null;
+        return $this->cluster;
     }
 
     public function hasCluster()
@@ -170,14 +178,14 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique id used to identify the request. If the server receives two
+     * Optional. A unique ID used to identify the request. If the server receives two
      * [CreateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateClusterRequest)s
      * with the same id, then the second request will be ignored and the
      * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the backend
      * is returned.
      * It is recommended to always set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
-     * The id must contain only letters (a-z, A-Z), numbers (0-9),
+     * The ID must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). The maximum length is 40 characters.
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -189,14 +197,14 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique id used to identify the request. If the server receives two
+     * Optional. A unique ID used to identify the request. If the server receives two
      * [CreateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateClusterRequest)s
      * with the same id, then the second request will be ignored and the
      * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the backend
      * is returned.
      * It is recommended to always set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
-     * The id must contain only letters (a-z, A-Z), numbers (0-9),
+     * The ID must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). The maximum length is 40 characters.
      *
      * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -207,6 +215,32 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Failure action when primary worker creation fails.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.FailureAction action_on_failed_primary_workers = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getActionOnFailedPrimaryWorkers()
+    {
+        return $this->action_on_failed_primary_workers;
+    }
+
+    /**
+     * Optional. Failure action when primary worker creation fails.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.FailureAction action_on_failed_primary_workers = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setActionOnFailedPrimaryWorkers($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\FailureAction::class);
+        $this->action_on_failed_primary_workers = $var;
 
         return $this;
     }

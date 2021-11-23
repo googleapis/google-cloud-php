@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class DetectLanguageResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of detected languages sorted by detection confidence in descending
-     * order. The most probable language first.
+     * The most probable language detected by the Translation API. For each
+     * request, the Translation API will always return only one result.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.DetectedLanguage languages = 1;</code>
      */
@@ -30,8 +30,8 @@ class DetectLanguageResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Translate\V3\DetectedLanguage[]|\Google\Protobuf\Internal\RepeatedField $languages
-     *           A list of detected languages sorted by detection confidence in descending
-     *           order. The most probable language first.
+     *           The most probable language detected by the Translation API. For each
+     *           request, the Translation API will always return only one result.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class DetectLanguageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of detected languages sorted by detection confidence in descending
-     * order. The most probable language first.
+     * The most probable language detected by the Translation API. For each
+     * request, the Translation API will always return only one result.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.DetectedLanguage languages = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -52,8 +52,8 @@ class DetectLanguageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of detected languages sorted by detection confidence in descending
-     * order. The most probable language first.
+     * The most probable language detected by the Translation API. For each
+     * request, the Translation API will always return only one result.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.DetectedLanguage languages = 1;</code>
      * @param \Google\Cloud\Translate\V3\DetectedLanguage[]|\Google\Protobuf\Internal\RepeatedField $var

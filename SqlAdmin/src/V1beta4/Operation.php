@@ -324,7 +324,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getInsertTime()
     {
-        return isset($this->insert_time) ? $this->insert_time : null;
+        return $this->insert_time;
     }
 
     public function hasInsertTime()
@@ -364,7 +364,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -404,7 +404,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -443,7 +443,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getError()
     {
-        return isset($this->error) ? $this->error : null;
+        return $this->error;
     }
 
     public function hasError()
@@ -530,7 +530,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getImportContext()
     {
-        return isset($this->import_context) ? $this->import_context : null;
+        return $this->import_context;
     }
 
     public function hasImportContext()
@@ -566,7 +566,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getExportContext()
     {
-        return isset($this->export_context) ? $this->export_context : null;
+        return $this->export_context;
     }
 
     public function hasExportContext()
@@ -602,7 +602,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getBackupContext()
     {
-        return isset($this->backup_context) ? $this->backup_context : null;
+        return $this->backup_context;
     }
 
     public function hasBackupContext()

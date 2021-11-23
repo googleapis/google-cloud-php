@@ -233,7 +233,7 @@ class StaticFilesHandler extends \Google\Protobuf\Internal\Message
      */
     public function getExpiration()
     {
-        return isset($this->expiration) ? $this->expiration : null;
+        return $this->expiration;
     }
 
     public function hasExpiration()

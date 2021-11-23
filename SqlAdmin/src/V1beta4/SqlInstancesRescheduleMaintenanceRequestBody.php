@@ -45,7 +45,7 @@ class SqlInstancesRescheduleMaintenanceRequestBody extends \Google\Protobuf\Inte
      */
     public function getReschedule()
     {
-        return isset($this->reschedule) ? $this->reschedule : null;
+        return $this->reschedule;
     }
 
     public function hasReschedule()

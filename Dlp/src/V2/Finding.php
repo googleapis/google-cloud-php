@@ -232,7 +232,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getInfoType()
     {
-        return isset($this->info_type) ? $this->info_type : null;
+        return $this->info_type;
     }
 
     public function hasInfoType()
@@ -295,7 +295,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getLocation()
     {
-        return isset($this->location) ? $this->location : null;
+        return $this->location;
     }
 
     public function hasLocation()
@@ -331,7 +331,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -369,7 +369,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getQuoteInfo()
     {
-        return isset($this->quote_info) ? $this->quote_info : null;
+        return $this->quote_info;
     }
 
     public function hasQuoteInfo()
@@ -501,7 +501,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getJobCreateTime()
     {
-        return isset($this->job_create_time) ? $this->job_create_time : null;
+        return $this->job_create_time;
     }
 
     public function hasJobCreateTime()

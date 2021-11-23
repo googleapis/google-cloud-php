@@ -146,7 +146,7 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     public function getSplit()
     {
-        return isset($this->split) ? $this->split : null;
+        return $this->split;
     }
 
     public function hasSplit()
@@ -183,7 +183,7 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     public function getNetworkSettings()
     {
-        return isset($this->network_settings) ? $this->network_settings : null;
+        return $this->network_settings;
     }
 
     public function hasNetworkSettings()

@@ -121,7 +121,7 @@ class PrivateEnvironmentConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPrivateClusterConfig()
     {
-        return isset($this->private_cluster_config) ? $this->private_cluster_config : null;
+        return $this->private_cluster_config;
     }
 
     public function hasPrivateClusterConfig()

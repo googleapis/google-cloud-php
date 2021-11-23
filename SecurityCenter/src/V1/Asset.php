@@ -165,7 +165,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getSecurityCenterProperties()
     {
-        return isset($this->security_center_properties) ? $this->security_center_properties : null;
+        return $this->security_center_properties;
     }
 
     public function hasSecurityCenterProperties()
@@ -231,7 +231,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getSecurityMarks()
     {
-        return isset($this->security_marks) ? $this->security_marks : null;
+        return $this->security_marks;
     }
 
     public function hasSecurityMarks()
@@ -268,7 +268,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -304,7 +304,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -343,7 +343,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getIamPolicy()
     {
-        return isset($this->iam_policy) ? $this->iam_policy : null;
+        return $this->iam_policy;
     }
 
     public function hasIamPolicy()

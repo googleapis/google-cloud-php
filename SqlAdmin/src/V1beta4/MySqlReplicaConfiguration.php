@@ -227,7 +227,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
      */
     public function getConnectRetryInterval()
     {
-        return isset($this->connect_retry_interval) ? $this->connect_retry_interval : null;
+        return $this->connect_retry_interval;
     }
 
     public function hasConnectRetryInterval()
@@ -290,7 +290,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
      */
     public function getMasterHeartbeatPeriod()
     {
-        return isset($this->master_heartbeat_period) ? $this->master_heartbeat_period : null;
+        return $this->master_heartbeat_period;
     }
 
     public function hasMasterHeartbeatPeriod()
@@ -460,7 +460,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
      */
     public function getVerifyServerCertificate()
     {
-        return isset($this->verify_server_certificate) ? $this->verify_server_certificate : null;
+        return $this->verify_server_certificate;
     }
 
     public function hasVerifyServerCertificate()

@@ -90,7 +90,7 @@ class ThreatEntryAdditions extends \Google\Protobuf\Internal\Message
      */
     public function getRiceHashes()
     {
-        return isset($this->rice_hashes) ? $this->rice_hashes : null;
+        return $this->rice_hashes;
     }
 
     public function hasRiceHashes()

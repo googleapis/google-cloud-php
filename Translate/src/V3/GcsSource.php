@@ -18,7 +18,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     /**
      * Required. Source data URI. For example, `gs://my_bucket/my_object`.
      *
-     * Generated from protobuf field <code>string input_uri = 1;</code>
+     * Generated from protobuf field <code>string input_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $input_uri = '';
 
@@ -40,7 +40,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     /**
      * Required. Source data URI. For example, `gs://my_bucket/my_object`.
      *
-     * Generated from protobuf field <code>string input_uri = 1;</code>
+     * Generated from protobuf field <code>string input_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getInputUri()
@@ -51,7 +51,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
     /**
      * Required. Source data URI. For example, `gs://my_bucket/my_object`.
      *
-     * Generated from protobuf field <code>string input_uri = 1;</code>
+     * Generated from protobuf field <code>string input_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

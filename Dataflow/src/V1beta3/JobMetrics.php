@@ -58,7 +58,7 @@ class JobMetrics extends \Google\Protobuf\Internal\Message
      */
     public function getMetricTime()
     {
-        return isset($this->metric_time) ? $this->metric_time : null;
+        return $this->metric_time;
     }
 
     public function hasMetricTime()

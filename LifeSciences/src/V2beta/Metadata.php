@@ -98,7 +98,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      */
     public function getPipeline()
     {
-        return isset($this->pipeline) ? $this->pipeline : null;
+        return $this->pipeline;
     }
 
     public function hasPipeline()
@@ -188,7 +188,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -224,7 +224,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -260,7 +260,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()

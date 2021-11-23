@@ -138,7 +138,7 @@ class IpMapping extends \Google\Protobuf\Internal\Message
      */
     public function getTimeToRetire()
     {
-        return isset($this->time_to_retire) ? $this->time_to_retire : null;
+        return $this->time_to_retire;
     }
 
     public function hasTimeToRetire()

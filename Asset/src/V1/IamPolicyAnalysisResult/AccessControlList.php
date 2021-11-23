@@ -193,7 +193,7 @@ class AccessControlList extends \Google\Protobuf\Internal\Message
      */
     public function getConditionEvaluation()
     {
-        return isset($this->condition_evaluation) ? $this->condition_evaluation : null;
+        return $this->condition_evaluation;
     }
 
     public function hasConditionEvaluation()
