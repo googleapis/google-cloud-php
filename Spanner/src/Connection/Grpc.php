@@ -27,6 +27,7 @@ use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupMetadata;
+use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\Database;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
@@ -141,6 +142,10 @@ class Grpc implements ConnectionInterface
             'method' => 'createBackup',
             'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata',
             'message' => CreateBackupMetadata::class
+        ], [
+            'method' => 'copyBackup',
+            'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CopyBackupMetadata',
+            'message' => CopyBackupMetadata::class
         ], [
             'method' => 'restoreDatabase',
             'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata',
@@ -502,6 +507,23 @@ class Grpc implements ConnectionInterface
             $instanceName,
             $this->pluck('backupId', $args),
             $backupInfo,
+            $this->addResourcePrefixHeader($args, $instanceName)
+        ]);
+
+        return $this->operationToArray($res, $this->serializer, $this->lroResponseMappers);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function copyBackup(array $args)
+    {
+        $instanceName = $this->pluck('instance', $args);
+        $res = $this->send([$this->getDatabaseAdminClient(), 'copyBackup'], [
+            $instanceName,
+            $this->pluck('backupId', $args),
+            $this->pluck('sourceBackupId', $args),
+            $this->formatTimestampForApi($this->pluck('expireTime', $args)),
             $this->addResourcePrefixHeader($args, $instanceName)
         ]);
 

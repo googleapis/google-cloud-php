@@ -187,6 +187,41 @@ class Backup
     }
 
     /**
+     * Create a copy of an existing backup in Cloud Spanner.
+     *
+     * Example:
+     * ```
+     * $operation = $backup->createCopy('new-backup-id', new \DateTime('+7 hours'));
+     * ```
+     *
+     * @param string $newBackupId The id of the new backup to be created.
+     * @param \DateTimeInterface $expireTime ​The expiration time of the backup,
+     *        with microseconds granularity that must be at least 6 hours and
+     *        at most 366 days. Once the expireTime has passed, the backup is
+     *        eligible to be automatically deleted by Cloud Spanner.
+     * @param array $options [optional] {
+     *         Configuration Options.
+     *
+     *         @type \DateTimeInterface $versionTime The version time for the externally
+     *              consistent copy of the database. If not present, it will be the same
+     *              as the create time of the backup.
+     *     }
+     * @return LongRunningOperation<Backup>
+     * @throws \InvalidArgumentException
+     */
+    public function createCopy($newBackupId, $expireTime, array $options = [])
+    {
+        $operation = $this->connection->copyBackup([
+            'instance' => $this->instance->name(),
+            'backupId' => $newBackupId,
+            'sourceBackupId' => $this->fullyQualifiedBackupName($this->name),
+            'expireTime' => $expireTime->format('Y-m-d\TH:i:s.u\Z')
+        ] + $options);
+
+        return $this->resumeOperation($operation['name'], $operation);
+    }
+
+    /**
      * Marks this backup for deletion.
      *
      * Example:
