@@ -137,7 +137,7 @@ class JsonStreamDecoderTest extends TestCase
         $stream->write($payload);
         $decoder = new JsonStreamDecoder($stream, Operation::class, ['readChunkSizeBytes' => 10]);
         foreach($decoder->decode() as $op) {
-            $this->assertEquals('foo', $op->getName());
+            $this->assertSame('foo', $op->getName());
             $stream->close();
         }
     }

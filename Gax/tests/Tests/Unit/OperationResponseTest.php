@@ -265,7 +265,7 @@ class OperationResponseTest extends TestCase
 
         $this->assertNotNull($error);
         $this->assertEquals(Code::INTERNAL, $error->getCode());
-        $this->assertEquals('It failed, sorry :(', $error->getMessage());
+        $this->assertSame('It failed, sorry :(', $error->getMessage());
     }
 
     public function testEmptyCustomOperationErrorIsSuccessful()
