@@ -116,7 +116,7 @@ class AgentHeaderTest extends TestCase
 
     public function testGetGapicVersionWithNoAvailableVersion()
     {
-        $this->assertEquals('', AgentHeader::readGapicVersionFromFile(__CLASS__));
+        $this->assertSame('', AgentHeader::readGapicVersionFromFile(__CLASS__));
     }
 
     public function testWithGrpcAndRest()

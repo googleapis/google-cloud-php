@@ -96,7 +96,7 @@ class OperationsClientTest extends GeneratedTest
         $response = $client->getOperation($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertCount(1, $actualRequests);
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.longrunning.Operations/GetOperation', $actualFuncCall);
@@ -173,11 +173,11 @@ class OperationsClientTest extends GeneratedTest
         $response = $client->listOperations($name, $filter);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
+        $this->assertCount(1, $resources);
         $this->assertEquals($expectedResponse->getOperations()[0], $resources[0]);
 
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertCount(1, $actualRequests);
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.longrunning.Operations/ListOperations', $actualFuncCall);
@@ -250,7 +250,7 @@ class OperationsClientTest extends GeneratedTest
 
         $client->cancelOperation($name);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertCount(1, $actualRequests);
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.longrunning.Operations/CancelOperation', $actualFuncCall);
@@ -320,7 +320,7 @@ class OperationsClientTest extends GeneratedTest
 
         $client->deleteOperation($name);
         $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
+        $this->assertCount(1, $actualRequests);
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.longrunning.Operations/DeleteOperation', $actualFuncCall);

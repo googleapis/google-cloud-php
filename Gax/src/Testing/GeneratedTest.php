@@ -50,7 +50,7 @@ abstract class GeneratedTest extends TestCase
                 $this->assertEquals($expected, $actual);
             }
 
-            $this->assertSame(count($expected), count($actual));
+            $this->assertCount(count($expected), $actual);
 
             $expectedValues = $this->getValues($expected);
             $actualValues = $this->getValues($actual);

@@ -212,7 +212,7 @@ class GapicClientTraitTest extends TestCase
     public function testGetGapicVersionWithNoAvailableVersion()
     {
         $client = new GapicClientTraitStub();
-        $this->assertEquals('', $client->call('getGapicVersion', [[]]));
+        $this->assertSame('', $client->call('getGapicVersion', [[]]));
     }
 
     public function testGetGapicVersionWithLibVersion()
@@ -639,7 +639,7 @@ class GapicClientTraitTest extends TestCase
         $updatedOptions = $client->call('buildClientOptions', [$options]);
 
         $this->assertArrayHasKey('addNewOption', $updatedOptions);
-        $this->assertSame(true, $updatedOptions['disableRetries']);
+        $this->assertTrue($updatedOptions['disableRetries']);
     }
 
     private function buildClientToTestModifyCallMethods()
@@ -1229,7 +1229,7 @@ class GapicClientTraitTest extends TestCase
         $client = new GapicClientTraitStub();
         $options = $client->call('buildClientOptions', [[]]);
 
-        $this->assertEquals('test.mtls.address.com:443', $options['apiEndpoint']);
+        $this->assertSame('test.mtls.address.com:443', $options['apiEndpoint']);
         $this->assertTrue(is_callable($options['clientCertSource']));
         $this->assertEquals(['foo', 'foo'], $options['clientCertSource']());
     }

@@ -57,7 +57,7 @@ class RequestBuilderTest extends TestCase
 
         $this->assertEmpty($uri->getQuery());
         $this->assertEmpty((string) $request->getBody());
-        $this->assertEquals('/v1/message/foo', $uri->getPath());
+        $this->assertSame('/v1/message/foo', $uri->getPath());
     }
 
     public function testMethodWithBody()
@@ -72,7 +72,7 @@ class RequestBuilderTest extends TestCase
         $uri = $request->getUri();
 
         $this->assertEmpty($uri->getQuery());
-        $this->assertEquals('/v1/message/foo', $uri->getPath());
+        $this->assertSame('/v1/message/foo', $uri->getPath());
         $this->assertEquals(
             ['name' => 'message/foo', 'nestedMessage' => ['name' => 'nested/foo']],
             json_decode($request->getBody(), true)
@@ -91,7 +91,7 @@ class RequestBuilderTest extends TestCase
         $uri = $request->getUri();
 
         $this->assertEmpty($uri->getQuery());
-        $this->assertEquals('/v1/message/foo', $uri->getPath());
+        $this->assertSame('/v1/message/foo', $uri->getPath());
         $this->assertEquals(
             ['name' => 'nested/foo'],
             json_decode($request->getBody(), true)
@@ -155,7 +155,7 @@ class RequestBuilderTest extends TestCase
         $uri = $request->getUri();
 
         $this->assertEmpty($uri->getQuery());
-        $this->assertEquals('/v1/nested/foo', $uri->getPath());
+        $this->assertSame('/v1/nested/foo', $uri->getPath());
         $this->assertEquals(
             ['name' => 'message/foo', 'nestedMessage' => ['name' => 'nested/foo']],
             json_decode($request->getBody(), true)
@@ -172,8 +172,8 @@ class RequestBuilderTest extends TestCase
         $uri = $request->getUri();
 
         $this->assertEmpty((string) $request->getBody());
-        $this->assertEquals('/v1/message/foo', $uri->getPath());
-        $this->assertEquals('repeatedField=bar1&repeatedField=bar2', $uri->getQuery());
+        $this->assertSame('/v1/message/foo', $uri->getPath());
+        $this->assertSame('repeatedField=bar1&repeatedField=bar2', $uri->getQuery());
     }
 
     public function testMethodWithHeaders()
@@ -186,9 +186,9 @@ class RequestBuilderTest extends TestCase
             'header2' => 'value2'
         ]);
 
-        $this->assertEquals('value1', $request->getHeaderLine('header1'));
-        $this->assertEquals('value2', $request->getHeaderLine('header2'));
-        $this->assertEquals('application/json', $request->getHeaderLine('Content-Type'));
+        $this->assertSame('value1', $request->getHeaderLine('header1'));
+        $this->assertSame('value2', $request->getHeaderLine('header2'));
+        $this->assertSame('application/json', $request->getHeaderLine('Content-Type'));
     }
 
     public function testMethodWithColon()
@@ -200,7 +200,7 @@ class RequestBuilderTest extends TestCase
         $uri = $request->getUri();
 
         $this->assertEmpty($uri->getQuery());
-        $this->assertEquals('/v1/message/foo:action', $uri->getPath());
+        $this->assertSame('/v1/message/foo:action', $uri->getPath());
     }
 
     public function testMethodWithMultipleWildcardsAndColonInUrl()
@@ -216,7 +216,7 @@ class RequestBuilderTest extends TestCase
         $uri = $request->getUri();
 
         $this->assertEmpty($uri->getQuery());
-        $this->assertEquals('/v1/message/foo/number/10:action', $uri->getPath());
+        $this->assertSame('/v1/message/foo/number/10:action', $uri->getPath());
     }
 
     public function testMethodWithSimplePlaceholder()
@@ -230,7 +230,7 @@ class RequestBuilderTest extends TestCase
         );
         $uri = $request->getUri();
 
-        $this->assertEquals('/v1/message-name', $uri->getPath());
+        $this->assertSame('/v1/message-name', $uri->getPath());
     }
 
     public function testMethodWithAdditionalBindings()
@@ -239,19 +239,19 @@ class RequestBuilderTest extends TestCase
         $message->setName('message/foo');
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithAdditionalBindings', $message);
 
-        $this->assertEquals('/v1/message/foo/additional/bindings', $request->getUri()->getPath());
+        $this->assertSame('/v1/message/foo/additional/bindings', $request->getUri()->getPath());
 
         $message->setName('different/format/foo');
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithAdditionalBindings', $message);
 
-        $this->assertEquals('/v1/different/format/foo/additional/bindings', $request->getUri()->getPath());
+        $this->assertSame('/v1/different/format/foo/additional/bindings', $request->getUri()->getPath());
 
         $nestedMessage = new MockRequestBody();
         $nestedMessage->setName('nested/foo');
         $message->setNestedMessage($nestedMessage);
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithAdditionalBindings', $message);
 
-        $this->assertEquals('/v2/nested/foo/additional/bindings', $request->getUri()->getPath());
+        $this->assertSame('/v2/nested/foo/additional/bindings', $request->getUri()->getPath());
     }
 
     public function testMethodWithSpecialJsonMapping()
@@ -301,22 +301,22 @@ class RequestBuilderTest extends TestCase
         $query = Query::parse($uri->getQuery());
 
 
-        $this->assertEquals('XDAwMA==', $query['bytesValue']);
+        $this->assertSame('XDAwMA==', $query['bytesValue']);
         // @todo (dwsupplee) Investigate differences in native protobuf implementation
         // between v3.7.0 and v3.9.0 - this passed previously with the value
         // "9001.000500000s".
         if (extension_loaded('protobuf')) {
-            $this->assertEquals('9001.000500000s', $query['durationValue']);
+            $this->assertSame('9001.000500000s', $query['durationValue']);
         } else {
-            $this->assertEquals('9001.000500s', $query['durationValue']);
+            $this->assertSame('9001.000500s', $query['durationValue']);
         }
-        $this->assertEquals('path1,path2', $query['fieldMask']);
+        $this->assertSame('path1,path2', $query['fieldMask']);
         $this->assertEquals(100, $query['int64Value']);
         $this->assertEquals(['val1', 'val2'], $query['listValue']);
-        $this->assertEquals('some-value', $query['stringValue']);
-        $this->assertEquals('val5', $query['structValue.test']);
-        $this->assertEquals('1970-01-01T02:30:01Z', $query['timestampValue']);
-        $this->assertEquals('some-value', $query['valueValue']);
+        $this->assertSame('some-value', $query['stringValue']);
+        $this->assertSame('val5', $query['structValue.test']);
+        $this->assertSame('1970-01-01T02:30:01Z', $query['timestampValue']);
+        $this->assertSame('some-value', $query['valueValue']);
     }
 
     public function testMethodWithoutPlaceholders()
@@ -334,8 +334,8 @@ class RequestBuilderTest extends TestCase
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithoutPlaceholders', $message);
         $query = Query::parse($request->getUri()->getQuery());
 
-        $this->assertEquals('path1,path2', $query['fieldMask']);
-        $this->assertEquals('some-value', $query['stringValue']);
+        $this->assertSame('path1,path2', $query['fieldMask']);
+        $this->assertSame('some-value', $query['stringValue']);
     }
 
     public function testMethodWithRequiredQueryParametersAndDefaultValues()
@@ -347,7 +347,7 @@ class RequestBuilderTest extends TestCase
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithRequiredQueryParameters', $message);
         $query = Query::parse($request->getUri()->getQuery());
 
-        $this->assertEquals('', $query['name']);
+        $this->assertSame('', $query['name']);
         $this->assertEquals(0, $query['number']);
     }
 
@@ -363,7 +363,7 @@ class RequestBuilderTest extends TestCase
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithoutPlaceholders', $message);
         $query = Query::parse($request->getUri()->getQuery());
 
-        $this->assertEquals('some-name', $query['nestedMessage.name']);
+        $this->assertSame('some-name', $query['nestedMessage.name']);
         $this->assertEquals(10, $query['nestedMessage.number']);
     }
 
@@ -375,7 +375,7 @@ class RequestBuilderTest extends TestCase
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithoutPlaceholders', $message);
         $query = Query::parse($request->getUri()->getQuery());
 
-        $this->assertEquals('some-value', $query['field1']);
+        $this->assertSame('some-value', $query['field1']);
     }
 
     /**
