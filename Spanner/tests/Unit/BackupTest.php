@@ -123,6 +123,26 @@ class BackupTest extends TestCase
         $this->assertInstanceOf(LongRunningOperation::class, $op);
     }
 
+    public function testCreateCopy()
+    {
+        $newBackupId = 'new-backup-id';
+
+        $this->connection->copyBackup(Argument::allOf(
+            Argument::withEntry('instance', InstanceAdminClient::instanceName(self::PROJECT_ID, self::INSTANCE)),
+            Argument::withEntry('backupId', $newBackupId),
+            Argument::withKey('sourceBackupId'),
+            Argument::withEntry('expireTime', $this->expireTime->format('Y-m-d\TH:i:s.u\Z'))
+        ))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'my-operation'
+            ]);
+
+        $this->backup->___setProperty('connection', $this->connection->reveal());
+        $op = $this->backup->createCopy($newBackupId, $this->expireTime);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
+    }
+
     public function testDelete()
     {
         $this->connection->deleteBackup(Argument::withEntry('name', $this->backup->name()))

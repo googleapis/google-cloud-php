@@ -38,6 +38,7 @@ class BackupTest extends SpannerTestCase
 
     protected static $backupId1;
     protected static $backupId2;
+    protected static $copyBackupId;
     protected static $backupOperationName;
     protected static $restoreOperationName;
     protected static $createDbOperationName;
@@ -104,6 +105,7 @@ class BackupTest extends SpannerTestCase
 
         self::$backupId1 = uniqid(self::BACKUP_PREFIX);
         self::$backupId2 = uniqid("users-");
+        self::$copyBackupId = uniqid("copy-");
         self::$hasSetUp = true;
     }
 
@@ -229,6 +231,42 @@ class BackupTest extends SpannerTestCase
         $op->cancel();
 
         $this->assertTrue($backup->exists());
+    }
+
+    public function testCreateBackupCopy()
+    {
+        $backup = self::$instance->backup(self::$backupId1);
+        $expireTime = new \DateTime('+7 hours');
+        $op = $backup->createCopy(self::$copyBackupId, $expireTime);
+
+        $metadata = null;
+        foreach (self::$instance->backupOperations() as $listItem) {
+            if ($listItem->name() == $op->name()) {
+                $metadata = $listItem->info()['metadata'];
+                break;
+            }
+        }
+
+        $op->pollUntilComplete();
+
+        self::$deletionQueue->add(function () use ($backup) {
+            $backup->delete();
+        });
+
+        $this->assertTrue($backup->exists());
+        $this->assertInstanceOf(Backup::class, $backup);
+        $this->assertEquals(self::$copyBackupId, DatabaseAdminClient::parseName($backup->info()['name'])['backup']);
+        $this->assertEquals(self::$dbName1, DatabaseAdminClient::parseName($backup->info()['database'])['database']);
+        $this->assertEquals($expireTime->format('Y-m-d\TH:i:s.u\Z'), $backup->info()['expireTime']);
+        $this->assertTrue(is_string($backup->info()['createTime']));
+        $this->assertEquals(Backup::STATE_READY, $backup->state());
+        $this->assertTrue($backup->info()['sizeBytes'] > 0);
+        $this->assertEquals(Type::GOOGLE_DEFAULT_ENCRYPTION, $backup->info()['encryptionInfo']['encryptionType']);
+
+        $this->assertNotNull($metadata);
+        $this->assertArrayHasKey('progress', $metadata);
+        $this->assertArrayHasKey('progressPercent', $metadata['progress']);
+        $this->assertArrayHasKey('startTime', $metadata['progress']);
     }
 
     public function testReloadBackup()

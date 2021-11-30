@@ -100,6 +100,23 @@ class BackupTest extends SnippetTestCase
         $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
     }
 
+    public function testCreateCopy()
+    {
+        $snippet = $this->snippetFromMethod(Backup::class, 'createCopy');
+        $snippet->addLocal('backup', $this->backup);
+
+        $this->connection->copyBackup(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'my-operation'
+            ]);
+
+        $this->backup->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('operation');
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+    }
+
     public function testDelete()
     {
         $snippet = $this->snippetFromMethod(Backup::class, 'delete');
