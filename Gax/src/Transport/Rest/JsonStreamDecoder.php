@@ -33,11 +33,13 @@
 namespace Google\ApiCore\Transport\Rest;
 
 use Psr\Http\Message\StreamInterface;
+use RuntimeException;
 
 class JsonStreamDecoder
 {
     const ESCAPE_CHAR = '\\';
     private $stream;
+    private $closeCalled = false;
     private $decodeType;
     private $ignoreUnknown = true;
     private $readChunkSize = 1024;
@@ -83,10 +85,30 @@ class JsonStreamDecoder
      * completes. Throws an Exception if the stream is closed before the closing
      * byte is read or if it encounters an error while decoding a message.
      *
-     * @throws Exception
+     * @throws RuntimeException
      * @return \Generator
      */
     public function decode()
+    {
+        try {
+            foreach ($this->_decode() as $response) {
+                yield $response;
+            }
+        } catch (RuntimeException $re) {
+            $msg = $re->getMessage();
+            $streamClosedException =
+                strpos($msg, 'Stream is detached') !== false ||
+                strpos($msg, 'Unexpected stream close') !== false;
+            
+            // Only throw the exception if close() was not called and it was not
+            // a closing-related exception.
+            if (!$this->closeCalled || !$streamClosedException) {
+                throw $re;
+            }
+        }
+    }
+
+    private function _decode()
     {
         $decodeType = $this->decodeType;
         $str = false;
@@ -115,6 +137,11 @@ class JsonStreamDecoder
                     $str = !$str;
                 }
 
+                // Skip over new lines that break up items.
+                if ($b === "\n" && $level === 1) {
+                    $start++;
+                }
+
                 // Ignore commas separating messages in the stream array.
                 if ($b === ',' && $level === 1) {
                     $start++;
@@ -129,12 +156,20 @@ class JsonStreamDecoder
                         $start++;
                     }
                 }
-                // Track the closing of an array or object if not in a string
-                // value.
-                if (($b === '}' || $b === ']') && !$str) {
+                // Track the closing of an object if not in a string value.
+                if ($b === '}' && !$str) {
                     $level--;
                     if ($level === 1) {
                         $end = $cursor+1;
+                    }
+                }
+                // Track the closing of an array if not in a string value.
+                if ($b === ']' && !$str) {
+                    $level--;
+                    // If we are seeing a closing square bracket at the
+                    // response message level, e.g. {"foo], there is a problem.
+                    if ($level === 1) {
+                        throw new \RuntimeException('Received closing byte mid-message');
                     }
                 }
 
@@ -180,7 +215,17 @@ class JsonStreamDecoder
             }
         }
         if ($level > 0) {
-            throw new \Exception('Unexpected stream close before receiving the closing byte');
+            throw new \RuntimeException('Unexpected stream close before receiving the closing byte');
         }
+    }
+
+    /**
+     * Closes the underlying stream. If the stream is actively being decoded, an
+     * exception will not be thrown due to the interruption.
+     */
+    public function close()
+    {
+        $this->closeCalled = true;
+        $this->stream->close();
     }
 }

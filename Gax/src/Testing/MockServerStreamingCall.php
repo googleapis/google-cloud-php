@@ -35,6 +35,7 @@ namespace Google\ApiCore\Testing;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\Rpc\Code;
+use Google\Rpc\Status;
 
 /**
  * The MockServerStreamingCall class is used to mock out the \Grpc\ServerStreamingCall class
@@ -58,7 +59,7 @@ class MockServerStreamingCall extends \Grpc\ServerStreamingCall
         $this->responses = $responses;
         $this->deserialize = $deserialize;
         if (is_null($status)) {
-            $status = new MockStatus(Code::OK);
+            $status = new MockStatus(Code::OK, 'OK', []);
         }
         $this->status = $status;
     }
@@ -73,7 +74,7 @@ class MockServerStreamingCall extends \Grpc\ServerStreamingCall
     }
 
     /**
-     * @return MockStatus|null|\stdClass
+     * @return \Google\Rpc\Status
      * @throws ApiException
      */
     public function getStatus()
@@ -85,6 +86,12 @@ class MockServerStreamingCall extends \Grpc\ServerStreamingCall
                 ApiStatus::INTERNAL
             );
         }
-        return $this->status;
+        return new Status(
+            [
+                'code' => $this->status->code,
+                'message' => $this->status->details,
+                'details' => $this->status->metadata
+            ]
+        );
     }
 }

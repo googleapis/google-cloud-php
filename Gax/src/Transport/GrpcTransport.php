@@ -41,6 +41,7 @@ use Google\ApiCore\GrpcSupportTrait;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\ServiceAddressTrait;
 use Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface;
+use Google\ApiCore\Transport\Grpc\ServerStreamingCallWrapper;
 use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
 use Google\Rpc\Code;
@@ -195,14 +196,16 @@ class GrpcTransport extends BaseStub implements TransportInterface
             throw new \InvalidArgumentException('A message is required for ServerStreaming calls.');
         }
 
+        // This simultaenously creates and starts a \Grpc\ServerStreamingCall.
+        $stream = $this->_serverStreamRequest(
+            '/' . $call->getMethod(),
+            $message,
+            [$call->getDecodeType(), 'decode'],
+            isset($options['headers']) ? $options['headers'] : [],
+            $this->getCallOptions($options)
+        );
         return new ServerStream(
-            $this->_serverStreamRequest(
-                '/' . $call->getMethod(),
-                $message,
-                [$call->getDecodeType(), 'decode'],
-                isset($options['headers']) ? $options['headers'] : [],
-                $this->getCallOptions($options)
-            ),
+            new ServerStreamingCallWrapper($stream),
             $call->getDescriptor()
         );
     }

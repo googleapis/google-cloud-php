@@ -44,6 +44,9 @@ use Google\Rpc\RequestInfo;
 use Google\Rpc\ResourceInfo;
 use Google\Rpc\RetryInfo;
 use Google\Rpc\Status;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 
 class ApiExceptionTest extends TestCase
@@ -241,6 +244,47 @@ class ApiExceptionTest extends TestCase
                     ]
                 )
             ]
+        ];
+    }
+
+    /**
+     * @dataProvider buildRequestExceptions
+     */
+    public function testCreateFromRequestException($re, $stream, $expectedCode)
+    {
+        
+        $ae = ApiException::createFromRequestException($re, $stream);
+        $this->assertSame($expectedCode, $ae->getCode());
+    }
+
+    public function buildRequestExceptions()
+    { 
+        $error = [
+            'error' => [
+                'status' => 'NOT_FOUND',
+                'message' => 'Ruh-roh.',
+            ]
+        ];
+        $stream = RequestException::create(
+            new Request('POST', 'http://www.example.com'),
+            new Response(
+                404,
+                [],
+                json_encode([$error])
+            )
+        );
+        $unary = RequestException::create(
+            new Request('POST', 'http://www.example.com'),
+            new Response(
+                404,
+                [],
+                json_encode($error)
+            )
+        );
+        
+        return [
+            [$stream, true, Code::NOT_FOUND],
+            [$unary, false, Code::NOT_FOUND]
         ];
     }
 }

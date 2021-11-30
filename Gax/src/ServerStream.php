@@ -34,7 +34,7 @@ namespace Google\ApiCore;
 use Google\Rpc\Code;
 
 /**
- * ServerStream is the response object from a gRPC server streaming API call.
+ * ServerStream is the response object from a server streaming API call.
  */
 class ServerStream
 {
@@ -44,7 +44,7 @@ class ServerStream
     /**
      * ServerStream constructor.
      *
-     * @param \Grpc\ServerStreamingCall $serverStreamingCall The gRPC server streaming call object
+     * @param ServerStreamingCallInterface $serverStreamingCall The server streaming call object
      * @param array $streamingDescriptor
      */
     public function __construct($serverStreamingCall, array $streamingDescriptor = [])
@@ -77,15 +77,15 @@ class ServerStream
             }
         }
         $status = $this->call->getStatus();
-        if (!($status->code == Code::OK)) {
-            throw ApiException::createFromStdClass($status);
+        if ($status->getCode() !== Code::OK) {
+            throw ApiException::createFromRpcStatus($status);
         }
     }
 
     /**
-     * Return the underlying gRPC call object
+     * Return the underlying call object.
      *
-     * @return \Grpc\ServerStreamingCall|mixed
+     * @return ServerStreamingCallInterface
      */
     public function getServerStreamingCall()
     {

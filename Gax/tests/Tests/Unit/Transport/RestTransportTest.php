@@ -32,6 +32,7 @@
 
 namespace Google\ApiCore\Tests\Unit\Transport;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Call;
 use Google\ApiCore\RequestBuilder;
@@ -41,8 +42,10 @@ use Google\ApiCore\Testing\MockResponse;
 use Google\ApiCore\Transport\RestTransport;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
+use Google\Protobuf\Any;
+use Google\Rpc\ErrorInfo;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Promise;
+use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
@@ -95,7 +98,7 @@ class RestTransportTest extends TestCase
 
         $httpHandler = function (RequestInterface $request, array $options = []) use ($body, $expectedRequest) {
             $this->assertEquals($expectedRequest, $request);
-            return Promise\promise_for(
+            return Create::promiseFor(
                 new Response(
                     200,
                     [],
@@ -127,7 +130,7 @@ class RestTransportTest extends TestCase
     public function testStartUnaryCallThrowsException()
     {
         $httpHandler = function (RequestInterface $request, array $options = []) {
-            return Promise\rejection_for(new \Exception());
+            return Create::rejectionFor(new \Exception());
         };
 
         $this->getTransport($httpHandler)
@@ -141,7 +144,7 @@ class RestTransportTest extends TestCase
     public function testStartUnaryCallThrowsRequestException()
     {
         $httpHandler = function (RequestInterface $request, array $options = []) {
-            return Promise\rejection_for(
+            return Create::rejectionFor(
                 RequestException::create(
                     new Request('POST', 'http://www.example.com'),
                     new Response(
@@ -161,6 +164,143 @@ class RestTransportTest extends TestCase
         $this->getTransport($httpHandler)
             ->startUnaryCall($this->call, [])
             ->wait();
+    }
+    /**
+     * @dataProvider buildServerStreamMessages
+     */
+    public function testStartServerStreamingCall($messages)
+    {
+        $apiEndpoint = 'www.example.com';
+        $expectedRequest = new Request(
+            'POST',
+            $apiEndpoint,
+            [],
+            ""
+        );
+
+        $httpHandler = function (RequestInterface $request, array $options = []) use ($messages, $expectedRequest) {
+            $this->assertEquals($expectedRequest, $request);
+            return Create::promiseFor(
+                new Response(
+                    200,
+                    [],
+                    $this->encodeMessages($messages)
+                )
+            );
+        };
+
+        $stream = $this->getTransport($httpHandler, $apiEndpoint)
+            ->startServerStreamingCall($this->call, []);
+
+        $num = 0;
+        foreach($stream->readAll() as $m) {
+            $this->assertEquals($messages[$num], $m);
+            $num++;
+        }
+        $this->assertEquals(count($messages), $num);
+    }
+
+    /**
+     * @dataProvider buildServerStreamMessages
+     */
+    public function testCancelServerStreamingCall($messages)
+    {
+        $apiEndpoint = 'www.example.com';
+        $expectedRequest = new Request(
+            'POST',
+            $apiEndpoint,
+            [],
+            ""
+        );
+
+        $httpHandler = function (RequestInterface $request, array $options = []) use ($messages, $expectedRequest) {
+            $this->assertEquals($expectedRequest, $request);
+            return Create::promiseFor(
+                new Response(
+                    200,
+                    [],
+                    $this->encodeMessages($messages)
+                )
+            );
+        };
+
+        $stream = $this->getTransport($httpHandler, $apiEndpoint)
+            ->startServerStreamingCall($this->call, []);
+
+        $num = 0;
+        foreach($stream->readAll() as $m) {
+            $this->assertEquals($messages[$num], $m);
+            $num++;
+
+            // Intentionally cancel the stream mid way through processing.
+            $stream->getServerStreamingCall()->cancel();
+        }
+
+        // Ensure only one message was ever yielded.
+        $this->assertEquals(1, $num);
+    }
+
+    private function encodeMessages(array $messages) {
+        $data = [];
+        foreach($messages as $message) {
+            $data[] = $message->serializeToJsonString();
+        }
+        return '['.implode(',', $data).']';
+    }
+
+    public function buildServerStreamMessages() {
+        return[
+            [
+                [
+                    new MockResponse([
+                        'name' => 'foo',
+                        'number' => 1,
+                    ]),
+                    new MockResponse([
+                        'name' => 'bar',
+                        'number' => 2,
+                    ]),
+                    new MockResponse([
+                        'name' => 'baz',
+                        'number' => 3,
+                    ]),
+                ]
+            ]
+        ];
+    }
+
+    /**
+     * @expectedException \Google\ApiCore\ApiException
+     * @expectedExceptionCode 5
+     * @expectedExceptionMessage Ruh-roh.
+     */
+    public function testStartServerStreamingCallThrowsRequestException()
+    {
+        $apiEndpoint = 'http://www.example.com';
+        $errorInfo = new Any();
+        $errorInfo->pack(new ErrorInfo(['domain' => 'googleapis.com']));
+        $httpHandler = function (RequestInterface $request, array $options = []) use ($apiEndpoint, $errorInfo) {
+            return Create::rejectionFor(
+                RequestException::create(
+                    new Request('POST', $apiEndpoint),
+                    new Response(
+                        404,
+                        [],
+                        json_encode([[
+                            'error' => [
+                                'status' => 'NOT_FOUND',
+                                'message' => 'Ruh-roh.',
+                                'details' => [$errorInfo]
+                            ]
+                        ]])
+                    )
+                )
+            );
+        };
+
+        $this->getTransport($httpHandler, $apiEndpoint)
+            ->startServerStreamingCall($this->call, []);
+        
     }
 
     /**
@@ -264,7 +404,7 @@ class RestTransportTest extends TestCase
     public function testNonJsonResponseException()
     {
         $httpHandler = function (RequestInterface $request, array $options = []) {
-            return Promise\rejection_for(
+            return Create::rejectionFor(
                 RequestException::create(
                     new Request('POST', 'http://www.example.com'),
                     new Response(
@@ -294,7 +434,7 @@ class RestTransportTest extends TestCase
         ];
 
         $httpHandler = function (RequestInterface $request, array $options = []) {
-            return Promise\promise_for(new Response(200, [], '{}'));
+            return Create::promiseFor(new Response(200, [], '{}'));
         };
 
         $this->getTransport($httpHandler)

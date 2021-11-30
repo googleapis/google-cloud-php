@@ -34,6 +34,7 @@ namespace Google\ApiCore;
 use Exception;
 use Google\Protobuf\Internal\RepeatedField;
 use Google\Rpc\Status;
+use GuzzleHttp\Exception\RequestException;
 
 /**
  * Represents an exception thrown during an RPC.
@@ -155,6 +156,39 @@ class ApiException extends Exception
             $status->getDetails(),
             Serializer::decodeAnyMessages($status->getDetails())
         );
+    }
+
+    /**
+     * Creates an ApiException from a GuzzleHttp RequestException.
+     *
+     * @param RequestException $ex
+     * @param boolean $isStream
+     * @return ApiException
+     * @throws ValidationException
+     */
+    public static function createFromRequestException(RequestException $ex, $isStream = false)
+    {
+        $res = $ex->getResponse();
+        $body = (string) $res->getBody();
+        $decoded = json_decode($body, true);
+        
+        // A streaming response body will return one error in an array. Parse
+        // that first (and only) error message, if provided.
+        if ($isStream && isset($decoded[0])) {
+            $decoded = $decoded[0];
+        }
+
+        if ($error = $decoded['error']) {
+            $basicMessage = $error['message'];
+            $code = isset($error['status'])
+                ? ApiStatus::rpcCodeFromStatus($error['status'])
+                : $ex->getCode();
+            $metadata = isset($error['details']) ? $error['details'] : null;
+            return static::createFromApiResponse($basicMessage, $code, $metadata);
+        }
+        // Use the RPC code instead of the HTTP Status Code.
+        $code = ApiStatus::rpcCodeFromHttpStatusCode($res->getStatusCode());
+        return static::createFromApiResponse($body, $code);
     }
 
     /**
