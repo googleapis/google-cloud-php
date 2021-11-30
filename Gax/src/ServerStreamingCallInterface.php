@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google LLC
+ * Copyright 2021 Google LLC
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,20 +30,58 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Google\ApiCore\Testing;
+namespace Google\ApiCore;
 
-use Google\Rpc\Code;
-
-class MockStatus
+interface ServerStreamingCallInterface
 {
-    /** @var Code $code */
-    public $code;
-    public $details;
-    public $metadata;
-    public function __construct($code, $details = null, array $metadata = [])
-    {
-        $this->code = $code;
-        $this->details = $details;
-        $this->metadata = $metadata;
-    }
+
+    /**
+     * Start the call.
+     *
+     * @param mixed $data     The data to send
+     * @param array $metadata Metadata to send with the call, if applicable
+     *                        (optional)
+     * @param array $options  An array of options, possible keys:
+     *                        'flags' => a number (optional)
+     */
+    public function start($data, array $metadata = [], array $options = []);
+
+    /**
+     * @return mixed An iterator of response values.
+     */
+    public function responses();
+
+    /**
+     * Return the status of the server stream.
+     *
+     * @return \Google\Rpc\Status The API status.
+     */
+    public function getStatus();
+
+    /**
+     * @return mixed The metadata sent by the server.
+     */
+    public function getMetadata();
+
+    /**
+     * @return mixed The trailing metadata sent by the server.
+     */
+    public function getTrailingMetadata();
+
+    /**
+     * @return string The URI of the endpoint.
+     */
+    public function getPeer();
+
+    /**
+     * Cancels the call.
+     */
+    public function cancel();
+
+    /**
+     * Set the CallCredentials for the underlying Call.
+     *
+     * @param mixed $call_credentials The CallCredentials object
+     */
+    public function setCallCredentials($call_credentials);
 }

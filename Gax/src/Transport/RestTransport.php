@@ -32,10 +32,11 @@
 namespace Google\ApiCore\Transport;
 
 use Google\ApiCore\ApiException;
-use Google\ApiCore\ApiStatus;
 use Google\ApiCore\Call;
 use Google\ApiCore\RequestBuilder;
+use Google\ApiCore\ServerStream;
 use Google\ApiCore\ServiceAddressTrait;
+use Google\ApiCore\Transport\Rest\RestServerStreamingCall;
 use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
 use Google\Protobuf\Internal\Message;
@@ -134,12 +135,77 @@ class RestTransport implements TransportInterface
             },
             function (\Exception $ex) {
                 if ($ex instanceof RequestException && $ex->hasResponse()) {
-                    throw $this->convertToApiException($ex);
+                    throw ApiException::createFromRequestException($ex);
                 }
 
                 throw $ex;
             }
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function startServerStreamingCall(Call $call, array $options)
+    {
+        $message = $call->getMessage();
+        if (!$message) {
+            throw new \InvalidArgumentException('A message is required for ServerStreaming calls.');
+        }
+
+        $headers = self::buildCommonHeaders($options);
+        $callOptions = $this->getCallOptions($options);
+        $request = $this->requestBuilder->build(
+            $call->getMethod(),
+            $call->getMessage()
+            // Exclude headers here because they will be added in _serverStreamRequest().
+        );
+        
+        $decoderOptions = [];
+        if (isset($options['decoderOptions'])) {
+            $decoderOptions = $options['decoderOptions'];
+        }
+
+        return new ServerStream(
+            $this->_serverStreamRequest(
+                $this->httpHandler,
+                $request,
+                $headers,
+                $call->getDecodeType(),
+                $callOptions,
+                $decoderOptions
+            ),
+            $call->getDescriptor()
+        );
+    }
+
+    /**
+     * Creates and starts a RestServerStreamingCall.
+     *
+     * @param callable $httpHandler The HTTP Handler to invoke the request with.
+     * @param RequestInterface $request The request to invoke.
+     * @param array $headers The headers to include in the request.
+     * @param string $decodeType The response stream message type to decode.
+     * @param array $callOptions The call options to use when making the call.
+     * @param array $decoderOptions The options to use for the JsonStreamDecoder.
+     *
+     */
+    private function _serverStreamRequest(
+        $httpHandler,
+        $request,
+        $headers,
+        $decodeType,
+        $callOptions,
+        $decoderOptions = []
+    ) {
+        $call = new RestServerStreamingCall(
+            $httpHandler,
+            $decodeType,
+            $decoderOptions
+        );
+        $call->start($request, $headers, $callOptions);
+
+        return $call;
     }
 
     private function getCallOptions(array $options)
@@ -159,27 +225,5 @@ class RestTransport implements TransportInterface
         }
 
         return $callOptions;
-    }
-
-    /**
-     * @param RequestException $ex
-     * @return ApiException
-     * @throws ValidationException
-     */
-    private function convertToApiException(RequestException $ex)
-    {
-        $res = $ex->getResponse();
-        $body = (string) $res->getBody();
-        if ($error = json_decode($body, true)['error']) {
-            $basicMessage = $error['message'];
-            $code = isset($error['status'])
-                ? ApiStatus::rpcCodeFromStatus($error['status'])
-                : $ex->getCode();
-            $metadata = isset($error['details']) ? $error['details'] : null;
-            return ApiException::createFromApiResponse($basicMessage, $code, $metadata);
-        }
-        // Use the RPC code instead of the HTTP Status Code.
-        $code = ApiStatus::rpcCodeFromHttpStatusCode($res->getStatusCode());
-        return ApiException::createFromApiResponse($body, $code);
     }
 }
