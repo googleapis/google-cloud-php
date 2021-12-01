@@ -649,9 +649,6 @@ class Subscription
     public function pull(array $options = [])
     {
         $messages = [];
-        $options['returnImmediately'] = isset($options['returnImmediately'])
-            ? $options['returnImmediately']
-            : false;
         $options['maxMessages'] = isset($options['maxMessages'])
             ? $options['maxMessages']
             : self::MAX_MESSAGES;
