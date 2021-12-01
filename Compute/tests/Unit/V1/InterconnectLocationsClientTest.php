@@ -90,6 +90,7 @@ class InterconnectLocationsClientTest extends GeneratedTest
         $name = 'name3373707';
         $peeringdbFacilityId = 'peeringdbFacilityId-303818';
         $selfLink = 'selfLink-1691268851';
+        $supportsPzs = true;
         $expectedResponse = new InterconnectLocation();
         $expectedResponse->setAddress($address);
         $expectedResponse->setAvailabilityZone($availabilityZone);
@@ -103,6 +104,7 @@ class InterconnectLocationsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setPeeringdbFacilityId($peeringdbFacilityId);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setSupportsPzs($supportsPzs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $interconnectLocation = 'interconnectLocation-581505978';

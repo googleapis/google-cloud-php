@@ -28,7 +28,7 @@ class RawDisk extends \Google\Protobuf\Internal\Message
      */
     private $sha1_checksum = null;
     /**
-     * The full Google Cloud Storage URL where the disk image is stored. You must provide either this property or the sourceDisk property but not both.
+     * The full Google Cloud Storage URL where the raw disk image archive is stored. The following are valid formats for the URL: - https://storage.googleapis.com/bucket_name/image_archive_name - https://storage.googleapis.com/bucket_name/folder_name/ image_archive_name In order to create an image, you must provide the full or partial URL of one of the following: - The rawDisk.source URL - The sourceDisk URL - The sourceImage URL - The sourceSnapshot URL 
      *
      * Generated from protobuf field <code>string source = 177235995;</code>
      */
@@ -45,7 +45,7 @@ class RawDisk extends \Google\Protobuf\Internal\Message
      *     @type string $sha1_checksum
      *           [Deprecated] This field is deprecated. An optional SHA1 checksum of the disk image before unpackaging provided by the client when the disk image is created.
      *     @type string $source
-     *           The full Google Cloud Storage URL where the disk image is stored. You must provide either this property or the sourceDisk property but not both.
+     *           The full Google Cloud Storage URL where the raw disk image archive is stored. The following are valid formats for the URL: - https://storage.googleapis.com/bucket_name/image_archive_name - https://storage.googleapis.com/bucket_name/folder_name/ image_archive_name In order to create an image, you must provide the full or partial URL of one of the following: - The rawDisk.source URL - The sourceDisk URL - The sourceImage URL - The sourceSnapshot URL 
      * }
      */
     public function __construct($data = NULL) {
@@ -126,7 +126,7 @@ class RawDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full Google Cloud Storage URL where the disk image is stored. You must provide either this property or the sourceDisk property but not both.
+     * The full Google Cloud Storage URL where the raw disk image archive is stored. The following are valid formats for the URL: - https://storage.googleapis.com/bucket_name/image_archive_name - https://storage.googleapis.com/bucket_name/folder_name/ image_archive_name In order to create an image, you must provide the full or partial URL of one of the following: - The rawDisk.source URL - The sourceDisk URL - The sourceImage URL - The sourceSnapshot URL 
      *
      * Generated from protobuf field <code>string source = 177235995;</code>
      * @return string
@@ -147,7 +147,7 @@ class RawDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full Google Cloud Storage URL where the disk image is stored. You must provide either this property or the sourceDisk property but not both.
+     * The full Google Cloud Storage URL where the raw disk image archive is stored. The following are valid formats for the URL: - https://storage.googleapis.com/bucket_name/image_archive_name - https://storage.googleapis.com/bucket_name/folder_name/ image_archive_name In order to create an image, you must provide the full or partial URL of one of the following: - The rawDisk.source URL - The sourceDisk URL - The sourceImage URL - The sourceSnapshot URL 
      *
      * Generated from protobuf field <code>string source = 177235995;</code>
      * @param string $var

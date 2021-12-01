@@ -399,6 +399,7 @@ class SubnetworksClientTest extends GeneratedTest
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $enableFlowLogs = true;
+        $externalIpv6Prefix = 'externalIpv6Prefix1749911926';
         $fingerprint = 'fingerprint-1375934236';
         $gatewayAddress = 'gatewayAddress-77003527';
         $id = 3355;
@@ -414,6 +415,7 @@ class SubnetworksClientTest extends GeneratedTest
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEnableFlowLogs($enableFlowLogs);
+        $expectedResponse->setExternalIpv6Prefix($externalIpv6Prefix);
         $expectedResponse->setFingerprint($fingerprint);
         $expectedResponse->setGatewayAddress($gatewayAddress);
         $expectedResponse->setId($id);

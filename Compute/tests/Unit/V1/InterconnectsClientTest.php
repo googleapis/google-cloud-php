@@ -202,6 +202,7 @@ class InterconnectsClientTest extends GeneratedTest
         $peerIpAddress = 'peerIpAddress-1939747879';
         $provisionedLinkCount = 1199724171;
         $requestedLinkCount = 1118793211;
+        $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
         $expectedResponse = new Interconnect();
         $expectedResponse->setAdminEnabled($adminEnabled);
@@ -218,6 +219,7 @@ class InterconnectsClientTest extends GeneratedTest
         $expectedResponse->setPeerIpAddress($peerIpAddress);
         $expectedResponse->setProvisionedLinkCount($provisionedLinkCount);
         $expectedResponse->setRequestedLinkCount($requestedLinkCount);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSelfLink($selfLink);
         $transport->addResponse($expectedResponse);
         // Mock request

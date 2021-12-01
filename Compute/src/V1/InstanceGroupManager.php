@@ -9,10 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Managed Instance Group resource.
- * An instance group is a collection of VM instances that you can manage as a single entity. For more information, read Instance groups.
- * For zonal Managed Instance Group, use the instanceGroupManagers resource.
- * For regional Managed Instance Group, use the regionInstanceGroupManagers resource. (== resource_for {$api_version}.instanceGroupManagers ==) (== resource_for {$api_version}.regionInstanceGroupManagers ==)
+ * Represents a Managed Instance Group resource. An instance group is a collection of VM instances that you can manage as a single entity. For more information, read Instance groups. For zonal Managed Instance Group, use the instanceGroupManagers resource. For regional Managed Instance Group, use the regionInstanceGroupManagers resource.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InstanceGroupManager</code>
  */
@@ -43,7 +40,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     private $current_actions = null;
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
@@ -55,8 +52,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     private $distribution_policy = null;
     /**
-     * Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet.
-     * To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
+     * Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      */
@@ -140,8 +136,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     private $update_policy = null;
     /**
-     * Specifies the instance templates used by this managed instance group to create instances.
-     * Each version is defined by an instanceTemplate and a name. Every version can appear at most once per instance group. This field overrides the top-level instanceTemplate field. Read more about the relationships between these fields. Exactly one version must leave the targetSize field unset. That version will be applied to all remaining instances. For more information, read about canary updates.
+     * Specifies the instance templates used by this managed instance group to create instances. Each version is defined by an instanceTemplate and a name. Every version can appear at most once per instance group. This field overrides the top-level instanceTemplate field. Read more about the relationships between these fields. Exactly one version must leave the targetSize field unset. That version will be applied to all remaining instances. For more information, read about canary updates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerVersion versions = 162430619;</code>
      */
@@ -168,12 +163,11 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerActionsSummary $current_actions
      *           [Output Only] The list of instance actions and the number of instances in this managed instance group that are scheduled for each of those actions.
      *     @type string $description
-     *           An optional description of this resource. Provide this property when you create the resource.
+     *           An optional description of this resource.
      *     @type \Google\Cloud\Compute\V1\DistributionPolicy $distribution_policy
      *           Policy specifying the intended distribution of managed instances across zones in a regional managed instance group.
      *     @type string $fingerprint
-     *           Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet.
-     *           To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
+     *           Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
      *     @type int|string $id
      *           [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *     @type string $instance_group
@@ -201,8 +195,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerUpdatePolicy $update_policy
      *           The update policy for this managed instance group.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerVersion[]|\Google\Protobuf\Internal\RepeatedField $versions
-     *           Specifies the instance templates used by this managed instance group to create instances.
-     *           Each version is defined by an instanceTemplate and a name. Every version can appear at most once per instance group. This field overrides the top-level instanceTemplate field. Read more about the relationships between these fields. Exactly one version must leave the targetSize field unset. That version will be applied to all remaining instances. For more information, read about canary updates.
+     *           Specifies the instance templates used by this managed instance group to create instances. Each version is defined by an instanceTemplate and a name. Every version can appear at most once per instance group. This field overrides the top-level instanceTemplate field. Read more about the relationships between these fields. Exactly one version must leave the targetSize field unset. That version will be applied to all remaining instances. For more information, read about canary updates.
      *     @type string $zone
      *           [Output Only] The URL of a zone where the managed instance group is located (for zonal resources).
      * }
@@ -347,7 +340,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
@@ -368,7 +361,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional description of this resource. Provide this property when you create the resource.
+     * An optional description of this resource.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
@@ -419,8 +412,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet.
-     * To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
+     * Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      * @return string
@@ -441,8 +433,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet.
-     * To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
+     * Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      * @param string $var
@@ -905,8 +896,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the instance templates used by this managed instance group to create instances.
-     * Each version is defined by an instanceTemplate and a name. Every version can appear at most once per instance group. This field overrides the top-level instanceTemplate field. Read more about the relationships between these fields. Exactly one version must leave the targetSize field unset. That version will be applied to all remaining instances. For more information, read about canary updates.
+     * Specifies the instance templates used by this managed instance group to create instances. Each version is defined by an instanceTemplate and a name. Every version can appear at most once per instance group. This field overrides the top-level instanceTemplate field. Read more about the relationships between these fields. Exactly one version must leave the targetSize field unset. That version will be applied to all remaining instances. For more information, read about canary updates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerVersion versions = 162430619;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -917,8 +907,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the instance templates used by this managed instance group to create instances.
-     * Each version is defined by an instanceTemplate and a name. Every version can appear at most once per instance group. This field overrides the top-level instanceTemplate field. Read more about the relationships between these fields. Exactly one version must leave the targetSize field unset. That version will be applied to all remaining instances. For more information, read about canary updates.
+     * Specifies the instance templates used by this managed instance group to create instances. Each version is defined by an instanceTemplate and a name. Every version can appear at most once per instance group. This field overrides the top-level instanceTemplate field. Read more about the relationships between these fields. Exactly one version must leave the targetSize field unset. That version will be applied to all remaining instances. For more information, read about canary updates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerVersion versions = 162430619;</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagerVersion[]|\Google\Protobuf\Internal\RepeatedField $var

@@ -9,22 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Target HTTPS Proxy resource.
- * Google Compute Engine has two Target HTTPS Proxy resources:
- * * [Global](/compute/docs/reference/rest/{$api_version}/targetHttpsProxies) * [Regional](https://cloud.google.com/compute/docs/reference/rest/{$api_version}/regionTargetHttpsProxies)
- * A target HTTPS proxy is a component of GCP HTTPS load balancers.
- * * targetHttpsProxies are used by external HTTPS load balancers. * regionTargetHttpsProxies are used by internal HTTPS load balancers.
- * Forwarding rules reference a target HTTPS proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies and  Forwarding rule concepts. (== resource_for {$api_version}.targetHttpsProxies ==) (== resource_for {$api_version}.regionTargetHttpsProxies ==)
+ * Represents a Target HTTPS Proxy resource. Google Compute Engine has two Target HTTPS Proxy resources: * [Global](/compute/docs/reference/rest/v1/targetHttpsProxies) * [Regional](https://cloud.google.com/compute/docs/reference/rest/v1/regionTargetHttpsProxies) A target HTTPS proxy is a component of GCP HTTPS load balancers. * targetHttpsProxies are used by external HTTPS load balancers. * regionTargetHttpsProxies are used by internal HTTPS load balancers. Forwarding rules reference a target HTTPS proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies and Forwarding rule concepts.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.TargetHttpsProxy</code>
  */
 class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. A URL referring to a networksecurity.AuthorizationPolicy resource that describes how the proxy should authorize inbound traffic. If left blank, access will not be restricted by an authorization policy.
-     * Refer to the AuthorizationPolicy resource for additional details.
-     * authorizationPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED.
-     * Note: This field currently has no impact.
+     * Optional. A URL referring to a networksecurity.AuthorizationPolicy resource that describes how the proxy should authorize inbound traffic. If left blank, access will not be restricted by an authorization policy. Refer to the AuthorizationPolicy resource for additional details. authorizationPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED. Note: This field currently has no impact.
      *
      * Generated from protobuf field <code>string authorization_policy = 33945528;</code>
      */
@@ -66,19 +58,13 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
-     * This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED.
-     * When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them.
-     * The default is false.
+     * This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED. When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them. The default is false.
      *
      * Generated from protobuf field <code>bool proxy_bind = 286025582;</code>
      */
     private $proxy_bind = null;
     /**
-     * Specifies the QUIC override policy for this TargetHttpsProxy resource. This setting determines whether the load balancer attempts to negotiate QUIC with clients. You can specify NONE, ENABLE, or DISABLE.
-     * - When quic-override is set to NONE, Google manages whether QUIC is used.
-     * - When quic-override is set to ENABLE, the load balancer uses QUIC when possible.
-     * - When quic-override is set to DISABLE, the load balancer doesn't use QUIC.
-     * - If the quic-override flag is not specified, NONE is implied.
+     * Specifies the QUIC override policy for this TargetHttpsProxy resource. This setting determines whether the load balancer attempts to negotiate QUIC with clients. You can specify NONE, ENABLE, or DISABLE. - When quic-override is set to NONE, Google manages whether QUIC is used. - When quic-override is set to ENABLE, the load balancer uses QUIC when possible. - When quic-override is set to DISABLE, the load balancer doesn't use QUIC. - If the quic-override flag is not specified, NONE is implied. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxy.QuicOverride quic_override = 456577197;</code>
      */
@@ -96,16 +82,13 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
-     * Optional. A URL referring to a networksecurity.ServerTlsPolicy resource that describes how the proxy should authenticate inbound traffic.
-     * serverTlsPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED.
-     * If left blank, communications are not encrypted.
-     * Note: This field currently has no impact.
+     * Optional. A URL referring to a networksecurity.ServerTlsPolicy resource that describes how the proxy should authenticate inbound traffic. serverTlsPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED. If left blank, communications are not encrypted. Note: This field currently has no impact.
      *
      * Generated from protobuf field <code>string server_tls_policy = 295825266;</code>
      */
     private $server_tls_policy = null;
     /**
-     * URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
+     * URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      */
@@ -117,10 +100,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      */
     private $ssl_policy = null;
     /**
-     * A fully-qualified or valid partial URL to the UrlMap resource that defines the mapping from URL to the BackendService. For example, the following are all valid URLs for specifying a URL map:
-     * - https://www.googleapis.compute/v1/projects/project/global/urlMaps/url-map
-     * - projects/project/global/urlMaps/url-map
-     * - global/urlMaps/url-map
+     * A fully-qualified or valid partial URL to the UrlMap resource that defines the mapping from URL to the BackendService. For example, the following are all valid URLs for specifying a URL map: - https://www.googleapis.compute/v1/projects/project/global/urlMaps/ url-map - projects/project/global/urlMaps/url-map - global/urlMaps/url-map 
      *
      * Generated from protobuf field <code>string url_map = 367020684;</code>
      */
@@ -133,10 +113,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $authorization_policy
-     *           Optional. A URL referring to a networksecurity.AuthorizationPolicy resource that describes how the proxy should authorize inbound traffic. If left blank, access will not be restricted by an authorization policy.
-     *           Refer to the AuthorizationPolicy resource for additional details.
-     *           authorizationPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED.
-     *           Note: This field currently has no impact.
+     *           Optional. A URL referring to a networksecurity.AuthorizationPolicy resource that describes how the proxy should authorize inbound traffic. If left blank, access will not be restricted by an authorization policy. Refer to the AuthorizationPolicy resource for additional details. authorizationPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED. Note: This field currently has no impact.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
@@ -150,33 +127,21 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type bool $proxy_bind
-     *           This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED.
-     *           When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them.
-     *           The default is false.
+     *           This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED. When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them. The default is false.
      *     @type int $quic_override
-     *           Specifies the QUIC override policy for this TargetHttpsProxy resource. This setting determines whether the load balancer attempts to negotiate QUIC with clients. You can specify NONE, ENABLE, or DISABLE.
-     *           - When quic-override is set to NONE, Google manages whether QUIC is used.
-     *           - When quic-override is set to ENABLE, the load balancer uses QUIC when possible.
-     *           - When quic-override is set to DISABLE, the load balancer doesn't use QUIC.
-     *           - If the quic-override flag is not specified, NONE is implied.
+     *           Specifies the QUIC override policy for this TargetHttpsProxy resource. This setting determines whether the load balancer attempts to negotiate QUIC with clients. You can specify NONE, ENABLE, or DISABLE. - When quic-override is set to NONE, Google manages whether QUIC is used. - When quic-override is set to ENABLE, the load balancer uses QUIC when possible. - When quic-override is set to DISABLE, the load balancer doesn't use QUIC. - If the quic-override flag is not specified, NONE is implied. 
      *     @type string $region
      *           [Output Only] URL of the region where the regional TargetHttpsProxy resides. This field is not applicable to global TargetHttpsProxies.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $server_tls_policy
-     *           Optional. A URL referring to a networksecurity.ServerTlsPolicy resource that describes how the proxy should authenticate inbound traffic.
-     *           serverTlsPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED.
-     *           If left blank, communications are not encrypted.
-     *           Note: This field currently has no impact.
+     *           Optional. A URL referring to a networksecurity.ServerTlsPolicy resource that describes how the proxy should authenticate inbound traffic. serverTlsPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED. If left blank, communications are not encrypted. Note: This field currently has no impact.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ssl_certificates
-     *           URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
+     *           URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
      *     @type string $ssl_policy
      *           URL of SslPolicy resource that will be associated with the TargetHttpsProxy resource. If not set, the TargetHttpsProxy resource has no SSL policy configured.
      *     @type string $url_map
-     *           A fully-qualified or valid partial URL to the UrlMap resource that defines the mapping from URL to the BackendService. For example, the following are all valid URLs for specifying a URL map:
-     *           - https://www.googleapis.compute/v1/projects/project/global/urlMaps/url-map
-     *           - projects/project/global/urlMaps/url-map
-     *           - global/urlMaps/url-map
+     *           A fully-qualified or valid partial URL to the UrlMap resource that defines the mapping from URL to the BackendService. For example, the following are all valid URLs for specifying a URL map: - https://www.googleapis.compute/v1/projects/project/global/urlMaps/ url-map - projects/project/global/urlMaps/url-map - global/urlMaps/url-map 
      * }
      */
     public function __construct($data = NULL) {
@@ -185,10 +150,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A URL referring to a networksecurity.AuthorizationPolicy resource that describes how the proxy should authorize inbound traffic. If left blank, access will not be restricted by an authorization policy.
-     * Refer to the AuthorizationPolicy resource for additional details.
-     * authorizationPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED.
-     * Note: This field currently has no impact.
+     * Optional. A URL referring to a networksecurity.AuthorizationPolicy resource that describes how the proxy should authorize inbound traffic. If left blank, access will not be restricted by an authorization policy. Refer to the AuthorizationPolicy resource for additional details. authorizationPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED. Note: This field currently has no impact.
      *
      * Generated from protobuf field <code>string authorization_policy = 33945528;</code>
      * @return string
@@ -209,10 +171,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A URL referring to a networksecurity.AuthorizationPolicy resource that describes how the proxy should authorize inbound traffic. If left blank, access will not be restricted by an authorization policy.
-     * Refer to the AuthorizationPolicy resource for additional details.
-     * authorizationPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED.
-     * Note: This field currently has no impact.
+     * Optional. A URL referring to a networksecurity.AuthorizationPolicy resource that describes how the proxy should authorize inbound traffic. If left blank, access will not be restricted by an authorization policy. Refer to the AuthorizationPolicy resource for additional details. authorizationPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED. Note: This field currently has no impact.
      *
      * Generated from protobuf field <code>string authorization_policy = 33945528;</code>
      * @param string $var
@@ -443,9 +402,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED.
-     * When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them.
-     * The default is false.
+     * This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED. When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them. The default is false.
      *
      * Generated from protobuf field <code>bool proxy_bind = 286025582;</code>
      * @return bool
@@ -466,9 +423,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED.
-     * When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them.
-     * The default is false.
+     * This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED. When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them. The default is false.
      *
      * Generated from protobuf field <code>bool proxy_bind = 286025582;</code>
      * @param bool $var
@@ -483,11 +438,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the QUIC override policy for this TargetHttpsProxy resource. This setting determines whether the load balancer attempts to negotiate QUIC with clients. You can specify NONE, ENABLE, or DISABLE.
-     * - When quic-override is set to NONE, Google manages whether QUIC is used.
-     * - When quic-override is set to ENABLE, the load balancer uses QUIC when possible.
-     * - When quic-override is set to DISABLE, the load balancer doesn't use QUIC.
-     * - If the quic-override flag is not specified, NONE is implied.
+     * Specifies the QUIC override policy for this TargetHttpsProxy resource. This setting determines whether the load balancer attempts to negotiate QUIC with clients. You can specify NONE, ENABLE, or DISABLE. - When quic-override is set to NONE, Google manages whether QUIC is used. - When quic-override is set to ENABLE, the load balancer uses QUIC when possible. - When quic-override is set to DISABLE, the load balancer doesn't use QUIC. - If the quic-override flag is not specified, NONE is implied. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxy.QuicOverride quic_override = 456577197;</code>
      * @return int
@@ -508,11 +459,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the QUIC override policy for this TargetHttpsProxy resource. This setting determines whether the load balancer attempts to negotiate QUIC with clients. You can specify NONE, ENABLE, or DISABLE.
-     * - When quic-override is set to NONE, Google manages whether QUIC is used.
-     * - When quic-override is set to ENABLE, the load balancer uses QUIC when possible.
-     * - When quic-override is set to DISABLE, the load balancer doesn't use QUIC.
-     * - If the quic-override flag is not specified, NONE is implied.
+     * Specifies the QUIC override policy for this TargetHttpsProxy resource. This setting determines whether the load balancer attempts to negotiate QUIC with clients. You can specify NONE, ENABLE, or DISABLE. - When quic-override is set to NONE, Google manages whether QUIC is used. - When quic-override is set to ENABLE, the load balancer uses QUIC when possible. - When quic-override is set to DISABLE, the load balancer doesn't use QUIC. - If the quic-override flag is not specified, NONE is implied. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxy.QuicOverride quic_override = 456577197;</code>
      * @param int $var
@@ -599,10 +546,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A URL referring to a networksecurity.ServerTlsPolicy resource that describes how the proxy should authenticate inbound traffic.
-     * serverTlsPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED.
-     * If left blank, communications are not encrypted.
-     * Note: This field currently has no impact.
+     * Optional. A URL referring to a networksecurity.ServerTlsPolicy resource that describes how the proxy should authenticate inbound traffic. serverTlsPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED. If left blank, communications are not encrypted. Note: This field currently has no impact.
      *
      * Generated from protobuf field <code>string server_tls_policy = 295825266;</code>
      * @return string
@@ -623,10 +567,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A URL referring to a networksecurity.ServerTlsPolicy resource that describes how the proxy should authenticate inbound traffic.
-     * serverTlsPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED.
-     * If left blank, communications are not encrypted.
-     * Note: This field currently has no impact.
+     * Optional. A URL referring to a networksecurity.ServerTlsPolicy resource that describes how the proxy should authenticate inbound traffic. serverTlsPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED. If left blank, communications are not encrypted. Note: This field currently has no impact.
      *
      * Generated from protobuf field <code>string server_tls_policy = 295825266;</code>
      * @param string $var
@@ -641,7 +582,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
+     * URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -652,7 +593,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
+     * URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -703,10 +644,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A fully-qualified or valid partial URL to the UrlMap resource that defines the mapping from URL to the BackendService. For example, the following are all valid URLs for specifying a URL map:
-     * - https://www.googleapis.compute/v1/projects/project/global/urlMaps/url-map
-     * - projects/project/global/urlMaps/url-map
-     * - global/urlMaps/url-map
+     * A fully-qualified or valid partial URL to the UrlMap resource that defines the mapping from URL to the BackendService. For example, the following are all valid URLs for specifying a URL map: - https://www.googleapis.compute/v1/projects/project/global/urlMaps/ url-map - projects/project/global/urlMaps/url-map - global/urlMaps/url-map 
      *
      * Generated from protobuf field <code>string url_map = 367020684;</code>
      * @return string
@@ -727,10 +665,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A fully-qualified or valid partial URL to the UrlMap resource that defines the mapping from URL to the BackendService. For example, the following are all valid URLs for specifying a URL map:
-     * - https://www.googleapis.compute/v1/projects/project/global/urlMaps/url-map
-     * - projects/project/global/urlMaps/url-map
-     * - global/urlMaps/url-map
+     * A fully-qualified or valid partial URL to the UrlMap resource that defines the mapping from URL to the BackendService. For example, the following are all valid URLs for specifying a URL map: - https://www.googleapis.compute/v1/projects/project/global/urlMaps/ url-map - projects/project/global/urlMaps/url-map - global/urlMaps/url-map 
      *
      * Generated from protobuf field <code>string url_map = 367020684;</code>
      * @param string $var

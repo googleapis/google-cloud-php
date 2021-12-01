@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Target SSL Proxy resource.
- * A target SSL proxy is a component of a SSL Proxy load balancer. Global forwarding rules reference a target SSL proxy, and the target proxy then references an external backend service. For more information, read Using Target Proxies. (== resource_for {$api_version}.targetSslProxies ==)
+ * Represents a Target SSL Proxy resource. A target SSL proxy is a component of a SSL Proxy load balancer. Global forwarding rules reference a target SSL proxy, and the target proxy then references an external backend service. For more information, read Using Target Proxies.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.TargetSslProxy</code>
  */
@@ -65,7 +64,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
      */
     private $service = null;
     /**
-     * URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
+     * URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      */
@@ -100,7 +99,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
      *     @type string $service
      *           URL to the BackendService resource.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ssl_certificates
-     *           URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
+     *           URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
      *     @type string $ssl_policy
      *           URL of SslPolicy resource that will be associated with the TargetSslProxy resource. If not set, the TargetSslProxy resource will not have any SSL policy configured.
      * }
@@ -399,7 +398,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
+     * URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -410,7 +409,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
+     * URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

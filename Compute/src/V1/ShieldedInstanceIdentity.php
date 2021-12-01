@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A shielded Instance identity entry.
+ * A Shielded Instance Identity.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.ShieldedInstanceIdentity</code>
  */

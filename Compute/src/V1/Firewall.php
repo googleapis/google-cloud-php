@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Firewall Rule resource.
- * Firewall rules allow or deny ingress traffic to, and egress traffic from your instances. For more information, read Firewall rules.
+ * Represents a Firewall Rule resource. Firewall rules allow or deny ingress traffic to, and egress traffic from your instances. For more information, read Firewall rules.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Firewall</code>
  */
@@ -41,7 +40,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
-     * If destination ranges are specified, the firewall rule applies only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Only IPv4 is supported.
+     * If destination ranges are specified, the firewall rule applies only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Both IPv4 and IPv6 are supported.
      *
      * Generated from protobuf field <code>repeated string destination_ranges = 305699879;</code>
      */
@@ -77,18 +76,13 @@ class Firewall extends \Google\Protobuf\Internal\Message
      */
     private $log_config = null;
     /**
-     * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
+     * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
     private $name = null;
     /**
-     * URL of the network resource for this firewall rule. If not specified when creating a firewall rule, the default network is used:
-     * global/networks/default
-     * If you choose to specify this field, you can specify the network as a full or partial URL. For example, the following are all valid URLs:
-     * - https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network
-     * - projects/myproject/global/networks/my-network
-     * - global/networks/default
+     * URL of the network resource for this firewall rule. If not specified when creating a firewall rule, the default network is used: global/networks/default If you choose to specify this field, you can specify the network as a full or partial URL. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network - projects/myproject/global/networks/my-network - global/networks/default 
      *
      * Generated from protobuf field <code>string network = 232872494;</code>
      */
@@ -106,7 +100,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
-     * If source ranges are specified, the firewall rule applies only to traffic that has a source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both fields are set, the rule applies to traffic that has a source IP address within sourceRanges OR a source IP from a resource with a matching tag listed in the sourceTags field. The connection does not need to match both fields for the rule to apply. Only IPv4 is supported.
+     * If source ranges are specified, the firewall rule applies only to traffic that has a source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both fields are set, the rule applies to traffic that has a source IP address within sourceRanges OR a source IP from a resource with a matching tag listed in the sourceTags field. The connection does not need to match both fields for the rule to apply. Both IPv4 and IPv6 are supported.
      *
      * Generated from protobuf field <code>repeated string source_ranges = 200097658;</code>
      */
@@ -151,7 +145,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of this resource. Provide this field when you create the resource.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $destination_ranges
-     *           If destination ranges are specified, the firewall rule applies only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Only IPv4 is supported.
+     *           If destination ranges are specified, the firewall rule applies only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Both IPv4 and IPv6 are supported.
      *     @type int $direction
      *           Direction of traffic to which this firewall applies, either `INGRESS` or `EGRESS`. The default is `INGRESS`. For `INGRESS` traffic, you cannot specify the destinationRanges field, and for `EGRESS` traffic, you cannot specify the sourceRanges or sourceTags fields.
      *     @type bool $disabled
@@ -163,20 +157,15 @@ class Firewall extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\FirewallLogConfig $log_config
      *           This field denotes the logging options for a particular firewall rule. If logging is enabled, logs will be exported to Cloud Logging.
      *     @type string $name
-     *           Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
+     *           Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      *     @type string $network
-     *           URL of the network resource for this firewall rule. If not specified when creating a firewall rule, the default network is used:
-     *           global/networks/default
-     *           If you choose to specify this field, you can specify the network as a full or partial URL. For example, the following are all valid URLs:
-     *           - https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network
-     *           - projects/myproject/global/networks/my-network
-     *           - global/networks/default
+     *           URL of the network resource for this firewall rule. If not specified when creating a firewall rule, the default network is used: global/networks/default If you choose to specify this field, you can specify the network as a full or partial URL. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network - projects/myproject/global/networks/my-network - global/networks/default 
      *     @type int $priority
      *           Priority for this rule. This is an integer between `0` and `65535`, both inclusive. The default value is `1000`. Relative priorities determine which rule takes effect if multiple rules apply. Lower values indicate higher priority. For example, a rule with priority `0` has higher precedence than a rule with priority `1`. DENY rules take precedence over ALLOW rules if they have equal priority. Note that VPC networks have implied rules with a priority of `65535`. To avoid conflicts with the implied rules, use a priority number less than `65535`.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $source_ranges
-     *           If source ranges are specified, the firewall rule applies only to traffic that has a source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both fields are set, the rule applies to traffic that has a source IP address within sourceRanges OR a source IP from a resource with a matching tag listed in the sourceTags field. The connection does not need to match both fields for the rule to apply. Only IPv4 is supported.
+     *           If source ranges are specified, the firewall rule applies only to traffic that has a source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both fields are set, the rule applies to traffic that has a source IP address within sourceRanges OR a source IP from a resource with a matching tag listed in the sourceTags field. The connection does not need to match both fields for the rule to apply. Both IPv4 and IPv6 are supported.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $source_service_accounts
      *           If source service accounts are specified, the firewall rules apply only to traffic originating from an instance with a service account in this list. Source service accounts cannot be used to control traffic to an instance's external IP address because service accounts are associated with an instance, not an IP address. sourceRanges can be set at the same time as sourceServiceAccounts. If both are set, the firewall applies to traffic that has a source IP address within the sourceRanges OR a source IP that belongs to an instance with service account listed in sourceServiceAccount. The connection does not need to match both fields for the firewall to apply. sourceServiceAccounts cannot be used at the same time as sourceTags or targetTags.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $source_tags
@@ -317,7 +306,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If destination ranges are specified, the firewall rule applies only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Only IPv4 is supported.
+     * If destination ranges are specified, the firewall rule applies only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Both IPv4 and IPv6 are supported.
      *
      * Generated from protobuf field <code>repeated string destination_ranges = 305699879;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -328,7 +317,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If destination ranges are specified, the firewall rule applies only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Only IPv4 is supported.
+     * If destination ranges are specified, the firewall rule applies only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Both IPv4 and IPv6 are supported.
      *
      * Generated from protobuf field <code>repeated string destination_ranges = 305699879;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -523,7 +512,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
+     * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      * @return string
@@ -544,7 +533,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
+     * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      * @param string $var
@@ -559,12 +548,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the network resource for this firewall rule. If not specified when creating a firewall rule, the default network is used:
-     * global/networks/default
-     * If you choose to specify this field, you can specify the network as a full or partial URL. For example, the following are all valid URLs:
-     * - https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network
-     * - projects/myproject/global/networks/my-network
-     * - global/networks/default
+     * URL of the network resource for this firewall rule. If not specified when creating a firewall rule, the default network is used: global/networks/default If you choose to specify this field, you can specify the network as a full or partial URL. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network - projects/myproject/global/networks/my-network - global/networks/default 
      *
      * Generated from protobuf field <code>string network = 232872494;</code>
      * @return string
@@ -585,12 +569,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the network resource for this firewall rule. If not specified when creating a firewall rule, the default network is used:
-     * global/networks/default
-     * If you choose to specify this field, you can specify the network as a full or partial URL. For example, the following are all valid URLs:
-     * - https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network
-     * - projects/myproject/global/networks/my-network
-     * - global/networks/default
+     * URL of the network resource for this firewall rule. If not specified when creating a firewall rule, the default network is used: global/networks/default If you choose to specify this field, you can specify the network as a full or partial URL. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network - projects/myproject/global/networks/my-network - global/networks/default 
      *
      * Generated from protobuf field <code>string network = 232872494;</code>
      * @param string $var
@@ -677,7 +656,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If source ranges are specified, the firewall rule applies only to traffic that has a source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both fields are set, the rule applies to traffic that has a source IP address within sourceRanges OR a source IP from a resource with a matching tag listed in the sourceTags field. The connection does not need to match both fields for the rule to apply. Only IPv4 is supported.
+     * If source ranges are specified, the firewall rule applies only to traffic that has a source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both fields are set, the rule applies to traffic that has a source IP address within sourceRanges OR a source IP from a resource with a matching tag listed in the sourceTags field. The connection does not need to match both fields for the rule to apply. Both IPv4 and IPv6 are supported.
      *
      * Generated from protobuf field <code>repeated string source_ranges = 200097658;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -688,7 +667,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If source ranges are specified, the firewall rule applies only to traffic that has a source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both fields are set, the rule applies to traffic that has a source IP address within sourceRanges OR a source IP from a resource with a matching tag listed in the sourceTags field. The connection does not need to match both fields for the rule to apply. Only IPv4 is supported.
+     * If source ranges are specified, the firewall rule applies only to traffic that has a source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both fields are set, the rule applies to traffic that has a source IP address within sourceRanges OR a source IP from a resource with a matching tag listed in the sourceTags field. The connection does not need to match both fields for the rule to apply. Both IPv4 and IPv6 are supported.
      *
      * Generated from protobuf field <code>repeated string source_ranges = 200097658;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

@@ -9,20 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Custom fields. These can be used to create a counter with arbitrary field/value pairs. See: go/rpcsp-custom-fields.
+ * This is deprecated and has no effect. Do not use.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.LogConfigCounterOptionsCustomField</code>
  */
 class LogConfigCounterOptionsCustomField extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name is the field name.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
     private $name = null;
     /**
-     * Value is the field value. It is important that in contrast to the CounterOptions.field, the value here is a constant that is not derived from the IAMContext.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>string value = 111972721;</code>
      */
@@ -35,9 +35,9 @@ class LogConfigCounterOptionsCustomField extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name is the field name.
+     *           This is deprecated and has no effect. Do not use.
      *     @type string $value
-     *           Value is the field value. It is important that in contrast to the CounterOptions.field, the value here is a constant that is not derived from the IAMContext.
+     *           This is deprecated and has no effect. Do not use.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +46,7 @@ class LogConfigCounterOptionsCustomField extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Name is the field name.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      * @return string
@@ -67,7 +67,7 @@ class LogConfigCounterOptionsCustomField extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Name is the field name.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      * @param string $var
@@ -82,7 +82,7 @@ class LogConfigCounterOptionsCustomField extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Value is the field value. It is important that in contrast to the CounterOptions.field, the value here is a constant that is not derived from the IAMContext.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>string value = 111972721;</code>
      * @return string
@@ -103,7 +103,7 @@ class LogConfigCounterOptionsCustomField extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Value is the field value. It is important that in contrast to the CounterOptions.field, the value here is a constant that is not derived from the IAMContext.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>string value = 111972721;</code>
      * @param string $var

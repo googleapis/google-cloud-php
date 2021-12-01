@@ -9,15 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Sets the scheduling options for an Instance. NextID: 20
+ * Sets the scheduling options for an Instance. NextID: 21
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Scheduling</code>
  */
 class Scheduling extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted.
-     * By default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.
+     * Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted. By default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.
      *
      * Generated from protobuf field <code>bool automatic_restart = 350821371;</code>
      */
@@ -60,8 +59,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $automatic_restart
-     *           Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted.
-     *           By default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.
+     *           Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted. By default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.
      *     @type string $location_hint
      *           An opaque location hint used to place the instance close to other resources. This field is for use by internal tools that use the public API.
      *     @type int $min_node_cpus
@@ -80,8 +78,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted.
-     * By default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.
+     * Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted. By default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.
      *
      * Generated from protobuf field <code>bool automatic_restart = 350821371;</code>
      * @return bool
@@ -102,8 +99,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted.
-     * By default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.
+     * Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted. By default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.
      *
      * Generated from protobuf field <code>bool automatic_restart = 350821371;</code>
      * @param bool $var

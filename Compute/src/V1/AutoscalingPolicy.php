@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The number of seconds that the autoscaler waits before it starts collecting information from a new instance. This prevents the autoscaler from collecting information when the instance is initializing, during which the collected usage would not be reliable. The default time autoscaler waits is 60 seconds.
-     * Virtual machine initialization times might vary because of numerous factors. We recommend that you test how long an instance may take to initialize. To do this, create an instance and time the startup process.
+     * The number of seconds that the autoscaler waits before it starts collecting information from a new instance. This prevents the autoscaler from collecting information when the instance is initializing, during which the collected usage would not be reliable. The default time autoscaler waits is 60 seconds. Virtual machine initialization times might vary because of numerous factors. We recommend that you test how long an instance may take to initialize. To do this, create an instance and time the startup process.
      *
      * Generated from protobuf field <code>int32 cool_down_period_sec = 107692954;</code>
      */
@@ -76,8 +75,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $cool_down_period_sec
-     *           The number of seconds that the autoscaler waits before it starts collecting information from a new instance. This prevents the autoscaler from collecting information when the instance is initializing, during which the collected usage would not be reliable. The default time autoscaler waits is 60 seconds.
-     *           Virtual machine initialization times might vary because of numerous factors. We recommend that you test how long an instance may take to initialize. To do this, create an instance and time the startup process.
+     *           The number of seconds that the autoscaler waits before it starts collecting information from a new instance. This prevents the autoscaler from collecting information when the instance is initializing, during which the collected usage would not be reliable. The default time autoscaler waits is 60 seconds. Virtual machine initialization times might vary because of numerous factors. We recommend that you test how long an instance may take to initialize. To do this, create an instance and time the startup process.
      *     @type \Google\Cloud\Compute\V1\AutoscalingPolicyCpuUtilization $cpu_utilization
      *           Defines the CPU utilization policy that allows the autoscaler to scale based on the average CPU utilization of a managed instance group.
      *     @type \Google\Cloud\Compute\V1\AutoscalingPolicyCustomMetricUtilization[]|\Google\Protobuf\Internal\RepeatedField $custom_metric_utilizations
@@ -101,8 +99,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of seconds that the autoscaler waits before it starts collecting information from a new instance. This prevents the autoscaler from collecting information when the instance is initializing, during which the collected usage would not be reliable. The default time autoscaler waits is 60 seconds.
-     * Virtual machine initialization times might vary because of numerous factors. We recommend that you test how long an instance may take to initialize. To do this, create an instance and time the startup process.
+     * The number of seconds that the autoscaler waits before it starts collecting information from a new instance. This prevents the autoscaler from collecting information when the instance is initializing, during which the collected usage would not be reliable. The default time autoscaler waits is 60 seconds. Virtual machine initialization times might vary because of numerous factors. We recommend that you test how long an instance may take to initialize. To do this, create an instance and time the startup process.
      *
      * Generated from protobuf field <code>int32 cool_down_period_sec = 107692954;</code>
      * @return int
@@ -123,8 +120,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of seconds that the autoscaler waits before it starts collecting information from a new instance. This prevents the autoscaler from collecting information when the instance is initializing, during which the collected usage would not be reliable. The default time autoscaler waits is 60 seconds.
-     * Virtual machine initialization times might vary because of numerous factors. We recommend that you test how long an instance may take to initialize. To do this, create an instance and time the startup process.
+     * The number of seconds that the autoscaler waits before it starts collecting information from a new instance. This prevents the autoscaler from collecting information when the instance is initializing, during which the collected usage would not be reliable. The default time autoscaler waits is 60 seconds. Virtual machine initialization times might vary because of numerous factors. We recommend that you test how long an instance may take to initialize. To do this, create an instance and time the startup process.
      *
      * Generated from protobuf field <code>int32 cool_down_period_sec = 107692954;</code>
      * @param int $var

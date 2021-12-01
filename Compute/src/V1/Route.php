@@ -9,13 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Route resource.
- * A route defines a path from VM instances in the VPC network to a specific destination. This destination can be inside or outside the VPC network. For more information, read the Routes overview. (== resource_for {$api_version}.routes ==)
+ * Represents a Route resource. A route defines a path from VM instances in the VPC network to a specific destination. This destination can be inside or outside the VPC network. For more information, read the Routes overview.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Route</code>
  */
 class Route extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * [Output Only] AS path.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouteAsPath as_paths = 137568929;</code>
+     */
+    private $as_paths;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
@@ -59,23 +64,19 @@ class Route extends \Google\Protobuf\Internal\Message
      */
     private $network = null;
     /**
-     * The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL:  projects/project/global/gateways/default-internet-gateway
+     * The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL: projects/ project/global/gateways/default-internet-gateway
      *
      * Generated from protobuf field <code>string next_hop_gateway = 377175298;</code>
      */
     private $next_hop_gateway = null;
     /**
-     * The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets or the IP address of the forwarding Rule. For example, the following are all valid URLs:
-     * - 10.128.0.56
-     * - https://www.googleapis.com/compute/v1/projects/project/regions/region/forwardingRules/forwardingRule
-     * - regions/region/forwardingRules/forwardingRule
+     * The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets or the IP address of the forwarding Rule. For example, the following are all valid URLs: - 10.128.0.56 - https://www.googleapis.com/compute/v1/projects/project/regions/region /forwardingRules/forwardingRule - regions/region/forwardingRules/forwardingRule 
      *
      * Generated from protobuf field <code>string next_hop_ilb = 198679901;</code>
      */
     private $next_hop_ilb = null;
     /**
-     * The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example:
-     * https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
+     * The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
      *
      * Generated from protobuf field <code>string next_hop_instance = 393508247;</code>
      */
@@ -111,6 +112,12 @@ class Route extends \Google\Protobuf\Internal\Message
      */
     private $priority = null;
     /**
+     * [Output Only] The type of this route, which can be one of the following values: - 'TRANSIT' for a transit route that this router learned from another Cloud Router and will readvertise to one of its BGP peers - 'SUBNET' for a route from a subnet of the VPC - 'BGP' for a route learned from a BGP peer of this router - 'STATIC' for a static route
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Route.RouteType route_type = 375888752;</code>
+     */
+    private $route_type = null;
+    /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
      * Generated from protobuf field <code>string self_link = 456214797;</code>
@@ -135,6 +142,8 @@ class Route extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\RouteAsPath[]|\Google\Protobuf\Internal\RepeatedField $as_paths
+     *           [Output Only] AS path.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
@@ -150,15 +159,11 @@ class Route extends \Google\Protobuf\Internal\Message
      *     @type string $network
      *           Fully-qualified URL of the network that this route applies to.
      *     @type string $next_hop_gateway
-     *           The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL:  projects/project/global/gateways/default-internet-gateway
+     *           The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL: projects/ project/global/gateways/default-internet-gateway
      *     @type string $next_hop_ilb
-     *           The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets or the IP address of the forwarding Rule. For example, the following are all valid URLs:
-     *           - 10.128.0.56
-     *           - https://www.googleapis.com/compute/v1/projects/project/regions/region/forwardingRules/forwardingRule
-     *           - regions/region/forwardingRules/forwardingRule
+     *           The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets or the IP address of the forwarding Rule. For example, the following are all valid URLs: - 10.128.0.56 - https://www.googleapis.com/compute/v1/projects/project/regions/region /forwardingRules/forwardingRule - regions/region/forwardingRules/forwardingRule 
      *     @type string $next_hop_instance
-     *           The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example:
-     *           https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
+     *           The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
      *     @type string $next_hop_ip
      *           The network IP address of an instance that should handle matching packets. Only IPv4 is supported.
      *     @type string $next_hop_network
@@ -169,6 +174,8 @@ class Route extends \Google\Protobuf\Internal\Message
      *           The URL to a VpnTunnel that should handle matching packets.
      *     @type int $priority
      *           The priority of this route. Priority is used to break ties in cases where there is more than one matching route of equal prefix length. In cases where multiple routes have equal prefix length, the one with the lowest-numbered priority value wins. The default value is `1000`. The priority value must be from `0` to `65535`, inclusive.
+     *     @type int $route_type
+     *           [Output Only] The type of this route, which can be one of the following values: - 'TRANSIT' for a transit route that this router learned from another Cloud Router and will readvertise to one of its BGP peers - 'SUBNET' for a route from a subnet of the VPC - 'BGP' for a route learned from a BGP peer of this router - 'STATIC' for a static route
      *     @type string $self_link
      *           [Output Only] Server-defined fully-qualified URL for this resource.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tags
@@ -180,6 +187,32 @@ class Route extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * [Output Only] AS path.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouteAsPath as_paths = 137568929;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAsPaths()
+    {
+        return $this->as_paths;
+    }
+
+    /**
+     * [Output Only] AS path.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouteAsPath as_paths = 137568929;</code>
+     * @param \Google\Cloud\Compute\V1\RouteAsPath[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAsPaths($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\RouteAsPath::class);
+        $this->as_paths = $arr;
+
+        return $this;
     }
 
     /**
@@ -435,7 +468,7 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL:  projects/project/global/gateways/default-internet-gateway
+     * The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL: projects/ project/global/gateways/default-internet-gateway
      *
      * Generated from protobuf field <code>string next_hop_gateway = 377175298;</code>
      * @return string
@@ -456,7 +489,7 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL:  projects/project/global/gateways/default-internet-gateway
+     * The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL: projects/ project/global/gateways/default-internet-gateway
      *
      * Generated from protobuf field <code>string next_hop_gateway = 377175298;</code>
      * @param string $var
@@ -471,10 +504,7 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets or the IP address of the forwarding Rule. For example, the following are all valid URLs:
-     * - 10.128.0.56
-     * - https://www.googleapis.com/compute/v1/projects/project/regions/region/forwardingRules/forwardingRule
-     * - regions/region/forwardingRules/forwardingRule
+     * The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets or the IP address of the forwarding Rule. For example, the following are all valid URLs: - 10.128.0.56 - https://www.googleapis.com/compute/v1/projects/project/regions/region /forwardingRules/forwardingRule - regions/region/forwardingRules/forwardingRule 
      *
      * Generated from protobuf field <code>string next_hop_ilb = 198679901;</code>
      * @return string
@@ -495,10 +525,7 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets or the IP address of the forwarding Rule. For example, the following are all valid URLs:
-     * - 10.128.0.56
-     * - https://www.googleapis.com/compute/v1/projects/project/regions/region/forwardingRules/forwardingRule
-     * - regions/region/forwardingRules/forwardingRule
+     * The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets or the IP address of the forwarding Rule. For example, the following are all valid URLs: - 10.128.0.56 - https://www.googleapis.com/compute/v1/projects/project/regions/region /forwardingRules/forwardingRule - regions/region/forwardingRules/forwardingRule 
      *
      * Generated from protobuf field <code>string next_hop_ilb = 198679901;</code>
      * @param string $var
@@ -513,8 +540,7 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example:
-     * https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
+     * The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
      *
      * Generated from protobuf field <code>string next_hop_instance = 393508247;</code>
      * @return string
@@ -535,8 +561,7 @@ class Route extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example:
-     * https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
+     * The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
      *
      * Generated from protobuf field <code>string next_hop_instance = 393508247;</code>
      * @param string $var
@@ -726,6 +751,42 @@ class Route extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint32($var);
         $this->priority = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The type of this route, which can be one of the following values: - 'TRANSIT' for a transit route that this router learned from another Cloud Router and will readvertise to one of its BGP peers - 'SUBNET' for a route from a subnet of the VPC - 'BGP' for a route learned from a BGP peer of this router - 'STATIC' for a static route
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Route.RouteType route_type = 375888752;</code>
+     * @return int
+     */
+    public function getRouteType()
+    {
+        return isset($this->route_type) ? $this->route_type : 0;
+    }
+
+    public function hasRouteType()
+    {
+        return isset($this->route_type);
+    }
+
+    public function clearRouteType()
+    {
+        unset($this->route_type);
+    }
+
+    /**
+     * [Output Only] The type of this route, which can be one of the following values: - 'TRANSIT' for a transit route that this router learned from another Cloud Router and will readvertise to one of its BGP peers - 'SUBNET' for a route from a subnet of the VPC - 'BGP' for a route learned from a BGP peer of this router - 'STATIC' for a static route
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Route.RouteType route_type = 375888752;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRouteType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\Route\RouteType::class);
+        $this->route_type = $var;
 
         return $this;
     }

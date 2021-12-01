@@ -45,7 +45,7 @@ class AutoscalerAggregatedList extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
-     * [Output Only] Unreachable resources.
+     * [Output Only] Unreachable resources. end_interface: MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      */
@@ -74,7 +74,7 @@ class AutoscalerAggregatedList extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined URL for this resource.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachables
-     *           [Output Only] Unreachable resources.
+     *           [Output Only] Unreachable resources. end_interface: MixerListResponseWithEtagBuilder
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning message.
      * }
@@ -255,7 +255,7 @@ class AutoscalerAggregatedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Unreachable resources.
+     * [Output Only] Unreachable resources. end_interface: MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -266,7 +266,7 @@ class AutoscalerAggregatedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Unreachable resources.
+     * [Output Only] Unreachable resources. end_interface: MixerListResponseWithEtagBuilder
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

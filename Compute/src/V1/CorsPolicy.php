@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CorsPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access-Control-Allow-Credentials header.
-     * Default is false.
+     * In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access-Control-Allow-Credentials header. Default is false.
      *
      * Generated from protobuf field <code>bool allow_credentials = 481263366;</code>
      */
@@ -35,15 +34,13 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      */
     private $allow_methods;
     /**
-     * Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see github.com/google/re2/wiki/Syntax
-     * An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
+     * Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see github.com/google/re2/wiki/Syntax An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *
      * Generated from protobuf field <code>repeated string allow_origin_regexes = 215385810;</code>
      */
     private $allow_origin_regexes;
     /**
-     * Specifies the list of origins that will be allowed to do CORS requests.
-     * An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
+     * Specifies the list of origins that will be allowed to do CORS requests. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *
      * Generated from protobuf field <code>repeated string allow_origins = 194914071;</code>
      */
@@ -74,18 +71,15 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $allow_credentials
-     *           In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access-Control-Allow-Credentials header.
-     *           Default is false.
+     *           In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access-Control-Allow-Credentials header. Default is false.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allow_headers
      *           Specifies the content for the Access-Control-Allow-Headers header.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allow_methods
      *           Specifies the content for the Access-Control-Allow-Methods header.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allow_origin_regexes
-     *           Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see github.com/google/re2/wiki/Syntax
-     *           An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
+     *           Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see github.com/google/re2/wiki/Syntax An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allow_origins
-     *           Specifies the list of origins that will be allowed to do CORS requests.
-     *           An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
+     *           Specifies the list of origins that will be allowed to do CORS requests. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *     @type bool $disabled
      *           If true, specifies the CORS policy is disabled. The default value of false, which indicates that the CORS policy is in effect.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $expose_headers
@@ -100,8 +94,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access-Control-Allow-Credentials header.
-     * Default is false.
+     * In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access-Control-Allow-Credentials header. Default is false.
      *
      * Generated from protobuf field <code>bool allow_credentials = 481263366;</code>
      * @return bool
@@ -122,8 +115,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access-Control-Allow-Credentials header.
-     * Default is false.
+     * In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access-Control-Allow-Credentials header. Default is false.
      *
      * Generated from protobuf field <code>bool allow_credentials = 481263366;</code>
      * @param bool $var
@@ -190,8 +182,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see github.com/google/re2/wiki/Syntax
-     * An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
+     * Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see github.com/google/re2/wiki/Syntax An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *
      * Generated from protobuf field <code>repeated string allow_origin_regexes = 215385810;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -202,8 +193,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see github.com/google/re2/wiki/Syntax
-     * An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
+     * Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see github.com/google/re2/wiki/Syntax An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *
      * Generated from protobuf field <code>repeated string allow_origin_regexes = 215385810;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -218,8 +208,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the list of origins that will be allowed to do CORS requests.
-     * An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
+     * Specifies the list of origins that will be allowed to do CORS requests. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *
      * Generated from protobuf field <code>repeated string allow_origins = 194914071;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -230,8 +219,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the list of origins that will be allowed to do CORS requests.
-     * An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
+     * Specifies the list of origins that will be allowed to do CORS requests. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *
      * Generated from protobuf field <code>repeated string allow_origins = 194914071;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

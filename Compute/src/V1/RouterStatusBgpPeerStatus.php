@@ -51,6 +51,12 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      */
     private $peer_ip_address = null;
     /**
+     * [Output only] URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance is the peer side of the BGP session.
+     *
+     * Generated from protobuf field <code>string router_appliance_instance = 468312989;</code>
+     */
+    private $router_appliance_instance = null;
+    /**
      * BGP state as specified in RFC1771.
      *
      * Generated from protobuf field <code>string state = 109757585;</code>
@@ -93,6 +99,8 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      *           Number of routes learned from the remote BGP Peer.
      *     @type string $peer_ip_address
      *           IP address of the remote BGP interface.
+     *     @type string $router_appliance_instance
+     *           [Output only] URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance is the peer side of the BGP session.
      *     @type string $state
      *           BGP state as specified in RFC1771.
      *     @type int $status
@@ -310,6 +318,42 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->peer_ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output only] URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance is the peer side of the BGP session.
+     *
+     * Generated from protobuf field <code>string router_appliance_instance = 468312989;</code>
+     * @return string
+     */
+    public function getRouterApplianceInstance()
+    {
+        return isset($this->router_appliance_instance) ? $this->router_appliance_instance : '';
+    }
+
+    public function hasRouterApplianceInstance()
+    {
+        return isset($this->router_appliance_instance);
+    }
+
+    public function clearRouterApplianceInstance()
+    {
+        unset($this->router_appliance_instance);
+    }
+
+    /**
+     * [Output only] URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance is the peer side of the BGP session.
+     *
+     * Generated from protobuf field <code>string router_appliance_instance = 468312989;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRouterApplianceInstance($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->router_appliance_instance = $var;
 
         return $this;
     }

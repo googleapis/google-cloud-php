@@ -31,12 +31,17 @@ class Status
      * Generated from protobuf enum <code>INITIALIZING = 306588749;</code>
      */
     const INITIALIZING = 306588749;
+    /**
+     * Generated from protobuf enum <code>READY_TO_ANNOUNCE = 64641265;</code>
+     */
+    const READY_TO_ANNOUNCE = 64641265;
 
     private static $valueToName = [
         self::UNDEFINED_STATUS => 'UNDEFINED_STATUS',
         self::ANNOUNCED => 'ANNOUNCED',
         self::DELETING => 'DELETING',
         self::INITIALIZING => 'INITIALIZING',
+        self::READY_TO_ANNOUNCE => 'READY_TO_ANNOUNCE',
     ];
 
     public static function name($value)

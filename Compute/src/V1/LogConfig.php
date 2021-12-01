@@ -9,26 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Specifies what kind of log the caller must write
+ * This is deprecated and has no effect. Do not use.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.LogConfig</code>
  */
 class LogConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Cloud audit options.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
      */
     private $cloud_audit = null;
     /**
-     * Counter options.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
      */
     private $counter = null;
     /**
-     * Data access options.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
      */
@@ -41,11 +41,11 @@ class LogConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\LogConfigCloudAuditOptions $cloud_audit
-     *           Cloud audit options.
+     *           This is deprecated and has no effect. Do not use.
      *     @type \Google\Cloud\Compute\V1\LogConfigCounterOptions $counter
-     *           Counter options.
+     *           This is deprecated and has no effect. Do not use.
      *     @type \Google\Cloud\Compute\V1\LogConfigDataAccessOptions $data_access
-     *           Data access options.
+     *           This is deprecated and has no effect. Do not use.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +54,7 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud audit options.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
      * @return \Google\Cloud\Compute\V1\LogConfigCloudAuditOptions|null
@@ -75,7 +75,7 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud audit options.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
      * @param \Google\Cloud\Compute\V1\LogConfigCloudAuditOptions $var
@@ -90,7 +90,7 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Counter options.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
      * @return \Google\Cloud\Compute\V1\LogConfigCounterOptions|null
@@ -111,7 +111,7 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Counter options.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
      * @param \Google\Cloud\Compute\V1\LogConfigCounterOptions $var
@@ -126,7 +126,7 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Data access options.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
      * @return \Google\Cloud\Compute\V1\LogConfigDataAccessOptions|null
@@ -147,7 +147,7 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Data access options.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
      * @param \Google\Cloud\Compute\V1\LogConfigDataAccessOptions $var

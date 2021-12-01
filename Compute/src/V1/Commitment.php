@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a regional Commitment resource.
- * Creating a commitment resource means that you are purchasing a committed use contract with an explicit start and end time. You can create commitments based on vCPUs and memory usage and receive discounted rates. For full details, read Signing Up for Committed Use Discounts. (== resource_for {$api_version}.regionCommitments ==)
+ * Represents a regional Commitment resource. Creating a commitment resource means that you are purchasing a committed use contract with an explicit start and end time. You can create commitments based on vCPUs and memory usage and receive discounted rates. For full details, read Signing Up for Committed Use Discounts.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Commitment</code>
  */
@@ -112,6 +111,12 @@ class Commitment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string status_message = 297428154;</code>
      */
     private $status_message = null;
+    /**
+     * The type of commitment, which affects the discount rate and the eligible resources. Type MEMORY_OPTIMIZED specifies a commitment that will only apply to memory optimized machines. Type ACCELERATOR_OPTIMIZED specifies a commitment that will only apply to accelerator optimized machines.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment.Type type = 3575610;</code>
+     */
+    private $type = null;
 
     /**
      * Constructor.
@@ -151,6 +156,8 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *           [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). One of the following values: NOT_YET_ACTIVE, ACTIVE, EXPIRED.
      *     @type string $status_message
      *           [Output Only] An optional, human-readable explanation of the status.
+     *     @type int $type
+     *           The type of commitment, which affects the discount rate and the eligible resources. Type MEMORY_OPTIMIZED specifies a commitment that will only apply to memory optimized machines. Type ACCELERATOR_OPTIMIZED specifies a commitment that will only apply to accelerator optimized machines.
      * }
      */
     public function __construct($data = NULL) {
@@ -710,6 +717,42 @@ class Commitment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->status_message = $var;
+
+        return $this;
+    }
+
+    /**
+     * The type of commitment, which affects the discount rate and the eligible resources. Type MEMORY_OPTIMIZED specifies a commitment that will only apply to memory optimized machines. Type ACCELERATOR_OPTIMIZED specifies a commitment that will only apply to accelerator optimized machines.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment.Type type = 3575610;</code>
+     * @return int
+     */
+    public function getType()
+    {
+        return isset($this->type) ? $this->type : 0;
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
+    }
+
+    /**
+     * The type of commitment, which affects the discount rate and the eligible resources. Type MEMORY_OPTIMIZED specifies a commitment that will only apply to memory optimized machines. Type ACCELERATOR_OPTIMIZED specifies a commitment that will only apply to accelerator optimized machines.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment.Type type = 3575610;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\Commitment\Type::class);
+        $this->type = $var;
 
         return $this;
     }

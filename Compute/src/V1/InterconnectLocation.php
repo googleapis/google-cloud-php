@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an Interconnect Attachment (VLAN) Location resource.
- * You can use this resource to find location details about an Interconnect attachment (VLAN). For more information about interconnect attachments, read  Creating VLAN Attachments.
+ * Represents an Interconnect Attachment (VLAN) Location resource. You can use this resource to find location details about an Interconnect attachment (VLAN). For more information about interconnect attachments, read Creating VLAN Attachments.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectLocation</code>
  */
@@ -35,12 +34,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     private $city = null;
     /**
-     * [Output Only] Continent for this location, which can take one of the following values:
-     * - AFRICA
-     * - ASIA_PAC
-     * - EUROPE
-     * - NORTH_AMERICA
-     * - SOUTH_AMERICA
+     * [Output Only] Continent for this location, which can take one of the following values: - AFRICA - ASIA_PAC - EUROPE - NORTH_AMERICA - SOUTH_AMERICA 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocation.Continent continent = 133442996;</code>
      */
@@ -106,13 +100,17 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
-     * [Output Only] The status of this InterconnectLocation, which can take one of the following values:
-     * - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects.
-     * - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects.
+     * [Output Only] The status of this InterconnectLocation, which can take one of the following values: - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects. - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocation.Status status = 181260274;</code>
      */
     private $status = null;
+    /**
+     * [Output Only] Set to true for locations that support physical zone separation. Defaults to false if the field is not present.
+     *
+     * Generated from protobuf field <code>bool supports_pzs = 83983214;</code>
+     */
+    private $supports_pzs = null;
 
     /**
      * Constructor.
@@ -127,12 +125,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *     @type string $city
      *           [Output Only] Metropolitan area designator that indicates which city an interconnect is located. For example: "Chicago, IL", "Amsterdam, Netherlands".
      *     @type int $continent
-     *           [Output Only] Continent for this location, which can take one of the following values:
-     *           - AFRICA
-     *           - ASIA_PAC
-     *           - EUROPE
-     *           - NORTH_AMERICA
-     *           - SOUTH_AMERICA
+     *           [Output Only] Continent for this location, which can take one of the following values: - AFRICA - ASIA_PAC - EUROPE - NORTH_AMERICA - SOUTH_AMERICA 
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
@@ -154,9 +147,9 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type int $status
-     *           [Output Only] The status of this InterconnectLocation, which can take one of the following values:
-     *           - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects.
-     *           - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects.
+     *           [Output Only] The status of this InterconnectLocation, which can take one of the following values: - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects. - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects. 
+     *     @type bool $supports_pzs
+     *           [Output Only] Set to true for locations that support physical zone separation. Defaults to false if the field is not present.
      * }
      */
     public function __construct($data = NULL) {
@@ -273,12 +266,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Continent for this location, which can take one of the following values:
-     * - AFRICA
-     * - ASIA_PAC
-     * - EUROPE
-     * - NORTH_AMERICA
-     * - SOUTH_AMERICA
+     * [Output Only] Continent for this location, which can take one of the following values: - AFRICA - ASIA_PAC - EUROPE - NORTH_AMERICA - SOUTH_AMERICA 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocation.Continent continent = 133442996;</code>
      * @return int
@@ -299,12 +287,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Continent for this location, which can take one of the following values:
-     * - AFRICA
-     * - ASIA_PAC
-     * - EUROPE
-     * - NORTH_AMERICA
-     * - SOUTH_AMERICA
+     * [Output Only] Continent for this location, which can take one of the following values: - AFRICA - ASIA_PAC - EUROPE - NORTH_AMERICA - SOUTH_AMERICA 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocation.Continent continent = 133442996;</code>
      * @param int $var
@@ -669,9 +652,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of this InterconnectLocation, which can take one of the following values:
-     * - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects.
-     * - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects.
+     * [Output Only] The status of this InterconnectLocation, which can take one of the following values: - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects. - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocation.Status status = 181260274;</code>
      * @return int
@@ -692,9 +673,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of this InterconnectLocation, which can take one of the following values:
-     * - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects.
-     * - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects.
+     * [Output Only] The status of this InterconnectLocation, which can take one of the following values: - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects. - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocation.Status status = 181260274;</code>
      * @param int $var
@@ -704,6 +683,42 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\InterconnectLocation\Status::class);
         $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Set to true for locations that support physical zone separation. Defaults to false if the field is not present.
+     *
+     * Generated from protobuf field <code>bool supports_pzs = 83983214;</code>
+     * @return bool
+     */
+    public function getSupportsPzs()
+    {
+        return isset($this->supports_pzs) ? $this->supports_pzs : false;
+    }
+
+    public function hasSupportsPzs()
+    {
+        return isset($this->supports_pzs);
+    }
+
+    public function clearSupportsPzs()
+    {
+        unset($this->supports_pzs);
+    }
+
+    /**
+     * [Output Only] Set to true for locations that support physical zone separation. Defaults to false if the field is not present.
+     *
+     * Generated from protobuf field <code>bool supports_pzs = 83983214;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSupportsPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->supports_pzs = $var;
 
         return $this;
     }

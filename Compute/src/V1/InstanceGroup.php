@@ -9,13 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an Instance Group resource.
- * Instance Groups can be used to configure a target for load balancing.
- * Instance groups can either be managed or unmanaged.
- * To create  managed instance groups, use the instanceGroupManager or regionInstanceGroupManager resource instead.
- * Use zonal unmanaged instance groups if you need to apply load balancing to groups of heterogeneous instances or if you need to manage the instances yourself. You cannot create regional unmanaged instance groups.
- * For more information, read Instance groups.
- * (== resource_for {$api_version}.instanceGroups ==) (== resource_for {$api_version}.regionInstanceGroups ==)
+ * Represents an Instance Group resource. Instance Groups can be used to configure a target for load balancing. Instance groups can either be managed or unmanaged. To create managed instance groups, use the instanceGroupManager or regionInstanceGroupManager resource instead. Use zonal unmanaged instance groups if you need to apply load balancing to groups of heterogeneous instances or if you need to manage the instances yourself. You cannot create regional unmanaged instance groups. For more information, read Instance groups.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InstanceGroup</code>
  */
@@ -58,9 +52,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
-     * Assigns a name to a port number. For example: {name: "http", port: 80}
-     * This allows the system to reference ports by the assigned name instead of a port number. Named ports can also contain multiple ports. For example: [{name: "http", port: 80},{name: "http", port: 8080}]
-     * Named ports apply to all instances in this instance group.
+     *  Assigns a name to a port number. For example: {name: "http", port: 80} This allows the system to reference ports by the assigned name instead of a port number. Named ports can also contain multiple ports. For example: [{name: "http", port: 80},{name: "http", port: 8080}] Named ports apply to all instances in this instance group. 
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      */
@@ -121,9 +113,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name of the instance group. The name must be 1-63 characters long, and comply with RFC1035.
      *     @type \Google\Cloud\Compute\V1\NamedPort[]|\Google\Protobuf\Internal\RepeatedField $named_ports
-     *           Assigns a name to a port number. For example: {name: "http", port: 80}
-     *           This allows the system to reference ports by the assigned name instead of a port number. Named ports can also contain multiple ports. For example: [{name: "http", port: 80},{name: "http", port: 8080}]
-     *           Named ports apply to all instances in this instance group.
+     *            Assigns a name to a port number. For example: {name: "http", port: 80} This allows the system to reference ports by the assigned name instead of a port number. Named ports can also contain multiple ports. For example: [{name: "http", port: 80},{name: "http", port: 8080}] Named ports apply to all instances in this instance group. 
      *     @type string $network
      *           [Output Only] The URL of the network to which all instances in the instance group belong. If your instance has multiple network interfaces, then the network and subnetwork fields only refer to the network and subnet used by your primary interface (nic0).
      *     @type string $region
@@ -360,9 +350,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Assigns a name to a port number. For example: {name: "http", port: 80}
-     * This allows the system to reference ports by the assigned name instead of a port number. Named ports can also contain multiple ports. For example: [{name: "http", port: 80},{name: "http", port: 8080}]
-     * Named ports apply to all instances in this instance group.
+     *  Assigns a name to a port number. For example: {name: "http", port: 80} This allows the system to reference ports by the assigned name instead of a port number. Named ports can also contain multiple ports. For example: [{name: "http", port: 80},{name: "http", port: 8080}] Named ports apply to all instances in this instance group. 
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -373,9 +361,7 @@ class InstanceGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Assigns a name to a port number. For example: {name: "http", port: 80}
-     * This allows the system to reference ports by the assigned name instead of a port number. Named ports can also contain multiple ports. For example: [{name: "http", port: 80},{name: "http", port: 8080}]
-     * Named ports apply to all instances in this instance group.
+     *  Assigns a name to a port number. For example: {name: "http", port: 80} This allows the system to reference ports by the assigned name instead of a port number. Named ports can also contain multiple ports. For example: [{name: "http", port: 80},{name: "http", port: 8080}] Named ports apply to all instances in this instance group. 
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      * @param \Google\Cloud\Compute\V1\NamedPort[]|\Google\Protobuf\Internal\RepeatedField $var

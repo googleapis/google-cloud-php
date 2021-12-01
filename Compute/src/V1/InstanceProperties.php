@@ -81,7 +81,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      */
     private $network_interfaces;
     /**
-     * The private IPv6 google access type for VMs. If not specified, use  INHERIT_FROM_SUBNETWORK as default.
+     * The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceProperties.PrivateIpv6GoogleAccess private_ipv6_google_access = 48277006;</code>
      */
@@ -150,7 +150,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\NetworkInterface[]|\Google\Protobuf\Internal\RepeatedField $network_interfaces
      *           An array of network access configurations for this interface.
      *     @type int $private_ipv6_google_access
-     *           The private IPv6 google access type for VMs. If not specified, use  INHERIT_FROM_SUBNETWORK as default.
+     *           The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default.
      *     @type \Google\Cloud\Compute\V1\ReservationAffinity $reservation_affinity
      *           Specifies the reservations that instances can consume from.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_policies
@@ -526,7 +526,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The private IPv6 google access type for VMs. If not specified, use  INHERIT_FROM_SUBNETWORK as default.
+     * The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceProperties.PrivateIpv6GoogleAccess private_ipv6_google_access = 48277006;</code>
      * @return int
@@ -547,7 +547,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The private IPv6 google access type for VMs. If not specified, use  INHERIT_FROM_SUBNETWORK as default.
+     * The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceProperties.PrivateIpv6GoogleAccess private_ipv6_google_access = 48277006;</code>
      * @param int $var

@@ -16,6 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class AccessConfig extends \Google\Protobuf\Internal\Message
 {
     /**
+     * [Output Only] The first IPv6 address of the external IPv6 range associated with this instance, prefix length is stored in externalIpv6PrefixLength in ipv6AccessConfig. The field is output only, an IPv6 address from a subnetwork associated with the instance will be allocated dynamically.
+     *
+     * Generated from protobuf field <code>string external_ipv6 = 532703707;</code>
+     */
+    private $external_ipv6 = null;
+    /**
+     * [Output Only] The prefix length of the external IPv6 range.
+     *
+     * Generated from protobuf field <code>int32 external_ipv6_prefix_length = 425672143;</code>
+     */
+    private $external_ipv6_prefix_length = null;
+    /**
      * [Output Only] Type of the resource. Always compute#accessConfig for access configs.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
@@ -34,9 +46,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      */
     private $nat_i_p = null;
     /**
-     * This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD.
-     * If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier.
-     * If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
+     * This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD. If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier. If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AccessConfig.NetworkTier network_tier = 517397843;</code>
      */
@@ -66,6 +76,10 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $external_ipv6
+     *           [Output Only] The first IPv6 address of the external IPv6 range associated with this instance, prefix length is stored in externalIpv6PrefixLength in ipv6AccessConfig. The field is output only, an IPv6 address from a subnetwork associated with the instance will be allocated dynamically.
+     *     @type int $external_ipv6_prefix_length
+     *           [Output Only] The prefix length of the external IPv6 range.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#accessConfig for access configs.
      *     @type string $name
@@ -73,9 +87,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      *     @type string $nat_i_p
      *           An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.
      *     @type int $network_tier
-     *           This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD.
-     *           If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier.
-     *           If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
+     *           This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD. If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier. If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
      *     @type string $public_ptr_domain_name
      *           The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled.
      *     @type bool $set_public_ptr
@@ -87,6 +99,78 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * [Output Only] The first IPv6 address of the external IPv6 range associated with this instance, prefix length is stored in externalIpv6PrefixLength in ipv6AccessConfig. The field is output only, an IPv6 address from a subnetwork associated with the instance will be allocated dynamically.
+     *
+     * Generated from protobuf field <code>string external_ipv6 = 532703707;</code>
+     * @return string
+     */
+    public function getExternalIpv6()
+    {
+        return isset($this->external_ipv6) ? $this->external_ipv6 : '';
+    }
+
+    public function hasExternalIpv6()
+    {
+        return isset($this->external_ipv6);
+    }
+
+    public function clearExternalIpv6()
+    {
+        unset($this->external_ipv6);
+    }
+
+    /**
+     * [Output Only] The first IPv6 address of the external IPv6 range associated with this instance, prefix length is stored in externalIpv6PrefixLength in ipv6AccessConfig. The field is output only, an IPv6 address from a subnetwork associated with the instance will be allocated dynamically.
+     *
+     * Generated from protobuf field <code>string external_ipv6 = 532703707;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setExternalIpv6($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->external_ipv6 = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The prefix length of the external IPv6 range.
+     *
+     * Generated from protobuf field <code>int32 external_ipv6_prefix_length = 425672143;</code>
+     * @return int
+     */
+    public function getExternalIpv6PrefixLength()
+    {
+        return isset($this->external_ipv6_prefix_length) ? $this->external_ipv6_prefix_length : 0;
+    }
+
+    public function hasExternalIpv6PrefixLength()
+    {
+        return isset($this->external_ipv6_prefix_length);
+    }
+
+    public function clearExternalIpv6PrefixLength()
+    {
+        unset($this->external_ipv6_prefix_length);
+    }
+
+    /**
+     * [Output Only] The prefix length of the external IPv6 range.
+     *
+     * Generated from protobuf field <code>int32 external_ipv6_prefix_length = 425672143;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setExternalIpv6PrefixLength($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->external_ipv6_prefix_length = $var;
+
+        return $this;
     }
 
     /**
@@ -198,9 +282,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD.
-     * If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier.
-     * If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
+     * This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD. If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier. If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AccessConfig.NetworkTier network_tier = 517397843;</code>
      * @return int
@@ -221,9 +303,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD.
-     * If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier.
-     * If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
+     * This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD. If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier. If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AccessConfig.NetworkTier network_tier = 517397843;</code>
      * @param int $var

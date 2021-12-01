@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Machine Type resource.
- * You can use specific machine types for your VM instances based on performance and pricing requirements. For more information, read Machine Types. (== resource_for {$api_version}.machineTypes ==)
+ * Represents a Machine Type resource. You can use specific machine types for your VM instances based on performance and pricing requirements. For more information, read Machine Types.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.MachineType</code>
  */

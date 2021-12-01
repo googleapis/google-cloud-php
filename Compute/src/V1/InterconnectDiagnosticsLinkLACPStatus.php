@@ -27,9 +27,7 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
      */
     private $neighbor_system_id = null;
     /**
-     * The state of a LACP link, which can take one of the following values:
-     * - ACTIVE: The link is configured and active within the bundle.
-     * - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty.
+     * The state of a LACP link, which can take one of the following values: - ACTIVE: The link is configured and active within the bundle. - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus.State state = 109757585;</code>
      */
@@ -46,9 +44,7 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
      *     @type string $neighbor_system_id
      *           System ID of the port on the neighbor's side of the LACP exchange.
      *     @type int $state
-     *           The state of a LACP link, which can take one of the following values:
-     *           - ACTIVE: The link is configured and active within the bundle.
-     *           - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty.
+     *           The state of a LACP link, which can take one of the following values: - ACTIVE: The link is configured and active within the bundle. - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty. 
      * }
      */
     public function __construct($data = NULL) {
@@ -129,9 +125,7 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The state of a LACP link, which can take one of the following values:
-     * - ACTIVE: The link is configured and active within the bundle.
-     * - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty.
+     * The state of a LACP link, which can take one of the following values: - ACTIVE: The link is configured and active within the bundle. - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus.State state = 109757585;</code>
      * @return int
@@ -152,9 +146,7 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The state of a LACP link, which can take one of the following values:
-     * - ACTIVE: The link is configured and active within the bundle.
-     * - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty.
+     * The state of a LACP link, which can take one of the following values: - ACTIVE: The link is configured and active within the bundle. - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus.State state = 109757585;</code>
      * @param int $var

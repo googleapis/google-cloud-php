@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Cloud Storage Bucket resource.
- * This Cloud Storage bucket resource is referenced by a URL map of a load balancer. For more information, read Backend Buckets.
+ * Represents a Cloud Storage Bucket resource. This Cloud Storage bucket resource is referenced by a URL map of a load balancer. For more information, read Backend Buckets.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.BackendBucket</code>
  */

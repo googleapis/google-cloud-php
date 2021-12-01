@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GuestOsFeature extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The ID of a supported feature. Read  Enabling guest operating system features to see a list of available options.
+     * The ID of a supported feature. Read Enabling guest operating system features to see a list of available options.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.GuestOsFeature.Type type = 3575610;</code>
      */
@@ -29,7 +29,7 @@ class GuestOsFeature extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $type
-     *           The ID of a supported feature. Read  Enabling guest operating system features to see a list of available options.
+     *           The ID of a supported feature. Read Enabling guest operating system features to see a list of available options.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class GuestOsFeature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of a supported feature. Read  Enabling guest operating system features to see a list of available options.
+     * The ID of a supported feature. Read Enabling guest operating system features to see a list of available options.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.GuestOsFeature.Type type = 3575610;</code>
      * @return int
@@ -59,7 +59,7 @@ class GuestOsFeature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of a supported feature. Read  Enabling guest operating system features to see a list of available options.
+     * The ID of a supported feature. Read Enabling guest operating system features to see a list of available options.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.GuestOsFeature.Type type = 3575610;</code>
      * @param int $var

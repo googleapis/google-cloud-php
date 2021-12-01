@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Represents a Resource Policy resource. You can use resource policies to schedule actions for some Compute Engine resources. For example, you can use them to schedule persistent disk snapshots.
- * (== resource_for {$api_version}.resourcePolicies ==)
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.ResourcePolicy</code>
  */

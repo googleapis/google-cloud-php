@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReservationAffinity extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Specifies the type of reservation from which this instance can consume resources: ANY_RESERVATION (default), SPECIFIC_RESERVATION, or NO_RESERVATION. See  Consuming reserved instances for examples.
+     * Specifies the type of reservation from which this instance can consume resources: ANY_RESERVATION (default), SPECIFIC_RESERVATION, or NO_RESERVATION. See Consuming reserved instances for examples.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ReservationAffinity.ConsumeReservationType consume_reservation_type = 300736944;</code>
      */
@@ -28,7 +28,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      */
     private $key = null;
     /**
-     * Corresponds to the label values of a reservation resource.
+     * Corresponds to the label values of a reservation resource. This can be either a name to a reservation in the same project or "projects/different-project/reservations/some-reservation-name" to target a shared reservation in the same zone but in a different project.
      *
      * Generated from protobuf field <code>repeated string values = 249928994;</code>
      */
@@ -41,11 +41,11 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $consume_reservation_type
-     *           Specifies the type of reservation from which this instance can consume resources: ANY_RESERVATION (default), SPECIFIC_RESERVATION, or NO_RESERVATION. See  Consuming reserved instances for examples.
+     *           Specifies the type of reservation from which this instance can consume resources: ANY_RESERVATION (default), SPECIFIC_RESERVATION, or NO_RESERVATION. See Consuming reserved instances for examples.
      *     @type string $key
      *           Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify googleapis.com/reservation-name as the key and specify the name of your reservation as its value.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $values
-     *           Corresponds to the label values of a reservation resource.
+     *           Corresponds to the label values of a reservation resource. This can be either a name to a reservation in the same project or "projects/different-project/reservations/some-reservation-name" to target a shared reservation in the same zone but in a different project.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +54,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the type of reservation from which this instance can consume resources: ANY_RESERVATION (default), SPECIFIC_RESERVATION, or NO_RESERVATION. See  Consuming reserved instances for examples.
+     * Specifies the type of reservation from which this instance can consume resources: ANY_RESERVATION (default), SPECIFIC_RESERVATION, or NO_RESERVATION. See Consuming reserved instances for examples.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ReservationAffinity.ConsumeReservationType consume_reservation_type = 300736944;</code>
      * @return int
@@ -75,7 +75,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the type of reservation from which this instance can consume resources: ANY_RESERVATION (default), SPECIFIC_RESERVATION, or NO_RESERVATION. See  Consuming reserved instances for examples.
+     * Specifies the type of reservation from which this instance can consume resources: ANY_RESERVATION (default), SPECIFIC_RESERVATION, or NO_RESERVATION. See Consuming reserved instances for examples.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ReservationAffinity.ConsumeReservationType consume_reservation_type = 300736944;</code>
      * @param int $var
@@ -126,7 +126,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Corresponds to the label values of a reservation resource.
+     * Corresponds to the label values of a reservation resource. This can be either a name to a reservation in the same project or "projects/different-project/reservations/some-reservation-name" to target a shared reservation in the same zone but in a different project.
      *
      * Generated from protobuf field <code>repeated string values = 249928994;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -137,7 +137,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Corresponds to the label values of a reservation resource.
+     * Corresponds to the label values of a reservation resource. This can be either a name to a reservation in the same project or "projects/different-project/reservations/some-reservation-name" to target a shared reservation in the same zone but in a different project.
      *
      * Generated from protobuf field <code>repeated string values = 249928994;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

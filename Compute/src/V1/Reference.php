@@ -22,8 +22,7 @@ class Reference extends \Google\Protobuf\Internal\Message
      */
     private $kind = null;
     /**
-     * A description of the reference type with no implied semantics. Possible values include:
-     * - MEMBER_OF
+     * A description of the reference type with no implied semantics. Possible values include: 1. MEMBER_OF 
      *
      * Generated from protobuf field <code>string reference_type = 247521198;</code>
      */
@@ -50,8 +49,7 @@ class Reference extends \Google\Protobuf\Internal\Message
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#reference for references.
      *     @type string $reference_type
-     *           A description of the reference type with no implied semantics. Possible values include:
-     *           - MEMBER_OF
+     *           A description of the reference type with no implied semantics. Possible values include: 1. MEMBER_OF 
      *     @type string $referrer
      *           URL of the resource which refers to the target.
      *     @type string $target
@@ -100,8 +98,7 @@ class Reference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A description of the reference type with no implied semantics. Possible values include:
-     * - MEMBER_OF
+     * A description of the reference type with no implied semantics. Possible values include: 1. MEMBER_OF 
      *
      * Generated from protobuf field <code>string reference_type = 247521198;</code>
      * @return string
@@ -122,8 +119,7 @@ class Reference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A description of the reference type with no implied semantics. Possible values include:
-     * - MEMBER_OF
+     * A description of the reference type with no implied semantics. Possible values include: 1. MEMBER_OF 
      *
      * Generated from protobuf field <code>string reference_type = 247521198;</code>
      * @param string $var

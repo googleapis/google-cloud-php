@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an SSL Policy resource.
- * Use SSL policies to control the SSL features, such as versions and cipher suites, offered by an HTTPS or SSL Proxy load balancer. For more information, read  SSL Policy Concepts. (== resource_for {$api_version}.sslPolicies ==)
+ * Represents an SSL Policy resource. Use SSL policies to control the SSL features, such as versions and cipher suites, offered by an HTTPS or SSL Proxy load balancer. For more information, read SSL Policy Concepts.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.SslPolicy</code>
  */
@@ -23,8 +22,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      */
     private $creation_timestamp = null;
     /**
-     * A list of features enabled when the selected profile is CUSTOM. The
-     * - method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
+     * A list of features enabled when the selected profile is CUSTOM. The method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
      *
      * Generated from protobuf field <code>repeated string custom_features = 34789707;</code>
      */
@@ -42,8 +40,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      */
     private $enabled_features;
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy, otherwise the request will fail with error 412 conditionNotMet.
-     * To see the latest fingerprint, make a get() request to retrieve an SslPolicy.
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an SslPolicy.
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      */
@@ -100,15 +97,13 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $custom_features
-     *           A list of features enabled when the selected profile is CUSTOM. The
-     *           - method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
+     *           A list of features enabled when the selected profile is CUSTOM. The method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $enabled_features
      *           [Output Only] The list of features enabled in the SSL policy.
      *     @type string $fingerprint
-     *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy, otherwise the request will fail with error 412 conditionNotMet.
-     *           To see the latest fingerprint, make a get() request to retrieve an SslPolicy.
+     *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an SslPolicy.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
@@ -167,8 +162,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of features enabled when the selected profile is CUSTOM. The
-     * - method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
+     * A list of features enabled when the selected profile is CUSTOM. The method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
      *
      * Generated from protobuf field <code>repeated string custom_features = 34789707;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -179,8 +173,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of features enabled when the selected profile is CUSTOM. The
-     * - method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
+     * A list of features enabled when the selected profile is CUSTOM. The method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
      *
      * Generated from protobuf field <code>repeated string custom_features = 34789707;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -257,8 +250,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy, otherwise the request will fail with error 412 conditionNotMet.
-     * To see the latest fingerprint, make a get() request to retrieve an SslPolicy.
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an SslPolicy.
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      * @return string
@@ -279,8 +271,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy, otherwise the request will fail with error 412 conditionNotMet.
-     * To see the latest fingerprint, make a get() request to retrieve an SslPolicy.
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an SslPolicy.
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      * @param string $var

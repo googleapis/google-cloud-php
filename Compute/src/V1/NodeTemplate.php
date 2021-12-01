@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represent a sole-tenant Node Template resource.
- * You can use a template to define properties for nodes in a node group. For more information, read Creating node groups and instances. (== resource_for {$api_version}.nodeTemplates ==)
+ * Represent a sole-tenant Node Template resource. You can use a template to define properties for nodes in a node group. For more information, read Creating node groups and instances.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.NodeTemplate</code>
  */
@@ -73,8 +72,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      */
     private $node_type = null;
     /**
-     * The flexible properties of the desired node type. Node groups that use this node template will create nodes of a type that matches these properties.
-     * This field is mutually exclusive with the node_type property; you can only define one or the other, but not both.
+     * The flexible properties of the desired node type. Node groups that use this node template will create nodes of a type that matches these properties. This field is mutually exclusive with the node_type property; you can only define one or the other, but not both.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.NodeTemplateNodeTypeFlexibility node_type_flexibility = 315257905;</code>
      */
@@ -92,10 +90,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
-     * Sets the binding properties for the physical server. Valid values include:
-     * - [Default] RESTART_NODE_ON_ANY_SERVER: Restarts VMs on any available physical server
-     * - RESTART_NODE_ON_MINIMAL_SERVER: Restarts VMs on the same physical server whenever possible
-     * See Sole-tenant node options for more information.
+     * Sets the binding properties for the physical server. Valid values include: - *[Default]* RESTART_NODE_ON_ANY_SERVER: Restarts VMs on any available physical server - RESTART_NODE_ON_MINIMAL_SERVER: Restarts VMs on the same physical server whenever possible See Sole-tenant node options for more information.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ServerBinding server_binding = 208179593;</code>
      */
@@ -138,17 +133,13 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      *     @type string $node_type
      *           The node type to use for nodes group that are created from this template.
      *     @type \Google\Cloud\Compute\V1\NodeTemplateNodeTypeFlexibility $node_type_flexibility
-     *           The flexible properties of the desired node type. Node groups that use this node template will create nodes of a type that matches these properties.
-     *           This field is mutually exclusive with the node_type property; you can only define one or the other, but not both.
+     *           The flexible properties of the desired node type. Node groups that use this node template will create nodes of a type that matches these properties. This field is mutually exclusive with the node_type property; you can only define one or the other, but not both.
      *     @type string $region
      *           [Output Only] The name of the region where the node template resides, such as us-central1.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type \Google\Cloud\Compute\V1\ServerBinding $server_binding
-     *           Sets the binding properties for the physical server. Valid values include:
-     *           - [Default] RESTART_NODE_ON_ANY_SERVER: Restarts VMs on any available physical server
-     *           - RESTART_NODE_ON_MINIMAL_SERVER: Restarts VMs on the same physical server whenever possible
-     *           See Sole-tenant node options for more information.
+     *           Sets the binding properties for the physical server. Valid values include: - *[Default]* RESTART_NODE_ON_ANY_SERVER: Restarts VMs on any available physical server - RESTART_NODE_ON_MINIMAL_SERVER: Restarts VMs on the same physical server whenever possible See Sole-tenant node options for more information.
      *     @type int $status
      *           [Output Only] The status of the node template. One of the following values: CREATING, READY, and DELETING.
      *     @type string $status_message
@@ -483,8 +474,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The flexible properties of the desired node type. Node groups that use this node template will create nodes of a type that matches these properties.
-     * This field is mutually exclusive with the node_type property; you can only define one or the other, but not both.
+     * The flexible properties of the desired node type. Node groups that use this node template will create nodes of a type that matches these properties. This field is mutually exclusive with the node_type property; you can only define one or the other, but not both.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.NodeTemplateNodeTypeFlexibility node_type_flexibility = 315257905;</code>
      * @return \Google\Cloud\Compute\V1\NodeTemplateNodeTypeFlexibility|null
@@ -505,8 +495,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The flexible properties of the desired node type. Node groups that use this node template will create nodes of a type that matches these properties.
-     * This field is mutually exclusive with the node_type property; you can only define one or the other, but not both.
+     * The flexible properties of the desired node type. Node groups that use this node template will create nodes of a type that matches these properties. This field is mutually exclusive with the node_type property; you can only define one or the other, but not both.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.NodeTemplateNodeTypeFlexibility node_type_flexibility = 315257905;</code>
      * @param \Google\Cloud\Compute\V1\NodeTemplateNodeTypeFlexibility $var
@@ -593,10 +582,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Sets the binding properties for the physical server. Valid values include:
-     * - [Default] RESTART_NODE_ON_ANY_SERVER: Restarts VMs on any available physical server
-     * - RESTART_NODE_ON_MINIMAL_SERVER: Restarts VMs on the same physical server whenever possible
-     * See Sole-tenant node options for more information.
+     * Sets the binding properties for the physical server. Valid values include: - *[Default]* RESTART_NODE_ON_ANY_SERVER: Restarts VMs on any available physical server - RESTART_NODE_ON_MINIMAL_SERVER: Restarts VMs on the same physical server whenever possible See Sole-tenant node options for more information.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ServerBinding server_binding = 208179593;</code>
      * @return \Google\Cloud\Compute\V1\ServerBinding|null
@@ -617,10 +603,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Sets the binding properties for the physical server. Valid values include:
-     * - [Default] RESTART_NODE_ON_ANY_SERVER: Restarts VMs on any available physical server
-     * - RESTART_NODE_ON_MINIMAL_SERVER: Restarts VMs on the same physical server whenever possible
-     * See Sole-tenant node options for more information.
+     * Sets the binding properties for the physical server. Valid values include: - *[Default]* RESTART_NODE_ON_ANY_SERVER: Restarts VMs on any available physical server - RESTART_NODE_ON_MINIMAL_SERVER: Restarts VMs on the same physical server whenever possible See Sole-tenant node options for more information.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ServerBinding server_binding = 208179593;</code>
      * @param \Google\Cloud\Compute\V1\ServerBinding $var

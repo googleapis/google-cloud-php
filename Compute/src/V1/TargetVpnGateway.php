@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Target VPN Gateway resource.
- * The target VPN gateway resource represents a Classic Cloud VPN gateway. For more information, read the the Cloud VPN Overview. (== resource_for {$api_version}.targetVpnGateways ==)
+ * Represents a Target VPN Gateway resource. The target VPN gateway resource represents a Classic Cloud VPN gateway. For more information, read the the Cloud VPN Overview.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.TargetVpnGateway</code>
  */

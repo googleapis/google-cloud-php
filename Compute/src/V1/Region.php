@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Region resource.
- * A region is a geographical area where a resource is located. For more information, read Regions and Zones. (== resource_for {$api_version}.regions ==)
+ * Represents a Region resource. A region is a geographical area where a resource is located. For more information, read Regions and Zones.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Region</code>
  */

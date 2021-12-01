@@ -22,10 +22,7 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
      */
     private $enable = null;
     /**
-     * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values:
-     * - ERRORS_ONLY: Export logs only for connection failures.
-     * - TRANSLATIONS_ONLY: Export logs only for successful connections.
-     * - ALL: Export logs for all connections, successful and unsuccessful.
+     * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values: - ERRORS_ONLY: Export logs only for connection failures. - TRANSLATIONS_ONLY: Export logs only for successful connections. - ALL: Export logs for all connections, successful and unsuccessful. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig.Filter filter = 336120696;</code>
      */
@@ -40,10 +37,7 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $enable
      *           Indicates whether or not to export logs. This is false by default.
      *     @type int $filter
-     *           Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values:
-     *           - ERRORS_ONLY: Export logs only for connection failures.
-     *           - TRANSLATIONS_ONLY: Export logs only for successful connections.
-     *           - ALL: Export logs for all connections, successful and unsuccessful.
+     *           Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values: - ERRORS_ONLY: Export logs only for connection failures. - TRANSLATIONS_ONLY: Export logs only for successful connections. - ALL: Export logs for all connections, successful and unsuccessful. 
      * }
      */
     public function __construct($data = NULL) {
@@ -88,10 +82,7 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values:
-     * - ERRORS_ONLY: Export logs only for connection failures.
-     * - TRANSLATIONS_ONLY: Export logs only for successful connections.
-     * - ALL: Export logs for all connections, successful and unsuccessful.
+     * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values: - ERRORS_ONLY: Export logs only for connection failures. - TRANSLATIONS_ONLY: Export logs only for successful connections. - ALL: Export logs for all connections, successful and unsuccessful. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig.Filter filter = 336120696;</code>
      * @return int
@@ -112,10 +103,7 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values:
-     * - ERRORS_ONLY: Export logs only for connection failures.
-     * - TRANSLATIONS_ONLY: Export logs only for successful connections.
-     * - ALL: Export logs for all connections, successful and unsuccessful.
+     * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values: - ERRORS_ONLY: Export logs only for connection failures. - TRANSLATIONS_ONLY: Export logs only for successful connections. - ALL: Export logs for all connections, successful and unsuccessful. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig.Filter filter = 336120696;</code>
      * @param int $var

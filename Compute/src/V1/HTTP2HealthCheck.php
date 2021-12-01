@@ -33,11 +33,7 @@ class HTTP2HealthCheck extends \Google\Protobuf\Internal\Message
      */
     private $port_name = null;
     /**
-     * Specifies how port is selected for health checking, can be one of following values:
-     * USE_FIXED_PORT: The port number in port is used for health checking.
-     * USE_NAMED_PORT: The portName is used for health checking.
-     * USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
-     * If not specified, HTTP2 health check follows behavior specified in port and portName fields.
+     * Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking. If not specified, HTTP2 health check follows behavior specified in port and portName fields.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HTTP2HealthCheck.PortSpecification port_specification = 51590597;</code>
      */
@@ -74,11 +70,7 @@ class HTTP2HealthCheck extends \Google\Protobuf\Internal\Message
      *     @type string $port_name
      *           Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
      *     @type int $port_specification
-     *           Specifies how port is selected for health checking, can be one of following values:
-     *           USE_FIXED_PORT: The port number in port is used for health checking.
-     *           USE_NAMED_PORT: The portName is used for health checking.
-     *           USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
-     *           If not specified, HTTP2 health check follows behavior specified in port and portName fields.
+     *           Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking. If not specified, HTTP2 health check follows behavior specified in port and portName fields.
      *     @type int $proxy_header
      *           Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
      *     @type string $request_path
@@ -201,11 +193,7 @@ class HTTP2HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how port is selected for health checking, can be one of following values:
-     * USE_FIXED_PORT: The port number in port is used for health checking.
-     * USE_NAMED_PORT: The portName is used for health checking.
-     * USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
-     * If not specified, HTTP2 health check follows behavior specified in port and portName fields.
+     * Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking. If not specified, HTTP2 health check follows behavior specified in port and portName fields.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HTTP2HealthCheck.PortSpecification port_specification = 51590597;</code>
      * @return int
@@ -226,11 +214,7 @@ class HTTP2HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how port is selected for health checking, can be one of following values:
-     * USE_FIXED_PORT: The port number in port is used for health checking.
-     * USE_NAMED_PORT: The portName is used for health checking.
-     * USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
-     * If not specified, HTTP2 health check follows behavior specified in port and portName fields.
+     * Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking. If not specified, HTTP2 health check follows behavior specified in port and portName fields.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HTTP2HealthCheck.PortSpecification port_specification = 51590597;</code>
      * @param int $var

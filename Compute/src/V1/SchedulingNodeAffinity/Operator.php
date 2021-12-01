@@ -20,10 +20,14 @@ class Operator
      */
     const UNDEFINED_OPERATOR = 0;
     /**
+     * Requires Compute Engine to seek for matched nodes.
+     *
      * Generated from protobuf enum <code>IN = 2341;</code>
      */
     const IN = 2341;
     /**
+     * Requires Compute Engine to avoid certain nodes.
+     *
      * Generated from protobuf enum <code>NOT_IN = 161144369;</code>
      */
     const NOT_IN = 161144369;

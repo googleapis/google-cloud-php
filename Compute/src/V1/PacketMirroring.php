@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Packet Mirroring resource.
- * Packet Mirroring clones the traffic of specified instances in your Virtual Private Cloud (VPC) network and forwards it to a collector destination, such as an instance group of an internal TCP/UDP load balancer, for analysis or examination. For more information about setting up Packet Mirroring, see Using Packet Mirroring. (== resource_for {$api_version}.packetMirrorings ==)
+ * Represents a Packet Mirroring resource. Packet Mirroring clones the traffic of specified instances in your Virtual Private Cloud (VPC) network and forwards it to a collector destination, such as an instance group of an internal TCP/UDP load balancer, for analysis or examination. For more information about setting up Packet Mirroring, see Using Packet Mirroring.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.PacketMirroring</code>
  */
@@ -35,8 +34,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
-     * Indicates whether or not this packet mirroring takes effect. If set to FALSE, this packet mirroring policy will not be enforced on the network.
-     * The default is TRUE.
+     * Indicates whether or not this packet mirroring takes effect. If set to FALSE, this packet mirroring policy will not be enforced on the network. The default is TRUE.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroring.Enable enable = 311764355;</code>
      */
@@ -78,8 +76,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      */
     private $network = null;
     /**
-     * The priority of applying this configuration. Priority is used to break ties in cases where there is more than one matching rule. In the case of two rules that apply for a given Instance, the one with the lowest-numbered priority value wins.
-     * Default value is 1000. Valid range is 0 through 65535.
+     * The priority of applying this configuration. Priority is used to break ties in cases where there is more than one matching rule. In the case of two rules that apply for a given Instance, the one with the lowest-numbered priority value wins. Default value is 1000. Valid range is 0 through 65535.
      *
      * Generated from protobuf field <code>uint32 priority = 445151652;</code>
      */
@@ -110,8 +107,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type int $enable
-     *           Indicates whether or not this packet mirroring takes effect. If set to FALSE, this packet mirroring policy will not be enforced on the network.
-     *           The default is TRUE.
+     *           Indicates whether or not this packet mirroring takes effect. If set to FALSE, this packet mirroring policy will not be enforced on the network. The default is TRUE.
      *     @type \Google\Cloud\Compute\V1\PacketMirroringFilter $filter
      *           Filter for mirrored traffic. If unspecified, all traffic is mirrored.
      *     @type int|string $id
@@ -125,8 +121,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\PacketMirroringNetworkInfo $network
      *           Specifies the mirrored VPC network. Only packets in this network will be mirrored. All mirrored VMs should have a NIC in the given network. All mirrored subnetworks should belong to the given network.
      *     @type int $priority
-     *           The priority of applying this configuration. Priority is used to break ties in cases where there is more than one matching rule. In the case of two rules that apply for a given Instance, the one with the lowest-numbered priority value wins.
-     *           Default value is 1000. Valid range is 0 through 65535.
+     *           The priority of applying this configuration. Priority is used to break ties in cases where there is more than one matching rule. In the case of two rules that apply for a given Instance, the one with the lowest-numbered priority value wins. Default value is 1000. Valid range is 0 through 65535.
      *     @type string $region
      *           [Output Only] URI of the region where the packetMirroring resides.
      *     @type string $self_link
@@ -247,8 +242,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether or not this packet mirroring takes effect. If set to FALSE, this packet mirroring policy will not be enforced on the network.
-     * The default is TRUE.
+     * Indicates whether or not this packet mirroring takes effect. If set to FALSE, this packet mirroring policy will not be enforced on the network. The default is TRUE.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroring.Enable enable = 311764355;</code>
      * @return int
@@ -269,8 +263,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates whether or not this packet mirroring takes effect. If set to FALSE, this packet mirroring policy will not be enforced on the network.
-     * The default is TRUE.
+     * Indicates whether or not this packet mirroring takes effect. If set to FALSE, this packet mirroring policy will not be enforced on the network. The default is TRUE.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroring.Enable enable = 311764355;</code>
      * @param int $var
@@ -501,8 +494,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The priority of applying this configuration. Priority is used to break ties in cases where there is more than one matching rule. In the case of two rules that apply for a given Instance, the one with the lowest-numbered priority value wins.
-     * Default value is 1000. Valid range is 0 through 65535.
+     * The priority of applying this configuration. Priority is used to break ties in cases where there is more than one matching rule. In the case of two rules that apply for a given Instance, the one with the lowest-numbered priority value wins. Default value is 1000. Valid range is 0 through 65535.
      *
      * Generated from protobuf field <code>uint32 priority = 445151652;</code>
      * @return int
@@ -523,8 +515,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The priority of applying this configuration. Priority is used to break ties in cases where there is more than one matching rule. In the case of two rules that apply for a given Instance, the one with the lowest-numbered priority value wins.
-     * Default value is 1000. Valid range is 0 through 65535.
+     * The priority of applying this configuration. Priority is used to break ties in cases where there is more than one matching rule. In the case of two rules that apply for a given Instance, the one with the lowest-numbered priority value wins. Default value is 1000. Valid range is 0 through 65535.
      *
      * Generated from protobuf field <code>uint32 priority = 445151652;</code>
      * @param int $var

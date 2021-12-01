@@ -27,7 +27,7 @@ class NodeGroupAutoscalingPolicy extends \Google\Protobuf\Internal\Message
      */
     private $min_nodes = null;
     /**
-     * The autoscaling mode. Set to one of: ON, OFF, or ONLY_SCALE_OUT. For more information, see  Autoscaler modes.
+     * The autoscaling mode. Set to one of: ON, OFF, or ONLY_SCALE_OUT. For more information, see Autoscaler modes.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroupAutoscalingPolicy.Mode mode = 3357091;</code>
      */
@@ -44,7 +44,7 @@ class NodeGroupAutoscalingPolicy extends \Google\Protobuf\Internal\Message
      *     @type int $min_nodes
      *           The minimum number of nodes that the group should have.
      *     @type int $mode
-     *           The autoscaling mode. Set to one of: ON, OFF, or ONLY_SCALE_OUT. For more information, see  Autoscaler modes.
+     *           The autoscaling mode. Set to one of: ON, OFF, or ONLY_SCALE_OUT. For more information, see Autoscaler modes.
      * }
      */
     public function __construct($data = NULL) {
@@ -125,7 +125,7 @@ class NodeGroupAutoscalingPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The autoscaling mode. Set to one of: ON, OFF, or ONLY_SCALE_OUT. For more information, see  Autoscaler modes.
+     * The autoscaling mode. Set to one of: ON, OFF, or ONLY_SCALE_OUT. For more information, see Autoscaler modes.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroupAutoscalingPolicy.Mode mode = 3357091;</code>
      * @return int
@@ -146,7 +146,7 @@ class NodeGroupAutoscalingPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The autoscaling mode. Set to one of: ON, OFF, or ONLY_SCALE_OUT. For more information, see  Autoscaler modes.
+     * The autoscaling mode. Set to one of: ON, OFF, or ONLY_SCALE_OUT. For more information, see Autoscaler modes.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroupAutoscalingPolicy.Mode mode = 3357091;</code>
      * @param int $var

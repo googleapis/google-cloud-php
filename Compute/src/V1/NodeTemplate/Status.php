@@ -20,18 +20,26 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
+     * Resources are being allocated.
+     *
      * Generated from protobuf enum <code>CREATING = 455564985;</code>
      */
     const CREATING = 455564985;
     /**
+     * The node template is currently being deleted.
+     *
      * Generated from protobuf enum <code>DELETING = 528602024;</code>
      */
     const DELETING = 528602024;
     /**
+     * Invalid status.
+     *
      * Generated from protobuf enum <code>INVALID = 530283991;</code>
      */
     const INVALID = 530283991;
     /**
+     * The node template is ready.
+     *
      * Generated from protobuf enum <code>READY = 77848963;</code>
      */
     const READY = 77848963;

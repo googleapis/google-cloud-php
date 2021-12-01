@@ -54,6 +54,7 @@ use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\Reference;
 use Google\Cloud\Compute\V1\Scheduling;
 use Google\Cloud\Compute\V1\Screenshot;
+use Google\Cloud\Compute\V1\SendDiagnosticInterruptInstanceResponse;
 use Google\Cloud\Compute\V1\SerialPortOutput;
 use Google\Cloud\Compute\V1\ShieldedInstanceConfig;
 use Google\Cloud\Compute\V1\ShieldedInstanceIdentity;
@@ -2055,6 +2056,76 @@ class InstancesClientTest extends GeneratedTest
         $zone = 'zone3744684';
         try {
             $client->reset($instance, $project, $zone);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function sendDiagnosticInterruptTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new SendDiagnosticInterruptInstanceResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $client->sendDiagnosticInterrupt($instance, $project, $zone);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.Instances/SendDiagnosticInterrupt', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function sendDiagnosticInterruptExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $instance = 'instance555127957';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        try {
+            $client->sendDiagnosticInterrupt($instance, $project, $zone);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

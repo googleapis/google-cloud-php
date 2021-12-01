@@ -9,9 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a notification endpoint.
- * A notification endpoint resource defines an endpoint to receive notifications when there are status changes detected by the associated health check service.
- * For more information, see  Health checks overview. (== resource_for {$api_version}.notificationEndpoint ==) (== resource_for {$api_version}.regionNotificationEndpoints ==)
+ * Represents a notification endpoint. A notification endpoint resource defines an endpoint to receive notifications when there are status changes detected by the associated health check service. For more information, see Health checks overview.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.NotificationEndpoint</code>
  */

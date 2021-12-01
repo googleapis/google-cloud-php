@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a collection of network endpoints.
- * A network endpoint group (NEG) defines how a set of endpoints should be reached, whether they are reachable, and where they are located. For more information about using NEGs, see  Setting up external HTTP(S) Load Balancing with internet NEGs,  Setting up zonal NEGs, or  Setting up external HTTP(S) Load Balancing with serverless NEGs. (== resource_for {$api_version}.networkEndpointGroups ==) (== resource_for {$api_version}.globalNetworkEndpointGroups ==) (== resource_for {$api_version}.regionNetworkEndpointGroups ==)
+ * Represents a collection of network endpoints. A network endpoint group (NEG) defines how a set of endpoints should be reached, whether they are reachable, and where they are located. For more information about using NEGs, see Setting up external HTTP(S) Load Balancing with internet NEGs, Setting up zonal NEGs, or Setting up external HTTP(S) Load Balancing with serverless NEGs.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.NetworkEndpointGroup</code>
  */
@@ -83,7 +82,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      */
     private $network = null;
     /**
-     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, or SERVERLESS.
+     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroup.NetworkEndpointType network_endpoint_type = 118301523;</code>
      */
@@ -148,7 +147,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      *     @type string $network
      *           The URL of the network to which all network endpoints in the NEG belong. Uses "default" project network if unspecified.
      *     @type int $network_endpoint_type
-     *           Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, or SERVERLESS.
+     *           Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
      *     @type string $region
      *           [Output Only] The URL of the region where the network endpoint group is located.
      *     @type string $self_link
@@ -553,7 +552,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, or SERVERLESS.
+     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroup.NetworkEndpointType network_endpoint_type = 118301523;</code>
      * @return int
@@ -574,7 +573,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, or SERVERLESS.
+     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroup.NetworkEndpointType network_endpoint_type = 118301523;</code>
      * @param int $var

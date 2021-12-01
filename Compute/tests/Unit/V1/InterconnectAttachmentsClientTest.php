@@ -288,6 +288,7 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $partnerAsn = 975037061;
         $region2 = 'region2-690338393';
         $router = 'router-925132983';
+        $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
         $vlanTag8021q = 1730540572;
         $expectedResponse = new InterconnectAttachment();
@@ -307,6 +308,7 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $expectedResponse->setPartnerAsn($partnerAsn);
         $expectedResponse->setRegion($region2);
         $expectedResponse->setRouter($router);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setVlanTag8021q($vlanTag8021q);
         $transport->addResponse($expectedResponse);

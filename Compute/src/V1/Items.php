@@ -9,6 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Metadata
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Items</code>
  */

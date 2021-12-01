@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Project resource.
- * A project is used to organize resources in a Google Cloud Platform environment. For more information, read about the  Resource Hierarchy. (== resource_for {$api_version}.projects ==)
+ * Represents a Project resource. A project is used to organize resources in a Google Cloud Platform environment. For more information, read about the Resource Hierarchy.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Project</code>
  */
@@ -53,7 +52,7 @@ class Project extends \Google\Protobuf\Internal\Message
      */
     private $enabled_features;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is not the project ID, and is just a unique ID used by Compute Engine to identify resources.
+     * [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is *not* the project ID, and is just a unique ID used by Compute Engine to identify resources.
      *
      * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
@@ -114,7 +113,7 @@ class Project extends \Google\Protobuf\Internal\Message
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $enabled_features
      *           Restricted features enabled for use on this project.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is not the project ID, and is just a unique ID used by Compute Engine to identify resources.
+     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is *not* the project ID, and is just a unique ID used by Compute Engine to identify resources.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#project for projects.
      *     @type string $name
@@ -341,7 +340,7 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is not the project ID, and is just a unique ID used by Compute Engine to identify resources.
+     * [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is *not* the project ID, and is just a unique ID used by Compute Engine to identify resources.
      *
      * Generated from protobuf field <code>uint64 id = 3355;</code>
      * @return int|string
@@ -362,7 +361,7 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is not the project ID, and is just a unique ID used by Compute Engine to identify resources.
+     * [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is *not* the project ID, and is just a unique ID used by Compute Engine to identify resources.
      *
      * Generated from protobuf field <code>uint64 id = 3355;</code>
      * @param int|string $var

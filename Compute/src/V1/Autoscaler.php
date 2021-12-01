@@ -9,20 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an Autoscaler resource.
- * Google Compute Engine has two Autoscaler resources:
- * * [Zonal](/compute/docs/reference/rest/{$api_version}/autoscalers) * [Regional](https://cloud.google.com/compute/docs/reference/rest/{$api_version}/regionAutoscalers)
- * Use autoscalers to automatically add or delete instances from a managed instance group according to your defined autoscaling policy. For more information, read Autoscaling Groups of Instances.
- * For zonal managed instance groups resource, use the autoscaler resource.
- * For regional managed instance groups, use the regionAutoscalers resource. (== resource_for {$api_version}.autoscalers ==) (== resource_for {$api_version}.regionAutoscalers ==)
+ * Represents an Autoscaler resource. Google Compute Engine has two Autoscaler resources: * [Zonal](/compute/docs/reference/rest/v1/autoscalers) * [Regional](https://cloud.google.com/compute/docs/reference/rest/v1/regionAutoscalers) Use autoscalers to automatically add or delete instances from a managed instance group according to your defined autoscaling policy. For more information, read Autoscaling Groups of Instances. For zonal managed instance groups resource, use the autoscaler resource. For regional managed instance groups, use the regionAutoscalers resource.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Autoscaler</code>
  */
 class Autoscaler extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
-     * If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
+     * The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization. If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicy autoscaling_policy = 221950041;</code>
      */
@@ -82,11 +76,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
-     * [Output Only] The status of the autoscaler configuration. Current set of possible values:
-     * - PENDING: Autoscaler backend hasn't read new/updated configuration.
-     * - DELETING: Configuration is being deleted.
-     * - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field.
-     * - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field.  New values might be added in the future.
+     * [Output Only] The status of the autoscaler configuration. Current set of possible values: - PENDING: Autoscaler backend hasn't read new/updated configuration. - DELETING: Configuration is being deleted. - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field. - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field. New values might be added in the future.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Autoscaler.Status status = 181260274;</code>
      */
@@ -117,8 +107,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\AutoscalingPolicy $autoscaling_policy
-     *           The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
-     *           If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
+     *           The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization. If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
@@ -138,11 +127,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type int $status
-     *           [Output Only] The status of the autoscaler configuration. Current set of possible values:
-     *           - PENDING: Autoscaler backend hasn't read new/updated configuration.
-     *           - DELETING: Configuration is being deleted.
-     *           - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field.
-     *           - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field.  New values might be added in the future.
+     *           [Output Only] The status of the autoscaler configuration. Current set of possible values: - PENDING: Autoscaler backend hasn't read new/updated configuration. - DELETING: Configuration is being deleted. - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field. - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field. New values might be added in the future.
      *     @type \Google\Cloud\Compute\V1\AutoscalerStatusDetails[]|\Google\Protobuf\Internal\RepeatedField $status_details
      *           [Output Only] Human-readable details about the current state of the autoscaler. Read the documentation for Commonly returned status messages for examples of status messages you might encounter.
      *     @type string $target
@@ -157,8 +142,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
-     * If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
+     * The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization. If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicy autoscaling_policy = 221950041;</code>
      * @return \Google\Cloud\Compute\V1\AutoscalingPolicy|null
@@ -179,8 +163,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
-     * If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
+     * The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization. If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicy autoscaling_policy = 221950041;</code>
      * @param \Google\Cloud\Compute\V1\AutoscalingPolicy $var
@@ -509,11 +492,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the autoscaler configuration. Current set of possible values:
-     * - PENDING: Autoscaler backend hasn't read new/updated configuration.
-     * - DELETING: Configuration is being deleted.
-     * - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field.
-     * - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field.  New values might be added in the future.
+     * [Output Only] The status of the autoscaler configuration. Current set of possible values: - PENDING: Autoscaler backend hasn't read new/updated configuration. - DELETING: Configuration is being deleted. - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field. - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field. New values might be added in the future.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Autoscaler.Status status = 181260274;</code>
      * @return int
@@ -534,11 +513,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the autoscaler configuration. Current set of possible values:
-     * - PENDING: Autoscaler backend hasn't read new/updated configuration.
-     * - DELETING: Configuration is being deleted.
-     * - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field.
-     * - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field.  New values might be added in the future.
+     * [Output Only] The status of the autoscaler configuration. Current set of possible values: - PENDING: Autoscaler backend hasn't read new/updated configuration. - DELETING: Configuration is being deleted. - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field. - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field. New values might be added in the future.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Autoscaler.Status status = 181260274;</code>
      * @param int $var

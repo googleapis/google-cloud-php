@@ -9,12 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Disk Type resource.
- * Google Compute Engine has two Disk Type resources:
- * * [Regional](/compute/docs/reference/rest/{$api_version}/regionDiskTypes) * [Zonal](https://cloud.google.com/compute/docs/reference/rest/{$api_version}/diskTypes)
- * You can choose from a variety of disk types based on your needs. For more information, read Storage options.
- * The diskTypes resource represents disk types for a zonal persistent disk. For more information, read Zonal persistent disks.
- * The regionDiskTypes resource represents disk types for a regional persistent disk. For more information, read Regional persistent disks. (== resource_for {$api_version}.diskTypes ==) (== resource_for {$api_version}.regionDiskTypes ==)
+ * Represents a Disk Type resource. Google Compute Engine has two Disk Type resources: * [Regional](/compute/docs/reference/rest/v1/regionDiskTypes) * [Zonal](https://cloud.google.com/compute/docs/reference/rest/v1/diskTypes) You can choose from a variety of disk types based on your needs. For more information, read Storage options. The diskTypes resource represents disk types for a zonal persistent disk. For more information, read Zonal persistent disks. The regionDiskTypes resource represents disk types for a regional persistent disk. For more information, read Regional persistent disks.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.DiskType</code>
  */

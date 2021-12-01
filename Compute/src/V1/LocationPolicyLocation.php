@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Preference for a given locaction: ALLOW or DENY.
+     * Preference for a given location: ALLOW or DENY.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.LocationPolicyLocation.Preference preference = 150781147;</code>
      */
@@ -28,7 +28,7 @@ class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $preference
-     *           Preference for a given locaction: ALLOW or DENY.
+     *           Preference for a given location: ALLOW or DENY.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +37,7 @@ class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Preference for a given locaction: ALLOW or DENY.
+     * Preference for a given location: ALLOW or DENY.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.LocationPolicyLocation.Preference preference = 150781147;</code>
      * @return int
@@ -58,7 +58,7 @@ class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Preference for a given locaction: ALLOW or DENY.
+     * Preference for a given location: ALLOW or DENY.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.LocationPolicyLocation.Preference preference = 150781147;</code>
      * @param int $var

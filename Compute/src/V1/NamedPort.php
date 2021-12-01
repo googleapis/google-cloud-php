@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The named port. For example: .
+ * The named port. For example: <"http", 80>.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.NamedPort</code>
  */

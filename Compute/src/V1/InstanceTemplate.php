@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an Instance Template resource.
- * You can use instance templates to create VM instances and managed instance groups. For more information, read Instance Templates. (== resource_for {$api_version}.instanceTemplates ==)
+ * Represents an Instance Template resource. You can use instance templates to create VM instances and managed instance groups. For more information, read Instance Templates.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InstanceTemplate</code>
  */
@@ -59,9 +58,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
-     * The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values:
-     * - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
-     * - projects/project/zones/zone/instances/instance
+     * The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instances/instance - projects/project/zones/zone/instances/instance 
      *
      * Generated from protobuf field <code>string source_instance = 396315705;</code>
      */
@@ -94,9 +91,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] The URL for this instance template. The server defines this URL.
      *     @type string $source_instance
-     *           The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values:
-     *           - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
-     *           - projects/project/zones/zone/instances/instance
+     *           The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instances/instance - projects/project/zones/zone/instances/instance 
      *     @type \Google\Cloud\Compute\V1\SourceInstanceParams $source_instance_params
      *           The source instance params to use to create this instance template.
      * }
@@ -359,9 +354,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values:
-     * - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
-     * - projects/project/zones/zone/instances/instance
+     * The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instances/instance - projects/project/zones/zone/instances/instance 
      *
      * Generated from protobuf field <code>string source_instance = 396315705;</code>
      * @return string
@@ -382,9 +375,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values:
-     * - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
-     * - projects/project/zones/zone/instances/instance
+     * The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instances/instance - projects/project/zones/zone/instances/instance 
      *
      * Generated from protobuf field <code>string source_instance = 396315705;</code>
      * @param string $var

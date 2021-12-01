@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an Interconnect resource.
- * An Interconnect resource is a dedicated connection between the GCP network and your on-premises network. For more information, read the  Dedicated Interconnect Overview. (== resource_for {$api_version}.interconnects ==)
+ * Represents an Interconnect resource. An Interconnect resource is a dedicated connection between the GCP network and your on-premises network. For more information, read the Dedicated Interconnect Overview.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Interconnect</code>
  */
@@ -77,9 +76,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     private $interconnect_attachments;
     /**
-     * Type of interconnect, which can take one of the following values:
-     * - PARTNER: A partner-managed interconnection shared between customers though a partner.
-     * - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
+     * Type of interconnect, which can take one of the following values: - PARTNER: A partner-managed interconnection shared between customers though a partner. - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Interconnect.InterconnectType interconnect_type = 515165259;</code>
      */
@@ -91,9 +88,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     private $kind = null;
     /**
-     * Type of link requested, which can take one of the following values:
-     * - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics
-     * - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
+     * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Interconnect.LinkType link_type = 523207775;</code>
      */
@@ -117,10 +112,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     private $noc_contact_email = null;
     /**
-     * [Output Only] The current status of this Interconnect's functionality, which can take one of the following values:
-     * - OS_ACTIVE: A valid Interconnect, which is turned up and is ready to use. Attachments may be provisioned on this Interconnect.
-     * - OS_UNPROVISIONED: An Interconnect that has not completed turnup. No attachments may be provisioned on this Interconnect.
-     * - OS_UNDER_MAINTENANCE: An Interconnect that is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect.
+     * [Output Only] The current status of this Interconnect's functionality, which can take one of the following values: - OS_ACTIVE: A valid Interconnect, which is turned up and is ready to use. Attachments may be provisioned on this Interconnect. - OS_UNPROVISIONED: An Interconnect that has not completed turnup. No attachments may be provisioned on this Interconnect. - OS_UNDER_MAINTENANCE: An Interconnect that is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Interconnect.OperationalStatus operational_status = 201070847;</code>
      */
@@ -144,16 +136,19 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     private $requested_link_count = null;
     /**
+     * [Output Only] Set to true if the resource satisfies the zone separation organization policy constraints and false otherwise. Defaults to false if the field is not present.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 480964267;</code>
+     */
+    private $satisfies_pzs = null;
+    /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
-     * [Output Only] The current state of Interconnect functionality, which can take one of the following values:
-     * - ACTIVE: The Interconnect is valid, turned up and ready to use. Attachments may be provisioned on this Interconnect.
-     * - UNPROVISIONED: The Interconnect has not completed turnup. No attachments may be provisioned on this Interconnect.
-     * - UNDER_MAINTENANCE: The Interconnect is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect.
+     * [Output Only] The current state of Interconnect functionality, which can take one of the following values: - ACTIVE: The Interconnect is valid, turned up and ready to use. Attachments may be provisioned on this Interconnect. - UNPROVISIONED: The Interconnect has not completed turnup. No attachments may be provisioned on this Interconnect. - UNDER_MAINTENANCE: The Interconnect is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Interconnect.State state = 109757585;</code>
      */
@@ -186,15 +181,11 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $interconnect_attachments
      *           [Output Only] A list of the URLs of all InterconnectAttachments configured to use this Interconnect.
      *     @type int $interconnect_type
-     *           Type of interconnect, which can take one of the following values:
-     *           - PARTNER: A partner-managed interconnection shared between customers though a partner.
-     *           - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
+     *           Type of interconnect, which can take one of the following values: - PARTNER: A partner-managed interconnection shared between customers though a partner. - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#interconnect for interconnects.
      *     @type int $link_type
-     *           Type of link requested, which can take one of the following values:
-     *           - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics
-     *           - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
+     *           Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
      *     @type string $location
      *           URL of the InterconnectLocation object that represents where this connection is to be provisioned.
      *     @type string $name
@@ -202,23 +193,19 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *     @type string $noc_contact_email
      *           Email address to contact the customer NOC for operations and maintenance notifications regarding this Interconnect. If specified, this will be used for notifications in addition to all other forms described, such as Stackdriver logs alerting and Cloud Notifications.
      *     @type int $operational_status
-     *           [Output Only] The current status of this Interconnect's functionality, which can take one of the following values:
-     *           - OS_ACTIVE: A valid Interconnect, which is turned up and is ready to use. Attachments may be provisioned on this Interconnect.
-     *           - OS_UNPROVISIONED: An Interconnect that has not completed turnup. No attachments may be provisioned on this Interconnect.
-     *           - OS_UNDER_MAINTENANCE: An Interconnect that is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect.
+     *           [Output Only] The current status of this Interconnect's functionality, which can take one of the following values: - OS_ACTIVE: A valid Interconnect, which is turned up and is ready to use. Attachments may be provisioned on this Interconnect. - OS_UNPROVISIONED: An Interconnect that has not completed turnup. No attachments may be provisioned on this Interconnect. - OS_UNDER_MAINTENANCE: An Interconnect that is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect. 
      *     @type string $peer_ip_address
      *           [Output Only] IP address configured on the customer side of the Interconnect link. The customer should configure this IP address during turnup when prompted by Google NOC. This can be used only for ping tests.
      *     @type int $provisioned_link_count
      *           [Output Only] Number of links actually provisioned in this interconnect.
      *     @type int $requested_link_count
      *           Target number of physical links in the link bundle, as requested by the customer.
+     *     @type bool $satisfies_pzs
+     *           [Output Only] Set to true if the resource satisfies the zone separation organization policy constraints and false otherwise. Defaults to false if the field is not present.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type int $state
-     *           [Output Only] The current state of Interconnect functionality, which can take one of the following values:
-     *           - ACTIVE: The Interconnect is valid, turned up and ready to use. Attachments may be provisioned on this Interconnect.
-     *           - UNPROVISIONED: The Interconnect has not completed turnup. No attachments may be provisioned on this Interconnect.
-     *           - UNDER_MAINTENANCE: The Interconnect is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect.
+     *           [Output Only] The current state of Interconnect functionality, which can take one of the following values: - ACTIVE: The Interconnect is valid, turned up and ready to use. Attachments may be provisioned on this Interconnect. - UNPROVISIONED: The Interconnect has not completed turnup. No attachments may be provisioned on this Interconnect. - UNDER_MAINTENANCE: The Interconnect is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect. 
      * }
      */
     public function __construct($data = NULL) {
@@ -557,9 +544,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of interconnect, which can take one of the following values:
-     * - PARTNER: A partner-managed interconnection shared between customers though a partner.
-     * - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
+     * Type of interconnect, which can take one of the following values: - PARTNER: A partner-managed interconnection shared between customers though a partner. - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Interconnect.InterconnectType interconnect_type = 515165259;</code>
      * @return int
@@ -580,9 +565,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of interconnect, which can take one of the following values:
-     * - PARTNER: A partner-managed interconnection shared between customers though a partner.
-     * - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
+     * Type of interconnect, which can take one of the following values: - PARTNER: A partner-managed interconnection shared between customers though a partner. - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Interconnect.InterconnectType interconnect_type = 515165259;</code>
      * @param int $var
@@ -633,9 +616,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of link requested, which can take one of the following values:
-     * - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics
-     * - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
+     * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Interconnect.LinkType link_type = 523207775;</code>
      * @return int
@@ -656,9 +637,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of link requested, which can take one of the following values:
-     * - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics
-     * - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
+     * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Interconnect.LinkType link_type = 523207775;</code>
      * @param int $var
@@ -781,10 +760,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The current status of this Interconnect's functionality, which can take one of the following values:
-     * - OS_ACTIVE: A valid Interconnect, which is turned up and is ready to use. Attachments may be provisioned on this Interconnect.
-     * - OS_UNPROVISIONED: An Interconnect that has not completed turnup. No attachments may be provisioned on this Interconnect.
-     * - OS_UNDER_MAINTENANCE: An Interconnect that is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect.
+     * [Output Only] The current status of this Interconnect's functionality, which can take one of the following values: - OS_ACTIVE: A valid Interconnect, which is turned up and is ready to use. Attachments may be provisioned on this Interconnect. - OS_UNPROVISIONED: An Interconnect that has not completed turnup. No attachments may be provisioned on this Interconnect. - OS_UNDER_MAINTENANCE: An Interconnect that is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Interconnect.OperationalStatus operational_status = 201070847;</code>
      * @return int
@@ -805,10 +781,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The current status of this Interconnect's functionality, which can take one of the following values:
-     * - OS_ACTIVE: A valid Interconnect, which is turned up and is ready to use. Attachments may be provisioned on this Interconnect.
-     * - OS_UNPROVISIONED: An Interconnect that has not completed turnup. No attachments may be provisioned on this Interconnect.
-     * - OS_UNDER_MAINTENANCE: An Interconnect that is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect.
+     * [Output Only] The current status of this Interconnect's functionality, which can take one of the following values: - OS_ACTIVE: A valid Interconnect, which is turned up and is ready to use. Attachments may be provisioned on this Interconnect. - OS_UNPROVISIONED: An Interconnect that has not completed turnup. No attachments may be provisioned on this Interconnect. - OS_UNDER_MAINTENANCE: An Interconnect that is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Interconnect.OperationalStatus operational_status = 201070847;</code>
      * @param int $var
@@ -931,6 +904,42 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [Output Only] Set to true if the resource satisfies the zone separation organization policy constraints and false otherwise. Defaults to false if the field is not present.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 480964267;</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * [Output Only] Set to true if the resource satisfies the zone separation organization policy constraints and false otherwise. Defaults to false if the field is not present.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 480964267;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 456214797;</code>
@@ -967,10 +976,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The current state of Interconnect functionality, which can take one of the following values:
-     * - ACTIVE: The Interconnect is valid, turned up and ready to use. Attachments may be provisioned on this Interconnect.
-     * - UNPROVISIONED: The Interconnect has not completed turnup. No attachments may be provisioned on this Interconnect.
-     * - UNDER_MAINTENANCE: The Interconnect is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect.
+     * [Output Only] The current state of Interconnect functionality, which can take one of the following values: - ACTIVE: The Interconnect is valid, turned up and ready to use. Attachments may be provisioned on this Interconnect. - UNPROVISIONED: The Interconnect has not completed turnup. No attachments may be provisioned on this Interconnect. - UNDER_MAINTENANCE: The Interconnect is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Interconnect.State state = 109757585;</code>
      * @return int
@@ -991,10 +997,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The current state of Interconnect functionality, which can take one of the following values:
-     * - ACTIVE: The Interconnect is valid, turned up and ready to use. Attachments may be provisioned on this Interconnect.
-     * - UNPROVISIONED: The Interconnect has not completed turnup. No attachments may be provisioned on this Interconnect.
-     * - UNDER_MAINTENANCE: The Interconnect is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect.
+     * [Output Only] The current state of Interconnect functionality, which can take one of the following values: - ACTIVE: The Interconnect is valid, turned up and ready to use. Attachments may be provisioned on this Interconnect. - UNPROVISIONED: The Interconnect has not completed turnup. No attachments may be provisioned on this Interconnect. - UNDER_MAINTENANCE: The Interconnect is undergoing internal maintenance. No attachments may be provisioned or updated on this Interconnect. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Interconnect.State state = 109757585;</code>
      * @param int $var

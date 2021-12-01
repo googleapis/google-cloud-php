@@ -21,8 +21,7 @@ class InstanceGroupManagerActionsSummary extends \Google\Protobuf\Internal\Messa
      */
     private $abandoning = null;
     /**
-     * [Output Only] The number of instances in the managed instance group that are scheduled to be created or are currently being created. If the group fails to create any of these instances, it tries again until it creates the instance successfully.
-     * If you have disabled creation retries, this field will not be populated; instead, the creatingWithoutRetries field will be populated.
+     * [Output Only] The number of instances in the managed instance group that are scheduled to be created or are currently being created. If the group fails to create any of these instances, it tries again until it creates the instance successfully. If you have disabled creation retries, this field will not be populated; instead, the creatingWithoutRetries field will be populated.
      *
      * Generated from protobuf field <code>int32 creating = 209809081;</code>
      */
@@ -79,8 +78,7 @@ class InstanceGroupManagerActionsSummary extends \Google\Protobuf\Internal\Messa
      *     @type int $abandoning
      *           [Output Only] The total number of instances in the managed instance group that are scheduled to be abandoned. Abandoning an instance removes it from the managed instance group without deleting it.
      *     @type int $creating
-     *           [Output Only] The number of instances in the managed instance group that are scheduled to be created or are currently being created. If the group fails to create any of these instances, it tries again until it creates the instance successfully.
-     *           If you have disabled creation retries, this field will not be populated; instead, the creatingWithoutRetries field will be populated.
+     *           [Output Only] The number of instances in the managed instance group that are scheduled to be created or are currently being created. If the group fails to create any of these instances, it tries again until it creates the instance successfully. If you have disabled creation retries, this field will not be populated; instead, the creatingWithoutRetries field will be populated.
      *     @type int $creating_without_retries
      *           [Output Only] The number of instances that the managed instance group will attempt to create. The group attempts to create each instance only once. If the group fails to create any of these instances, it decreases the group's targetSize value accordingly.
      *     @type int $deleting
@@ -139,8 +137,7 @@ class InstanceGroupManagerActionsSummary extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] The number of instances in the managed instance group that are scheduled to be created or are currently being created. If the group fails to create any of these instances, it tries again until it creates the instance successfully.
-     * If you have disabled creation retries, this field will not be populated; instead, the creatingWithoutRetries field will be populated.
+     * [Output Only] The number of instances in the managed instance group that are scheduled to be created or are currently being created. If the group fails to create any of these instances, it tries again until it creates the instance successfully. If you have disabled creation retries, this field will not be populated; instead, the creatingWithoutRetries field will be populated.
      *
      * Generated from protobuf field <code>int32 creating = 209809081;</code>
      * @return int
@@ -161,8 +158,7 @@ class InstanceGroupManagerActionsSummary extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] The number of instances in the managed instance group that are scheduled to be created or are currently being created. If the group fails to create any of these instances, it tries again until it creates the instance successfully.
-     * If you have disabled creation retries, this field will not be populated; instead, the creatingWithoutRetries field will be populated.
+     * [Output Only] The number of instances in the managed instance group that are scheduled to be created or are currently being created. If the group fails to create any of these instances, it tries again until it creates the instance successfully. If you have disabled creation retries, this field will not be populated; instead, the creatingWithoutRetries field will be populated.
      *
      * Generated from protobuf field <code>int32 creating = 209809081;</code>
      * @param int $var

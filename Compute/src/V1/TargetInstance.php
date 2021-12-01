@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Target Instance resource.
- * You can use a target instance to handle traffic for one or more forwarding rules, which is ideal for forwarding protocol traffic that is managed by a single source. For example, ESP, AH, TCP, or UDP. For more information, read Target instances. (== resource_for {$api_version}.targetInstances ==)
+ * Represents a Target Instance resource. You can use a target instance to handle traffic for one or more forwarding rules, which is ideal for forwarding protocol traffic that is managed by a single source. For example, ESP, AH, TCP, or UDP. For more information, read Target instances.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.TargetInstance</code>
  */
@@ -35,10 +34,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
      */
     private $id = null;
     /**
-     * A URL to the virtual machine instance that handles traffic for this target instance. When creating a target instance, you can provide the fully-qualified URL or a valid partial URL to the desired virtual machine. For example, the following are all valid URLs:
-     * - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
-     * - projects/project/zones/zone/instances/instance
-     * - zones/zone/instances/instance
+     * A URL to the virtual machine instance that handles traffic for this target instance. When creating a target instance, you can provide the fully-qualified URL or a valid partial URL to the desired virtual machine. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instances/instance - projects/project/zones/zone/instances/instance - zones/zone/instances/instance 
      *
      * Generated from protobuf field <code>string instance = 18257045;</code>
      */
@@ -61,6 +57,12 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.compute.v1.TargetInstance.NatPolicy nat_policy = 509780496;</code>
      */
     private $nat_policy = null;
+    /**
+     * The URL of the network this target instance uses to forward traffic. If not specified, the traffic will be forwarded to the network that the default network interface belongs to.
+     *
+     * Generated from protobuf field <code>string network = 232872494;</code>
+     */
+    private $network = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
@@ -87,16 +89,15 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $instance
-     *           A URL to the virtual machine instance that handles traffic for this target instance. When creating a target instance, you can provide the fully-qualified URL or a valid partial URL to the desired virtual machine. For example, the following are all valid URLs:
-     *           - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
-     *           - projects/project/zones/zone/instances/instance
-     *           - zones/zone/instances/instance
+     *           A URL to the virtual machine instance that handles traffic for this target instance. When creating a target instance, you can provide the fully-qualified URL or a valid partial URL to the desired virtual machine. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instances/instance - projects/project/zones/zone/instances/instance - zones/zone/instances/instance 
      *     @type string $kind
      *           [Output Only] The type of the resource. Always compute#targetInstance for target instances.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type int $nat_policy
      *           NAT option controlling how IPs are NAT'ed to the instance. Currently only NO_NAT (default value) is supported.
+     *     @type string $network
+     *           The URL of the network this target instance uses to forward traffic. If not specified, the traffic will be forwarded to the network that the default network interface belongs to.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $zone
@@ -217,10 +218,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A URL to the virtual machine instance that handles traffic for this target instance. When creating a target instance, you can provide the fully-qualified URL or a valid partial URL to the desired virtual machine. For example, the following are all valid URLs:
-     * - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
-     * - projects/project/zones/zone/instances/instance
-     * - zones/zone/instances/instance
+     * A URL to the virtual machine instance that handles traffic for this target instance. When creating a target instance, you can provide the fully-qualified URL or a valid partial URL to the desired virtual machine. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instances/instance - projects/project/zones/zone/instances/instance - zones/zone/instances/instance 
      *
      * Generated from protobuf field <code>string instance = 18257045;</code>
      * @return string
@@ -241,10 +239,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A URL to the virtual machine instance that handles traffic for this target instance. When creating a target instance, you can provide the fully-qualified URL or a valid partial URL to the desired virtual machine. For example, the following are all valid URLs:
-     * - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
-     * - projects/project/zones/zone/instances/instance
-     * - zones/zone/instances/instance
+     * A URL to the virtual machine instance that handles traffic for this target instance. When creating a target instance, you can provide the fully-qualified URL or a valid partial URL to the desired virtual machine. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instances/instance - projects/project/zones/zone/instances/instance - zones/zone/instances/instance 
      *
      * Generated from protobuf field <code>string instance = 18257045;</code>
      * @param string $var
@@ -362,6 +357,42 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\TargetInstance\NatPolicy::class);
         $this->nat_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * The URL of the network this target instance uses to forward traffic. If not specified, the traffic will be forwarded to the network that the default network interface belongs to.
+     *
+     * Generated from protobuf field <code>string network = 232872494;</code>
+     * @return string
+     */
+    public function getNetwork()
+    {
+        return isset($this->network) ? $this->network : '';
+    }
+
+    public function hasNetwork()
+    {
+        return isset($this->network);
+    }
+
+    public function clearNetwork()
+    {
+        unset($this->network);
+    }
+
+    /**
+     * The URL of the network this target instance uses to forward traffic. If not specified, the traffic will be forwarded to the network that the default network interface belongs to.
+     *
+     * Generated from protobuf field <code>string network = 232872494;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNetwork($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->network = $var;
 
         return $this;
     }

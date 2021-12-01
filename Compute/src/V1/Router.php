@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Cloud Router resource.
- * For more information about Cloud Router, read the Cloud Router overview.
+ * Represents a Cloud Router resource. For more information about Cloud Router, read the Cloud Router overview.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Router</code>
  */
@@ -41,8 +40,7 @@ class Router extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
-     * Field to indicate if a router is dedicated to use with encrypted Interconnect Attachment (IPsec-encrypted Cloud Interconnect feature).
-     * Not currently available in all Interconnect locations.
+     * Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments). Not currently available publicly. 
      *
      * Generated from protobuf field <code>bool encrypted_interconnect_router = 297996575;</code>
      */
@@ -111,8 +109,7 @@ class Router extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type bool $encrypted_interconnect_router
-     *           Field to indicate if a router is dedicated to use with encrypted Interconnect Attachment (IPsec-encrypted Cloud Interconnect feature).
-     *           Not currently available in all Interconnect locations.
+     *           Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments). Not currently available publicly. 
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type \Google\Cloud\Compute\V1\RouterInterface[]|\Google\Protobuf\Internal\RepeatedField $interfaces
@@ -271,8 +268,7 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Field to indicate if a router is dedicated to use with encrypted Interconnect Attachment (IPsec-encrypted Cloud Interconnect feature).
-     * Not currently available in all Interconnect locations.
+     * Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments). Not currently available publicly. 
      *
      * Generated from protobuf field <code>bool encrypted_interconnect_router = 297996575;</code>
      * @return bool
@@ -293,8 +289,7 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Field to indicate if a router is dedicated to use with encrypted Interconnect Attachment (IPsec-encrypted Cloud Interconnect feature).
-     * Not currently available in all Interconnect locations.
+     * Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments). Not currently available publicly. 
      *
      * Generated from protobuf field <code>bool encrypted_interconnect_router = 297996575;</code>
      * @param bool $var

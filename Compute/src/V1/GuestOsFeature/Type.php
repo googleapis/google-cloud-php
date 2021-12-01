@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\GuestOsFeature;
 use UnexpectedValueException;
 
 /**
- * The ID of a supported feature. Read  Enabling guest operating system features to see a list of available options.
+ * The ID of a supported feature. Read Enabling guest operating system features to see a list of available options.
  *
  * Protobuf type <code>google.cloud.compute.v1.GuestOsFeature.Type</code>
  */

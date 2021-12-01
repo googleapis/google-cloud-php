@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Messages
  * A specification of the type and number of accelerator cards attached to the instance.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AcceleratorConfig</code>

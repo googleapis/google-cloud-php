@@ -32,7 +32,7 @@ class ExternalVpnGatewayList extends \Google\Protobuf\Internal\Message
      */
     private $items;
     /**
-     * [Output Only] Type of resource. Always compute#externalVpnGatewayList  for lists of externalVpnGateways.
+     * [Output Only] Type of resource. Always compute#externalVpnGatewayList for lists of externalVpnGateways.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
@@ -68,7 +68,7 @@ class ExternalVpnGatewayList extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\ExternalVpnGateway[]|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of ExternalVpnGateway resources.
      *     @type string $kind
-     *           [Output Only] Type of resource. Always compute#externalVpnGatewayList  for lists of externalVpnGateways.
+     *           [Output Only] Type of resource. Always compute#externalVpnGatewayList for lists of externalVpnGateways.
      *     @type string $next_page_token
      *           [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
      *     @type string $self_link
@@ -177,7 +177,7 @@ class ExternalVpnGatewayList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#externalVpnGatewayList  for lists of externalVpnGateways.
+     * [Output Only] Type of resource. Always compute#externalVpnGatewayList for lists of externalVpnGateways.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      * @return string
@@ -198,7 +198,7 @@ class ExternalVpnGatewayList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Type of resource. Always compute#externalVpnGatewayList  for lists of externalVpnGateways.
+     * [Output Only] Type of resource. Always compute#externalVpnGatewayList for lists of externalVpnGateways.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      * @param string $var

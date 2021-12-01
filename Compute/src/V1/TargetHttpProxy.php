@@ -9,12 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Target HTTP Proxy resource.
- * Google Compute Engine has two Target HTTP Proxy resources:
- * * [Global](/compute/docs/reference/rest/{$api_version}/targetHttpProxies) * [Regional](https://cloud.google.com/compute/docs/reference/rest/{$api_version}/regionTargetHttpProxies)
- * A target HTTP proxy is a component of GCP HTTP load balancers.
- * * targetHttpProxies are used by external HTTP load balancers and Traffic Director. * regionTargetHttpProxies are used by internal HTTP load balancers.
- * Forwarding rules reference a target HTTP proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies and  Forwarding rule concepts. (== resource_for {$api_version}.targetHttpProxies ==) (== resource_for {$api_version}.regionTargetHttpProxies ==)
+ * Represents a Target HTTP Proxy resource. Google Compute Engine has two Target HTTP Proxy resources: * [Global](/compute/docs/reference/rest/v1/targetHttpProxies) * [Regional](https://cloud.google.com/compute/docs/reference/rest/v1/regionTargetHttpProxies) A target HTTP proxy is a component of GCP HTTP load balancers. * targetHttpProxies are used by external HTTP load balancers and Traffic Director. * regionTargetHttpProxies are used by internal HTTP load balancers. Forwarding rules reference a target HTTP proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies and Forwarding rule concepts.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.TargetHttpProxy</code>
  */
@@ -57,9 +52,7 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
-     * This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED.
-     * When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them.
-     * The default is false.
+     * This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED. When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them. The default is false.
      *
      * Generated from protobuf field <code>bool proxy_bind = 286025582;</code>
      */
@@ -102,9 +95,7 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type bool $proxy_bind
-     *           This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED.
-     *           When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them.
-     *           The default is false.
+     *           This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED. When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them. The default is false.
      *     @type string $region
      *           [Output Only] URL of the region where the regional Target HTTP Proxy resides. This field is not applicable to global Target HTTP Proxies.
      *     @type string $self_link
@@ -335,9 +326,7 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED.
-     * When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them.
-     * The default is false.
+     * This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED. When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them. The default is false.
      *
      * Generated from protobuf field <code>bool proxy_bind = 286025582;</code>
      * @return bool
@@ -358,9 +347,7 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED.
-     * When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them.
-     * The default is false.
+     * This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED. When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them. The default is false.
      *
      * Generated from protobuf field <code>bool proxy_bind = 286025582;</code>
      * @param bool $var

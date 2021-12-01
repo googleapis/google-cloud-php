@@ -9,14 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Use global external addresses for GFE-based external HTTP(S) load balancers in Premium Tier.
- * Use global internal addresses for reserved peering network range.
- * Use regional external addresses for the following resources:
- * - External IP addresses for VM instances - Regional external forwarding rules - Cloud NAT external IP addresses - GFE based LBs in Standard Tier - Network LBs in Premium or Standard Tier - Cloud VPN gateways (both Classic and HA)
- * Use regional internal IP addresses for subnet IP ranges (primary and secondary). This includes:
- * - Internal IP addresses for VM instances - Alias IP ranges of VM instances (/32 only) - Regional internal forwarding rules - Internal TCP/UDP load balancer addresses - Internal HTTP(S) load balancer addresses - Cloud DNS inbound forwarding IP addresses
- * For more information, read reserved IP address.
- * (== resource_for {$api_version}.addresses ==) (== resource_for {$api_version}.globalAddresses ==)
+ * Represents an IP Address resource. Google Compute Engine has two IP Address resources: * [Global (external and internal)](https://cloud.google.com/compute/docs/reference/rest/v1/globalAddresses) * [Regional (external and internal)](https://cloud.google.com/compute/docs/reference/rest/v1/addresses) For more information, see Reserving a static external IP address.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Address</code>
  */
@@ -77,8 +70,7 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     private $network = null;
     /**
-     * This signifies the networking tier used for configuring this address and can only take the following values: PREMIUM or STANDARD. Global forwarding rules can only be Premium Tier. Regional forwarding rules can be either Premium or Standard Tier. Standard Tier addresses applied to regional forwarding rules can be used with any external load balancer. Regional forwarding rules in Premium Tier can only be used with a network load balancer.
-     * If this field is not specified, it is assumed to be PREMIUM.
+     * This signifies the networking tier used for configuring this address and can only take the following values: PREMIUM or STANDARD. Internal IP addresses are always Premium Tier; global external IP addresses are always Premium Tier; regional external IP addresses can be either Standard or Premium Tier. If this field is not specified, it is assumed to be PREMIUM.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Address.NetworkTier network_tier = 517397843;</code>
      */
@@ -90,18 +82,13 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     private $prefix_length = null;
     /**
-     * The purpose of this resource, which can be one of the following values:
-     * - `GCE_ENDPOINT` for addresses that are used by VM instances, alias IP ranges, internal load balancers, and similar resources.
-     * - `DNS_RESOLVER` for a DNS resolver address in a subnetwork
-     * - `VPC_PEERING` for addresses that are reserved for VPC peer networks.
-     * - `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT.
-     * - `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec-encrypted Cloud Interconnect configuration. These addresses are regional resources.
+     * The purpose of this resource, which can be one of the following values: - GCE_ENDPOINT for addresses that are used by VM instances, alias IP ranges, load balancers, and similar resources. - DNS_RESOLVER for a DNS resolver address in a subnetwork for a Cloud DNS inbound forwarder IP addresses (regional internal IP address in a subnet of a VPC network) - VPC_PEERING for global internal IP addresses used for private services access allocated ranges. - NAT_AUTO for the regional external IP addresses used by Cloud NAT when allocating addresses using . - IPSEC_INTERCONNECT for addresses created from a private IP range that are reserved for a VLAN attachment in an *IPsec-encrypted Cloud Interconnect* configuration. These addresses are regional resources. Not currently available publicly. - `SHARED_LOADBALANCER_VIP` for an internal IP address that is assigned to multiple internal forwarding rules. - `PRIVATE_SERVICE_CONNECT` for a private network address that is used to configure Private Service Connect. Only global internal addresses can use this purpose. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Address.Purpose purpose = 316407070;</code>
      */
     private $purpose = null;
     /**
-     * [Output Only] The URL of the region where a regional address resides. For regional addresses, you must specify the region as a path parameter in the HTTP request URL. This field is not applicable to global addresses.
+     * [Output Only] The URL of the region where a regional address resides. For regional addresses, you must specify the region as a path parameter in the HTTP request URL. *This field is not applicable to global addresses.*
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
@@ -156,19 +143,13 @@ class Address extends \Google\Protobuf\Internal\Message
      *     @type string $network
      *           The URL of the network in which to reserve the address. This field can only be used with INTERNAL type with the VPC_PEERING purpose.
      *     @type int $network_tier
-     *           This signifies the networking tier used for configuring this address and can only take the following values: PREMIUM or STANDARD. Global forwarding rules can only be Premium Tier. Regional forwarding rules can be either Premium or Standard Tier. Standard Tier addresses applied to regional forwarding rules can be used with any external load balancer. Regional forwarding rules in Premium Tier can only be used with a network load balancer.
-     *           If this field is not specified, it is assumed to be PREMIUM.
+     *           This signifies the networking tier used for configuring this address and can only take the following values: PREMIUM or STANDARD. Internal IP addresses are always Premium Tier; global external IP addresses are always Premium Tier; regional external IP addresses can be either Standard or Premium Tier. If this field is not specified, it is assumed to be PREMIUM.
      *     @type int $prefix_length
      *           The prefix length if the resource represents an IP range.
      *     @type int $purpose
-     *           The purpose of this resource, which can be one of the following values:
-     *           - `GCE_ENDPOINT` for addresses that are used by VM instances, alias IP ranges, internal load balancers, and similar resources.
-     *           - `DNS_RESOLVER` for a DNS resolver address in a subnetwork
-     *           - `VPC_PEERING` for addresses that are reserved for VPC peer networks.
-     *           - `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT.
-     *           - `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec-encrypted Cloud Interconnect configuration. These addresses are regional resources.
+     *           The purpose of this resource, which can be one of the following values: - GCE_ENDPOINT for addresses that are used by VM instances, alias IP ranges, load balancers, and similar resources. - DNS_RESOLVER for a DNS resolver address in a subnetwork for a Cloud DNS inbound forwarder IP addresses (regional internal IP address in a subnet of a VPC network) - VPC_PEERING for global internal IP addresses used for private services access allocated ranges. - NAT_AUTO for the regional external IP addresses used by Cloud NAT when allocating addresses using . - IPSEC_INTERCONNECT for addresses created from a private IP range that are reserved for a VLAN attachment in an *IPsec-encrypted Cloud Interconnect* configuration. These addresses are regional resources. Not currently available publicly. - `SHARED_LOADBALANCER_VIP` for an internal IP address that is assigned to multiple internal forwarding rules. - `PRIVATE_SERVICE_CONNECT` for a private network address that is used to configure Private Service Connect. Only global internal addresses can use this purpose. 
      *     @type string $region
-     *           [Output Only] The URL of the region where a regional address resides. For regional addresses, you must specify the region as a path parameter in the HTTP request URL. This field is not applicable to global addresses.
+     *           [Output Only] The URL of the region where a regional address resides. For regional addresses, you must specify the region as a path parameter in the HTTP request URL. *This field is not applicable to global addresses.*
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type int $status
@@ -509,8 +490,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This signifies the networking tier used for configuring this address and can only take the following values: PREMIUM or STANDARD. Global forwarding rules can only be Premium Tier. Regional forwarding rules can be either Premium or Standard Tier. Standard Tier addresses applied to regional forwarding rules can be used with any external load balancer. Regional forwarding rules in Premium Tier can only be used with a network load balancer.
-     * If this field is not specified, it is assumed to be PREMIUM.
+     * This signifies the networking tier used for configuring this address and can only take the following values: PREMIUM or STANDARD. Internal IP addresses are always Premium Tier; global external IP addresses are always Premium Tier; regional external IP addresses can be either Standard or Premium Tier. If this field is not specified, it is assumed to be PREMIUM.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Address.NetworkTier network_tier = 517397843;</code>
      * @return int
@@ -531,8 +511,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This signifies the networking tier used for configuring this address and can only take the following values: PREMIUM or STANDARD. Global forwarding rules can only be Premium Tier. Regional forwarding rules can be either Premium or Standard Tier. Standard Tier addresses applied to regional forwarding rules can be used with any external load balancer. Regional forwarding rules in Premium Tier can only be used with a network load balancer.
-     * If this field is not specified, it is assumed to be PREMIUM.
+     * This signifies the networking tier used for configuring this address and can only take the following values: PREMIUM or STANDARD. Internal IP addresses are always Premium Tier; global external IP addresses are always Premium Tier; regional external IP addresses can be either Standard or Premium Tier. If this field is not specified, it is assumed to be PREMIUM.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Address.NetworkTier network_tier = 517397843;</code>
      * @param int $var
@@ -583,12 +562,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The purpose of this resource, which can be one of the following values:
-     * - `GCE_ENDPOINT` for addresses that are used by VM instances, alias IP ranges, internal load balancers, and similar resources.
-     * - `DNS_RESOLVER` for a DNS resolver address in a subnetwork
-     * - `VPC_PEERING` for addresses that are reserved for VPC peer networks.
-     * - `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT.
-     * - `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec-encrypted Cloud Interconnect configuration. These addresses are regional resources.
+     * The purpose of this resource, which can be one of the following values: - GCE_ENDPOINT for addresses that are used by VM instances, alias IP ranges, load balancers, and similar resources. - DNS_RESOLVER for a DNS resolver address in a subnetwork for a Cloud DNS inbound forwarder IP addresses (regional internal IP address in a subnet of a VPC network) - VPC_PEERING for global internal IP addresses used for private services access allocated ranges. - NAT_AUTO for the regional external IP addresses used by Cloud NAT when allocating addresses using . - IPSEC_INTERCONNECT for addresses created from a private IP range that are reserved for a VLAN attachment in an *IPsec-encrypted Cloud Interconnect* configuration. These addresses are regional resources. Not currently available publicly. - `SHARED_LOADBALANCER_VIP` for an internal IP address that is assigned to multiple internal forwarding rules. - `PRIVATE_SERVICE_CONNECT` for a private network address that is used to configure Private Service Connect. Only global internal addresses can use this purpose. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Address.Purpose purpose = 316407070;</code>
      * @return int
@@ -609,12 +583,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The purpose of this resource, which can be one of the following values:
-     * - `GCE_ENDPOINT` for addresses that are used by VM instances, alias IP ranges, internal load balancers, and similar resources.
-     * - `DNS_RESOLVER` for a DNS resolver address in a subnetwork
-     * - `VPC_PEERING` for addresses that are reserved for VPC peer networks.
-     * - `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT.
-     * - `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec-encrypted Cloud Interconnect configuration. These addresses are regional resources.
+     * The purpose of this resource, which can be one of the following values: - GCE_ENDPOINT for addresses that are used by VM instances, alias IP ranges, load balancers, and similar resources. - DNS_RESOLVER for a DNS resolver address in a subnetwork for a Cloud DNS inbound forwarder IP addresses (regional internal IP address in a subnet of a VPC network) - VPC_PEERING for global internal IP addresses used for private services access allocated ranges. - NAT_AUTO for the regional external IP addresses used by Cloud NAT when allocating addresses using . - IPSEC_INTERCONNECT for addresses created from a private IP range that are reserved for a VLAN attachment in an *IPsec-encrypted Cloud Interconnect* configuration. These addresses are regional resources. Not currently available publicly. - `SHARED_LOADBALANCER_VIP` for an internal IP address that is assigned to multiple internal forwarding rules. - `PRIVATE_SERVICE_CONNECT` for a private network address that is used to configure Private Service Connect. Only global internal addresses can use this purpose. 
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Address.Purpose purpose = 316407070;</code>
      * @param int $var
@@ -629,7 +598,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the region where a regional address resides. For regional addresses, you must specify the region as a path parameter in the HTTP request URL. This field is not applicable to global addresses.
+     * [Output Only] The URL of the region where a regional address resides. For regional addresses, you must specify the region as a path parameter in the HTTP request URL. *This field is not applicable to global addresses.*
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      * @return string
@@ -650,7 +619,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the region where a regional address resides. For regional addresses, you must specify the region as a path parameter in the HTTP request URL. This field is not applicable to global addresses.
+     * [Output Only] The URL of the region where a regional address resides. For regional addresses, you must specify the region as a path parameter in the HTTP request URL. *This field is not applicable to global addresses.*
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      * @param string $var

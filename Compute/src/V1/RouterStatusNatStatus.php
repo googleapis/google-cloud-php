@@ -52,6 +52,12 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
      */
     private $num_vm_endpoints_with_nat_mappings = null;
     /**
+     * Status of rules in this NAT.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterStatusNatStatusNatRuleStatus rule_status = 140223125;</code>
+     */
+    private $rule_status;
+    /**
      * A list of fully qualified URLs of reserved IP address resources.
      *
      * Generated from protobuf field <code>repeated string user_allocated_nat_ip_resources = 212776151;</code>
@@ -82,6 +88,8 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
      *           Unique name of this NAT.
      *     @type int $num_vm_endpoints_with_nat_mappings
      *           Number of VM endpoints (i.e., Nics) that can use NAT.
+     *     @type \Google\Cloud\Compute\V1\RouterStatusNatStatusNatRuleStatus[]|\Google\Protobuf\Internal\RepeatedField $rule_status
+     *           Status of rules in this NAT.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $user_allocated_nat_ip_resources
      *           A list of fully qualified URLs of reserved IP address resources.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $user_allocated_nat_ips
@@ -275,6 +283,32 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->num_vm_endpoints_with_nat_mappings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Status of rules in this NAT.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterStatusNatStatusNatRuleStatus rule_status = 140223125;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRuleStatus()
+    {
+        return $this->rule_status;
+    }
+
+    /**
+     * Status of rules in this NAT.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterStatusNatStatusNatRuleStatus rule_status = 140223125;</code>
+     * @param \Google\Cloud\Compute\V1\RouterStatusNatStatusNatRuleStatus[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRuleStatus($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\RouterStatusNatStatusNatRuleStatus::class);
+        $this->rule_status = $arr;
 
         return $this;
     }

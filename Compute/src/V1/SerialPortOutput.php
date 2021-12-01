@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An instance's serial console output.
+ * An instance serial console output.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.SerialPortOutput</code>
  */

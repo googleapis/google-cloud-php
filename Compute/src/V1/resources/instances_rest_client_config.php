@@ -417,6 +417,27 @@ return [
                     ],
                 ],
             ],
+            'SendDiagnosticInterrupt' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/sendDiagnosticInterrupt',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
             'SetDeletionProtection' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{resource}/setDeletionProtection',
