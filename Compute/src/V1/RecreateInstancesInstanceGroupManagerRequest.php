@@ -30,7 +30,7 @@ class RecreateInstancesInstanceGroupManagerRequest extends \Google\Protobuf\Inte
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
     private $project = '';
     /**
@@ -44,7 +44,7 @@ class RecreateInstancesInstanceGroupManagerRequest extends \Google\Protobuf\Inte
     /**
      * The name of the zone where the managed instance group is located.
      *
-     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      */
     private $zone = '';
 
@@ -138,7 +138,7 @@ class RecreateInstancesInstanceGroupManagerRequest extends \Google\Protobuf\Inte
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @return string
      */
     public function getProject()
@@ -149,7 +149,7 @@ class RecreateInstancesInstanceGroupManagerRequest extends \Google\Protobuf\Inte
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @param string $var
      * @return $this
      */
@@ -204,7 +204,7 @@ class RecreateInstancesInstanceGroupManagerRequest extends \Google\Protobuf\Inte
     /**
      * The name of the zone where the managed instance group is located.
      *
-     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      * @return string
      */
     public function getZone()
@@ -215,7 +215,7 @@ class RecreateInstancesInstanceGroupManagerRequest extends \Google\Protobuf\Inte
     /**
      * The name of the zone where the managed instance group is located.
      *
-     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      * @param string $var
      * @return $this
      */

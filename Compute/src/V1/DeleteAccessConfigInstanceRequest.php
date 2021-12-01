@@ -36,7 +36,7 @@ class DeleteAccessConfigInstanceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
     private $project = '';
     /**
@@ -50,7 +50,7 @@ class DeleteAccessConfigInstanceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The name of the zone for this request.
      *
-     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      */
     private $zone = '';
 
@@ -162,7 +162,7 @@ class DeleteAccessConfigInstanceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @return string
      */
     public function getProject()
@@ -173,7 +173,7 @@ class DeleteAccessConfigInstanceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @param string $var
      * @return $this
      */
@@ -228,7 +228,7 @@ class DeleteAccessConfigInstanceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The name of the zone for this request.
      *
-     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      * @return string
      */
     public function getZone()
@@ -239,7 +239,7 @@ class DeleteAccessConfigInstanceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The name of the zone for this request.
      *
-     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      * @param string $var
      * @return $this
      */

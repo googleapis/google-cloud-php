@@ -56,13 +56,13 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as `NOT FOUND`.
      *
-     * Generated from protobuf field <code>string http_error_message = 202521945;</code>
+     * Generated from protobuf field <code>string http_error_message = 202521945 [(.google.cloud.operation_field) = ERROR_MESSAGE];</code>
      */
     private $http_error_message = null;
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error status code that was returned. For example, a `404` means the resource was not found.
      *
-     * Generated from protobuf field <code>int32 http_error_status_code = 312345196;</code>
+     * Generated from protobuf field <code>int32 http_error_status_code = 312345196 [(.google.cloud.operation_field) = ERROR_CODE];</code>
      */
     private $http_error_status_code = null;
     /**
@@ -86,7 +86,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Name of the operation.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707 [(.google.cloud.operation_field) = NAME];</code>
      */
     private $name = null;
     /**
@@ -128,7 +128,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The status of the operation, which can be one of the following: `PENDING`, `RUNNING`, or `DONE`.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Operation.Status status = 181260274;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Operation.Status status = 181260274 [(.google.cloud.operation_field) = STATUS];</code>
      */
     private $status = null;
     /**
@@ -412,7 +412,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as `NOT FOUND`.
      *
-     * Generated from protobuf field <code>string http_error_message = 202521945;</code>
+     * Generated from protobuf field <code>string http_error_message = 202521945 [(.google.cloud.operation_field) = ERROR_MESSAGE];</code>
      * @return string
      */
     public function getHttpErrorMessage()
@@ -433,7 +433,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as `NOT FOUND`.
      *
-     * Generated from protobuf field <code>string http_error_message = 202521945;</code>
+     * Generated from protobuf field <code>string http_error_message = 202521945 [(.google.cloud.operation_field) = ERROR_MESSAGE];</code>
      * @param string $var
      * @return $this
      */
@@ -448,7 +448,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error status code that was returned. For example, a `404` means the resource was not found.
      *
-     * Generated from protobuf field <code>int32 http_error_status_code = 312345196;</code>
+     * Generated from protobuf field <code>int32 http_error_status_code = 312345196 [(.google.cloud.operation_field) = ERROR_CODE];</code>
      * @return int
      */
     public function getHttpErrorStatusCode()
@@ -469,7 +469,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error status code that was returned. For example, a `404` means the resource was not found.
      *
-     * Generated from protobuf field <code>int32 http_error_status_code = 312345196;</code>
+     * Generated from protobuf field <code>int32 http_error_status_code = 312345196 [(.google.cloud.operation_field) = ERROR_CODE];</code>
      * @param int $var
      * @return $this
      */
@@ -592,7 +592,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Name of the operation.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707 [(.google.cloud.operation_field) = NAME];</code>
      * @return string
      */
     public function getName()
@@ -613,7 +613,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Name of the operation.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707 [(.google.cloud.operation_field) = NAME];</code>
      * @param string $var
      * @return $this
      */
@@ -844,7 +844,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The status of the operation, which can be one of the following: `PENDING`, `RUNNING`, or `DONE`.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Operation.Status status = 181260274;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Operation.Status status = 181260274 [(.google.cloud.operation_field) = STATUS];</code>
      * @return int
      */
     public function getStatus()
@@ -865,7 +865,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The status of the operation, which can be one of the following: `PENDING`, `RUNNING`, or `DONE`.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Operation.Status status = 181260274;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Operation.Status status = 181260274 [(.google.cloud.operation_field) = STATUS];</code>
      * @param int $var
      * @return $this
      */

@@ -24,7 +24,7 @@ class InsertFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Parent ID for this request. The ID can be either be "folders/[FOLDER_ID]" if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the parent is an organization.
      *
-     * Generated from protobuf field <code>string parent_id = 459714768;</code>
+     * Generated from protobuf field <code>string parent_id = 459714768 [(.google.cloud.operation_request_field) = "parent_id"];</code>
      */
     private $parent_id = null;
     /**
@@ -96,7 +96,7 @@ class InsertFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Parent ID for this request. The ID can be either be "folders/[FOLDER_ID]" if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the parent is an organization.
      *
-     * Generated from protobuf field <code>string parent_id = 459714768;</code>
+     * Generated from protobuf field <code>string parent_id = 459714768 [(.google.cloud.operation_request_field) = "parent_id"];</code>
      * @return string
      */
     public function getParentId()
@@ -117,7 +117,7 @@ class InsertFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Parent ID for this request. The ID can be either be "folders/[FOLDER_ID]" if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the parent is an organization.
      *
-     * Generated from protobuf field <code>string parent_id = 459714768;</code>
+     * Generated from protobuf field <code>string parent_id = 459714768 [(.google.cloud.operation_request_field) = "parent_id"];</code>
      * @param string $var
      * @return $this
      */

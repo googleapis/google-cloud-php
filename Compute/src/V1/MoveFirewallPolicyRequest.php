@@ -24,7 +24,7 @@ class MoveFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The new parent of the firewall policy.
      *
-     * Generated from protobuf field <code>string parent_id = 459714768;</code>
+     * Generated from protobuf field <code>string parent_id = 459714768 [(.google.cloud.operation_request_field) = "parent_id"];</code>
      */
     private $parent_id = null;
     /**
@@ -86,7 +86,7 @@ class MoveFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The new parent of the firewall policy.
      *
-     * Generated from protobuf field <code>string parent_id = 459714768;</code>
+     * Generated from protobuf field <code>string parent_id = 459714768 [(.google.cloud.operation_request_field) = "parent_id"];</code>
      * @return string
      */
     public function getParentId()
@@ -107,7 +107,7 @@ class MoveFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The new parent of the firewall policy.
      *
-     * Generated from protobuf field <code>string parent_id = 459714768;</code>
+     * Generated from protobuf field <code>string parent_id = 459714768 [(.google.cloud.operation_request_field) = "parent_id"];</code>
      * @param string $var
      * @return $this
      */

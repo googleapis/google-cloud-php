@@ -30,13 +30,13 @@ class PatchRegionHealthCheckRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
     private $project = '';
     /**
      * Name of the region scoping this request.
      *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      */
     private $region = '';
     /**
@@ -138,7 +138,7 @@ class PatchRegionHealthCheckRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @return string
      */
     public function getProject()
@@ -149,7 +149,7 @@ class PatchRegionHealthCheckRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @param string $var
      * @return $this
      */
@@ -164,7 +164,7 @@ class PatchRegionHealthCheckRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the region scoping this request.
      *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      * @return string
      */
     public function getRegion()
@@ -175,7 +175,7 @@ class PatchRegionHealthCheckRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the region scoping this request.
      *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      * @param string $var
      * @return $this
      */

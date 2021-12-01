@@ -18,13 +18,13 @@ class InsertRegionTargetHttpProxyRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
     private $project = '';
     /**
      * Name of the region scoping this request.
      *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      */
     private $region = '';
     /**
@@ -68,7 +68,7 @@ class InsertRegionTargetHttpProxyRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @return string
      */
     public function getProject()
@@ -79,7 +79,7 @@ class InsertRegionTargetHttpProxyRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @param string $var
      * @return $this
      */
@@ -94,7 +94,7 @@ class InsertRegionTargetHttpProxyRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Name of the region scoping this request.
      *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      * @return string
      */
     public function getRegion()
@@ -105,7 +105,7 @@ class InsertRegionTargetHttpProxyRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Name of the region scoping this request.
      *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      * @param string $var
      * @return $this
      */
