@@ -40,7 +40,6 @@ use Google\ApiCore\Tests\Unit\TestTrait;
 use Google\ApiCore\Testing\MockRequest;
 use Google\ApiCore\Testing\MockResponse;
 use Google\ApiCore\Transport\RestTransport;
-use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Protobuf\Any;
 use Google\Rpc\ErrorInfo;
@@ -426,7 +425,9 @@ class RestTransportTest extends TestCase
         $credentialsWrapper = $this->prophesize(CredentialsWrapper::class);
         $credentialsWrapper->getAuthorizationHeaderCallback('an-audience')
             ->shouldBeCalledOnce()
-            ->willReturn(function() { return []; });
+            ->willReturn(function () {
+                return [];
+            });
 
         $options = [
             'audience' => 'an-audience',
@@ -465,7 +466,9 @@ class RestTransportTest extends TestCase
         $credentialsWrapper = $this->prophesize(CredentialsWrapper::class);
         $credentialsWrapper->getAuthorizationHeaderCallback(null)
             ->shouldBeCalledOnce()
-            ->willReturn(function() { return ''; });
+            ->willReturn(function () {
+                return '';
+            });
 
         $options = [
             'credentialsWrapper' => $credentialsWrapper->reveal(),

@@ -184,7 +184,8 @@ class ApiExceptionTest extends TestCase
     /**
      * @dataProvider getMetadata
      */
-    public function testCreateFromApiResponse($metadata, $metadataArray) {
+    public function testCreateFromApiResponse($metadata, $metadataArray)
+    {
         $basicMessage = 'testWithMetadata';
         $code = Code::OK;
         $status = 'OK';
@@ -203,10 +204,106 @@ class ApiExceptionTest extends TestCase
         $this->assertSame($metadata, $apiException->getMetadata());
     }
 
+    public function getRestMetadata()
+    {
+        $unknownBinData = [
+            [
+                '@type' => 'unknown-bin',
+                'data' => '<Unknown Binary Data>'
+            ]
+        ];
+        $asciiData = [
+            [
+                '@type' => 'ascii',
+                'data' => 'ascii-data'
+            ]
+        ];
+        $retryInfoData = [
+            [
+                '@type' => 'google.rpc.retryinfo-bin',
+                'retryDelay' => [
+                    'seconds' => 1,
+                    'nanos' => 2,
+                ],
+            ]
+        ];
+        $allKnownTypesData = [
+            [
+                '@type' => 'google.rpc.retryinfo-bin',
+            ],
+            [
+                '@type' => 'google.rpc.debuginfo-bin',
+                "stackEntries" => [],
+                "detail" => ""
+            ],
+            [
+                '@type' => 'google.rpc.quotafailure-bin',
+                'violations' => [],
+            ],
+            [
+                '@type' => 'google.rpc.badrequest-bin',
+                'fieldViolations' => []
+            ],
+            [
+                '@type' => 'google.rpc.requestinfo-bin',
+                'requestId' => '',
+                'servingData' => '',
+            ],
+            [
+                '@type' => 'google.rpc.resourceinfo-bin',
+                'resourceType' => '',
+                'resourceName' => '',
+                'owner' => '',
+                'description' => '',
+            ],
+            [
+                '@type' => 'google.rpc.help-bin',
+                'links' => [],
+            ],
+            [
+                '@type' => 'google.rpc.localizedmessage-bin',
+                'locale' => '',
+                'message' => '',
+            ],
+        ];
+
+        return [
+            [
+                [[]],
+                [[null]],
+                [$unknownBinData],
+                [$asciiData],
+                [$allKnownTypesData]
+            ]
+        ];
+    }
+
+    /**
+     * @dataProvider getRestMetadata
+     */
+    public function testCreateFromRestApiResponse($metadata)
+    {
+        $basicMessage = 'testWithRestMetadata';
+        $code = Code::OK;
+        $status = 'OK';
+
+        $apiException = ApiException::createFromRestApiResponse($basicMessage, $code, $metadata);
+
+        $expectedMessage = json_encode([
+            'message' => $basicMessage,
+            'code' => $code,
+            'status' => $status,
+            'details' => $metadata
+        ], JSON_PRETTY_PRINT);
+
+        $this->assertSame($expectedMessage, $apiException->getMessage());
+    }
+
     /**
      * @dataProvider getRpcStatusData
      */
-    public function testCreateFromRpcStatus($status, $expectedApiException) {
+    public function testCreateFromRpcStatus($status, $expectedApiException)
+    {
         $actualApiException = ApiException::createFromRpcStatus($status);
         $this->assertEquals($expectedApiException, $actualApiException);
     }
@@ -238,7 +335,11 @@ class ApiExceptionTest extends TestCase
         return [
             [
                 $status,
-                new ApiException($expectedMessage, Code::OK, 'OK', [
+                new ApiException(
+                    $expectedMessage,
+                    Code::OK,
+                    'OK',
+                    [
                         'metadata' => $status->getDetails(),
                         'basicMessage' => $status->getMessage(),
                     ]
@@ -252,13 +353,12 @@ class ApiExceptionTest extends TestCase
      */
     public function testCreateFromRequestException($re, $stream, $expectedCode)
     {
-        
         $ae = ApiException::createFromRequestException($re, $stream);
         $this->assertSame($expectedCode, $ae->getCode());
     }
 
     public function buildRequestExceptions()
-    { 
+    {
         $error = [
             'error' => [
                 'status' => 'NOT_FOUND',

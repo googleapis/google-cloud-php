@@ -116,6 +116,30 @@ class ApiException extends Exception
     }
 
     /**
+     * For REST-based responses, the metadata does not need to be decoded.
+     *
+     * @param string $basicMessage
+     * @param int $rpcCode
+     * @param array|null $metadata
+     * @param \Exception $previous
+     * @return ApiException
+     */
+    public static function createFromRestApiResponse(
+        $basicMessage,
+        $rpcCode,
+        array $metadata = null,
+        \Exception $previous = null
+    ) {
+        return self::create(
+            $basicMessage,
+            $rpcCode,
+            $metadata,
+            is_null($metadata) ? [] : $metadata,
+            $previous
+        );
+    }
+
+    /**
      * Construct an ApiException with a useful message, including decoded metadata.
      *
      * @param string $basicMessage
@@ -184,7 +208,7 @@ class ApiException extends Exception
                 ? ApiStatus::rpcCodeFromStatus($error['status'])
                 : $ex->getCode();
             $metadata = isset($error['details']) ? $error['details'] : null;
-            return static::createFromApiResponse($basicMessage, $code, $metadata);
+            return static::createFromRestApiResponse($basicMessage, $code, $metadata);
         }
         // Use the RPC code instead of the HTTP Status Code.
         $code = ApiStatus::rpcCodeFromHttpStatusCode($res->getStatusCode());
