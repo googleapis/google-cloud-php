@@ -1,4 +1,4 @@
-# Copyright 2018 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,34 +14,21 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import subprocess
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
-
-AUTOSYNTH_MULTIPLE_COMMITS = True
+from pathlib import Path
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Vision").resolve()
+dest = Path().resolve()
 
-v1_library = gapic.php_library(
-    service='vision',
-    version='v1',
-    bazel_target=f'//google/cloud/vision/v1:google-cloud-vision-v1-php',
-)
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-# copy all src except partial veneer classes
-s.move(v1_library / f'src/V1/Gapic')
-s.move(v1_library / f'src/V1/resources')
-
-# copy proto files to src also
-s.move(v1_library / f'proto/src/Google/Cloud/Vision', f'src/')
-s.move(v1_library / f'tests/')
-
-# copy GPBMetadata file to metadata
-s.move(v1_library / f'proto/src/GPBMetadata/Google/Cloud/Vision', f'metadata/')
+php.owlbot_main(src=src, dest=dest, copy_excludes=["./V1/gapic_metadata.json", "./V1/ImageAnnotatorClient.php", "./V1/ProductSearchClient.php"])
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -66,16 +53,6 @@ s.replace(
     'src/V1/**/*Client.php',
     r'^(\s+\*\n)?\s+\*\s@experimental\n',
     '')
-
-# fix year
-s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    r'Copyright 2017')
-s.replace(
-    'tests/**/V1/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
 
 # Change the wording for the deprecation warning.
 s.replace(
@@ -114,16 +91,3 @@ s.replace(
     r"(.{0,})\]\((/.{0,})\)",
     r"\1](https://cloud.google.com\2)"
 )
-
-# format generated clients
-subprocess.run([
-    'npx',
-    '-y',
-    '-p',
-    '@prettier/plugin-php@^0.16',
-    'prettier',
-    '**/Gapic/*',
-    '--write',
-    '--parser=php',
-    '--single-quote',
-    '--print-width=80'])
