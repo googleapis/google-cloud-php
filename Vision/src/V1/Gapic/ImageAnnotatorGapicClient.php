@@ -131,16 +131,22 @@ class ImageAnnotatorGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/image_annotator_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/image_annotator_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/image_annotator_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ . '/../resources/image_annotator_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/image_annotator_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/image_annotator_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/image_annotator_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/image_annotator_rest_client_config.php',
                 ],
             ],
         ];
@@ -169,8 +175,14 @@ class ImageAnnotatorGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse(
+            $operationName,
+            $this->getOperationsClient(),
+            $options
+        );
         $operation->reload();
         return $operation;
     }
@@ -321,9 +333,18 @@ class ImageAnnotatorGapicClient
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('AsyncBatchAnnotateFiles', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'AsyncBatchAnnotateFiles',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -403,8 +424,11 @@ class ImageAnnotatorGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function asyncBatchAnnotateImages($requests, $outputConfig, array $optionalArgs = [])
-    {
+    public function asyncBatchAnnotateImages(
+        $requests,
+        $outputConfig,
+        array $optionalArgs = []
+    ) {
         $request = new AsyncBatchAnnotateImagesRequest();
         $requestParamHeaders = [];
         $request->setRequests($requests);
@@ -414,9 +438,18 @@ class ImageAnnotatorGapicClient
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('AsyncBatchAnnotateImages', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'AsyncBatchAnnotateImages',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -478,9 +511,18 @@ class ImageAnnotatorGapicClient
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('BatchAnnotateFiles', BatchAnnotateFilesResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'BatchAnnotateFiles',
+            BatchAnnotateFilesResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -535,8 +577,17 @@ class ImageAnnotatorGapicClient
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('BatchAnnotateImages', BatchAnnotateImagesResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'BatchAnnotateImages',
+            BatchAnnotateImagesResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }

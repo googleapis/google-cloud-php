@@ -17,6 +17,7 @@
 import logging
 from pathlib import Path
 import synthtool as s
+import subprocess
 from synthtool.languages import php
 from synthtool import _tracked_paths
 
@@ -91,3 +92,16 @@ s.replace(
     r"(.{0,})\]\((/.{0,})\)",
     r"\1](https://cloud.google.com\2)"
 )
+
+# format generated clients
+subprocess.run([
+    'npx',
+    '-y',
+    '-p',
+    '@prettier/plugin-php@^0.16',
+    'prettier',
+    '**/Gapic/*',
+    '--write',
+    '--parser=php',
+    '--single-quote',
+    '--print-width=80'])
