@@ -34,7 +34,7 @@ php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        src / "*/proto/src/Google/Cloud/Compute/*/*.php"
+        src / "*/proto/src/Google/Cloud/Compute/*/*_*.php"
     ]
 )
 
