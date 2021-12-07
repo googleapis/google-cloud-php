@@ -1306,6 +1306,9 @@ class ContactCenterInsightsGapicClient
      *           A fully qualified KMS key name for BigQuery tables protected by CMEK.
      *           Format:
      *           projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}/cryptoKeyVersions/{version}
+     *     @type int $writeDisposition
+     *           Options for what to do if the destination table already exists.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\ContactCenterInsights\V1\ExportInsightsDataRequest\WriteDisposition}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1335,6 +1338,10 @@ class ContactCenterInsightsGapicClient
 
         if (isset($optionalArgs['kmsKey'])) {
             $request->setKmsKey($optionalArgs['kmsKey']);
+        }
+
+        if (isset($optionalArgs['writeDisposition'])) {
+            $request->setWriteDisposition($optionalArgs['writeDisposition']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
