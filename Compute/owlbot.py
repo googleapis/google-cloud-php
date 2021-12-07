@@ -29,7 +29,7 @@ dest = Path().resolve()
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
-# Exclude partial veneer files.
+# Exclude backwards-compatibility files for protos
 php.owlbot_main(
     src=src,
     dest=dest,
