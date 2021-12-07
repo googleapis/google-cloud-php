@@ -112,9 +112,13 @@ class BinauthzManagementServiceV1Beta1GapicClient
 
     private static $attestorNameTemplate;
 
+    private static $locationPolicyNameTemplate;
+
     private static $policyNameTemplate;
 
     private static $projectNameTemplate;
+
+    private static $projectPolicyNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -146,6 +150,15 @@ class BinauthzManagementServiceV1Beta1GapicClient
         return self::$attestorNameTemplate;
     }
 
+    private static function getLocationPolicyNameTemplate()
+    {
+        if (self::$locationPolicyNameTemplate == null) {
+            self::$locationPolicyNameTemplate = new PathTemplate('locations/{location}/policy');
+        }
+
+        return self::$locationPolicyNameTemplate;
+    }
+
     private static function getPolicyNameTemplate()
     {
         if (self::$policyNameTemplate == null) {
@@ -164,13 +177,24 @@ class BinauthzManagementServiceV1Beta1GapicClient
         return self::$projectNameTemplate;
     }
 
+    private static function getProjectPolicyNameTemplate()
+    {
+        if (self::$projectPolicyNameTemplate == null) {
+            self::$projectPolicyNameTemplate = new PathTemplate('projects/{project}/policy');
+        }
+
+        return self::$projectPolicyNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'attestor' => self::getAttestorNameTemplate(),
+                'locationPolicy' => self::getLocationPolicyNameTemplate(),
                 'policy' => self::getPolicyNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
+                'projectPolicy' => self::getProjectPolicyNameTemplate(),
             ];
         }
 
@@ -193,6 +217,23 @@ class BinauthzManagementServiceV1Beta1GapicClient
         return self::getAttestorNameTemplate()->render([
             'project' => $project,
             'attestor' => $attestor,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * location_policy resource.
+     *
+     * @param string $location
+     *
+     * @return string The formatted location_policy resource.
+     *
+     * @experimental
+     */
+    public static function locationPolicyName($location)
+    {
+        return self::getLocationPolicyNameTemplate()->render([
+            'location' => $location,
         ]);
     }
 
@@ -231,12 +272,31 @@ class BinauthzManagementServiceV1Beta1GapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_policy resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_policy resource.
+     *
+     * @experimental
+     */
+    public static function projectPolicyName($project)
+    {
+        return self::getProjectPolicyNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - attestor: projects/{project}/attestors/{attestor}
+     * - locationPolicy: locations/{location}/policy
      * - policy: projects/{project}/policy
      * - project: projects/{project}
+     * - projectPolicy: projects/{project}/policy
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -341,13 +401,10 @@ class BinauthzManagementServiceV1Beta1GapicClient
     }
 
     /**
-     * Creates an [attestor][google.cloud.binaryauthorization.v1beta1.Attestor],
-     * and returns a copy of the new
-     * [attestor][google.cloud.binaryauthorization.v1beta1.Attestor]. Returns
-     * NOT_FOUND if the project does not exist, INVALID_ARGUMENT if the request is
-     * malformed, ALREADY_EXISTS if the
-     * [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] already
-     * exists.
+     * Creates an [attestor][google.cloud.binaryauthorization.v1beta1.Attestor], and returns a copy of the new
+     * [attestor][google.cloud.binaryauthorization.v1beta1.Attestor]. Returns NOT_FOUND if the project does not exist,
+     * INVALID_ARGUMENT if the request is malformed, ALREADY_EXISTS if the
+     * [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] already exists.
      *
      * Sample code:
      * ```
@@ -362,15 +419,11 @@ class BinauthzManagementServiceV1Beta1GapicClient
      * }
      * ```
      *
-     * @param string   $parent       Required. The parent of this
-     *                               [attestor][google.cloud.binaryauthorization.v1beta1.Attestor].
-     * @param string   $attestorId   Required. The
-     *                               [attestors][google.cloud.binaryauthorization.v1beta1.Attestor] ID.
-     * @param Attestor $attestor     Required. The initial
-     *                               [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] value. The
-     *                               service will overwrite the [attestor
-     *                               name][google.cloud.binaryauthorization.v1beta1.Attestor.name] field with
-     *                               the resource name, in the format `projects/&#42;/attestors/*`.
+     * @param string   $parent       Required. The parent of this [attestor][google.cloud.binaryauthorization.v1beta1.Attestor].
+     * @param string   $attestorId   Required. The [attestors][google.cloud.binaryauthorization.v1beta1.Attestor] ID.
+     * @param Attestor $attestor     Required. The initial [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] value. The service will
+     *                               overwrite the [attestor name][google.cloud.binaryauthorization.v1beta1.Attestor.name] field with the resource name,
+     *                               in the format `projects/&#42;/attestors/*`.
      * @param array    $optionalArgs {
      *     Optional.
      *
@@ -401,10 +454,8 @@ class BinauthzManagementServiceV1Beta1GapicClient
     }
 
     /**
-     * Deletes an [attestor][google.cloud.binaryauthorization.v1beta1.Attestor].
-     * Returns NOT_FOUND if the
-     * [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] does not
-     * exist.
+     * Deletes an [attestor][google.cloud.binaryauthorization.v1beta1.Attestor]. Returns NOT_FOUND if the
+     * [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] does not exist.
      *
      * Sample code:
      * ```
@@ -417,9 +468,8 @@ class BinauthzManagementServiceV1Beta1GapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the
-     *                             [attestors][google.cloud.binaryauthorization.v1beta1.Attestor] to delete,
-     *                             in the format `projects/&#42;/attestors/*`.
+     * @param string $name         Required. The name of the [attestors][google.cloud.binaryauthorization.v1beta1.Attestor] to delete, in the format
+     *                             `projects/&#42;/attestors/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -447,9 +497,7 @@ class BinauthzManagementServiceV1Beta1GapicClient
 
     /**
      * Gets an [attestor][google.cloud.binaryauthorization.v1beta1.Attestor].
-     * Returns NOT_FOUND if the
-     * [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] does not
-     * exist.
+     * Returns NOT_FOUND if the [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] does not exist.
      *
      * Sample code:
      * ```
@@ -462,9 +510,8 @@ class BinauthzManagementServiceV1Beta1GapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the
-     *                             [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] to retrieve,
-     *                             in the format `projects/&#42;/attestors/*`.
+     * @param string $name         Required. The name of the [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] to retrieve, in the format
+     *                             `projects/&#42;/attestors/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -493,16 +540,13 @@ class BinauthzManagementServiceV1Beta1GapicClient
     }
 
     /**
-     * A [policy][google.cloud.binaryauthorization.v1beta1.Policy] specifies the
-     * [attestors][google.cloud.binaryauthorization.v1beta1.Attestor] that must
-     * attest to a container image, before the project is allowed to deploy that
+     * A [policy][google.cloud.binaryauthorization.v1beta1.Policy] specifies the [attestors][google.cloud.binaryauthorization.v1beta1.Attestor] that must attest to
+     * a container image, before the project is allowed to deploy that
      * image. There is at most one policy per project. All image admission
      * requests are permitted if a project has no policy.
      *
-     * Gets the [policy][google.cloud.binaryauthorization.v1beta1.Policy] for this
-     * project. Returns a default
-     * [policy][google.cloud.binaryauthorization.v1beta1.Policy] if the project
-     * does not have one.
+     * Gets the [policy][google.cloud.binaryauthorization.v1beta1.Policy] for this project. Returns a default
+     * [policy][google.cloud.binaryauthorization.v1beta1.Policy] if the project does not have one.
      *
      * Sample code:
      * ```
@@ -515,9 +559,8 @@ class BinauthzManagementServiceV1Beta1GapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the
-     *                             [policy][google.cloud.binaryauthorization.v1beta1.Policy] to retrieve, in
-     *                             the format `projects/&#42;/policy`.
+     * @param string $name         Required. The resource name of the [policy][google.cloud.binaryauthorization.v1beta1.Policy] to retrieve,
+     *                             in the format `projects/&#42;/policy`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -573,8 +616,7 @@ class BinauthzManagementServiceV1Beta1GapicClient
      * ```
      *
      * @param string $parent       Required. The resource name of the project associated with the
-     *                             [attestors][google.cloud.binaryauthorization.v1beta1.Attestor], in the
-     *                             format `projects/*`.
+     *                             [attestors][google.cloud.binaryauthorization.v1beta1.Attestor], in the format `projects/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -621,9 +663,7 @@ class BinauthzManagementServiceV1Beta1GapicClient
 
     /**
      * Updates an [attestor][google.cloud.binaryauthorization.v1beta1.Attestor].
-     * Returns NOT_FOUND if the
-     * [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] does not
-     * exist.
+     * Returns NOT_FOUND if the [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] does not exist.
      *
      * Sample code:
      * ```
@@ -636,12 +676,9 @@ class BinauthzManagementServiceV1Beta1GapicClient
      * }
      * ```
      *
-     * @param Attestor $attestor     Required. The updated
-     *                               [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] value. The
-     *                               service will overwrite the [attestor
-     *                               name][google.cloud.binaryauthorization.v1beta1.Attestor.name] field with
-     *                               the resource name in the request URL, in the format
-     *                               `projects/&#42;/attestors/*`.
+     * @param Attestor $attestor     Required. The updated [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] value. The service will
+     *                               overwrite the [attestor name][google.cloud.binaryauthorization.v1beta1.Attestor.name] field with the resource name
+     *                               in the request URL, in the format `projects/&#42;/attestors/*`.
      * @param array    $optionalArgs {
      *     Optional.
      *
@@ -670,13 +707,11 @@ class BinauthzManagementServiceV1Beta1GapicClient
     }
 
     /**
-     * Creates or updates a project's
-     * [policy][google.cloud.binaryauthorization.v1beta1.Policy], and returns a
-     * copy of the new [policy][google.cloud.binaryauthorization.v1beta1.Policy].
-     * A policy is always updated as a whole, to avoid race conditions with
-     * concurrent policy enforcement (or management!) requests. Returns NOT_FOUND
-     * if the project does not exist, INVALID_ARGUMENT if the request is
-     * malformed.
+     * Creates or updates a project's [policy][google.cloud.binaryauthorization.v1beta1.Policy], and returns a copy of the
+     * new [policy][google.cloud.binaryauthorization.v1beta1.Policy]. A policy is always updated as a whole, to avoid race
+     * conditions with concurrent policy enforcement (or management!)
+     * requests. Returns NOT_FOUND if the project does not exist, INVALID_ARGUMENT
+     * if the request is malformed.
      *
      * Sample code:
      * ```
@@ -689,11 +724,9 @@ class BinauthzManagementServiceV1Beta1GapicClient
      * }
      * ```
      *
-     * @param Policy $policy       Required. A new or updated
-     *                             [policy][google.cloud.binaryauthorization.v1beta1.Policy] value. The
-     *                             service will overwrite the [policy
-     *                             name][google.cloud.binaryauthorization.v1beta1.Policy.name] field with the
-     *                             resource name in the request URL, in the format `projects/&#42;/policy`.
+     * @param Policy $policy       Required. A new or updated [policy][google.cloud.binaryauthorization.v1beta1.Policy] value. The service will
+     *                             overwrite the [policy name][google.cloud.binaryauthorization.v1beta1.Policy.name] field with the resource name in
+     *                             the request URL, in the format `projects/&#42;/policy`.
      * @param array  $optionalArgs {
      *     Optional.
      *

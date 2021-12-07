@@ -9,9 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An [user owned drydock
- * note][google.cloud.binaryauthorization.v1beta1.UserOwnedDrydockNote]
- * references a Drydock ATTESTATION_AUTHORITY Note created by the user.
+ * An [user owned drydock note][google.cloud.binaryauthorization.v1beta1.UserOwnedDrydockNote] references a Drydock
+ * ATTESTATION_AUTHORITY Note created by the user.
  *
  * Generated from protobuf message <code>google.cloud.binaryauthorization.v1beta1.UserOwnedDrydockNote</code>
  */

@@ -22,7 +22,7 @@ class Service
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ª
+°
 6google/cloud/binaryauthorization/v1beta1/service.proto(google.cloud.binaryauthorization.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto8google/cloud/binaryauthorization/v1beta1/resources.protogoogle/protobuf/empty.proto"S
 GetPolicyRequest?
 name (	B1àAúA+
@@ -50,7 +50,10 @@ page_token (	"w
 next_page_token (	"Z
 DeleteAttestorRequestA
 name (	B3àAúA-
-+binaryauthorization.googleapis.com/Attestor2Ë
++binaryauthorization.googleapis.com/Attestor"Y
+GetSystemPolicyRequest?
+name (	B1àAúA+
+)binaryauthorization.googleapis.com/Policy2Ë
  BinauthzManagementServiceV1Beta1«
 	GetPolicy:.google.cloud.binaryauthorization.v1beta1.GetPolicyRequest0.google.cloud.binaryauthorization.v1beta1.Policy"0‚Óä“#!/v1beta1/{name=projects/*/policy}ÚAnameÂ
 UpdatePolicy=.google.cloud.binaryauthorization.v1beta1.UpdatePolicyRequest0.google.cloud.binaryauthorization.v1beta1.Policy"A‚Óä“2(/v1beta1/{policy.name=projects/*/policy}:policyÚApolicyÝ
@@ -58,7 +61,9 @@ page_token (	"w
 GetAttestor<.google.cloud.binaryauthorization.v1beta1.GetAttestorRequest2.google.cloud.binaryauthorization.v1beta1.Attestor"5‚Óä“(&/v1beta1/{name=projects/*/attestors/*}ÚAnameÓ
 UpdateAttestor?.google.cloud.binaryauthorization.v1beta1.UpdateAttestorRequest2.google.cloud.binaryauthorization.v1beta1.Attestor"L‚Óä“;//v1beta1/{attestor.name=projects/*/attestors/*}:attestorÚAattestorÉ
 ListAttestors>.google.cloud.binaryauthorization.v1beta1.ListAttestorsRequest?.google.cloud.binaryauthorization.v1beta1.ListAttestorsResponse"7‚Óä“(&/v1beta1/{parent=projects/*}/attestorsÚAparent 
-DeleteAttestor?.google.cloud.binaryauthorization.v1beta1.DeleteAttestorRequest.google.protobuf.Empty"5‚Óä“(*&/v1beta1/{name=projects/*/attestors/*}ÚAnameVÊA"binaryauthorization.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBµ
+DeleteAttestor?.google.cloud.binaryauthorization.v1beta1.DeleteAttestorRequest.google.protobuf.Empty"5‚Óä“(*&/v1beta1/{name=projects/*/attestors/*}ÚAnameVÊA"binaryauthorization.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platform2¨
+SystemPolicyV1Beta1¸
+GetSystemPolicy@.google.cloud.binaryauthorization.v1beta1.GetSystemPolicyRequest0.google.cloud.binaryauthorization.v1beta1.Policy"1‚Óä“$"/v1beta1/{name=locations/*/policy}ÚAnameVÊA"binaryauthorization.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBµ
 ,com.google.cloud.binaryauthorization.v1beta1BBinaryAuthorizationServiceProtoPZ[google.golang.org/genproto/googleapis/cloud/binaryauthorization/v1beta1;binaryauthorizationøª(Google.Cloud.BinaryAuthorization.V1Beta1Ê(Google\\Cloud\\BinaryAuthorization\\V1beta1ê+Google::Cloud::BinaryAuthorization::V1beta1bproto3'
         , true);
 

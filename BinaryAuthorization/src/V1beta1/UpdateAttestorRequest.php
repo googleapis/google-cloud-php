@@ -16,12 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateAttestorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The updated
-     * [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] value. The
-     * service will overwrite the [attestor
-     * name][google.cloud.binaryauthorization.v1beta1.Attestor.name] field with
-     * the resource name in the request URL, in the format
-     * `projects/&#42;&#47;attestors/&#42;`.
+     * Required. The updated [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] value. The service will
+     * overwrite the [attestor name][google.cloud.binaryauthorization.v1beta1.Attestor.name] field with the resource name
+     * in the request URL, in the format `projects/&#42;&#47;attestors/&#42;`.
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1beta1.Attestor attestor = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -34,12 +31,9 @@ class UpdateAttestorRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\BinaryAuthorization\V1beta1\Attestor $attestor
-     *           Required. The updated
-     *           [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] value. The
-     *           service will overwrite the [attestor
-     *           name][google.cloud.binaryauthorization.v1beta1.Attestor.name] field with
-     *           the resource name in the request URL, in the format
-     *           `projects/&#42;&#47;attestors/&#42;`.
+     *           Required. The updated [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] value. The service will
+     *           overwrite the [attestor name][google.cloud.binaryauthorization.v1beta1.Attestor.name] field with the resource name
+     *           in the request URL, in the format `projects/&#42;&#47;attestors/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,12 +42,9 @@ class UpdateAttestorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The updated
-     * [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] value. The
-     * service will overwrite the [attestor
-     * name][google.cloud.binaryauthorization.v1beta1.Attestor.name] field with
-     * the resource name in the request URL, in the format
-     * `projects/&#42;&#47;attestors/&#42;`.
+     * Required. The updated [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] value. The service will
+     * overwrite the [attestor name][google.cloud.binaryauthorization.v1beta1.Attestor.name] field with the resource name
+     * in the request URL, in the format `projects/&#42;&#47;attestors/&#42;`.
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1beta1.Attestor attestor = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\BinaryAuthorization\V1beta1\Attestor|null
@@ -74,12 +65,9 @@ class UpdateAttestorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The updated
-     * [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] value. The
-     * service will overwrite the [attestor
-     * name][google.cloud.binaryauthorization.v1beta1.Attestor.name] field with
-     * the resource name in the request URL, in the format
-     * `projects/&#42;&#47;attestors/&#42;`.
+     * Required. The updated [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] value. The service will
+     * overwrite the [attestor name][google.cloud.binaryauthorization.v1beta1.Attestor.name] field with the resource name
+     * in the request URL, in the format `projects/&#42;&#47;attestors/&#42;`.
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1beta1.Attestor attestor = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\BinaryAuthorization\V1beta1\Attestor $var

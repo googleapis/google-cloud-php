@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A [policy][google.cloud.binaryauthorization.v1beta1.Policy] for container
- * image binary authorization.
+ * A [policy][google.cloud.binaryauthorization.v1beta1.Policy] for Binary Authorization.
  *
  * Generated from protobuf message <code>google.cloud.binaryauthorization.v1beta1.Policy</code>
  */
@@ -59,6 +58,30 @@ class Policy extends \Google\Protobuf\Internal\Message
      */
     private $cluster_admission_rules;
     /**
+     * Optional. Per-kubernetes-namespace admission rules. K8s namespace spec format:
+     *   `[a-z.-]+`, e.g. `some-namespace`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.binaryauthorization.v1beta1.AdmissionRule> kubernetes_namespace_admission_rules = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $kubernetes_namespace_admission_rules;
+    /**
+     * Optional. Per-kubernetes-service-account admission rules. Service account
+     * spec format: `namespace:serviceaccount`. e.g. `test-ns:default`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.binaryauthorization.v1beta1.AdmissionRule> kubernetes_service_account_admission_rules = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $kubernetes_service_account_admission_rules;
+    /**
+     * Optional. Per-istio-service-identity admission rules. Istio service
+     * identity spec format:
+     * `spiffe://<domain>/ns/<namespace>/sa/<serviceaccount>` or
+     * `<domain>/ns/<namespace>/sa/<serviceaccount>`
+     * e.g. `spiffe://example.com/ns/test-ns/sa/default`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.binaryauthorization.v1beta1.AdmissionRule> istio_service_identity_admission_rules = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $istio_service_identity_admission_rules;
+    /**
      * Required. Default admission rule for a cluster without a per-cluster, per-
      * kubernetes-service-account, or per-istio-service-identity admission rule.
      *
@@ -100,6 +123,18 @@ class Policy extends \Google\Protobuf\Internal\Message
      *           (e.g. us-central1).
      *           For `clusterId` syntax restrictions see
      *           https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters.
+     *     @type array|\Google\Protobuf\Internal\MapField $kubernetes_namespace_admission_rules
+     *           Optional. Per-kubernetes-namespace admission rules. K8s namespace spec format:
+     *             `[a-z.-]+`, e.g. `some-namespace`
+     *     @type array|\Google\Protobuf\Internal\MapField $kubernetes_service_account_admission_rules
+     *           Optional. Per-kubernetes-service-account admission rules. Service account
+     *           spec format: `namespace:serviceaccount`. e.g. `test-ns:default`
+     *     @type array|\Google\Protobuf\Internal\MapField $istio_service_identity_admission_rules
+     *           Optional. Per-istio-service-identity admission rules. Istio service
+     *           identity spec format:
+     *           `spiffe://<domain>/ns/<namespace>/sa/<serviceaccount>` or
+     *           `<domain>/ns/<namespace>/sa/<serviceaccount>`
+     *           e.g. `spiffe://example.com/ns/test-ns/sa/default`
      *     @type \Google\Cloud\BinaryAuthorization\V1beta1\AdmissionRule $default_admission_rule
      *           Required. Default admission rule for a cluster without a per-cluster, per-
      *           kubernetes-service-account, or per-istio-service-identity admission rule.
@@ -262,6 +297,96 @@ class Policy extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BinaryAuthorization\V1beta1\AdmissionRule::class);
         $this->cluster_admission_rules = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Per-kubernetes-namespace admission rules. K8s namespace spec format:
+     *   `[a-z.-]+`, e.g. `some-namespace`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.binaryauthorization.v1beta1.AdmissionRule> kubernetes_namespace_admission_rules = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getKubernetesNamespaceAdmissionRules()
+    {
+        return $this->kubernetes_namespace_admission_rules;
+    }
+
+    /**
+     * Optional. Per-kubernetes-namespace admission rules. K8s namespace spec format:
+     *   `[a-z.-]+`, e.g. `some-namespace`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.binaryauthorization.v1beta1.AdmissionRule> kubernetes_namespace_admission_rules = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setKubernetesNamespaceAdmissionRules($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BinaryAuthorization\V1beta1\AdmissionRule::class);
+        $this->kubernetes_namespace_admission_rules = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Per-kubernetes-service-account admission rules. Service account
+     * spec format: `namespace:serviceaccount`. e.g. `test-ns:default`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.binaryauthorization.v1beta1.AdmissionRule> kubernetes_service_account_admission_rules = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getKubernetesServiceAccountAdmissionRules()
+    {
+        return $this->kubernetes_service_account_admission_rules;
+    }
+
+    /**
+     * Optional. Per-kubernetes-service-account admission rules. Service account
+     * spec format: `namespace:serviceaccount`. e.g. `test-ns:default`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.binaryauthorization.v1beta1.AdmissionRule> kubernetes_service_account_admission_rules = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setKubernetesServiceAccountAdmissionRules($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BinaryAuthorization\V1beta1\AdmissionRule::class);
+        $this->kubernetes_service_account_admission_rules = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Per-istio-service-identity admission rules. Istio service
+     * identity spec format:
+     * `spiffe://<domain>/ns/<namespace>/sa/<serviceaccount>` or
+     * `<domain>/ns/<namespace>/sa/<serviceaccount>`
+     * e.g. `spiffe://example.com/ns/test-ns/sa/default`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.binaryauthorization.v1beta1.AdmissionRule> istio_service_identity_admission_rules = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getIstioServiceIdentityAdmissionRules()
+    {
+        return $this->istio_service_identity_admission_rules;
+    }
+
+    /**
+     * Optional. Per-istio-service-identity admission rules. Istio service
+     * identity spec format:
+     * `spiffe://<domain>/ns/<namespace>/sa/<serviceaccount>` or
+     * `<domain>/ns/<namespace>/sa/<serviceaccount>`
+     * e.g. `spiffe://example.com/ns/test-ns/sa/default`
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.binaryauthorization.v1beta1.AdmissionRule> istio_service_identity_admission_rules = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setIstioServiceIdentityAdmissionRules($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BinaryAuthorization\V1beta1\AdmissionRule::class);
+        $this->istio_service_identity_admission_rules = $arr;
 
         return $this;
     }
