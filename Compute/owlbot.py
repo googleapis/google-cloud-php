@@ -34,7 +34,8 @@ php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        src / "*/src/*/*.php"
+        src / "*/src/*/*.php",
+        src / "*/proto/**/*.php"
     ]
 )
 
@@ -46,11 +47,6 @@ s.replace(
     + r"^class_alias\(.*\);$"
     + "\n",
     '')
-
-s.move(library / 'tests/')
-
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Compute', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
