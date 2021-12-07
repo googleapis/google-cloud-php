@@ -62,10 +62,20 @@
                 }
             },
             "methods": {
+                "BulkMuteFindings": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "CreateFinding": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
+                },
+                "CreateMuteConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "CreateNotificationConfig": {
                     "timeout_millis": 60000,
@@ -77,6 +87,11 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "DeleteMuteConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "DeleteNotificationConfig": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
@@ -86,6 +101,11 @@
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
+                },
+                "GetMuteConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "GetNotificationConfig": {
                     "timeout_millis": 60000,
@@ -122,6 +142,11 @@
                     "retry_codes_name": "retry_policy_2_codes",
                     "retry_params_name": "retry_policy_2_params"
                 },
+                "ListMuteConfigs": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "ListNotificationConfigs": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -147,6 +172,11 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "SetMute": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "TestIamPermissions": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -156,6 +186,11 @@
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
+                },
+                "UpdateMuteConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "UpdateNotificationConfig": {
                     "timeout_millis": 60000,

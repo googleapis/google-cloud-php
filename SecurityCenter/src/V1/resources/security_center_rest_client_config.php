@@ -3,6 +3,30 @@
 return [
     'interfaces' => [
         'google.cloud.securitycenter.v1.SecurityCenter' => [
+            'BulkMuteFindings' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*}/findings:bulkMute',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=folders/*}/findings:bulkMute',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*}/findings:bulkMute',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateFinding' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=organizations/*/sources/*}/findings',
@@ -16,6 +40,39 @@ return [
                 ],
                 'queryParams' => [
                     'finding_id',
+                ],
+            ],
+            'CreateMuteConfig' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*}/muteConfigs',
+                'body' => 'mute_config',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=folders/*}/muteConfigs',
+                        'body' => 'mute_config',
+                        'queryParams' => [
+                            'mute_config_id',
+                        ],
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*}/muteConfigs',
+                        'body' => 'mute_config',
+                        'queryParams' => [
+                            'mute_config_id',
+                        ],
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'mute_config_id',
                 ],
             ],
             'CreateNotificationConfig' => [
@@ -45,6 +102,27 @@ return [
                     ],
                 ],
             ],
+            'DeleteMuteConfig' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=organizations/*/muteConfigs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=folders/*/muteConfigs/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/muteConfigs/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteNotificationConfig' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=organizations/*/notificationConfigs/*}',
@@ -64,6 +142,27 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'GetMuteConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/muteConfigs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=folders/*/muteConfigs/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/muteConfigs/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -191,6 +290,27 @@ return [
                     ],
                 ],
             ],
+            'ListMuteConfigs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=organizations/*}/muteConfigs',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*}/muteConfigs',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*}/muteConfigs',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListNotificationConfigs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=organizations/*}/notificationConfigs',
@@ -271,6 +391,30 @@ return [
                     ],
                 ],
             ],
+            'SetMute' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=organizations/*/sources/*/findings/*}:setMute',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=folders/*/sources/*/findings/*}:setMute',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/sources/*/findings/*}:setMute',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'TestIamPermissions' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=organizations/*/sources/*}:testIamPermissions',
@@ -303,6 +447,31 @@ return [
                     'finding.name' => [
                         'getters' => [
                             'getFinding',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateMuteConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{mute_config.name=organizations/*/muteConfigs/*}',
+                'body' => 'mute_config',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{mute_config.name=folders/*/muteConfigs/*}',
+                        'body' => 'mute_config',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{mute_config.name=projects/*/muteConfigs/*}',
+                        'body' => 'mute_config',
+                    ],
+                ],
+                'placeholders' => [
+                    'mute_config.name' => [
+                        'getters' => [
+                            'getMuteConfig',
                             'getName',
                         ],
                     ],

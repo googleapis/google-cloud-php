@@ -31,6 +31,7 @@ use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 
 use Google\ApiCore\OperationResponse;
+
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -43,12 +44,17 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\SecurityCenter\V1\BulkMuteFindingsRequest;
 use Google\Cloud\SecurityCenter\V1\CreateFindingRequest;
+use Google\Cloud\SecurityCenter\V1\CreateMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\CreateNotificationConfigRequest;
 use Google\Cloud\SecurityCenter\V1\CreateSourceRequest;
+use Google\Cloud\SecurityCenter\V1\DeleteMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\DeleteNotificationConfigRequest;
 use Google\Cloud\SecurityCenter\V1\Finding;
+use Google\Cloud\SecurityCenter\V1\Finding\Mute;
 use Google\Cloud\SecurityCenter\V1\Finding\State;
+use Google\Cloud\SecurityCenter\V1\GetMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\GetNotificationConfigRequest;
 use Google\Cloud\SecurityCenter\V1\GetOrganizationSettingsRequest;
 use Google\Cloud\SecurityCenter\V1\GetSourceRequest;
@@ -60,17 +66,22 @@ use Google\Cloud\SecurityCenter\V1\ListAssetsRequest;
 use Google\Cloud\SecurityCenter\V1\ListAssetsResponse;
 use Google\Cloud\SecurityCenter\V1\ListFindingsRequest;
 use Google\Cloud\SecurityCenter\V1\ListFindingsResponse;
+use Google\Cloud\SecurityCenter\V1\ListMuteConfigsRequest;
+use Google\Cloud\SecurityCenter\V1\ListMuteConfigsResponse;
 use Google\Cloud\SecurityCenter\V1\ListNotificationConfigsRequest;
 use Google\Cloud\SecurityCenter\V1\ListNotificationConfigsResponse;
 use Google\Cloud\SecurityCenter\V1\ListSourcesRequest;
 use Google\Cloud\SecurityCenter\V1\ListSourcesResponse;
+use Google\Cloud\SecurityCenter\V1\MuteConfig;
 use Google\Cloud\SecurityCenter\V1\NotificationConfig;
 use Google\Cloud\SecurityCenter\V1\OrganizationSettings;
 use Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryRequest;
 use Google\Cloud\SecurityCenter\V1\SecurityMarks;
 use Google\Cloud\SecurityCenter\V1\SetFindingStateRequest;
+use Google\Cloud\SecurityCenter\V1\SetMuteRequest;
 use Google\Cloud\SecurityCenter\V1\Source;
 use Google\Cloud\SecurityCenter\V1\UpdateFindingRequest;
+use Google\Cloud\SecurityCenter\V1\UpdateMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateNotificationConfigRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateOrganizationSettingsRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateSecurityMarksRequest;
@@ -90,10 +101,33 @@ use Google\Protobuf\Timestamp;
  * ```
  * $securityCenterClient = new SecurityCenterClient();
  * try {
- *     $formattedParent = $securityCenterClient->sourceName('[ORGANIZATION]', '[SOURCE]');
- *     $findingId = 'finding_id';
- *     $finding = new Finding();
- *     $response = $securityCenterClient->createFinding($formattedParent, $findingId, $finding);
+ *     $parent = 'parent';
+ *     $operationResponse = $securityCenterClient->bulkMuteFindings($parent);
+ *     $operationResponse->pollUntilComplete();
+ *     if ($operationResponse->operationSucceeded()) {
+ *         $result = $operationResponse->getResult();
+ *     // doSomethingWith($result)
+ *     } else {
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
+ *     }
+ *     // Alternatively:
+ *     // start the operation, keep the operation name, and resume later
+ *     $operationResponse = $securityCenterClient->bulkMuteFindings($parent);
+ *     $operationName = $operationResponse->getName();
+ *     // ... do other work
+ *     $newOperationResponse = $securityCenterClient->resumeOperation($operationName, 'bulkMuteFindings');
+ *     while (!$newOperationResponse->isDone()) {
+ *         // ... do other work
+ *         $newOperationResponse->reload();
+ *     }
+ *     if ($newOperationResponse->operationSucceeded()) {
+ *         $result = $newOperationResponse->getResult();
+ *     // doSomethingWith($result)
+ *     } else {
+ *         $error = $newOperationResponse->getError();
+ *         // handleError($error)
+ *     }
  * } finally {
  *     $securityCenterClient->close();
  * }
@@ -141,17 +175,23 @@ class SecurityCenterGapicClient
 
     private static $folderAssetSecurityMarksNameTemplate;
 
+    private static $folderMuteConfigNameTemplate;
+
     private static $folderSourceNameTemplate;
 
     private static $folderSourceFindingNameTemplate;
 
     private static $folderSourceFindingSecurityMarksNameTemplate;
 
+    private static $muteConfigNameTemplate;
+
     private static $notificationConfigNameTemplate;
 
     private static $organizationNameTemplate;
 
     private static $organizationAssetSecurityMarksNameTemplate;
+
+    private static $organizationMuteConfigNameTemplate;
 
     private static $organizationSettingsNameTemplate;
 
@@ -164,6 +204,8 @@ class SecurityCenterGapicClient
     private static $projectNameTemplate;
 
     private static $projectAssetSecurityMarksNameTemplate;
+
+    private static $projectMuteConfigNameTemplate;
 
     private static $projectSourceNameTemplate;
 
@@ -227,6 +269,15 @@ class SecurityCenterGapicClient
         return self::$folderAssetSecurityMarksNameTemplate;
     }
 
+    private static function getFolderMuteConfigNameTemplate()
+    {
+        if (self::$folderMuteConfigNameTemplate == null) {
+            self::$folderMuteConfigNameTemplate = new PathTemplate('folders/{folder}/muteConfigs/{mute_config}');
+        }
+
+        return self::$folderMuteConfigNameTemplate;
+    }
+
     private static function getFolderSourceNameTemplate()
     {
         if (self::$folderSourceNameTemplate == null) {
@@ -254,6 +305,15 @@ class SecurityCenterGapicClient
         return self::$folderSourceFindingSecurityMarksNameTemplate;
     }
 
+    private static function getMuteConfigNameTemplate()
+    {
+        if (self::$muteConfigNameTemplate == null) {
+            self::$muteConfigNameTemplate = new PathTemplate('organizations/{organization}/muteConfigs/{mute_config}');
+        }
+
+        return self::$muteConfigNameTemplate;
+    }
+
     private static function getNotificationConfigNameTemplate()
     {
         if (self::$notificationConfigNameTemplate == null) {
@@ -279,6 +339,15 @@ class SecurityCenterGapicClient
         }
 
         return self::$organizationAssetSecurityMarksNameTemplate;
+    }
+
+    private static function getOrganizationMuteConfigNameTemplate()
+    {
+        if (self::$organizationMuteConfigNameTemplate == null) {
+            self::$organizationMuteConfigNameTemplate = new PathTemplate('organizations/{organization}/muteConfigs/{mute_config}');
+        }
+
+        return self::$organizationMuteConfigNameTemplate;
     }
 
     private static function getOrganizationSettingsNameTemplate()
@@ -333,6 +402,15 @@ class SecurityCenterGapicClient
         }
 
         return self::$projectAssetSecurityMarksNameTemplate;
+    }
+
+    private static function getProjectMuteConfigNameTemplate()
+    {
+        if (self::$projectMuteConfigNameTemplate == null) {
+            self::$projectMuteConfigNameTemplate = new PathTemplate('projects/{project}/muteConfigs/{mute_config}');
+        }
+
+        return self::$projectMuteConfigNameTemplate;
     }
 
     private static function getProjectSourceNameTemplate()
@@ -396,18 +474,22 @@ class SecurityCenterGapicClient
                 'finding' => self::getFindingNameTemplate(),
                 'folder' => self::getFolderNameTemplate(),
                 'folderAssetSecurityMarks' => self::getFolderAssetSecurityMarksNameTemplate(),
+                'folderMuteConfig' => self::getFolderMuteConfigNameTemplate(),
                 'folderSource' => self::getFolderSourceNameTemplate(),
                 'folderSourceFinding' => self::getFolderSourceFindingNameTemplate(),
                 'folderSourceFindingSecurityMarks' => self::getFolderSourceFindingSecurityMarksNameTemplate(),
+                'muteConfig' => self::getMuteConfigNameTemplate(),
                 'notificationConfig' => self::getNotificationConfigNameTemplate(),
                 'organization' => self::getOrganizationNameTemplate(),
                 'organizationAssetSecurityMarks' => self::getOrganizationAssetSecurityMarksNameTemplate(),
+                'organizationMuteConfig' => self::getOrganizationMuteConfigNameTemplate(),
                 'organizationSettings' => self::getOrganizationSettingsNameTemplate(),
                 'organizationSource' => self::getOrganizationSourceNameTemplate(),
                 'organizationSourceFinding' => self::getOrganizationSourceFindingNameTemplate(),
                 'organizationSourceFindingSecurityMarks' => self::getOrganizationSourceFindingSecurityMarksNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'projectAssetSecurityMarks' => self::getProjectAssetSecurityMarksNameTemplate(),
+                'projectMuteConfig' => self::getProjectMuteConfigNameTemplate(),
                 'projectSource' => self::getProjectSourceNameTemplate(),
                 'projectSourceFinding' => self::getProjectSourceFindingNameTemplate(),
                 'projectSourceFindingSecurityMarks' => self::getProjectSourceFindingSecurityMarksNameTemplate(),
@@ -473,6 +555,23 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * folder_mute_config resource.
+     *
+     * @param string $folder
+     * @param string $muteConfig
+     *
+     * @return string The formatted folder_mute_config resource.
+     */
+    public static function folderMuteConfigName($folder, $muteConfig)
+    {
+        return self::getFolderMuteConfigNameTemplate()->render([
+            'folder' => $folder,
+            'mute_config' => $muteConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * folder_source resource.
      *
      * @param string $folder
@@ -527,6 +626,23 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a mute_config
+     * resource.
+     *
+     * @param string $organization
+     * @param string $muteConfig
+     *
+     * @return string The formatted mute_config resource.
+     */
+    public static function muteConfigName($organization, $muteConfig)
+    {
+        return self::getMuteConfigNameTemplate()->render([
+            'organization' => $organization,
+            'mute_config' => $muteConfig,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * notification_config resource.
      *
@@ -572,6 +688,23 @@ class SecurityCenterGapicClient
         return self::getOrganizationAssetSecurityMarksNameTemplate()->render([
             'organization' => $organization,
             'asset' => $asset,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_mute_config resource.
+     *
+     * @param string $organization
+     * @param string $muteConfig
+     *
+     * @return string The formatted organization_mute_config resource.
+     */
+    public static function organizationMuteConfigName($organization, $muteConfig)
+    {
+        return self::getOrganizationMuteConfigNameTemplate()->render([
+            'organization' => $organization,
+            'mute_config' => $muteConfig,
         ]);
     }
 
@@ -674,6 +807,23 @@ class SecurityCenterGapicClient
         return self::getProjectAssetSecurityMarksNameTemplate()->render([
             'project' => $project,
             'asset' => $asset,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_mute_config resource.
+     *
+     * @param string $project
+     * @param string $muteConfig
+     *
+     * @return string The formatted project_mute_config resource.
+     */
+    public static function projectMuteConfigName($project, $muteConfig)
+    {
+        return self::getProjectMuteConfigNameTemplate()->render([
+            'project' => $project,
+            'mute_config' => $muteConfig,
         ]);
     }
 
@@ -790,18 +940,22 @@ class SecurityCenterGapicClient
      * - finding: organizations/{organization}/sources/{source}/findings/{finding}
      * - folder: folders/{folder}
      * - folderAssetSecurityMarks: folders/{folder}/assets/{asset}/securityMarks
+     * - folderMuteConfig: folders/{folder}/muteConfigs/{mute_config}
      * - folderSource: folders/{folder}/sources/{source}
      * - folderSourceFinding: folders/{folder}/sources/{source}/findings/{finding}
      * - folderSourceFindingSecurityMarks: folders/{folder}/sources/{source}/findings/{finding}/securityMarks
+     * - muteConfig: organizations/{organization}/muteConfigs/{mute_config}
      * - notificationConfig: organizations/{organization}/notificationConfigs/{notification_config}
      * - organization: organizations/{organization}
      * - organizationAssetSecurityMarks: organizations/{organization}/assets/{asset}/securityMarks
+     * - organizationMuteConfig: organizations/{organization}/muteConfigs/{mute_config}
      * - organizationSettings: organizations/{organization}/organizationSettings
      * - organizationSource: organizations/{organization}/sources/{source}
      * - organizationSourceFinding: organizations/{organization}/sources/{source}/findings/{finding}
      * - organizationSourceFindingSecurityMarks: organizations/{organization}/sources/{source}/findings/{finding}/securityMarks
      * - project: projects/{project}
      * - projectAssetSecurityMarks: projects/{project}/assets/{asset}/securityMarks
+     * - projectMuteConfig: projects/{project}/muteConfigs/{mute_config}
      * - projectSource: projects/{project}/sources/{source}
      * - projectSourceFinding: projects/{project}/sources/{source}/findings/{finding}
      * - projectSourceFindingSecurityMarks: projects/{project}/sources/{source}/findings/{finding}/securityMarks
@@ -938,6 +1092,107 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Kicks off an LRO to bulk mute findings for a parent based on a filter. The
+     * parent can be either an organization, folder or project. The findings
+     * matched by the filter will be muted after the LRO is done.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $parent = 'parent';
+     *     $operationResponse = $securityCenterClient->bulkMuteFindings($parent);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $securityCenterClient->bulkMuteFindings($parent);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $securityCenterClient->resumeOperation($operationName, 'bulkMuteFindings');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent, at which bulk action needs to be applied. Its format is
+     *                             "organizations/[organization_id]", "folders/[folder_id]",
+     *                             "projects/[project_id]".
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           Expression that identifies findings that should be updated.
+     *           The expression is a list of zero or more restrictions combined
+     *           via logical operators `AND` and `OR`. Parentheses are supported, and `OR`
+     *           has higher precedence than `AND`.
+     *
+     *           Restrictions have the form `<field> <operator> <value>` and may have a
+     *           `-` character in front of them to indicate negation. The fields map to
+     *           those defined in the corresponding resource.
+     *
+     *           The supported operators are:
+     *
+     *           * `=` for all value types.
+     *           * `>`, `<`, `>=`, `<=` for integer values.
+     *           * `:`, meaning substring matching, for strings.
+     *
+     *           The supported value types are:
+     *
+     *           * string literals in quotes.
+     *           * integer literals without quotes.
+     *           * boolean literals `true` and `false` without quotes.
+     *     @type string $muteAnnotation
+     *           This can be a mute configuration name or any identifier for mute/unmute
+     *           of findings based on the filter.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function bulkMuteFindings($parent, array $optionalArgs = [])
+    {
+        $request = new BulkMuteFindingsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['muteAnnotation'])) {
+            $request->setMuteAnnotation($optionalArgs['muteAnnotation']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('BulkMuteFindings', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
      * Creates a finding. The corresponding source must exist for finding creation
      * to succeed.
      *
@@ -986,6 +1241,57 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateFinding', Finding::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Creates a mute config.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
+     *     $muteConfig = new MuteConfig();
+     *     $muteConfigId = 'mute_config_id';
+     *     $response = $securityCenterClient->createMuteConfig($formattedParent, $muteConfig, $muteConfigId);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string     $parent       Required. Resource name of the new mute configs's parent. Its format is
+     *                                 "organizations/[organization_id]", "folders/[folder_id]", or
+     *                                 "projects/[project_id]".
+     * @param MuteConfig $muteConfig   Required. The mute config being created.
+     * @param string     $muteConfigId Required. Unique identifier provided by the client within the parent scope.
+     *                                 It must consist of lower case letters, numbers, and hyphen, with the first
+     *                                 character a letter, the last a letter or a number, and a 63 character
+     *                                 maximum.
+     * @param array      $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\MuteConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createMuteConfig($parent, $muteConfig, $muteConfigId, array $optionalArgs = [])
+    {
+        $request = new CreateMuteConfigRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setMuteConfig($muteConfig);
+        $request->setMuteConfigId($muteConfigId);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateMuteConfig', MuteConfig::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1085,6 +1391,47 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Deletes an existing mute config.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->muteConfigName('[ORGANIZATION]', '[MUTE_CONFIG]');
+     *     $securityCenterClient->deleteMuteConfig($formattedName);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the mute config to delete. Its format is
+     *                             organizations/{organization}/muteConfigs/{config_id},
+     *                             folders/{folder}/muteConfigs/{config_id}, or
+     *                             projects/{project}/muteConfigs/{config_id}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteMuteConfig($name, array $optionalArgs = [])
+    {
+        $request = new DeleteMuteConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteMuteConfig', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Deletes a notification config.
      *
      * Sample code:
@@ -1169,6 +1516,49 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets a mute config.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->muteConfigName('[ORGANIZATION]', '[MUTE_CONFIG]');
+     *     $response = $securityCenterClient->getMuteConfig($formattedName);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the mute config to retrieve. Its format is
+     *                             organizations/{organization}/muteConfigs/{config_id},
+     *                             folders/{folder}/muteConfigs/{config_id}, or
+     *                             projects/{project}/muteConfigs/{config_id}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\MuteConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getMuteConfig($name, array $optionalArgs = [])
+    {
+        $request = new GetMuteConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetMuteConfig', MuteConfig::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2131,6 +2521,77 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Lists mute configs.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $securityCenterClient->listMuteConfigs($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $securityCenterClient->listMuteConfigs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent, which owns the collection of mute configs. Its format is
+     *                             "organizations/[organization_id]", "folders/[folder_id]",
+     *                             "projects/[project_id]".
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listMuteConfigs($parent, array $optionalArgs = [])
+    {
+        $request = new ListMuteConfigsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListMuteConfigs', $optionalArgs, ListMuteConfigsResponse::class, $request);
+    }
+
+    /**
      * Lists notification configs.
      *
      * Sample code:
@@ -2440,6 +2901,55 @@ class SecurityCenterGapicClient
     }
 
     /**
+     * Updates the mute state of a finding.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $formattedName = $securityCenterClient->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
+     *     $mute = Mute::MUTE_UNSPECIFIED;
+     *     $response = $securityCenterClient->setMute($formattedName, $mute);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The relative resource name of the finding. See:
+     *                             https://cloud.google.com/apis/design/resource_names#relative_resource_name
+     *                             Example:
+     *                             "organizations/{organization_id}/sources/{source_id}/finding/{finding_id}",
+     *                             "folders/{folder_id}/sources/{source_id}/finding/{finding_id}",
+     *                             "projects/{project_id}/sources/{source_id}/finding/{finding_id}".
+     * @param int    $mute         Required. The desired state of the Mute.
+     *                             For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1\Finding\Mute}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\Finding
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setMute($name, $mute, array $optionalArgs = [])
+    {
+        $request = new SetMuteRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setMute($mute);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SetMute', Finding::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Returns the permissions that a caller has on the specified source.
      *
      * Sample code:
@@ -2542,6 +3052,53 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateFinding', Finding::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates a mute config.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $muteConfig = new MuteConfig();
+     *     $response = $securityCenterClient->updateMuteConfig($muteConfig);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param MuteConfig $muteConfig   Required. The mute config being updated.
+     * @param array      $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           The list of fields to be updated.
+     *           If empty all mutable fields will be updated.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\MuteConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateMuteConfig($muteConfig, array $optionalArgs = [])
+    {
+        $request = new UpdateMuteConfigRequest();
+        $requestParamHeaders = [];
+        $request->setMuteConfig($muteConfig);
+        $requestParamHeaders['mute_config.name'] = $muteConfig->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateMuteConfig', MuteConfig::class, $optionalArgs, $request)->wait();
     }
 
     /**
