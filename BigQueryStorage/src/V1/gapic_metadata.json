@@ -28,6 +28,45 @@
                     }
                 }
             }
+        },
+        "BigQueryWrite": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BigQueryWriteGapicClient",
+                    "rpcs": {
+                        "AppendRows": {
+                            "methods": [
+                                "appendRows"
+                            ]
+                        },
+                        "BatchCommitWriteStreams": {
+                            "methods": [
+                                "batchCommitWriteStreams"
+                            ]
+                        },
+                        "CreateWriteStream": {
+                            "methods": [
+                                "createWriteStream"
+                            ]
+                        },
+                        "FinalizeWriteStream": {
+                            "methods": [
+                                "finalizeWriteStream"
+                            ]
+                        },
+                        "FlushRows": {
+                            "methods": [
+                                "flushRows"
+                            ]
+                        },
+                        "GetWriteStream": {
+                            "methods": [
+                                "getWriteStream"
+                            ]
+                        }
+                    }
+                }
+            }
         }
     }
 }
