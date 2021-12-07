@@ -26,6 +26,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      * Max number of bytes to scan from a file. If a scanned file's size is bigger
      * than this value then the rest of the bytes are omitted. Only one
      * of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
+     * Cannot be set if de-identification is requested.
      *
      * Generated from protobuf field <code>int64 bytes_limit_per_file = 4;</code>
      */
@@ -35,6 +36,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      * number of bytes scanned is rounded down. Must be between 0 and 100,
      * inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one
      * of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
+     * Cannot be set if de-identification is requested.
      *
      * Generated from protobuf field <code>int32 bytes_limit_per_file_percent = 8;</code>
      */
@@ -76,11 +78,13 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      *           Max number of bytes to scan from a file. If a scanned file's size is bigger
      *           than this value then the rest of the bytes are omitted. Only one
      *           of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
+     *           Cannot be set if de-identification is requested.
      *     @type int $bytes_limit_per_file_percent
      *           Max percentage of bytes to scan from a file. The rest are omitted. The
      *           number of bytes scanned is rounded down. Must be between 0 and 100,
      *           inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one
      *           of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
+     *           Cannot be set if de-identification is requested.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $file_types
      *           List of file type groups to include in the scan.
      *           If empty, all files are scanned and available data format processors
@@ -141,6 +145,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      * Max number of bytes to scan from a file. If a scanned file's size is bigger
      * than this value then the rest of the bytes are omitted. Only one
      * of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
+     * Cannot be set if de-identification is requested.
      *
      * Generated from protobuf field <code>int64 bytes_limit_per_file = 4;</code>
      * @return int|string
@@ -154,6 +159,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      * Max number of bytes to scan from a file. If a scanned file's size is bigger
      * than this value then the rest of the bytes are omitted. Only one
      * of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
+     * Cannot be set if de-identification is requested.
      *
      * Generated from protobuf field <code>int64 bytes_limit_per_file = 4;</code>
      * @param int|string $var
@@ -172,6 +178,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      * number of bytes scanned is rounded down. Must be between 0 and 100,
      * inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one
      * of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
+     * Cannot be set if de-identification is requested.
      *
      * Generated from protobuf field <code>int32 bytes_limit_per_file_percent = 8;</code>
      * @return int
@@ -186,6 +193,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      * number of bytes scanned is rounded down. Must be between 0 and 100,
      * inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one
      * of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
+     * Cannot be set if de-identification is requested.
      *
      * Generated from protobuf field <code>int32 bytes_limit_per_file_percent = 8;</code>
      * @param int $var

@@ -24,6 +24,7 @@ class Regex extends \Google\Protobuf\Internal\Message
      */
     private $pattern = '';
     /**
+     * (https://github.com/google/re2/wiki/Syntax) can be found under the
      * The index of the submatch to extract as findings. When not
      * specified, the entire match is returned. No more than 3 may be included.
      *
@@ -42,6 +43,7 @@ class Regex extends \Google\Protobuf\Internal\Message
      *           (https://github.com/google/re2/wiki/Syntax) can be found under the
      *           google/re2 repository on GitHub.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $group_indexes
+     *           (https://github.com/google/re2/wiki/Syntax) can be found under the
      *           The index of the submatch to extract as findings. When not
      *           specified, the entire match is returned. No more than 3 may be included.
      * }
@@ -82,6 +84,7 @@ class Regex extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * (https://github.com/google/re2/wiki/Syntax) can be found under the
      * The index of the submatch to extract as findings. When not
      * specified, the entire match is returned. No more than 3 may be included.
      *
@@ -94,6 +97,7 @@ class Regex extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * (https://github.com/google/re2/wiki/Syntax) can be found under the
      * The index of the submatch to extract as findings. When not
      * specified, the entire match is returned. No more than 3 may be included.
      *

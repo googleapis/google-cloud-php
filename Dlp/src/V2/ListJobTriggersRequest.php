@@ -70,7 +70,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      * * Restrictions can be combined by `AND` or `OR` logical operators. A
      * sequence of restrictions implicitly uses `AND`.
      * * A restriction has the form of `{field} {operator} {value}`.
-     * * Supported fields/values for inspect jobs:
+     * * Supported fields/values for inspect triggers:
      *     - `status` - HEALTHY|PAUSED|CANCELLED
      *     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
      *     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by
@@ -87,6 +87,12 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string filter = 5;</code>
      */
     private $filter = '';
+    /**
+     * The type of jobs. Will use `DlpJobType.INSPECT` if not set.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DlpJobType type = 6;</code>
+     */
+    private $type = 0;
     /**
      * Deprecated. This field has no effect.
      *
@@ -139,7 +145,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *           * Restrictions can be combined by `AND` or `OR` logical operators. A
      *           sequence of restrictions implicitly uses `AND`.
      *           * A restriction has the form of `{field} {operator} {value}`.
-     *           * Supported fields/values for inspect jobs:
+     *           * Supported fields/values for inspect triggers:
      *               - `status` - HEALTHY|PAUSED|CANCELLED
      *               - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
      *               - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by
@@ -152,6 +158,8 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *           * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY)
      *           * last_run_time > \"2017-12-12T00:00:00+00:00\"
      *           The length of this field should be no more than 500 characters.
+     *     @type int $type
+     *           The type of jobs. Will use `DlpJobType.INSPECT` if not set.
      *     @type string $location_id
      *           Deprecated. This field has no effect.
      * }
@@ -320,7 +328,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      * * Restrictions can be combined by `AND` or `OR` logical operators. A
      * sequence of restrictions implicitly uses `AND`.
      * * A restriction has the form of `{field} {operator} {value}`.
-     * * Supported fields/values for inspect jobs:
+     * * Supported fields/values for inspect triggers:
      *     - `status` - HEALTHY|PAUSED|CANCELLED
      *     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
      *     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by
@@ -349,7 +357,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      * * Restrictions can be combined by `AND` or `OR` logical operators. A
      * sequence of restrictions implicitly uses `AND`.
      * * A restriction has the form of `{field} {operator} {value}`.
-     * * Supported fields/values for inspect jobs:
+     * * Supported fields/values for inspect triggers:
      *     - `status` - HEALTHY|PAUSED|CANCELLED
      *     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
      *     - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by
@@ -371,6 +379,32 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * The type of jobs. Will use `DlpJobType.INSPECT` if not set.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DlpJobType type = 6;</code>
+     * @return int
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * The type of jobs. Will use `DlpJobType.INSPECT` if not set.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DlpJobType type = 6;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\DlpJobType::class);
+        $this->type = $var;
 
         return $this;
     }
