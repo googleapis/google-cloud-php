@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2020 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -130,7 +130,8 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns information about all data transfers in the project.
+     * Returns information about all transfer configs owned by a project in the
+     * specified location.
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferConfigsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

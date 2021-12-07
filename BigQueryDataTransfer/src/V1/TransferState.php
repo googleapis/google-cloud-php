@@ -14,38 +14,38 @@ use UnexpectedValueException;
 class TransferState
 {
     /**
-     * State placeholder.
+     * State placeholder (0).
      *
      * Generated from protobuf enum <code>TRANSFER_STATE_UNSPECIFIED = 0;</code>
      */
     const TRANSFER_STATE_UNSPECIFIED = 0;
     /**
      * Data transfer is scheduled and is waiting to be picked up by
-     * data transfer backend.
+     * data transfer backend (2).
      *
      * Generated from protobuf enum <code>PENDING = 2;</code>
      */
     const PENDING = 2;
     /**
-     * Data transfer is in progress.
+     * Data transfer is in progress (3).
      *
      * Generated from protobuf enum <code>RUNNING = 3;</code>
      */
     const RUNNING = 3;
     /**
-     * Data transfer completed successfully.
+     * Data transfer completed successfully (4).
      *
      * Generated from protobuf enum <code>SUCCEEDED = 4;</code>
      */
     const SUCCEEDED = 4;
     /**
-     * Data transfer failed.
+     * Data transfer failed (5).
      *
      * Generated from protobuf enum <code>FAILED = 5;</code>
      */
     const FAILED = 5;
     /**
-     * Data transfer is cancelled.
+     * Data transfer is cancelled (6).
      *
      * Generated from protobuf enum <code>CANCELLED = 6;</code>
      */

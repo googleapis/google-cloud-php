@@ -19,8 +19,8 @@ class TimeRange extends \Google\Protobuf\Internal\Message
     /**
      * Start time of the range of transfer runs. For example,
      * `"2017-05-25T00:00:00+00:00"`. The start_time must be strictly less than
-     * the end_time. Creates transfer runs where run_time is in the range betwen
-     * start_time (inclusive) and end_time (exlusive).
+     * the end_time. Creates transfer runs where run_time is in the range
+     * between start_time (inclusive) and end_time (exclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
@@ -28,8 +28,8 @@ class TimeRange extends \Google\Protobuf\Internal\Message
     /**
      * End time of the range of transfer runs. For example,
      * `"2017-05-30T00:00:00+00:00"`. The end_time must not be in the future.
-     * Creates transfer runs where run_time is in the range betwen start_time
-     * (inclusive) and end_time (exlusive).
+     * Creates transfer runs where run_time is in the range between start_time
+     * (inclusive) and end_time (exclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
@@ -44,13 +44,13 @@ class TimeRange extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Start time of the range of transfer runs. For example,
      *           `"2017-05-25T00:00:00+00:00"`. The start_time must be strictly less than
-     *           the end_time. Creates transfer runs where run_time is in the range betwen
-     *           start_time (inclusive) and end_time (exlusive).
+     *           the end_time. Creates transfer runs where run_time is in the range
+     *           between start_time (inclusive) and end_time (exclusive).
      *     @type \Google\Protobuf\Timestamp $end_time
      *           End time of the range of transfer runs. For example,
      *           `"2017-05-30T00:00:00+00:00"`. The end_time must not be in the future.
-     *           Creates transfer runs where run_time is in the range betwen start_time
-     *           (inclusive) and end_time (exlusive).
+     *           Creates transfer runs where run_time is in the range between start_time
+     *           (inclusive) and end_time (exclusive).
      * }
      */
     public function __construct($data = NULL) {
@@ -61,8 +61,8 @@ class TimeRange extends \Google\Protobuf\Internal\Message
     /**
      * Start time of the range of transfer runs. For example,
      * `"2017-05-25T00:00:00+00:00"`. The start_time must be strictly less than
-     * the end_time. Creates transfer runs where run_time is in the range betwen
-     * start_time (inclusive) and end_time (exlusive).
+     * the end_time. Creates transfer runs where run_time is in the range
+     * between start_time (inclusive) and end_time (exclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -85,8 +85,8 @@ class TimeRange extends \Google\Protobuf\Internal\Message
     /**
      * Start time of the range of transfer runs. For example,
      * `"2017-05-25T00:00:00+00:00"`. The start_time must be strictly less than
-     * the end_time. Creates transfer runs where run_time is in the range betwen
-     * start_time (inclusive) and end_time (exlusive).
+     * the end_time. Creates transfer runs where run_time is in the range
+     * between start_time (inclusive) and end_time (exclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -103,8 +103,8 @@ class TimeRange extends \Google\Protobuf\Internal\Message
     /**
      * End time of the range of transfer runs. For example,
      * `"2017-05-30T00:00:00+00:00"`. The end_time must not be in the future.
-     * Creates transfer runs where run_time is in the range betwen start_time
-     * (inclusive) and end_time (exlusive).
+     * Creates transfer runs where run_time is in the range between start_time
+     * (inclusive) and end_time (exclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -127,8 +127,8 @@ class TimeRange extends \Google\Protobuf\Internal\Message
     /**
      * End time of the range of transfer runs. For example,
      * `"2017-05-30T00:00:00+00:00"`. The end_time must not be in the future.
-     * Creates transfer runs where run_time is in the range betwen start_time
-     * (inclusive) and end_time (exlusive).
+     * Creates transfer runs where run_time is in the range between start_time
+     * (inclusive) and end_time (exclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var

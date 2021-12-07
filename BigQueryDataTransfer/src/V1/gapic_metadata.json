@@ -1,0 +1,88 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.bigquery.datatransfer.v1",
+    "libraryPackage": "Google\\Cloud\\BigQuery\\DataTransfer\\V1",
+    "services": {
+        "DataTransferService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataTransferServiceGapicClient",
+                    "rpcs": {
+                        "CheckValidCreds": {
+                            "methods": [
+                                "checkValidCreds"
+                            ]
+                        },
+                        "CreateTransferConfig": {
+                            "methods": [
+                                "createTransferConfig"
+                            ]
+                        },
+                        "DeleteTransferConfig": {
+                            "methods": [
+                                "deleteTransferConfig"
+                            ]
+                        },
+                        "DeleteTransferRun": {
+                            "methods": [
+                                "deleteTransferRun"
+                            ]
+                        },
+                        "GetDataSource": {
+                            "methods": [
+                                "getDataSource"
+                            ]
+                        },
+                        "GetTransferConfig": {
+                            "methods": [
+                                "getTransferConfig"
+                            ]
+                        },
+                        "GetTransferRun": {
+                            "methods": [
+                                "getTransferRun"
+                            ]
+                        },
+                        "ListDataSources": {
+                            "methods": [
+                                "listDataSources"
+                            ]
+                        },
+                        "ListTransferConfigs": {
+                            "methods": [
+                                "listTransferConfigs"
+                            ]
+                        },
+                        "ListTransferLogs": {
+                            "methods": [
+                                "listTransferLogs"
+                            ]
+                        },
+                        "ListTransferRuns": {
+                            "methods": [
+                                "listTransferRuns"
+                            ]
+                        },
+                        "ScheduleTransferRuns": {
+                            "methods": [
+                                "scheduleTransferRuns"
+                            ]
+                        },
+                        "StartManualTransferRuns": {
+                            "methods": [
+                                "startManualTransferRuns"
+                            ]
+                        },
+                        "UpdateTransferConfig": {
+                            "methods": [
+                                "updateTransferConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
