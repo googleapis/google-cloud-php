@@ -3,36 +3,21 @@
 return [
     'interfaces' => [
         'google.cloud.bigquery.datatransfer.v1.DataTransferService' => [
-            'GetDataSource' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/dataSources/*}',
+            'CheckValidCreds' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/dataSources/*}:checkValidCreds',
+                'body' => '*',
                 'additionalBindings' => [
                     [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{name=projects/*/dataSources/*}',
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/dataSources/*}:checkValidCreds',
+                        'body' => '*',
                     ],
                 ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListDataSources' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/dataSources',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{parent=projects/*}/dataSources',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
                         ],
                     ],
                 ],
@@ -56,26 +41,6 @@ return [
                     ],
                 ],
             ],
-            'UpdateTransferConfig' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{transfer_config.name=projects/*/locations/*/transferConfigs/*}',
-                'body' => 'transfer_config',
-                'additionalBindings' => [
-                    [
-                        'method' => 'patch',
-                        'uriTemplate' => '/v1/{transfer_config.name=projects/*/transferConfigs/*}',
-                        'body' => 'transfer_config',
-                    ],
-                ],
-                'placeholders' => [
-                    'transfer_config.name' => [
-                        'getters' => [
-                            'getTransferConfig',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'DeleteTransferConfig' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/transferConfigs/*}',
@@ -83,6 +48,40 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/v1/{name=projects/*/transferConfigs/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTransferRun' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/transferConfigs/*/runs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/transferConfigs/*/runs/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDataSource' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/dataSources/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/dataSources/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -110,6 +109,40 @@ return [
                     ],
                 ],
             ],
+            'GetTransferRun' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/transferConfigs/*/runs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/transferConfigs/*/runs/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDataSources' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/dataSources',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*}/dataSources',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListTransferConfigs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/transferConfigs',
@@ -117,6 +150,40 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{parent=projects/*}/transferConfigs',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListTransferLogs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/transferConfigs/*/runs/*}/transferLogs',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/transferConfigs/*/runs/*}/transferLogs',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListTransferRuns' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/transferConfigs/*}/runs',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/transferConfigs/*}/runs',
                     ],
                 ],
                 'placeholders' => [
@@ -165,88 +232,21 @@ return [
                     ],
                 ],
             ],
-            'GetTransferRun' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/transferConfigs/*/runs/*}',
+            'UpdateTransferConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{transfer_config.name=projects/*/locations/*/transferConfigs/*}',
+                'body' => 'transfer_config',
                 'additionalBindings' => [
                     [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{name=projects/*/transferConfigs/*/runs/*}',
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{transfer_config.name=projects/*/transferConfigs/*}',
+                        'body' => 'transfer_config',
                     ],
                 ],
                 'placeholders' => [
-                    'name' => [
+                    'transfer_config.name' => [
                         'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteTransferRun' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/transferConfigs/*/runs/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v1/{name=projects/*/transferConfigs/*/runs/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListTransferRuns' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/transferConfigs/*}/runs',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{parent=projects/*/transferConfigs/*}/runs',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListTransferLogs' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/transferConfigs/*/runs/*}/transferLogs',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{parent=projects/*/transferConfigs/*/runs/*}/transferLogs',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'CheckValidCreds' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/dataSources/*}:checkValidCreds',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{name=projects/*/dataSources/*}:checkValidCreds',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
+                            'getTransferConfig',
                             'getName',
                         ],
                     ],
