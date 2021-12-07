@@ -871,7 +871,8 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $firewallPolicyResource = new FirewallPolicy();
-        $response = $client->insert($firewallPolicyResource);
+        $parentId = 'parentId2070327504';
+        $response = $client->insert($firewallPolicyResource, $parentId);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -882,8 +883,11 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/Insert', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getFirewallPolicyResource();
         $this->assertProtobufEquals($firewallPolicyResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getParentId();
+        $this->assertProtobufEquals($parentId, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setParentId($parent_id);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -935,7 +939,8 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $firewallPolicyResource = new FirewallPolicy();
-        $response = $client->insert($firewallPolicyResource);
+        $parentId = 'parentId2070327504';
+        $response = $client->insert($firewallPolicyResource, $parentId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1112,7 +1117,8 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
-        $response = $client->move($firewallPolicy);
+        $parentId = 'parentId2070327504';
+        $response = $client->move($firewallPolicy, $parentId);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1123,8 +1129,11 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.compute.v1.FirewallPolicies/Move', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getFirewallPolicy();
         $this->assertProtobufEquals($firewallPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getParentId();
+        $this->assertProtobufEquals($parentId, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setParentId($parent_id);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1176,7 +1185,8 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $firewallPolicy = 'firewallPolicy1035044177';
-        $response = $client->move($firewallPolicy);
+        $parentId = 'parentId2070327504';
+        $response = $client->move($firewallPolicy, $parentId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

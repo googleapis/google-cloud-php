@@ -4,14 +4,14 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/noahdietz/google-cloud-php",
-        "sha": "8ac34686059df4f10244db3b24abe4439273605b"
+        "sha": "ab651ec29b7eed4145f975829d587c37750471ff"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "903a7a29c9b7261b6a83db085626bef2c202a938"
+        "sha": "723f3ce6c8927683e96cd7a4a02b59606a14eafc"
       }
     }
   ],

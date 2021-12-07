@@ -9,16 +9,16 @@ use UnexpectedValueException;
 /**
  * The IP protocol to which this rule applies. For protocol forwarding, valid options are TCP, UDP, ESP, AH, SCTP, ICMP and L3_DEFAULT. The valid IP protocols are different for different load balancing products as described in [Load balancing features](https://cloud.google.com/load-balancing/docs/features#protocols_from_the_load_balancer_to_the_backends).
  *
- * Protobuf type <code>google.cloud.compute.v1.ForwardingRule.IPProtocol</code>
+ * Protobuf type <code>google.cloud.compute.v1.ForwardingRule.IPProtocolEnum</code>
  */
-class IPProtocol
+class IPProtocolEnum
 {
     /**
      * A value indicating that the enum field is not set.
      *
-     * Generated from protobuf enum <code>UNDEFINED_I_P_PROTOCOL = 0;</code>
+     * Generated from protobuf enum <code>UNDEFINED_I_P_PROTOCOL_ENUM = 0;</code>
      */
-    const UNDEFINED_I_P_PROTOCOL = 0;
+    const UNDEFINED_I_P_PROTOCOL_ENUM = 0;
     /**
      * Generated from protobuf enum <code>AH = 2087;</code>
      */
@@ -45,7 +45,7 @@ class IPProtocol
     const UDP = 83873;
 
     private static $valueToName = [
-        self::UNDEFINED_I_P_PROTOCOL => 'UNDEFINED_I_P_PROTOCOL',
+        self::UNDEFINED_I_P_PROTOCOL_ENUM => 'UNDEFINED_I_P_PROTOCOL_ENUM',
         self::AH => 'AH',
         self::ESP => 'ESP',
         self::ICMP => 'ICMP',

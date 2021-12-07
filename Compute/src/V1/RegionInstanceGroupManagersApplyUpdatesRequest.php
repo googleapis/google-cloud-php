@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Flag to update all instances instead of specified list of ���instances���. If the flag is set to true then the instances may not be specified in the request.
+     * Flag to update all instances instead of specified list of “instances”. If the flag is set to true then the instances may not be specified in the request.
      *
      * Generated from protobuf field <code>optional bool all_instances = 403676512;</code>
      */
@@ -47,7 +47,7 @@ class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\In
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $all_instances
-     *           Flag to update all instances instead of specified list of ���instances���. If the flag is set to true then the instances may not be specified in the request.
+     *           Flag to update all instances instead of specified list of “instances”. If the flag is set to true then the instances may not be specified in the request.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instances
      *           The list of URLs of one or more instances for which you want to apply updates. Each URL can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      *     @type string $minimal_action
@@ -62,7 +62,7 @@ class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\In
     }
 
     /**
-     * Flag to update all instances instead of specified list of ���instances���. If the flag is set to true then the instances may not be specified in the request.
+     * Flag to update all instances instead of specified list of “instances”. If the flag is set to true then the instances may not be specified in the request.
      *
      * Generated from protobuf field <code>optional bool all_instances = 403676512;</code>
      * @return bool
@@ -83,7 +83,7 @@ class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\In
     }
 
     /**
-     * Flag to update all instances instead of specified list of ���instances���. If the flag is set to true then the instances may not be specified in the request.
+     * Flag to update all instances instead of specified list of “instances”. If the flag is set to true then the instances may not be specified in the request.
      *
      * Generated from protobuf field <code>optional bool all_instances = 403676512;</code>
      * @param bool $var

@@ -765,7 +765,8 @@ class FirewallPoliciesGapicClient
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
      *     $firewallPolicyResource = new FirewallPolicy();
-     *     $operationResponse = $firewallPoliciesClient->insert($firewallPolicyResource);
+     *     $parentId = 'parent_id';
+     *     $operationResponse = $firewallPoliciesClient->insert($firewallPolicyResource, $parentId);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -775,7 +776,7 @@ class FirewallPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->insert($firewallPolicyResource);
+     *     $operationResponse = $firewallPoliciesClient->insert($firewallPolicyResource, $parentId);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'insert');
@@ -795,11 +796,10 @@ class FirewallPoliciesGapicClient
      * ```
      *
      * @param FirewallPolicy $firewallPolicyResource The body resource for this request
+     * @param string         $parentId               Parent ID for this request. The ID can be either be "folders/[FOLDER_ID]" if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the parent is an organization.
      * @param array          $optionalArgs           {
      *     Optional.
      *
-     *     @type string $parentId
-     *           Parent ID for this request. The ID can be either be "folders/[FOLDER_ID]" if the parent is a folder or "organizations/[ORGANIZATION_ID]" if the parent is an organization.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -813,14 +813,11 @@ class FirewallPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function insert($firewallPolicyResource, array $optionalArgs = [])
+    public function insert($firewallPolicyResource, $parentId, array $optionalArgs = [])
     {
         $request = new InsertFirewallPolicyRequest();
         $request->setFirewallPolicyResource($firewallPolicyResource);
-        if (isset($optionalArgs['parentId'])) {
-            $request->setParentId($optionalArgs['parentId']);
-        }
-
+        $request->setParentId($parentId);
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -959,7 +956,8 @@ class FirewallPoliciesGapicClient
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
      *     $firewallPolicy = 'firewall_policy';
-     *     $operationResponse = $firewallPoliciesClient->move($firewallPolicy);
+     *     $parentId = 'parent_id';
+     *     $operationResponse = $firewallPoliciesClient->move($firewallPolicy, $parentId);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // if creating/modifying, retrieve the target resource
@@ -969,7 +967,7 @@ class FirewallPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->move($firewallPolicy);
+     *     $operationResponse = $firewallPoliciesClient->move($firewallPolicy, $parentId);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'move');
@@ -989,11 +987,10 @@ class FirewallPoliciesGapicClient
      * ```
      *
      * @param string $firewallPolicy Name of the firewall policy to update.
+     * @param string $parentId       The new parent of the firewall policy.
      * @param array  $optionalArgs   {
      *     Optional.
      *
-     *     @type string $parentId
-     *           The new parent of the firewall policy.
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
@@ -1007,16 +1004,13 @@ class FirewallPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function move($firewallPolicy, array $optionalArgs = [])
+    public function move($firewallPolicy, $parentId, array $optionalArgs = [])
     {
         $request = new MoveFirewallPolicyRequest();
         $requestParamHeaders = [];
         $request->setFirewallPolicy($firewallPolicy);
+        $request->setParentId($parentId);
         $requestParamHeaders['firewall_policy'] = $firewallPolicy;
-        if (isset($optionalArgs['parentId'])) {
-            $request->setParentId($optionalArgs['parentId']);
-        }
-
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }

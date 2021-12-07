@@ -23,7 +23,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     private $I_p_address = null;
     /**
      * The IP protocol to which this rule applies. For protocol forwarding, valid options are TCP, UDP, ESP, AH, SCTP, ICMP and L3_DEFAULT. The valid IP protocols are different for different load balancing products as described in [Load balancing features](https://cloud.google.com/load-balancing/docs/features#protocols_from_the_load_balancer_to_the_backends).
-     * Check the IPProtocol enum for the list of possible values.
+     * Check the IPProtocolEnum enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string I_p_protocol = 488094525;</code>
      */
@@ -209,7 +209,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *           IP address that this forwarding rule serves. When a client sends traffic to this IP address, the forwarding rule directs the traffic to the target that you specify in the forwarding rule. If you don't specify a reserved IP address, an ephemeral IP address is assigned. Methods for specifying an IP address: * IPv4 dotted decimal, as in `100.1.2.3` * Full URL, as in https://www.googleapis.com/compute/v1/projects/project_id/regions/region /addresses/address-name * Partial URL or by name, as in: - projects/project_id/regions/region/addresses/address-name - regions/region/addresses/address-name - global/addresses/address-name - address-name The loadBalancingScheme and the forwarding rule's target determine the type of IP address that you can use. For detailed information, see [IP address specifications](https://cloud.google.com/load-balancing/docs/forwarding-rule-concepts#ip_address_specifications). Must be set to `0.0.0.0` when the target is targetGrpcProxy that has validateForProxyless field set to true. For Private Service Connect forwarding rules that forward traffic to Google APIs, IP address must be provided.
      *     @type string $I_p_protocol
      *           The IP protocol to which this rule applies. For protocol forwarding, valid options are TCP, UDP, ESP, AH, SCTP, ICMP and L3_DEFAULT. The valid IP protocols are different for different load balancing products as described in [Load balancing features](https://cloud.google.com/load-balancing/docs/features#protocols_from_the_load_balancer_to_the_backends).
-     *           Check the IPProtocol enum for the list of possible values.
+     *           Check the IPProtocolEnum enum for the list of possible values.
      *     @type bool $all_ports
      *           This field is used along with the backend_service field for Internal TCP/UDP Load Balancing or Network Load Balancing, or with the target field for internal and external TargetInstance. You can only use one of ports and port_range, or allPorts. The three are mutually exclusive. For TCP, UDP and SCTP traffic, packets addressed to any ports will be forwarded to the target or backendService.
      *     @type bool $allow_global_access
@@ -314,7 +314,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
 
     /**
      * The IP protocol to which this rule applies. For protocol forwarding, valid options are TCP, UDP, ESP, AH, SCTP, ICMP and L3_DEFAULT. The valid IP protocols are different for different load balancing products as described in [Load balancing features](https://cloud.google.com/load-balancing/docs/features#protocols_from_the_load_balancer_to_the_backends).
-     * Check the IPProtocol enum for the list of possible values.
+     * Check the IPProtocolEnum enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string I_p_protocol = 488094525;</code>
      * @return string
@@ -336,7 +336,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
 
     /**
      * The IP protocol to which this rule applies. For protocol forwarding, valid options are TCP, UDP, ESP, AH, SCTP, ICMP and L3_DEFAULT. The valid IP protocols are different for different load balancing products as described in [Load balancing features](https://cloud.google.com/load-balancing/docs/features#protocols_from_the_load_balancer_to_the_backends).
-     * Check the IPProtocol enum for the list of possible values.
+     * Check the IPProtocolEnum enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string I_p_protocol = 488094525;</code>
      * @param string $var
