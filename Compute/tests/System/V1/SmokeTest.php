@@ -21,7 +21,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Compute\V1\AttachedDisk;
 use Google\Cloud\Compute\V1\AttachedDiskInitializeParams;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\Instance;
 use Google\Cloud\Compute\V1\InstanceGroupManager;
 use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
@@ -29,7 +28,6 @@ use Google\Cloud\Compute\V1\InstancesClient;
 use Google\Cloud\Compute\V1\InstanceTemplate;
 use Google\Cloud\Compute\V1\InstanceTemplatesClient;
 use Google\Cloud\Compute\V1\NetworkInterface;
-use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use Google\Cloud\Compute\V1\ShieldedInstanceConfig;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
@@ -75,7 +73,7 @@ class SmokeTest extends SystemTestCase
         $disk = new AttachedDisk([
             'boot' => true,
             'auto_delete' => true,
-            'type' => AttachedDisk\Type::PERSISTENT,
+            'type' => AttachedDisk\Type::name(AttachedDisk\Type::PERSISTENT),
             'initialize_params' => new AttachedDiskInitializeParams([
                 'source_image' => self::IMAGE
             ]),
@@ -93,8 +91,9 @@ class SmokeTest extends SystemTestCase
             self::$projectId,
             self::ZONE
         );
-
-        self::$zoneOperationsClient->wait($operation->getName(), self::$projectId, self::ZONE);
+        $operation->pollUntilComplete();
+        $this->assertTrue($operation->operationSucceeded(),
+            sprintf("Operation %s failed. Error: %s", $operation->getName(), $operation->getError()->getMessage()));
 
         $instance = self::$instancesClient->get(
             self::$name,
@@ -119,7 +118,9 @@ class SmokeTest extends SystemTestCase
         $this->assertEquals('0', $instance->getScheduling()->getMinNodeCpus());
         $instance->setDescription('');
         $operation = self::$instancesClient->update(self::$name, $instance, self::$projectId, self::ZONE);
-        self::$zoneOperationsClient->wait($operation->getName(), self::$projectId, self::ZONE);
+        $operation->pollUntilComplete();
+        $this->assertTrue($operation->operationSucceeded(),
+            sprintf("Operation %s failed. Error: %s", $operation->getName(), $operation->getError()->getMessage()));
         $instance = self::$instancesClient->get(
             self::$name,
             self::$projectId,
@@ -141,7 +142,9 @@ class SmokeTest extends SystemTestCase
         );
         $instance->setDescription('тест');
         $operation = self::$instancesClient->update(self::$name, $instance, self::$projectId, self::ZONE);
-        self::$zoneOperationsClient->wait($operation->getName(), self::$projectId, self::ZONE);
+        $operation->pollUntilComplete();
+        $this->assertTrue($operation->operationSucceeded(),
+            sprintf("Operation %s failed. Error: %s", $operation->getName(), $operation->getError()->getMessage()));
         $instance = self::$instancesClient->get(
             self::$name,
             self::$projectId,
@@ -157,8 +160,6 @@ class SmokeTest extends SystemTestCase
         // We test here: 1)set body field to zero
         //               2)set query param to zero
     {
-        $this->markTestSkipped('b/189586033 query params set 0 is ignored');
-        $globalOpClient = new GlobalOperationsClient();
         $templateClient = new InstanceTemplatesClient();
         $managersClient = new InstanceGroupManagersClient();
         $templateName = 'gapicphp' . strval(rand(100000, 999999));
@@ -175,41 +176,43 @@ class SmokeTest extends SystemTestCase
 
         try {
             $op = $templateClient->insert($templateResource, self::$projectId);
-            $globalOpClient->wait($op->getName(), self::$projectId);
+            $op->pollUntilComplete();
+            $this->assertTrue($op->operationSucceeded(),
+                sprintf("Operation %s failed. Error: %s", $op->getName(), $op->getError()->getMessage()));
             $managerResource = new InstanceGroupManager([
                 'base_instance_name' => 'gapicphp',
-                'instance_template' => $op ->getTargetLink(),
+                'instance_template' => $op->getLastProtoResponse()->getTargetLink(),
                 'target_size' => 0,
                 'name' => $managerName
             ]);
             try {
                 $insertOp = $managersClient->insert($managerResource, self::$projectId, self::ZONE);
-                self::$zoneOperationsClient->wait($insertOp->getName(), self::$projectId, self::ZONE);
+                $insertOp->pollUntilComplete();
+                $this->assertTrue($insertOp->operationSucceeded(),
+                    sprintf("Operation %s failed. Error: %s", $insertOp->getName(), $insertOp->getError()->getMessage()));
                 $manager = $managersClient->get($managerName, self::$projectId, self::ZONE);
                 $this->assertEquals(0, $manager->getTargetSize());
 
                 $resizeOp = $managersClient->resize($managerName, self::$projectId, 1, self::ZONE);
-                self::$zoneOperationsClient ->wait($resizeOp->getName(), self::$projectId, self::ZONE);
+                $resizeOp->pollUntilComplete();
+                $this->assertTrue($resizeOp->operationSucceeded(),
+                    sprintf("Operation %s failed. Error: %s", $resizeOp->getName(), $resizeOp->getError()->getMessage()));
                 $manager = $managersClient->get($managerName, self::$projectId, self::ZONE);
                 $this->assertEquals(1, $manager->getTargetSize());
-
                 $resizeOp = $managersClient->resize($managerName, self::$projectId, 0, self::ZONE);
-                self::$zoneOperationsClient ->wait($resizeOp->getName(), self::$projectId, self::ZONE);
+                $resizeOp->pollUntilComplete();
+                $this->assertTrue($resizeOp->operationSucceeded(),
+                    sprintf("Operation %s failed. Error: %s", $resizeOp->getName(), $resizeOp->getError()->getMessage()));
                 $manager = $managersClient->get($managerName, self::$projectId, self::ZONE);
                 $this->assertEquals(0, $manager->getTargetSize());
             } finally {
                 $deleteOp = $managersClient ->delete($managerName, self::$projectId, self::ZONE);
-                $waitOp = self::$zoneOperationsClient ->wait($deleteOp->getName(), self::$projectId, self::ZONE);
-                // this operation may take up to 3 min, wait() only waits for 2
-                if ($waitOp->getStatus() != Operation\Status::DONE) {
-                    $waitOp = self::$zoneOperationsClient ->wait($deleteOp->getName(), self::$projectId, self::ZONE);
-                }
-                if ($waitOp->getStatus() != Operation\Status::DONE) {
-                    self::fail('Delete operation for instance group was not completed in 4 min');
-                }
+                $deleteOp->pollUntilComplete();
+                $this->assertTrue($deleteOp->operationSucceeded(),
+                    sprintf("Operation %s failed. Error: %s", $deleteOp->getName(), $deleteOp->getError()->getMessage()));
             }
         } finally {
-            $templateClient ->delete($templateName, self::$projectId);
+            $templateClient->delete($templateName, self::$projectId);
         }
     }
 
@@ -229,7 +232,7 @@ class SmokeTest extends SystemTestCase
                 self::$projectId,
                 self::ZONE
             );
-            if ($instance->getStatus() == Instance\Status::TERMINATED) {
+            if ($instance->getStatus() == Instance\Status::name(Instance\Status::TERMINATED)) {
                 break;
             }
             sleep(10);
@@ -240,8 +243,9 @@ class SmokeTest extends SystemTestCase
         } catch (ApiException $e) {
             $this->fail('update method failed' . $e->getMessage());
         }
-
-        self::$zoneOperationsClient->wait($op->getName(), self::$projectId, self::ZONE);
+        $op->pollUntilComplete();
+        $this->assertTrue($op->operationSucceeded(),
+            sprintf("Operation %s failed. Error: %s", $op->getName(), $op->getError()->getMessage()));
 
         $instance = self::$instancesClient->get(
             self::$name,
@@ -258,7 +262,9 @@ class SmokeTest extends SystemTestCase
     public function testDeleteInstance(): void
     {
         $op = self::$instancesClient->delete(self::$name, self::$projectId, self::ZONE);
-        self::$zoneOperationsClient->wait($op->getName(), self::$projectId, self::ZONE);
+        $op->pollUntilComplete();
+        $this->assertTrue($op->operationSucceeded(),
+            sprintf("Operation %s failed. Error: %s", $op->getName(), $op->getError()->getMessage()));
 
         try {
             self::$instancesClient->get(self::$name, self::$projectId, self::ZONE);
