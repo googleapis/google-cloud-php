@@ -29,7 +29,15 @@ dest = Path().resolve()
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
-php.owlbot_main(src=src, dest=dest, copy_excludes=["./V1/gapic_metadata.json", "./V1/ImageAnnotatorClient.php", "./V1/ProductSearchClient.php"])
+# Exclude gapic_metadata.json and partial veneer files.
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "*/src/*/gapic_metadata.json",
+        src / "*/src/*/*.php"
+    ]
+)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
