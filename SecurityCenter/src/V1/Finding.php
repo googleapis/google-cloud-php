@@ -162,6 +162,13 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $mute_update_time = null;
     /**
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     * information and external system finding fields.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $external_systems;
+    /**
      * First known as mute_annotation. Records additional information about the
      * mute operation e.g. mute config that muted the finding, user who muted the
      * finding, etc.
@@ -249,6 +256,9 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           (https://cve.mitre.org/about/)
      *     @type \Google\Protobuf\Timestamp $mute_update_time
      *           Output only. The most recent time this finding was muted or unmuted.
+     *     @type array|\Google\Protobuf\Internal\MapField $external_systems
+     *           Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     *           information and external system finding fields.
      *     @type string $mute_initiator
      *           First known as mute_annotation. Records additional information about the
      *           mute operation e.g. mute config that muted the finding, user who muted the
@@ -836,6 +846,34 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->mute_update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     * information and external system finding fields.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getExternalSystems()
+    {
+        return $this->external_systems;
+    }
+
+    /**
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     * information and external system finding fields.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setExternalSystems($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\ExternalSystem::class);
+        $this->external_systems = $arr;
 
         return $this;
     }

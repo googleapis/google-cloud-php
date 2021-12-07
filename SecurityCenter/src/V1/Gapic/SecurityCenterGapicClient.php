@@ -51,6 +51,7 @@ use Google\Cloud\SecurityCenter\V1\CreateNotificationConfigRequest;
 use Google\Cloud\SecurityCenter\V1\CreateSourceRequest;
 use Google\Cloud\SecurityCenter\V1\DeleteMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\DeleteNotificationConfigRequest;
+use Google\Cloud\SecurityCenter\V1\ExternalSystem;
 use Google\Cloud\SecurityCenter\V1\Finding;
 use Google\Cloud\SecurityCenter\V1\Finding\Mute;
 use Google\Cloud\SecurityCenter\V1\Finding\State;
@@ -80,6 +81,7 @@ use Google\Cloud\SecurityCenter\V1\SecurityMarks;
 use Google\Cloud\SecurityCenter\V1\SetFindingStateRequest;
 use Google\Cloud\SecurityCenter\V1\SetMuteRequest;
 use Google\Cloud\SecurityCenter\V1\Source;
+use Google\Cloud\SecurityCenter\V1\UpdateExternalSystemRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateFindingRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateMuteConfigRequest;
 use Google\Cloud\SecurityCenter\V1\UpdateNotificationConfigRequest;
@@ -169,6 +171,8 @@ class SecurityCenterGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $externalSystemNameTemplate;
+
     private static $findingNameTemplate;
 
     private static $folderNameTemplate;
@@ -180,6 +184,8 @@ class SecurityCenterGapicClient
     private static $folderSourceNameTemplate;
 
     private static $folderSourceFindingNameTemplate;
+
+    private static $folderSourceFindingExternalsystemNameTemplate;
 
     private static $folderSourceFindingSecurityMarksNameTemplate;
 
@@ -199,6 +205,8 @@ class SecurityCenterGapicClient
 
     private static $organizationSourceFindingNameTemplate;
 
+    private static $organizationSourceFindingExternalsystemNameTemplate;
+
     private static $organizationSourceFindingSecurityMarksNameTemplate;
 
     private static $projectNameTemplate;
@@ -210,6 +218,8 @@ class SecurityCenterGapicClient
     private static $projectSourceNameTemplate;
 
     private static $projectSourceFindingNameTemplate;
+
+    private static $projectSourceFindingExternalsystemNameTemplate;
 
     private static $projectSourceFindingSecurityMarksNameTemplate;
 
@@ -240,6 +250,15 @@ class SecurityCenterGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getExternalSystemNameTemplate()
+    {
+        if (self::$externalSystemNameTemplate == null) {
+            self::$externalSystemNameTemplate = new PathTemplate('organizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}');
+        }
+
+        return self::$externalSystemNameTemplate;
     }
 
     private static function getFindingNameTemplate()
@@ -294,6 +313,15 @@ class SecurityCenterGapicClient
         }
 
         return self::$folderSourceFindingNameTemplate;
+    }
+
+    private static function getFolderSourceFindingExternalsystemNameTemplate()
+    {
+        if (self::$folderSourceFindingExternalsystemNameTemplate == null) {
+            self::$folderSourceFindingExternalsystemNameTemplate = new PathTemplate('folders/{folder}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}');
+        }
+
+        return self::$folderSourceFindingExternalsystemNameTemplate;
     }
 
     private static function getFolderSourceFindingSecurityMarksNameTemplate()
@@ -377,6 +405,15 @@ class SecurityCenterGapicClient
         return self::$organizationSourceFindingNameTemplate;
     }
 
+    private static function getOrganizationSourceFindingExternalsystemNameTemplate()
+    {
+        if (self::$organizationSourceFindingExternalsystemNameTemplate == null) {
+            self::$organizationSourceFindingExternalsystemNameTemplate = new PathTemplate('organizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}');
+        }
+
+        return self::$organizationSourceFindingExternalsystemNameTemplate;
+    }
+
     private static function getOrganizationSourceFindingSecurityMarksNameTemplate()
     {
         if (self::$organizationSourceFindingSecurityMarksNameTemplate == null) {
@@ -431,6 +468,15 @@ class SecurityCenterGapicClient
         return self::$projectSourceFindingNameTemplate;
     }
 
+    private static function getProjectSourceFindingExternalsystemNameTemplate()
+    {
+        if (self::$projectSourceFindingExternalsystemNameTemplate == null) {
+            self::$projectSourceFindingExternalsystemNameTemplate = new PathTemplate('projects/{project}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}');
+        }
+
+        return self::$projectSourceFindingExternalsystemNameTemplate;
+    }
+
     private static function getProjectSourceFindingSecurityMarksNameTemplate()
     {
         if (self::$projectSourceFindingSecurityMarksNameTemplate == null) {
@@ -471,12 +517,14 @@ class SecurityCenterGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'externalSystem' => self::getExternalSystemNameTemplate(),
                 'finding' => self::getFindingNameTemplate(),
                 'folder' => self::getFolderNameTemplate(),
                 'folderAssetSecurityMarks' => self::getFolderAssetSecurityMarksNameTemplate(),
                 'folderMuteConfig' => self::getFolderMuteConfigNameTemplate(),
                 'folderSource' => self::getFolderSourceNameTemplate(),
                 'folderSourceFinding' => self::getFolderSourceFindingNameTemplate(),
+                'folderSourceFindingExternalsystem' => self::getFolderSourceFindingExternalsystemNameTemplate(),
                 'folderSourceFindingSecurityMarks' => self::getFolderSourceFindingSecurityMarksNameTemplate(),
                 'muteConfig' => self::getMuteConfigNameTemplate(),
                 'notificationConfig' => self::getNotificationConfigNameTemplate(),
@@ -486,12 +534,14 @@ class SecurityCenterGapicClient
                 'organizationSettings' => self::getOrganizationSettingsNameTemplate(),
                 'organizationSource' => self::getOrganizationSourceNameTemplate(),
                 'organizationSourceFinding' => self::getOrganizationSourceFindingNameTemplate(),
+                'organizationSourceFindingExternalsystem' => self::getOrganizationSourceFindingExternalsystemNameTemplate(),
                 'organizationSourceFindingSecurityMarks' => self::getOrganizationSourceFindingSecurityMarksNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'projectAssetSecurityMarks' => self::getProjectAssetSecurityMarksNameTemplate(),
                 'projectMuteConfig' => self::getProjectMuteConfigNameTemplate(),
                 'projectSource' => self::getProjectSourceNameTemplate(),
                 'projectSourceFinding' => self::getProjectSourceFindingNameTemplate(),
+                'projectSourceFindingExternalsystem' => self::getProjectSourceFindingExternalsystemNameTemplate(),
                 'projectSourceFindingSecurityMarks' => self::getProjectSourceFindingSecurityMarksNameTemplate(),
                 'securityMarks' => self::getSecurityMarksNameTemplate(),
                 'source' => self::getSourceNameTemplate(),
@@ -500,6 +550,27 @@ class SecurityCenterGapicClient
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * external_system resource.
+     *
+     * @param string $organization
+     * @param string $source
+     * @param string $finding
+     * @param string $externalsystem
+     *
+     * @return string The formatted external_system resource.
+     */
+    public static function externalSystemName($organization, $source, $finding, $externalsystem)
+    {
+        return self::getExternalSystemNameTemplate()->render([
+            'organization' => $organization,
+            'source' => $source,
+            'finding' => $finding,
+            'externalsystem' => $externalsystem,
+        ]);
     }
 
     /**
@@ -603,6 +674,27 @@ class SecurityCenterGapicClient
             'folder' => $folder,
             'source' => $source,
             'finding' => $finding,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_source_finding_externalsystem resource.
+     *
+     * @param string $folder
+     * @param string $source
+     * @param string $finding
+     * @param string $externalsystem
+     *
+     * @return string The formatted folder_source_finding_externalsystem resource.
+     */
+    public static function folderSourceFindingExternalsystemName($folder, $source, $finding, $externalsystem)
+    {
+        return self::getFolderSourceFindingExternalsystemNameTemplate()->render([
+            'folder' => $folder,
+            'source' => $source,
+            'finding' => $finding,
+            'externalsystem' => $externalsystem,
         ]);
     }
 
@@ -761,6 +853,27 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_source_finding_externalsystem resource.
+     *
+     * @param string $organization
+     * @param string $source
+     * @param string $finding
+     * @param string $externalsystem
+     *
+     * @return string The formatted organization_source_finding_externalsystem resource.
+     */
+    public static function organizationSourceFindingExternalsystemName($organization, $source, $finding, $externalsystem)
+    {
+        return self::getOrganizationSourceFindingExternalsystemNameTemplate()->render([
+            'organization' => $organization,
+            'source' => $source,
+            'finding' => $finding,
+            'externalsystem' => $externalsystem,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * organization_source_finding_securityMarks resource.
      *
      * @param string $organization
@@ -865,6 +978,27 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_source_finding_externalsystem resource.
+     *
+     * @param string $project
+     * @param string $source
+     * @param string $finding
+     * @param string $externalsystem
+     *
+     * @return string The formatted project_source_finding_externalsystem resource.
+     */
+    public static function projectSourceFindingExternalsystemName($project, $source, $finding, $externalsystem)
+    {
+        return self::getProjectSourceFindingExternalsystemNameTemplate()->render([
+            'project' => $project,
+            'source' => $source,
+            'finding' => $finding,
+            'externalsystem' => $externalsystem,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_source_finding_securityMarks resource.
      *
      * @param string $project
@@ -937,12 +1071,14 @@ class SecurityCenterGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - externalSystem: organizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
      * - finding: organizations/{organization}/sources/{source}/findings/{finding}
      * - folder: folders/{folder}
      * - folderAssetSecurityMarks: folders/{folder}/assets/{asset}/securityMarks
      * - folderMuteConfig: folders/{folder}/muteConfigs/{mute_config}
      * - folderSource: folders/{folder}/sources/{source}
      * - folderSourceFinding: folders/{folder}/sources/{source}/findings/{finding}
+     * - folderSourceFindingExternalsystem: folders/{folder}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
      * - folderSourceFindingSecurityMarks: folders/{folder}/sources/{source}/findings/{finding}/securityMarks
      * - muteConfig: organizations/{organization}/muteConfigs/{mute_config}
      * - notificationConfig: organizations/{organization}/notificationConfigs/{notification_config}
@@ -952,12 +1088,14 @@ class SecurityCenterGapicClient
      * - organizationSettings: organizations/{organization}/organizationSettings
      * - organizationSource: organizations/{organization}/sources/{source}
      * - organizationSourceFinding: organizations/{organization}/sources/{source}/findings/{finding}
+     * - organizationSourceFindingExternalsystem: organizations/{organization}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
      * - organizationSourceFindingSecurityMarks: organizations/{organization}/sources/{source}/findings/{finding}/securityMarks
      * - project: projects/{project}
      * - projectAssetSecurityMarks: projects/{project}/assets/{asset}/securityMarks
      * - projectMuteConfig: projects/{project}/muteConfigs/{mute_config}
      * - projectSource: projects/{project}/sources/{source}
      * - projectSourceFinding: projects/{project}/sources/{source}/findings/{finding}
+     * - projectSourceFindingExternalsystem: projects/{project}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
      * - projectSourceFindingSecurityMarks: projects/{project}/sources/{source}/findings/{finding}/securityMarks
      * - securityMarks: organizations/{organization}/assets/{asset}/securityMarks
      * - source: organizations/{organization}/sources/{source}
@@ -2994,6 +3132,54 @@ class SecurityCenterGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates external system. This is for a given finding.
+     *
+     * Sample code:
+     * ```
+     * $securityCenterClient = new SecurityCenterClient();
+     * try {
+     *     $externalSystem = new ExternalSystem();
+     *     $response = $securityCenterClient->updateExternalSystem($externalSystem);
+     * } finally {
+     *     $securityCenterClient->close();
+     * }
+     * ```
+     *
+     * @param ExternalSystem $externalSystem Required. The external system resource to update.
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           The FieldMask to use when updating the external system resource.
+     *
+     *           If empty all mutable fields will be updated.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\SecurityCenter\V1\ExternalSystem
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateExternalSystem($externalSystem, array $optionalArgs = [])
+    {
+        $request = new UpdateExternalSystemRequest();
+        $requestParamHeaders = [];
+        $request->setExternalSystem($externalSystem);
+        $requestParamHeaders['external_system.name'] = $externalSystem->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateExternalSystem', ExternalSystem::class, $optionalArgs, $request)->wait();
     }
 
     /**

@@ -427,6 +427,31 @@ return [
                     ],
                 ],
             ],
+            'UpdateExternalSystem' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{external_system.name=organizations/*/sources/*/findings/*/externalSystems/*}',
+                'body' => 'external_system',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{external_system.name=folders/*/sources/*/findings/*/externalSystems/*}',
+                        'body' => 'external_system',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{external_system.name=projects/*/sources/*/findings/*/externalSystems/*}',
+                        'body' => 'external_system',
+                    ],
+                ],
+                'placeholders' => [
+                    'external_system.name' => [
+                        'getters' => [
+                            'getExternalSystem',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateFinding' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{finding.name=organizations/*/sources/*/findings/*}',

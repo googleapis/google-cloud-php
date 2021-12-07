@@ -411,6 +411,21 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Updates external system. This is for a given finding.
+     * @param \Google\Cloud\SecurityCenter\V1\UpdateExternalSystemRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateExternalSystem(\Google\Cloud\SecurityCenter\V1\UpdateExternalSystemRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/UpdateExternalSystem',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\ExternalSystem', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates or updates a finding. The corresponding source must exist for a
      * finding creation to succeed.
      * @param \Google\Cloud\SecurityCenter\V1\UpdateFindingRequest $argument input argument
