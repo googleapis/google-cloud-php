@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * RoutingsVPC contains information about a VPC network that is associated with
+ * RoutingVPC contains information about the VPC network that is associated with
  * a hub's spokes.
  *
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.RoutingVPC</code>
@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class RoutingVPC extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The URI of a VPC network.
+     * The URI of the VPC network.
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -30,7 +30,7 @@ class RoutingVPC extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uri
-     *           The URI of a VPC network.
+     *           The URI of the VPC network.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +39,7 @@ class RoutingVPC extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI of a VPC network.
+     * The URI of the VPC network.
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -50,7 +50,7 @@ class RoutingVPC extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI of a VPC network.
+     * The URI of the VPC network.
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

@@ -67,8 +67,9 @@ use Google\Protobuf\FieldMask;
  * $hubServiceClient = new HubServiceClient();
  * try {
  *     $formattedParent = $hubServiceClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $hubId = 'hub_id';
  *     $hub = new Hub();
- *     $operationResponse = $hubServiceClient->createHub($formattedParent, $hub);
+ *     $operationResponse = $hubServiceClient->createHub($formattedParent, $hubId, $hub);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -79,7 +80,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $hubServiceClient->createHub($formattedParent, $hub);
+ *     $operationResponse = $hubServiceClient->createHub($formattedParent, $hubId, $hub);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $hubServiceClient->resumeOperation($operationName, 'createHub');
@@ -423,8 +424,9 @@ class HubServiceGapicClient
      * $hubServiceClient = new HubServiceClient();
      * try {
      *     $formattedParent = $hubServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $hubId = 'hub_id';
      *     $hub = new Hub();
-     *     $operationResponse = $hubServiceClient->createHub($formattedParent, $hub);
+     *     $operationResponse = $hubServiceClient->createHub($formattedParent, $hubId, $hub);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -435,7 +437,7 @@ class HubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $hubServiceClient->createHub($formattedParent, $hub);
+     *     $operationResponse = $hubServiceClient->createHub($formattedParent, $hubId, $hub);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $hubServiceClient->resumeOperation($operationName, 'createHub');
@@ -456,12 +458,11 @@ class HubServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The parent resource.
+     * @param string $hubId        Required. A unique identifier for the hub.
      * @param Hub    $hub          Required. The initial values for a new hub.
      * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $hubId
-     *           Optional. A unique identifier for the hub.
      *     @type string $requestId
      *           Optional. A unique request ID (optional). If you specify this ID, you can use it
      *           in cases when you need to retry your request. When you need to retry, this
@@ -488,17 +489,14 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createHub($parent, $hub, array $optionalArgs = [])
+    public function createHub($parent, $hubId, $hub, array $optionalArgs = [])
     {
         $request = new CreateHubRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
+        $request->setHubId($hubId);
         $request->setHub($hub);
         $requestParamHeaders['parent'] = $parent;
-        if (isset($optionalArgs['hubId'])) {
-            $request->setHubId($optionalArgs['hubId']);
-        }
-
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -525,8 +523,9 @@ class HubServiceGapicClient
      * $hubServiceClient = new HubServiceClient();
      * try {
      *     $formattedParent = $hubServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $spokeId = 'spoke_id';
      *     $spoke = new Spoke();
-     *     $operationResponse = $hubServiceClient->createSpoke($formattedParent, $spoke);
+     *     $operationResponse = $hubServiceClient->createSpoke($formattedParent, $spokeId, $spoke);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -537,7 +536,7 @@ class HubServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $hubServiceClient->createSpoke($formattedParent, $spoke);
+     *     $operationResponse = $hubServiceClient->createSpoke($formattedParent, $spokeId, $spoke);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $hubServiceClient->resumeOperation($operationName, 'createSpoke');
@@ -558,12 +557,11 @@ class HubServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The parent resource.
+     * @param string $spokeId      Required. Unique id for the spoke to create.
      * @param Spoke  $spoke        Required. The initial values for a new spoke.
      * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $spokeId
-     *           Optional. Unique id for the spoke to create.
      *     @type string $requestId
      *           Optional. A unique request ID (optional). If you specify this ID, you can use it
      *           in cases when you need to retry your request. When you need to retry, this
@@ -590,17 +588,18 @@ class HubServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSpoke($parent, $spoke, array $optionalArgs = [])
-    {
+    public function createSpoke(
+        $parent,
+        $spokeId,
+        $spoke,
+        array $optionalArgs = []
+    ) {
         $request = new CreateSpokeRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
+        $request->setSpokeId($spokeId);
         $request->setSpoke($spoke);
         $requestParamHeaders['parent'] = $parent;
-        if (isset($optionalArgs['spokeId'])) {
-            $request->setSpokeId($optionalArgs['spokeId']);
-        }
-
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
