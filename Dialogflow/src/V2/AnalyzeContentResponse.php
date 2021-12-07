@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response message for [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent].
+ * The response message for
+ * [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.AnalyzeContentResponse</code>
  */
@@ -41,7 +42,9 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      * Only set if a Dialogflow automated agent has responded.
      * Note that: [AutomatedAgentReply.detect_intent_response.output_audio][]
      * and [AutomatedAgentReply.detect_intent_response.output_audio_config][]
-     * are always empty, use [reply_audio][google.cloud.dialogflow.v2.AnalyzeContentResponse.reply_audio] instead.
+     * are always empty, use
+     * [reply_audio][google.cloud.dialogflow.v2.AnalyzeContentResponse.reply_audio]
+     * instead.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AutomatedAgentReply automated_agent_reply = 3;</code>
      */
@@ -54,7 +57,8 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
     private $message = null;
     /**
      * The suggestions for most recent human agent. The order is the same as
-     * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs] of
+     * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs]
+     * of
      * [HumanAgentAssistantConfig.human_agent_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.human_agent_suggestion_config].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestionResult human_agent_suggestion_results = 6;</code>
@@ -62,7 +66,8 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
     private $human_agent_suggestion_results;
     /**
      * The suggestions for end user. The order is the same as
-     * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs] of
+     * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs]
+     * of
      * [HumanAgentAssistantConfig.end_user_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.end_user_suggestion_config].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestionResult end_user_suggestion_results = 7;</code>
@@ -99,16 +104,20 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      *           Only set if a Dialogflow automated agent has responded.
      *           Note that: [AutomatedAgentReply.detect_intent_response.output_audio][]
      *           and [AutomatedAgentReply.detect_intent_response.output_audio_config][]
-     *           are always empty, use [reply_audio][google.cloud.dialogflow.v2.AnalyzeContentResponse.reply_audio] instead.
+     *           are always empty, use
+     *           [reply_audio][google.cloud.dialogflow.v2.AnalyzeContentResponse.reply_audio]
+     *           instead.
      *     @type \Google\Cloud\Dialogflow\V2\Message $message
      *           Message analyzed by CCAI.
      *     @type \Google\Cloud\Dialogflow\V2\SuggestionResult[]|\Google\Protobuf\Internal\RepeatedField $human_agent_suggestion_results
      *           The suggestions for most recent human agent. The order is the same as
-     *           [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs] of
+     *           [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs]
+     *           of
      *           [HumanAgentAssistantConfig.human_agent_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.human_agent_suggestion_config].
      *     @type \Google\Cloud\Dialogflow\V2\SuggestionResult[]|\Google\Protobuf\Internal\RepeatedField $end_user_suggestion_results
      *           The suggestions for end user. The order is the same as
-     *           [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs] of
+     *           [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs]
+     *           of
      *           [HumanAgentAssistantConfig.end_user_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.end_user_suggestion_config].
      *     @type \Google\Cloud\Dialogflow\V2\DtmfParameters $dtmf_parameters
      *           Indicates the parameters of DTMF.
@@ -205,7 +214,9 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      * Only set if a Dialogflow automated agent has responded.
      * Note that: [AutomatedAgentReply.detect_intent_response.output_audio][]
      * and [AutomatedAgentReply.detect_intent_response.output_audio_config][]
-     * are always empty, use [reply_audio][google.cloud.dialogflow.v2.AnalyzeContentResponse.reply_audio] instead.
+     * are always empty, use
+     * [reply_audio][google.cloud.dialogflow.v2.AnalyzeContentResponse.reply_audio]
+     * instead.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AutomatedAgentReply automated_agent_reply = 3;</code>
      * @return \Google\Cloud\Dialogflow\V2\AutomatedAgentReply|null
@@ -229,7 +240,9 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      * Only set if a Dialogflow automated agent has responded.
      * Note that: [AutomatedAgentReply.detect_intent_response.output_audio][]
      * and [AutomatedAgentReply.detect_intent_response.output_audio_config][]
-     * are always empty, use [reply_audio][google.cloud.dialogflow.v2.AnalyzeContentResponse.reply_audio] instead.
+     * are always empty, use
+     * [reply_audio][google.cloud.dialogflow.v2.AnalyzeContentResponse.reply_audio]
+     * instead.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AutomatedAgentReply automated_agent_reply = 3;</code>
      * @param \Google\Cloud\Dialogflow\V2\AutomatedAgentReply $var
@@ -281,7 +294,8 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The suggestions for most recent human agent. The order is the same as
-     * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs] of
+     * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs]
+     * of
      * [HumanAgentAssistantConfig.human_agent_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.human_agent_suggestion_config].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestionResult human_agent_suggestion_results = 6;</code>
@@ -294,7 +308,8 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The suggestions for most recent human agent. The order is the same as
-     * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs] of
+     * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs]
+     * of
      * [HumanAgentAssistantConfig.human_agent_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.human_agent_suggestion_config].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestionResult human_agent_suggestion_results = 6;</code>
@@ -311,7 +326,8 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The suggestions for end user. The order is the same as
-     * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs] of
+     * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs]
+     * of
      * [HumanAgentAssistantConfig.end_user_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.end_user_suggestion_config].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestionResult end_user_suggestion_results = 7;</code>
@@ -324,7 +340,8 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The suggestions for end user. The order is the same as
-     * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs] of
+     * [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs]
+     * of
      * [HumanAgentAssistantConfig.end_user_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.end_user_suggestion_config].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestionResult end_user_suggestion_results = 7;</code>

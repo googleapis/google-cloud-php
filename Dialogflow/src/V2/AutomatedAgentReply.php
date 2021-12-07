@@ -16,7 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Response of the Dialogflow [Sessions.DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] call.
+     * Response of the Dialogflow
+     * [Sessions.DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent]
+     * call.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.DetectIntentResponse detect_intent_response = 1;</code>
      */
@@ -43,7 +45,9 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dialogflow\V2\DetectIntentResponse $detect_intent_response
-     *           Response of the Dialogflow [Sessions.DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] call.
+     *           Response of the Dialogflow
+     *           [Sessions.DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent]
+     *           call.
      *     @type int $automated_agent_reply_type
      *           AutomatedAgentReply type.
      *     @type bool $allow_cancellation
@@ -58,7 +62,9 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Response of the Dialogflow [Sessions.DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] call.
+     * Response of the Dialogflow
+     * [Sessions.DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent]
+     * call.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.DetectIntentResponse detect_intent_response = 1;</code>
      * @return \Google\Cloud\Dialogflow\V2\DetectIntentResponse|null
@@ -79,7 +85,9 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Response of the Dialogflow [Sessions.DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] call.
+     * Response of the Dialogflow
+     * [Sessions.DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent]
+     * call.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.DetectIntentResponse detect_intent_response = 1;</code>
      * @param \Google\Cloud\Dialogflow\V2\DetectIntentResponse $var
