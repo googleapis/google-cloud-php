@@ -887,7 +887,6 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertProtobufEquals($parentId, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setParentId($parent_id);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1133,7 +1132,6 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $this->assertProtobufEquals($parentId, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOrganizationOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setParentId($parent_id);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
