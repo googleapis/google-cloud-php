@@ -22,11 +22,12 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the transfer config.
-     * Transfer config names have the form
+     * Transfer config names have the form of
      * `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`.
-     * Where `config_id` is usually a uuid, even though it is not
-     * guaranteed or required. The name is ignored when creating a transfer
-     * config.
+     * The name is automatically generated based on the config_id specified in
+     * CreateTransferConfigRequest along with project_id and region. If config_id
+     * is not provided, usually a uuid, even though it is not guaranteed or
+     * required, will be generated for config_id.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -44,10 +45,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      */
     private $data_source_id = '';
     /**
-     * Parameters specific to each data source. For more information see the
-     * bq tab in the 'Setting up a data transfer' section for each data source.
-     * For example the parameters for Cloud Storage transfers are listed here:
-     * https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
+     * Data transfer specific parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 9;</code>
      */
@@ -126,8 +124,6 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Pub/Sub topic where notifications will be sent after transfer runs
      * associated with this transfer config finish.
-     * The format for specifying a pubsub topic is:
-     * `projects/{project}/topics/{topic}`
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 15;</code>
      */
@@ -149,11 +145,12 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the transfer config.
-     *           Transfer config names have the form
+     *           Transfer config names have the form of
      *           `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`.
-     *           Where `config_id` is usually a uuid, even though it is not
-     *           guaranteed or required. The name is ignored when creating a transfer
-     *           config.
+     *           The name is automatically generated based on the config_id specified in
+     *           CreateTransferConfigRequest along with project_id and region. If config_id
+     *           is not provided, usually a uuid, even though it is not guaranteed or
+     *           required, will be generated for config_id.
      *     @type string $destination_dataset_id
      *           The BigQuery target dataset id.
      *     @type string $display_name
@@ -161,10 +158,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *     @type string $data_source_id
      *           Data source id. Cannot be changed once data transfer is created.
      *     @type \Google\Protobuf\Struct $params
-     *           Parameters specific to each data source. For more information see the
-     *           bq tab in the 'Setting up a data transfer' section for each data source.
-     *           For example the parameters for Cloud Storage transfers are listed here:
-     *           https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
+     *           Data transfer specific parameters.
      *     @type string $schedule
      *           Data transfer schedule.
      *           If the data source does not support a custom schedule, this should be
@@ -203,8 +197,6 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *     @type string $notification_pubsub_topic
      *           Pub/Sub topic where notifications will be sent after transfer runs
      *           associated with this transfer config finish.
-     *           The format for specifying a pubsub topic is:
-     *           `projects/{project}/topics/{topic}`
      *     @type \Google\Cloud\BigQuery\DataTransfer\V1\EmailPreferences $email_preferences
      *           Email notifications will be sent according to these preferences
      *           to the email address of the user who owns this transfer config.
@@ -217,11 +209,12 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the transfer config.
-     * Transfer config names have the form
+     * Transfer config names have the form of
      * `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`.
-     * Where `config_id` is usually a uuid, even though it is not
-     * guaranteed or required. The name is ignored when creating a transfer
-     * config.
+     * The name is automatically generated based on the config_id specified in
+     * CreateTransferConfigRequest along with project_id and region. If config_id
+     * is not provided, usually a uuid, even though it is not guaranteed or
+     * required, will be generated for config_id.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -233,11 +226,12 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the transfer config.
-     * Transfer config names have the form
+     * Transfer config names have the form of
      * `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`.
-     * Where `config_id` is usually a uuid, even though it is not
-     * guaranteed or required. The name is ignored when creating a transfer
-     * config.
+     * The name is automatically generated based on the config_id specified in
+     * CreateTransferConfigRequest along with project_id and region. If config_id
+     * is not provided, usually a uuid, even though it is not guaranteed or
+     * required, will be generated for config_id.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -335,10 +329,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Parameters specific to each data source. For more information see the
-     * bq tab in the 'Setting up a data transfer' section for each data source.
-     * For example the parameters for Cloud Storage transfers are listed here:
-     * https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
+     * Data transfer specific parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 9;</code>
      * @return \Google\Protobuf\Struct|null
@@ -359,10 +350,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Parameters specific to each data source. For more information see the
-     * bq tab in the 'Setting up a data transfer' section for each data source.
-     * For example the parameters for Cloud Storage transfers are listed here:
-     * https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
+     * Data transfer specific parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 9;</code>
      * @param \Google\Protobuf\Struct $var
@@ -677,8 +665,6 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Pub/Sub topic where notifications will be sent after transfer runs
      * associated with this transfer config finish.
-     * The format for specifying a pubsub topic is:
-     * `projects/{project}/topics/{topic}`
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 15;</code>
      * @return string
@@ -691,8 +677,6 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     /**
      * Pub/Sub topic where notifications will be sent after transfer runs
      * associated with this transfer config finish.
-     * The format for specifying a pubsub topic is:
-     * `projects/{project}/topics/{topic}`
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 15;</code>
      * @param string $var
