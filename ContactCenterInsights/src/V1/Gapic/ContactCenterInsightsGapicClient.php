@@ -779,8 +779,8 @@ class ContactCenterInsightsGapicClient
      *           component of the conversation's resource name. If no ID is specified, a
      *           server-generated ID will be used.
      *
-     *           This value should be 4-32 characters and must match the regular
-     *           expression /^[a-z0-9-]{4,32}$/. Valid characters are /[a-z][0-9]-/
+     *           This value should be 4-64 characters and must match the regular
+     *           expression `^[a-z0-9-]{4,64}$`. Valid characters are `[a-z][0-9]-`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -915,10 +915,10 @@ class ContactCenterInsightsGapicClient
      * }
      * ```
      *
-     * @param string        $parent        Required. The parent resource of the phrase matcher. Required. The location
-     *                                     to create a phrase matcher for. Format: `projects/<Project
-     *                                     ID>/locations/<Location ID>` or `projects/<Project
-     *                                     Number>/locations/<Location ID>`
+     * @param string        $parent        Required. The parent resource of the phrase matcher. Required. The location to create
+     *                                     a phrase matcher for.
+     *                                     Format: `projects/<Project ID>/locations/<Location ID>` or
+     *                                     `projects/<Project Number>/locations/<Location ID>`
      * @param PhraseMatcher $phraseMatcher Required. The phrase matcher resource to create.
      * @param array         $optionalArgs  {
      *     Optional.

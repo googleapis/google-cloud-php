@@ -22,6 +22,14 @@ class AnalysisConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>double runtime_integration_analysis_percentage = 1;</code>
      */
     private $runtime_integration_analysis_percentage = 0.0;
+    /**
+     * Whether to disable issue model inference during analysis.
+     * By default issue modeling will be included in analysis if there is an
+     * active issue model for the project.
+     *
+     * Generated from protobuf field <code>bool disable_issue_modeling = 3;</code>
+     */
+    private $disable_issue_modeling = false;
 
     /**
      * Constructor.
@@ -32,6 +40,10 @@ class AnalysisConfig extends \Google\Protobuf\Internal\Message
      *     @type float $runtime_integration_analysis_percentage
      *           Percentage of conversations created using Dialogflow runtime integration
      *           to analyze automatically, between [0, 100].
+     *     @type bool $disable_issue_modeling
+     *           Whether to disable issue model inference during analysis.
+     *           By default issue modeling will be included in analysis if there is an
+     *           active issue model for the project.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +75,36 @@ class AnalysisConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->runtime_integration_analysis_percentage = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether to disable issue model inference during analysis.
+     * By default issue modeling will be included in analysis if there is an
+     * active issue model for the project.
+     *
+     * Generated from protobuf field <code>bool disable_issue_modeling = 3;</code>
+     * @return bool
+     */
+    public function getDisableIssueModeling()
+    {
+        return $this->disable_issue_modeling;
+    }
+
+    /**
+     * Whether to disable issue model inference during analysis.
+     * By default issue modeling will be included in analysis if there is an
+     * active issue model for the project.
+     *
+     * Generated from protobuf field <code>bool disable_issue_modeling = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableIssueModeling($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_issue_modeling = $var;
 
         return $this;
     }
