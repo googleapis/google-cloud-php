@@ -54,8 +54,8 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     private $capacity_gb = 0;
     /**
-     * Output only. The size of the storage used by the backup. As backups share storage,
-     * this number is expected to change with backup creation/deletion.
+     * Output only. The size of the storage used by the backup. As backups share
+     * storage, this number is expected to change with backup creation/deletion.
      *
      * Generated from protobuf field <code>int64 storage_bytes = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -76,16 +76,16 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     private $source_file_share = '';
     /**
-     * Output only. The service tier of the source Cloud Filestore instance that this backup
-     * is created from.
+     * Output only. The service tier of the source Cloud Filestore instance that
+     * this backup is created from.
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.Tier source_instance_tier = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $source_instance_tier = 0;
     /**
-     * Output only. Amount of bytes that will be downloaded if the backup is restored. This
-     * may be different than storage bytes, since sequential backups of the same
-     * disk will share storage.
+     * Output only. Amount of bytes that will be downloaded if the backup is
+     * restored. This may be different than storage bytes, since sequential
+     * backups of the same disk will share storage.
      *
      * Generated from protobuf field <code>int64 download_bytes = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -118,8 +118,8 @@ class Backup extends \Google\Protobuf\Internal\Message
      *     @type int|string $capacity_gb
      *           Output only. Capacity of the source file share when the backup was created.
      *     @type int|string $storage_bytes
-     *           Output only. The size of the storage used by the backup. As backups share storage,
-     *           this number is expected to change with backup creation/deletion.
+     *           Output only. The size of the storage used by the backup. As backups share
+     *           storage, this number is expected to change with backup creation/deletion.
      *     @type string $source_instance
      *           The resource name of the source Cloud Filestore instance, in the format
      *           `projects/{project_number}/locations/{location_id}/instances/{instance_id}`,
@@ -128,12 +128,12 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Name of the file share in the source Cloud Filestore instance that the
      *           backup is created from.
      *     @type int $source_instance_tier
-     *           Output only. The service tier of the source Cloud Filestore instance that this backup
-     *           is created from.
+     *           Output only. The service tier of the source Cloud Filestore instance that
+     *           this backup is created from.
      *     @type int|string $download_bytes
-     *           Output only. Amount of bytes that will be downloaded if the backup is restored. This
-     *           may be different than storage bytes, since sequential backups of the same
-     *           disk will share storage.
+     *           Output only. Amount of bytes that will be downloaded if the backup is
+     *           restored. This may be different than storage bytes, since sequential
+     *           backups of the same disk will share storage.
      *     @type \Google\Protobuf\BoolValue $satisfies_pzs
      *           Output only. Reserved for future use.
      * }
@@ -314,8 +314,8 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The size of the storage used by the backup. As backups share storage,
-     * this number is expected to change with backup creation/deletion.
+     * Output only. The size of the storage used by the backup. As backups share
+     * storage, this number is expected to change with backup creation/deletion.
      *
      * Generated from protobuf field <code>int64 storage_bytes = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -326,8 +326,8 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The size of the storage used by the backup. As backups share storage,
-     * this number is expected to change with backup creation/deletion.
+     * Output only. The size of the storage used by the backup. As backups share
+     * storage, this number is expected to change with backup creation/deletion.
      *
      * Generated from protobuf field <code>int64 storage_bytes = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
@@ -400,8 +400,8 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The service tier of the source Cloud Filestore instance that this backup
-     * is created from.
+     * Output only. The service tier of the source Cloud Filestore instance that
+     * this backup is created from.
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.Tier source_instance_tier = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -412,8 +412,8 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The service tier of the source Cloud Filestore instance that this backup
-     * is created from.
+     * Output only. The service tier of the source Cloud Filestore instance that
+     * this backup is created from.
      *
      * Generated from protobuf field <code>.google.cloud.filestore.v1.Instance.Tier source_instance_tier = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -428,9 +428,9 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Amount of bytes that will be downloaded if the backup is restored. This
-     * may be different than storage bytes, since sequential backups of the same
-     * disk will share storage.
+     * Output only. Amount of bytes that will be downloaded if the backup is
+     * restored. This may be different than storage bytes, since sequential
+     * backups of the same disk will share storage.
      *
      * Generated from protobuf field <code>int64 download_bytes = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -441,9 +441,9 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Amount of bytes that will be downloaded if the backup is restored. This
-     * may be different than storage bytes, since sequential backups of the same
-     * disk will share storage.
+     * Output only. Amount of bytes that will be downloaded if the backup is
+     * restored. This may be different than storage bytes, since sequential
+     * backups of the same disk will share storage.
      *
      * Generated from protobuf field <code>int64 download_bytes = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var

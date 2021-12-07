@@ -22,8 +22,8 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      */
     private $backup = null;
     /**
-     * Required. Mask of fields to update.  At least one path must be supplied in this
-     * field.
+     * Required. Mask of fields to update.  At least one path must be supplied in
+     * this field.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -38,8 +38,8 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Filestore\V1\Backup $backup
      *           Required. A [backup resource][google.cloud.filestore.v1.Backup]
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. Mask of fields to update.  At least one path must be supplied in this
-     *           field.
+     *           Required. Mask of fields to update.  At least one path must be supplied in
+     *           this field.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,8 +84,8 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Mask of fields to update.  At least one path must be supplied in this
-     * field.
+     * Required. Mask of fields to update.  At least one path must be supplied in
+     * this field.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -106,8 +106,8 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Mask of fields to update.  At least one path must be supplied in this
-     * field.
+     * Required. Mask of fields to update.  At least one path must be supplied in
+     * this field.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
