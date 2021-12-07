@@ -74,6 +74,7 @@ trait ItemIteratorTrait
      *
      * @return null
      */
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         $this->pageIndex = 0;
@@ -86,6 +87,7 @@ trait ItemIteratorTrait
      *
      * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         $page = $this->pageIterator->current();
@@ -100,6 +102,7 @@ trait ItemIteratorTrait
      *
      * @return int
      */
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return $this->position;
@@ -110,6 +113,7 @@ trait ItemIteratorTrait
      *
      * @return null
      */
+    #[\ReturnTypeWillChange]
     public function next()
     {
         $this->pageIndex++;
@@ -126,6 +130,7 @@ trait ItemIteratorTrait
      *
      * @return bool
      */
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         $page = $this->pageIterator->current();

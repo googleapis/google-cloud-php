@@ -113,6 +113,7 @@ class Entity implements ArrayAccess, EntityInterface
      * @return void
      * @access private
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($key, $val)
     {
         $this->entity[$key] = $val;
@@ -123,6 +124,7 @@ class Entity implements ArrayAccess, EntityInterface
      * @return bool
      * @access private
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($key)
     {
         return isset($this->entity[$key]);
@@ -133,6 +135,7 @@ class Entity implements ArrayAccess, EntityInterface
      * @return void
      * @access private
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($key)
     {
         unset($this->entity[$key]);
@@ -143,6 +146,7 @@ class Entity implements ArrayAccess, EntityInterface
      * @return mixed
      * @access private
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($key)
     {
         return isset($this->entity[$key])
