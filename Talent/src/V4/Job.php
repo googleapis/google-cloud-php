@@ -119,7 +119,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * A map of fields to hold both filterable and non-filterable custom job
      * attributes that are not covered by the provided structured fields.
      * The keys of the map are strings up to 64 bytes and must match the
-     * pattern: [a-zA-Z][a-zA-Z0-9_]*. For example, key0LikeThis or
+     * pattern: `[a-zA-Z][a-zA-Z0-9_]*`. For example, key0LikeThis or
      * KEY_1_LIKE_THIS.
      * At most 100 filterable and at most 100 unfilterable keys are supported.
      * For filterable `string_values`, across all keys at most 200 values are
@@ -399,7 +399,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *           A map of fields to hold both filterable and non-filterable custom job
      *           attributes that are not covered by the provided structured fields.
      *           The keys of the map are strings up to 64 bytes and must match the
-     *           pattern: [a-zA-Z][a-zA-Z0-9_]*. For example, key0LikeThis or
+     *           pattern: `[a-zA-Z][a-zA-Z0-9_]*`. For example, key0LikeThis or
      *           KEY_1_LIKE_THIS.
      *           At most 100 filterable and at most 100 unfilterable keys are supported.
      *           For filterable `string_values`, across all keys at most 200 values are
@@ -874,7 +874,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * A map of fields to hold both filterable and non-filterable custom job
      * attributes that are not covered by the provided structured fields.
      * The keys of the map are strings up to 64 bytes and must match the
-     * pattern: [a-zA-Z][a-zA-Z0-9_]*. For example, key0LikeThis or
+     * pattern: `[a-zA-Z][a-zA-Z0-9_]*`. For example, key0LikeThis or
      * KEY_1_LIKE_THIS.
      * At most 100 filterable and at most 100 unfilterable keys are supported.
      * For filterable `string_values`, across all keys at most 200 values are
@@ -894,7 +894,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * A map of fields to hold both filterable and non-filterable custom job
      * attributes that are not covered by the provided structured fields.
      * The keys of the map are strings up to 64 bytes and must match the
-     * pattern: [a-zA-Z][a-zA-Z0-9_]*. For example, key0LikeThis or
+     * pattern: `[a-zA-Z][a-zA-Z0-9_]*`. For example, key0LikeThis or
      * KEY_1_LIKE_THIS.
      * At most 100 filterable and at most 100 unfilterable keys are supported.
      * For filterable `string_values`, across all keys at most 200 values are
