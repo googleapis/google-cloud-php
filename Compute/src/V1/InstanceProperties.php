@@ -17,25 +17,25 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * Controls for advanced machine-related behavior features.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AdvancedMachineFeatures advanced_machine_features = 409646002;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AdvancedMachineFeatures advanced_machine_features = 409646002;</code>
      */
     private $advanced_machine_features = null;
     /**
      * Enables instances created based on these properties to send packets with source IP addresses other than their own and receive packets with destination IP addresses other than their own. If these instances will be used as an IP gateway or it will be set as the next-hop in a Route resource, specify true. If unsure, leave this set to false. See the Enable IP forwarding documentation for more information.
      *
-     * Generated from protobuf field <code>bool can_ip_forward = 467731324;</code>
+     * Generated from protobuf field <code>optional bool can_ip_forward = 467731324;</code>
      */
     private $can_ip_forward = null;
     /**
      * Specifies the Confidential Instance options.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ConfidentialInstanceConfig confidential_instance_config = 490637685;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ConfidentialInstanceConfig confidential_instance_config = 490637685;</code>
      */
     private $confidential_instance_config = null;
     /**
      * An optional text description for the instances that are created from these properties.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
@@ -59,19 +59,19 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * The machine type to use for instances that are created from these properties.
      *
-     * Generated from protobuf field <code>string machine_type = 227711026;</code>
+     * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      */
     private $machine_type = null;
     /**
      * The metadata key/value pairs to assign to instances that are created from these properties. These pairs can consist of custom metadata or predefined keys. See Project and instance metadata for more information.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Metadata metadata = 86866735;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Metadata metadata = 86866735;</code>
      */
     private $metadata = null;
     /**
      * Minimum cpu/platform to be used by instances. The instance may be scheduled on the specified or newer cpu/platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: "Intel Haswell" or minCpuPlatform: "Intel Sandy Bridge". For more information, read Specifying a Minimum CPU Platform.
      *
-     * Generated from protobuf field <code>string min_cpu_platform = 242912759;</code>
+     * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
      */
     private $min_cpu_platform = null;
     /**
@@ -81,15 +81,16 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      */
     private $network_interfaces;
     /**
-     * The private IPv6 google access type for VMs. If not specified, use  INHERIT_FROM_SUBNETWORK as default.
+     * The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default.
+     * Check the PrivateIpv6GoogleAccess enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceProperties.PrivateIpv6GoogleAccess private_ipv6_google_access = 48277006;</code>
+     * Generated from protobuf field <code>optional string private_ipv6_google_access = 48277006;</code>
      */
     private $private_ipv6_google_access = null;
     /**
      * Specifies the reservations that instances can consume from.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ReservationAffinity reservation_affinity = 157850683;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAffinity reservation_affinity = 157850683;</code>
      */
     private $reservation_affinity = null;
     /**
@@ -101,7 +102,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the scheduling options for the instances that are created from these properties.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Scheduling scheduling = 386688404;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Scheduling scheduling = 386688404;</code>
      */
     private $scheduling = null;
     /**
@@ -111,13 +112,13 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      */
     private $service_accounts;
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceConfig shielded_instance_config = 12862901;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShieldedInstanceConfig shielded_instance_config = 12862901;</code>
      */
     private $shielded_instance_config = null;
     /**
      * A list of tags to apply to the instances that are created from these properties. The tags identify valid sources or targets for network firewalls. The setTags method can modify this list of tags. Each tag within the list must comply with RFC1035.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Tags tags = 3552281;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Tags tags = 3552281;</code>
      */
     private $tags = null;
 
@@ -149,8 +150,9 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      *           Minimum cpu/platform to be used by instances. The instance may be scheduled on the specified or newer cpu/platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: "Intel Haswell" or minCpuPlatform: "Intel Sandy Bridge". For more information, read Specifying a Minimum CPU Platform.
      *     @type \Google\Cloud\Compute\V1\NetworkInterface[]|\Google\Protobuf\Internal\RepeatedField $network_interfaces
      *           An array of network access configurations for this interface.
-     *     @type int $private_ipv6_google_access
-     *           The private IPv6 google access type for VMs. If not specified, use  INHERIT_FROM_SUBNETWORK as default.
+     *     @type string $private_ipv6_google_access
+     *           The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default.
+     *           Check the PrivateIpv6GoogleAccess enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\ReservationAffinity $reservation_affinity
      *           Specifies the reservations that instances can consume from.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_policies
@@ -172,12 +174,12 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * Controls for advanced machine-related behavior features.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AdvancedMachineFeatures advanced_machine_features = 409646002;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AdvancedMachineFeatures advanced_machine_features = 409646002;</code>
      * @return \Google\Cloud\Compute\V1\AdvancedMachineFeatures|null
      */
     public function getAdvancedMachineFeatures()
     {
-        return isset($this->advanced_machine_features) ? $this->advanced_machine_features : null;
+        return $this->advanced_machine_features;
     }
 
     public function hasAdvancedMachineFeatures()
@@ -193,7 +195,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * Controls for advanced machine-related behavior features.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AdvancedMachineFeatures advanced_machine_features = 409646002;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AdvancedMachineFeatures advanced_machine_features = 409646002;</code>
      * @param \Google\Cloud\Compute\V1\AdvancedMachineFeatures $var
      * @return $this
      */
@@ -208,7 +210,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * Enables instances created based on these properties to send packets with source IP addresses other than their own and receive packets with destination IP addresses other than their own. If these instances will be used as an IP gateway or it will be set as the next-hop in a Route resource, specify true. If unsure, leave this set to false. See the Enable IP forwarding documentation for more information.
      *
-     * Generated from protobuf field <code>bool can_ip_forward = 467731324;</code>
+     * Generated from protobuf field <code>optional bool can_ip_forward = 467731324;</code>
      * @return bool
      */
     public function getCanIpForward()
@@ -229,7 +231,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * Enables instances created based on these properties to send packets with source IP addresses other than their own and receive packets with destination IP addresses other than their own. If these instances will be used as an IP gateway or it will be set as the next-hop in a Route resource, specify true. If unsure, leave this set to false. See the Enable IP forwarding documentation for more information.
      *
-     * Generated from protobuf field <code>bool can_ip_forward = 467731324;</code>
+     * Generated from protobuf field <code>optional bool can_ip_forward = 467731324;</code>
      * @param bool $var
      * @return $this
      */
@@ -244,12 +246,12 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the Confidential Instance options.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ConfidentialInstanceConfig confidential_instance_config = 490637685;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ConfidentialInstanceConfig confidential_instance_config = 490637685;</code>
      * @return \Google\Cloud\Compute\V1\ConfidentialInstanceConfig|null
      */
     public function getConfidentialInstanceConfig()
     {
-        return isset($this->confidential_instance_config) ? $this->confidential_instance_config : null;
+        return $this->confidential_instance_config;
     }
 
     public function hasConfidentialInstanceConfig()
@@ -265,7 +267,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the Confidential Instance options.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ConfidentialInstanceConfig confidential_instance_config = 490637685;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ConfidentialInstanceConfig confidential_instance_config = 490637685;</code>
      * @param \Google\Cloud\Compute\V1\ConfidentialInstanceConfig $var
      * @return $this
      */
@@ -280,7 +282,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * An optional text description for the instances that are created from these properties.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -301,7 +303,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * An optional text description for the instances that are created from these properties.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -394,7 +396,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * The machine type to use for instances that are created from these properties.
      *
-     * Generated from protobuf field <code>string machine_type = 227711026;</code>
+     * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      * @return string
      */
     public function getMachineType()
@@ -415,7 +417,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * The machine type to use for instances that are created from these properties.
      *
-     * Generated from protobuf field <code>string machine_type = 227711026;</code>
+     * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      * @param string $var
      * @return $this
      */
@@ -430,12 +432,12 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * The metadata key/value pairs to assign to instances that are created from these properties. These pairs can consist of custom metadata or predefined keys. See Project and instance metadata for more information.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Metadata metadata = 86866735;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Metadata metadata = 86866735;</code>
      * @return \Google\Cloud\Compute\V1\Metadata|null
      */
     public function getMetadata()
     {
-        return isset($this->metadata) ? $this->metadata : null;
+        return $this->metadata;
     }
 
     public function hasMetadata()
@@ -451,7 +453,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * The metadata key/value pairs to assign to instances that are created from these properties. These pairs can consist of custom metadata or predefined keys. See Project and instance metadata for more information.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Metadata metadata = 86866735;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Metadata metadata = 86866735;</code>
      * @param \Google\Cloud\Compute\V1\Metadata $var
      * @return $this
      */
@@ -466,7 +468,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * Minimum cpu/platform to be used by instances. The instance may be scheduled on the specified or newer cpu/platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: "Intel Haswell" or minCpuPlatform: "Intel Sandy Bridge". For more information, read Specifying a Minimum CPU Platform.
      *
-     * Generated from protobuf field <code>string min_cpu_platform = 242912759;</code>
+     * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
      * @return string
      */
     public function getMinCpuPlatform()
@@ -487,7 +489,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * Minimum cpu/platform to be used by instances. The instance may be scheduled on the specified or newer cpu/platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: "Intel Haswell" or minCpuPlatform: "Intel Sandy Bridge". For more information, read Specifying a Minimum CPU Platform.
      *
-     * Generated from protobuf field <code>string min_cpu_platform = 242912759;</code>
+     * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
      * @param string $var
      * @return $this
      */
@@ -526,14 +528,15 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The private IPv6 google access type for VMs. If not specified, use  INHERIT_FROM_SUBNETWORK as default.
+     * The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default.
+     * Check the PrivateIpv6GoogleAccess enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceProperties.PrivateIpv6GoogleAccess private_ipv6_google_access = 48277006;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string private_ipv6_google_access = 48277006;</code>
+     * @return string
      */
     public function getPrivateIpv6GoogleAccess()
     {
-        return isset($this->private_ipv6_google_access) ? $this->private_ipv6_google_access : 0;
+        return isset($this->private_ipv6_google_access) ? $this->private_ipv6_google_access : '';
     }
 
     public function hasPrivateIpv6GoogleAccess()
@@ -547,15 +550,16 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The private IPv6 google access type for VMs. If not specified, use  INHERIT_FROM_SUBNETWORK as default.
+     * The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default.
+     * Check the PrivateIpv6GoogleAccess enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceProperties.PrivateIpv6GoogleAccess private_ipv6_google_access = 48277006;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string private_ipv6_google_access = 48277006;</code>
+     * @param string $var
      * @return $this
      */
     public function setPrivateIpv6GoogleAccess($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\InstanceProperties\PrivateIpv6GoogleAccess::class);
+        GPBUtil::checkString($var, True);
         $this->private_ipv6_google_access = $var;
 
         return $this;
@@ -564,12 +568,12 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the reservations that instances can consume from.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ReservationAffinity reservation_affinity = 157850683;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAffinity reservation_affinity = 157850683;</code>
      * @return \Google\Cloud\Compute\V1\ReservationAffinity|null
      */
     public function getReservationAffinity()
     {
-        return isset($this->reservation_affinity) ? $this->reservation_affinity : null;
+        return $this->reservation_affinity;
     }
 
     public function hasReservationAffinity()
@@ -585,7 +589,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the reservations that instances can consume from.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ReservationAffinity reservation_affinity = 157850683;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAffinity reservation_affinity = 157850683;</code>
      * @param \Google\Cloud\Compute\V1\ReservationAffinity $var
      * @return $this
      */
@@ -626,12 +630,12 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the scheduling options for the instances that are created from these properties.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Scheduling scheduling = 386688404;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Scheduling scheduling = 386688404;</code>
      * @return \Google\Cloud\Compute\V1\Scheduling|null
      */
     public function getScheduling()
     {
-        return isset($this->scheduling) ? $this->scheduling : null;
+        return $this->scheduling;
     }
 
     public function hasScheduling()
@@ -647,7 +651,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the scheduling options for the instances that are created from these properties.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Scheduling scheduling = 386688404;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Scheduling scheduling = 386688404;</code>
      * @param \Google\Cloud\Compute\V1\Scheduling $var
      * @return $this
      */
@@ -686,12 +690,12 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceConfig shielded_instance_config = 12862901;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShieldedInstanceConfig shielded_instance_config = 12862901;</code>
      * @return \Google\Cloud\Compute\V1\ShieldedInstanceConfig|null
      */
     public function getShieldedInstanceConfig()
     {
-        return isset($this->shielded_instance_config) ? $this->shielded_instance_config : null;
+        return $this->shielded_instance_config;
     }
 
     public function hasShieldedInstanceConfig()
@@ -705,7 +709,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceConfig shielded_instance_config = 12862901;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShieldedInstanceConfig shielded_instance_config = 12862901;</code>
      * @param \Google\Cloud\Compute\V1\ShieldedInstanceConfig $var
      * @return $this
      */
@@ -720,12 +724,12 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * A list of tags to apply to the instances that are created from these properties. The tags identify valid sources or targets for network firewalls. The setTags method can modify this list of tags. Each tag within the list must comply with RFC1035.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Tags tags = 3552281;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Tags tags = 3552281;</code>
      * @return \Google\Cloud\Compute\V1\Tags|null
      */
     public function getTags()
     {
-        return isset($this->tags) ? $this->tags : null;
+        return $this->tags;
     }
 
     public function hasTags()
@@ -741,7 +745,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     /**
      * A list of tags to apply to the instances that are created from these properties. The tags identify valid sources or targets for network firewalls. The setTags method can modify this list of tags. Each tag within the list must comply with RFC1035.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Tags tags = 3552281;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Tags tags = 3552281;</code>
      * @param \Google\Cloud\Compute\V1\Tags $var
      * @return $this
      */

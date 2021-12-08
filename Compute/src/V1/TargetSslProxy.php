@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Target SSL Proxy resource.
- * A target SSL proxy is a component of a SSL Proxy load balancer. Global forwarding rules reference a target SSL proxy, and the target proxy then references an external backend service. For more information, read Using Target Proxies. (== resource_for {$api_version}.targetSslProxies ==)
+ * Represents a Target SSL Proxy resource. A target SSL proxy is a component of a SSL Proxy load balancer. Global forwarding rules reference a target SSL proxy, and the target proxy then references an external backend service. For more information, read Using Target Proxies.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.TargetSslProxy</code>
  */
@@ -19,53 +18,54 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#targetSslProxy for target SSL proxies.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
      * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     * Check the ProxyHeader enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetSslProxy.ProxyHeader proxy_header = 160374142;</code>
+     * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
      */
     private $proxy_header = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * URL to the BackendService resource.
      *
-     * Generated from protobuf field <code>string service = 373540533;</code>
+     * Generated from protobuf field <code>optional string service = 373540533;</code>
      */
     private $service = null;
     /**
-     * URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
+     * URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      */
@@ -73,7 +73,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * URL of SslPolicy resource that will be associated with the TargetSslProxy resource. If not set, the TargetSslProxy resource will not have any SSL policy configured.
      *
-     * Generated from protobuf field <code>string ssl_policy = 295190213;</code>
+     * Generated from protobuf field <code>optional string ssl_policy = 295190213;</code>
      */
     private $ssl_policy = null;
 
@@ -93,14 +93,15 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
      *           [Output Only] Type of the resource. Always compute#targetSslProxy for target SSL proxies.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-     *     @type int $proxy_header
+     *     @type string $proxy_header
      *           Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     *           Check the ProxyHeader enum for the list of possible values.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $service
      *           URL to the BackendService resource.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ssl_certificates
-     *           URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
+     *           URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
      *     @type string $ssl_policy
      *           URL of SslPolicy resource that will be associated with the TargetSslProxy resource. If not set, the TargetSslProxy resource will not have any SSL policy configured.
      * }
@@ -113,7 +114,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -134,7 +135,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -149,7 +150,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -170,7 +171,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -185,7 +186,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -206,7 +207,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -221,7 +222,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#targetSslProxy for target SSL proxies.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -242,7 +243,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#targetSslProxy for target SSL proxies.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -257,7 +258,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -278,7 +279,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -292,13 +293,14 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     * Check the ProxyHeader enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetSslProxy.ProxyHeader proxy_header = 160374142;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
+     * @return string
      */
     public function getProxyHeader()
     {
-        return isset($this->proxy_header) ? $this->proxy_header : 0;
+        return isset($this->proxy_header) ? $this->proxy_header : '';
     }
 
     public function hasProxyHeader()
@@ -313,14 +315,15 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     * Check the ProxyHeader enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetSslProxy.ProxyHeader proxy_header = 160374142;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
+     * @param string $var
      * @return $this
      */
     public function setProxyHeader($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\TargetSslProxy\ProxyHeader::class);
+        GPBUtil::checkString($var, True);
         $this->proxy_header = $var;
 
         return $this;
@@ -329,7 +332,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -350,7 +353,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -365,7 +368,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * URL to the BackendService resource.
      *
-     * Generated from protobuf field <code>string service = 373540533;</code>
+     * Generated from protobuf field <code>optional string service = 373540533;</code>
      * @return string
      */
     public function getService()
@@ -386,7 +389,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * URL to the BackendService resource.
      *
-     * Generated from protobuf field <code>string service = 373540533;</code>
+     * Generated from protobuf field <code>optional string service = 373540533;</code>
      * @param string $var
      * @return $this
      */
@@ -399,7 +402,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
+     * URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -410,7 +413,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
+     * URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -427,7 +430,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * URL of SslPolicy resource that will be associated with the TargetSslProxy resource. If not set, the TargetSslProxy resource will not have any SSL policy configured.
      *
-     * Generated from protobuf field <code>string ssl_policy = 295190213;</code>
+     * Generated from protobuf field <code>optional string ssl_policy = 295190213;</code>
      * @return string
      */
     public function getSslPolicy()
@@ -448,7 +451,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * URL of SslPolicy resource that will be associated with the TargetSslProxy resource. If not set, the TargetSslProxy resource will not have any SSL policy configured.
      *
-     * Generated from protobuf field <code>string ssl_policy = 295190213;</code>
+     * Generated from protobuf field <code>optional string ssl_policy = 295190213;</code>
      * @param string $var
      * @return $this
      */

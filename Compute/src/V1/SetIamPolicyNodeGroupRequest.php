@@ -147,7 +147,7 @@ class SetIamPolicyNodeGroupRequest extends \Google\Protobuf\Internal\Message
      */
     public function getZoneSetPolicyRequestResource()
     {
-        return isset($this->zone_set_policy_request_resource) ? $this->zone_set_policy_request_resource : null;
+        return $this->zone_set_policy_request_resource;
     }
 
     public function hasZoneSetPolicyRequestResource()

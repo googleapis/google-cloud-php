@@ -18,13 +18,13 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
     /**
      * The range of internal addresses that are owned by this subnetwork.
      *
-     * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
+     * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      */
     private $ip_cidr_range = null;
     /**
      * Network URL.
      *
-     * Generated from protobuf field <code>string network = 232872494;</code>
+     * Generated from protobuf field <code>optional string network = 232872494;</code>
      */
     private $network = null;
     /**
@@ -36,7 +36,7 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
     /**
      * Subnetwork URL.
      *
-     * Generated from protobuf field <code>string subnetwork = 307827694;</code>
+     * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
      */
     private $subnetwork = null;
 
@@ -64,7 +64,7 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
     /**
      * The range of internal addresses that are owned by this subnetwork.
      *
-     * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
+     * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @return string
      */
     public function getIpCidrRange()
@@ -85,7 +85,7 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
     /**
      * The range of internal addresses that are owned by this subnetwork.
      *
-     * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
+     * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @param string $var
      * @return $this
      */
@@ -100,7 +100,7 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
     /**
      * Network URL.
      *
-     * Generated from protobuf field <code>string network = 232872494;</code>
+     * Generated from protobuf field <code>optional string network = 232872494;</code>
      * @return string
      */
     public function getNetwork()
@@ -121,7 +121,7 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
     /**
      * Network URL.
      *
-     * Generated from protobuf field <code>string network = 232872494;</code>
+     * Generated from protobuf field <code>optional string network = 232872494;</code>
      * @param string $var
      * @return $this
      */
@@ -162,7 +162,7 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
     /**
      * Subnetwork URL.
      *
-     * Generated from protobuf field <code>string subnetwork = 307827694;</code>
+     * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
      * @return string
      */
     public function getSubnetwork()
@@ -183,7 +183,7 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
     /**
      * Subnetwork URL.
      *
-     * Generated from protobuf field <code>string subnetwork = 307827694;</code>
+     * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
      * @param string $var
      * @return $this
      */

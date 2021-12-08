@@ -17,37 +17,37 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * The actual output URL evaluated by load balancer containing the scheme, host, path and query parameters.
      *
-     * Generated from protobuf field <code>string actual_output_url = 287075458;</code>
+     * Generated from protobuf field <code>optional string actual_output_url = 287075458;</code>
      */
     private $actual_output_url = null;
     /**
      * Actual HTTP status code for rule with `urlRedirect` calculated by load balancer
      *
-     * Generated from protobuf field <code>int32 actual_redirect_response_code = 42926553;</code>
+     * Generated from protobuf field <code>optional int32 actual_redirect_response_code = 42926553;</code>
      */
     private $actual_redirect_response_code = null;
     /**
      * BackendService or BackendBucket returned by load balancer.
      *
-     * Generated from protobuf field <code>string actual_service = 440379652;</code>
+     * Generated from protobuf field <code>optional string actual_service = 440379652;</code>
      */
     private $actual_service = null;
     /**
      * The expected output URL evaluated by load balancer containing the scheme, host, path and query parameters.
      *
-     * Generated from protobuf field <code>string expected_output_url = 433967384;</code>
+     * Generated from protobuf field <code>optional string expected_output_url = 433967384;</code>
      */
     private $expected_output_url = null;
     /**
      * Expected HTTP status code for rule with `urlRedirect` calculated by load balancer
      *
-     * Generated from protobuf field <code>int32 expected_redirect_response_code = 18888047;</code>
+     * Generated from protobuf field <code>optional int32 expected_redirect_response_code = 18888047;</code>
      */
     private $expected_redirect_response_code = null;
     /**
      * Expected BackendService or BackendBucket resource the given URL should be mapped to.
      *
-     * Generated from protobuf field <code>string expected_service = 133987374;</code>
+     * Generated from protobuf field <code>optional string expected_service = 133987374;</code>
      */
     private $expected_service = null;
     /**
@@ -59,13 +59,13 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * Host portion of the URL.
      *
-     * Generated from protobuf field <code>string host = 3208616;</code>
+     * Generated from protobuf field <code>optional string host = 3208616;</code>
      */
     private $host = null;
     /**
      * Path portion including query parameters in the URL.
      *
-     * Generated from protobuf field <code>string path = 3433509;</code>
+     * Generated from protobuf field <code>optional string path = 3433509;</code>
      */
     private $path = null;
 
@@ -103,7 +103,7 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * The actual output URL evaluated by load balancer containing the scheme, host, path and query parameters.
      *
-     * Generated from protobuf field <code>string actual_output_url = 287075458;</code>
+     * Generated from protobuf field <code>optional string actual_output_url = 287075458;</code>
      * @return string
      */
     public function getActualOutputUrl()
@@ -124,7 +124,7 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * The actual output URL evaluated by load balancer containing the scheme, host, path and query parameters.
      *
-     * Generated from protobuf field <code>string actual_output_url = 287075458;</code>
+     * Generated from protobuf field <code>optional string actual_output_url = 287075458;</code>
      * @param string $var
      * @return $this
      */
@@ -139,7 +139,7 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * Actual HTTP status code for rule with `urlRedirect` calculated by load balancer
      *
-     * Generated from protobuf field <code>int32 actual_redirect_response_code = 42926553;</code>
+     * Generated from protobuf field <code>optional int32 actual_redirect_response_code = 42926553;</code>
      * @return int
      */
     public function getActualRedirectResponseCode()
@@ -160,7 +160,7 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * Actual HTTP status code for rule with `urlRedirect` calculated by load balancer
      *
-     * Generated from protobuf field <code>int32 actual_redirect_response_code = 42926553;</code>
+     * Generated from protobuf field <code>optional int32 actual_redirect_response_code = 42926553;</code>
      * @param int $var
      * @return $this
      */
@@ -175,7 +175,7 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * BackendService or BackendBucket returned by load balancer.
      *
-     * Generated from protobuf field <code>string actual_service = 440379652;</code>
+     * Generated from protobuf field <code>optional string actual_service = 440379652;</code>
      * @return string
      */
     public function getActualService()
@@ -196,7 +196,7 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * BackendService or BackendBucket returned by load balancer.
      *
-     * Generated from protobuf field <code>string actual_service = 440379652;</code>
+     * Generated from protobuf field <code>optional string actual_service = 440379652;</code>
      * @param string $var
      * @return $this
      */
@@ -211,7 +211,7 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * The expected output URL evaluated by load balancer containing the scheme, host, path and query parameters.
      *
-     * Generated from protobuf field <code>string expected_output_url = 433967384;</code>
+     * Generated from protobuf field <code>optional string expected_output_url = 433967384;</code>
      * @return string
      */
     public function getExpectedOutputUrl()
@@ -232,7 +232,7 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * The expected output URL evaluated by load balancer containing the scheme, host, path and query parameters.
      *
-     * Generated from protobuf field <code>string expected_output_url = 433967384;</code>
+     * Generated from protobuf field <code>optional string expected_output_url = 433967384;</code>
      * @param string $var
      * @return $this
      */
@@ -247,7 +247,7 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * Expected HTTP status code for rule with `urlRedirect` calculated by load balancer
      *
-     * Generated from protobuf field <code>int32 expected_redirect_response_code = 18888047;</code>
+     * Generated from protobuf field <code>optional int32 expected_redirect_response_code = 18888047;</code>
      * @return int
      */
     public function getExpectedRedirectResponseCode()
@@ -268,7 +268,7 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * Expected HTTP status code for rule with `urlRedirect` calculated by load balancer
      *
-     * Generated from protobuf field <code>int32 expected_redirect_response_code = 18888047;</code>
+     * Generated from protobuf field <code>optional int32 expected_redirect_response_code = 18888047;</code>
      * @param int $var
      * @return $this
      */
@@ -283,7 +283,7 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * Expected BackendService or BackendBucket resource the given URL should be mapped to.
      *
-     * Generated from protobuf field <code>string expected_service = 133987374;</code>
+     * Generated from protobuf field <code>optional string expected_service = 133987374;</code>
      * @return string
      */
     public function getExpectedService()
@@ -304,7 +304,7 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * Expected BackendService or BackendBucket resource the given URL should be mapped to.
      *
-     * Generated from protobuf field <code>string expected_service = 133987374;</code>
+     * Generated from protobuf field <code>optional string expected_service = 133987374;</code>
      * @param string $var
      * @return $this
      */
@@ -345,7 +345,7 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * Host portion of the URL.
      *
-     * Generated from protobuf field <code>string host = 3208616;</code>
+     * Generated from protobuf field <code>optional string host = 3208616;</code>
      * @return string
      */
     public function getHost()
@@ -366,7 +366,7 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * Host portion of the URL.
      *
-     * Generated from protobuf field <code>string host = 3208616;</code>
+     * Generated from protobuf field <code>optional string host = 3208616;</code>
      * @param string $var
      * @return $this
      */
@@ -381,7 +381,7 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * Path portion including query parameters in the URL.
      *
-     * Generated from protobuf field <code>string path = 3433509;</code>
+     * Generated from protobuf field <code>optional string path = 3433509;</code>
      * @return string
      */
     public function getPath()
@@ -402,7 +402,7 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * Path portion including query parameters in the URL.
      *
-     * Generated from protobuf field <code>string path = 3433509;</code>
+     * Generated from protobuf field <code>optional string path = 3433509;</code>
      * @param string $var
      * @return $this
      */

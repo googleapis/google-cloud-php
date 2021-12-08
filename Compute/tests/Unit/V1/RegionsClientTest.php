@@ -84,6 +84,7 @@ class RegionsClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $name = 'name3373707';
         $selfLink = 'selfLink-1691268851';
+        $status = 'status-892481550';
         $supportsPzs = true;
         $expectedResponse = new Region();
         $expectedResponse->setCreationTimestamp($creationTimestamp);
@@ -92,6 +93,7 @@ class RegionsClientTest extends GeneratedTest
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setStatus($status);
         $expectedResponse->setSupportsPzs($supportsPzs);
         $transport->addResponse($expectedResponse);
         // Mock request

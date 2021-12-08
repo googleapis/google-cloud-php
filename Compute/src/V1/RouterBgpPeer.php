@@ -16,16 +16,16 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
 {
     /**
      * User-specified flag to indicate which mode to use for advertisement.
+     * Check the AdvertiseMode enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.AdvertiseMode advertise_mode = 312134331;</code>
+     * Generated from protobuf field <code>optional string advertise_mode = 312134331;</code>
      */
     private $advertise_mode = null;
     /**
-     * User-specified list of prefix groups to advertise in custom mode, which can take one of the following options:
-     * - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets.
-     * - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     * User-specified list of prefix groups to advertise in custom mode, which can take one of the following options: - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets. - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     * Check the AdvertisedGroups enum for the list of possible values.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeer.AdvertisedGroups advertised_groups = 21065526;</code>
+     * Generated from protobuf field <code>repeated string advertised_groups = 21065526;</code>
      */
     private $advertised_groups;
     /**
@@ -37,47 +37,65 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win.
      *
-     * Generated from protobuf field <code>uint32 advertised_route_priority = 186486332;</code>
+     * Generated from protobuf field <code>optional uint32 advertised_route_priority = 186486332;</code>
      */
     private $advertised_route_priority = null;
     /**
+     * BFD configuration for the BGP peering.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgpPeerBfd bfd = 97440;</code>
+     */
+    private $bfd = null;
+    /**
+     * The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.
+     * Check the Enable enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string enable = 311764355;</code>
+     */
+    private $enable = null;
+    /**
      * Name of the interface the BGP peer is associated with.
      *
-     * Generated from protobuf field <code>string interface_name = 437854673;</code>
+     * Generated from protobuf field <code>optional string interface_name = 437854673;</code>
      */
     private $interface_name = null;
     /**
      * IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
      *
-     * Generated from protobuf field <code>string ip_address = 406272220;</code>
+     * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      */
     private $ip_address = null;
     /**
-     * [Output Only] The resource that configures and manages this BGP peer.
-     * - MANAGED_BY_USER is the default value and can be managed by you or other users
-     * - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
+     * [Output Only] The resource that configures and manages this BGP peer. - MANAGED_BY_USER is the default value and can be managed by you or other users - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
+     * Check the ManagementType enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.ManagementType management_type = 173703606;</code>
+     * Generated from protobuf field <code>optional string management_type = 173703606;</code>
      */
     private $management_type = null;
     /**
      * Name of this BGP peer. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
      * Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.
      *
-     * Generated from protobuf field <code>uint32 peer_asn = 69573151;</code>
+     * Generated from protobuf field <code>optional uint32 peer_asn = 69573151;</code>
      */
     private $peer_asn = null;
     /**
      * IP address of the BGP interface outside Google Cloud Platform. Only IPv4 is supported.
      *
-     * Generated from protobuf field <code>string peer_ip_address = 207735769;</code>
+     * Generated from protobuf field <code>optional string peer_ip_address = 207735769;</code>
      */
     private $peer_ip_address = null;
+    /**
+     * URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance must be located in zones contained in the same region as this Cloud Router. The VM instance is the peer side of the BGP session.
+     *
+     * Generated from protobuf field <code>optional string router_appliance_instance = 468312989;</code>
+     */
+    private $router_appliance_instance = null;
 
     /**
      * Constructor.
@@ -85,30 +103,36 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $advertise_mode
+     *     @type string $advertise_mode
      *           User-specified flag to indicate which mode to use for advertisement.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $advertised_groups
-     *           User-specified list of prefix groups to advertise in custom mode, which can take one of the following options:
-     *           - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets.
-     *           - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     *           Check the AdvertiseMode enum for the list of possible values.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $advertised_groups
+     *           User-specified list of prefix groups to advertise in custom mode, which can take one of the following options: - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets. - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     *           Check the AdvertisedGroups enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\RouterAdvertisedIpRange[]|\Google\Protobuf\Internal\RepeatedField $advertised_ip_ranges
      *           User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These IP ranges are advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
      *     @type int $advertised_route_priority
      *           The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win.
+     *     @type \Google\Cloud\Compute\V1\RouterBgpPeerBfd $bfd
+     *           BFD configuration for the BGP peering.
+     *     @type string $enable
+     *           The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.
+     *           Check the Enable enum for the list of possible values.
      *     @type string $interface_name
      *           Name of the interface the BGP peer is associated with.
      *     @type string $ip_address
      *           IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
-     *     @type int $management_type
-     *           [Output Only] The resource that configures and manages this BGP peer.
-     *           - MANAGED_BY_USER is the default value and can be managed by you or other users
-     *           - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
+     *     @type string $management_type
+     *           [Output Only] The resource that configures and manages this BGP peer. - MANAGED_BY_USER is the default value and can be managed by you or other users - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
+     *           Check the ManagementType enum for the list of possible values.
      *     @type string $name
      *           Name of this BGP peer. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type int $peer_asn
      *           Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.
      *     @type string $peer_ip_address
      *           IP address of the BGP interface outside Google Cloud Platform. Only IPv4 is supported.
+     *     @type string $router_appliance_instance
+     *           URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance must be located in zones contained in the same region as this Cloud Router. The VM instance is the peer side of the BGP session.
      * }
      */
     public function __construct($data = NULL) {
@@ -118,13 +142,14 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
 
     /**
      * User-specified flag to indicate which mode to use for advertisement.
+     * Check the AdvertiseMode enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.AdvertiseMode advertise_mode = 312134331;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string advertise_mode = 312134331;</code>
+     * @return string
      */
     public function getAdvertiseMode()
     {
-        return isset($this->advertise_mode) ? $this->advertise_mode : 0;
+        return isset($this->advertise_mode) ? $this->advertise_mode : '';
     }
 
     public function hasAdvertiseMode()
@@ -139,25 +164,25 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
 
     /**
      * User-specified flag to indicate which mode to use for advertisement.
+     * Check the AdvertiseMode enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.AdvertiseMode advertise_mode = 312134331;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string advertise_mode = 312134331;</code>
+     * @param string $var
      * @return $this
      */
     public function setAdvertiseMode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\RouterBgpPeer\AdvertiseMode::class);
+        GPBUtil::checkString($var, True);
         $this->advertise_mode = $var;
 
         return $this;
     }
 
     /**
-     * User-specified list of prefix groups to advertise in custom mode, which can take one of the following options:
-     * - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets.
-     * - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     * User-specified list of prefix groups to advertise in custom mode, which can take one of the following options: - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets. - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     * Check the AdvertisedGroups enum for the list of possible values.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeer.AdvertisedGroups advertised_groups = 21065526;</code>
+     * Generated from protobuf field <code>repeated string advertised_groups = 21065526;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAdvertisedGroups()
@@ -166,17 +191,16 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-specified list of prefix groups to advertise in custom mode, which can take one of the following options:
-     * - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets.
-     * - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     * User-specified list of prefix groups to advertise in custom mode, which can take one of the following options: - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets. - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     * Check the AdvertisedGroups enum for the list of possible values.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeer.AdvertisedGroups advertised_groups = 21065526;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated string advertised_groups = 21065526;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdvertisedGroups($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Compute\V1\RouterBgpPeer\AdvertisedGroups::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->advertised_groups = $arr;
 
         return $this;
@@ -211,7 +235,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win.
      *
-     * Generated from protobuf field <code>uint32 advertised_route_priority = 186486332;</code>
+     * Generated from protobuf field <code>optional uint32 advertised_route_priority = 186486332;</code>
      * @return int
      */
     public function getAdvertisedRoutePriority()
@@ -232,7 +256,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win.
      *
-     * Generated from protobuf field <code>uint32 advertised_route_priority = 186486332;</code>
+     * Generated from protobuf field <code>optional uint32 advertised_route_priority = 186486332;</code>
      * @param int $var
      * @return $this
      */
@@ -245,9 +269,83 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * BFD configuration for the BGP peering.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgpPeerBfd bfd = 97440;</code>
+     * @return \Google\Cloud\Compute\V1\RouterBgpPeerBfd|null
+     */
+    public function getBfd()
+    {
+        return $this->bfd;
+    }
+
+    public function hasBfd()
+    {
+        return isset($this->bfd);
+    }
+
+    public function clearBfd()
+    {
+        unset($this->bfd);
+    }
+
+    /**
+     * BFD configuration for the BGP peering.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgpPeerBfd bfd = 97440;</code>
+     * @param \Google\Cloud\Compute\V1\RouterBgpPeerBfd $var
+     * @return $this
+     */
+    public function setBfd($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\RouterBgpPeerBfd::class);
+        $this->bfd = $var;
+
+        return $this;
+    }
+
+    /**
+     * The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.
+     * Check the Enable enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string enable = 311764355;</code>
+     * @return string
+     */
+    public function getEnable()
+    {
+        return isset($this->enable) ? $this->enable : '';
+    }
+
+    public function hasEnable()
+    {
+        return isset($this->enable);
+    }
+
+    public function clearEnable()
+    {
+        unset($this->enable);
+    }
+
+    /**
+     * The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.
+     * Check the Enable enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string enable = 311764355;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEnable($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->enable = $var;
+
+        return $this;
+    }
+
+    /**
      * Name of the interface the BGP peer is associated with.
      *
-     * Generated from protobuf field <code>string interface_name = 437854673;</code>
+     * Generated from protobuf field <code>optional string interface_name = 437854673;</code>
      * @return string
      */
     public function getInterfaceName()
@@ -268,7 +366,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * Name of the interface the BGP peer is associated with.
      *
-     * Generated from protobuf field <code>string interface_name = 437854673;</code>
+     * Generated from protobuf field <code>optional string interface_name = 437854673;</code>
      * @param string $var
      * @return $this
      */
@@ -283,7 +381,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
      *
-     * Generated from protobuf field <code>string ip_address = 406272220;</code>
+     * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      * @return string
      */
     public function getIpAddress()
@@ -304,7 +402,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
      *
-     * Generated from protobuf field <code>string ip_address = 406272220;</code>
+     * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      * @param string $var
      * @return $this
      */
@@ -317,16 +415,15 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource that configures and manages this BGP peer.
-     * - MANAGED_BY_USER is the default value and can be managed by you or other users
-     * - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
+     * [Output Only] The resource that configures and manages this BGP peer. - MANAGED_BY_USER is the default value and can be managed by you or other users - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
+     * Check the ManagementType enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.ManagementType management_type = 173703606;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string management_type = 173703606;</code>
+     * @return string
      */
     public function getManagementType()
     {
-        return isset($this->management_type) ? $this->management_type : 0;
+        return isset($this->management_type) ? $this->management_type : '';
     }
 
     public function hasManagementType()
@@ -340,17 +437,16 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The resource that configures and manages this BGP peer.
-     * - MANAGED_BY_USER is the default value and can be managed by you or other users
-     * - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
+     * [Output Only] The resource that configures and manages this BGP peer. - MANAGED_BY_USER is the default value and can be managed by you or other users - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
+     * Check the ManagementType enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.ManagementType management_type = 173703606;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string management_type = 173703606;</code>
+     * @param string $var
      * @return $this
      */
     public function setManagementType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\RouterBgpPeer\ManagementType::class);
+        GPBUtil::checkString($var, True);
         $this->management_type = $var;
 
         return $this;
@@ -359,7 +455,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * Name of this BGP peer. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -380,7 +476,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * Name of this BGP peer. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -395,7 +491,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.
      *
-     * Generated from protobuf field <code>uint32 peer_asn = 69573151;</code>
+     * Generated from protobuf field <code>optional uint32 peer_asn = 69573151;</code>
      * @return int
      */
     public function getPeerAsn()
@@ -416,7 +512,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.
      *
-     * Generated from protobuf field <code>uint32 peer_asn = 69573151;</code>
+     * Generated from protobuf field <code>optional uint32 peer_asn = 69573151;</code>
      * @param int $var
      * @return $this
      */
@@ -431,7 +527,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * IP address of the BGP interface outside Google Cloud Platform. Only IPv4 is supported.
      *
-     * Generated from protobuf field <code>string peer_ip_address = 207735769;</code>
+     * Generated from protobuf field <code>optional string peer_ip_address = 207735769;</code>
      * @return string
      */
     public function getPeerIpAddress()
@@ -452,7 +548,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * IP address of the BGP interface outside Google Cloud Platform. Only IPv4 is supported.
      *
-     * Generated from protobuf field <code>string peer_ip_address = 207735769;</code>
+     * Generated from protobuf field <code>optional string peer_ip_address = 207735769;</code>
      * @param string $var
      * @return $this
      */
@@ -460,6 +556,42 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->peer_ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance must be located in zones contained in the same region as this Cloud Router. The VM instance is the peer side of the BGP session.
+     *
+     * Generated from protobuf field <code>optional string router_appliance_instance = 468312989;</code>
+     * @return string
+     */
+    public function getRouterApplianceInstance()
+    {
+        return isset($this->router_appliance_instance) ? $this->router_appliance_instance : '';
+    }
+
+    public function hasRouterApplianceInstance()
+    {
+        return isset($this->router_appliance_instance);
+    }
+
+    public function clearRouterApplianceInstance()
+    {
+        unset($this->router_appliance_instance);
+    }
+
+    /**
+     * URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance must be located in zones contained in the same region as this Cloud Router. The VM instance is the peer side of the BGP session.
+     *
+     * Generated from protobuf field <code>optional string router_appliance_instance = 468312989;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRouterApplianceInstance($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->router_appliance_instance = $var;
 
         return $this;
     }

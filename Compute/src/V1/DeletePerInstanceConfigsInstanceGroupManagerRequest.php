@@ -30,13 +30,13 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
     private $project = '';
     /**
      * The name of the zone where the managed instance group is located. It should conform to RFC1035.
      *
-     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      */
     private $zone = '';
 
@@ -95,7 +95,7 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
      */
     public function getInstanceGroupManagersDeletePerInstanceConfigsReqResource()
     {
-        return isset($this->instance_group_managers_delete_per_instance_configs_req_resource) ? $this->instance_group_managers_delete_per_instance_configs_req_resource : null;
+        return $this->instance_group_managers_delete_per_instance_configs_req_resource;
     }
 
     public function hasInstanceGroupManagersDeletePerInstanceConfigsReqResource()
@@ -126,7 +126,7 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @return string
      */
     public function getProject()
@@ -137,7 +137,7 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @param string $var
      * @return $this
      */
@@ -152,7 +152,7 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
     /**
      * The name of the zone where the managed instance group is located. It should conform to RFC1035.
      *
-     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      * @return string
      */
     public function getZone()
@@ -163,7 +163,7 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
     /**
      * The name of the zone where the managed instance group is located. It should conform to RFC1035.
      *
-     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      * @param string $var
      * @return $this
      */

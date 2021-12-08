@@ -18,37 +18,37 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#guestAttributes for guest attributes entry.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
-     * The path to be queried. This can be the default namespace ('/') or a nested namespace ('/\/') or a specified key ('/\/\')
+     * The path to be queried. This can be the default namespace ('') or a nested namespace ('\/') or a specified key ('\/\').
      *
-     * Generated from protobuf field <code>string query_path = 368591164;</code>
+     * Generated from protobuf field <code>optional string query_path = 368591164;</code>
      */
     private $query_path = null;
     /**
      * [Output Only] The value of the requested queried path.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.GuestAttributesValue query_value = 157570874;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.GuestAttributesValue query_value = 157570874;</code>
      */
     private $query_value = null;
     /**
      * [Output Only] Server-defined URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * The key to search for.
      *
-     * Generated from protobuf field <code>string variable_key = 164364828;</code>
+     * Generated from protobuf field <code>optional string variable_key = 164364828;</code>
      */
     private $variable_key = null;
     /**
      * [Output Only] The value found for the requested key.
      *
-     * Generated from protobuf field <code>string variable_value = 124582382;</code>
+     * Generated from protobuf field <code>optional string variable_value = 124582382;</code>
      */
     private $variable_value = null;
 
@@ -61,7 +61,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#guestAttributes for guest attributes entry.
      *     @type string $query_path
-     *           The path to be queried. This can be the default namespace ('/') or a nested namespace ('/\/') or a specified key ('/\/\')
+     *           The path to be queried. This can be the default namespace ('') or a nested namespace ('\/') or a specified key ('\/\').
      *     @type \Google\Cloud\Compute\V1\GuestAttributesValue $query_value
      *           [Output Only] The value of the requested queried path.
      *     @type string $self_link
@@ -80,7 +80,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#guestAttributes for guest attributes entry.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -101,7 +101,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#guestAttributes for guest attributes entry.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -114,9 +114,9 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path to be queried. This can be the default namespace ('/') or a nested namespace ('/\/') or a specified key ('/\/\')
+     * The path to be queried. This can be the default namespace ('') or a nested namespace ('\/') or a specified key ('\/\').
      *
-     * Generated from protobuf field <code>string query_path = 368591164;</code>
+     * Generated from protobuf field <code>optional string query_path = 368591164;</code>
      * @return string
      */
     public function getQueryPath()
@@ -135,9 +135,9 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The path to be queried. This can be the default namespace ('/') or a nested namespace ('/\/') or a specified key ('/\/\')
+     * The path to be queried. This can be the default namespace ('') or a nested namespace ('\/') or a specified key ('\/\').
      *
-     * Generated from protobuf field <code>string query_path = 368591164;</code>
+     * Generated from protobuf field <code>optional string query_path = 368591164;</code>
      * @param string $var
      * @return $this
      */
@@ -152,12 +152,12 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The value of the requested queried path.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.GuestAttributesValue query_value = 157570874;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.GuestAttributesValue query_value = 157570874;</code>
      * @return \Google\Cloud\Compute\V1\GuestAttributesValue|null
      */
     public function getQueryValue()
     {
-        return isset($this->query_value) ? $this->query_value : null;
+        return $this->query_value;
     }
 
     public function hasQueryValue()
@@ -173,7 +173,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The value of the requested queried path.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.GuestAttributesValue query_value = 157570874;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.GuestAttributesValue query_value = 157570874;</code>
      * @param \Google\Cloud\Compute\V1\GuestAttributesValue $var
      * @return $this
      */
@@ -188,7 +188,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -209,7 +209,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -224,7 +224,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     /**
      * The key to search for.
      *
-     * Generated from protobuf field <code>string variable_key = 164364828;</code>
+     * Generated from protobuf field <code>optional string variable_key = 164364828;</code>
      * @return string
      */
     public function getVariableKey()
@@ -245,7 +245,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     /**
      * The key to search for.
      *
-     * Generated from protobuf field <code>string variable_key = 164364828;</code>
+     * Generated from protobuf field <code>optional string variable_key = 164364828;</code>
      * @param string $var
      * @return $this
      */
@@ -260,7 +260,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The value found for the requested key.
      *
-     * Generated from protobuf field <code>string variable_value = 124582382;</code>
+     * Generated from protobuf field <code>optional string variable_value = 124582382;</code>
      * @return string
      */
     public function getVariableValue()
@@ -281,7 +281,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The value found for the requested key.
      *
-     * Generated from protobuf field <code>string variable_value = 124582382;</code>
+     * Generated from protobuf field <code>optional string variable_value = 124582382;</code>
      * @param string $var
      * @return $this
      */

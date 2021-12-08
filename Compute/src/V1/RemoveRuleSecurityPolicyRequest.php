@@ -18,13 +18,13 @@ class RemoveRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The priority of the rule to remove from the security policy.
      *
-     * Generated from protobuf field <code>int32 priority = 445151652;</code>
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      */
     private $priority = null;
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
     private $project = '';
     /**
@@ -56,7 +56,7 @@ class RemoveRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The priority of the rule to remove from the security policy.
      *
-     * Generated from protobuf field <code>int32 priority = 445151652;</code>
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      * @return int
      */
     public function getPriority()
@@ -77,7 +77,7 @@ class RemoveRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The priority of the rule to remove from the security policy.
      *
-     * Generated from protobuf field <code>int32 priority = 445151652;</code>
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      * @param int $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class RemoveRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @return string
      */
     public function getProject()
@@ -103,7 +103,7 @@ class RemoveRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @param string $var
      * @return $this
      */

@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a VPC Network resource.
- * Networks connect resources to each other and to the internet. For more information, read Virtual Private Cloud (VPC) Network. (== resource_for {$api_version}.networks ==)
+ * Represents a VPC Network resource. Networks connect resources to each other and to the internet. For more information, read Virtual Private Cloud (VPC) Network.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Network</code>
  */
@@ -19,58 +18,55 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated in favor of subnet mode networks. The range of internal addresses that are legal on this network. This range is a CIDR specification, for example: 192.168.0.0/16. Provided by the client when the network is created.
      *
-     * Generated from protobuf field <code>string I_pv4_range = 59234358;</code>
+     * Generated from protobuf field <code>optional string I_pv4_range = 59234358;</code>
      */
     private $I_pv4_range = null;
     /**
-     * Must be set to create a VPC network. If not set, a legacy network is created.
-     * When set to true, the VPC network is created in auto mode. When set to false, the VPC network is created in custom mode.
-     * An auto mode VPC network starts with one subnet per region. Each subnet has a predetermined range as described in Auto mode VPC network IP ranges.
-     * For custom mode VPC networks, you can add subnets using the subnetworks insert method.
+     * Must be set to create a VPC network. If not set, a legacy network is created. When set to true, the VPC network is created in auto mode. When set to false, the VPC network is created in custom mode. An auto mode VPC network starts with one subnet per region. Each subnet has a predetermined range as described in Auto mode VPC network IP ranges. For custom mode VPC networks, you can add subnets using the subnetworks insert method.
      *
-     * Generated from protobuf field <code>bool auto_create_subnetworks = 256156690;</code>
+     * Generated from protobuf field <code>optional bool auto_create_subnetworks = 256156690;</code>
      */
     private $auto_create_subnetworks = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this field when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * [Output Only] The gateway address for default routing out of the network, selected by GCP.
      *
-     * Generated from protobuf field <code>string gateway_i_pv4 = 178678877;</code>
+     * Generated from protobuf field <code>optional string gateway_i_pv4 = 178678877;</code>
      */
     private $gateway_i_pv4 = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#network for networks.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
-     * Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1500 bytes.
+     * Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1500 bytes. If unspecified, defaults to 1460.
      *
-     * Generated from protobuf field <code>int32 mtu = 108462;</code>
+     * Generated from protobuf field <code>optional int32 mtu = 108462;</code>
      */
     private $mtu = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
@@ -82,13 +78,13 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * The network-level routing configuration for this network. Used by Cloud Router to determine what type of network-wide routing behavior to enforce.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkRoutingConfig routing_config = 523556059;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkRoutingConfig routing_config = 523556059;</code>
      */
     private $routing_config = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
@@ -107,10 +103,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *     @type string $I_pv4_range
      *           Deprecated in favor of subnet mode networks. The range of internal addresses that are legal on this network. This range is a CIDR specification, for example: 192.168.0.0/16. Provided by the client when the network is created.
      *     @type bool $auto_create_subnetworks
-     *           Must be set to create a VPC network. If not set, a legacy network is created.
-     *           When set to true, the VPC network is created in auto mode. When set to false, the VPC network is created in custom mode.
-     *           An auto mode VPC network starts with one subnet per region. Each subnet has a predetermined range as described in Auto mode VPC network IP ranges.
-     *           For custom mode VPC networks, you can add subnets using the subnetworks insert method.
+     *           Must be set to create a VPC network. If not set, a legacy network is created. When set to true, the VPC network is created in auto mode. When set to false, the VPC network is created in custom mode. An auto mode VPC network starts with one subnet per region. Each subnet has a predetermined range as described in Auto mode VPC network IP ranges. For custom mode VPC networks, you can add subnets using the subnetworks insert method.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
@@ -122,7 +115,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#network for networks.
      *     @type int $mtu
-     *           Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1500 bytes.
+     *           Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1500 bytes. If unspecified, defaults to 1460.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      *     @type \Google\Cloud\Compute\V1\NetworkPeering[]|\Google\Protobuf\Internal\RepeatedField $peerings
@@ -143,7 +136,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated in favor of subnet mode networks. The range of internal addresses that are legal on this network. This range is a CIDR specification, for example: 192.168.0.0/16. Provided by the client when the network is created.
      *
-     * Generated from protobuf field <code>string I_pv4_range = 59234358;</code>
+     * Generated from protobuf field <code>optional string I_pv4_range = 59234358;</code>
      * @return string
      */
     public function getIPv4Range()
@@ -164,7 +157,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated in favor of subnet mode networks. The range of internal addresses that are legal on this network. This range is a CIDR specification, for example: 192.168.0.0/16. Provided by the client when the network is created.
      *
-     * Generated from protobuf field <code>string I_pv4_range = 59234358;</code>
+     * Generated from protobuf field <code>optional string I_pv4_range = 59234358;</code>
      * @param string $var
      * @return $this
      */
@@ -177,12 +170,9 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Must be set to create a VPC network. If not set, a legacy network is created.
-     * When set to true, the VPC network is created in auto mode. When set to false, the VPC network is created in custom mode.
-     * An auto mode VPC network starts with one subnet per region. Each subnet has a predetermined range as described in Auto mode VPC network IP ranges.
-     * For custom mode VPC networks, you can add subnets using the subnetworks insert method.
+     * Must be set to create a VPC network. If not set, a legacy network is created. When set to true, the VPC network is created in auto mode. When set to false, the VPC network is created in custom mode. An auto mode VPC network starts with one subnet per region. Each subnet has a predetermined range as described in Auto mode VPC network IP ranges. For custom mode VPC networks, you can add subnets using the subnetworks insert method.
      *
-     * Generated from protobuf field <code>bool auto_create_subnetworks = 256156690;</code>
+     * Generated from protobuf field <code>optional bool auto_create_subnetworks = 256156690;</code>
      * @return bool
      */
     public function getAutoCreateSubnetworks()
@@ -201,12 +191,9 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Must be set to create a VPC network. If not set, a legacy network is created.
-     * When set to true, the VPC network is created in auto mode. When set to false, the VPC network is created in custom mode.
-     * An auto mode VPC network starts with one subnet per region. Each subnet has a predetermined range as described in Auto mode VPC network IP ranges.
-     * For custom mode VPC networks, you can add subnets using the subnetworks insert method.
+     * Must be set to create a VPC network. If not set, a legacy network is created. When set to true, the VPC network is created in auto mode. When set to false, the VPC network is created in custom mode. An auto mode VPC network starts with one subnet per region. Each subnet has a predetermined range as described in Auto mode VPC network IP ranges. For custom mode VPC networks, you can add subnets using the subnetworks insert method.
      *
-     * Generated from protobuf field <code>bool auto_create_subnetworks = 256156690;</code>
+     * Generated from protobuf field <code>optional bool auto_create_subnetworks = 256156690;</code>
      * @param bool $var
      * @return $this
      */
@@ -221,7 +208,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -242,7 +229,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -257,7 +244,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this field when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -278,7 +265,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this field when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -293,7 +280,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The gateway address for default routing out of the network, selected by GCP.
      *
-     * Generated from protobuf field <code>string gateway_i_pv4 = 178678877;</code>
+     * Generated from protobuf field <code>optional string gateway_i_pv4 = 178678877;</code>
      * @return string
      */
     public function getGatewayIPv4()
@@ -314,7 +301,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The gateway address for default routing out of the network, selected by GCP.
      *
-     * Generated from protobuf field <code>string gateway_i_pv4 = 178678877;</code>
+     * Generated from protobuf field <code>optional string gateway_i_pv4 = 178678877;</code>
      * @param string $var
      * @return $this
      */
@@ -329,7 +316,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -350,7 +337,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -365,7 +352,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#network for networks.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -386,7 +373,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#network for networks.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -399,9 +386,9 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1500 bytes.
+     * Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1500 bytes. If unspecified, defaults to 1460.
      *
-     * Generated from protobuf field <code>int32 mtu = 108462;</code>
+     * Generated from protobuf field <code>optional int32 mtu = 108462;</code>
      * @return int
      */
     public function getMtu()
@@ -420,9 +407,9 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1500 bytes.
+     * Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1500 bytes. If unspecified, defaults to 1460.
      *
-     * Generated from protobuf field <code>int32 mtu = 108462;</code>
+     * Generated from protobuf field <code>optional int32 mtu = 108462;</code>
      * @param int $var
      * @return $this
      */
@@ -437,7 +424,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -458,7 +445,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -499,12 +486,12 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * The network-level routing configuration for this network. Used by Cloud Router to determine what type of network-wide routing behavior to enforce.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkRoutingConfig routing_config = 523556059;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkRoutingConfig routing_config = 523556059;</code>
      * @return \Google\Cloud\Compute\V1\NetworkRoutingConfig|null
      */
     public function getRoutingConfig()
     {
-        return isset($this->routing_config) ? $this->routing_config : null;
+        return $this->routing_config;
     }
 
     public function hasRoutingConfig()
@@ -520,7 +507,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * The network-level routing configuration for this network. Used by Cloud Router to determine what type of network-wide routing behavior to enforce.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkRoutingConfig routing_config = 523556059;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkRoutingConfig routing_config = 523556059;</code>
      * @param \Google\Cloud\Compute\V1\NetworkRoutingConfig $var
      * @return $this
      */
@@ -535,7 +522,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -556,7 +543,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * This reservation type allows to pre allocate specific instance configuration.
+ * This reservation type allows to pre allocate specific instance configuration. Next ID: 5
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AllocationSpecificSKUReservation</code>
  */
@@ -18,19 +18,19 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the number of resources that are allocated.
      *
-     * Generated from protobuf field <code>int64 count = 94851343;</code>
+     * Generated from protobuf field <code>optional int64 count = 94851343;</code>
      */
     private $count = null;
     /**
      * [Output Only] Indicates how many instances are in use.
      *
-     * Generated from protobuf field <code>int64 in_use_count = 493458877;</code>
+     * Generated from protobuf field <code>optional int64 in_use_count = 493458877;</code>
      */
     private $in_use_count = null;
     /**
      * The instance properties for the reservation.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AllocationSpecificSKUAllocationReservedInstanceProperties instance_properties = 215355165;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationSpecificSKUAllocationReservedInstanceProperties instance_properties = 215355165;</code>
      */
     private $instance_properties = null;
 
@@ -56,7 +56,7 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the number of resources that are allocated.
      *
-     * Generated from protobuf field <code>int64 count = 94851343;</code>
+     * Generated from protobuf field <code>optional int64 count = 94851343;</code>
      * @return int|string
      */
     public function getCount()
@@ -77,7 +77,7 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the number of resources that are allocated.
      *
-     * Generated from protobuf field <code>int64 count = 94851343;</code>
+     * Generated from protobuf field <code>optional int64 count = 94851343;</code>
      * @param int|string $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Indicates how many instances are in use.
      *
-     * Generated from protobuf field <code>int64 in_use_count = 493458877;</code>
+     * Generated from protobuf field <code>optional int64 in_use_count = 493458877;</code>
      * @return int|string
      */
     public function getInUseCount()
@@ -113,7 +113,7 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Indicates how many instances are in use.
      *
-     * Generated from protobuf field <code>int64 in_use_count = 493458877;</code>
+     * Generated from protobuf field <code>optional int64 in_use_count = 493458877;</code>
      * @param int|string $var
      * @return $this
      */
@@ -128,12 +128,12 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     /**
      * The instance properties for the reservation.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AllocationSpecificSKUAllocationReservedInstanceProperties instance_properties = 215355165;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationSpecificSKUAllocationReservedInstanceProperties instance_properties = 215355165;</code>
      * @return \Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationReservedInstanceProperties|null
      */
     public function getInstanceProperties()
     {
-        return isset($this->instance_properties) ? $this->instance_properties : null;
+        return $this->instance_properties;
     }
 
     public function hasInstanceProperties()
@@ -149,7 +149,7 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     /**
      * The instance properties for the reservation.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AllocationSpecificSKUAllocationReservedInstanceProperties instance_properties = 215355165;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationSpecificSKUAllocationReservedInstanceProperties instance_properties = 215355165;</code>
      * @param \Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationReservedInstanceProperties $var
      * @return $this
      */
