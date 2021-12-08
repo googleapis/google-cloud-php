@@ -42,12 +42,28 @@ class AudioEncoding
      * Generated from protobuf enum <code>OGG_OPUS = 3;</code>
      */
     const OGG_OPUS = 3;
+    /**
+     * 8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.
+     * Audio content returned as MULAW also contains a WAV header.
+     *
+     * Generated from protobuf enum <code>MULAW = 5;</code>
+     */
+    const MULAW = 5;
+    /**
+     * 8-bit samples that compand 14-bit audio samples using G.711 PCMU/A-law.
+     * Audio content returned as ALAW also contains a WAV header.
+     *
+     * Generated from protobuf enum <code>ALAW = 6;</code>
+     */
+    const ALAW = 6;
 
     private static $valueToName = [
         self::AUDIO_ENCODING_UNSPECIFIED => 'AUDIO_ENCODING_UNSPECIFIED',
         self::LINEAR16 => 'LINEAR16',
         self::MP3 => 'MP3',
         self::OGG_OPUS => 'OGG_OPUS',
+        self::MULAW => 'MULAW',
+        self::ALAW => 'ALAW',
     ];
 
     public static function name($value)
