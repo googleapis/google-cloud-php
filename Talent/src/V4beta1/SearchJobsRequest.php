@@ -569,7 +569,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestMetadata()
     {
-        return isset($this->request_metadata) ? $this->request_metadata : null;
+        return $this->request_metadata;
     }
 
     public function hasRequestMetadata()
@@ -607,7 +607,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getJobQuery()
     {
-        return isset($this->job_query) ? $this->job_query : null;
+        return $this->job_query;
     }
 
     public function hasJobQuery()
@@ -1184,7 +1184,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCustomRankingInfo()
     {
-        return isset($this->custom_ranking_info) ? $this->custom_ranking_info : null;
+        return $this->custom_ranking_info;
     }
 
     public function hasCustomRankingInfo()

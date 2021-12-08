@@ -115,7 +115,7 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
      */
     public function getStartCoordinates()
     {
-        return isset($this->start_coordinates) ? $this->start_coordinates : null;
+        return $this->start_coordinates;
     }
 
     public function hasStartCoordinates()
@@ -153,7 +153,7 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
      */
     public function getTravelDuration()
     {
-        return isset($this->travel_duration) ? $this->travel_duration : null;
+        return $this->travel_duration;
     }
 
     public function hasTravelDuration()

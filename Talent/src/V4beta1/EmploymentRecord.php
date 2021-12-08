@@ -167,7 +167,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      */
     public function getStartDate()
     {
-        return isset($this->start_date) ? $this->start_date : null;
+        return $this->start_date;
     }
 
     public function hasStartDate()
@@ -203,7 +203,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      */
     public function getEndDate()
     {
-        return isset($this->end_date) ? $this->end_date : null;
+        return $this->end_date;
     }
 
     public function hasEndDate()
@@ -299,7 +299,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      */
     public function getAddress()
     {
-        return isset($this->address) ? $this->address : null;
+        return $this->address;
     }
 
     public function hasAddress()
@@ -393,7 +393,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      */
     public function getIsSupervisor()
     {
-        return isset($this->is_supervisor) ? $this->is_supervisor : null;
+        return $this->is_supervisor;
     }
 
     public function hasIsSupervisor()
@@ -456,7 +456,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      */
     public function getIsSelfEmployed()
     {
-        return isset($this->is_self_employed) ? $this->is_self_employed : null;
+        return $this->is_self_employed;
     }
 
     public function hasIsSelfEmployed()
@@ -519,7 +519,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      */
     public function getIsCurrent()
     {
-        return isset($this->is_current) ? $this->is_current : null;
+        return $this->is_current;
     }
 
     public function hasIsCurrent()

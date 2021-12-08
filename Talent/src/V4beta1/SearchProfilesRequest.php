@@ -413,7 +413,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestMetadata()
     {
-        return isset($this->request_metadata) ? $this->request_metadata : null;
+        return $this->request_metadata;
     }
 
     public function hasRequestMetadata()
@@ -451,7 +451,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      */
     public function getProfileQuery()
     {
-        return isset($this->profile_query) ? $this->profile_query : null;
+        return $this->profile_query;
     }
 
     public function hasProfileQuery()

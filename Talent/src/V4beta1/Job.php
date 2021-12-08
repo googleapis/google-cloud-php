@@ -762,7 +762,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getApplicationInfo()
     {
-        return isset($this->application_info) ? $this->application_info : null;
+        return $this->application_info;
     }
 
     public function hasApplicationInfo()
@@ -825,7 +825,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getCompensationInfo()
     {
-        return isset($this->compensation_info) ? $this->compensation_info : null;
+        return $this->compensation_info;
     }
 
     public function hasCompensationInfo()
@@ -1271,7 +1271,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getJobStartTime()
     {
-        return isset($this->job_start_time) ? $this->job_start_time : null;
+        return $this->job_start_time;
     }
 
     public function hasJobStartTime()
@@ -1309,7 +1309,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getJobEndTime()
     {
-        return isset($this->job_end_time) ? $this->job_end_time : null;
+        return $this->job_end_time;
     }
 
     public function hasJobEndTime()
@@ -1348,7 +1348,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPostingPublishTime()
     {
-        return isset($this->posting_publish_time) ? $this->posting_publish_time : null;
+        return $this->posting_publish_time;
     }
 
     public function hasPostingPublishTime()
@@ -1420,7 +1420,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPostingExpireTime()
     {
-        return isset($this->posting_expire_time) ? $this->posting_expire_time : null;
+        return $this->posting_expire_time;
     }
 
     public function hasPostingExpireTime()
@@ -1490,7 +1490,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPostingCreateTime()
     {
-        return isset($this->posting_create_time) ? $this->posting_create_time : null;
+        return $this->posting_create_time;
     }
 
     public function hasPostingCreateTime()
@@ -1526,7 +1526,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPostingUpdateTime()
     {
-        return isset($this->posting_update_time) ? $this->posting_update_time : null;
+        return $this->posting_update_time;
     }
 
     public function hasPostingUpdateTime()
@@ -1588,7 +1588,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getDerivedInfo()
     {
-        return isset($this->derived_info) ? $this->derived_info : null;
+        return $this->derived_info;
     }
 
     public function hasDerivedInfo()
@@ -1624,7 +1624,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getProcessingOptions()
     {
-        return isset($this->processing_options) ? $this->processing_options : null;
+        return $this->processing_options;
     }
 
     public function hasProcessingOptions()
