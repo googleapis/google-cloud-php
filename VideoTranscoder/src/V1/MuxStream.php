@@ -217,7 +217,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      */
     public function getSegmentSettings()
     {
-        return isset($this->segment_settings) ? $this->segment_settings : null;
+        return $this->segment_settings;
     }
 
     public function hasSegmentSettings()

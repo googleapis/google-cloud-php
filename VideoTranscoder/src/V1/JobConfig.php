@@ -253,7 +253,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      */
     public function getOutput()
     {
-        return isset($this->output) ? $this->output : null;
+        return $this->output;
     }
 
     public function hasOutput()
@@ -317,7 +317,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPubsubDestination()
     {
-        return isset($this->pubsub_destination) ? $this->pubsub_destination : null;
+        return $this->pubsub_destination;
     }
 
     public function hasPubsubDestination()

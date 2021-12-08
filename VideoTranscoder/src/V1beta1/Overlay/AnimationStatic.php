@@ -65,7 +65,7 @@ class AnimationStatic extends \Google\Protobuf\Internal\Message
      */
     public function getXy()
     {
-        return isset($this->xy) ? $this->xy : null;
+        return $this->xy;
     }
 
     public function hasXy()
@@ -105,7 +105,7 @@ class AnimationStatic extends \Google\Protobuf\Internal\Message
      */
     public function getStartTimeOffset()
     {
-        return isset($this->start_time_offset) ? $this->start_time_offset : null;
+        return $this->start_time_offset;
     }
 
     public function hasStartTimeOffset()
