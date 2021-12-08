@@ -53,6 +53,7 @@ use Google\Cloud\Talent\V4\RequestMetadata;
 use Google\Cloud\Talent\V4\SearchJobsRequest;
 use Google\Cloud\Talent\V4\SearchJobsRequest\CustomRankingInfo;
 use Google\Cloud\Talent\V4\SearchJobsRequest\DiversificationLevel;
+use Google\Cloud\Talent\V4\SearchJobsRequest\KeywordMatchMode;
 use Google\Cloud\Talent\V4\SearchJobsRequest\SearchMode;
 use Google\Cloud\Talent\V4\SearchJobsResponse;
 use Google\Cloud\Talent\V4\UpdateJobRequest;
@@ -1114,6 +1115,14 @@ class JobServiceGapicClient
      *           Controls over how job documents get ranked on top of existing relevance
      *           score (determined by API algorithm).
      *     @type bool $disableKeywordMatch
+     *           This field is deprecated. Please use
+     *           [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4.SearchJobsRequest.keyword_match_mode] going forward.
+     *
+     *           To migrate, disable_keyword_match set to false maps to
+     *           [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL], and disable_keyword_match set to
+     *           true maps to [KeywordMatchMode.KEYWORD_MATCH_DISABLED][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_DISABLED]. If
+     *           [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4.SearchJobsRequest.keyword_match_mode] is set, this field is ignored.
+     *
      *           Controls whether to disable exact keyword match on [Job.title][google.cloud.talent.v4.Job.title],
      *           [Job.description][google.cloud.talent.v4.Job.description], [Job.company_display_name][google.cloud.talent.v4.Job.company_display_name], [Job.addresses][google.cloud.talent.v4.Job.addresses],
      *           [Job.qualifications][google.cloud.talent.v4.Job.qualifications]. When disable keyword match is turned off, a
@@ -1133,6 +1142,13 @@ class JobServiceGapicClient
      *           requests.
      *
      *           Defaults to false.
+     *     @type int $keywordMatchMode
+     *           Controls what keyword match options to use. If both keyword_match_mode and
+     *           disable_keyword_match are set, keyword_match_mode will take precedence.
+     *
+     *           Defaults to [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL] if no value
+     *           is specified.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4\SearchJobsRequest\KeywordMatchMode}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1197,6 +1213,10 @@ class JobServiceGapicClient
 
         if (isset($optionalArgs['disableKeywordMatch'])) {
             $request->setDisableKeywordMatch($optionalArgs['disableKeywordMatch']);
+        }
+
+        if (isset($optionalArgs['keywordMatchMode'])) {
+            $request->setKeywordMatchMode($optionalArgs['keywordMatchMode']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1435,6 +1455,14 @@ class JobServiceGapicClient
      *           Controls over how job documents get ranked on top of existing relevance
      *           score (determined by API algorithm).
      *     @type bool $disableKeywordMatch
+     *           This field is deprecated. Please use
+     *           [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4.SearchJobsRequest.keyword_match_mode] going forward.
+     *
+     *           To migrate, disable_keyword_match set to false maps to
+     *           [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL], and disable_keyword_match set to
+     *           true maps to [KeywordMatchMode.KEYWORD_MATCH_DISABLED][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_DISABLED]. If
+     *           [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4.SearchJobsRequest.keyword_match_mode] is set, this field is ignored.
+     *
      *           Controls whether to disable exact keyword match on [Job.title][google.cloud.talent.v4.Job.title],
      *           [Job.description][google.cloud.talent.v4.Job.description], [Job.company_display_name][google.cloud.talent.v4.Job.company_display_name], [Job.addresses][google.cloud.talent.v4.Job.addresses],
      *           [Job.qualifications][google.cloud.talent.v4.Job.qualifications]. When disable keyword match is turned off, a
@@ -1454,6 +1482,13 @@ class JobServiceGapicClient
      *           requests.
      *
      *           Defaults to false.
+     *     @type int $keywordMatchMode
+     *           Controls what keyword match options to use. If both keyword_match_mode and
+     *           disable_keyword_match are set, keyword_match_mode will take precedence.
+     *
+     *           Defaults to [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL] if no value
+     *           is specified.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4\SearchJobsRequest\KeywordMatchMode}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1518,6 +1553,10 @@ class JobServiceGapicClient
 
         if (isset($optionalArgs['disableKeywordMatch'])) {
             $request->setDisableKeywordMatch($optionalArgs['disableKeywordMatch']);
+        }
+
+        if (isset($optionalArgs['keywordMatchMode'])) {
+            $request->setKeywordMatchMode($optionalArgs['keywordMatchMode']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
