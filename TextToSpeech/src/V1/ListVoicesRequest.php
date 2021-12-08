@@ -19,11 +19,11 @@ class ListVoicesRequest extends \Google\Protobuf\Internal\Message
      * Optional. Recommended.
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If
      * specified, the ListVoices call will only return voices that can be used to
-     * synthesize this language_code. E.g. when specifying "en-NZ", you will get
-     * supported "en-\*" voices; when specifying "no", you will get supported
-     * "no-\*" (Norwegian) and "nb-\*" (Norwegian Bokmal) voices; specifying "zh"
-     * will also get supported "cmn-\*" voices; specifying "zh-hk" will also get
-     * supported "yue-\*" voices.
+     * synthesize this language_code. E.g. when specifying `"en-NZ"`, you will get
+     * supported `"en-\*"` voices; when specifying `"no"`, you will get supported
+     * `"no-\*"` (Norwegian) and `"nb-\*"` (Norwegian Bokmal) voices; specifying
+     * `"zh"` will also get supported `"cmn-\*"` voices; specifying `"zh-hk"` will
+     * also get supported `"yue-\*"` voices.
      *
      * Generated from protobuf field <code>string language_code = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,11 +39,11 @@ class ListVoicesRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Recommended.
      *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If
      *           specified, the ListVoices call will only return voices that can be used to
-     *           synthesize this language_code. E.g. when specifying "en-NZ", you will get
-     *           supported "en-\*" voices; when specifying "no", you will get supported
-     *           "no-\*" (Norwegian) and "nb-\*" (Norwegian Bokmal) voices; specifying "zh"
-     *           will also get supported "cmn-\*" voices; specifying "zh-hk" will also get
-     *           supported "yue-\*" voices.
+     *           synthesize this language_code. E.g. when specifying `"en-NZ"`, you will get
+     *           supported `"en-\*"` voices; when specifying `"no"`, you will get supported
+     *           `"no-\*"` (Norwegian) and `"nb-\*"` (Norwegian Bokmal) voices; specifying
+     *           `"zh"` will also get supported `"cmn-\*"` voices; specifying `"zh-hk"` will
+     *           also get supported `"yue-\*"` voices.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,11 +55,11 @@ class ListVoicesRequest extends \Google\Protobuf\Internal\Message
      * Optional. Recommended.
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If
      * specified, the ListVoices call will only return voices that can be used to
-     * synthesize this language_code. E.g. when specifying "en-NZ", you will get
-     * supported "en-\*" voices; when specifying "no", you will get supported
-     * "no-\*" (Norwegian) and "nb-\*" (Norwegian Bokmal) voices; specifying "zh"
-     * will also get supported "cmn-\*" voices; specifying "zh-hk" will also get
-     * supported "yue-\*" voices.
+     * synthesize this language_code. E.g. when specifying `"en-NZ"`, you will get
+     * supported `"en-\*"` voices; when specifying `"no"`, you will get supported
+     * `"no-\*"` (Norwegian) and `"nb-\*"` (Norwegian Bokmal) voices; specifying
+     * `"zh"` will also get supported `"cmn-\*"` voices; specifying `"zh-hk"` will
+     * also get supported `"yue-\*"` voices.
      *
      * Generated from protobuf field <code>string language_code = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -73,11 +73,11 @@ class ListVoicesRequest extends \Google\Protobuf\Internal\Message
      * Optional. Recommended.
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If
      * specified, the ListVoices call will only return voices that can be used to
-     * synthesize this language_code. E.g. when specifying "en-NZ", you will get
-     * supported "en-\*" voices; when specifying "no", you will get supported
-     * "no-\*" (Norwegian) and "nb-\*" (Norwegian Bokmal) voices; specifying "zh"
-     * will also get supported "cmn-\*" voices; specifying "zh-hk" will also get
-     * supported "yue-\*" voices.
+     * synthesize this language_code. E.g. when specifying `"en-NZ"`, you will get
+     * supported `"en-\*"` voices; when specifying `"no"`, you will get supported
+     * `"no-\*"` (Norwegian) and `"nb-\*"` (Norwegian Bokmal) voices; specifying
+     * `"zh"` will also get supported `"cmn-\*"` voices; specifying `"zh-hk"` will
+     * also get supported `"yue-\*"` voices.
      *
      * Generated from protobuf field <code>string language_code = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
