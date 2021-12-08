@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Segment settings for `"ts"`, `"fmp4"` and `"vtt"`.
+ * Segment settings for `ts`, `fmp4` and `vtt`.
  *
  * Generated from protobuf message <code>google.cloud.video.transcoder.v1.SegmentSettings</code>
  */
 class SegmentSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Duration of the segments in seconds. The default is `"6.0s"`. Note that
+     * Duration of the segments in seconds. The default is `6.0s`. Note that
      * `segmentDuration` must be greater than or equal to
      * [`gopDuration`](#videostream), and `segmentDuration` must be divisible by
      * [`gopDuration`](#videostream).
@@ -38,7 +38,7 @@ class SegmentSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Duration $segment_duration
-     *           Duration of the segments in seconds. The default is `"6.0s"`. Note that
+     *           Duration of the segments in seconds. The default is `6.0s`. Note that
      *           `segmentDuration` must be greater than or equal to
      *           [`gopDuration`](#videostream), and `segmentDuration` must be divisible by
      *           [`gopDuration`](#videostream).
@@ -52,7 +52,7 @@ class SegmentSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Duration of the segments in seconds. The default is `"6.0s"`. Note that
+     * Duration of the segments in seconds. The default is `6.0s`. Note that
      * `segmentDuration` must be greater than or equal to
      * [`gopDuration`](#videostream), and `segmentDuration` must be divisible by
      * [`gopDuration`](#videostream).
@@ -76,7 +76,7 @@ class SegmentSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Duration of the segments in seconds. The default is `"6.0s"`. Note that
+     * Duration of the segments in seconds. The default is `6.0s`. Note that
      * `segmentDuration` must be greater than or equal to
      * [`gopDuration`](#videostream), and `segmentDuration` must be divisible by
      * [`gopDuration`](#videostream).

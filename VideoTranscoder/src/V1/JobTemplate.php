@@ -18,7 +18,7 @@ class JobTemplate extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the job template.
      * Format:
-     * `projects/{project}/locations/{location}/jobTemplates/{job_template}`
+     * `projects/{project_number}/locations/{location}/jobTemplates/{job_template}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -39,7 +39,7 @@ class JobTemplate extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The resource name of the job template.
      *           Format:
-     *           `projects/{project}/locations/{location}/jobTemplates/{job_template}`
+     *           `projects/{project_number}/locations/{location}/jobTemplates/{job_template}`
      *     @type \Google\Cloud\Video\Transcoder\V1\JobConfig $config
      *           The configuration for this template.
      * }
@@ -52,7 +52,7 @@ class JobTemplate extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the job template.
      * Format:
-     * `projects/{project}/locations/{location}/jobTemplates/{job_template}`
+     * `projects/{project_number}/locations/{location}/jobTemplates/{job_template}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -65,7 +65,7 @@ class JobTemplate extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the job template.
      * Format:
-     * `projects/{project}/locations/{location}/jobTemplates/{job_template}`
+     * `projects/{project_number}/locations/{location}/jobTemplates/{job_template}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

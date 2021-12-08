@@ -17,7 +17,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
 {
     /**
      * A unique key for this multiplexed stream. HLS media manifests will be
-     * named `MuxStream.key` with the `".m3u8"` extension suffix.
+     * named `MuxStream.key` with the `.m3u8` extension suffix.
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
@@ -26,18 +26,18 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      * The name of the generated file. The default is `MuxStream.key` with the
      * extension suffix corresponding to the `MuxStream.container`.
      * Individual segments also have an incremental 10-digit zero-padded suffix
-     * starting from 0 before the extension, such as `"mux_stream0000000123.ts"`.
+     * starting from 0 before the extension, such as `mux_stream0000000123.ts`.
      *
      * Generated from protobuf field <code>string file_name = 2;</code>
      */
     private $file_name = '';
     /**
-     * The container format. The default is `"mp4"`
+     * The container format. The default is `mp4`
      * Supported container formats:
-     * - 'ts'
-     * - 'fmp4'- the corresponding file extension is `".m4s"`
-     * - 'mp4'
-     * - 'vtt'
+     * - `ts`
+     * - `fmp4`- the corresponding file extension is `.m4s`
+     * - `mp4`
+     * - `vtt`
      *
      * Generated from protobuf field <code>string container = 3;</code>
      */
@@ -49,17 +49,11 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      */
     private $elementary_streams;
     /**
-     * Segment settings for `"ts"`, `"fmp4"` and `"vtt"`.
+     * Segment settings for `ts`, `fmp4` and `vtt`.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.SegmentSettings segment_settings = 5;</code>
      */
     private $segment_settings = null;
-    /**
-     * Encryption settings.
-     *
-     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Encryption encryption = 6;</code>
-     */
-    private $encryption = null;
 
     /**
      * Constructor.
@@ -69,25 +63,23 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      *
      *     @type string $key
      *           A unique key for this multiplexed stream. HLS media manifests will be
-     *           named `MuxStream.key` with the `".m3u8"` extension suffix.
+     *           named `MuxStream.key` with the `.m3u8` extension suffix.
      *     @type string $file_name
      *           The name of the generated file. The default is `MuxStream.key` with the
      *           extension suffix corresponding to the `MuxStream.container`.
      *           Individual segments also have an incremental 10-digit zero-padded suffix
-     *           starting from 0 before the extension, such as `"mux_stream0000000123.ts"`.
+     *           starting from 0 before the extension, such as `mux_stream0000000123.ts`.
      *     @type string $container
-     *           The container format. The default is `"mp4"`
+     *           The container format. The default is `mp4`
      *           Supported container formats:
-     *           - 'ts'
-     *           - 'fmp4'- the corresponding file extension is `".m4s"`
-     *           - 'mp4'
-     *           - 'vtt'
+     *           - `ts`
+     *           - `fmp4`- the corresponding file extension is `.m4s`
+     *           - `mp4`
+     *           - `vtt`
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $elementary_streams
      *           List of `ElementaryStream.key`s multiplexed in this stream.
      *     @type \Google\Cloud\Video\Transcoder\V1\SegmentSettings $segment_settings
-     *           Segment settings for `"ts"`, `"fmp4"` and `"vtt"`.
-     *     @type \Google\Cloud\Video\Transcoder\V1\Encryption $encryption
-     *           Encryption settings.
+     *           Segment settings for `ts`, `fmp4` and `vtt`.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,7 +89,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
 
     /**
      * A unique key for this multiplexed stream. HLS media manifests will be
-     * named `MuxStream.key` with the `".m3u8"` extension suffix.
+     * named `MuxStream.key` with the `.m3u8` extension suffix.
      *
      * Generated from protobuf field <code>string key = 1;</code>
      * @return string
@@ -109,7 +101,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
 
     /**
      * A unique key for this multiplexed stream. HLS media manifests will be
-     * named `MuxStream.key` with the `".m3u8"` extension suffix.
+     * named `MuxStream.key` with the `.m3u8` extension suffix.
      *
      * Generated from protobuf field <code>string key = 1;</code>
      * @param string $var
@@ -127,7 +119,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      * The name of the generated file. The default is `MuxStream.key` with the
      * extension suffix corresponding to the `MuxStream.container`.
      * Individual segments also have an incremental 10-digit zero-padded suffix
-     * starting from 0 before the extension, such as `"mux_stream0000000123.ts"`.
+     * starting from 0 before the extension, such as `mux_stream0000000123.ts`.
      *
      * Generated from protobuf field <code>string file_name = 2;</code>
      * @return string
@@ -141,7 +133,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      * The name of the generated file. The default is `MuxStream.key` with the
      * extension suffix corresponding to the `MuxStream.container`.
      * Individual segments also have an incremental 10-digit zero-padded suffix
-     * starting from 0 before the extension, such as `"mux_stream0000000123.ts"`.
+     * starting from 0 before the extension, such as `mux_stream0000000123.ts`.
      *
      * Generated from protobuf field <code>string file_name = 2;</code>
      * @param string $var
@@ -156,12 +148,12 @@ class MuxStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The container format. The default is `"mp4"`
+     * The container format. The default is `mp4`
      * Supported container formats:
-     * - 'ts'
-     * - 'fmp4'- the corresponding file extension is `".m4s"`
-     * - 'mp4'
-     * - 'vtt'
+     * - `ts`
+     * - `fmp4`- the corresponding file extension is `.m4s`
+     * - `mp4`
+     * - `vtt`
      *
      * Generated from protobuf field <code>string container = 3;</code>
      * @return string
@@ -172,12 +164,12 @@ class MuxStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The container format. The default is `"mp4"`
+     * The container format. The default is `mp4`
      * Supported container formats:
-     * - 'ts'
-     * - 'fmp4'- the corresponding file extension is `".m4s"`
-     * - 'mp4'
-     * - 'vtt'
+     * - `ts`
+     * - `fmp4`- the corresponding file extension is `.m4s`
+     * - `mp4`
+     * - `vtt`
      *
      * Generated from protobuf field <code>string container = 3;</code>
      * @param string $var
@@ -218,7 +210,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Segment settings for `"ts"`, `"fmp4"` and `"vtt"`.
+     * Segment settings for `ts`, `fmp4` and `vtt`.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.SegmentSettings segment_settings = 5;</code>
      * @return \Google\Cloud\Video\Transcoder\V1\SegmentSettings|null
@@ -239,7 +231,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Segment settings for `"ts"`, `"fmp4"` and `"vtt"`.
+     * Segment settings for `ts`, `fmp4` and `vtt`.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.SegmentSettings segment_settings = 5;</code>
      * @param \Google\Cloud\Video\Transcoder\V1\SegmentSettings $var
@@ -249,42 +241,6 @@ class MuxStream extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\Transcoder\V1\SegmentSettings::class);
         $this->segment_settings = $var;
-
-        return $this;
-    }
-
-    /**
-     * Encryption settings.
-     *
-     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Encryption encryption = 6;</code>
-     * @return \Google\Cloud\Video\Transcoder\V1\Encryption|null
-     */
-    public function getEncryption()
-    {
-        return isset($this->encryption) ? $this->encryption : null;
-    }
-
-    public function hasEncryption()
-    {
-        return isset($this->encryption);
-    }
-
-    public function clearEncryption()
-    {
-        unset($this->encryption);
-    }
-
-    /**
-     * Encryption settings.
-     *
-     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Encryption encryption = 6;</code>
-     * @param \Google\Cloud\Video\Transcoder\V1\Encryption $var
-     * @return $this
-     */
-    public function setEncryption($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Video\Transcoder\V1\Encryption::class);
-        $this->encryption = $var;
 
         return $this;
     }

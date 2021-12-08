@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class SpriteSheet extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Format type. The default is `"jpeg"`.
+     * Format type. The default is `jpeg`.
      * Supported formats:
-     * - 'jpeg'
+     * - `jpeg`
      *
      * Generated from protobuf field <code>string format = 1;</code>
      */
@@ -26,7 +26,7 @@ class SpriteSheet extends \Google\Protobuf\Internal\Message
     /**
      * Required. File name prefix for the generated sprite sheets.
      * Each sprite sheet has an incremental 10-digit zero-padded suffix starting
-     * from 0 before the extension, such as `"sprite_sheet0000000123.jpeg"`.
+     * from 0 before the extension, such as `sprite_sheet0000000123.jpeg`.
      *
      * Generated from protobuf field <code>string file_prefix = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -97,13 +97,13 @@ class SpriteSheet extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $format
-     *           Format type. The default is `"jpeg"`.
+     *           Format type. The default is `jpeg`.
      *           Supported formats:
-     *           - 'jpeg'
+     *           - `jpeg`
      *     @type string $file_prefix
      *           Required. File name prefix for the generated sprite sheets.
      *           Each sprite sheet has an incremental 10-digit zero-padded suffix starting
-     *           from 0 before the extension, such as `"sprite_sheet0000000123.jpeg"`.
+     *           from 0 before the extension, such as `sprite_sheet0000000123.jpeg`.
      *     @type int $sprite_width_pixels
      *           Required. The width of sprite in pixels. Must be an even integer. To preserve the
      *           source aspect ratio, set the [SpriteSheet.sprite_width_pixels][google.cloud.video.transcoder.v1.SpriteSheet.sprite_width_pixels] field or
@@ -148,9 +148,9 @@ class SpriteSheet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Format type. The default is `"jpeg"`.
+     * Format type. The default is `jpeg`.
      * Supported formats:
-     * - 'jpeg'
+     * - `jpeg`
      *
      * Generated from protobuf field <code>string format = 1;</code>
      * @return string
@@ -161,9 +161,9 @@ class SpriteSheet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Format type. The default is `"jpeg"`.
+     * Format type. The default is `jpeg`.
      * Supported formats:
-     * - 'jpeg'
+     * - `jpeg`
      *
      * Generated from protobuf field <code>string format = 1;</code>
      * @param string $var
@@ -180,7 +180,7 @@ class SpriteSheet extends \Google\Protobuf\Internal\Message
     /**
      * Required. File name prefix for the generated sprite sheets.
      * Each sprite sheet has an incremental 10-digit zero-padded suffix starting
-     * from 0 before the extension, such as `"sprite_sheet0000000123.jpeg"`.
+     * from 0 before the extension, such as `sprite_sheet0000000123.jpeg`.
      *
      * Generated from protobuf field <code>string file_prefix = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -193,7 +193,7 @@ class SpriteSheet extends \Google\Protobuf\Internal\Message
     /**
      * Required. File name prefix for the generated sprite sheets.
      * Each sprite sheet has an incremental 10-digit zero-padded suffix starting
-     * from 0 before the extension, such as `"sprite_sheet0000000123.jpeg"`.
+     * from 0 before the extension, such as `sprite_sheet0000000123.jpeg`.
      *
      * Generated from protobuf field <code>string file_prefix = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
