@@ -1,0 +1,3 @@
+deep-copy-regex:
+    - source: /google/analytics/admin/v1alpha/.*-php/(.*)
+      dest: /owl-bot-staging/AnalyticsAdmin/v1alpha/$1
