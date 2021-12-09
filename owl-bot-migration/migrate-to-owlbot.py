@@ -101,6 +101,11 @@ def main(target_dir: str) -> None:
     print("removing synth.py")
     os.unlink(synth_py)
 
+    synth_metadata = api_dir / "synth.metadata"
+    if synth_metadata.is_file():
+        print("removing synth.metadata")
+        os.unlink(synth_metadata)
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
