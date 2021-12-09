@@ -20,13 +20,35 @@ import subprocess
 
 import synthtool as s
 from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
 src = Path(f"../{php.STAGING_DIR}/{{target_dir}}").resolve()
 dest = Path().resolve()
 
-{% if copy_partial_veneer -%}
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
+
+{% if is_newer_api -%}
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "**/*_*.php"
+    ]
+)
+
+
+# remove class_alias code
+s.replace(
+    "src/V*/*/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
+{% elif copy_partial_veneer -%}
 php.owlbot_main(src=src, dest=dest)
 {% else -%}
 php.owlbot_main(

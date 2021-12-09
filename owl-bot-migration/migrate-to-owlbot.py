@@ -9,6 +9,16 @@ from jinja2 import Environment
 from jinja2 import FileSystemLoader
 
 
+NEWER_API_LIST = [
+    "DocumentAi",
+    "Deploy",
+    "ContactCenterInsights",
+    "ContainerAnalysis",
+    "Functions",
+    "NetworkSecurity",
+    "Grafeas"
+]
+
 def scan_bazel_target(synth_py: Path) -> (str, str):
     with open(synth_py, "r") as f:
         for line in f.readlines():
@@ -86,12 +96,15 @@ def main(target_dir: str) -> None:
 
     (copyright_year, copy_partial_veneer, remainder) = scan_for_owlbot(synth_py)
 
+    is_newer_api = target_dir in NEWER_API_LIST
+
     owlbot_py_tmpl = e.get_template("owlbot_py.tmpl")
 
     print("writing owlbot.py")
 
     with open(api_dir / "owlbot.py", "w") as f:
         f.write(owlbot_py_tmpl.render(
+            is_newer_api=is_newer_api,
             copyright_year=copyright_year,
             target_dir=target_dir,
             copy_partial_veneer=copy_partial_veneer,
