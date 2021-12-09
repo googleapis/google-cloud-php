@@ -20,14 +20,20 @@ class TargetShape
      */
     const UNDEFINED_TARGET_SHAPE = 0;
     /**
+     * The group picks zones for creating VM instances to fulfill the requested number of VMs within present resource constraints and to maximize utilization of unused zonal reservations. Recommended for batch workloads that do not require high availability.
+     *
      * Generated from protobuf enum <code>ANY = 64972;</code>
      */
     const ANY = 64972;
     /**
+     * The group prioritizes acquisition of resources, scheduling VMs in zones where resources are available while distributing VMs as evenly as possible across selected zones to minimize the impact of zonal failure. Recommended for highly available serving workloads.
+     *
      * Generated from protobuf enum <code>BALANCED = 468409608;</code>
      */
     const BALANCED = 468409608;
     /**
+     * The group schedules VM instance creation and deletion to achieve and maintain an even number of managed instances across the selected zones. The distribution is even when the number of managed instances does not differ by more than 1 between any two zones. Recommended for highly available serving workloads.
+     *
      * Generated from protobuf enum <code>EVEN = 2140442;</code>
      */
     const EVEN = 2140442;

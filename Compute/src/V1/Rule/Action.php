@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Rule;
 use UnexpectedValueException;
 
 /**
- * Required
+ * This is deprecated and has no effect. Do not use.
  *
  * Protobuf type <code>google.cloud.compute.v1.Rule.Action</code>
  */
@@ -20,26 +20,38 @@ class Action
      */
     const UNDEFINED_ACTION = 0;
     /**
+     * This is deprecated and has no effect. Do not use.
+     *
      * Generated from protobuf enum <code>ALLOW = 62368553;</code>
      */
     const ALLOW = 62368553;
     /**
+     * This is deprecated and has no effect. Do not use.
+     *
      * Generated from protobuf enum <code>ALLOW_WITH_LOG = 76034177;</code>
      */
     const ALLOW_WITH_LOG = 76034177;
     /**
+     * This is deprecated and has no effect. Do not use.
+     *
      * Generated from protobuf enum <code>DENY = 2094604;</code>
      */
     const DENY = 2094604;
     /**
+     * This is deprecated and has no effect. Do not use.
+     *
      * Generated from protobuf enum <code>DENY_WITH_LOG = 351433982;</code>
      */
     const DENY_WITH_LOG = 351433982;
     /**
+     * This is deprecated and has no effect. Do not use.
+     *
      * Generated from protobuf enum <code>LOG = 75556;</code>
      */
     const LOG = 75556;
     /**
+     * This is deprecated and has no effect. Do not use.
+     *
      * Generated from protobuf enum <code>NO_ACTION = 260643444;</code>
      */
     const NO_ACTION = 260643444;

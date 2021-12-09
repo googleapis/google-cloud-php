@@ -17,13 +17,14 @@ class FileContentBuffer extends \Google\Protobuf\Internal\Message
     /**
      * The raw content in the secure keys file.
      *
-     * Generated from protobuf field <code>string content = 414659705;</code>
+     * Generated from protobuf field <code>optional string content = 414659705;</code>
      */
     private $content = null;
     /**
      * The file type of source file.
+     * Check the FileType enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FileContentBuffer.FileType file_type = 294346781;</code>
+     * Generated from protobuf field <code>optional string file_type = 294346781;</code>
      */
     private $file_type = null;
 
@@ -35,8 +36,9 @@ class FileContentBuffer extends \Google\Protobuf\Internal\Message
      *
      *     @type string $content
      *           The raw content in the secure keys file.
-     *     @type int $file_type
+     *     @type string $file_type
      *           The file type of source file.
+     *           Check the FileType enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,7 +49,7 @@ class FileContentBuffer extends \Google\Protobuf\Internal\Message
     /**
      * The raw content in the secure keys file.
      *
-     * Generated from protobuf field <code>string content = 414659705;</code>
+     * Generated from protobuf field <code>optional string content = 414659705;</code>
      * @return string
      */
     public function getContent()
@@ -68,7 +70,7 @@ class FileContentBuffer extends \Google\Protobuf\Internal\Message
     /**
      * The raw content in the secure keys file.
      *
-     * Generated from protobuf field <code>string content = 414659705;</code>
+     * Generated from protobuf field <code>optional string content = 414659705;</code>
      * @param string $var
      * @return $this
      */
@@ -82,13 +84,14 @@ class FileContentBuffer extends \Google\Protobuf\Internal\Message
 
     /**
      * The file type of source file.
+     * Check the FileType enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FileContentBuffer.FileType file_type = 294346781;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string file_type = 294346781;</code>
+     * @return string
      */
     public function getFileType()
     {
-        return isset($this->file_type) ? $this->file_type : 0;
+        return isset($this->file_type) ? $this->file_type : '';
     }
 
     public function hasFileType()
@@ -103,14 +106,15 @@ class FileContentBuffer extends \Google\Protobuf\Internal\Message
 
     /**
      * The file type of source file.
+     * Check the FileType enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FileContentBuffer.FileType file_type = 294346781;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string file_type = 294346781;</code>
+     * @param string $var
      * @return $this
      */
     public function setFileType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\FileContentBuffer\FileType::class);
+        GPBUtil::checkString($var, True);
         $this->file_type = $var;
 
         return $this;

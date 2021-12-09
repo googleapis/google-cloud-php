@@ -18,7 +18,7 @@ class RequestMirrorPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The full or partial URL to the BackendService resource being mirrored to.
      *
-     * Generated from protobuf field <code>string backend_service = 306946058;</code>
+     * Generated from protobuf field <code>optional string backend_service = 306946058;</code>
      */
     private $backend_service = null;
 
@@ -40,7 +40,7 @@ class RequestMirrorPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The full or partial URL to the BackendService resource being mirrored to.
      *
-     * Generated from protobuf field <code>string backend_service = 306946058;</code>
+     * Generated from protobuf field <code>optional string backend_service = 306946058;</code>
      * @return string
      */
     public function getBackendService()
@@ -61,7 +61,7 @@ class RequestMirrorPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The full or partial URL to the BackendService resource being mirrored to.
      *
-     * Generated from protobuf field <code>string backend_service = 306946058;</code>
+     * Generated from protobuf field <code>optional string backend_service = 306946058;</code>
      * @param string $var
      * @return $this
      */

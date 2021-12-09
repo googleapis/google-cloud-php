@@ -16,14 +16,15 @@ class ManagedInstanceInstanceHealth extends \Google\Protobuf\Internal\Message
 {
     /**
      * [Output Only] The current detailed instance health state.
+     * Check the DetailedHealthState enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstanceInstanceHealth.DetailedHealthState detailed_health_state = 510470173;</code>
+     * Generated from protobuf field <code>optional string detailed_health_state = 510470173;</code>
      */
     private $detailed_health_state = null;
     /**
      * [Output Only] The URL for the health check that verifies whether the instance is healthy.
      *
-     * Generated from protobuf field <code>string health_check = 308876645;</code>
+     * Generated from protobuf field <code>optional string health_check = 308876645;</code>
      */
     private $health_check = null;
 
@@ -33,8 +34,9 @@ class ManagedInstanceInstanceHealth extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $detailed_health_state
+     *     @type string $detailed_health_state
      *           [Output Only] The current detailed instance health state.
+     *           Check the DetailedHealthState enum for the list of possible values.
      *     @type string $health_check
      *           [Output Only] The URL for the health check that verifies whether the instance is healthy.
      * }
@@ -46,13 +48,14 @@ class ManagedInstanceInstanceHealth extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output Only] The current detailed instance health state.
+     * Check the DetailedHealthState enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstanceInstanceHealth.DetailedHealthState detailed_health_state = 510470173;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string detailed_health_state = 510470173;</code>
+     * @return string
      */
     public function getDetailedHealthState()
     {
-        return isset($this->detailed_health_state) ? $this->detailed_health_state : 0;
+        return isset($this->detailed_health_state) ? $this->detailed_health_state : '';
     }
 
     public function hasDetailedHealthState()
@@ -67,14 +70,15 @@ class ManagedInstanceInstanceHealth extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output Only] The current detailed instance health state.
+     * Check the DetailedHealthState enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstanceInstanceHealth.DetailedHealthState detailed_health_state = 510470173;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string detailed_health_state = 510470173;</code>
+     * @param string $var
      * @return $this
      */
     public function setDetailedHealthState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\ManagedInstanceInstanceHealth\DetailedHealthState::class);
+        GPBUtil::checkString($var, True);
         $this->detailed_health_state = $var;
 
         return $this;
@@ -83,7 +87,7 @@ class ManagedInstanceInstanceHealth extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL for the health check that verifies whether the instance is healthy.
      *
-     * Generated from protobuf field <code>string health_check = 308876645;</code>
+     * Generated from protobuf field <code>optional string health_check = 308876645;</code>
      * @return string
      */
     public function getHealthCheck()
@@ -104,7 +108,7 @@ class ManagedInstanceInstanceHealth extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL for the health check that verifies whether the instance is healthy.
      *
-     * Generated from protobuf field <code>string health_check = 308876645;</code>
+     * Generated from protobuf field <code>optional string health_check = 308876645;</code>
      * @param string $var
      * @return $this
      */

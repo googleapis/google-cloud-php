@@ -7,12 +7,7 @@ namespace Google\Cloud\Compute\V1\Disk;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of disk creation.
- * - CREATING: Disk is provisioning.
- * - RESTORING: Source data is being copied into the disk.
- * - FAILED: Disk creation failed.
- * - READY: Disk is ready for use.
- * - DELETING: Disk is deleting.
+ * [Output Only] The status of disk creation. - CREATING: Disk is provisioning. - RESTORING: Source data is being copied into the disk. - FAILED: Disk creation failed. - READY: Disk is ready for use. - DELETING: Disk is deleting. 
  *
  * Protobuf type <code>google.cloud.compute.v1.Disk.Status</code>
  */
@@ -25,22 +20,32 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
+     * Disk is provisioning
+     *
      * Generated from protobuf enum <code>CREATING = 455564985;</code>
      */
     const CREATING = 455564985;
     /**
+     * Disk is deleting.
+     *
      * Generated from protobuf enum <code>DELETING = 528602024;</code>
      */
     const DELETING = 528602024;
     /**
+     * Disk creation failed.
+     *
      * Generated from protobuf enum <code>FAILED = 455706685;</code>
      */
     const FAILED = 455706685;
     /**
+     * Disk is ready for use.
+     *
      * Generated from protobuf enum <code>READY = 77848963;</code>
      */
     const READY = 77848963;
     /**
+     * Source data is being copied into the disk.
+     *
      * Generated from protobuf enum <code>RESTORING = 404263851;</code>
      */
     const RESTORING = 404263851;

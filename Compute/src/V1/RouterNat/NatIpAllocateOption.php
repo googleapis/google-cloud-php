@@ -7,9 +7,7 @@ namespace Google\Cloud\Compute\V1\RouterNat;
 use UnexpectedValueException;
 
 /**
- * Specify the NatIpAllocateOption, which can take one of the following values:
- * - MANUAL_ONLY: Uses only Nat IP addresses provided by customers. When there are not enough specified Nat IPs, the Nat service fails for new VMs.
- * - AUTO_ONLY: Nat IPs are allocated by Google Cloud Platform; customers can't specify any Nat IPs. When choosing AUTO_ONLY, then nat_ip should be empty.
+ * Specify the NatIpAllocateOption, which can take one of the following values: - MANUAL_ONLY: Uses only Nat IP addresses provided by customers. When there are not enough specified Nat IPs, the Nat service fails for new VMs. - AUTO_ONLY: Nat IPs are allocated by Google Cloud Platform; customers can't specify any Nat IPs. When choosing AUTO_ONLY, then nat_ip should be empty. 
  *
  * Protobuf type <code>google.cloud.compute.v1.RouterNat.NatIpAllocateOption</code>
  */
@@ -22,10 +20,14 @@ class NatIpAllocateOption
      */
     const UNDEFINED_NAT_IP_ALLOCATE_OPTION = 0;
     /**
+     * Nat IPs are allocated by GCP; customers can not specify any Nat IPs.
+     *
      * Generated from protobuf enum <code>AUTO_ONLY = 182333500;</code>
      */
     const AUTO_ONLY = 182333500;
     /**
+     * Only use Nat IPs provided by customers. When specified Nat IPs are not enough then the Nat service fails for new VMs.
+     *
      * Generated from protobuf enum <code>MANUAL_ONLY = 261251205;</code>
      */
     const MANUAL_ONLY = 261251205;

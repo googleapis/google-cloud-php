@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an SSL Policy resource.
- * Use SSL policies to control the SSL features, such as versions and cipher suites, offered by an HTTPS or SSL Proxy load balancer. For more information, read  SSL Policy Concepts. (== resource_for {$api_version}.sslPolicies ==)
+ * Represents an SSL Policy resource. Use SSL policies to control the SSL features, such as versions and cipher suites, offered by an HTTPS or SSL Proxy load balancer. For more information, read SSL Policy Concepts.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.SslPolicy</code>
  */
@@ -19,12 +18,11 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
-     * A list of features enabled when the selected profile is CUSTOM. The
-     * - method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
+     * A list of features enabled when the selected profile is CUSTOM. The method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
      *
      * Generated from protobuf field <code>repeated string custom_features = 34789707;</code>
      */
@@ -32,7 +30,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
@@ -42,46 +40,47 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      */
     private $enabled_features;
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy, otherwise the request will fail with error 412 conditionNotMet.
-     * To see the latest fingerprint, make a get() request to retrieve an SslPolicy.
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an SslPolicy.
      *
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
     private $fingerprint = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output only] Type of the resource. Always compute#sslPolicyfor SSL policies.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * The minimum version of SSL protocol that can be used by the clients to establish a connection with the load balancer. This can be one of TLS_1_0, TLS_1_1, TLS_1_2.
+     * Check the MinTlsVersion enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SslPolicy.MinTlsVersion min_tls_version = 8155943;</code>
+     * Generated from protobuf field <code>optional string min_tls_version = 8155943;</code>
      */
     private $min_tls_version = null;
     /**
      * Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
      * Profile specifies the set of SSL features that can be used by the load balancer when negotiating SSL with clients. This can be one of COMPATIBLE, MODERN, RESTRICTED, or CUSTOM. If using CUSTOM, the set of SSL features to enable must be specified in the customFeatures field.
+     * Check the Profile enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SslPolicy.Profile profile = 227445161;</code>
+     * Generated from protobuf field <code>optional string profile = 227445161;</code>
      */
     private $profile = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
@@ -100,25 +99,25 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $custom_features
-     *           A list of features enabled when the selected profile is CUSTOM. The
-     *           - method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
+     *           A list of features enabled when the selected profile is CUSTOM. The method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $enabled_features
      *           [Output Only] The list of features enabled in the SSL policy.
      *     @type string $fingerprint
-     *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy, otherwise the request will fail with error 412 conditionNotMet.
-     *           To see the latest fingerprint, make a get() request to retrieve an SslPolicy.
+     *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an SslPolicy.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output only] Type of the resource. Always compute#sslPolicyfor SSL policies.
-     *     @type int $min_tls_version
+     *     @type string $min_tls_version
      *           The minimum version of SSL protocol that can be used by the clients to establish a connection with the load balancer. This can be one of TLS_1_0, TLS_1_1, TLS_1_2.
+     *           Check the MinTlsVersion enum for the list of possible values.
      *     @type string $name
      *           Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-     *     @type int $profile
+     *     @type string $profile
      *           Profile specifies the set of SSL features that can be used by the load balancer when negotiating SSL with clients. This can be one of COMPATIBLE, MODERN, RESTRICTED, or CUSTOM. If using CUSTOM, the set of SSL features to enable must be specified in the customFeatures field.
+     *           Check the Profile enum for the list of possible values.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type \Google\Cloud\Compute\V1\Warnings[]|\Google\Protobuf\Internal\RepeatedField $warnings
@@ -133,7 +132,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -154,7 +153,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -167,8 +166,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of features enabled when the selected profile is CUSTOM. The
-     * - method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
+     * A list of features enabled when the selected profile is CUSTOM. The method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
      *
      * Generated from protobuf field <code>repeated string custom_features = 34789707;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -179,8 +177,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of features enabled when the selected profile is CUSTOM. The
-     * - method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
+     * A list of features enabled when the selected profile is CUSTOM. The method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
      *
      * Generated from protobuf field <code>repeated string custom_features = 34789707;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -197,7 +194,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -218,7 +215,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -257,10 +254,9 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy, otherwise the request will fail with error 412 conditionNotMet.
-     * To see the latest fingerprint, make a get() request to retrieve an SslPolicy.
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an SslPolicy.
      *
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @return string
      */
     public function getFingerprint()
@@ -279,10 +275,9 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy, otherwise the request will fail with error 412 conditionNotMet.
-     * To see the latest fingerprint, make a get() request to retrieve an SslPolicy.
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an SslPolicy.
      *
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @param string $var
      * @return $this
      */
@@ -297,7 +292,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -318,7 +313,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -333,7 +328,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] Type of the resource. Always compute#sslPolicyfor SSL policies.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -354,7 +349,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] Type of the resource. Always compute#sslPolicyfor SSL policies.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -368,13 +363,14 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The minimum version of SSL protocol that can be used by the clients to establish a connection with the load balancer. This can be one of TLS_1_0, TLS_1_1, TLS_1_2.
+     * Check the MinTlsVersion enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SslPolicy.MinTlsVersion min_tls_version = 8155943;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string min_tls_version = 8155943;</code>
+     * @return string
      */
     public function getMinTlsVersion()
     {
-        return isset($this->min_tls_version) ? $this->min_tls_version : 0;
+        return isset($this->min_tls_version) ? $this->min_tls_version : '';
     }
 
     public function hasMinTlsVersion()
@@ -389,14 +385,15 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The minimum version of SSL protocol that can be used by the clients to establish a connection with the load balancer. This can be one of TLS_1_0, TLS_1_1, TLS_1_2.
+     * Check the MinTlsVersion enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SslPolicy.MinTlsVersion min_tls_version = 8155943;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string min_tls_version = 8155943;</code>
+     * @param string $var
      * @return $this
      */
     public function setMinTlsVersion($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\SslPolicy\MinTlsVersion::class);
+        GPBUtil::checkString($var, True);
         $this->min_tls_version = $var;
 
         return $this;
@@ -405,7 +402,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -426,7 +423,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -440,13 +437,14 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Profile specifies the set of SSL features that can be used by the load balancer when negotiating SSL with clients. This can be one of COMPATIBLE, MODERN, RESTRICTED, or CUSTOM. If using CUSTOM, the set of SSL features to enable must be specified in the customFeatures field.
+     * Check the Profile enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SslPolicy.Profile profile = 227445161;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string profile = 227445161;</code>
+     * @return string
      */
     public function getProfile()
     {
-        return isset($this->profile) ? $this->profile : 0;
+        return isset($this->profile) ? $this->profile : '';
     }
 
     public function hasProfile()
@@ -461,14 +459,15 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Profile specifies the set of SSL features that can be used by the load balancer when negotiating SSL with clients. This can be one of COMPATIBLE, MODERN, RESTRICTED, or CUSTOM. If using CUSTOM, the set of SSL features to enable must be specified in the customFeatures field.
+     * Check the Profile enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SslPolicy.Profile profile = 227445161;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string profile = 227445161;</code>
+     * @param string $var
      * @return $this
      */
     public function setProfile($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\SslPolicy\Profile::class);
+        GPBUtil::checkString($var, True);
         $this->profile = $var;
 
         return $this;
@@ -477,7 +476,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -498,7 +497,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */

@@ -20,14 +20,20 @@ class UtilizationTargetType
      */
     const UNDEFINED_UTILIZATION_TARGET_TYPE = 0;
     /**
+     * Sets the utilization target value for a cumulative or delta metric, expressed as the rate of growth per minute.
+     *
      * Generated from protobuf enum <code>DELTA_PER_MINUTE = 87432861;</code>
      */
     const DELTA_PER_MINUTE = 87432861;
     /**
+     * Sets the utilization target value for a cumulative or delta metric, expressed as the rate of growth per second.
+     *
      * Generated from protobuf enum <code>DELTA_PER_SECOND = 255180029;</code>
      */
     const DELTA_PER_SECOND = 255180029;
     /**
+     * Sets the utilization target value for a gauge metric. The autoscaler will collect the average utilization of the virtual machines from the last couple of minutes, and compare the value to the utilization target value to perform autoscaling.
+     *
      * Generated from protobuf enum <code>GAUGE = 67590361;</code>
      */
     const GAUGE = 67590361;

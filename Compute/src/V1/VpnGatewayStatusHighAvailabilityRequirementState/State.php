@@ -20,10 +20,14 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
+     * VPN tunnels are configured with adequate redundancy from Cloud VPN gateway to the peer VPN gateway. For both GCP-to-non-GCP and GCP-to-GCP connections, the adequate redundancy is a pre-requirement for users to get 99.99% availability on GCP side; please note that for any connection, end-to-end 99.99% availability is subject to proper configuration on the peer VPN gateway.
+     *
      * Generated from protobuf enum <code>CONNECTION_REDUNDANCY_MET = 505242907;</code>
      */
     const CONNECTION_REDUNDANCY_MET = 505242907;
     /**
+     * VPN tunnels are not configured with adequate redundancy from the Cloud VPN gateway to the peer gateway
+     *
      * Generated from protobuf enum <code>CONNECTION_REDUNDANCY_NOT_MET = 511863311;</code>
      */
     const CONNECTION_REDUNDANCY_NOT_MET = 511863311;

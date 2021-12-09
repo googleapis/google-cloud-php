@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\ReservationAffinity;
 use UnexpectedValueException;
 
 /**
- * Specifies the type of reservation from which this instance can consume resources: ANY_RESERVATION (default), SPECIFIC_RESERVATION, or NO_RESERVATION. See  Consuming reserved instances for examples.
+ * Specifies the type of reservation from which this instance can consume resources: ANY_RESERVATION (default), SPECIFIC_RESERVATION, or NO_RESERVATION. See Consuming reserved instances for examples.
  *
  * Protobuf type <code>google.cloud.compute.v1.ReservationAffinity.ConsumeReservationType</code>
  */
@@ -20,14 +20,20 @@ class ConsumeReservationType
      */
     const UNDEFINED_CONSUME_RESERVATION_TYPE = 0;
     /**
+     * Consume any allocation available.
+     *
      * Generated from protobuf enum <code>ANY_RESERVATION = 200008121;</code>
      */
     const ANY_RESERVATION = 200008121;
     /**
+     * Do not consume from any allocated capacity.
+     *
      * Generated from protobuf enum <code>NO_RESERVATION = 169322030;</code>
      */
     const NO_RESERVATION = 169322030;
     /**
+     * Must consume from a specific reservation. Must specify key value fields for specifying the reservations.
+     *
      * Generated from protobuf enum <code>SPECIFIC_RESERVATION = 229889055;</code>
      */
     const SPECIFIC_RESERVATION = 229889055;
