@@ -23,29 +23,29 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     /**
      * The unique ID for this link assigned during turn up by Google.
      *
-     * Generated from protobuf field <code>string circuit_id = 225180977;</code>
+     * Generated from protobuf field <code>optional string circuit_id = 225180977;</code>
      */
     private $circuit_id = null;
     /**
      * The Demarc address assigned by Google and provided in the LoA.
      *
-     * Generated from protobuf field <code>string google_demarc = 51084;</code>
+     * Generated from protobuf field <code>optional string google_demarc = 51084;</code>
      */
     private $google_demarc = null;
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus lacp_status = 361210415;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus lacp_status = 361210415;</code>
      */
     private $lacp_status = null;
     /**
      * An InterconnectDiagnostics.LinkOpticalPower object, describing the current value and status of the received light level.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower receiving_optical_power = 244717279;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower receiving_optical_power = 244717279;</code>
      */
     private $receiving_optical_power = null;
     /**
      * An InterconnectDiagnostics.LinkOpticalPower object, describing the current value and status of the transmitted light level.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower transmitting_optical_power = 459431197;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower transmitting_optical_power = 459431197;</code>
      */
     private $transmitting_optical_power = null;
 
@@ -102,7 +102,7 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     /**
      * The unique ID for this link assigned during turn up by Google.
      *
-     * Generated from protobuf field <code>string circuit_id = 225180977;</code>
+     * Generated from protobuf field <code>optional string circuit_id = 225180977;</code>
      * @return string
      */
     public function getCircuitId()
@@ -123,7 +123,7 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     /**
      * The unique ID for this link assigned during turn up by Google.
      *
-     * Generated from protobuf field <code>string circuit_id = 225180977;</code>
+     * Generated from protobuf field <code>optional string circuit_id = 225180977;</code>
      * @param string $var
      * @return $this
      */
@@ -138,7 +138,7 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     /**
      * The Demarc address assigned by Google and provided in the LoA.
      *
-     * Generated from protobuf field <code>string google_demarc = 51084;</code>
+     * Generated from protobuf field <code>optional string google_demarc = 51084;</code>
      * @return string
      */
     public function getGoogleDemarc()
@@ -159,7 +159,7 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     /**
      * The Demarc address assigned by Google and provided in the LoA.
      *
-     * Generated from protobuf field <code>string google_demarc = 51084;</code>
+     * Generated from protobuf field <code>optional string google_demarc = 51084;</code>
      * @param string $var
      * @return $this
      */
@@ -172,12 +172,12 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus lacp_status = 361210415;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus lacp_status = 361210415;</code>
      * @return \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkLACPStatus|null
      */
     public function getLacpStatus()
     {
-        return isset($this->lacp_status) ? $this->lacp_status : null;
+        return $this->lacp_status;
     }
 
     public function hasLacpStatus()
@@ -191,7 +191,7 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus lacp_status = 361210415;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus lacp_status = 361210415;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkLACPStatus $var
      * @return $this
      */
@@ -206,12 +206,12 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     /**
      * An InterconnectDiagnostics.LinkOpticalPower object, describing the current value and status of the received light level.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower receiving_optical_power = 244717279;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower receiving_optical_power = 244717279;</code>
      * @return \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkOpticalPower|null
      */
     public function getReceivingOpticalPower()
     {
-        return isset($this->receiving_optical_power) ? $this->receiving_optical_power : null;
+        return $this->receiving_optical_power;
     }
 
     public function hasReceivingOpticalPower()
@@ -227,7 +227,7 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     /**
      * An InterconnectDiagnostics.LinkOpticalPower object, describing the current value and status of the received light level.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower receiving_optical_power = 244717279;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower receiving_optical_power = 244717279;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkOpticalPower $var
      * @return $this
      */
@@ -242,12 +242,12 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     /**
      * An InterconnectDiagnostics.LinkOpticalPower object, describing the current value and status of the transmitted light level.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower transmitting_optical_power = 459431197;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower transmitting_optical_power = 459431197;</code>
      * @return \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkOpticalPower|null
      */
     public function getTransmittingOpticalPower()
     {
-        return isset($this->transmitting_optical_power) ? $this->transmitting_optical_power : null;
+        return $this->transmitting_optical_power;
     }
 
     public function hasTransmittingOpticalPower()
@@ -263,7 +263,7 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     /**
      * An InterconnectDiagnostics.LinkOpticalPower object, describing the current value and status of the transmitted light level.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower transmitting_optical_power = 459431197;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower transmitting_optical_power = 459431197;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkOpticalPower $var
      * @return $this
      */

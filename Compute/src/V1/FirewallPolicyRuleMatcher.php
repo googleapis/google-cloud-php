@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
 {
     /**
-     * CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 256.
+     * CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string dest_ip_ranges = 337357713;</code>
      */
@@ -28,7 +28,7 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      */
     private $layer4_configs;
     /**
-     * CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 256.
+     * CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string src_ip_ranges = 432128083;</code>
      */
@@ -41,11 +41,11 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $dest_ip_ranges
-     *           CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 256.
+     *           CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 5000.
      *     @type \Google\Cloud\Compute\V1\FirewallPolicyRuleMatcherLayer4Config[]|\Google\Protobuf\Internal\RepeatedField $layer4_configs
      *           Pairs of IP protocols and ports that the rule should match.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $src_ip_ranges
-     *           CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 256.
+     *           CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 5000.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +54,7 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 256.
+     * CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string dest_ip_ranges = 337357713;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -65,7 +65,7 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 256.
+     * CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string dest_ip_ranges = 337357713;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -106,7 +106,7 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 256.
+     * CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string src_ip_ranges = 432128083;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -117,7 +117,7 @@ class FirewallPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 256.
+     * CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 5000.
      *
      * Generated from protobuf field <code>repeated string src_ip_ranges = 432128083;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

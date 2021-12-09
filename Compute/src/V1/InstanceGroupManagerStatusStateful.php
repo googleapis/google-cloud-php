@@ -17,13 +17,13 @@ class InstanceGroupManagerStatusStateful extends \Google\Protobuf\Internal\Messa
     /**
      * [Output Only] A bit indicating whether the managed instance group has stateful configuration, that is, if you have configured any items in a stateful policy or in per-instance configs. The group might report that it has no stateful config even when there is still some preserved state on a managed instance, for example, if you have deleted all PICs but not yet applied those deletions.
      *
-     * Generated from protobuf field <code>bool has_stateful_config = 110474224;</code>
+     * Generated from protobuf field <code>optional bool has_stateful_config = 110474224;</code>
      */
     private $has_stateful_config = null;
     /**
      * [Output Only] Status of per-instance configs on the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatusStatefulPerInstanceConfigs per_instance_configs = 526265001;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusStatefulPerInstanceConfigs per_instance_configs = 526265001;</code>
      */
     private $per_instance_configs = null;
 
@@ -47,7 +47,7 @@ class InstanceGroupManagerStatusStateful extends \Google\Protobuf\Internal\Messa
     /**
      * [Output Only] A bit indicating whether the managed instance group has stateful configuration, that is, if you have configured any items in a stateful policy or in per-instance configs. The group might report that it has no stateful config even when there is still some preserved state on a managed instance, for example, if you have deleted all PICs but not yet applied those deletions.
      *
-     * Generated from protobuf field <code>bool has_stateful_config = 110474224;</code>
+     * Generated from protobuf field <code>optional bool has_stateful_config = 110474224;</code>
      * @return bool
      */
     public function getHasStatefulConfig()
@@ -68,7 +68,7 @@ class InstanceGroupManagerStatusStateful extends \Google\Protobuf\Internal\Messa
     /**
      * [Output Only] A bit indicating whether the managed instance group has stateful configuration, that is, if you have configured any items in a stateful policy or in per-instance configs. The group might report that it has no stateful config even when there is still some preserved state on a managed instance, for example, if you have deleted all PICs but not yet applied those deletions.
      *
-     * Generated from protobuf field <code>bool has_stateful_config = 110474224;</code>
+     * Generated from protobuf field <code>optional bool has_stateful_config = 110474224;</code>
      * @param bool $var
      * @return $this
      */
@@ -83,12 +83,12 @@ class InstanceGroupManagerStatusStateful extends \Google\Protobuf\Internal\Messa
     /**
      * [Output Only] Status of per-instance configs on the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatusStatefulPerInstanceConfigs per_instance_configs = 526265001;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusStatefulPerInstanceConfigs per_instance_configs = 526265001;</code>
      * @return \Google\Cloud\Compute\V1\InstanceGroupManagerStatusStatefulPerInstanceConfigs|null
      */
     public function getPerInstanceConfigs()
     {
-        return isset($this->per_instance_configs) ? $this->per_instance_configs : null;
+        return $this->per_instance_configs;
     }
 
     public function hasPerInstanceConfigs()
@@ -104,7 +104,7 @@ class InstanceGroupManagerStatusStateful extends \Google\Protobuf\Internal\Messa
     /**
      * [Output Only] Status of per-instance configs on the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatusStatefulPerInstanceConfigs per_instance_configs = 526265001;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusStatefulPerInstanceConfigs per_instance_configs = 526265001;</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagerStatusStatefulPerInstanceConfigs $var
      * @return $this
      */

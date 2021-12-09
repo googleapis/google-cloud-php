@@ -21,7 +21,7 @@ class TargetPoolInstanceHealth extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of resource. Always compute#targetPoolInstanceHealth when checking the health of an instance.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
 
@@ -66,7 +66,7 @@ class TargetPoolInstanceHealth extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of resource. Always compute#targetPoolInstanceHealth when checking the health of an instance.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -87,7 +87,7 @@ class TargetPoolInstanceHealth extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of resource. Always compute#targetPoolInstanceHealth when checking the health of an instance.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */

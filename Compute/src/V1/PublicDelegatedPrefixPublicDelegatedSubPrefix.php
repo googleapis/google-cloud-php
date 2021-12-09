@@ -18,43 +18,44 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
     /**
      * Name of the project scoping this PublicDelegatedSubPrefix.
      *
-     * Generated from protobuf field <code>string delegatee_project = 414860634;</code>
+     * Generated from protobuf field <code>optional string delegatee_project = 414860634;</code>
      */
     private $delegatee_project = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * The IPv4 address range, in CIDR format, represented by this sub public delegated prefix.
      *
-     * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
+     * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      */
     private $ip_cidr_range = null;
     /**
      * Whether the sub prefix is delegated to create Address resources in the delegatee project.
      *
-     * Generated from protobuf field <code>bool is_address = 352617951;</code>
+     * Generated from protobuf field <code>optional bool is_address = 352617951;</code>
      */
     private $is_address = null;
     /**
      * The name of the sub public delegated prefix.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
      * [Output Only] The region of the sub public delegated prefix if it is regional. If absent, the sub prefix is global.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
     private $region = null;
     /**
      * [Output Only] The status of the sub public delegated prefix.
+     * Check the Status enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PublicDelegatedPrefixPublicDelegatedSubPrefix.Status status = 181260274;</code>
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
     private $status = null;
 
@@ -76,8 +77,9 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
      *           The name of the sub public delegated prefix.
      *     @type string $region
      *           [Output Only] The region of the sub public delegated prefix if it is regional. If absent, the sub prefix is global.
-     *     @type int $status
+     *     @type string $status
      *           [Output Only] The status of the sub public delegated prefix.
+     *           Check the Status enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,7 +90,7 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
     /**
      * Name of the project scoping this PublicDelegatedSubPrefix.
      *
-     * Generated from protobuf field <code>string delegatee_project = 414860634;</code>
+     * Generated from protobuf field <code>optional string delegatee_project = 414860634;</code>
      * @return string
      */
     public function getDelegateeProject()
@@ -109,7 +111,7 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
     /**
      * Name of the project scoping this PublicDelegatedSubPrefix.
      *
-     * Generated from protobuf field <code>string delegatee_project = 414860634;</code>
+     * Generated from protobuf field <code>optional string delegatee_project = 414860634;</code>
      * @param string $var
      * @return $this
      */
@@ -124,7 +126,7 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -145,7 +147,7 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -160,7 +162,7 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
     /**
      * The IPv4 address range, in CIDR format, represented by this sub public delegated prefix.
      *
-     * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
+     * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @return string
      */
     public function getIpCidrRange()
@@ -181,7 +183,7 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
     /**
      * The IPv4 address range, in CIDR format, represented by this sub public delegated prefix.
      *
-     * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
+     * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @param string $var
      * @return $this
      */
@@ -196,7 +198,7 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
     /**
      * Whether the sub prefix is delegated to create Address resources in the delegatee project.
      *
-     * Generated from protobuf field <code>bool is_address = 352617951;</code>
+     * Generated from protobuf field <code>optional bool is_address = 352617951;</code>
      * @return bool
      */
     public function getIsAddress()
@@ -217,7 +219,7 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
     /**
      * Whether the sub prefix is delegated to create Address resources in the delegatee project.
      *
-     * Generated from protobuf field <code>bool is_address = 352617951;</code>
+     * Generated from protobuf field <code>optional bool is_address = 352617951;</code>
      * @param bool $var
      * @return $this
      */
@@ -232,7 +234,7 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
     /**
      * The name of the sub public delegated prefix.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -253,7 +255,7 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
     /**
      * The name of the sub public delegated prefix.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -268,7 +270,7 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
     /**
      * [Output Only] The region of the sub public delegated prefix if it is regional. If absent, the sub prefix is global.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
      */
     public function getRegion()
@@ -289,7 +291,7 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
     /**
      * [Output Only] The region of the sub public delegated prefix if it is regional. If absent, the sub prefix is global.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var
      * @return $this
      */
@@ -303,13 +305,14 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
 
     /**
      * [Output Only] The status of the sub public delegated prefix.
+     * Check the Status enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PublicDelegatedPrefixPublicDelegatedSubPrefix.Status status = 181260274;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
+     * @return string
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : 0;
+        return isset($this->status) ? $this->status : '';
     }
 
     public function hasStatus()
@@ -324,14 +327,15 @@ class PublicDelegatedPrefixPublicDelegatedSubPrefix extends \Google\Protobuf\Int
 
     /**
      * [Output Only] The status of the sub public delegated prefix.
+     * Check the Status enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PublicDelegatedPrefixPublicDelegatedSubPrefix.Status status = 181260274;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
+     * @param string $var
      * @return $this
      */
     public function setStatus($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\PublicDelegatedPrefixPublicDelegatedSubPrefix\Status::class);
+        GPBUtil::checkString($var, True);
         $this->status = $var;
 
         return $this;

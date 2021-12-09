@@ -17,13 +17,13 @@ class ResourcePolicyResourceStatusInstanceSchedulePolicyStatus extends \Google\P
     /**
      * [Output Only] The last time the schedule successfully ran. The timestamp is an RFC3339 string.
      *
-     * Generated from protobuf field <code>string last_run_start_time = 303069063;</code>
+     * Generated from protobuf field <code>optional string last_run_start_time = 303069063;</code>
      */
     private $last_run_start_time = null;
     /**
      * [Output Only] The next time the schedule is planned to run. The actual time might be slightly different. The timestamp is an RFC3339 string.
      *
-     * Generated from protobuf field <code>string next_run_start_time = 318642570;</code>
+     * Generated from protobuf field <code>optional string next_run_start_time = 318642570;</code>
      */
     private $next_run_start_time = null;
 
@@ -47,7 +47,7 @@ class ResourcePolicyResourceStatusInstanceSchedulePolicyStatus extends \Google\P
     /**
      * [Output Only] The last time the schedule successfully ran. The timestamp is an RFC3339 string.
      *
-     * Generated from protobuf field <code>string last_run_start_time = 303069063;</code>
+     * Generated from protobuf field <code>optional string last_run_start_time = 303069063;</code>
      * @return string
      */
     public function getLastRunStartTime()
@@ -68,7 +68,7 @@ class ResourcePolicyResourceStatusInstanceSchedulePolicyStatus extends \Google\P
     /**
      * [Output Only] The last time the schedule successfully ran. The timestamp is an RFC3339 string.
      *
-     * Generated from protobuf field <code>string last_run_start_time = 303069063;</code>
+     * Generated from protobuf field <code>optional string last_run_start_time = 303069063;</code>
      * @param string $var
      * @return $this
      */
@@ -83,7 +83,7 @@ class ResourcePolicyResourceStatusInstanceSchedulePolicyStatus extends \Google\P
     /**
      * [Output Only] The next time the schedule is planned to run. The actual time might be slightly different. The timestamp is an RFC3339 string.
      *
-     * Generated from protobuf field <code>string next_run_start_time = 318642570;</code>
+     * Generated from protobuf field <code>optional string next_run_start_time = 318642570;</code>
      * @return string
      */
     public function getNextRunStartTime()
@@ -104,7 +104,7 @@ class ResourcePolicyResourceStatusInstanceSchedulePolicyStatus extends \Google\P
     /**
      * [Output Only] The next time the schedule is planned to run. The actual time might be slightly different. The timestamp is an RFC3339 string.
      *
-     * Generated from protobuf field <code>string next_run_start_time = 318642570;</code>
+     * Generated from protobuf field <code>optional string next_run_start_time = 318642570;</code>
      * @param string $var
      * @return $this
      */

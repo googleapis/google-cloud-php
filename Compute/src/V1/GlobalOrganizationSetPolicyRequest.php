@@ -23,13 +23,13 @@ class GlobalOrganizationSetPolicyRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify the etag.
      *
-     * Generated from protobuf field <code>string etag = 3123477;</code>
+     * Generated from protobuf field <code>optional string etag = 3123477;</code>
      */
     private $etag = null;
     /**
      * REQUIRED: The complete policy to be applied to the 'resource'. The size of the policy is limited to a few 10s of KB. An empty policy is in general a valid policy but certain services (like Projects) might reject them.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Policy policy = 91071794;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Policy policy = 91071794;</code>
      */
     private $policy = null;
 
@@ -81,7 +81,7 @@ class GlobalOrganizationSetPolicyRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify the etag.
      *
-     * Generated from protobuf field <code>string etag = 3123477;</code>
+     * Generated from protobuf field <code>optional string etag = 3123477;</code>
      * @return string
      */
     public function getEtag()
@@ -102,7 +102,7 @@ class GlobalOrganizationSetPolicyRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify the etag.
      *
-     * Generated from protobuf field <code>string etag = 3123477;</code>
+     * Generated from protobuf field <code>optional string etag = 3123477;</code>
      * @param string $var
      * @return $this
      */
@@ -117,12 +117,12 @@ class GlobalOrganizationSetPolicyRequest extends \Google\Protobuf\Internal\Messa
     /**
      * REQUIRED: The complete policy to be applied to the 'resource'. The size of the policy is limited to a few 10s of KB. An empty policy is in general a valid policy but certain services (like Projects) might reject them.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Policy policy = 91071794;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Policy policy = 91071794;</code>
      * @return \Google\Cloud\Compute\V1\Policy|null
      */
     public function getPolicy()
     {
-        return isset($this->policy) ? $this->policy : null;
+        return $this->policy;
     }
 
     public function hasPolicy()
@@ -138,7 +138,7 @@ class GlobalOrganizationSetPolicyRequest extends \Google\Protobuf\Internal\Messa
     /**
      * REQUIRED: The complete policy to be applied to the 'resource'. The size of the policy is limited to a few 10s of KB. An empty policy is in general a valid policy but certain services (like Projects) might reject them.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Policy policy = 91071794;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Policy policy = 91071794;</code>
      * @param \Google\Cloud\Compute\V1\Policy $var
      * @return $this
      */

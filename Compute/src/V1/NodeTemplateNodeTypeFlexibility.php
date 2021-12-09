@@ -15,15 +15,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class NodeTemplateNodeTypeFlexibility extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string cpus = 3060683;</code>
+     * Generated from protobuf field <code>optional string cpus = 3060683;</code>
      */
     private $cpus = null;
     /**
-     * Generated from protobuf field <code>string local_ssd = 405741360;</code>
+     * Generated from protobuf field <code>optional string local_ssd = 405741360;</code>
      */
     private $local_ssd = null;
     /**
-     * Generated from protobuf field <code>string memory = 532856065;</code>
+     * Generated from protobuf field <code>optional string memory = 532856065;</code>
      */
     private $memory = null;
 
@@ -44,7 +44,7 @@ class NodeTemplateNodeTypeFlexibility extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string cpus = 3060683;</code>
+     * Generated from protobuf field <code>optional string cpus = 3060683;</code>
      * @return string
      */
     public function getCpus()
@@ -63,7 +63,7 @@ class NodeTemplateNodeTypeFlexibility extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string cpus = 3060683;</code>
+     * Generated from protobuf field <code>optional string cpus = 3060683;</code>
      * @param string $var
      * @return $this
      */
@@ -76,7 +76,7 @@ class NodeTemplateNodeTypeFlexibility extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string local_ssd = 405741360;</code>
+     * Generated from protobuf field <code>optional string local_ssd = 405741360;</code>
      * @return string
      */
     public function getLocalSsd()
@@ -95,7 +95,7 @@ class NodeTemplateNodeTypeFlexibility extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string local_ssd = 405741360;</code>
+     * Generated from protobuf field <code>optional string local_ssd = 405741360;</code>
      * @param string $var
      * @return $this
      */
@@ -108,7 +108,7 @@ class NodeTemplateNodeTypeFlexibility extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string memory = 532856065;</code>
+     * Generated from protobuf field <code>optional string memory = 532856065;</code>
      * @return string
      */
     public function getMemory()
@@ -127,7 +127,7 @@ class NodeTemplateNodeTypeFlexibility extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string memory = 532856065;</code>
+     * Generated from protobuf field <code>optional string memory = 532856065;</code>
      * @param string $var
      * @return $this
      */

@@ -17,14 +17,16 @@ class VpnGatewayStatusHighAvailabilityRequirementState extends \Google\Protobuf\
 {
     /**
      * Indicates the high availability requirement state for the VPN connection. Valid values are CONNECTION_REDUNDANCY_MET, CONNECTION_REDUNDANCY_NOT_MET.
+     * Check the State enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.State state = 109757585;</code>
+     * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
     private $state = null;
     /**
      * Indicates the reason why the VPN connection does not meet the high availability redundancy criteria/requirement. Valid values is INCOMPLETE_TUNNELS_COVERAGE.
+     * Check the UnsatisfiedReason enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.UnsatisfiedReason unsatisfied_reason = 55016330;</code>
+     * Generated from protobuf field <code>optional string unsatisfied_reason = 55016330;</code>
      */
     private $unsatisfied_reason = null;
 
@@ -34,10 +36,12 @@ class VpnGatewayStatusHighAvailabilityRequirementState extends \Google\Protobuf\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $state
+     *     @type string $state
      *           Indicates the high availability requirement state for the VPN connection. Valid values are CONNECTION_REDUNDANCY_MET, CONNECTION_REDUNDANCY_NOT_MET.
-     *     @type int $unsatisfied_reason
+     *           Check the State enum for the list of possible values.
+     *     @type string $unsatisfied_reason
      *           Indicates the reason why the VPN connection does not meet the high availability redundancy criteria/requirement. Valid values is INCOMPLETE_TUNNELS_COVERAGE.
+     *           Check the UnsatisfiedReason enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,13 +51,14 @@ class VpnGatewayStatusHighAvailabilityRequirementState extends \Google\Protobuf\
 
     /**
      * Indicates the high availability requirement state for the VPN connection. Valid values are CONNECTION_REDUNDANCY_MET, CONNECTION_REDUNDANCY_NOT_MET.
+     * Check the State enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.State state = 109757585;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string state = 109757585;</code>
+     * @return string
      */
     public function getState()
     {
-        return isset($this->state) ? $this->state : 0;
+        return isset($this->state) ? $this->state : '';
     }
 
     public function hasState()
@@ -68,14 +73,15 @@ class VpnGatewayStatusHighAvailabilityRequirementState extends \Google\Protobuf\
 
     /**
      * Indicates the high availability requirement state for the VPN connection. Valid values are CONNECTION_REDUNDANCY_MET, CONNECTION_REDUNDANCY_NOT_MET.
+     * Check the State enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.State state = 109757585;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string state = 109757585;</code>
+     * @param string $var
      * @return $this
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\VpnGatewayStatusHighAvailabilityRequirementState\State::class);
+        GPBUtil::checkString($var, True);
         $this->state = $var;
 
         return $this;
@@ -83,13 +89,14 @@ class VpnGatewayStatusHighAvailabilityRequirementState extends \Google\Protobuf\
 
     /**
      * Indicates the reason why the VPN connection does not meet the high availability redundancy criteria/requirement. Valid values is INCOMPLETE_TUNNELS_COVERAGE.
+     * Check the UnsatisfiedReason enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.UnsatisfiedReason unsatisfied_reason = 55016330;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string unsatisfied_reason = 55016330;</code>
+     * @return string
      */
     public function getUnsatisfiedReason()
     {
-        return isset($this->unsatisfied_reason) ? $this->unsatisfied_reason : 0;
+        return isset($this->unsatisfied_reason) ? $this->unsatisfied_reason : '';
     }
 
     public function hasUnsatisfiedReason()
@@ -104,14 +111,15 @@ class VpnGatewayStatusHighAvailabilityRequirementState extends \Google\Protobuf\
 
     /**
      * Indicates the reason why the VPN connection does not meet the high availability redundancy criteria/requirement. Valid values is INCOMPLETE_TUNNELS_COVERAGE.
+     * Check the UnsatisfiedReason enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.UnsatisfiedReason unsatisfied_reason = 55016330;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string unsatisfied_reason = 55016330;</code>
+     * @param string $var
      * @return $this
      */
     public function setUnsatisfiedReason($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\VpnGatewayStatusHighAvailabilityRequirementState\UnsatisfiedReason::class);
+        GPBUtil::checkString($var, True);
         $this->unsatisfied_reason = $var;
 
         return $this;

@@ -7,22 +7,7 @@ namespace Google\Cloud\Compute\V1\VpnTunnel;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the VPN tunnel, which can be one of the following:
- * - PROVISIONING: Resource is being allocated for the VPN tunnel.
- * - WAITING_FOR_FULL_CONFIG: Waiting to receive all VPN-related configs from the user. Network, TargetVpnGateway, VpnTunnel, ForwardingRule, and Route resources are needed to setup the VPN tunnel.
- * - FIRST_HANDSHAKE: Successful first handshake with the peer VPN.
- * - ESTABLISHED: Secure session is successfully established with the peer VPN.
- * - NETWORK_ERROR: Deprecated, replaced by NO_INCOMING_PACKETS
- * - AUTHORIZATION_ERROR: Auth error (for example, bad shared secret).
- * - NEGOTIATION_FAILURE: Handshake failed.
- * - DEPROVISIONING: Resources are being deallocated for the VPN tunnel.
- * - FAILED: Tunnel creation has failed and the tunnel is not ready to be used.
- * - NO_INCOMING_PACKETS: No incoming packets from peer.
- * - REJECTED: Tunnel configuration was rejected, can be result of being denied access.
- * - ALLOCATING_RESOURCES: Cloud VPN is in the process of allocating all required resources.
- * - STOPPED: Tunnel is stopped due to its Forwarding Rules being deleted for Classic VPN tunnels or the project is in frozen state.
- * - PEER_IDENTITY_MISMATCH: Peer identity does not match peer IP, probably behind NAT.
- * - TS_NARROWING_NOT_ALLOWED: Traffic selector narrowing not allowed for an HA-VPN tunnel.
+ * [Output Only] The status of the VPN tunnel, which can be one of the following: - PROVISIONING: Resource is being allocated for the VPN tunnel. - WAITING_FOR_FULL_CONFIG: Waiting to receive all VPN-related configs from the user. Network, TargetVpnGateway, VpnTunnel, ForwardingRule, and Route resources are needed to setup the VPN tunnel. - FIRST_HANDSHAKE: Successful first handshake with the peer VPN. - ESTABLISHED: Secure session is successfully established with the peer VPN. - NETWORK_ERROR: Deprecated, replaced by NO_INCOMING_PACKETS - AUTHORIZATION_ERROR: Auth error (for example, bad shared secret). - NEGOTIATION_FAILURE: Handshake failed. - DEPROVISIONING: Resources are being deallocated for the VPN tunnel. - FAILED: Tunnel creation has failed and the tunnel is not ready to be used. - NO_INCOMING_PACKETS: No incoming packets from peer. - REJECTED: Tunnel configuration was rejected, can be result of being denied access. - ALLOCATING_RESOURCES: Cloud VPN is in the process of allocating all required resources. - STOPPED: Tunnel is stopped due to its Forwarding Rules being deleted for Classic VPN tunnels or the project is in frozen state. - PEER_IDENTITY_MISMATCH: Peer identity does not match peer IP, probably behind NAT. - TS_NARROWING_NOT_ALLOWED: Traffic selector narrowing not allowed for an HA-VPN tunnel. 
  *
  * Protobuf type <code>google.cloud.compute.v1.VpnTunnel.Status</code>
  */
@@ -35,54 +20,80 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
+     * Cloud VPN is in the process of allocating all required resources (specifically, a borg task).
+     *
      * Generated from protobuf enum <code>ALLOCATING_RESOURCES = 320922816;</code>
      */
     const ALLOCATING_RESOURCES = 320922816;
     /**
+     * Auth error (e.g. bad shared secret).
+     *
      * Generated from protobuf enum <code>AUTHORIZATION_ERROR = 23580290;</code>
      */
     const AUTHORIZATION_ERROR = 23580290;
     /**
+     * Resources is being deallocated for the VPN tunnel.
+     *
      * Generated from protobuf enum <code>DEPROVISIONING = 428935662;</code>
      */
     const DEPROVISIONING = 428935662;
     /**
+     * Secure session is successfully established with peer VPN.
+     *
      * Generated from protobuf enum <code>ESTABLISHED = 88852344;</code>
      */
     const ESTABLISHED = 88852344;
     /**
+     * Tunnel creation has failed and the tunnel is not ready to be used.
+     *
      * Generated from protobuf enum <code>FAILED = 455706685;</code>
      */
     const FAILED = 455706685;
     /**
+     * Successful first handshake with peer VPN.
+     *
      * Generated from protobuf enum <code>FIRST_HANDSHAKE = 191393000;</code>
      */
     const FIRST_HANDSHAKE = 191393000;
     /**
+     * Handshake failed.
+     *
      * Generated from protobuf enum <code>NEGOTIATION_FAILURE = 360325868;</code>
      */
     const NEGOTIATION_FAILURE = 360325868;
     /**
+     * Deprecated, replaced by NO_INCOMING_PACKETS
+     *
      * Generated from protobuf enum <code>NETWORK_ERROR = 193912951;</code>
      */
     const NETWORK_ERROR = 193912951;
     /**
+     * No incoming packets from peer
+     *
      * Generated from protobuf enum <code>NO_INCOMING_PACKETS = 119983216;</code>
      */
     const NO_INCOMING_PACKETS = 119983216;
     /**
+     * Resource is being allocated for the VPN tunnel.
+     *
      * Generated from protobuf enum <code>PROVISIONING = 290896621;</code>
      */
     const PROVISIONING = 290896621;
     /**
+     * Tunnel configuration was rejected, can be result of being denylisted.
+     *
      * Generated from protobuf enum <code>REJECTED = 174130302;</code>
      */
     const REJECTED = 174130302;
     /**
+     * Tunnel is stopped due to its Forwarding Rules being deleted.
+     *
      * Generated from protobuf enum <code>STOPPED = 444276141;</code>
      */
     const STOPPED = 444276141;
     /**
+     * Waiting to receive all VPN-related configs from user. Network, TargetVpnGateway, VpnTunnel, ForwardingRule and Route resources are needed to setup VPN tunnel.
+     *
      * Generated from protobuf enum <code>WAITING_FOR_FULL_CONFIG = 41640522;</code>
      */
     const WAITING_FOR_FULL_CONFIG = 41640522;
