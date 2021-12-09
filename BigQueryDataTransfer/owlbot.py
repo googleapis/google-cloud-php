@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2018 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,34 +14,21 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import subprocess
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
 
-AUTOSYNTH_MULTIPLE_COMMITS = True
+import synthtool as s
+from synthtool.languages import php
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/BigQueryDataTransfer").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='bigquery-storage',
-    version='v1',
-    proto_path='google/cloud/bigquery/storage/v1',
-    bazel_target='//google/cloud/bigquery/storage/v1:google-cloud-bigquery-storage-v1-php',
-)
+php.owlbot_main(src=src, dest=dest)
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/BigQuery/Storage', 'src/')
-s.move(library / 'tests/')
-
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Bigquery/Storage', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -67,21 +54,17 @@ s.replace(
     r'^(\s+\*\n)?\s+\*\s@experimental\n',
     '')
 
-# fix year
-s.replace(
-    'src/**/**/*.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
-s.replace(
-    'tests/**/**/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
-
 # Change the wording for the deprecation warning.
 s.replace(
     'src/*/*_*.php',
     r'will be removed in the next major release',
     'will be removed in a future release')
+
+# fix test group
+s.replace(
+    'tests/**/V1/*Test.php',
+    r'@group datatransfer',
+    '@group bigquerydatatransfer')
 
 ### [START] protoc backwards compatibility fixes
 
@@ -114,17 +97,3 @@ s.replace(
     r"(.{0,})\]\((/.{0,})\)",
     r"\1](https://cloud.google.com\2)"
 )
-
-# format generated clients
-subprocess.run([
-    'npm',
-    'exec',
-    '--yes',
-    '--package=@prettier/plugin-php@^0.16',
-    '--',
-    'prettier',
-    '**/Gapic/*',
-    '--write',
-    '--parser=php',
-    '--single-quote',
-    '--print-width=80'])

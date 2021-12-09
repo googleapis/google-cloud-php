@@ -14,35 +14,21 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import subprocess
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
 
-AUTOSYNTH_MULTIPLE_COMMITS = True
+import synthtool as s
+from synthtool.languages import php
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-versions = ["V1beta1", "V1"]
+src = Path(f"../{php.STAGING_DIR}/AutoMl").resolve()
+dest = Path().resolve()
 
-for version in versions:
-    lower_version = version.lower()
-    library = gapic.php_library(
-        service='automl',
-        version=lower_version,
-        bazel_target=f'//google/cloud/automl/{lower_version}:google-cloud-automl-{lower_version}-php',
-    )
+php.owlbot_main(src=src, dest=dest)
 
-    # copy all src including partial veneer classes
-    s.move(library / 'src')
 
-    # copy proto files to src also
-    s.move(library / 'proto/src/Google/Cloud/AutoMl', 'src/')
-    s.move(library / 'tests/')
-
-    # copy GPBMetadata file to metadata
-    s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Automl', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -62,28 +48,6 @@ s.replace(
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
 
-# fix year
-clients = ['AutoMl', 'PredictionService']
-versions = ['V1', 'V1beta1']
-for client in clients:
-    for version in versions:
-        s.replace(
-            f'src/{version}/Gapic/{client}GapicClient.php',
-            r'Copyright \d{4}',
-            'Copyright 2019')
-        s.replace(
-            f'src/{version}/{client}Client.php',
-            r'Copyright \d{4}',
-            'Copyright 2019')
-        s.replace(
-            f'src/{version}/{client}GrpcClient.php',
-            r'Copyright \d{4}',
-            'Copyright 2019')
-        s.replace(
-            f'tests/**/{version}/{client}ClientTest.php',
-            r'Copyright \d{4}',
-            'Copyright 2019')
-
 # V1 is GA, so remove @experimental tags
 s.replace(
     'src/V1/**/*Client.php',
@@ -91,6 +55,7 @@ s.replace(
     '')
 
 # Fix class references in gapic samples
+versions = ['V1', 'V1beta1']
 for version in versions:
     pathExprs = [
         'src/' + version + '/Gapic/AutoMlGapicClient.php',
