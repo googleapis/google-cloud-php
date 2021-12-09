@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from pathlib import Path
+import os
 import re
 import sys
 
@@ -98,11 +99,11 @@ def main(target_dir: str) -> None:
         ))
 
     print("removing synth.py")
-    unlink(synth_py)
+    os.unlink(synth_py)
 
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("migrate-to-owlbot.py target_dir")
+        print("Usage: migrate-to-owlbot.py <target_dir>")
         sys.exit(1)
     main(sys.argv[1])
