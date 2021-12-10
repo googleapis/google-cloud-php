@@ -14,17 +14,17 @@ jobs:
           with:
             persist-credentials: false
             fetch-depth: 0
+        - name: Setup PHP
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: '7.4'
+            ini-values: memory_limit=2048M
         - name: Install Dependencies
           uses: nick-invision/retry@v1
           with:
             timeout_minutes: 10
             max_attempts: 3
             command: composer update
-        - name: Setup PHP
-          uses: shivammathur/setup-php@v2
-          with:
-            php-version: '7.4'
-            ini-values: memory_limit=2048M
         - id: getTag
           name: Get Tag
           run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
