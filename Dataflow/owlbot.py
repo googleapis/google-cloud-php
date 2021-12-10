@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,39 +14,25 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
 
-AUTOSYNTH_MULTIPLE_COMMITS = True
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Dataflow").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='datacatalog',
-    version='v1',
-    bazel_target='//google/cloud/datacatalog/v1:google-cloud-datacatalog-v1-php',
-)
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
+php.owlbot_main(src=src, dest=dest)
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/DataCatalog', 'src/')
-s.move(library / 'tests/')
 
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Datacatalog', 'metadata/')
-
-# fix namespace casing
-s.replace(
-    "**/*.php",
-    r"(namespace|use) Google\\Cloud\\Datacatalog",
-    r"\1 Google\\Cloud\\DataCatalog",
-)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -65,22 +51,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# V1 is GA, so remove @experimental tags
-s.replace(
-    'src/V1/**/*Client.php',
-    r'^(\s+\*\n)?\s+\*\s@experimental\n',
-    '')
-
-# fix year
-s.replace(
-    'src/**/**/*.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
-s.replace(
-    'tests/**/**/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
 
 # Change the wording for the deprecation warning.
 s.replace(
@@ -119,3 +89,17 @@ s.replace(
     r"(.{0,})\]\((/.{0,})\)",
     r"\1](https://cloud.google.com\2)"
 )
+
+# format generated clients
+subprocess.run([
+    'npm',
+    'exec',
+    '--yes',
+    '--package=@prettier/plugin-php@^0.16',
+    '--',
+    'prettier',
+    '**/Gapic/*',
+    '--write',
+    '--parser=php',
+    '--single-quote',
+    '--print-width=80'])

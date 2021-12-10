@@ -1,4 +1,4 @@
-# Copyright 2018 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,29 +14,32 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/DataCatalog").resolve()
+dest = Path().resolve()
 
-v1_library = gapic.php_library(
-    service='container',
-    version='v1',
-    bazel_target=f'//google/container/v1:google-cloud-container-v1-php')
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-# copy all src including partial veneer classes
-s.move(v1_library / 'src')
+php.owlbot_main(src=src, dest=dest)
 
-# copy proto files to src also
-s.move(v1_library / 'proto/src/Google/Cloud/Container', 'src/')
-s.move(v1_library / 'tests/')
 
-# copy GPBMetadata file to metadata
-s.move(v1_library / 'proto/src/GPBMetadata/Google/Container', 'metadata/')
+
+# fix namespace casing
+s.replace(
+    "**/*.php",
+    r"(namespace|use) Google\\Cloud\\Datacatalog",
+    r"\1 Google\\Cloud\\DataCatalog",
+)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -62,42 +65,11 @@ s.replace(
     r'^(\s+\*\n)?\s+\*\s@experimental\n',
     '')
 
-# fix year
+# Change the wording for the deprecation warning.
 s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2017')
-s.replace(
-    '**/V1/ClusterManagerClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2017')
-s.replace(
-    'tests/**/V1/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2018')
-
-# Fix class references in gapic samples
-for version in ['V1']:
-    pathExpr = 'src/' + version + '/Gapic/ClusterManagerGapicClient.php'
-
-    types = {
-        'new Cluster': r'new Google\\Cloud\\Container\\'+ version + r'\\Cluster',
-        'new NodePoolAutoscaling': r'new Google\\Cloud\\Container\\'+ version + r'\\NodePoolAutoscaling',
-        'new AddonsConfig': r'new Google\\Cloud\\Container\\'+ version + r'\\AddonsConfig',
-        '= Action::': r'= Google\\Cloud\\Container\\'+ version + r'\\SetMasterAuthRequest\\Action::',
-        'new MasterAuth': r'new Google\\Cloud\\Container\\'+ version + r'\\MasterAuth',
-        'new NodePool': r'new Google\\Cloud\\Container\\'+ version + r'\\NodePool',
-        'new NodeManagement': r'new Google\\Cloud\\Container\\'+ version + r'\\NodeManagement',
-        'new NetworkPolicy': r'new Google\\Cloud\\Container\\'+ version + r'\\NetworkPolicy',
-        'new MaintenancePolicy': r'new Google\\Cloud\\Container\\'+ version + r'\\MaintenancePolicy',
-    }
-
-    for search, replace in types.items():
-        s.replace(
-            pathExpr,
-            search,
-            replace
-)
+    'src/*/*_*.php',
+    r'will be removed in the next major release',
+    'will be removed in a future release')
 
 ### [START] protoc backwards compatibility fixes
 
