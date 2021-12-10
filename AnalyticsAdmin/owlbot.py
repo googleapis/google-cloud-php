@@ -14,30 +14,21 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/AnalyticsAdmin").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='analytics-admin',
-    version='v1alpha',
-    bazel_target='//google/analytics/admin/v1alpha:google-analytics-admin-v1alpha-php',
-)
+php.owlbot_main(src=src, dest=dest)
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Analytics/Admin', 'src/')
-s.move(library / 'tests/')
-
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Analytics/Admin', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -56,20 +47,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# fix year
-s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2020')
-s.replace(
-    '**/V1alpha/*Client.php',
-    r'Copyright \d{4}',
-    'Copyright 2020')
-s.replace(
-    'tests/**/V1alpha/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2020')
 
 # Change the wording for the deprecation warning.
 s.replace(
