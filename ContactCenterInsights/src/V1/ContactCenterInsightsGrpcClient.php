@@ -411,6 +411,21 @@ class ContactCenterInsightsGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Updates a phrase matcher.
+     * @param \Google\Cloud\ContactCenterInsights\V1\UpdatePhraseMatcherRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdatePhraseMatcher(\Google\Cloud\ContactCenterInsights\V1\UpdatePhraseMatcherRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdatePhraseMatcher',
+        $argument,
+        ['\Google\Cloud\ContactCenterInsights\V1\PhraseMatcher', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Gets conversation statistics.
      * @param \Google\Cloud\ContactCenterInsights\V1\CalculateStatsRequest $argument input argument
      * @param array $metadata metadata

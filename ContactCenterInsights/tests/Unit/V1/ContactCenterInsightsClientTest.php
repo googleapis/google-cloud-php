@@ -2244,6 +2244,82 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function updatePhraseMatcherTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $revisionId = 'revisionId513861631';
+        $versionTag = 'versionTag689430451';
+        $displayName = 'displayName1615086568';
+        $active = true;
+        $expectedResponse = new PhraseMatcher();
+        $expectedResponse->setName($name);
+        $expectedResponse->setRevisionId($revisionId);
+        $expectedResponse->setVersionTag($versionTag);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setActive($active);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $phraseMatcher = new PhraseMatcher();
+        $phraseMatcherType = PhraseMatcherType::PHRASE_MATCHER_TYPE_UNSPECIFIED;
+        $phraseMatcher->setType($phraseMatcherType);
+        $response = $client->updatePhraseMatcher($phraseMatcher);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdatePhraseMatcher', $actualFuncCall);
+        $actualValue = $actualRequestObject->getPhraseMatcher();
+        $this->assertProtobufEquals($phraseMatcher, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updatePhraseMatcherExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $phraseMatcher = new PhraseMatcher();
+        $phraseMatcherType = PhraseMatcherType::PHRASE_MATCHER_TYPE_UNSPECIFIED;
+        $phraseMatcher->setType($phraseMatcherType);
+        try {
+            $client->updatePhraseMatcher($phraseMatcher);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function updateSettingsTest()
     {
         $transport = $this->createTransport();
