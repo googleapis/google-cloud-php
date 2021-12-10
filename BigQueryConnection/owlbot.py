@@ -14,30 +14,21 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/BigQueryConnection").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='assuredworkloads',
-    version='v1beta1',
-    bazel_target='//google/cloud/assuredworkloads/v1beta1:google-cloud-assuredworkloads-v1beta1-php',
-)
+php.owlbot_main(src=src, dest=dest)
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/AssuredWorkloads', 'src/')
-s.move(library / 'tests/')
-
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Assuredworkloads', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -57,25 +48,29 @@ s.replace(
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
 
-# fix year
+# prevent null reference error when descriptor uses optional field.
 s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2020')
-s.replace(
-    '**/V1alpha/*Client.php',
-    r'Copyright \d{4}',
-    'Copyright 2020')
-s.replace(
-    'tests/**/V1alpha/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2020')
+    "**/Gapic/*GapicClient.php",
+    r"\$requestParams = new RequestParamsHeaderDescriptor\(\[\n\s{0,}'(\S{0,})\' => ((\$request->\S{0,}\(\))->\S{0,}\(\)),\n\s{0,}\]\)\;",
+    r"""$requestParams = new RequestParamsHeaderDescriptor([]);
+        if (!is_null(\3)) {
+            $requestParams = new RequestParamsHeaderDescriptor([
+                '\1' => \2,
+            ]);
+        }"""
+)
 
 # Change the wording for the deprecation warning.
 s.replace(
     'src/*/*_*.php',
     r'will be removed in the next major release',
     'will be removed in a future release')
+
+# fix test group
+s.replace(
+    'tests/**/V1/*Test.php',
+    r'@group connection',
+    '@group bigqueryconnection')
 
 ### [START] protoc backwards compatibility fixes
 
@@ -108,3 +103,16 @@ s.replace(
     r"(.{0,})\]\((/.{0,})\)",
     r"\1](https://cloud.google.com\2)"
 )
+
+# format generated clients
+subprocess.run([
+    'npx',
+    '-y',
+    '-p',
+    '@prettier/plugin-php@^0.16',
+    'prettier',
+    '**/Gapic/*',
+    '--write',
+    '--parser=php',
+    '--single-quote',
+    '--print-width=80'])

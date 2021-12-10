@@ -1,0 +1,3 @@
+deep-copy-regex:
+    - source: /google/cloud/bigquery/connection/v1/.*-php/(.*)
+      dest: /owl-bot-staging/BigQueryConnection/v1/$1

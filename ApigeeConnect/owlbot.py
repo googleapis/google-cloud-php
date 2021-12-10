@@ -14,30 +14,21 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/ApigeeConnect").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='apigateway',
-    version='V1',
-    bazel_target='//google/cloud/apigateway/v1:google-cloud-apigateway-v1-php',
-)
+php.owlbot_main(src=src, dest=dest)
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/ApiGateway', 'src/')
-s.move(library / 'tests/')
-
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Apigateway', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -56,16 +47,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# fix year
-s.replace(
-    '**/*Client.php',
-    r'Copyright \d{4}',
-    'Copyright 2021')
-s.replace(
-    'tests/**/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2021')
 
 # Change the wording for the deprecation warning.
 s.replace(
