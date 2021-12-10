@@ -23,10 +23,10 @@ class Denoise extends \Google\Protobuf\Internal\Message
      */
     private $strength = 0.0;
     /**
-     * Set the denoiser mode. The default is `"standard"`.
+     * Set the denoiser mode. The default is `standard`.
      * Supported denoiser modes:
-     * - 'standard'
-     * - 'grain'
+     * - `standard`
+     * - `grain`
      *
      * Generated from protobuf field <code>string tune = 2;</code>
      */
@@ -42,10 +42,10 @@ class Denoise extends \Google\Protobuf\Internal\Message
      *           Set strength of the denoise. Enter a value between 0 and 1. The higher
      *           the value, the smoother the image. 0 is no denoising. The default is 0.
      *     @type string $tune
-     *           Set the denoiser mode. The default is `"standard"`.
+     *           Set the denoiser mode. The default is `standard`.
      *           Supported denoiser modes:
-     *           - 'standard'
-     *           - 'grain'
+     *           - `standard`
+     *           - `grain`
      * }
      */
     public function __construct($data = NULL) {
@@ -82,10 +82,10 @@ class Denoise extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set the denoiser mode. The default is `"standard"`.
+     * Set the denoiser mode. The default is `standard`.
      * Supported denoiser modes:
-     * - 'standard'
-     * - 'grain'
+     * - `standard`
+     * - `grain`
      *
      * Generated from protobuf field <code>string tune = 2;</code>
      * @return string
@@ -96,10 +96,10 @@ class Denoise extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Set the denoiser mode. The default is `"standard"`.
+     * Set the denoiser mode. The default is `standard`.
      * Supported denoiser modes:
-     * - 'standard'
-     * - 'grain'
+     * - `standard`
+     * - `grain`
      *
      * Generated from protobuf field <code>string tune = 2;</code>
      * @param string $var

@@ -102,7 +102,7 @@ class Image extends \Google\Protobuf\Internal\Message
      */
     public function getResolution()
     {
-        return isset($this->resolution) ? $this->resolution : null;
+        return $this->resolution;
     }
 
     public function hasResolution()

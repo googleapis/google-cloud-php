@@ -22,7 +22,7 @@ class Services
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Î
+ü
 /google/cloud/video/transcoder/v1/services.proto google.cloud.video.transcoder.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto0google/cloud/video/transcoder/v1/resources.protogoogle/protobuf/empty.proto"†
 CreateJobRequest9
 parent (	B)àAúA#
@@ -38,10 +38,11 @@ page_token (	
 order_by (	"D
 GetJobRequest3
 name (	B%àAúA
-transcoder.googleapis.com/Job"G
+transcoder.googleapis.com/Job"^
 DeleteJobRequest3
 name (	B%àAúA
-transcoder.googleapis.com/Job"u
+transcoder.googleapis.com/Job
+allow_missing ("u
 ListJobsResponse3
 jobs (2%.google.cloud.video.transcoder.v1.Job
 next_page_token (	
@@ -61,10 +62,11 @@ page_token (	
 order_by (	"T
 GetJobTemplateRequest;
 name (	B-àAúA\'
-%transcoder.googleapis.com/JobTemplate"W
+%transcoder.googleapis.com/JobTemplate"n
 DeleteJobTemplateRequest;
 name (	B-àAúA\'
-%transcoder.googleapis.com/JobTemplate"Ž
+%transcoder.googleapis.com/JobTemplate
+allow_missing ("Ž
 ListJobTemplatesResponseD
 job_templates (2-.google.cloud.video.transcoder.v1.JobTemplate
 next_page_token (	
