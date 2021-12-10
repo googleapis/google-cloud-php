@@ -489,7 +489,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     public function getCommuteFilter()
     {
-        return isset($this->commute_filter) ? $this->commute_filter : null;
+        return $this->commute_filter;
     }
 
     public function hasCommuteFilter()
@@ -571,7 +571,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     public function getCompensationFilter()
     {
-        return isset($this->compensation_filter) ? $this->compensation_filter : null;
+        return $this->compensation_filter;
     }
 
     public function hasCompensationFilter()
@@ -778,7 +778,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     public function getPublishTimeRange()
     {
-        return isset($this->publish_time_range) ? $this->publish_time_range : null;
+        return $this->publish_time_range;
     }
 
     public function hasPublishTimeRange()

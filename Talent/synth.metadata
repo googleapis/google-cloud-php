@@ -3,22 +3,16 @@
     {
       "git": {
         "name": ".",
-        "remote": "https://github.com/googleapis/google-cloud-php",
-        "sha": "1cb79ac88582cda44d0785c536a72ca2213808e4"
+        "remote": "https://github.com/googleapis/google-cloud-php.git",
+        "sha": "8b9d0f124b876e138d2aac70e5442d1bd06a89d5"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "1c01db6a49cc2475b1b22d36a5363e82deca6068"
-      }
-    },
-    {
-      "git": {
-        "name": "synthtool",
-        "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "5c0fa62eea9c33ebe61e582424b659eb264e1ba4"
+        "sha": "c2b080f3208bacdfe93810ac2ef14d0dcee24b1d",
+        "internalRef": "406427586"
       }
     }
   ],

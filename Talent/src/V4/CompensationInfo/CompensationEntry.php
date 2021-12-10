@@ -257,7 +257,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      */
     public function getExpectedUnitsPerYear()
     {
-        return isset($this->expected_units_per_year) ? $this->expected_units_per_year : null;
+        return $this->expected_units_per_year;
     }
 
     public function hasExpectedUnitsPerYear()

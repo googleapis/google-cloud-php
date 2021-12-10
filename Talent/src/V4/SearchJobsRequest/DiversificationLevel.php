@@ -13,6 +13,10 @@ use UnexpectedValueException;
  * clustered so that only one representative job of the cluster is
  * displayed to the job seeker higher up in the results, with the other jobs
  * being displayed lower down in the results.
+ * If you are using pageToken to page through the result set,
+ * latency might be lower but we can't guarantee that all results are
+ * returned. If you are using page offset, latency might be higher but all
+ * results are returned.
  *
  * Protobuf type <code>google.cloud.talent.v4.SearchJobsRequest.DiversificationLevel</code>
  */
@@ -35,19 +39,43 @@ class DiversificationLevel
     /**
      * Default diversifying behavior. The result list is ordered so that
      * highly similar results are pushed to the end of the last page of search
-     * results. If you are using pageToken to page through the result set,
-     * latency might be lower but we can't guarantee that all results are
-     * returned. If you are using page offset, latency might be higher but all
-     * results are returned.
+     * results.
      *
      * Generated from protobuf enum <code>SIMPLE = 2;</code>
      */
     const SIMPLE = 2;
+    /**
+     * Only one job from the same company will be shown at once, other jobs
+     * under same company are pushed to the end of the last page of search
+     * result.
+     *
+     * Generated from protobuf enum <code>ONE_PER_COMPANY = 3;</code>
+     */
+    const ONE_PER_COMPANY = 3;
+    /**
+     * Similar to ONE_PER_COMPANY, but it allows at most two jobs in the
+     * same company to be shown at once, the other jobs under same company are
+     * pushed to the end of the last page of search result.
+     *
+     * Generated from protobuf enum <code>TWO_PER_COMPANY = 4;</code>
+     */
+    const TWO_PER_COMPANY = 4;
+    /**
+     * The result list is ordered such that somewhat similar results are pushed
+     * to the end of the last page of the search results. This option is
+     * recommended if SIMPLE diversification does not diversify enough.
+     *
+     * Generated from protobuf enum <code>DIVERSIFY_BY_LOOSER_SIMILARITY = 5;</code>
+     */
+    const DIVERSIFY_BY_LOOSER_SIMILARITY = 5;
 
     private static $valueToName = [
         self::DIVERSIFICATION_LEVEL_UNSPECIFIED => 'DIVERSIFICATION_LEVEL_UNSPECIFIED',
         self::DISABLED => 'DISABLED',
         self::SIMPLE => 'SIMPLE',
+        self::ONE_PER_COMPANY => 'ONE_PER_COMPANY',
+        self::TWO_PER_COMPANY => 'TWO_PER_COMPANY',
+        self::DIVERSIFY_BY_LOOSER_SIMILARITY => 'DIVERSIFY_BY_LOOSER_SIMILARITY',
     ];
 
     public static function name($value)

@@ -158,7 +158,7 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     public function getCurrent()
     {
-        return isset($this->current) ? $this->current : null;
+        return $this->current;
     }
 
     public function hasCurrent()
