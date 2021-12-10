@@ -1,0 +1,1 @@
+{"id":"dataproc\/v1\/batch_statehistory","type":"","title":"Google\\Cloud\\Dataproc\\V1\\Batch_StateHistory","name":"Batch_StateHistory","description":"<p>This class is deprecated. Use Google\\Cloud\\Dataproc\\V1\\Batch\\StateHistory instead.<\/p>","examples":[],"resources":[],"methods":[]}
