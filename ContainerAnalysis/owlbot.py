@@ -14,30 +14,41 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/ContainerAnalysis").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='binaryauthorization',
-    version='V1beta1',
-    bazel_target='//google/cloud/binaryauthorization/v1beta1:google-cloud-binaryauthorization-v1beta1-php',
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
+
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "**/*_*.php"
+    ]
 )
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/BinaryAuthorization', 'src/')
-s.move(library / 'tests/')
+# remove class_alias code
+s.replace(
+    "src/V*/*/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
 
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Binaryauthorization', 'metadata/')
+
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -57,22 +68,6 @@ s.replace(
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
 
-# fix year
-s.replace(
-    '**/*Client.php',
-    r'Copyright \d{4}',
-    'Copyright 2021')
-s.replace(
-    'tests/**/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2021')
-
-# Change the wording for the deprecation warning.
-s.replace(
-    'src/*/*_*.php',
-    r'will be removed in the next major release',
-    'will be removed in a future release')
-
 ### [START] protoc backwards compatibility fixes
 
 # roll back to private properties.
@@ -89,13 +84,6 @@ s.replace(
     r"final class",
     r"class")
 
-# Replace "Unwrapped" with "Value" for method names.
-s.replace(
-    "src/**/V*/**/*.php",
-    r"public function ([s|g]\w{3,})Unwrapped",
-    r"public function \1Value"
-)
-
 ### [END] protoc backwards compatibility fixes
 
 # fix relative cloud.google.com links
@@ -104,3 +92,17 @@ s.replace(
     r"(.{0,})\]\((/.{0,})\)",
     r"\1](https://cloud.google.com\2)"
 )
+
+# format generated clients
+subprocess.run([
+    'npm',
+    'exec',
+    '--yes',
+    '--package=@prettier/plugin-php@^0.16',
+    '--',
+    'prettier',
+    '**/Gapic/*',
+    '--write',
+    '--parser=php',
+    '--single-quote',
+    '--print-width=80'])
