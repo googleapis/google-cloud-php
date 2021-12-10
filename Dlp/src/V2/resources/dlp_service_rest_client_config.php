@@ -128,6 +128,11 @@ return [
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*}/jobTriggers',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/jobTriggers',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [
@@ -260,6 +265,10 @@ return [
                         'method' => 'delete',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}',
                     ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/jobTriggers/*}',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -381,6 +390,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/jobTriggers/*}',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -491,6 +504,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*}/dlpJobs',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/dlpJobs',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [
@@ -549,6 +566,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*}/jobTriggers',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/jobTriggers',
                     ],
                 ],
                 'placeholders' => [
@@ -688,6 +709,11 @@ return [
                     [
                         'method' => 'patch',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/jobTriggers/*}',
                         'body' => '*',
                     ],
                 ],
