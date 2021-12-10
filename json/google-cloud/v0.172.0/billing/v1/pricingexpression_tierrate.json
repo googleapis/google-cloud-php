@@ -1,0 +1,1 @@
+{"id":"billing\/v1\/pricingexpression_tierrate","type":"","title":"Google\\Cloud\\Billing\\V1\\PricingExpression_TierRate","name":"PricingExpression_TierRate","description":"<p>This class is deprecated. Use Google\\Cloud\\Billing\\V1\\PricingExpression\\TierRate instead.<\/p>","examples":[],"resources":[],"methods":[]}

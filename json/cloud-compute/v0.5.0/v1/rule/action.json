@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/rule\/action","type":"","title":"Google\\Cloud\\Compute\\V1\\Rule\\Action","name":"Action","description":"<p>This is deprecated and has no effect. Do not use.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.Rule.Action<\/code><\/p>","examples":[],"resources":[],"methods":[]}

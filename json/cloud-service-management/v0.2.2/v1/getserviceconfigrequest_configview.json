@@ -1,0 +1,1 @@
+{"id":"servicemanagement\/v1\/getserviceconfigrequest_configview","type":"","title":"Google\\Cloud\\ServiceManagement\\V1\\GetServiceConfigRequest_ConfigView","name":"GetServiceConfigRequest_ConfigView","description":"<p>This class is deprecated. Use Google\\Cloud\\ServiceManagement\\V1\\GetServiceConfigRequest\\ConfigView instead.<\/p>","examples":[],"resources":[],"methods":[]}

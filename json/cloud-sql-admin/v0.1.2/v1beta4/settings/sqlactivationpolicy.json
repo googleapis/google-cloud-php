@@ -1,0 +1,1 @@
+{"id":"sqladmin\/v1beta4\/settings\/sqlactivationpolicy","type":"","title":"Google\\Cloud\\Sql\\V1beta4\\Settings\\SqlActivationPolicy","name":"SqlActivationPolicy","description":"<p>Specifies when the instance is activated.<\/p>\n<p>Protobuf type <code>google.cloud.sql.v1beta4.Settings.SqlActivationPolicy<\/code><\/p>","examples":[],"resources":[],"methods":[]}

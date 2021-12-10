@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/firewallrule_action","type":"","title":"Google\\Cloud\\AppEngine\\V1\\FirewallRule_Action","name":"FirewallRule_Action","description":"<p>This class is deprecated. Use Google\\Cloud\\AppEngine\\V1\\FirewallRule\\Action instead.<\/p>","examples":[],"resources":[],"methods":[]}

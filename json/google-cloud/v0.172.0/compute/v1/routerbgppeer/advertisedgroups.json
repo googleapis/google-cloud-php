@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/routerbgppeer\/advertisedgroups","type":"","title":"Google\\Cloud\\Compute\\V1\\RouterBgpPeer\\AdvertisedGroups","name":"AdvertisedGroups","description":"<p>Protobuf type <code>google.cloud.compute.v1.RouterBgpPeer.AdvertisedGroups<\/code><\/p>","examples":[],"resources":[],"methods":[]}

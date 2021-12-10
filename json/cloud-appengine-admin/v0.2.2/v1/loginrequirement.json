@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/loginrequirement","type":"","title":"Google\\Cloud\\AppEngine\\V1\\LoginRequirement","name":"LoginRequirement","description":"<p>Methods to restrict access to a URL based on login status.<\/p>\n<p>Protobuf type <code>google.appengine.v1.LoginRequirement<\/code><\/p>","examples":[],"resources":[],"methods":[]}
