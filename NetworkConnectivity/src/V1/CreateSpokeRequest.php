@@ -22,9 +22,9 @@ class CreateSpokeRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. Unique id for the spoke to create.
+     * Required. Unique id for the spoke to create.
      *
-     * Generated from protobuf field <code>string spoke_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string spoke_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $spoke_id = '';
     /**
@@ -60,7 +60,7 @@ class CreateSpokeRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent resource.
      *     @type string $spoke_id
-     *           Optional. Unique id for the spoke to create.
+     *           Required. Unique id for the spoke to create.
      *     @type \Google\Cloud\NetworkConnectivity\V1\Spoke $spoke
      *           Required. The initial values for a new spoke.
      *     @type string $request_id
@@ -110,9 +110,9 @@ class CreateSpokeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Unique id for the spoke to create.
+     * Required. Unique id for the spoke to create.
      *
-     * Generated from protobuf field <code>string spoke_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string spoke_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getSpokeId()
@@ -121,9 +121,9 @@ class CreateSpokeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Unique id for the spoke to create.
+     * Required. Unique id for the spoke to create.
      *
-     * Generated from protobuf field <code>string spoke_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string spoke_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

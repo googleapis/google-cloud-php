@@ -115,8 +115,9 @@ class HubServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $hubId = 'hubId-1206469467';
         $hub = new Hub();
-        $response = $client->createHub($formattedParent, $hub);
+        $response = $client->createHub($formattedParent, $hubId, $hub);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -128,6 +129,8 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/CreateHub', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getHubId();
+        $this->assertProtobufEquals($hubId, $actualValue);
         $actualValue = $actualApiRequestObject->getHub();
         $this->assertProtobufEquals($hub, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -184,8 +187,9 @@ class HubServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $hubId = 'hubId-1206469467';
         $hub = new Hub();
-        $response = $client->createHub($formattedParent, $hub);
+        $response = $client->createHub($formattedParent, $hubId, $hub);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -248,8 +252,9 @@ class HubServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $spokeId = 'spokeId-1839321170';
         $spoke = new Spoke();
-        $response = $client->createSpoke($formattedParent, $spoke);
+        $response = $client->createSpoke($formattedParent, $spokeId, $spoke);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -261,6 +266,8 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/CreateSpoke', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getSpokeId();
+        $this->assertProtobufEquals($spokeId, $actualValue);
         $actualValue = $actualApiRequestObject->getSpoke();
         $this->assertProtobufEquals($spoke, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -317,8 +324,9 @@ class HubServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $spokeId = 'spokeId-1839321170';
         $spoke = new Spoke();
-        $response = $client->createSpoke($formattedParent, $spoke);
+        $response = $client->createSpoke($formattedParent, $spokeId, $spoke);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
