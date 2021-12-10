@@ -22,9 +22,14 @@ NEWER_API_LIST = [
 def scan_bazel_target(synth_py: Path) -> (str, str):
     with open(synth_py, "r") as f:
         for line in f.readlines():
-            m = re.search('bazel_target=\'//(.*)/([^/]*):.*', line)
+            m = re.search('bazel_target=f?\'//(.*)/([^/]*):.*', line)
             if m:
-                return (m.group(1), m.group(2))
+                if len(m.group(2)) > 0 and m.group(2)[0] == '{':
+                    # It's in a for loop, we can use '.*' to match all the
+                    # versions.
+                    return (m.group(1), '.*')
+                else:
+                    return (m.group(1), m.group(2))
     return ("", "")
 
 
