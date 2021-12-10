@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC
+# Copyright 2018 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,43 +14,25 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import subprocess
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Datastore").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='deploy',
-    version='V1',
-    bazel_target='//google/cloud/deploy/v1:google-cloud-deploy-v1-php',
-)
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
+php.owlbot_main(src=src, dest=dest)
 
-# copy proto files to src also
-s.move(
-    sources=library / 'proto/src/Google/Cloud/Deploy',
-    destination='src/',
-    excludes=['**/*_*.php']
-)
-# remove class_alias code
-s.replace(
-    "src/V*/*/*.php",
-    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
-    + "\n"
-    + r"^class_alias\(.*\);$"
-    + "\n",
-    '')
-s.move(library / 'tests/')
 
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Deploy', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -70,15 +52,21 @@ s.replace(
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
 
-# fix year
-s.replace(
-    '**/*Client.php',
-    r'Copyright \d{4}',
-    'Copyright 2021')
-s.replace(
-    'tests/**/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2021')
+# Fix class references in gapic samples
+for version in ['V1']:
+    pathExpr = 'src/' + version + '/Gapic/DatastoreGapicClient.php'
+
+    types = {
+        '= new DatastoreClient': r'= new Google\\Cloud\\Datastore\\' + version + r'\\DatastoreClient',
+        '= Mode::': r'= Google\\Cloud\\Datastore\\' + version + r'\\CommitRequest\\Mode::',
+        'new PartitionId': r'new Google\\Cloud\\Datastore\\' + version + r'\\PartitionId',
+    }
+
+    for search, replace in types.items():
+        s.replace(
+            pathExpr,
+            search,
+            replace)
 
 ### [START] protoc backwards compatibility fixes
 
@@ -96,6 +84,13 @@ s.replace(
     r"final class",
     r"class")
 
+# Replace "Unwrapped" with "Value" for method names.
+s.replace(
+    "src/**/V*/**/*.php",
+    r"public function ([s|g]\w{3,})Unwrapped",
+    r"public function \1Value"
+)
+
 ### [END] protoc backwards compatibility fixes
 
 # fix relative cloud.google.com links
@@ -105,16 +100,5 @@ s.replace(
     r"\1](https://cloud.google.com\2)"
 )
 
-# format generated clients
-subprocess.run([
-    'npm',
-    'exec',
-    '--yes',
-    '--package=@prettier/plugin-php@^0.16',
-    '--',
-    'prettier',
-    '**/Gapic/*',
-    '--write',
-    '--parser=php',
-    '--single-quote',
-    '--print-width=80'])
+# Address breaking changes
+subprocess.run('git show 8ada2c97c72ffabf5c3031021378874f8caa8804 | git apply', shell=True)
