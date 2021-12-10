@@ -38,6 +38,20 @@ class AttestationOccurrence extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .grafeas.v1.Signature signatures = 2;</code>
      */
     private $signatures;
+    /**
+     * One or more JWTs encoding a self-contained attestation.
+     * Each JWT encodes the payload that it verifies within the JWT itself.
+     * Verifier implementation SHOULD ignore the `serialized_payload` field
+     * when verifying these JWTs.
+     * If only JWTs are present on this AttestationOccurrence, then the
+     * `serialized_payload` SHOULD be left empty.
+     * Each JWT SHOULD encode a claim specific to the `resource_uri` of this
+     * Occurrence, but this is not validated by Grafeas metadata API
+     * implementations.  The JWT itself is opaque to Grafeas.
+     *
+     * Generated from protobuf field <code>repeated .grafeas.v1.Jwt jwts = 3;</code>
+     */
+    private $jwts;
 
     /**
      * Constructor.
@@ -53,6 +67,16 @@ class AttestationOccurrence extends \Google\Protobuf\Internal\Message
      *           should consider this attestation message verified if at least one
      *           `signature` verifies `serialized_payload`.  See `Signature` in common.proto
      *           for more details on signature structure and verification.
+     *     @type \Grafeas\V1\Jwt[]|\Google\Protobuf\Internal\RepeatedField $jwts
+     *           One or more JWTs encoding a self-contained attestation.
+     *           Each JWT encodes the payload that it verifies within the JWT itself.
+     *           Verifier implementation SHOULD ignore the `serialized_payload` field
+     *           when verifying these JWTs.
+     *           If only JWTs are present on this AttestationOccurrence, then the
+     *           `serialized_payload` SHOULD be left empty.
+     *           Each JWT SHOULD encode a claim specific to the `resource_uri` of this
+     *           Occurrence, but this is not validated by Grafeas metadata API
+     *           implementations.  The JWT itself is opaque to Grafeas.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,6 +140,48 @@ class AttestationOccurrence extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Grafeas\V1\Signature::class);
         $this->signatures = $arr;
+
+        return $this;
+    }
+
+    /**
+     * One or more JWTs encoding a self-contained attestation.
+     * Each JWT encodes the payload that it verifies within the JWT itself.
+     * Verifier implementation SHOULD ignore the `serialized_payload` field
+     * when verifying these JWTs.
+     * If only JWTs are present on this AttestationOccurrence, then the
+     * `serialized_payload` SHOULD be left empty.
+     * Each JWT SHOULD encode a claim specific to the `resource_uri` of this
+     * Occurrence, but this is not validated by Grafeas metadata API
+     * implementations.  The JWT itself is opaque to Grafeas.
+     *
+     * Generated from protobuf field <code>repeated .grafeas.v1.Jwt jwts = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getJwts()
+    {
+        return $this->jwts;
+    }
+
+    /**
+     * One or more JWTs encoding a self-contained attestation.
+     * Each JWT encodes the payload that it verifies within the JWT itself.
+     * Verifier implementation SHOULD ignore the `serialized_payload` field
+     * when verifying these JWTs.
+     * If only JWTs are present on this AttestationOccurrence, then the
+     * `serialized_payload` SHOULD be left empty.
+     * Each JWT SHOULD encode a claim specific to the `resource_uri` of this
+     * Occurrence, but this is not validated by Grafeas metadata API
+     * implementations.  The JWT itself is opaque to Grafeas.
+     *
+     * Generated from protobuf field <code>repeated .grafeas.v1.Jwt jwts = 3;</code>
+     * @param \Grafeas\V1\Jwt[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setJwts($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Grafeas\V1\Jwt::class);
+        $this->jwts = $arr;
 
         return $this;
     }
