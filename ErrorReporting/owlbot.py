@@ -14,30 +14,23 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/ErrorReporting").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='clouderrorreporting',
-    version='v1beta1',
-    bazel_target='//google/devtools/clouderrorreporting/v1beta1:google-cloud-devtools-clouderrorreporting-v1beta1-php',
-)
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
-
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/ErrorReporting', 'src/')
-s.move(library / 'tests/')
-
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Devtools/Clouderrorreporting', 'metadata/')
+php.owlbot_main(src=src, dest=dest)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -56,21 +49,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# fix year
-s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2017')
-for client in ['ErrorGroupService', 'ErrorStatsService', 'ReportErrorsService']:
-    s.replace(
-        f'**/V1beta1/{client}Client.php',
-        r'Copyright \d{4}',
-        'Copyright 2017')
-s.replace(
-    'tests/**/V1beta1/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2018')
 
 ### [START] protoc backwards compatibility fixes
 
