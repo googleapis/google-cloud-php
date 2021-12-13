@@ -14,31 +14,25 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import subprocess
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Dataproc").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='dlp',
-    version='v2',
-    bazel_target='//google/privacy/dlp/v2:google-cloud-privacy-dlp-v2-php'
-)
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
+php.owlbot_main(src=src, dest=dest)
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/Dlp', 'src/')
-s.move(library / 'tests/')
 
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Privacy/Dlp', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -58,43 +52,17 @@ s.replace(
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
 
-# V2 is GA, so remove @experimental tags
+# V1 is GA, so remove @experimental tags
 s.replace(
-    'src/V2/**/*Client.php',
+    'src/V1/**/*Client.php',
     r'^(\s+\*\n)?\s+\*\s@experimental\n',
     '')
-
-# fix year
-s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2018')
-s.replace(
-    '**/V2/DlpServiceClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2018')
-s.replace(
-    'tests/**/V2/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2018')
-
-# Fix missing documentation. See https://github.com/googleapis/gapic-generator/issues/1915
-s.replace(
-    'src/V2/Gapic/DlpServiceGapicClient.php',
-    r'@type InspectJobConfig \$inspectJob\n',
-    '@type InspectJobConfig $inspectJob The configuration details for an inspect\n'
-    '     *          job. Only one of $inspectJob and $riskJob may be provided.\n')
-s.replace(
-    'src/V2/Gapic/DlpServiceGapicClient.php',
-    r'@type RiskAnalysisJobConfig \$riskJob\n',
-    '@type RiskAnalysisJobConfig $riskJob The configuration details for a risk\n'
-    '     *          analysis job. Only one of $inspectJob and $riskJob may be provided.\n')
 
 ### [START] protoc backwards compatibility fixes
 
 # roll back to private properties.
 s.replace(
-    "src/V*/**/*.php",
+    "src/**/V*/**/*.php",
     r"Generated from protobuf field ([^\n]{0,})\n\s{5}\*/\n\s{4}protected \$",
     r"""Generated from protobuf field \1
      */
@@ -102,13 +70,13 @@ s.replace(
 
 # prevent proto messages from being marked final
 s.replace(
-    "src/V*/**/*.php",
+    "src/**/V*/**/*.php",
     r"final class",
     r"class")
 
 # Replace "Unwrapped" with "Value" for method names.
 s.replace(
-    "src/V*/**/*.php",
+    "src/**/V*/**/*.php",
     r"public function ([s|g]\w{3,})Unwrapped",
     r"public function \1Value"
 )
@@ -122,22 +90,5 @@ s.replace(
     r"\1](https://cloud.google.com\2)"
 )
 
-s.replace(
-    "src/V2/Gapic/DlpServiceGapicClient.php",
-    r"@type string \$parent\n\s+\*\s+(The )?[Pp]arent resource name.",
-    r"""@type string $parent The parent resource name. Please note, unless you have
-     *           authenticated using an API key this option will be required."""
-)
-
-# format generated clients
-subprocess.run([
-    'npx',
-    '-y',
-    '-p',
-    '@prettier/plugin-php@^0.16',
-    'prettier',
-    '**/Gapic/*',
-    '--write',
-    '--parser=php',
-    '--single-quote',
-    '--print-width=80'])
+# Address breaking changes
+subprocess.run('git show bcc6324bb12b976fd6516bee9657cb5d87744233 | git apply', shell=True)
