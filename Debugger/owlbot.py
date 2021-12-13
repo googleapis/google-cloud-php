@@ -14,34 +14,25 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import subprocess
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Debugger").resolve()
+dest = Path().resolve()
 
-for version in ['V1']:
-    lower_version = version.lower()
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-    library = gapic.php_library(
-        service='dataproc',
-        version=lower_version,
-        bazel_target=f'//google/cloud/dataproc/{lower_version}:google-cloud-dataproc-{lower_version}-php',
-    )
+php.owlbot_main(src=src, dest=dest)
 
-    # copy all src including partial veneer classes
-    s.move(library / 'src')
 
-    # copy proto files to src also
-    s.move(library / 'proto/src/Google/Cloud/Dataproc', 'src/')
-    s.move(library / 'tests/')
-
-    # copy GPBMetadata file to metadata
-    s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Dataproc', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -60,47 +51,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# V1 is GA, so remove @experimental tags
-s.replace(
-    'src/V1/**/*Client.php',
-    r'^(\s+\*\n)?\s+\*\s@experimental\n',
-    '')
-
-# fix year
-for client in ['ClusterController', 'JobController']:
-    s.replace(
-        f'**/V1/Gapic/{client}GapicClient.php',
-        r'Copyright \d{4}',
-        'Copyright 2017')
-    s.replace(
-        f'**/V1/{client}Client.php',
-        r'Copyright \d{4}',
-        'Copyright 2017')
-s.replace(
-    '**/V1beta2/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    r'Copyright 2019')
-s.replace(
-    '**/V1beta2/*Client.php',
-    r'Copyright \d{4}',
-    r'Copyright 2019')
-s.replace(
-    '**/V1/Gapic/WorkflowTemplateServiceGapicClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2018')
-s.replace(
-    '**/V1/WorkflowTemplateServiceClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2018')
-s.replace(
-    'tests/**/V1/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2018')
-s.replace(
-    'tests/**/V1beta2/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2019')
 
 ### [START] protoc backwards compatibility fixes
 
@@ -134,5 +84,16 @@ s.replace(
     r"\1](https://cloud.google.com\2)"
 )
 
-# Address breaking changes
-subprocess.run('git show bcc6324bb12b976fd6516bee9657cb5d87744233 | git apply', shell=True)
+# format generated clients
+subprocess.run([
+    'npm',
+    'exec',
+    '--yes',
+    '--package=@prettier/plugin-php@^0.16',
+    '--',
+    'prettier',
+    '**/Gapic/*',
+    '--write',
+    '--parser=php',
+    '--single-quote',
+    '--print-width=80'])

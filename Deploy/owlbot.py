@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,32 +14,41 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import subprocess
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
-import re
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Deploy").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='datastore',
-    version='v1',
-    bazel_target=f'//google/datastore/admin/v1:google-cloud-datastore-admin-v1-php',
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
+
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "**/*_*.php"
+    ]
 )
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/Datastore/Admin', 'src/')
-s.move(library / 'tests/')
+# remove class_alias code
+s.replace(
+    "src/V*/*/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
 
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Datastore/Admin', 'metadata/')
+
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -59,27 +68,6 @@ s.replace(
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
 
-s.replace(
-    "**/Gapic/DatastoreAdminGapicClient.php",
-    r"@type string \$filter\n\s+\*\s+@type int \$pageSize",
-    """@type string $filter A filtering string.
-     *     @type int $pageSize"""
-)
-
-# fix year
-s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2020')
-s.replace(
-    '**/V1/DatastoreAdminClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2020')
-s.replace(
-    'tests/**/V1/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2020')
-
 ### [START] protoc backwards compatibility fixes
 
 # roll back to private properties.
@@ -95,13 +83,6 @@ s.replace(
     "src/**/V*/**/*.php",
     r"final class",
     r"class")
-
-# Replace "Unwrapped" with "Value" for method names.
-s.replace(
-    "src/**/V*/**/*.php",
-    r"public function ([s|g]\w{3,})Unwrapped",
-    r"public function \1Value"
-)
 
 ### [END] protoc backwards compatibility fixes
 
