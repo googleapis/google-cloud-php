@@ -14,7 +14,11 @@
 # limitations under the License.
 
 # Protos to generate
-PROTOS_TO_GENERATE="google/cloud/audit/audit_log.proto google/devtools/source/v1/source_context.proto"
+PROTOS_TO_GENERATE=(
+  google/cloud/audit/audit_log.proto
+  google/devtools/source/v1/source_context.proto
+  google/cloud/common/operation_metadata.proto
+)
 
 # Constants
 REQUIRED_PROTOC_VERSION="libprotoc 3.6.1"
@@ -36,11 +40,11 @@ echo "protoc bin: ${PROTOC_BIN}"
 PROTOC_VERSION=$($PROTOC_BIN --version)
 echo "protoc version: ${PROTOC_VERSION}"
 
-if [ "${PROTOC_VERSION}" != "${REQUIRED_PROTOC_VERSION}" ]
-then
-  echo "Invalid protoc version, expected '${REQUIRED_PROTOC_VERSION}', got '${PROTOC_VERSION}'"
-  exit 1
-fi
+#if [ "${PROTOC_VERSION}" != "${REQUIRED_PROTOC_VERSION}" ]
+#then
+#  echo "Invalid protoc version, expected '${REQUIRED_PROTOC_VERSION}', got '${PROTOC_VERSION}'"
+#  exit 1
+#fi
 
 rm -rf ${TEMP_COMMON_PROTOS_DIR}
 git clone ${GOOGLEAPIS_REPO} ${TEMP_COMMON_PROTOS_DIR}
@@ -48,7 +52,7 @@ git clone ${GOOGLEAPIS_REPO} ${TEMP_COMMON_PROTOS_DIR}
 rm -rf ${PROTOC_OUT_DIR}
 mkdir ${PROTOC_OUT_DIR}
 
-PROTOC_ARGS="--php_out ${PROTOC_OUT_DIR} -I${TEMP_COMMON_PROTOS_DIR} ${PROTOS_TO_GENERATE}"
+PROTOC_ARGS="--php_out ${PROTOC_OUT_DIR} -I${TEMP_COMMON_PROTOS_DIR} ${PROTOS_TO_GENERATE[@]}"
 echo "Calling protoc with args: ${PROTOC_ARGS}"
 ${PROTOC_BIN} ${PROTOC_ARGS}
 
