@@ -21,7 +21,7 @@ PROTOS_TO_GENERATE=(
 )
 
 # Constants
-REQUIRED_PROTOC_VERSION="libprotoc 3.6.1"
+REQUIRED_PROTOC_VERSION="libprotoc 3.15.6"
 GOOGLEAPIS_REPO="https://github.com/googleapis/googleapis.git"
 
 # Directories
@@ -40,11 +40,11 @@ echo "protoc bin: ${PROTOC_BIN}"
 PROTOC_VERSION=$($PROTOC_BIN --version)
 echo "protoc version: ${PROTOC_VERSION}"
 
-#if [ "${PROTOC_VERSION}" != "${REQUIRED_PROTOC_VERSION}" ]
-#then
-#  echo "Invalid protoc version, expected '${REQUIRED_PROTOC_VERSION}', got '${PROTOC_VERSION}'"
-#  exit 1
-#fi
+if [ "${PROTOC_VERSION}" != "${REQUIRED_PROTOC_VERSION}" ]
+then
+  echo "Invalid protoc version, expected '${REQUIRED_PROTOC_VERSION}', got '${PROTOC_VERSION}'"
+  exit 1
+fi
 
 rm -rf ${TEMP_COMMON_PROTOS_DIR}
 git clone ${GOOGLEAPIS_REPO} ${TEMP_COMMON_PROTOS_DIR}
