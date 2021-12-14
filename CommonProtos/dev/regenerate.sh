@@ -18,10 +18,11 @@ PROTOS_TO_GENERATE=(
   google/cloud/audit/audit_log.proto
   google/devtools/source/v1/source_context.proto
   google/cloud/common/operation_metadata.proto
+  google/rpc/context/attribute_context.proto
 )
 
 # Constants
-REQUIRED_PROTOC_VERSION="libprotoc 3.15.6"
+REQUIRED_PROTOC_VERSION="libprotoc 3.15.8"
 GOOGLEAPIS_REPO="https://github.com/googleapis/googleapis.git"
 
 # Directories
