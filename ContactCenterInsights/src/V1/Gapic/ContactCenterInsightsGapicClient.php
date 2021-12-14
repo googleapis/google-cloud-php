@@ -76,11 +76,12 @@ use Google\Cloud\ContactCenterInsights\V1\ListPhraseMatchersRequest;
 use Google\Cloud\ContactCenterInsights\V1\ListPhraseMatchersResponse;
 use Google\Cloud\ContactCenterInsights\V1\PhraseMatcher;
 use Google\Cloud\ContactCenterInsights\V1\Settings;
-
 use Google\Cloud\ContactCenterInsights\V1\UndeployIssueModelRequest;
+
 use Google\Cloud\ContactCenterInsights\V1\UpdateConversationRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateIssueModelRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateIssueRequest;
+use Google\Cloud\ContactCenterInsights\V1\UpdatePhraseMatcherRequest;
 use Google\Cloud\ContactCenterInsights\V1\UpdateSettingsRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
@@ -778,8 +779,8 @@ class ContactCenterInsightsGapicClient
      *           component of the conversation's resource name. If no ID is specified, a
      *           server-generated ID will be used.
      *
-     *           This value should be 4-32 characters and must match the regular
-     *           expression /^[a-z0-9-]{4,32}$/. Valid characters are /[a-z][0-9]-/
+     *           This value should be 4-64 characters and must match the regular
+     *           expression `^[a-z0-9-]{4,64}$`. Valid characters are `[a-z][0-9]-`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1305,6 +1306,9 @@ class ContactCenterInsightsGapicClient
      *           A fully qualified KMS key name for BigQuery tables protected by CMEK.
      *           Format:
      *           projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}/cryptoKeyVersions/{version}
+     *     @type int $writeDisposition
+     *           Options for what to do if the destination table already exists.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\ContactCenterInsights\V1\ExportInsightsDataRequest\WriteDisposition}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1334,6 +1338,10 @@ class ContactCenterInsightsGapicClient
 
         if (isset($optionalArgs['kmsKey'])) {
             $request->setKmsKey($optionalArgs['kmsKey']);
+        }
+
+        if (isset($optionalArgs['writeDisposition'])) {
+            $request->setWriteDisposition($optionalArgs['writeDisposition']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -2246,6 +2254,63 @@ class ContactCenterInsightsGapicClient
         return $this->startCall(
             'UpdateIssueModel',
             IssueModel::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates a phrase matcher.
+     *
+     * Sample code:
+     * ```
+     * $contactCenterInsightsClient = new ContactCenterInsightsClient();
+     * try {
+     *     $phraseMatcher = new PhraseMatcher();
+     *     $response = $contactCenterInsightsClient->updatePhraseMatcher($phraseMatcher);
+     * } finally {
+     *     $contactCenterInsightsClient->close();
+     * }
+     * ```
+     *
+     * @param PhraseMatcher $phraseMatcher Required. The new values for the phrase matcher.
+     * @param array         $optionalArgs  {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           The list of fields to be updated.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\ContactCenterInsights\V1\PhraseMatcher
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updatePhraseMatcher(
+        $phraseMatcher,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdatePhraseMatcherRequest();
+        $requestParamHeaders = [];
+        $request->setPhraseMatcher($phraseMatcher);
+        $requestParamHeaders['phrase_matcher.name'] = $phraseMatcher->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdatePhraseMatcher',
+            PhraseMatcher::class,
             $optionalArgs,
             $request
         )->wait();

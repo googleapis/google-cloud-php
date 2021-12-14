@@ -1,5 +1,808 @@
 # Changelog
 
+## 0.172.0
+
+<details><summary>google/cloud-access-approval 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate AccessApproval to owlbot ([#4691](https://www.github.com/googleapis/google-cloud-php/issues/4691)) ([5bf9f84](https://www.github.com/googleapis/google-cloud-php/commit/5bf9f8494ab06600e4e477f613acc0d6d38be3cc))
+* updating protobuf from 3.15.3 to 3.18.1 ([8dd8ee5](https://www.github.com/googleapis/google-cloud-php/commit/8dd8ee584417e1e53d6e237eb25a4b75f0668065))
+
+</details>
+
+<details><summary>google/access-context-manager 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **AccessContextManager:** migrate to owlbot ([#4748](https://www.github.com/googleapis/google-cloud-php/issues/4748)) ([8b9d0f1](https://www.github.com/googleapis/google-cloud-php/commit/8b9d0f124b876e138d2aac70e5442d1bd06a89d5))
+* updating protobuf from 3.15.3 to 3.18.1 ([d810c04](https://www.github.com/googleapis/google-cloud-php/commit/d810c0406d2f33c9397be968f52d4e14610f04ad))
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4759](https://www.github.com/googleapis/google-cloud-php/issues/4759)) ([2a30c6d](https://www.github.com/googleapis/google-cloud-php/commit/2a30c6d0d40f0a1c5c0ffc32c3b3e3ee3461b732))
+* updating protobuf from 3.15.3 to 3.18.1 ([17ba05f](https://www.github.com/googleapis/google-cloud-php/commit/17ba05f60feec4068b1e184e36f9dca382e1e8c8))
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4760](https://www.github.com/googleapis/google-cloud-php/issues/4760)) ([4c43d59](https://www.github.com/googleapis/google-cloud-php/commit/4c43d59b86ffb99ddaa7c50ccaa135162786566b))
+* updating protobuf from 3.15.3 to 3.18.1 ([5b2b0fc](https://www.github.com/googleapis/google-cloud-php/commit/5b2b0fc13f60a8183a1fbcf3979f65b7d7ecc063))
+
+</details>
+
+<details><summary>google/cloud-asset 1.6.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate Asset to owlbot ([#4541](https://www.github.com/googleapis/google-cloud-php/issues/4541)) ([01c1ab3](https://www.github.com/googleapis/google-cloud-php/commit/01c1ab3ca1f9c1099a8794f52f8fda651568e5ce))
+* update protobuf from 3.15.3 to 3.18.1 ([#4567](https://www.github.com/googleapis/google-cloud-php/issues/4567)) ([386172a](https://www.github.com/googleapis/google-cloud-php/commit/386172a6d3ff625e20354befd2892cf6feecd5ab))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.5.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4761](https://www.github.com/googleapis/google-cloud-php/issues/4761)) ([fd79c48](https://www.github.com/googleapis/google-cloud-php/commit/fd79c48fab9494e9a326c6074e5f6e0500977cb4))
+* updating protobuf from 3.15.3 to 3.18.1 ([3192e1d](https://www.github.com/googleapis/google-cloud-php/commit/3192e1d0989d0ea80da25e9af2da69b0160703ae))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 0.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4762](https://www.github.com/googleapis/google-cloud-php/issues/4762)) ([64e5c59](https://www.github.com/googleapis/google-cloud-php/commit/64e5c59e3e0b05856ceae3fae830280a3dabbb16))
+* updating protobuf from 3.15.3 to 3.18.1 ([ac9a140](https://www.github.com/googleapis/google-cloud-php/commit/ac9a14024311d249cfdde897b9c36f90018362de))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.11.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* updating protobuf from 3.15.3 to 3.18.1 ([22ef602](https://www.github.com/googleapis/google-cloud-php/commit/22ef60279f7e67d5d4b881042f8405e853b82b5a))
+
+</details>
+
+<details><summary>google/cloud-billing 1.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4763](https://www.github.com/googleapis/google-cloud-php/issues/4763)) ([3f37f22](https://www.github.com/googleapis/google-cloud-php/commit/3f37f220f9863630ad81e6031e3cfc7ba9606268))
+* updating protobuf from 3.15.3 to 3.18.1 ([7d34752](https://www.github.com/googleapis/google-cloud-php/commit/7d34752e24e4304166f37aa20402d70f685ce2db))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4764](https://www.github.com/googleapis/google-cloud-php/issues/4764)) ([a5fb3be](https://www.github.com/googleapis/google-cloud-php/commit/a5fb3bed83cb914e6567204d273d5d70fd938dfc))
+* updating protobuf from 3.15.3 to 3.18.1 ([110e95e](https://www.github.com/googleapis/google-cloud-php/commit/110e95e48c2280c4be194bd502c2105e82def0ec))
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 0.3.0</summary>
+
+
+
+### Features
+
+* add new admission rule types to Policy feat: update SignatureAlgorithm enum to match algorithm names in KMS feat: add SystemPolicyV1Beta1 service ([#4704](https://www.github.com/googleapis/google-cloud-php/issues/4704)) ([4bcbff4](https://www.github.com/googleapis/google-cloud-php/commit/4bcbff436818df193c1570f4de93f63479df0e76))
+
+
+### Miscellaneous Chores
+
+* updating protobuf from 3.15.3 to 3.18.1 ([a4e41da](https://www.github.com/googleapis/google-cloud-php/commit/a4e41da42545159782f168c53dba88dffc6bc5c7))
+
+</details>
+
+<details><summary>google/cloud-channel 0.5.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* updating protobuf from 3.15.3 to 3.18.1 ([#4574](https://www.github.com/googleapis/google-cloud-php/issues/4574)) ([8988c4f](https://www.github.com/googleapis/google-cloud-php/commit/8988c4f97c05e529c226221da517dbb184b509a1))
+
+</details>
+
+<details><summary>google/cloud-compute 0.5.0</summary>
+
+
+
+### Features
+
+* Update Compute with Owlbot and fix system tests ([#4807](https://www.github.com/googleapis/google-cloud-php/issues/4807)) ([3d009a0](https://www.github.com/googleapis/google-cloud-php/commit/3d009a028104ff7c03aac4be0420c1260be3339e))
+
+
+### Miscellaneous Chores
+
+* migrate Compute to owlbot ([#4743](https://www.github.com/googleapis/google-cloud-php/issues/4743)) ([d9a4f2c](https://www.github.com/googleapis/google-cloud-php/commit/d9a4f2cc24d91cfc33976c7e847b0447cf70834b))
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* updating protobuf from 3.15.3 to 3.18.1 ([01d6c01](https://www.github.com/googleapis/google-cloud-php/commit/01d6c01448a2890552df08ae85c389d716996819))
+
+</details>
+
+<details><summary>google/cloud-container 1.5.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4765](https://www.github.com/googleapis/google-cloud-php/issues/4765)) ([a56999f](https://www.github.com/googleapis/google-cloud-php/commit/a56999f3882459316c509521d0ce4c505beff18e))
+* updating protobuf from 3.15.3 to 3.18.1 ([38099c1](https://www.github.com/googleapis/google-cloud-php/commit/38099c10a83d1309dcb44b92491572301d046bd1))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4766](https://www.github.com/googleapis/google-cloud-php/issues/4766)) ([a034c71](https://www.github.com/googleapis/google-cloud-php/commit/a034c712f641e8da61bb6e9f7facb3a14d1c875c))
+
+</details>
+
+<details><summary>google/cloud-data-fusion 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4767](https://www.github.com/googleapis/google-cloud-php/issues/4767)) ([c72166b](https://www.github.com/googleapis/google-cloud-php/commit/c72166b3f5d2460e886d65c446a5a36c6f288e52))
+* updating protobuf from 3.15.3 to 3.18.1 ([2689a38](https://www.github.com/googleapis/google-cloud-php/commit/2689a3890973dedbe2fc5b8d16cff8ef800349d4))
+
+</details>
+
+<details><summary>google/cloud-dataflow 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4768](https://www.github.com/googleapis/google-cloud-php/issues/4768)) ([698d5b8](https://www.github.com/googleapis/google-cloud-php/commit/698d5b8faaa7f106d245ed0acb60cd7bffd83e76))
+* updating protobuf from 3.15.3 to 3.18.1 ([6b2f27b](https://www.github.com/googleapis/google-cloud-php/commit/6b2f27bc0633628b1f89be05d22cb16505dd1bd2))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.4.0</summary>
+
+
+
+### Features
+
+* Add support for dataproc BatchController service ([#4702](https://www.github.com/googleapis/google-cloud-php/issues/4702)) ([6a662f9](https://www.github.com/googleapis/google-cloud-php/commit/6a662f9e662285e382bc1a70a0394bbd35a4cbbf))
+
+
+### Miscellaneous Chores
+
+* updating protobuf from 3.15.3 to 3.18.1 ([04ef4be](https://www.github.com/googleapis/google-cloud-php/commit/04ef4befba44aecaec4cedf4fb4e79825088ff87))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4769](https://www.github.com/googleapis/google-cloud-php/issues/4769)) ([d538e36](https://www.github.com/googleapis/google-cloud-php/commit/d538e36ecdd10b6021e96aab8286c56f00d4f9a9))
+* updating protobuf from 3.15.3 to 3.18.1 ([4bc66e2](https://www.github.com/googleapis/google-cloud-php/commit/4bc66e2ca0f667adc13beb3e34cc98108289a9db))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4770](https://www.github.com/googleapis/google-cloud-php/issues/4770)) ([b690b93](https://www.github.com/googleapis/google-cloud-php/commit/b690b9346a484b1033ec52ea99dfa614d124e14f))
+* updating protobuf from 3.15.3 to 3.18.1  ([fe9e5ad](https://www.github.com/googleapis/google-cloud-php/commit/fe9e5ad564c68d6ae8573f9bd6eac450fcfb4183))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4771](https://www.github.com/googleapis/google-cloud-php/issues/4771)) ([6ca9e56](https://www.github.com/googleapis/google-cloud-php/commit/6ca9e56a532a40dffeaf6143c9f83d9eddc07e95))
+* updating protobuf from 3.15.3 to 3.18.1 ([4ff505b](https://www.github.com/googleapis/google-cloud-php/commit/4ff505bf09909a63b91d2c77856690480a6d4ae1))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4772](https://www.github.com/googleapis/google-cloud-php/issues/4772)) ([dace8de](https://www.github.com/googleapis/google-cloud-php/commit/dace8def0c3d33056ea0722bf9304dad44391dcc))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.23.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* updating protobuf from 3.15.3 to 3.18.1  ([e7fd00f](https://www.github.com/googleapis/google-cloud-php/commit/e7fd00fc3c6c21e16b27057283ec15627fa90b02))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.3.0</summary>
+
+
+
+### Features
+
+* added deidentify replacement dictionaries feat: added field for BigQuery inspect template inclusion lists feat: added field to support infotype versioning ([#4738](https://www.github.com/googleapis/google-cloud-php/issues/4738)) ([f04e595](https://www.github.com/googleapis/google-cloud-php/commit/f04e5954d43db2d386b86d4d551b601fa1a5b4f6))
+
+
+### Miscellaneous Chores
+
+* updating protobuf from 3.15.3 to 3.18.1 ([5717774](https://www.github.com/googleapis/google-cloud-php/commit/57177741ac42d70086fbb4d85eb7faa0426110df))
+
+</details>
+
+<details><summary>google/cloud-dms 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* updating protobuf from 3.15.3 to 3.18.1 ([5503f6c](https://www.github.com/googleapis/google-cloud-php/commit/5503f6cdcbfa8aa76d39bb5400088d6972a7563f))
+
+</details>
+
+<details><summary>google/cloud-essential-contacts 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4774](https://www.github.com/googleapis/google-cloud-php/issues/4774)) ([bfa011b](https://www.github.com/googleapis/google-cloud-php/commit/bfa011bed6a5fbe034ce02fe4bc3dd3ad07f4b8e))
+* updating protobuf from 3.15.3 to 3.18.1 ([3387f1c](https://www.github.com/googleapis/google-cloud-php/commit/3387f1c13b22bc883ccb652fb5fda1ef5a511d00))
+
+</details>
+
+<details><summary>google/cloud-eventarc 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4775](https://www.github.com/googleapis/google-cloud-php/issues/4775)) ([5a4fdb9](https://www.github.com/googleapis/google-cloud-php/commit/5a4fdb9c386fdc074591e5d63ff8dd486aaa7a55))
+* updating protobuf from 3.15.3 to 3.18.1 ([de61001](https://www.github.com/googleapis/google-cloud-php/commit/de61001da6f7b0b0ed5f04a038baa91043219bd4))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.20.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* updating protobuf from 3.15.3 to 3.18.1 ([b225e14](https://www.github.com/googleapis/google-cloud-php/commit/b225e1412647912e2250b50d7ebafe1779bf1587))
+
+</details>
+
+<details><summary>google/cloud-gke-connect-gateway 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4776](https://www.github.com/googleapis/google-cloud-php/issues/4776)) ([b0a1c62](https://www.github.com/googleapis/google-cloud-php/commit/b0a1c622328c68e5ef199916ab3ebf9daf02d330))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4777](https://www.github.com/googleapis/google-cloud-php/issues/4777)) ([e5df408](https://www.github.com/googleapis/google-cloud-php/commit/e5df40802d7a76896b0096aed762a6f09fceca95))
+* updating protobuf from 3.15.3 to 3.18.1 ([e705e9e](https://www.github.com/googleapis/google-cloud-php/commit/e705e9ea8aa35bf32c5c0175e595c9b5d9eae778))
+
+</details>
+
+<details><summary>google/grafeas 0.2.0</summary>
+
+
+
+### Features
+
+* Updating the grafeas protos to include compliance and intoto attestation protos ([#4696](https://www.github.com/googleapis/google-cloud-php/issues/4696)) ([a6f49b5](https://www.github.com/googleapis/google-cloud-php/commit/a6f49b52f157fa482a096e0b53b5dd9faedce0eb))
+
+
+### Miscellaneous Chores
+
+* updating protobuf from 3.15.3 to 3.18.1 ([8a70551](https://www.github.com/googleapis/google-cloud-php/commit/8a70551d19264ea14a79df5b415f272c0260ee58))
+
+</details>
+
+<details><summary>google/cloud-iap 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4778](https://www.github.com/googleapis/google-cloud-php/issues/4778)) ([0be3c45](https://www.github.com/googleapis/google-cloud-php/commit/0be3c45700e11d1d53d40ff5be319ad0e97c5bac))
+* updating protobuf from 3.15.3 to 3.18.1 ([01ed633](https://www.github.com/googleapis/google-cloud-php/commit/01ed633ee7c9076c16ff9f0d3bff0ba3c34dd508))
+
+</details>
+
+<details><summary>google/cloud-iot 1.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4779](https://www.github.com/googleapis/google-cloud-php/issues/4779)) ([9ec6907](https://www.github.com/googleapis/google-cloud-php/commit/9ec690762bc18bcbad7d7a5a974b2ef2e9aef054))
+* updating protobuf from 3.15.3 to 3.18.1 ([35397f2](https://www.github.com/googleapis/google-cloud-php/commit/35397f2224c9473921de9661b76cc096f15e0e25))
+
+</details>
+
+<details><summary>google/cloud-language 0.26.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4780](https://www.github.com/googleapis/google-cloud-php/issues/4780)) ([721a600](https://www.github.com/googleapis/google-cloud-php/commit/721a6004b4412166fa6bd0a1da3bbbc60d74bcb6))
+* updating protobuf from 3.15.3 to 3.18.1 ([9e1df28](https://www.github.com/googleapis/google-cloud-php/commit/9e1df28f5472a5263aa7af597b534a7b1ab152c0))
+
+</details>
+
+<details><summary>google/cloud-life-sciences 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4781](https://www.github.com/googleapis/google-cloud-php/issues/4781)) ([2840ccc](https://www.github.com/googleapis/google-cloud-php/commit/2840ccc4b473f7af18a1e07ff338d8683220f96c))
+* updating protobuf from 3.15.3 to 3.18.1 ([b102637](https://www.github.com/googleapis/google-cloud-php/commit/b1026379452cd4c1216349985e159fa9810a5379))
+
+</details>
+
+<details><summary>google/cloud-media-translation 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4782](https://www.github.com/googleapis/google-cloud-php/issues/4782)) ([d53a1df](https://www.github.com/googleapis/google-cloud-php/commit/d53a1df7b4d8d1f35663ac1184ab729aff4d45d6))
+* updating protobuf from 3.15.3 to 3.18.1 ([d7a50f1](https://www.github.com/googleapis/google-cloud-php/commit/d7a50f1a2729a2304904dc6d6d9888b8ba9b2ab9))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.5.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4783](https://www.github.com/googleapis/google-cloud-php/issues/4783)) ([7e614d2](https://www.github.com/googleapis/google-cloud-php/commit/7e614d2ebfa36dbca6335d643a9dc6f7167b3595))
+* updating protobuf from 3.15.3 to 3.18.1 ([4e10e6b](https://www.github.com/googleapis/google-cloud-php/commit/4e10e6bbd94747550a7135f3be46500e934bc766))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add C# generation for Compute v1 ([#4712](https://www.github.com/googleapis/google-cloud-php/issues/4712)) ([61cd60c](https://www.github.com/googleapis/google-cloud-php/commit/61cd60c92d6a85e7b5ac6d78813d5bfdbfa7d630))
+* updating protobuf from 3.15.3 to 3.18.1 ([0930164](https://www.github.com/googleapis/google-cloud-php/commit/0930164980bd205502e8510c48388bd2132412c8))
+
+</details>
+
+<details><summary>google/cloud-network-management 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4784](https://www.github.com/googleapis/google-cloud-php/issues/4784)) ([d88178c](https://www.github.com/googleapis/google-cloud-php/commit/d88178c8c7f8a48f00f1fc26b05b2da53f2ddc94))
+* updating protobuf from 3.15.3 to 3.18.1 ([b2c22d3](https://www.github.com/googleapis/google-cloud-php/commit/b2c22d3b9551d869d09f483eefa2b898674a59dc))
+
+</details>
+
+<details><summary>google/cloud-network-security 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4785](https://www.github.com/googleapis/google-cloud-php/issues/4785)) ([951bb33](https://www.github.com/googleapis/google-cloud-php/commit/951bb33228b65afb8e7d251f92bccf6e939ffbda))
+* updating protobuf from 3.15.3 to 3.18.1 ([dcae1b7](https://www.github.com/googleapis/google-cloud-php/commit/dcae1b7b4540305e6e15c7ee787187faf8ca4c8b))
+
+</details>
+
+<details><summary>google/cloud-notebooks 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4786](https://www.github.com/googleapis/google-cloud-php/issues/4786)) ([89e0cd3](https://www.github.com/googleapis/google-cloud-php/commit/89e0cd30d4c49fe04ec4d28b121d2bd79ad02ccd))
+* updating protobuf from 3.15.3 to 3.18.1 ([561c4e1](https://www.github.com/googleapis/google-cloud-php/commit/561c4e1edf55d72c0e3ef2677384bdfe29eb5a01))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* updating protobuf from 3.15.3 to 3.18.1 ([a247e3f](https://www.github.com/googleapis/google-cloud-php/commit/a247e3fd3c26cf103aa7e0490fbbe68656170a85))
+
+</details>
+
+<details><summary>google/cloud-org-policy 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4788](https://www.github.com/googleapis/google-cloud-php/issues/4788)) ([1af449c](https://www.github.com/googleapis/google-cloud-php/commit/1af449c64489a88a7f19bb0ae78f48213049cdef))
+* updating protobuf from 3.15.3 to 3.18.1 ([66b2e0e](https://www.github.com/googleapis/google-cloud-php/commit/66b2e0e93668063597f1bac4d151145cbd7022f0))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4789](https://www.github.com/googleapis/google-cloud-php/issues/4789)) ([2d68abc](https://www.github.com/googleapis/google-cloud-php/commit/2d68abce9f8ae24d60aac39679dedbb0e930ead1))
+* updating protobuf from 3.15.3 to 3.18.1 ([273b38d](https://www.github.com/googleapis/google-cloud-php/commit/273b38d286ebf592fa2310f464684af138d5170c))
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4790](https://www.github.com/googleapis/google-cloud-php/issues/4790)) ([0527784](https://www.github.com/googleapis/google-cloud-php/commit/0527784c660f1594650b5537349a157aea4c7314))
+* updating protobuf from 3.15.3 to 3.18.1 ([ec67bf4](https://www.github.com/googleapis/google-cloud-php/commit/ec67bf4ea6aa7fb3d64ea2fb884646abd3215ec5))
+
+</details>
+
+<details><summary>google/cloud-private-catalog 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4809](https://www.github.com/googleapis/google-cloud-php/issues/4809)) ([5464a7e](https://www.github.com/googleapis/google-cloud-php/commit/5464a7e57565f1f6a2c574366bac51d7bb3c48fb))
+* updating protobuf from 3.15.3 to 3.18.1 ([bbfbd41](https://www.github.com/googleapis/google-cloud-php/commit/bbfbd411288622840c5af63dde9b82575721faf6))
+
+</details>
+
+<details><summary>google/cloud-profiler 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4810](https://www.github.com/googleapis/google-cloud-php/issues/4810)) ([d656d56](https://www.github.com/googleapis/google-cloud-php/commit/d656d56a46ac78a0cf5323b8b2295a94f68e83bd))
+* updating protobuf from 3.15.3 to 3.18.1 ([b4bbfaf](https://www.github.com/googleapis/google-cloud-php/commit/b4bbfaf8b8e251073906d992339ed45ce3d2c2ef))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.34.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4811](https://www.github.com/googleapis/google-cloud-php/issues/4811)) ([298fc96](https://www.github.com/googleapis/google-cloud-php/commit/298fc96229973704fa6d13140dd0c9cab2e6e298))
+* updating protobuf from 3.15.3 to 3.18.1 ([f01d67e](https://www.github.com/googleapis/google-cloud-php/commit/f01d67ed67d40af55ccb2ef7f80cd6a28e9d9ccc))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4791](https://www.github.com/googleapis/google-cloud-php/issues/4791)) ([ff3e65f](https://www.github.com/googleapis/google-cloud-php/commit/ff3e65f250a526ce0ba56d169820a334bbe4a9fb))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.5.2</summary>
+
+
+
+### Documentation
+
+* fix docstring formatting ([#4700](https://www.github.com/googleapis/google-cloud-php/issues/4700)) ([f7b7f0c](https://www.github.com/googleapis/google-cloud-php/commit/f7b7f0c9468577575da3ea15dfb7e9d9c13be74c))
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4792](https://www.github.com/googleapis/google-cloud-php/issues/4792)) ([44cdc64](https://www.github.com/googleapis/google-cloud-php/commit/44cdc6420f6fe0c287814b5fd82bf12f694f6c07))
+* updating protobuf from 3.15.3 to 3.18.1 ([a645fa9](https://www.github.com/googleapis/google-cloud-php/commit/a645fa940d75037cda3734d6fab44d5455b7aa21))
+
+</details>
+
+<details><summary>google/cloud-redis 1.4.0</summary>
+
+
+
+### Features
+
+* support multiple read replicas ([#4705](https://www.github.com/googleapis/google-cloud-php/issues/4705)) ([67c78ff](https://www.github.com/googleapis/google-cloud-php/commit/67c78ff6dcef39d1b518a5dd681ebe44b1205904))
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4793](https://www.github.com/googleapis/google-cloud-php/issues/4793)) ([921514a](https://www.github.com/googleapis/google-cloud-php/commit/921514abb1bc81ba58323454da44674bbc53e789))
+* updating protobuf from 3.15.3 to 3.18.1 ([5499518](https://www.github.com/googleapis/google-cloud-php/commit/5499518e6eeb2c8451f4b3ac949f3054527a5cc0))
+
+</details>
+
+<details><summary>google/cloud-resource-manager 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* updating protobuf from 3.15.3 to 3.18.1 ([e22750e](https://www.github.com/googleapis/google-cloud-php/commit/e22750e56b9bee696b8bda32ffa960f462d0d094))
+
+
+### Documentation
+
+* fix docstring formatting ([#4703](https://www.github.com/googleapis/google-cloud-php/issues/4703)) ([8ac3468](https://www.github.com/googleapis/google-cloud-php/commit/8ac34686059df4f10244db3b24abe4439273605b))
+* fix docstring formatting ([#4718](https://www.github.com/googleapis/google-cloud-php/issues/4718)) ([56bd576](https://www.github.com/googleapis/google-cloud-php/commit/56bd576584a5ecf8e2c8d26e6061e3ec6b90d837))
+
+</details>
+
+<details><summary>google/cloud-resource-settings 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4794](https://www.github.com/googleapis/google-cloud-php/issues/4794)) ([6a5c8f9](https://www.github.com/googleapis/google-cloud-php/commit/6a5c8f9dc49ee76224bcf371c47bc1b1c623c23b))
+* updating protobuf from 3.15.3 to 3.18.1 ([2f9aaa4](https://www.github.com/googleapis/google-cloud-php/commit/2f9aaa402078d773937b3f18f9ed1f890ab8bddb))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.7.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4795](https://www.github.com/googleapis/google-cloud-php/issues/4795)) ([1966952](https://www.github.com/googleapis/google-cloud-php/commit/19669524cc9b70bc1425a6a655110fac47f743f6))
+* updating protobuf from 3.15.3 to 3.18.1 ([da458c4](https://www.github.com/googleapis/google-cloud-php/commit/da458c457e76afca5ae1074567819dc201682fe6))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.5.0</summary>
+
+
+
+### Features
+
+* added resource type and display_name field to the FindingResult ([#4706](https://www.github.com/googleapis/google-cloud-php/issues/4706)) ([5fb9a09](https://www.github.com/googleapis/google-cloud-php/commit/5fb9a09c5dba0c93cd8e0f232ab30ef0de5b24b5))
+
+
+### Miscellaneous Chores
+
+* updating protobuf from 3.15.3 to 3.18.1 ([a93d683](https://www.github.com/googleapis/google-cloud-php/commit/a93d683c39e13d366796cc13a1b32439b8c95b76))
+
+</details>
+
+<details><summary>google/cloud-service-control 0.3.2</summary>
+
+
+
+### Documentation
+
+* fix docstring formatting ([#4697](https://www.github.com/googleapis/google-cloud-php/issues/4697)) ([7083723](https://www.github.com/googleapis/google-cloud-php/commit/7083723b1eabd0562e9050efbdcb4e53cf228862))
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4796](https://www.github.com/googleapis/google-cloud-php/issues/4796)) ([72a4b41](https://www.github.com/googleapis/google-cloud-php/commit/72a4b417e9f4da50df3f5d83194583e5b5ad1b75))
+* updating protobuf from 3.15.3 to 3.18.1 ([73cb9c0](https://www.github.com/googleapis/google-cloud-php/commit/73cb9c0cbc46f45300a1d08c6f01aecddbbea02b))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.6.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* updating protobuf from 3.15.3 to 3.18.1 ([3caefe3](https://www.github.com/googleapis/google-cloud-php/commit/3caefe323c8085c113b785d5201c162104290922))
+
+
+### Documentation
+
+* fix docstring formatting ([#4698](https://www.github.com/googleapis/google-cloud-php/issues/4698)) ([e3d3271](https://www.github.com/googleapis/google-cloud-php/commit/e3d3271d7a4712a13b5a08747c10a4ec6ac652ed))
+
+</details>
+
+<details><summary>google/cloud-service-management 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4798](https://www.github.com/googleapis/google-cloud-php/issues/4798)) ([0283c85](https://www.github.com/googleapis/google-cloud-php/commit/0283c8570b64e25f143a15fcdd88a14d6a7a5370))
+* updating protobuf from 3.15.3 to 3.18.1 ([7dd79f6](https://www.github.com/googleapis/google-cloud-php/commit/7dd79f6bf10cac5d469dc82e227178af8a5ccb5d))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.46.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **build:** use gRPC 1.42.0 ([#4735](https://www.github.com/googleapis/google-cloud-php/issues/4735)) ([835e1aa](https://www.github.com/googleapis/google-cloud-php/commit/835e1aafeb7582f61d6462db11e8b79fadc00efa))
+* updating protobuf from 3.15.3 to 3.18.1 ([753061c](https://www.github.com/googleapis/google-cloud-php/commit/753061c8199c15dd6c4a1c4419115d43ade50411))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4799](https://www.github.com/googleapis/google-cloud-php/issues/4799)) ([25c3fd0](https://www.github.com/googleapis/google-cloud-php/commit/25c3fd0742cab46b31935024aa225a3857ea05f9))
+* updating protobuf from 3.15.3 to 3.18.1 ([bbbb0ce](https://www.github.com/googleapis/google-cloud-php/commit/bbbb0ceb09b5122b6c76f065741f234d34a96b43))
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* updating protobuf from 3.15.3 to 3.18.1 ([754dbd6](https://www.github.com/googleapis/google-cloud-php/commit/754dbd64b2ad5d65bb63c05b4b983615e5eb24c3))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* updating protobuf from 3.15.3 to 3.18.1 ([ce49327](https://www.github.com/googleapis/google-cloud-php/commit/ce4932740fd51c6ca98096d04b94e008ccd699f9))
+
+</details>
+
+<details><summary>google/cloud-tpu 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4801](https://www.github.com/googleapis/google-cloud-php/issues/4801)) ([c12f6b9](https://www.github.com/googleapis/google-cloud-php/commit/c12f6b90497a4a2ad1f973a752dd224bdf1a2db2))
+* updating protobuf from 3.15.3 to 3.18.1 ([8449f40](https://www.github.com/googleapis/google-cloud-php/commit/8449f40c601bbad4e6c9aaf0898d43cc29ea183d))
+
+</details>
+
+<details><summary>google/cloud-trace 1.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4802](https://www.github.com/googleapis/google-cloud-php/issues/4802)) ([7e2c000](https://www.github.com/googleapis/google-cloud-php/commit/7e2c000bfb28460d9c062e687477e0d967010ad0))
+* updating protobuf from 3.15.3 to 3.18.1 ([b873967](https://www.github.com/googleapis/google-cloud-php/commit/b873967d9c48c6230d76db959e416827de366a17))
+
+</details>
+
+<details><summary>google/cloud-translate 1.12.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4803](https://www.github.com/googleapis/google-cloud-php/issues/4803)) ([1f3dab2](https://www.github.com/googleapis/google-cloud-php/commit/1f3dab2a8c4a317f02ecac37dce483e6dd9294b2))
+
+</details>
+
+<details><summary>google/cloud-vision 1.5.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf from 3.15.3 to 3.18.1 ([#4677](https://www.github.com/googleapis/google-cloud-php/issues/4677)) ([dee112c](https://www.github.com/googleapis/google-cloud-php/commit/dee112c544ba7f06bc214258a2988ce4e07bb0cf))
+* **vision:** Added files to migrate to owlbot ([#4737](https://www.github.com/googleapis/google-cloud-php/issues/4737)) ([9ca2e74](https://www.github.com/googleapis/google-cloud-php/commit/9ca2e74c0f33250c1547a5d2fa47cced78c1a5df))
+
+</details>
+
+<details><summary>google/cloud-vpc-access 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4804](https://www.github.com/googleapis/google-cloud-php/issues/4804)) ([c34acd3](https://www.github.com/googleapis/google-cloud-php/commit/c34acd3c1a2a164543eddbac0c219e0c06450be7))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4805](https://www.github.com/googleapis/google-cloud-php/issues/4805)) ([ff9ac1e](https://www.github.com/googleapis/google-cloud-php/commit/ff9ac1eba218ecd060d88c9b1b12a92d051a704c))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.7.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4806](https://www.github.com/googleapis/google-cloud-php/issues/4806)) ([225bd1f](https://www.github.com/googleapis/google-cloud-php/commit/225bd1f8e0bdff38197548d41ef1af9e90b1d5f1))
+
+</details>
+
 ## 0.171.1
 
 <details><summary>google/cloud-access-approval 0.2.1</summary>

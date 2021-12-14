@@ -36,6 +36,12 @@ class ExportInsightsDataRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string kms_key = 4;</code>
      */
     private $kms_key = '';
+    /**
+     * Options for what to do if the destination table already exists.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ExportInsightsDataRequest.WriteDisposition write_disposition = 5;</code>
+     */
+    private $write_disposition = 0;
     protected $destination;
 
     /**
@@ -55,6 +61,8 @@ class ExportInsightsDataRequest extends \Google\Protobuf\Internal\Message
      *           A fully qualified KMS key name for BigQuery tables protected by CMEK.
      *           Format:
      *           projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}/cryptoKeyVersions/{version}
+     *     @type int $write_disposition
+     *           Options for what to do if the destination table already exists.
      * }
      */
     public function __construct($data = NULL) {
@@ -173,6 +181,32 @@ class ExportInsightsDataRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kms_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Options for what to do if the destination table already exists.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ExportInsightsDataRequest.WriteDisposition write_disposition = 5;</code>
+     * @return int
+     */
+    public function getWriteDisposition()
+    {
+        return $this->write_disposition;
+    }
+
+    /**
+     * Options for what to do if the destination table already exists.
+     *
+     * Generated from protobuf field <code>.google.cloud.contactcenterinsights.v1.ExportInsightsDataRequest.WriteDisposition write_disposition = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setWriteDisposition($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ContactCenterInsights\V1\ExportInsightsDataRequest\WriteDisposition::class);
+        $this->write_disposition = $var;
 
         return $this;
     }

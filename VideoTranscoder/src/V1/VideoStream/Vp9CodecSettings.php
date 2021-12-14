@@ -44,33 +44,33 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      */
     private $frame_rate = 0.0;
     /**
-     * Required. The video bitrate in bits per second. Must be between 1 and
-     * 1,000,000,000.
+     * Required. The video bitrate in bits per second. The minimum value is 1,000.
+     * The maximum value is 480,000,000.
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $bitrate_bps = 0;
     /**
-     * Pixel format to use. The default is `"yuv420p"`.
+     * Pixel format to use. The default is `yuv420p`.
      * Supported pixel formats:
-     * - 'yuv420p' pixel format.
-     * - 'yuv422p' pixel format.
-     * - 'yuv444p' pixel format.
-     * - 'yuv420p10' 10-bit HDR pixel format.
-     * - 'yuv422p10' 10-bit HDR pixel format.
-     * - 'yuv444p10' 10-bit HDR pixel format.
-     * - 'yuv420p12' 12-bit HDR pixel format.
-     * - 'yuv422p12' 12-bit HDR pixel format.
-     * - 'yuv444p12' 12-bit HDR pixel format.
+     * - `yuv420p` pixel format
+     * - `yuv422p` pixel format
+     * - `yuv444p` pixel format
+     * - `yuv420p10` 10-bit HDR pixel format
+     * - `yuv422p10` 10-bit HDR pixel format
+     * - `yuv444p10` 10-bit HDR pixel format
+     * - `yuv420p12` 12-bit HDR pixel format
+     * - `yuv422p12` 12-bit HDR pixel format
+     * - `yuv444p12` 12-bit HDR pixel format
      *
      * Generated from protobuf field <code>string pixel_format = 5;</code>
      */
     private $pixel_format = '';
     /**
-     * Specify the `rate_control_mode`. The default is `"vbr"`.
+     * Specify the `rate_control_mode`. The default is `vbr`.
      * Supported rate control modes:
-     * - 'vbr' - variable bitrate
-     * - 'crf' - constant rate factor
+     * - `vbr` - variable bitrate
+     * - `crf` - constant rate factor
      *
      * Generated from protobuf field <code>string rate_control_mode = 6;</code>
      */
@@ -90,8 +90,8 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      * *   `profile2`
      * *   `profile3`
      * The available options are
-     * [WebM-compatible](https://www.webmproject.org/vp9/profiles/){:
-     * class="external" }. Note that certain values for this field may cause the
+     * [WebM-compatible](https://www.webmproject.org/vp9/profiles/).
+     * Note that certain values for this field may cause the
      * transcoder to override other fields you set in the `Vp9CodecSettings`
      * message.
      *
@@ -123,25 +123,25 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      *           rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for
      *           more information.
      *     @type int $bitrate_bps
-     *           Required. The video bitrate in bits per second. Must be between 1 and
-     *           1,000,000,000.
+     *           Required. The video bitrate in bits per second. The minimum value is 1,000.
+     *           The maximum value is 480,000,000.
      *     @type string $pixel_format
-     *           Pixel format to use. The default is `"yuv420p"`.
+     *           Pixel format to use. The default is `yuv420p`.
      *           Supported pixel formats:
-     *           - 'yuv420p' pixel format.
-     *           - 'yuv422p' pixel format.
-     *           - 'yuv444p' pixel format.
-     *           - 'yuv420p10' 10-bit HDR pixel format.
-     *           - 'yuv422p10' 10-bit HDR pixel format.
-     *           - 'yuv444p10' 10-bit HDR pixel format.
-     *           - 'yuv420p12' 12-bit HDR pixel format.
-     *           - 'yuv422p12' 12-bit HDR pixel format.
-     *           - 'yuv444p12' 12-bit HDR pixel format.
+     *           - `yuv420p` pixel format
+     *           - `yuv422p` pixel format
+     *           - `yuv444p` pixel format
+     *           - `yuv420p10` 10-bit HDR pixel format
+     *           - `yuv422p10` 10-bit HDR pixel format
+     *           - `yuv444p10` 10-bit HDR pixel format
+     *           - `yuv420p12` 12-bit HDR pixel format
+     *           - `yuv422p12` 12-bit HDR pixel format
+     *           - `yuv444p12` 12-bit HDR pixel format
      *     @type string $rate_control_mode
-     *           Specify the `rate_control_mode`. The default is `"vbr"`.
+     *           Specify the `rate_control_mode`. The default is `vbr`.
      *           Supported rate control modes:
-     *           - 'vbr' - variable bitrate
-     *           - 'crf' - constant rate factor
+     *           - `vbr` - variable bitrate
+     *           - `crf` - constant rate factor
      *     @type int $crf_level
      *           Target CRF level. Must be between 10 and 36, where 10 is the highest
      *           quality and 36 is the most efficient compression. The default is 21.
@@ -150,7 +150,7 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      *           than zero.
      *     @type \Google\Protobuf\Duration $gop_duration
      *           Select the GOP size based on the specified duration. The default is
-     *           `"3s"`. Note that `gopDuration` must be less than or equal to
+     *           `3s`. Note that `gopDuration` must be less than or equal to
      *           [`segmentDuration`](#SegmentSettings), and
      *           [`segmentDuration`](#SegmentSettings) must be divisible by
      *           `gopDuration`.
@@ -162,8 +162,8 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      *           *   `profile2`
      *           *   `profile3`
      *           The available options are
-     *           [WebM-compatible](https://www.webmproject.org/vp9/profiles/){:
-     *           class="external" }. Note that certain values for this field may cause the
+     *           [WebM-compatible](https://www.webmproject.org/vp9/profiles/).
+     *           Note that certain values for this field may cause the
      *           transcoder to override other fields you set in the `Vp9CodecSettings`
      *           message.
      * }
@@ -272,8 +272,8 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The video bitrate in bits per second. Must be between 1 and
-     * 1,000,000,000.
+     * Required. The video bitrate in bits per second. The minimum value is 1,000.
+     * The maximum value is 480,000,000.
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -284,8 +284,8 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The video bitrate in bits per second. Must be between 1 and
-     * 1,000,000,000.
+     * Required. The video bitrate in bits per second. The minimum value is 1,000.
+     * The maximum value is 480,000,000.
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -300,17 +300,17 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pixel format to use. The default is `"yuv420p"`.
+     * Pixel format to use. The default is `yuv420p`.
      * Supported pixel formats:
-     * - 'yuv420p' pixel format.
-     * - 'yuv422p' pixel format.
-     * - 'yuv444p' pixel format.
-     * - 'yuv420p10' 10-bit HDR pixel format.
-     * - 'yuv422p10' 10-bit HDR pixel format.
-     * - 'yuv444p10' 10-bit HDR pixel format.
-     * - 'yuv420p12' 12-bit HDR pixel format.
-     * - 'yuv422p12' 12-bit HDR pixel format.
-     * - 'yuv444p12' 12-bit HDR pixel format.
+     * - `yuv420p` pixel format
+     * - `yuv422p` pixel format
+     * - `yuv444p` pixel format
+     * - `yuv420p10` 10-bit HDR pixel format
+     * - `yuv422p10` 10-bit HDR pixel format
+     * - `yuv444p10` 10-bit HDR pixel format
+     * - `yuv420p12` 12-bit HDR pixel format
+     * - `yuv422p12` 12-bit HDR pixel format
+     * - `yuv444p12` 12-bit HDR pixel format
      *
      * Generated from protobuf field <code>string pixel_format = 5;</code>
      * @return string
@@ -321,17 +321,17 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pixel format to use. The default is `"yuv420p"`.
+     * Pixel format to use. The default is `yuv420p`.
      * Supported pixel formats:
-     * - 'yuv420p' pixel format.
-     * - 'yuv422p' pixel format.
-     * - 'yuv444p' pixel format.
-     * - 'yuv420p10' 10-bit HDR pixel format.
-     * - 'yuv422p10' 10-bit HDR pixel format.
-     * - 'yuv444p10' 10-bit HDR pixel format.
-     * - 'yuv420p12' 12-bit HDR pixel format.
-     * - 'yuv422p12' 12-bit HDR pixel format.
-     * - 'yuv444p12' 12-bit HDR pixel format.
+     * - `yuv420p` pixel format
+     * - `yuv422p` pixel format
+     * - `yuv444p` pixel format
+     * - `yuv420p10` 10-bit HDR pixel format
+     * - `yuv422p10` 10-bit HDR pixel format
+     * - `yuv444p10` 10-bit HDR pixel format
+     * - `yuv420p12` 12-bit HDR pixel format
+     * - `yuv422p12` 12-bit HDR pixel format
+     * - `yuv444p12` 12-bit HDR pixel format
      *
      * Generated from protobuf field <code>string pixel_format = 5;</code>
      * @param string $var
@@ -346,10 +346,10 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specify the `rate_control_mode`. The default is `"vbr"`.
+     * Specify the `rate_control_mode`. The default is `vbr`.
      * Supported rate control modes:
-     * - 'vbr' - variable bitrate
-     * - 'crf' - constant rate factor
+     * - `vbr` - variable bitrate
+     * - `crf` - constant rate factor
      *
      * Generated from protobuf field <code>string rate_control_mode = 6;</code>
      * @return string
@@ -360,10 +360,10 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specify the `rate_control_mode`. The default is `"vbr"`.
+     * Specify the `rate_control_mode`. The default is `vbr`.
      * Supported rate control modes:
-     * - 'vbr' - variable bitrate
-     * - 'crf' - constant rate factor
+     * - `vbr` - variable bitrate
+     * - `crf` - constant rate factor
      *
      * Generated from protobuf field <code>string rate_control_mode = 6;</code>
      * @param string $var
@@ -440,7 +440,7 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Select the GOP size based on the specified duration. The default is
-     * `"3s"`. Note that `gopDuration` must be less than or equal to
+     * `3s`. Note that `gopDuration` must be less than or equal to
      * [`segmentDuration`](#SegmentSettings), and
      * [`segmentDuration`](#SegmentSettings) must be divisible by
      * `gopDuration`.
@@ -460,7 +460,7 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Select the GOP size based on the specified duration. The default is
-     * `"3s"`. Note that `gopDuration` must be less than or equal to
+     * `3s`. Note that `gopDuration` must be less than or equal to
      * [`segmentDuration`](#SegmentSettings), and
      * [`segmentDuration`](#SegmentSettings) must be divisible by
      * `gopDuration`.
@@ -485,8 +485,8 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      * *   `profile2`
      * *   `profile3`
      * The available options are
-     * [WebM-compatible](https://www.webmproject.org/vp9/profiles/){:
-     * class="external" }. Note that certain values for this field may cause the
+     * [WebM-compatible](https://www.webmproject.org/vp9/profiles/).
+     * Note that certain values for this field may cause the
      * transcoder to override other fields you set in the `Vp9CodecSettings`
      * message.
      *
@@ -506,8 +506,8 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      * *   `profile2`
      * *   `profile3`
      * The available options are
-     * [WebM-compatible](https://www.webmproject.org/vp9/profiles/){:
-     * class="external" }. Note that certain values for this field may cause the
+     * [WebM-compatible](https://www.webmproject.org/vp9/profiles/).
+     * Note that certain values for this field may cause the
      * transcoder to override other fields you set in the `Vp9CodecSettings`
      * message.
      *

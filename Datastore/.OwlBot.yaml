@@ -1,0 +1,3 @@
+deep-copy-regex:
+    - source: /google/datastore/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/Datastore/$1/$2

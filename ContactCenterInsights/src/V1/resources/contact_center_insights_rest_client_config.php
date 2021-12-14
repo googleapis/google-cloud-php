@@ -313,6 +313,19 @@ return [
                     ],
                 ],
             ],
+            'UpdatePhraseMatcher' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{phrase_matcher.name=projects/*/locations/*/phraseMatchers/*}',
+                'body' => 'phrase_matcher',
+                'placeholders' => [
+                    'phrase_matcher.name' => [
+                        'getters' => [
+                            'getPhraseMatcher',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateSettings' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{settings.name=projects/*/locations/*/settings}',

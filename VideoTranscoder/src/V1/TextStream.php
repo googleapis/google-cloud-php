@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class TextStream extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The codec for this text stream. The default is `"webvtt"`.
+     * The codec for this text stream. The default is `webvtt`.
      * Supported text codecs:
-     * - 'srt'
-     * - 'ttml'
-     * - 'cea608'
-     * - 'cea708'
-     * - 'webvtt'
+     * - `srt`
+     * - `ttml`
+     * - `cea608`
+     * - `cea708`
+     * - `webvtt`
      *
      * Generated from protobuf field <code>string codec = 1;</code>
      */
@@ -41,13 +41,13 @@ class TextStream extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $codec
-     *           The codec for this text stream. The default is `"webvtt"`.
+     *           The codec for this text stream. The default is `webvtt`.
      *           Supported text codecs:
-     *           - 'srt'
-     *           - 'ttml'
-     *           - 'cea608'
-     *           - 'cea708'
-     *           - 'webvtt'
+     *           - `srt`
+     *           - `ttml`
+     *           - `cea608`
+     *           - `cea708`
+     *           - `webvtt`
      *     @type \Google\Cloud\Video\Transcoder\V1\TextStream\TextMapping[]|\Google\Protobuf\Internal\RepeatedField $mapping
      *           The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.
      * }
@@ -58,13 +58,13 @@ class TextStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The codec for this text stream. The default is `"webvtt"`.
+     * The codec for this text stream. The default is `webvtt`.
      * Supported text codecs:
-     * - 'srt'
-     * - 'ttml'
-     * - 'cea608'
-     * - 'cea708'
-     * - 'webvtt'
+     * - `srt`
+     * - `ttml`
+     * - `cea608`
+     * - `cea708`
+     * - `webvtt`
      *
      * Generated from protobuf field <code>string codec = 1;</code>
      * @return string
@@ -75,13 +75,13 @@ class TextStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The codec for this text stream. The default is `"webvtt"`.
+     * The codec for this text stream. The default is `webvtt`.
      * Supported text codecs:
-     * - 'srt'
-     * - 'ttml'
-     * - 'cea608'
-     * - 'cea708'
-     * - 'webvtt'
+     * - `srt`
+     * - `ttml`
+     * - `cea608`
+     * - `cea708`
+     * - `webvtt`
      *
      * Generated from protobuf field <code>string codec = 1;</code>
      * @param string $var

@@ -24,26 +24,25 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * Optional fully qualified domain name of network endpoint. This can only be specified when NetworkEndpointGroup.network_endpoint_type is NON_GCP_FQDN_PORT.
      *
-     * Generated from protobuf field <code>string fqdn = 3150485;</code>
+     * Generated from protobuf field <code>optional string fqdn = 3150485;</code>
      */
     private $fqdn = null;
     /**
-     * The name for a specific VM instance that the IP address belongs to. This is required for network endpoints of type GCE_VM_IP_PORT. The instance must be in the same zone of network endpoint group.
-     * The name must be 1-63 characters long, and comply with RFC1035.
+     * The name for a specific VM instance that the IP address belongs to. This is required for network endpoints of type GCE_VM_IP_PORT. The instance must be in the same zone of network endpoint group. The name must be 1-63 characters long, and comply with RFC1035.
      *
-     * Generated from protobuf field <code>string instance = 18257045;</code>
+     * Generated from protobuf field <code>optional string instance = 18257045;</code>
      */
     private $instance = null;
     /**
      * Optional IPv4 address of network endpoint. The IP address must belong to a VM in Compute Engine (either the primary IP or as part of an aliased IP range). If the IP address is not specified, then the primary IP address for the VM instance in the network that the network endpoint group belongs to will be used.
      *
-     * Generated from protobuf field <code>string ip_address = 406272220;</code>
+     * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      */
     private $ip_address = null;
     /**
      * Optional port number of network endpoint. If not specified, the defaultPort for the network endpoint group will be used.
      *
-     * Generated from protobuf field <code>int32 port = 3446913;</code>
+     * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      */
     private $port = null;
 
@@ -58,8 +57,7 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
      *     @type string $fqdn
      *           Optional fully qualified domain name of network endpoint. This can only be specified when NetworkEndpointGroup.network_endpoint_type is NON_GCP_FQDN_PORT.
      *     @type string $instance
-     *           The name for a specific VM instance that the IP address belongs to. This is required for network endpoints of type GCE_VM_IP_PORT. The instance must be in the same zone of network endpoint group.
-     *           The name must be 1-63 characters long, and comply with RFC1035.
+     *           The name for a specific VM instance that the IP address belongs to. This is required for network endpoints of type GCE_VM_IP_PORT. The instance must be in the same zone of network endpoint group. The name must be 1-63 characters long, and comply with RFC1035.
      *     @type string $ip_address
      *           Optional IPv4 address of network endpoint. The IP address must belong to a VM in Compute Engine (either the primary IP or as part of an aliased IP range). If the IP address is not specified, then the primary IP address for the VM instance in the network that the network endpoint group belongs to will be used.
      *     @type int $port
@@ -100,7 +98,7 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * Optional fully qualified domain name of network endpoint. This can only be specified when NetworkEndpointGroup.network_endpoint_type is NON_GCP_FQDN_PORT.
      *
-     * Generated from protobuf field <code>string fqdn = 3150485;</code>
+     * Generated from protobuf field <code>optional string fqdn = 3150485;</code>
      * @return string
      */
     public function getFqdn()
@@ -121,7 +119,7 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * Optional fully qualified domain name of network endpoint. This can only be specified when NetworkEndpointGroup.network_endpoint_type is NON_GCP_FQDN_PORT.
      *
-     * Generated from protobuf field <code>string fqdn = 3150485;</code>
+     * Generated from protobuf field <code>optional string fqdn = 3150485;</code>
      * @param string $var
      * @return $this
      */
@@ -134,10 +132,9 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name for a specific VM instance that the IP address belongs to. This is required for network endpoints of type GCE_VM_IP_PORT. The instance must be in the same zone of network endpoint group.
-     * The name must be 1-63 characters long, and comply with RFC1035.
+     * The name for a specific VM instance that the IP address belongs to. This is required for network endpoints of type GCE_VM_IP_PORT. The instance must be in the same zone of network endpoint group. The name must be 1-63 characters long, and comply with RFC1035.
      *
-     * Generated from protobuf field <code>string instance = 18257045;</code>
+     * Generated from protobuf field <code>optional string instance = 18257045;</code>
      * @return string
      */
     public function getInstance()
@@ -156,10 +153,9 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name for a specific VM instance that the IP address belongs to. This is required for network endpoints of type GCE_VM_IP_PORT. The instance must be in the same zone of network endpoint group.
-     * The name must be 1-63 characters long, and comply with RFC1035.
+     * The name for a specific VM instance that the IP address belongs to. This is required for network endpoints of type GCE_VM_IP_PORT. The instance must be in the same zone of network endpoint group. The name must be 1-63 characters long, and comply with RFC1035.
      *
-     * Generated from protobuf field <code>string instance = 18257045;</code>
+     * Generated from protobuf field <code>optional string instance = 18257045;</code>
      * @param string $var
      * @return $this
      */
@@ -174,7 +170,7 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * Optional IPv4 address of network endpoint. The IP address must belong to a VM in Compute Engine (either the primary IP or as part of an aliased IP range). If the IP address is not specified, then the primary IP address for the VM instance in the network that the network endpoint group belongs to will be used.
      *
-     * Generated from protobuf field <code>string ip_address = 406272220;</code>
+     * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      * @return string
      */
     public function getIpAddress()
@@ -195,7 +191,7 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * Optional IPv4 address of network endpoint. The IP address must belong to a VM in Compute Engine (either the primary IP or as part of an aliased IP range). If the IP address is not specified, then the primary IP address for the VM instance in the network that the network endpoint group belongs to will be used.
      *
-     * Generated from protobuf field <code>string ip_address = 406272220;</code>
+     * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      * @param string $var
      * @return $this
      */
@@ -210,7 +206,7 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * Optional port number of network endpoint. If not specified, the defaultPort for the network endpoint group will be used.
      *
-     * Generated from protobuf field <code>int32 port = 3446913;</code>
+     * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      * @return int
      */
     public function getPort()
@@ -231,7 +227,7 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * Optional port number of network endpoint. If not specified, the defaultPort for the network endpoint group will be used.
      *
-     * Generated from protobuf field <code>int32 port = 3446913;</code>
+     * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      * @param int $var
      * @return $this
      */

@@ -85,6 +85,7 @@ class ZonesClientTest extends GeneratedTest
         $name = 'name3373707';
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
+        $status = 'status-892481550';
         $supportsPzs = true;
         $expectedResponse = new Zone();
         $expectedResponse->setCreationTimestamp($creationTimestamp);
@@ -94,6 +95,7 @@ class ZonesClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setRegion($region);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setStatus($status);
         $expectedResponse->setSupportsPzs($supportsPzs);
         $transport->addResponse($expectedResponse);
         // Mock request

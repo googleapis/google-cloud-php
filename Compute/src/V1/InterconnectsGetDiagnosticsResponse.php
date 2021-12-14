@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InterconnectsGetDiagnosticsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnostics result = 139315229;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnostics result = 139315229;</code>
      */
     private $result = null;
 
@@ -35,12 +35,12 @@ class InterconnectsGetDiagnosticsResponse extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnostics result = 139315229;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnostics result = 139315229;</code>
      * @return \Google\Cloud\Compute\V1\InterconnectDiagnostics|null
      */
     public function getResult()
     {
-        return isset($this->result) ? $this->result : null;
+        return $this->result;
     }
 
     public function hasResult()
@@ -54,7 +54,7 @@ class InterconnectsGetDiagnosticsResponse extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnostics result = 139315229;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnostics result = 139315229;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectDiagnostics $var
      * @return $this
      */

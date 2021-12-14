@@ -17,7 +17,7 @@ class NetworksRemovePeeringRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the peering, which should conform to RFC1035.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
 
@@ -39,7 +39,7 @@ class NetworksRemovePeeringRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the peering, which should conform to RFC1035.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -60,7 +60,7 @@ class NetworksRemovePeeringRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the peering, which should conform to RFC1035.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */

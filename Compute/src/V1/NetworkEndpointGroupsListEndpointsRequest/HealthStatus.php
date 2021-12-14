@@ -20,10 +20,14 @@ class HealthStatus
      */
     const UNDEFINED_HEALTH_STATUS = 0;
     /**
+     * Show the health status for each network endpoint. Impacts latency of the call.
+     *
      * Generated from protobuf enum <code>SHOW = 2544381;</code>
      */
     const SHOW = 2544381;
     /**
+     * Health status for network endpoints will not be provided.
+     *
      * Generated from protobuf enum <code>SKIP = 2547071;</code>
      */
     const SKIP = 2547071;

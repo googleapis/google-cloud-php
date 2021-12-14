@@ -9,17 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A full or valid partial URL to a health check. For example, the following are valid URLs:
- * - https://www.googleapis.com/compute/beta/projects/project-id/global/httpHealthChecks/health-check
- * - projects/project-id/global/httpHealthChecks/health-check
- * - global/httpHealthChecks/health-check
+ * A full or valid partial URL to a health check. For example, the following are valid URLs: - https://www.googleapis.com/compute/beta/projects/project-id/global/httpHealthChecks/health-check - projects/project-id/global/httpHealthChecks/health-check - global/httpHealthChecks/health-check 
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.HealthCheckReference</code>
  */
 class HealthCheckReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string health_check = 308876645;</code>
+     * Generated from protobuf field <code>optional string health_check = 308876645;</code>
      */
     private $health_check = null;
 
@@ -38,7 +35,7 @@ class HealthCheckReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string health_check = 308876645;</code>
+     * Generated from protobuf field <code>optional string health_check = 308876645;</code>
      * @return string
      */
     public function getHealthCheck()
@@ -57,7 +54,7 @@ class HealthCheckReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string health_check = 308876645;</code>
+     * Generated from protobuf field <code>optional string health_check = 308876645;</code>
      * @param string $var
      * @return $this
      */

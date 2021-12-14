@@ -63,6 +63,12 @@ class Occurrence extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7;</code>
      */
     private $update_time = null;
+    /**
+     * https://github.com/secure-systems-lab/dsse
+     *
+     * Generated from protobuf field <code>.grafeas.v1.Envelope envelope = 18;</code>
+     */
+    private $envelope = null;
     protected $details;
 
     /**
@@ -108,6 +114,12 @@ class Occurrence extends \Google\Protobuf\Internal\Message
      *           Describes an attestation of an artifact.
      *     @type \Grafeas\V1\UpgradeOccurrence $upgrade
      *           Describes an available package upgrade on the linked resource.
+     *     @type \Grafeas\V1\ComplianceOccurrence $compliance
+     *           Describes a compliance violation on a linked resource.
+     *     @type \Grafeas\V1\DSSEAttestationOccurrence $dsse_attestation
+     *           Describes an attestation of an artifact using dsse.
+     *     @type \Grafeas\V1\Envelope $envelope
+     *           https://github.com/secure-systems-lab/dsse
      * }
      */
     public function __construct($data = NULL) {
@@ -575,6 +587,104 @@ class Occurrence extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Grafeas\V1\UpgradeOccurrence::class);
         $this->writeOneof(15, $var);
+
+        return $this;
+    }
+
+    /**
+     * Describes a compliance violation on a linked resource.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.ComplianceOccurrence compliance = 16;</code>
+     * @return \Grafeas\V1\ComplianceOccurrence|null
+     */
+    public function getCompliance()
+    {
+        return $this->readOneof(16);
+    }
+
+    public function hasCompliance()
+    {
+        return $this->hasOneof(16);
+    }
+
+    /**
+     * Describes a compliance violation on a linked resource.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.ComplianceOccurrence compliance = 16;</code>
+     * @param \Grafeas\V1\ComplianceOccurrence $var
+     * @return $this
+     */
+    public function setCompliance($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\ComplianceOccurrence::class);
+        $this->writeOneof(16, $var);
+
+        return $this;
+    }
+
+    /**
+     * Describes an attestation of an artifact using dsse.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.DSSEAttestationOccurrence dsse_attestation = 17;</code>
+     * @return \Grafeas\V1\DSSEAttestationOccurrence|null
+     */
+    public function getDsseAttestation()
+    {
+        return $this->readOneof(17);
+    }
+
+    public function hasDsseAttestation()
+    {
+        return $this->hasOneof(17);
+    }
+
+    /**
+     * Describes an attestation of an artifact using dsse.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.DSSEAttestationOccurrence dsse_attestation = 17;</code>
+     * @param \Grafeas\V1\DSSEAttestationOccurrence $var
+     * @return $this
+     */
+    public function setDsseAttestation($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\DSSEAttestationOccurrence::class);
+        $this->writeOneof(17, $var);
+
+        return $this;
+    }
+
+    /**
+     * https://github.com/secure-systems-lab/dsse
+     *
+     * Generated from protobuf field <code>.grafeas.v1.Envelope envelope = 18;</code>
+     * @return \Grafeas\V1\Envelope|null
+     */
+    public function getEnvelope()
+    {
+        return $this->envelope;
+    }
+
+    public function hasEnvelope()
+    {
+        return isset($this->envelope);
+    }
+
+    public function clearEnvelope()
+    {
+        unset($this->envelope);
+    }
+
+    /**
+     * https://github.com/secure-systems-lab/dsse
+     *
+     * Generated from protobuf field <code>.grafeas.v1.Envelope envelope = 18;</code>
+     * @param \Grafeas\V1\Envelope $var
+     * @return $this
+     */
+    public function setEnvelope($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\Envelope::class);
+        $this->envelope = $var;
 
         return $this;
     }

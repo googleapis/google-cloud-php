@@ -16,25 +16,38 @@ use Google\Protobuf\Internal\GPBUtil;
 class AuthorizationInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource being accessed, as a REST-style string. For example:
-     *     bigquery.googlapis.com/projects/PROJECTID/datasets/DATASETID
+     * The resource being accessed, as a REST-style or cloud resource string.
+     * For example:
+     *     bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID
+     * or
+     *     projects/PROJECTID/datasets/DATASETID
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      */
-    private $resource = '';
+    protected $resource = '';
     /**
      * The required IAM permission.
      *
      * Generated from protobuf field <code>string permission = 2;</code>
      */
-    private $permission = '';
+    protected $permission = '';
     /**
      * Whether or not authorization for `resource` and `permission`
      * was granted.
      *
      * Generated from protobuf field <code>bool granted = 3;</code>
      */
-    private $granted = false;
+    protected $granted = false;
+    /**
+     * Resource attributes used in IAM condition evaluation. This field contains
+     * resource attributes like resource type and resource name.
+     * To get the whole view of the attributes used in IAM
+     * condition evaluation, the user must also look into
+     * `AuditLog.request_metadata.request_attributes`.
+     *
+     * Generated from protobuf field <code>.google.rpc.context.AttributeContext.Resource resource_attributes = 5;</code>
+     */
+    protected $resource_attributes = null;
 
     /**
      * Constructor.
@@ -43,13 +56,22 @@ class AuthorizationInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $resource
-     *           The resource being accessed, as a REST-style string. For example:
-     *               bigquery.googlapis.com/projects/PROJECTID/datasets/DATASETID
+     *           The resource being accessed, as a REST-style or cloud resource string.
+     *           For example:
+     *               bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID
+     *           or
+     *               projects/PROJECTID/datasets/DATASETID
      *     @type string $permission
      *           The required IAM permission.
      *     @type bool $granted
      *           Whether or not authorization for `resource` and `permission`
      *           was granted.
+     *     @type \Google\Rpc\Context\AttributeContext\Resource $resource_attributes
+     *           Resource attributes used in IAM condition evaluation. This field contains
+     *           resource attributes like resource type and resource name.
+     *           To get the whole view of the attributes used in IAM
+     *           condition evaluation, the user must also look into
+     *           `AuditLog.request_metadata.request_attributes`.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,8 +80,11 @@ class AuthorizationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource being accessed, as a REST-style string. For example:
-     *     bigquery.googlapis.com/projects/PROJECTID/datasets/DATASETID
+     * The resource being accessed, as a REST-style or cloud resource string.
+     * For example:
+     *     bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID
+     * or
+     *     projects/PROJECTID/datasets/DATASETID
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      * @return string
@@ -70,8 +95,11 @@ class AuthorizationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource being accessed, as a REST-style string. For example:
-     *     bigquery.googlapis.com/projects/PROJECTID/datasets/DATASETID
+     * The resource being accessed, as a REST-style or cloud resource string.
+     * For example:
+     *     bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID
+     * or
+     *     projects/PROJECTID/datasets/DATASETID
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      * @param string $var
@@ -135,6 +163,50 @@ class AuthorizationInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->granted = $var;
+
+        return $this;
+    }
+
+    /**
+     * Resource attributes used in IAM condition evaluation. This field contains
+     * resource attributes like resource type and resource name.
+     * To get the whole view of the attributes used in IAM
+     * condition evaluation, the user must also look into
+     * `AuditLog.request_metadata.request_attributes`.
+     *
+     * Generated from protobuf field <code>.google.rpc.context.AttributeContext.Resource resource_attributes = 5;</code>
+     * @return \Google\Rpc\Context\AttributeContext\Resource|null
+     */
+    public function getResourceAttributes()
+    {
+        return isset($this->resource_attributes) ? $this->resource_attributes : null;
+    }
+
+    public function hasResourceAttributes()
+    {
+        return isset($this->resource_attributes);
+    }
+
+    public function clearResourceAttributes()
+    {
+        unset($this->resource_attributes);
+    }
+
+    /**
+     * Resource attributes used in IAM condition evaluation. This field contains
+     * resource attributes like resource type and resource name.
+     * To get the whole view of the attributes used in IAM
+     * condition evaluation, the user must also look into
+     * `AuditLog.request_metadata.request_attributes`.
+     *
+     * Generated from protobuf field <code>.google.rpc.context.AttributeContext.Resource resource_attributes = 5;</code>
+     * @param \Google\Rpc\Context\AttributeContext\Resource $var
+     * @return $this
+     */
+    public function setResourceAttributes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Rpc\Context\AttributeContext\Resource::class);
+        $this->resource_attributes = $var;
 
         return $this;
     }

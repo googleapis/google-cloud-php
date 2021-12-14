@@ -44,33 +44,33 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
      */
     private $frame_rate = 0.0;
     /**
-     * Required. The video bitrate in bits per second. Must be between 1 and
-     * 1,000,000,000.
+     * Required. The video bitrate in bits per second. The minimum value is 1,000.
+     * The maximum value is 800,000,000.
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $bitrate_bps = 0;
     /**
-     * Pixel format to use. The default is `"yuv420p"`.
+     * Pixel format to use. The default is `yuv420p`.
      * Supported pixel formats:
-     * - 'yuv420p' pixel format.
-     * - 'yuv422p' pixel format.
-     * - 'yuv444p' pixel format.
-     * - 'yuv420p10' 10-bit HDR pixel format.
-     * - 'yuv422p10' 10-bit HDR pixel format.
-     * - 'yuv444p10' 10-bit HDR pixel format.
-     * - 'yuv420p12' 12-bit HDR pixel format.
-     * - 'yuv422p12' 12-bit HDR pixel format.
-     * - 'yuv444p12' 12-bit HDR pixel format.
+     * - `yuv420p` pixel format
+     * - `yuv422p` pixel format
+     * - `yuv444p` pixel format
+     * - `yuv420p10` 10-bit HDR pixel format
+     * - `yuv422p10` 10-bit HDR pixel format
+     * - `yuv444p10` 10-bit HDR pixel format
+     * - `yuv420p12` 12-bit HDR pixel format
+     * - `yuv422p12` 12-bit HDR pixel format
+     * - `yuv444p12` 12-bit HDR pixel format
      *
      * Generated from protobuf field <code>string pixel_format = 5;</code>
      */
     private $pixel_format = '';
     /**
-     * Specify the `rate_control_mode`. The default is `"vbr"`.
+     * Specify the `rate_control_mode`. The default is `vbr`.
      * Supported rate control modes:
-     * - 'vbr' - variable bitrate
-     * - 'crf' - constant rate factor
+     * - `vbr` - variable bitrate
+     * - `crf` - constant rate factor
      *
      * Generated from protobuf field <code>string rate_control_mode = 6;</code>
      */
@@ -91,7 +91,7 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
     private $allow_open_gop = false;
     /**
      * Use two-pass encoding strategy to achieve better video quality.
-     * `VideoStream.rate_control_mode` must be `"vbr"`. The default is `false`.
+     * `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.
      *
      * Generated from protobuf field <code>bool enable_two_pass = 11;</code>
      */
@@ -137,27 +137,27 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
     /**
      * Enforces the specified codec profile. The following profiles are
      * supported:
-     * 8bit profiles
-     * *   `main` (default)
-     * *   `main-intra`
-     * *   `mainstillpicture`
-     * 10bit profiles
-     * *   `main10` (default)
-     * *   `main10-intra`
-     * *   `main422-10`
-     * *   `main422-10-intra`
-     * *   `main444-10`
-     * *   `main444-10-intra`
-     * 12bit profiles
-     * *   `main12` (default)
-     * *   `main12-intra`
-     * *   `main422-12`
-     * *   `main422-12-intra`
-     * *   `main444-12`
-     * *   `main444-12-intra`
+     * *   8-bit profiles
+     *     *   `main` (default)
+     *     *   `main-intra`
+     *     *   `mainstillpicture`
+     * *   10-bit profiles
+     *     *   `main10` (default)
+     *     *   `main10-intra`
+     *     *   `main422-10`
+     *     *   `main422-10-intra`
+     *     *   `main444-10`
+     *     *   `main444-10-intra`
+     * *   12-bit profiles
+     *     *   `main12` (default)
+     *     *   `main12-intra`
+     *     *   `main422-12`
+     *     *   `main422-12-intra`
+     *     *   `main444-12`
+     *     *   `main444-12-intra`
      * The available options are
-     * [FFmpeg-compatible](https://x265.readthedocs.io/){:
-     * class="external" }. Note that certain values for this field may cause the
+     * [FFmpeg-compatible](https://x265.readthedocs.io/).
+     * Note that certain values for this field may cause the
      * transcoder to override other fields you set in the `H265CodecSettings`
      * message.
      *
@@ -166,8 +166,8 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
     private $profile = '';
     /**
      * Enforces the specified codec tune. The available options are
-     * [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265){:
-     * class="external" }. Note that certain values for this field may cause the
+     * [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265).
+     * Note that certain values for this field may cause the
      * transcoder to override other fields you set in the `H265CodecSettings`
      * message.
      *
@@ -177,8 +177,8 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
     /**
      * Enforces the specified codec preset. The default is `veryfast`. The
      * available options are
-     * [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265){:
-     * class="external" }. Note that certain values for this field may cause the
+     * [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265).
+     * Note that certain values for this field may cause the
      * transcoder to override other fields you set in the `H265CodecSettings`
      * message.
      *
@@ -210,25 +210,25 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
      *           rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for
      *           more information.
      *     @type int $bitrate_bps
-     *           Required. The video bitrate in bits per second. Must be between 1 and
-     *           1,000,000,000.
+     *           Required. The video bitrate in bits per second. The minimum value is 1,000.
+     *           The maximum value is 800,000,000.
      *     @type string $pixel_format
-     *           Pixel format to use. The default is `"yuv420p"`.
+     *           Pixel format to use. The default is `yuv420p`.
      *           Supported pixel formats:
-     *           - 'yuv420p' pixel format.
-     *           - 'yuv422p' pixel format.
-     *           - 'yuv444p' pixel format.
-     *           - 'yuv420p10' 10-bit HDR pixel format.
-     *           - 'yuv422p10' 10-bit HDR pixel format.
-     *           - 'yuv444p10' 10-bit HDR pixel format.
-     *           - 'yuv420p12' 12-bit HDR pixel format.
-     *           - 'yuv422p12' 12-bit HDR pixel format.
-     *           - 'yuv444p12' 12-bit HDR pixel format.
+     *           - `yuv420p` pixel format
+     *           - `yuv422p` pixel format
+     *           - `yuv444p` pixel format
+     *           - `yuv420p10` 10-bit HDR pixel format
+     *           - `yuv422p10` 10-bit HDR pixel format
+     *           - `yuv444p10` 10-bit HDR pixel format
+     *           - `yuv420p12` 12-bit HDR pixel format
+     *           - `yuv422p12` 12-bit HDR pixel format
+     *           - `yuv444p12` 12-bit HDR pixel format
      *     @type string $rate_control_mode
-     *           Specify the `rate_control_mode`. The default is `"vbr"`.
+     *           Specify the `rate_control_mode`. The default is `vbr`.
      *           Supported rate control modes:
-     *           - 'vbr' - variable bitrate
-     *           - 'crf' - constant rate factor
+     *           - `vbr` - variable bitrate
+     *           - `crf` - constant rate factor
      *     @type int $crf_level
      *           Target CRF level. Must be between 10 and 36, where 10 is the highest
      *           quality and 36 is the most efficient compression. The default is 21.
@@ -240,13 +240,13 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
      *           than zero.
      *     @type \Google\Protobuf\Duration $gop_duration
      *           Select the GOP size based on the specified duration. The default is
-     *           `"3s"`. Note that `gopDuration` must be less than or equal to
+     *           `3s`. Note that `gopDuration` must be less than or equal to
      *           [`segmentDuration`](#SegmentSettings), and
      *           [`segmentDuration`](#SegmentSettings) must be divisible by
      *           `gopDuration`.
      *     @type bool $enable_two_pass
      *           Use two-pass encoding strategy to achieve better video quality.
-     *           `VideoStream.rate_control_mode` must be `"vbr"`. The default is `false`.
+     *           `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.
      *     @type int $vbv_size_bits
      *           Size of the Video Buffering Verifier (VBV) buffer in bits. Must be
      *           greater than zero. The default is equal to `VideoStream.bitrate_bps`.
@@ -268,40 +268,40 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
      *     @type string $profile
      *           Enforces the specified codec profile. The following profiles are
      *           supported:
-     *           8bit profiles
-     *           *   `main` (default)
-     *           *   `main-intra`
-     *           *   `mainstillpicture`
-     *           10bit profiles
-     *           *   `main10` (default)
-     *           *   `main10-intra`
-     *           *   `main422-10`
-     *           *   `main422-10-intra`
-     *           *   `main444-10`
-     *           *   `main444-10-intra`
-     *           12bit profiles
-     *           *   `main12` (default)
-     *           *   `main12-intra`
-     *           *   `main422-12`
-     *           *   `main422-12-intra`
-     *           *   `main444-12`
-     *           *   `main444-12-intra`
+     *           *   8-bit profiles
+     *               *   `main` (default)
+     *               *   `main-intra`
+     *               *   `mainstillpicture`
+     *           *   10-bit profiles
+     *               *   `main10` (default)
+     *               *   `main10-intra`
+     *               *   `main422-10`
+     *               *   `main422-10-intra`
+     *               *   `main444-10`
+     *               *   `main444-10-intra`
+     *           *   12-bit profiles
+     *               *   `main12` (default)
+     *               *   `main12-intra`
+     *               *   `main422-12`
+     *               *   `main422-12-intra`
+     *               *   `main444-12`
+     *               *   `main444-12-intra`
      *           The available options are
-     *           [FFmpeg-compatible](https://x265.readthedocs.io/){:
-     *           class="external" }. Note that certain values for this field may cause the
+     *           [FFmpeg-compatible](https://x265.readthedocs.io/).
+     *           Note that certain values for this field may cause the
      *           transcoder to override other fields you set in the `H265CodecSettings`
      *           message.
      *     @type string $tune
      *           Enforces the specified codec tune. The available options are
-     *           [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265){:
-     *           class="external" }. Note that certain values for this field may cause the
+     *           [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265).
+     *           Note that certain values for this field may cause the
      *           transcoder to override other fields you set in the `H265CodecSettings`
      *           message.
      *     @type string $preset
      *           Enforces the specified codec preset. The default is `veryfast`. The
      *           available options are
-     *           [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265){:
-     *           class="external" }. Note that certain values for this field may cause the
+     *           [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265).
+     *           Note that certain values for this field may cause the
      *           transcoder to override other fields you set in the `H265CodecSettings`
      *           message.
      * }
@@ -410,8 +410,8 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The video bitrate in bits per second. Must be between 1 and
-     * 1,000,000,000.
+     * Required. The video bitrate in bits per second. The minimum value is 1,000.
+     * The maximum value is 800,000,000.
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -422,8 +422,8 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The video bitrate in bits per second. Must be between 1 and
-     * 1,000,000,000.
+     * Required. The video bitrate in bits per second. The minimum value is 1,000.
+     * The maximum value is 800,000,000.
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -438,17 +438,17 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pixel format to use. The default is `"yuv420p"`.
+     * Pixel format to use. The default is `yuv420p`.
      * Supported pixel formats:
-     * - 'yuv420p' pixel format.
-     * - 'yuv422p' pixel format.
-     * - 'yuv444p' pixel format.
-     * - 'yuv420p10' 10-bit HDR pixel format.
-     * - 'yuv422p10' 10-bit HDR pixel format.
-     * - 'yuv444p10' 10-bit HDR pixel format.
-     * - 'yuv420p12' 12-bit HDR pixel format.
-     * - 'yuv422p12' 12-bit HDR pixel format.
-     * - 'yuv444p12' 12-bit HDR pixel format.
+     * - `yuv420p` pixel format
+     * - `yuv422p` pixel format
+     * - `yuv444p` pixel format
+     * - `yuv420p10` 10-bit HDR pixel format
+     * - `yuv422p10` 10-bit HDR pixel format
+     * - `yuv444p10` 10-bit HDR pixel format
+     * - `yuv420p12` 12-bit HDR pixel format
+     * - `yuv422p12` 12-bit HDR pixel format
+     * - `yuv444p12` 12-bit HDR pixel format
      *
      * Generated from protobuf field <code>string pixel_format = 5;</code>
      * @return string
@@ -459,17 +459,17 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pixel format to use. The default is `"yuv420p"`.
+     * Pixel format to use. The default is `yuv420p`.
      * Supported pixel formats:
-     * - 'yuv420p' pixel format.
-     * - 'yuv422p' pixel format.
-     * - 'yuv444p' pixel format.
-     * - 'yuv420p10' 10-bit HDR pixel format.
-     * - 'yuv422p10' 10-bit HDR pixel format.
-     * - 'yuv444p10' 10-bit HDR pixel format.
-     * - 'yuv420p12' 12-bit HDR pixel format.
-     * - 'yuv422p12' 12-bit HDR pixel format.
-     * - 'yuv444p12' 12-bit HDR pixel format.
+     * - `yuv420p` pixel format
+     * - `yuv422p` pixel format
+     * - `yuv444p` pixel format
+     * - `yuv420p10` 10-bit HDR pixel format
+     * - `yuv422p10` 10-bit HDR pixel format
+     * - `yuv444p10` 10-bit HDR pixel format
+     * - `yuv420p12` 12-bit HDR pixel format
+     * - `yuv422p12` 12-bit HDR pixel format
+     * - `yuv444p12` 12-bit HDR pixel format
      *
      * Generated from protobuf field <code>string pixel_format = 5;</code>
      * @param string $var
@@ -484,10 +484,10 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specify the `rate_control_mode`. The default is `"vbr"`.
+     * Specify the `rate_control_mode`. The default is `vbr`.
      * Supported rate control modes:
-     * - 'vbr' - variable bitrate
-     * - 'crf' - constant rate factor
+     * - `vbr` - variable bitrate
+     * - `crf` - constant rate factor
      *
      * Generated from protobuf field <code>string rate_control_mode = 6;</code>
      * @return string
@@ -498,10 +498,10 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specify the `rate_control_mode`. The default is `"vbr"`.
+     * Specify the `rate_control_mode`. The default is `vbr`.
      * Supported rate control modes:
-     * - 'vbr' - variable bitrate
-     * - 'crf' - constant rate factor
+     * - `vbr` - variable bitrate
+     * - `crf` - constant rate factor
      *
      * Generated from protobuf field <code>string rate_control_mode = 6;</code>
      * @param string $var
@@ -606,7 +606,7 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Select the GOP size based on the specified duration. The default is
-     * `"3s"`. Note that `gopDuration` must be less than or equal to
+     * `3s`. Note that `gopDuration` must be less than or equal to
      * [`segmentDuration`](#SegmentSettings), and
      * [`segmentDuration`](#SegmentSettings) must be divisible by
      * `gopDuration`.
@@ -626,7 +626,7 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Select the GOP size based on the specified duration. The default is
-     * `"3s"`. Note that `gopDuration` must be less than or equal to
+     * `3s`. Note that `gopDuration` must be less than or equal to
      * [`segmentDuration`](#SegmentSettings), and
      * [`segmentDuration`](#SegmentSettings) must be divisible by
      * `gopDuration`.
@@ -645,7 +645,7 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Use two-pass encoding strategy to achieve better video quality.
-     * `VideoStream.rate_control_mode` must be `"vbr"`. The default is `false`.
+     * `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.
      *
      * Generated from protobuf field <code>bool enable_two_pass = 11;</code>
      * @return bool
@@ -657,7 +657,7 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Use two-pass encoding strategy to achieve better video quality.
-     * `VideoStream.rate_control_mode` must be `"vbr"`. The default is `false`.
+     * `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.
      *
      * Generated from protobuf field <code>bool enable_two_pass = 11;</code>
      * @param bool $var
@@ -820,27 +820,27 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
     /**
      * Enforces the specified codec profile. The following profiles are
      * supported:
-     * 8bit profiles
-     * *   `main` (default)
-     * *   `main-intra`
-     * *   `mainstillpicture`
-     * 10bit profiles
-     * *   `main10` (default)
-     * *   `main10-intra`
-     * *   `main422-10`
-     * *   `main422-10-intra`
-     * *   `main444-10`
-     * *   `main444-10-intra`
-     * 12bit profiles
-     * *   `main12` (default)
-     * *   `main12-intra`
-     * *   `main422-12`
-     * *   `main422-12-intra`
-     * *   `main444-12`
-     * *   `main444-12-intra`
+     * *   8-bit profiles
+     *     *   `main` (default)
+     *     *   `main-intra`
+     *     *   `mainstillpicture`
+     * *   10-bit profiles
+     *     *   `main10` (default)
+     *     *   `main10-intra`
+     *     *   `main422-10`
+     *     *   `main422-10-intra`
+     *     *   `main444-10`
+     *     *   `main444-10-intra`
+     * *   12-bit profiles
+     *     *   `main12` (default)
+     *     *   `main12-intra`
+     *     *   `main422-12`
+     *     *   `main422-12-intra`
+     *     *   `main444-12`
+     *     *   `main444-12-intra`
      * The available options are
-     * [FFmpeg-compatible](https://x265.readthedocs.io/){:
-     * class="external" }. Note that certain values for this field may cause the
+     * [FFmpeg-compatible](https://x265.readthedocs.io/).
+     * Note that certain values for this field may cause the
      * transcoder to override other fields you set in the `H265CodecSettings`
      * message.
      *
@@ -855,27 +855,27 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
     /**
      * Enforces the specified codec profile. The following profiles are
      * supported:
-     * 8bit profiles
-     * *   `main` (default)
-     * *   `main-intra`
-     * *   `mainstillpicture`
-     * 10bit profiles
-     * *   `main10` (default)
-     * *   `main10-intra`
-     * *   `main422-10`
-     * *   `main422-10-intra`
-     * *   `main444-10`
-     * *   `main444-10-intra`
-     * 12bit profiles
-     * *   `main12` (default)
-     * *   `main12-intra`
-     * *   `main422-12`
-     * *   `main422-12-intra`
-     * *   `main444-12`
-     * *   `main444-12-intra`
+     * *   8-bit profiles
+     *     *   `main` (default)
+     *     *   `main-intra`
+     *     *   `mainstillpicture`
+     * *   10-bit profiles
+     *     *   `main10` (default)
+     *     *   `main10-intra`
+     *     *   `main422-10`
+     *     *   `main422-10-intra`
+     *     *   `main444-10`
+     *     *   `main444-10-intra`
+     * *   12-bit profiles
+     *     *   `main12` (default)
+     *     *   `main12-intra`
+     *     *   `main422-12`
+     *     *   `main422-12-intra`
+     *     *   `main444-12`
+     *     *   `main444-12-intra`
      * The available options are
-     * [FFmpeg-compatible](https://x265.readthedocs.io/){:
-     * class="external" }. Note that certain values for this field may cause the
+     * [FFmpeg-compatible](https://x265.readthedocs.io/).
+     * Note that certain values for this field may cause the
      * transcoder to override other fields you set in the `H265CodecSettings`
      * message.
      *
@@ -893,8 +893,8 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Enforces the specified codec tune. The available options are
-     * [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265){:
-     * class="external" }. Note that certain values for this field may cause the
+     * [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265).
+     * Note that certain values for this field may cause the
      * transcoder to override other fields you set in the `H265CodecSettings`
      * message.
      *
@@ -908,8 +908,8 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Enforces the specified codec tune. The available options are
-     * [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265){:
-     * class="external" }. Note that certain values for this field may cause the
+     * [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265).
+     * Note that certain values for this field may cause the
      * transcoder to override other fields you set in the `H265CodecSettings`
      * message.
      *
@@ -928,8 +928,8 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
     /**
      * Enforces the specified codec preset. The default is `veryfast`. The
      * available options are
-     * [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265){:
-     * class="external" }. Note that certain values for this field may cause the
+     * [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265).
+     * Note that certain values for this field may cause the
      * transcoder to override other fields you set in the `H265CodecSettings`
      * message.
      *
@@ -944,8 +944,8 @@ class H265CodecSettings extends \Google\Protobuf\Internal\Message
     /**
      * Enforces the specified codec preset. The default is `veryfast`. The
      * available options are
-     * [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265){:
-     * class="external" }. Note that certain values for this field may cause the
+     * [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265).
+     * Note that certain values for this field may cause the
      * transcoder to override other fields you set in the `H265CodecSettings`
      * message.
      *

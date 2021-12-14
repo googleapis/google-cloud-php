@@ -20,10 +20,14 @@ class AddressType
      */
     const UNDEFINED_ADDRESS_TYPE = 0;
     /**
+     * A publicly visible external IP address.
+     *
      * Generated from protobuf enum <code>EXTERNAL = 35607499;</code>
      */
     const EXTERNAL = 35607499;
     /**
+     * A private network IP address, for use with an Instance or Internal Load Balancer forwarding rule.
+     *
      * Generated from protobuf enum <code>INTERNAL = 279295677;</code>
      */
     const INTERNAL = 279295677;

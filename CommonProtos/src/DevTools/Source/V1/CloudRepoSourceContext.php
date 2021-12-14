@@ -21,7 +21,7 @@ class CloudRepoSourceContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.source.v1.RepoId repo_id = 1;</code>
      */
-    private $repo_id = null;
+    protected $repo_id = null;
     protected $revision;
 
     /**
@@ -49,11 +49,21 @@ class CloudRepoSourceContext extends \Google\Protobuf\Internal\Message
      * The ID of the repo.
      *
      * Generated from protobuf field <code>.google.devtools.source.v1.RepoId repo_id = 1;</code>
-     * @return \Google\Cloud\DevTools\Source\V1\RepoId
+     * @return \Google\Cloud\DevTools\Source\V1\RepoId|null
      */
     public function getRepoId()
     {
-        return $this->repo_id;
+        return isset($this->repo_id) ? $this->repo_id : null;
+    }
+
+    public function hasRepoId()
+    {
+        return isset($this->repo_id);
+    }
+
+    public function clearRepoId()
+    {
+        unset($this->repo_id);
     }
 
     /**
@@ -82,6 +92,11 @@ class CloudRepoSourceContext extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasRevisionId()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * A revision ID.
      *
@@ -102,10 +117,18 @@ class CloudRepoSourceContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string alias_name = 3 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getAliasName()
     {
+        @trigger_error('alias_name is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(3);
+    }
+
+    public function hasAliasName()
+    {
+        @trigger_error('alias_name is deprecated.', E_USER_DEPRECATED);
+        return $this->hasOneof(3);
     }
 
     /**
@@ -114,9 +137,11 @@ class CloudRepoSourceContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string alias_name = 3 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setAliasName($var)
     {
+        @trigger_error('alias_name is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->writeOneof(3, $var);
 
@@ -127,11 +152,16 @@ class CloudRepoSourceContext extends \Google\Protobuf\Internal\Message
      * An alias, which may be a branch or tag.
      *
      * Generated from protobuf field <code>.google.devtools.source.v1.AliasContext alias_context = 4;</code>
-     * @return \Google\Cloud\DevTools\Source\V1\AliasContext
+     * @return \Google\Cloud\DevTools\Source\V1\AliasContext|null
      */
     public function getAliasContext()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasAliasContext()
+    {
+        return $this->hasOneof(4);
     }
 
     /**

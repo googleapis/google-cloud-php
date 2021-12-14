@@ -448,6 +448,9 @@ class TranscoderServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type bool $allowMissing
+     *           If set to true, and the job is not found, the request will succeed but no
+     *           action will be taken on the server.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -463,6 +466,10 @@ class TranscoderServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['allowMissing'])) {
+            $request->setAllowMissing($optionalArgs['allowMissing']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteJob', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -487,6 +494,9 @@ class TranscoderServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type bool $allowMissing
+     *           If set to true, and the job template is not found, the request will succeed
+     *           but no action will be taken on the server.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -502,6 +512,10 @@ class TranscoderServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['allowMissing'])) {
+            $request->setAllowMissing($optionalArgs['allowMissing']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteJobTemplate', GPBEmpty::class, $optionalArgs, $request)->wait();

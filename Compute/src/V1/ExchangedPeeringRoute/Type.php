@@ -20,14 +20,20 @@ class Type
      */
     const UNDEFINED_TYPE = 0;
     /**
+     * For routes exported from local network.
+     *
      * Generated from protobuf enum <code>DYNAMIC_PEERING_ROUTE = 469794858;</code>
      */
     const DYNAMIC_PEERING_ROUTE = 469794858;
     /**
+     * The peering route.
+     *
      * Generated from protobuf enum <code>STATIC_PEERING_ROUTE = 473407545;</code>
      */
     const STATIC_PEERING_ROUTE = 473407545;
     /**
+     * The peering route corresponding to subnetwork range.
+     *
      * Generated from protobuf enum <code>SUBNET_PEERING_ROUTE = 465782504;</code>
      */
     const SUBNET_PEERING_ROUTE = 465782504;

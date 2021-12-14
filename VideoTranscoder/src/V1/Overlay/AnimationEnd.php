@@ -47,7 +47,7 @@ class AnimationEnd extends \Google\Protobuf\Internal\Message
      */
     public function getStartTimeOffset()
     {
-        return isset($this->start_time_offset) ? $this->start_time_offset : null;
+        return $this->start_time_offset;
     }
 
     public function hasStartTimeOffset()

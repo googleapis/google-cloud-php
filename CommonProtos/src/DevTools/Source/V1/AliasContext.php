@@ -20,13 +20,13 @@ class AliasContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.source.v1.AliasContext.Kind kind = 1;</code>
      */
-    private $kind = 0;
+    protected $kind = 0;
     /**
      * The alias name.
      *
      * Generated from protobuf field <code>string name = 2;</code>
      */
-    private $name = '';
+    protected $name = '';
 
     /**
      * Constructor.
@@ -65,7 +65,7 @@ class AliasContext extends \Google\Protobuf\Internal\Message
      */
     public function setKind($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\DevTools\Source\V1\AliasContext_Kind::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\DevTools\Source\V1\AliasContext\Kind::class);
         $this->kind = $var;
 
         return $this;

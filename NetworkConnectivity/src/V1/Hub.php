@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A hub is essentially a collection of spokes. A single hub can contain spokes
- * from multiple regions. However, all of a hub's spokes must be associated with
+ * A hub is a collection of spokes. A single hub can contain spokes from
+ * multiple regions. However, all of a hub's spokes must be associated with
  * resources that reside in the same VPC network.
  *
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.Hub</code>

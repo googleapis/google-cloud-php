@@ -133,7 +133,7 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
      */
     public function getSpellCorrection()
     {
-        return isset($this->spell_correction) ? $this->spell_correction : null;
+        return $this->spell_correction;
     }
 
     public function hasSpellCorrection()
@@ -170,7 +170,7 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
      */
     public function getMetadata()
     {
-        return isset($this->metadata) ? $this->metadata : null;
+        return $this->metadata;
     }
 
     public function hasMetadata()

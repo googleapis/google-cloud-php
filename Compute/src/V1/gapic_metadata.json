@@ -797,6 +797,20 @@
                 }
             }
         },
+        "ImageFamilyViews": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ImageFamilyViewsGapicClient",
+                    "rpcs": {
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "Images": {
             "clients": {
                 "grpc": {
@@ -1171,6 +1185,11 @@
                         "Reset": {
                             "methods": [
                                 "reset"
+                            ]
+                        },
+                        "SendDiagnosticInterrupt": {
+                            "methods": [
+                                "sendDiagnosticInterrupt"
                             ]
                         },
                         "SetDeletionProtection": {
@@ -2843,6 +2862,60 @@
                         "RemoveRule": {
                             "methods": [
                                 "removeRule"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ServiceAttachments": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ServiceAttachmentsGapicClient",
+                    "rpcs": {
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         }
                     }

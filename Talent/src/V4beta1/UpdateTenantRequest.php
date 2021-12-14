@@ -61,7 +61,7 @@ class UpdateTenantRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTenant()
     {
-        return isset($this->tenant) ? $this->tenant : null;
+        return $this->tenant;
     }
 
     public function hasTenant()
@@ -101,7 +101,7 @@ class UpdateTenantRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

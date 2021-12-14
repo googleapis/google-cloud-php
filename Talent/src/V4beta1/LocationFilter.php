@@ -214,7 +214,7 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      */
     public function getLatLng()
     {
-        return isset($this->lat_lng) ? $this->lat_lng : null;
+        return $this->lat_lng;
     }
 
     public function hasLatLng()

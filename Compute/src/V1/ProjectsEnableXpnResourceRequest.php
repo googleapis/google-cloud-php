@@ -17,7 +17,7 @@ class ProjectsEnableXpnResourceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Service resource (a.k.a service project) ID.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.XpnResourceId xpn_resource = 133384631;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.XpnResourceId xpn_resource = 133384631;</code>
      */
     private $xpn_resource = null;
 
@@ -39,12 +39,12 @@ class ProjectsEnableXpnResourceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Service resource (a.k.a service project) ID.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.XpnResourceId xpn_resource = 133384631;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.XpnResourceId xpn_resource = 133384631;</code>
      * @return \Google\Cloud\Compute\V1\XpnResourceId|null
      */
     public function getXpnResource()
     {
-        return isset($this->xpn_resource) ? $this->xpn_resource : null;
+        return $this->xpn_resource;
     }
 
     public function hasXpnResource()
@@ -60,7 +60,7 @@ class ProjectsEnableXpnResourceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Service resource (a.k.a service project) ID.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.XpnResourceId xpn_resource = 133384631;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.XpnResourceId xpn_resource = 133384631;</code>
      * @param \Google\Cloud\Compute\V1\XpnResourceId $var
      * @return $this
      */

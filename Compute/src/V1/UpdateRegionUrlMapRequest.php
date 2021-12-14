@@ -18,19 +18,19 @@ class UpdateRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
     private $project = '';
     /**
      * Name of the region scoping this request.
      *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      */
     private $region = '';
     /**
      * begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
      *
-     * Generated from protobuf field <code>string request_id = 37109963;</code>
+     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
     private $request_id = null;
     /**
@@ -72,7 +72,7 @@ class UpdateRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @return string
      */
     public function getProject()
@@ -83,7 +83,7 @@ class UpdateRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @param string $var
      * @return $this
      */
@@ -98,7 +98,7 @@ class UpdateRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the region scoping this request.
      *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      * @return string
      */
     public function getRegion()
@@ -109,7 +109,7 @@ class UpdateRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the region scoping this request.
      *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      * @param string $var
      * @return $this
      */
@@ -124,7 +124,7 @@ class UpdateRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
      *
-     * Generated from protobuf field <code>string request_id = 37109963;</code>
+     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
      */
     public function getRequestId()
@@ -145,7 +145,7 @@ class UpdateRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
      *
-     * Generated from protobuf field <code>string request_id = 37109963;</code>
+     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var
      * @return $this
      */
@@ -191,7 +191,7 @@ class UpdateRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUrlMapResource()
     {
-        return isset($this->url_map_resource) ? $this->url_map_resource : null;
+        return $this->url_map_resource;
     }
 
     public function hasUrlMapResource()

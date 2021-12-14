@@ -16,14 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class AudioStream extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The codec for this audio stream. The default is `"aac"`.
+     * The codec for this audio stream. The default is `aac`.
      * Supported audio codecs:
-     * - 'aac'
-     * - 'aac-he'
-     * - 'aac-he-v2'
-     * - 'mp3'
-     * - 'ac3'
-     * - 'eac3'
+     * - `aac`
+     * - `aac-he`
+     * - `aac-he-v2`
+     * - `mp3`
+     * - `ac3`
+     * - `eac3`
      *
      * Generated from protobuf field <code>string codec = 1;</code>
      */
@@ -45,12 +45,12 @@ class AudioStream extends \Google\Protobuf\Internal\Message
      * This only affects the metadata embedded in the container headers, if
      * supported by the specified format. The default is `["fl", "fr"]`.
      * Supported channel names:
-     * - 'fl' - Front left channel
-     * - 'fr' - Front right channel
-     * - 'sl' - Side left channel
-     * - 'sr' - Side right channel
-     * - 'fc' - Front center channel
-     * - 'lfe' - Low frequency
+     * - `fl` - Front left channel
+     * - `fr` - Front right channel
+     * - `sl` - Side left channel
+     * - `sr` - Side right channel
+     * - `fc` - Front center channel
+     * - `lfe` - Low frequency
      *
      * Generated from protobuf field <code>repeated string channel_layout = 4;</code>
      */
@@ -75,14 +75,14 @@ class AudioStream extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $codec
-     *           The codec for this audio stream. The default is `"aac"`.
+     *           The codec for this audio stream. The default is `aac`.
      *           Supported audio codecs:
-     *           - 'aac'
-     *           - 'aac-he'
-     *           - 'aac-he-v2'
-     *           - 'mp3'
-     *           - 'ac3'
-     *           - 'eac3'
+     *           - `aac`
+     *           - `aac-he`
+     *           - `aac-he-v2`
+     *           - `mp3`
+     *           - `ac3`
+     *           - `eac3`
      *     @type int $bitrate_bps
      *           Required. Audio bitrate in bits per second. Must be between 1 and 10,000,000.
      *     @type int $channel_count
@@ -92,12 +92,12 @@ class AudioStream extends \Google\Protobuf\Internal\Message
      *           This only affects the metadata embedded in the container headers, if
      *           supported by the specified format. The default is `["fl", "fr"]`.
      *           Supported channel names:
-     *           - 'fl' - Front left channel
-     *           - 'fr' - Front right channel
-     *           - 'sl' - Side left channel
-     *           - 'sr' - Side right channel
-     *           - 'fc' - Front center channel
-     *           - 'lfe' - Low frequency
+     *           - `fl` - Front left channel
+     *           - `fr` - Front right channel
+     *           - `sl` - Side left channel
+     *           - `sr` - Side right channel
+     *           - `fc` - Front center channel
+     *           - `lfe` - Low frequency
      *     @type \Google\Cloud\Video\Transcoder\V1\AudioStream\AudioMapping[]|\Google\Protobuf\Internal\RepeatedField $mapping
      *           The mapping for the `Job.edit_list` atoms with audio `EditAtom.inputs`.
      *     @type int $sample_rate_hertz
@@ -110,14 +110,14 @@ class AudioStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The codec for this audio stream. The default is `"aac"`.
+     * The codec for this audio stream. The default is `aac`.
      * Supported audio codecs:
-     * - 'aac'
-     * - 'aac-he'
-     * - 'aac-he-v2'
-     * - 'mp3'
-     * - 'ac3'
-     * - 'eac3'
+     * - `aac`
+     * - `aac-he`
+     * - `aac-he-v2`
+     * - `mp3`
+     * - `ac3`
+     * - `eac3`
      *
      * Generated from protobuf field <code>string codec = 1;</code>
      * @return string
@@ -128,14 +128,14 @@ class AudioStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The codec for this audio stream. The default is `"aac"`.
+     * The codec for this audio stream. The default is `aac`.
      * Supported audio codecs:
-     * - 'aac'
-     * - 'aac-he'
-     * - 'aac-he-v2'
-     * - 'mp3'
-     * - 'ac3'
-     * - 'eac3'
+     * - `aac`
+     * - `aac-he`
+     * - `aac-he-v2`
+     * - `mp3`
+     * - `ac3`
+     * - `eac3`
      *
      * Generated from protobuf field <code>string codec = 1;</code>
      * @param string $var
@@ -206,12 +206,12 @@ class AudioStream extends \Google\Protobuf\Internal\Message
      * This only affects the metadata embedded in the container headers, if
      * supported by the specified format. The default is `["fl", "fr"]`.
      * Supported channel names:
-     * - 'fl' - Front left channel
-     * - 'fr' - Front right channel
-     * - 'sl' - Side left channel
-     * - 'sr' - Side right channel
-     * - 'fc' - Front center channel
-     * - 'lfe' - Low frequency
+     * - `fl` - Front left channel
+     * - `fr` - Front right channel
+     * - `sl` - Side left channel
+     * - `sr` - Side right channel
+     * - `fc` - Front center channel
+     * - `lfe` - Low frequency
      *
      * Generated from protobuf field <code>repeated string channel_layout = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -226,12 +226,12 @@ class AudioStream extends \Google\Protobuf\Internal\Message
      * This only affects the metadata embedded in the container headers, if
      * supported by the specified format. The default is `["fl", "fr"]`.
      * Supported channel names:
-     * - 'fl' - Front left channel
-     * - 'fr' - Front right channel
-     * - 'sl' - Side left channel
-     * - 'sr' - Side right channel
-     * - 'fc' - Front center channel
-     * - 'lfe' - Low frequency
+     * - `fl` - Front left channel
+     * - `fr` - Front right channel
+     * - `sl` - Side left channel
+     * - `sr` - Side right channel
+     * - `fc` - Front center channel
+     * - `lfe` - Low frequency
      *
      * Generated from protobuf field <code>repeated string channel_layout = 4;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
