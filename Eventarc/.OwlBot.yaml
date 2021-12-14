@@ -1,0 +1,3 @@
+deep-copy-regex:
+    - source: /google/cloud/eventarc/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/Eventarc/$1/$2
