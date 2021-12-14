@@ -38,18 +38,17 @@ class FirewallsTest extends SystemTestCase
             self::fail('Environment variable PROJECT_ID must be set for smoke test');
         }
         self::$client = new FirewallsClient();
-        self::$globalClient = new GlobalOperationsClient();
         self::$name = 'gapicphp' . strval(rand(100000, 999999));
     }
 
     public static function tearDownAfterClass(): void
     {
         self::$client->close();
-        self::$globalClient->close();
     }
 
     public function testCapitalLetter()
     {
+        // we test a field like "I_p_protocol"
         $allowed = [new Allowed([
             'I_p_protocol' => 'tcp',
             'ports' => ['80']
@@ -60,10 +59,9 @@ class FirewallsTest extends SystemTestCase
             'allowed' => $allowed
         ]);
         $operation = self::$client->insert($resource, self::$projectId);
+        $operation->pollUntilComplete();
         try {
-            self::$globalClient->wait($operation->getName(), self::$projectId);
             $firewall = self::$client->get(self::$name, self::$projectId);
-
             $this->assertEquals($allowed, iterator_to_array($firewall->getAllowed()->getIterator()));
         } finally {
             self::$client->delete(self::$name, self::$projectId);
