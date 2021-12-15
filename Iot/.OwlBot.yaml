@@ -1,0 +1,3 @@
+deep-copy-regex:
+    - source: /google/cloud/iot/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/Iot/$1/$2
