@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC
+# Copyright 2018 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,30 +14,30 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Speech").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='serviceusage',
-    version='V1',
-    bazel_target='//google/api/serviceusage/v1:google-cloud-api-serviceusage-v1-php',
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
+
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "*/src/*/*.php"
+    ]
 )
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
-
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/ServiceUsage', 'src/')
-s.move(library / 'tests/')
-
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Api/Serviceusage', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -57,21 +57,36 @@ s.replace(
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
 
-# fix year
+# V1 is GA, so remove @experimental tags
 s.replace(
-    '**/*Client.php',
-    r'Copyright \d{4}',
-    'Copyright 2021')
-s.replace(
-    'tests/**/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2021')
+    'src/V1/**/*Client.php',
+    r'^(\s+\*\n)?\s+\*\s@experimental\n',
+    '')
 
 # Change the wording for the deprecation warning.
 s.replace(
     'src/*/*_*.php',
     r'will be removed in the next major release',
     'will be removed in a future release')
+
+# Fix class references in gapic samples
+for version in ['V1', 'V1p1beta1']:
+    pathExpr = 'src/' + version + '/Gapic/SpeechGapicClient.php'
+
+    types = {
+        'new SpeechClient': r'new Google\\Cloud\\Speech\\' + version + r'\\SpeechClient',
+        '= AudioEncoding::': r'= Google\\Cloud\\Speech\\' + version + r'\\RecognitionConfig\\AudioEncoding::',
+        'new RecognitionConfig': r'new Google\\Cloud\\Speech\\' + version + r'\\RecognitionConfig',
+        'new RecognitionAudio': r'new Google\\Cloud\\Speech\\' + version + r'\\RecognitionAudio',
+        'new StreamingRecognizeRequest': r'new Google\\Cloud\\Speech\\' + version + r'\\StreamingRecognizeRequest',
+    }
+
+    for search, replace in types.items():
+        s.replace(
+            pathExpr,
+            search,
+            replace
+)
 
 ### [START] protoc backwards compatibility fixes
 
