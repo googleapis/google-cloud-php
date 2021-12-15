@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC
+# Copyright 2019 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,31 +14,25 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import subprocess
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/SecurityCenter").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='resourcesettings',
-    version='V1',
-    bazel_target='//google/cloud/resourcesettings/v1:google-cloud-resourcesettings-v1-php',
-)
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
+php.owlbot_main(src=src, dest=dest)
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/ResourceSettings', 'src/')
-s.move(library / 'tests/')
 
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Resourcesettings', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -58,16 +52,18 @@ s.replace(
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
 
-# fix year
+# V1 is GA, so remove @experimental tags
 s.replace(
-    '**/*Client.php',
-    r'Copyright \d{4}',
-    'Copyright 2021')
-s.replace(
-    'tests/**/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2021')
+    'src/V1/**/*Client.php',
+    r'^(\s+\*\n)?\s+\*\s@experimental\n',
+    '')
 
+# Use new namespace in the doc sample. See
+# https://github.com/googleapis/gapic-generator/issues/2141
+s.replace(
+    'src/V1/Gapic/SecurityCenterGapicClient.php',
+    r'Finding_State',
+    r'Finding\\State')
 # Change the wording for the deprecation warning.
 s.replace(
     'src/*/*_*.php',
@@ -105,17 +101,3 @@ s.replace(
     r"(.{0,})\]\((/.{0,})\)",
     r"\1](https://cloud.google.com\2)"
 )
-
-# format generated clients
-subprocess.run([
-    'npm',
-    'exec',
-    '--yes',
-    '--package=@prettier/plugin-php@^0.16',
-    '--',
-    'prettier',
-    '**/Gapic/*',
-    '--write',
-    '--parser=php',
-    '--single-quote',
-    '--print-width=80'])

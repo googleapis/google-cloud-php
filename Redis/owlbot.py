@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2018 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,37 +14,30 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import os
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Redis").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='recommendationengine',
-    version='v1beta1',
-    bazel_target=f'//google/cloud/recommendationengine/v1beta1:google-cloud-recommendationengine-v1beta1-php')
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-# copy all src
-s.move(library / f'src/V1beta1')
-
-# copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/Recommendationengine', f'src/')
-s.move(library / f'tests/')
-
-# copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Recommendationengine', f'metadata/')
-
-# fix namespace casing
-s.replace(
-    "**/*.php",
-    r"(namespace|use) Google\\Cloud\\Recommendationengine",
-    r"\1 Google\\Cloud\\RecommendationEngine",
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "*/src/*/*.php"
+    ]
 )
+
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -64,21 +57,39 @@ s.replace(
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
 
-# fix year
+# V1 is GA, so remove @experimental tags
 s.replace(
-    'src/**/**/*.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
-s.replace(
-    'tests/**/**/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
+    'src/V1/**/*Client.php',
+    r'^(\s+\*\n)?\s+\*\s@experimental\n',
+    '')
+
 
 # Change the wording for the deprecation warning.
 s.replace(
     'src/*/*_*.php',
     r'will be removed in the next major release',
     'will be removed in a future release')
+
+# Fix class references in gapic samples
+for version in ['V1', 'V1beta1']:
+    pathExpr = 'src/' + version + '/Gapic/CloudRedisGapicClient.php'
+
+    types = {
+        'new CloudRedisClient': r'new Google\\Cloud\\Redis\\'+ version + r'\\CloudRedisClient',
+        'new Instance': r'new Google\\Cloud\\Redis\\' + version + r'\\Instance',
+        '= Tier::': r'= Google\\Cloud\\Redis\\' + version + r'\\Instance\\Tier::',
+        'new FieldMask': r'new Google\\Protobuf\\FieldMask',
+        'new InputConfig': r'new Google\\Cloud\\Redis\\' + version + r'\\InputConfig',
+        'new OutputConfig': r'new Google\\Cloud\\Redis\\' + version + r'\\OutputConfig',
+        '= DataProtectionMode': r'= Google\\Cloud\\Redis\\' + version + r'\\FailoverInstanceRequest\\DataProtectionMode::'
+    }
+
+    for search, replace in types.items():
+        s.replace(
+            pathExpr,
+            search,
+            replace
+        )
 
 ### [START] protoc backwards compatibility fixes
 

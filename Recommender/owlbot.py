@@ -14,39 +14,25 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
+src = Path(f"../{php.STAGING_DIR}/Recommender").resolve()
+dest = Path().resolve()
 
-for version in ['v1', 'v1beta1']:
-    if version is 'v1beta1':
-        bazel_target = '//google/cloud/secrets/v1beta1:google-cloud-secretmanager-v1beta1-php'
-        service='secrets'
-    else:
-        bazel_target = '//google/cloud/secretmanager/v1:google-cloud-secretmanager-v1-php'
-        service='secretmanager'
-    library = gapic.php_library(
-        service=service,
-        version=version,
-        bazel_target=bazel_target,
-    )
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-    # copy all src
-    s.move(library / f'src')
+php.owlbot_main(src=src, dest=dest)
 
-    # copy proto files to src also
-    s.move(library / f'proto/src/Google/Cloud/SecretManager', f'src/')
-    s.move(library / f'tests/')
 
-    # copy GPBMetadata file to metadata
-    if version is 'v1beta1':
-        s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Secrets', f'metadata/')
-    else:
-        s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Secretmanager', f'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -71,16 +57,6 @@ s.replace(
     'src/V1/**/*Client.php',
     r'^(\s+\*\n)?\s+\*\s@experimental\n',
     '')
-
-# fix year
-s.replace(
-    'src/**/**/*.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
-s.replace(
-    'tests/**/**/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
 
 # Change the wording for the deprecation warning.
 s.replace(
