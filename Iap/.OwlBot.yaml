@@ -1,0 +1,3 @@
+deep-copy-regex:
+    - source: /google/cloud/iap/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/Iap/$1/$2
