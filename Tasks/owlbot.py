@@ -14,31 +14,25 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
+src = Path(f"../{php.STAGING_DIR}/Tasks").resolve()
+dest = Path().resolve()
 
-for version in ['V2', 'V2beta2', 'V2beta3']:
-    lower_version = version.lower()
-    library = gapic.php_library(
-        service='tasks',
-        version=lower_version,
-        bazel_target=f'//google/cloud/tasks/{lower_version}:google-cloud-tasks-{lower_version}-php',
-    )
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-    # copy all src including partial veneer classes
-    s.move(library / 'src')
+php.owlbot_main(src=src, dest=dest)
 
-    # copy proto files to src also
-    s.move(library / f'proto/src/Google/Cloud/Tasks', f'src/')
-    s.move(library / f'tests/')
 
-    # copy GPBMetadata file to metadata
-    s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Tasks', f'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -57,24 +51,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# fix year
-s.replace(
-    'src/V2beta*/**/*.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
-s.replace(
-    'tests/*/V2beta*/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
-s.replace(
-    'src/V2/**/*.php',
-    r'Copyright \d{4}',
-    r'Copyright 2019')
-s.replace(
-    'tests/*/V2/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2019')
 
 # Use new namespace in the doc sample. See
 # https://github.com/googleapis/gapic-generator/issues/2141

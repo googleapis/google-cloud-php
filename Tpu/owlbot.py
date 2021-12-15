@@ -1,4 +1,4 @@
-# Copyright 2019 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,30 +14,25 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Tpu").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='websecurityscanner',
-    version='v1beta',
-    bazel_target=f'//google/cloud/websecurityscanner/v1beta:google-cloud-websecurityscanner-v1beta-php',
-)
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-# copy all src
-s.move(library / f'src/V1beta')
+php.owlbot_main(src=src, dest=dest)
 
-# copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/WebSecurityScanner', f'src/')
-s.move(library / f'tests/')
 
-# copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Websecurityscanner', f'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -56,16 +51,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# fix year
-s.replace(
-    'src/**/**/*.php',
-    r'Copyright \d{4}',
-    r'Copyright 2019')
-s.replace(
-    'tests/**/**/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2019')
 
 # Change the wording for the deprecation warning.
 s.replace(

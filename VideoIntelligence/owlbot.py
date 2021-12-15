@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC
+# Copyright 2018 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,30 +14,25 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/VideoIntelligence").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='vpcaccess',
-    version='V1',
-    bazel_target='//google/cloud/vpcaccess/v1:google-cloud-vpcaccess-v1-php',
-)
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
+php.owlbot_main(src=src, dest=dest)
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/VpcAccess', 'src/')
-s.move(library / 'tests/')
 
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Vpcaccess', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -57,21 +52,15 @@ s.replace(
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
 
-# fix year
+# V1 is GA, so remove @experimental tags
 s.replace(
-    '**/*Client.php',
-    r'Copyright \d{4}',
-    'Copyright 2021')
+    'src/V1/VideoIntelligenceServiceClient.php',
+    r'^(\s+\*\n)?\s+\*\s@experimental\n',
+    '')
 s.replace(
-    'tests/**/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2021')
-
-# Change the wording for the deprecation warning.
-s.replace(
-    'src/*/*_*.php',
-    r'will be removed in the next major release',
-    'will be removed in a future release')
+    'src/V1/Gapic/*GapicClient.php',
+    r'^(\s+\*\n)?\s+\*\s@experimental\n',
+    '')
 
 ### [START] protoc backwards compatibility fixes
 
@@ -104,3 +93,17 @@ s.replace(
     r"(.{0,})\]\((/.{0,})\)",
     r"\1](https://cloud.google.com\2)"
 )
+
+# format generated clients
+subprocess.run([
+    'npm',
+    'exec',
+    '--yes',
+    '--package=@prettier/plugin-php@^0.16',
+    '--',
+    'prettier',
+    '**/Gapic/*',
+    '--write',
+    '--parser=php',
+    '--single-quote',
+    '--print-width=80'])
