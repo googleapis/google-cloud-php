@@ -14,34 +14,25 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
 
-AUTOSYNTH_MULTIPLE_COMMITS = True
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Memcache").resolve()
+dest = Path().resolve()
 
-for version in ['v1', 'v1beta2']:
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-    library = gapic.php_library(
-        service='memcache',
-        version=version,
-        bazel_target=f'//google/cloud/memcache/{version}:google-cloud-memcache-{version}-php',
-    )
+php.owlbot_main(src=src, dest=dest)
 
-    # copy all src including partial veneer classes
-    s.move(library / 'src')
 
-    # copy proto files to src also
-    s.move(library / 'proto/src/Google/Cloud/Memcache', 'src/')
-    s.move(library / 'tests/')
-
-    # copy GPBMetadata file to metadata
-    s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Memcache', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -60,24 +51,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# fix year
-s.replace(
-    'src/V1/**/*.php',
-    r'Copyright \d{4}',
-    r'Copyright 2021')
-s.replace(
-    'tests/Unit/V1/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2021')
-s.replace(
-    'src/V1beta2/**/*.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
-s.replace(
-    'tests/Unit/V1beta2/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
 
 # Change the wording for the deprecation warning.
 s.replace(
