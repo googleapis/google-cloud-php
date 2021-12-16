@@ -60,7 +60,7 @@ class UpdateWebDataStreamRequest extends \Google\Protobuf\Internal\Message
      */
     public function getWebDataStream()
     {
-        return isset($this->web_data_stream) ? $this->web_data_stream : null;
+        return $this->web_data_stream;
     }
 
     public function hasWebDataStream()
@@ -99,7 +99,7 @@ class UpdateWebDataStreamRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

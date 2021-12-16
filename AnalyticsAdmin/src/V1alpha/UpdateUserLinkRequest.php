@@ -45,7 +45,7 @@ class UpdateUserLinkRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUserLink()
     {
-        return isset($this->user_link) ? $this->user_link : null;
+        return $this->user_link;
     }
 
     public function hasUserLink()

@@ -40,6 +40,12 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
      *           A snapshot of a GoogleAdsLink resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\GoogleSignalsSettings $google_signals_settings
      *           A snapshot of a GoogleSignalsSettings resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink $display_video_360_advertiser_link
+     *           A snapshot of a DisplayVideo360AdvertiserLink resource in change
+     *           history.
+     *     @type \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal $display_video_360_advertiser_link_proposal
+     *           A snapshot of a DisplayVideo360AdvertiserLinkProposal resource in
+     *           change history.
      *     @type \Google\Analytics\Admin\V1alpha\ConversionEvent $conversion_event
      *           A snapshot of a ConversionEvent resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret $measurement_protocol_secret
@@ -48,6 +54,8 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
      *           A snapshot of a CustomDimension resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\CustomMetric $custom_metric
      *           A snapshot of a CustomMetric resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\DataRetentionSettings $data_retention_settings
+     *           A snapshot of a data retention settings resource in change history.
      * }
      */
     public function __construct($data = NULL) {
@@ -304,6 +312,72 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A snapshot of a DisplayVideo360AdvertiserLink resource in change
+     * history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DisplayVideo360AdvertiserLink display_video_360_advertiser_link = 9;</code>
+     * @return \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink|null
+     */
+    public function getDisplayVideo360AdvertiserLink()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasDisplayVideo360AdvertiserLink()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * A snapshot of a DisplayVideo360AdvertiserLink resource in change
+     * history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DisplayVideo360AdvertiserLink display_video_360_advertiser_link = 9;</code>
+     * @param \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink $var
+     * @return $this
+     */
+    public function setDisplayVideo360AdvertiserLink($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink::class);
+        $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of a DisplayVideo360AdvertiserLinkProposal resource in
+     * change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DisplayVideo360AdvertiserLinkProposal display_video_360_advertiser_link_proposal = 10;</code>
+     * @return \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal|null
+     */
+    public function getDisplayVideo360AdvertiserLinkProposal()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasDisplayVideo360AdvertiserLinkProposal()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * A snapshot of a DisplayVideo360AdvertiserLinkProposal resource in
+     * change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DisplayVideo360AdvertiserLinkProposal display_video_360_advertiser_link_proposal = 10;</code>
+     * @param \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal $var
+     * @return $this
+     */
+    public function setDisplayVideo360AdvertiserLinkProposal($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal::class);
+        $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
      * A snapshot of a ConversionEvent resource in change history.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ConversionEvent conversion_event = 11;</code>
@@ -423,6 +497,37 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\CustomMetric::class);
         $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of a data retention settings resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DataRetentionSettings data_retention_settings = 15;</code>
+     * @return \Google\Analytics\Admin\V1alpha\DataRetentionSettings|null
+     */
+    public function getDataRetentionSettings()
+    {
+        return $this->readOneof(15);
+    }
+
+    public function hasDataRetentionSettings()
+    {
+        return $this->hasOneof(15);
+    }
+
+    /**
+     * A snapshot of a data retention settings resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DataRetentionSettings data_retention_settings = 15;</code>
+     * @param \Google\Analytics\Admin\V1alpha\DataRetentionSettings $var
+     * @return $this
+     */
+    public function setDataRetentionSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\DataRetentionSettings::class);
+        $this->writeOneof(15, $var);
 
         return $this;
     }
