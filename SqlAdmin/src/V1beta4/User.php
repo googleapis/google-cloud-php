@@ -36,18 +36,19 @@ class User extends \Google\Protobuf\Internal\Message
     private $etag = '';
     /**
      * The name of the user in the Cloud SQL instance. Can be omitted for
-     * <b>update</b> since it is already specified in the URL.
+     * **update** since it is already specified in the URL.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      */
     private $name = '';
     /**
-     * The host name from which the user can connect. For <b>insert</b>
-     * operations, host defaults to an empty string. For <b>update</b>
+     * Optional. The host name from which the user can connect. For **insert**
+     * operations, host defaults to an empty string. For **update**
      * operations, host is specified as part of the request URL. The host name
-     * cannot be updated after insertion.
+     * cannot be updated after insertion.  For a MySQL instance, it's required;
+     * for a PostgreSQL or SQL Server instance, it's optional.
      *
-     * Generated from protobuf field <code>string host = 5;</code>
+     * Generated from protobuf field <code>string host = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $host = '';
     /**
@@ -73,6 +74,12 @@ class User extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.User.SqlUserType type = 8;</code>
      */
     private $type = 0;
+    /**
+     * User level password validation policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.UserPasswordValidationPolicy password_policy = 12;</code>
+     */
+    private $password_policy = null;
     protected $user_details;
 
     /**
@@ -90,12 +97,13 @@ class User extends \Google\Protobuf\Internal\Message
      *           API.
      *     @type string $name
      *           The name of the user in the Cloud SQL instance. Can be omitted for
-     *           <b>update</b> since it is already specified in the URL.
+     *           **update** since it is already specified in the URL.
      *     @type string $host
-     *           The host name from which the user can connect. For <b>insert</b>
-     *           operations, host defaults to an empty string. For <b>update</b>
+     *           Optional. The host name from which the user can connect. For **insert**
+     *           operations, host defaults to an empty string. For **update**
      *           operations, host is specified as part of the request URL. The host name
-     *           cannot be updated after insertion.
+     *           cannot be updated after insertion.  For a MySQL instance, it's required;
+     *           for a PostgreSQL or SQL Server instance, it's optional.
      *     @type string $instance
      *           The name of the Cloud SQL instance. This does not include the project ID.
      *           Can be omitted for <b>update</b> since it is already specified on the
@@ -108,6 +116,8 @@ class User extends \Google\Protobuf\Internal\Message
      *           The user type. It determines the method to authenticate the user during
      *           login. The default is the database's built-in user type.
      *     @type \Google\Cloud\Sql\V1beta4\SqlServerUserDetails $sqlserver_user_details
+     *     @type \Google\Cloud\Sql\V1beta4\UserPasswordValidationPolicy $password_policy
+     *           User level password validation policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -197,7 +207,7 @@ class User extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the user in the Cloud SQL instance. Can be omitted for
-     * <b>update</b> since it is already specified in the URL.
+     * **update** since it is already specified in the URL.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      * @return string
@@ -209,7 +219,7 @@ class User extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the user in the Cloud SQL instance. Can be omitted for
-     * <b>update</b> since it is already specified in the URL.
+     * **update** since it is already specified in the URL.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      * @param string $var
@@ -224,12 +234,13 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The host name from which the user can connect. For <b>insert</b>
-     * operations, host defaults to an empty string. For <b>update</b>
+     * Optional. The host name from which the user can connect. For **insert**
+     * operations, host defaults to an empty string. For **update**
      * operations, host is specified as part of the request URL. The host name
-     * cannot be updated after insertion.
+     * cannot be updated after insertion.  For a MySQL instance, it's required;
+     * for a PostgreSQL or SQL Server instance, it's optional.
      *
-     * Generated from protobuf field <code>string host = 5;</code>
+     * Generated from protobuf field <code>string host = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getHost()
@@ -238,12 +249,13 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The host name from which the user can connect. For <b>insert</b>
-     * operations, host defaults to an empty string. For <b>update</b>
+     * Optional. The host name from which the user can connect. For **insert**
+     * operations, host defaults to an empty string. For **update**
      * operations, host is specified as part of the request URL. The host name
-     * cannot be updated after insertion.
+     * cannot be updated after insertion.  For a MySQL instance, it's required;
+     * for a PostgreSQL or SQL Server instance, it's optional.
      *
-     * Generated from protobuf field <code>string host = 5;</code>
+     * Generated from protobuf field <code>string host = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -366,6 +378,42 @@ class User extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1beta4\SqlServerUserDetails::class);
         $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * User level password validation policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.UserPasswordValidationPolicy password_policy = 12;</code>
+     * @return \Google\Cloud\Sql\V1beta4\UserPasswordValidationPolicy|null
+     */
+    public function getPasswordPolicy()
+    {
+        return $this->password_policy;
+    }
+
+    public function hasPasswordPolicy()
+    {
+        return isset($this->password_policy);
+    }
+
+    public function clearPasswordPolicy()
+    {
+        unset($this->password_policy);
+    }
+
+    /**
+     * User level password validation policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.UserPasswordValidationPolicy password_policy = 12;</code>
+     * @param \Google\Cloud\Sql\V1beta4\UserPasswordValidationPolicy $var
+     * @return $this
+     */
+    public function setPasswordPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1beta4\UserPasswordValidationPolicy::class);
+        $this->password_policy = $var;
 
         return $this;
     }

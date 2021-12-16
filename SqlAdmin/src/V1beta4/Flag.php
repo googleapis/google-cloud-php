@@ -17,42 +17,40 @@ class Flag extends \Google\Protobuf\Internal\Message
 {
     /**
      * This is the name of the flag. Flag names always use underscores, not
-     * hyphens, for example: <b>max_allowed_packet</b>
+     * hyphens, for example: **max_allowed_packet**
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * The type of the flag. Flags are typed to being <b>BOOLEAN</b>,
-     * <b>STRING</b>, <b>INTEGER</b> or <b>NONE</b>.
-     * <b>NONE</b> is used for flags which do not take a value, such as
-     * <b>skip_grant_tables</b>.
+     * The type of the flag. Flags are typed to being **BOOLEAN**, **STRING**,
+     * **INTEGER** or **NONE**. **NONE** is used for flags which do not take a
+     * value, such as **skip_grant_tables**.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.SqlFlagType type = 2;</code>
      */
     private $type = 0;
     /**
-     * The database version this flag applies to. Can be <b>MYSQL_8_0</b>,
-     * <b>MYSQL_5_6</b>, or <b>MYSQL_5_7</b>.
+     * The database version this flag applies to. Can be **MYSQL_8_0**,
+     * **MYSQL_5_6**, or **MYSQL_5_7**.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.SqlDatabaseVersion applies_to = 3;</code>
      */
     private $applies_to;
     /**
-     * For <b>STRING</b> flags, a list of strings that the value can be set
-     * to.
+     * For **STRING** flags, a list of strings that the value can be set to.
      *
      * Generated from protobuf field <code>repeated string allowed_string_values = 4;</code>
      */
     private $allowed_string_values;
     /**
-     * For <b>INTEGER</b> flags, the minimum allowed value.
+     * For **INTEGER** flags, the minimum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value min_value = 5;</code>
      */
     private $min_value = null;
     /**
-     * For <b>INTEGER</b> flags, the maximum allowed value.
+     * For **INTEGER** flags, the maximum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value max_value = 6;</code>
      */
@@ -65,7 +63,7 @@ class Flag extends \Google\Protobuf\Internal\Message
      */
     private $requires_restart = null;
     /**
-     * This is always <b>sql#flag</b>.
+     * This is always **sql#flag**.
      *
      * Generated from protobuf field <code>string kind = 8;</code>
      */
@@ -92,27 +90,25 @@ class Flag extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           This is the name of the flag. Flag names always use underscores, not
-     *           hyphens, for example: <b>max_allowed_packet</b>
+     *           hyphens, for example: **max_allowed_packet**
      *     @type int $type
-     *           The type of the flag. Flags are typed to being <b>BOOLEAN</b>,
-     *           <b>STRING</b>, <b>INTEGER</b> or <b>NONE</b>.
-     *           <b>NONE</b> is used for flags which do not take a value, such as
-     *           <b>skip_grant_tables</b>.
+     *           The type of the flag. Flags are typed to being **BOOLEAN**, **STRING**,
+     *           **INTEGER** or **NONE**. **NONE** is used for flags which do not take a
+     *           value, such as **skip_grant_tables**.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $applies_to
-     *           The database version this flag applies to. Can be <b>MYSQL_8_0</b>,
-     *           <b>MYSQL_5_6</b>, or <b>MYSQL_5_7</b>.
+     *           The database version this flag applies to. Can be **MYSQL_8_0**,
+     *           **MYSQL_5_6**, or **MYSQL_5_7**.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allowed_string_values
-     *           For <b>STRING</b> flags, a list of strings that the value can be set
-     *           to.
+     *           For **STRING** flags, a list of strings that the value can be set to.
      *     @type \Google\Protobuf\Int64Value $min_value
-     *           For <b>INTEGER</b> flags, the minimum allowed value.
+     *           For **INTEGER** flags, the minimum allowed value.
      *     @type \Google\Protobuf\Int64Value $max_value
-     *           For <b>INTEGER</b> flags, the maximum allowed value.
+     *           For **INTEGER** flags, the maximum allowed value.
      *     @type \Google\Protobuf\BoolValue $requires_restart
      *           Indicates whether changing this flag will trigger a database restart. Only
      *           applicable to Second Generation instances.
      *     @type string $kind
-     *           This is always <b>sql#flag</b>.
+     *           This is always **sql#flag**.
      *     @type \Google\Protobuf\BoolValue $in_beta
      *           Whether or not the flag is considered in beta.
      *     @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $allowed_int_values
@@ -127,7 +123,7 @@ class Flag extends \Google\Protobuf\Internal\Message
 
     /**
      * This is the name of the flag. Flag names always use underscores, not
-     * hyphens, for example: <b>max_allowed_packet</b>
+     * hyphens, for example: **max_allowed_packet**
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -139,7 +135,7 @@ class Flag extends \Google\Protobuf\Internal\Message
 
     /**
      * This is the name of the flag. Flag names always use underscores, not
-     * hyphens, for example: <b>max_allowed_packet</b>
+     * hyphens, for example: **max_allowed_packet**
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -154,10 +150,9 @@ class Flag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the flag. Flags are typed to being <b>BOOLEAN</b>,
-     * <b>STRING</b>, <b>INTEGER</b> or <b>NONE</b>.
-     * <b>NONE</b> is used for flags which do not take a value, such as
-     * <b>skip_grant_tables</b>.
+     * The type of the flag. Flags are typed to being **BOOLEAN**, **STRING**,
+     * **INTEGER** or **NONE**. **NONE** is used for flags which do not take a
+     * value, such as **skip_grant_tables**.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.SqlFlagType type = 2;</code>
      * @return int
@@ -168,10 +163,9 @@ class Flag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the flag. Flags are typed to being <b>BOOLEAN</b>,
-     * <b>STRING</b>, <b>INTEGER</b> or <b>NONE</b>.
-     * <b>NONE</b> is used for flags which do not take a value, such as
-     * <b>skip_grant_tables</b>.
+     * The type of the flag. Flags are typed to being **BOOLEAN**, **STRING**,
+     * **INTEGER** or **NONE**. **NONE** is used for flags which do not take a
+     * value, such as **skip_grant_tables**.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.SqlFlagType type = 2;</code>
      * @param int $var
@@ -186,8 +180,8 @@ class Flag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The database version this flag applies to. Can be <b>MYSQL_8_0</b>,
-     * <b>MYSQL_5_6</b>, or <b>MYSQL_5_7</b>.
+     * The database version this flag applies to. Can be **MYSQL_8_0**,
+     * **MYSQL_5_6**, or **MYSQL_5_7**.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.SqlDatabaseVersion applies_to = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -198,8 +192,8 @@ class Flag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The database version this flag applies to. Can be <b>MYSQL_8_0</b>,
-     * <b>MYSQL_5_6</b>, or <b>MYSQL_5_7</b>.
+     * The database version this flag applies to. Can be **MYSQL_8_0**,
+     * **MYSQL_5_6**, or **MYSQL_5_7**.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.SqlDatabaseVersion applies_to = 3;</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -214,8 +208,7 @@ class Flag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For <b>STRING</b> flags, a list of strings that the value can be set
-     * to.
+     * For **STRING** flags, a list of strings that the value can be set to.
      *
      * Generated from protobuf field <code>repeated string allowed_string_values = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -226,8 +219,7 @@ class Flag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For <b>STRING</b> flags, a list of strings that the value can be set
-     * to.
+     * For **STRING** flags, a list of strings that the value can be set to.
      *
      * Generated from protobuf field <code>repeated string allowed_string_values = 4;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -242,7 +234,7 @@ class Flag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For <b>INTEGER</b> flags, the minimum allowed value.
+     * For **INTEGER** flags, the minimum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value min_value = 5;</code>
      * @return \Google\Protobuf\Int64Value|null
@@ -265,7 +257,7 @@ class Flag extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getMinValue()</code>
 
-     * For <b>INTEGER</b> flags, the minimum allowed value.
+     * For **INTEGER** flags, the minimum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value min_value = 5;</code>
      * @return int|string|null
@@ -276,7 +268,7 @@ class Flag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For <b>INTEGER</b> flags, the minimum allowed value.
+     * For **INTEGER** flags, the minimum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value min_value = 5;</code>
      * @param \Google\Protobuf\Int64Value $var
@@ -293,7 +285,7 @@ class Flag extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\Int64Value object.
 
-     * For <b>INTEGER</b> flags, the minimum allowed value.
+     * For **INTEGER** flags, the minimum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value min_value = 5;</code>
      * @param int|string|null $var
@@ -305,7 +297,7 @@ class Flag extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * For <b>INTEGER</b> flags, the maximum allowed value.
+     * For **INTEGER** flags, the maximum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value max_value = 6;</code>
      * @return \Google\Protobuf\Int64Value|null
@@ -328,7 +320,7 @@ class Flag extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getMaxValue()</code>
 
-     * For <b>INTEGER</b> flags, the maximum allowed value.
+     * For **INTEGER** flags, the maximum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value max_value = 6;</code>
      * @return int|string|null
@@ -339,7 +331,7 @@ class Flag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For <b>INTEGER</b> flags, the maximum allowed value.
+     * For **INTEGER** flags, the maximum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value max_value = 6;</code>
      * @param \Google\Protobuf\Int64Value $var
@@ -356,7 +348,7 @@ class Flag extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\Int64Value object.
 
-     * For <b>INTEGER</b> flags, the maximum allowed value.
+     * For **INTEGER** flags, the maximum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value max_value = 6;</code>
      * @param int|string|null $var
@@ -435,7 +427,7 @@ class Flag extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * This is always <b>sql#flag</b>.
+     * This is always **sql#flag**.
      *
      * Generated from protobuf field <code>string kind = 8;</code>
      * @return string
@@ -446,7 +438,7 @@ class Flag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#flag</b>.
+     * This is always **sql#flag**.
      *
      * Generated from protobuf field <code>string kind = 8;</code>
      * @param string $var

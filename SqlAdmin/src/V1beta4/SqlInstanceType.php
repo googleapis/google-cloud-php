@@ -18,7 +18,8 @@ class SqlInstanceType
      */
     const SQL_INSTANCE_TYPE_UNSPECIFIED = 0;
     /**
-     * A regular Cloud SQL instance.
+     * A regular Cloud SQL instance that is not replicating from a primary
+     * instance.
      *
      * Generated from protobuf enum <code>CLOUD_SQL_INSTANCE = 1;</code>
      */

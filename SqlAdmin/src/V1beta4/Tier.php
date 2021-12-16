@@ -17,7 +17,7 @@ class Tier extends \Google\Protobuf\Internal\Message
 {
     /**
      * An identifier for the machine type, for example, db-custom-1-3840. For
-     * related information, see <a href="/sql/pricing">Pricing</a>.
+     * related information, see [Pricing](https://cloud.google.com/sql/pricing).
      *
      * Generated from protobuf field <code>string tier = 1;</code>
      */
@@ -55,7 +55,7 @@ class Tier extends \Google\Protobuf\Internal\Message
      *
      *     @type string $tier
      *           An identifier for the machine type, for example, db-custom-1-3840. For
-     *           related information, see <a href="/sql/pricing">Pricing</a>.
+     *           related information, see [Pricing](https://cloud.google.com/sql/pricing).
      *     @type int|string $RAM
      *           The maximum RAM usage of this tier in bytes.
      *     @type string $kind
@@ -73,7 +73,7 @@ class Tier extends \Google\Protobuf\Internal\Message
 
     /**
      * An identifier for the machine type, for example, db-custom-1-3840. For
-     * related information, see <a href="/sql/pricing">Pricing</a>.
+     * related information, see [Pricing](https://cloud.google.com/sql/pricing).
      *
      * Generated from protobuf field <code>string tier = 1;</code>
      * @return string
@@ -85,7 +85,7 @@ class Tier extends \Google\Protobuf\Internal\Message
 
     /**
      * An identifier for the machine type, for example, db-custom-1-3840. For
-     * related information, see <a href="/sql/pricing">Pricing</a>.
+     * related information, see [Pricing](https://cloud.google.com/sql/pricing).
      *
      * Generated from protobuf field <code>string tier = 1;</code>
      * @param string $var

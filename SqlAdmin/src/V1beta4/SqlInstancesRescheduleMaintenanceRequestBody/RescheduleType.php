@@ -16,20 +16,20 @@ class RescheduleType
      */
     const RESCHEDULE_TYPE_UNSPECIFIED = 0;
     /**
-     * If the user wants to schedule the maintenance to happen now.
+     * Reschedules maintenance to happen now (within 5 minutes).
      *
      * Generated from protobuf enum <code>IMMEDIATE = 1;</code>
      */
     const IMMEDIATE = 1;
     /**
-     * If the user wants to use the existing maintenance policy to find the
-     * next available window.
+     * Reschedules maintenance to occur within one week from the originally
+     * scheduled day and time.
      *
      * Generated from protobuf enum <code>NEXT_AVAILABLE_WINDOW = 2;</code>
      */
     const NEXT_AVAILABLE_WINDOW = 2;
     /**
-     * If the user wants to reschedule the maintenance to a specific time.
+     * Reschedules maintenance to a specific time and day.
      *
      * Generated from protobuf enum <code>SPECIFIC_TIME = 3;</code>
      */

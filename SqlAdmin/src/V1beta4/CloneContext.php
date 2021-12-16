@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CloneContext extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always <b>sql#cloneContext</b>.
+     * This is always **sql#cloneContext**.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -42,7 +42,8 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      */
     private $bin_log_coordinates = null;
     /**
-     * Reserved for future use.
+     * Timestamp, if specified, identifies the time to which the source instance
+     * is cloned.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp point_in_time = 5;</code>
      */
@@ -55,7 +56,7 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always <b>sql#cloneContext</b>.
+     *           This is always **sql#cloneContext**.
      *     @type int|string $pitr_timestamp_ms
      *           Reserved for future use.
      *     @type string $destination_instance_name
@@ -65,7 +66,8 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      *           source instance is cloned. If not specified, the source instance is
      *           cloned up to the most recent binary log coordinates.
      *     @type \Google\Protobuf\Timestamp $point_in_time
-     *           Reserved for future use.
+     *           Timestamp, if specified, identifies the time to which the source instance
+     *           is cloned.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,7 +76,7 @@ class CloneContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#cloneContext</b>.
+     * This is always **sql#cloneContext**.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -85,7 +87,7 @@ class CloneContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#cloneContext</b>.
+     * This is always **sql#cloneContext**.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
@@ -192,7 +194,8 @@ class CloneContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reserved for future use.
+     * Timestamp, if specified, identifies the time to which the source instance
+     * is cloned.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp point_in_time = 5;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -213,7 +216,8 @@ class CloneContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reserved for future use.
+     * Timestamp, if specified, identifies the time to which the source instance
+     * is cloned.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp point_in_time = 5;</code>
      * @param \Google\Protobuf\Timestamp $var
