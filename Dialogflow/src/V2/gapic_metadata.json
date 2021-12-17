@@ -400,6 +400,11 @@
                                 "deleteDocument"
                             ]
                         },
+                        "ExportDocument": {
+                            "methods": [
+                                "exportDocument"
+                            ]
+                        },
                         "GetDocument": {
                             "methods": [
                                 "getDocument"

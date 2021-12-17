@@ -23,6 +23,20 @@ class ReloadDocumentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+    /**
+     * Optional. Whether to import custom metadata from Google Cloud Storage.
+     * Only valid when the document source is Google Cloud Storage URI.
+     *
+     * Generated from protobuf field <code>bool import_gcs_custom_metadata = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $import_gcs_custom_metadata = false;
+    /**
+     * Optional. When enabled, the reload request is to apply partial update to the smart
+     * messaging allowlist.
+     *
+     * Generated from protobuf field <code>bool smart_messaging_partial_update = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $smart_messaging_partial_update = false;
     protected $source;
 
     /**
@@ -40,6 +54,12 @@ class ReloadDocumentRequest extends \Google\Protobuf\Internal\Message
      *           only gcs uri is supported.
      *           For documents stored in Google Cloud Storage, these URIs must have
      *           the form `gs://<bucket-name>/<object-name>`.
+     *     @type bool $import_gcs_custom_metadata
+     *           Optional. Whether to import custom metadata from Google Cloud Storage.
+     *           Only valid when the document source is Google Cloud Storage URI.
+     *     @type bool $smart_messaging_partial_update
+     *           Optional. When enabled, the reload request is to apply partial update to the smart
+     *           messaging allowlist.
      * }
      */
     public function __construct($data = NULL) {
@@ -110,6 +130,62 @@ class ReloadDocumentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether to import custom metadata from Google Cloud Storage.
+     * Only valid when the document source is Google Cloud Storage URI.
+     *
+     * Generated from protobuf field <code>bool import_gcs_custom_metadata = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getImportGcsCustomMetadata()
+    {
+        return $this->import_gcs_custom_metadata;
+    }
+
+    /**
+     * Optional. Whether to import custom metadata from Google Cloud Storage.
+     * Only valid when the document source is Google Cloud Storage URI.
+     *
+     * Generated from protobuf field <code>bool import_gcs_custom_metadata = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setImportGcsCustomMetadata($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->import_gcs_custom_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. When enabled, the reload request is to apply partial update to the smart
+     * messaging allowlist.
+     *
+     * Generated from protobuf field <code>bool smart_messaging_partial_update = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSmartMessagingPartialUpdate()
+    {
+        return $this->smart_messaging_partial_update;
+    }
+
+    /**
+     * Optional. When enabled, the reload request is to apply partial update to the smart
+     * messaging allowlist.
+     *
+     * Generated from protobuf field <code>bool smart_messaging_partial_update = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSmartMessagingPartialUpdate($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->smart_messaging_partial_update = $var;
 
         return $this;
     }

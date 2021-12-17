@@ -157,4 +157,27 @@ class DocumentsGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Exports a smart messaging candidate document into the specified
+     * destination.
+     *
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `response`: [Document][google.cloud.dialogflow.v2.Document]
+     * @param \Google\Cloud\Dialogflow\V2\ExportDocumentRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ExportDocument(\Google\Cloud\Dialogflow\V2\ExportDocumentRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dialogflow.v2.Documents/ExportDocument',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
 }

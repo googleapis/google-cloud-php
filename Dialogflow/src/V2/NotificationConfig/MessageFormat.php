@@ -14,19 +14,19 @@ use UnexpectedValueException;
 class MessageFormat
 {
     /**
-     * If it is unspeified, PROTO will be used.
+     * If it is unspecified, PROTO will be used.
      *
      * Generated from protobuf enum <code>MESSAGE_FORMAT_UNSPECIFIED = 0;</code>
      */
     const MESSAGE_FORMAT_UNSPECIFIED = 0;
     /**
-     * Pubsub message will be serialized proto.
+     * Pub/Sub message will be serialized proto.
      *
      * Generated from protobuf enum <code>PROTO = 1;</code>
      */
     const PROTO = 1;
     /**
-     * Pubsub message will be json.
+     * Pub/Sub message will be json.
      *
      * Generated from protobuf enum <code>JSON = 2;</code>
      */
