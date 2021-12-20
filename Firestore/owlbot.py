@@ -27,6 +27,9 @@ logging.basicConfig(level=logging.DEBUG)
 src = Path(f"../{php.STAGING_DIR}/Firestore").resolve()
 dest = Path().resolve()
 
+# For preserving the copyright year, we use php._merge function
+preserve_copyright_year = php._merge
+
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
@@ -35,24 +38,22 @@ php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        src / "*/src/*/gapic_metadata.json",
-        src / "*/src/*/*.php"
+        src / "*/src/*/*Client.php"
     ]
 )
-
 
 # Firestore Admin also lives here
 admin_library = Path(f"../{php.STAGING_DIR}/Firestore/v1/Admin").resolve()
 
 # copy all src
-s.move(admin_library / f'src', 'src/Admin', merge=php._merge)
+s.move(admin_library / f'src', 'src/Admin', merge=preserve_copyright_year)
 
 # copy proto files to src also
-s.move(admin_library / f'proto/src/Google/Cloud/Firestore', f'src/', merge=php._merge)
-s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin', merge=php._merge)
+s.move(admin_library / f'proto/src/Google/Cloud/Firestore', f'src/', merge=preserve_copyright_year)
+s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin', merge=preserve_copyright_year)
 
 # copy GPBMetadata file to metadata
-s.move(admin_library / f'proto/src/GPBMetadata/Google/Firestore', f'metadata/', merge=php._merge)
+s.move(admin_library / f'proto/src/GPBMetadata/Google/Firestore', f'metadata/', merge=preserve_copyright_year)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
