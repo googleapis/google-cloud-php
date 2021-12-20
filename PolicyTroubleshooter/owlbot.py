@@ -1,4 +1,4 @@
-# Copyright 2018 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,30 +14,23 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/PolicyTroubleshooter").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='pubsub',
-    version='v1',
-    bazel_target='//google/pubsub/v1:google-cloud-pubsub-v1-php',
-)
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
-
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/PubSub', 'src/')
-s.move(library / 'tests/')
-
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Pubsub', 'metadata/')
+php.owlbot_main(src=src, dest=dest)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -57,46 +50,11 @@ s.replace(
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
 
-# fix year
-for client in ['Publisher', 'Subscriber']:
-    s.replace(
-        f'**/V1/{client}Client.php',
-        r'Copyright \d{4}',
-        'Copyright 2016')
-    s.replace(
-        f'**/V1/{client}GrpcClient.php',
-        r'Copyright \d{4}',
-        'Copyright 2017')
-    s.replace(
-        f'**/V1/Gapic/{client}GapicClient.php',
-        r'Copyright \d{4}',
-        'Copyright 2016')
-
-# fix year
-for client in ['SchemaService']:
-    s.replace(
-        f'**/V1/{client}Client.php',
-        r'Copyright \d{4}',
-        'Copyright 2021')
-    s.replace(
-        f'**/V1/{client}GrpcClient.php',
-        r'Copyright \d{4}',
-        'Copyright 2021')
-    s.replace(
-        f'**/V1/Gapic/{client}GapicClient.php',
-        r'Copyright \d{4}',
-        'Copyright 2021')
-
+# Change the wording for the deprecation warning.
 s.replace(
-    'tests/**/V1/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2018')
-
-# fix the link to the official doc
-s.replace(
-    'src/**/*.php',
-    r'<a href="/pubsub/docs/',
-    '<a href="https://cloud.google.com/pubsub/docs/')
+    'src/*/*_*.php',
+    r'will be removed in the next major release',
+    'will be removed in a future release')
 
 ### [START] protoc backwards compatibility fixes
 

@@ -1,0 +1,3 @@
+deep-copy-regex:
+    - source: /google/cloud/privatecatalog/(v1beta1)/.*-php/(.*)
+      dest: /owl-bot-staging/PrivateCatalog/$1/$2
