@@ -23,6 +23,16 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'ExportDocument' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Dialogflow\V2\Document',
+                    'metadataReturnType' => '\Google\Cloud\Dialogflow\V2\KnowledgeOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'ReloadDocument' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Dialogflow\V2\Document',

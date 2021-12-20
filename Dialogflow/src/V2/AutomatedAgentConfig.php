@@ -21,11 +21,15 @@ class AutomatedAgentConfig extends \Google\Protobuf\Internal\Message
      * need to grant `service-<Conversation Project
      * Number>&#64;gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow API
      * Service Agent` role in this project.
-     * Format: `projects/<Project ID>/locations/<Location
+     * - For ES agents, use format: `projects/<Project ID>/locations/<Location
      * ID>/agent/environments/<Environment ID or '-'>`. If environment is not
      * specified, the default `draft` environment is used. Refer to
      * [DetectIntentRequest](https://cloud.google.com/dialogflow/docs/reference/rpc/google.cloud.dialogflow.v2#google.cloud.dialogflow.v2.DetectIntentRequest)
      * for more details.
+     * - For CX agents, use format `projects/<Project ID>/locations/<Location
+     * ID>/agents/<Agent ID>/environments/<Environment ID
+     * or '-'>`. If environment is not specified, the default `draft` environment
+     * is used.
      *
      * Generated from protobuf field <code>string agent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -43,11 +47,15 @@ class AutomatedAgentConfig extends \Google\Protobuf\Internal\Message
      *           need to grant `service-<Conversation Project
      *           Number>&#64;gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow API
      *           Service Agent` role in this project.
-     *           Format: `projects/<Project ID>/locations/<Location
+     *           - For ES agents, use format: `projects/<Project ID>/locations/<Location
      *           ID>/agent/environments/<Environment ID or '-'>`. If environment is not
      *           specified, the default `draft` environment is used. Refer to
      *           [DetectIntentRequest](https://cloud.google.com/dialogflow/docs/reference/rpc/google.cloud.dialogflow.v2#google.cloud.dialogflow.v2.DetectIntentRequest)
      *           for more details.
+     *           - For CX agents, use format `projects/<Project ID>/locations/<Location
+     *           ID>/agents/<Agent ID>/environments/<Environment ID
+     *           or '-'>`. If environment is not specified, the default `draft` environment
+     *           is used.
      * }
      */
     public function __construct($data = NULL) {
@@ -61,11 +69,15 @@ class AutomatedAgentConfig extends \Google\Protobuf\Internal\Message
      * need to grant `service-<Conversation Project
      * Number>&#64;gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow API
      * Service Agent` role in this project.
-     * Format: `projects/<Project ID>/locations/<Location
+     * - For ES agents, use format: `projects/<Project ID>/locations/<Location
      * ID>/agent/environments/<Environment ID or '-'>`. If environment is not
      * specified, the default `draft` environment is used. Refer to
      * [DetectIntentRequest](https://cloud.google.com/dialogflow/docs/reference/rpc/google.cloud.dialogflow.v2#google.cloud.dialogflow.v2.DetectIntentRequest)
      * for more details.
+     * - For CX agents, use format `projects/<Project ID>/locations/<Location
+     * ID>/agents/<Agent ID>/environments/<Environment ID
+     * or '-'>`. If environment is not specified, the default `draft` environment
+     * is used.
      *
      * Generated from protobuf field <code>string agent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -81,11 +93,15 @@ class AutomatedAgentConfig extends \Google\Protobuf\Internal\Message
      * need to grant `service-<Conversation Project
      * Number>&#64;gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow API
      * Service Agent` role in this project.
-     * Format: `projects/<Project ID>/locations/<Location
+     * - For ES agents, use format: `projects/<Project ID>/locations/<Location
      * ID>/agent/environments/<Environment ID or '-'>`. If environment is not
      * specified, the default `draft` environment is used. Refer to
      * [DetectIntentRequest](https://cloud.google.com/dialogflow/docs/reference/rpc/google.cloud.dialogflow.v2#google.cloud.dialogflow.v2.DetectIntentRequest)
      * for more details.
+     * - For CX agents, use format `projects/<Project ID>/locations/<Location
+     * ID>/agents/<Agent ID>/environments/<Environment ID
+     * or '-'>`. If environment is not specified, the default `draft` environment
+     * is used.
      *
      * Generated from protobuf field <code>string agent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
