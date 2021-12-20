@@ -14,30 +14,23 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Monitoring").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='monitoring',
-    version='v3',
-    bazel_target='//google/monitoring/v3:google-cloud-monitoring-v3-php',
-)
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
-
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/Monitoring', 'src/')
-s.move(library / 'tests/')
-
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Monitoring', 'metadata/')
+php.owlbot_main(src=src, dest=dest)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -62,17 +55,6 @@ s.replace(
     'src/V3/**/*Client.php',
     r'^(\s+\*\n)?\s+\*\s@experimental\n',
     '')
-
-# fix year
-for client in ['GroupService', 'MetricService', 'UptimeCheckService']:
-    s.replace(
-        f'**/Gapic/{client}GapicClient.php',
-        r'Copyright \d{4}',
-        'Copyright 2017')
-    s.replace(
-        f'**/V3/{client}Client.php',
-        r'Copyright \d{4}',
-        'Copyright 2017')
 
 for client in ['AlertPolicyService', 'NotificationChannelService']:
     s.replace(
