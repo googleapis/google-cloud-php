@@ -27,16 +27,18 @@ logging.basicConfig(level=logging.DEBUG)
 src = Path(f"../{php.STAGING_DIR}/Bigtable").resolve()
 dest = Path().resolve()
 
+# For preserving the copyright year, we use php._merge function
+preserve_copyright_year = php._merge
+
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
-# Excluding gapic_metadata.json and the partial veneer files.
+# Excluding the partial veneer files.
 php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        src / "*/src/*/gapic_metadata.json",
-        src / "*/src/*/*.php"
+        src / "*/src/*/*Client.php"
     ]
 )
 
@@ -44,15 +46,15 @@ php.owlbot_main(
 admin_library = Path(f"../{php.STAGING_DIR}/Bigtable/v2/Admin").resolve()
 
 # copy all src except handwritten partial veneers
-s.move(admin_library / f'src/V2/Gapic', 'src/Admin/V2/Gapic', merge=php._merge)
-s.move(admin_library / f'src/V2/resources', f'src/Admin/V2/resources', merge=php._merge)
+s.move(admin_library / f'src/V2/Gapic', 'src/Admin/V2/Gapic', merge=preserve_copyright_year)
+s.move(admin_library / f'src/V2/resources', f'src/Admin/V2/resources', merge=preserve_copyright_year)
 
 # copy proto files to src also
-s.move(admin_library / f'proto/src/Google/Cloud/Bigtable', f'src/', merge=php._merge)
-s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin', merge=php._merge)
+s.move(admin_library / f'proto/src/Google/Cloud/Bigtable', f'src/', merge=preserve_copyright_year)
+s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin', merge=preserve_copyright_year)
 
 # copy GPBMetadata file to metadata
-s.move(admin_library / f'proto/src/GPBMetadata/Google/Bigtable', f'metadata/', merge=php._merge)
+s.move(admin_library / f'proto/src/GPBMetadata/Google/Bigtable', f'metadata/', merge=preserve_copyright_year)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
