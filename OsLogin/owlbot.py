@@ -32,8 +32,6 @@ _tracked_paths.add(src)
 
 php.owlbot_main(src=src, dest=dest)
 
-# s.move(v1 / f'proto/src/GPBMetadata/Google/Cloud/Oslogin', f'metadata/')
-
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
     "**/Gapic/*GapicClient.php",
