@@ -14,42 +14,23 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import subprocess
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/OsLogin").resolve()
+dest = Path().resolve()
 
-v1beta = gapic.php_library(
-    service='oslogin',
-    version='v1beta',
-    bazel_target='//google/cloud/oslogin/v1beta:google-cloud-oslogin-v1beta-php'
-)
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-v1 = gapic.php_library(
-    service='oslogin',
-    version='v1',
-    bazel_target='//google/cloud/oslogin/v1:google-cloud-oslogin-v1-php'
-)
-
-# copy all src
-s.move(v1beta / f'src/V1beta')
-s.move(v1 / f'src/V1')
-
-# copy proto files to src also
-s.move(v1beta / f'proto/src/Google/Cloud/OsLogin', f'src/')
-s.move(v1 / f'proto/src/Google/Cloud/OsLogin', f'src/')
-
-s.move(v1beta / f'tests/')
-s.move(v1 / f'tests/')
-
-# copy GPBMetadata file to metadata
-s.move(v1beta / f'proto/src/GPBMetadata/Google/Cloud/Oslogin', f'metadata/')
-s.move(v1 / f'proto/src/GPBMetadata/Google/Cloud/Oslogin', f'metadata/')
+php.owlbot_main(src=src, dest=dest)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
