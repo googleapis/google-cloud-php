@@ -1,5 +1,698 @@
 # Changelog
 
+## 0.172.1
+
+<details><summary>google/cloud-access-approval 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove synth.metadata for APIs using owlbot ([#4812](https://www.github.com/googleapis/google-cloud-php/issues/4812)) ([8b05902](https://www.github.com/googleapis/google-cloud-php/commit/8b0590256f2abfff3983442bcbbedb9b755723ba))
+
+</details>
+
+<details><summary>google/analytics-admin 0.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate AnalyticsAdmin to owlbot ([#4757](https://www.github.com/googleapis/google-cloud-php/issues/4757)) ([aca24eb](https://www.github.com/googleapis/google-cloud-php/commit/aca24ebc6e9d7e3c5320f3a2a7f5ac625a45bb85))
+
+</details>
+
+<details><summary>google/cloud-api-gateway 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot in batch ([#4808](https://www.github.com/googleapis/google-cloud-php/issues/4808)) ([d2e6329](https://www.github.com/googleapis/google-cloud-php/commit/d2e6329a3b8028b7d8532dfaf20aa52b7ede1bf0))
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot in batch ([#4808](https://www.github.com/googleapis/google-cloud-php/issues/4808)) ([d2e6329](https://www.github.com/googleapis/google-cloud-php/commit/d2e6329a3b8028b7d8532dfaf20aa52b7ede1bf0))
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot in batch ([#4808](https://www.github.com/googleapis/google-cloud-php/issues/4808)) ([d2e6329](https://www.github.com/googleapis/google-cloud-php/commit/d2e6329a3b8028b7d8532dfaf20aa52b7ede1bf0))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot in batch ([#4808](https://www.github.com/googleapis/google-cloud-php/issues/4808)) ([d2e6329](https://www.github.com/googleapis/google-cloud-php/commit/d2e6329a3b8028b7d8532dfaf20aa52b7ede1bf0))
+
+</details>
+
+<details><summary>google/cloud-asset 1.6.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove synth.metadata for APIs using owlbot ([#4812](https://www.github.com/googleapis/google-cloud-php/issues/4812)) ([8b05902](https://www.github.com/googleapis/google-cloud-php/commit/8b0590256f2abfff3983442bcbbedb9b755723ba))
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 0.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot in batch ([#4808](https://www.github.com/googleapis/google-cloud-php/issues/4808)) ([d2e6329](https://www.github.com/googleapis/google-cloud-php/commit/d2e6329a3b8028b7d8532dfaf20aa52b7ede1bf0))
+
+</details>
+
+<details><summary>google/cloud-automl 1.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot in batch ([#4808](https://www.github.com/googleapis/google-cloud-php/issues/4808)) ([d2e6329](https://www.github.com/googleapis/google-cloud-php/commit/d2e6329a3b8028b7d8532dfaf20aa52b7ede1bf0))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.5.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot in batch ([#4808](https://www.github.com/googleapis/google-cloud-php/issues/4808)) ([d2e6329](https://www.github.com/googleapis/google-cloud-php/commit/d2e6329a3b8028b7d8532dfaf20aa52b7ede1bf0))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.2.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot in batch ([#4808](https://www.github.com/googleapis/google-cloud-php/issues/4808)) ([d2e6329](https://www.github.com/googleapis/google-cloud-php/commit/d2e6329a3b8028b7d8532dfaf20aa52b7ede1bf0))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 0.4.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot in batch ([#4808](https://www.github.com/googleapis/google-cloud-php/issues/4808)) ([d2e6329](https://www.github.com/googleapis/google-cloud-php/commit/d2e6329a3b8028b7d8532dfaf20aa52b7ede1bf0))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot in batch ([#4808](https://www.github.com/googleapis/google-cloud-php/issues/4808)) ([d2e6329](https://www.github.com/googleapis/google-cloud-php/commit/d2e6329a3b8028b7d8532dfaf20aa52b7ede1bf0))
+
+</details>
+
+<details><summary>google/cloud-billing 1.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4814](https://www.github.com/googleapis/google-cloud-php/issues/4814)) ([a538ece](https://www.github.com/googleapis/google-cloud-php/commit/a538ece434e64d4d8f03b7f2cfeb03482960daac))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4814](https://www.github.com/googleapis/google-cloud-php/issues/4814)) ([a538ece](https://www.github.com/googleapis/google-cloud-php/commit/a538ece434e64d4d8f03b7f2cfeb03482960daac))
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4814](https://www.github.com/googleapis/google-cloud-php/issues/4814)) ([a538ece](https://www.github.com/googleapis/google-cloud-php/commit/a538ece434e64d4d8f03b7f2cfeb03482960daac))
+
+</details>
+
+<details><summary>google/cloud-build 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4818](https://www.github.com/googleapis/google-cloud-php/issues/4818)) ([90546c8](https://www.github.com/googleapis/google-cloud-php/commit/90546c842d476c2610f74f59d059ca1122b95b8d))
+
+</details>
+
+<details><summary>google/cloud-channel 0.5.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4814](https://www.github.com/googleapis/google-cloud-php/issues/4814)) ([a538ece](https://www.github.com/googleapis/google-cloud-php/commit/a538ece434e64d4d8f03b7f2cfeb03482960daac))
+
+</details>
+
+<details><summary>google/cloud-compute 0.5.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove synth.metadata for APIs using owlbot ([#4812](https://www.github.com/googleapis/google-cloud-php/issues/4812)) ([8b05902](https://www.github.com/googleapis/google-cloud-php/commit/8b0590256f2abfff3983442bcbbedb9b755723ba))
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4814](https://www.github.com/googleapis/google-cloud-php/issues/4814)) ([a538ece](https://www.github.com/googleapis/google-cloud-php/commit/a538ece434e64d4d8f03b7f2cfeb03482960daac))
+
+</details>
+
+<details><summary>google/cloud-container 1.5.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4814](https://www.github.com/googleapis/google-cloud-php/issues/4814)) ([a538ece](https://www.github.com/googleapis/google-cloud-php/commit/a538ece434e64d4d8f03b7f2cfeb03482960daac))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4814](https://www.github.com/googleapis/google-cloud-php/issues/4814)) ([a538ece](https://www.github.com/googleapis/google-cloud-php/commit/a538ece434e64d4d8f03b7f2cfeb03482960daac))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.0.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4814](https://www.github.com/googleapis/google-cloud-php/issues/4814)) ([a538ece](https://www.github.com/googleapis/google-cloud-php/commit/a538ece434e64d4d8f03b7f2cfeb03482960daac))
+
+</details>
+
+<details><summary>google/cloud-data-fusion 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4814](https://www.github.com/googleapis/google-cloud-php/issues/4814)) ([a538ece](https://www.github.com/googleapis/google-cloud-php/commit/a538ece434e64d4d8f03b7f2cfeb03482960daac))
+
+</details>
+
+<details><summary>google/cloud-datalabeling 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4818](https://www.github.com/googleapis/google-cloud-php/issues/4818)) ([90546c8](https://www.github.com/googleapis/google-cloud-php/commit/90546c842d476c2610f74f59d059ca1122b95b8d))
+
+</details>
+
+<details><summary>google/cloud-dataflow 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4814](https://www.github.com/googleapis/google-cloud-php/issues/4814)) ([a538ece](https://www.github.com/googleapis/google-cloud-php/commit/a538ece434e64d4d8f03b7f2cfeb03482960daac))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4818](https://www.github.com/googleapis/google-cloud-php/issues/4818)) ([90546c8](https://www.github.com/googleapis/google-cloud-php/commit/90546c842d476c2610f74f59d059ca1122b95b8d))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4818](https://www.github.com/googleapis/google-cloud-php/issues/4818)) ([90546c8](https://www.github.com/googleapis/google-cloud-php/commit/90546c842d476c2610f74f59d059ca1122b95b8d))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.13.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4818](https://www.github.com/googleapis/google-cloud-php/issues/4818)) ([90546c8](https://www.github.com/googleapis/google-cloud-php/commit/90546c842d476c2610f74f59d059ca1122b95b8d))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4818](https://www.github.com/googleapis/google-cloud-php/issues/4818)) ([90546c8](https://www.github.com/googleapis/google-cloud-php/commit/90546c842d476c2610f74f59d059ca1122b95b8d))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.4.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4818](https://www.github.com/googleapis/google-cloud-php/issues/4818)) ([90546c8](https://www.github.com/googleapis/google-cloud-php/commit/90546c842d476c2610f74f59d059ca1122b95b8d))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4818](https://www.github.com/googleapis/google-cloud-php/issues/4818)) ([90546c8](https://www.github.com/googleapis/google-cloud-php/commit/90546c842d476c2610f74f59d059ca1122b95b8d))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.23.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4818](https://www.github.com/googleapis/google-cloud-php/issues/4818)) ([90546c8](https://www.github.com/googleapis/google-cloud-php/commit/90546c842d476c2610f74f59d059ca1122b95b8d))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate 10 APIs to owlbot ([#4818](https://www.github.com/googleapis/google-cloud-php/issues/4818)) ([90546c8](https://www.github.com/googleapis/google-cloud-php/commit/90546c842d476c2610f74f59d059ca1122b95b8d))
+
+</details>
+
+<details><summary>google/cloud-dms 0.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate DMS to OwlBot ([#4832](https://www.github.com/googleapis/google-cloud-php/issues/4832)) ([64ba96c](https://www.github.com/googleapis/google-cloud-php/commit/64ba96c5d7a897ced8ec74030278a030c78e79fd))
+
+</details>
+
+<details><summary>google/cloud-document-ai 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate DocumentAi to OwlBot ([#4856](https://www.github.com/googleapis/google-cloud-php/issues/4856)) ([6d39bbd](https://www.github.com/googleapis/google-cloud-php/commit/6d39bbd19d7d14545d94c30eeebfddba177b47a1))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.18.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate ErrorReporting to owlbot ([#4831](https://www.github.com/googleapis/google-cloud-php/issues/4831)) ([ae115eb](https://www.github.com/googleapis/google-cloud-php/commit/ae115eb08f4e6f1d133e5ee18bcc45de578cbd90))
+
+</details>
+
+<details><summary>google/cloud-essential-contacts 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate EssentialContacts to owlbot ([#4833](https://www.github.com/googleapis/google-cloud-php/issues/4833)) ([0f6671f](https://www.github.com/googleapis/google-cloud-php/commit/0f6671ff41188ccf2bcf323b9b4bb9709df7b0cb))
+
+</details>
+
+<details><summary>google/cloud-eventarc 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate Eventarc and Filestore to OwlBot ([#4836](https://www.github.com/googleapis/google-cloud-php/issues/4836)) ([256371e](https://www.github.com/googleapis/google-cloud-php/commit/256371e042dc0fce7d1476776ffd0c89323d405b))
+
+</details>
+
+<details><summary>google/cloud-filestore 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate Eventarc and Filestore to OwlBot ([#4836](https://www.github.com/googleapis/google-cloud-php/issues/4836)) ([256371e](https://www.github.com/googleapis/google-cloud-php/commit/256371e042dc0fce7d1476776ffd0c89323d405b))
+
+</details>
+
+<details><summary>google/cloud-gke-connect-gateway 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate Gkeconnectgateway and GkeHub to OwlBot ([#4841](https://www.github.com/googleapis/google-cloud-php/issues/4841)) ([0a9f30f](https://www.github.com/googleapis/google-cloud-php/commit/0a9f30fb0a5081e327ba77de8f3d8dcf75639c4c))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate Gkeconnectgateway and GkeHub to OwlBot ([#4841](https://www.github.com/googleapis/google-cloud-php/issues/4841)) ([0a9f30f](https://www.github.com/googleapis/google-cloud-php/commit/0a9f30fb0a5081e327ba77de8f3d8dcf75639c4c))
+
+</details>
+
+<details><summary>google/grafeas 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate Grafeas to OwlBot ([#4857](https://www.github.com/googleapis/google-cloud-php/issues/4857)) ([0ddea0f](https://www.github.com/googleapis/google-cloud-php/commit/0ddea0fd399eb8bc29fa2c098a1c2ec3a40e13e9))
+
+</details>
+
+<details><summary>google/cloud-iap 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate Iap and Iot to OwlBot ([#4843](https://www.github.com/googleapis/google-cloud-php/issues/4843)) ([9c1255b](https://www.github.com/googleapis/google-cloud-php/commit/9c1255b954799f9faa8c5181ae2304265e80fd18))
+
+</details>
+
+<details><summary>google/cloud-iot 1.4.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate Iap and Iot to OwlBot ([#4843](https://www.github.com/googleapis/google-cloud-php/issues/4843)) ([9c1255b](https://www.github.com/googleapis/google-cloud-php/commit/9c1255b954799f9faa8c5181ae2304265e80fd18))
+
+</details>
+
+<details><summary>google/cloud-language 0.26.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate Language to Owlbot ([#4844](https://www.github.com/googleapis/google-cloud-php/issues/4844)) ([041f20c](https://www.github.com/googleapis/google-cloud-php/commit/041f20c838ec8f539925966188e17c6befa9123b))
+
+</details>
+
+<details><summary>google/cloud-life-sciences 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate 7 APIs to OwlBot ([#4849](https://www.github.com/googleapis/google-cloud-php/issues/4849)) ([4f9911b](https://www.github.com/googleapis/google-cloud-php/commit/4f9911bf4b4b28afb2a02e8cbbaec13245f49a21))
+
+</details>
+
+<details><summary>google/cloud-logging 1.22.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate Logging to owlbot ([#4838](https://www.github.com/googleapis/google-cloud-php/issues/4838)) ([1bc5567](https://www.github.com/googleapis/google-cloud-php/commit/1bc55672b84ce74c41a748163db40dabee875d43))
+
+</details>
+
+<details><summary>google/cloud-managed-identities 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate 7 APIs to OwlBot ([#4849](https://www.github.com/googleapis/google-cloud-php/issues/4849)) ([4f9911b](https://www.github.com/googleapis/google-cloud-php/commit/4f9911bf4b4b28afb2a02e8cbbaec13245f49a21))
+
+</details>
+
+<details><summary>google/cloud-media-translation 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate 7 APIs to OwlBot ([#4849](https://www.github.com/googleapis/google-cloud-php/issues/4849)) ([4f9911b](https://www.github.com/googleapis/google-cloud-php/commit/4f9911bf4b4b28afb2a02e8cbbaec13245f49a21))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.5.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate 7 APIs to OwlBot ([#4849](https://www.github.com/googleapis/google-cloud-php/issues/4849)) ([4f9911b](https://www.github.com/googleapis/google-cloud-php/commit/4f9911bf4b4b28afb2a02e8cbbaec13245f49a21))
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.0.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate Monitoring to OwlBot ([#4858](https://www.github.com/googleapis/google-cloud-php/issues/4858)) ([95205be](https://www.github.com/googleapis/google-cloud-php/commit/95205befc544c4b663da05e22b4cef7de937202a))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4823](https://www.github.com/googleapis/google-cloud-php/issues/4823)) ([4372a81](https://www.github.com/googleapis/google-cloud-php/commit/4372a81d4b7b239a97bfb1b912d91fd48d07894c))
+* Migrate 7 APIs to OwlBot ([#4849](https://www.github.com/googleapis/google-cloud-php/issues/4849)) ([4f9911b](https://www.github.com/googleapis/google-cloud-php/commit/4f9911bf4b4b28afb2a02e8cbbaec13245f49a21))
+
+</details>
+
+<details><summary>google/cloud-network-management 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate 7 APIs to OwlBot ([#4849](https://www.github.com/googleapis/google-cloud-php/issues/4849)) ([4f9911b](https://www.github.com/googleapis/google-cloud-php/commit/4f9911bf4b4b28afb2a02e8cbbaec13245f49a21))
+
+</details>
+
+<details><summary>google/cloud-network-security 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate NetworkSecurity to OwlBot ([#4859](https://www.github.com/googleapis/google-cloud-php/issues/4859)) ([fe3daae](https://www.github.com/googleapis/google-cloud-php/commit/fe3daaedc27dd4b7ba5cec689a438b87c25aee06))
+
+</details>
+
+<details><summary>google/cloud-notebooks 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate 7 APIs to OwlBot ([#4849](https://www.github.com/googleapis/google-cloud-php/issues/4849)) ([4f9911b](https://www.github.com/googleapis/google-cloud-php/commit/4f9911bf4b4b28afb2a02e8cbbaec13245f49a21))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate 6 products to OwlBot ([#4850](https://www.github.com/googleapis/google-cloud-php/issues/4850)) ([8c670b2](https://www.github.com/googleapis/google-cloud-php/commit/8c670b2f86b84991f07f5ffbecfc06498426097b))
+
+</details>
+
+<details><summary>google/cloud-org-policy 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate 6 products to OwlBot ([#4850](https://www.github.com/googleapis/google-cloud-php/issues/4850)) ([8c670b2](https://www.github.com/googleapis/google-cloud-php/commit/8c670b2f86b84991f07f5ffbecfc06498426097b))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate OsLogin to OwlBot ([#4855](https://www.github.com/googleapis/google-cloud-php/issues/4855)) ([746b4f9](https://www.github.com/googleapis/google-cloud-php/commit/746b4f911398b317165dec6beab472300302fc55))
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate 6 products to OwlBot ([#4850](https://www.github.com/googleapis/google-cloud-php/issues/4850)) ([8c670b2](https://www.github.com/googleapis/google-cloud-php/commit/8c670b2f86b84991f07f5ffbecfc06498426097b))
+
+</details>
+
+<details><summary>google/cloud-private-catalog 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate 6 products to OwlBot ([#4850](https://www.github.com/googleapis/google-cloud-php/issues/4850)) ([8c670b2](https://www.github.com/googleapis/google-cloud-php/commit/8c670b2f86b84991f07f5ffbecfc06498426097b))
+
+</details>
+
+<details><summary>google/cloud-profiler 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate 6 products to OwlBot ([#4850](https://www.github.com/googleapis/google-cloud-php/issues/4850)) ([8c670b2](https://www.github.com/googleapis/google-cloud-php/commit/8c670b2f86b84991f07f5ffbecfc06498426097b))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.34.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate 6 products to OwlBot ([#4850](https://www.github.com/googleapis/google-cloud-php/issues/4850)) ([8c670b2](https://www.github.com/googleapis/google-cloud-php/commit/8c670b2f86b84991f07f5ffbecfc06498426097b))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* Migrate RecaptchaEnterprise to Owlbot ([#4854](https://www.github.com/googleapis/google-cloud-php/issues/4854)) ([bccf987](https://www.github.com/googleapis/google-cloud-php/commit/bccf9877e4c4d4d78fa1b19794d107b00312c77a))
+
+</details>
+
+<details><summary>google/cloud-resource-manager 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4824](https://www.github.com/googleapis/google-cloud-php/issues/4824)) ([985aa2c](https://www.github.com/googleapis/google-cloud-php/commit/985aa2ca9680d47a9865e32996c7ac2481c8b015))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.46.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4826](https://www.github.com/googleapis/google-cloud-php/issues/4826)) ([0a3b0d0](https://www.github.com/googleapis/google-cloud-php/commit/0a3b0d0810b2a0c56dcf1869446c02df8bd7b97b))
+
+</details>
+
+<details><summary>google/cloud-talent 0.16.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4827](https://www.github.com/googleapis/google-cloud-php/issues/4827)) ([3f1f20f](https://www.github.com/googleapis/google-cloud-php/commit/3f1f20f8a389baa41b492bd4b0a6a1fa2a2f98d1))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** Update gapic-generator-php to v1.2.1 ([#4828](https://www.github.com/googleapis/google-cloud-php/issues/4828)) ([b3d4892](https://www.github.com/googleapis/google-cloud-php/commit/b3d4892a6ce223973d1ae25c3738ca612813f80e))
+
+</details>
+
+<details><summary>google/cloud-vision 1.5.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove synth.metadata for APIs using owlbot ([#4812](https://www.github.com/googleapis/google-cloud-php/issues/4812)) ([8b05902](https://www.github.com/googleapis/google-cloud-php/commit/8b0590256f2abfff3983442bcbbedb9b755723ba))
+
+</details>
+
 ## 0.172.0
 
 <details><summary>google/cloud-access-approval 0.2.2</summary>
