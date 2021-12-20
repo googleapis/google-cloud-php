@@ -27,22 +27,64 @@ logging.basicConfig(level=logging.DEBUG)
 src = Path(f"../{php.STAGING_DIR}/Workflows").resolve()
 dest = Path().resolve()
 
+# For preserving the copyright year, we use php._merge function
+preserve_copyright_year = php._merge
+
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
-php.owlbot_main(src=src, dest=dest)
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "**/*_*.php"
+    ]
+)
 
 executions_library = Path(f"../{php.STAGING_DIR}/Workflows/v1beta/Executions").resolve()
 
 # copy all src including partial veneer classes
-s.move(executions_library / 'src', 'src/Executions', merge=php._merge)
+s.move(executions_library / 'src',
+       'src/Executions',
+       merge=preserve_copyright_year,
+       excludes=[
+           executions_library / "**/*_*.php"
+       ]
+)
 
 # copy proto files to src also
-s.move(executions_library / 'proto/src/Google/Cloud/Workflows', 'src/', merge=php._merge)
-s.move(executions_library / 'tests/Unit', 'tests/Unit/Executions', merge=php._merge)
+s.move(executions_library / 'proto/src/Google/Cloud/Workflows',
+       'src/',
+       merge=preserve_copyright_year,
+       excludes=[
+           executions_library / "**/*_*.php"
+       ]
+)
+s.move(executions_library / 'tests/Unit',
+       'tests/Unit/Executions',
+       merge=preserve_copyright_year,
+       excludes=[
+           executions_library / "**/*_*.php"
+       ]
+)
 
 # copy GPBMetadata file to metadata
-s.move(executions_library / 'proto/src/GPBMetadata/Google/Cloud/Workflows', 'metadata/', merge=php._merge)
+s.move(executions_library / 'proto/src/GPBMetadata/Google/Cloud/Workflows',
+       'metadata/',
+       merge=preserve_copyright_year,
+       excludes=[
+           executions_library / "**/*_*.php"
+       ]
+)
+
+# remove class_alias code
+s.replace(
+    "src/V*/*/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
 
 # Fix test namespaces
 s.replace(
@@ -67,12 +109,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# Change the wording for the deprecation warning.
-s.replace(
-    'src/*/*_*.php',
-    r'will be removed in the next major release',
-    'will be removed in a future release')
 
 ### [START] protoc backwards compatibility fixes
 
