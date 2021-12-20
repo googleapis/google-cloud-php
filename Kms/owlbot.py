@@ -14,27 +14,24 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
 
-AUTOSYNTH_MULTIPLE_COMMITS = True
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Kms").resolve()
+dest = Path().resolve()
 
-v1_library = gapic.php_library(
-    service='kms',
-    version='v1',
-    bazel_target='//google/cloud/kms/v1:google-cloud-kms-v1-php',
-)
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-s.copy(v1_library / f'src/')
-s.copy(v1_library / f'proto/src/GPBMetadata/Google/Cloud/Kms', f'metadata')
-s.copy(v1_library / f'proto/src/Google/Cloud/Kms', f'src')
-s.copy(v1_library / f'tests')
+php.owlbot_main(src=src, dest=dest)
+
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(

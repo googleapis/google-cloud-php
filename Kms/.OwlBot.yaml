@@ -1,0 +1,3 @@
+deep-copy-regex:
+    - source: /google/cloud/kms/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/Kms/$1/$2
