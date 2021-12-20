@@ -32,7 +32,7 @@ _tracked_paths.add(src)
 
 php.owlbot_main(src=src, dest=dest)
 
-executions_library = Path(f"../{php.STAGING_DIR}/Workflows/v1beta/Executions/v1beta").resolve()
+executions_library = Path(f"../{php.STAGING_DIR}/Workflows/v1beta/Executions").resolve()
 
 # copy all src including partial veneer classes
 s.move(executions_library / 'src', 'src/Executions', merge=php._merge)
