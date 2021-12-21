@@ -14,30 +14,38 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Gaming").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='gaming',
-    version='v1',
-    bazel_target=f'//google/cloud/gaming/v1:google-cloud-gaming-v1-php',
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
+
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "**/*_*.php"
+    ]
 )
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
-
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/Gaming', 'src/')
-s.move(library / 'tests/')
-
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Gaming', 'metadata/')
+# remove class_alias code
+s.replace(
+    "src/V*/*/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -56,16 +64,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# fix year
-s.replace(
-    'src/V1/**/*Client.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
-s.replace(
-    'tests/**/V1/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
 
 ### [START] protoc backwards compatibility fixes
 
