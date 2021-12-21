@@ -30,14 +30,14 @@ dest = Path().resolve()
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
+# Exclude the partial veneer.
 php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        src / "*/src/*/*.php"
+        src / "*/src/*/*Client.php"
     ]
 )
-
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
