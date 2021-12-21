@@ -34,7 +34,7 @@ php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        src / "*/src/*/*.php"
+        src / "*/src/*/*Client.php"
     ]
 )
 
