@@ -14,32 +14,45 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
 
-AUTOSYNTH_MULTIPLE_COMMITS = True
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/RecommendationEngine").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='recommender',
-    version='v1',
-    bazel_target='//google/cloud/recommender/v1:google-cloud-recommender-v1-php',
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
+
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "**/*_*.php"
+    ]
 )
 
-# copy all src
-s.move(library / f'src/V1')
+# remove class_alias code
+s.replace(
+    "src/V*/*/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
 
-# copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/Recommender', f'src/')
-s.move(library / f'tests/')
-
-# copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Recommender', f'metadata/')
+# fix namespace casing
+s.replace(
+    "**/*.php",
+    r"(namespace|use) Google\\Cloud\\Recommendationengine",
+    r"\1 Google\\Cloud\\RecommendationEngine",
+)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -58,28 +71,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# V1 is GA, so remove @experimental tags
-s.replace(
-    'src/V1/**/*Client.php',
-    r'^(\s+\*\n)?\s+\*\s@experimental\n',
-    '')
-
-# fix year
-s.replace(
-    'src/**/**/*.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
-s.replace(
-    'tests/**/**/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
-
-# Change the wording for the deprecation warning.
-s.replace(
-    'src/*/*_*.php',
-    r'will be removed in the next major release',
-    'will be removed in a future release')
 
 ### [START] protoc backwards compatibility fixes
 
