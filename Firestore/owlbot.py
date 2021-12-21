@@ -14,52 +14,46 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import subprocess
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Firestore").resolve()
+dest = Path().resolve()
 
-for ver in ['V1']:
-    lower_version = ver.lower()
+# For preserving the copyright year, we use php._merge function
+preserve_copyright_year = php._merge
 
-    library = gapic.php_library(
-        service='firestore',
-        version=lower_version,
-        bazel_target=f'//google/firestore/{lower_version}:google-cloud-firestore-{lower_version}-php',
-    )
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-    # copy all src except partial veneer classes
-    s.move(library / f'src/{ver}/Gapic')
-    s.move(library / f'src/{ver}/resources')
-
-    # copy proto files to src also
-    s.move(library / f'proto/src/Google/Cloud/Firestore', f'src/')
-    s.move(library / f'tests/')
-
-    # copy GPBMetadata file to metadata
-    s.move(library / f'proto/src/GPBMetadata/Google/Firestore', f'metadata/')
-
-# Firestore Admin also lives here
-admin_library = gapic.php_library(
-    service='firestore-admin',
-    version='v1',
-    bazel_target=f'//google/firestore/admin/v1:google-cloud-firestore-admin-v1-php',
+# Exclude the partial veneer
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "*/src/*/*Client.php"
+    ]
 )
 
+# Firestore Admin also lives here
+admin_library = Path(f"../{php.STAGING_DIR}/Firestore/v1/Admin").resolve()
+
 # copy all src
-s.move(admin_library / f'src', 'src/Admin')
+s.move(admin_library / f'src', 'src/Admin', merge=preserve_copyright_year)
 
 # copy proto files to src also
-s.move(admin_library / f'proto/src/Google/Cloud/Firestore', f'src/')
-s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin')
+s.move(admin_library / f'proto/src/Google/Cloud/Firestore', f'src/', merge=preserve_copyright_year)
+s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin', merge=preserve_copyright_year)
 
 # copy GPBMetadata file to metadata
-s.move(admin_library / f'proto/src/GPBMetadata/Google/Firestore', f'metadata/')
+s.move(admin_library / f'proto/src/GPBMetadata/Google/Firestore', f'metadata/', merge=preserve_copyright_year)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
