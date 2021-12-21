@@ -65,16 +65,6 @@ s.replace(
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
 
-# fix copyright year
-s.replace(
-    'src/V1/**/*.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
-s.replace(
-    'tests/**/V1/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
-
 ### [START] protoc backwards compatibility fixes
 
 # roll back to private properties.
