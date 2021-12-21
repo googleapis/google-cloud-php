@@ -14,50 +14,47 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import subprocess
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Bigtable").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='bigtable',
-    version='v2',
-    bazel_target=f'//google/bigtable/v2:google-cloud-bigtable-v2-php',
+# For preserving the copyright year, we use php._merge function
+preserve_copyright_year = php._merge
+
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
+
+# Excluding the partial veneer files.
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "*/src/*/*Client.php"
+    ]
 )
 
-# copy all src except handwritten partial veneers
-s.move(library / f'src/V2/Gapic')
-s.move(library / f'src/V2/resources')
-
-# copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/Bigtable', f'src/')
-s.move(library / f'tests/')
-
-# copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Bigtable', f'metadata/')
-
-# Bigtable Admin also lives here
-admin_library = gapic.php_library(
-    service='bigtable-admin',
-    version='v2',
-    bazel_target='//google/bigtable/admin/v2:google-cloud-bigtable-admin-v2-php'
-)
+# First copy the Bigtable Admin
+admin_library = Path(f"../{php.STAGING_DIR}/Bigtable/v2/Admin").resolve()
 
 # copy all src except handwritten partial veneers
-s.move(admin_library / f'src/V2/Gapic', 'src/Admin/V2/Gapic')
-s.move(admin_library / f'src/V2/resources', f'src/Admin/V2/resources')
+s.move(admin_library / f'src/V2/Gapic', 'src/Admin/V2/Gapic', merge=preserve_copyright_year)
+s.move(admin_library / f'src/V2/resources', f'src/Admin/V2/resources', merge=preserve_copyright_year)
 
 # copy proto files to src also
-s.move(admin_library / f'proto/src/Google/Cloud/Bigtable', f'src/')
-s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin')
+s.move(admin_library / f'proto/src/Google/Cloud/Bigtable', f'src/', merge=preserve_copyright_year)
+s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin', merge=preserve_copyright_year)
 
 # copy GPBMetadata file to metadata
-s.move(admin_library / f'proto/src/GPBMetadata/Google/Bigtable', f'metadata/')
+s.move(admin_library / f'proto/src/GPBMetadata/Google/Bigtable', f'metadata/', merge=preserve_copyright_year)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -76,16 +73,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# fix year
-s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    r'Copyright 2017')
-s.replace(
-    'tests/**/V2/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
 
 # fix unit test namespace
 s.replace(
