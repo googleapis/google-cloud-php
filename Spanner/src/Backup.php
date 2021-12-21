@@ -191,10 +191,13 @@ class Backup
      *
      * Example:
      * ```
-     * $operation = $backup->createCopy('new-backup-id', new \DateTime('+7 hours'));
+     * $spanner = new SpannerClient();
+     * $instance = $spanner->instance('destination-instance-id');
+     * $destBackup = $instance->backup('new-backup-id');
+     * $operation = $backup->createCopy($destBackup, new \DateTime('+7 hours'));
      * ```
      *
-     * @param string $newBackupId The id of the new backup to be created.
+     * @param string $newBackup The backup object that needs to be created as a copy.
      * @param \DateTimeInterface $expireTime ​The expiration time of the backup,
      *        with microseconds granularity that must be at least 6 hours and
      *        at most 366 days. Once the expireTime has passed, the backup is
@@ -209,11 +212,11 @@ class Backup
      * @return LongRunningOperation<Backup>
      * @throws \InvalidArgumentException
      */
-    public function createCopy($newBackupId, $expireTime, array $options = [])
+    public function createCopy($newBackup, $expireTime, array $options = [])
     {
         $operation = $this->connection->copyBackup([
-            'instance' => $this->instance->name(),
-            'backupId' => $newBackupId,
+            'instance' => $newBackup->instance->name(),
+            'backupId' => DatabaseAdminClient::parseName($newBackup->name)['backup'],
             'sourceBackupId' => $this->fullyQualifiedBackupName($this->name),
             'expireTime' => $expireTime->format('Y-m-d\TH:i:s.u\Z')
         ] + $options);
