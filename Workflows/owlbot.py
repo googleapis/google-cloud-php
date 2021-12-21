@@ -14,46 +14,77 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Workflows").resolve()
+dest = Path().resolve()
 
-workflows_library = gapic.php_library(
-    service='workflows',
-    version='v1beta',
-    bazel_target='//google/cloud/workflows/v1beta:google-cloud-workflows-v1beta-php',
+# For preserving the copyright year, we use php._merge function
+preserve_copyright_year = php._merge
+
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
+
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "**/*_*.php"
+    ]
 )
 
+executions_library = Path(f"../{php.STAGING_DIR}/Workflows/v1beta/Executions").resolve()
+
 # copy all src including partial veneer classes
-s.move(workflows_library / 'src')
-
-# copy proto files to src also
-s.move(workflows_library / 'proto/src/Google/Cloud/Workflows', 'src/')
-s.move(workflows_library / 'tests/')
-
-# copy GPBMetadata file to metadata
-s.move(workflows_library / 'proto/src/GPBMetadata/Google/Cloud/Workflows', 'metadata/')
-
-executions_library = gapic.php_library(
-    service='workflows-executions',
-    version='v1beta',
-    bazel_target='//google/cloud/workflows/executions/v1beta:google-cloud-workflows-executions-v1beta-php',
+s.move(executions_library / 'src',
+       'src/Executions',
+       merge=preserve_copyright_year,
+       excludes=[
+           executions_library / "**/*_*.php"
+       ]
 )
 
-# copy all src including partial veneer classes
-s.move(executions_library / 'src', 'src/Executions')
-
 # copy proto files to src also
-s.move(executions_library / 'proto/src/Google/Cloud/Workflows', 'src/')
-s.move(executions_library / 'tests/Unit', 'tests/Unit/Executions')
+s.move(executions_library / 'proto/src/Google/Cloud/Workflows',
+       'src/',
+       merge=preserve_copyright_year,
+       excludes=[
+           executions_library / "**/*_*.php"
+       ]
+)
+s.move(executions_library / 'tests/Unit',
+       'tests/Unit/Executions',
+       merge=preserve_copyright_year,
+       excludes=[
+           executions_library / "**/*_*.php"
+       ]
+)
 
 # copy GPBMetadata file to metadata
-s.move(executions_library / 'proto/src/GPBMetadata/Google/Cloud/Workflows', 'metadata/')
+s.move(executions_library / 'proto/src/GPBMetadata/Google/Cloud/Workflows',
+       'metadata/',
+       merge=preserve_copyright_year,
+       excludes=[
+           executions_library / "**/*_*.php"
+       ]
+)
+
+# remove class_alias code
+s.replace(
+    "src/V*/*/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
 
 # Fix test namespaces
 s.replace(
@@ -78,26 +109,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# fix year
-s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2020')
-s.replace(
-    '**/V1beta/*Client.php',
-    r'Copyright \d{4}',
-    'Copyright 2020')
-s.replace(
-    'tests/**/V1beta/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2020')
-
-# Change the wording for the deprecation warning.
-s.replace(
-    'src/*/*_*.php',
-    r'will be removed in the next major release',
-    'will be removed in a future release')
 
 ### [START] protoc backwards compatibility fixes
 
