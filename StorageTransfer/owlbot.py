@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,39 +14,44 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import subprocess
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
 
-AUTOSYNTH_MULTIPLE_COMMITS = True
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
+src = Path(f"../{php.STAGING_DIR}/StorageTransfer").resolve()
+dest = Path().resolve()
 
-for version in ['v1', 'v1beta1']:
-    library = gapic.php_library(
-        service="servicedirectory",
-        version=version,
-        bazel_target=f'//google/cloud/servicedirectory/{version}:google-cloud-servicedirectory-{version}-php',
-    )
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-    # copy all src
-    s.move(library / f"src")
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "**/*_*.php"
+    ]
+)
 
-    # copy proto files to src also
-    s.move(library / f"proto/src/Google/Cloud/ServiceDirectory", f"src/")
-    s.move(library / f"tests/")
-
-    # copy GPBMetadata file to metadata
-    s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Servicedirectory', f"metadata/")
+# remove class_alias code
+s.replace(
+    "src/V*/*/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
     "**/Gapic/*GapicClient.php",
-    r"serviceAddress =>",
-    r"apiEndpoint =>")
+    r"'serviceAddress' =>",
+    r"'apiEndpoint' =>")
 s.replace(
     "**/Gapic/*GapicClient.php",
     r"@type string \$serviceAddress\n\s+\*\s+The address",
@@ -59,30 +64,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# fix year
-s.replace(
-    "src/V1/**/*.php",
-    r"Copyright \d{4}",
-    r"Copyright 2021")
-s.replace(
-    "tests/Unit/V1/*Test.php",
-    r"Copyright \d{4}",
-    r"Copyright 2021")
-s.replace(
-    "src/V1beta1/**/*.php",
-    r"Copyright \d{4}",
-    r"Copyright 2020")
-s.replace(
-    "tests/Unit/V1beta1/*Test.php",
-    r"Copyright \d{4}",
-    r"Copyright 2020")
-
-# Change the wording for the deprecation warning.
-s.replace(
-    "src/*/*_*.php",
-    r"will be removed in the next major release",
-    "will be removed in a future release")
 
 ### [START] protoc backwards compatibility fixes
 
@@ -108,6 +89,13 @@ s.replace(
 )
 
 ### [END] protoc backwards compatibility fixes
+
+# fix relative cloud.google.com links
+s.replace(
+    "src/**/V*/**/*.php",
+    r"(.{0,})\]\((/.{0,})\)",
+    r"\1](https://cloud.google.com\2)"
+)
 
 # format generated clients
 subprocess.run([

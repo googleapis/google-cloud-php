@@ -14,34 +14,30 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Speech").resolve()
+dest = Path().resolve()
 
-for version in ['V1', 'V1p1beta1']:
-    lower_version = version.lower()
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-    library = gapic.php_library(
-        service='speech',
-        version=lower_version,
-        bazel_target=f'//google/cloud/speech/{lower_version}:google-cloud-speech-{lower_version}-php',
-    )
-
-    # copy all src except partial veneer classes
-    s.move(library / f'src/{version}/Gapic')
-    s.move(library / f'src/{version}/resources')
-
-    # copy proto files to src also
-    s.move(library / f'proto/src/Google/Cloud/Speech', f'src/')
-    s.move(library / f'tests/')
-
-    # copy GPBMetadata file to metadata
-    s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Speech', f'metadata/')
+# Exclude the partial veneer.
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "*/src/*/*Client.php"
+    ]
+)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -66,20 +62,6 @@ s.replace(
     'src/V1/**/*Client.php',
     r'^(\s+\*\n)?\s+\*\s@experimental\n',
     '')
-
-# fix year
-s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    r'Copyright 2017')
-s.replace(
-    '**/V1p1beta1/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
-s.replace(
-    'tests/**/V1*/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
 
 # Change the wording for the deprecation warning.
 s.replace(

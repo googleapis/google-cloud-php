@@ -1,4 +1,4 @@
-# Copyright 2019 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,34 +14,38 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import subprocess
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
 
-AUTOSYNTH_MULTIPLE_COMMITS = True
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/ServiceManagement").resolve()
+dest = Path().resolve()
 
-for version in ['v4', 'v4beta1']:
-    library = gapic.php_library(
-        service='talent',
-        version=version,
-        bazel_target=f'//google/cloud/talent/{version}:google-cloud-talent-{version}-php'
-    )
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-    # copy all src including partial veneer classes
-    s.move(library / 'src')
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "**/*_*.php"
+    ]
+)
 
-    # copy proto files to src also
-    s.move(library / 'proto/src/Google/Cloud/Talent', 'src/')
-    s.move(library / 'tests/')
-
-    # copy GPBMetadata file to metadata
-    s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Talent', 'metadata/')
+# remove class_alias code
+s.replace(
+    "src/V*/*/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -60,45 +64,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# fix year
-s.replace(
-    'src/V4/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
-s.replace(
-    'tests/**/V4/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
-s.replace(
-    'src/V4beta1/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    r'Copyright 2019')
-s.replace(
-    'tests/**/V4beta1/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2019')
-
-clients = ['ApplicationService', 'CompanyService', 'Completion', 'EventService', 'JobService', 'ProfileService', 'TenantService']
-for client in clients:
-    s.replace(
-        f'src/V*/{client}Client.php',
-        r'Copyright \d{4}',
-        'Copyright 2019')
-    s.replace(
-        f'src/V*/{client}GrpcClient.php',
-        r'Copyright \d{4}',
-        'Copyright 2019')
-
-# Use correct namespace
-s.replace(
-    'src/**/Gapic/*.php',
-    r'CompleteQueryRequest_',
-    r'CompleteQueryRequest\\')
-s.replace(
-    'src/**/Gapic/*.php',
-    r'SearchJobsRequest_',
-    r'SearchJobsRequest\\')
 
 ### [START] protoc backwards compatibility fixes
 
@@ -131,6 +96,3 @@ s.replace(
     r"(.{0,})\]\((/.{0,})\)",
     r"\1](https://cloud.google.com\2)"
 )
-
-# Address breaking changes
-subprocess.run('git show 5e560594fdcfcbb24e32030f7a37aa6b55c39518 | git apply', shell=True)

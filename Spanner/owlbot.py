@@ -14,69 +14,54 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import subprocess
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
 import re
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Spanner").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='spanner',
-    version='v1',
-    bazel_target='//google/spanner/v1:google-cloud-spanner-v1-php',
-)
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-# copy all src except handwritten partial veneers
-s.move(library / f'src/V1/Gapic')
-s.move(library / f'src/V1/resources')
+php.owlbot_main(src=src, dest=dest)
 
-# copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/Spanner', f'src/')
-s.move(library / f'tests/')
 
-# copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/')
 
 # Spanner Database Admin also lives here
-admin_library = gapic.php_library(
-    service='spanner-admin-database',
-    version='v1',
-    bazel_target='//google/spanner/admin/database/v1:google-cloud-admin-database-v1-php',
-)
+admin_library = Path(f"../{php.STAGING_DIR}/Spanner/v1/Admin/Database/v1").resolve()
 
 # copy all src except handwritten partial veneers
-s.move(admin_library / f'src/V1/Gapic', 'src/Admin/Database/V1/Gapic')
-s.move(admin_library / f'src/V1/resources', f'src/Admin/Database/V1/resources')
+s.move(admin_library / f'src/V1/Gapic', 'src/Admin/Database/V1/Gapic', merge=php._merge)
+s.move(admin_library / f'src/V1/resources', f'src/Admin/Database/V1/resources', merge=php._merge)
 
 # copy proto files to src also
-s.move(admin_library / f'proto/src/Google/Cloud/Spanner', f'src/')
-s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin/Database')
+s.move(admin_library / f'proto/src/Google/Cloud/Spanner', f'src/', merge=php._merge)
+s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin/Database', merge=php._merge)
 
 # copy GPBMetadata file to metadata
-s.move(admin_library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/')
+s.move(admin_library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/', merge=php._merge)
 
 # Spanner Instance Admin also lives here
-admin_library = gapic.php_library(
-    service='spanner-admin-instance',
-    version='v1',
-    bazel_target='//google/spanner/admin/instance/v1:google-cloud-admin-instance-v1-php',
-)
+admin_library = Path(f"../{php.STAGING_DIR}/Spanner/v1/Admin/Instance/v1").resolve()
 
 # copy all src except handwritten partial veneers
-s.move(admin_library / f'src/V1/Gapic', 'src/Admin/Instance/V1/Gapic')
-s.move(admin_library / f'src/V1/resources', f'src/Admin/Instance/V1/resources')
+s.move(admin_library / f'src/V1/Gapic', 'src/Admin/Instance/V1/Gapic', merge=php._merge)
+s.move(admin_library / f'src/V1/resources', f'src/Admin/Instance/V1/resources', merge=php._merge)
 
 # copy proto files to src also
-s.move(admin_library / f'proto/src/Google/Cloud/Spanner', f'src/')
-s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin/Instance')
+s.move(admin_library / f'proto/src/Google/Cloud/Spanner', f'src/', merge=php._merge)
+s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin/Instance', merge=php._merge)
 
 # copy GPBMetadata file to metadata
-s.move(admin_library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/')
+s.move(admin_library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/', merge=php._merge)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -95,16 +80,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# fix year
-s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    r'Copyright 2017')
-s.replace(
-    'tests/**/V1/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
 
 # Fix test namespaces
 s.replace(
