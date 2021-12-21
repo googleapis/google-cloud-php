@@ -14,31 +14,23 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/OsConfig").resolve()
+dest = Path().resolve()
 
-v1 = gapic.php_library(
-    service='osconfig',
-    version='v1',
-    bazel_target='//google/cloud/osconfig/v1:google-cloud-osconfig-v1-php'
-)
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-# copy all src
-s.move(v1 / f'src/V1')
-
-# copy proto files to src also
-s.move(v1 / f'proto/src/Google/Cloud/OsConfig', f'src/')
-
-s.move(v1 / f'tests/')
-
-# copy GPBMetadata file to metadata
-s.move(v1 / f'proto/src/GPBMetadata/Google/Cloud/Osconfig', f'metadata/')
+php.owlbot_main(src=src, dest=dest)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
