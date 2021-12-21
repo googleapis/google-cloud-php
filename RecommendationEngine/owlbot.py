@@ -30,9 +30,22 @@ dest = Path().resolve()
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
-php.owlbot_main(src=src, dest=dest)
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "**/*_*.php"
+    ]
+)
 
-
+# remove class_alias code
+s.replace(
+    "src/V*/*/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
 
 # fix namespace casing
 s.replace(
@@ -58,12 +71,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# Change the wording for the deprecation warning.
-s.replace(
-    'src/*/*_*.php',
-    r'will be removed in the next major release',
-    'will be removed in a future release')
 
 ### [START] protoc backwards compatibility fixes
 
