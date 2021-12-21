@@ -45,7 +45,7 @@ s.replace(
     + "\n"
     + r"^class_alias\(.*\);$"
     + "\n",
-    '')```
+    '')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
