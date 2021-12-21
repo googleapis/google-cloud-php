@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC
+# Copyright 2019 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,32 +14,30 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/Translate").resolve()
+dest = Path().resolve()
 
-for version in ['v1', 'v1beta1']:
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-    library = gapic.php_library(
-        service='videotranscoder',
-        version=version,
-        bazel_target=f'//google/cloud/video/transcoder/{version}:google-cloud-video-transcoder-{version}-php',
-    )
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "*/src/*/*Client.php"
+    ]
+)
 
-    # copy all src including partial veneer classes
-    s.move(library / 'src')
-
-    # copy proto files to src also
-    s.move(library / 'proto/src/Google/Cloud/Video/Transcoder', 'src/')
-    s.move(library / 'tests/')
-
-    # copy GPBMetadata file to metadata
-    s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Video/Transcoder', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -58,16 +56,6 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
-
-# fix year
-s.replace(
-    '**/*Client.php',
-    r'Copyright \d{4}',
-    'Copyright 2021')
-s.replace(
-    'tests/**/*Test.php',
-    r'Copyright \d{4}',
-    'Copyright 2021')
 
 # Change the wording for the deprecation warning.
 s.replace(

@@ -1,4 +1,4 @@
-# Copyright 2019 Google LLC
+# Copyright 2018 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,32 +14,25 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import subprocess
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/VideoIntelligence").resolve()
+dest = Path().resolve()
 
-for version in ['v1', 'v1beta1']:
-    library = gapic.php_library(
-        service='webrisk',
-        version=version,
-        bazel_target=f'//google/cloud/webrisk/{version}:google-cloud-webrisk-{version}-php',
-    )
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-    # copy all src including partial veneer classes
-    s.move(library / 'src')
+php.owlbot_main(src=src, dest=dest)
 
-    # copy proto files to src also
-    s.move(library / 'proto/src/Google/Cloud/WebRisk', 'src/')
-    s.move(library / 'tests/')
 
-    # copy GPBMetadata file to metadata
-    s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Webrisk', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -61,48 +54,13 @@ s.replace(
 
 # V1 is GA, so remove @experimental tags
 s.replace(
-    'src/V1/**/*Client.php',
+    'src/V1/VideoIntelligenceServiceClient.php',
     r'^(\s+\*\n)?\s+\*\s@experimental\n',
     '')
-
-# fix year
 s.replace(
-    'src/V1beta1/**/*Client.php',
-    r'Copyright \d{4}',
-    r'Copyright 2019')
-s.replace(
-    'src/V1/**/*Client.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
-s.replace(
-    'tests/**/V1beta1/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2019')
-s.replace(
-    'tests/**/V1/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2020')
-
-# Fix class references in gapic samples
-for version in ['V1', 'V1beta1']:
-    if version == 'V1beta1':
-        clientName = 'WebRiskServiceV1Beta1'
-    else:
-        clientName = 'WebRiskService'
-    pathExpr = 'src/' + version + '/Gapic/' + clientName + 'GapicClient.php'
-
-    types = {
-        'new Constraints': r'new Google\\Cloud\\WebRisk\\' + version + r'\\ComputeThreatListDiffRequest\\Constraints',
-        '= ThreatType::': r'= Google\\Cloud\\WebRisk\\' + version + r'\\ThreatType::',
-        '= new ' + clientName + 'Client': r'= new Google\\Cloud\\WebRisk\\' + version + r'\\' + clientName + 'Client'
-    }
-
-    for search, replace in types.items():
-        s.replace(
-            pathExpr,
-            search,
-            replace
-)
+    'src/V1/Gapic/*GapicClient.php',
+    r'^(\s+\*\n)?\s+\*\s@experimental\n',
+    '')
 
 ### [START] protoc backwards compatibility fixes
 
@@ -138,10 +96,11 @@ s.replace(
 
 # format generated clients
 subprocess.run([
-    'npx',
-    '-y',
-    '-p',
-    '@prettier/plugin-php@^0.16',
+    'npm',
+    'exec',
+    '--yes',
+    '--package=@prettier/plugin-php@^0.16',
+    '--',
     'prettier',
     '**/Gapic/*',
     '--write',

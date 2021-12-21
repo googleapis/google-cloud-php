@@ -14,28 +14,24 @@
 
 """This script is used to synthesize generated parts of this library."""
 
-import subprocess
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
 
-AUTOSYNTH_MULTIPLE_COMMITS = True
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
-common = gcp.CommonTemplates()
+src = Path(f"../{php.STAGING_DIR}/TextToSpeech").resolve()
+dest = Path().resolve()
 
-v1_library = gapic.php_library(
-    service='texttospeech',
-    version='v1',
-    bazel_target='//google/cloud/texttospeech/v1:google-cloud-texttospeech-v1-php',
-)
+# Added so that we can pass copy_excludes in the owlbot_main() call
+_tracked_paths.add(src)
 
-s.copy(v1_library / f'src/')
-s.copy(v1_library / f'proto/src/GPBMetadata/Google/Cloud/Texttospeech', f'metadata')
-s.copy(v1_library / f'proto/src/Google/Cloud/TextToSpeech', f'src')
-s.copy(v1_library / f'tests')
+php.owlbot_main(src=src, dest=dest)
+
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -60,16 +56,6 @@ s.replace(
     'src/V1/**/*Client.php',
     r'^(\s+\*\n)?\s+\*\s@experimental\n',
     '')
-
-# fix copyright year
-s.replace(
-    'src/V1/**/*Client.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
-s.replace(
-    'tests/**/V1/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
 
 ### [START] protoc backwards compatibility fixes
 
