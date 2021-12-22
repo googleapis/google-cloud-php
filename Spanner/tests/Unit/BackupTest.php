@@ -48,6 +48,7 @@ class BackupTest extends TestCase
     const INSTANCE = 'instance-name';
     const DATABASE = 'database-name';
     const BACKUP = 'backup-name';
+    const COPIED_BACKUP = 'new-backup-name';
 
     private $connection;
     private $instance;
@@ -58,7 +59,7 @@ class BackupTest extends TestCase
     private $createTime;
     private $versionTime;
     private $backup;
-
+    private $copiedBackup;
 
     public function setUp()
     {
@@ -90,6 +91,12 @@ class BackupTest extends TestCase
             'instance', 'connection'
         ];
         $this->backup = TestHelpers::stub(Backup::class, $args, $props);
+        
+        // copiedBackup will contain a mock of the backup object where
+        // $backup will be copied into
+        $copyArgs = $args;
+        $copyArgs[5] = self::COPIED_BACKUP;
+        $this->copiedBackup = TestHelpers::stub(Backup::class, $copyArgs, $props);
     }
 
     public function testName()
@@ -125,11 +132,9 @@ class BackupTest extends TestCase
 
     public function testCreateCopy()
     {
-        $newBackupId = 'new-backup-id';
-
         $this->connection->copyBackup(Argument::allOf(
             Argument::withEntry('instance', InstanceAdminClient::instanceName(self::PROJECT_ID, self::INSTANCE)),
-            Argument::withEntry('backupId', $newBackupId),
+            Argument::withEntry('backupId', self::COPIED_BACKUP),
             Argument::withKey('sourceBackupId'),
             Argument::withEntry('expireTime', $this->expireTime->format('Y-m-d\TH:i:s.u\Z'))
         ))
@@ -139,7 +144,7 @@ class BackupTest extends TestCase
             ]);
 
         $this->backup->___setProperty('connection', $this->connection->reveal());
-        $op = $this->backup->createCopy($newBackupId, $this->expireTime);
+        $op = $this->backup->createCopy($this->copiedBackup, $this->expireTime);
         $this->assertInstanceOf(LongRunningOperation::class, $op);
     }
 

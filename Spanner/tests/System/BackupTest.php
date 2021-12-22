@@ -236,8 +236,9 @@ class BackupTest extends SpannerTestCase
     public function testCreateBackupCopy()
     {
         $backup = self::$instance->backup(self::$backupId1);
+        $newBackup = self::$instance->backup(self::$copyBackupId);
         $expireTime = new \DateTime('+7 hours');
-        $op = $backup->createCopy(self::$copyBackupId, $expireTime);
+        $op = $backup->createCopy($newBackup, $expireTime);
 
         $metadata = null;
         foreach (self::$instance->backupOperations() as $listItem) {
@@ -249,19 +250,19 @@ class BackupTest extends SpannerTestCase
 
         $op->pollUntilComplete();
 
-        self::$deletionQueue->add(function () use ($backup) {
-            $backup->delete();
+        self::$deletionQueue->add(function () use ($newBackup) {
+            $newBackup->delete();
         });
 
-        $this->assertTrue($backup->exists());
-        $this->assertInstanceOf(Backup::class, $backup);
-        $this->assertEquals(self::$copyBackupId, DatabaseAdminClient::parseName($backup->info()['name'])['backup']);
-        $this->assertEquals(self::$dbName1, DatabaseAdminClient::parseName($backup->info()['database'])['database']);
-        $this->assertEquals($expireTime->format('Y-m-d\TH:i:s.u\Z'), $backup->info()['expireTime']);
-        $this->assertTrue(is_string($backup->info()['createTime']));
-        $this->assertEquals(Backup::STATE_READY, $backup->state());
-        $this->assertTrue($backup->info()['sizeBytes'] > 0);
-        $this->assertEquals(Type::GOOGLE_DEFAULT_ENCRYPTION, $backup->info()['encryptionInfo']['encryptionType']);
+        $this->assertTrue($newBackup->exists());
+        $this->assertInstanceOf(Backup::class, $newBackup);
+        $this->assertEquals(self::$copyBackupId, DatabaseAdminClient::parseName($newBackup->info()['name'])['backup']);
+        $this->assertEquals(self::$dbName1, DatabaseAdminClient::parseName($newBackup->info()['database'])['database']);
+        $this->assertEquals($expireTime->format('Y-m-d\TH:i:s.u\Z'), $newBackup->info()['expireTime']);
+        $this->assertTrue(is_string($newBackup->info()['createTime']));
+        $this->assertEquals(Backup::STATE_READY, $newBackup->state());
+        $this->assertTrue($newBackup->info()['sizeBytes'] > 0);
+        $this->assertEquals(Type::GOOGLE_DEFAULT_ENCRYPTION, $newBackup->info()['encryptionInfo']['encryptionType']);
 
         $this->assertNotNull($metadata);
         $this->assertArrayHasKey('progress', $metadata);
