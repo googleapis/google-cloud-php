@@ -66,6 +66,7 @@ use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\ListValue;
 use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
+use Google\Protobuf\Timestamp;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -519,11 +520,15 @@ class Grpc implements ConnectionInterface
     public function copyBackup(array $args)
     {
         $instanceName = $this->pluck('instance', $args);
+        $expireTime = new Timestamp(
+            $this->formatTimestampForApi($this->pluck('expireTime', $args))
+        );
+        
         $res = $this->send([$this->getDatabaseAdminClient(), 'copyBackup'], [
             $instanceName,
             $this->pluck('backupId', $args),
             $this->pluck('sourceBackupId', $args),
-            $this->formatTimestampForApi($this->pluck('expireTime', $args)),
+            $expireTime,
             $this->addResourcePrefixHeader($args, $instanceName)
         ]);
 
