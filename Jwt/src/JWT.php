@@ -25,9 +25,12 @@ use DateTime;
  */
 class JWT
 {
-    const ASN1_INTEGER = 0x02;
-    const ASN1_SEQUENCE = 0x10;
-    const ASN1_BIT_STRING = 0x03;
+    // const ASN1_INTEGER = 0x02;
+    // const ASN1_SEQUENCE = 0x10;
+    // const ASN1_BIT_STRING = 0x03;
+    private static $asn1Integer = 0x02;
+    private static $asn1Sequence = 0x10;
+    private static $asn1BitString = 0x03;
 
     /**
      * When checking nbf, iat or expiration times,
@@ -60,13 +63,11 @@ class JWT
      * Decodes a JWT string into a PHP object.
      *
      * @param string                    $jwt            The JWT
-     * @param Key|array<Key>|mixed      $keyOrKeyArray  The Key or array of Key objects.
+     * @param Key|array<Key>            $keyOrKeyArray  The Key or array of Key objects.
      *                                                  If the algorithm used is asymmetric, this is the public key
      *                                                  Each Key object contains an algorithm and matching key.
      *                                                  Supported algorithms are 'ES384','ES256', 'HS256', 'HS384',
      *                                                  'HS512', 'RS256', 'RS384', and 'RS512'
-     * @param array                     $allowed_algs   [DEPRECATED] List of supported verification algorithms. Only
-     *                                                  should be used for backwards  compatibility.
      *
      * @return object The JWT's payload as a PHP object
      *
@@ -81,8 +82,9 @@ class JWT
      * @uses jsonDecode
      * @uses urlsafeB64Decode
      */
-    public static function decode($jwt, $keyOrKeyArray, array $allowed_algs = array())
+    public static function decode($jwt, $keyOrKeyArray)
     {
+        // Validate JWT
         $timestamp = \is_null(static::$timestamp) ? \time() : static::$timestamp;
 
         if (empty($keyOrKeyArray)) {
@@ -109,31 +111,18 @@ class JWT
             throw new UnexpectedValueException('Algorithm not supported');
         }
 
-        list($keyMaterial, $algorithm) = self::getKeyMaterialAndAlgorithm(
-            $keyOrKeyArray,
-            empty($header->kid) ? null : $header->kid
-        );
+        $key = self::getKey($keyOrKeyArray, empty($header->kid) ? null : $header->kid);
 
-        if (empty($algorithm)) {
-            // Use deprecated "allowed_algs" to determine if the algorithm is supported.
-            // This opens up the possibility of an attack in some implementations.
-            // @see https://github.com/firebase/php-jwt/issues/351
-            if (!\in_array($header->alg, $allowed_algs)) {
-                throw new UnexpectedValueException('Algorithm not allowed');
-            }
-        } else {
-            // Check the algorithm
-            if (!self::constantTimeEquals($algorithm, $header->alg)) {
-                // See issue #351
-                throw new UnexpectedValueException('Incorrect key for this algorithm');
-            }
+        // Check the algorithm
+        if (!self::constantTimeEquals($key->getAlgorithm(), $header->alg)) {
+            // See issue #351
+            throw new UnexpectedValueException('Incorrect key for this algorithm');
         }
         if ($header->alg === 'ES256' || $header->alg === 'ES384') {
             // OpenSSL expects an ASN.1 DER sequence for ES256/ES384 signatures
             $sig = self::signatureToDER($sig);
         }
-
-        if (!static::verify("$headb64.$bodyb64", $sig, $keyMaterial, $header->alg)) {
+        if (!static::verify("$headb64.$bodyb64", $sig, $key->getKeyMaterial(), $header->alg)) {
             throw new SignatureInvalidException('Signature verification failed');
         }
 
@@ -179,7 +168,7 @@ class JWT
      * @uses jsonEncode
      * @uses urlsafeB64Encode
      */
-    public static function encode($payload, $key, $alg = 'HS256', $keyId = null, $head = null)
+    public static function encode($payload, $key, $alg, $keyId = null, $head = null)
     {
         $header = array('typ' => 'JWT', 'alg' => $alg);
         if ($keyId !== null) {
@@ -212,7 +201,7 @@ class JWT
      *
      * @throws DomainException Unsupported algorithm or bad key was specified
      */
-    public static function sign($msg, $key, $alg = 'HS256')
+    public static function sign($msg, $key, $alg)
     {
         if (empty(static::$supported_algs[$alg])) {
             throw new DomainException('Algorithm not supported');
@@ -345,7 +334,12 @@ class JWT
      */
     public static function jsonEncode($input)
     {
-        $json = \json_encode($input);
+        if (PHP_VERSION_ID >= 50400) {
+            $json = \json_encode($input, \JSON_UNESCAPED_SLASHES);
+        } else {
+            // PHP 5.3 only
+            $json = \json_encode($input);
+        }
         if ($errno = \json_last_error()) {
             static::handleJsonError($errno);
         } elseif ($json === 'null' && $input !== null) {
@@ -394,21 +388,21 @@ class JWT
      *
      * @return array containing the keyMaterial and algorithm
      */
-    private static function getKeyMaterialAndAlgorithm($keyOrKeyArray, $kid = null)
+    private static function getKey($keyOrKeyArray, $kid = null)
     {
-        if (
-            is_string($keyOrKeyArray)
-            || is_resource($keyOrKeyArray)
-            || $keyOrKeyArray instanceof OpenSSLAsymmetricKey
-        ) {
-            return array($keyOrKeyArray, null);
-        }
-
         if ($keyOrKeyArray instanceof Key) {
-            return array($keyOrKeyArray->getKeyMaterial(), $keyOrKeyArray->getAlgorithm());
+            return $keyOrKeyArray;
         }
 
         if (is_array($keyOrKeyArray) || $keyOrKeyArray instanceof ArrayAccess) {
+            foreach ($keyOrKeyArray as $keyId => $key) {
+                if (!$key instanceof Key) {
+                    throw new UnexpectedValueException(
+                        '$keyOrKeyArray must be an instance of Firebase\JWT\Key key or an '
+                        . 'array of Firebase\JWT\Key keys'
+                    );
+                }
+            }
             if (!isset($kid)) {
                 throw new UnexpectedValueException('"kid" empty, unable to lookup correct key');
             }
@@ -416,18 +410,12 @@ class JWT
                 throw new UnexpectedValueException('"kid" invalid, unable to lookup correct key');
             }
 
-            $key = $keyOrKeyArray[$kid];
-
-            if ($key instanceof Key) {
-                return array($key->getKeyMaterial(), $key->getAlgorithm());
-            }
-
-            return array($key, null);
+            return $keyOrKeyArray[$kid];
         }
 
         throw new UnexpectedValueException(
-            '$keyOrKeyArray must be a string|resource key, an array of string|resource keys, '
-            . 'an instance of Firebase\JWT\Key key or an array of Firebase\JWT\Key keys'
+            '$keyOrKeyArray must be an instance of Firebase\JWT\Key key or an '
+            . 'array of Firebase\JWT\Key keys'
         );
     }
 
@@ -515,9 +503,9 @@ class JWT
         }
 
         return self::encodeDER(
-            self::ASN1_SEQUENCE,
-            self::encodeDER(self::ASN1_INTEGER, $r) .
-            self::encodeDER(self::ASN1_INTEGER, $s)
+            self::$asn1Sequence,
+            self::encodeDER(self::$asn1Integer, $r) .
+            self::encodeDER(self::$asn1Integer, $s)
         );
     }
 
@@ -531,7 +519,7 @@ class JWT
     private static function encodeDER($type, $value)
     {
         $tag_header = 0;
-        if ($type === self::ASN1_SEQUENCE) {
+        if ($type === self::$asn1Sequence) {
             $tag_header |= 0x20;
         }
 
@@ -596,7 +584,7 @@ class JWT
         }
 
         // Value
-        if ($type == self::ASN1_BIT_STRING) {
+        if ($type == self::$asn1BitString) {
             $pos++; // Skip the first contents octet (padding indicator)
             $data = \substr($der, $pos, $len - 1);
             $pos += $len - 1;
