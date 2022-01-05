@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The full resource name of the sink to update, including the
-     * parent resource and the sink identifier:
+     * Required. The full resource name of the sink to update, including the parent
+     * resource and the sink identifier:
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
@@ -28,8 +28,8 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      */
     private $sink_name = '';
     /**
-     * Required. The updated sink, whose name is the same identifier that appears
-     * as part of `sink_name`.
+     * Required. The updated sink, whose name is the same identifier that appears as part
+     * of `sink_name`.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogSink sink = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -46,7 +46,7 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      * +   It is an error if the old value is true and the new value is
      *     set to false or defaulted to false.
      *
-     * Generated from protobuf field <code>bool unique_writer_identity = 3;</code>
+     * Generated from protobuf field <code>bool unique_writer_identity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $unique_writer_identity = false;
     /**
@@ -62,7 +62,7 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
      * Example: `updateMask=filter`.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $update_mask = null;
 
@@ -73,16 +73,16 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $sink_name
-     *           Required. The full resource name of the sink to update, including the
-     *           parent resource and the sink identifier:
+     *           Required. The full resource name of the sink to update, including the parent
+     *           resource and the sink identifier:
      *               "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *               "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *               "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
      *               "folders/[FOLDER_ID]/sinks/[SINK_ID]"
      *           Example: `"projects/my-project-id/sinks/my-sink-id"`.
      *     @type \Google\Cloud\Logging\V2\LogSink $sink
-     *           Required. The updated sink, whose name is the same identifier that appears
-     *           as part of `sink_name`.
+     *           Required. The updated sink, whose name is the same identifier that appears as part
+     *           of `sink_name`.
      *     @type bool $unique_writer_identity
      *           Optional. See [sinks.create][google.logging.v2.ConfigServiceV2.CreateSink]
      *           for a description of this field. When updating a sink, the effect of this
@@ -114,8 +114,8 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The full resource name of the sink to update, including the
-     * parent resource and the sink identifier:
+     * Required. The full resource name of the sink to update, including the parent
+     * resource and the sink identifier:
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
@@ -131,8 +131,8 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The full resource name of the sink to update, including the
-     * parent resource and the sink identifier:
+     * Required. The full resource name of the sink to update, including the parent
+     * resource and the sink identifier:
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
@@ -152,20 +152,30 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The updated sink, whose name is the same identifier that appears
-     * as part of `sink_name`.
+     * Required. The updated sink, whose name is the same identifier that appears as part
+     * of `sink_name`.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogSink sink = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Logging\V2\LogSink
+     * @return \Google\Cloud\Logging\V2\LogSink|null
      */
     public function getSink()
     {
         return $this->sink;
     }
 
+    public function hasSink()
+    {
+        return isset($this->sink);
+    }
+
+    public function clearSink()
+    {
+        unset($this->sink);
+    }
+
     /**
-     * Required. The updated sink, whose name is the same identifier that appears
-     * as part of `sink_name`.
+     * Required. The updated sink, whose name is the same identifier that appears as part
+     * of `sink_name`.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogSink sink = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Logging\V2\LogSink $var
@@ -191,7 +201,7 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      * +   It is an error if the old value is true and the new value is
      *     set to false or defaulted to false.
      *
-     * Generated from protobuf field <code>bool unique_writer_identity = 3;</code>
+     * Generated from protobuf field <code>bool unique_writer_identity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getUniqueWriterIdentity()
@@ -211,7 +221,7 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      * +   It is an error if the old value is true and the new value is
      *     set to false or defaulted to false.
      *
-     * Generated from protobuf field <code>bool unique_writer_identity = 3;</code>
+     * Generated from protobuf field <code>bool unique_writer_identity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -236,12 +246,22 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
      * Example: `updateMask=filter`.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4;</code>
-     * @return \Google\Protobuf\FieldMask
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
         return $this->update_mask;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
@@ -257,7 +277,7 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
      * Example: `updateMask=filter`.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */
