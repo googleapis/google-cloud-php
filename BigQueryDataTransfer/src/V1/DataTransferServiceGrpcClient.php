@@ -130,7 +130,8 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns information about all data transfers in the project.
+     * Returns information about all transfer configs owned by a project in the
+     * specified location.
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferConfigsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

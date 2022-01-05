@@ -690,7 +690,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
      */
     public function getMinimumScheduleInterval()
     {
-        return isset($this->minimum_schedule_interval) ? $this->minimum_schedule_interval : null;
+        return $this->minimum_schedule_interval;
     }
 
     public function hasMinimumScheduleInterval()

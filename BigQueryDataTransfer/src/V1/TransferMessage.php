@@ -61,7 +61,7 @@ class TransferMessage extends \Google\Protobuf\Internal\Message
      */
     public function getMessageTime()
     {
-        return isset($this->message_time) ? $this->message_time : null;
+        return $this->message_time;
     }
 
     public function hasMessageTime()
