@@ -187,7 +187,7 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      */
     public function getPemCrc32C()
     {
-        return isset($this->pem_crc32c) ? $this->pem_crc32c : null;
+        return $this->pem_crc32c;
     }
 
     public function hasPemCrc32C()

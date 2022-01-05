@@ -58,6 +58,19 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
+     * Integrity verification field. A flag indicating whether
+     * [AsymmetricSignRequest.data_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.data_crc32c] was received by
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] and used for the integrity verification of the
+     * [data][google.cloud.kms.v1.AsymmetricSignRequest.data]. A false value of this field
+     * indicates either that [AsymmetricSignRequest.data_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.data_crc32c] was left
+     * unset or that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've
+     * set [AsymmetricSignRequest.data_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.data_crc32c] but this field is still false,
+     * discard the response and perform a limited number of retries.
+     *
+     * Generated from protobuf field <code>bool verified_data_crc32c = 5;</code>
+     */
+    private $verified_data_crc32c = false;
+    /**
      * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 6;</code>
@@ -96,6 +109,15 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing. Check
      *           this field to verify that the intended resource was used for signing.
+     *     @type bool $verified_data_crc32c
+     *           Integrity verification field. A flag indicating whether
+     *           [AsymmetricSignRequest.data_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.data_crc32c] was received by
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] and used for the integrity verification of the
+     *           [data][google.cloud.kms.v1.AsymmetricSignRequest.data]. A false value of this field
+     *           indicates either that [AsymmetricSignRequest.data_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.data_crc32c] was left
+     *           unset or that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've
+     *           set [AsymmetricSignRequest.data_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.data_crc32c] but this field is still false,
+     *           discard the response and perform a limited number of retries.
      *     @type int $protection_level
      *           The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
      * }
@@ -149,7 +171,7 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      */
     public function getSignatureCrc32C()
     {
-        return isset($this->signature_crc32c) ? $this->signature_crc32c : null;
+        return $this->signature_crc32c;
     }
 
     public function hasSignatureCrc32C()
@@ -298,6 +320,46 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Integrity verification field. A flag indicating whether
+     * [AsymmetricSignRequest.data_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.data_crc32c] was received by
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] and used for the integrity verification of the
+     * [data][google.cloud.kms.v1.AsymmetricSignRequest.data]. A false value of this field
+     * indicates either that [AsymmetricSignRequest.data_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.data_crc32c] was left
+     * unset or that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've
+     * set [AsymmetricSignRequest.data_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.data_crc32c] but this field is still false,
+     * discard the response and perform a limited number of retries.
+     *
+     * Generated from protobuf field <code>bool verified_data_crc32c = 5;</code>
+     * @return bool
+     */
+    public function getVerifiedDataCrc32C()
+    {
+        return $this->verified_data_crc32c;
+    }
+
+    /**
+     * Integrity verification field. A flag indicating whether
+     * [AsymmetricSignRequest.data_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.data_crc32c] was received by
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] and used for the integrity verification of the
+     * [data][google.cloud.kms.v1.AsymmetricSignRequest.data]. A false value of this field
+     * indicates either that [AsymmetricSignRequest.data_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.data_crc32c] was left
+     * unset or that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've
+     * set [AsymmetricSignRequest.data_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.data_crc32c] but this field is still false,
+     * discard the response and perform a limited number of retries.
+     *
+     * Generated from protobuf field <code>bool verified_data_crc32c = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setVerifiedDataCrc32C($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->verified_data_crc32c = $var;
 
         return $this;
     }

@@ -153,7 +153,7 @@ class MacSignRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDataCrc32C()
     {
-        return isset($this->data_crc32c) ? $this->data_crc32c : null;
+        return $this->data_crc32c;
     }
 
     public function hasDataCrc32C()
