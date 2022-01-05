@@ -83,7 +83,7 @@ class CreateInstructionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInstruction()
     {
-        return isset($this->instruction) ? $this->instruction : null;
+        return $this->instruction;
     }
 
     public function hasInstruction()
