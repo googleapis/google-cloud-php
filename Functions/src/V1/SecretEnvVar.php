@@ -23,7 +23,7 @@ class SecretEnvVar extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
-    protected $key = '';
+    private $key = '';
     /**
      * Project identifier (preferrably project number but can also be the project
      * ID) of the project that contains the secret. If not set, it will be
@@ -32,13 +32,13 @@ class SecretEnvVar extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
-    protected $project_id = '';
+    private $project_id = '';
     /**
      * Name of the secret in secret manager (not the full resource name).
      *
      * Generated from protobuf field <code>string secret = 3;</code>
      */
-    protected $secret = '';
+    private $secret = '';
     /**
      * Version of the secret (version number or the string 'latest'). It is
      * recommended to use a numeric version for secret environment variables as
@@ -46,7 +46,7 @@ class SecretEnvVar extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 4;</code>
      */
-    protected $version = '';
+    private $version = '';
 
     /**
      * Constructor.
