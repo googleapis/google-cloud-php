@@ -17,7 +17,7 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
 {
     /**
      * The group resource name.
-     * Example: <code>projects/my-project-123/groups/my-groupid</code>
+     * Example: <code>projects/my-project-123/groups/CNSgkpnppqKCUw</code>
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -35,6 +35,13 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.devtools.clouderrorreporting.v1beta1.TrackingIssue tracking_issues = 3;</code>
      */
     private $tracking_issues;
+    /**
+     * Error group's resolution status.
+     * An unspecified resolution status will be interpreted as OPEN
+     *
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ResolutionStatus resolution_status = 5;</code>
+     */
+    private $resolution_status = 0;
 
     /**
      * Constructor.
@@ -44,12 +51,15 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The group resource name.
-     *           Example: <code>projects/my-project-123/groups/my-groupid</code>
+     *           Example: <code>projects/my-project-123/groups/CNSgkpnppqKCUw</code>
      *     @type string $group_id
      *           Group IDs are unique for a given project. If the same kind of error
      *           occurs in different service contexts, it will receive the same group ID.
      *     @type \Google\Cloud\ErrorReporting\V1beta1\TrackingIssue[]|\Google\Protobuf\Internal\RepeatedField $tracking_issues
      *           Associated tracking issues.
+     *     @type int $resolution_status
+     *           Error group's resolution status.
+     *           An unspecified resolution status will be interpreted as OPEN
      * }
      */
     public function __construct($data = NULL) {
@@ -59,7 +69,7 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
 
     /**
      * The group resource name.
-     * Example: <code>projects/my-project-123/groups/my-groupid</code>
+     * Example: <code>projects/my-project-123/groups/CNSgkpnppqKCUw</code>
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -71,7 +81,7 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
 
     /**
      * The group resource name.
-     * Example: <code>projects/my-project-123/groups/my-groupid</code>
+     * Example: <code>projects/my-project-123/groups/CNSgkpnppqKCUw</code>
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -135,6 +145,34 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ErrorReporting\V1beta1\TrackingIssue::class);
         $this->tracking_issues = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Error group's resolution status.
+     * An unspecified resolution status will be interpreted as OPEN
+     *
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ResolutionStatus resolution_status = 5;</code>
+     * @return int
+     */
+    public function getResolutionStatus()
+    {
+        return $this->resolution_status;
+    }
+
+    /**
+     * Error group's resolution status.
+     * An unspecified resolution status will be interpreted as OPEN
+     *
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ResolutionStatus resolution_status = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setResolutionStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ErrorReporting\V1beta1\ResolutionStatus::class);
+        $this->resolution_status = $var;
 
         return $this;
     }
