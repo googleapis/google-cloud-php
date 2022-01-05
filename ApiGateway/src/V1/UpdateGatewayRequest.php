@@ -65,7 +65,7 @@ class UpdateGatewayRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -105,7 +105,7 @@ class UpdateGatewayRequest extends \Google\Protobuf\Internal\Message
      */
     public function getGateway()
     {
-        return isset($this->gateway) ? $this->gateway : null;
+        return $this->gateway;
     }
 
     public function hasGateway()
