@@ -17,24 +17,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReconfigureTrustRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource domain name, project name and location using the form:
+     * Required. The resource domain name, project name and location using the form:
      * `projects/{project_id}/locations/global/domains/{domain_name}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * The fully-qualified target domain name which will be in trust with current
+     * Required. The fully-qualified target domain name which will be in trust with current
      * domain.
      *
-     * Generated from protobuf field <code>string target_domain_name = 2;</code>
+     * Generated from protobuf field <code>string target_domain_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $target_domain_name = '';
     /**
-     * The target DNS server IP addresses to resolve the remote domain involved
+     * Required. The target DNS server IP addresses to resolve the remote domain involved
      * in the trust.
      *
-     * Generated from protobuf field <code>repeated string target_dns_ip_addresses = 3;</code>
+     * Generated from protobuf field <code>repeated string target_dns_ip_addresses = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $target_dns_ip_addresses;
 
@@ -45,13 +45,13 @@ class ReconfigureTrustRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource domain name, project name and location using the form:
+     *           Required. The resource domain name, project name and location using the form:
      *           `projects/{project_id}/locations/global/domains/{domain_name}`
      *     @type string $target_domain_name
-     *           The fully-qualified target domain name which will be in trust with current
+     *           Required. The fully-qualified target domain name which will be in trust with current
      *           domain.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $target_dns_ip_addresses
-     *           The target DNS server IP addresses to resolve the remote domain involved
+     *           Required. The target DNS server IP addresses to resolve the remote domain involved
      *           in the trust.
      * }
      */
@@ -61,10 +61,10 @@ class ReconfigureTrustRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource domain name, project name and location using the form:
+     * Required. The resource domain name, project name and location using the form:
      * `projects/{project_id}/locations/global/domains/{domain_name}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -73,10 +73,10 @@ class ReconfigureTrustRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource domain name, project name and location using the form:
+     * Required. The resource domain name, project name and location using the form:
      * `projects/{project_id}/locations/global/domains/{domain_name}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -89,10 +89,10 @@ class ReconfigureTrustRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fully-qualified target domain name which will be in trust with current
+     * Required. The fully-qualified target domain name which will be in trust with current
      * domain.
      *
-     * Generated from protobuf field <code>string target_domain_name = 2;</code>
+     * Generated from protobuf field <code>string target_domain_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTargetDomainName()
@@ -101,10 +101,10 @@ class ReconfigureTrustRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fully-qualified target domain name which will be in trust with current
+     * Required. The fully-qualified target domain name which will be in trust with current
      * domain.
      *
-     * Generated from protobuf field <code>string target_domain_name = 2;</code>
+     * Generated from protobuf field <code>string target_domain_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -117,10 +117,10 @@ class ReconfigureTrustRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target DNS server IP addresses to resolve the remote domain involved
+     * Required. The target DNS server IP addresses to resolve the remote domain involved
      * in the trust.
      *
-     * Generated from protobuf field <code>repeated string target_dns_ip_addresses = 3;</code>
+     * Generated from protobuf field <code>repeated string target_dns_ip_addresses = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTargetDnsIpAddresses()
@@ -129,10 +129,10 @@ class ReconfigureTrustRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target DNS server IP addresses to resolve the remote domain involved
+     * Required. The target DNS server IP addresses to resolve the remote domain involved
      * in the trust.
      *
-     * Generated from protobuf field <code>repeated string target_dns_ip_addresses = 3;</code>
+     * Generated from protobuf field <code>repeated string target_dns_ip_addresses = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
