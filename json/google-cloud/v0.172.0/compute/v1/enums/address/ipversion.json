@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/address\/ipversion","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\Address\\IpVersion","name":"IpVersion","description":"<p>IpVersion contains string constants that represent the names of each value in\nthe google.cloud.compute.v1.Address.IpVersion descriptor.<\/p>","examples":[],"resources":[],"methods":[]}
