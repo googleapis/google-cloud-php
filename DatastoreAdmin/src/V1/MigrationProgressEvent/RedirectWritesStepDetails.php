@@ -20,7 +20,7 @@ class RedirectWritesStepDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.MigrationProgressEvent.ConcurrencyMode concurrency_mode = 1;</code>
      */
-    protected $concurrency_mode = 0;
+    private $concurrency_mode = 0;
 
     /**
      * Constructor.
