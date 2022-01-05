@@ -346,7 +346,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDimensionFilter()
     {
-        return isset($this->dimension_filter) ? $this->dimension_filter : null;
+        return $this->dimension_filter;
     }
 
     public function hasDimensionFilter()
@@ -386,7 +386,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      */
     public function getMetricFilter()
     {
-        return isset($this->metric_filter) ? $this->metric_filter : null;
+        return $this->metric_filter;
     }
 
     public function hasMetricFilter()
@@ -588,7 +588,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCohortSpec()
     {
-        return isset($this->cohort_spec) ? $this->cohort_spec : null;
+        return $this->cohort_spec;
     }
 
     public function hasCohortSpec()

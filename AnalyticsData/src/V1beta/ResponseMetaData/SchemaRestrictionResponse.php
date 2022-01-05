@@ -79,6 +79,4 @@ class SchemaRestrictionResponse extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SchemaRestrictionResponse::class, \Google\Analytics\Data\V1beta\ResponseMetaData_SchemaRestrictionResponse::class);
 

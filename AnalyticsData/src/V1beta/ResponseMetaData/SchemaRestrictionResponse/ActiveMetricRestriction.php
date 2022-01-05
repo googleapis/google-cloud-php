@@ -20,7 +20,7 @@ class ActiveMetricRestriction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string metric_name = 1;</code>
      */
-    protected $metric_name = null;
+    private $metric_name = null;
     /**
      * The reason for this metric's restriction.
      *

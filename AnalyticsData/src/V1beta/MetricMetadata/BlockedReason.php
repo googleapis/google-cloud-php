@@ -61,6 +61,4 @@ class BlockedReason
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BlockedReason::class, \Google\Analytics\Data\V1beta\MetricMetadata_BlockedReason::class);
 
