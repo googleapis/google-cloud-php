@@ -36,7 +36,6 @@ use Google\Cloud\Asset\V1\AnalyzeMoveResponse;
 use Google\Cloud\Asset\V1\Asset;
 use Google\Cloud\Asset\V1\AssetServiceClient;
 use Google\Cloud\Asset\V1\BatchGetAssetsHistoryResponse;
-use Google\Cloud\Asset\V1\ContentType;
 use Google\Cloud\Asset\V1\ExportAssetsResponse;
 use Google\Cloud\Asset\V1\Feed;
 use Google\Cloud\Asset\V1\FeedOutputConfig;
@@ -49,7 +48,6 @@ use Google\Cloud\Asset\V1\OutputConfig;
 use Google\Cloud\Asset\V1\ResourceSearchResult;
 use Google\Cloud\Asset\V1\SearchAllIamPoliciesResponse;
 use Google\Cloud\Asset\V1\SearchAllResourcesResponse;
-use Google\Cloud\Asset\V1\TimeWindow;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -370,9 +368,7 @@ class AssetServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $contentType = ContentType::CONTENT_TYPE_UNSPECIFIED;
-        $readTimeWindow = new TimeWindow();
-        $response = $client->batchGetAssetsHistory($parent, $contentType, $readTimeWindow);
+        $response = $client->batchGetAssetsHistory($parent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -406,10 +402,8 @@ class AssetServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $contentType = ContentType::CONTENT_TYPE_UNSPECIFIED;
-        $readTimeWindow = new TimeWindow();
         try {
-            $client->batchGetAssetsHistory($parent, $contentType, $readTimeWindow);
+            $client->batchGetAssetsHistory($parent);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
