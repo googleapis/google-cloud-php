@@ -19,15 +19,14 @@ class CreateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the project and the template location
      * [region](https://cloud.google.com/data-catalog/docs/concepts/regions).
-     * Example:
-     * * projects/{project_id}/locations/us-central1/tagTemplates/{tag_template_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Required. The ID of the tag template field to create.
-     * Field ids can contain letters (both uppercase and lowercase), numbers
+     * Note: Adding a required field to an existing template is *not* allowed.
+     * Field IDs can contain letters (both uppercase and lowercase), numbers
      * (0-9), underscores (_) and dashes (-). Field IDs must be at least 1
      * character long and at most 128 characters long. Field IDs must also be
      * unique within their template.
@@ -51,11 +50,10 @@ class CreateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The name of the project and the template location
      *           [region](https://cloud.google.com/data-catalog/docs/concepts/regions).
-     *           Example:
-     *           * projects/{project_id}/locations/us-central1/tagTemplates/{tag_template_id}
      *     @type string $tag_template_field_id
      *           Required. The ID of the tag template field to create.
-     *           Field ids can contain letters (both uppercase and lowercase), numbers
+     *           Note: Adding a required field to an existing template is *not* allowed.
+     *           Field IDs can contain letters (both uppercase and lowercase), numbers
      *           (0-9), underscores (_) and dashes (-). Field IDs must be at least 1
      *           character long and at most 128 characters long. Field IDs must also be
      *           unique within their template.
@@ -71,8 +69,6 @@ class CreateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the project and the template location
      * [region](https://cloud.google.com/data-catalog/docs/concepts/regions).
-     * Example:
-     * * projects/{project_id}/locations/us-central1/tagTemplates/{tag_template_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -85,8 +81,6 @@ class CreateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the project and the template location
      * [region](https://cloud.google.com/data-catalog/docs/concepts/regions).
-     * Example:
-     * * projects/{project_id}/locations/us-central1/tagTemplates/{tag_template_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -102,7 +96,8 @@ class CreateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ID of the tag template field to create.
-     * Field ids can contain letters (both uppercase and lowercase), numbers
+     * Note: Adding a required field to an existing template is *not* allowed.
+     * Field IDs can contain letters (both uppercase and lowercase), numbers
      * (0-9), underscores (_) and dashes (-). Field IDs must be at least 1
      * character long and at most 128 characters long. Field IDs must also be
      * unique within their template.
@@ -117,7 +112,8 @@ class CreateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The ID of the tag template field to create.
-     * Field ids can contain letters (both uppercase and lowercase), numbers
+     * Note: Adding a required field to an existing template is *not* allowed.
+     * Field IDs can contain letters (both uppercase and lowercase), numbers
      * (0-9), underscores (_) and dashes (-). Field IDs must be at least 1
      * character long and at most 128 characters long. Field IDs must also be
      * unique within their template.
@@ -142,7 +138,7 @@ class CreateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTagTemplateField()
     {
-        return isset($this->tag_template_field) ? $this->tag_template_field : null;
+        return $this->tag_template_field;
     }
 
     public function hasTagTemplateField()

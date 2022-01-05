@@ -17,16 +17,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteTagTemplateRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the tag template to delete. Example:
-     * * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}
+     * Required. The name of the tag template to delete.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * Required. Currently, this field must always be set to `true`.
-     * This confirms the deletion of any possible tags using this template.
-     * `force = false` will be supported in the future.
+     * Required. If true, deletes all tags that use this template.
+     * Currently, `true` is the only supported value.
      *
      * Generated from protobuf field <code>bool force = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -39,12 +37,10 @@ class DeleteTagTemplateRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the tag template to delete. Example:
-     *           * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}
+     *           Required. The name of the tag template to delete.
      *     @type bool $force
-     *           Required. Currently, this field must always be set to `true`.
-     *           This confirms the deletion of any possible tags using this template.
-     *           `force = false` will be supported in the future.
+     *           Required. If true, deletes all tags that use this template.
+     *           Currently, `true` is the only supported value.
      * }
      */
     public function __construct($data = NULL) {
@@ -53,8 +49,7 @@ class DeleteTagTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the tag template to delete. Example:
-     * * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}
+     * Required. The name of the tag template to delete.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -65,8 +60,7 @@ class DeleteTagTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the tag template to delete. Example:
-     * * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}
+     * Required. The name of the tag template to delete.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -81,9 +75,8 @@ class DeleteTagTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Currently, this field must always be set to `true`.
-     * This confirms the deletion of any possible tags using this template.
-     * `force = false` will be supported in the future.
+     * Required. If true, deletes all tags that use this template.
+     * Currently, `true` is the only supported value.
      *
      * Generated from protobuf field <code>bool force = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return bool
@@ -94,9 +87,8 @@ class DeleteTagTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Currently, this field must always be set to `true`.
-     * This confirms the deletion of any possible tags using this template.
-     * `force = false` will be supported in the future.
+     * Required. If true, deletes all tags that use this template.
+     * Currently, `true` is the only supported value.
      *
      * Generated from protobuf field <code>bool force = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param bool $var

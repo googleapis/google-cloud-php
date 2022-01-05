@@ -16,69 +16,57 @@ use Google\Protobuf\Internal\GPBUtil;
 class Scope extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of organization IDs to search within. To find your organization
-     * ID, follow instructions in
-     * https://cloud.google.com/resource-manager/docs/creating-managing-organization.
+     * The list of organization IDs to search within.
+     * To find your organization ID, follow the steps from
+     * [Creating and managing organizations]
+     * (/resource-manager/docs/creating-managing-organization).
      *
      * Generated from protobuf field <code>repeated string include_org_ids = 2;</code>
      */
     private $include_org_ids;
     /**
-     * The list of project IDs to search within. To learn more about the
-     * distinction between project names/IDs/numbers, go to
-     * https://cloud.google.com/docs/overview/#projects.
+     * The list of project IDs to search within.
+     * For more information on the distinction between project names, IDs, and
+     * numbers, see [Projects](https://cloud.google.com/docs/overview/#projects).
      *
      * Generated from protobuf field <code>repeated string include_project_ids = 3;</code>
      */
     private $include_project_ids;
     /**
-     * If `true`, include Google Cloud Platform (GCP) public datasets in the
-     * search results. Info on GCP public datasets is available at
-     * https://cloud.google.com/public-datasets/. By default, GCP public
-     * datasets are excluded.
+     * If `true`, include Google Cloud Platform (GCP) public datasets in
+     * search results. By default, they are excluded.
+     * See [Google Cloud Public Datasets](https://cloud.google.com/public-datasets) for more
+     * information.
      *
      * Generated from protobuf field <code>bool include_gcp_public_datasets = 7;</code>
      */
     private $include_gcp_public_datasets = false;
     /**
-     * Optional. The list of locations to search within.
-     * 1. If empty, search will be performed in all locations;
-     * 2. If any of the locations are NOT in the valid locations list, error
-     * will be returned;
-     * 3. Otherwise, search only the given locations for matching results.
-     * Typical usage is to leave this field empty. When a location is
-     * unreachable as returned in the `SearchCatalogResponse.unreachable` field,
-     * users can repeat the search request with this parameter set to get
-     * additional information on the error.
-     * Valid locations:
-     *  * asia-east1
-     *  * asia-east2
-     *  * asia-northeast1
-     *  * asia-northeast2
-     *  * asia-northeast3
-     *  * asia-south1
-     *  * asia-southeast1
-     *  * australia-southeast1
-     *  * eu
-     *  * europe-north1
-     *  * europe-west1
-     *  * europe-west2
-     *  * europe-west3
-     *  * europe-west4
-     *  * europe-west6
-     *  * global
-     *  * northamerica-northeast1
-     *  * southamerica-east1
-     *  * us
-     *  * us-central1
-     *  * us-east1
-     *  * us-east4
-     *  * us-west1
-     *  * us-west2
+     * Optional. The list of locations to search within. If empty, all locations are
+     * searched.
+     * Returns an error if any location in the list isn't one of the [Supported
+     * regions](https://cloud.google.com/data-catalog/docs/concepts/regions#supported_regions).
+     * If a location is unreachable, its name is returned in the
+     * `SearchCatalogResponse.unreachable` field. To get additional information
+     * on the error, repeat the search request and set the location name as the
+     * value of this parameter.
      *
      * Generated from protobuf field <code>repeated string restricted_locations = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $restricted_locations;
+    /**
+     * Optional. If `true`, include [public tag
+     * templates][google.cloud.datacatalog.v1.TagTemplate.is_publicly_readable]
+     * in the search results. By default, they are included only if you have
+     * explicit permissions on them to view them. For example, if you are the
+     * owner.
+     * Other scope fields, for example, `include_org_ids`,
+     * still restrict the returned public tag templates and at least one of
+     * them is required.
+     *
+     * Generated from protobuf field <code>bool include_public_tag_templates = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $include_public_tag_templates = false;
 
     /**
      * Constructor.
@@ -87,53 +75,37 @@ class Scope extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $include_org_ids
-     *           The list of organization IDs to search within. To find your organization
-     *           ID, follow instructions in
-     *           https://cloud.google.com/resource-manager/docs/creating-managing-organization.
+     *           The list of organization IDs to search within.
+     *           To find your organization ID, follow the steps from
+     *           [Creating and managing organizations]
+     *           (/resource-manager/docs/creating-managing-organization).
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $include_project_ids
-     *           The list of project IDs to search within. To learn more about the
-     *           distinction between project names/IDs/numbers, go to
-     *           https://cloud.google.com/docs/overview/#projects.
+     *           The list of project IDs to search within.
+     *           For more information on the distinction between project names, IDs, and
+     *           numbers, see [Projects](https://cloud.google.com/docs/overview/#projects).
      *     @type bool $include_gcp_public_datasets
-     *           If `true`, include Google Cloud Platform (GCP) public datasets in the
-     *           search results. Info on GCP public datasets is available at
-     *           https://cloud.google.com/public-datasets/. By default, GCP public
-     *           datasets are excluded.
+     *           If `true`, include Google Cloud Platform (GCP) public datasets in
+     *           search results. By default, they are excluded.
+     *           See [Google Cloud Public Datasets](https://cloud.google.com/public-datasets) for more
+     *           information.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $restricted_locations
-     *           Optional. The list of locations to search within.
-     *           1. If empty, search will be performed in all locations;
-     *           2. If any of the locations are NOT in the valid locations list, error
-     *           will be returned;
-     *           3. Otherwise, search only the given locations for matching results.
-     *           Typical usage is to leave this field empty. When a location is
-     *           unreachable as returned in the `SearchCatalogResponse.unreachable` field,
-     *           users can repeat the search request with this parameter set to get
-     *           additional information on the error.
-     *           Valid locations:
-     *            * asia-east1
-     *            * asia-east2
-     *            * asia-northeast1
-     *            * asia-northeast2
-     *            * asia-northeast3
-     *            * asia-south1
-     *            * asia-southeast1
-     *            * australia-southeast1
-     *            * eu
-     *            * europe-north1
-     *            * europe-west1
-     *            * europe-west2
-     *            * europe-west3
-     *            * europe-west4
-     *            * europe-west6
-     *            * global
-     *            * northamerica-northeast1
-     *            * southamerica-east1
-     *            * us
-     *            * us-central1
-     *            * us-east1
-     *            * us-east4
-     *            * us-west1
-     *            * us-west2
+     *           Optional. The list of locations to search within. If empty, all locations are
+     *           searched.
+     *           Returns an error if any location in the list isn't one of the [Supported
+     *           regions](https://cloud.google.com/data-catalog/docs/concepts/regions#supported_regions).
+     *           If a location is unreachable, its name is returned in the
+     *           `SearchCatalogResponse.unreachable` field. To get additional information
+     *           on the error, repeat the search request and set the location name as the
+     *           value of this parameter.
+     *     @type bool $include_public_tag_templates
+     *           Optional. If `true`, include [public tag
+     *           templates][google.cloud.datacatalog.v1.TagTemplate.is_publicly_readable]
+     *           in the search results. By default, they are included only if you have
+     *           explicit permissions on them to view them. For example, if you are the
+     *           owner.
+     *           Other scope fields, for example, `include_org_ids`,
+     *           still restrict the returned public tag templates and at least one of
+     *           them is required.
      * }
      */
     public function __construct($data = NULL) {
@@ -142,9 +114,10 @@ class Scope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of organization IDs to search within. To find your organization
-     * ID, follow instructions in
-     * https://cloud.google.com/resource-manager/docs/creating-managing-organization.
+     * The list of organization IDs to search within.
+     * To find your organization ID, follow the steps from
+     * [Creating and managing organizations]
+     * (/resource-manager/docs/creating-managing-organization).
      *
      * Generated from protobuf field <code>repeated string include_org_ids = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -155,9 +128,10 @@ class Scope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of organization IDs to search within. To find your organization
-     * ID, follow instructions in
-     * https://cloud.google.com/resource-manager/docs/creating-managing-organization.
+     * The list of organization IDs to search within.
+     * To find your organization ID, follow the steps from
+     * [Creating and managing organizations]
+     * (/resource-manager/docs/creating-managing-organization).
      *
      * Generated from protobuf field <code>repeated string include_org_ids = 2;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -172,9 +146,9 @@ class Scope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of project IDs to search within. To learn more about the
-     * distinction between project names/IDs/numbers, go to
-     * https://cloud.google.com/docs/overview/#projects.
+     * The list of project IDs to search within.
+     * For more information on the distinction between project names, IDs, and
+     * numbers, see [Projects](https://cloud.google.com/docs/overview/#projects).
      *
      * Generated from protobuf field <code>repeated string include_project_ids = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -185,9 +159,9 @@ class Scope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of project IDs to search within. To learn more about the
-     * distinction between project names/IDs/numbers, go to
-     * https://cloud.google.com/docs/overview/#projects.
+     * The list of project IDs to search within.
+     * For more information on the distinction between project names, IDs, and
+     * numbers, see [Projects](https://cloud.google.com/docs/overview/#projects).
      *
      * Generated from protobuf field <code>repeated string include_project_ids = 3;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -202,10 +176,10 @@ class Scope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If `true`, include Google Cloud Platform (GCP) public datasets in the
-     * search results. Info on GCP public datasets is available at
-     * https://cloud.google.com/public-datasets/. By default, GCP public
-     * datasets are excluded.
+     * If `true`, include Google Cloud Platform (GCP) public datasets in
+     * search results. By default, they are excluded.
+     * See [Google Cloud Public Datasets](https://cloud.google.com/public-datasets) for more
+     * information.
      *
      * Generated from protobuf field <code>bool include_gcp_public_datasets = 7;</code>
      * @return bool
@@ -216,10 +190,10 @@ class Scope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If `true`, include Google Cloud Platform (GCP) public datasets in the
-     * search results. Info on GCP public datasets is available at
-     * https://cloud.google.com/public-datasets/. By default, GCP public
-     * datasets are excluded.
+     * If `true`, include Google Cloud Platform (GCP) public datasets in
+     * search results. By default, they are excluded.
+     * See [Google Cloud Public Datasets](https://cloud.google.com/public-datasets) for more
+     * information.
      *
      * Generated from protobuf field <code>bool include_gcp_public_datasets = 7;</code>
      * @param bool $var
@@ -234,40 +208,14 @@ class Scope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of locations to search within.
-     * 1. If empty, search will be performed in all locations;
-     * 2. If any of the locations are NOT in the valid locations list, error
-     * will be returned;
-     * 3. Otherwise, search only the given locations for matching results.
-     * Typical usage is to leave this field empty. When a location is
-     * unreachable as returned in the `SearchCatalogResponse.unreachable` field,
-     * users can repeat the search request with this parameter set to get
-     * additional information on the error.
-     * Valid locations:
-     *  * asia-east1
-     *  * asia-east2
-     *  * asia-northeast1
-     *  * asia-northeast2
-     *  * asia-northeast3
-     *  * asia-south1
-     *  * asia-southeast1
-     *  * australia-southeast1
-     *  * eu
-     *  * europe-north1
-     *  * europe-west1
-     *  * europe-west2
-     *  * europe-west3
-     *  * europe-west4
-     *  * europe-west6
-     *  * global
-     *  * northamerica-northeast1
-     *  * southamerica-east1
-     *  * us
-     *  * us-central1
-     *  * us-east1
-     *  * us-east4
-     *  * us-west1
-     *  * us-west2
+     * Optional. The list of locations to search within. If empty, all locations are
+     * searched.
+     * Returns an error if any location in the list isn't one of the [Supported
+     * regions](https://cloud.google.com/data-catalog/docs/concepts/regions#supported_regions).
+     * If a location is unreachable, its name is returned in the
+     * `SearchCatalogResponse.unreachable` field. To get additional information
+     * on the error, repeat the search request and set the location name as the
+     * value of this parameter.
      *
      * Generated from protobuf field <code>repeated string restricted_locations = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -278,40 +226,14 @@ class Scope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of locations to search within.
-     * 1. If empty, search will be performed in all locations;
-     * 2. If any of the locations are NOT in the valid locations list, error
-     * will be returned;
-     * 3. Otherwise, search only the given locations for matching results.
-     * Typical usage is to leave this field empty. When a location is
-     * unreachable as returned in the `SearchCatalogResponse.unreachable` field,
-     * users can repeat the search request with this parameter set to get
-     * additional information on the error.
-     * Valid locations:
-     *  * asia-east1
-     *  * asia-east2
-     *  * asia-northeast1
-     *  * asia-northeast2
-     *  * asia-northeast3
-     *  * asia-south1
-     *  * asia-southeast1
-     *  * australia-southeast1
-     *  * eu
-     *  * europe-north1
-     *  * europe-west1
-     *  * europe-west2
-     *  * europe-west3
-     *  * europe-west4
-     *  * europe-west6
-     *  * global
-     *  * northamerica-northeast1
-     *  * southamerica-east1
-     *  * us
-     *  * us-central1
-     *  * us-east1
-     *  * us-east4
-     *  * us-west1
-     *  * us-west2
+     * Optional. The list of locations to search within. If empty, all locations are
+     * searched.
+     * Returns an error if any location in the list isn't one of the [Supported
+     * regions](https://cloud.google.com/data-catalog/docs/concepts/regions#supported_regions).
+     * If a location is unreachable, its name is returned in the
+     * `SearchCatalogResponse.unreachable` field. To get additional information
+     * on the error, repeat the search request and set the location name as the
+     * value of this parameter.
      *
      * Generated from protobuf field <code>repeated string restricted_locations = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -321,6 +243,46 @@ class Scope extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->restricted_locations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If `true`, include [public tag
+     * templates][google.cloud.datacatalog.v1.TagTemplate.is_publicly_readable]
+     * in the search results. By default, they are included only if you have
+     * explicit permissions on them to view them. For example, if you are the
+     * owner.
+     * Other scope fields, for example, `include_org_ids`,
+     * still restrict the returned public tag templates and at least one of
+     * them is required.
+     *
+     * Generated from protobuf field <code>bool include_public_tag_templates = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIncludePublicTagTemplates()
+    {
+        return $this->include_public_tag_templates;
+    }
+
+    /**
+     * Optional. If `true`, include [public tag
+     * templates][google.cloud.datacatalog.v1.TagTemplate.is_publicly_readable]
+     * in the search results. By default, they are included only if you have
+     * explicit permissions on them to view them. For example, if you are the
+     * owner.
+     * Other scope fields, for example, `include_org_ids`,
+     * still restrict the returned public tag templates and at least one of
+     * them is required.
+     *
+     * Generated from protobuf field <code>bool include_public_tag_templates = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIncludePublicTagTemplates($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->include_public_tag_templates = $var;
 
         return $this;
     }
