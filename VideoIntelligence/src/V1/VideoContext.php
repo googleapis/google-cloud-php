@@ -143,7 +143,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getLabelDetectionConfig()
     {
-        return isset($this->label_detection_config) ? $this->label_detection_config : null;
+        return $this->label_detection_config;
     }
 
     public function hasLabelDetectionConfig()
@@ -179,7 +179,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getShotChangeDetectionConfig()
     {
-        return isset($this->shot_change_detection_config) ? $this->shot_change_detection_config : null;
+        return $this->shot_change_detection_config;
     }
 
     public function hasShotChangeDetectionConfig()
@@ -215,7 +215,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getExplicitContentDetectionConfig()
     {
-        return isset($this->explicit_content_detection_config) ? $this->explicit_content_detection_config : null;
+        return $this->explicit_content_detection_config;
     }
 
     public function hasExplicitContentDetectionConfig()
@@ -251,7 +251,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getFaceDetectionConfig()
     {
-        return isset($this->face_detection_config) ? $this->face_detection_config : null;
+        return $this->face_detection_config;
     }
 
     public function hasFaceDetectionConfig()
@@ -287,7 +287,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getSpeechTranscriptionConfig()
     {
-        return isset($this->speech_transcription_config) ? $this->speech_transcription_config : null;
+        return $this->speech_transcription_config;
     }
 
     public function hasSpeechTranscriptionConfig()
@@ -323,7 +323,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getTextDetectionConfig()
     {
-        return isset($this->text_detection_config) ? $this->text_detection_config : null;
+        return $this->text_detection_config;
     }
 
     public function hasTextDetectionConfig()
@@ -359,7 +359,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getPersonDetectionConfig()
     {
-        return isset($this->person_detection_config) ? $this->person_detection_config : null;
+        return $this->person_detection_config;
     }
 
     public function hasPersonDetectionConfig()
@@ -395,7 +395,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getObjectTrackingConfig()
     {
-        return isset($this->object_tracking_config) ? $this->object_tracking_config : null;
+        return $this->object_tracking_config;
     }
 
     public function hasObjectTrackingConfig()
