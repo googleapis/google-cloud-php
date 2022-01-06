@@ -3,3 +3,4 @@ deep-copy-regex:
       dest: /owl-bot-staging/AutoMl/v1/$1
     - source: /google/cloud/automl/v1beta1/.*-php/(.*)
       dest: /owl-bot-staging/AutoMl/v1beta1/$1
+api-name: AutoMl
