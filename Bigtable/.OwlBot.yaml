@@ -3,3 +3,4 @@ deep-copy-regex:
       dest: /owl-bot-staging/Bigtable/$1/$2
     - source: /google/bigtable/admin/(v2)/.*-php/(.*)
       dest: /owl-bot-staging/Bigtable/$1/Admin/$2
+api-name: Bigtable

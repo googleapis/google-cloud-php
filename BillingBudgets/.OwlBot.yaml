@@ -3,3 +3,4 @@ deep-copy-regex:
       dest: /owl-bot-staging/BillingBudgets/v1/$1
     - source: /google/cloud/billing/budgets/v1beta1/.*-php/(.*)
       dest: /owl-bot-staging/BillingBudgets/v1beta1/$1
+api-name: BillingBudgets

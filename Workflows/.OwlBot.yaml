@@ -3,3 +3,4 @@ deep-copy-regex:
       dest: /owl-bot-staging/Workflows/$1/$2
     - source: /google/cloud/workflows/executions/(v1beta)/.*-php/(.*)
       dest: /owl-bot-staging/Workflows/$1/Executions/$2
+api-name: Workflows
