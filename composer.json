@@ -283,7 +283,7 @@
             "GPBMetadata\\Google\\Datastore\\": "Datastore/metadata",
             "GPBMetadata\\Google\\Datastore\\Admin\\": "DatastoreAdmin/metadata",
             "GPBMetadata\\Google\\Devtools\\Artifactregistry\\": "ArtifactRegistry/metadata",
-            "GPBMetadata\\Google\\Devtools\\Cloudbuild\\": "Build/metadata",
+            "GPBMetadata\\Google\\Devtools\\Build\\": "Build/metadata",
             "GPBMetadata\\Google\\Devtools\\Clouddebugger\\": "Debugger/metadata",
             "GPBMetadata\\Google\\Devtools\\Clouderrorreporting\\": "ErrorReporting/metadata",
             "GPBMetadata\\Google\\Devtools\\Cloudprofiler\\": "Profiler/metadata",
