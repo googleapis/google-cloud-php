@@ -30,7 +30,8 @@ class CreateBatchRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The ID to use for the batch, which will become the final component of
      * the batch's resource name.
-     * This value must be 4-63 characters. Valid characters are `/[a-z][0-9]-/`.
+     * This value must be 4-63 characters. Valid characters
+     * are /[a-z][0-9]-/.
      *
      * Generated from protobuf field <code>string batch_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -64,7 +65,8 @@ class CreateBatchRequest extends \Google\Protobuf\Internal\Message
      *     @type string $batch_id
      *           Optional. The ID to use for the batch, which will become the final component of
      *           the batch's resource name.
-     *           This value must be 4-63 characters. Valid characters are `/[a-z][0-9]-/`.
+     *           This value must be 4-63 characters. Valid characters
+     *           are /[a-z][0-9]-/.
      *     @type string $request_id
      *           Optional. A unique ID used to identify the request. If the service
      *           receives two
@@ -148,7 +150,8 @@ class CreateBatchRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The ID to use for the batch, which will become the final component of
      * the batch's resource name.
-     * This value must be 4-63 characters. Valid characters are `/[a-z][0-9]-/`.
+     * This value must be 4-63 characters. Valid characters
+     * are /[a-z][0-9]-/.
      *
      * Generated from protobuf field <code>string batch_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -161,7 +164,8 @@ class CreateBatchRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The ID to use for the batch, which will become the final component of
      * the batch's resource name.
-     * This value must be 4-63 characters. Valid characters are `/[a-z][0-9]-/`.
+     * This value must be 4-63 characters. Valid characters
+     * are /[a-z][0-9]-/.
      *
      * Generated from protobuf field <code>string batch_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
