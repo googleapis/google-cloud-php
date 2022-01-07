@@ -18,7 +18,7 @@ class IntotoProvenance
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-·
+Î
 "grafeas/v1/intoto_provenance.proto
 grafeas.v1google/protobuf/timestamp.proto"œ
 Recipe
@@ -44,8 +44,8 @@ grafeas.v1google/protobuf/timestamp.proto"œ
 builder_config (2.grafeas.v1.BuilderConfig"
 recipe (2.grafeas.v1.Recipe&
 metadata (2.grafeas.v1.Metadata
-	materials (	BQ
-io.grafeas.v1PZ8google.golang.org/genproto/googleapis/grafeas/v1;grafeas¢GRAbproto3'
+	materials (	Bh
+io.grafeas.v1BInTotoProvenanceProtoPZ8google.golang.org/genproto/googleapis/grafeas/v1;grafeas¢GRAbproto3'
         , true);
 
         static::$is_initialized = true;

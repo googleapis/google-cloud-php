@@ -47,6 +47,12 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_scan_time = 5;</code>
      */
     private $last_scan_time = null;
+    /**
+     * The time occurrences related to this discovery occurrence were archived.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp archive_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $archive_time = null;
 
     /**
      * Constructor.
@@ -66,6 +72,8 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      *           The CPE of the resource being scanned.
      *     @type \Google\Protobuf\Timestamp $last_scan_time
      *           The last time this resource was scanned.
+     *     @type \Google\Protobuf\Timestamp $archive_time
+     *           The time occurrences related to this discovery occurrence were archived.
      * }
      */
     public function __construct($data = NULL) {
@@ -223,6 +231,42 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->last_scan_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The time occurrences related to this discovery occurrence were archived.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp archive_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getArchiveTime()
+    {
+        return $this->archive_time;
+    }
+
+    public function hasArchiveTime()
+    {
+        return isset($this->archive_time);
+    }
+
+    public function clearArchiveTime()
+    {
+        unset($this->archive_time);
+    }
+
+    /**
+     * The time occurrences related to this discovery occurrence were archived.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp archive_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setArchiveTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->archive_time = $var;
 
         return $this;
     }

@@ -146,6 +146,4 @@ class SlsaCompleteness extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SlsaCompleteness::class, \Grafeas\V1\SlsaProvenance_SlsaCompleteness::class);
 
