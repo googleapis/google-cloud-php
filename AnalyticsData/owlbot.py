@@ -14,7 +14,9 @@
 
 """This script is used to synthesize generated parts of this library."""
 
+import glob
 import logging
+import os
 from pathlib import Path
 import subprocess
 
@@ -34,9 +36,18 @@ php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        src / "**/*_*.php"
+        src / "**/[A-Z]*_*.php"
     ]
 )
+
+# Delete files with old style names with underscore.
+file_list = glob.glob(str(dest) + '/**/[A-Z]*_*.php', recursive=True)
+
+for f in file_list:
+    try:
+        os.remove(f)
+    except:
+        print(f"Failed to remove '{f}'")
 
 # remove class_alias code
 s.replace(
