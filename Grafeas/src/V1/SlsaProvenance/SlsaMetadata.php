@@ -247,6 +247,4 @@ class SlsaMetadata extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SlsaMetadata::class, \Grafeas\V1\SlsaProvenance_SlsaMetadata::class);
 

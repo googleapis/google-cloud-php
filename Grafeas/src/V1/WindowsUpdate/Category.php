@@ -99,6 +99,4 @@ class Category extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Category::class, \Grafeas\V1\WindowsUpdate_Category::class);
 

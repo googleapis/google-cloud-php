@@ -66,6 +66,4 @@ class VersionKind
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VersionKind::class, \Grafeas\V1\Version_VersionKind::class);
 

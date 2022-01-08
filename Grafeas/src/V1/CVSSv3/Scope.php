@@ -51,6 +51,4 @@ class Scope
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Scope::class, \Grafeas\V1\CVSSv3_Scope::class);
 
