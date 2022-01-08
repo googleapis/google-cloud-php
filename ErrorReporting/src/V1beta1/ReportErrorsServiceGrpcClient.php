@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
 //
 namespace Google\Cloud\ErrorReporting\V1beta1;
 
@@ -34,7 +33,7 @@ class ReportErrorsServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Report an individual error event.
+     * Report an individual error event and record the event to a log.
      *
      * This endpoint accepts **either** an OAuth token,
      * **or** an [API key](https://support.google.com/cloud/answer/6158862)
@@ -42,7 +41,15 @@ class ReportErrorsServiceGrpcClient extends \Grpc\BaseStub {
      * a `key` parameter. For example:
      *
      * `POST
-     * https://clouderrorreporting.googleapis.com/v1beta1/projects/example-project/events:report?key=123ABC456`
+     * https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/events:report?key=123ABC456`
+     *
+     * **Note:** [Error Reporting](https://cloud.google.com/error-reporting) is a global service built
+     * on Cloud Logging and doesn't analyze logs stored
+     * in regional log buckets or logs routed to other Google Cloud projects.
+     *
+     * For more information, see
+     * [Using Error Reporting with regionalized
+     * logs](https://cloud.google.com/error-reporting/docs/regionalization).
      * @param \Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
