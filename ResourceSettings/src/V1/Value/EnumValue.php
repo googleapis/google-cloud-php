@@ -67,6 +67,4 @@ class EnumValue extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EnumValue::class, \Google\Cloud\ResourceSettings\V1\Value_EnumValue::class);
 
