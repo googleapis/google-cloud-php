@@ -40,6 +40,11 @@
                                 "createPhraseMatcher"
                             ]
                         },
+                        "CreateView": {
+                            "methods": [
+                                "createView"
+                            ]
+                        },
                         "DeleteAnalysis": {
                             "methods": [
                                 "deleteAnalysis"
@@ -58,6 +63,11 @@
                         "DeletePhraseMatcher": {
                             "methods": [
                                 "deletePhraseMatcher"
+                            ]
+                        },
+                        "DeleteView": {
+                            "methods": [
+                                "deleteView"
                             ]
                         },
                         "DeployIssueModel": {
@@ -100,6 +110,11 @@
                                 "getSettings"
                             ]
                         },
+                        "GetView": {
+                            "methods": [
+                                "getView"
+                            ]
+                        },
                         "ListAnalyses": {
                             "methods": [
                                 "listAnalyses"
@@ -123,6 +138,11 @@
                         "ListPhraseMatchers": {
                             "methods": [
                                 "listPhraseMatchers"
+                            ]
+                        },
+                        "ListViews": {
+                            "methods": [
+                                "listViews"
                             ]
                         },
                         "UndeployIssueModel": {
@@ -153,6 +173,11 @@
                         "UpdateSettings": {
                             "methods": [
                                 "updateSettings"
+                            ]
+                        },
+                        "UpdateView": {
+                            "methods": [
+                                "updateView"
                             ]
                         }
                     }

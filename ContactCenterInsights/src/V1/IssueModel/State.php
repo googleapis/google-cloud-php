@@ -81,6 +81,4 @@ class State
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(State::class, \Google\Cloud\ContactCenterInsights\V1\IssueModel_State::class);
 
