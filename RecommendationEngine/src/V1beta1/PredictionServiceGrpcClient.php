@@ -40,6 +40,7 @@ class PredictionServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecommendationEngine\V1beta1\PredictRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function Predict(\Google\Cloud\RecommendationEngine\V1beta1\PredictRequest $argument,
       $metadata = [], $options = []) {
