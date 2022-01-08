@@ -79,7 +79,7 @@ class Queue extends \Google\Protobuf\Internal\Message
     private $retry_config = null;
     /**
      * Output only. The state of the queue.
-     * `state` can only be changed by called
+     * `state` can only be changed by calling
      * [PauseQueue][google.cloud.tasks.v2beta3.CloudTasks.PauseQueue],
      * [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or uploading
      * [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref).
@@ -216,7 +216,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      *             documentation](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
      *     @type int $state
      *           Output only. The state of the queue.
-     *           `state` can only be changed by called
+     *           `state` can only be changed by calling
      *           [PauseQueue][google.cloud.tasks.v2beta3.CloudTasks.PauseQueue],
      *           [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or uploading
      *           [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref).
@@ -388,7 +388,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getRateLimits()
     {
-        return isset($this->rate_limits) ? $this->rate_limits : null;
+        return $this->rate_limits;
     }
 
     public function hasRateLimits()
@@ -451,7 +451,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getRetryConfig()
     {
-        return isset($this->retry_config) ? $this->retry_config : null;
+        return $this->retry_config;
     }
 
     public function hasRetryConfig()
@@ -489,7 +489,7 @@ class Queue extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The state of the queue.
-     * `state` can only be changed by called
+     * `state` can only be changed by calling
      * [PauseQueue][google.cloud.tasks.v2beta3.CloudTasks.PauseQueue],
      * [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or uploading
      * [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref).
@@ -505,7 +505,7 @@ class Queue extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The state of the queue.
-     * `state` can only be changed by called
+     * `state` can only be changed by calling
      * [PauseQueue][google.cloud.tasks.v2beta3.CloudTasks.PauseQueue],
      * [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or uploading
      * [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref).
@@ -538,7 +538,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getPurgeTime()
     {
-        return isset($this->purge_time) ? $this->purge_time : null;
+        return $this->purge_time;
     }
 
     public function hasPurgeTime()
@@ -590,7 +590,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getTaskTtl()
     {
-        return isset($this->task_ttl) ? $this->task_ttl : null;
+        return $this->task_ttl;
     }
 
     public function hasTaskTtl()
@@ -642,7 +642,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getTombstoneTtl()
     {
-        return isset($this->tombstone_ttl) ? $this->tombstone_ttl : null;
+        return $this->tombstone_ttl;
     }
 
     public function hasTombstoneTtl()
@@ -687,7 +687,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getStackdriverLoggingConfig()
     {
-        return isset($this->stackdriver_logging_config) ? $this->stackdriver_logging_config : null;
+        return $this->stackdriver_logging_config;
     }
 
     public function hasStackdriverLoggingConfig()
@@ -759,7 +759,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getStats()
     {
-        return isset($this->stats) ? $this->stats : null;
+        return $this->stats;
     }
 
     public function hasStats()

@@ -130,7 +130,7 @@ class QueueStats extends \Google\Protobuf\Internal\Message
      */
     public function getOldestEstimatedArrivalTime()
     {
-        return isset($this->oldest_estimated_arrival_time) ? $this->oldest_estimated_arrival_time : null;
+        return $this->oldest_estimated_arrival_time;
     }
 
     public function hasOldestEstimatedArrivalTime()

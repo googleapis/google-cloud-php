@@ -134,7 +134,7 @@ class RenewLeaseRequest extends \Google\Protobuf\Internal\Message
      */
     public function getScheduleTime()
     {
-        return isset($this->schedule_time) ? $this->schedule_time : null;
+        return $this->schedule_time;
     }
 
     public function hasScheduleTime()
@@ -176,7 +176,7 @@ class RenewLeaseRequest extends \Google\Protobuf\Internal\Message
      */
     public function getLeaseDuration()
     {
-        return isset($this->lease_duration) ? $this->lease_duration : null;
+        return $this->lease_duration;
     }
 
     public function hasLeaseDuration()

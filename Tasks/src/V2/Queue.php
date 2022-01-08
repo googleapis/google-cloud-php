@@ -287,7 +287,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getAppEngineRoutingOverride()
     {
-        return isset($this->app_engine_routing_override) ? $this->app_engine_routing_override : null;
+        return $this->app_engine_routing_override;
     }
 
     public function hasAppEngineRoutingOverride()
@@ -350,7 +350,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getRateLimits()
     {
-        return isset($this->rate_limits) ? $this->rate_limits : null;
+        return $this->rate_limits;
     }
 
     public function hasRateLimits()
@@ -413,7 +413,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getRetryConfig()
     {
-        return isset($this->retry_config) ? $this->retry_config : null;
+        return $this->retry_config;
     }
 
     public function hasRetryConfig()
@@ -500,7 +500,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getPurgeTime()
     {
-        return isset($this->purge_time) ? $this->purge_time : null;
+        return $this->purge_time;
     }
 
     public function hasPurgeTime()
@@ -545,7 +545,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     public function getStackdriverLoggingConfig()
     {
-        return isset($this->stackdriver_logging_config) ? $this->stackdriver_logging_config : null;
+        return $this->stackdriver_logging_config;
     }
 
     public function hasStackdriverLoggingConfig()
