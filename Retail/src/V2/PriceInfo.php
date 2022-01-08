@@ -340,7 +340,7 @@ class PriceInfo extends \Google\Protobuf\Internal\Message
      */
     public function getPriceEffectiveTime()
     {
-        return isset($this->price_effective_time) ? $this->price_effective_time : null;
+        return $this->price_effective_time;
     }
 
     public function hasPriceEffectiveTime()
@@ -397,7 +397,7 @@ class PriceInfo extends \Google\Protobuf\Internal\Message
      */
     public function getPriceExpireTime()
     {
-        return isset($this->price_expire_time) ? $this->price_expire_time : null;
+        return $this->price_expire_time;
     }
 
     public function hasPriceExpireTime()
@@ -452,7 +452,7 @@ class PriceInfo extends \Google\Protobuf\Internal\Message
      */
     public function getPriceRange()
     {
-        return isset($this->price_range) ? $this->price_range : null;
+        return $this->price_range;
     }
 
     public function hasPriceRange()

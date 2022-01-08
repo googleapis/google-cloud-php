@@ -19,12 +19,12 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
     /**
      * The type of [Product][google.cloud.retail.v2.Product]s allowed to be
      * ingested into the catalog. Acceptable values are:
-     * * `primary` (default): You can only ingest
-     * [Product.Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]
-     *   [Product][google.cloud.retail.v2.Product]s. This means
-     *   [Product.primary_product_id][google.cloud.retail.v2.Product.primary_product_id]
-     *   can only be empty or set to the same value as
-     *   [Product.id][google.cloud.retail.v2.Product.id].
+     * * `primary` (default): You can ingest
+     * [Product][google.cloud.retail.v2.Product]s of all types. When
+     *   ingesting a [Product][google.cloud.retail.v2.Product], its type will
+     *   default to
+     *   [Product.Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] if
+     *   unset.
      * * `variant`: You can only ingest
      * [Product.Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]
      * [Product][google.cloud.retail.v2.Product]s.
@@ -74,12 +74,12 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      *     @type string $ingestion_product_type
      *           The type of [Product][google.cloud.retail.v2.Product]s allowed to be
      *           ingested into the catalog. Acceptable values are:
-     *           * `primary` (default): You can only ingest
-     *           [Product.Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]
-     *             [Product][google.cloud.retail.v2.Product]s. This means
-     *             [Product.primary_product_id][google.cloud.retail.v2.Product.primary_product_id]
-     *             can only be empty or set to the same value as
-     *             [Product.id][google.cloud.retail.v2.Product.id].
+     *           * `primary` (default): You can ingest
+     *           [Product][google.cloud.retail.v2.Product]s of all types. When
+     *             ingesting a [Product][google.cloud.retail.v2.Product], its type will
+     *             default to
+     *             [Product.Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] if
+     *             unset.
      *           * `variant`: You can only ingest
      *           [Product.Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]
      *           [Product][google.cloud.retail.v2.Product]s.
@@ -121,12 +121,12 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
     /**
      * The type of [Product][google.cloud.retail.v2.Product]s allowed to be
      * ingested into the catalog. Acceptable values are:
-     * * `primary` (default): You can only ingest
-     * [Product.Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]
-     *   [Product][google.cloud.retail.v2.Product]s. This means
-     *   [Product.primary_product_id][google.cloud.retail.v2.Product.primary_product_id]
-     *   can only be empty or set to the same value as
-     *   [Product.id][google.cloud.retail.v2.Product.id].
+     * * `primary` (default): You can ingest
+     * [Product][google.cloud.retail.v2.Product]s of all types. When
+     *   ingesting a [Product][google.cloud.retail.v2.Product], its type will
+     *   default to
+     *   [Product.Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] if
+     *   unset.
      * * `variant`: You can only ingest
      * [Product.Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]
      * [Product][google.cloud.retail.v2.Product]s.
@@ -153,12 +153,12 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
     /**
      * The type of [Product][google.cloud.retail.v2.Product]s allowed to be
      * ingested into the catalog. Acceptable values are:
-     * * `primary` (default): You can only ingest
-     * [Product.Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]
-     *   [Product][google.cloud.retail.v2.Product]s. This means
-     *   [Product.primary_product_id][google.cloud.retail.v2.Product.primary_product_id]
-     *   can only be empty or set to the same value as
-     *   [Product.id][google.cloud.retail.v2.Product.id].
+     * * `primary` (default): You can ingest
+     * [Product][google.cloud.retail.v2.Product]s of all types. When
+     *   ingesting a [Product][google.cloud.retail.v2.Product], its type will
+     *   default to
+     *   [Product.Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] if
+     *   unset.
      * * `variant`: You can only ingest
      * [Product.Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]
      * [Product][google.cloud.retail.v2.Product]s.

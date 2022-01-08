@@ -286,7 +286,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUserEvent()
     {
-        return isset($this->user_event) ? $this->user_event : null;
+        return $this->user_event;
     }
 
     public function hasUserEvent()

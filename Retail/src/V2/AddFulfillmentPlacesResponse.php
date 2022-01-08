@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response of the RemoveFulfillmentPlacesRequest.  Currently empty because
+ * Response of the AddFulfillmentPlacesRequest.  Currently empty because
  * there is no meaningful response populated from the [AddFulfillmentPlaces][]
  * method.
  *
