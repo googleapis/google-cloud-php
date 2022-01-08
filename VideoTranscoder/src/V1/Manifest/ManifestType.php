@@ -59,6 +59,4 @@ class ManifestType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ManifestType::class, \Google\Cloud\Video\Transcoder\V1\Manifest_ManifestType::class);
 

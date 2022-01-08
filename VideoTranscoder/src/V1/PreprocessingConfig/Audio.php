@@ -169,6 +169,4 @@ class Audio extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Audio::class, \Google\Cloud\Video\Transcoder\V1\PreprocessingConfig_Audio::class);
 
