@@ -61,6 +61,4 @@ class ResumeType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ResumeType::class, \Google\Cloud\Talent\V4beta1\Resume_ResumeType::class);
 

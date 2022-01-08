@@ -59,6 +59,4 @@ class TimeField
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TimeField::class, \Google\Cloud\Talent\V4beta1\TimeFilter_TimeField::class);
 

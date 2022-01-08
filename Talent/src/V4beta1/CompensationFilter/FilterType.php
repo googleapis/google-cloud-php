@@ -88,6 +88,4 @@ class FilterType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FilterType::class, \Google\Cloud\Talent\V4beta1\CompensationFilter_FilterType::class);
 
