@@ -1,0 +1,38 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.vpcaccess.v1",
+    "libraryPackage": "Google\\Cloud\\VpcAccess\\V1",
+    "services": {
+        "VpcAccessService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "VpcAccessServiceGapicClient",
+                    "rpcs": {
+                        "CreateConnector": {
+                            "methods": [
+                                "createConnector"
+                            ]
+                        },
+                        "DeleteConnector": {
+                            "methods": [
+                                "deleteConnector"
+                            ]
+                        },
+                        "GetConnector": {
+                            "methods": [
+                                "getConnector"
+                            ]
+                        },
+                        "ListConnectors": {
+                            "methods": [
+                                "listConnectors"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
