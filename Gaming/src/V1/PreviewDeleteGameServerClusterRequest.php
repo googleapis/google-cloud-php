@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class PreviewDeleteGameServerClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the game server cluster to delete. Uses the form:
+     * Required. The name of the game server cluster to delete, in the following form:
      * `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -36,7 +36,7 @@ class PreviewDeleteGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the game server cluster to delete. Uses the form:
+     *           Required. The name of the game server cluster to delete, in the following form:
      *           `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
      *     @type \Google\Protobuf\Timestamp $preview_time
      *           Optional. The target timestamp to compute the preview.
@@ -48,7 +48,7 @@ class PreviewDeleteGameServerClusterRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Required. The name of the game server cluster to delete. Uses the form:
+     * Required. The name of the game server cluster to delete, in the following form:
      * `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -60,7 +60,7 @@ class PreviewDeleteGameServerClusterRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Required. The name of the game server cluster to delete. Uses the form:
+     * Required. The name of the game server cluster to delete, in the following form:
      * `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -83,7 +83,7 @@ class PreviewDeleteGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      */
     public function getPreviewTime()
     {
-        return isset($this->preview_time) ? $this->preview_time : null;
+        return $this->preview_time;
     }
 
     public function hasPreviewTime()

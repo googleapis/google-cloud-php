@@ -56,6 +56,4 @@ class ErrorCode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ErrorCode::class, \Google\Cloud\Gaming\V1\OperationStatus_ErrorCode::class);
 

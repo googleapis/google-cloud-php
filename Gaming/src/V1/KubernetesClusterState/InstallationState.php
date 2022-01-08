@@ -103,6 +103,4 @@ class InstallationState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(InstallationState::class, \Google\Cloud\Gaming\V1\KubernetesClusterState_InstallationState::class);
 
