@@ -34,7 +34,8 @@ php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        src / "*/src/*/*Client.php"
+        src / "*/src/V1/CloudRedisClient.php",
+        src / "*/src/V1beta1/CloudRedisClient.php"
     ]
 )
 
