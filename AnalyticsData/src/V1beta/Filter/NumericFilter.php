@@ -79,7 +79,7 @@ class NumericFilter extends \Google\Protobuf\Internal\Message
      */
     public function getValue()
     {
-        return isset($this->value) ? $this->value : null;
+        return $this->value;
     }
 
     public function hasValue()
@@ -109,6 +109,4 @@ class NumericFilter extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NumericFilter::class, \Google\Analytics\Data\V1beta\Filter_NumericFilter::class);
 

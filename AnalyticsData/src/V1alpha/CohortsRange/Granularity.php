@@ -71,6 +71,4 @@ class Granularity
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Granularity::class, \Google\Analytics\Data\V1alpha\CohortsRange_Granularity::class);
 
