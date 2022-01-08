@@ -109,7 +109,7 @@ class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : null;
+        return $this->status;
     }
 
     public function hasStatus()
@@ -173,7 +173,7 @@ class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
      */
     public function getHumanReviewStatus()
     {
-        return isset($this->human_review_status) ? $this->human_review_status : null;
+        return $this->human_review_status;
     }
 
     public function hasHumanReviewStatus()
@@ -203,6 +203,4 @@ class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IndividualProcessStatus::class, \Google\Cloud\DocumentAI\V1\BatchProcessMetadata_IndividualProcessStatus::class);
 
