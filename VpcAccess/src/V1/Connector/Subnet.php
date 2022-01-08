@@ -119,6 +119,4 @@ class Subnet extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Subnet::class, \Google\Cloud\VpcAccess\V1\Connector_Subnet::class);
 
