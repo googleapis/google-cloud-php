@@ -46,6 +46,7 @@ use Google\Cloud\Sql\V1beta4\InstancesListServerCasResponse;
 use Google\Cloud\Sql\V1beta4\InstancesRestoreBackupRequest;
 use Google\Cloud\Sql\V1beta4\InstancesRotateServerCaRequest;
 use Google\Cloud\Sql\V1beta4\InstancesTruncateLogRequest;
+use Google\Cloud\Sql\V1beta4\MySqlSyncConfig;
 use Google\Cloud\Sql\V1beta4\Operation;
 use Google\Cloud\Sql\V1beta4\SqlInstancesAddServerCaRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesCloneRequest;
@@ -73,8 +74,8 @@ use Google\Cloud\Sql\V1beta4\SqlInstancesStopReplicaRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesTruncateLogRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesUpdateRequest;
 use Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsRequest;
-use Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsResponse;
 
+use Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsResponse;
 use Google\Cloud\Sql\V1beta4\SslCert;
 use Google\Cloud\Sql\V1beta4\SslCertsCreateEphemeralRequest;
 
@@ -618,8 +619,14 @@ class SqlInstancesServiceGapicClient
     }
 
     /**
-     * Failover the instance to its failover replica instance. Using this
-     * operation might cause your instance to restart.
+     * Initiates a manual failover of a high availability (HA) primary instance
+     * to a standby instance, which becomes the primary instance. Users are
+     * then rerouted to the new primary. For more information, see the
+     * [Overview of high
+     * availability](https://cloud.google.com/sql/docs/mysql/high-availability)
+     * page in the Cloud SQL documentation.
+     * If using Legacy HA (MySQL only), this causes the instance to failover to
+     * its failover replica instance.
      *
      * Sample code:
      * ```
@@ -1495,6 +1502,8 @@ class SqlInstancesServiceGapicClient
      *           For allowed values, use constants defined on {@see \Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsRequest\ExternalSyncMode}
      *     @type bool $skipVerification
      *           Whether to skip the verification step (VESS).
+     *     @type MySqlSyncConfig $mysqlSyncConfig
+     *           MySQL-specific settings for start external sync.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1528,6 +1537,10 @@ class SqlInstancesServiceGapicClient
 
         if (isset($optionalArgs['skipVerification'])) {
             $request->setSkipVerification($optionalArgs['skipVerification']);
+        }
+
+        if (isset($optionalArgs['mysqlSyncConfig'])) {
+            $request->setMysqlSyncConfig($optionalArgs['mysqlSyncConfig']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1825,6 +1838,10 @@ class SqlInstancesServiceGapicClient
      *     @type int $syncMode
      *           External sync mode
      *           For allowed values, use constants defined on {@see \Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsRequest\ExternalSyncMode}
+     *     @type bool $verifyReplicationOnly
+     *           Optional. Flag to verify settings required by replication setup only
+     *     @type MySqlSyncConfig $mysqlSyncConfig
+     *           Optional. MySQL-specific settings for start external sync.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1860,6 +1877,16 @@ class SqlInstancesServiceGapicClient
 
         if (isset($optionalArgs['syncMode'])) {
             $request->setSyncMode($optionalArgs['syncMode']);
+        }
+
+        if (isset($optionalArgs['verifyReplicationOnly'])) {
+            $request->setVerifyReplicationOnly(
+                $optionalArgs['verifyReplicationOnly']
+            );
+        }
+
+        if (isset($optionalArgs['mysqlSyncConfig'])) {
+            $request->setMysqlSyncConfig($optionalArgs['mysqlSyncConfig']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

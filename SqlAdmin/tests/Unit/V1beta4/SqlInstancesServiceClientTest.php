@@ -585,6 +585,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $gceZone = 'gceZone-227587294';
         $secondaryGceZone = 'secondaryGceZone826699149';
         $rootPassword = 'rootPassword448743768';
+        $databaseInstalledVersion = 'databaseInstalledVersion-1701014705';
         $expectedResponse = new DatabaseInstance();
         $expectedResponse->setKind($kind);
         $expectedResponse->setEtag($etag);
@@ -599,6 +600,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $expectedResponse->setGceZone($gceZone);
         $expectedResponse->setSecondaryGceZone($secondaryGceZone);
         $expectedResponse->setRootPassword($rootPassword);
+        $expectedResponse->setDatabaseInstalledVersion($databaseInstalledVersion);
         $transport->addResponse($expectedResponse);
         $response = $client->get();
         $this->assertEquals($expectedResponse, $response);
