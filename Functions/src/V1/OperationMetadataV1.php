@@ -54,6 +54,21 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string build_id = 6;</code>
      */
     private $build_id = '';
+    /**
+     * An identifier for Firebase function sources. Disclaimer: This field is only
+     * supported for Firebase function deployments.
+     *
+     * Generated from protobuf field <code>string source_token = 7;</code>
+     */
+    private $source_token = '';
+    /**
+     * The Cloud Build Name of the function deployment.
+     * This field is only populated for Create and Update operations.
+     * `projects/<project-number>/locations/<region>/builds/<build-id>`.
+     *
+     * Generated from protobuf field <code>string build_name = 8;</code>
+     */
+    private $build_name = '';
 
     /**
      * Constructor.
@@ -76,6 +91,13 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
      *     @type string $build_id
      *           The Cloud Build ID of the function created or updated by an API call.
      *           This field is only populated for Create and Update operations.
+     *     @type string $source_token
+     *           An identifier for Firebase function sources. Disclaimer: This field is only
+     *           supported for Firebase function deployments.
+     *     @type string $build_name
+     *           The Cloud Build Name of the function deployment.
+     *           This field is only populated for Create and Update operations.
+     *           `projects/<project-number>/locations/<region>/builds/<build-id>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -145,7 +167,7 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
      */
     public function getRequest()
     {
-        return isset($this->request) ? $this->request : null;
+        return $this->request;
     }
 
     public function hasRequest()
@@ -209,7 +231,7 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -261,6 +283,64 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->build_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * An identifier for Firebase function sources. Disclaimer: This field is only
+     * supported for Firebase function deployments.
+     *
+     * Generated from protobuf field <code>string source_token = 7;</code>
+     * @return string
+     */
+    public function getSourceToken()
+    {
+        return $this->source_token;
+    }
+
+    /**
+     * An identifier for Firebase function sources. Disclaimer: This field is only
+     * supported for Firebase function deployments.
+     *
+     * Generated from protobuf field <code>string source_token = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * The Cloud Build Name of the function deployment.
+     * This field is only populated for Create and Update operations.
+     * `projects/<project-number>/locations/<region>/builds/<build-id>`.
+     *
+     * Generated from protobuf field <code>string build_name = 8;</code>
+     * @return string
+     */
+    public function getBuildName()
+    {
+        return $this->build_name;
+    }
+
+    /**
+     * The Cloud Build Name of the function deployment.
+     * This field is only populated for Create and Update operations.
+     * `projects/<project-number>/locations/<region>/builds/<build-id>`.
+     *
+     * Generated from protobuf field <code>string build_name = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBuildName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->build_name = $var;
 
         return $this;
     }
