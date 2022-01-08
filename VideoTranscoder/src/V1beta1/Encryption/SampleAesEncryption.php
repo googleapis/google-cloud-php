@@ -69,6 +69,4 @@ class SampleAesEncryption extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SampleAesEncryption::class, \Google\Cloud\Video\Transcoder\V1beta1\Encryption_SampleAesEncryption::class);
 

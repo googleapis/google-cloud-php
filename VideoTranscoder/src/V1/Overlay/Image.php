@@ -163,6 +163,4 @@ class Image extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Image::class, \Google\Cloud\Video\Transcoder\V1\Overlay_Image::class);
 
