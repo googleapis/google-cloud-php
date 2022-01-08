@@ -86,6 +86,4 @@ class FileType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FileType::class, \Google\Cloud\ServiceManagement\V1\ConfigFile_FileType::class);
 
