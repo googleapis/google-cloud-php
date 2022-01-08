@@ -17,9 +17,9 @@ class DeletePredictionApiKeyRegistrationRequest extends \Google\Protobuf\Interna
 {
     /**
      * Required. The API key to unregister including full resource path.
-     * "projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/<YOUR_API_KEY>"
+     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/<YOUR_API_KEY>`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -31,7 +31,7 @@ class DeletePredictionApiKeyRegistrationRequest extends \Google\Protobuf\Interna
      *
      *     @type string $name
      *           Required. The API key to unregister including full resource path.
-     *           "projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/<YOUR_API_KEY>"
+     *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/<YOUR_API_KEY>`
      * }
      */
     public function __construct($data = NULL) {
@@ -41,9 +41,9 @@ class DeletePredictionApiKeyRegistrationRequest extends \Google\Protobuf\Interna
 
     /**
      * Required. The API key to unregister including full resource path.
-     * "projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/<YOUR_API_KEY>"
+     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/<YOUR_API_KEY>`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -53,9 +53,9 @@ class DeletePredictionApiKeyRegistrationRequest extends \Google\Protobuf\Interna
 
     /**
      * Required. The API key to unregister including full resource path.
-     * "projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/<YOUR_API_KEY>"
+     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/<YOUR_API_KEY>`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

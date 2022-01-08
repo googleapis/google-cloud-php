@@ -318,11 +318,21 @@ class EventDetail extends \Google\Protobuf\Internal\Message
      * search, and etc.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.FeatureMap event_attributes = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\RecommendationEngine\V1beta1\FeatureMap
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\FeatureMap|null
      */
     public function getEventAttributes()
     {
         return $this->event_attributes;
+    }
+
+    public function hasEventAttributes()
+    {
+        return isset($this->event_attributes);
+    }
+
+    public function clearEventAttributes()
+    {
+        unset($this->event_attributes);
     }
 
     /**

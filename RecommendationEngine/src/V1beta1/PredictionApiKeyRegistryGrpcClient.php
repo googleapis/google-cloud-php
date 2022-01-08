@@ -41,6 +41,7 @@ class PredictionApiKeyRegistryGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecommendationEngine\V1beta1\CreatePredictionApiKeyRegistrationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function CreatePredictionApiKeyRegistration(\Google\Cloud\RecommendationEngine\V1beta1\CreatePredictionApiKeyRegistrationRequest $argument,
       $metadata = [], $options = []) {
@@ -55,6 +56,7 @@ class PredictionApiKeyRegistryGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecommendationEngine\V1beta1\ListPredictionApiKeyRegistrationsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function ListPredictionApiKeyRegistrations(\Google\Cloud\RecommendationEngine\V1beta1\ListPredictionApiKeyRegistrationsRequest $argument,
       $metadata = [], $options = []) {
@@ -69,6 +71,7 @@ class PredictionApiKeyRegistryGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecommendationEngine\V1beta1\DeletePredictionApiKeyRegistrationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function DeletePredictionApiKeyRegistration(\Google\Cloud\RecommendationEngine\V1beta1\DeletePredictionApiKeyRegistrationRequest $argument,
       $metadata = [], $options = []) {

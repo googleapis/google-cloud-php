@@ -37,6 +37,7 @@ class UserEventServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecommendationEngine\V1beta1\WriteUserEventRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function WriteUserEvent(\Google\Cloud\RecommendationEngine\V1beta1\WriteUserEventRequest $argument,
       $metadata = [], $options = []) {
@@ -55,6 +56,7 @@ class UserEventServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecommendationEngine\V1beta1\CollectUserEventRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function CollectUserEvent(\Google\Cloud\RecommendationEngine\V1beta1\CollectUserEventRequest $argument,
       $metadata = [], $options = []) {
@@ -69,6 +71,7 @@ class UserEventServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecommendationEngine\V1beta1\ListUserEventsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function ListUserEvents(\Google\Cloud\RecommendationEngine\V1beta1\ListUserEventsRequest $argument,
       $metadata = [], $options = []) {
@@ -86,6 +89,7 @@ class UserEventServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecommendationEngine\V1beta1\PurgeUserEventsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function PurgeUserEvents(\Google\Cloud\RecommendationEngine\V1beta1\PurgeUserEventsRequest $argument,
       $metadata = [], $options = []) {
@@ -106,6 +110,7 @@ class UserEventServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecommendationEngine\V1beta1\ImportUserEventsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function ImportUserEvents(\Google\Cloud\RecommendationEngine\V1beta1\ImportUserEventsRequest $argument,
       $metadata = [], $options = []) {

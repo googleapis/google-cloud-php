@@ -103,6 +103,4 @@ class ExactPrice extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ExactPrice::class, \Google\Cloud\RecommendationEngine\V1beta1\ProductCatalogItem_ExactPrice::class);
 
