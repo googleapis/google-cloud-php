@@ -56,6 +56,4 @@ class PrivilegesRequired
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PrivilegesRequired::class, \Grafeas\V1\CVSSv3_PrivilegesRequired::class);
 
