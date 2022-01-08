@@ -112,6 +112,12 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.contactcenterinsights.v1.DialogflowIntent> dialogflow_intents = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $dialogflow_intents;
+    /**
+     * Obfuscated user ID which the customer sent to us.
+     *
+     * Generated from protobuf field <code>string obfuscated_user_id = 21;</code>
+     */
+    private $obfuscated_user_id = '';
     protected $metadata;
     protected $expiration;
 
@@ -166,6 +172,8 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *           Output only. All the matched Dialogflow intents in the call. The key corresponds to a
      *           Dialogflow intent, format:
      *           projects/{project}/agent/{agent}/intents/{intent}
+     *     @type string $obfuscated_user_id
+     *           Obfuscated user ID which the customer sent to us.
      * }
      */
     public function __construct($data = NULL) {
@@ -740,6 +748,32 @@ class Conversation extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ContactCenterInsights\V1\DialogflowIntent::class);
         $this->dialogflow_intents = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Obfuscated user ID which the customer sent to us.
+     *
+     * Generated from protobuf field <code>string obfuscated_user_id = 21;</code>
+     * @return string
+     */
+    public function getObfuscatedUserId()
+    {
+        return $this->obfuscated_user_id;
+    }
+
+    /**
+     * Obfuscated user ID which the customer sent to us.
+     *
+     * Generated from protobuf field <code>string obfuscated_user_id = 21;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setObfuscatedUserId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->obfuscated_user_id = $var;
 
         return $this;
     }

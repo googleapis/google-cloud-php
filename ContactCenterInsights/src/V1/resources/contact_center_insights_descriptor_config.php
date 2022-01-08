@@ -93,6 +93,16 @@ return [
                     'resourcesGetMethod' => 'getPhraseMatchers',
                 ],
             ],
+            'ListViews' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getViews',
+                ],
+            ],
         ],
     ],
 ];

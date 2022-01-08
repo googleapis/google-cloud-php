@@ -21,13 +21,14 @@ class ConversationView
      */
     const CONVERSATION_VIEW_UNSPECIFIED = 0;
     /**
-     * Transcript field is not populated in the response.
+     * Transcript field is not populated in the response for Insights
+     * conversation.
      *
      * Generated from protobuf enum <code>BASIC = 1;</code>
      */
     const BASIC = 1;
     /**
-     * All fields are populated.
+     * All fields are populated for Insights conversation.
      *
      * Generated from protobuf enum <code>FULL = 2;</code>
      */
