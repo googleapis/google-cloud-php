@@ -6,7 +6,8 @@
     "autoload": {
         "psr-4": {
             "Google\\Cloud\\Build\\": "src",
-            "GPBMetadata\\Google\\Devtools\\Cloudbuild\\": "metadata"
+            "GPBMetadata\\Google\\Devtools\\Cloudbuild\\": "metadata",
+            "GPBMetadata\\Google\\Devtools\\Build\\": "metadata"
         }
     },
     "autoload-dev": {
