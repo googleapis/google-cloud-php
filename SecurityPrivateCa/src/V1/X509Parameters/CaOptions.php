@@ -19,7 +19,7 @@ class CaOptions extends \Google\Protobuf\Internal\Message
      * Optional. Refers to the "CA" X.509 extension, which is a boolean value. When this
      * value is missing, the extension will be omitted from the CA certificate.
      *
-     * Generated from protobuf field <code>bool is_ca = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool is_ca = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $is_ca = null;
     /**
@@ -30,7 +30,7 @@ class CaOptions extends \Google\Protobuf\Internal\Message
      * If this value is missing, the max path length will be omitted from the
      * CA certificate.
      *
-     * Generated from protobuf field <code>int32 max_issuer_path_length = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional int32 max_issuer_path_length = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $max_issuer_path_length = null;
 
@@ -61,7 +61,7 @@ class CaOptions extends \Google\Protobuf\Internal\Message
      * Optional. Refers to the "CA" X.509 extension, which is a boolean value. When this
      * value is missing, the extension will be omitted from the CA certificate.
      *
-     * Generated from protobuf field <code>bool is_ca = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool is_ca = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getIsCa()
@@ -83,7 +83,7 @@ class CaOptions extends \Google\Protobuf\Internal\Message
      * Optional. Refers to the "CA" X.509 extension, which is a boolean value. When this
      * value is missing, the extension will be omitted from the CA certificate.
      *
-     * Generated from protobuf field <code>bool is_ca = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool is_ca = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -103,7 +103,7 @@ class CaOptions extends \Google\Protobuf\Internal\Message
      * If this value is missing, the max path length will be omitted from the
      * CA certificate.
      *
-     * Generated from protobuf field <code>int32 max_issuer_path_length = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional int32 max_issuer_path_length = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getMaxIssuerPathLength()
@@ -129,7 +129,7 @@ class CaOptions extends \Google\Protobuf\Internal\Message
      * If this value is missing, the max path length will be omitted from the
      * CA certificate.
      *
-     * Generated from protobuf field <code>int32 max_issuer_path_length = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional int32 max_issuer_path_length = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -143,6 +143,4 @@ class CaOptions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CaOptions::class, \Google\Cloud\Security\PrivateCA\V1\X509Parameters_CaOptions::class);
 

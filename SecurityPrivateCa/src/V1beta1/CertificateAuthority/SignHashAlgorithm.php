@@ -109,6 +109,4 @@ class SignHashAlgorithm
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SignHashAlgorithm::class, \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority_SignHashAlgorithm::class);
 

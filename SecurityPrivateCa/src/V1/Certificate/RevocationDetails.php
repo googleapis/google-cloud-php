@@ -79,7 +79,7 @@ class RevocationDetails extends \Google\Protobuf\Internal\Message
      */
     public function getRevocationTime()
     {
-        return isset($this->revocation_time) ? $this->revocation_time : null;
+        return $this->revocation_time;
     }
 
     public function hasRevocationTime()
@@ -109,6 +109,4 @@ class RevocationDetails extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RevocationDetails::class, \Google\Cloud\Security\PrivateCA\V1\Certificate_RevocationDetails::class);
 

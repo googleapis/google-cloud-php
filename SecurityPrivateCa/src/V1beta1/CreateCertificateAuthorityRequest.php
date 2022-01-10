@@ -154,7 +154,7 @@ class CreateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getCertificateAuthority()
     {
-        return isset($this->certificate_authority) ? $this->certificate_authority : null;
+        return $this->certificate_authority;
     }
 
     public function hasCertificateAuthority()

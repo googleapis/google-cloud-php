@@ -116,6 +116,4 @@ class RsaKeyType extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RsaKeyType::class, \Google\Cloud\Security\PrivateCA\V1\CaPool_IssuancePolicy_AllowedKeyType_RsaKeyType::class);
 
