@@ -63,6 +63,4 @@ class Interpreter
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Interpreter::class, \Google\Cloud\OsConfig\V1\ExecStepConfig_Interpreter::class);
 

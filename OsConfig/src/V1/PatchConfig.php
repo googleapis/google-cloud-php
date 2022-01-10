@@ -137,7 +137,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getApt()
     {
-        return isset($this->apt) ? $this->apt : null;
+        return $this->apt;
     }
 
     public function hasApt()
@@ -175,7 +175,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getYum()
     {
-        return isset($this->yum) ? $this->yum : null;
+        return $this->yum;
     }
 
     public function hasYum()
@@ -213,7 +213,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getGoo()
     {
-        return isset($this->goo) ? $this->goo : null;
+        return $this->goo;
     }
 
     public function hasGoo()
@@ -251,7 +251,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getZypper()
     {
-        return isset($this->zypper) ? $this->zypper : null;
+        return $this->zypper;
     }
 
     public function hasZypper()
@@ -288,7 +288,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getWindowsUpdate()
     {
-        return isset($this->windows_update) ? $this->windows_update : null;
+        return $this->windows_update;
     }
 
     public function hasWindowsUpdate()
@@ -324,7 +324,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPreStep()
     {
-        return isset($this->pre_step) ? $this->pre_step : null;
+        return $this->pre_step;
     }
 
     public function hasPreStep()
@@ -360,7 +360,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPostStep()
     {
-        return isset($this->post_step) ? $this->post_step : null;
+        return $this->post_step;
     }
 
     public function hasPostStep()
