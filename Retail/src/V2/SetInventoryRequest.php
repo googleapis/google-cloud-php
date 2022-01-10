@@ -72,7 +72,7 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      * [Product.name][google.cloud.retail.v2.Product.name] is not found, the
      * inventory update will still be processed and retained for at most 1 day
      * until the [Product][google.cloud.retail.v2.Product] is created. If set to
-     * false, an INVALID_ARGUMENT error is returned if the
+     * false, a NOT_FOUND error is returned if the
      * [Product][google.cloud.retail.v2.Product] is not found.
      *
      * Generated from protobuf field <code>bool allow_missing = 4;</code>
@@ -130,7 +130,7 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      *           [Product.name][google.cloud.retail.v2.Product.name] is not found, the
      *           inventory update will still be processed and retained for at most 1 day
      *           until the [Product][google.cloud.retail.v2.Product] is created. If set to
-     *           false, an INVALID_ARGUMENT error is returned if the
+     *           false, a NOT_FOUND error is returned if the
      *           [Product][google.cloud.retail.v2.Product] is not found.
      * }
      */
@@ -175,7 +175,7 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInventory()
     {
-        return isset($this->inventory) ? $this->inventory : null;
+        return $this->inventory;
     }
 
     public function hasInventory()
@@ -243,7 +243,7 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSetMask()
     {
-        return isset($this->set_mask) ? $this->set_mask : null;
+        return $this->set_mask;
     }
 
     public function hasSetMask()
@@ -285,7 +285,7 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSetTime()
     {
-        return isset($this->set_time) ? $this->set_time : null;
+        return $this->set_time;
     }
 
     public function hasSetTime()
@@ -320,7 +320,7 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      * [Product.name][google.cloud.retail.v2.Product.name] is not found, the
      * inventory update will still be processed and retained for at most 1 day
      * until the [Product][google.cloud.retail.v2.Product] is created. If set to
-     * false, an INVALID_ARGUMENT error is returned if the
+     * false, a NOT_FOUND error is returned if the
      * [Product][google.cloud.retail.v2.Product] is not found.
      *
      * Generated from protobuf field <code>bool allow_missing = 4;</code>
@@ -336,7 +336,7 @@ class SetInventoryRequest extends \Google\Protobuf\Internal\Message
      * [Product.name][google.cloud.retail.v2.Product.name] is not found, the
      * inventory update will still be processed and retained for at most 1 day
      * until the [Product][google.cloud.retail.v2.Product] is created. If set to
-     * false, an INVALID_ARGUMENT error is returned if the
+     * false, a NOT_FOUND error is returned if the
      * [Product][google.cloud.retail.v2.Product] is not found.
      *
      * Generated from protobuf field <code>bool allow_missing = 4;</code>

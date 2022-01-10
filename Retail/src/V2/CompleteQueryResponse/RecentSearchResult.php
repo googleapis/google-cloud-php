@@ -65,6 +65,4 @@ class RecentSearchResult extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RecentSearchResult::class, \Google\Cloud\Retail\V2\CompleteQueryResponse_RecentSearchResult::class);
 

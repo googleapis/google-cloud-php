@@ -23,6 +23,14 @@ class QueryExpansionSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.QueryExpansionSpec.Condition condition = 1;</code>
      */
     private $condition = 0;
+    /**
+     * Whether to pin unexpanded results. If this field is set to true,
+     * unexpanded products are always at the top of the search results, followed
+     * by the expanded results.
+     *
+     * Generated from protobuf field <code>bool pin_unexpanded_results = 2;</code>
+     */
+    private $pin_unexpanded_results = false;
 
     /**
      * Constructor.
@@ -33,6 +41,10 @@ class QueryExpansionSpec extends \Google\Protobuf\Internal\Message
      *     @type int $condition
      *           The condition under which query expansion should occur. Default to
      *           [Condition.DISABLED][google.cloud.retail.v2.SearchRequest.QueryExpansionSpec.Condition.DISABLED].
+     *     @type bool $pin_unexpanded_results
+     *           Whether to pin unexpanded results. If this field is set to true,
+     *           unexpanded products are always at the top of the search results, followed
+     *           by the expanded results.
      * }
      */
     public function __construct($data = NULL) {
@@ -68,8 +80,36 @@ class QueryExpansionSpec extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * Whether to pin unexpanded results. If this field is set to true,
+     * unexpanded products are always at the top of the search results, followed
+     * by the expanded results.
+     *
+     * Generated from protobuf field <code>bool pin_unexpanded_results = 2;</code>
+     * @return bool
+     */
+    public function getPinUnexpandedResults()
+    {
+        return $this->pin_unexpanded_results;
+    }
+
+    /**
+     * Whether to pin unexpanded results. If this field is set to true,
+     * unexpanded products are always at the top of the search results, followed
+     * by the expanded results.
+     *
+     * Generated from protobuf field <code>bool pin_unexpanded_results = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPinUnexpandedResults($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->pin_unexpanded_results = $var;
+
+        return $this;
+    }
+
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(QueryExpansionSpec::class, \Google\Cloud\Retail\V2\SearchRequest_QueryExpansionSpec::class);
 

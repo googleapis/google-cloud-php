@@ -99,8 +99,8 @@ class CatalogServiceGrpcClient extends \Grpc\BaseStub {
      *   {newBranch}.
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Contact Retail Support (retail-search-support@google.com) if you are
-     * interested in using Retail Search.
+     * Please submit a form [here](https://cloud.google.com/contact) to contact
+     * cloud sales if you are interested in using Retail Search.
      * @param \Google\Cloud\Retail\V2\SetDefaultBranchRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -120,8 +120,8 @@ class CatalogServiceGrpcClient extends \Grpc\BaseStub {
      * method under a specified parent catalog.
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Contact Retail Support (retail-search-support@google.com) if you are
-     * interested in using Retail Search.
+     * Please submit a form [here](https://cloud.google.com/contact) to contact
+     * cloud sales if you are interested in using Retail Search.
      * @param \Google\Cloud\Retail\V2\GetDefaultBranchRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
