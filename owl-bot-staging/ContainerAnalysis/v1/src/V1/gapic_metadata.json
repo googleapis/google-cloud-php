@@ -1,0 +1,38 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.devtools.containeranalysis.v1",
+    "libraryPackage": "Google\\Cloud\\ContainerAnalysis\\V1",
+    "services": {
+        "ContainerAnalysis": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ContainerAnalysisGapicClient",
+                    "rpcs": {
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetVulnerabilityOccurrencesSummary": {
+                            "methods": [
+                                "getVulnerabilityOccurrencesSummary"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
