@@ -165,7 +165,7 @@ class VideoClassificationAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getClassificationAnnotation()
     {
-        return isset($this->classification_annotation) ? $this->classification_annotation : null;
+        return $this->classification_annotation;
     }
 
     public function hasClassificationAnnotation()
@@ -202,7 +202,7 @@ class VideoClassificationAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getTimeSegment()
     {
-        return isset($this->time_segment) ? $this->time_segment : null;
+        return $this->time_segment;
     }
 
     public function hasTimeSegment()

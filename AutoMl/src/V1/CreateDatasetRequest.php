@@ -79,7 +79,7 @@ class CreateDatasetRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDataset()
     {
-        return isset($this->dataset) ? $this->dataset : null;
+        return $this->dataset;
     }
 
     public function hasDataset()
