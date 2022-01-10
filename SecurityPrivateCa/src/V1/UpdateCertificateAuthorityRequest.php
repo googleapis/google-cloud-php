@@ -82,7 +82,7 @@ class UpdateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getCertificateAuthority()
     {
-        return isset($this->certificate_authority) ? $this->certificate_authority : null;
+        return $this->certificate_authority;
     }
 
     public function hasCertificateAuthority()
@@ -118,7 +118,7 @@ class UpdateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

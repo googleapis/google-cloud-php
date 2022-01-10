@@ -197,7 +197,7 @@ class CreateCertificateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCertificate()
     {
-        return isset($this->certificate) ? $this->certificate : null;
+        return $this->certificate;
     }
 
     public function hasCertificate()

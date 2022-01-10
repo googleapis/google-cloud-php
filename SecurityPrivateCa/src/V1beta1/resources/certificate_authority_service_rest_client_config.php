@@ -38,6 +38,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'certificate_authority_id',
+                ],
             ],
             'DisableCertificateAuthority' => [
                 'method' => 'post',
@@ -210,6 +213,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateCertificateAuthority' => [
                 'method' => 'patch',
@@ -223,6 +229,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateCertificateRevocationList' => [
                 'method' => 'patch',
@@ -235,6 +244,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

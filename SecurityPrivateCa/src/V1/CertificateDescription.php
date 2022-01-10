@@ -115,7 +115,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      */
     public function getSubjectDescription()
     {
-        return isset($this->subject_description) ? $this->subject_description : null;
+        return $this->subject_description;
     }
 
     public function hasSubjectDescription()
@@ -152,7 +152,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      */
     public function getX509Description()
     {
-        return isset($this->x509_description) ? $this->x509_description : null;
+        return $this->x509_description;
     }
 
     public function hasX509Description()
@@ -188,7 +188,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      */
     public function getPublicKey()
     {
-        return isset($this->public_key) ? $this->public_key : null;
+        return $this->public_key;
     }
 
     public function hasPublicKey()
@@ -225,7 +225,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      */
     public function getSubjectKeyId()
     {
-        return isset($this->subject_key_id) ? $this->subject_key_id : null;
+        return $this->subject_key_id;
     }
 
     public function hasSubjectKeyId()
@@ -263,7 +263,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      */
     public function getAuthorityKeyId()
     {
-        return isset($this->authority_key_id) ? $this->authority_key_id : null;
+        return $this->authority_key_id;
     }
 
     public function hasAuthorityKeyId()
@@ -358,7 +358,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      */
     public function getCertFingerprint()
     {
-        return isset($this->cert_fingerprint) ? $this->cert_fingerprint : null;
+        return $this->cert_fingerprint;
     }
 
     public function hasCertFingerprint()

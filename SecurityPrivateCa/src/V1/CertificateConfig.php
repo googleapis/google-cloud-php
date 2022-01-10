@@ -71,7 +71,7 @@ class CertificateConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSubjectConfig()
     {
-        return isset($this->subject_config) ? $this->subject_config : null;
+        return $this->subject_config;
     }
 
     public function hasSubjectConfig()
@@ -109,7 +109,7 @@ class CertificateConfig extends \Google\Protobuf\Internal\Message
      */
     public function getX509Config()
     {
-        return isset($this->x509_config) ? $this->x509_config : null;
+        return $this->x509_config;
     }
 
     public function hasX509Config()
@@ -148,7 +148,7 @@ class CertificateConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPublicKey()
     {
-        return isset($this->public_key) ? $this->public_key : null;
+        return $this->public_key;
     }
 
     public function hasPublicKey()

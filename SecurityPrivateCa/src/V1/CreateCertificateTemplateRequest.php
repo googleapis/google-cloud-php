@@ -154,7 +154,7 @@ class CreateCertificateTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCertificateTemplate()
     {
-        return isset($this->certificate_template) ? $this->certificate_template : null;
+        return $this->certificate_template;
     }
 
     public function hasCertificateTemplate()

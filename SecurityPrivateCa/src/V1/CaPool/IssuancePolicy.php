@@ -166,7 +166,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      */
     public function getMaximumLifetime()
     {
-        return isset($this->maximum_lifetime) ? $this->maximum_lifetime : null;
+        return $this->maximum_lifetime;
     }
 
     public function hasMaximumLifetime()
@@ -206,7 +206,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      */
     public function getAllowedIssuanceModes()
     {
-        return isset($this->allowed_issuance_modes) ? $this->allowed_issuance_modes : null;
+        return $this->allowed_issuance_modes;
     }
 
     public function hasAllowedIssuanceModes()
@@ -249,7 +249,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      */
     public function getBaselineValues()
     {
-        return isset($this->baseline_values) ? $this->baseline_values : null;
+        return $this->baseline_values;
     }
 
     public function hasBaselineValues()
@@ -294,7 +294,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      */
     public function getIdentityConstraints()
     {
-        return isset($this->identity_constraints) ? $this->identity_constraints : null;
+        return $this->identity_constraints;
     }
 
     public function hasIdentityConstraints()
@@ -342,7 +342,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      */
     public function getPassthroughExtensions()
     {
-        return isset($this->passthrough_extensions) ? $this->passthrough_extensions : null;
+        return $this->passthrough_extensions;
     }
 
     public function hasPassthroughExtensions()
@@ -381,6 +381,4 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IssuancePolicy::class, \Google\Cloud\Security\PrivateCA\V1\CaPool_IssuancePolicy::class);
 

@@ -251,7 +251,7 @@ class CertificateAuthorityPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getAllowedSans()
     {
-        return isset($this->allowed_sans) ? $this->allowed_sans : null;
+        return $this->allowed_sans;
     }
 
     public function hasAllowedSans()
@@ -294,7 +294,7 @@ class CertificateAuthorityPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getMaximumLifetime()
     {
-        return isset($this->maximum_lifetime) ? $this->maximum_lifetime : null;
+        return $this->maximum_lifetime;
     }
 
     public function hasMaximumLifetime()
@@ -334,7 +334,7 @@ class CertificateAuthorityPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getAllowedIssuanceModes()
     {
-        return isset($this->allowed_issuance_modes) ? $this->allowed_issuance_modes : null;
+        return $this->allowed_issuance_modes;
     }
 
     public function hasAllowedIssuanceModes()
@@ -373,6 +373,4 @@ class CertificateAuthorityPolicy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CertificateAuthorityPolicy::class, \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority_CertificateAuthorityPolicy::class);
 

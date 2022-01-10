@@ -71,7 +71,7 @@ class CertificateConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSubjectConfig()
     {
-        return isset($this->subject_config) ? $this->subject_config : null;
+        return $this->subject_config;
     }
 
     public function hasSubjectConfig()
@@ -109,7 +109,7 @@ class CertificateConfig extends \Google\Protobuf\Internal\Message
      */
     public function getReusableConfig()
     {
-        return isset($this->reusable_config) ? $this->reusable_config : null;
+        return $this->reusable_config;
     }
 
     public function hasReusableConfig()
@@ -148,7 +148,7 @@ class CertificateConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPublicKey()
     {
-        return isset($this->public_key) ? $this->public_key : null;
+        return $this->public_key;
     }
 
     public function hasPublicKey()

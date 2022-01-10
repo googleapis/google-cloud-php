@@ -19,17 +19,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class PublishingOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. When true, publishes each [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s CA certificate and
+     * Optional. When true, publishes each [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s CA certificate and
      * includes its URL in the "Authority Information Access" X.509 extension
      * in all issued [Certificates][google.cloud.security.privateca.v1.Certificate]. If this is false, the CA
      * certificate will not be published and the corresponding X.509 extension
      * will not be written in issued certificates.
      *
-     * Generated from protobuf field <code>bool publish_ca_cert = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool publish_ca_cert = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $publish_ca_cert = false;
     /**
-     * Required. When true, publishes each [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s CRL and includes its
+     * Optional. When true, publishes each [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s CRL and includes its
      * URL in the "CRL Distribution Points" X.509 extension in all issued
      * [Certificates][google.cloud.security.privateca.v1.Certificate]. If this is false, CRLs will not be published
      * and the corresponding X.509 extension will not be written in issued
@@ -37,7 +37,7 @@ class PublishingOptions extends \Google\Protobuf\Internal\Message
      * CRLs will expire 7 days from their creation. However, we will rebuild
      * daily. CRLs are also rebuilt shortly after a certificate is revoked.
      *
-     * Generated from protobuf field <code>bool publish_crl = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool publish_crl = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $publish_crl = false;
 
@@ -48,13 +48,13 @@ class PublishingOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $publish_ca_cert
-     *           Required. When true, publishes each [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s CA certificate and
+     *           Optional. When true, publishes each [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s CA certificate and
      *           includes its URL in the "Authority Information Access" X.509 extension
      *           in all issued [Certificates][google.cloud.security.privateca.v1.Certificate]. If this is false, the CA
      *           certificate will not be published and the corresponding X.509 extension
      *           will not be written in issued certificates.
      *     @type bool $publish_crl
-     *           Required. When true, publishes each [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s CRL and includes its
+     *           Optional. When true, publishes each [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s CRL and includes its
      *           URL in the "CRL Distribution Points" X.509 extension in all issued
      *           [Certificates][google.cloud.security.privateca.v1.Certificate]. If this is false, CRLs will not be published
      *           and the corresponding X.509 extension will not be written in issued
@@ -69,13 +69,13 @@ class PublishingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. When true, publishes each [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s CA certificate and
+     * Optional. When true, publishes each [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s CA certificate and
      * includes its URL in the "Authority Information Access" X.509 extension
      * in all issued [Certificates][google.cloud.security.privateca.v1.Certificate]. If this is false, the CA
      * certificate will not be published and the corresponding X.509 extension
      * will not be written in issued certificates.
      *
-     * Generated from protobuf field <code>bool publish_ca_cert = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool publish_ca_cert = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getPublishCaCert()
@@ -84,13 +84,13 @@ class PublishingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. When true, publishes each [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s CA certificate and
+     * Optional. When true, publishes each [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s CA certificate and
      * includes its URL in the "Authority Information Access" X.509 extension
      * in all issued [Certificates][google.cloud.security.privateca.v1.Certificate]. If this is false, the CA
      * certificate will not be published and the corresponding X.509 extension
      * will not be written in issued certificates.
      *
-     * Generated from protobuf field <code>bool publish_ca_cert = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool publish_ca_cert = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -103,7 +103,7 @@ class PublishingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. When true, publishes each [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s CRL and includes its
+     * Optional. When true, publishes each [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s CRL and includes its
      * URL in the "CRL Distribution Points" X.509 extension in all issued
      * [Certificates][google.cloud.security.privateca.v1.Certificate]. If this is false, CRLs will not be published
      * and the corresponding X.509 extension will not be written in issued
@@ -111,7 +111,7 @@ class PublishingOptions extends \Google\Protobuf\Internal\Message
      * CRLs will expire 7 days from their creation. However, we will rebuild
      * daily. CRLs are also rebuilt shortly after a certificate is revoked.
      *
-     * Generated from protobuf field <code>bool publish_crl = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool publish_crl = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getPublishCrl()
@@ -120,7 +120,7 @@ class PublishingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. When true, publishes each [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s CRL and includes its
+     * Optional. When true, publishes each [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s CRL and includes its
      * URL in the "CRL Distribution Points" X.509 extension in all issued
      * [Certificates][google.cloud.security.privateca.v1.Certificate]. If this is false, CRLs will not be published
      * and the corresponding X.509 extension will not be written in issued
@@ -128,7 +128,7 @@ class PublishingOptions extends \Google\Protobuf\Internal\Message
      * CRLs will expire 7 days from their creation. However, we will rebuild
      * daily. CRLs are also rebuilt shortly after a certificate is revoked.
      *
-     * Generated from protobuf field <code>bool publish_crl = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool publish_crl = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -142,6 +142,4 @@ class PublishingOptions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PublishingOptions::class, \Google\Cloud\Security\PrivateCA\V1\CaPool_PublishingOptions::class);
 
