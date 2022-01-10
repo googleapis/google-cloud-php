@@ -152,6 +152,4 @@ class PatchState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PatchState::class, \Google\Cloud\OsConfig\V1\Instance_PatchState::class);
 

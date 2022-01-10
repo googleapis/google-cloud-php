@@ -22,7 +22,7 @@ class OsconfigService
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‚
+°
 /google/cloud/osconfig/v1/osconfig_service.protogoogle.cloud.osconfig.v1google/api/client.protogoogle/api/resource.proto0google/cloud/osconfig/v1/patch_deployments.proto)google/cloud/osconfig/v1/patch_jobs.protogoogle/protobuf/empty.proto2æ
 OsConfigServiceù
 ExecutePatchJob0.google.cloud.osconfig.v1.ExecutePatchJobRequest".google.cloud.osconfig.v1.PatchJob"4Ç”‰ì.")/v1/{parent=projects/*}/patchJobs:execute:*ë
@@ -33,9 +33,9 @@ class OsconfigService
 CreatePatchDeployment6.google.cloud.osconfig.v1.CreatePatchDeploymentRequest).google.cloud.osconfig.v1.PatchDeployment"pÇ”‰ì<"(/v1/{parent=projects/*}/patchDeployments:patch_deployment⁄A+parent,patch_deployment,patch_deployment_id≠
 GetPatchDeployment3.google.cloud.osconfig.v1.GetPatchDeploymentRequest).google.cloud.osconfig.v1.PatchDeployment"7Ç”‰ì*(/v1/{name=projects/*/patchDeployments/*}⁄Aname¿
 ListPatchDeployments5.google.cloud.osconfig.v1.ListPatchDeploymentsRequest6.google.cloud.osconfig.v1.ListPatchDeploymentsResponse"9Ç”‰ì*(/v1/{parent=projects/*}/patchDeployments⁄Aparent†
-DeletePatchDeployment6.google.cloud.osconfig.v1.DeletePatchDeploymentRequest.google.protobuf.Empty"7Ç”‰ì**(/v1/{name=projects/*/patchDeployments/*}⁄AnameK Aosconfig.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBù
-com.google.cloud.osconfig.v1BOsConfigProtoZ@google.golang.org/genproto/googleapis/cloud/osconfig/v1;osconfig™Google.Cloud.OsConfig.V1 Google\\Cloud\\OsConfig\\V1ÍGoogle::Cloud::OsConfig::V1ÍAW
-compute.googleapis.com/Instance4projects/{project}/zones/{zone}/instances/{instance}bproto3'
+DeletePatchDeployment6.google.cloud.osconfig.v1.DeletePatchDeploymentRequest.google.protobuf.Empty"7Ç”‰ì**(/v1/{name=projects/*/patchDeployments/*}⁄AnameK Aosconfig.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformB‹
+com.google.cloud.osconfig.v1BOsConfigProtoZ@google.golang.org/genproto/googleapis/cloud/osconfig/v1;osconfig™Google.Cloud.OsConfig.V1 Google\\Cloud\\OsConfig\\V1ÍGoogle::Cloud::OsConfig::V1ÍAï
+compute.googleapis.com/Instance4projects/{project}/zones/{zone}/instances/{instance}<projects/{project}/locations/{location}/instances/{instance}bproto3'
         , true);
 
         static::$is_initialized = true;
