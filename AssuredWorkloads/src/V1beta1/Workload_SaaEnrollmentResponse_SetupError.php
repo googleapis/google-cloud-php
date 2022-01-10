@@ -12,5 +12,5 @@ if (false) {
     class Workload_SaaEnrollmentResponse_SetupError {}
 }
 class_exists(Workload\SaaEnrollmentResponse\SetupError::class);
-@trigger_error('Google\Cloud\AssuredWorkloads\V1beta1\Workload_SaaEnrollmentResponse_SetupError is deprecated and will be removed in the next major release. Use Google\Cloud\AssuredWorkloads\V1beta1\Workload\SaaEnrollmentResponse\SetupError instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\AssuredWorkloads\V1beta1\Workload_SaaEnrollmentResponse_SetupError is deprecated and will be removed in a future release. Use Google\Cloud\AssuredWorkloads\V1beta1\Workload\SaaEnrollmentResponse\SetupError instead', E_USER_DEPRECATED);
 

@@ -62,7 +62,7 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
      */
     public function getWorkload()
     {
-        return isset($this->workload) ? $this->workload : null;
+        return $this->workload;
     }
 
     public function hasWorkload()
@@ -101,7 +101,7 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
