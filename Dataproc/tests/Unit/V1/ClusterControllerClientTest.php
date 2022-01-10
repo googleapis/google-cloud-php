@@ -30,9 +30,8 @@ use Google\ApiCore\Testing\GeneratedTest;
 
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataproc\V1\Cluster;
-use Google\Cloud\Dataproc\V1\ClusterConfig;
-
 use Google\Cloud\Dataproc\V1\ClusterControllerClient;
+
 use Google\Cloud\Dataproc\V1\DiagnoseClusterResults;
 use Google\Cloud\Dataproc\V1\ListClustersResponse;
 use Google\LongRunning\GetOperationRequest;
@@ -122,8 +121,6 @@ class ClusterControllerClientTest extends GeneratedTest
         $cluster->setProjectId($clusterProjectId);
         $clusterClusterName = 'clusterClusterName2146953547';
         $cluster->setClusterName($clusterClusterName);
-        $clusterConfig = new ClusterConfig();
-        $cluster->setConfig($clusterConfig);
         $response = $client->createCluster($projectId, $region, $cluster);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -200,8 +197,6 @@ class ClusterControllerClientTest extends GeneratedTest
         $cluster->setProjectId($clusterProjectId);
         $clusterClusterName = 'clusterClusterName2146953547';
         $cluster->setClusterName($clusterClusterName);
-        $clusterConfig = new ClusterConfig();
-        $cluster->setConfig($clusterConfig);
         $response = $client->createCluster($projectId, $region, $cluster);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -952,8 +947,6 @@ class ClusterControllerClientTest extends GeneratedTest
         $cluster->setProjectId($clusterProjectId);
         $clusterClusterName = 'clusterClusterName2146953547';
         $cluster->setClusterName($clusterClusterName);
-        $clusterConfig = new ClusterConfig();
-        $cluster->setConfig($clusterConfig);
         $updateMask = new FieldMask();
         $response = $client->updateCluster($projectId, $region, $clusterName, $cluster, $updateMask);
         $this->assertFalse($response->isDone());
@@ -1036,8 +1029,6 @@ class ClusterControllerClientTest extends GeneratedTest
         $cluster->setProjectId($clusterProjectId);
         $clusterClusterName = 'clusterClusterName2146953547';
         $cluster->setClusterName($clusterClusterName);
-        $clusterConfig = new ClusterConfig();
-        $cluster->setConfig($clusterConfig);
         $updateMask = new FieldMask();
         $response = $client->updateCluster($projectId, $region, $clusterName, $cluster, $updateMask);
         $this->assertFalse($response->isDone());
