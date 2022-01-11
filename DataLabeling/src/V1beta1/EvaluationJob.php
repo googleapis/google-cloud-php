@@ -332,7 +332,7 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
      */
     public function getEvaluationJobConfig()
     {
-        return isset($this->evaluation_job_config) ? $this->evaluation_job_config : null;
+        return $this->evaluation_job_config;
     }
 
     public function hasEvaluationJobConfig()
@@ -464,7 +464,7 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()

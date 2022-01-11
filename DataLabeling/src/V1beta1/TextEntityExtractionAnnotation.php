@@ -53,7 +53,7 @@ class TextEntityExtractionAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getAnnotationSpec()
     {
-        return isset($this->annotation_spec) ? $this->annotation_spec : null;
+        return $this->annotation_spec;
     }
 
     public function hasAnnotationSpec()
@@ -89,7 +89,7 @@ class TextEntityExtractionAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getSequentialSegment()
     {
-        return isset($this->sequential_segment) ? $this->sequential_segment : null;
+        return $this->sequential_segment;
     }
 
     public function hasSequentialSegment()
