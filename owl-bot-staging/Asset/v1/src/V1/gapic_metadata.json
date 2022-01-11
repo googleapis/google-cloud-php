@@ -1,0 +1,83 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.asset.v1",
+    "libraryPackage": "Google\\Cloud\\Asset\\V1",
+    "services": {
+        "AssetService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AssetServiceGapicClient",
+                    "rpcs": {
+                        "AnalyzeIamPolicy": {
+                            "methods": [
+                                "analyzeIamPolicy"
+                            ]
+                        },
+                        "AnalyzeIamPolicyLongrunning": {
+                            "methods": [
+                                "analyzeIamPolicyLongrunning"
+                            ]
+                        },
+                        "AnalyzeMove": {
+                            "methods": [
+                                "analyzeMove"
+                            ]
+                        },
+                        "BatchGetAssetsHistory": {
+                            "methods": [
+                                "batchGetAssetsHistory"
+                            ]
+                        },
+                        "CreateFeed": {
+                            "methods": [
+                                "createFeed"
+                            ]
+                        },
+                        "DeleteFeed": {
+                            "methods": [
+                                "deleteFeed"
+                            ]
+                        },
+                        "ExportAssets": {
+                            "methods": [
+                                "exportAssets"
+                            ]
+                        },
+                        "GetFeed": {
+                            "methods": [
+                                "getFeed"
+                            ]
+                        },
+                        "ListAssets": {
+                            "methods": [
+                                "listAssets"
+                            ]
+                        },
+                        "ListFeeds": {
+                            "methods": [
+                                "listFeeds"
+                            ]
+                        },
+                        "SearchAllIamPolicies": {
+                            "methods": [
+                                "searchAllIamPolicies"
+                            ]
+                        },
+                        "SearchAllResources": {
+                            "methods": [
+                                "searchAllResources"
+                            ]
+                        },
+                        "UpdateFeed": {
+                            "methods": [
+                                "updateFeed"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
