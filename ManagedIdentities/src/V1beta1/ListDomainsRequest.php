@@ -20,7 +20,7 @@ class ListDomainsRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the domain location using the form:
      * `projects/{project_id}/locations/global`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -96,7 +96,7 @@ class ListDomainsRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the domain location using the form:
      * `projects/{project_id}/locations/global`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -108,7 +108,7 @@ class ListDomainsRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the domain location using the form:
      * `projects/{project_id}/locations/global`
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
