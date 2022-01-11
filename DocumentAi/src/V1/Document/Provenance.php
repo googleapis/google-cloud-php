@@ -54,7 +54,7 @@ class Provenance extends \Google\Protobuf\Internal\Message
      *     @type int $id
      *           The Id of this operation.  Needs to be unique within the scope of the
      *           revision.
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance\PBParent[]|\Google\Protobuf\Internal\RepeatedField $parents
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance\Parent[]|\Google\Protobuf\Internal\RepeatedField $parents
      *           References to the original elements that are replaced.
      *     @type int $type
      *           The type of provenance operation.
@@ -138,12 +138,12 @@ class Provenance extends \Google\Protobuf\Internal\Message
      * References to the original elements that are replaced.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Provenance.Parent parents = 3;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Provenance\PBParent[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\Provenance\Parent[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParents($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DocumentAI\V1\Document\Provenance\PBParent::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DocumentAI\V1\Document\Provenance\Parent::class);
         $this->parents = $arr;
 
         return $this;
@@ -177,6 +177,4 @@ class Provenance extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Provenance::class, \Google\Cloud\DocumentAI\V1\Document_Provenance::class);
 

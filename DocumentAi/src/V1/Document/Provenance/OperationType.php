@@ -88,6 +88,4 @@ class OperationType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OperationType::class, \Google\Cloud\DocumentAI\V1\Document_Provenance_OperationType::class);
 

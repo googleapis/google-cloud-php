@@ -228,6 +228,4 @@ class PageRef extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PageRef::class, \Google\Cloud\DocumentAI\V1\Document_PageAnchor_PageRef::class);
 

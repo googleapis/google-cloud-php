@@ -67,6 +67,4 @@ class PageAnchor extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PageAnchor::class, \Google\Cloud\DocumentAI\V1\Document_PageAnchor::class);
 

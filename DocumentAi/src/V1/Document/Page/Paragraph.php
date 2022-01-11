@@ -153,6 +153,4 @@ class Paragraph extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Paragraph::class, \Google\Cloud\DocumentAI\V1\Document_Page_Paragraph::class);
 

@@ -22,14 +22,14 @@ class Parent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 revision = 1;</code>
      */
-    protected $revision = 0;
+    private $revision = 0;
     /**
      * The index of the parent revisions corresponding collection of items
      * (eg. list of entities, properties within entities, etc.)
      *
      * Generated from protobuf field <code>int32 index = 3;</code>
      */
-    protected $index = 0;
+    private $index = 0;
     /**
      * The id of the parent provenance.
      *
@@ -144,6 +144,4 @@ class Parent extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Parent::class, \Google\Cloud\DocumentAI\V1\Document_Provenance_Parent::class);
 

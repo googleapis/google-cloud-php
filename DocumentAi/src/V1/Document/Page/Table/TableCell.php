@@ -177,6 +177,4 @@ class TableCell extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TableCell::class, \Google\Cloud\DocumentAI\V1\Document_Page_Table_TableCell::class);
 

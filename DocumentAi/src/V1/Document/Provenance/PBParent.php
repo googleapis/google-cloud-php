@@ -144,6 +144,4 @@ class PBParent extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PBParent::class, \Google\Cloud\DocumentAI\V1\Document_Provenance_Parent::class);
 
