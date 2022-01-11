@@ -25,7 +25,7 @@ class CompletionDataInputConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Retail\V2\BigQuerySource $big_query_source
      *           Required. BigQuery input source.
-     *           Add the IAM permission “BigQuery Data Viewer” for
+     *           Add the IAM permission "BigQuery Data Viewer" for
      *           cloud-retail-customer-data-access&#64;system.gserviceaccount.com before
      *           using this feature otherwise an error is thrown.
      * }
@@ -37,7 +37,7 @@ class CompletionDataInputConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. BigQuery input source.
-     * Add the IAM permission “BigQuery Data Viewer” for
+     * Add the IAM permission "BigQuery Data Viewer" for
      * cloud-retail-customer-data-access&#64;system.gserviceaccount.com before
      * using this feature otherwise an error is thrown.
      *
@@ -56,7 +56,7 @@ class CompletionDataInputConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. BigQuery input source.
-     * Add the IAM permission “BigQuery Data Viewer” for
+     * Add the IAM permission "BigQuery Data Viewer" for
      * cloud-retail-customer-data-access&#64;system.gserviceaccount.com before
      * using this feature otherwise an error is thrown.
      *

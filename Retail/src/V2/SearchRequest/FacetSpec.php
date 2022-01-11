@@ -143,7 +143,7 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
      */
     public function getFacetKey()
     {
-        return isset($this->facet_key) ? $this->facet_key : null;
+        return $this->facet_key;
     }
 
     public function hasFacetKey()
@@ -325,6 +325,4 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FacetSpec::class, \Google\Cloud\Retail\V2\SearchRequest_FacetSpec::class);
 

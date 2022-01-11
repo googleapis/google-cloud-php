@@ -76,7 +76,7 @@ class PriceRange extends \Google\Protobuf\Internal\Message
      */
     public function getPrice()
     {
-        return isset($this->price) ? $this->price : null;
+        return $this->price;
     }
 
     public function hasPrice()
@@ -120,7 +120,7 @@ class PriceRange extends \Google\Protobuf\Internal\Message
      */
     public function getOriginalPrice()
     {
-        return isset($this->original_price) ? $this->original_price : null;
+        return $this->original_price;
     }
 
     public function hasOriginalPrice()
@@ -154,6 +154,4 @@ class PriceRange extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PriceRange::class, \Google\Cloud\Retail\V2\PriceInfo_PriceRange::class);
 

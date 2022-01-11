@@ -23,11 +23,11 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/operations/*}',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/branches/*/operations/*}',
                     ],
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/branches/*/operations/*}',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/operations/*}',
                     ],
                 ],
                 'placeholders' => [
