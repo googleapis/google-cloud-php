@@ -196,7 +196,7 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      */
     public function getInstanceFilter()
     {
-        return isset($this->instance_filter) ? $this->instance_filter : null;
+        return $this->instance_filter;
     }
 
     public function hasInstanceFilter()
@@ -232,7 +232,7 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      */
     public function getPatchConfig()
     {
-        return isset($this->patch_config) ? $this->patch_config : null;
+        return $this->patch_config;
     }
 
     public function hasPatchConfig()
@@ -269,7 +269,7 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      */
     public function getDuration()
     {
-        return isset($this->duration) ? $this->duration : null;
+        return $this->duration;
     }
 
     public function hasDuration()
@@ -369,7 +369,7 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -407,7 +407,7 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -446,7 +446,7 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      */
     public function getLastExecuteTime()
     {
-        return isset($this->last_execute_time) ? $this->last_execute_time : null;
+        return $this->last_execute_time;
     }
 
     public function hasLastExecuteTime()
@@ -484,7 +484,7 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      */
     public function getRollout()
     {
-        return isset($this->rollout) ? $this->rollout : null;
+        return $this->rollout;
     }
 
     public function hasRollout()

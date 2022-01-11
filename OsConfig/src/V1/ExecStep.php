@@ -53,7 +53,7 @@ class ExecStep extends \Google\Protobuf\Internal\Message
      */
     public function getLinuxExecStepConfig()
     {
-        return isset($this->linux_exec_step_config) ? $this->linux_exec_step_config : null;
+        return $this->linux_exec_step_config;
     }
 
     public function hasLinuxExecStepConfig()
@@ -89,7 +89,7 @@ class ExecStep extends \Google\Protobuf\Internal\Message
      */
     public function getWindowsExecStepConfig()
     {
-        return isset($this->windows_exec_step_config) ? $this->windows_exec_step_config : null;
+        return $this->windows_exec_step_config;
     }
 
     public function hasWindowsExecStepConfig()

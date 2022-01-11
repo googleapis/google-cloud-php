@@ -105,7 +105,7 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      */
     public function getTimeZone()
     {
-        return isset($this->time_zone) ? $this->time_zone : null;
+        return $this->time_zone;
     }
 
     public function hasTimeZone()
@@ -143,7 +143,7 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -181,7 +181,7 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -218,7 +218,7 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      */
     public function getTimeOfDay()
     {
-        return isset($this->time_of_day) ? $this->time_of_day : null;
+        return $this->time_of_day;
     }
 
     public function hasTimeOfDay()
@@ -342,7 +342,7 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      */
     public function getLastExecuteTime()
     {
-        return isset($this->last_execute_time) ? $this->last_execute_time : null;
+        return $this->last_execute_time;
     }
 
     public function hasLastExecuteTime()
@@ -378,7 +378,7 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      */
     public function getNextExecuteTime()
     {
-        return isset($this->next_execute_time) ? $this->next_execute_time : null;
+        return $this->next_execute_time;
     }
 
     public function hasNextExecuteTime()
