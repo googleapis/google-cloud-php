@@ -53,7 +53,7 @@ class UpdateColumnSpecRequest extends \Google\Protobuf\Internal\Message
      */
     public function getColumnSpec()
     {
-        return isset($this->column_spec) ? $this->column_spec : null;
+        return $this->column_spec;
     }
 
     public function hasColumnSpec()
@@ -89,7 +89,7 @@ class UpdateColumnSpecRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
