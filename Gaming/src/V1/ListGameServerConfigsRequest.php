@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListGameServerConfigsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -59,7 +59,7 @@ class ListGameServerConfigsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource name. Uses the form:
+     *           Required. The parent resource name, in the following form:
      *           `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/&#42;`.
      *     @type int $page_size
      *           Optional. The maximum number of items to return.  If unspecified, server
@@ -82,7 +82,7 @@ class ListGameServerConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -94,7 +94,7 @@ class ListGameServerConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

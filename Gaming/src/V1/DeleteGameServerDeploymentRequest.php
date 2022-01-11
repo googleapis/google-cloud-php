@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteGameServerDeploymentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the game server delpoyment to delete. Uses the form:
+     * Required. The name of the game server delpoyment to delete, in the following form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -30,7 +30,7 @@ class DeleteGameServerDeploymentRequest extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the game server delpoyment to delete. Uses the form:
+     *           Required. The name of the game server delpoyment to delete, in the following form:
      *           `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      * }
      */
@@ -40,7 +40,7 @@ class DeleteGameServerDeploymentRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The name of the game server delpoyment to delete. Uses the form:
+     * Required. The name of the game server delpoyment to delete, in the following form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -52,7 +52,7 @@ class DeleteGameServerDeploymentRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The name of the game server delpoyment to delete. Uses the form:
+     * Required. The name of the game server delpoyment to delete, in the following form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

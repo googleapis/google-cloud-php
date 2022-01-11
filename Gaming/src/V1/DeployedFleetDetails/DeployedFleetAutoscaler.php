@@ -90,7 +90,7 @@ class DeployedFleetAutoscaler extends \Google\Protobuf\Internal\Message
      */
     public function getSpecSource()
     {
-        return isset($this->spec_source) ? $this->spec_source : null;
+        return $this->spec_source;
     }
 
     public function hasSpecSource()
@@ -147,6 +147,4 @@ class DeployedFleetAutoscaler extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DeployedFleetAutoscaler::class, \Google\Cloud\Gaming\V1\DeployedFleetDetails_DeployedFleetAutoscaler::class);
 

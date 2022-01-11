@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateGameServerDeploymentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -42,7 +42,7 @@ class CreateGameServerDeploymentRequest extends \Google\Protobuf\Internal\Messag
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource name. Uses the form:
+     *           Required. The parent resource name, in the following form:
      *           `projects/{project}/locations/{location}`.
      *     @type string $deployment_id
      *           Required. The ID of the game server delpoyment resource to be created.
@@ -56,7 +56,7 @@ class CreateGameServerDeploymentRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -68,7 +68,7 @@ class CreateGameServerDeploymentRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -117,7 +117,7 @@ class CreateGameServerDeploymentRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getGameServerDeployment()
     {
-        return isset($this->game_server_deployment) ? $this->game_server_deployment : null;
+        return $this->game_server_deployment;
     }
 
     public function hasGameServerDeployment()
