@@ -53,7 +53,7 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      */
     public function getBatch()
     {
-        return isset($this->batch) ? $this->batch : null;
+        return $this->batch;
     }
 
     public function hasBatch()
@@ -89,7 +89,7 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      */
     public function getQuery()
     {
-        return isset($this->query) ? $this->query : null;
+        return $this->query;
     }
 
     public function hasQuery()
