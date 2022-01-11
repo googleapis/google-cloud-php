@@ -91,7 +91,7 @@ class DetectedLandmark extends \Google\Protobuf\Internal\Message
      */
     public function getPoint()
     {
-        return isset($this->point) ? $this->point : null;
+        return $this->point;
     }
 
     public function hasPoint()
