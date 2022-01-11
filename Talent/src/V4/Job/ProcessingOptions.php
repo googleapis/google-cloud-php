@@ -135,6 +135,4 @@ class ProcessingOptions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ProcessingOptions::class, \Google\Cloud\Talent\V4\Job_ProcessingOptions::class);
 

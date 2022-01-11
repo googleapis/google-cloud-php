@@ -343,6 +343,4 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CompensationEntry::class, \Google\Cloud\Talent\V4beta1\CompensationInfo_CompensationEntry::class);
 
