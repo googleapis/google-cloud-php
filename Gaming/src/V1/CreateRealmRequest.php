@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateRealmRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -42,7 +42,7 @@ class CreateRealmRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource name. Uses the form:
+     *           Required. The parent resource name, in the following form:
      *           `projects/{project}/locations/{location}`.
      *     @type string $realm_id
      *           Required. The ID of the realm resource to be created.
@@ -56,7 +56,7 @@ class CreateRealmRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -68,7 +68,7 @@ class CreateRealmRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -117,7 +117,7 @@ class CreateRealmRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRealm()
     {
-        return isset($this->realm) ? $this->realm : null;
+        return $this->realm;
     }
 
     public function hasRealm()

@@ -21,26 +21,26 @@ class KubernetesClusterState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string agones_version_installed = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $agones_version_installed = '';
+    private $agones_version_installed = '';
     /**
      * Output only. The version of Kubernetes that is currently used in the registered
      * Kubernetes cluster (as detected by the Cloud Game Servers service).
      *
      * Generated from protobuf field <code>string kubernetes_version_installed = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $kubernetes_version_installed = '';
+    private $kubernetes_version_installed = '';
     /**
      * Output only. The state for the installed versions of Agones/Kubernetes.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.KubernetesClusterState.InstallationState installation_state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $installation_state = 0;
+    private $installation_state = 0;
     /**
      * Output only. The detailed error message for the installed versions of Agones/Kubernetes.
      *
      * Generated from protobuf field <code>string version_installed_error_message = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $version_installed_error_message = '';
+    private $version_installed_error_message = '';
     /**
      * Output only. The cloud provider type reported by the first node's providerID in the list
      * of nodes on the Kubernetes endpoint. On Kubernetes platforms that support
@@ -48,13 +48,13 @@ class KubernetesClusterState extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string provider = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $provider = '';
+    private $provider = '';
     /**
      * Output only. The version of Agones that is targeted to be installed in the cluster.
      *
      * Generated from protobuf field <code>string agones_version_targeted = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $agones_version_targeted = '';
+    private $agones_version_targeted = '';
 
     /**
      * Constructor.

@@ -25,9 +25,7 @@ class PreviewGameServerDeploymentRolloutRequest extends \Google\Protobuf\Interna
     /**
      * Optional. Mask of fields to update. At least one path must be supplied in
      * this field. For the `FieldMask` definition, see
-     * https:
-     * //developers.google.com/protocol-buffers
-     * // /docs/reference/google.protobuf#fieldmask
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -52,9 +50,7 @@ class PreviewGameServerDeploymentRolloutRequest extends \Google\Protobuf\Interna
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. Mask of fields to update. At least one path must be supplied in
      *           this field. For the `FieldMask` definition, see
-     *           https:
-     *           //developers.google.com/protocol-buffers
-     *           // /docs/reference/google.protobuf#fieldmask
+     *           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *     @type \Google\Protobuf\Timestamp $preview_time
      *           Optional. The target timestamp to compute the preview. Defaults to the immediately
      *           after the proposed rollout completes.
@@ -74,7 +70,7 @@ class PreviewGameServerDeploymentRolloutRequest extends \Google\Protobuf\Interna
      */
     public function getRollout()
     {
-        return isset($this->rollout) ? $this->rollout : null;
+        return $this->rollout;
     }
 
     public function hasRollout()
@@ -106,16 +102,14 @@ class PreviewGameServerDeploymentRolloutRequest extends \Google\Protobuf\Interna
     /**
      * Optional. Mask of fields to update. At least one path must be supplied in
      * this field. For the `FieldMask` definition, see
-     * https:
-     * //developers.google.com/protocol-buffers
-     * // /docs/reference/google.protobuf#fieldmask
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -131,9 +125,7 @@ class PreviewGameServerDeploymentRolloutRequest extends \Google\Protobuf\Interna
     /**
      * Optional. Mask of fields to update. At least one path must be supplied in
      * this field. For the `FieldMask` definition, see
-     * https:
-     * //developers.google.com/protocol-buffers
-     * // /docs/reference/google.protobuf#fieldmask
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
@@ -156,7 +148,7 @@ class PreviewGameServerDeploymentRolloutRequest extends \Google\Protobuf\Interna
      */
     public function getPreviewTime()
     {
-        return isset($this->preview_time) ? $this->preview_time : null;
+        return $this->preview_time;
     }
 
     public function hasPreviewTime()

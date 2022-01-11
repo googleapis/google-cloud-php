@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteGameServerClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the game server cluster to delete. Uses the form:
+     * Required. The name of the game server cluster to delete, in the following form:
      * `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -30,7 +30,7 @@ class DeleteGameServerClusterRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the game server cluster to delete. Uses the form:
+     *           Required. The name of the game server cluster to delete, in the following form:
      *           `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
      * }
      */
@@ -40,7 +40,7 @@ class DeleteGameServerClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the game server cluster to delete. Uses the form:
+     * Required. The name of the game server cluster to delete, in the following form:
      * `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -52,7 +52,7 @@ class DeleteGameServerClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the game server cluster to delete. Uses the form:
+     * Required. The name of the game server cluster to delete, in the following form:
      * `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
