@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Destination extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. List of host names to match. Matched against the ":authority" header in
+     * Required. List of host names to match. Matched against HOST header in
      * http requests. At least one host should match. Each host can be an
      * exact match, or a prefix match (example "mydomain.*") or a suffix
      * match (example // *.myorg.com") or a presence(any) match "*".
@@ -38,11 +38,9 @@ class Destination extends \Google\Protobuf\Internal\Message
      */
     private $methods;
     /**
-     * Optional. Match against key:value pair in http header. Provides a flexible match
-     * based on HTTP headers, for potentially advanced use cases. At least one
-     * header should match. Avoid using header matches to make authorization
-     * decisions unless there is a strong guarantee that requests arrive
-     * through a trusted client or proxy.
+     * Optional. Match against key:value pair in http header. Provides a
+     * flexible match based on HTTP headers, for potentially
+     * advanced use cases. At least one header should match.
      *
      * Generated from protobuf field <code>.google.cloud.networksecurity.v1beta1.AuthorizationPolicy.Rule.Destination.HttpHeaderMatch http_header_match = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -55,7 +53,7 @@ class Destination extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $hosts
-     *           Required. List of host names to match. Matched against the ":authority" header in
+     *           Required. List of host names to match. Matched against HOST header in
      *           http requests. At least one host should match. Each host can be an
      *           exact match, or a prefix match (example "mydomain.*") or a suffix
      *           match (example // *.myorg.com") or a presence(any) match "*".
@@ -65,11 +63,9 @@ class Destination extends \Google\Protobuf\Internal\Message
      *           Optional. A list of HTTP methods to match. At least one method should
      *           match. Should not be set for gRPC services.
      *     @type \Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy\Rule\Destination\HttpHeaderMatch $http_header_match
-     *           Optional. Match against key:value pair in http header. Provides a flexible match
-     *           based on HTTP headers, for potentially advanced use cases. At least one
-     *           header should match. Avoid using header matches to make authorization
-     *           decisions unless there is a strong guarantee that requests arrive
-     *           through a trusted client or proxy.
+     *           Optional. Match against key:value pair in http header. Provides a
+     *           flexible match based on HTTP headers, for potentially
+     *           advanced use cases. At least one header should match.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,7 +74,7 @@ class Destination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. List of host names to match. Matched against the ":authority" header in
+     * Required. List of host names to match. Matched against HOST header in
      * http requests. At least one host should match. Each host can be an
      * exact match, or a prefix match (example "mydomain.*") or a suffix
      * match (example // *.myorg.com") or a presence(any) match "*".
@@ -92,7 +88,7 @@ class Destination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. List of host names to match. Matched against the ":authority" header in
+     * Required. List of host names to match. Matched against HOST header in
      * http requests. At least one host should match. Each host can be an
      * exact match, or a prefix match (example "mydomain.*") or a suffix
      * match (example // *.myorg.com") or a presence(any) match "*".
@@ -164,11 +160,9 @@ class Destination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Match against key:value pair in http header. Provides a flexible match
-     * based on HTTP headers, for potentially advanced use cases. At least one
-     * header should match. Avoid using header matches to make authorization
-     * decisions unless there is a strong guarantee that requests arrive
-     * through a trusted client or proxy.
+     * Optional. Match against key:value pair in http header. Provides a
+     * flexible match based on HTTP headers, for potentially
+     * advanced use cases. At least one header should match.
      *
      * Generated from protobuf field <code>.google.cloud.networksecurity.v1beta1.AuthorizationPolicy.Rule.Destination.HttpHeaderMatch http_header_match = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy\Rule\Destination\HttpHeaderMatch|null
@@ -189,11 +183,9 @@ class Destination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Match against key:value pair in http header. Provides a flexible match
-     * based on HTTP headers, for potentially advanced use cases. At least one
-     * header should match. Avoid using header matches to make authorization
-     * decisions unless there is a strong guarantee that requests arrive
-     * through a trusted client or proxy.
+     * Optional. Match against key:value pair in http header. Provides a
+     * flexible match based on HTTP headers, for potentially
+     * advanced use cases. At least one header should match.
      *
      * Generated from protobuf field <code>.google.cloud.networksecurity.v1beta1.AuthorizationPolicy.Rule.Destination.HttpHeaderMatch http_header_match = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy\Rule\Destination\HttpHeaderMatch $var
@@ -209,6 +201,4 @@ class Destination extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Destination::class, \Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy_Rule_Destination::class);
 
