@@ -45,7 +45,7 @@ class ObjectDetectionMetrics extends \Google\Protobuf\Internal\Message
      */
     public function getPrCurve()
     {
-        return isset($this->pr_curve) ? $this->pr_curve : null;
+        return $this->pr_curve;
     }
 
     public function hasPrCurve()
