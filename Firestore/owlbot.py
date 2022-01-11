@@ -33,14 +33,7 @@ preserve_copyright_year = php._merge
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
-# Exclude the partial veneer
-php.owlbot_main(
-    src=src,
-    dest=dest,
-    copy_excludes=[
-        src / "*/src/*/*Client.php"
-    ]
-)
+php.owlbot_main(src=src, dest=dest)
 
 # Firestore Admin also lives here
 admin_library = Path(f"../{php.STAGING_DIR}/Firestore/v1/Admin").resolve()

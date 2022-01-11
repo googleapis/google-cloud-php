@@ -35,7 +35,7 @@ php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        src / "*/src/*/*Client.php"
+        src / "*/src/V1/SpeechClient.php"
     ]
 )
 
