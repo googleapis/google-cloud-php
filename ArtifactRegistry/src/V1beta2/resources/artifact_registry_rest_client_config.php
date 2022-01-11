@@ -2,6 +2,30 @@
 
 return [
     'interfaces' => [
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta2/{name=projects/*/locations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLocations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta2/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
         'google.devtools.artifactregistry.v1beta2.ArtifactRegistry' => [
             'CreateRepository' => [
                 'method' => 'post',
@@ -244,42 +268,9 @@ return [
             ],
         ],
         'google.longrunning.Operations' => [
-            'ListOperations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta2/{name=projects/*/locations/*}/operations',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/operations/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteOperation' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/operations/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CancelOperation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/operations/*}:cancel',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
