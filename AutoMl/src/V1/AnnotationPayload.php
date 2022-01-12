@@ -25,7 +25,7 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
     private $annotation_spec_id = '';
     /**
      * Output only. The value of
-     * [display_name][google.cloud.automl.v1.AnnotationSpec.display_name]
+     * [display_name][google.cloud.automl.v1p1beta.AnnotationSpec.display_name]
      * when the model was trained. Because this field returns a value at model
      * training time, for different models trained using the same dataset, the
      * returned value could be different as model owner could update the
@@ -58,7 +58,7 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
      *           ancestor dataset, or the dataset that was used to train the model in use.
      *     @type string $display_name
      *           Output only. The value of
-     *           [display_name][google.cloud.automl.v1.AnnotationSpec.display_name]
+     *           [display_name][google.cloud.automl.v1p1beta.AnnotationSpec.display_name]
      *           when the model was trained. Because this field returns a value at model
      *           training time, for different models trained using the same dataset, the
      *           returned value could be different as model owner could update the
@@ -257,7 +257,7 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The value of
-     * [display_name][google.cloud.automl.v1.AnnotationSpec.display_name]
+     * [display_name][google.cloud.automl.v1p1beta.AnnotationSpec.display_name]
      * when the model was trained. Because this field returns a value at model
      * training time, for different models trained using the same dataset, the
      * returned value could be different as model owner could update the
@@ -273,7 +273,7 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The value of
-     * [display_name][google.cloud.automl.v1.AnnotationSpec.display_name]
+     * [display_name][google.cloud.automl.v1p1beta.AnnotationSpec.display_name]
      * when the model was trained. Because this field returns a value at model
      * training time, for different models trained using the same dataset, the
      * returned value could be different as model owner could update the

@@ -18,7 +18,7 @@ class TextSentiment
         \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ý
+û
 +google/cloud/automl/v1/text_sentiment.protogoogle.cloud.automl.v1google/api/annotations.proto",
 TextSentimentAnnotation
 	sentiment (" 
@@ -30,8 +30,8 @@ class TextSentiment
 mean_squared_error (
 linear_kappa (
 quadratic_kappa (a
-confusion_matrix (2G.google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfusionMatrixB¾
-com.google.cloud.automl.v1BTextSentimentProtoPZ<google.golang.org/genproto/googleapis/cloud/automl/v1;automlªGoogle.Cloud.AutoML.V1ÊGoogle\\Cloud\\AutoMl\\V1êGoogle::Cloud::AutoML::V1bproto3'
+confusion_matrix (2G.google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfusionMatrixB¼
+com.google.cloud.automl.v1BTextSentimentProtoZ<google.golang.org/genproto/googleapis/cloud/automl/v1;automlªGoogle.Cloud.AutoML.V1ÊGoogle\\Cloud\\AutoMl\\V1êGoogle::Cloud::AutoML::V1bproto3'
         , true);
 
         static::$is_initialized = true;
