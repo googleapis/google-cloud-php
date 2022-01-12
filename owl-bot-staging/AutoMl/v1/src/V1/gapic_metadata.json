@@ -1,0 +1,127 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.automl.v1",
+    "libraryPackage": "Google\\Cloud\\AutoMl\\V1",
+    "services": {
+        "PredictionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PredictionServiceGapicClient",
+                    "rpcs": {
+                        "BatchPredict": {
+                            "methods": [
+                                "batchPredict"
+                            ]
+                        },
+                        "Predict": {
+                            "methods": [
+                                "predict"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "AutoMl": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AutoMlGapicClient",
+                    "rpcs": {
+                        "CreateDataset": {
+                            "methods": [
+                                "createDataset"
+                            ]
+                        },
+                        "CreateModel": {
+                            "methods": [
+                                "createModel"
+                            ]
+                        },
+                        "DeleteDataset": {
+                            "methods": [
+                                "deleteDataset"
+                            ]
+                        },
+                        "DeleteModel": {
+                            "methods": [
+                                "deleteModel"
+                            ]
+                        },
+                        "DeployModel": {
+                            "methods": [
+                                "deployModel"
+                            ]
+                        },
+                        "ExportData": {
+                            "methods": [
+                                "exportData"
+                            ]
+                        },
+                        "ExportModel": {
+                            "methods": [
+                                "exportModel"
+                            ]
+                        },
+                        "GetAnnotationSpec": {
+                            "methods": [
+                                "getAnnotationSpec"
+                            ]
+                        },
+                        "GetDataset": {
+                            "methods": [
+                                "getDataset"
+                            ]
+                        },
+                        "GetModel": {
+                            "methods": [
+                                "getModel"
+                            ]
+                        },
+                        "GetModelEvaluation": {
+                            "methods": [
+                                "getModelEvaluation"
+                            ]
+                        },
+                        "ImportData": {
+                            "methods": [
+                                "importData"
+                            ]
+                        },
+                        "ListDatasets": {
+                            "methods": [
+                                "listDatasets"
+                            ]
+                        },
+                        "ListModelEvaluations": {
+                            "methods": [
+                                "listModelEvaluations"
+                            ]
+                        },
+                        "ListModels": {
+                            "methods": [
+                                "listModels"
+                            ]
+                        },
+                        "UndeployModel": {
+                            "methods": [
+                                "undeployModel"
+                            ]
+                        },
+                        "UpdateDataset": {
+                            "methods": [
+                                "updateDataset"
+                            ]
+                        },
+                        "UpdateModel": {
+                            "methods": [
+                                "updateModel"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
