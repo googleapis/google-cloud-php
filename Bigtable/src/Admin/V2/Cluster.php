@@ -41,10 +41,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Required. The number of nodes allocated to this cluster. More nodes enable
-     * higher throughput and more consistent performance.
+     * The number of nodes allocated to this cluster. More nodes enable higher
+     * throughput and more consistent performance.
      *
-     * Generated from protobuf field <code>int32 serve_nodes = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>int32 serve_nodes = 4;</code>
      */
     private $serve_nodes = 0;
     /**
@@ -61,6 +61,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.EncryptionConfig encryption_config = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $encryption_config = null;
+    protected $config;
 
     /**
      * Constructor.
@@ -80,8 +81,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           The current state of the cluster.
      *     @type int $serve_nodes
-     *           Required. The number of nodes allocated to this cluster. More nodes enable
-     *           higher throughput and more consistent performance.
+     *           The number of nodes allocated to this cluster. More nodes enable higher
+     *           throughput and more consistent performance.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Cluster\ClusterConfig $cluster_config
+     *           Configuration for this cluster.
      *     @type int $default_storage_type
      *           (`CreationOnly`)
      *           The type of storage used by this cluster to serve its
@@ -184,10 +187,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The number of nodes allocated to this cluster. More nodes enable
-     * higher throughput and more consistent performance.
+     * The number of nodes allocated to this cluster. More nodes enable higher
+     * throughput and more consistent performance.
      *
-     * Generated from protobuf field <code>int32 serve_nodes = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>int32 serve_nodes = 4;</code>
      * @return int
      */
     public function getServeNodes()
@@ -196,10 +199,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The number of nodes allocated to this cluster. More nodes enable
-     * higher throughput and more consistent performance.
+     * The number of nodes allocated to this cluster. More nodes enable higher
+     * throughput and more consistent performance.
      *
-     * Generated from protobuf field <code>int32 serve_nodes = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>int32 serve_nodes = 4;</code>
      * @param int $var
      * @return $this
      */
@@ -207,6 +210,37 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->serve_nodes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for this cluster.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.ClusterConfig cluster_config = 7;</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Cluster\ClusterConfig|null
+     */
+    public function getClusterConfig()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasClusterConfig()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Configuration for this cluster.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.ClusterConfig cluster_config = 7;</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Cluster\ClusterConfig $var
+     * @return $this
+     */
+    public function setClusterConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Cluster\ClusterConfig::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }
@@ -275,6 +309,14 @@ class Cluster extends \Google\Protobuf\Internal\Message
         $this->encryption_config = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfig()
+    {
+        return $this->whichOneof("config");
     }
 
 }

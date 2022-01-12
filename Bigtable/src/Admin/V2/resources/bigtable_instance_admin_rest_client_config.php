@@ -159,6 +159,22 @@ return [
                     ],
                 ],
             ],
+            'PartialUpdateCluster' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{cluster.name=projects/*/instances/*/clusters/*}',
+                'body' => 'cluster',
+                'placeholders' => [
+                    'cluster.name' => [
+                        'getters' => [
+                            'getCluster',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
             'PartialUpdateInstance' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v2/{instance.name=projects/*/instances/*}',
@@ -231,52 +247,6 @@ return [
                 'method' => 'put',
                 'uriTemplate' => '/v2/{name=projects/*/instances/*}',
                 'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-        ],
-        'google.longrunning.Operations' => [
-            'CancelOperation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{name=operations/**}:cancel',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteOperation' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=operations/**}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=operations/**}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListOperations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=operations/projects/**}/operations',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

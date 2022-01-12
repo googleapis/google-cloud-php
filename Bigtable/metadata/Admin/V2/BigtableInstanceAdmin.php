@@ -27,7 +27,7 @@ class BigtableInstanceAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-´;
+Á@
 6google/bigtable/admin/v2/bigtable_instance_admin.protogoogle.bigtable.admin.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto\'google/bigtable/admin/v2/instance.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Û
 CreateInstanceRequestC
 parent (	B3àAúA-
@@ -37,10 +37,10 @@ class BigtableInstanceAdmin
 clusters (2=.google.bigtable.admin.v2.CreateInstanceRequest.ClustersEntryBàAR
 ClustersEntry
 key (	0
-value (2!.google.bigtable.admin.v2.Cluster:8"L
-GetInstanceRequest6
-name (	B(àAúA"
- bigtable.googleapis.com/Instance"o
+value (2!.google.bigtable.admin.v2.Cluster:8"Q
+GetInstanceRequest;
+name (	B-àAúA\'
+%bigtableadmin.googleapis.com/Instance"o
 ListInstancesRequestC
 parent (	B3àAúA-
 +cloudresourcemanager.googleapis.com/Project
@@ -52,31 +52,31 @@ page_token (	"
 next_page_token (	"
 PartialUpdateInstanceRequest9
 instance (2".google.bigtable.admin.v2.InstanceBàA4
-update_mask (2.google.protobuf.FieldMaskBàA"O
-DeleteInstanceRequest6
-name (	B(àAúA"
- bigtable.googleapis.com/Instance"¢
-CreateClusterRequest8
-parent (	B(àAúA"
- bigtable.googleapis.com/Instance
+update_mask (2.google.protobuf.FieldMaskBàA"T
+DeleteInstanceRequest;
+name (	B-àAúA\'
+%bigtableadmin.googleapis.com/Instance"§
+CreateClusterRequest=
+parent (	B-àAúA\'
+%bigtableadmin.googleapis.com/Instance
 
 cluster_id (	BàA7
-cluster (2!.google.bigtable.admin.v2.ClusterBàA"J
-GetClusterRequest5
-name (	B\'àAúA!
-bigtable.googleapis.com/Cluster"c
-ListClustersRequest8
-parent (	B(àAúA"
- bigtable.googleapis.com/Instance
+cluster (2!.google.bigtable.admin.v2.ClusterBàA"O
+GetClusterRequest:
+name (	B,àAúA&
+$bigtableadmin.googleapis.com/Cluster"h
+ListClustersRequest=
+parent (	B-àAúA\'
+%bigtableadmin.googleapis.com/Instance
 
 page_token (	"~
 ListClustersResponse3
 clusters (2!.google.bigtable.admin.v2.Cluster
 failed_locations (	
-next_page_token (	"M
-DeleteClusterRequest5
-name (	B\'àAúA!
-bigtable.googleapis.com/Cluster"Æ
+next_page_token (	"R
+DeleteClusterRequest:
+name (	B,àAúA&
+$bigtableadmin.googleapis.com/Cluster"Æ
 CreateInstanceMetadataI
 original_request (2/.google.bigtable.admin.v2.CreateInstanceRequest0
 request_time (2.google.protobuf.Timestamp/
@@ -92,19 +92,26 @@ page_token (	"~
 UpdateClusterMetadata;
 original_request (2!.google.bigtable.admin.v2.Cluster0
 request_time (2.google.protobuf.Timestamp/
-finish_time (2.google.protobuf.Timestamp"É
-CreateAppProfileRequest8
-parent (	B(àAúA"
- bigtable.googleapis.com/Instance
+finish_time (2.google.protobuf.Timestamp"Ò
+PartialUpdateClusterMetadata0
+request_time (2.google.protobuf.Timestamp/
+finish_time (2.google.protobuf.TimestampO
+original_request (25.google.bigtable.admin.v2.PartialUpdateClusterRequest"Œ
+PartialUpdateClusterRequest7
+cluster (2!.google.bigtable.admin.v2.ClusterBàA4
+update_mask (2.google.protobuf.FieldMaskBàA"Î
+CreateAppProfileRequest=
+parent (	B-àAúA\'
+%bigtableadmin.googleapis.com/Instance
 app_profile_id (	BàA>
 app_profile (2$.google.bigtable.admin.v2.AppProfileBàA
-ignore_warnings ("P
-GetAppProfileRequest8
-name (	B*àAúA$
-"bigtable.googleapis.com/AppProfile"y
-ListAppProfilesRequest8
-parent (	B(àAúA"
- bigtable.googleapis.com/Instance
+ignore_warnings ("U
+GetAppProfileRequest=
+name (	B/àAúA)
+\'bigtableadmin.googleapis.com/AppProfile"~
+ListAppProfilesRequest=
+parent (	B-àAúA\'
+%bigtableadmin.googleapis.com/Instance
 	page_size (
 
 page_token (	"ˆ
@@ -115,12 +122,12 @@ page_token (	"ˆ
 UpdateAppProfileRequest>
 app_profile (2$.google.bigtable.admin.v2.AppProfileBàA4
 update_mask (2.google.protobuf.FieldMaskBàA
-ignore_warnings ("q
-DeleteAppProfileRequest8
-name (	B*àAúA$
-"bigtable.googleapis.com/AppProfile
+ignore_warnings ("v
+DeleteAppProfileRequest=
+name (	B/àAúA)
+\'bigtableadmin.googleapis.com/AppProfile
 ignore_warnings (BàA"
-UpdateAppProfileMetadata2’
+UpdateAppProfileMetadata2‰ 
 BigtableInstanceAdminÚ
 CreateInstance/.google.bigtable.admin.v2.CreateInstanceRequest.google.longrunning.Operation"x‚Óä“&"!/v2/{parent=projects/*}/instances:*ÚA$parent,instance_id,instance,clustersÊA"
 InstanceCreateInstanceMetadata‘
@@ -136,7 +143,9 @@ page_token (	"ˆ
 GetCluster+.google.bigtable.admin.v2.GetClusterRequest!.google.bigtable.admin.v2.Cluster";‚Óä“.,/v2/{name=projects/*/instances/*/clusters/*}ÚAname¬
 ListClusters-.google.bigtable.admin.v2.ListClustersRequest..google.bigtable.admin.v2.ListClustersResponse"=‚Óä“.,/v2/{parent=projects/*/instances/*}/clustersÚAparent­
 UpdateCluster!.google.bigtable.admin.v2.Cluster.google.longrunning.Operation"Z‚Óä“1,/v2/{name=projects/*/instances/*/clusters/*}:*ÊA 
-ClusterUpdateClusterMetadata”
+ClusterUpdateClusterMetadataô
+PartialUpdateCluster5.google.bigtable.admin.v2.PartialUpdateClusterRequest.google.longrunning.Operation"…‚Óä“?24/v2/{cluster.name=projects/*/instances/*/clusters/*}:clusterÚAcluster,update_maskÊA\'
+ClusterPartialUpdateClusterMetadata”
 DeleteCluster..google.bigtable.admin.v2.DeleteClusterRequest.google.protobuf.Empty";‚Óä“.*,/v2/{name=projects/*/instances/*/clusters/*}ÚAnameÕ
 CreateAppProfile1.google.bigtable.admin.v2.CreateAppProfileRequest$.google.bigtable.admin.v2.AppProfile"h‚Óä“>"//v2/{parent=projects/*/instances/*}/appProfiles:app_profileÚA!parent,app_profile_id,app_profile¥
 GetAppProfile..google.bigtable.admin.v2.GetAppProfileRequest$.google.bigtable.admin.v2.AppProfile">‚Óä“1//v2/{name=projects/*/instances/*/appProfiles/*}ÚAname¸
