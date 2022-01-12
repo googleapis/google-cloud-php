@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/endpointsapiservice\/rolloutstrategy","type":"","title":"Google\\Cloud\\AppEngine\\V1\\EndpointsApiService\\RolloutStrategy","name":"RolloutStrategy","description":"<p>Available rollout strategies.<\/p>\n<p>Protobuf type <code>google.appengine.v1.EndpointsApiService.RolloutStrategy<\/code><\/p>","examples":[],"resources":[],"methods":[]}

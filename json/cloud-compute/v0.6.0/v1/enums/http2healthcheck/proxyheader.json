@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/http2healthcheck\/proxyheader","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\HTTP2HealthCheck\\ProxyHeader","name":"ProxyHeader","description":"<p>ProxyHeader contains string constants that represent the names of each value in\nthe google.cloud.compute.v1.HTTP2HealthCheck.ProxyHeader descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/application_identityawareproxy","type":"","title":"Google\\Cloud\\AppEngine\\V1\\Application_IdentityAwareProxy","name":"Application_IdentityAwareProxy","description":"<p>This class is deprecated. Use Google\\Cloud\\AppEngine\\V1\\Application\\IdentityAwareProxy instead.<\/p>","examples":[],"resources":[],"methods":[]}

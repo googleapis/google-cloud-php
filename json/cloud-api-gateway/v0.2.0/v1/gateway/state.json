@@ -1,0 +1,1 @@
+{"id":"apigateway\/v1\/gateway\/state","type":"","title":"Google\\Cloud\\ApiGateway\\V1\\Gateway\\State","name":"State","description":"<p>All the possible Gateway states.<\/p>\n<p>Protobuf type <code>google.cloud.apigateway.v1.Gateway.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

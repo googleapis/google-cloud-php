@@ -1,0 +1,1 @@
+{"id":"monitoring\/v3\/listtimeseriesrequest_timeseriesview","type":"","title":"Google\\Cloud\\Monitoring\\V3\\ListTimeSeriesRequest_TimeSeriesView","name":"ListTimeSeriesRequest_TimeSeriesView","description":"<p>This class is deprecated. Use Google\\Cloud\\Monitoring\\V3\\ListTimeSeriesRequest\\TimeSeriesView instead.<\/p>","examples":[],"resources":[],"methods":[]}

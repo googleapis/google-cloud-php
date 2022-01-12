@@ -1,0 +1,1 @@
+{"id":"build\/v1\/hash\/hashtype","type":"","title":"Google\\Cloud\\Build\\V1\\Hash\\HashType","name":"HashType","description":"<p>Specifies the hash algorithm, if any.<\/p>\n<p>Protobuf type <code>google.devtools.cloudbuild.v1.Hash.HashType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

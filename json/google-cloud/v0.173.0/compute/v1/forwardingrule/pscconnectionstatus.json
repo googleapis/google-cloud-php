@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/forwardingrule\/pscconnectionstatus","type":"","title":"Google\\Cloud\\Compute\\V1\\ForwardingRule\\PscConnectionStatus","name":"PscConnectionStatus","description":"<p>Protobuf type <code>google.cloud.compute.v1.ForwardingRule.PscConnectionStatus<\/code><\/p>","examples":[],"resources":[],"methods":[]}

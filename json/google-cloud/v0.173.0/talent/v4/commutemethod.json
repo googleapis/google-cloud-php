@@ -1,0 +1,1 @@
+{"id":"talent\/v4\/commutemethod","type":"","title":"Google\\Cloud\\Talent\\V4\\CommuteMethod","name":"CommuteMethod","description":"<p>Method for commute. Walking, biking and wheelchair accessible transit is\nstill in the Preview stage.<\/p>\n<p>Protobuf type <code>google.cloud.talent.v4.CommuteMethod<\/code><\/p>","examples":[],"resources":[],"methods":[]}

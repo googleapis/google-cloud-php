@@ -1,0 +1,1 @@
+{"id":"networkmanagement\/v1\/routeinfo_nexthoptype","type":"","title":"Google\\Cloud\\NetworkManagement\\V1\\RouteInfo_NextHopType","name":"RouteInfo_NextHopType","description":"<p>This class is deprecated. Use Google\\Cloud\\NetworkManagement\\V1\\RouteInfo\\NextHopType instead.<\/p>","examples":[],"resources":[],"methods":[]}
