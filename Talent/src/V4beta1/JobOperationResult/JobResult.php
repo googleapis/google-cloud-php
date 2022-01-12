@@ -135,6 +135,4 @@ class JobResult extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(JobResult::class, \Google\Cloud\Talent\V4beta1\JobOperationResult_JobResult::class);
 

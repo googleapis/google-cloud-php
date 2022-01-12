@@ -83,6 +83,4 @@ class KeywordMatchMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KeywordMatchMode::class, \Google\Cloud\Talent\V4\SearchJobsRequest_KeywordMatchMode::class);
 

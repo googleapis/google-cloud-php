@@ -90,6 +90,4 @@ class DeviceType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DeviceType::class, \Google\Cloud\Talent\V4beta1\DeviceInfo_DeviceType::class);
 
