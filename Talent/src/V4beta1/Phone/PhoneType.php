@@ -114,6 +114,4 @@ class PhoneType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PhoneType::class, \Google\Cloud\Talent\V4beta1\Phone_PhoneType::class);
 

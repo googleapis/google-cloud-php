@@ -94,6 +94,4 @@ class CompensationUnit
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CompensationUnit::class, \Google\Cloud\Talent\V4\CompensationInfo_CompensationUnit::class);
 
