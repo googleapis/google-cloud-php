@@ -445,7 +445,7 @@ class PsrLogger implements LoggerInterface, \Serializable
         $this->__unserialize(unserialize($data));
     }
 
-    public function __serialize(): array
+    public function __serialize()
     {
         $debugOutputResource = null;
         if (is_resource($this->debugOutputResource)) {
