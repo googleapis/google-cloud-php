@@ -1,0 +1,1 @@
+{"id":"tpu\/v1\/node\/state","type":"","title":"Google\\Cloud\\Tpu\\V1\\Node\\State","name":"State","description":"<p>Represents the different states of a TPU node during its lifecycle.<\/p>\n<p>Protobuf type <code>google.cloud.tpu.v1.Node.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

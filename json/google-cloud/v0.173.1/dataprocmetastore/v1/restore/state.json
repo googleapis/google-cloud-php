@@ -1,0 +1,1 @@
+{"id":"dataprocmetastore\/v1\/restore\/state","type":"","title":"Google\\Cloud\\Metastore\\V1\\Restore\\State","name":"State","description":"<p>The current state of the restore.<\/p>\n<p>Protobuf type <code>google.cloud.metastore.v1.Restore.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

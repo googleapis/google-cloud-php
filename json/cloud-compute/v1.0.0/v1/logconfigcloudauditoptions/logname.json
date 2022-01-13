@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/logconfigcloudauditoptions\/logname","type":"","title":"Google\\Cloud\\Compute\\V1\\LogConfigCloudAuditOptions\\LogName","name":"LogName","description":"<p>This is deprecated and has no effect. Do not use.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.LogConfigCloudAuditOptions.LogName<\/code><\/p>","examples":[],"resources":[],"methods":[]}

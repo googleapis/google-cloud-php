@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/scalingschedulestatus\/state","type":"","title":"Google\\Cloud\\Compute\\V1\\ScalingScheduleStatus\\State","name":"State","description":"<p>[Output Only] The current state of a scaling schedule.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.ScalingScheduleStatus.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

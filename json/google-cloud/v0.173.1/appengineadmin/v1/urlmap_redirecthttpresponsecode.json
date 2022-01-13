@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/urlmap_redirecthttpresponsecode","type":"","title":"Google\\Cloud\\AppEngine\\V1\\UrlMap_RedirectHttpResponseCode","name":"UrlMap_RedirectHttpResponseCode","description":"<p>This class is deprecated. Use Google\\Cloud\\AppEngine\\V1\\UrlMap\\RedirectHttpResponseCode instead.<\/p>","examples":[],"resources":[],"methods":[]}
