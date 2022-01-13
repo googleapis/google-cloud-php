@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.173.1
+
+<details><summary>google/cloud-compute 1.0.0</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Compute] release v1 ([#5023](https://github.com/googleapis/google-cloud-php/issues/5023)) ([df1eaa5](https://github.com/googleapis/google-cloud-php/commit/df1eaa51c6711c484630a527220e2588a2814127))
+
+</details>
+
 ## 0.173.0
 
 <details><summary>google/cloud-access-approval 0.3.0</summary>
