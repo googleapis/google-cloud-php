@@ -468,7 +468,7 @@ class PsrLogger implements LoggerInterface, \Serializable
         ];
     }
 
-    public function __unserialize(array $data): void
+    public function __unserialize(array $data)
     {
         list(
             $this->messageKey,
