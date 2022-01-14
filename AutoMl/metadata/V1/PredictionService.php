@@ -21,12 +21,11 @@ class PredictionService
         \GPBMetadata\Google\Cloud\Automl\V1\AnnotationPayload::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1\DataItems::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1\Io::initOnce();
-        \GPBMetadata\Google\Cloud\Automl\V1\Operations::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-²
-/google/cloud/automl/v1/prediction_service.protogoogle.cloud.automl.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto/google/cloud/automl/v1/annotation_payload.proto\'google/cloud/automl/v1/data_items.protogoogle/cloud/automl/v1/io.proto\'google/cloud/automl/v1/operations.proto#google/longrunning/operations.proto"ô
+‰
+/google/cloud/automl/v1/prediction_service.protogoogle.cloud.automl.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto/google/cloud/automl/v1/annotation_payload.proto\'google/cloud/automl/v1/data_items.protogoogle/cloud/automl/v1/io.proto#google/longrunning/operations.proto"ô
 PredictRequest1
 name (	B#àAúA
 automl.googleapis.com/Model<
