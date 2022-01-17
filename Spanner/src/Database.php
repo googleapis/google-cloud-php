@@ -28,6 +28,7 @@ use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Database\State;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
@@ -405,7 +406,12 @@ class Database
         $statements = $this->pluck('statements', $options, false) ?: [];
 
         $databaseId = DatabaseAdminClient::parseName($this->name())['database'];
-        $statement = sprintf('CREATE DATABASE `%s`', $databaseId);
+        if(isset($options['databaseDialect']) && $options['databaseDialect'] === DatabaseDialect::POSTGRESQL){
+            $statement = sprintf('CREATE DATABASE "%s"', $databaseId);
+        }
+        else{
+            $statement = sprintf('CREATE DATABASE `%s`', $databaseId);
+        }
 
         $operation = $this->connection->createDatabase([
             'instance' => $this->instance->name(),
