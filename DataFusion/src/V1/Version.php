@@ -34,6 +34,12 @@ class Version extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string available_features = 3;</code>
      */
     private $available_features;
+    /**
+     * Type represents the release availability of the version
+     *
+     * Generated from protobuf field <code>.google.cloud.datafusion.v1.Version.Type type = 4;</code>
+     */
+    private $type = 0;
 
     /**
      * Constructor.
@@ -47,6 +53,8 @@ class Version extends \Google\Protobuf\Internal\Message
      *           Whether this is currently the default version for Cloud Data Fusion
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $available_features
      *           Represents a list of available feature names for a given version.
+     *     @type int $type
+     *           Type represents the release availability of the version
      * }
      */
     public function __construct($data = NULL) {
@@ -128,6 +136,32 @@ class Version extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->available_features = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Type represents the release availability of the version
+     *
+     * Generated from protobuf field <code>.google.cloud.datafusion.v1.Version.Type type = 4;</code>
+     * @return int
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Type represents the release availability of the version
+     *
+     * Generated from protobuf field <code>.google.cloud.datafusion.v1.Version.Type type = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DataFusion\V1\Version\Type::class);
+        $this->type = $var;
 
         return $this;
     }

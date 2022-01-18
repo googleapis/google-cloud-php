@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAvailableVersionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project and location for which to retrieve instance
-     * information in the format projects/{project}/locations/{location}.
+     * Required. The project and location for which to retrieve instance information
+     * in the format projects/{project}/locations/{location}.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -51,8 +51,8 @@ class ListAvailableVersionsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The project and location for which to retrieve instance
-     *           information in the format projects/{project}/locations/{location}.
+     *           Required. The project and location for which to retrieve instance information
+     *           in the format projects/{project}/locations/{location}.
      *     @type int $page_size
      *           The maximum number of items to return.
      *     @type string $page_token
@@ -70,10 +70,10 @@ class ListAvailableVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location for which to retrieve instance
-     * information in the format projects/{project}/locations/{location}.
+     * Required. The project and location for which to retrieve instance information
+     * in the format projects/{project}/locations/{location}.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -82,10 +82,10 @@ class ListAvailableVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location for which to retrieve instance
-     * information in the format projects/{project}/locations/{location}.
+     * Required. The project and location for which to retrieve instance information
+     * in the format projects/{project}/locations/{location}.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
