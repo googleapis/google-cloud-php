@@ -88,6 +88,7 @@ be found for Mac or Windows.
 
     ```sh
     > vendor/bin/phpcbf -s --standard=./ruleset.xml
+    > vendor/bin/phpcs -s --standard=./ruleset.xml
     ```
 
 ## License
