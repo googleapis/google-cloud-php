@@ -74,6 +74,12 @@ class State
      * Generated from protobuf enum <code>AUTO_UPGRADING = 9;</code>
      */
     const AUTO_UPGRADING = 9;
+    /**
+     * Instance is disabled
+     *
+     * Generated from protobuf enum <code>DISABLED = 10;</code>
+     */
+    const DISABLED = 10;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -86,6 +92,7 @@ class State
         self::UPDATING => 'UPDATING',
         self::AUTO_UPDATING => 'AUTO_UPDATING',
         self::AUTO_UPGRADING => 'AUTO_UPGRADING',
+        self::DISABLED => 'DISABLED',
     ];
 
     public static function name($value)
@@ -109,6 +116,4 @@ class State
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(State::class, \Google\Cloud\DataFusion\V1\Instance_State::class);
 
