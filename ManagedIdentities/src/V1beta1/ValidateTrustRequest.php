@@ -17,16 +17,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class ValidateTrustRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource domain name, project name, and location using the form:
+     * Required. The resource domain name, project name, and location using the form:
      * `projects/{project_id}/locations/global/domains/{domain_name}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * The domain trust to validate trust state for.
+     * Required. The domain trust to validate trust state for.
      *
-     * Generated from protobuf field <code>.google.cloud.managedidentities.v1beta1.Trust trust = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.managedidentities.v1beta1.Trust trust = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $trust = null;
 
@@ -37,10 +37,10 @@ class ValidateTrustRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource domain name, project name, and location using the form:
+     *           Required. The resource domain name, project name, and location using the form:
      *           `projects/{project_id}/locations/global/domains/{domain_name}`
      *     @type \Google\Cloud\ManagedIdentities\V1beta1\Trust $trust
-     *           The domain trust to validate trust state for.
+     *           Required. The domain trust to validate trust state for.
      * }
      */
     public function __construct($data = NULL) {
@@ -49,10 +49,10 @@ class ValidateTrustRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource domain name, project name, and location using the form:
+     * Required. The resource domain name, project name, and location using the form:
      * `projects/{project_id}/locations/global/domains/{domain_name}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -61,10 +61,10 @@ class ValidateTrustRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource domain name, project name, and location using the form:
+     * Required. The resource domain name, project name, and location using the form:
      * `projects/{project_id}/locations/global/domains/{domain_name}`
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -77,14 +77,14 @@ class ValidateTrustRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The domain trust to validate trust state for.
+     * Required. The domain trust to validate trust state for.
      *
-     * Generated from protobuf field <code>.google.cloud.managedidentities.v1beta1.Trust trust = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.managedidentities.v1beta1.Trust trust = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\ManagedIdentities\V1beta1\Trust|null
      */
     public function getTrust()
     {
-        return isset($this->trust) ? $this->trust : null;
+        return $this->trust;
     }
 
     public function hasTrust()
@@ -98,9 +98,9 @@ class ValidateTrustRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The domain trust to validate trust state for.
+     * Required. The domain trust to validate trust state for.
      *
-     * Generated from protobuf field <code>.google.cloud.managedidentities.v1beta1.Trust trust = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.managedidentities.v1beta1.Trust trust = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\ManagedIdentities\V1beta1\Trust $var
      * @return $this
      */
