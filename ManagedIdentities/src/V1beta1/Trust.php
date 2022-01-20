@@ -52,42 +52,42 @@ class Trust extends \Google\Protobuf\Internal\Message
      */
     private $target_dns_ip_addresses;
     /**
-     * Input only, and will not be stored. The trust secret used for the handshake
-     * with the target domain.
+     * Input only. The trust secret used for the handshake
+     * with the target domain. It will not be stored.
      *
-     * Generated from protobuf field <code>string trust_handshake_secret = 6;</code>
+     * Generated from protobuf field <code>string trust_handshake_secret = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     private $trust_handshake_secret = '';
     /**
      * Output only. The time the instance was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
      * Output only. The last update time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
     /**
      * Output only. The current state of the trust.
      *
-     * Generated from protobuf field <code>.google.cloud.managedidentities.v1beta1.Trust.State state = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.managedidentities.v1beta1.Trust.State state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
     /**
      * Output only. Additional information about the current state of the
      * trust, if available.
      *
-     * Generated from protobuf field <code>string state_description = 11;</code>
+     * Generated from protobuf field <code>string state_description = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state_description = '';
     /**
      * Output only. The last heartbeat time when the trust was known to be
      * connected.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_trust_heartbeat_time = 12;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_trust_heartbeat_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $last_trust_heartbeat_time = null;
 
@@ -113,8 +113,8 @@ class Trust extends \Google\Protobuf\Internal\Message
      *           The target DNS server IP addresses which can resolve the remote domain
      *           involved in the trust.
      *     @type string $trust_handshake_secret
-     *           Input only, and will not be stored. The trust secret used for the handshake
-     *           with the target domain.
+     *           Input only. The trust secret used for the handshake
+     *           with the target domain. It will not be stored.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time the instance was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -275,10 +275,10 @@ class Trust extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only, and will not be stored. The trust secret used for the handshake
-     * with the target domain.
+     * Input only. The trust secret used for the handshake
+     * with the target domain. It will not be stored.
      *
-     * Generated from protobuf field <code>string trust_handshake_secret = 6;</code>
+     * Generated from protobuf field <code>string trust_handshake_secret = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
      */
     public function getTrustHandshakeSecret()
@@ -287,10 +287,10 @@ class Trust extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only, and will not be stored. The trust secret used for the handshake
-     * with the target domain.
+     * Input only. The trust secret used for the handshake
+     * with the target domain. It will not be stored.
      *
-     * Generated from protobuf field <code>string trust_handshake_secret = 6;</code>
+     * Generated from protobuf field <code>string trust_handshake_secret = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -305,12 +305,12 @@ class Trust extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time the instance was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -326,7 +326,7 @@ class Trust extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The time the instance was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -341,12 +341,12 @@ class Trust extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The last update time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -362,7 +362,7 @@ class Trust extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The last update time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -377,7 +377,7 @@ class Trust extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The current state of the trust.
      *
-     * Generated from protobuf field <code>.google.cloud.managedidentities.v1beta1.Trust.State state = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.managedidentities.v1beta1.Trust.State state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -388,7 +388,7 @@ class Trust extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The current state of the trust.
      *
-     * Generated from protobuf field <code>.google.cloud.managedidentities.v1beta1.Trust.State state = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.managedidentities.v1beta1.Trust.State state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -404,7 +404,7 @@ class Trust extends \Google\Protobuf\Internal\Message
      * Output only. Additional information about the current state of the
      * trust, if available.
      *
-     * Generated from protobuf field <code>string state_description = 11;</code>
+     * Generated from protobuf field <code>string state_description = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getStateDescription()
@@ -416,7 +416,7 @@ class Trust extends \Google\Protobuf\Internal\Message
      * Output only. Additional information about the current state of the
      * trust, if available.
      *
-     * Generated from protobuf field <code>string state_description = 11;</code>
+     * Generated from protobuf field <code>string state_description = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -432,12 +432,12 @@ class Trust extends \Google\Protobuf\Internal\Message
      * Output only. The last heartbeat time when the trust was known to be
      * connected.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_trust_heartbeat_time = 12;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_trust_heartbeat_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastTrustHeartbeatTime()
     {
-        return isset($this->last_trust_heartbeat_time) ? $this->last_trust_heartbeat_time : null;
+        return $this->last_trust_heartbeat_time;
     }
 
     public function hasLastTrustHeartbeatTime()
@@ -454,7 +454,7 @@ class Trust extends \Google\Protobuf\Internal\Message
      * Output only. The last heartbeat time when the trust was known to be
      * connected.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_trust_heartbeat_time = 12;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_trust_heartbeat_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */

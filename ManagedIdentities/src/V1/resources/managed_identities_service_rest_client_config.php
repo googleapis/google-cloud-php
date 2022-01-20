@@ -2,6 +2,30 @@
 
 return [
     'interfaces' => [
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLocations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
         'google.cloud.managedidentities.v1.ManagedIdentitiesService' => [
             'AttachTrust' => [
                 'method' => 'post',
@@ -25,6 +49,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'domain_name',
                 ],
             ],
             'DeleteDomain' => [
@@ -108,6 +135,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'ValidateTrust' => [
                 'method' => 'post',
@@ -122,21 +152,82 @@ return [
                 ],
             ],
         ],
-        'google.longrunning.Operations' => [
-            'ListOperations' => [
+        'google.iam.v1.IAMPolicy' => [
+            'GetIamPolicy' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/global/domains/*}:getIamPolicy',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/global/peerings/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/global/domains/*/backups/*}:getIamPolicy',
+                    ],
+                ],
                 'placeholders' => [
-                    'name' => [
+                    'resource' => [
                         'getters' => [
-                            'getName',
+                            'getResource',
                         ],
                     ],
                 ],
             ],
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/global/domains/*}:setIamPolicy',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/global/peerings/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/global/domains/*/backups/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/global/domains/*}:testIamPermissions',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/global/peerings/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/global/domains/*/backups/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.longrunning.Operations' => [
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/global/operations/*}:cancel',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -147,7 +238,7 @@ return [
             ],
             'DeleteOperation' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                'uriTemplate' => '/v1/{name=projects/*/locations/global/operations/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -156,9 +247,20 @@ return [
                     ],
                 ],
             ],
-            'CancelOperation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/global/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/global/operations}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
