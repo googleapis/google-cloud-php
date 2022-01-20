@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class ChannelPartnerLinkState
 {
     /**
-     * The state is not specified.
+     * Not used.
      *
      * Generated from protobuf enum <code>CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED = 0;</code>
      */
