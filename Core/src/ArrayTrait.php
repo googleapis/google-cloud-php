@@ -70,12 +70,20 @@ trait ArrayTrait
 
     /**
      * Determine whether given array is associative.
+     * If $arr is empty, then $onEmpty will be returned
+     * $onEmpty defaults to true to maintain compatibility
+     * with the current usage.
      *
      * @param array $arr
+     * @param bool $onEmpty
      * @return bool
      */
-    private function isAssoc(array $arr)
+    private function isAssoc(array $arr, $onEmpty = true)
     {
+        if (empty($arr)) {
+            return $onEmpty;
+        }
+
         return array_keys($arr) !== range(0, count($arr) - 1);
     }
 
