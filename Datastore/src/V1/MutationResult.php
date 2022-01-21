@@ -74,7 +74,7 @@ class MutationResult extends \Google\Protobuf\Internal\Message
      */
     public function getKey()
     {
-        return isset($this->key) ? $this->key : null;
+        return $this->key;
     }
 
     public function hasKey()
