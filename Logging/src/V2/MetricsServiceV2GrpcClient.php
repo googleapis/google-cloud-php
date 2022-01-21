@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
 //
 namespace Google\Cloud\Logging\V2;
 
@@ -38,6 +37,7 @@ class MetricsServiceV2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Logging\V2\ListLogMetricsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function ListLogMetrics(\Google\Cloud\Logging\V2\ListLogMetricsRequest $argument,
       $metadata = [], $options = []) {
@@ -52,6 +52,7 @@ class MetricsServiceV2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Logging\V2\GetLogMetricRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function GetLogMetric(\Google\Cloud\Logging\V2\GetLogMetricRequest $argument,
       $metadata = [], $options = []) {
@@ -66,6 +67,7 @@ class MetricsServiceV2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Logging\V2\CreateLogMetricRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function CreateLogMetric(\Google\Cloud\Logging\V2\CreateLogMetricRequest $argument,
       $metadata = [], $options = []) {
@@ -80,6 +82,7 @@ class MetricsServiceV2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Logging\V2\UpdateLogMetricRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function UpdateLogMetric(\Google\Cloud\Logging\V2\UpdateLogMetricRequest $argument,
       $metadata = [], $options = []) {
@@ -94,6 +97,7 @@ class MetricsServiceV2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Logging\V2\DeleteLogMetricRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function DeleteLogMetric(\Google\Cloud\Logging\V2\DeleteLogMetricRequest $argument,
       $metadata = [], $options = []) {

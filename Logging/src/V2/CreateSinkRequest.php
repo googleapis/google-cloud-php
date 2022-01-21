@@ -45,7 +45,7 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      * be a unique service account used only for exports from the new sink. For
      * more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
      *
-     * Generated from protobuf field <code>bool unique_writer_identity = 3;</code>
+     * Generated from protobuf field <code>bool unique_writer_identity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $unique_writer_identity = false;
 
@@ -124,11 +124,21 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      * is not already in use.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogSink sink = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Logging\V2\LogSink
+     * @return \Google\Cloud\Logging\V2\LogSink|null
      */
     public function getSink()
     {
         return $this->sink;
+    }
+
+    public function hasSink()
+    {
+        return isset($this->sink);
+    }
+
+    public function clearSink()
+    {
+        unset($this->sink);
     }
 
     /**
@@ -159,7 +169,7 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      * be a unique service account used only for exports from the new sink. For
      * more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
      *
-     * Generated from protobuf field <code>bool unique_writer_identity = 3;</code>
+     * Generated from protobuf field <code>bool unique_writer_identity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getUniqueWriterIdentity()
@@ -179,7 +189,7 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      * be a unique service account used only for exports from the new sink. For
      * more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
      *
-     * Generated from protobuf field <code>bool unique_writer_identity = 3;</code>
+     * Generated from protobuf field <code>bool unique_writer_identity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
