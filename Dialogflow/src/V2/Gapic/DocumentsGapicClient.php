@@ -42,7 +42,11 @@ use Google\Cloud\Dialogflow\V2\DeleteDocumentRequest;
 use Google\Cloud\Dialogflow\V2\Document;
 use Google\Cloud\Dialogflow\V2\ExportDocumentRequest;
 use Google\Cloud\Dialogflow\V2\GcsDestination;
+use Google\Cloud\Dialogflow\V2\GcsSources;
 use Google\Cloud\Dialogflow\V2\GetDocumentRequest;
+use Google\Cloud\Dialogflow\V2\ImportDocumentsRequest;
+use Google\Cloud\Dialogflow\V2\ImportDocumentsResponse;
+use Google\Cloud\Dialogflow\V2\ImportDocumentTemplate;
 use Google\Cloud\Dialogflow\V2\KnowledgeOperationMetadata;
 use Google\Cloud\Dialogflow\V2\ListDocumentsRequest;
 use Google\Cloud\Dialogflow\V2\ListDocumentsResponse;
@@ -771,6 +775,103 @@ class DocumentsGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetDocument', Document::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Creates documents by importing data from external sources.
+     * Dialogflow supports up to 350 documents in each request. If you try to
+     * import more, Dialogflow will return an error.
+     *
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `response`: [ImportDocumentsResponse][google.cloud.dialogflow.v2.ImportDocumentsResponse]
+     *
+     * Sample code:
+     * ```
+     * $documentsClient = new DocumentsClient();
+     * try {
+     *     $formattedParent = $documentsClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
+     *     $documentTemplate = new ImportDocumentTemplate();
+     *     $operationResponse = $documentsClient->importDocuments($formattedParent, $documentTemplate);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $documentsClient->importDocuments($formattedParent, $documentTemplate);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $documentsClient->resumeOperation($operationName, 'importDocuments');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $documentsClient->close();
+     * }
+     * ```
+     *
+     * @param string                 $parent           Required. The knowledge base to import documents into.
+     *                                                 Format: `projects/<Project ID>/locations/<Location
+     *                                                 ID>/knowledgeBases/<Knowledge Base ID>`.
+     * @param ImportDocumentTemplate $documentTemplate Required. Document template used for importing all the documents.
+     * @param array                  $optionalArgs     {
+     *     Optional.
+     *
+     *     @type GcsSources $gcsSource
+     *           The Google Cloud Storage location for the documents.
+     *           The path can include a wildcard.
+     *
+     *           These URIs may have the forms
+     *           `gs://<bucket-name>/<object-name>`.
+     *           `gs://<bucket-name>/<object-path>/*.<extension>`.
+     *     @type bool $importGcsCustomMetadata
+     *           Whether to import custom metadata from Google Cloud Storage.
+     *           Only valid when the document source is Google Cloud Storage URI.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function importDocuments($parent, $documentTemplate, array $optionalArgs = [])
+    {
+        $request = new ImportDocumentsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setDocumentTemplate($documentTemplate);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['gcsSource'])) {
+            $request->setGcsSource($optionalArgs['gcsSource']);
+        }
+
+        if (isset($optionalArgs['importGcsCustomMetadata'])) {
+            $request->setImportGcsCustomMetadata($optionalArgs['importGcsCustomMetadata']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ImportDocuments', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**

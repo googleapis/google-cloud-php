@@ -14,16 +14,16 @@ class Webhook
         if (static::$is_initialized == true) {
           return;
         }
+        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Context::initOnce();
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Intent::initOnce();
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Session::initOnce();
         \GPBMetadata\Google\Cloud\Dialogflow\V2\SessionEntityType::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-÷
-(google/cloud/dialogflow/v2/webhook.protogoogle.cloud.dialogflow.v2\'google/cloud/dialogflow/v2/intent.proto(google/cloud/dialogflow/v2/session.proto4google/cloud/dialogflow/v2/session_entity_type.protogoogle/protobuf/struct.protogoogle/api/annotations.proto"Ö
+ƒ	
+(google/cloud/dialogflow/v2/webhook.protogoogle.cloud.dialogflow.v2(google/cloud/dialogflow/v2/context.proto\'google/cloud/dialogflow/v2/intent.proto(google/cloud/dialogflow/v2/session.proto4google/cloud/dialogflow/v2/session_entity_type.protogoogle/protobuf/struct.proto"Ö
 WebhookRequest
 session (	
 response_id (	=

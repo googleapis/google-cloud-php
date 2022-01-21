@@ -85,6 +85,30 @@ class DocumentsGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Creates documents by importing data from external sources.
+     * Dialogflow supports up to 350 documents in each request. If you try to
+     * import more, Dialogflow will return an error.
+     *
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `response`: [ImportDocumentsResponse][google.cloud.dialogflow.v2.ImportDocumentsResponse]
+     * @param \Google\Cloud\Dialogflow\V2\ImportDocumentsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ImportDocuments(\Google\Cloud\Dialogflow\V2\ImportDocumentsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dialogflow.v2.Documents/ImportDocuments',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Deletes the specified document.
      *
      * This method is a [long-running
