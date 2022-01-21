@@ -110,3 +110,34 @@ s.replace(
     r"(.{0,})\]\((/.{0,})\)",
     r"\1](https://cloud.google.com\2)"
 )
+
+# fix backwards-compatibility issues due to removed resource name helpers
+
+s.replace(
+    'src/V1/Gapic/KeyManagementServiceGapicClient.php',
+    r"}",
+    r"""
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a crypto_key_path resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKeyPath
+     *
+     * @return string The formatted crypto_key_path resource.
+     * @deprecated
+     */
+    public static function cryptoKeyPathName($project, $location, $keyRing, $cryptoKeyPath)
+    {
+        return self::getCryptoKeyPathNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key_path' => $cryptoKeyPath,
+        ]);
+    }
+}"""
+)
