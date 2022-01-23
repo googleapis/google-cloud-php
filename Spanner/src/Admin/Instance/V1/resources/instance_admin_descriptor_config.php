@@ -13,6 +13,16 @@ return [
                     'totalPollTimeoutMillis' => '86400000',
                 ],
             ],
+            'CreateInstanceConfig' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig',
+                    'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'UpdateInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\Instance',
@@ -21,6 +31,26 @@ return [
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '45000',
                     'totalPollTimeoutMillis' => '86400000',
+                ],
+            ],
+            'UpdateInstanceConfig' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig',
+                    'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'ListInstanceConfigOperations' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getOperations',
                 ],
             ],
             'ListInstanceConfigs' => [

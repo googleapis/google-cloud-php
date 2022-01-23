@@ -156,18 +156,6 @@ return [
                     ],
                 ],
             ],
-            'ExecuteStreamingSql' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{session=projects/*/instances/*/databases/*/sessions/*}:executeStreamingSql',
-                'body' => '*',
-                'placeholders' => [
-                    'session' => [
-                        'getters' => [
-                            'getSession',
-                        ],
-                    ],
-                ],
-            ],
             'GetSession' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*/sessions/*}',
@@ -229,18 +217,6 @@ return [
             'Rollback' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{session=projects/*/instances/*/databases/*/sessions/*}:rollback',
-                'body' => '*',
-                'placeholders' => [
-                    'session' => [
-                        'getters' => [
-                            'getSession',
-                        ],
-                    ],
-                ],
-            ],
-            'StreamingRead' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{session=projects/*/instances/*/databases/*/sessions/*}:streamingRead',
                 'body' => '*',
                 'placeholders' => [
                     'session' => [
