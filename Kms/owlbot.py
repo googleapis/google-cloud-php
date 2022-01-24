@@ -113,7 +113,7 @@ s.replace(
 
 # fix backwards-compatibility issues due to removed resource name helpers
 f = open("src/V1/Gapic/KeyManagementServiceGapicClient.php",  "r")
-if "public static function cryptoKeyName" not in f.read():
+if "public static function cryptoKeyPathName" not in f.read():
     s.replace(
         "src/V1/Gapic/KeyManagementServiceGapicClient.php",
         r"}",
