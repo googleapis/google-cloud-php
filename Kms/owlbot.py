@@ -112,11 +112,12 @@ s.replace(
 )
 
 # fix backwards-compatibility issues due to removed resource name helpers
-
-s.replace(
-    'src/V1/Gapic/KeyManagementServiceGapicClient.php',
-    r"}",
-    r"""
+f = open("src/V1/Gapic/KeyManagementServiceGapicClient.php",  "r")
+if "public static function cryptoKeyName" not in f.read():
+    s.replace(
+        "src/V1/Gapic/KeyManagementServiceGapicClient.php",
+        r"}",
+        r"""
 
     /**
      * Formats a string containing the fully-qualified path to represent
@@ -140,4 +141,4 @@ s.replace(
         ]);
     }
 }"""
-)
+    )
