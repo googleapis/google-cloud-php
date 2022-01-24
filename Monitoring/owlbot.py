@@ -124,3 +124,48 @@ s.replace(
     r"(.{0,})\]\((/.{0,})\)",
     r"\1](https://cloud.google.com\2)"
 )
+
+# fix backwards-compatibility issues due to removed resource name helpers
+f = open("src/V3/Gapic/AlertPolicyServiceGapicClient.php",  "r")
+if "public static function alertPolicyConditionName(" not in f.read():
+    s.replace(
+        "src/V3/Gapic/AlertPolicyServiceGapicClient.php",
+        r"^}$",
+        r"""
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a alert_policy_condition resource.
+     *
+     * @param string $project
+     * @param string $alertPolicy
+     * @param string $condition
+     *
+     * @return string The formatted alert_policy_condition resource.
+     * @deprecated
+     */
+    public static function alertPolicyConditionName($project, $alertPolicy, $condition)
+    {
+        return (new PathTemplate('projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}'))->render([
+            'project' => $project,
+            'alert_policy' => $alertPolicy,
+            'condition' => $condition,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @deprecated
+     */
+    public static function projectName($project)
+    {
+        return (new PathTemplate('projects/{project}'))->render([
+            'project' => $project,
+        ]);
+    }
+}"""
+    )
