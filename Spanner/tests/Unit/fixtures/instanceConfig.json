@@ -1,0 +1,24 @@
+{
+  "name": "projects\/test-project\/instanceConfigs\/test-config",
+  "displayName": "Instance Config Name",
+  "configType": 1,
+  "replicas": [
+    {
+      "location": "us-west1",
+      "type": 0,
+      "defaultLeaderLocation": true
+    },
+    {
+      "location": "us-central1",
+      "type": 0,
+      "defaultLeaderLocation": false
+    },
+    {
+      "location": "us-east1",
+      "type": 0,
+      "defaultLeaderLocation": false
+    }
+  ],
+  "state": 2,
+  "reconciling": false
+}

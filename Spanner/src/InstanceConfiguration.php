@@ -17,10 +17,19 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\State;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig\Type;
+use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\ApiCore\ValidationException;
+use InvalidArgumentException;
 
 /**
  * Represents a Cloud Spanner Instance Configuration.
@@ -40,6 +49,8 @@ use Google\ApiCore\ValidationException;
  */
 class InstanceConfiguration
 {
+    use ArrayTrait;
+    use LROTrait;
     /**
      * @var ConnectionInterface
      */
@@ -72,6 +83,8 @@ class InstanceConfiguration
      */
     public function __construct(
         ConnectionInterface $connection,
+        LongRunningConnectionInterface $lroConnection,
+        array $lroCallables,
         $projectId,
         $name,
         array $info = []
@@ -80,6 +93,8 @@ class InstanceConfiguration
         $this->projectId = $projectId;
         $this->name = $this->fullyQualifiedConfigName($name, $projectId);
         $this->info = $info;
+
+        $this->setLroProperties($lroConnection, $lroCallables, $this->name);
     }
 
     /**
@@ -174,6 +189,122 @@ class InstanceConfiguration
         ]);
 
         return $this->info;
+    }
+
+    /**
+     * Create a new instance configuration.
+     *
+     * Example:
+     * ```
+     * $operation = $instanceConfig->create($baseConfig, $options);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#createinstanceconfigrequest CreateInstanceConfigRequest
+     *
+     * @param InstanceConfiguration $baseConfig The base configuration to extend for this custom instance configuration
+     * @param ReplicaInfo[] $replicas The replica information for the new instance configuration. This array must
+     *           contain all the replicas from the base configuration, plus at least one from list of optional replicas
+     *           of the base configuration. One of the replicas must be set as the default leader location.
+     * @param array $options [optional] {
+     *     Configuration options
+     *
+     * @type string $displayName **Defaults to** the value of $name.
+     * @type array $leaderOptions Allowed values of the "default_leader" schema option for databases in
+     *           instances that use this instance configuration. **Defaults to** the leader options of the base
+     *           configuration.
+     * @type array $labels For more information, see
+     *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
+     * @type bool $validateOnly An option to validate, but not actually execute, the request, and provide the same
+     *           response
+     * }
+     * @return LongRunningOperation<InstanceConfig>
+     * @throws ValidationException
+     * @codingStandardsIgnoreEnd
+     */
+    public function create(InstanceConfiguration $baseConfig, array $replicas, array $options = [])
+    {
+        $configId = InstanceAdminClient::parseName($this->name)['instance_config'];
+        $options += [
+            'displayName' => $configId,
+            'labels' => [],
+            'replicas' => $replicas,
+            'leaderOptions' => $baseConfig->info()['leaderOptions'],
+        ];
+
+        // Set output parameters to their default values.
+        $options['state'] = State::CREATING;
+        $options['configType'] = Type::USER_MANAGED;
+        $options['optionalReplicas'] = [];
+        $options['reconciling'] = false;
+
+        $operation = $this->connection->createInstanceConfig([
+                'instanceConfigId' => $configId,
+                'name' => $this->name,
+                'projectName' => InstanceAdminClient::projectName($this->projectId),
+                'baseConfig' => $baseConfig->name(),
+            ] + $options);
+
+        return $this->resumeOperation($operation['name'], $operation);
+    }
+
+    /**
+     * Update the instance configuration. This is only possible for customer managed instance configurations.
+     *
+     * Example:
+     * ```
+     * $instanceConfig->update([
+     *     'displayName' => 'My Instance config'
+     * ]);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.instance.v1#updateinstanceconfigrequest UpdateInstanceConfigRequest
+     * @codingStandardsIgnoreEnd
+     *
+     * @param array $options [optional] {
+     *     Configuration options
+     *
+     *     @type string $displayName The descriptive name for this instance as
+     *           it appears in UIs. **Defaults to** the value of $name.
+     *     @type array $labels For more information, see
+     *           [Using labels to organize Google Cloud Platform resources](https://goo.gl/xmQnxf).
+     *     @type bool $validateOnly An option to validate, but not actually execute, the request, and provide the same
+     *           response
+     * }
+     * @return LongRunningOperation
+     * @throws InvalidArgumentException
+     */
+    public function update(array $options = [])
+    {
+        $operation = $this->connection->updateInstanceConfig([
+                'name' => $this->name,
+            ] + $options);
+
+        return $this->resumeOperation($operation['name'], $operation);
+    }
+
+    /**
+     * Delete the instance configuration. This is only possible for customer managed instance configurations that are
+     * currently not in use by any instances.
+     *
+     * Example:
+     * ```
+     * $instanceConfig->delete();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.instance.v1#deleteinstanceconfigrequest DeleteInstanceConfigRequest
+     * @codingStandardsIgnoreEnd
+     *
+     * @param array $options [optional] Configuration options.
+     * @return void
+     */
+    public function delete(array $options = [])
+    {
+        $this->connection->deleteInstanceConfig($options + [
+                'name' => $this->name
+            ]);
     }
 
     /**
