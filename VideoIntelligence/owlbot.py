@@ -94,6 +94,26 @@ s.replace(
     r"\1](https://cloud.google.com\2)"
 )
 
+# fix phpdoc examples for optional-to-required parameters
+f = open("src/V1/Gapic/VideoIntelligenceServiceGapicClient.php",  "r")
+if ' *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo();' in f.read():
+    s.replace(
+        "src/V1/Gapic/VideoIntelligenceServiceGapicClient.php",
+        r"^ \*     \$operationResponse = \$videoIntelligenceServiceClient->annotateVideo\(\);$",
+        r""" *     $inputUri = 'gs://cloud-samples-data/video/cat.mp4';
+ *     $featuresElement = Feature::LABEL_DETECTION;
+ *     $features = [$featuresElement];
+ *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);"""
+    )
+    s.replace(
+        "src/V1/Gapic/VideoIntelligenceServiceGapicClient.php",
+        r"^     \*     \$operationResponse = \$videoIntelligenceServiceClient->annotateVideo\(\);$",
+        r"""     *     $inputUri = 'gs://cloud-samples-data/video/cat.mp4';
+     *     $featuresElement = Feature::LABEL_DETECTION;
+     *     $features = [$featuresElement];
+     *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo(['inputUri' => $inputUri, 'features' => $features]);"""
+    )
+
 # format generated clients
 subprocess.run([
     'npm',
