@@ -116,9 +116,8 @@ f = open("src/V1/Gapic/KeyManagementServiceGapicClient.php",  "r")
 if "public static function cryptoKeyPathName" not in f.read():
     s.replace(
         "src/V1/Gapic/KeyManagementServiceGapicClient.php",
-        r"}",
+        r"^}$",
         r"""
-
     /**
      * Formats a string containing the fully-qualified path to represent
      * a crypto_key_path resource.
@@ -129,7 +128,7 @@ if "public static function cryptoKeyPathName" not in f.read():
      * @param string $cryptoKeyPath
      *
      * @return string The formatted crypto_key_path resource.
-     * @deprecated
+     * @deprecated Use cryptoKeyName instead
      */
     public static function cryptoKeyPathName($project, $location, $keyRing, $cryptoKeyPath)
     {
