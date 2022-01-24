@@ -132,7 +132,7 @@ if "public static function cryptoKeyPathName" not in f.read():
      */
     public static function cryptoKeyPathName($project, $location, $keyRing, $cryptoKeyPath)
     {
-        return self::getCryptoKeyPathNameTemplate()->render([
+        return (new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key_path=**}'))->render([
             'project' => $project,
             'location' => $location,
             'key_ring' => $keyRing,
