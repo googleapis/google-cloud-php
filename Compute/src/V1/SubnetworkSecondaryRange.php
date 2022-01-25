@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class SubnetworkSecondaryRange extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The range of IP addresses belonging to this subnetwork secondary range. Provide this property when you create the subnetwork. Ranges must be unique and non-overlapping with all primary and secondary IP ranges within a network. Only IPv4 is supported. This may be a RFC 1918 IP range, or a privately, non-RFC 1918 IP range, not belonging to Google.
+     * The range of IP addresses belonging to this subnetwork secondary range. Provide this property when you create the subnetwork. Ranges must be unique and non-overlapping with all primary and secondary IP ranges within a network. Only IPv4 is supported. The range can be any range listed in the Valid ranges list.
      *
-     * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
+     * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      */
     private $ip_cidr_range = null;
     /**
      * The name associated with this subnetwork secondary range, used when adding an alias IP range to a VM instance. The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the subnetwork.
      *
-     * Generated from protobuf field <code>string range_name = 332216397;</code>
+     * Generated from protobuf field <code>optional string range_name = 332216397;</code>
      */
     private $range_name = null;
 
@@ -35,7 +35,7 @@ class SubnetworkSecondaryRange extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $ip_cidr_range
-     *           The range of IP addresses belonging to this subnetwork secondary range. Provide this property when you create the subnetwork. Ranges must be unique and non-overlapping with all primary and secondary IP ranges within a network. Only IPv4 is supported. This may be a RFC 1918 IP range, or a privately, non-RFC 1918 IP range, not belonging to Google.
+     *           The range of IP addresses belonging to this subnetwork secondary range. Provide this property when you create the subnetwork. Ranges must be unique and non-overlapping with all primary and secondary IP ranges within a network. Only IPv4 is supported. The range can be any range listed in the Valid ranges list.
      *     @type string $range_name
      *           The name associated with this subnetwork secondary range, used when adding an alias IP range to a VM instance. The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the subnetwork.
      * }
@@ -46,9 +46,9 @@ class SubnetworkSecondaryRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The range of IP addresses belonging to this subnetwork secondary range. Provide this property when you create the subnetwork. Ranges must be unique and non-overlapping with all primary and secondary IP ranges within a network. Only IPv4 is supported. This may be a RFC 1918 IP range, or a privately, non-RFC 1918 IP range, not belonging to Google.
+     * The range of IP addresses belonging to this subnetwork secondary range. Provide this property when you create the subnetwork. Ranges must be unique and non-overlapping with all primary and secondary IP ranges within a network. Only IPv4 is supported. The range can be any range listed in the Valid ranges list.
      *
-     * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
+     * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @return string
      */
     public function getIpCidrRange()
@@ -67,9 +67,9 @@ class SubnetworkSecondaryRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The range of IP addresses belonging to this subnetwork secondary range. Provide this property when you create the subnetwork. Ranges must be unique and non-overlapping with all primary and secondary IP ranges within a network. Only IPv4 is supported. This may be a RFC 1918 IP range, or a privately, non-RFC 1918 IP range, not belonging to Google.
+     * The range of IP addresses belonging to this subnetwork secondary range. Provide this property when you create the subnetwork. Ranges must be unique and non-overlapping with all primary and secondary IP ranges within a network. Only IPv4 is supported. The range can be any range listed in the Valid ranges list.
      *
-     * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
+     * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @param string $var
      * @return $this
      */
@@ -84,7 +84,7 @@ class SubnetworkSecondaryRange extends \Google\Protobuf\Internal\Message
     /**
      * The name associated with this subnetwork secondary range, used when adding an alias IP range to a VM instance. The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the subnetwork.
      *
-     * Generated from protobuf field <code>string range_name = 332216397;</code>
+     * Generated from protobuf field <code>optional string range_name = 332216397;</code>
      * @return string
      */
     public function getRangeName()
@@ -105,7 +105,7 @@ class SubnetworkSecondaryRange extends \Google\Protobuf\Internal\Message
     /**
      * The name associated with this subnetwork secondary range, used when adding an alias IP range to a VM instance. The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the subnetwork.
      *
-     * Generated from protobuf field <code>string range_name = 332216397;</code>
+     * Generated from protobuf field <code>optional string range_name = 332216397;</code>
      * @param string $var
      * @return $this
      */

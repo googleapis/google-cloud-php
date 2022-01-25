@@ -286,7 +286,7 @@ class AuthorizedCertificate extends \Google\Protobuf\Internal\Message
      */
     public function getExpireTime()
     {
-        return isset($this->expire_time) ? $this->expire_time : null;
+        return $this->expire_time;
     }
 
     public function hasExpireTime()
@@ -326,7 +326,7 @@ class AuthorizedCertificate extends \Google\Protobuf\Internal\Message
      */
     public function getCertificateRawData()
     {
-        return isset($this->certificate_raw_data) ? $this->certificate_raw_data : null;
+        return $this->certificate_raw_data;
     }
 
     public function hasCertificateRawData()
@@ -367,7 +367,7 @@ class AuthorizedCertificate extends \Google\Protobuf\Internal\Message
      */
     public function getManagedCertificate()
     {
-        return isset($this->managed_certificate) ? $this->managed_certificate : null;
+        return $this->managed_certificate;
     }
 
     public function hasManagedCertificate()

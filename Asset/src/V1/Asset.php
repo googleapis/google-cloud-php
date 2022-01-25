@@ -13,7 +13,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * [resource
  * hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
  * a resource outside the Google Cloud resource hierarchy (such as Google
- * Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy).
+ * Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy),
+ * or a relationship (e.g. an INSTANCE_TO_INSTANCEGROUP relationship).
  * See [Supported asset
  * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
  * for more information.
@@ -86,6 +87,13 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     private $os_inventory = null;
     /**
+     * The related assets of the asset of one relationship type.
+     * One asset only represents one type of relationship.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAssets related_assets = 13;</code>
+     */
+    private $related_assets = null;
+    /**
      * The ancestry path of an asset in Google Cloud [resource
      * hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
      * represented as a list of relative resource names. An ancestry path starts
@@ -149,6 +157,9 @@ class Asset extends \Google\Protobuf\Internal\Message
      *           A representation of runtime OS Inventory information. See [this
      *           topic](https://cloud.google.com/compute/docs/instances/os-inventory-management)
      *           for more information.
+     *     @type \Google\Cloud\Asset\V1\RelatedAssets $related_assets
+     *           The related assets of the asset of one relationship type.
+     *           One asset only represents one type of relationship.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ancestors
      *           The ancestry path of an asset in Google Cloud [resource
      *           hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
@@ -173,7 +184,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -276,7 +287,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getResource()
     {
-        return isset($this->resource) ? $this->resource : null;
+        return $this->resource;
     }
 
     public function hasResource()
@@ -320,7 +331,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getIamPolicy()
     {
-        return isset($this->iam_policy) ? $this->iam_policy : null;
+        return $this->iam_policy;
     }
 
     public function hasIamPolicy()
@@ -497,7 +508,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getOsInventory()
     {
-        return isset($this->os_inventory) ? $this->os_inventory : null;
+        return $this->os_inventory;
     }
 
     public function hasOsInventory()
@@ -523,6 +534,44 @@ class Asset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\OsConfig\V1\Inventory::class);
         $this->os_inventory = $var;
+
+        return $this;
+    }
+
+    /**
+     * The related assets of the asset of one relationship type.
+     * One asset only represents one type of relationship.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAssets related_assets = 13;</code>
+     * @return \Google\Cloud\Asset\V1\RelatedAssets|null
+     */
+    public function getRelatedAssets()
+    {
+        return $this->related_assets;
+    }
+
+    public function hasRelatedAssets()
+    {
+        return isset($this->related_assets);
+    }
+
+    public function clearRelatedAssets()
+    {
+        unset($this->related_assets);
+    }
+
+    /**
+     * The related assets of the asset of one relationship type.
+     * One asset only represents one type of relationship.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAssets related_assets = 13;</code>
+     * @param \Google\Cloud\Asset\V1\RelatedAssets $var
+     * @return $this
+     */
+    public function setRelatedAssets($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\RelatedAssets::class);
+        $this->related_assets = $var;
 
         return $this;
     }

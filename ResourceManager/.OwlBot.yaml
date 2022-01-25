@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/resourcemanager/(v3)/.*-php/(.*)
+      dest: /owl-bot-staging/ResourceManager/$1/$2
+api-name: ResourceManager

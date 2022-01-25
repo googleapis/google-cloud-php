@@ -103,7 +103,7 @@ class ContinuousValidationPodEvent extends \Google\Protobuf\Internal\Message
      */
     public function getDeployTime()
     {
-        return isset($this->deploy_time) ? $this->deploy_time : null;
+        return $this->deploy_time;
     }
 
     public function hasDeployTime()
@@ -139,7 +139,7 @@ class ContinuousValidationPodEvent extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()

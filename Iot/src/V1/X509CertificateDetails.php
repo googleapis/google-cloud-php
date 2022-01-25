@@ -137,7 +137,7 @@ class X509CertificateDetails extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -173,7 +173,7 @@ class X509CertificateDetails extends \Google\Protobuf\Internal\Message
      */
     public function getExpiryTime()
     {
-        return isset($this->expiry_time) ? $this->expiry_time : null;
+        return $this->expiry_time;
     }
 
     public function hasExpiryTime()

@@ -29,8 +29,8 @@ use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise;
-use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Utils;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
@@ -262,7 +262,7 @@ class StorageObjectTest extends SnippetTestCase
 
         $this->connection->downloadObject(Argument::any())
             ->shouldBeCalled()
-            ->willReturn(Psr7\stream_for('test'));
+            ->willReturn(Utils::streamFor('test'));
 
         $this->object->___setProperty('connection', $this->connection->reveal());
 
@@ -278,7 +278,7 @@ class StorageObjectTest extends SnippetTestCase
 
         $this->connection->downloadObject(Argument::any())
             ->shouldBeCalled()
-            ->willReturn(Psr7\stream_for('test'));
+            ->willReturn(Utils::streamFor('test'));
 
         $this->object->___setProperty('connection', $this->connection->reveal());
 
@@ -294,7 +294,7 @@ class StorageObjectTest extends SnippetTestCase
 
         $this->connection->downloadObject(Argument::any())
             ->shouldBeCalled()
-            ->willReturn(Psr7\stream_for('test'));
+            ->willReturn(Utils::streamFor('test'));
 
         $this->object->___setProperty('connection', $this->connection->reveal());
 
@@ -317,7 +317,7 @@ class StorageObjectTest extends SnippetTestCase
                 'object' => 'my-object'
             ])
             ->shouldBeCalled()
-            ->willReturn(Psr7\stream_for('test'));
+            ->willReturn(Utils::streamFor('test'));
         $this->object->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
@@ -331,7 +331,7 @@ class StorageObjectTest extends SnippetTestCase
         $this->connection->downloadObjectAsync(Argument::any())
             ->shouldBeCalled()
             ->willReturn(
-                Promise\promise_for(Psr7\stream_for('test'))
+                Promise\promise_for(Utils::streamFor('test'))
             );
 
         $this->object->___setProperty('connection', $this->connection->reveal());
@@ -353,7 +353,7 @@ class StorageObjectTest extends SnippetTestCase
         $this->connection->downloadObjectAsync(Argument::any())
             ->shouldBeCalled()
             ->willReturn(
-                Promise\promise_for(Psr7\stream_for('test'))
+                Promise\promise_for(Utils::streamFor('test'))
             );
 
         $this->object->___setProperty('connection', $this->connection->reveal());

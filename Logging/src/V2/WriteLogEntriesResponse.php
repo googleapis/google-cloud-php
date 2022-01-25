@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Result returned from WriteLogEntries.
- * empty
  *
  * Generated from protobuf message <code>google.logging.v2.WriteLogEntriesResponse</code>
  */

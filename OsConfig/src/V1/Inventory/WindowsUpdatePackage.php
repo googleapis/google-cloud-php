@@ -333,7 +333,7 @@ class WindowsUpdatePackage extends \Google\Protobuf\Internal\Message
      */
     public function getLastDeploymentChangeTime()
     {
-        return isset($this->last_deployment_change_time) ? $this->last_deployment_change_time : null;
+        return $this->last_deployment_change_time;
     }
 
     public function hasLastDeploymentChangeTime()
@@ -363,6 +363,4 @@ class WindowsUpdatePackage extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(WindowsUpdatePackage::class, \Google\Cloud\OsConfig\V1\Inventory_WindowsUpdatePackage::class);
 

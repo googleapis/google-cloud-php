@@ -15,8 +15,8 @@ return [
                     ],
                 ],
             ],
-            'GetApplication' => [
-                'method' => 'get',
+            'DeleteApplication' => [
+                'method' => 'delete',
                 'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*/profiles/*/applications/*}',
                 'placeholders' => [
                     'name' => [
@@ -26,21 +26,8 @@ return [
                     ],
                 ],
             ],
-            'UpdateApplication' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v4beta1/{application.name=projects/*/tenants/*/profiles/*/applications/*}',
-                'body' => '*',
-                'placeholders' => [
-                    'application.name' => [
-                        'getters' => [
-                            'getApplication',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteApplication' => [
-                'method' => 'delete',
+            'GetApplication' => [
+                'method' => 'get',
                 'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*/profiles/*/applications/*}',
                 'placeholders' => [
                     'name' => [
@@ -57,6 +44,19 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateApplication' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v4beta1/{application.name=projects/*/tenants/*/profiles/*/applications/*}',
+                'body' => '*',
+                'placeholders' => [
+                    'application.name' => [
+                        'getters' => [
+                            'getApplication',
+                            'getName',
                         ],
                     ],
                 ],

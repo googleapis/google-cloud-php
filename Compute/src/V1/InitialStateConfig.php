@@ -36,7 +36,7 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
     /**
      * The Platform Key (PK).
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FileContentBuffer pk = 3579;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FileContentBuffer pk = 3579;</code>
      */
     private $pk = null;
 
@@ -142,12 +142,12 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
     /**
      * The Platform Key (PK).
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FileContentBuffer pk = 3579;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FileContentBuffer pk = 3579;</code>
      * @return \Google\Cloud\Compute\V1\FileContentBuffer|null
      */
     public function getPk()
     {
-        return isset($this->pk) ? $this->pk : null;
+        return $this->pk;
     }
 
     public function hasPk()
@@ -163,7 +163,7 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
     /**
      * The Platform Key (PK).
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FileContentBuffer pk = 3579;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FileContentBuffer pk = 3579;</code>
      * @param \Google\Cloud\Compute\V1\FileContentBuffer $var
      * @return $this
      */

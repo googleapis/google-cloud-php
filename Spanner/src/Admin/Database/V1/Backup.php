@@ -206,7 +206,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     public function getVersionTime()
     {
-        return isset($this->version_time) ? $this->version_time : null;
+        return $this->version_time;
     }
 
     public function hasVersionTime()
@@ -250,7 +250,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     public function getExpireTime()
     {
-        return isset($this->expire_time) ? $this->expire_time : null;
+        return $this->expire_time;
     }
 
     public function hasExpireTime()
@@ -339,7 +339,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -467,7 +467,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     public function getEncryptionInfo()
     {
-        return isset($this->encryption_info) ? $this->encryption_info : null;
+        return $this->encryption_info;
     }
 
     public function hasEncryptionInfo()

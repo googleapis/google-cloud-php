@@ -7,7 +7,8 @@ namespace Google\Cloud\Talent\V4;
 use UnexpectedValueException;
 
 /**
- * Method for commute.
+ * Method for commute. Walking, biking and wheelchair accessible transit is
+ * still in the Preview stage.
  *
  * Protobuf type <code>google.cloud.talent.v4.CommuteMethod</code>
  */
@@ -32,11 +33,33 @@ class CommuteMethod
      * Generated from protobuf enum <code>TRANSIT = 2;</code>
      */
     const TRANSIT = 2;
+    /**
+     * Commute time is calculated based on walking time.
+     *
+     * Generated from protobuf enum <code>WALKING = 3;</code>
+     */
+    const WALKING = 3;
+    /**
+     * Commute time is calculated based on biking time.
+     *
+     * Generated from protobuf enum <code>CYCLING = 4;</code>
+     */
+    const CYCLING = 4;
+    /**
+     * Commute time is calculated based on public transit that is wheelchair
+     * accessible.
+     *
+     * Generated from protobuf enum <code>TRANSIT_ACCESSIBLE = 5;</code>
+     */
+    const TRANSIT_ACCESSIBLE = 5;
 
     private static $valueToName = [
         self::COMMUTE_METHOD_UNSPECIFIED => 'COMMUTE_METHOD_UNSPECIFIED',
         self::DRIVING => 'DRIVING',
         self::TRANSIT => 'TRANSIT',
+        self::WALKING => 'WALKING',
+        self::CYCLING => 'CYCLING',
+        self::TRANSIT_ACCESSIBLE => 'TRANSIT_ACCESSIBLE',
     ];
 
     public static function name($value)

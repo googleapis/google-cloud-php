@@ -17,9 +17,9 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent eventStore name, such as
-     * "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     * `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -29,18 +29,18 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
      */
     private $user_event = '';
     /**
-     * Optional. The url including cgi-parameters but excluding the hash fragment. The URL
-     * must be truncated to 1.5K bytes to conservatively be under the 2K bytes.
-     * This is often more useful than the referer url, because many browsers only
-     * send the domain for 3rd party requests.
+     * Optional. The url including cgi-parameters but excluding the hash fragment.
+     * The URL must be truncated to 1.5K bytes to conservatively be under the 2K
+     * bytes. This is often more useful than the referer url, because many
+     * browsers only send the domain for 3rd party requests.
      *
      * Generated from protobuf field <code>string uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $uri = '';
     /**
-     * Optional. The event timestamp in milliseconds. This prevents browser caching of
-     * otherwise identical get requests. The name is abbreviated to reduce the
-     * payload bytes.
+     * Optional. The event timestamp in milliseconds. This prevents browser
+     * caching of otherwise identical get requests. The name is abbreviated to
+     * reduce the payload bytes.
      *
      * Generated from protobuf field <code>int64 ets = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -54,18 +54,18 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent eventStore name, such as
-     *           "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     *           `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      *     @type string $user_event
      *           Required. URL encoded UserEvent proto.
      *     @type string $uri
-     *           Optional. The url including cgi-parameters but excluding the hash fragment. The URL
-     *           must be truncated to 1.5K bytes to conservatively be under the 2K bytes.
-     *           This is often more useful than the referer url, because many browsers only
-     *           send the domain for 3rd party requests.
+     *           Optional. The url including cgi-parameters but excluding the hash fragment.
+     *           The URL must be truncated to 1.5K bytes to conservatively be under the 2K
+     *           bytes. This is often more useful than the referer url, because many
+     *           browsers only send the domain for 3rd party requests.
      *     @type int|string $ets
-     *           Optional. The event timestamp in milliseconds. This prevents browser caching of
-     *           otherwise identical get requests. The name is abbreviated to reduce the
-     *           payload bytes.
+     *           Optional. The event timestamp in milliseconds. This prevents browser
+     *           caching of otherwise identical get requests. The name is abbreviated to
+     *           reduce the payload bytes.
      * }
      */
     public function __construct($data = NULL) {
@@ -75,9 +75,9 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent eventStore name, such as
-     * "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     * `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -87,9 +87,9 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent eventStore name, such as
-     * "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     * `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -128,10 +128,10 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The url including cgi-parameters but excluding the hash fragment. The URL
-     * must be truncated to 1.5K bytes to conservatively be under the 2K bytes.
-     * This is often more useful than the referer url, because many browsers only
-     * send the domain for 3rd party requests.
+     * Optional. The url including cgi-parameters but excluding the hash fragment.
+     * The URL must be truncated to 1.5K bytes to conservatively be under the 2K
+     * bytes. This is often more useful than the referer url, because many
+     * browsers only send the domain for 3rd party requests.
      *
      * Generated from protobuf field <code>string uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -142,10 +142,10 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The url including cgi-parameters but excluding the hash fragment. The URL
-     * must be truncated to 1.5K bytes to conservatively be under the 2K bytes.
-     * This is often more useful than the referer url, because many browsers only
-     * send the domain for 3rd party requests.
+     * Optional. The url including cgi-parameters but excluding the hash fragment.
+     * The URL must be truncated to 1.5K bytes to conservatively be under the 2K
+     * bytes. This is often more useful than the referer url, because many
+     * browsers only send the domain for 3rd party requests.
      *
      * Generated from protobuf field <code>string uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -160,9 +160,9 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The event timestamp in milliseconds. This prevents browser caching of
-     * otherwise identical get requests. The name is abbreviated to reduce the
-     * payload bytes.
+     * Optional. The event timestamp in milliseconds. This prevents browser
+     * caching of otherwise identical get requests. The name is abbreviated to
+     * reduce the payload bytes.
      *
      * Generated from protobuf field <code>int64 ets = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
@@ -173,9 +173,9 @@ class CollectUserEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The event timestamp in milliseconds. This prevents browser caching of
-     * otherwise identical get requests. The name is abbreviated to reduce the
-     * payload bytes.
+     * Optional. The event timestamp in milliseconds. This prevents browser
+     * caching of otherwise identical get requests. The name is abbreviated to
+     * reduce the payload bytes.
      *
      * Generated from protobuf field <code>int64 ets = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var

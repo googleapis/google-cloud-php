@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/orchestration/airflow/service/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/OrchestrationAirflow/$1/$2
+api-name: OrchestrationAirflow

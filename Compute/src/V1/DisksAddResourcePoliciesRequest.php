@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DisksAddResourcePoliciesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource policies to be added to this disk. Currently you can only specify one policy here.
+     * Full or relative path to the resource policy to be added to this disk. You can only specify one resource policy.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
      */
@@ -28,7 +28,7 @@ class DisksAddResourcePoliciesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_policies
-     *           Resource policies to be added to this disk. Currently you can only specify one policy here.
+     *           Full or relative path to the resource policy to be added to this disk. You can only specify one resource policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +37,7 @@ class DisksAddResourcePoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource policies to be added to this disk. Currently you can only specify one policy here.
+     * Full or relative path to the resource policy to be added to this disk. You can only specify one resource policy.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -48,7 +48,7 @@ class DisksAddResourcePoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource policies to be added to this disk. Currently you can only specify one policy here.
+     * Full or relative path to the resource policy to be added to this disk. You can only specify one resource policy.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

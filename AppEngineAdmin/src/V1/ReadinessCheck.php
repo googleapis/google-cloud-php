@@ -214,7 +214,7 @@ class ReadinessCheck extends \Google\Protobuf\Internal\Message
      */
     public function getCheckInterval()
     {
-        return isset($this->check_interval) ? $this->check_interval : null;
+        return $this->check_interval;
     }
 
     public function hasCheckInterval()
@@ -250,7 +250,7 @@ class ReadinessCheck extends \Google\Protobuf\Internal\Message
      */
     public function getTimeout()
     {
-        return isset($this->timeout) ? $this->timeout : null;
+        return $this->timeout;
     }
 
     public function hasTimeout()
@@ -288,7 +288,7 @@ class ReadinessCheck extends \Google\Protobuf\Internal\Message
      */
     public function getAppStartTimeout()
     {
-        return isset($this->app_start_timeout) ? $this->app_start_timeout : null;
+        return $this->app_start_timeout;
     }
 
     public function hasAppStartTimeout()

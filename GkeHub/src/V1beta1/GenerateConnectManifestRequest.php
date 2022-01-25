@@ -121,7 +121,7 @@ class GenerateConnectManifestRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConnectAgent()
     {
-        return isset($this->connect_agent) ? $this->connect_agent : null;
+        return $this->connect_agent;
     }
 
     public function hasConnectAgent()

@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
 //
 namespace Google\Cloud\Logging\V2;
 
@@ -34,10 +33,192 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Lists buckets.
+     * @param \Google\Cloud\Logging\V2\ListBucketsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListBuckets(\Google\Cloud\Logging\V2\ListBucketsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/ListBuckets',
+        $argument,
+        ['\Google\Cloud\Logging\V2\ListBucketsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets a bucket.
+     * @param \Google\Cloud\Logging\V2\GetBucketRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetBucket(\Google\Cloud\Logging\V2\GetBucketRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/GetBucket',
+        $argument,
+        ['\Google\Cloud\Logging\V2\LogBucket', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a bucket that can be used to store log entries. Once a bucket has
+     * been created, the region cannot be changed.
+     * @param \Google\Cloud\Logging\V2\CreateBucketRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateBucket(\Google\Cloud\Logging\V2\CreateBucketRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/CreateBucket',
+        $argument,
+        ['\Google\Cloud\Logging\V2\LogBucket', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a bucket. This method replaces the following fields in the
+     * existing bucket with values from the new bucket: `retention_period`
+     *
+     * If the retention period is decreased and the bucket is locked,
+     * FAILED_PRECONDITION will be returned.
+     *
+     * If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION
+     * will be returned.
+     *
+     * A buckets region may not be modified after it is created.
+     * @param \Google\Cloud\Logging\V2\UpdateBucketRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateBucket(\Google\Cloud\Logging\V2\UpdateBucketRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/UpdateBucket',
+        $argument,
+        ['\Google\Cloud\Logging\V2\LogBucket', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a bucket.
+     * Moves the bucket to the DELETE_REQUESTED state. After 7 days, the
+     * bucket will be purged and all logs in the bucket will be permanently
+     * deleted.
+     * @param \Google\Cloud\Logging\V2\DeleteBucketRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteBucket(\Google\Cloud\Logging\V2\DeleteBucketRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/DeleteBucket',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Undeletes a bucket. A bucket that has been deleted may be undeleted within
+     * the grace period of 7 days.
+     * @param \Google\Cloud\Logging\V2\UndeleteBucketRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UndeleteBucket(\Google\Cloud\Logging\V2\UndeleteBucketRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/UndeleteBucket',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists views on a bucket.
+     * @param \Google\Cloud\Logging\V2\ListViewsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListViews(\Google\Cloud\Logging\V2\ListViewsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/ListViews',
+        $argument,
+        ['\Google\Cloud\Logging\V2\ListViewsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets a view.
+     * @param \Google\Cloud\Logging\V2\GetViewRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetView(\Google\Cloud\Logging\V2\GetViewRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/GetView',
+        $argument,
+        ['\Google\Cloud\Logging\V2\LogView', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a view over logs in a bucket. A bucket may contain a maximum of
+     * 50 views.
+     * @param \Google\Cloud\Logging\V2\CreateViewRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateView(\Google\Cloud\Logging\V2\CreateViewRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/CreateView',
+        $argument,
+        ['\Google\Cloud\Logging\V2\LogView', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a view. This method replaces the following fields in the existing
+     * view with values from the new view: `filter`.
+     * @param \Google\Cloud\Logging\V2\UpdateViewRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateView(\Google\Cloud\Logging\V2\UpdateViewRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/UpdateView',
+        $argument,
+        ['\Google\Cloud\Logging\V2\LogView', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a view from a bucket.
+     * @param \Google\Cloud\Logging\V2\DeleteViewRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteView(\Google\Cloud\Logging\V2\DeleteViewRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/DeleteView',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Lists sinks.
      * @param \Google\Cloud\Logging\V2\ListSinksRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function ListSinks(\Google\Cloud\Logging\V2\ListSinksRequest $argument,
       $metadata = [], $options = []) {
@@ -52,6 +233,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Logging\V2\GetSinkRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function GetSink(\Google\Cloud\Logging\V2\GetSinkRequest $argument,
       $metadata = [], $options = []) {
@@ -69,6 +251,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Logging\V2\CreateSinkRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function CreateSink(\Google\Cloud\Logging\V2\CreateSinkRequest $argument,
       $metadata = [], $options = []) {
@@ -87,6 +270,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Logging\V2\UpdateSinkRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function UpdateSink(\Google\Cloud\Logging\V2\UpdateSinkRequest $argument,
       $metadata = [], $options = []) {
@@ -102,6 +286,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Logging\V2\DeleteSinkRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function DeleteSink(\Google\Cloud\Logging\V2\DeleteSinkRequest $argument,
       $metadata = [], $options = []) {
@@ -116,6 +301,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Logging\V2\ListExclusionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function ListExclusions(\Google\Cloud\Logging\V2\ListExclusionsRequest $argument,
       $metadata = [], $options = []) {
@@ -130,6 +316,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Logging\V2\GetExclusionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function GetExclusion(\Google\Cloud\Logging\V2\GetExclusionRequest $argument,
       $metadata = [], $options = []) {
@@ -146,6 +333,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Logging\V2\CreateExclusionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function CreateExclusion(\Google\Cloud\Logging\V2\CreateExclusionRequest $argument,
       $metadata = [], $options = []) {
@@ -160,6 +348,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Logging\V2\UpdateExclusionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function UpdateExclusion(\Google\Cloud\Logging\V2\UpdateExclusionRequest $argument,
       $metadata = [], $options = []) {
@@ -174,6 +363,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Logging\V2\DeleteExclusionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function DeleteExclusion(\Google\Cloud\Logging\V2\DeleteExclusionRequest $argument,
       $metadata = [], $options = []) {
@@ -191,10 +381,12 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
      * the GCP organization.
      *
      * See [Enabling CMEK for Logs
-     * Router](/logging/docs/routing/managed-encryption) for more information.
+     * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+     * for more information.
      * @param \Google\Cloud\Logging\V2\GetCmekSettingsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function GetCmekSettings(\Google\Cloud\Logging\V2\GetCmekSettingsRequest $argument,
       $metadata = [], $options = []) {
@@ -218,10 +410,12 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
      * 3) access to the key is disabled.
      *
      * See [Enabling CMEK for Logs
-     * Router](/logging/docs/routing/managed-encryption) for more information.
+     * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+     * for more information.
      * @param \Google\Cloud\Logging\V2\UpdateCmekSettingsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function UpdateCmekSettings(\Google\Cloud\Logging\V2\UpdateCmekSettingsRequest $argument,
       $metadata = [], $options = []) {

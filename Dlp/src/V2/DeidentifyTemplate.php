@@ -50,7 +50,7 @@ class DeidentifyTemplate extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * ///////////// // The core content of the template  // ///////////////
+     * The core content of the template.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyConfig deidentify_config = 6;</code>
      */
@@ -76,7 +76,7 @@ class DeidentifyTemplate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last update timestamp of an inspectTemplate.
      *     @type \Google\Cloud\Dlp\V2\DeidentifyConfig $deidentify_config
-     *           ///////////// // The core content of the template  // ///////////////
+     *           The core content of the template.
      * }
      */
     public function __construct($data = NULL) {
@@ -176,7 +176,7 @@ class DeidentifyTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -212,7 +212,7 @@ class DeidentifyTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -241,14 +241,14 @@ class DeidentifyTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ///////////// // The core content of the template  // ///////////////
+     * The core content of the template.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyConfig deidentify_config = 6;</code>
      * @return \Google\Cloud\Dlp\V2\DeidentifyConfig|null
      */
     public function getDeidentifyConfig()
     {
-        return isset($this->deidentify_config) ? $this->deidentify_config : null;
+        return $this->deidentify_config;
     }
 
     public function hasDeidentifyConfig()
@@ -262,7 +262,7 @@ class DeidentifyTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * ///////////// // The core content of the template  // ///////////////
+     * The core content of the template.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyConfig deidentify_config = 6;</code>
      * @param \Google\Cloud\Dlp\V2\DeidentifyConfig $var

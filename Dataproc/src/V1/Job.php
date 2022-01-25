@@ -95,8 +95,8 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $job_uuid = '';
     /**
-     * Output only. Indicates whether the job is completed. If the value is
-     * `false`, the job is still in progress. If `true`, the job is completed, and
+     * Output only. Indicates whether the job is completed. If the value is `false`,
+     * the job is still in progress. If `true`, the job is completed, and
      * `status.state` field will indicate if it was successful, failed,
      * or cancelled.
      *
@@ -167,8 +167,8 @@ class Job extends \Google\Protobuf\Internal\Message
      *           over time. This is in contrast to a user-settable reference.job_id that
      *           may be reused over time.
      *     @type bool $done
-     *           Output only. Indicates whether the job is completed. If the value is
-     *           `false`, the job is still in progress. If `true`, the job is completed, and
+     *           Output only. Indicates whether the job is completed. If the value is `false`,
+     *           the job is still in progress. If `true`, the job is completed, and
      *           `status.state` field will indicate if it was successful, failed,
      *           or cancelled.
      * }
@@ -189,7 +189,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getReference()
     {
-        return isset($this->reference) ? $this->reference : null;
+        return $this->reference;
     }
 
     public function hasReference()
@@ -229,7 +229,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPlacement()
     {
-        return isset($this->placement) ? $this->placement : null;
+        return $this->placement;
     }
 
     public function hasPlacement()
@@ -516,7 +516,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : null;
+        return $this->status;
     }
 
     public function hasStatus()
@@ -706,7 +706,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getScheduling()
     {
-        return isset($this->scheduling) ? $this->scheduling : null;
+        return $this->scheduling;
     }
 
     public function hasScheduling()
@@ -765,8 +765,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates whether the job is completed. If the value is
-     * `false`, the job is still in progress. If `true`, the job is completed, and
+     * Output only. Indicates whether the job is completed. If the value is `false`,
+     * the job is still in progress. If `true`, the job is completed, and
      * `status.state` field will indicate if it was successful, failed,
      * or cancelled.
      *
@@ -779,8 +779,8 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates whether the job is completed. If the value is
-     * `false`, the job is still in progress. If `true`, the job is completed, and
+     * Output only. Indicates whether the job is completed. If the value is `false`,
+     * the job is still in progress. If `true`, the job is completed, and
      * `status.state` field will indicate if it was successful, failed,
      * or cancelled.
      *

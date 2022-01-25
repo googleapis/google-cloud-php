@@ -18,7 +18,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The key used by the encryption function.
+     * The key used by the encryption function. For deterministic encryption
+     * using AES-SIV, the provided key is internally expanded to 64 bytes prior to
+     * use.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoKey crypto_key = 1;</code>
      */
@@ -81,7 +83,9 @@ class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\CryptoKey $crypto_key
-     *           The key used by the encryption function.
+     *           The key used by the encryption function. For deterministic encryption
+     *           using AES-SIV, the provided key is internally expanded to 64 bytes prior to
+     *           use.
      *     @type \Google\Cloud\Dlp\V2\InfoType $surrogate_info_type
      *           The custom info type to annotate the surrogate with.
      *           This annotation will be applied to the surrogate by prefixing it with
@@ -132,14 +136,16 @@ class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The key used by the encryption function.
+     * The key used by the encryption function. For deterministic encryption
+     * using AES-SIV, the provided key is internally expanded to 64 bytes prior to
+     * use.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoKey crypto_key = 1;</code>
      * @return \Google\Cloud\Dlp\V2\CryptoKey|null
      */
     public function getCryptoKey()
     {
-        return isset($this->crypto_key) ? $this->crypto_key : null;
+        return $this->crypto_key;
     }
 
     public function hasCryptoKey()
@@ -153,7 +159,9 @@ class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The key used by the encryption function.
+     * The key used by the encryption function. For deterministic encryption
+     * using AES-SIV, the provided key is internally expanded to 64 bytes prior to
+     * use.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoKey crypto_key = 1;</code>
      * @param \Google\Cloud\Dlp\V2\CryptoKey $var
@@ -200,7 +208,7 @@ class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSurrogateInfoType()
     {
-        return isset($this->surrogate_info_type) ? $this->surrogate_info_type : null;
+        return $this->surrogate_info_type;
     }
 
     public function hasSurrogateInfoType()
@@ -274,7 +282,7 @@ class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
      */
     public function getContext()
     {
-        return isset($this->context) ? $this->context : null;
+        return $this->context;
     }
 
     public function hasContext()

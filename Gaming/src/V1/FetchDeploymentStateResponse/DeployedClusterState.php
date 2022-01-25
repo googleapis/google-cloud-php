@@ -103,6 +103,4 @@ class DeployedClusterState extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DeployedClusterState::class, \Google\Cloud\Gaming\V1\FetchDeploymentStateResponse_DeployedClusterState::class);
 

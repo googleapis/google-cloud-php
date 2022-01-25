@@ -45,7 +45,7 @@ class LabelImageBoundingBoxOperationMetadata extends \Google\Protobuf\Internal\M
      */
     public function getBasicConfig()
     {
-        return isset($this->basic_config) ? $this->basic_config : null;
+        return $this->basic_config;
     }
 
     public function hasBasicConfig()

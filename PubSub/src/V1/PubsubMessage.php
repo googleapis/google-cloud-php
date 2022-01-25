@@ -202,7 +202,7 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      */
     public function getPublishTime()
     {
-        return isset($this->publish_time) ? $this->publish_time : null;
+        return $this->publish_time;
     }
 
     public function hasPublishTime()

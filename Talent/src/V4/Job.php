@@ -83,6 +83,14 @@ class Job extends \Google\Protobuf\Internal\Message
      * be preserved, a custom field should be used for storage. It is also
      * suggested to group the locations that close to each other in the same job
      * for better search experience.
+     * Jobs with multiple addresses must have their addresses with the same
+     * [LocationType][] to allow location filtering to work properly. (For
+     * example, a Job with addresses "1600 Amphitheatre Parkway, Mountain View,
+     * CA, USA" and "London, UK" may not have location filters applied correctly
+     * at search time since the first is a [LocationType.STREET_ADDRESS][] and the
+     * second is a [LocationType.LOCALITY][].) If a job needs to have multiple
+     * addresses, it is suggested to split it into multiple jobs with same
+     * LocationTypes.
      * The maximum number of allowed characters is 500.
      *
      * Generated from protobuf field <code>repeated string addresses = 6;</code>
@@ -111,7 +119,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * A map of fields to hold both filterable and non-filterable custom job
      * attributes that are not covered by the provided structured fields.
      * The keys of the map are strings up to 64 bytes and must match the
-     * pattern: [a-zA-Z][a-zA-Z0-9_]*. For example, key0LikeThis or
+     * pattern: `[a-zA-Z][a-zA-Z0-9_]*`. For example, key0LikeThis or
      * KEY_1_LIKE_THIS.
      * At most 100 filterable and at most 100 unfilterable keys are supported.
      * For filterable `string_values`, across all keys at most 200 values are
@@ -371,6 +379,14 @@ class Job extends \Google\Protobuf\Internal\Message
      *           be preserved, a custom field should be used for storage. It is also
      *           suggested to group the locations that close to each other in the same job
      *           for better search experience.
+     *           Jobs with multiple addresses must have their addresses with the same
+     *           [LocationType][] to allow location filtering to work properly. (For
+     *           example, a Job with addresses "1600 Amphitheatre Parkway, Mountain View,
+     *           CA, USA" and "London, UK" may not have location filters applied correctly
+     *           at search time since the first is a [LocationType.STREET_ADDRESS][] and the
+     *           second is a [LocationType.LOCALITY][].) If a job needs to have multiple
+     *           addresses, it is suggested to split it into multiple jobs with same
+     *           LocationTypes.
      *           The maximum number of allowed characters is 500.
      *     @type \Google\Cloud\Talent\V4\Job\ApplicationInfo $application_info
      *           Job application information.
@@ -383,7 +399,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *           A map of fields to hold both filterable and non-filterable custom job
      *           attributes that are not covered by the provided structured fields.
      *           The keys of the map are strings up to 64 bytes and must match the
-     *           pattern: [a-zA-Z][a-zA-Z0-9_]*. For example, key0LikeThis or
+     *           pattern: `[a-zA-Z][a-zA-Z0-9_]*`. For example, key0LikeThis or
      *           KEY_1_LIKE_THIS.
      *           At most 100 filterable and at most 100 unfilterable keys are supported.
      *           For filterable `string_values`, across all keys at most 200 values are
@@ -701,6 +717,14 @@ class Job extends \Google\Protobuf\Internal\Message
      * be preserved, a custom field should be used for storage. It is also
      * suggested to group the locations that close to each other in the same job
      * for better search experience.
+     * Jobs with multiple addresses must have their addresses with the same
+     * [LocationType][] to allow location filtering to work properly. (For
+     * example, a Job with addresses "1600 Amphitheatre Parkway, Mountain View,
+     * CA, USA" and "London, UK" may not have location filters applied correctly
+     * at search time since the first is a [LocationType.STREET_ADDRESS][] and the
+     * second is a [LocationType.LOCALITY][].) If a job needs to have multiple
+     * addresses, it is suggested to split it into multiple jobs with same
+     * LocationTypes.
      * The maximum number of allowed characters is 500.
      *
      * Generated from protobuf field <code>repeated string addresses = 6;</code>
@@ -724,6 +748,14 @@ class Job extends \Google\Protobuf\Internal\Message
      * be preserved, a custom field should be used for storage. It is also
      * suggested to group the locations that close to each other in the same job
      * for better search experience.
+     * Jobs with multiple addresses must have their addresses with the same
+     * [LocationType][] to allow location filtering to work properly. (For
+     * example, a Job with addresses "1600 Amphitheatre Parkway, Mountain View,
+     * CA, USA" and "London, UK" may not have location filters applied correctly
+     * at search time since the first is a [LocationType.STREET_ADDRESS][] and the
+     * second is a [LocationType.LOCALITY][].) If a job needs to have multiple
+     * addresses, it is suggested to split it into multiple jobs with same
+     * LocationTypes.
      * The maximum number of allowed characters is 500.
      *
      * Generated from protobuf field <code>repeated string addresses = 6;</code>
@@ -746,7 +778,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getApplicationInfo()
     {
-        return isset($this->application_info) ? $this->application_info : null;
+        return $this->application_info;
     }
 
     public function hasApplicationInfo()
@@ -809,7 +841,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getCompensationInfo()
     {
-        return isset($this->compensation_info) ? $this->compensation_info : null;
+        return $this->compensation_info;
     }
 
     public function hasCompensationInfo()
@@ -842,7 +874,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * A map of fields to hold both filterable and non-filterable custom job
      * attributes that are not covered by the provided structured fields.
      * The keys of the map are strings up to 64 bytes and must match the
-     * pattern: [a-zA-Z][a-zA-Z0-9_]*. For example, key0LikeThis or
+     * pattern: `[a-zA-Z][a-zA-Z0-9_]*`. For example, key0LikeThis or
      * KEY_1_LIKE_THIS.
      * At most 100 filterable and at most 100 unfilterable keys are supported.
      * For filterable `string_values`, across all keys at most 200 values are
@@ -862,7 +894,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * A map of fields to hold both filterable and non-filterable custom job
      * attributes that are not covered by the provided structured fields.
      * The keys of the map are strings up to 64 bytes and must match the
-     * pattern: [a-zA-Z][a-zA-Z0-9_]*. For example, key0LikeThis or
+     * pattern: `[a-zA-Z][a-zA-Z0-9_]*`. For example, key0LikeThis or
      * KEY_1_LIKE_THIS.
      * At most 100 filterable and at most 100 unfilterable keys are supported.
      * For filterable `string_values`, across all keys at most 200 values are
@@ -1255,7 +1287,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getJobStartTime()
     {
-        return isset($this->job_start_time) ? $this->job_start_time : null;
+        return $this->job_start_time;
     }
 
     public function hasJobStartTime()
@@ -1293,7 +1325,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getJobEndTime()
     {
-        return isset($this->job_end_time) ? $this->job_end_time : null;
+        return $this->job_end_time;
     }
 
     public function hasJobEndTime()
@@ -1332,7 +1364,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPostingPublishTime()
     {
-        return isset($this->posting_publish_time) ? $this->posting_publish_time : null;
+        return $this->posting_publish_time;
     }
 
     public function hasPostingPublishTime()
@@ -1404,7 +1436,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPostingExpireTime()
     {
-        return isset($this->posting_expire_time) ? $this->posting_expire_time : null;
+        return $this->posting_expire_time;
     }
 
     public function hasPostingExpireTime()
@@ -1474,7 +1506,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPostingCreateTime()
     {
-        return isset($this->posting_create_time) ? $this->posting_create_time : null;
+        return $this->posting_create_time;
     }
 
     public function hasPostingCreateTime()
@@ -1510,7 +1542,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPostingUpdateTime()
     {
-        return isset($this->posting_update_time) ? $this->posting_update_time : null;
+        return $this->posting_update_time;
     }
 
     public function hasPostingUpdateTime()
@@ -1572,7 +1604,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getDerivedInfo()
     {
-        return isset($this->derived_info) ? $this->derived_info : null;
+        return $this->derived_info;
     }
 
     public function hasDerivedInfo()
@@ -1608,7 +1640,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getProcessingOptions()
     {
-        return isset($this->processing_options) ? $this->processing_options : null;
+        return $this->processing_options;
     }
 
     public function hasProcessingOptions()

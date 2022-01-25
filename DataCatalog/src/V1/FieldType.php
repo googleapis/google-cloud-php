@@ -22,9 +22,9 @@ class FieldType extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $primitive_type
-     *           Represents primitive types - string, bool etc.
+     *           Primitive types, such as string, boolean, etc.
      *     @type \Google\Cloud\DataCatalog\V1\FieldType\EnumType $enum_type
-     *           Represents an enum type.
+     *           An enum type.
      * }
      */
     public function __construct($data = NULL) {
@@ -33,7 +33,7 @@ class FieldType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents primitive types - string, bool etc.
+     * Primitive types, such as string, boolean, etc.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.FieldType.PrimitiveType primitive_type = 1;</code>
      * @return int
@@ -49,7 +49,7 @@ class FieldType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents primitive types - string, bool etc.
+     * Primitive types, such as string, boolean, etc.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.FieldType.PrimitiveType primitive_type = 1;</code>
      * @param int $var
@@ -64,7 +64,7 @@ class FieldType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents an enum type.
+     * An enum type.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.FieldType.EnumType enum_type = 2;</code>
      * @return \Google\Cloud\DataCatalog\V1\FieldType\EnumType|null
@@ -80,7 +80,7 @@ class FieldType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents an enum type.
+     * An enum type.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.FieldType.EnumType enum_type = 2;</code>
      * @param \Google\Cloud\DataCatalog\V1\FieldType\EnumType $var

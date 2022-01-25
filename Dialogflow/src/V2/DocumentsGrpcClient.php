@@ -65,8 +65,12 @@ class DocumentsGrpcClient extends \Grpc\BaseStub {
     /**
      * Creates a new document.
      *
-     * Operation <response: [Document][google.cloud.dialogflow.v2.Document],
-     *            metadata: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]>
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `response`: [Document][google.cloud.dialogflow.v2.Document]
      * @param \Google\Cloud\Dialogflow\V2\CreateDocumentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -83,8 +87,13 @@ class DocumentsGrpcClient extends \Grpc\BaseStub {
     /**
      * Deletes the specified document.
      *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty],
-     *            metadata: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]>
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `response`: An [Empty
+     *   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
      * @param \Google\Cloud\Dialogflow\V2\DeleteDocumentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -101,8 +110,12 @@ class DocumentsGrpcClient extends \Grpc\BaseStub {
     /**
      * Updates the specified document.
      *
-     * Operation <response: [Document][google.cloud.dialogflow.v2.Document],
-     *            metadata: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]>
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `response`: [Document][google.cloud.dialogflow.v2.Document]
      * @param \Google\Cloud\Dialogflow\V2\UpdateDocumentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -122,11 +135,15 @@ class DocumentsGrpcClient extends \Grpc\BaseStub {
      * Note: Even when the content of the document has not changed, there still
      * may be side effects because of internal implementation changes.
      *
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `response`: [Document][google.cloud.dialogflow.v2.Document]
+     *
      * Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;
      * only use `projects.knowledgeBases.documents`.
-     *
-     * Operation <response: [Document][google.cloud.dialogflow.v2.Document],
-     *            metadata: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]>
      * @param \Google\Cloud\Dialogflow\V2\ReloadDocumentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -135,6 +152,29 @@ class DocumentsGrpcClient extends \Grpc\BaseStub {
     public function ReloadDocument(\Google\Cloud\Dialogflow\V2\ReloadDocumentRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.dialogflow.v2.Documents/ReloadDocument',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Exports a smart messaging candidate document into the specified
+     * destination.
+     *
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+     * - `response`: [Document][google.cloud.dialogflow.v2.Document]
+     * @param \Google\Cloud\Dialogflow\V2\ExportDocumentRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ExportDocument(\Google\Cloud\Dialogflow\V2\ExportDocumentRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dialogflow.v2.Documents/ExportDocument',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);

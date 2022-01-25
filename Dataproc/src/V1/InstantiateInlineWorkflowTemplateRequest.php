@@ -127,7 +127,7 @@ class InstantiateInlineWorkflowTemplateRequest extends \Google\Protobuf\Internal
      */
     public function getTemplate()
     {
-        return isset($this->template) ? $this->template : null;
+        return $this->template;
     }
 
     public function hasTemplate()

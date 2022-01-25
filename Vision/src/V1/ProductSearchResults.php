@@ -73,7 +73,7 @@ class ProductSearchResults extends \Google\Protobuf\Internal\Message
      */
     public function getIndexTime()
     {
-        return isset($this->index_time) ? $this->index_time : null;
+        return $this->index_time;
     }
 
     public function hasIndexTime()

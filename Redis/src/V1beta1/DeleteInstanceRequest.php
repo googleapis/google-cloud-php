@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for [DeleteInstance][google.cloud.redis.v1beta1.CloudRedis.DeleteInstance].
+ * Request for
+ * [DeleteInstance][google.cloud.redis.v1beta1.CloudRedis.DeleteInstance].
  *
  * Generated from protobuf message <code>google.cloud.redis.v1beta1.DeleteInstanceRequest</code>
  */

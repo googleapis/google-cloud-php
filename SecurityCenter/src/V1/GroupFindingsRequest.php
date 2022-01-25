@@ -78,9 +78,9 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
     /**
-     * Required. Expression that defines what assets fields to use for grouping
-     * (including `state_change`). The string value should follow SQL syntax:
-     * comma separated list of fields. For example: "parent,resource_name".
+     * Required. Expression that defines what assets fields to use for grouping (including
+     * `state_change`). The string value should follow SQL syntax: comma separated
+     * list of fields. For example: "parent,resource_name".
      * The following fields are supported:
      * * resource_name
      * * category
@@ -211,9 +211,9 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *             * resource.project_display_name: `=`, `:`
      *             * resource.type: `=`, `:`
      *     @type string $group_by
-     *           Required. Expression that defines what assets fields to use for grouping
-     *           (including `state_change`). The string value should follow SQL syntax:
-     *           comma separated list of fields. For example: "parent,resource_name".
+     *           Required. Expression that defines what assets fields to use for grouping (including
+     *           `state_change`). The string value should follow SQL syntax: comma separated
+     *           list of fields. For example: "parent,resource_name".
      *           The following fields are supported:
      *           * resource_name
      *           * category
@@ -422,9 +422,9 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Expression that defines what assets fields to use for grouping
-     * (including `state_change`). The string value should follow SQL syntax:
-     * comma separated list of fields. For example: "parent,resource_name".
+     * Required. Expression that defines what assets fields to use for grouping (including
+     * `state_change`). The string value should follow SQL syntax: comma separated
+     * list of fields. For example: "parent,resource_name".
      * The following fields are supported:
      * * resource_name
      * * category
@@ -443,9 +443,9 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Expression that defines what assets fields to use for grouping
-     * (including `state_change`). The string value should follow SQL syntax:
-     * comma separated list of fields. For example: "parent,resource_name".
+     * Required. Expression that defines what assets fields to use for grouping (including
+     * `state_change`). The string value should follow SQL syntax: comma separated
+     * list of fields. For example: "parent,resource_name".
      * The following fields are supported:
      * * resource_name
      * * category
@@ -478,7 +478,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getReadTime()
     {
-        return isset($this->read_time) ? $this->read_time : null;
+        return $this->read_time;
     }
 
     public function hasReadTime()
@@ -543,7 +543,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCompareDuration()
     {
-        return isset($this->compare_duration) ? $this->compare_duration : null;
+        return $this->compare_duration;
     }
 
     public function hasCompareDuration()

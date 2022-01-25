@@ -64,6 +64,25 @@ class MetricMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool custom_definition = 7;</code>
      */
     private $custom_definition = false;
+    /**
+     * If reasons are specified, your access is blocked to this metric for this
+     * property. API requests from you to this property for this metric will
+     * succeed; however, the report will contain only zeros for this metric. API
+     * requests with metric filters on blocked metrics will fail. If reasons are
+     * empty, you have access to this metric.
+     * To learn more, see [Access and data-restriction
+     * management](https://support.google.com/analytics/answer/10851388).
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.MetricMetadata.BlockedReason blocked_reasons = 8;</code>
+     */
+    private $blocked_reasons;
+    /**
+     * The display name of the category that this metrics belongs to. Similar
+     * dimensions and metrics are categorized together.
+     *
+     * Generated from protobuf field <code>string category = 10;</code>
+     */
+    private $category = '';
 
     /**
      * Constructor.
@@ -92,6 +111,17 @@ class MetricMetadata extends \Google\Protobuf\Internal\Message
      *           are not expressions, and for non-expressions, this field is empty.
      *     @type bool $custom_definition
      *           True if the metric is a custom metric for this property.
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $blocked_reasons
+     *           If reasons are specified, your access is blocked to this metric for this
+     *           property. API requests from you to this property for this metric will
+     *           succeed; however, the report will contain only zeros for this metric. API
+     *           requests with metric filters on blocked metrics will fail. If reasons are
+     *           empty, you have access to this metric.
+     *           To learn more, see [Access and data-restriction
+     *           management](https://support.google.com/analytics/answer/10851388).
+     *     @type string $category
+     *           The display name of the category that this metrics belongs to. Similar
+     *           dimensions and metrics are categorized together.
      * }
      */
     public function __construct($data = NULL) {
@@ -291,6 +321,72 @@ class MetricMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->custom_definition = $var;
+
+        return $this;
+    }
+
+    /**
+     * If reasons are specified, your access is blocked to this metric for this
+     * property. API requests from you to this property for this metric will
+     * succeed; however, the report will contain only zeros for this metric. API
+     * requests with metric filters on blocked metrics will fail. If reasons are
+     * empty, you have access to this metric.
+     * To learn more, see [Access and data-restriction
+     * management](https://support.google.com/analytics/answer/10851388).
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.MetricMetadata.BlockedReason blocked_reasons = 8;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getBlockedReasons()
+    {
+        return $this->blocked_reasons;
+    }
+
+    /**
+     * If reasons are specified, your access is blocked to this metric for this
+     * property. API requests from you to this property for this metric will
+     * succeed; however, the report will contain only zeros for this metric. API
+     * requests with metric filters on blocked metrics will fail. If reasons are
+     * empty, you have access to this metric.
+     * To learn more, see [Access and data-restriction
+     * management](https://support.google.com/analytics/answer/10851388).
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.MetricMetadata.BlockedReason blocked_reasons = 8;</code>
+     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setBlockedReasons($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Analytics\Data\V1beta\MetricMetadata\BlockedReason::class);
+        $this->blocked_reasons = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The display name of the category that this metrics belongs to. Similar
+     * dimensions and metrics are categorized together.
+     *
+     * Generated from protobuf field <code>string category = 10;</code>
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * The display name of the category that this metrics belongs to. Similar
+     * dimensions and metrics are categorized together.
+     *
+     * Generated from protobuf field <code>string category = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCategory($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->category = $var;
 
         return $this;
     }

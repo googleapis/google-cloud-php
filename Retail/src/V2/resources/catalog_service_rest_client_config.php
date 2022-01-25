@@ -3,6 +3,17 @@
 return [
     'interfaces' => [
         'google.cloud.retail.v2.CatalogService' => [
+            'GetDefaultBranch' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{catalog=projects/*/locations/*/catalogs/*}:getDefaultBranch',
+                'placeholders' => [
+                    'catalog' => [
+                        'getters' => [
+                            'getCatalog',
+                        ],
+                    ],
+                ],
+            ],
             'ListCatalogs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/locations/*}/catalogs',
@@ -10,6 +21,18 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'SetDefaultBranch' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{catalog=projects/*/locations/*/catalogs/*}:setDefaultBranch',
+                'body' => '*',
+                'placeholders' => [
+                    'catalog' => [
+                        'getters' => [
+                            'getCatalog',
                         ],
                     ],
                 ],
@@ -35,11 +58,11 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/operations/*}',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/branches/*/operations/*}',
                     ],
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/branches/*/operations/*}',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/operations/*}',
                     ],
                 ],
                 'placeholders' => [

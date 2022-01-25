@@ -48,6 +48,25 @@ return [
                     ],
                 ],
             ],
+            'ExportDocument' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/knowledgeBases/*/documents/*}:export',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/knowledgeBases/*/documents/*}:export',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetDocument' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/knowledgeBases/*/documents/*}',
@@ -134,6 +153,30 @@ return [
                     'document.name' => [
                         'getters' => [
                             'getDocument',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLocations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
                             'getName',
                         ],
                     ],

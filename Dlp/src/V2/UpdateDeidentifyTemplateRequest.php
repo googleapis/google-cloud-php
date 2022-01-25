@@ -95,7 +95,7 @@ class UpdateDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDeidentifyTemplate()
     {
-        return isset($this->deidentify_template) ? $this->deidentify_template : null;
+        return $this->deidentify_template;
     }
 
     public function hasDeidentifyTemplate()
@@ -131,7 +131,7 @@ class UpdateDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

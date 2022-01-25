@@ -3,9 +3,9 @@
 return [
     'interfaces' => [
         'google.bigtable.v2.Bigtable' => [
-            'MutateRow' => [
+            'CheckAndMutateRow' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:mutateRow',
+                'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:checkAndMutateRow',
                 'body' => '*',
                 'placeholders' => [
                     'table_name' => [
@@ -15,9 +15,9 @@ return [
                     ],
                 ],
             ],
-            'CheckAndMutateRow' => [
+            'MutateRow' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:checkAndMutateRow',
+                'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:mutateRow',
                 'body' => '*',
                 'placeholders' => [
                     'table_name' => [

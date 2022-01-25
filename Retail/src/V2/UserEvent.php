@@ -21,8 +21,11 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `add-to-cart`: Products being added to cart.
      * * `category-page-view`: Special pages such as sale or promotion pages
      *   viewed.
+     * * `completion`: Completion query result showed/clicked.
      * * `detail-page-view`: Products detail page viewed.
      * * `home-page-view`: Homepage viewed.
+     * * `promotion-offered`: Promotion is offered to a user.
+     * * `promotion-not-offered`: Promotion is not offered to a user.
      * * `purchase-complete`: User finishing a purchase.
      * * `search`: Product search.
      * * `shopping-cart-page-view`: User viewing a shopping cart.
@@ -37,10 +40,26 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * identifier should not change if the visitor log in/out of the website.
      * The field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * The field should not contain PII or user-data. We recommend to use Google
+     * Analystics [Client
+     * ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId)
+     * for this field.
      *
      * Generated from protobuf field <code>string visitor_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $visitor_id = '';
+    /**
+     * A unique identifier for tracking a visitor session with a length limit of
+     * 128 bytes. A session is an aggregation of an end user behavior in a time
+     * span.
+     * A general guideline to populate the sesion_id:
+     * 1. If user has no activity for 30 min, a new session_id should be assigned.
+     * 2. The session_id should be unique across users, suggest use uuid or add
+     * visitor_id as prefix.
+     *
+     * Generated from protobuf field <code>string session_id = 21;</code>
+     */
+    private $session_id = '';
     /**
      * Only required for
      * [UserEventService.ImportUserEvents][google.cloud.retail.v2.UserEventService.ImportUserEvents]
@@ -67,6 +86,10 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * [PredictResponse.attribution_token][google.cloud.retail.v2.PredictResponse.attribution_token]
      * for user events that are the result of
      * [PredictionService.Predict][google.cloud.retail.v2.PredictionService.Predict].
+     * The value must be a valid
+     * [SearchResponse.attribution_token][google.cloud.retail.v2.SearchResponse.attribution_token]
+     * for user events that are the result of
+     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      * This token enables us to accurately attribute page view or purchase back to
      * the event and the particular predict response containing this
      * clicked/purchased product. If user clicks on product K in the
@@ -87,16 +110,25 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `detail-page-view`
      * * `purchase-complete`
      * In a `search` event, this field represents the products returned to the end
-     * user on the current page (the end user may have not finished broswing the
+     * user on the current page (the end user may have not finished browsing the
      * whole page yet). When a new page is returned to the end user, after
      * pagination/filtering/ordering even for the same query, a new `search` event
      * with different
      * [product_details][google.cloud.retail.v2.UserEvent.product_details] is
-     * desired. The end user may have not finished broswing the whole page yet.
+     * desired. The end user may have not finished browsing the whole page yet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ProductDetail product_details = 6;</code>
      */
     private $product_details;
+    /**
+     * The main completion details related to the event.
+     * In a `completion` event, this field represents the completions returned to
+     * the end user and the clicked completion by the end user. In a `search`
+     * event, it represents the search event happens after clicking completion.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.CompletionDetail completion_detail = 22;</code>
+     */
+    private $completion_detail = null;
     /**
      * Extra user event features to include in the recommendation model.
      * The key must be a UTF-8 encoded string with a length limit of 5,000
@@ -110,7 +142,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      */
     private $attributes;
     /**
-     * The id or name of the associated shopping cart. This id is used
+     * The ID or name of the associated shopping cart. This ID is used
      * to associate multiple items added or present in the cart before purchase.
      * This can only be set for `add-to-cart`, `purchase-complete`, or
      * `shopping-cart-page-view` events.
@@ -128,14 +160,54 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     private $purchase_transaction = null;
     /**
      * The user's search query.
+     * See [SearchRequest.query][google.cloud.retail.v2.SearchRequest.query] for
+     * definition.
      * The value must be a UTF-8 encoded string with a length limit of 5,000
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Required for `search` events. Other event types should not set this field.
+     * At least one of
+     * [search_query][google.cloud.retail.v2.UserEvent.search_query] or
+     * [page_categories][google.cloud.retail.v2.UserEvent.page_categories] is
+     * required for `search` events. Other event types should not set this field.
      * Otherwise, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>string search_query = 10;</code>
      */
     private $search_query = '';
+    /**
+     * The filter syntax consists of an expression language for constructing a
+     * predicate from one or more fields of the products being filtered.
+     * See [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter] for
+     * definition and syntax.
+     * The value must be a UTF-8 encoded string with a length limit of 1,000
+     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *
+     * Generated from protobuf field <code>string filter = 16;</code>
+     */
+    private $filter = '';
+    /**
+     * The order in which products are returned.
+     * See [SearchRequest.order_by][google.cloud.retail.v2.SearchRequest.order_by]
+     * for definition and syntax.
+     * The value must be a UTF-8 encoded string with a length limit of 1,000
+     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * This can only be set for `search` events. Other event types should not set
+     * this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     *
+     * Generated from protobuf field <code>string order_by = 17;</code>
+     */
+    private $order_by = '';
+    /**
+     * An integer that specifies the current offset for pagination (the 0-indexed
+     * starting location, amongst the products deemed by the API as relevant).
+     * See [SearchRequest.offset][google.cloud.retail.v2.SearchRequest.offset] for
+     * definition.
+     * If this field is negative, an INVALID_ARGUMENT is returned.
+     * This can only be set for `search` events. Other event types should not set
+     * this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     *
+     * Generated from protobuf field <code>int32 offset = 18;</code>
+     */
+    private $offset = 0;
     /**
      * The categories associated with a category page.
      * To represent full path of category, use '>' sign to separate different
@@ -144,8 +216,11 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * Category pages include special pages such as sales or promotions. For
      * instance, a special sale page may have the category hierarchy:
      * "pageCategories" : ["Sales > 2017 Black Friday Deals"].
-     * Required for `category-page-view` events. Other event types should not set
-     * this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Required for `category-page-view` events. At least one of
+     * [search_query][google.cloud.retail.v2.UserEvent.search_query] or
+     * [page_categories][google.cloud.retail.v2.UserEvent.page_categories] is
+     * required for `search` events. Other event types should not set this field.
+     * Otherwise, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>repeated string page_categories = 11;</code>
      */
@@ -174,7 +249,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      */
     private $referrer_uri = '';
     /**
-     * A unique id of a web page view.
+     * A unique ID of a web page view.
      * This should be kept the same for all user events triggered from the same
      * pageview. For example, an item detail page view could trigger multiple
      * events as the user is browsing the page. The `pageViewId` property should
@@ -198,8 +273,11 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           * `add-to-cart`: Products being added to cart.
      *           * `category-page-view`: Special pages such as sale or promotion pages
      *             viewed.
+     *           * `completion`: Completion query result showed/clicked.
      *           * `detail-page-view`: Products detail page viewed.
      *           * `home-page-view`: Homepage viewed.
+     *           * `promotion-offered`: Promotion is offered to a user.
+     *           * `promotion-not-offered`: Promotion is not offered to a user.
      *           * `purchase-complete`: User finishing a purchase.
      *           * `search`: Product search.
      *           * `shopping-cart-page-view`: User viewing a shopping cart.
@@ -210,6 +288,18 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           identifier should not change if the visitor log in/out of the website.
      *           The field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *           The field should not contain PII or user-data. We recommend to use Google
+     *           Analystics [Client
+     *           ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId)
+     *           for this field.
+     *     @type string $session_id
+     *           A unique identifier for tracking a visitor session with a length limit of
+     *           128 bytes. A session is an aggregation of an end user behavior in a time
+     *           span.
+     *           A general guideline to populate the sesion_id:
+     *           1. If user has no activity for 30 min, a new session_id should be assigned.
+     *           2. The session_id should be unique across users, suggest use uuid or add
+     *           visitor_id as prefix.
      *     @type \Google\Protobuf\Timestamp $event_time
      *           Only required for
      *           [UserEventService.ImportUserEvents][google.cloud.retail.v2.UserEventService.ImportUserEvents]
@@ -228,6 +318,10 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           [PredictResponse.attribution_token][google.cloud.retail.v2.PredictResponse.attribution_token]
      *           for user events that are the result of
      *           [PredictionService.Predict][google.cloud.retail.v2.PredictionService.Predict].
+     *           The value must be a valid
+     *           [SearchResponse.attribution_token][google.cloud.retail.v2.SearchResponse.attribution_token]
+     *           for user events that are the result of
+     *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      *           This token enables us to accurately attribute page view or purchase back to
      *           the event and the particular predict response containing this
      *           clicked/purchased product. If user clicks on product K in the
@@ -244,12 +338,17 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           * `detail-page-view`
      *           * `purchase-complete`
      *           In a `search` event, this field represents the products returned to the end
-     *           user on the current page (the end user may have not finished broswing the
+     *           user on the current page (the end user may have not finished browsing the
      *           whole page yet). When a new page is returned to the end user, after
      *           pagination/filtering/ordering even for the same query, a new `search` event
      *           with different
      *           [product_details][google.cloud.retail.v2.UserEvent.product_details] is
-     *           desired. The end user may have not finished broswing the whole page yet.
+     *           desired. The end user may have not finished browsing the whole page yet.
+     *     @type \Google\Cloud\Retail\V2\CompletionDetail $completion_detail
+     *           The main completion details related to the event.
+     *           In a `completion` event, this field represents the completions returned to
+     *           the end user and the clicked completion by the end user. In a `search`
+     *           event, it represents the search event happens after clicking completion.
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
      *           Extra user event features to include in the recommendation model.
      *           The key must be a UTF-8 encoded string with a length limit of 5,000
@@ -259,7 +358,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           at the site by coming to the site directly, or coming through Google
      *           search, and etc.
      *     @type string $cart_id
-     *           The id or name of the associated shopping cart. This id is used
+     *           The ID or name of the associated shopping cart. This ID is used
      *           to associate multiple items added or present in the cart before purchase.
      *           This can only be set for `add-to-cart`, `purchase-complete`, or
      *           `shopping-cart-page-view` events.
@@ -269,10 +368,38 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           this field. Otherwise, an INVALID_ARGUMENT error is returned.
      *     @type string $search_query
      *           The user's search query.
+     *           See [SearchRequest.query][google.cloud.retail.v2.SearchRequest.query] for
+     *           definition.
      *           The value must be a UTF-8 encoded string with a length limit of 5,000
      *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     *           Required for `search` events. Other event types should not set this field.
+     *           At least one of
+     *           [search_query][google.cloud.retail.v2.UserEvent.search_query] or
+     *           [page_categories][google.cloud.retail.v2.UserEvent.page_categories] is
+     *           required for `search` events. Other event types should not set this field.
      *           Otherwise, an INVALID_ARGUMENT error is returned.
+     *     @type string $filter
+     *           The filter syntax consists of an expression language for constructing a
+     *           predicate from one or more fields of the products being filtered.
+     *           See [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter] for
+     *           definition and syntax.
+     *           The value must be a UTF-8 encoded string with a length limit of 1,000
+     *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *     @type string $order_by
+     *           The order in which products are returned.
+     *           See [SearchRequest.order_by][google.cloud.retail.v2.SearchRequest.order_by]
+     *           for definition and syntax.
+     *           The value must be a UTF-8 encoded string with a length limit of 1,000
+     *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *           This can only be set for `search` events. Other event types should not set
+     *           this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     *     @type int $offset
+     *           An integer that specifies the current offset for pagination (the 0-indexed
+     *           starting location, amongst the products deemed by the API as relevant).
+     *           See [SearchRequest.offset][google.cloud.retail.v2.SearchRequest.offset] for
+     *           definition.
+     *           If this field is negative, an INVALID_ARGUMENT is returned.
+     *           This can only be set for `search` events. Other event types should not set
+     *           this field. Otherwise, an INVALID_ARGUMENT error is returned.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $page_categories
      *           The categories associated with a category page.
      *           To represent full path of category, use '>' sign to separate different
@@ -281,8 +408,11 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           Category pages include special pages such as sales or promotions. For
      *           instance, a special sale page may have the category hierarchy:
      *           "pageCategories" : ["Sales > 2017 Black Friday Deals"].
-     *           Required for `category-page-view` events. Other event types should not set
-     *           this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     *           Required for `category-page-view` events. At least one of
+     *           [search_query][google.cloud.retail.v2.UserEvent.search_query] or
+     *           [page_categories][google.cloud.retail.v2.UserEvent.page_categories] is
+     *           required for `search` events. Other event types should not set this field.
+     *           Otherwise, an INVALID_ARGUMENT error is returned.
      *     @type \Google\Cloud\Retail\V2\UserInfo $user_info
      *           User information.
      *     @type string $uri
@@ -295,7 +425,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           When using the client side event reporting with JavaScript pixel and Google
      *           Tag Manager, this value is filled in automatically.
      *     @type string $page_view_id
-     *           A unique id of a web page view.
+     *           A unique ID of a web page view.
      *           This should be kept the same for all user events triggered from the same
      *           pageview. For example, an item detail page view could trigger multiple
      *           events as the user is browsing the page. The `pageViewId` property should
@@ -315,8 +445,11 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `add-to-cart`: Products being added to cart.
      * * `category-page-view`: Special pages such as sale or promotion pages
      *   viewed.
+     * * `completion`: Completion query result showed/clicked.
      * * `detail-page-view`: Products detail page viewed.
      * * `home-page-view`: Homepage viewed.
+     * * `promotion-offered`: Promotion is offered to a user.
+     * * `promotion-not-offered`: Promotion is not offered to a user.
      * * `purchase-complete`: User finishing a purchase.
      * * `search`: Product search.
      * * `shopping-cart-page-view`: User viewing a shopping cart.
@@ -334,8 +467,11 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `add-to-cart`: Products being added to cart.
      * * `category-page-view`: Special pages such as sale or promotion pages
      *   viewed.
+     * * `completion`: Completion query result showed/clicked.
      * * `detail-page-view`: Products detail page viewed.
      * * `home-page-view`: Homepage viewed.
+     * * `promotion-offered`: Promotion is offered to a user.
+     * * `promotion-not-offered`: Promotion is not offered to a user.
      * * `purchase-complete`: User finishing a purchase.
      * * `search`: Product search.
      * * `shopping-cart-page-view`: User viewing a shopping cart.
@@ -359,6 +495,10 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * identifier should not change if the visitor log in/out of the website.
      * The field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * The field should not contain PII or user-data. We recommend to use Google
+     * Analystics [Client
+     * ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId)
+     * for this field.
      *
      * Generated from protobuf field <code>string visitor_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -375,6 +515,10 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * identifier should not change if the visitor log in/out of the website.
      * The field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * The field should not contain PII or user-data. We recommend to use Google
+     * Analystics [Client
+     * ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId)
+     * for this field.
      *
      * Generated from protobuf field <code>string visitor_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -389,6 +533,44 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A unique identifier for tracking a visitor session with a length limit of
+     * 128 bytes. A session is an aggregation of an end user behavior in a time
+     * span.
+     * A general guideline to populate the sesion_id:
+     * 1. If user has no activity for 30 min, a new session_id should be assigned.
+     * 2. The session_id should be unique across users, suggest use uuid or add
+     * visitor_id as prefix.
+     *
+     * Generated from protobuf field <code>string session_id = 21;</code>
+     * @return string
+     */
+    public function getSessionId()
+    {
+        return $this->session_id;
+    }
+
+    /**
+     * A unique identifier for tracking a visitor session with a length limit of
+     * 128 bytes. A session is an aggregation of an end user behavior in a time
+     * span.
+     * A general guideline to populate the sesion_id:
+     * 1. If user has no activity for 30 min, a new session_id should be assigned.
+     * 2. The session_id should be unique across users, suggest use uuid or add
+     * visitor_id as prefix.
+     *
+     * Generated from protobuf field <code>string session_id = 21;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSessionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->session_id = $var;
+
+        return $this;
+    }
+
+    /**
      * Only required for
      * [UserEventService.ImportUserEvents][google.cloud.retail.v2.UserEventService.ImportUserEvents]
      * method. Timestamp of when the user event happened.
@@ -398,7 +580,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      */
     public function getEventTime()
     {
-        return isset($this->event_time) ? $this->event_time : null;
+        return $this->event_time;
     }
 
     public function hasEventTime()
@@ -469,6 +651,10 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * [PredictResponse.attribution_token][google.cloud.retail.v2.PredictResponse.attribution_token]
      * for user events that are the result of
      * [PredictionService.Predict][google.cloud.retail.v2.PredictionService.Predict].
+     * The value must be a valid
+     * [SearchResponse.attribution_token][google.cloud.retail.v2.SearchResponse.attribution_token]
+     * for user events that are the result of
+     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      * This token enables us to accurately attribute page view or purchase back to
      * the event and the particular predict response containing this
      * clicked/purchased product. If user clicks on product K in the
@@ -496,6 +682,10 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * [PredictResponse.attribution_token][google.cloud.retail.v2.PredictResponse.attribution_token]
      * for user events that are the result of
      * [PredictionService.Predict][google.cloud.retail.v2.PredictionService.Predict].
+     * The value must be a valid
+     * [SearchResponse.attribution_token][google.cloud.retail.v2.SearchResponse.attribution_token]
+     * for user events that are the result of
+     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      * This token enables us to accurately attribute page view or purchase back to
      * the event and the particular predict response containing this
      * clicked/purchased product. If user clicks on product K in the
@@ -525,12 +715,12 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `detail-page-view`
      * * `purchase-complete`
      * In a `search` event, this field represents the products returned to the end
-     * user on the current page (the end user may have not finished broswing the
+     * user on the current page (the end user may have not finished browsing the
      * whole page yet). When a new page is returned to the end user, after
      * pagination/filtering/ordering even for the same query, a new `search` event
      * with different
      * [product_details][google.cloud.retail.v2.UserEvent.product_details] is
-     * desired. The end user may have not finished broswing the whole page yet.
+     * desired. The end user may have not finished browsing the whole page yet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ProductDetail product_details = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -547,12 +737,12 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `detail-page-view`
      * * `purchase-complete`
      * In a `search` event, this field represents the products returned to the end
-     * user on the current page (the end user may have not finished broswing the
+     * user on the current page (the end user may have not finished browsing the
      * whole page yet). When a new page is returned to the end user, after
      * pagination/filtering/ordering even for the same query, a new `search` event
      * with different
      * [product_details][google.cloud.retail.v2.UserEvent.product_details] is
-     * desired. The end user may have not finished broswing the whole page yet.
+     * desired. The end user may have not finished browsing the whole page yet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ProductDetail product_details = 6;</code>
      * @param \Google\Cloud\Retail\V2\ProductDetail[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -562,6 +752,48 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\ProductDetail::class);
         $this->product_details = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The main completion details related to the event.
+     * In a `completion` event, this field represents the completions returned to
+     * the end user and the clicked completion by the end user. In a `search`
+     * event, it represents the search event happens after clicking completion.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.CompletionDetail completion_detail = 22;</code>
+     * @return \Google\Cloud\Retail\V2\CompletionDetail|null
+     */
+    public function getCompletionDetail()
+    {
+        return $this->completion_detail;
+    }
+
+    public function hasCompletionDetail()
+    {
+        return isset($this->completion_detail);
+    }
+
+    public function clearCompletionDetail()
+    {
+        unset($this->completion_detail);
+    }
+
+    /**
+     * The main completion details related to the event.
+     * In a `completion` event, this field represents the completions returned to
+     * the end user and the clicked completion by the end user. In a `search`
+     * event, it represents the search event happens after clicking completion.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.CompletionDetail completion_detail = 22;</code>
+     * @param \Google\Cloud\Retail\V2\CompletionDetail $var
+     * @return $this
+     */
+    public function setCompletionDetail($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Retail\V2\CompletionDetail::class);
+        $this->completion_detail = $var;
 
         return $this;
     }
@@ -605,7 +837,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The id or name of the associated shopping cart. This id is used
+     * The ID or name of the associated shopping cart. This ID is used
      * to associate multiple items added or present in the cart before purchase.
      * This can only be set for `add-to-cart`, `purchase-complete`, or
      * `shopping-cart-page-view` events.
@@ -619,7 +851,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The id or name of the associated shopping cart. This id is used
+     * The ID or name of the associated shopping cart. This ID is used
      * to associate multiple items added or present in the cart before purchase.
      * This can only be set for `add-to-cart`, `purchase-complete`, or
      * `shopping-cart-page-view` events.
@@ -646,7 +878,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      */
     public function getPurchaseTransaction()
     {
-        return isset($this->purchase_transaction) ? $this->purchase_transaction : null;
+        return $this->purchase_transaction;
     }
 
     public function hasPurchaseTransaction()
@@ -678,9 +910,14 @@ class UserEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * The user's search query.
+     * See [SearchRequest.query][google.cloud.retail.v2.SearchRequest.query] for
+     * definition.
      * The value must be a UTF-8 encoded string with a length limit of 5,000
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Required for `search` events. Other event types should not set this field.
+     * At least one of
+     * [search_query][google.cloud.retail.v2.UserEvent.search_query] or
+     * [page_categories][google.cloud.retail.v2.UserEvent.page_categories] is
+     * required for `search` events. Other event types should not set this field.
      * Otherwise, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>string search_query = 10;</code>
@@ -693,9 +930,14 @@ class UserEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * The user's search query.
+     * See [SearchRequest.query][google.cloud.retail.v2.SearchRequest.query] for
+     * definition.
      * The value must be a UTF-8 encoded string with a length limit of 5,000
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Required for `search` events. Other event types should not set this field.
+     * At least one of
+     * [search_query][google.cloud.retail.v2.UserEvent.search_query] or
+     * [page_categories][google.cloud.retail.v2.UserEvent.page_categories] is
+     * required for `search` events. Other event types should not set this field.
      * Otherwise, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>string search_query = 10;</code>
@@ -711,6 +953,118 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The filter syntax consists of an expression language for constructing a
+     * predicate from one or more fields of the products being filtered.
+     * See [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter] for
+     * definition and syntax.
+     * The value must be a UTF-8 encoded string with a length limit of 1,000
+     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *
+     * Generated from protobuf field <code>string filter = 16;</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * The filter syntax consists of an expression language for constructing a
+     * predicate from one or more fields of the products being filtered.
+     * See [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter] for
+     * definition and syntax.
+     * The value must be a UTF-8 encoded string with a length limit of 1,000
+     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *
+     * Generated from protobuf field <code>string filter = 16;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * The order in which products are returned.
+     * See [SearchRequest.order_by][google.cloud.retail.v2.SearchRequest.order_by]
+     * for definition and syntax.
+     * The value must be a UTF-8 encoded string with a length limit of 1,000
+     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * This can only be set for `search` events. Other event types should not set
+     * this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     *
+     * Generated from protobuf field <code>string order_by = 17;</code>
+     * @return string
+     */
+    public function getOrderBy()
+    {
+        return $this->order_by;
+    }
+
+    /**
+     * The order in which products are returned.
+     * See [SearchRequest.order_by][google.cloud.retail.v2.SearchRequest.order_by]
+     * for definition and syntax.
+     * The value must be a UTF-8 encoded string with a length limit of 1,000
+     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * This can only be set for `search` events. Other event types should not set
+     * this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     *
+     * Generated from protobuf field <code>string order_by = 17;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrderBy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * An integer that specifies the current offset for pagination (the 0-indexed
+     * starting location, amongst the products deemed by the API as relevant).
+     * See [SearchRequest.offset][google.cloud.retail.v2.SearchRequest.offset] for
+     * definition.
+     * If this field is negative, an INVALID_ARGUMENT is returned.
+     * This can only be set for `search` events. Other event types should not set
+     * this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     *
+     * Generated from protobuf field <code>int32 offset = 18;</code>
+     * @return int
+     */
+    public function getOffset()
+    {
+        return $this->offset;
+    }
+
+    /**
+     * An integer that specifies the current offset for pagination (the 0-indexed
+     * starting location, amongst the products deemed by the API as relevant).
+     * See [SearchRequest.offset][google.cloud.retail.v2.SearchRequest.offset] for
+     * definition.
+     * If this field is negative, an INVALID_ARGUMENT is returned.
+     * This can only be set for `search` events. Other event types should not set
+     * this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     *
+     * Generated from protobuf field <code>int32 offset = 18;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setOffset($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->offset = $var;
+
+        return $this;
+    }
+
+    /**
      * The categories associated with a category page.
      * To represent full path of category, use '>' sign to separate different
      * hierarchies. If '>' is part of the category name, please replace it with
@@ -718,8 +1072,11 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * Category pages include special pages such as sales or promotions. For
      * instance, a special sale page may have the category hierarchy:
      * "pageCategories" : ["Sales > 2017 Black Friday Deals"].
-     * Required for `category-page-view` events. Other event types should not set
-     * this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Required for `category-page-view` events. At least one of
+     * [search_query][google.cloud.retail.v2.UserEvent.search_query] or
+     * [page_categories][google.cloud.retail.v2.UserEvent.page_categories] is
+     * required for `search` events. Other event types should not set this field.
+     * Otherwise, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>repeated string page_categories = 11;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -737,8 +1094,11 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * Category pages include special pages such as sales or promotions. For
      * instance, a special sale page may have the category hierarchy:
      * "pageCategories" : ["Sales > 2017 Black Friday Deals"].
-     * Required for `category-page-view` events. Other event types should not set
-     * this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Required for `category-page-view` events. At least one of
+     * [search_query][google.cloud.retail.v2.UserEvent.search_query] or
+     * [page_categories][google.cloud.retail.v2.UserEvent.page_categories] is
+     * required for `search` events. Other event types should not set this field.
+     * Otherwise, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>repeated string page_categories = 11;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -760,7 +1120,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      */
     public function getUserInfo()
     {
-        return isset($this->user_info) ? $this->user_info : null;
+        return $this->user_info;
     }
 
     public function hasUserInfo()
@@ -851,7 +1211,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique id of a web page view.
+     * A unique ID of a web page view.
      * This should be kept the same for all user events triggered from the same
      * pageview. For example, an item detail page view could trigger multiple
      * events as the user is browsing the page. The `pageViewId` property should
@@ -869,7 +1229,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique id of a web page view.
+     * A unique ID of a web page view.
      * This should be kept the same for all user events triggered from the same
      * pageview. For example, an item detail page view could trigger multiple
      * events as the user is browsing the page. The `pageViewId` property should

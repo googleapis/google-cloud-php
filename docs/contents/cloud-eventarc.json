@@ -1,0 +1,15 @@
+{
+    "title": "eventarc",
+    "defaultService": "eventarc\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "eventarc\/readme"
+        },
+        {
+            "title": "EventarcClient (v1)",
+            "type": "eventarc\/v1\/eventarcclient"
+        }
+    ],
+    "pattern": "eventarc\/\\w{1,}"
+}

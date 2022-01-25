@@ -1,0 +1,6 @@
+{
+    "distribution_name": "google/cloud-resource-settings",
+    "release_level": "beta",
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-resource-settings/latest",
+    "library_type": "GAPIC_AUTO"
+}

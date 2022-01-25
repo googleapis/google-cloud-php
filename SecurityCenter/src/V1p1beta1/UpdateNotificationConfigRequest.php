@@ -55,7 +55,7 @@ class UpdateNotificationConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getNotificationConfig()
     {
-        return isset($this->notification_config) ? $this->notification_config : null;
+        return $this->notification_config;
     }
 
     public function hasNotificationConfig()
@@ -92,7 +92,7 @@ class UpdateNotificationConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

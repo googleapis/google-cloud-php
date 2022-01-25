@@ -122,7 +122,7 @@ class Resources extends \Google\Protobuf\Internal\Message
      */
     public function getVirtualMachine()
     {
-        return isset($this->virtual_machine) ? $this->virtual_machine : null;
+        return $this->virtual_machine;
     }
 
     public function hasVirtualMachine()

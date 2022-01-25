@@ -17,9 +17,9 @@ class ListUserEventsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent eventStore resource name, such as
-     * "projects/&#42;&#47;locations/&#42;&#47;catalogs/default_catalog/eventStores/default_event_store".
+     * `projects/&#42;&#47;locations/&#42;&#47;catalogs/default_catalog/eventStores/default_event_store`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -75,7 +75,7 @@ class ListUserEventsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent eventStore resource name, such as
-     *           "projects/&#42;&#47;locations/&#42;&#47;catalogs/default_catalog/eventStores/default_event_store".
+     *           `projects/&#42;&#47;locations/&#42;&#47;catalogs/default_catalog/eventStores/default_event_store`.
      *     @type int $page_size
      *           Optional. Maximum number of results to return per page. If zero, the
      *           service will choose a reasonable default.
@@ -117,9 +117,9 @@ class ListUserEventsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent eventStore resource name, such as
-     * "projects/&#42;&#47;locations/&#42;&#47;catalogs/default_catalog/eventStores/default_event_store".
+     * `projects/&#42;&#47;locations/&#42;&#47;catalogs/default_catalog/eventStores/default_event_store`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -129,9 +129,9 @@ class ListUserEventsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent eventStore resource name, such as
-     * "projects/&#42;&#47;locations/&#42;&#47;catalogs/default_catalog/eventStores/default_event_store".
+     * `projects/&#42;&#47;locations/&#42;&#47;catalogs/default_catalog/eventStores/default_event_store`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

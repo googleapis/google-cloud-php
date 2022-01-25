@@ -1,5 +1,6 @@
 {
     "distribution_name": "google/cloud-recaptcha-enterprise",
     "release_level": "ga",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-recaptcha-enterprise/latest"
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-recaptcha-enterprise/latest",
+    "library_type": "GAPIC_AUTO"
 }

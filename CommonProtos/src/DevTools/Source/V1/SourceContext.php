@@ -43,11 +43,16 @@ class SourceContext extends \Google\Protobuf\Internal\Message
      * A SourceContext referring to a revision in a cloud repo.
      *
      * Generated from protobuf field <code>.google.devtools.source.v1.CloudRepoSourceContext cloud_repo = 1;</code>
-     * @return \Google\Cloud\DevTools\Source\V1\CloudRepoSourceContext
+     * @return \Google\Cloud\DevTools\Source\V1\CloudRepoSourceContext|null
      */
     public function getCloudRepo()
     {
         return $this->readOneof(1);
+    }
+
+    public function hasCloudRepo()
+    {
+        return $this->hasOneof(1);
     }
 
     /**
@@ -69,11 +74,16 @@ class SourceContext extends \Google\Protobuf\Internal\Message
      * A SourceContext referring to a snapshot in a cloud workspace.
      *
      * Generated from protobuf field <code>.google.devtools.source.v1.CloudWorkspaceSourceContext cloud_workspace = 2;</code>
-     * @return \Google\Cloud\DevTools\Source\V1\CloudWorkspaceSourceContext
+     * @return \Google\Cloud\DevTools\Source\V1\CloudWorkspaceSourceContext|null
      */
     public function getCloudWorkspace()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasCloudWorkspace()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -95,11 +105,16 @@ class SourceContext extends \Google\Protobuf\Internal\Message
      * A SourceContext referring to a Gerrit project.
      *
      * Generated from protobuf field <code>.google.devtools.source.v1.GerritSourceContext gerrit = 3;</code>
-     * @return \Google\Cloud\DevTools\Source\V1\GerritSourceContext
+     * @return \Google\Cloud\DevTools\Source\V1\GerritSourceContext|null
      */
     public function getGerrit()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasGerrit()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
@@ -121,11 +136,16 @@ class SourceContext extends \Google\Protobuf\Internal\Message
      * A SourceContext referring to any third party Git repo (e.g. GitHub).
      *
      * Generated from protobuf field <code>.google.devtools.source.v1.GitSourceContext git = 6;</code>
-     * @return \Google\Cloud\DevTools\Source\V1\GitSourceContext
+     * @return \Google\Cloud\DevTools\Source\V1\GitSourceContext|null
      */
     public function getGit()
     {
         return $this->readOneof(6);
+    }
+
+    public function hasGit()
+    {
+        return $this->hasOneof(6);
     }
 
     /**

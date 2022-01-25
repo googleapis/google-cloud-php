@@ -10,9 +10,19 @@
                 "grpc": {
                     "libraryClient": "SecurityCenterGapicClient",
                     "rpcs": {
+                        "BulkMuteFindings": {
+                            "methods": [
+                                "bulkMuteFindings"
+                            ]
+                        },
                         "CreateFinding": {
                             "methods": [
                                 "createFinding"
+                            ]
+                        },
+                        "CreateMuteConfig": {
+                            "methods": [
+                                "createMuteConfig"
                             ]
                         },
                         "CreateNotificationConfig": {
@@ -25,6 +35,11 @@
                                 "createSource"
                             ]
                         },
+                        "DeleteMuteConfig": {
+                            "methods": [
+                                "deleteMuteConfig"
+                            ]
+                        },
                         "DeleteNotificationConfig": {
                             "methods": [
                                 "deleteNotificationConfig"
@@ -33,6 +48,11 @@
                         "GetIamPolicy": {
                             "methods": [
                                 "getIamPolicy"
+                            ]
+                        },
+                        "GetMuteConfig": {
+                            "methods": [
+                                "getMuteConfig"
                             ]
                         },
                         "GetNotificationConfig": {
@@ -70,6 +90,11 @@
                                 "listFindings"
                             ]
                         },
+                        "ListMuteConfigs": {
+                            "methods": [
+                                "listMuteConfigs"
+                            ]
+                        },
                         "ListNotificationConfigs": {
                             "methods": [
                                 "listNotificationConfigs"
@@ -95,14 +120,29 @@
                                 "setIamPolicy"
                             ]
                         },
+                        "SetMute": {
+                            "methods": [
+                                "setMute"
+                            ]
+                        },
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
                             ]
                         },
+                        "UpdateExternalSystem": {
+                            "methods": [
+                                "updateExternalSystem"
+                            ]
+                        },
                         "UpdateFinding": {
                             "methods": [
                                 "updateFinding"
+                            ]
+                        },
+                        "UpdateMuteConfig": {
+                            "methods": [
+                                "updateMuteConfig"
                             ]
                         },
                         "UpdateNotificationConfig": {

@@ -91,7 +91,7 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
      */
     public function getJob()
     {
-        return isset($this->job) ? $this->job : null;
+        return $this->job;
     }
 
     public function hasJob()
@@ -218,7 +218,7 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
      */
     public function getCommuteInfo()
     {
-        return isset($this->commute_info) ? $this->commute_info : null;
+        return $this->commute_info;
     }
 
     public function hasCommuteInfo()
@@ -249,6 +249,4 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MatchingJob::class, \Google\Cloud\Talent\V4beta1\SearchJobsResponse_MatchingJob::class);
 

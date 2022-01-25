@@ -109,7 +109,7 @@ class SummarizedProfile extends \Google\Protobuf\Internal\Message
      */
     public function getSummary()
     {
-        return isset($this->summary) ? $this->summary : null;
+        return $this->summary;
     }
 
     public function hasSummary()

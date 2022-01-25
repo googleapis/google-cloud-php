@@ -157,6 +157,4 @@ class ConsumerInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConsumerInfo::class, \Google\Cloud\ServiceControl\V1\CheckResponse_ConsumerInfo::class);
 

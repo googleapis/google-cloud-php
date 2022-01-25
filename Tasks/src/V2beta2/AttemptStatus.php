@@ -80,7 +80,7 @@ class AttemptStatus extends \Google\Protobuf\Internal\Message
      */
     public function getScheduleTime()
     {
-        return isset($this->schedule_time) ? $this->schedule_time : null;
+        return $this->schedule_time;
     }
 
     public function hasScheduleTime()
@@ -118,7 +118,7 @@ class AttemptStatus extends \Google\Protobuf\Internal\Message
      */
     public function getDispatchTime()
     {
-        return isset($this->dispatch_time) ? $this->dispatch_time : null;
+        return $this->dispatch_time;
     }
 
     public function hasDispatchTime()
@@ -156,7 +156,7 @@ class AttemptStatus extends \Google\Protobuf\Internal\Message
      */
     public function getResponseTime()
     {
-        return isset($this->response_time) ? $this->response_time : null;
+        return $this->response_time;
     }
 
     public function hasResponseTime()
@@ -195,7 +195,7 @@ class AttemptStatus extends \Google\Protobuf\Internal\Message
      */
     public function getResponseStatus()
     {
-        return isset($this->response_status) ? $this->response_status : null;
+        return $this->response_status;
     }
 
     public function hasResponseStatus()

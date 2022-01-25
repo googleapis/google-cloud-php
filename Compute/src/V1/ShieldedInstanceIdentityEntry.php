@@ -18,13 +18,13 @@ class ShieldedInstanceIdentityEntry extends \Google\Protobuf\Internal\Message
     /**
      * A PEM-encoded X.509 certificate. This field can be empty.
      *
-     * Generated from protobuf field <code>string ek_cert = 450178589;</code>
+     * Generated from protobuf field <code>optional string ek_cert = 450178589;</code>
      */
     private $ek_cert = null;
     /**
      * A PEM-encoded public key.
      *
-     * Generated from protobuf field <code>string ek_pub = 308947940;</code>
+     * Generated from protobuf field <code>optional string ek_pub = 308947940;</code>
      */
     private $ek_pub = null;
 
@@ -48,7 +48,7 @@ class ShieldedInstanceIdentityEntry extends \Google\Protobuf\Internal\Message
     /**
      * A PEM-encoded X.509 certificate. This field can be empty.
      *
-     * Generated from protobuf field <code>string ek_cert = 450178589;</code>
+     * Generated from protobuf field <code>optional string ek_cert = 450178589;</code>
      * @return string
      */
     public function getEkCert()
@@ -69,7 +69,7 @@ class ShieldedInstanceIdentityEntry extends \Google\Protobuf\Internal\Message
     /**
      * A PEM-encoded X.509 certificate. This field can be empty.
      *
-     * Generated from protobuf field <code>string ek_cert = 450178589;</code>
+     * Generated from protobuf field <code>optional string ek_cert = 450178589;</code>
      * @param string $var
      * @return $this
      */
@@ -84,7 +84,7 @@ class ShieldedInstanceIdentityEntry extends \Google\Protobuf\Internal\Message
     /**
      * A PEM-encoded public key.
      *
-     * Generated from protobuf field <code>string ek_pub = 308947940;</code>
+     * Generated from protobuf field <code>optional string ek_pub = 308947940;</code>
      * @return string
      */
     public function getEkPub()
@@ -105,7 +105,7 @@ class ShieldedInstanceIdentityEntry extends \Google\Protobuf\Internal\Message
     /**
      * A PEM-encoded public key.
      *
-     * Generated from protobuf field <code>string ek_pub = 308947940;</code>
+     * Generated from protobuf field <code>optional string ek_pub = 308947940;</code>
      * @param string $var
      * @return $this
      */

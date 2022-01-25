@@ -50,7 +50,7 @@ class AutomaticStatus extends \Google\Protobuf\Internal\Message
      */
     public function getCustomerManagedEncryption()
     {
-        return isset($this->customer_managed_encryption) ? $this->customer_managed_encryption : null;
+        return $this->customer_managed_encryption;
     }
 
     public function hasCustomerManagedEncryption()

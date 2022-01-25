@@ -53,7 +53,7 @@ class UpdateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCapacityCommitment()
     {
-        return isset($this->capacity_commitment) ? $this->capacity_commitment : null;
+        return $this->capacity_commitment;
     }
 
     public function hasCapacityCommitment()
@@ -89,7 +89,7 @@ class UpdateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

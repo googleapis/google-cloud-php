@@ -366,7 +366,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      */
     public function getNetwork()
     {
-        return isset($this->network) ? $this->network : null;
+        return $this->network;
     }
 
     public function hasNetwork()
@@ -429,7 +429,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      */
     public function getServiceAccount()
     {
-        return isset($this->service_account) ? $this->service_account : null;
+        return $this->service_account;
     }
 
     public function hasServiceAccount()

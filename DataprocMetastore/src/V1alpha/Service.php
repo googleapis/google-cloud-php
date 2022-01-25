@@ -246,7 +246,7 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -282,7 +282,7 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -535,7 +535,7 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     public function getMetadataIntegration()
     {
-        return isset($this->metadata_integration) ? $this->metadata_integration : null;
+        return $this->metadata_integration;
     }
 
     public function hasMetadataIntegration()
@@ -573,7 +573,7 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     public function getMaintenanceWindow()
     {
-        return isset($this->maintenance_window) ? $this->maintenance_window : null;
+        return $this->maintenance_window;
     }
 
     public function hasMaintenanceWindow()
@@ -636,7 +636,7 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     public function getMetadataManagementActivity()
     {
-        return isset($this->metadata_management_activity) ? $this->metadata_management_activity : null;
+        return $this->metadata_management_activity;
     }
 
     public function hasMetadataManagementActivity()

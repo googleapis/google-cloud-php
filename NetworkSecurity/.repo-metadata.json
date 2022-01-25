@@ -1,0 +1,6 @@
+{
+    "distribution_name": "google/cloud-network-security",
+    "release_level": "beta",
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-network-security/latest",
+    "library_type": "GAPIC_AUTO"
+}

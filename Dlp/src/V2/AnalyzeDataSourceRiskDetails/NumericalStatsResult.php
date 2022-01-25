@@ -63,7 +63,7 @@ class NumericalStatsResult extends \Google\Protobuf\Internal\Message
      */
     public function getMinValue()
     {
-        return isset($this->min_value) ? $this->min_value : null;
+        return $this->min_value;
     }
 
     public function hasMinValue()
@@ -99,7 +99,7 @@ class NumericalStatsResult extends \Google\Protobuf\Internal\Message
      */
     public function getMaxValue()
     {
-        return isset($this->max_value) ? $this->max_value : null;
+        return $this->max_value;
     }
 
     public function hasMaxValue()

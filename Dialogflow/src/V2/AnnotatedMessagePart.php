@@ -154,7 +154,7 @@ class AnnotatedMessagePart extends \Google\Protobuf\Internal\Message
      */
     public function getFormattedValue()
     {
-        return isset($this->formatted_value) ? $this->formatted_value : null;
+        return $this->formatted_value;
     }
 
     public function hasFormattedValue()

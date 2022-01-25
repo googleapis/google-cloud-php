@@ -107,7 +107,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      */
     public function getResources()
     {
-        return isset($this->resources) ? $this->resources : null;
+        return $this->resources;
     }
 
     public function hasResources()
@@ -177,7 +177,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      */
     public function getTimeout()
     {
-        return isset($this->timeout) ? $this->timeout : null;
+        return $this->timeout;
     }
 
     public function hasTimeout()

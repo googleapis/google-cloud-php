@@ -427,8 +427,13 @@ class Operation
     {
         $options += [
             'singleUse' => false,
-            'isRetry' => false
+            'isRetry' => false,
+            'requestOptions' => []
         ];
+        $transactionTag = $this->pluck('tag', $options, false);
+        if (isset($transactionTag)) {
+            $options['requestOptions']['transactionTag'] = $transactionTag;
+        }
 
         if (!$options['singleUse']) {
             $res = $this->beginTransaction($session, $options);
@@ -436,7 +441,7 @@ class Operation
             $res = [];
         }
 
-        return $this->createTransaction($session, $res);
+        return $this->createTransaction($session, $res, ['tag' => $transactionTag]);
     }
 
     /**
@@ -452,12 +457,15 @@ class Operation
         $res += [
             'id' => null
         ];
+        $options += [
+            'tag' => null
+        ];
 
         $options['isRetry'] = isset($options['isRetry'])
             ? $options['isRetry']
             : false;
 
-        return new Transaction($this, $session, $res['id'], $options['isRetry']);
+        return new Transaction($this, $session, $res['id'], $options['isRetry'], $options['tag']);
     }
 
     /**

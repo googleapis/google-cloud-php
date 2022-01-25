@@ -20,7 +20,7 @@ class Service extends \Google\Protobuf\Internal\Message
 {
     /**
      * Immutable. The resource name for the service in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -68,7 +68,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Immutable. The resource name for the service in the format
-     *           'projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;'.
+     *           `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;`.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Optional. Annotations for the service. This data can be consumed by service
      *           clients.
@@ -104,7 +104,7 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The resource name for the service in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -116,7 +116,7 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The resource name for the service in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

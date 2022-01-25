@@ -24,7 +24,7 @@ class GetSerialPortOutputInstanceRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Specifies which COM or serial port to retrieve data from.
      *
-     * Generated from protobuf field <code>int32 port = 3446913;</code>
+     * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      */
     private $port = null;
     /**
@@ -34,11 +34,9 @@ class GetSerialPortOutputInstanceRequest extends \Google\Protobuf\Internal\Messa
      */
     private $project = '';
     /**
-     * Specifies the starting byte position of the output to return. To start with the first byte of output to the specified port, omit this field or set it to `0`.
-     * If the output for that byte position is available, this field matches the `start` parameter sent with the request. If the amount of serial console output exceeds the size of the buffer (1 MB), the oldest output is discarded and is no longer available. If the requested start position refers to discarded output, the start position is adjusted to the oldest output still available, and the adjusted start position is returned as the `start` property value.
-     * You can also provide a negative start position, which translates to the most recent number of bytes written to the serial port. For example, -3 is interpreted as the most recent 3 bytes written to the serial console.
+     * Specifies the starting byte position of the output to return. To start with the first byte of output to the specified port, omit this field or set it to `0`. If the output for that byte position is available, this field matches the `start` parameter sent with the request. If the amount of serial console output exceeds the size of the buffer (1 MB), the oldest output is discarded and is no longer available. If the requested start position refers to discarded output, the start position is adjusted to the oldest output still available, and the adjusted start position is returned as the `start` property value. You can also provide a negative start position, which translates to the most recent number of bytes written to the serial port. For example, -3 is interpreted as the most recent 3 bytes written to the serial console.
      *
-     * Generated from protobuf field <code>string start = 109757538;</code>
+     * Generated from protobuf field <code>optional int64 start = 109757538;</code>
      */
     private $start = null;
     /**
@@ -60,10 +58,8 @@ class GetSerialPortOutputInstanceRequest extends \Google\Protobuf\Internal\Messa
      *           Specifies which COM or serial port to retrieve data from.
      *     @type string $project
      *           Project ID for this request.
-     *     @type string $start
-     *           Specifies the starting byte position of the output to return. To start with the first byte of output to the specified port, omit this field or set it to `0`.
-     *           If the output for that byte position is available, this field matches the `start` parameter sent with the request. If the amount of serial console output exceeds the size of the buffer (1 MB), the oldest output is discarded and is no longer available. If the requested start position refers to discarded output, the start position is adjusted to the oldest output still available, and the adjusted start position is returned as the `start` property value.
-     *           You can also provide a negative start position, which translates to the most recent number of bytes written to the serial port. For example, -3 is interpreted as the most recent 3 bytes written to the serial console.
+     *     @type int|string $start
+     *           Specifies the starting byte position of the output to return. To start with the first byte of output to the specified port, omit this field or set it to `0`. If the output for that byte position is available, this field matches the `start` parameter sent with the request. If the amount of serial console output exceeds the size of the buffer (1 MB), the oldest output is discarded and is no longer available. If the requested start position refers to discarded output, the start position is adjusted to the oldest output still available, and the adjusted start position is returned as the `start` property value. You can also provide a negative start position, which translates to the most recent number of bytes written to the serial port. For example, -3 is interpreted as the most recent 3 bytes written to the serial console.
      *     @type string $zone
      *           The name of the zone for this request.
      * }
@@ -102,7 +98,7 @@ class GetSerialPortOutputInstanceRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Specifies which COM or serial port to retrieve data from.
      *
-     * Generated from protobuf field <code>int32 port = 3446913;</code>
+     * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      * @return int
      */
     public function getPort()
@@ -123,7 +119,7 @@ class GetSerialPortOutputInstanceRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Specifies which COM or serial port to retrieve data from.
      *
-     * Generated from protobuf field <code>int32 port = 3446913;</code>
+     * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      * @param int $var
      * @return $this
      */
@@ -162,16 +158,14 @@ class GetSerialPortOutputInstanceRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Specifies the starting byte position of the output to return. To start with the first byte of output to the specified port, omit this field or set it to `0`.
-     * If the output for that byte position is available, this field matches the `start` parameter sent with the request. If the amount of serial console output exceeds the size of the buffer (1 MB), the oldest output is discarded and is no longer available. If the requested start position refers to discarded output, the start position is adjusted to the oldest output still available, and the adjusted start position is returned as the `start` property value.
-     * You can also provide a negative start position, which translates to the most recent number of bytes written to the serial port. For example, -3 is interpreted as the most recent 3 bytes written to the serial console.
+     * Specifies the starting byte position of the output to return. To start with the first byte of output to the specified port, omit this field or set it to `0`. If the output for that byte position is available, this field matches the `start` parameter sent with the request. If the amount of serial console output exceeds the size of the buffer (1 MB), the oldest output is discarded and is no longer available. If the requested start position refers to discarded output, the start position is adjusted to the oldest output still available, and the adjusted start position is returned as the `start` property value. You can also provide a negative start position, which translates to the most recent number of bytes written to the serial port. For example, -3 is interpreted as the most recent 3 bytes written to the serial console.
      *
-     * Generated from protobuf field <code>string start = 109757538;</code>
-     * @return string
+     * Generated from protobuf field <code>optional int64 start = 109757538;</code>
+     * @return int|string
      */
     public function getStart()
     {
-        return isset($this->start) ? $this->start : '';
+        return isset($this->start) ? $this->start : 0;
     }
 
     public function hasStart()
@@ -185,17 +179,15 @@ class GetSerialPortOutputInstanceRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Specifies the starting byte position of the output to return. To start with the first byte of output to the specified port, omit this field or set it to `0`.
-     * If the output for that byte position is available, this field matches the `start` parameter sent with the request. If the amount of serial console output exceeds the size of the buffer (1 MB), the oldest output is discarded and is no longer available. If the requested start position refers to discarded output, the start position is adjusted to the oldest output still available, and the adjusted start position is returned as the `start` property value.
-     * You can also provide a negative start position, which translates to the most recent number of bytes written to the serial port. For example, -3 is interpreted as the most recent 3 bytes written to the serial console.
+     * Specifies the starting byte position of the output to return. To start with the first byte of output to the specified port, omit this field or set it to `0`. If the output for that byte position is available, this field matches the `start` parameter sent with the request. If the amount of serial console output exceeds the size of the buffer (1 MB), the oldest output is discarded and is no longer available. If the requested start position refers to discarded output, the start position is adjusted to the oldest output still available, and the adjusted start position is returned as the `start` property value. You can also provide a negative start position, which translates to the most recent number of bytes written to the serial port. For example, -3 is interpreted as the most recent 3 bytes written to the serial console.
      *
-     * Generated from protobuf field <code>string start = 109757538;</code>
-     * @param string $var
+     * Generated from protobuf field <code>optional int64 start = 109757538;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setStart($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->start = $var;
 
         return $this;

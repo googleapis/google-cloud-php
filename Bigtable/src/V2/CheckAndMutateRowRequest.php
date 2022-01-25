@@ -204,7 +204,7 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
      */
     public function getPredicateFilter()
     {
-        return isset($this->predicate_filter) ? $this->predicate_filter : null;
+        return $this->predicate_filter;
     }
 
     public function hasPredicateFilter()

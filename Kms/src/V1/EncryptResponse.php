@@ -40,7 +40,6 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 4;</code>
      */
@@ -54,7 +53,6 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      * that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've set
      * [EncryptRequest.plaintext_crc32c][google.cloud.kms.v1.EncryptRequest.plaintext_crc32c] but this field is still false, discard
      * the response and perform a limited number of retries.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>bool verified_plaintext_crc32c = 5;</code>
      */
@@ -69,11 +67,16 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      * that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've set
      * [EncryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data_crc32c] but this field is
      * still false, discard the response and perform a limited number of retries.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>bool verified_additional_authenticated_data_crc32c = 6;</code>
      */
     private $verified_additional_authenticated_data_crc32c = false;
+    /**
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in encryption.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 7;</code>
+     */
+    private $protection_level = 0;
 
     /**
      * Constructor.
@@ -98,7 +101,6 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      *           different languages. However, it is a non-negative integer, which will
      *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      *           that support this type.
-     *           NOTE: This field is in Beta.
      *     @type bool $verified_plaintext_crc32c
      *           Integrity verification field. A flag indicating whether
      *           [EncryptRequest.plaintext_crc32c][google.cloud.kms.v1.EncryptRequest.plaintext_crc32c] was received by
@@ -108,7 +110,6 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      *           that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've set
      *           [EncryptRequest.plaintext_crc32c][google.cloud.kms.v1.EncryptRequest.plaintext_crc32c] but this field is still false, discard
      *           the response and perform a limited number of retries.
-     *           NOTE: This field is in Beta.
      *     @type bool $verified_additional_authenticated_data_crc32c
      *           Integrity verification field. A flag indicating whether
      *           [EncryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data_crc32c] was received by
@@ -119,7 +120,8 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      *           that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've set
      *           [EncryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data_crc32c] but this field is
      *           still false, discard the response and perform a limited number of retries.
-     *           NOTE: This field is in Beta.
+     *     @type int $protection_level
+     *           The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in encryption.
      * }
      */
     public function __construct($data = NULL) {
@@ -193,7 +195,6 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 4;</code>
      * @return \Google\Protobuf\Int64Value|null
@@ -227,7 +228,6 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 4;</code>
      * @return int|string|null
@@ -249,7 +249,6 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 4;</code>
      * @param \Google\Protobuf\Int64Value $var
@@ -277,7 +276,6 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 4;</code>
      * @param int|string|null $var
@@ -297,7 +295,6 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      * that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've set
      * [EncryptRequest.plaintext_crc32c][google.cloud.kms.v1.EncryptRequest.plaintext_crc32c] but this field is still false, discard
      * the response and perform a limited number of retries.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>bool verified_plaintext_crc32c = 5;</code>
      * @return bool
@@ -316,7 +313,6 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      * that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've set
      * [EncryptRequest.plaintext_crc32c][google.cloud.kms.v1.EncryptRequest.plaintext_crc32c] but this field is still false, discard
      * the response and perform a limited number of retries.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>bool verified_plaintext_crc32c = 5;</code>
      * @param bool $var
@@ -340,7 +336,6 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      * that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've set
      * [EncryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data_crc32c] but this field is
      * still false, discard the response and perform a limited number of retries.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>bool verified_additional_authenticated_data_crc32c = 6;</code>
      * @return bool
@@ -360,7 +355,6 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
      * that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've set
      * [EncryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data_crc32c] but this field is
      * still false, discard the response and perform a limited number of retries.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>bool verified_additional_authenticated_data_crc32c = 6;</code>
      * @param bool $var
@@ -370,6 +364,32 @@ class EncryptResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->verified_additional_authenticated_data_crc32c = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in encryption.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 7;</code>
+     * @return int
+     */
+    public function getProtectionLevel()
+    {
+        return $this->protection_level;
+    }
+
+    /**
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in encryption.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setProtectionLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\ProtectionLevel::class);
+        $this->protection_level = $var;
 
         return $this;
     }

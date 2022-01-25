@@ -111,7 +111,7 @@ class CreateEntitlementRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEntitlement()
     {
-        return isset($this->entitlement) ? $this->entitlement : null;
+        return $this->entitlement;
     }
 
     public function hasEntitlement()

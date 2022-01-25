@@ -132,7 +132,7 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTransaction()
     {
-        return isset($this->transaction) ? $this->transaction : null;
+        return $this->transaction;
     }
 
     public function hasTransaction()
@@ -243,7 +243,7 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestOptions()
     {
-        return isset($this->request_options) ? $this->request_options : null;
+        return $this->request_options;
     }
 
     public function hasRequestOptions()

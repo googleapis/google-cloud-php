@@ -87,7 +87,7 @@ class CheckInfo extends \Google\Protobuf\Internal\Message
      */
     public function getConsumerInfo()
     {
-        return isset($this->consumer_info) ? $this->consumer_info : null;
+        return $this->consumer_info;
     }
 
     public function hasConsumerInfo()
@@ -117,6 +117,4 @@ class CheckInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CheckInfo::class, \Google\Cloud\ServiceControl\V1\CheckResponse_CheckInfo::class);
 

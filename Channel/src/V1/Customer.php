@@ -47,7 +47,8 @@ class Customer extends \Google\Protobuf\Internal\Message
      * Secondary contact email. You need to provide an alternate email to create
      * different domains if a primary contact email already exists. Users will
      * receive a notification with credentials when you create an admin.google.com
-     * account. Secondary emails are also recovery email addresses.
+     * account. Secondary emails are also recovery email addresses. Alternate
+     * emails are optional when you create Team customers.
      *
      * Generated from protobuf field <code>string alternate_email = 5;</code>
      */
@@ -123,7 +124,8 @@ class Customer extends \Google\Protobuf\Internal\Message
      *           Secondary contact email. You need to provide an alternate email to create
      *           different domains if a primary contact email already exists. Users will
      *           receive a notification with credentials when you create an admin.google.com
-     *           account. Secondary emails are also recovery email addresses.
+     *           account. Secondary emails are also recovery email addresses. Alternate
+     *           emails are optional when you create Team customers.
      *     @type string $domain
      *           Required. The customer's primary domain. Must match the primary contact
      *           email's domain.
@@ -216,7 +218,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      */
     public function getOrgPostalAddress()
     {
-        return isset($this->org_postal_address) ? $this->org_postal_address : null;
+        return $this->org_postal_address;
     }
 
     public function hasOrgPostalAddress()
@@ -255,7 +257,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      */
     public function getPrimaryContactInfo()
     {
-        return isset($this->primary_contact_info) ? $this->primary_contact_info : null;
+        return $this->primary_contact_info;
     }
 
     public function hasPrimaryContactInfo()
@@ -287,7 +289,8 @@ class Customer extends \Google\Protobuf\Internal\Message
      * Secondary contact email. You need to provide an alternate email to create
      * different domains if a primary contact email already exists. Users will
      * receive a notification with credentials when you create an admin.google.com
-     * account. Secondary emails are also recovery email addresses.
+     * account. Secondary emails are also recovery email addresses. Alternate
+     * emails are optional when you create Team customers.
      *
      * Generated from protobuf field <code>string alternate_email = 5;</code>
      * @return string
@@ -301,7 +304,8 @@ class Customer extends \Google\Protobuf\Internal\Message
      * Secondary contact email. You need to provide an alternate email to create
      * different domains if a primary contact email already exists. Users will
      * receive a notification with credentials when you create an admin.google.com
-     * account. Secondary emails are also recovery email addresses.
+     * account. Secondary emails are also recovery email addresses. Alternate
+     * emails are optional when you create Team customers.
      *
      * Generated from protobuf field <code>string alternate_email = 5;</code>
      * @param string $var
@@ -351,7 +355,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -387,7 +391,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -482,7 +486,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      */
     public function getCloudIdentityInfo()
     {
-        return isset($this->cloud_identity_info) ? $this->cloud_identity_info : null;
+        return $this->cloud_identity_info;
     }
 
     public function hasCloudIdentityInfo()

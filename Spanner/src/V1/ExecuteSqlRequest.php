@@ -232,7 +232,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTransaction()
     {
-        return isset($this->transaction) ? $this->transaction : null;
+        return $this->transaction;
     }
 
     public function hasTransaction()
@@ -308,7 +308,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      */
     public function getParams()
     {
-        return isset($this->params) ? $this->params : null;
+        return $this->params;
     }
 
     public function hasParams()
@@ -528,7 +528,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      */
     public function getQueryOptions()
     {
-        return isset($this->query_options) ? $this->query_options : null;
+        return $this->query_options;
     }
 
     public function hasQueryOptions()
@@ -564,7 +564,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestOptions()
     {
-        return isset($this->request_options) ? $this->request_options : null;
+        return $this->request_options;
     }
 
     public function hasRequestOptions()

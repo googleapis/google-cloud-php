@@ -104,7 +104,7 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      */
     public function getFunctionName()
     {
-        return isset($this->function_name) ? $this->function_name : null;
+        return $this->function_name;
     }
 
     public function hasFunctionName()
@@ -143,7 +143,7 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      */
     public function getOriginalFunctionName()
     {
-        return isset($this->original_function_name) ? $this->original_function_name : null;
+        return $this->original_function_name;
     }
 
     public function hasOriginalFunctionName()
@@ -182,7 +182,7 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      */
     public function getFileName()
     {
-        return isset($this->file_name) ? $this->file_name : null;
+        return $this->file_name;
     }
 
     public function hasFileName()
@@ -273,7 +273,7 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      */
     public function getLoadModule()
     {
-        return isset($this->load_module) ? $this->load_module : null;
+        return $this->load_module;
     }
 
     public function hasLoadModule()
@@ -309,7 +309,7 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      */
     public function getSourceVersion()
     {
-        return isset($this->source_version) ? $this->source_version : null;
+        return $this->source_version;
     }
 
     public function hasSourceVersion()

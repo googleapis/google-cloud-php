@@ -140,7 +140,7 @@ class CreateAppProfileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAppProfile()
     {
-        return isset($this->app_profile) ? $this->app_profile : null;
+        return $this->app_profile;
     }
 
     public function hasAppProfile()

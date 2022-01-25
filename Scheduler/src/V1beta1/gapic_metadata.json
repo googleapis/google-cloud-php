@@ -1,0 +1,58 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.scheduler.v1beta1",
+    "libraryPackage": "Google\\Cloud\\Scheduler\\V1beta1",
+    "services": {
+        "CloudScheduler": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CloudSchedulerGapicClient",
+                    "rpcs": {
+                        "CreateJob": {
+                            "methods": [
+                                "createJob"
+                            ]
+                        },
+                        "DeleteJob": {
+                            "methods": [
+                                "deleteJob"
+                            ]
+                        },
+                        "GetJob": {
+                            "methods": [
+                                "getJob"
+                            ]
+                        },
+                        "ListJobs": {
+                            "methods": [
+                                "listJobs"
+                            ]
+                        },
+                        "PauseJob": {
+                            "methods": [
+                                "pauseJob"
+                            ]
+                        },
+                        "ResumeJob": {
+                            "methods": [
+                                "resumeJob"
+                            ]
+                        },
+                        "RunJob": {
+                            "methods": [
+                                "runJob"
+                            ]
+                        },
+                        "UpdateJob": {
+                            "methods": [
+                                "updateJob"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

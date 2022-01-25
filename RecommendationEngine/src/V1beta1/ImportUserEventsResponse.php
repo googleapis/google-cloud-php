@@ -88,11 +88,21 @@ class ImportUserEventsResponse extends \Google\Protobuf\Internal\Message
      * the request.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.ImportErrorsConfig errors_config = 2;</code>
-     * @return \Google\Cloud\RecommendationEngine\V1beta1\ImportErrorsConfig
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\ImportErrorsConfig|null
      */
     public function getErrorsConfig()
     {
         return $this->errors_config;
+    }
+
+    public function hasErrorsConfig()
+    {
+        return isset($this->errors_config);
+    }
+
+    public function clearErrorsConfig()
+    {
+        unset($this->errors_config);
     }
 
     /**
@@ -115,11 +125,21 @@ class ImportUserEventsResponse extends \Google\Protobuf\Internal\Message
      * Aggregated statistics of user event import status.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.UserEventImportSummary import_summary = 3;</code>
-     * @return \Google\Cloud\RecommendationEngine\V1beta1\UserEventImportSummary
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\UserEventImportSummary|null
      */
     public function getImportSummary()
     {
         return $this->import_summary;
+    }
+
+    public function hasImportSummary()
+    {
+        return isset($this->import_summary);
+    }
+
+    public function clearImportSummary()
+    {
+        unset($this->import_summary);
     }
 
     /**

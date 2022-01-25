@@ -119,7 +119,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      * Boolean expressions (AND/OR/NOT) are supported up to 3 levels of
      * nesting (for example, "((A AND B AND C) OR NOT D) AND E"), a maximum of 100
      * comparisons or functions are allowed in the expression. The expression
-     * must be < 6000 bytes in length.
+     * must be < 10000 bytes in length.
      * Sample Query:
      * `(LOWER(driving_license)="class \"a\"" OR EMPTY(driving_license)) AND
      * driving_years > 10`
@@ -253,7 +253,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *           Boolean expressions (AND/OR/NOT) are supported up to 3 levels of
      *           nesting (for example, "((A AND B AND C) OR NOT D) AND E"), a maximum of 100
      *           comparisons or functions are allowed in the expression. The expression
-     *           must be < 6000 bytes in length.
+     *           must be < 10000 bytes in length.
      *           Sample Query:
      *           `(LOWER(driving_license)="class \"a\"" OR EMPTY(driving_license)) AND
      *           driving_years > 10`
@@ -489,7 +489,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     public function getCommuteFilter()
     {
-        return isset($this->commute_filter) ? $this->commute_filter : null;
+        return $this->commute_filter;
     }
 
     public function hasCommuteFilter()
@@ -571,7 +571,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     public function getCompensationFilter()
     {
-        return isset($this->compensation_filter) ? $this->compensation_filter : null;
+        return $this->compensation_filter;
     }
 
     public function hasCompensationFilter()
@@ -617,7 +617,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      * Boolean expressions (AND/OR/NOT) are supported up to 3 levels of
      * nesting (for example, "((A AND B AND C) OR NOT D) AND E"), a maximum of 100
      * comparisons or functions are allowed in the expression. The expression
-     * must be < 6000 bytes in length.
+     * must be < 10000 bytes in length.
      * Sample Query:
      * `(LOWER(driving_license)="class \"a\"" OR EMPTY(driving_license)) AND
      * driving_years > 10`
@@ -644,7 +644,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      * Boolean expressions (AND/OR/NOT) are supported up to 3 levels of
      * nesting (for example, "((A AND B AND C) OR NOT D) AND E"), a maximum of 100
      * comparisons or functions are allowed in the expression. The expression
-     * must be < 6000 bytes in length.
+     * must be < 10000 bytes in length.
      * Sample Query:
      * `(LOWER(driving_license)="class \"a\"" OR EMPTY(driving_license)) AND
      * driving_years > 10`
@@ -778,7 +778,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     public function getPublishTimeRange()
     {
-        return isset($this->publish_time_range) ? $this->publish_time_range : null;
+        return $this->publish_time_range;
     }
 
     public function hasPublishTimeRange()

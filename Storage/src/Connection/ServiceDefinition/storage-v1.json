@@ -213,7 +213,7 @@
        },
        "publicAccessPrevention": {
         "type": "string",
-        "description": "The bucket's Public Access Prevention configuration. Currently, 'unspecified' and 'enforced' are supported."
+        "description": "The bucket's Public Access Prevention configuration. Currently, 'inherited' and 'enforced' are supported."
        }
       }
      },
@@ -393,6 +393,10 @@
         "format": "int64"
        }
       }
+     },
+     "rpo": {
+       "type": "string",
+       "description": "The bucket's setting for Turbo Replication. The bucket has to be a dual-region Cloud Storage bucket for Turbo Replication to be set."
      },
      "selfLink": {
       "type": "string",

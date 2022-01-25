@@ -71,7 +71,7 @@ class Price extends \Google\Protobuf\Internal\Message
      */
     public function getBasePrice()
     {
-        return isset($this->base_price) ? $this->base_price : null;
+        return $this->base_price;
     }
 
     public function hasBasePrice()
@@ -135,7 +135,7 @@ class Price extends \Google\Protobuf\Internal\Message
      */
     public function getEffectivePrice()
     {
-        return isset($this->effective_price) ? $this->effective_price : null;
+        return $this->effective_price;
     }
 
     public function hasEffectivePrice()

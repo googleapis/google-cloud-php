@@ -18,7 +18,9 @@ class AnimationStatic extends \Google\Protobuf\Internal\Message
     /**
      * Normalized coordinates based on output video resolution. Valid
      * values: `0.0`–`1.0`. `xy` is the upper-left coordinate of the overlay
-     * object.
+     * object. For example, use the x and y coordinates {0,0} to position the
+     * top-left corner of the overlay animation in the top-left corner of the
+     * output video.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1beta1.Overlay.NormalizedCoordinate xy = 1;</code>
      */
@@ -39,7 +41,9 @@ class AnimationStatic extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Video\Transcoder\V1beta1\Overlay\NormalizedCoordinate $xy
      *           Normalized coordinates based on output video resolution. Valid
      *           values: `0.0`–`1.0`. `xy` is the upper-left coordinate of the overlay
-     *           object.
+     *           object. For example, use the x and y coordinates {0,0} to position the
+     *           top-left corner of the overlay animation in the top-left corner of the
+     *           output video.
      *     @type \Google\Protobuf\Duration $start_time_offset
      *           The time to start displaying the overlay object, in seconds. Default: 0
      * }
@@ -52,14 +56,16 @@ class AnimationStatic extends \Google\Protobuf\Internal\Message
     /**
      * Normalized coordinates based on output video resolution. Valid
      * values: `0.0`–`1.0`. `xy` is the upper-left coordinate of the overlay
-     * object.
+     * object. For example, use the x and y coordinates {0,0} to position the
+     * top-left corner of the overlay animation in the top-left corner of the
+     * output video.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1beta1.Overlay.NormalizedCoordinate xy = 1;</code>
      * @return \Google\Cloud\Video\Transcoder\V1beta1\Overlay\NormalizedCoordinate|null
      */
     public function getXy()
     {
-        return isset($this->xy) ? $this->xy : null;
+        return $this->xy;
     }
 
     public function hasXy()
@@ -75,7 +81,9 @@ class AnimationStatic extends \Google\Protobuf\Internal\Message
     /**
      * Normalized coordinates based on output video resolution. Valid
      * values: `0.0`–`1.0`. `xy` is the upper-left coordinate of the overlay
-     * object.
+     * object. For example, use the x and y coordinates {0,0} to position the
+     * top-left corner of the overlay animation in the top-left corner of the
+     * output video.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1beta1.Overlay.NormalizedCoordinate xy = 1;</code>
      * @param \Google\Cloud\Video\Transcoder\V1beta1\Overlay\NormalizedCoordinate $var
@@ -97,7 +105,7 @@ class AnimationStatic extends \Google\Protobuf\Internal\Message
      */
     public function getStartTimeOffset()
     {
-        return isset($this->start_time_offset) ? $this->start_time_offset : null;
+        return $this->start_time_offset;
     }
 
     public function hasStartTimeOffset()
@@ -127,6 +135,4 @@ class AnimationStatic extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AnimationStatic::class, \Google\Cloud\Video\Transcoder\V1beta1\Overlay_AnimationStatic::class);
 

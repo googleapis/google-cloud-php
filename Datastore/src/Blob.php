@@ -18,8 +18,6 @@
 namespace Google\Cloud\Datastore;
 
 use Google\Cloud\Core\Blob as CoreBlob;
-use GuzzleHttp\Psr7;
-use Psr\Http\Message\StreamInterface;
 
 /**
  * Represents a Blob value.

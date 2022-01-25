@@ -35,10 +35,10 @@ class Membership extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Required. Description of this membership, limited to 63 characters.
+     * Optional. Description of this membership, limited to 63 characters.
      * Must match the regex: `[a-zA-Z0-9][a-zA-Z0-9_\-\.\ ]*`
      *
-     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $description = '';
     /**
@@ -127,7 +127,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. GCP labels for this membership.
      *     @type string $description
-     *           Required. Description of this membership, limited to 63 characters.
+     *           Optional. Description of this membership, limited to 63 characters.
      *           Must match the regex: `[a-zA-Z0-9][a-zA-Z0-9_\-\.\ ]*`
      *     @type \Google\Cloud\GkeHub\V1beta1\MembershipEndpoint $endpoint
      *           Optional. Endpoint information to reach this member.
@@ -235,10 +235,10 @@ class Membership extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Description of this membership, limited to 63 characters.
+     * Optional. Description of this membership, limited to 63 characters.
      * Must match the regex: `[a-zA-Z0-9][a-zA-Z0-9_\-\.\ ]*`
      *
-     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -247,10 +247,10 @@ class Membership extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Description of this membership, limited to 63 characters.
+     * Optional. Description of this membership, limited to 63 characters.
      * Must match the regex: `[a-zA-Z0-9][a-zA-Z0-9_\-\.\ ]*`
      *
-     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -301,7 +301,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      */
     public function getState()
     {
-        return isset($this->state) ? $this->state : null;
+        return $this->state;
     }
 
     public function hasState()
@@ -339,7 +339,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      */
     public function getAuthority()
     {
-        return isset($this->authority) ? $this->authority : null;
+        return $this->authority;
     }
 
     public function hasAuthority()
@@ -377,7 +377,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -413,7 +413,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -449,7 +449,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      */
     public function getDeleteTime()
     {
-        return isset($this->delete_time) ? $this->delete_time : null;
+        return $this->delete_time;
     }
 
     public function hasDeleteTime()
@@ -524,7 +524,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      */
     public function getLastConnectionTime()
     {
-        return isset($this->last_connection_time) ? $this->last_connection_time : null;
+        return $this->last_connection_time;
     }
 
     public function hasLastConnectionTime()

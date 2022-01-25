@@ -16,12 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The speech model used in speech to text.
+     * The speech model used in speech to text.
      * `SPEECH_MODEL_VARIANT_UNSPECIFIED`, `USE_BEST_AVAILABLE` will be treated as
      * `USE_ENHANCED`. It can be overridden in [AnalyzeContentRequest][google.cloud.dialogflow.v2.AnalyzeContentRequest] and
      * [StreamingAnalyzeContentRequest][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest] request.
+     * If enhanced model variant is specified and an enhanced
+     * version of the specified model for the language does not exist, then it
+     * would emit an error.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechModelVariant speech_model_variant = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechModelVariant speech_model_variant = 1;</code>
      */
     private $speech_model_variant = 0;
 
@@ -32,10 +35,13 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $speech_model_variant
-     *           Optional. The speech model used in speech to text.
+     *           The speech model used in speech to text.
      *           `SPEECH_MODEL_VARIANT_UNSPECIFIED`, `USE_BEST_AVAILABLE` will be treated as
      *           `USE_ENHANCED`. It can be overridden in [AnalyzeContentRequest][google.cloud.dialogflow.v2.AnalyzeContentRequest] and
      *           [StreamingAnalyzeContentRequest][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest] request.
+     *           If enhanced model variant is specified and an enhanced
+     *           version of the specified model for the language does not exist, then it
+     *           would emit an error.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,12 +50,15 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The speech model used in speech to text.
+     * The speech model used in speech to text.
      * `SPEECH_MODEL_VARIANT_UNSPECIFIED`, `USE_BEST_AVAILABLE` will be treated as
      * `USE_ENHANCED`. It can be overridden in [AnalyzeContentRequest][google.cloud.dialogflow.v2.AnalyzeContentRequest] and
      * [StreamingAnalyzeContentRequest][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest] request.
+     * If enhanced model variant is specified and an enhanced
+     * version of the specified model for the language does not exist, then it
+     * would emit an error.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechModelVariant speech_model_variant = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechModelVariant speech_model_variant = 1;</code>
      * @return int
      */
     public function getSpeechModelVariant()
@@ -58,12 +67,15 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The speech model used in speech to text.
+     * The speech model used in speech to text.
      * `SPEECH_MODEL_VARIANT_UNSPECIFIED`, `USE_BEST_AVAILABLE` will be treated as
      * `USE_ENHANCED`. It can be overridden in [AnalyzeContentRequest][google.cloud.dialogflow.v2.AnalyzeContentRequest] and
      * [StreamingAnalyzeContentRequest][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest] request.
+     * If enhanced model variant is specified and an enhanced
+     * version of the specified model for the language does not exist, then it
+     * would emit an error.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechModelVariant speech_model_variant = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechModelVariant speech_model_variant = 1;</code>
      * @param int $var
      * @return $this
      */

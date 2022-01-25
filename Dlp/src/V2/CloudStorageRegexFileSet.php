@@ -60,6 +60,7 @@ class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
      */
     private $include_regex;
     /**
+     * [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found
      * A list of regular expressions matching file paths to exclude. All files in
      * the bucket that match at least one of these regular expressions will be
      * excluded from the scan.
@@ -89,6 +90,7 @@ class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
      *           [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found
      *           under the google/re2 repository on GitHub.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $exclude_regex
+     *           [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found
      *           A list of regular expressions matching file paths to exclude. All files in
      *           the bucket that match at least one of these regular expressions will be
      *           excluded from the scan.
@@ -169,6 +171,7 @@ class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found
      * A list of regular expressions matching file paths to exclude. All files in
      * the bucket that match at least one of these regular expressions will be
      * excluded from the scan.
@@ -185,6 +188,7 @@ class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found
      * A list of regular expressions matching file paths to exclude. All files in
      * the bucket that match at least one of these regular expressions will be
      * excluded from the scan.

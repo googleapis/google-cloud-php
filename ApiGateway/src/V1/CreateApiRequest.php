@@ -121,7 +121,7 @@ class CreateApiRequest extends \Google\Protobuf\Internal\Message
      */
     public function getApi()
     {
-        return isset($this->api) ? $this->api : null;
+        return $this->api;
     }
 
     public function hasApi()

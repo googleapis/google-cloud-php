@@ -20,14 +20,20 @@ class Direction
      */
     const UNDEFINED_DIRECTION = 0;
     /**
+     * Default, both directions are mirrored.
+     *
      * Generated from protobuf enum <code>BOTH = 2044801;</code>
      */
     const BOTH = 2044801;
     /**
+     * Only egress traffic is mirrored.
+     *
      * Generated from protobuf enum <code>EGRESS = 432880501;</code>
      */
     const EGRESS = 432880501;
     /**
+     * Only ingress traffic is mirrored.
+     *
      * Generated from protobuf enum <code>INGRESS = 516931221;</code>
      */
     const INGRESS = 516931221;

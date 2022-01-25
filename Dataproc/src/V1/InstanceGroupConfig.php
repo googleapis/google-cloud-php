@@ -346,7 +346,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      */
     public function getDiskConfig()
     {
-        return isset($this->disk_config) ? $this->disk_config : null;
+        return $this->disk_config;
     }
 
     public function hasDiskConfig()
@@ -446,7 +446,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      */
     public function getManagedGroupConfig()
     {
-        return isset($this->managed_group_config) ? $this->managed_group_config : null;
+        return $this->managed_group_config;
     }
 
     public function hasManagedGroupConfig()

@@ -7,19 +7,7 @@ namespace Google\Cloud\Compute\V1\ForwardingRule;
 use UnexpectedValueException;
 
 /**
- * Specifies the forwarding rule type.
- * - EXTERNAL is used for:
- * - Classic Cloud VPN gateways
- * - Protocol forwarding to VMs from an external IP address
- * - HTTP(S), SSL Proxy, TCP Proxy, and Network Load Balancing
- * - INTERNAL is used for:
- * - Protocol forwarding to VMs from an internal IP address
- * - Internal TCP/UDP Load Balancing
- * - INTERNAL_MANAGED is used for:
- * - Internal HTTP(S) Load Balancing
- * - INTERNAL_SELF_MANAGED is used for:
- * - Traffic Director
- * For more information about forwarding rules, refer to Forwarding rule concepts.
+ * Specifies the forwarding rule type. For more information about forwarding rules, refer to Forwarding rule concepts.
  *
  * Protobuf type <code>google.cloud.compute.v1.ForwardingRule.LoadBalancingScheme</code>
  */

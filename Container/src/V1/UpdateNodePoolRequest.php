@@ -429,7 +429,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     public function getWorkloadMetadataConfig()
     {
-        return isset($this->workload_metadata_config) ? $this->workload_metadata_config : null;
+        return $this->workload_metadata_config;
     }
 
     public function hasWorkloadMetadataConfig()
@@ -465,7 +465,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpgradeSettings()
     {
-        return isset($this->upgrade_settings) ? $this->upgrade_settings : null;
+        return $this->upgrade_settings;
     }
 
     public function hasUpgradeSettings()

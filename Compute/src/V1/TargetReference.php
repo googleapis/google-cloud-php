@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TargetReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string target = 192835985;</code>
+     * Generated from protobuf field <code>optional string target = 192835985;</code>
      */
     private $target = null;
 
@@ -34,7 +34,7 @@ class TargetReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string target = 192835985;</code>
+     * Generated from protobuf field <code>optional string target = 192835985;</code>
      * @return string
      */
     public function getTarget()
@@ -53,7 +53,7 @@ class TargetReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string target = 192835985;</code>
+     * Generated from protobuf field <code>optional string target = 192835985;</code>
      * @param string $var
      * @return $this
      */

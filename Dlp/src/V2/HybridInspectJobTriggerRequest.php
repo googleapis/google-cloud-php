@@ -83,7 +83,7 @@ class HybridInspectJobTriggerRequest extends \Google\Protobuf\Internal\Message
      */
     public function getHybridItem()
     {
-        return isset($this->hybrid_item) ? $this->hybrid_item : null;
+        return $this->hybrid_item;
     }
 
     public function hasHybridItem()

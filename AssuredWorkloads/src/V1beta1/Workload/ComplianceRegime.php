@@ -61,6 +61,18 @@ class ComplianceRegime
      * Generated from protobuf enum <code>HITRUST = 7;</code>
      */
     const HITRUST = 7;
+    /**
+     * Assured Workloads For EU Regions and Support controls
+     *
+     * Generated from protobuf enum <code>EU_REGIONS_AND_SUPPORT = 8;</code>
+     */
+    const EU_REGIONS_AND_SUPPORT = 8;
+    /**
+     * Assured Workloads For Canada Regions and Support controls
+     *
+     * Generated from protobuf enum <code>CA_REGIONS_AND_SUPPORT = 9;</code>
+     */
+    const CA_REGIONS_AND_SUPPORT = 9;
 
     private static $valueToName = [
         self::COMPLIANCE_REGIME_UNSPECIFIED => 'COMPLIANCE_REGIME_UNSPECIFIED',
@@ -71,6 +83,8 @@ class ComplianceRegime
         self::US_REGIONAL_ACCESS => 'US_REGIONAL_ACCESS',
         self::HIPAA => 'HIPAA',
         self::HITRUST => 'HITRUST',
+        self::EU_REGIONS_AND_SUPPORT => 'EU_REGIONS_AND_SUPPORT',
+        self::CA_REGIONS_AND_SUPPORT => 'CA_REGIONS_AND_SUPPORT',
     ];
 
     public static function name($value)

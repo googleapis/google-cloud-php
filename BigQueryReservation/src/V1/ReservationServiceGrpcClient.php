@@ -274,6 +274,11 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      *   `project2`) could all be created and mapped to the same or different
      *   reservations.
      *
+     * "None" assignments represent an absence of the assignment. Projects
+     * assigned to None use on-demand pricing. To create a "None" assignment, use
+     * "none" as a reservation_id in the parent. Example parent:
+     * `projects/myproject/locations/US/reservations/none`.
+     *
      * Returns `google.rpc.Code.PERMISSION_DENIED` if user does not have
      * 'bigquery.admin' permissions on the project using the reservation
      * and the project that owns this reservation.
@@ -358,7 +363,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Looks up assignments for a specified resource for a particular region.
+     * Deprecated: Looks up assignments for a specified resource for a particular region.
      * If the request is about a project:
      *
      * 1. Assignments created on the project will be returned if they exist.
@@ -391,6 +396,40 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/SearchAssignments',
         $argument,
         ['\Google\Cloud\BigQuery\Reservation\V1\SearchAssignmentsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Looks up assignments for a specified resource for a particular region.
+     * If the request is about a project:
+     *
+     * 1. Assignments created on the project will be returned if they exist.
+     * 2. Otherwise assignments created on the closest ancestor will be
+     *    returned.
+     * 3. Assignments for different JobTypes will all be returned.
+     *
+     * The same logic applies if the request is about a folder.
+     *
+     * If the request is about an organization, then assignments created on the
+     * organization will be returned (organization doesn't have ancestors).
+     *
+     * Comparing to ListAssignments, there are some behavior
+     * differences:
+     *
+     * 1. permission on the assignee will be verified in this API.
+     * 2. Hierarchy lookup (project->folder->organization) happens in this API.
+     * 3. Parent here is `projects/&#42;/locations/*`, instead of
+     *    `projects/&#42;/locations/*reservations/*`.
+     * @param \Google\Cloud\BigQuery\Reservation\V1\SearchAllAssignmentsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function SearchAllAssignments(\Google\Cloud\BigQuery\Reservation\V1\SearchAllAssignmentsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/SearchAllAssignments',
+        $argument,
+        ['\Google\Cloud\BigQuery\Reservation\V1\SearchAllAssignmentsResponse', 'decode'],
         $metadata, $options);
     }
 

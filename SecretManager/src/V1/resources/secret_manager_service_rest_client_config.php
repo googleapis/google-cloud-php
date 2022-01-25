@@ -37,6 +37,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'secret_id',
+                ],
             ],
             'DeleteSecret' => [
                 'method' => 'delete',
@@ -175,6 +178,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

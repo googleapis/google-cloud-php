@@ -62,7 +62,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      */
     public function getScheduleTime()
     {
-        return isset($this->schedule_time) ? $this->schedule_time : null;
+        return $this->schedule_time;
     }
 
     public function hasScheduleTime()
@@ -121,6 +121,4 @@ class Schedule extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Schedule::class, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_Schedule::class);
 

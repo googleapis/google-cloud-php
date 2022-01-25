@@ -237,7 +237,7 @@ class MySqlConnectionProfile extends \Google\Protobuf\Internal\Message
      */
     public function getSsl()
     {
-        return isset($this->ssl) ? $this->ssl : null;
+        return $this->ssl;
     }
 
     public function hasSsl()

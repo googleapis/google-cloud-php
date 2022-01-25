@@ -7,7 +7,6 @@ namespace Google\Cloud\RecaptchaEnterprise\V1\RiskAnalysis;
 use UnexpectedValueException;
 
 /**
- * LINT.IfChange(classification_reason)
  * Reasons contributing to the risk analysis verdict.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.RiskAnalysis.ClassificationReason</code>

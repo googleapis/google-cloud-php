@@ -50,9 +50,15 @@ class Snapshot implements TransactionalReadInterface
      *           the Transaction will be a Single-Use Transaction.
      *     @type Timestamp $readTimestamp The read timestamp.
      * }
+     * @throws \InvalidArgumentException if a tag is specified as this is a read-only transaction.
      */
     public function __construct(Operation $operation, Session $session, array $options = [])
     {
+        if (isset($options['tag'])) {
+            throw new \InvalidArgumentException(
+                "Cannot set a transaction tag on a read-only transaction."
+            );
+        }
         $this->initialize($operation, $session, $options);
     }
 }

@@ -64,6 +64,4 @@ class Mode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Mode::class, \Google\Cloud\OsConfig\V1\PatchRollout_Mode::class);
 

@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/translate/(v3)/.*-php/(.*)
+      dest: /owl-bot-staging/Translate/$1/$2
+api-name: Translate

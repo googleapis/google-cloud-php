@@ -22,22 +22,23 @@
 
 namespace Google\Cloud\ErrorReporting\Tests\Unit\V1beta1;
 
-use Google\Cloud\ErrorReporting\V1beta1\ErrorStatsServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
+
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ErrorReporting\V1beta1\DeleteEventsResponse;
 use Google\Cloud\ErrorReporting\V1beta1\ErrorEvent;
 use Google\Cloud\ErrorReporting\V1beta1\ErrorGroupStats;
+use Google\Cloud\ErrorReporting\V1beta1\ErrorStatsServiceClient;
 use Google\Cloud\ErrorReporting\V1beta1\ListEventsResponse;
 use Google\Cloud\ErrorReporting\V1beta1\ListGroupStatsResponse;
-use Google\Protobuf\Any;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group errorreporting
+ *
  * @group gapic
  */
 class ErrorStatsServiceClientTest extends GeneratedTest
@@ -55,9 +56,7 @@ class ErrorStatsServiceClientTest extends GeneratedTest
      */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
     /**
@@ -68,7 +67,6 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new ErrorStatsServiceClient($options);
     }
 
@@ -78,17 +76,15 @@ class ErrorStatsServiceClientTest extends GeneratedTest
     public function deleteEventsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $expectedResponse = new DeleteEventsResponse();
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $formattedProjectName = $client->projectName('[PROJECT]');
-
         $response = $client->deleteEvents($formattedProjectName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -96,11 +92,8 @@ class ErrorStatsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/DeleteEvents', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProjectName();
-
         $this->assertProtobufEquals($formattedProjectName, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -110,25 +103,22 @@ class ErrorStatsServiceClientTest extends GeneratedTest
     public function deleteEventsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $formattedProjectName = $client->projectName('[PROJECT]');
-
         try {
             $client->deleteEvents($formattedProjectName);
             // If the $client method call did not throw, fail the test
@@ -137,86 +127,6 @@ class ErrorStatsServiceClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listGroupStatsTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $nextPageToken = '';
-        $errorGroupStatsElement = new ErrorGroupStats();
-        $errorGroupStats = [$errorGroupStatsElement];
-        $expectedResponse = new ListGroupStatsResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setErrorGroupStats($errorGroupStats);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedProjectName = $client->projectName('[PROJECT]');
-
-        $response = $client->listGroupStats($formattedProjectName);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getErrorGroupStats()[0], $resources[0]);
-
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/ListGroupStats', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProjectName();
-
-        $this->assertProtobufEquals($formattedProjectName, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listGroupStatsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedProjectName = $client->projectName('[PROJECT]');
-
-        try {
-            $client->listGroupStats($formattedProjectName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -228,40 +138,36 @@ class ErrorStatsServiceClientTest extends GeneratedTest
     public function listEventsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $nextPageToken = '';
         $errorEventsElement = new ErrorEvent();
-        $errorEvents = [$errorEventsElement];
+        $errorEvents = [
+            $errorEventsElement,
+        ];
         $expectedResponse = new ListEventsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setErrorEvents($errorEvents);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $formattedProjectName = $client->projectName('[PROJECT]');
         $groupId = 'groupId506361563';
-
         $response = $client->listEvents($formattedProjectName, $groupId);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getErrorEvents()[0], $resources[0]);
-
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/ListEvents', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProjectName();
-
         $this->assertProtobufEquals($formattedProjectName, $actualValue);
         $actualValue = $actualRequestObject->getGroupId();
-
         $this->assertProtobufEquals($groupId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
@@ -272,26 +178,23 @@ class ErrorStatsServiceClientTest extends GeneratedTest
     public function listEventsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $formattedProjectName = $client->projectName('[PROJECT]');
         $groupId = 'groupId506361563';
-
         try {
             $client->listEvents($formattedProjectName, $groupId);
             // If the $client method call did not throw, fail the test
@@ -300,7 +203,78 @@ class ErrorStatsServiceClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
 
+    /**
+     * @test
+     */
+    public function listGroupStatsTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $errorGroupStatsElement = new ErrorGroupStats();
+        $errorGroupStats = [
+            $errorGroupStatsElement,
+        ];
+        $expectedResponse = new ListGroupStatsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setErrorGroupStats($errorGroupStats);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedProjectName = $client->projectName('[PROJECT]');
+        $response = $client->listGroupStats($formattedProjectName);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getErrorGroupStats()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ErrorStatsService/ListGroupStats', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProjectName();
+        $this->assertProtobufEquals($formattedProjectName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listGroupStatsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedProjectName = $client->projectName('[PROJECT]');
+        try {
+            $client->listGroupStats($formattedProjectName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());

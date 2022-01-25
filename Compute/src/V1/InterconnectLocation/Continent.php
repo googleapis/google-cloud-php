@@ -7,12 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectLocation;
 use UnexpectedValueException;
 
 /**
- * [Output Only] Continent for this location, which can take one of the following values:
- * - AFRICA
- * - ASIA_PAC
- * - EUROPE
- * - NORTH_AMERICA
- * - SOUTH_AMERICA
+ * [Output Only] Continent for this location, which can take one of the following values: - AFRICA - ASIA_PAC - EUROPE - NORTH_AMERICA - SOUTH_AMERICA 
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectLocation.Continent</code>
  */

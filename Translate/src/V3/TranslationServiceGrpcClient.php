@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2019 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
 //
 namespace Google\Cloud\Translate\V3;
 
@@ -81,6 +80,21 @@ class TranslationServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Translates documents in synchronous mode.
+     * @param \Google\Cloud\Translate\V3\TranslateDocumentRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function TranslateDocument(\Google\Cloud\Translate\V3\TranslateDocumentRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.translation.v3.TranslationService/TranslateDocument',
+        $argument,
+        ['\Google\Cloud\Translate\V3\TranslateDocumentResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Translates a large volume of text in asynchronous batch mode.
      * This function provides real-time output as the inputs are being processed.
      * If caller cancels a request, the partial results (for an input file, it's
@@ -96,6 +110,27 @@ class TranslationServiceGrpcClient extends \Grpc\BaseStub {
     public function BatchTranslateText(\Google\Cloud\Translate\V3\BatchTranslateTextRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.translation.v3.TranslationService/BatchTranslateText',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Translates a large volume of document in asynchronous batch mode.
+     * This function provides real-time output as the inputs are being processed.
+     * If caller cancels a request, the partial results (for an input file, it's
+     * all or nothing) may still be available on the specified output location.
+     *
+     * This call returns immediately and you can use
+     * google.longrunning.Operation.name to poll the status of the call.
+     * @param \Google\Cloud\Translate\V3\BatchTranslateDocumentRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function BatchTranslateDocument(\Google\Cloud\Translate\V3\BatchTranslateDocumentRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.translation.v3.TranslationService/BatchTranslateDocument',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);

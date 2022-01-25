@@ -174,6 +174,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_release_channel = null;
     /**
+     * The desired authenticator groups config for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AuthenticatorGroupsConfig desired_authenticator_groups_config = 63;</code>
+     */
+    private $desired_authenticator_groups_config = null;
+    /**
      * The Kubernetes version to change the master to.
      * Users may specify either explicit versions offered by
      * Kubernetes Engine or version aliases, which have the following behavior:
@@ -269,6 +275,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           The desired status of whether to disable default sNAT for this cluster.
      *     @type \Google\Cloud\Container\V1\ReleaseChannel $desired_release_channel
      *           The desired release channel configuration.
+     *     @type \Google\Cloud\Container\V1\AuthenticatorGroupsConfig $desired_authenticator_groups_config
+     *           The desired authenticator groups config for the cluster.
      *     @type string $desired_master_version
      *           The Kubernetes version to change the master to.
      *           Users may specify either explicit versions offered by
@@ -377,7 +385,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredAddonsConfig()
     {
-        return isset($this->desired_addons_config) ? $this->desired_addons_config : null;
+        return $this->desired_addons_config;
     }
 
     public function hasDesiredAddonsConfig()
@@ -473,7 +481,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredDatabaseEncryption()
     {
-        return isset($this->desired_database_encryption) ? $this->desired_database_encryption : null;
+        return $this->desired_database_encryption;
     }
 
     public function hasDesiredDatabaseEncryption()
@@ -509,7 +517,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredWorkloadIdentityConfig()
     {
-        return isset($this->desired_workload_identity_config) ? $this->desired_workload_identity_config : null;
+        return $this->desired_workload_identity_config;
     }
 
     public function hasDesiredWorkloadIdentityConfig()
@@ -545,7 +553,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredShieldedNodes()
     {
-        return isset($this->desired_shielded_nodes) ? $this->desired_shielded_nodes : null;
+        return $this->desired_shielded_nodes;
     }
 
     public function hasDesiredShieldedNodes()
@@ -584,7 +592,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredNodePoolAutoscaling()
     {
-        return isset($this->desired_node_pool_autoscaling) ? $this->desired_node_pool_autoscaling : null;
+        return $this->desired_node_pool_autoscaling;
     }
 
     public function hasDesiredNodePoolAutoscaling()
@@ -659,7 +667,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredMasterAuthorizedNetworksConfig()
     {
-        return isset($this->desired_master_authorized_networks_config) ? $this->desired_master_authorized_networks_config : null;
+        return $this->desired_master_authorized_networks_config;
     }
 
     public function hasDesiredMasterAuthorizedNetworksConfig()
@@ -695,7 +703,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredClusterAutoscaling()
     {
-        return isset($this->desired_cluster_autoscaling) ? $this->desired_cluster_autoscaling : null;
+        return $this->desired_cluster_autoscaling;
     }
 
     public function hasDesiredClusterAutoscaling()
@@ -731,7 +739,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredBinaryAuthorization()
     {
-        return isset($this->desired_binary_authorization) ? $this->desired_binary_authorization : null;
+        return $this->desired_binary_authorization;
     }
 
     public function hasDesiredBinaryAuthorization()
@@ -809,7 +817,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredResourceUsageExportConfig()
     {
-        return isset($this->desired_resource_usage_export_config) ? $this->desired_resource_usage_export_config : null;
+        return $this->desired_resource_usage_export_config;
     }
 
     public function hasDesiredResourceUsageExportConfig()
@@ -845,7 +853,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredVerticalPodAutoscaling()
     {
-        return isset($this->desired_vertical_pod_autoscaling) ? $this->desired_vertical_pod_autoscaling : null;
+        return $this->desired_vertical_pod_autoscaling;
     }
 
     public function hasDesiredVerticalPodAutoscaling()
@@ -881,7 +889,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredPrivateClusterConfig()
     {
-        return isset($this->desired_private_cluster_config) ? $this->desired_private_cluster_config : null;
+        return $this->desired_private_cluster_config;
     }
 
     public function hasDesiredPrivateClusterConfig()
@@ -917,7 +925,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredIntraNodeVisibilityConfig()
     {
-        return isset($this->desired_intra_node_visibility_config) ? $this->desired_intra_node_visibility_config : null;
+        return $this->desired_intra_node_visibility_config;
     }
 
     public function hasDesiredIntraNodeVisibilityConfig()
@@ -953,7 +961,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredDefaultSnatStatus()
     {
-        return isset($this->desired_default_snat_status) ? $this->desired_default_snat_status : null;
+        return $this->desired_default_snat_status;
     }
 
     public function hasDesiredDefaultSnatStatus()
@@ -989,7 +997,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDesiredReleaseChannel()
     {
-        return isset($this->desired_release_channel) ? $this->desired_release_channel : null;
+        return $this->desired_release_channel;
     }
 
     public function hasDesiredReleaseChannel()
@@ -1013,6 +1021,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ReleaseChannel::class);
         $this->desired_release_channel = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired authenticator groups config for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AuthenticatorGroupsConfig desired_authenticator_groups_config = 63;</code>
+     * @return \Google\Cloud\Container\V1\AuthenticatorGroupsConfig|null
+     */
+    public function getDesiredAuthenticatorGroupsConfig()
+    {
+        return $this->desired_authenticator_groups_config;
+    }
+
+    public function hasDesiredAuthenticatorGroupsConfig()
+    {
+        return isset($this->desired_authenticator_groups_config);
+    }
+
+    public function clearDesiredAuthenticatorGroupsConfig()
+    {
+        unset($this->desired_authenticator_groups_config);
+    }
+
+    /**
+     * The desired authenticator groups config for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AuthenticatorGroupsConfig desired_authenticator_groups_config = 63;</code>
+     * @param \Google\Cloud\Container\V1\AuthenticatorGroupsConfig $var
+     * @return $this
+     */
+    public function setDesiredAuthenticatorGroupsConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\AuthenticatorGroupsConfig::class);
+        $this->desired_authenticator_groups_config = $var;
 
         return $this;
     }

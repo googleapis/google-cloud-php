@@ -174,6 +174,25 @@ return [
                     ],
                 ],
             ],
+            'ImportCustomer' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=accounts/*}/customers:import',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=accounts/*/channelPartnerLinks/*}/customers:import',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListChannelPartnerLinks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=accounts/*}/channelPartnerLinks',
@@ -227,6 +246,9 @@ return [
             'ListProducts' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/products',
+                'queryParams' => [
+                    'account',
+                ],
             ],
             'ListPurchasableOffers' => [
                 'method' => 'get',
@@ -259,6 +281,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'account',
                 ],
             ],
             'ListSubscribers' => [

@@ -16,15 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The numeric ID of this VPN gateway interface.
+     * [Output Only] Numeric identifier for this VPN interface associated with the VPN gateway.
      *
-     * Generated from protobuf field <code>uint32 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint32 id = 3355;</code>
      */
     private $id = null;
     /**
-     * [Output Only] The external IP address for this VPN gateway interface.
+     * URL of the VLAN attachment (interconnectAttachment) resource for this VPN gateway interface. When the value of this field is present, the VPN gateway is used for IPsec-encrypted Cloud Interconnect; all egress or ingress traffic for this VPN gateway interface goes through the specified VLAN attachment resource. Not currently available publicly. 
      *
-     * Generated from protobuf field <code>string ip_address = 406272220;</code>
+     * Generated from protobuf field <code>optional string interconnect_attachment = 308135284;</code>
+     */
+    private $interconnect_attachment = null;
+    /**
+     * [Output Only] IP address for this VPN interface associated with the VPN gateway. The IP address could be either a regional external IP address or a regional internal IP address. The two IP addresses for a VPN gateway must be all regional external or regional internal IP addresses. There cannot be a mix of regional external IP addresses and regional internal IP addresses. For IPsec-encrypted Cloud Interconnect, the IP addresses for both interfaces could either be regional internal IP addresses or regional external IP addresses. For regular (non IPsec-encrypted Cloud Interconnect) HA VPN tunnels, the IP address must be a regional external IP address.
+     *
+     * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      */
     private $ip_address = null;
 
@@ -35,9 +41,11 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $id
-     *           The numeric ID of this VPN gateway interface.
+     *           [Output Only] Numeric identifier for this VPN interface associated with the VPN gateway.
+     *     @type string $interconnect_attachment
+     *           URL of the VLAN attachment (interconnectAttachment) resource for this VPN gateway interface. When the value of this field is present, the VPN gateway is used for IPsec-encrypted Cloud Interconnect; all egress or ingress traffic for this VPN gateway interface goes through the specified VLAN attachment resource. Not currently available publicly. 
      *     @type string $ip_address
-     *           [Output Only] The external IP address for this VPN gateway interface.
+     *           [Output Only] IP address for this VPN interface associated with the VPN gateway. The IP address could be either a regional external IP address or a regional internal IP address. The two IP addresses for a VPN gateway must be all regional external or regional internal IP addresses. There cannot be a mix of regional external IP addresses and regional internal IP addresses. For IPsec-encrypted Cloud Interconnect, the IP addresses for both interfaces could either be regional internal IP addresses or regional external IP addresses. For regular (non IPsec-encrypted Cloud Interconnect) HA VPN tunnels, the IP address must be a regional external IP address.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +54,9 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The numeric ID of this VPN gateway interface.
+     * [Output Only] Numeric identifier for this VPN interface associated with the VPN gateway.
      *
-     * Generated from protobuf field <code>uint32 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint32 id = 3355;</code>
      * @return int
      */
     public function getId()
@@ -67,9 +75,9 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The numeric ID of this VPN gateway interface.
+     * [Output Only] Numeric identifier for this VPN interface associated with the VPN gateway.
      *
-     * Generated from protobuf field <code>uint32 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint32 id = 3355;</code>
      * @param int $var
      * @return $this
      */
@@ -82,9 +90,45 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The external IP address for this VPN gateway interface.
+     * URL of the VLAN attachment (interconnectAttachment) resource for this VPN gateway interface. When the value of this field is present, the VPN gateway is used for IPsec-encrypted Cloud Interconnect; all egress or ingress traffic for this VPN gateway interface goes through the specified VLAN attachment resource. Not currently available publicly. 
      *
-     * Generated from protobuf field <code>string ip_address = 406272220;</code>
+     * Generated from protobuf field <code>optional string interconnect_attachment = 308135284;</code>
+     * @return string
+     */
+    public function getInterconnectAttachment()
+    {
+        return isset($this->interconnect_attachment) ? $this->interconnect_attachment : '';
+    }
+
+    public function hasInterconnectAttachment()
+    {
+        return isset($this->interconnect_attachment);
+    }
+
+    public function clearInterconnectAttachment()
+    {
+        unset($this->interconnect_attachment);
+    }
+
+    /**
+     * URL of the VLAN attachment (interconnectAttachment) resource for this VPN gateway interface. When the value of this field is present, the VPN gateway is used for IPsec-encrypted Cloud Interconnect; all egress or ingress traffic for this VPN gateway interface goes through the specified VLAN attachment resource. Not currently available publicly. 
+     *
+     * Generated from protobuf field <code>optional string interconnect_attachment = 308135284;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInterconnectAttachment($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->interconnect_attachment = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] IP address for this VPN interface associated with the VPN gateway. The IP address could be either a regional external IP address or a regional internal IP address. The two IP addresses for a VPN gateway must be all regional external or regional internal IP addresses. There cannot be a mix of regional external IP addresses and regional internal IP addresses. For IPsec-encrypted Cloud Interconnect, the IP addresses for both interfaces could either be regional internal IP addresses or regional external IP addresses. For regular (non IPsec-encrypted Cloud Interconnect) HA VPN tunnels, the IP address must be a regional external IP address.
+     *
+     * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      * @return string
      */
     public function getIpAddress()
@@ -103,9 +147,9 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The external IP address for this VPN gateway interface.
+     * [Output Only] IP address for this VPN interface associated with the VPN gateway. The IP address could be either a regional external IP address or a regional internal IP address. The two IP addresses for a VPN gateway must be all regional external or regional internal IP addresses. There cannot be a mix of regional external IP addresses and regional internal IP addresses. For IPsec-encrypted Cloud Interconnect, the IP addresses for both interfaces could either be regional internal IP addresses or regional external IP addresses. For regular (non IPsec-encrypted Cloud Interconnect) HA VPN tunnels, the IP address must be a regional external IP address.
      *
-     * Generated from protobuf field <code>string ip_address = 406272220;</code>
+     * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      * @param string $var
      * @return $this
      */

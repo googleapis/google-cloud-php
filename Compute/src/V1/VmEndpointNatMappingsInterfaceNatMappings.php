@@ -30,25 +30,25 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     /**
      * Total number of drain ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field drain_nat_ip_port_ranges.
      *
-     * Generated from protobuf field <code>int32 num_total_drain_nat_ports = 335532793;</code>
+     * Generated from protobuf field <code>optional int32 num_total_drain_nat_ports = 335532793;</code>
      */
     private $num_total_drain_nat_ports = null;
     /**
      * Total number of ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field nat_ip_port_ranges.
      *
-     * Generated from protobuf field <code>int32 num_total_nat_ports = 299904384;</code>
+     * Generated from protobuf field <code>optional int32 num_total_nat_ports = 299904384;</code>
      */
     private $num_total_nat_ports = null;
     /**
      * Alias IP range for this interface endpoint. It will be a private (RFC 1918) IP range. Examples: "10.33.4.55/32", or "192.168.5.0/24".
      *
-     * Generated from protobuf field <code>string source_alias_ip_range = 440340952;</code>
+     * Generated from protobuf field <code>optional string source_alias_ip_range = 440340952;</code>
      */
     private $source_alias_ip_range = null;
     /**
      * Primary IP of the VM for this NIC.
      *
-     * Generated from protobuf field <code>string source_virtual_ip = 149836159;</code>
+     * Generated from protobuf field <code>optional string source_virtual_ip = 149836159;</code>
      */
     private $source_virtual_ip = null;
 
@@ -132,7 +132,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     /**
      * Total number of drain ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field drain_nat_ip_port_ranges.
      *
-     * Generated from protobuf field <code>int32 num_total_drain_nat_ports = 335532793;</code>
+     * Generated from protobuf field <code>optional int32 num_total_drain_nat_ports = 335532793;</code>
      * @return int
      */
     public function getNumTotalDrainNatPorts()
@@ -153,7 +153,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     /**
      * Total number of drain ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field drain_nat_ip_port_ranges.
      *
-     * Generated from protobuf field <code>int32 num_total_drain_nat_ports = 335532793;</code>
+     * Generated from protobuf field <code>optional int32 num_total_drain_nat_ports = 335532793;</code>
      * @param int $var
      * @return $this
      */
@@ -168,7 +168,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     /**
      * Total number of ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field nat_ip_port_ranges.
      *
-     * Generated from protobuf field <code>int32 num_total_nat_ports = 299904384;</code>
+     * Generated from protobuf field <code>optional int32 num_total_nat_ports = 299904384;</code>
      * @return int
      */
     public function getNumTotalNatPorts()
@@ -189,7 +189,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     /**
      * Total number of ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field nat_ip_port_ranges.
      *
-     * Generated from protobuf field <code>int32 num_total_nat_ports = 299904384;</code>
+     * Generated from protobuf field <code>optional int32 num_total_nat_ports = 299904384;</code>
      * @param int $var
      * @return $this
      */
@@ -204,7 +204,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     /**
      * Alias IP range for this interface endpoint. It will be a private (RFC 1918) IP range. Examples: "10.33.4.55/32", or "192.168.5.0/24".
      *
-     * Generated from protobuf field <code>string source_alias_ip_range = 440340952;</code>
+     * Generated from protobuf field <code>optional string source_alias_ip_range = 440340952;</code>
      * @return string
      */
     public function getSourceAliasIpRange()
@@ -225,7 +225,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     /**
      * Alias IP range for this interface endpoint. It will be a private (RFC 1918) IP range. Examples: "10.33.4.55/32", or "192.168.5.0/24".
      *
-     * Generated from protobuf field <code>string source_alias_ip_range = 440340952;</code>
+     * Generated from protobuf field <code>optional string source_alias_ip_range = 440340952;</code>
      * @param string $var
      * @return $this
      */
@@ -240,7 +240,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     /**
      * Primary IP of the VM for this NIC.
      *
-     * Generated from protobuf field <code>string source_virtual_ip = 149836159;</code>
+     * Generated from protobuf field <code>optional string source_virtual_ip = 149836159;</code>
      * @return string
      */
     public function getSourceVirtualIp()
@@ -261,7 +261,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
     /**
      * Primary IP of the VM for this NIC.
      *
-     * Generated from protobuf field <code>string source_virtual_ip = 149836159;</code>
+     * Generated from protobuf field <code>optional string source_virtual_ip = 149836159;</code>
      * @param string $var
      * @return $this
      */

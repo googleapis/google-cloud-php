@@ -227,7 +227,7 @@ class Activity extends \Google\Protobuf\Internal\Message
      */
     public function getCreateDate()
     {
-        return isset($this->create_date) ? $this->create_date : null;
+        return $this->create_date;
     }
 
     public function hasCreateDate()
@@ -263,7 +263,7 @@ class Activity extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateDate()
     {
-        return isset($this->update_date) ? $this->update_date : null;
+        return $this->update_date;
     }
 
     public function hasUpdateDate()

@@ -144,7 +144,7 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
      */
     public function getInsertTime()
     {
-        return isset($this->insert_time) ? $this->insert_time : null;
+        return $this->insert_time;
     }
 
     public function hasInsertTime()
@@ -182,7 +182,7 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()

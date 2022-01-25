@@ -80,7 +80,7 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
      */
     public function getSubscriptionProperties()
     {
-        return isset($this->subscription_properties) ? $this->subscription_properties : null;
+        return $this->subscription_properties;
     }
 
     public function hasSubscriptionProperties()

@@ -8,7 +8,6 @@ use UnexpectedValueException;
 
 /**
  * Cluster components that can be activated.
- * Next ID: 16.
  *
  * Protobuf type <code>google.cloud.dataproc.v1.Component</code>
  */

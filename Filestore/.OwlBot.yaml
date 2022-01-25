@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/filestore/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/Filestore/$1/$2
+api-name: Filestore

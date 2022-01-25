@@ -40,6 +40,12 @@ class SuggestFaqAnswersRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 context_size = 3;</code>
      */
     private $context_size = 0;
+    /**
+     * Parameters for a human assist query.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 4;</code>
+     */
+    private $assist_query_params = null;
 
     /**
      * Constructor.
@@ -60,6 +66,8 @@ class SuggestFaqAnswersRequest extends \Google\Protobuf\Internal\Message
      *           Max number of messages prior to and including
      *           [latest_message] to use as context when compiling the
      *           suggestion. By default 20 and at most 50.
+     *     @type \Google\Cloud\Dialogflow\V2\AssistQueryParameters $assist_query_params
+     *           Parameters for a human assist query.
      * }
      */
     public function __construct($data = NULL) {
@@ -155,6 +163,42 @@ class SuggestFaqAnswersRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->context_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * Parameters for a human assist query.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 4;</code>
+     * @return \Google\Cloud\Dialogflow\V2\AssistQueryParameters|null
+     */
+    public function getAssistQueryParams()
+    {
+        return $this->assist_query_params;
+    }
+
+    public function hasAssistQueryParams()
+    {
+        return isset($this->assist_query_params);
+    }
+
+    public function clearAssistQueryParams()
+    {
+        unset($this->assist_query_params);
+    }
+
+    /**
+     * Parameters for a human assist query.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 4;</code>
+     * @param \Google\Cloud\Dialogflow\V2\AssistQueryParameters $var
+     * @return $this
+     */
+    public function setAssistQueryParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\AssistQueryParameters::class);
+        $this->assist_query_params = $var;
 
         return $this;
     }

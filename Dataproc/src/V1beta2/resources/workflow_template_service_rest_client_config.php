@@ -3,15 +3,49 @@
 return [
     'interfaces' => [
         'google.cloud.dataproc.v1beta2.WorkflowTemplateService' => [
-            'InstantiateWorkflowTemplate' => [
+            'CreateWorkflowTemplate' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1beta2/{name=projects/*/regions/*/workflowTemplates/*}:instantiate',
-                'body' => '*',
+                'uriTemplate' => '/v1beta2/{parent=projects/*/regions/*}/workflowTemplates',
+                'body' => 'template',
                 'additionalBindings' => [
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/workflowTemplates/*}:instantiate',
-                        'body' => '*',
+                        'uriTemplate' => '/v1beta2/{parent=projects/*/locations/*}/workflowTemplates',
+                        'body' => 'template',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteWorkflowTemplate' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta2/{name=projects/*/regions/*/workflowTemplates/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/workflowTemplates/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetWorkflowTemplate' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta2/{name=projects/*/regions/*/workflowTemplates/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/workflowTemplates/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -41,57 +75,20 @@ return [
                     ],
                 ],
             ],
-            'CreateWorkflowTemplate' => [
+            'InstantiateWorkflowTemplate' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1beta2/{parent=projects/*/regions/*}/workflowTemplates',
-                'body' => 'template',
+                'uriTemplate' => '/v1beta2/{name=projects/*/regions/*/workflowTemplates/*}:instantiate',
+                'body' => '*',
                 'additionalBindings' => [
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1beta2/{parent=projects/*/locations/*}/workflowTemplates',
-                        'body' => 'template',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetWorkflowTemplate' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta2/{name=projects/*/regions/*/workflowTemplates/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/workflowTemplates/*}',
+                        'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/workflowTemplates/*}:instantiate',
+                        'body' => '*',
                     ],
                 ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateWorkflowTemplate' => [
-                'method' => 'put',
-                'uriTemplate' => '/v1beta2/{template.name=projects/*/regions/*/workflowTemplates/*}',
-                'body' => 'template',
-                'additionalBindings' => [
-                    [
-                        'method' => 'put',
-                        'uriTemplate' => '/v1beta2/{template.name=projects/*/locations/*/workflowTemplates/*}',
-                        'body' => 'template',
-                    ],
-                ],
-                'placeholders' => [
-                    'template.name' => [
-                        'getters' => [
-                            'getTemplate',
                             'getName',
                         ],
                     ],
@@ -114,18 +111,21 @@ return [
                     ],
                 ],
             ],
-            'DeleteWorkflowTemplate' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1beta2/{name=projects/*/regions/*/workflowTemplates/*}',
+            'UpdateWorkflowTemplate' => [
+                'method' => 'put',
+                'uriTemplate' => '/v1beta2/{template.name=projects/*/regions/*/workflowTemplates/*}',
+                'body' => 'template',
                 'additionalBindings' => [
                     [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/workflowTemplates/*}',
+                        'method' => 'put',
+                        'uriTemplate' => '/v1beta2/{template.name=projects/*/locations/*/workflowTemplates/*}',
+                        'body' => 'template',
                     ],
                 ],
                 'placeholders' => [
-                    'name' => [
+                    'template.name' => [
                         'getters' => [
+                            'getTemplate',
                             'getName',
                         ],
                     ],

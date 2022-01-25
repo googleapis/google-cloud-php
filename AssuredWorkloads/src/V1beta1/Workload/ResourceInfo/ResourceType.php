@@ -20,22 +20,37 @@ class ResourceType
      */
     const RESOURCE_TYPE_UNSPECIFIED = 0;
     /**
-     * Consumer project.
+     * Deprecated. Existing workloads will continue to support this, but new
+     * CreateWorkloadRequests should not specify this as an input value.
      *
-     * Generated from protobuf enum <code>CONSUMER_PROJECT = 1;</code>
+     * Generated from protobuf enum <code>CONSUMER_PROJECT = 1 [deprecated = true];</code>
      */
     const CONSUMER_PROJECT = 1;
+    /**
+     * Consumer Folder.
+     *
+     * Generated from protobuf enum <code>CONSUMER_FOLDER = 4;</code>
+     */
+    const CONSUMER_FOLDER = 4;
     /**
      * Consumer project containing encryption keys.
      *
      * Generated from protobuf enum <code>ENCRYPTION_KEYS_PROJECT = 2;</code>
      */
     const ENCRYPTION_KEYS_PROJECT = 2;
+    /**
+     * Keyring resource that hosts encryption keys.
+     *
+     * Generated from protobuf enum <code>KEYRING = 3;</code>
+     */
+    const KEYRING = 3;
 
     private static $valueToName = [
         self::RESOURCE_TYPE_UNSPECIFIED => 'RESOURCE_TYPE_UNSPECIFIED',
         self::CONSUMER_PROJECT => 'CONSUMER_PROJECT',
+        self::CONSUMER_FOLDER => 'CONSUMER_FOLDER',
         self::ENCRYPTION_KEYS_PROJECT => 'ENCRYPTION_KEYS_PROJECT',
+        self::KEYRING => 'KEYRING',
     ];
 
     public static function name($value)

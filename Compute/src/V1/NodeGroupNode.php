@@ -22,8 +22,9 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     private $accelerators;
     /**
      * CPU overcommit.
+     * Check the CpuOvercommitType enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroupNode.CpuOvercommitType cpu_overcommit_type = 247727959;</code>
+     * Generated from protobuf field <code>optional string cpu_overcommit_type = 247727959;</code>
      */
     private $cpu_overcommit_type = null;
     /**
@@ -41,29 +42,38 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     /**
      * The name of the node.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
      * The type of this node.
      *
-     * Generated from protobuf field <code>string node_type = 465832791;</code>
+     * Generated from protobuf field <code>optional string node_type = 465832791;</code>
      */
     private $node_type = null;
     /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
+     */
+    private $satisfies_pzs = null;
+    /**
      * Binding properties for the physical server.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ServerBinding server_binding = 208179593;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ServerBinding server_binding = 208179593;</code>
      */
     private $server_binding = null;
     /**
      * Server ID associated with this node.
      *
-     * Generated from protobuf field <code>string server_id = 339433367;</code>
+     * Generated from protobuf field <code>optional string server_id = 339433367;</code>
      */
     private $server_id = null;
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroupNode.Status status = 181260274;</code>
+     * 
+     * Check the Status enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
     private $status = null;
 
@@ -75,8 +85,9 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Compute\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           Accelerators for this node.
-     *     @type int $cpu_overcommit_type
+     *     @type string $cpu_overcommit_type
      *           CPU overcommit.
+     *           Check the CpuOvercommitType enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\LocalDisk[]|\Google\Protobuf\Internal\RepeatedField $disks
      *           Local disk configurations.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instances
@@ -85,11 +96,15 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      *           The name of the node.
      *     @type string $node_type
      *           The type of this node.
+     *     @type bool $satisfies_pzs
+     *           [Output Only] Reserved for future use.
      *     @type \Google\Cloud\Compute\V1\ServerBinding $server_binding
      *           Binding properties for the physical server.
      *     @type string $server_id
      *           Server ID associated with this node.
-     *     @type int $status
+     *     @type string $status
+     *           
+     *           Check the Status enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -125,13 +140,14 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
 
     /**
      * CPU overcommit.
+     * Check the CpuOvercommitType enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroupNode.CpuOvercommitType cpu_overcommit_type = 247727959;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string cpu_overcommit_type = 247727959;</code>
+     * @return string
      */
     public function getCpuOvercommitType()
     {
-        return isset($this->cpu_overcommit_type) ? $this->cpu_overcommit_type : 0;
+        return isset($this->cpu_overcommit_type) ? $this->cpu_overcommit_type : '';
     }
 
     public function hasCpuOvercommitType()
@@ -146,14 +162,15 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
 
     /**
      * CPU overcommit.
+     * Check the CpuOvercommitType enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroupNode.CpuOvercommitType cpu_overcommit_type = 247727959;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string cpu_overcommit_type = 247727959;</code>
+     * @param string $var
      * @return $this
      */
     public function setCpuOvercommitType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\NodeGroupNode\CpuOvercommitType::class);
+        GPBUtil::checkString($var, True);
         $this->cpu_overcommit_type = $var;
 
         return $this;
@@ -214,7 +231,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     /**
      * The name of the node.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -235,7 +252,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     /**
      * The name of the node.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -250,7 +267,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     /**
      * The type of this node.
      *
-     * Generated from protobuf field <code>string node_type = 465832791;</code>
+     * Generated from protobuf field <code>optional string node_type = 465832791;</code>
      * @return string
      */
     public function getNodeType()
@@ -271,7 +288,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     /**
      * The type of this node.
      *
-     * Generated from protobuf field <code>string node_type = 465832791;</code>
+     * Generated from protobuf field <code>optional string node_type = 465832791;</code>
      * @param string $var
      * @return $this
      */
@@ -284,14 +301,50 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
      * Binding properties for the physical server.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ServerBinding server_binding = 208179593;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ServerBinding server_binding = 208179593;</code>
      * @return \Google\Cloud\Compute\V1\ServerBinding|null
      */
     public function getServerBinding()
     {
-        return isset($this->server_binding) ? $this->server_binding : null;
+        return $this->server_binding;
     }
 
     public function hasServerBinding()
@@ -307,7 +360,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     /**
      * Binding properties for the physical server.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ServerBinding server_binding = 208179593;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ServerBinding server_binding = 208179593;</code>
      * @param \Google\Cloud\Compute\V1\ServerBinding $var
      * @return $this
      */
@@ -322,7 +375,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     /**
      * Server ID associated with this node.
      *
-     * Generated from protobuf field <code>string server_id = 339433367;</code>
+     * Generated from protobuf field <code>optional string server_id = 339433367;</code>
      * @return string
      */
     public function getServerId()
@@ -343,7 +396,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     /**
      * Server ID associated with this node.
      *
-     * Generated from protobuf field <code>string server_id = 339433367;</code>
+     * Generated from protobuf field <code>optional string server_id = 339433367;</code>
      * @param string $var
      * @return $this
      */
@@ -356,12 +409,15 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroupNode.Status status = 181260274;</code>
-     * @return int
+     * 
+     * Check the Status enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
+     * @return string
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : 0;
+        return isset($this->status) ? $this->status : '';
     }
 
     public function hasStatus()
@@ -375,13 +431,16 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroupNode.Status status = 181260274;</code>
-     * @param int $var
+     * 
+     * Check the Status enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
+     * @param string $var
      * @return $this
      */
     public function setStatus($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\NodeGroupNode\Status::class);
+        GPBUtil::checkString($var, True);
         $this->status = $var;
 
         return $this;

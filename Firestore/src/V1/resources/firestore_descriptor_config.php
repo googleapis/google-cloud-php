@@ -3,14 +3,9 @@
 return [
     'interfaces' => [
         'google.firestore.v1.Firestore' => [
-            'ListDocuments' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getDocuments',
+            'BatchGetDocuments' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
                 ],
             ],
             'ListCollectionIds' => [
@@ -23,9 +18,19 @@ return [
                     'resourcesGetMethod' => 'getCollectionIds',
                 ],
             ],
-            'BatchGetDocuments' => [
+            'ListDocuments' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDocuments',
+                ],
+            ],
+            'Listen' => [
                 'grpcStreaming' => [
-                    'grpcStreamingType' => 'ServerStreaming',
+                    'grpcStreamingType' => 'BidiStreaming',
                 ],
             ],
             'RunQuery' => [
@@ -34,11 +39,6 @@ return [
                 ],
             ],
             'Write' => [
-                'grpcStreaming' => [
-                    'grpcStreamingType' => 'BidiStreaming',
-                ],
-            ],
-            'Listen' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'BidiStreaming',
                 ],

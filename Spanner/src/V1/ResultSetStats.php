@@ -73,7 +73,7 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      */
     public function getQueryPlan()
     {
-        return isset($this->query_plan) ? $this->query_plan : null;
+        return $this->query_plan;
     }
 
     public function hasQueryPlan()
@@ -116,7 +116,7 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      */
     public function getQueryStats()
     {
-        return isset($this->query_stats) ? $this->query_stats : null;
+        return $this->query_stats;
     }
 
     public function hasQueryStats()

@@ -275,7 +275,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      */
     public function getPartitionSpec()
     {
-        return isset($this->partition_spec) ? $this->partition_spec : null;
+        return $this->partition_spec;
     }
 
     public function hasPartitionSpec()

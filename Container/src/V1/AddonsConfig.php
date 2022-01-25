@@ -118,7 +118,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     public function getHttpLoadBalancing()
     {
-        return isset($this->http_load_balancing) ? $this->http_load_balancing : null;
+        return $this->http_load_balancing;
     }
 
     public function hasHttpLoadBalancing()
@@ -157,7 +157,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     public function getHorizontalPodAutoscaling()
     {
-        return isset($this->horizontal_pod_autoscaling) ? $this->horizontal_pod_autoscaling : null;
+        return $this->horizontal_pod_autoscaling;
     }
 
     public function hasHorizontalPodAutoscaling()
@@ -201,7 +201,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     public function getKubernetesDashboard()
     {
         @trigger_error('kubernetes_dashboard is deprecated.', E_USER_DEPRECATED);
-        return isset($this->kubernetes_dashboard) ? $this->kubernetes_dashboard : null;
+        return $this->kubernetes_dashboard;
     }
 
     public function hasKubernetesDashboard()
@@ -247,7 +247,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     public function getNetworkPolicyConfig()
     {
-        return isset($this->network_policy_config) ? $this->network_policy_config : null;
+        return $this->network_policy_config;
     }
 
     public function hasNetworkPolicyConfig()
@@ -286,7 +286,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     public function getCloudRunConfig()
     {
-        return isset($this->cloud_run_config) ? $this->cloud_run_config : null;
+        return $this->cloud_run_config;
     }
 
     public function hasCloudRunConfig()
@@ -323,7 +323,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     public function getDnsCacheConfig()
     {
-        return isset($this->dns_cache_config) ? $this->dns_cache_config : null;
+        return $this->dns_cache_config;
     }
 
     public function hasDnsCacheConfig()
@@ -360,7 +360,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     public function getConfigConnectorConfig()
     {
-        return isset($this->config_connector_config) ? $this->config_connector_config : null;
+        return $this->config_connector_config;
     }
 
     public function hasConfigConnectorConfig()

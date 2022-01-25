@@ -33,6 +33,16 @@ return [
                     'resourcesGetMethod' => 'getReservations',
                 ],
             ],
+            'SearchAllAssignments' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAssignments',
+                ],
+            ],
             'SearchAssignments' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

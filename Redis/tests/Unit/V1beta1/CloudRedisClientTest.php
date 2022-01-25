@@ -114,6 +114,9 @@ class CloudRedisClientTest extends GeneratedTest
         $memorySizeGb = 34199707;
         $authorizedNetwork = 'authorizedNetwork-1733809270';
         $persistenceIamIdentity = 'persistenceIamIdentity1061944584';
+        $replicaCount = 564075208;
+        $readEndpoint = 'readEndpoint-2081202658';
+        $readEndpointPort = 1676143102;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -128,6 +131,9 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setMemorySizeGb($memorySizeGb);
         $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
         $expectedResponse->setPersistenceIamIdentity($persistenceIamIdentity);
+        $expectedResponse->setReplicaCount($replicaCount);
+        $expectedResponse->setReadEndpoint($readEndpoint);
+        $expectedResponse->setReadEndpointPort($readEndpointPort);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -402,6 +408,9 @@ class CloudRedisClientTest extends GeneratedTest
         $memorySizeGb = 34199707;
         $authorizedNetwork = 'authorizedNetwork-1733809270';
         $persistenceIamIdentity = 'persistenceIamIdentity1061944584';
+        $replicaCount = 564075208;
+        $readEndpoint = 'readEndpoint-2081202658';
+        $readEndpointPort = 1676143102;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -416,6 +425,9 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setMemorySizeGb($memorySizeGb);
         $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
         $expectedResponse->setPersistenceIamIdentity($persistenceIamIdentity);
+        $expectedResponse->setReplicaCount($replicaCount);
+        $expectedResponse->setReadEndpoint($readEndpoint);
+        $expectedResponse->setReadEndpointPort($readEndpointPort);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -553,6 +565,9 @@ class CloudRedisClientTest extends GeneratedTest
         $memorySizeGb = 34199707;
         $authorizedNetwork = 'authorizedNetwork-1733809270';
         $persistenceIamIdentity = 'persistenceIamIdentity1061944584';
+        $replicaCount = 564075208;
+        $readEndpoint = 'readEndpoint-2081202658';
+        $readEndpointPort = 1676143102;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -567,6 +582,9 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setMemorySizeGb($memorySizeGb);
         $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
         $expectedResponse->setPersistenceIamIdentity($persistenceIamIdentity);
+        $expectedResponse->setReplicaCount($replicaCount);
+        $expectedResponse->setReadEndpoint($readEndpoint);
+        $expectedResponse->setReadEndpointPort($readEndpointPort);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -688,6 +706,9 @@ class CloudRedisClientTest extends GeneratedTest
         $memorySizeGb = 34199707;
         $authorizedNetwork = 'authorizedNetwork-1733809270';
         $persistenceIamIdentity = 'persistenceIamIdentity1061944584';
+        $replicaCount = 564075208;
+        $readEndpoint = 'readEndpoint-2081202658';
+        $readEndpointPort = 1676143102;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -702,6 +723,9 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setMemorySizeGb($memorySizeGb);
         $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
         $expectedResponse->setPersistenceIamIdentity($persistenceIamIdentity);
+        $expectedResponse->setReplicaCount($replicaCount);
+        $expectedResponse->setReadEndpoint($readEndpoint);
+        $expectedResponse->setReadEndpointPort($readEndpointPort);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
@@ -788,6 +812,9 @@ class CloudRedisClientTest extends GeneratedTest
         $memorySizeGb = 34199707;
         $authorizedNetwork = 'authorizedNetwork-1733809270';
         $persistenceIamIdentity = 'persistenceIamIdentity1061944584';
+        $replicaCount = 564075208;
+        $readEndpoint = 'readEndpoint-2081202658';
+        $readEndpointPort = 1676143102;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -802,6 +829,9 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setMemorySizeGb($memorySizeGb);
         $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
         $expectedResponse->setPersistenceIamIdentity($persistenceIamIdentity);
+        $expectedResponse->setReplicaCount($replicaCount);
+        $expectedResponse->setReadEndpoint($readEndpoint);
+        $expectedResponse->setReadEndpointPort($readEndpointPort);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1011,6 +1041,9 @@ class CloudRedisClientTest extends GeneratedTest
         $memorySizeGb = 34199707;
         $authorizedNetwork = 'authorizedNetwork-1733809270';
         $persistenceIamIdentity = 'persistenceIamIdentity1061944584';
+        $replicaCount = 564075208;
+        $readEndpoint = 'readEndpoint-2081202658';
+        $readEndpointPort = 1676143102;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -1025,6 +1058,9 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setMemorySizeGb($memorySizeGb);
         $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
         $expectedResponse->setPersistenceIamIdentity($persistenceIamIdentity);
+        $expectedResponse->setReplicaCount($replicaCount);
+        $expectedResponse->setReadEndpoint($readEndpoint);
+        $expectedResponse->setReadEndpointPort($readEndpointPort);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1174,6 +1210,9 @@ class CloudRedisClientTest extends GeneratedTest
         $memorySizeGb = 34199707;
         $authorizedNetwork = 'authorizedNetwork-1733809270';
         $persistenceIamIdentity = 'persistenceIamIdentity1061944584';
+        $replicaCount = 564075208;
+        $readEndpoint = 'readEndpoint-2081202658';
+        $readEndpointPort = 1676143102;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -1188,6 +1227,9 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setMemorySizeGb($memorySizeGb);
         $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
         $expectedResponse->setPersistenceIamIdentity($persistenceIamIdentity);
+        $expectedResponse->setReplicaCount($replicaCount);
+        $expectedResponse->setReadEndpoint($readEndpoint);
+        $expectedResponse->setReadEndpointPort($readEndpointPort);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

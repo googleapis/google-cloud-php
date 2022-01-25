@@ -84,7 +84,7 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     public function getMarketingInfo()
     {
-        return isset($this->marketing_info) ? $this->marketing_info : null;
+        return $this->marketing_info;
     }
 
     public function hasMarketingInfo()

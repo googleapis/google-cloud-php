@@ -9,12 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Disk Type resource.
- * Google Compute Engine has two Disk Type resources:
- * * [Regional](/compute/docs/reference/rest/{$api_version}/regionDiskTypes) * [Zonal](https://cloud.google.com/compute/docs/reference/rest/{$api_version}/diskTypes)
- * You can choose from a variety of disk types based on your needs. For more information, read Storage options.
- * The diskTypes resource represents disk types for a zonal persistent disk. For more information, read Zonal persistent disks.
- * The regionDiskTypes resource represents disk types for a regional persistent disk. For more information, read Regional persistent disks. (== resource_for {$api_version}.diskTypes ==) (== resource_for {$api_version}.regionDiskTypes ==)
+ * Represents a Disk Type resource. Google Compute Engine has two Disk Type resources: * [Regional](/compute/docs/reference/rest/v1/regionDiskTypes) * [Zonal](https://cloud.google.com/compute/docs/reference/rest/v1/diskTypes) You can choose from a variety of disk types based on your needs. For more information, read Storage options. The diskTypes resource represents disk types for a zonal persistent disk. For more information, read Zonal persistent disks. The regionDiskTypes resource represents disk types for a regional persistent disk. For more information, read Regional persistent disks.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.DiskType</code>
  */
@@ -23,67 +18,67 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * [Output Only] Server-defined default disk size in GB.
      *
-     * Generated from protobuf field <code>string default_disk_size_gb = 270619253;</code>
+     * Generated from protobuf field <code>optional int64 default_disk_size_gb = 270619253;</code>
      */
     private $default_disk_size_gb = null;
     /**
      * [Output Only] The deprecation status associated with this disk type.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      */
     private $deprecated = null;
     /**
      * [Output Only] An optional description of this resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#diskType for disk types.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * [Output Only] Name of the resource.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
      * [Output Only] URL of the region where the disk type resides. Only applicable for regional resources. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
     private $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * [Output Only] An optional textual description of the valid disk size, such as "10GB-10TB".
      *
-     * Generated from protobuf field <code>string valid_disk_size = 493962464;</code>
+     * Generated from protobuf field <code>optional string valid_disk_size = 493962464;</code>
      */
     private $valid_disk_size = null;
     /**
      * [Output Only] URL of the zone where the disk type resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
     private $zone = null;
 
@@ -95,13 +90,13 @@ class DiskType extends \Google\Protobuf\Internal\Message
      *
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
-     *     @type string $default_disk_size_gb
+     *     @type int|string $default_disk_size_gb
      *           [Output Only] Server-defined default disk size in GB.
      *     @type \Google\Cloud\Compute\V1\DeprecationStatus $deprecated
      *           [Output Only] The deprecation status associated with this disk type.
      *     @type string $description
      *           [Output Only] An optional description of this resource.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#diskType for disk types.
@@ -125,7 +120,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -146,7 +141,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -161,12 +156,12 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined default disk size in GB.
      *
-     * Generated from protobuf field <code>string default_disk_size_gb = 270619253;</code>
-     * @return string
+     * Generated from protobuf field <code>optional int64 default_disk_size_gb = 270619253;</code>
+     * @return int|string
      */
     public function getDefaultDiskSizeGb()
     {
-        return isset($this->default_disk_size_gb) ? $this->default_disk_size_gb : '';
+        return isset($this->default_disk_size_gb) ? $this->default_disk_size_gb : 0;
     }
 
     public function hasDefaultDiskSizeGb()
@@ -182,13 +177,13 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined default disk size in GB.
      *
-     * Generated from protobuf field <code>string default_disk_size_gb = 270619253;</code>
-     * @param string $var
+     * Generated from protobuf field <code>optional int64 default_disk_size_gb = 270619253;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setDefaultDiskSizeGb($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->default_disk_size_gb = $var;
 
         return $this;
@@ -197,12 +192,12 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The deprecation status associated with this disk type.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      * @return \Google\Cloud\Compute\V1\DeprecationStatus|null
      */
     public function getDeprecated()
     {
-        return isset($this->deprecated) ? $this->deprecated : null;
+        return $this->deprecated;
     }
 
     public function hasDeprecated()
@@ -218,7 +213,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The deprecation status associated with this disk type.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      * @param \Google\Cloud\Compute\V1\DeprecationStatus $var
      * @return $this
      */
@@ -233,7 +228,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional description of this resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -254,7 +249,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional description of this resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -269,12 +264,12 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -290,13 +285,13 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -305,7 +300,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#diskType for disk types.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -326,7 +321,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#diskType for disk types.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -341,7 +336,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Name of the resource.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -362,7 +357,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Name of the resource.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -377,7 +372,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the region where the disk type resides. Only applicable for regional resources. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
      */
     public function getRegion()
@@ -398,7 +393,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the region where the disk type resides. Only applicable for regional resources. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var
      * @return $this
      */
@@ -413,7 +408,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -434,7 +429,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -449,7 +444,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional textual description of the valid disk size, such as "10GB-10TB".
      *
-     * Generated from protobuf field <code>string valid_disk_size = 493962464;</code>
+     * Generated from protobuf field <code>optional string valid_disk_size = 493962464;</code>
      * @return string
      */
     public function getValidDiskSize()
@@ -470,7 +465,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional textual description of the valid disk size, such as "10GB-10TB".
      *
-     * Generated from protobuf field <code>string valid_disk_size = 493962464;</code>
+     * Generated from protobuf field <code>optional string valid_disk_size = 493962464;</code>
      * @param string $var
      * @return $this
      */
@@ -485,7 +480,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the zone where the disk type resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @return string
      */
     public function getZone()
@@ -506,7 +501,7 @@ class DiskType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the zone where the disk type resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @param string $var
      * @return $this
      */

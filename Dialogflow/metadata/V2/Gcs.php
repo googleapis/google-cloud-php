@@ -18,8 +18,10 @@ class Gcs
         \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‚
-$google/cloud/dialogflow/v2/gcs.protogoogle.cloud.dialogflow.v2google/api/annotations.protoB—
+¡
+$google/cloud/dialogflow/v2/gcs.protogoogle.cloud.dialogflow.v2google/api/annotations.proto"
+GcsDestination
+uri (	B—
 com.google.cloud.dialogflow.v2BGcsProtoPZDgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2;dialogflowø¢DFªGoogle.Cloud.Dialogflow.V2bproto3'
         , true);
 

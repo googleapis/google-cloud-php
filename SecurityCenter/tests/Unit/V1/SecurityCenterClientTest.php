@@ -32,7 +32,10 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 
+use Google\Cloud\SecurityCenter\V1\BulkMuteFindingsResponse;
+use Google\Cloud\SecurityCenter\V1\ExternalSystem;
 use Google\Cloud\SecurityCenter\V1\Finding;
+use Google\Cloud\SecurityCenter\V1\Finding\Mute;
 use Google\Cloud\SecurityCenter\V1\Finding\State;
 use Google\Cloud\SecurityCenter\V1\GroupAssetsResponse;
 use Google\Cloud\SecurityCenter\V1\GroupFindingsResponse;
@@ -41,8 +44,10 @@ use Google\Cloud\SecurityCenter\V1\ListAssetsResponse;
 use Google\Cloud\SecurityCenter\V1\ListAssetsResponse\ListAssetsResult;
 use Google\Cloud\SecurityCenter\V1\ListFindingsResponse;
 use Google\Cloud\SecurityCenter\V1\ListFindingsResponse\ListFindingsResult;
+use Google\Cloud\SecurityCenter\V1\ListMuteConfigsResponse;
 use Google\Cloud\SecurityCenter\V1\ListNotificationConfigsResponse;
 use Google\Cloud\SecurityCenter\V1\ListSourcesResponse;
+use Google\Cloud\SecurityCenter\V1\MuteConfig;
 use Google\Cloud\SecurityCenter\V1\NotificationConfig;
 use Google\Cloud\SecurityCenter\V1\OrganizationSettings;
 use Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryResponse;
@@ -94,6 +99,127 @@ class SecurityCenterClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function bulkMuteFindingsTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/bulkMuteFindingsTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new BulkMuteFindingsResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/bulkMuteFindingsTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $parent = 'parent-995424086';
+        $response = $client->bulkMuteFindings($parent);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/BulkMuteFindings', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/bulkMuteFindingsTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function bulkMuteFindingsExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/bulkMuteFindingsTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $parent = 'parent-995424086';
+        $response = $client->bulkMuteFindings($parent);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/bulkMuteFindingsTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function createFindingTest()
     {
         $transport = $this->createTransport();
@@ -108,6 +234,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $category = 'category50511102';
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
+        $muteInitiator = 'muteInitiator7603081';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name);
         $expectedResponse->setParent($parent2);
@@ -115,6 +242,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setCategory($category);
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
+        $expectedResponse->setMuteInitiator($muteInitiator);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->sourceName('[ORGANIZATION]', '[SOURCE]');
@@ -162,6 +290,90 @@ class SecurityCenterClientTest extends GeneratedTest
         $finding = new Finding();
         try {
             $client->createFinding($formattedParent, $findingId, $finding);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function createMuteConfigTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $filter = 'filter-1274492040';
+        $mostRecentEditor = 'mostRecentEditor-657770475';
+        $expectedResponse = new MuteConfig();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setFilter($filter);
+        $expectedResponse->setMostRecentEditor($mostRecentEditor);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $client->projectName('[PROJECT]');
+        $muteConfig = new MuteConfig();
+        $muteConfigFilter = 'muteConfigFilter-1921414637';
+        $muteConfig->setFilter($muteConfigFilter);
+        $muteConfigId = 'muteConfigId-547860334';
+        $response = $client->createMuteConfig($formattedParent, $muteConfig, $muteConfigId);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/CreateMuteConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getMuteConfig();
+        $this->assertProtobufEquals($muteConfig, $actualValue);
+        $actualValue = $actualRequestObject->getMuteConfigId();
+        $this->assertProtobufEquals($muteConfigId, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function createMuteConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $client->projectName('[PROJECT]');
+        $muteConfig = new MuteConfig();
+        $muteConfigFilter = 'muteConfigFilter-1921414637';
+        $muteConfig->setFilter($muteConfigFilter);
+        $muteConfigId = 'muteConfigId-547860334';
+        try {
+            $client->createMuteConfig($formattedParent, $muteConfig, $muteConfigId);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -328,6 +540,67 @@ class SecurityCenterClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function deleteMuteConfigTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $client->muteConfigName('[ORGANIZATION]', '[MUTE_CONFIG]');
+        $client->deleteMuteConfig($formattedName);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/DeleteMuteConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteMuteConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $client->muteConfigName('[ORGANIZATION]', '[MUTE_CONFIG]');
+        try {
+            $client->deleteMuteConfig($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function deleteNotificationConfigTest()
     {
         $transport = $this->createTransport();
@@ -441,6 +714,78 @@ class SecurityCenterClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         try {
             $client->getIamPolicy($resource);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getMuteConfigTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $filter = 'filter-1274492040';
+        $mostRecentEditor = 'mostRecentEditor-657770475';
+        $expectedResponse = new MuteConfig();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setFilter($filter);
+        $expectedResponse->setMostRecentEditor($mostRecentEditor);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $client->muteConfigName('[ORGANIZATION]', '[MUTE_CONFIG]');
+        $response = $client->getMuteConfig($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GetMuteConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getMuteConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $client->muteConfigName('[ORGANIZATION]', '[MUTE_CONFIG]');
+        try {
+            $client->getMuteConfig($formattedName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -965,6 +1310,78 @@ class SecurityCenterClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function listMuteConfigsTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $muteConfigsElement = new MuteConfig();
+        $muteConfigs = [
+            $muteConfigsElement,
+        ];
+        $expectedResponse = new ListMuteConfigsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setMuteConfigs($muteConfigs);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $client->projectName('[PROJECT]');
+        $response = $client->listMuteConfigs($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getMuteConfigs()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/ListMuteConfigs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listMuteConfigsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $client->projectName('[PROJECT]');
+        try {
+            $client->listMuteConfigs($formattedParent);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function listNotificationConfigsTest()
     {
         $transport = $this->createTransport();
@@ -1244,6 +1661,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $category = 'category50511102';
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
+        $muteInitiator = 'muteInitiator7603081';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name2);
         $expectedResponse->setParent($parent);
@@ -1251,6 +1669,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setCategory($category);
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
+        $expectedResponse->setMuteInitiator($muteInitiator);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
@@ -1382,6 +1801,86 @@ class SecurityCenterClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function setMuteTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $parent = 'parent-995424086';
+        $resourceName = 'resourceName979421212';
+        $category = 'category50511102';
+        $externalUri = 'externalUri-1385596168';
+        $canonicalName = 'canonicalName1385400054';
+        $muteInitiator = 'muteInitiator7603081';
+        $expectedResponse = new Finding();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setParent($parent);
+        $expectedResponse->setResourceName($resourceName);
+        $expectedResponse->setCategory($category);
+        $expectedResponse->setExternalUri($externalUri);
+        $expectedResponse->setCanonicalName($canonicalName);
+        $expectedResponse->setMuteInitiator($muteInitiator);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $client->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
+        $mute = Mute::MUTE_UNSPECIFIED;
+        $response = $client->setMute($formattedName, $mute);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/SetMute', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getMute();
+        $this->assertProtobufEquals($mute, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function setMuteExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $client->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
+        $mute = Mute::MUTE_UNSPECIFIED;
+        try {
+            $client->setMute($formattedName, $mute);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1448,6 +1947,74 @@ class SecurityCenterClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function updateExternalSystemTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $externalUid = 'externalUid-1385596452';
+        $status = 'status-892481550';
+        $expectedResponse = new ExternalSystem();
+        $expectedResponse->setName($name);
+        $expectedResponse->setExternalUid($externalUid);
+        $expectedResponse->setStatus($status);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $externalSystem = new ExternalSystem();
+        $response = $client->updateExternalSystem($externalSystem);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/UpdateExternalSystem', $actualFuncCall);
+        $actualValue = $actualRequestObject->getExternalSystem();
+        $this->assertProtobufEquals($externalSystem, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateExternalSystemExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $externalSystem = new ExternalSystem();
+        try {
+            $client->updateExternalSystem($externalSystem);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function updateFindingTest()
     {
         $transport = $this->createTransport();
@@ -1462,6 +2029,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $category = 'category50511102';
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
+        $muteInitiator = 'muteInitiator7603081';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name);
         $expectedResponse->setParent($parent);
@@ -1469,6 +2037,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setCategory($category);
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
+        $expectedResponse->setMuteInitiator($muteInitiator);
         $transport->addResponse($expectedResponse);
         // Mock request
         $finding = new Finding();
@@ -1508,6 +2077,82 @@ class SecurityCenterClientTest extends GeneratedTest
         $finding = new Finding();
         try {
             $client->updateFinding($finding);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateMuteConfigTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $filter = 'filter-1274492040';
+        $mostRecentEditor = 'mostRecentEditor-657770475';
+        $expectedResponse = new MuteConfig();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setFilter($filter);
+        $expectedResponse->setMostRecentEditor($mostRecentEditor);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $muteConfig = new MuteConfig();
+        $muteConfigFilter = 'muteConfigFilter-1921414637';
+        $muteConfig->setFilter($muteConfigFilter);
+        $response = $client->updateMuteConfig($muteConfig);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/UpdateMuteConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getMuteConfig();
+        $this->assertProtobufEquals($muteConfig, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateMuteConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $muteConfig = new MuteConfig();
+        $muteConfigFilter = 'muteConfigFilter-1921414637';
+        $muteConfig->setFilter($muteConfigFilter);
+        try {
+            $client->updateMuteConfig($muteConfig);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

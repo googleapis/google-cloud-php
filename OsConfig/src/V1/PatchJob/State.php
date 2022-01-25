@@ -95,6 +95,4 @@ class State
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(State::class, \Google\Cloud\OsConfig\V1\PatchJob_State::class);
 

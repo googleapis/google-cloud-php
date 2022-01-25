@@ -40,7 +40,7 @@ class ValidationError extends \Google\Protobuf\Internal\Message
      */
     private $entries;
     /**
-     * The detailed error messsage.
+     * The detailed error message.
      *
      * Generated from protobuf field <code>string error_message = 4;</code>
      */
@@ -69,7 +69,7 @@ class ValidationError extends \Google\Protobuf\Internal\Message
      *           - "projects/<Project ID>/agent/entities/<Entity ID>", if the error is
      *           associated with certain entities.
      *     @type string $error_message
-     *           The detailed error messsage.
+     *           The detailed error message.
      * }
      */
     public function __construct($data = NULL) {
@@ -154,7 +154,7 @@ class ValidationError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The detailed error messsage.
+     * The detailed error message.
      *
      * Generated from protobuf field <code>string error_message = 4;</code>
      * @return string
@@ -165,7 +165,7 @@ class ValidationError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The detailed error messsage.
+     * The detailed error message.
      *
      * Generated from protobuf field <code>string error_message = 4;</code>
      * @param string $var

@@ -407,7 +407,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getNodeConfig()
     {
-        return isset($this->node_config) ? $this->node_config : null;
+        return $this->node_config;
     }
 
     public function hasNodeConfig()
@@ -478,7 +478,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getParameters()
     {
-        return isset($this->parameters) ? $this->parameters : null;
+        return $this->parameters;
     }
 
     public function hasParameters()
@@ -543,7 +543,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -579,7 +579,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

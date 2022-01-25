@@ -64,7 +64,7 @@ class LargeCustomDictionaryConfig extends \Google\Protobuf\Internal\Message
      */
     public function getOutputPath()
     {
-        return isset($this->output_path) ? $this->output_path : null;
+        return $this->output_path;
     }
 
     public function hasOutputPath()

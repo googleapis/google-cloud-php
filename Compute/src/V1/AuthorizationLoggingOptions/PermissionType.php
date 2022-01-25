@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\AuthorizationLoggingOptions;
 use UnexpectedValueException;
 
 /**
- * The type of the permission that was checked.
+ * This is deprecated and has no effect. Do not use.
  *
  * Protobuf type <code>google.cloud.compute.v1.AuthorizationLoggingOptions.PermissionType</code>
  */
@@ -20,22 +20,32 @@ class PermissionType
      */
     const UNDEFINED_PERMISSION_TYPE = 0;
     /**
+     * This is deprecated and has no effect. Do not use.
+     *
      * Generated from protobuf enum <code>ADMIN_READ = 128951462;</code>
      */
     const ADMIN_READ = 128951462;
     /**
+     * This is deprecated and has no effect. Do not use.
+     *
      * Generated from protobuf enum <code>ADMIN_WRITE = 244412079;</code>
      */
     const ADMIN_WRITE = 244412079;
     /**
+     * This is deprecated and has no effect. Do not use.
+     *
      * Generated from protobuf enum <code>DATA_READ = 305224971;</code>
      */
     const DATA_READ = 305224971;
     /**
+     * This is deprecated and has no effect. Do not use.
+     *
      * Generated from protobuf enum <code>DATA_WRITE = 340181738;</code>
      */
     const DATA_WRITE = 340181738;
     /**
+     * This is deprecated and has no effect. Do not use.
+     *
      * Generated from protobuf enum <code>PERMISSION_TYPE_UNSPECIFIED = 440313346;</code>
      */
     const PERMISSION_TYPE_UNSPECIFIED = 440313346;

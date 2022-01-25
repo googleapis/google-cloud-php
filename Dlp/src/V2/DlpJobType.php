@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class DlpJobType
 {
     /**
-     * Unused
+     * Defaults to INSPECT_JOB.
      *
      * Generated from protobuf enum <code>DLP_JOB_TYPE_UNSPECIFIED = 0;</code>
      */

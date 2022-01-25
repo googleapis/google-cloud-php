@@ -31,9 +31,10 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      */
     private $allowed_domains;
     /**
-     * Required. Whether this key can be used on AMP (Accelerated Mobile Pages) websites.
+     * If set to true, the key can be used on AMP (Accelerated Mobile Pages)
+     * websites. This is supported only for the SCORE integration type.
      *
-     * Generated from protobuf field <code>bool allow_amp_traffic = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool allow_amp_traffic = 2;</code>
      */
     private $allow_amp_traffic = false;
     /**
@@ -65,7 +66,8 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      *           host and must not include any path, port, query or fragment.
      *           Examples: 'example.com' or 'subdomain.example.com'
      *     @type bool $allow_amp_traffic
-     *           Required. Whether this key can be used on AMP (Accelerated Mobile Pages) websites.
+     *           If set to true, the key can be used on AMP (Accelerated Mobile Pages)
+     *           websites. This is supported only for the SCORE integration type.
      *     @type int $integration_type
      *           Required. Describes how this key is integrated with the website.
      *     @type int $challenge_security_preference
@@ -138,9 +140,10 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Whether this key can be used on AMP (Accelerated Mobile Pages) websites.
+     * If set to true, the key can be used on AMP (Accelerated Mobile Pages)
+     * websites. This is supported only for the SCORE integration type.
      *
-     * Generated from protobuf field <code>bool allow_amp_traffic = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool allow_amp_traffic = 2;</code>
      * @return bool
      */
     public function getAllowAmpTraffic()
@@ -149,9 +152,10 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Whether this key can be used on AMP (Accelerated Mobile Pages) websites.
+     * If set to true, the key can be used on AMP (Accelerated Mobile Pages)
+     * websites. This is supported only for the SCORE integration type.
      *
-     * Generated from protobuf field <code>bool allow_amp_traffic = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool allow_amp_traffic = 2;</code>
      * @param bool $var
      * @return $this
      */

@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/metastore/(.*)/.*-php/(.*)
+      dest: /owl-bot-staging/DataprocMetastore/$1/$2
+api-name: DataprocMetastore

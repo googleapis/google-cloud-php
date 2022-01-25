@@ -194,7 +194,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      */
     public function getFamilyName()
     {
-        return isset($this->family_name) ? $this->family_name : null;
+        return $this->family_name;
     }
 
     public function hasFamilyName()
@@ -276,7 +276,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      */
     public function getQualifier()
     {
-        return isset($this->qualifier) ? $this->qualifier : null;
+        return $this->qualifier;
     }
 
     public function hasQualifier()

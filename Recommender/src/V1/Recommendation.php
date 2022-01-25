@@ -239,7 +239,7 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      */
     public function getLastRefreshTime()
     {
-        return isset($this->last_refresh_time) ? $this->last_refresh_time : null;
+        return $this->last_refresh_time;
     }
 
     public function hasLastRefreshTime()
@@ -277,7 +277,7 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      */
     public function getPrimaryImpact()
     {
-        return isset($this->primary_impact) ? $this->primary_impact : null;
+        return $this->primary_impact;
     }
 
     public function hasPrimaryImpact()
@@ -344,7 +344,7 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      */
     public function getContent()
     {
-        return isset($this->content) ? $this->content : null;
+        return $this->content;
     }
 
     public function hasContent()
@@ -380,7 +380,7 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      */
     public function getStateInfo()
     {
-        return isset($this->state_info) ? $this->state_info : null;
+        return $this->state_info;
     }
 
     public function hasStateInfo()

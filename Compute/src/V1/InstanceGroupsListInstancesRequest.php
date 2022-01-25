@@ -16,8 +16,9 @@ class InstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal\Messa
 {
     /**
      * A filter for the state of the instances in the instance group. Valid options are ALL or RUNNING. If you do not specify this parameter the list includes all instances regardless of their state.
+     * Check the InstanceState enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupsListInstancesRequest.InstanceState instance_state = 92223591;</code>
+     * Generated from protobuf field <code>optional string instance_state = 92223591;</code>
      */
     private $instance_state = null;
 
@@ -27,8 +28,9 @@ class InstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal\Messa
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $instance_state
+     *     @type string $instance_state
      *           A filter for the state of the instances in the instance group. Valid options are ALL or RUNNING. If you do not specify this parameter the list includes all instances regardless of their state.
+     *           Check the InstanceState enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,13 +40,14 @@ class InstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * A filter for the state of the instances in the instance group. Valid options are ALL or RUNNING. If you do not specify this parameter the list includes all instances regardless of their state.
+     * Check the InstanceState enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupsListInstancesRequest.InstanceState instance_state = 92223591;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string instance_state = 92223591;</code>
+     * @return string
      */
     public function getInstanceState()
     {
-        return isset($this->instance_state) ? $this->instance_state : 0;
+        return isset($this->instance_state) ? $this->instance_state : '';
     }
 
     public function hasInstanceState()
@@ -59,14 +62,15 @@ class InstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * A filter for the state of the instances in the instance group. Valid options are ALL or RUNNING. If you do not specify this parameter the list includes all instances regardless of their state.
+     * Check the InstanceState enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupsListInstancesRequest.InstanceState instance_state = 92223591;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string instance_state = 92223591;</code>
+     * @param string $var
      * @return $this
      */
     public function setInstanceState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\InstanceGroupsListInstancesRequest\InstanceState::class);
+        GPBUtil::checkString($var, True);
         $this->instance_state = $var;
 
         return $this;

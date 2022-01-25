@@ -24,6 +24,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'network_interface',
+                ],
             ],
             'AddResourcePolicies' => [
                 'method' => 'post',
@@ -80,6 +83,23 @@ return [
                     ],
                 ],
             ],
+            'BulkInsert' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/bulkInsert',
+                'body' => 'bulk_insert_instance_resource_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
             'Delete' => [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}',
@@ -121,6 +141,10 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'access_config',
+                    'network_interface',
+                ],
             ],
             'DetachDisk' => [
                 'method' => 'post',
@@ -142,6 +166,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'device_name',
+                ],
             ],
             'Get' => [
                 'method' => 'get',
@@ -162,6 +189,30 @@ return [
                             'getZone',
                         ],
                     ],
+                ],
+            ],
+            'GetEffectiveFirewalls' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/getEffectiveFirewalls',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'network_interface',
                 ],
             ],
             'GetGuestAttributes' => [
@@ -366,6 +417,27 @@ return [
                     ],
                 ],
             ],
+            'SendDiagnosticInterrupt' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/sendDiagnosticInterrupt',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
             'SetDeletionProtection' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{resource}/setDeletionProtection',
@@ -406,6 +478,10 @@ return [
                             'getZone',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'auto_delete',
+                    'device_name',
                 ],
             ],
             'SetIamPolicy' => [
@@ -778,6 +854,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'network_interface',
+                ],
             ],
             'UpdateDisplayDevice' => [
                 'method' => 'patch',
@@ -822,6 +901,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'network_interface',
+                ],
             ],
             'UpdateShieldedInstanceConfig' => [
                 'method' => 'patch',
@@ -831,6 +913,87 @@ return [
                     'instance' => [
                         'getters' => [
                             'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.cloud.compute.v1.ZoneOperations' => [
+            'Delete' => [
+                'method' => 'delete',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/operations/{operation}',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
+            'Get' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/operations/{operation}',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
+            'List' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/operations',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
+            'Wait' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/operations/{operation}/wait',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
                         ],
                     ],
                     'project' => [

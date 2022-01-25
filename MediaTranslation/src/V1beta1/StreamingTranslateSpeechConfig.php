@@ -77,7 +77,7 @@ class StreamingTranslateSpeechConfig extends \Google\Protobuf\Internal\Message
      */
     public function getAudioConfig()
     {
-        return isset($this->audio_config) ? $this->audio_config : null;
+        return $this->audio_config;
     }
 
     public function hasAudioConfig()

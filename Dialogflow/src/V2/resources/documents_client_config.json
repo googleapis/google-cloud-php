@@ -38,6 +38,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "ExportDocument": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "GetDocument": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",

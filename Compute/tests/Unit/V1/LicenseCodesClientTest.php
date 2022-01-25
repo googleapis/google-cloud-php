@@ -81,10 +81,11 @@ class LicenseCodesClientTest extends GeneratedTest
         // Mock response
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
-        $id = 'id3355';
+        $id = 3355;
         $kind = 'kind3292052';
         $name = 'name3373707';
         $selfLink = 'selfLink-1691268851';
+        $state = 'state109757585';
         $transferable = false;
         $expectedResponse = new LicenseCode();
         $expectedResponse->setCreationTimestamp($creationTimestamp);
@@ -93,6 +94,7 @@ class LicenseCodesClientTest extends GeneratedTest
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setState($state);
         $expectedResponse->setTransferable($transferable);
         $transport->addResponse($expectedResponse);
         // Mock request

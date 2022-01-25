@@ -63,7 +63,7 @@ class TransferableSku extends \Google\Protobuf\Internal\Message
      */
     public function getTransferEligibility()
     {
-        return isset($this->transfer_eligibility) ? $this->transfer_eligibility : null;
+        return $this->transfer_eligibility;
     }
 
     public function hasTransferEligibility()
@@ -99,7 +99,7 @@ class TransferableSku extends \Google\Protobuf\Internal\Message
      */
     public function getSku()
     {
-        return isset($this->sku) ? $this->sku : null;
+        return $this->sku;
     }
 
     public function hasSku()
@@ -135,7 +135,7 @@ class TransferableSku extends \Google\Protobuf\Internal\Message
      */
     public function getLegacySku()
     {
-        return isset($this->legacy_sku) ? $this->legacy_sku : null;
+        return $this->legacy_sku;
     }
 
     public function hasLegacySku()

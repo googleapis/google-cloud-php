@@ -104,6 +104,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string job_name = 13 [(.google.api.resource_reference) = {</code>
      */
     private $job_name = '';
+    /**
+     * The unique finding id.
+     *
+     * Generated from protobuf field <code>string finding_id = 15;</code>
+     */
+    private $finding_id = '';
 
     /**
      * Constructor.
@@ -152,6 +158,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Time the job started that produced this finding.
      *     @type string $job_name
      *           The job that stored the finding.
+     *     @type string $finding_id
+     *           The unique finding id.
      * }
      */
     public function __construct($data = NULL) {
@@ -232,7 +240,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getInfoType()
     {
-        return isset($this->info_type) ? $this->info_type : null;
+        return $this->info_type;
     }
 
     public function hasInfoType()
@@ -295,7 +303,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getLocation()
     {
-        return isset($this->location) ? $this->location : null;
+        return $this->location;
     }
 
     public function hasLocation()
@@ -331,7 +339,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -369,7 +377,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getQuoteInfo()
     {
-        return isset($this->quote_info) ? $this->quote_info : null;
+        return $this->quote_info;
     }
 
     public function hasQuoteInfo()
@@ -501,7 +509,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getJobCreateTime()
     {
-        return isset($this->job_create_time) ? $this->job_create_time : null;
+        return $this->job_create_time;
     }
 
     public function hasJobCreateTime()
@@ -551,6 +559,32 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->job_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The unique finding id.
+     *
+     * Generated from protobuf field <code>string finding_id = 15;</code>
+     * @return string
+     */
+    public function getFindingId()
+    {
+        return $this->finding_id;
+    }
+
+    /**
+     * The unique finding id.
+     *
+     * Generated from protobuf field <code>string finding_id = 15;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFindingId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->finding_id = $var;
 
         return $this;
     }

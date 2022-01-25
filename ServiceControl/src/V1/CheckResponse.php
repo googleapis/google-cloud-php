@@ -201,7 +201,7 @@ class CheckResponse extends \Google\Protobuf\Internal\Message
      */
     public function getCheckInfo()
     {
-        return isset($this->check_info) ? $this->check_info : null;
+        return $this->check_info;
     }
 
     public function hasCheckInfo()

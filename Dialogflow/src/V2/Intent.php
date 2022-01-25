@@ -156,12 +156,13 @@ class Intent extends \Google\Protobuf\Internal\Message
      */
     private $default_response_platforms;
     /**
+     * Output only.
      * Read-only. The unique identifier of the root intent in the chain of
      * followup intents. It identifies the correct followup intents chain for
      * this intent. We populate this field only in the output.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
-     * Generated from protobuf field <code>string root_followup_intent_name = 16;</code>
+     * Generated from protobuf field <code>string root_followup_intent_name = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $root_followup_intent_name = '';
     /**
@@ -177,10 +178,10 @@ class Intent extends \Google\Protobuf\Internal\Message
      */
     private $parent_followup_intent_name = '';
     /**
-     * Read-only. Information about all followup intents that have this intent as
+     * Output only. Read-only. Information about all followup intents that have this intent as
      * a direct or indirect parent. We populate this field only in the output.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $followup_intent_info;
 
@@ -256,6 +257,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      *           Optional. The list of platforms for which the first responses will be
      *           copied from the messages in PLATFORM_UNSPECIFIED (i.e. default platform).
      *     @type string $root_followup_intent_name
+     *           Output only.
      *           Read-only. The unique identifier of the root intent in the chain of
      *           followup intents. It identifies the correct followup intents chain for
      *           this intent. We populate this field only in the output.
@@ -269,7 +271,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      *           It identifies the parent followup intent.
      *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *     @type \Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo[]|\Google\Protobuf\Internal\RepeatedField $followup_intent_info
-     *           Read-only. Information about all followup intents that have this intent as
+     *           Output only. Read-only. Information about all followup intents that have this intent as
      *           a direct or indirect parent. We populate this field only in the output.
      * }
      */
@@ -783,12 +785,13 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only.
      * Read-only. The unique identifier of the root intent in the chain of
      * followup intents. It identifies the correct followup intents chain for
      * this intent. We populate this field only in the output.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
-     * Generated from protobuf field <code>string root_followup_intent_name = 16;</code>
+     * Generated from protobuf field <code>string root_followup_intent_name = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getRootFollowupIntentName()
@@ -797,12 +800,13 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only.
      * Read-only. The unique identifier of the root intent in the chain of
      * followup intents. It identifies the correct followup intents chain for
      * this intent. We populate this field only in the output.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
-     * Generated from protobuf field <code>string root_followup_intent_name = 16;</code>
+     * Generated from protobuf field <code>string root_followup_intent_name = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -853,10 +857,10 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Read-only. Information about all followup intents that have this intent as
+     * Output only. Read-only. Information about all followup intents that have this intent as
      * a direct or indirect parent. We populate this field only in the output.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFollowupIntentInfo()
@@ -865,10 +869,10 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Read-only. Information about all followup intents that have this intent as
+     * Output only. Read-only. Information about all followup intents that have this intent as
      * a direct or indirect parent. We populate this field only in the output.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

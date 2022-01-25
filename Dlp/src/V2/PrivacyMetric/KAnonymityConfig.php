@@ -119,7 +119,7 @@ class KAnonymityConfig extends \Google\Protobuf\Internal\Message
      */
     public function getEntityId()
     {
-        return isset($this->entity_id) ? $this->entity_id : null;
+        return $this->entity_id;
     }
 
     public function hasEntityId()

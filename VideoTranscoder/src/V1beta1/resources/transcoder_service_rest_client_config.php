@@ -26,6 +26,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'job_template_id',
+                ],
             ],
             'DeleteJob' => [
                 'method' => 'delete',

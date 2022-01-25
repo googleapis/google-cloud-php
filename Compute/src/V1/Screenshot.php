@@ -18,13 +18,13 @@ class Screenshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The Base64-encoded screenshot data.
      *
-     * Generated from protobuf field <code>string contents = 506419994;</code>
+     * Generated from protobuf field <code>optional string contents = 506419994;</code>
      */
     private $contents = null;
     /**
      * [Output Only] Type of the resource. Always compute#screenshot for the screenshots.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
 
@@ -48,7 +48,7 @@ class Screenshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The Base64-encoded screenshot data.
      *
-     * Generated from protobuf field <code>string contents = 506419994;</code>
+     * Generated from protobuf field <code>optional string contents = 506419994;</code>
      * @return string
      */
     public function getContents()
@@ -69,7 +69,7 @@ class Screenshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The Base64-encoded screenshot data.
      *
-     * Generated from protobuf field <code>string contents = 506419994;</code>
+     * Generated from protobuf field <code>optional string contents = 506419994;</code>
      * @param string $var
      * @return $this
      */
@@ -84,7 +84,7 @@ class Screenshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#screenshot for the screenshots.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -105,7 +105,7 @@ class Screenshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#screenshot for the screenshots.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */

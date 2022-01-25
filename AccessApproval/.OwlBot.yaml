@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/accessapproval/v1/.*-php/(.*)
+      dest: /owl-bot-staging/AccessApproval/v1/$1
+api-name: AccessApproval

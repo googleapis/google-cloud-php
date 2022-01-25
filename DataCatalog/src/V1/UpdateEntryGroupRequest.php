@@ -17,14 +17,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateEntryGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The updated entry group. "name" field must be set.
+     * Required. Updates for the entry group. The `name` field must be set.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.EntryGroup entry_group = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $entry_group = null;
     /**
-     * The fields to update on the entry group. If absent or empty, all modifiable
-     * fields are updated.
+     * Names of fields whose values to overwrite on an entry group.
+     * If this parameter is absent or empty, all modifiable fields
+     * are overwritten. If such fields are non-required and omitted in the
+     * request body, their values are emptied.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -37,10 +39,12 @@ class UpdateEntryGroupRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DataCatalog\V1\EntryGroup $entry_group
-     *           Required. The updated entry group. "name" field must be set.
+     *           Required. Updates for the entry group. The `name` field must be set.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           The fields to update on the entry group. If absent or empty, all modifiable
-     *           fields are updated.
+     *           Names of fields whose values to overwrite on an entry group.
+     *           If this parameter is absent or empty, all modifiable fields
+     *           are overwritten. If such fields are non-required and omitted in the
+     *           request body, their values are emptied.
      * }
      */
     public function __construct($data = NULL) {
@@ -49,14 +53,14 @@ class UpdateEntryGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The updated entry group. "name" field must be set.
+     * Required. Updates for the entry group. The `name` field must be set.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.EntryGroup entry_group = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\DataCatalog\V1\EntryGroup|null
      */
     public function getEntryGroup()
     {
-        return isset($this->entry_group) ? $this->entry_group : null;
+        return $this->entry_group;
     }
 
     public function hasEntryGroup()
@@ -70,7 +74,7 @@ class UpdateEntryGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The updated entry group. "name" field must be set.
+     * Required. Updates for the entry group. The `name` field must be set.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.EntryGroup entry_group = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\DataCatalog\V1\EntryGroup $var
@@ -85,15 +89,17 @@ class UpdateEntryGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fields to update on the entry group. If absent or empty, all modifiable
-     * fields are updated.
+     * Names of fields whose values to overwrite on an entry group.
+     * If this parameter is absent or empty, all modifiable fields
+     * are overwritten. If such fields are non-required and omitted in the
+     * request body, their values are emptied.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -107,8 +113,10 @@ class UpdateEntryGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fields to update on the entry group. If absent or empty, all modifiable
-     * fields are updated.
+     * Names of fields whose values to overwrite on an entry group.
+     * If this parameter is absent or empty, all modifiable fields
+     * are overwritten. If such fields are non-required and omitted in the
+     * request body, their values are emptied.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

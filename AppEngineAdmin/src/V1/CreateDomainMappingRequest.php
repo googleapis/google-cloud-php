@@ -89,7 +89,7 @@ class CreateDomainMappingRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDomainMapping()
     {
-        return isset($this->domain_mapping) ? $this->domain_mapping : null;
+        return $this->domain_mapping;
     }
 
     public function hasDomainMapping()

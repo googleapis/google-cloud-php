@@ -35,11 +35,22 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 2;</code>
      */
     private $plaintext_crc32c = null;
+    /**
+     * Whether the Decryption was performed using the primary key version.
+     *
+     * Generated from protobuf field <code>bool used_primary = 3;</code>
+     */
+    private $used_primary = false;
+    /**
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in decryption.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 4;</code>
+     */
+    private $protection_level = 0;
 
     /**
      * Constructor.
@@ -63,7 +74,10 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
      *           different languages. However, it is a non-negative integer, which will
      *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      *           that support this type.
-     *           NOTE: This field is in Beta.
+     *     @type bool $used_primary
+     *           Whether the Decryption was performed using the primary key version.
+     *     @type int $protection_level
+     *           The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in decryption.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,7 +125,6 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 2;</code>
      * @return \Google\Protobuf\Int64Value|null
@@ -147,7 +160,6 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 2;</code>
      * @return int|string|null
@@ -171,7 +183,6 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 2;</code>
      * @param \Google\Protobuf\Int64Value $var
@@ -201,7 +212,6 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 2;</code>
      * @param int|string|null $var
@@ -211,6 +221,58 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("plaintext_crc32c", $var);
         return $this;}
+
+    /**
+     * Whether the Decryption was performed using the primary key version.
+     *
+     * Generated from protobuf field <code>bool used_primary = 3;</code>
+     * @return bool
+     */
+    public function getUsedPrimary()
+    {
+        return $this->used_primary;
+    }
+
+    /**
+     * Whether the Decryption was performed using the primary key version.
+     *
+     * Generated from protobuf field <code>bool used_primary = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUsedPrimary($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->used_primary = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in decryption.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 4;</code>
+     * @return int
+     */
+    public function getProtectionLevel()
+    {
+        return $this->protection_level;
+    }
+
+    /**
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used in decryption.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setProtectionLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\ProtectionLevel::class);
+        $this->protection_level = $var;
+
+        return $this;
+    }
 
 }
 

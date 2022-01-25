@@ -122,7 +122,7 @@ class DeleteFromColumn extends \Google\Protobuf\Internal\Message
      */
     public function getTimeRange()
     {
-        return isset($this->time_range) ? $this->time_range : null;
+        return $this->time_range;
     }
 
     public function hasTimeRange()
