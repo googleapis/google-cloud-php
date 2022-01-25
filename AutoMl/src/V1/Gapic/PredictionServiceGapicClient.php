@@ -51,7 +51,7 @@ use Google\LongRunning\Operation;
  * Service Description: AutoML Prediction API.
  *
  * On any input that is documented to expect a string parameter in
- * snake_case or kebab-case, either of those cases is accepted.
+ * snake_case or dash-case, either of those cases is accepted.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -617,7 +617,6 @@ class PredictionServiceGapicClient
      *
      *           `feature_importance`
      *           : (boolean) Whether
-     *
      *           [feature_importance][google.cloud.automl.v1.TablesModelColumnInfo.feature_importance]
      *           is populated in the returned list of
      *           [TablesAnnotation][google.cloud.automl.v1.TablesAnnotation]

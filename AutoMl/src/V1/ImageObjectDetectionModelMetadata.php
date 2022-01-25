@@ -40,7 +40,7 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      *               latency, but should also have a higher prediction quality
      *               than other models.
      *
-     * Generated from protobuf field <code>string model_type = 1;</code>
+     * Generated from protobuf field <code>string model_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $model_type = '';
     /**
@@ -48,25 +48,25 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      * abstraction of a machine resource, which can handle online prediction QPS
      * as given in the qps_per_node field.
      *
-     * Generated from protobuf field <code>int64 node_count = 3;</code>
+     * Generated from protobuf field <code>int64 node_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $node_count = 0;
     /**
      * Output only. An approximate number of online prediction QPS that can
      * be supported by this model per each node on which it is deployed.
      *
-     * Generated from protobuf field <code>double node_qps = 4;</code>
+     * Generated from protobuf field <code>double node_qps = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $node_qps = 0.0;
     /**
      * Output only. The reason that this create model operation stopped,
      * e.g. `BUDGET_REACHED`, `MODEL_CONVERGED`.
      *
-     * Generated from protobuf field <code>string stop_reason = 5;</code>
+     * Generated from protobuf field <code>string stop_reason = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $stop_reason = '';
     /**
-     * The train budget of creating this model, expressed in milli node
+     * Optional. The train budget of creating this model, expressed in milli node
      * hours i.e. 1,000 value in this field means 1 node hour. The actual
      * `train_cost` will be equal or less than this value. If further model
      * training ceases to provide any improvements, it will stop without using
@@ -82,7 +82,7 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      * budget must be between 1,000 and 100,000 milli node hours, inclusive.
      * The default value is 24, 000 which represents one day in wall time.
      *
-     * Generated from protobuf field <code>int64 train_budget_milli_node_hours = 6;</code>
+     * Generated from protobuf field <code>int64 train_budget_milli_node_hours = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $train_budget_milli_node_hours = 0;
     /**
@@ -90,7 +90,7 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      * milli node hours, i.e. 1,000 value in this field means 1 node hour.
      * Guaranteed to not exceed the train budget.
      *
-     * Generated from protobuf field <code>int64 train_cost_milli_node_hours = 7;</code>
+     * Generated from protobuf field <code>int64 train_cost_milli_node_hours = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $train_cost_milli_node_hours = 0;
 
@@ -135,7 +135,7 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      *           Output only. The reason that this create model operation stopped,
      *           e.g. `BUDGET_REACHED`, `MODEL_CONVERGED`.
      *     @type int|string $train_budget_milli_node_hours
-     *           The train budget of creating this model, expressed in milli node
+     *           Optional. The train budget of creating this model, expressed in milli node
      *           hours i.e. 1,000 value in this field means 1 node hour. The actual
      *           `train_cost` will be equal or less than this value. If further model
      *           training ceases to provide any improvements, it will stop without using
@@ -186,7 +186,7 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      *               latency, but should also have a higher prediction quality
      *               than other models.
      *
-     * Generated from protobuf field <code>string model_type = 1;</code>
+     * Generated from protobuf field <code>string model_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getModelType()
@@ -219,7 +219,7 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      *               latency, but should also have a higher prediction quality
      *               than other models.
      *
-     * Generated from protobuf field <code>string model_type = 1;</code>
+     * Generated from protobuf field <code>string model_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -236,7 +236,7 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      * abstraction of a machine resource, which can handle online prediction QPS
      * as given in the qps_per_node field.
      *
-     * Generated from protobuf field <code>int64 node_count = 3;</code>
+     * Generated from protobuf field <code>int64 node_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
      */
     public function getNodeCount()
@@ -249,7 +249,7 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      * abstraction of a machine resource, which can handle online prediction QPS
      * as given in the qps_per_node field.
      *
-     * Generated from protobuf field <code>int64 node_count = 3;</code>
+     * Generated from protobuf field <code>int64 node_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */
@@ -265,7 +265,7 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      * Output only. An approximate number of online prediction QPS that can
      * be supported by this model per each node on which it is deployed.
      *
-     * Generated from protobuf field <code>double node_qps = 4;</code>
+     * Generated from protobuf field <code>double node_qps = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return float
      */
     public function getNodeQps()
@@ -277,7 +277,7 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      * Output only. An approximate number of online prediction QPS that can
      * be supported by this model per each node on which it is deployed.
      *
-     * Generated from protobuf field <code>double node_qps = 4;</code>
+     * Generated from protobuf field <code>double node_qps = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param float $var
      * @return $this
      */
@@ -293,7 +293,7 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      * Output only. The reason that this create model operation stopped,
      * e.g. `BUDGET_REACHED`, `MODEL_CONVERGED`.
      *
-     * Generated from protobuf field <code>string stop_reason = 5;</code>
+     * Generated from protobuf field <code>string stop_reason = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getStopReason()
@@ -305,7 +305,7 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      * Output only. The reason that this create model operation stopped,
      * e.g. `BUDGET_REACHED`, `MODEL_CONVERGED`.
      *
-     * Generated from protobuf field <code>string stop_reason = 5;</code>
+     * Generated from protobuf field <code>string stop_reason = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -318,7 +318,7 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * The train budget of creating this model, expressed in milli node
+     * Optional. The train budget of creating this model, expressed in milli node
      * hours i.e. 1,000 value in this field means 1 node hour. The actual
      * `train_cost` will be equal or less than this value. If further model
      * training ceases to provide any improvements, it will stop without using
@@ -334,7 +334,7 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      * budget must be between 1,000 and 100,000 milli node hours, inclusive.
      * The default value is 24, 000 which represents one day in wall time.
      *
-     * Generated from protobuf field <code>int64 train_budget_milli_node_hours = 6;</code>
+     * Generated from protobuf field <code>int64 train_budget_milli_node_hours = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
      */
     public function getTrainBudgetMilliNodeHours()
@@ -343,7 +343,7 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * The train budget of creating this model, expressed in milli node
+     * Optional. The train budget of creating this model, expressed in milli node
      * hours i.e. 1,000 value in this field means 1 node hour. The actual
      * `train_cost` will be equal or less than this value. If further model
      * training ceases to provide any improvements, it will stop without using
@@ -359,7 +359,7 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      * budget must be between 1,000 and 100,000 milli node hours, inclusive.
      * The default value is 24, 000 which represents one day in wall time.
      *
-     * Generated from protobuf field <code>int64 train_budget_milli_node_hours = 6;</code>
+     * Generated from protobuf field <code>int64 train_budget_milli_node_hours = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
      * @return $this
      */
@@ -376,7 +376,7 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      * milli node hours, i.e. 1,000 value in this field means 1 node hour.
      * Guaranteed to not exceed the train budget.
      *
-     * Generated from protobuf field <code>int64 train_cost_milli_node_hours = 7;</code>
+     * Generated from protobuf field <code>int64 train_cost_milli_node_hours = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
      */
     public function getTrainCostMilliNodeHours()
@@ -389,7 +389,7 @@ class ImageObjectDetectionModelMetadata extends \Google\Protobuf\Internal\Messag
      * milli node hours, i.e. 1,000 value in this field means 1 node hour.
      * Guaranteed to not exceed the train budget.
      *
-     * Generated from protobuf field <code>int64 train_cost_milli_node_hours = 7;</code>
+     * Generated from protobuf field <code>int64 train_cost_milli_node_hours = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */
