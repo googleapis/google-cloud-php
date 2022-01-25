@@ -26,8 +26,9 @@
 
 namespace Google\Cloud\Firestore\V1;
 
-use Google\Cloud\Firestore\V1\Gapic\FirestoreGapicClient;
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\ValidationException;
+use Google\Cloud\Firestore\V1\Gapic\FirestoreGapicClient;
 
 /**
  * {@inheritdoc}
