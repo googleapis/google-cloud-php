@@ -340,7 +340,7 @@ class ApiExceptionTest extends TestCase
                     Code::OK,
                     'OK',
                     [
-                        'metadata' => $status->getDetails(),
+                        'metadata' => [$any],
                         'basicMessage' => $status->getMessage(),
                     ]
                 )
