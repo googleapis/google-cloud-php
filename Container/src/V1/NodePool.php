@@ -55,6 +55,13 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     private $locations;
     /**
+     * Networking configuration for this NodePool. If specified, it overrides the
+     * cluster-level defaults.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeNetworkConfig network_config = 14;</code>
+     */
+    private $network_config = null;
+    /**
      * [Output only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 100;</code>
@@ -152,6 +159,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *           value will be used, instead.
      *           Warning: changing node pool locations will result in nodes being added
      *           and/or removed.
+     *     @type \Google\Cloud\Container\V1\NodeNetworkConfig $network_config
+     *           Networking configuration for this NodePool. If specified, it overrides the
+     *           cluster-level defaults.
      *     @type string $self_link
      *           [Output only] Server-defined URL for the resource.
      *     @type string $version
@@ -317,6 +327,44 @@ class NodePool extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->locations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Networking configuration for this NodePool. If specified, it overrides the
+     * cluster-level defaults.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeNetworkConfig network_config = 14;</code>
+     * @return \Google\Cloud\Container\V1\NodeNetworkConfig|null
+     */
+    public function getNetworkConfig()
+    {
+        return $this->network_config;
+    }
+
+    public function hasNetworkConfig()
+    {
+        return isset($this->network_config);
+    }
+
+    public function clearNetworkConfig()
+    {
+        unset($this->network_config);
+    }
+
+    /**
+     * Networking configuration for this NodePool. If specified, it overrides the
+     * cluster-level defaults.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeNetworkConfig network_config = 14;</code>
+     * @param \Google\Cloud\Container\V1\NodeNetworkConfig $var
+     * @return $this
+     */
+    public function setNetworkConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeNetworkConfig::class);
+        $this->network_config = $var;
 
         return $this;
     }

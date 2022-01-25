@@ -100,6 +100,30 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NodePool.UpgradeSettings upgrade_settings = 15;</code>
      */
     private $upgrade_settings = null;
+    /**
+     * Parameters that can be configured on Linux nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig linux_node_config = 19;</code>
+     */
+    private $linux_node_config = null;
+    /**
+     * Node kubelet configs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig kubelet_config = 20;</code>
+     */
+    private $kubelet_config = null;
+    /**
+     * GCFS config.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GcfsConfig gcfs_config = 22;</code>
+     */
+    private $gcfs_config = null;
+    /**
+     * Enable or disable gvnic on the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.VirtualNIC gvnic = 29;</code>
+     */
+    private $gvnic = null;
 
     /**
      * Constructor.
@@ -148,6 +172,14 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           The desired workload metadata config for the node pool.
      *     @type \Google\Cloud\Container\V1\NodePool\UpgradeSettings $upgrade_settings
      *           Upgrade settings control disruption and speed of the upgrade.
+     *     @type \Google\Cloud\Container\V1\LinuxNodeConfig $linux_node_config
+     *           Parameters that can be configured on Linux nodes.
+     *     @type \Google\Cloud\Container\V1\NodeKubeletConfig $kubelet_config
+     *           Node kubelet configs.
+     *     @type \Google\Cloud\Container\V1\GcfsConfig $gcfs_config
+     *           GCFS config.
+     *     @type \Google\Cloud\Container\V1\VirtualNIC $gvnic
+     *           Enable or disable gvnic on the node pool.
      * }
      */
     public function __construct($data = NULL) {
@@ -489,6 +521,150 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePool\UpgradeSettings::class);
         $this->upgrade_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Parameters that can be configured on Linux nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig linux_node_config = 19;</code>
+     * @return \Google\Cloud\Container\V1\LinuxNodeConfig|null
+     */
+    public function getLinuxNodeConfig()
+    {
+        return $this->linux_node_config;
+    }
+
+    public function hasLinuxNodeConfig()
+    {
+        return isset($this->linux_node_config);
+    }
+
+    public function clearLinuxNodeConfig()
+    {
+        unset($this->linux_node_config);
+    }
+
+    /**
+     * Parameters that can be configured on Linux nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig linux_node_config = 19;</code>
+     * @param \Google\Cloud\Container\V1\LinuxNodeConfig $var
+     * @return $this
+     */
+    public function setLinuxNodeConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LinuxNodeConfig::class);
+        $this->linux_node_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Node kubelet configs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig kubelet_config = 20;</code>
+     * @return \Google\Cloud\Container\V1\NodeKubeletConfig|null
+     */
+    public function getKubeletConfig()
+    {
+        return $this->kubelet_config;
+    }
+
+    public function hasKubeletConfig()
+    {
+        return isset($this->kubelet_config);
+    }
+
+    public function clearKubeletConfig()
+    {
+        unset($this->kubelet_config);
+    }
+
+    /**
+     * Node kubelet configs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig kubelet_config = 20;</code>
+     * @param \Google\Cloud\Container\V1\NodeKubeletConfig $var
+     * @return $this
+     */
+    public function setKubeletConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeKubeletConfig::class);
+        $this->kubelet_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * GCFS config.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GcfsConfig gcfs_config = 22;</code>
+     * @return \Google\Cloud\Container\V1\GcfsConfig|null
+     */
+    public function getGcfsConfig()
+    {
+        return $this->gcfs_config;
+    }
+
+    public function hasGcfsConfig()
+    {
+        return isset($this->gcfs_config);
+    }
+
+    public function clearGcfsConfig()
+    {
+        unset($this->gcfs_config);
+    }
+
+    /**
+     * GCFS config.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GcfsConfig gcfs_config = 22;</code>
+     * @param \Google\Cloud\Container\V1\GcfsConfig $var
+     * @return $this
+     */
+    public function setGcfsConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GcfsConfig::class);
+        $this->gcfs_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable or disable gvnic on the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.VirtualNIC gvnic = 29;</code>
+     * @return \Google\Cloud\Container\V1\VirtualNIC|null
+     */
+    public function getGvnic()
+    {
+        return $this->gvnic;
+    }
+
+    public function hasGvnic()
+    {
+        return isset($this->gvnic);
+    }
+
+    public function clearGvnic()
+    {
+        unset($this->gvnic);
+    }
+
+    /**
+     * Enable or disable gvnic on the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.VirtualNIC gvnic = 29;</code>
+     * @param \Google\Cloud\Container\V1\VirtualNIC $var
+     * @return $this
+     */
+    public function setGvnic($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\VirtualNIC::class);
+        $this->gvnic = $var;
 
         return $this;
     }
