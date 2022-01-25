@@ -88,6 +88,25 @@ return [
                     ],
                 ],
             ],
+            'ImportDocuments' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/knowledgeBases/*}/documents:import',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/knowledgeBases/*}/documents:import',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListDocuments' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/knowledgeBases/*}/documents',

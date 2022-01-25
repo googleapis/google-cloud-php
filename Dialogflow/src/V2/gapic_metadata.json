@@ -289,6 +289,11 @@
                                 "suggestFaqAnswers"
                             ]
                         },
+                        "SuggestSmartReplies": {
+                            "methods": [
+                                "suggestSmartReplies"
+                            ]
+                        },
                         "UpdateParticipant": {
                             "methods": [
                                 "updateParticipant"
@@ -311,40 +316,6 @@
                         "UpdateAnswerRecord": {
                             "methods": [
                                 "updateAnswerRecord"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "Conversations": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "ConversationsGapicClient",
-                    "rpcs": {
-                        "CompleteConversation": {
-                            "methods": [
-                                "completeConversation"
-                            ]
-                        },
-                        "CreateConversation": {
-                            "methods": [
-                                "createConversation"
-                            ]
-                        },
-                        "GetConversation": {
-                            "methods": [
-                                "getConversation"
-                            ]
-                        },
-                        "ListConversations": {
-                            "methods": [
-                                "listConversations"
-                            ]
-                        },
-                        "ListMessages": {
-                            "methods": [
-                                "listMessages"
                             ]
                         }
                     }
@@ -385,6 +356,40 @@
                 }
             }
         },
+        "Conversations": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ConversationsGapicClient",
+                    "rpcs": {
+                        "CompleteConversation": {
+                            "methods": [
+                                "completeConversation"
+                            ]
+                        },
+                        "CreateConversation": {
+                            "methods": [
+                                "createConversation"
+                            ]
+                        },
+                        "GetConversation": {
+                            "methods": [
+                                "getConversation"
+                            ]
+                        },
+                        "ListConversations": {
+                            "methods": [
+                                "listConversations"
+                            ]
+                        },
+                        "ListMessages": {
+                            "methods": [
+                                "listMessages"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "Documents": {
             "clients": {
                 "grpc": {
@@ -408,6 +413,11 @@
                         "GetDocument": {
                             "methods": [
                                 "getDocument"
+                            ]
+                        },
+                        "ImportDocuments": {
+                            "methods": [
+                                "importDocuments"
                             ]
                         },
                         "ListDocuments": {
