@@ -161,6 +161,10 @@ class ApiException extends Exception
 
         $message = json_encode($messageData, JSON_PRETTY_PRINT);
 
+        if ($metadata instanceof RepeatedField) {
+            $metadata = iterator_to_array($metadata);
+        }
+
         return new ApiException($message, $rpcCode, $rpcStatus, [
             'previous' => $previous,
             'metadata' => $metadata,
