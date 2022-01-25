@@ -7,9 +7,7 @@ namespace Google\Cloud\Logging\V2\LogSink;
 use UnexpectedValueException;
 
 /**
- * Available log entry formats. Log entries can be written to
- * Logging in either format and can be exported in either format.
- * Version 2 is the preferred format.
+ * Deprecated. This is unused.
  *
  * Protobuf type <code>google.logging.v2.LogSink.VersionFormat</code>
  */

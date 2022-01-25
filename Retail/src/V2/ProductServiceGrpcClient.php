@@ -168,8 +168,8 @@ class ProductServiceGrpcClient extends \Grpc\BaseStub {
      * [RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces].
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Contact Retail Support (retail-search-support@google.com) if you are
-     * interested in using Retail Search.
+     * Please submit a form [here](https://cloud.google.com/contact) to contact
+     * cloud sales if you are interested in using Retail Search.
      * @param \Google\Cloud\Retail\V2\SetInventoryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -197,8 +197,8 @@ class ProductServiceGrpcClient extends \Grpc\BaseStub {
      * [ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Contact Retail Support (retail-search-support@google.com) if you are
-     * interested in using Retail Search.
+     * Please submit a form [here](https://cloud.google.com/contact) to contact
+     * cloud sales if you are interested in using Retail Search.
      * @param \Google\Cloud\Retail\V2\AddFulfillmentPlacesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -226,8 +226,8 @@ class ProductServiceGrpcClient extends \Grpc\BaseStub {
      * [ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Contact Retail Support (retail-search-support@google.com) if you are
-     * interested in using Retail Search.
+     * Please submit a form [here](https://cloud.google.com/contact) to contact
+     * cloud sales if you are interested in using Retail Search.
      * @param \Google\Cloud\Retail\V2\RemoveFulfillmentPlacesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

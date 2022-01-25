@@ -38,6 +38,27 @@ class Participant extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string sip_recording_media_label = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $sip_recording_media_label = '';
+    /**
+     * Optional. Key-value filters on the metadata of documents returned by article
+     * suggestion. If specified, article suggestion only returns suggested
+     * documents that match all filters in their [Document.metadata][google.cloud.dialogflow.v2.Document.metadata]. Multiple
+     * values for a metadata key should be concatenated by comma. For example,
+     * filters to match all documents that have 'US' or 'CA' in their market
+     * metadata values and 'agent' in their user metadata values will be
+     * ```
+     * documents_metadata_filters {
+     *   key: "market"
+     *   value: "US,CA"
+     * }
+     * documents_metadata_filters {
+     *   key: "user"
+     *   value: "agent"
+     * }
+     * ```
+     *
+     * Generated from protobuf field <code>map<string, string> documents_metadata_filters = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $documents_metadata_filters;
 
     /**
      * Constructor.
@@ -56,6 +77,23 @@ class Participant extends \Google\Protobuf\Internal\Message
      *           Optional. Label applied to streams representing this participant in SIPREC
      *           XML metadata and SDP. This is used to assign transcriptions from that
      *           media stream to this participant. This field can be updated.
+     *     @type array|\Google\Protobuf\Internal\MapField $documents_metadata_filters
+     *           Optional. Key-value filters on the metadata of documents returned by article
+     *           suggestion. If specified, article suggestion only returns suggested
+     *           documents that match all filters in their [Document.metadata][google.cloud.dialogflow.v2.Document.metadata]. Multiple
+     *           values for a metadata key should be concatenated by comma. For example,
+     *           filters to match all documents that have 'US' or 'CA' in their market
+     *           metadata values and 'agent' in their user metadata values will be
+     *           ```
+     *           documents_metadata_filters {
+     *             key: "market"
+     *             value: "US,CA"
+     *           }
+     *           documents_metadata_filters {
+     *             key: "user"
+     *             value: "agent"
+     *           }
+     *           ```
      * }
      */
     public function __construct($data = NULL) {
@@ -147,6 +185,62 @@ class Participant extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->sip_recording_media_label = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Key-value filters on the metadata of documents returned by article
+     * suggestion. If specified, article suggestion only returns suggested
+     * documents that match all filters in their [Document.metadata][google.cloud.dialogflow.v2.Document.metadata]. Multiple
+     * values for a metadata key should be concatenated by comma. For example,
+     * filters to match all documents that have 'US' or 'CA' in their market
+     * metadata values and 'agent' in their user metadata values will be
+     * ```
+     * documents_metadata_filters {
+     *   key: "market"
+     *   value: "US,CA"
+     * }
+     * documents_metadata_filters {
+     *   key: "user"
+     *   value: "agent"
+     * }
+     * ```
+     *
+     * Generated from protobuf field <code>map<string, string> documents_metadata_filters = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getDocumentsMetadataFilters()
+    {
+        return $this->documents_metadata_filters;
+    }
+
+    /**
+     * Optional. Key-value filters on the metadata of documents returned by article
+     * suggestion. If specified, article suggestion only returns suggested
+     * documents that match all filters in their [Document.metadata][google.cloud.dialogflow.v2.Document.metadata]. Multiple
+     * values for a metadata key should be concatenated by comma. For example,
+     * filters to match all documents that have 'US' or 'CA' in their market
+     * metadata values and 'agent' in their user metadata values will be
+     * ```
+     * documents_metadata_filters {
+     *   key: "market"
+     *   value: "US,CA"
+     * }
+     * documents_metadata_filters {
+     *   key: "user"
+     *   value: "agent"
+     * }
+     * ```
+     *
+     * Generated from protobuf field <code>map<string, string> documents_metadata_filters = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setDocumentsMetadataFilters($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->documents_metadata_filters = $arr;
 
         return $this;
     }

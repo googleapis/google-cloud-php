@@ -56,6 +56,4 @@ class SlsaBuilder extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SlsaBuilder::class, \Grafeas\V1\SlsaProvenance_SlsaBuilder::class);
 

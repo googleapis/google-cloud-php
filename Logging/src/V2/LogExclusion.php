@@ -21,30 +21,31 @@ use Google\Protobuf\Internal\GPBUtil;
 class LogExclusion extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. A client-assigned identifier, such as
-     * `"load-balancer-exclusion"`. Identifiers are limited to 100 characters and
-     * can include only letters, digits, underscores, hyphens, and periods.
-     * First character has to be alphanumeric.
+     * Required. A client-assigned identifier, such as `"load-balancer-exclusion"`.
+     * Identifiers are limited to 100 characters and can include only letters,
+     * digits, underscores, hyphens, and periods. First character has to be
+     * alphanumeric.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
      * Optional. A description of this exclusion.
      *
-     * Generated from protobuf field <code>string description = 2;</code>
+     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $description = '';
     /**
-     * Required. An [advanced logs filter](/logging/docs/view/advanced-queries)
-     * that matches the log entries to be excluded. By using the
-     * [sample function](/logging/docs/view/advanced-queries#sample),
+     * Required. An [advanced logs
+     * filter](https://cloud.google.com/logging/docs/view/advanced-queries) that
+     * matches the log entries to be excluded. By using the [sample
+     * function](https://cloud.google.com/logging/docs/view/advanced-queries#sample),
      * you can exclude less than 100% of the matching log entries.
      * For example, the following query matches 99% of low-severity log
      * entries from Google Cloud Storage buckets:
      * `"resource.type=gcs_bucket severity<ERROR sample(insertId, 0.99)"`
      *
-     * Generated from protobuf field <code>string filter = 3;</code>
+     * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $filter = '';
     /**
@@ -53,21 +54,21 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      * exclusion][google.logging.v2.ConfigServiceV2.UpdateExclusion] to change the
      * value of this field.
      *
-     * Generated from protobuf field <code>bool disabled = 4;</code>
+     * Generated from protobuf field <code>bool disabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $disabled = false;
     /**
      * Output only. The creation timestamp of the exclusion.
      * This field may not be present for older exclusions.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
      * Output only. The last update timestamp of the exclusion.
      * This field may not be present for older exclusions.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
 
@@ -78,16 +79,17 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. A client-assigned identifier, such as
-     *           `"load-balancer-exclusion"`. Identifiers are limited to 100 characters and
-     *           can include only letters, digits, underscores, hyphens, and periods.
-     *           First character has to be alphanumeric.
+     *           Required. A client-assigned identifier, such as `"load-balancer-exclusion"`.
+     *           Identifiers are limited to 100 characters and can include only letters,
+     *           digits, underscores, hyphens, and periods. First character has to be
+     *           alphanumeric.
      *     @type string $description
      *           Optional. A description of this exclusion.
      *     @type string $filter
-     *           Required. An [advanced logs filter](/logging/docs/view/advanced-queries)
-     *           that matches the log entries to be excluded. By using the
-     *           [sample function](/logging/docs/view/advanced-queries#sample),
+     *           Required. An [advanced logs
+     *           filter](https://cloud.google.com/logging/docs/view/advanced-queries) that
+     *           matches the log entries to be excluded. By using the [sample
+     *           function](https://cloud.google.com/logging/docs/view/advanced-queries#sample),
      *           you can exclude less than 100% of the matching log entries.
      *           For example, the following query matches 99% of low-severity log
      *           entries from Google Cloud Storage buckets:
@@ -111,12 +113,12 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A client-assigned identifier, such as
-     * `"load-balancer-exclusion"`. Identifiers are limited to 100 characters and
-     * can include only letters, digits, underscores, hyphens, and periods.
-     * First character has to be alphanumeric.
+     * Required. A client-assigned identifier, such as `"load-balancer-exclusion"`.
+     * Identifiers are limited to 100 characters and can include only letters,
+     * digits, underscores, hyphens, and periods. First character has to be
+     * alphanumeric.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -125,12 +127,12 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A client-assigned identifier, such as
-     * `"load-balancer-exclusion"`. Identifiers are limited to 100 characters and
-     * can include only letters, digits, underscores, hyphens, and periods.
-     * First character has to be alphanumeric.
+     * Required. A client-assigned identifier, such as `"load-balancer-exclusion"`.
+     * Identifiers are limited to 100 characters and can include only letters,
+     * digits, underscores, hyphens, and periods. First character has to be
+     * alphanumeric.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -145,7 +147,7 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A description of this exclusion.
      *
-     * Generated from protobuf field <code>string description = 2;</code>
+     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -156,7 +158,7 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A description of this exclusion.
      *
-     * Generated from protobuf field <code>string description = 2;</code>
+     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -169,15 +171,16 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. An [advanced logs filter](/logging/docs/view/advanced-queries)
-     * that matches the log entries to be excluded. By using the
-     * [sample function](/logging/docs/view/advanced-queries#sample),
+     * Required. An [advanced logs
+     * filter](https://cloud.google.com/logging/docs/view/advanced-queries) that
+     * matches the log entries to be excluded. By using the [sample
+     * function](https://cloud.google.com/logging/docs/view/advanced-queries#sample),
      * you can exclude less than 100% of the matching log entries.
      * For example, the following query matches 99% of low-severity log
      * entries from Google Cloud Storage buckets:
      * `"resource.type=gcs_bucket severity<ERROR sample(insertId, 0.99)"`
      *
-     * Generated from protobuf field <code>string filter = 3;</code>
+     * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getFilter()
@@ -186,15 +189,16 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. An [advanced logs filter](/logging/docs/view/advanced-queries)
-     * that matches the log entries to be excluded. By using the
-     * [sample function](/logging/docs/view/advanced-queries#sample),
+     * Required. An [advanced logs
+     * filter](https://cloud.google.com/logging/docs/view/advanced-queries) that
+     * matches the log entries to be excluded. By using the [sample
+     * function](https://cloud.google.com/logging/docs/view/advanced-queries#sample),
      * you can exclude less than 100% of the matching log entries.
      * For example, the following query matches 99% of low-severity log
      * entries from Google Cloud Storage buckets:
      * `"resource.type=gcs_bucket severity<ERROR sample(insertId, 0.99)"`
      *
-     * Generated from protobuf field <code>string filter = 3;</code>
+     * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -212,7 +216,7 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      * exclusion][google.logging.v2.ConfigServiceV2.UpdateExclusion] to change the
      * value of this field.
      *
-     * Generated from protobuf field <code>bool disabled = 4;</code>
+     * Generated from protobuf field <code>bool disabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getDisabled()
@@ -226,7 +230,7 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      * exclusion][google.logging.v2.ConfigServiceV2.UpdateExclusion] to change the
      * value of this field.
      *
-     * Generated from protobuf field <code>bool disabled = 4;</code>
+     * Generated from protobuf field <code>bool disabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -242,19 +246,29 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      * Output only. The creation timestamp of the exclusion.
      * This field may not be present for older exclusions.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
-     * @return \Google\Protobuf\Timestamp
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
         return $this->create_time;
     }
 
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
     /**
      * Output only. The creation timestamp of the exclusion.
      * This field may not be present for older exclusions.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -270,19 +284,29 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      * Output only. The last update timestamp of the exclusion.
      * This field may not be present for older exclusions.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
-     * @return \Google\Protobuf\Timestamp
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
         return $this->update_time;
     }
 
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
     /**
      * Output only. The last update timestamp of the exclusion.
      * This field may not be present for older exclusions.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */

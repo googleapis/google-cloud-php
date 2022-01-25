@@ -69,6 +69,4 @@ class RebootConfig
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RebootConfig::class, \Google\Cloud\OsConfig\V1\PatchConfig_RebootConfig::class);
 

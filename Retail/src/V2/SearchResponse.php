@@ -302,7 +302,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      */
     public function getQueryExpansionInfo()
     {
-        return isset($this->query_expansion_info) ? $this->query_expansion_info : null;
+        return $this->query_expansion_info;
     }
 
     public function hasQueryExpansionInfo()

@@ -209,7 +209,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -245,7 +245,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -313,7 +313,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
     public function getCsvInstruction()
     {
         @trigger_error('csv_instruction is deprecated.', E_USER_DEPRECATED);
-        return isset($this->csv_instruction) ? $this->csv_instruction : null;
+        return $this->csv_instruction;
     }
 
     public function hasCsvInstruction()
@@ -358,7 +358,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
      */
     public function getPdfInstruction()
     {
-        return isset($this->pdf_instruction) ? $this->pdf_instruction : null;
+        return $this->pdf_instruction;
     }
 
     public function hasPdfInstruction()

@@ -92,7 +92,7 @@ class GetDefaultBranchResponse extends \Google\Protobuf\Internal\Message
      */
     public function getSetTime()
     {
-        return isset($this->set_time) ? $this->set_time : null;
+        return $this->set_time;
     }
 
     public function hasSetTime()

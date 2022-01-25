@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/storagetransfer/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/StorageTransfer/$1/$2
+api-name: StorageTransfer

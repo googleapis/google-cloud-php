@@ -320,7 +320,7 @@ class EvaluationJobConfig extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return isset($this->input_config) ? $this->input_config : null;
+        return $this->input_config;
     }
 
     public function hasInputConfig()
@@ -368,7 +368,7 @@ class EvaluationJobConfig extends \Google\Protobuf\Internal\Message
      */
     public function getEvaluationConfig()
     {
-        return isset($this->evaluation_config) ? $this->evaluation_config : null;
+        return $this->evaluation_config;
     }
 
     public function hasEvaluationConfig()
@@ -414,7 +414,7 @@ class EvaluationJobConfig extends \Google\Protobuf\Internal\Message
      */
     public function getHumanAnnotationConfig()
     {
-        return isset($this->human_annotation_config) ? $this->human_annotation_config : null;
+        return $this->human_annotation_config;
     }
 
     public function hasHumanAnnotationConfig()
@@ -578,7 +578,7 @@ class EvaluationJobConfig extends \Google\Protobuf\Internal\Message
      */
     public function getEvaluationJobAlertConfig()
     {
-        return isset($this->evaluation_job_alert_config) ? $this->evaluation_job_alert_config : null;
+        return $this->evaluation_job_alert_config;
     }
 
     public function hasEvaluationJobAlertConfig()

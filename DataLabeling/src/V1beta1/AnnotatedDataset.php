@@ -343,7 +343,7 @@ class AnnotatedDataset extends \Google\Protobuf\Internal\Message
      */
     public function getLabelStats()
     {
-        return isset($this->label_stats) ? $this->label_stats : null;
+        return $this->label_stats;
     }
 
     public function hasLabelStats()
@@ -379,7 +379,7 @@ class AnnotatedDataset extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -415,7 +415,7 @@ class AnnotatedDataset extends \Google\Protobuf\Internal\Message
      */
     public function getMetadata()
     {
-        return isset($this->metadata) ? $this->metadata : null;
+        return $this->metadata;
     }
 
     public function hasMetadata()

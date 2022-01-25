@@ -23,8 +23,11 @@ class UpdateTagRequest extends \Google\Protobuf\Internal\Message
      */
     private $tag = null;
     /**
-     * The fields to update on the Tag. If absent or empty, all modifiable fields
-     * are updated. Currently the only modifiable field is the field `fields`.
+     * Names of fields whose values to overwrite on a tag. Currently, a tag has
+     * the only modifiable field with the name `fields`.
+     * In general, if this parameter is absent or empty, all modifiable fields
+     * are overwritten. If such fields are non-required and omitted in the
+     * request body, their values are emptied.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -39,8 +42,11 @@ class UpdateTagRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DataCatalog\V1\Tag $tag
      *           Required. The updated tag. The "name" field must be set.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           The fields to update on the Tag. If absent or empty, all modifiable fields
-     *           are updated. Currently the only modifiable field is the field `fields`.
+     *           Names of fields whose values to overwrite on a tag. Currently, a tag has
+     *           the only modifiable field with the name `fields`.
+     *           In general, if this parameter is absent or empty, all modifiable fields
+     *           are overwritten. If such fields are non-required and omitted in the
+     *           request body, their values are emptied.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +62,7 @@ class UpdateTagRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTag()
     {
-        return isset($this->tag) ? $this->tag : null;
+        return $this->tag;
     }
 
     public function hasTag()
@@ -85,15 +91,18 @@ class UpdateTagRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fields to update on the Tag. If absent or empty, all modifiable fields
-     * are updated. Currently the only modifiable field is the field `fields`.
+     * Names of fields whose values to overwrite on a tag. Currently, a tag has
+     * the only modifiable field with the name `fields`.
+     * In general, if this parameter is absent or empty, all modifiable fields
+     * are overwritten. If such fields are non-required and omitted in the
+     * request body, their values are emptied.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -107,8 +116,11 @@ class UpdateTagRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fields to update on the Tag. If absent or empty, all modifiable fields
-     * are updated. Currently the only modifiable field is the field `fields`.
+     * Names of fields whose values to overwrite on a tag. Currently, a tag has
+     * the only modifiable field with the name `fields`.
+     * In general, if this parameter is absent or empty, all modifiable fields
+     * are overwritten. If such fields are non-required and omitted in the
+     * request body, their values are emptied.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

@@ -105,7 +105,7 @@ class CreateWorkflowRequest extends \Google\Protobuf\Internal\Message
      */
     public function getWorkflow()
     {
-        return isset($this->workflow) ? $this->workflow : null;
+        return $this->workflow;
     }
 
     public function hasWorkflow()

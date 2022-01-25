@@ -133,10 +133,10 @@ return [
                 ],
             ],
         ],
-        'google.longrunning.Operations' => [
-            'ListOperations' => [
+        'google.cloud.location.Locations' => [
+            'ListLocations' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/operations',
+                'uriTemplate' => '/v1/{name=projects/*}/locations',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -145,6 +145,8 @@ return [
                     ],
                 ],
             ],
+        ],
+        'google.longrunning.Operations' => [
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=operations/*}',
@@ -155,6 +157,10 @@ return [
                         ],
                     ],
                 ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/operations',
             ],
         ],
     ],

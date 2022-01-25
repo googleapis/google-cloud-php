@@ -54,7 +54,7 @@ class ExampleComparison extends \Google\Protobuf\Internal\Message
      */
     public function getGroundTruthExample()
     {
-        return isset($this->ground_truth_example) ? $this->ground_truth_example : null;
+        return $this->ground_truth_example;
     }
 
     public function hasGroundTruthExample()

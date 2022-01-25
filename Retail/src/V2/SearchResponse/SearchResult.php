@@ -77,20 +77,20 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      * string or double values with type
      * [google.protobuf.ListValue][google.protobuf.ListValue]. For example, if
      * there are two variants with colors "red" and "blue", the rollup values
-     * are { key: "colorFamilies"
-     *   value {
-     *     list_value {
-     *       values { string_value: "red" }
-     *       values { string_value: "blue" }
-     *      }
-     *   }
-     * }
-     * For
-     * [Product.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info],
-     * the rollup values is a double value with type
-     * [google.protobuf.Value][google.protobuf.Value]. For example, {key:
-     * "pickupInStore.store1" value { number_value: 10 }} means a there are 10
-     * variants in this product are available in the store "store1".
+     * are
+     *     { key: "colorFamilies"
+     *       value {
+     *         list_value {
+     *           values { string_value: "red" }
+     *           values { string_value: "blue" }
+     *          }
+     *       }
+     *     }
+     * For [FulfillmentInfo][google.cloud.retail.v2.FulfillmentInfo], the rollup
+     * values is a double value with type
+     * [google.protobuf.Value][google.protobuf.Value]. For example,
+     * `{key: "pickupInStore.store1" value { number_value: 10 }}` means a there
+     * are 10 variants in this product are available in the store "store1".
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> variant_rollup_values = 5;</code>
      */
@@ -148,20 +148,20 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *           string or double values with type
      *           [google.protobuf.ListValue][google.protobuf.ListValue]. For example, if
      *           there are two variants with colors "red" and "blue", the rollup values
-     *           are { key: "colorFamilies"
-     *             value {
-     *               list_value {
-     *                 values { string_value: "red" }
-     *                 values { string_value: "blue" }
-     *                }
-     *             }
-     *           }
-     *           For
-     *           [Product.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info],
-     *           the rollup values is a double value with type
-     *           [google.protobuf.Value][google.protobuf.Value]. For example, {key:
-     *           "pickupInStore.store1" value { number_value: 10 }} means a there are 10
-     *           variants in this product are available in the store "store1".
+     *           are
+     *               { key: "colorFamilies"
+     *                 value {
+     *                   list_value {
+     *                     values { string_value: "red" }
+     *                     values { string_value: "blue" }
+     *                    }
+     *                 }
+     *               }
+     *           For [FulfillmentInfo][google.cloud.retail.v2.FulfillmentInfo], the rollup
+     *           values is a double value with type
+     *           [google.protobuf.Value][google.protobuf.Value]. For example,
+     *           `{key: "pickupInStore.store1" value { number_value: 10 }}` means a there
+     *           are 10 variants in this product are available in the store "store1".
      * }
      */
     public function __construct($data = NULL) {
@@ -216,7 +216,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getProduct()
     {
-        return isset($this->product) ? $this->product : null;
+        return $this->product;
     }
 
     public function hasProduct()
@@ -344,20 +344,20 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      * string or double values with type
      * [google.protobuf.ListValue][google.protobuf.ListValue]. For example, if
      * there are two variants with colors "red" and "blue", the rollup values
-     * are { key: "colorFamilies"
-     *   value {
-     *     list_value {
-     *       values { string_value: "red" }
-     *       values { string_value: "blue" }
-     *      }
-     *   }
-     * }
-     * For
-     * [Product.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info],
-     * the rollup values is a double value with type
-     * [google.protobuf.Value][google.protobuf.Value]. For example, {key:
-     * "pickupInStore.store1" value { number_value: 10 }} means a there are 10
-     * variants in this product are available in the store "store1".
+     * are
+     *     { key: "colorFamilies"
+     *       value {
+     *         list_value {
+     *           values { string_value: "red" }
+     *           values { string_value: "blue" }
+     *          }
+     *       }
+     *     }
+     * For [FulfillmentInfo][google.cloud.retail.v2.FulfillmentInfo], the rollup
+     * values is a double value with type
+     * [google.protobuf.Value][google.protobuf.Value]. For example,
+     * `{key: "pickupInStore.store1" value { number_value: 10 }}` means a there
+     * are 10 variants in this product are available in the store "store1".
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> variant_rollup_values = 5;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -382,20 +382,20 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      * string or double values with type
      * [google.protobuf.ListValue][google.protobuf.ListValue]. For example, if
      * there are two variants with colors "red" and "blue", the rollup values
-     * are { key: "colorFamilies"
-     *   value {
-     *     list_value {
-     *       values { string_value: "red" }
-     *       values { string_value: "blue" }
-     *      }
-     *   }
-     * }
-     * For
-     * [Product.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info],
-     * the rollup values is a double value with type
-     * [google.protobuf.Value][google.protobuf.Value]. For example, {key:
-     * "pickupInStore.store1" value { number_value: 10 }} means a there are 10
-     * variants in this product are available in the store "store1".
+     * are
+     *     { key: "colorFamilies"
+     *       value {
+     *         list_value {
+     *           values { string_value: "red" }
+     *           values { string_value: "blue" }
+     *          }
+     *       }
+     *     }
+     * For [FulfillmentInfo][google.cloud.retail.v2.FulfillmentInfo], the rollup
+     * values is a double value with type
+     * [google.protobuf.Value][google.protobuf.Value]. For example,
+     * `{key: "pickupInStore.store1" value { number_value: 10 }}` means a there
+     * are 10 variants in this product are available in the store "store1".
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> variant_rollup_values = 5;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -411,6 +411,4 @@ class SearchResult extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SearchResult::class, \Google\Cloud\Retail\V2\SearchResponse_SearchResult::class);
 

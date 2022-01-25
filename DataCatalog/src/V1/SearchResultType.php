@@ -7,7 +7,7 @@ namespace Google\Cloud\DataCatalog\V1;
 use UnexpectedValueException;
 
 /**
- * The different types of resources that can be returned in search.
+ * The resource types that can be returned in search results.
  *
  * Protobuf type <code>google.cloud.datacatalog.v1.SearchResultType</code>
  */

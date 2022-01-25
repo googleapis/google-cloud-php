@@ -82,18 +82,42 @@ class ArrayTraitTest extends TestCase
 
     public function testIsAssocTrue()
     {
-        $actual = $this->impl->call('isAssoc', [[
+        $inputArr = [
             'test' => 1,
             'test' => 2
-        ]]);
+        ];
 
+        $actual = $this->impl->call('isAssoc', [$inputArr]);
+        $this->assertTrue($actual);
+
+        // test second argument is irrelevant when array isn't empty
+        $actual = $this->impl->call('isAssoc', [$inputArr, false]);
         $this->assertTrue($actual);
     }
 
     public function testIsAssocFalse()
     {
-        $actual = $this->impl->call('isAssoc', [[1, 2, 3]]);
+        $inputArr = [1, 2, 3];
+        $actual = $this->impl->call('isAssoc', [$inputArr]);
+        $this->assertFalse($actual);
 
+        // test second argument is irrelevant when array isn't empty
+        $actual = $this->impl->call('isAssoc', [$inputArr, true]);
+        $this->assertFalse($actual);
+    }
+
+    public function testIsAssocEmptyArray()
+    {
+        // default (with absent $onEmpty)
+        $actual = $this->impl->call('isAssoc', [[]]);
+        $this->assertTrue($actual);
+
+        // pass $onEmpty = true
+        $actual = $this->impl->call('isAssoc', [[], true]);
+        $this->assertTrue($actual);
+
+        // pass $onEmpty = false
+        $actual = $this->impl->call('isAssoc', [[], false]);
         $this->assertFalse($actual);
     }
 

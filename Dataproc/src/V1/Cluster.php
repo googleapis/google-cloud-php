@@ -30,10 +30,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $cluster_name = '';
     /**
-     * Required. The cluster config. Note that Dataproc may set
-     * default values, and values may change when clusters are updated.
+     * Optional. The cluster config for a cluster of Compute Engine Instances.
+     * Note that Dataproc may set default values, and values may change
+     * when clusters are updated.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $config = null;
     /**
@@ -88,8 +89,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Required. The cluster name. Cluster names within a project must be
      *           unique. Names of deleted clusters can be reused.
      *     @type \Google\Cloud\Dataproc\V1\ClusterConfig $config
-     *           Required. The cluster config. Note that Dataproc may set
-     *           default values, and values may change when clusters are updated.
+     *           Optional. The cluster config for a cluster of Compute Engine Instances.
+     *           Note that Dataproc may set default values, and values may change
+     *           when clusters are updated.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels to associate with this cluster.
      *           Label **keys** must contain 1 to 63 characters, and must conform to
@@ -171,10 +173,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The cluster config. Note that Dataproc may set
-     * default values, and values may change when clusters are updated.
+     * Optional. The cluster config for a cluster of Compute Engine Instances.
+     * Note that Dataproc may set default values, and values may change
+     * when clusters are updated.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\ClusterConfig|null
      */
     public function getConfig()
@@ -193,10 +196,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The cluster config. Note that Dataproc may set
-     * default values, and values may change when clusters are updated.
+     * Optional. The cluster config for a cluster of Compute Engine Instances.
+     * Note that Dataproc may set default values, and values may change
+     * when clusters are updated.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterConfig config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\ClusterConfig $var
      * @return $this
      */

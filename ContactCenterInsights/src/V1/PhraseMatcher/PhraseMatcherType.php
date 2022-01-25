@@ -60,6 +60,4 @@ class PhraseMatcherType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PhraseMatcherType::class, \Google\Cloud\ContactCenterInsights\V1\PhraseMatcher_PhraseMatcherType::class);
 

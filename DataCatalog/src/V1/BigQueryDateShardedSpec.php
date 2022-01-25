@@ -9,9 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Spec for a group of BigQuery tables with name pattern `[prefix]YYYYMMDD`.
- * Context:
- * https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding
+ * Specification for a group of BigQuery tables with the `[prefix]YYYYMMDD` name
+ * pattern.
+ * For more information, see [Introduction to partitioned tables]
+ * (https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding).
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.v1.BigQueryDateShardedSpec</code>
  */
@@ -19,15 +20,16 @@ class BigQueryDateShardedSpec extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The Data Catalog resource name of the dataset entry the current table
-     * belongs to, for example,
-     * `projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}`.
+     * belongs to. For example:
+     * `projects/{PROJECT_ID}/locations/{LOCATION}/entrygroups/{ENTRY_GROUP_ID}/entries/{ENTRY_ID}`.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $dataset = '';
     /**
-     * Output only. The table name prefix of the shards. The name of any given shard is
-     * `[table_prefix]YYYYMMDD`, for example, for shard `MyTable20180101`, the
+     * Output only. The table name prefix of the shards.
+     * The name of any given shard is `[table_prefix]YYYYMMDD`.
+     * For example, for the `MyTable20180101` shard, the
      * `table_prefix` is `MyTable`.
      *
      * Generated from protobuf field <code>string table_prefix = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -39,6 +41,12 @@ class BigQueryDateShardedSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 shard_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $shard_count = 0;
+    /**
+     * Output only. BigQuery resource name of the latest shard.
+     *
+     * Generated from protobuf field <code>string latest_shard_resource = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $latest_shard_resource = '';
 
     /**
      * Constructor.
@@ -48,14 +56,17 @@ class BigQueryDateShardedSpec extends \Google\Protobuf\Internal\Message
      *
      *     @type string $dataset
      *           Output only. The Data Catalog resource name of the dataset entry the current table
-     *           belongs to, for example,
-     *           `projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}`.
+     *           belongs to. For example:
+     *           `projects/{PROJECT_ID}/locations/{LOCATION}/entrygroups/{ENTRY_GROUP_ID}/entries/{ENTRY_ID}`.
      *     @type string $table_prefix
-     *           Output only. The table name prefix of the shards. The name of any given shard is
-     *           `[table_prefix]YYYYMMDD`, for example, for shard `MyTable20180101`, the
+     *           Output only. The table name prefix of the shards.
+     *           The name of any given shard is `[table_prefix]YYYYMMDD`.
+     *           For example, for the `MyTable20180101` shard, the
      *           `table_prefix` is `MyTable`.
      *     @type int|string $shard_count
      *           Output only. Total number of shards.
+     *     @type string $latest_shard_resource
+     *           Output only. BigQuery resource name of the latest shard.
      * }
      */
     public function __construct($data = NULL) {
@@ -65,8 +76,8 @@ class BigQueryDateShardedSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The Data Catalog resource name of the dataset entry the current table
-     * belongs to, for example,
-     * `projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}`.
+     * belongs to. For example:
+     * `projects/{PROJECT_ID}/locations/{LOCATION}/entrygroups/{ENTRY_GROUP_ID}/entries/{ENTRY_ID}`.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -78,8 +89,8 @@ class BigQueryDateShardedSpec extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The Data Catalog resource name of the dataset entry the current table
-     * belongs to, for example,
-     * `projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}`.
+     * belongs to. For example:
+     * `projects/{PROJECT_ID}/locations/{LOCATION}/entrygroups/{ENTRY_GROUP_ID}/entries/{ENTRY_ID}`.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -94,8 +105,9 @@ class BigQueryDateShardedSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The table name prefix of the shards. The name of any given shard is
-     * `[table_prefix]YYYYMMDD`, for example, for shard `MyTable20180101`, the
+     * Output only. The table name prefix of the shards.
+     * The name of any given shard is `[table_prefix]YYYYMMDD`.
+     * For example, for the `MyTable20180101` shard, the
      * `table_prefix` is `MyTable`.
      *
      * Generated from protobuf field <code>string table_prefix = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -107,8 +119,9 @@ class BigQueryDateShardedSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The table name prefix of the shards. The name of any given shard is
-     * `[table_prefix]YYYYMMDD`, for example, for shard `MyTable20180101`, the
+     * Output only. The table name prefix of the shards.
+     * The name of any given shard is `[table_prefix]YYYYMMDD`.
+     * For example, for the `MyTable20180101` shard, the
      * `table_prefix` is `MyTable`.
      *
      * Generated from protobuf field <code>string table_prefix = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -145,6 +158,32 @@ class BigQueryDateShardedSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->shard_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. BigQuery resource name of the latest shard.
+     *
+     * Generated from protobuf field <code>string latest_shard_resource = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getLatestShardResource()
+    {
+        return $this->latest_shard_resource;
+    }
+
+    /**
+     * Output only. BigQuery resource name of the latest shard.
+     *
+     * Generated from protobuf field <code>string latest_shard_resource = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLatestShardResource($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->latest_shard_resource = $var;
 
         return $this;
     }

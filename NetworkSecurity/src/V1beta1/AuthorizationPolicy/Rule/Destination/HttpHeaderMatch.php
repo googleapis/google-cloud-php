@@ -137,6 +137,4 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(HttpHeaderMatch::class, \Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy_Rule_Destination_HttpHeaderMatch::class);
 

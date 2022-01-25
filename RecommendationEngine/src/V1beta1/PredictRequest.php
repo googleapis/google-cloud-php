@@ -17,7 +17,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Full resource name of the format:
-     * {name=projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/&#42;}
+     * `{name=projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/&#42;}`
      * The id of the recommendation engine placement. This id is used to identify
      * the set of models that will be used to make the prediction.
      * We currently support three placements with the following IDs by default:
@@ -40,7 +40,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      * The full list of available placements can be seen at
      * https://console.cloud.google.com/recommendation/datafeeds/default_catalog/dashboard
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -131,7 +131,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Full resource name of the format:
-     *           {name=projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/&#42;}
+     *           `{name=projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/&#42;}`
      *           The id of the recommendation engine placement. This id is used to identify
      *           the set of models that will be used to make the prediction.
      *           We currently support three placements with the following IDs by default:
@@ -213,7 +213,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Full resource name of the format:
-     * {name=projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/&#42;}
+     * `{name=projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/&#42;}`
      * The id of the recommendation engine placement. This id is used to identify
      * the set of models that will be used to make the prediction.
      * We currently support three placements with the following IDs by default:
@@ -236,7 +236,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      * The full list of available placements can be seen at
      * https://console.cloud.google.com/recommendation/datafeeds/default_catalog/dashboard
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -246,7 +246,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Full resource name of the format:
-     * {name=projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/&#42;}
+     * `{name=projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/&#42;}`
      * The id of the recommendation engine placement. This id is used to identify
      * the set of models that will be used to make the prediction.
      * We currently support three placements with the following IDs by default:
@@ -269,7 +269,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      * The full list of available placements can be seen at
      * https://console.cloud.google.com/recommendation/datafeeds/default_catalog/dashboard
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -288,11 +288,21 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      * request is required for event logging.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.UserEvent user_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\RecommendationEngine\V1beta1\UserEvent
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\UserEvent|null
      */
     public function getUserEvent()
     {
         return $this->user_event;
+    }
+
+    public function hasUserEvent()
+    {
+        return isset($this->user_event);
+    }
+
+    public function clearUserEvent()
+    {
+        unset($this->user_event);
     }
 
     /**

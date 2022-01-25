@@ -17,10 +17,10 @@ class Schema
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
             '
-í
-(google/cloud/datacatalog/v1/schema.protogoogle.cloud.datacatalog.v1"I
-Schema?
-columns (2).google.cloud.datacatalog.v1.ColumnSchemaB‡A"ß
+ç
+(google/cloud/datacatalog/v1/schema.protogoogle.cloud.datacatalog.v1"D
+Schema:
+columns (2).google.cloud.datacatalog.v1.ColumnSchema"ß
 ColumnSchema
 column (	B‡A
 type (	B‡A

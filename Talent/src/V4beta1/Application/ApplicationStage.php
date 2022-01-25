@@ -99,6 +99,4 @@ class ApplicationStage
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ApplicationStage::class, \Google\Cloud\Talent\V4beta1\Application_ApplicationStage::class);
 

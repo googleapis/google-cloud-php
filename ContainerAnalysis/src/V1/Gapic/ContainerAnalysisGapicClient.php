@@ -358,7 +358,7 @@ class ContainerAnalysisGapicClient
      * }
      * ```
      *
-     * @param string $parent       The name of the project to get a vulnerability summary for in the form of
+     * @param string $parent       Required. The name of the project to get a vulnerability summary for in the form of
      *                             `projects/[PROJECT_ID]`.
      * @param array  $optionalArgs {
      *     Optional.

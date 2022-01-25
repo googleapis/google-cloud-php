@@ -53,7 +53,7 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFunction()
     {
-        return isset($this->function) ? $this->function : null;
+        return $this->function;
     }
 
     public function hasFunction()
@@ -89,7 +89,7 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

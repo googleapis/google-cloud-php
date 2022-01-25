@@ -84,10 +84,14 @@ class ConversationProfilesClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $languageCode = 'languageCode-412800396';
+        $timeZone = 'timeZone36848094';
+        $securitySettings = 'securitySettings-595091902';
         $expectedResponse = new ConversationProfile();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setLanguageCode($languageCode);
+        $expectedResponse->setTimeZone($timeZone);
+        $expectedResponse->setSecuritySettings($securitySettings);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
@@ -221,10 +225,14 @@ class ConversationProfilesClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $languageCode = 'languageCode-412800396';
+        $timeZone = 'timeZone36848094';
+        $securitySettings = 'securitySettings-595091902';
         $expectedResponse = new ConversationProfile();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setLanguageCode($languageCode);
+        $expectedResponse->setTimeZone($timeZone);
+        $expectedResponse->setSecuritySettings($securitySettings);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->conversationProfileName('[PROJECT]', '[CONVERSATION_PROFILE]');
@@ -361,10 +369,14 @@ class ConversationProfilesClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $languageCode = 'languageCode-412800396';
+        $timeZone = 'timeZone36848094';
+        $securitySettings = 'securitySettings-595091902';
         $expectedResponse = new ConversationProfile();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setLanguageCode($languageCode);
+        $expectedResponse->setTimeZone($timeZone);
+        $expectedResponse->setSecuritySettings($securitySettings);
         $transport->addResponse($expectedResponse);
         // Mock request
         $conversationProfile = new ConversationProfile();

@@ -36,6 +36,26 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
+    /**
+     * The filter expression used to filter documents returned by the list method.
+     * The expression has the following syntax:
+     *   <field> <operator> <value> [AND <field> <operator> <value>] ...
+     * The following fields and operators are supported:
+     * * knowledge_types with has(:) operator
+     * * display_name with has(:) operator
+     * * state with equals(=) operator
+     * Examples:
+     * * "knowledge_types:FAQ" matches documents with FAQ knowledge type.
+     * * "display_name:customer" matches documents whose display name contains
+     *   "customer".
+     * * "state=ACTIVE" matches documents with ACTIVE state.
+     * * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents.
+     * For more information about filtering, see
+     * [API Filtering](https://aip.dev/160).
+     *
+     * Generated from protobuf field <code>string filter = 4;</code>
+     */
+    private $filter = '';
 
     /**
      * Constructor.
@@ -52,6 +72,22 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           default 10 and at most 100.
      *     @type string $page_token
      *           The next_page_token value returned from a previous list request.
+     *     @type string $filter
+     *           The filter expression used to filter documents returned by the list method.
+     *           The expression has the following syntax:
+     *             <field> <operator> <value> [AND <field> <operator> <value>] ...
+     *           The following fields and operators are supported:
+     *           * knowledge_types with has(:) operator
+     *           * display_name with has(:) operator
+     *           * state with equals(=) operator
+     *           Examples:
+     *           * "knowledge_types:FAQ" matches documents with FAQ knowledge type.
+     *           * "display_name:customer" matches documents whose display name contains
+     *             "customer".
+     *           * "state=ACTIVE" matches documents with ACTIVE state.
+     *           * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents.
+     *           For more information about filtering, see
+     *           [API Filtering](https://aip.dev/160).
      * }
      */
     public function __construct($data = NULL) {
@@ -139,6 +175,60 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * The filter expression used to filter documents returned by the list method.
+     * The expression has the following syntax:
+     *   <field> <operator> <value> [AND <field> <operator> <value>] ...
+     * The following fields and operators are supported:
+     * * knowledge_types with has(:) operator
+     * * display_name with has(:) operator
+     * * state with equals(=) operator
+     * Examples:
+     * * "knowledge_types:FAQ" matches documents with FAQ knowledge type.
+     * * "display_name:customer" matches documents whose display name contains
+     *   "customer".
+     * * "state=ACTIVE" matches documents with ACTIVE state.
+     * * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents.
+     * For more information about filtering, see
+     * [API Filtering](https://aip.dev/160).
+     *
+     * Generated from protobuf field <code>string filter = 4;</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * The filter expression used to filter documents returned by the list method.
+     * The expression has the following syntax:
+     *   <field> <operator> <value> [AND <field> <operator> <value>] ...
+     * The following fields and operators are supported:
+     * * knowledge_types with has(:) operator
+     * * display_name with has(:) operator
+     * * state with equals(=) operator
+     * Examples:
+     * * "knowledge_types:FAQ" matches documents with FAQ knowledge type.
+     * * "display_name:customer" matches documents whose display name contains
+     *   "customer".
+     * * "state=ACTIVE" matches documents with ACTIVE state.
+     * * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents.
+     * For more information about filtering, see
+     * [API Filtering](https://aip.dev/160).
+     *
+     * Generated from protobuf field <code>string filter = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }

@@ -110,7 +110,7 @@ class CohortSpec extends \Google\Protobuf\Internal\Message
      */
     public function getCohortsRange()
     {
-        return isset($this->cohorts_range) ? $this->cohorts_range : null;
+        return $this->cohorts_range;
     }
 
     public function hasCohortsRange()
@@ -147,7 +147,7 @@ class CohortSpec extends \Google\Protobuf\Internal\Message
      */
     public function getCohortReportSettings()
     {
-        return isset($this->cohort_report_settings) ? $this->cohort_report_settings : null;
+        return $this->cohort_report_settings;
     }
 
     public function hasCohortReportSettings()

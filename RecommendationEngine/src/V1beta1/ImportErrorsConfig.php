@@ -49,6 +49,11 @@ class ImportErrorsConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasGcsPrefix()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Google Cloud Storage path for import errors. This must be an empty,
      * existing Cloud Storage bucket. Import errors will be written to a file in

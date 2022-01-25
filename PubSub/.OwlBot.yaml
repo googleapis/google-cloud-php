@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/pubsub/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/PubSub/$1/$2
+api-name: PubSub

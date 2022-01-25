@@ -98,6 +98,4 @@ class TrafficPercentStrategy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TrafficPercentStrategy::class, \Google\Cloud\ServiceManagement\V1\Rollout_TrafficPercentStrategy::class);
 

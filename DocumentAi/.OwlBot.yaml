@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/documentai/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/DocumentAi/$1/$2
+api-name: DocumentAi

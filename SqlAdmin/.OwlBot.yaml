@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/sql/(v1beta4)/.*-php/(.*)
+      dest: /owl-bot-staging/SqlAdmin/$1/$2
+api-name: SqlAdmin

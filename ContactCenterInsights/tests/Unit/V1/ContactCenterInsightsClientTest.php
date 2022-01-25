@@ -44,10 +44,12 @@ use Google\Cloud\ContactCenterInsights\V1\ListConversationsResponse;
 use Google\Cloud\ContactCenterInsights\V1\ListIssueModelsResponse;
 use Google\Cloud\ContactCenterInsights\V1\ListIssuesResponse;
 use Google\Cloud\ContactCenterInsights\V1\ListPhraseMatchersResponse;
+use Google\Cloud\ContactCenterInsights\V1\ListViewsResponse;
 use Google\Cloud\ContactCenterInsights\V1\PhraseMatcher;
 use Google\Cloud\ContactCenterInsights\V1\PhraseMatcher\PhraseMatcherType;
 use Google\Cloud\ContactCenterInsights\V1\Settings;
 use Google\Cloud\ContactCenterInsights\V1\UndeployIssueModelResponse;
+use Google\Cloud\ContactCenterInsights\V1\View;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -360,11 +362,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $languageCode = 'languageCode-412800396';
         $agentId = 'agentId1469158549';
         $turnCount = 428155597;
+        $obfuscatedUserId = 'obfuscatedUserId-227848300';
         $expectedResponse = new Conversation();
         $expectedResponse->setName($name);
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setAgentId($agentId);
         $expectedResponse->setTurnCount($turnCount);
+        $expectedResponse->setObfuscatedUserId($obfuscatedUserId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
@@ -617,6 +621,78 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $phraseMatcher->setType($phraseMatcherType);
         try {
             $client->createPhraseMatcher($formattedParent, $phraseMatcher);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function createViewTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $value = 'value111972721';
+        $expectedResponse = new View();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setValue($value);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $view = new View();
+        $response = $client->createView($formattedParent, $view);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateView', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getView();
+        $this->assertProtobufEquals($view, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function createViewExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $view = new View();
+        try {
+            $client->createView($formattedParent, $view);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -921,6 +997,67 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $formattedName = $client->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
         try {
             $client->deletePhraseMatcher($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteViewTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $client->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
+        $client->deleteView($formattedName);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteView', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteViewExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $client->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
+        try {
+            $client->deleteView($formattedName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1253,11 +1390,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $languageCode = 'languageCode-412800396';
         $agentId = 'agentId1469158549';
         $turnCount = 428155597;
+        $obfuscatedUserId = 'obfuscatedUserId-227848300';
         $expectedResponse = new Conversation();
         $expectedResponse->setName($name2);
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setAgentId($agentId);
         $expectedResponse->setTurnCount($turnCount);
+        $expectedResponse->setObfuscatedUserId($obfuscatedUserId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
@@ -1567,6 +1706,74 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $formattedName = $client->settingsName('[PROJECT]', '[LOCATION]');
         try {
             $client->getSettings($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getViewTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $value = 'value111972721';
+        $expectedResponse = new View();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setValue($value);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $client->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
+        $response = $client->getView($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetView', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getViewExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $client->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
+        try {
+            $client->getView($formattedName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1921,6 +2128,78 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function listViewsTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $viewsElement = new View();
+        $views = [
+            $viewsElement,
+        ];
+        $expectedResponse = new ListViewsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setViews($views);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $response = $client->listViews($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getViews()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListViews', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listViewsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        try {
+            $client->listViews($formattedParent);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function undeployIssueModelTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2054,11 +2333,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $languageCode = 'languageCode-412800396';
         $agentId = 'agentId1469158549';
         $turnCount = 428155597;
+        $obfuscatedUserId = 'obfuscatedUserId-227848300';
         $expectedResponse = new Conversation();
         $expectedResponse->setName($name);
         $expectedResponse->setLanguageCode($languageCode);
         $expectedResponse->setAgentId($agentId);
         $expectedResponse->setTurnCount($turnCount);
+        $expectedResponse->setObfuscatedUserId($obfuscatedUserId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $conversation = new Conversation();
@@ -2376,6 +2657,74 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $updateMask = new FieldMask();
         try {
             $client->updateSettings($settings, $updateMask);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateViewTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $value = 'value111972721';
+        $expectedResponse = new View();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setValue($value);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $view = new View();
+        $response = $client->updateView($view);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateView', $actualFuncCall);
+        $actualValue = $actualRequestObject->getView();
+        $this->assertProtobufEquals($view, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateViewExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $view = new View();
+        try {
+            $client->updateView($view);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

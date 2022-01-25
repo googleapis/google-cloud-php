@@ -58,6 +58,75 @@
                     }
                 }
             }
+        },
+        "OsConfigZonalService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "OsConfigZonalServiceGapicClient",
+                    "rpcs": {
+                        "CreateOSPolicyAssignment": {
+                            "methods": [
+                                "createOSPolicyAssignment"
+                            ]
+                        },
+                        "DeleteOSPolicyAssignment": {
+                            "methods": [
+                                "deleteOSPolicyAssignment"
+                            ]
+                        },
+                        "GetInventory": {
+                            "methods": [
+                                "getInventory"
+                            ]
+                        },
+                        "GetOSPolicyAssignment": {
+                            "methods": [
+                                "getOSPolicyAssignment"
+                            ]
+                        },
+                        "GetOSPolicyAssignmentReport": {
+                            "methods": [
+                                "getOSPolicyAssignmentReport"
+                            ]
+                        },
+                        "GetVulnerabilityReport": {
+                            "methods": [
+                                "getVulnerabilityReport"
+                            ]
+                        },
+                        "ListInventories": {
+                            "methods": [
+                                "listInventories"
+                            ]
+                        },
+                        "ListOSPolicyAssignmentReports": {
+                            "methods": [
+                                "listOSPolicyAssignmentReports"
+                            ]
+                        },
+                        "ListOSPolicyAssignmentRevisions": {
+                            "methods": [
+                                "listOSPolicyAssignmentRevisions"
+                            ]
+                        },
+                        "ListOSPolicyAssignments": {
+                            "methods": [
+                                "listOSPolicyAssignments"
+                            ]
+                        },
+                        "ListVulnerabilityReports": {
+                            "methods": [
+                                "listVulnerabilityReports"
+                            ]
+                        },
+                        "UpdateOSPolicyAssignment": {
+                            "methods": [
+                                "updateOSPolicyAssignment"
+                            ]
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -20,14 +20,14 @@ class MetricCompatibility extends \Google\Protobuf\Internal\Message
      * information. The metric metadata also contains other helpful information
      * like the UI name and description.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1beta.MetricMetadata metric_metadata = 1;</code>
+     * Generated from protobuf field <code>optional .google.analytics.data.v1beta.MetricMetadata metric_metadata = 1;</code>
      */
     private $metric_metadata = null;
     /**
      * The compatibility of this metric. If the compatibility is COMPATIBLE,
      * this metric can be successfully added to the report.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1beta.Compatibility compatibility = 2;</code>
+     * Generated from protobuf field <code>optional .google.analytics.data.v1beta.Compatibility compatibility = 2;</code>
      */
     private $compatibility = null;
 
@@ -56,12 +56,12 @@ class MetricCompatibility extends \Google\Protobuf\Internal\Message
      * information. The metric metadata also contains other helpful information
      * like the UI name and description.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1beta.MetricMetadata metric_metadata = 1;</code>
+     * Generated from protobuf field <code>optional .google.analytics.data.v1beta.MetricMetadata metric_metadata = 1;</code>
      * @return \Google\Analytics\Data\V1beta\MetricMetadata|null
      */
     public function getMetricMetadata()
     {
-        return isset($this->metric_metadata) ? $this->metric_metadata : null;
+        return $this->metric_metadata;
     }
 
     public function hasMetricMetadata()
@@ -79,7 +79,7 @@ class MetricCompatibility extends \Google\Protobuf\Internal\Message
      * information. The metric metadata also contains other helpful information
      * like the UI name and description.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1beta.MetricMetadata metric_metadata = 1;</code>
+     * Generated from protobuf field <code>optional .google.analytics.data.v1beta.MetricMetadata metric_metadata = 1;</code>
      * @param \Google\Analytics\Data\V1beta\MetricMetadata $var
      * @return $this
      */
@@ -95,7 +95,7 @@ class MetricCompatibility extends \Google\Protobuf\Internal\Message
      * The compatibility of this metric. If the compatibility is COMPATIBLE,
      * this metric can be successfully added to the report.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1beta.Compatibility compatibility = 2;</code>
+     * Generated from protobuf field <code>optional .google.analytics.data.v1beta.Compatibility compatibility = 2;</code>
      * @return int
      */
     public function getCompatibility()
@@ -117,7 +117,7 @@ class MetricCompatibility extends \Google\Protobuf\Internal\Message
      * The compatibility of this metric. If the compatibility is COMPATIBLE,
      * this metric can be successfully added to the report.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1beta.Compatibility compatibility = 2;</code>
+     * Generated from protobuf field <code>optional .google.analytics.data.v1beta.Compatibility compatibility = 2;</code>
      * @param int $var
      * @return $this
      */

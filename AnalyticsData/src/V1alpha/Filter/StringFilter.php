@@ -133,6 +133,4 @@ class StringFilter extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StringFilter::class, \Google\Analytics\Data\V1alpha\Filter_StringFilter::class);
 

@@ -17,15 +17,15 @@ class CreatePredictionApiKeyRegistrationRequest extends \Google\Protobuf\Interna
 {
     /**
      * Required. The parent resource path.
-     * "projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * Required. The prediction API key registration.
      *
-     * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistration prediction_api_key_registration = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistration prediction_api_key_registration = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $prediction_api_key_registration = null;
 
@@ -37,7 +37,7 @@ class CreatePredictionApiKeyRegistrationRequest extends \Google\Protobuf\Interna
      *
      *     @type string $parent
      *           Required. The parent resource path.
-     *           "projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      *     @type \Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration $prediction_api_key_registration
      *           Required. The prediction API key registration.
      * }
@@ -49,9 +49,9 @@ class CreatePredictionApiKeyRegistrationRequest extends \Google\Protobuf\Interna
 
     /**
      * Required. The parent resource path.
-     * "projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -61,9 +61,9 @@ class CreatePredictionApiKeyRegistrationRequest extends \Google\Protobuf\Interna
 
     /**
      * Required. The parent resource path.
-     * "projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -78,18 +78,28 @@ class CreatePredictionApiKeyRegistrationRequest extends \Google\Protobuf\Interna
     /**
      * Required. The prediction API key registration.
      *
-     * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistration prediction_api_key_registration = 2;</code>
-     * @return \Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration
+     * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistration prediction_api_key_registration = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration|null
      */
     public function getPredictionApiKeyRegistration()
     {
         return $this->prediction_api_key_registration;
     }
 
+    public function hasPredictionApiKeyRegistration()
+    {
+        return isset($this->prediction_api_key_registration);
+    }
+
+    public function clearPredictionApiKeyRegistration()
+    {
+        unset($this->prediction_api_key_registration);
+    }
+
     /**
      * Required. The prediction API key registration.
      *
-     * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistration prediction_api_key_registration = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistration prediction_api_key_registration = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration $var
      * @return $this
      */

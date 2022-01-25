@@ -47,7 +47,7 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.25.2';
+    const VERSION = '1.26.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
@@ -323,6 +323,9 @@ class StorageClient
      *           [feature documentation](https://cloud.google.com/storage/docs/uniform-bucket-level-access),
      *           as well as
      *           [Should You Use uniform bucket-level access](https://cloud.google.com/storage/docs/uniform-bucket-level-access#should-you-use)
+     *     @type string $rpo Specifies the Turbo Replication setting for a dual-region bucket.
+     *           The possible values are DEFAULT and ASYNC_TURBO. Trying to set the rpo for a non dual-region
+     *           bucket will throw an exception. Non existence of this parameter is equivalent to it being DEFAULT.
      * }
      * @codingStandardsIgnoreEnd
      * @return Bucket

@@ -62,6 +62,4 @@ class VpcConnectorEgressSettings
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VpcConnectorEgressSettings::class, \Google\Cloud\Functions\V1\CloudFunction_VpcConnectorEgressSettings::class);
 

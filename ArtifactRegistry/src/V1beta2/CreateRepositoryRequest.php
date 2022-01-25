@@ -113,7 +113,7 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRepository()
     {
-        return isset($this->repository) ? $this->repository : null;
+        return $this->repository;
     }
 
     public function hasRepository()

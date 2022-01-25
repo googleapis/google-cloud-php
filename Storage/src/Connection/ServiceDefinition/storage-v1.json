@@ -394,6 +394,10 @@
        }
       }
      },
+     "rpo": {
+       "type": "string",
+       "description": "The bucket's setting for Turbo Replication. The bucket has to be a dual-region Cloud Storage bucket for Turbo Replication to be set."
+     },
      "selfLink": {
       "type": "string",
       "description": "The URI of this bucket."

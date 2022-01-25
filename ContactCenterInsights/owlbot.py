@@ -34,14 +34,14 @@ php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        src / "**/*_*.php"
+        src / "**/[A-Z]*_*.php"
     ]
 )
 
 
 # remove class_alias code
 s.replace(
-    "src/V*/*/*.php",
+    "src/V*/**/*.php",
     r"^// Adding a class alias for backwards compatibility with the previous class name.$"
     + "\n"
     + r"^class_alias\(.*\);$"

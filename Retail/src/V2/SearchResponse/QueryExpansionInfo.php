@@ -22,6 +22,15 @@ class QueryExpansionInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool expanded_query = 1;</code>
      */
     private $expanded_query = false;
+    /**
+     * Number of pinned results. This field will only be set when expansion
+     * happens and
+     * [SearchRequest.QueryExpansionSpec.pin_unexpanded_results][google.cloud.retail.v2.SearchRequest.QueryExpansionSpec.pin_unexpanded_results]
+     * is set to true.
+     *
+     * Generated from protobuf field <code>int64 pinned_result_count = 2;</code>
+     */
+    private $pinned_result_count = 0;
 
     /**
      * Constructor.
@@ -31,6 +40,11 @@ class QueryExpansionInfo extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $expanded_query
      *           Bool describing whether query expansion has occurred.
+     *     @type int|string $pinned_result_count
+     *           Number of pinned results. This field will only be set when expansion
+     *           happens and
+     *           [SearchRequest.QueryExpansionSpec.pin_unexpanded_results][google.cloud.retail.v2.SearchRequest.QueryExpansionSpec.pin_unexpanded_results]
+     *           is set to true.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,8 +78,38 @@ class QueryExpansionInfo extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * Number of pinned results. This field will only be set when expansion
+     * happens and
+     * [SearchRequest.QueryExpansionSpec.pin_unexpanded_results][google.cloud.retail.v2.SearchRequest.QueryExpansionSpec.pin_unexpanded_results]
+     * is set to true.
+     *
+     * Generated from protobuf field <code>int64 pinned_result_count = 2;</code>
+     * @return int|string
+     */
+    public function getPinnedResultCount()
+    {
+        return $this->pinned_result_count;
+    }
+
+    /**
+     * Number of pinned results. This field will only be set when expansion
+     * happens and
+     * [SearchRequest.QueryExpansionSpec.pin_unexpanded_results][google.cloud.retail.v2.SearchRequest.QueryExpansionSpec.pin_unexpanded_results]
+     * is set to true.
+     *
+     * Generated from protobuf field <code>int64 pinned_result_count = 2;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setPinnedResultCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->pinned_result_count = $var;
+
+        return $this;
+    }
+
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(QueryExpansionInfo::class, \Google\Cloud\Retail\V2\SearchResponse_QueryExpansionInfo::class);
 

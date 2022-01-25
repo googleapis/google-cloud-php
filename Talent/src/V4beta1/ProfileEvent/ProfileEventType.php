@@ -79,6 +79,4 @@ class ProfileEventType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ProfileEventType::class, \Google\Cloud\Talent\V4beta1\ProfileEvent_ProfileEventType::class);
 

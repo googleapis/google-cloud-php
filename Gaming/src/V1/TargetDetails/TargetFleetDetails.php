@@ -53,7 +53,7 @@ class TargetFleetDetails extends \Google\Protobuf\Internal\Message
      */
     public function getFleet()
     {
-        return isset($this->fleet) ? $this->fleet : null;
+        return $this->fleet;
     }
 
     public function hasFleet()
@@ -89,7 +89,7 @@ class TargetFleetDetails extends \Google\Protobuf\Internal\Message
      */
     public function getAutoscaler()
     {
-        return isset($this->autoscaler) ? $this->autoscaler : null;
+        return $this->autoscaler;
     }
 
     public function hasAutoscaler()
@@ -119,6 +119,4 @@ class TargetFleetDetails extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TargetFleetDetails::class, \Google\Cloud\Gaming\V1\TargetDetails_TargetFleetDetails::class);
 

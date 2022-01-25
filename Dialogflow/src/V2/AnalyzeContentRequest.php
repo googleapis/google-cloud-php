@@ -40,6 +40,12 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      */
     private $query_params = null;
     /**
+     * Parameters for a human assist query.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 14;</code>
+     */
+    private $assist_query_params = null;
+    /**
      * A unique identifier for this request. Restricted to 36 ASCII characters.
      * A random UUID is recommended.
      * This request is only idempotent if a `request_id` is provided.
@@ -71,6 +77,8 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *           is disabled.
      *     @type \Google\Cloud\Dialogflow\V2\QueryParameters $query_params
      *           Parameters for a Dialogflow virtual-agent query.
+     *     @type \Google\Cloud\Dialogflow\V2\AssistQueryParameters $assist_query_params
+     *           Parameters for a human assist query.
      *     @type string $request_id
      *           A unique identifier for this request. Restricted to 36 ASCII characters.
      *           A random UUID is recommended.
@@ -250,6 +258,42 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\QueryParameters::class);
         $this->query_params = $var;
+
+        return $this;
+    }
+
+    /**
+     * Parameters for a human assist query.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 14;</code>
+     * @return \Google\Cloud\Dialogflow\V2\AssistQueryParameters|null
+     */
+    public function getAssistQueryParams()
+    {
+        return $this->assist_query_params;
+    }
+
+    public function hasAssistQueryParams()
+    {
+        return isset($this->assist_query_params);
+    }
+
+    public function clearAssistQueryParams()
+    {
+        unset($this->assist_query_params);
+    }
+
+    /**
+     * Parameters for a human assist query.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 14;</code>
+     * @param \Google\Cloud\Dialogflow\V2\AssistQueryParameters $var
+     * @return $this
+     */
+    public function setAssistQueryParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\AssistQueryParameters::class);
+        $this->assist_query_params = $var;
 
         return $this;
     }

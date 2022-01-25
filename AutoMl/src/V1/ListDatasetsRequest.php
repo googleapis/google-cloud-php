@@ -24,9 +24,10 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
     /**
      * An expression for filtering the results of the request.
      *   * `dataset_metadata` - for existence of the case (e.g.
-     *             image_classification_dataset_metadata:*). Some examples of using the filter are:
+     *             `image_classification_dataset_metadata:*`). Some examples of
+     *             using the filter are:
      *   * `translation_dataset_metadata:*` --> The dataset has
-     *                                          translation_dataset_metadata.
+     *                                          `translation_dataset_metadata`.
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      */
@@ -59,9 +60,10 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $filter
      *           An expression for filtering the results of the request.
      *             * `dataset_metadata` - for existence of the case (e.g.
-     *                       image_classification_dataset_metadata:*). Some examples of using the filter are:
+     *                       `image_classification_dataset_metadata:*`). Some examples of
+     *                       using the filter are:
      *             * `translation_dataset_metadata:*` --> The dataset has
-     *                                                    translation_dataset_metadata.
+     *                                                    `translation_dataset_metadata`.
      *     @type int $page_size
      *           Requested page size. Server may return fewer results than requested.
      *           If unspecified, server will pick a default size.
@@ -106,9 +108,10 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
     /**
      * An expression for filtering the results of the request.
      *   * `dataset_metadata` - for existence of the case (e.g.
-     *             image_classification_dataset_metadata:*). Some examples of using the filter are:
+     *             `image_classification_dataset_metadata:*`). Some examples of
+     *             using the filter are:
      *   * `translation_dataset_metadata:*` --> The dataset has
-     *                                          translation_dataset_metadata.
+     *                                          `translation_dataset_metadata`.
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      * @return string
@@ -121,9 +124,10 @@ class ListDatasetsRequest extends \Google\Protobuf\Internal\Message
     /**
      * An expression for filtering the results of the request.
      *   * `dataset_metadata` - for existence of the case (e.g.
-     *             image_classification_dataset_metadata:*). Some examples of using the filter are:
+     *             `image_classification_dataset_metadata:*`). Some examples of
+     *             using the filter are:
      *   * `translation_dataset_metadata:*` --> The dataset has
-     *                                          translation_dataset_metadata.
+     *                                          `translation_dataset_metadata`.
      *
      * Generated from protobuf field <code>string filter = 3;</code>
      * @param string $var

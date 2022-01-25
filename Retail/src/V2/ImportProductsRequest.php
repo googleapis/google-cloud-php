@@ -28,7 +28,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      * Unique identifier provided by client, within the ancestor
      * dataset scope. Ensures idempotency and used for request deduplication.
      * Server-generated if unspecified. Up to 128 characters long and must match
-     * the pattern: "[a-zA-Z0-9_]+". This is returned as [Operation.name][] in
+     * the pattern: `[a-zA-Z0-9_]+`. This is returned as [Operation.name][] in
      * [ImportMetadata][google.cloud.retail.v2.ImportMetadata].
      * Only supported when
      * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
@@ -93,7 +93,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      *           Unique identifier provided by client, within the ancestor
      *           dataset scope. Ensures idempotency and used for request deduplication.
      *           Server-generated if unspecified. Up to 128 characters long and must match
-     *           the pattern: "[a-zA-Z0-9_]+". This is returned as [Operation.name][] in
+     *           the pattern: `[a-zA-Z0-9_]+`. This is returned as [Operation.name][] in
      *           [ImportMetadata][google.cloud.retail.v2.ImportMetadata].
      *           Only supported when
      *           [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
@@ -161,7 +161,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      * Unique identifier provided by client, within the ancestor
      * dataset scope. Ensures idempotency and used for request deduplication.
      * Server-generated if unspecified. Up to 128 characters long and must match
-     * the pattern: "[a-zA-Z0-9_]+". This is returned as [Operation.name][] in
+     * the pattern: `[a-zA-Z0-9_]+`. This is returned as [Operation.name][] in
      * [ImportMetadata][google.cloud.retail.v2.ImportMetadata].
      * Only supported when
      * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
@@ -179,7 +179,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      * Unique identifier provided by client, within the ancestor
      * dataset scope. Ensures idempotency and used for request deduplication.
      * Server-generated if unspecified. Up to 128 characters long and must match
-     * the pattern: "[a-zA-Z0-9_]+". This is returned as [Operation.name][] in
+     * the pattern: `[a-zA-Z0-9_]+`. This is returned as [Operation.name][] in
      * [ImportMetadata][google.cloud.retail.v2.ImportMetadata].
      * Only supported when
      * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
@@ -205,7 +205,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return isset($this->input_config) ? $this->input_config : null;
+        return $this->input_config;
     }
 
     public function hasInputConfig()
@@ -241,7 +241,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getErrorsConfig()
     {
-        return isset($this->errors_config) ? $this->errors_config : null;
+        return $this->errors_config;
     }
 
     public function hasErrorsConfig()
@@ -278,7 +278,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
