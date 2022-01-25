@@ -80,11 +80,24 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_workload_identity_config = null;
     /**
+     * Configuration for issuance of mTLS keys and certificates to Kubernetes
+     * pods.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MeshCertificates desired_mesh_certificates = 67;</code>
+     */
+    private $desired_mesh_certificates = null;
+    /**
      * Configuration for Shielded Nodes.
      *
      * Generated from protobuf field <code>.google.container.v1.ShieldedNodes desired_shielded_nodes = 48;</code>
      */
     private $desired_shielded_nodes = null;
+    /**
+     * DNSConfig contains clusterDNS config for this cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DNSConfig desired_dns_config = 53;</code>
+     */
+    private $desired_dns_config = null;
     /**
      * Autoscaler configuration for the node pool specified in
      * desired_node_pool_id. If there is only one pool in the
@@ -174,11 +187,54 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_release_channel = null;
     /**
+     * The desired L4 Internal Load Balancer Subsetting configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ILBSubsettingConfig desired_l4ilb_subsetting_config = 39;</code>
+     */
+    private $desired_l4ilb_subsetting_config = null;
+    /**
+     * The desired datapath provider for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DatapathProvider desired_datapath_provider = 50;</code>
+     */
+    private $desired_datapath_provider = 0;
+    /**
+     * The desired state of IPv6 connectivity to Google Services.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PrivateIPv6GoogleAccess desired_private_ipv6_google_access = 51;</code>
+     */
+    private $desired_private_ipv6_google_access = 0;
+    /**
+     * The desired notification configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NotificationConfig desired_notification_config = 55;</code>
+     */
+    private $desired_notification_config = null;
+    /**
      * The desired authenticator groups config for the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.AuthenticatorGroupsConfig desired_authenticator_groups_config = 63;</code>
      */
     private $desired_authenticator_groups_config = null;
+    /**
+     * The desired logging configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LoggingConfig desired_logging_config = 64;</code>
+     */
+    private $desired_logging_config = null;
+    /**
+     * The desired monitoring configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MonitoringConfig desired_monitoring_config = 65;</code>
+     */
+    private $desired_monitoring_config = null;
+    /**
+     * ServiceExternalIPsConfig specifies the config for the use of Services with
+     * ExternalIPs field.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ServiceExternalIPsConfig desired_service_external_ips_config = 60;</code>
+     */
+    private $desired_service_external_ips_config = null;
     /**
      * The Kubernetes version to change the master to.
      * Users may specify either explicit versions offered by
@@ -192,6 +248,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string desired_master_version = 100;</code>
      */
     private $desired_master_version = '';
+    /**
+     * The desired GCFS config for the cluster
+     *
+     * Generated from protobuf field <code>.google.container.v1.GcfsConfig desired_gcfs_config = 109;</code>
+     */
+    private $desired_gcfs_config = null;
 
     /**
      * Constructor.
@@ -233,8 +295,13 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           Configuration of etcd encryption.
      *     @type \Google\Cloud\Container\V1\WorkloadIdentityConfig $desired_workload_identity_config
      *           Configuration for Workload Identity.
+     *     @type \Google\Cloud\Container\V1\MeshCertificates $desired_mesh_certificates
+     *           Configuration for issuance of mTLS keys and certificates to Kubernetes
+     *           pods.
      *     @type \Google\Cloud\Container\V1\ShieldedNodes $desired_shielded_nodes
      *           Configuration for Shielded Nodes.
+     *     @type \Google\Cloud\Container\V1\DNSConfig $desired_dns_config
+     *           DNSConfig contains clusterDNS config for this cluster.
      *     @type \Google\Cloud\Container\V1\NodePoolAutoscaling $desired_node_pool_autoscaling
      *           Autoscaler configuration for the node pool specified in
      *           desired_node_pool_id. If there is only one pool in the
@@ -275,8 +342,23 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           The desired status of whether to disable default sNAT for this cluster.
      *     @type \Google\Cloud\Container\V1\ReleaseChannel $desired_release_channel
      *           The desired release channel configuration.
+     *     @type \Google\Cloud\Container\V1\ILBSubsettingConfig $desired_l4ilb_subsetting_config
+     *           The desired L4 Internal Load Balancer Subsetting configuration.
+     *     @type int $desired_datapath_provider
+     *           The desired datapath provider for the cluster.
+     *     @type int $desired_private_ipv6_google_access
+     *           The desired state of IPv6 connectivity to Google Services.
+     *     @type \Google\Cloud\Container\V1\NotificationConfig $desired_notification_config
+     *           The desired notification configuration.
      *     @type \Google\Cloud\Container\V1\AuthenticatorGroupsConfig $desired_authenticator_groups_config
      *           The desired authenticator groups config for the cluster.
+     *     @type \Google\Cloud\Container\V1\LoggingConfig $desired_logging_config
+     *           The desired logging configuration.
+     *     @type \Google\Cloud\Container\V1\MonitoringConfig $desired_monitoring_config
+     *           The desired monitoring configuration.
+     *     @type \Google\Cloud\Container\V1\ServiceExternalIPsConfig $desired_service_external_ips_config
+     *           ServiceExternalIPsConfig specifies the config for the use of Services with
+     *           ExternalIPs field.
      *     @type string $desired_master_version
      *           The Kubernetes version to change the master to.
      *           Users may specify either explicit versions offered by
@@ -286,6 +368,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
      *           - "1.X.Y-gke.N": picks an explicit Kubernetes version
      *           - "-": picks the default Kubernetes version
+     *     @type \Google\Cloud\Container\V1\GcfsConfig $desired_gcfs_config
+     *           The desired GCFS config for the cluster
      * }
      */
     public function __construct($data = NULL) {
@@ -546,6 +630,44 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Configuration for issuance of mTLS keys and certificates to Kubernetes
+     * pods.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MeshCertificates desired_mesh_certificates = 67;</code>
+     * @return \Google\Cloud\Container\V1\MeshCertificates|null
+     */
+    public function getDesiredMeshCertificates()
+    {
+        return $this->desired_mesh_certificates;
+    }
+
+    public function hasDesiredMeshCertificates()
+    {
+        return isset($this->desired_mesh_certificates);
+    }
+
+    public function clearDesiredMeshCertificates()
+    {
+        unset($this->desired_mesh_certificates);
+    }
+
+    /**
+     * Configuration for issuance of mTLS keys and certificates to Kubernetes
+     * pods.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MeshCertificates desired_mesh_certificates = 67;</code>
+     * @param \Google\Cloud\Container\V1\MeshCertificates $var
+     * @return $this
+     */
+    public function setDesiredMeshCertificates($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\MeshCertificates::class);
+        $this->desired_mesh_certificates = $var;
+
+        return $this;
+    }
+
+    /**
      * Configuration for Shielded Nodes.
      *
      * Generated from protobuf field <code>.google.container.v1.ShieldedNodes desired_shielded_nodes = 48;</code>
@@ -577,6 +699,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ShieldedNodes::class);
         $this->desired_shielded_nodes = $var;
+
+        return $this;
+    }
+
+    /**
+     * DNSConfig contains clusterDNS config for this cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DNSConfig desired_dns_config = 53;</code>
+     * @return \Google\Cloud\Container\V1\DNSConfig|null
+     */
+    public function getDesiredDnsConfig()
+    {
+        return $this->desired_dns_config;
+    }
+
+    public function hasDesiredDnsConfig()
+    {
+        return isset($this->desired_dns_config);
+    }
+
+    public function clearDesiredDnsConfig()
+    {
+        unset($this->desired_dns_config);
+    }
+
+    /**
+     * DNSConfig contains clusterDNS config for this cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DNSConfig desired_dns_config = 53;</code>
+     * @param \Google\Cloud\Container\V1\DNSConfig $var
+     * @return $this
+     */
+    public function setDesiredDnsConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\DNSConfig::class);
+        $this->desired_dns_config = $var;
 
         return $this;
     }
@@ -1026,6 +1184,130 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The desired L4 Internal Load Balancer Subsetting configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ILBSubsettingConfig desired_l4ilb_subsetting_config = 39;</code>
+     * @return \Google\Cloud\Container\V1\ILBSubsettingConfig|null
+     */
+    public function getDesiredL4IlbSubsettingConfig()
+    {
+        return $this->desired_l4ilb_subsetting_config;
+    }
+
+    public function hasDesiredL4IlbSubsettingConfig()
+    {
+        return isset($this->desired_l4ilb_subsetting_config);
+    }
+
+    public function clearDesiredL4IlbSubsettingConfig()
+    {
+        unset($this->desired_l4ilb_subsetting_config);
+    }
+
+    /**
+     * The desired L4 Internal Load Balancer Subsetting configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ILBSubsettingConfig desired_l4ilb_subsetting_config = 39;</code>
+     * @param \Google\Cloud\Container\V1\ILBSubsettingConfig $var
+     * @return $this
+     */
+    public function setDesiredL4IlbSubsettingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ILBSubsettingConfig::class);
+        $this->desired_l4ilb_subsetting_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired datapath provider for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DatapathProvider desired_datapath_provider = 50;</code>
+     * @return int
+     */
+    public function getDesiredDatapathProvider()
+    {
+        return $this->desired_datapath_provider;
+    }
+
+    /**
+     * The desired datapath provider for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DatapathProvider desired_datapath_provider = 50;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDesiredDatapathProvider($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\DatapathProvider::class);
+        $this->desired_datapath_provider = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired state of IPv6 connectivity to Google Services.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PrivateIPv6GoogleAccess desired_private_ipv6_google_access = 51;</code>
+     * @return int
+     */
+    public function getDesiredPrivateIpv6GoogleAccess()
+    {
+        return $this->desired_private_ipv6_google_access;
+    }
+
+    /**
+     * The desired state of IPv6 connectivity to Google Services.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PrivateIPv6GoogleAccess desired_private_ipv6_google_access = 51;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDesiredPrivateIpv6GoogleAccess($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\PrivateIPv6GoogleAccess::class);
+        $this->desired_private_ipv6_google_access = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired notification configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NotificationConfig desired_notification_config = 55;</code>
+     * @return \Google\Cloud\Container\V1\NotificationConfig|null
+     */
+    public function getDesiredNotificationConfig()
+    {
+        return $this->desired_notification_config;
+    }
+
+    public function hasDesiredNotificationConfig()
+    {
+        return isset($this->desired_notification_config);
+    }
+
+    public function clearDesiredNotificationConfig()
+    {
+        unset($this->desired_notification_config);
+    }
+
+    /**
+     * The desired notification configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NotificationConfig desired_notification_config = 55;</code>
+     * @param \Google\Cloud\Container\V1\NotificationConfig $var
+     * @return $this
+     */
+    public function setDesiredNotificationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NotificationConfig::class);
+        $this->desired_notification_config = $var;
+
+        return $this;
+    }
+
+    /**
      * The desired authenticator groups config for the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.AuthenticatorGroupsConfig desired_authenticator_groups_config = 63;</code>
@@ -1057,6 +1339,116 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\AuthenticatorGroupsConfig::class);
         $this->desired_authenticator_groups_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired logging configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LoggingConfig desired_logging_config = 64;</code>
+     * @return \Google\Cloud\Container\V1\LoggingConfig|null
+     */
+    public function getDesiredLoggingConfig()
+    {
+        return $this->desired_logging_config;
+    }
+
+    public function hasDesiredLoggingConfig()
+    {
+        return isset($this->desired_logging_config);
+    }
+
+    public function clearDesiredLoggingConfig()
+    {
+        unset($this->desired_logging_config);
+    }
+
+    /**
+     * The desired logging configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LoggingConfig desired_logging_config = 64;</code>
+     * @param \Google\Cloud\Container\V1\LoggingConfig $var
+     * @return $this
+     */
+    public function setDesiredLoggingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LoggingConfig::class);
+        $this->desired_logging_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired monitoring configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MonitoringConfig desired_monitoring_config = 65;</code>
+     * @return \Google\Cloud\Container\V1\MonitoringConfig|null
+     */
+    public function getDesiredMonitoringConfig()
+    {
+        return $this->desired_monitoring_config;
+    }
+
+    public function hasDesiredMonitoringConfig()
+    {
+        return isset($this->desired_monitoring_config);
+    }
+
+    public function clearDesiredMonitoringConfig()
+    {
+        unset($this->desired_monitoring_config);
+    }
+
+    /**
+     * The desired monitoring configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MonitoringConfig desired_monitoring_config = 65;</code>
+     * @param \Google\Cloud\Container\V1\MonitoringConfig $var
+     * @return $this
+     */
+    public function setDesiredMonitoringConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\MonitoringConfig::class);
+        $this->desired_monitoring_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * ServiceExternalIPsConfig specifies the config for the use of Services with
+     * ExternalIPs field.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ServiceExternalIPsConfig desired_service_external_ips_config = 60;</code>
+     * @return \Google\Cloud\Container\V1\ServiceExternalIPsConfig|null
+     */
+    public function getDesiredServiceExternalIpsConfig()
+    {
+        return $this->desired_service_external_ips_config;
+    }
+
+    public function hasDesiredServiceExternalIpsConfig()
+    {
+        return isset($this->desired_service_external_ips_config);
+    }
+
+    public function clearDesiredServiceExternalIpsConfig()
+    {
+        unset($this->desired_service_external_ips_config);
+    }
+
+    /**
+     * ServiceExternalIPsConfig specifies the config for the use of Services with
+     * ExternalIPs field.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ServiceExternalIPsConfig desired_service_external_ips_config = 60;</code>
+     * @param \Google\Cloud\Container\V1\ServiceExternalIPsConfig $var
+     * @return $this
+     */
+    public function setDesiredServiceExternalIpsConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ServiceExternalIPsConfig::class);
+        $this->desired_service_external_ips_config = $var;
 
         return $this;
     }
@@ -1097,6 +1489,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->desired_master_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired GCFS config for the cluster
+     *
+     * Generated from protobuf field <code>.google.container.v1.GcfsConfig desired_gcfs_config = 109;</code>
+     * @return \Google\Cloud\Container\V1\GcfsConfig|null
+     */
+    public function getDesiredGcfsConfig()
+    {
+        return $this->desired_gcfs_config;
+    }
+
+    public function hasDesiredGcfsConfig()
+    {
+        return isset($this->desired_gcfs_config);
+    }
+
+    public function clearDesiredGcfsConfig()
+    {
+        unset($this->desired_gcfs_config);
+    }
+
+    /**
+     * The desired GCFS config for the cluster
+     *
+     * Generated from protobuf field <code>.google.container.v1.GcfsConfig desired_gcfs_config = 109;</code>
+     * @param \Google\Cloud\Container\V1\GcfsConfig $var
+     * @return $this
+     */
+    public function setDesiredGcfsConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GcfsConfig::class);
+        $this->desired_gcfs_config = $var;
 
         return $this;
     }

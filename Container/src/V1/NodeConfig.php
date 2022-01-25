@@ -81,8 +81,6 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *  - "k8s-node-setup-psm1"
      *  - "install-ssh-psm1"
      *  - "user-profile-psm1"
-     * The following keys are reserved for Windows nodes:
-     *  - "serial-port-logging-enable"
      * Values are free-form strings, and only have meaning as interpreted by
      * the image running in the instance. The only restriction placed on them is
      * that each value's size must be less than or equal to 32 KB.
@@ -211,6 +209,18 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     private $shielded_instance_config = null;
     /**
+     * Parameters that can be configured on Linux nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig linux_node_config = 21;</code>
+     */
+    private $linux_node_config = null;
+    /**
+     * Node kubelet configs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig kubelet_config = 22;</code>
+     */
+    private $kubelet_config = null;
+    /**
      * The Customer Managed Encryption Key used to encrypt the boot disk attached
      * to each node in the node pool. This should be of the form
      * projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME].
@@ -221,6 +231,24 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string boot_disk_kms_key = 23;</code>
      */
     private $boot_disk_kms_key = '';
+    /**
+     * Google Container File System (image streaming) configs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GcfsConfig gcfs_config = 25;</code>
+     */
+    private $gcfs_config = null;
+    /**
+     * Advanced features for the Compute Engine VM.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AdvancedMachineFeatures advanced_machine_features = 26;</code>
+     */
+    private $advanced_machine_features = null;
+    /**
+     * Enable or disable gvnic in the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.VirtualNIC gvnic = 29;</code>
+     */
+    private $gvnic = null;
 
     /**
      * Constructor.
@@ -278,8 +306,6 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *            - "k8s-node-setup-psm1"
      *            - "install-ssh-psm1"
      *            - "user-profile-psm1"
-     *           The following keys are reserved for Windows nodes:
-     *            - "serial-port-logging-enable"
      *           Values are free-form strings, and only have meaning as interpreted by
      *           the image running in the instance. The only restriction placed on them is
      *           that each value's size must be less than or equal to 32 KB.
@@ -347,6 +373,10 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           to this node pool.
      *     @type \Google\Cloud\Container\V1\ShieldedInstanceConfig $shielded_instance_config
      *           Shielded Instance options.
+     *     @type \Google\Cloud\Container\V1\LinuxNodeConfig $linux_node_config
+     *           Parameters that can be configured on Linux nodes.
+     *     @type \Google\Cloud\Container\V1\NodeKubeletConfig $kubelet_config
+     *           Node kubelet configs.
      *     @type string $boot_disk_kms_key
      *           The Customer Managed Encryption Key used to encrypt the boot disk attached
      *           to each node in the node pool. This should be of the form
@@ -354,6 +384,12 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           For more information about protecting resources with Cloud KMS Keys please
      *           see:
      *           https://cloud.google.com/compute/docs/disks/customer-managed-encryption
+     *     @type \Google\Cloud\Container\V1\GcfsConfig $gcfs_config
+     *           Google Container File System (image streaming) configs.
+     *     @type \Google\Cloud\Container\V1\AdvancedMachineFeatures $advanced_machine_features
+     *           Advanced features for the Compute Engine VM.
+     *     @type \Google\Cloud\Container\V1\VirtualNIC $gvnic
+     *           Enable or disable gvnic in the node pool.
      * }
      */
     public function __construct($data = NULL) {
@@ -524,8 +560,6 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *  - "k8s-node-setup-psm1"
      *  - "install-ssh-psm1"
      *  - "user-profile-psm1"
-     * The following keys are reserved for Windows nodes:
-     *  - "serial-port-logging-enable"
      * Values are free-form strings, and only have meaning as interpreted by
      * the image running in the instance. The only restriction placed on them is
      * that each value's size must be less than or equal to 32 KB.
@@ -564,8 +598,6 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *  - "k8s-node-setup-psm1"
      *  - "install-ssh-psm1"
      *  - "user-profile-psm1"
-     * The following keys are reserved for Windows nodes:
-     *  - "serial-port-logging-enable"
      * Values are free-form strings, and only have meaning as interpreted by
      * the image running in the instance. The only restriction placed on them is
      * that each value's size must be less than or equal to 32 KB.
@@ -1058,6 +1090,78 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Parameters that can be configured on Linux nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig linux_node_config = 21;</code>
+     * @return \Google\Cloud\Container\V1\LinuxNodeConfig|null
+     */
+    public function getLinuxNodeConfig()
+    {
+        return $this->linux_node_config;
+    }
+
+    public function hasLinuxNodeConfig()
+    {
+        return isset($this->linux_node_config);
+    }
+
+    public function clearLinuxNodeConfig()
+    {
+        unset($this->linux_node_config);
+    }
+
+    /**
+     * Parameters that can be configured on Linux nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig linux_node_config = 21;</code>
+     * @param \Google\Cloud\Container\V1\LinuxNodeConfig $var
+     * @return $this
+     */
+    public function setLinuxNodeConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LinuxNodeConfig::class);
+        $this->linux_node_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Node kubelet configs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig kubelet_config = 22;</code>
+     * @return \Google\Cloud\Container\V1\NodeKubeletConfig|null
+     */
+    public function getKubeletConfig()
+    {
+        return $this->kubelet_config;
+    }
+
+    public function hasKubeletConfig()
+    {
+        return isset($this->kubelet_config);
+    }
+
+    public function clearKubeletConfig()
+    {
+        unset($this->kubelet_config);
+    }
+
+    /**
+     * Node kubelet configs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig kubelet_config = 22;</code>
+     * @param \Google\Cloud\Container\V1\NodeKubeletConfig $var
+     * @return $this
+     */
+    public function setKubeletConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeKubeletConfig::class);
+        $this->kubelet_config = $var;
+
+        return $this;
+    }
+
+    /**
      * The Customer Managed Encryption Key used to encrypt the boot disk attached
      * to each node in the node pool. This should be of the form
      * projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME].
@@ -1089,6 +1193,114 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->boot_disk_kms_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Google Container File System (image streaming) configs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GcfsConfig gcfs_config = 25;</code>
+     * @return \Google\Cloud\Container\V1\GcfsConfig|null
+     */
+    public function getGcfsConfig()
+    {
+        return $this->gcfs_config;
+    }
+
+    public function hasGcfsConfig()
+    {
+        return isset($this->gcfs_config);
+    }
+
+    public function clearGcfsConfig()
+    {
+        unset($this->gcfs_config);
+    }
+
+    /**
+     * Google Container File System (image streaming) configs.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GcfsConfig gcfs_config = 25;</code>
+     * @param \Google\Cloud\Container\V1\GcfsConfig $var
+     * @return $this
+     */
+    public function setGcfsConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GcfsConfig::class);
+        $this->gcfs_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Advanced features for the Compute Engine VM.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AdvancedMachineFeatures advanced_machine_features = 26;</code>
+     * @return \Google\Cloud\Container\V1\AdvancedMachineFeatures|null
+     */
+    public function getAdvancedMachineFeatures()
+    {
+        return $this->advanced_machine_features;
+    }
+
+    public function hasAdvancedMachineFeatures()
+    {
+        return isset($this->advanced_machine_features);
+    }
+
+    public function clearAdvancedMachineFeatures()
+    {
+        unset($this->advanced_machine_features);
+    }
+
+    /**
+     * Advanced features for the Compute Engine VM.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AdvancedMachineFeatures advanced_machine_features = 26;</code>
+     * @param \Google\Cloud\Container\V1\AdvancedMachineFeatures $var
+     * @return $this
+     */
+    public function setAdvancedMachineFeatures($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\AdvancedMachineFeatures::class);
+        $this->advanced_machine_features = $var;
+
+        return $this;
+    }
+
+    /**
+     * Enable or disable gvnic in the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.VirtualNIC gvnic = 29;</code>
+     * @return \Google\Cloud\Container\V1\VirtualNIC|null
+     */
+    public function getGvnic()
+    {
+        return $this->gvnic;
+    }
+
+    public function hasGvnic()
+    {
+        return isset($this->gvnic);
+    }
+
+    public function clearGvnic()
+    {
+        unset($this->gvnic);
+    }
+
+    /**
+     * Enable or disable gvnic in the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.VirtualNIC gvnic = 29;</code>
+     * @param \Google\Cloud\Container\V1\VirtualNIC $var
+     * @return $this
+     */
+    public function setGvnic($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\VirtualNIC::class);
+        $this->gvnic = $var;
 
         return $this;
     }
