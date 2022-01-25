@@ -78,20 +78,7 @@ class ServerStreamingCallWrapper implements ServerStreamingCallInterface
      */
     public function getStatus()
     {
-        // Convert the \stdClass from the Grpc\ServerStreamingCall into a \Google\Rpc\Status.
-        $st = $this->stream->getStatus();
-        $code = property_exists($st, 'code') ? $st->code : Code::OK;
-        return new Status(
-            [
-                'code' => $code,
-                // Field 'details' is actually a string in this \stdClass.
-                'message' => property_exists($st, 'details') ? $st->details : '',
-                // Field 'metadata' is actually an array of objects in this \stdClass.
-                'details' => property_exists($st, 'metadata') && $code !== Code::OK
-                    ? Serializer::decodeMetadata($st->metadata)
-                    : []
-            ]
-        );
+        return $this->stream->getStatus();
     }
 
     /**

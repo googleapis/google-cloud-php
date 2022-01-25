@@ -76,9 +76,12 @@ class ServerStream
                 yield $response;
             }
         }
+
+        // Errors in the REST transport will be thrown from there and not reach
+        // this handling. Successful REST server-streams will have an OK status.
         $status = $this->call->getStatus();
-        if ($status->getCode() !== Code::OK) {
-            throw ApiException::createFromRpcStatus($status);
+        if ($status->code !== Code::OK) {
+            throw ApiException::createFromStdClass($status);
         }
     }
 
