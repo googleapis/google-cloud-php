@@ -30,8 +30,6 @@ use Google\ApiCore\PathTemplate;
 /** {@inheritdoc} */
 class FirestoreAdminClient extends FirestoreAdminGapicClient
 {
-
-
     /**
      * Formats a string containing the fully-qualified path to represent
      * a parent resource.
