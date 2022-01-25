@@ -1,0 +1,1 @@
+{"id":"container\/v1\/maintenanceexclusionoptions\/scope","type":"","title":"Google\\Cloud\\Container\\V1\\MaintenanceExclusionOptions\\Scope","name":"Scope","description":"<p>Scope of exclusion.<\/p>\n<p>Protobuf type <code>google.container.v1.MaintenanceExclusionOptions.Scope<\/code><\/p>","examples":[],"resources":[],"methods":[]}
