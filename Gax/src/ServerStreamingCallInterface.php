@@ -54,7 +54,7 @@ interface ServerStreamingCallInterface
     /**
      * Return the status of the server stream.
      *
-     * @return \Google\Rpc\Status The API status.
+     * @return \stdClass The API status.
      */
     public function getStatus();
 

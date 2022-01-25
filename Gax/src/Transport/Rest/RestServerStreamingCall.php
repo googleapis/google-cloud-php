@@ -36,8 +36,8 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\ServerStreamingCallInterface;
 use Google\Rpc\Code;
-use Google\Rpc\Status;
 use GuzzleHttp\Exception\RequestException;
+use stdClass;
 
 /**
  * Class RestServerStreamingCall implements \Google\ApiCore\ServerStreamingCallInterface.
@@ -83,13 +83,11 @@ class RestServerStreamingCall implements ServerStreamingCallInterface
 
         // Create an OK Status for a successful request just so that it
         // has a return value.
-        $this->status = new Status(
-            [
-                'code' => Code::OK,
-                'message' => ApiStatus::OK,
-                'details' => []
-            ]
-        );
+        $this->status = new stdClass();
+        $this->status->code = Code::OK;
+        $this->status->message = ApiStatus::OK;
+        $this->status->details = [];
+
         $this->response = $response;
     }
 
@@ -129,7 +127,7 @@ class RestServerStreamingCall implements ServerStreamingCallInterface
      * Return the status of the server stream. If the call has not been started
      * this will be null.
      *
-     * @return \Google\Rpc\Status The status, with integer $code, string
+     * @return \stdClass The status, with integer $code, string
      *                   $details, and array $metadata members
      */
     public function getStatus()
