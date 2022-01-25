@@ -1,0 +1,178 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.container.v1",
+    "libraryPackage": "Google\\Cloud\\Container\\V1",
+    "services": {
+        "ClusterManager": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ClusterManagerGapicClient",
+                    "rpcs": {
+                        "CancelOperation": {
+                            "methods": [
+                                "cancelOperation"
+                            ]
+                        },
+                        "CompleteIPRotation": {
+                            "methods": [
+                                "completeIPRotation"
+                            ]
+                        },
+                        "CreateCluster": {
+                            "methods": [
+                                "createCluster"
+                            ]
+                        },
+                        "CreateNodePool": {
+                            "methods": [
+                                "createNodePool"
+                            ]
+                        },
+                        "DeleteCluster": {
+                            "methods": [
+                                "deleteCluster"
+                            ]
+                        },
+                        "DeleteNodePool": {
+                            "methods": [
+                                "deleteNodePool"
+                            ]
+                        },
+                        "GetCluster": {
+                            "methods": [
+                                "getCluster"
+                            ]
+                        },
+                        "GetJSONWebKeys": {
+                            "methods": [
+                                "getJSONWebKeys"
+                            ]
+                        },
+                        "GetNodePool": {
+                            "methods": [
+                                "getNodePool"
+                            ]
+                        },
+                        "GetOperation": {
+                            "methods": [
+                                "getOperation"
+                            ]
+                        },
+                        "GetServerConfig": {
+                            "methods": [
+                                "getServerConfig"
+                            ]
+                        },
+                        "ListClusters": {
+                            "methods": [
+                                "listClusters"
+                            ]
+                        },
+                        "ListNodePools": {
+                            "methods": [
+                                "listNodePools"
+                            ]
+                        },
+                        "ListOperations": {
+                            "methods": [
+                                "listOperations"
+                            ]
+                        },
+                        "ListUsableSubnetworks": {
+                            "methods": [
+                                "listUsableSubnetworks"
+                            ]
+                        },
+                        "RollbackNodePoolUpgrade": {
+                            "methods": [
+                                "rollbackNodePoolUpgrade"
+                            ]
+                        },
+                        "SetAddonsConfig": {
+                            "methods": [
+                                "setAddonsConfig"
+                            ]
+                        },
+                        "SetLabels": {
+                            "methods": [
+                                "setLabels"
+                            ]
+                        },
+                        "SetLegacyAbac": {
+                            "methods": [
+                                "setLegacyAbac"
+                            ]
+                        },
+                        "SetLocations": {
+                            "methods": [
+                                "setLocations"
+                            ]
+                        },
+                        "SetLoggingService": {
+                            "methods": [
+                                "setLoggingService"
+                            ]
+                        },
+                        "SetMaintenancePolicy": {
+                            "methods": [
+                                "setMaintenancePolicy"
+                            ]
+                        },
+                        "SetMasterAuth": {
+                            "methods": [
+                                "setMasterAuth"
+                            ]
+                        },
+                        "SetMonitoringService": {
+                            "methods": [
+                                "setMonitoringService"
+                            ]
+                        },
+                        "SetNetworkPolicy": {
+                            "methods": [
+                                "setNetworkPolicy"
+                            ]
+                        },
+                        "SetNodePoolAutoscaling": {
+                            "methods": [
+                                "setNodePoolAutoscaling"
+                            ]
+                        },
+                        "SetNodePoolManagement": {
+                            "methods": [
+                                "setNodePoolManagement"
+                            ]
+                        },
+                        "SetNodePoolSize": {
+                            "methods": [
+                                "setNodePoolSize"
+                            ]
+                        },
+                        "StartIPRotation": {
+                            "methods": [
+                                "startIPRotation"
+                            ]
+                        },
+                        "UpdateCluster": {
+                            "methods": [
+                                "updateCluster"
+                            ]
+                        },
+                        "UpdateMaster": {
+                            "methods": [
+                                "updateMaster"
+                            ]
+                        },
+                        "UpdateNodePool": {
+                            "methods": [
+                                "updateNodePool"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
