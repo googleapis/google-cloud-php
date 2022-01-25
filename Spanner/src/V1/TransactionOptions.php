@@ -9,13 +9,13 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * # Transactions
+ * Transactions:
  * Each session can have at most one active transaction at a time (note that
  * standalone reads and queries use a transaction internally and do count
  * towards the one transaction limit). After the active transaction is
  * completed, the session can immediately be re-used for the next transaction.
  * It is not necessary to create a new session for each transaction.
- * # Transaction Modes
+ * Transaction Modes:
  * Cloud Spanner supports three transaction modes:
  *   1. Locking read-write. This type of transaction is the only way
  *      to write data into Cloud Spanner. These transactions rely on
@@ -41,7 +41,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Transactions may only read/write data in a single database. They
  * may, however, read/write data in different tables within that
  * database.
- * ## Locking Read-Write Transactions
+ * Locking Read-Write Transactions:
  * Locking transactions may be used to atomically read-modify-write
  * data anywhere in a database. This type of transaction is externally
  * consistent.
@@ -60,7 +60,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [Commit][google.spanner.v1.Spanner.Commit], the client can send a
  * [Rollback][google.spanner.v1.Spanner.Rollback] request to abort the
  * transaction.
- * ## Semantics
+ * Semantics:
  * Cloud Spanner can commit the transaction if all read locks it acquired
  * are still valid at commit time, and it is able to acquire write
  * locks for all writes. Cloud Spanner can abort the transaction for any
@@ -70,29 +70,29 @@ use Google\Protobuf\Internal\GPBUtil;
  * how long the transaction's locks were held for. It is an error to
  * use Cloud Spanner locks for any sort of mutual exclusion other than
  * between Cloud Spanner transactions themselves.
- * ## Retrying Aborted Transactions
+ * Retrying Aborted Transactions:
  * When a transaction aborts, the application can choose to retry the
  * whole transaction again. To maximize the chances of successfully
  * committing the retry, the client should execute the retry in the
  * same session as the original attempt. The original session's lock
  * priority increases with each consecutive abort, meaning that each
  * attempt has a slightly better chance of success than the previous.
- * Under some circumstances (e.g., many transactions attempting to
+ * Under some circumstances (for example, many transactions attempting to
  * modify the same row(s)), a transaction can abort many times in a
  * short period before successfully committing. Thus, it is not a good
  * idea to cap the number of retries a transaction can attempt;
- * instead, it is better to limit the total amount of wall time spent
+ * instead, it is better to limit the total amount of time spent
  * retrying.
- * ## Idle Transactions
+ * Idle Transactions:
  * A transaction is considered idle if it has no outstanding reads or
  * SQL queries and has not started a read or SQL query within the last 10
  * seconds. Idle transactions can be aborted by Cloud Spanner so that they
- * don't hold on to locks indefinitely. In that case, the commit will
- * fail with error `ABORTED`.
+ * don't hold on to locks indefinitely. If an idle transaction is aborted, the
+ * commit will fail with error `ABORTED`.
  * If this behavior is undesirable, periodically executing a simple
- * SQL query in the transaction (e.g., `SELECT 1`) prevents the
+ * SQL query in the transaction (for example, `SELECT 1`) prevents the
  * transaction from becoming idle.
- * ## Snapshot Read-Only Transactions
+ * Snapshot Read-Only Transactions:
  * Snapshot read-only transactions provides a simpler method than
  * locking read-write transactions for doing several consistent
  * reads. However, this type of transaction does not support writes.
@@ -120,7 +120,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * or read-write transaction, because they are able to execute far
  * from the leader replica.
  * Each type of timestamp bound is discussed in detail below.
- * ## Strong
+ * Strong:
  * Strong reads are guaranteed to see the effects of all transactions
  * that have committed before the start of the read. Furthermore, all
  * rows yielded by a single read are consistent with each other -- if
@@ -132,12 +132,12 @@ use Google\Protobuf\Internal\GPBUtil;
  * reads should be executed within a transaction or at an exact read
  * timestamp.
  * See [TransactionOptions.ReadOnly.strong][google.spanner.v1.TransactionOptions.ReadOnly.strong].
- * ## Exact Staleness
+ * Exact Staleness:
  * These timestamp bounds execute reads at a user-specified
  * timestamp. Reads at a timestamp are guaranteed to see a consistent
  * prefix of the global transaction history: they observe
- * modifications done by all transactions with a commit timestamp <=
- * the read timestamp, and observe none of the modifications done by
+ * modifications done by all transactions with a commit timestamp less than or
+ * equal to the read timestamp, and observe none of the modifications done by
  * transactions with a larger commit timestamp. They will block until
  * all conflicting transactions that may be assigned commit timestamps
  * <= the read timestamp have finished.
@@ -149,7 +149,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * boundedly stale reads usually return fresher results.
  * See [TransactionOptions.ReadOnly.read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.read_timestamp] and
  * [TransactionOptions.ReadOnly.exact_staleness][google.spanner.v1.TransactionOptions.ReadOnly.exact_staleness].
- * ## Bounded Staleness
+ * Bounded Staleness:
  * Bounded staleness modes allow Cloud Spanner to pick the read timestamp,
  * subject to a user-provided staleness bound. Cloud Spanner chooses the
  * newest timestamp within the staleness bound that allows execution
@@ -172,7 +172,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * read-only transactions.
  * See [TransactionOptions.ReadOnly.max_staleness][google.spanner.v1.TransactionOptions.ReadOnly.max_staleness] and
  * [TransactionOptions.ReadOnly.min_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.min_read_timestamp].
- * ## Old Read Timestamps and Garbage Collection
+ * Old Read Timestamps and Garbage Collection:
  * Cloud Spanner continuously garbage collects deleted and overwritten data
  * in the background to reclaim storage space. This process is known
  * as "version GC". By default, version GC reclaims versions after they
@@ -181,7 +181,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * restriction also applies to in-progress reads and/or SQL queries whose
  * timestamp become too old while executing. Reads and SQL queries with
  * too-old read timestamps fail with the error `FAILED_PRECONDITION`.
- * ## Partitioned DML Transactions
+ * Partitioned DML Transactions:
  * Partitioned DML transactions are used to execute DML statements with a
  * different execution strategy that provides different, and often better,
  * scalability properties for large, table-wide operations than DML in a
