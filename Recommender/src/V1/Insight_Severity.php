@@ -12,5 +12,5 @@ if (false) {
     class Insight_Severity {}
 }
 class_exists(Insight\Severity::class);
-@trigger_error('Google\Cloud\Recommender\V1\Insight_Severity is deprecated and will be removed in the next major release. Use Google\Cloud\Recommender\V1\Insight\Severity instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Recommender\V1\Insight_Severity is deprecated and will be removed in a future release. Use Google\Cloud\Recommender\V1\Insight\Severity instead', E_USER_DEPRECATED);
 
