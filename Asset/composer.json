@@ -26,7 +26,7 @@
     },
     "require": {
         "google/gax": "^1.1",
-        "google/access-context-manager": "^0.1",
+        "google/access-context-manager": "^0.2",
         "google/cloud-osconfig": "^0.2"
     },
     "require-dev": {
