@@ -50,7 +50,9 @@ class RestTransport implements TransportInterface
 {
     use ValidationTrait;
     use ServiceAddressTrait;
-    use HttpUnaryTransportTrait;
+    use HttpUnaryTransportTrait {
+        startServerStreamingCall as protected unsupportedServerStreamingCall;
+    }
 
     private $requestBuilder;
 
@@ -145,12 +147,19 @@ class RestTransport implements TransportInterface
 
     /**
      * {@inheritdoc}
+     * @throws BadMethodCallException for forwards compatibility with older GAPIC clients
      */
     public function startServerStreamingCall(Call $call, array $options)
     {
         $message = $call->getMessage();
         if (!$message) {
             throw new \InvalidArgumentException('A message is required for ServerStreaming calls.');
+        }
+
+        // Maintain forwards compatibility with older GAPIC clients not configured for REST server streaming
+        // @see https://github.com/googleapis/gax-php/issues/370
+        if (!$this->requestBuilder->pathExists($call->getMethod())) {
+            $this->unsupportedServerStreamingCall($call, $options);
         }
 
         $headers = self::buildCommonHeaders($options);

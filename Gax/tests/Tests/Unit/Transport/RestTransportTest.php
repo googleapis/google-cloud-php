@@ -73,6 +73,8 @@ class RestTransportTest extends TestCase
             ->getMock();
         $requestBuilder->method('build')
             ->willReturn($request);
+        $requestBuilder->method('pathExists')
+            ->willReturn(true);
 
         return new RestTransport(
             $requestBuilder,
@@ -135,6 +137,23 @@ class RestTransportTest extends TestCase
         $this->getTransport($httpHandler)
             ->startUnaryCall($this->call, [])
             ->wait();
+    }
+
+    /**
+     * @expectedException \BadMethodCallException
+     */
+    public function testServerStreamingCallThrowsBadMethodCallException()
+    {
+        $request = new Request('POST', 'http://www.example.com');
+        $requestBuilder = $this->getMockBuilder(RequestBuilder::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $requestBuilder->method('pathExists')
+            ->willReturn(false);
+
+        $transport = new RestTransport($requestBuilder, HttpHandlerFactory::build());
+
+        $transport->startServerStreamingCall($this->call, []);
     }
 
     /**
