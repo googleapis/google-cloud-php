@@ -111,12 +111,23 @@ class StreamWrapper
      */
     private $dirty = false;
 
+    private static $streamSetOptionFunc = null;
+
     /**
      * Ensure we close the stream when this StreamWrapper is destroyed.
      */
     public function __destruct()
     {
         $this->stream_close();
+    }
+
+    /**
+     * Starting PHP 7.4, this is called when include/require is used on a stream.
+     * Absence of this method presents a warning.
+     * https://www.php.net/manual/en/migration74.incompatible.php
+     */
+    public function stream_set_option(){
+        return false;
     }
 
     /**
