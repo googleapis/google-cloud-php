@@ -111,8 +111,6 @@ class StreamWrapper
      */
     private $dirty = false;
 
-    private static $streamSetOptionFunc = null;
-
     /**
      * Ensure we close the stream when this StreamWrapper is destroyed.
      */
