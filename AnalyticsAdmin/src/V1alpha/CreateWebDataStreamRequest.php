@@ -55,7 +55,7 @@ class CreateWebDataStreamRequest extends \Google\Protobuf\Internal\Message
      */
     public function getWebDataStream()
     {
-        return isset($this->web_data_stream) ? $this->web_data_stream : null;
+        return $this->web_data_stream;
     }
 
     public function hasWebDataStream()

@@ -3,6 +3,30 @@
 return [
     'interfaces' => [
         'google.analytics.admin.v1alpha.AnalyticsAdminService' => [
+            'AcknowledgeUserDataCollection' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{property=properties/*}:acknowledgeUserDataCollection',
+                'body' => '*',
+                'placeholders' => [
+                    'property' => [
+                        'getters' => [
+                            'getProperty',
+                        ],
+                    ],
+                ],
+            ],
+            'ApproveDisplayVideo360AdvertiserLinkProposal' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinkProposals/*}:approve',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ArchiveCustomDimension' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{name=properties/*/customDimensions/*}:archive',
@@ -120,6 +144,18 @@ return [
                     ],
                 ],
             ],
+            'CancelDisplayVideo360AdvertiserLinkProposal' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinkProposals/*}:cancel',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateConversionEvent' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/conversionEvents',
@@ -148,6 +184,42 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/customMetrics',
                 'body' => 'custom_metric',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateDataStream' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/dataStreams',
+                'body' => 'data_stream',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateDisplayVideo360AdvertiserLink' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinks',
+                'body' => 'display_video_360_advertiser_link',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateDisplayVideo360AdvertiserLinkProposal' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinkProposals',
+                'body' => 'display_video_360_advertiser_link_proposal',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -265,6 +337,39 @@ return [
             'DeleteConversionEvent' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*/conversionEvents/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDataStream' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDisplayVideo360AdvertiserLink' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDisplayVideo360AdvertiserLinkProposal' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinkProposals/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -421,6 +526,17 @@ return [
                     ],
                 ],
             ],
+            'GetDataRetentionSettings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataRetentionSettings}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetDataSharingSettings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=accounts/*/dataSharingSettings}',
@@ -432,9 +548,31 @@ return [
                     ],
                 ],
             ],
-            'GetEnhancedMeasurementSettings' => [
+            'GetDataStream' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1alpha/{name=properties/*/webDataStreams/*/enhancedMeasurementSettings}',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDisplayVideo360AdvertiserLink' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDisplayVideo360AdvertiserLinkProposal' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinkProposals/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -588,6 +726,39 @@ return [
                     ],
                 ],
             ],
+            'ListDataStreams' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/dataStreams',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDisplayVideo360AdvertiserLinkProposals' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinkProposals',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDisplayVideo360AdvertiserLinks' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinks',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListFirebaseLinks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/firebaseLinks',
@@ -645,6 +816,9 @@ return [
             'ListProperties' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/properties',
+                'queryParams' => [
+                    'filter',
+                ],
             ],
             'ListUserLinks' => [
                 'method' => 'get',
@@ -703,6 +877,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateAndroidAppDataStream' => [
                 'method' => 'patch',
@@ -715,6 +892,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateCustomDimension' => [
@@ -729,6 +909,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateCustomMetric' => [
                 'method' => 'patch',
@@ -742,31 +925,56 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
-            'UpdateEnhancedMeasurementSettings' => [
+            'UpdateDataRetentionSettings' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1alpha/{enhanced_measurement_settings.name=properties/*/webDataStreams/*/enhancedMeasurementSettings}',
-                'body' => 'enhanced_measurement_settings',
+                'uriTemplate' => '/v1alpha/{data_retention_settings.name=properties/*/dataRetentionSettings}',
+                'body' => 'data_retention_settings',
                 'placeholders' => [
-                    'enhanced_measurement_settings.name' => [
+                    'data_retention_settings.name' => [
                         'getters' => [
-                            'getEnhancedMeasurementSettings',
+                            'getDataRetentionSettings',
                             'getName',
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
-            'UpdateFirebaseLink' => [
+            'UpdateDataStream' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1alpha/{firebase_link.name=properties/*/firebaseLinks/*}',
-                'body' => 'firebase_link',
+                'uriTemplate' => '/v1alpha/{data_stream.name=properties/*/dataStreams/*}',
+                'body' => 'data_stream',
                 'placeholders' => [
-                    'firebase_link.name' => [
+                    'data_stream.name' => [
                         'getters' => [
-                            'getFirebaseLink',
+                            'getDataStream',
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateDisplayVideo360AdvertiserLink' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{display_video_360_advertiser_link.name=properties/*/displayVideo360AdvertiserLinks/*}',
+                'body' => 'display_video_360_advertiser_link',
+                'placeholders' => [
+                    'display_video_360_advertiser_link.name' => [
+                        'getters' => [
+                            'getDisplayVideo360AdvertiserLink',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateGoogleAdsLink' => [
@@ -781,6 +989,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateGoogleSignalsSettings' => [
                 'method' => 'patch',
@@ -794,6 +1005,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateIosAppDataStream' => [
                 'method' => 'patch',
@@ -806,6 +1020,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateMeasurementProtocolSecret' => [
@@ -845,6 +1062,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateUserLink' => [
                 'method' => 'patch',
@@ -877,6 +1097,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

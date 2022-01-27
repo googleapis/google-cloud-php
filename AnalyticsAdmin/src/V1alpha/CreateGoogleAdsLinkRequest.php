@@ -79,7 +79,7 @@ class CreateGoogleAdsLinkRequest extends \Google\Protobuf\Internal\Message
      */
     public function getGoogleAdsLink()
     {
-        return isset($this->google_ads_link) ? $this->google_ads_link : null;
+        return $this->google_ads_link;
     }
 
     public function hasGoogleAdsLink()
