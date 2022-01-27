@@ -45,7 +45,7 @@ class RetrieveRegisterParametersResponse extends \Google\Protobuf\Internal\Messa
      */
     public function getRegisterParameters()
     {
-        return isset($this->register_parameters) ? $this->register_parameters : null;
+        return $this->register_parameters;
     }
 
     public function hasRegisterParameters()

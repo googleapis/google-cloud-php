@@ -38,6 +38,7 @@ use Google\Cloud\Domains\V1alpha2\DomainsClient;
 use Google\Cloud\Domains\V1alpha2\ListRegistrationsResponse;
 use Google\Cloud\Domains\V1alpha2\Registration;
 use Google\Cloud\Domains\V1alpha2\RetrieveRegisterParametersResponse;
+use Google\Cloud\Domains\V1alpha2\RetrieveTransferParametersResponse;
 use Google\Cloud\Domains\V1alpha2\SearchDomainsResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -1244,6 +1245,72 @@ class DomainsClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function retrieveTransferParametersTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new RetrieveTransferParametersResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $domainName = 'domainName104118566';
+        $formattedLocation = $client->locationName('[PROJECT]', '[LOCATION]');
+        $response = $client->retrieveTransferParameters($domainName, $formattedLocation);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.domains.v1alpha2.Domains/RetrieveTransferParameters', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDomainName();
+        $this->assertProtobufEquals($domainName, $actualValue);
+        $actualValue = $actualRequestObject->getLocation();
+        $this->assertProtobufEquals($formattedLocation, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function retrieveTransferParametersExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $domainName = 'domainName104118566';
+        $formattedLocation = $client->locationName('[PROJECT]', '[LOCATION]');
+        try {
+            $client->retrieveTransferParameters($domainName, $formattedLocation);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function searchDomainsTest()
     {
         $transport = $this->createTransport();
@@ -1305,6 +1372,199 @@ class DomainsClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function transferDomainTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/transferDomainTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $domainName = 'domainName104118566';
+        $expectedResponse = new Registration();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDomainName($domainName);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/transferDomainTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $registration = new Registration();
+        $registrationDomainName = 'registrationDomainName1873916680';
+        $registration->setDomainName($registrationDomainName);
+        $registrationContactSettings = new ContactSettings();
+        $contactSettingsPrivacy = ContactPrivacy::CONTACT_PRIVACY_UNSPECIFIED;
+        $registrationContactSettings->setPrivacy($contactSettingsPrivacy);
+        $contactSettingsRegistrantContact = new Contact();
+        $registrantContactPostalAddress = new PostalAddress();
+        $contactSettingsRegistrantContact->setPostalAddress($registrantContactPostalAddress);
+        $registrantContactEmail = 'registrantContactEmail1001340839';
+        $contactSettingsRegistrantContact->setEmail($registrantContactEmail);
+        $registrantContactPhoneNumber = 'registrantContactPhoneNumber-2077279710';
+        $contactSettingsRegistrantContact->setPhoneNumber($registrantContactPhoneNumber);
+        $registrationContactSettings->setRegistrantContact($contactSettingsRegistrantContact);
+        $contactSettingsAdminContact = new Contact();
+        $adminContactPostalAddress = new PostalAddress();
+        $contactSettingsAdminContact->setPostalAddress($adminContactPostalAddress);
+        $adminContactEmail = 'adminContactEmail1687004235';
+        $contactSettingsAdminContact->setEmail($adminContactEmail);
+        $adminContactPhoneNumber = 'adminContactPhoneNumber-516910138';
+        $contactSettingsAdminContact->setPhoneNumber($adminContactPhoneNumber);
+        $registrationContactSettings->setAdminContact($contactSettingsAdminContact);
+        $contactSettingsTechnicalContact = new Contact();
+        $technicalContactPostalAddress = new PostalAddress();
+        $contactSettingsTechnicalContact->setPostalAddress($technicalContactPostalAddress);
+        $technicalContactEmail = 'technicalContactEmail-221168807';
+        $contactSettingsTechnicalContact->setEmail($technicalContactEmail);
+        $technicalContactPhoneNumber = 'technicalContactPhoneNumber582887508';
+        $contactSettingsTechnicalContact->setPhoneNumber($technicalContactPhoneNumber);
+        $registrationContactSettings->setTechnicalContact($contactSettingsTechnicalContact);
+        $registration->setContactSettings($registrationContactSettings);
+        $yearlyPrice = new Money();
+        $response = $client->transferDomain($formattedParent, $registration, $yearlyPrice);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.domains.v1alpha2.Domains/TransferDomain', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegistration();
+        $this->assertProtobufEquals($registration, $actualValue);
+        $actualValue = $actualApiRequestObject->getYearlyPrice();
+        $this->assertProtobufEquals($yearlyPrice, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/transferDomainTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function transferDomainExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/transferDomainTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $registration = new Registration();
+        $registrationDomainName = 'registrationDomainName1873916680';
+        $registration->setDomainName($registrationDomainName);
+        $registrationContactSettings = new ContactSettings();
+        $contactSettingsPrivacy = ContactPrivacy::CONTACT_PRIVACY_UNSPECIFIED;
+        $registrationContactSettings->setPrivacy($contactSettingsPrivacy);
+        $contactSettingsRegistrantContact = new Contact();
+        $registrantContactPostalAddress = new PostalAddress();
+        $contactSettingsRegistrantContact->setPostalAddress($registrantContactPostalAddress);
+        $registrantContactEmail = 'registrantContactEmail1001340839';
+        $contactSettingsRegistrantContact->setEmail($registrantContactEmail);
+        $registrantContactPhoneNumber = 'registrantContactPhoneNumber-2077279710';
+        $contactSettingsRegistrantContact->setPhoneNumber($registrantContactPhoneNumber);
+        $registrationContactSettings->setRegistrantContact($contactSettingsRegistrantContact);
+        $contactSettingsAdminContact = new Contact();
+        $adminContactPostalAddress = new PostalAddress();
+        $contactSettingsAdminContact->setPostalAddress($adminContactPostalAddress);
+        $adminContactEmail = 'adminContactEmail1687004235';
+        $contactSettingsAdminContact->setEmail($adminContactEmail);
+        $adminContactPhoneNumber = 'adminContactPhoneNumber-516910138';
+        $contactSettingsAdminContact->setPhoneNumber($adminContactPhoneNumber);
+        $registrationContactSettings->setAdminContact($contactSettingsAdminContact);
+        $contactSettingsTechnicalContact = new Contact();
+        $technicalContactPostalAddress = new PostalAddress();
+        $contactSettingsTechnicalContact->setPostalAddress($technicalContactPostalAddress);
+        $technicalContactEmail = 'technicalContactEmail-221168807';
+        $contactSettingsTechnicalContact->setEmail($technicalContactEmail);
+        $technicalContactPhoneNumber = 'technicalContactPhoneNumber582887508';
+        $contactSettingsTechnicalContact->setPhoneNumber($technicalContactPhoneNumber);
+        $registrationContactSettings->setTechnicalContact($contactSettingsTechnicalContact);
+        $registration->setContactSettings($registrationContactSettings);
+        $yearlyPrice = new Money();
+        $response = $client->transferDomain($formattedParent, $registration, $yearlyPrice);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/transferDomainTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**

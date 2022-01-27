@@ -9,11 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for the `RegisterDomain` method.
+ * Request for the `TransferDomain` method.
  *
- * Generated from protobuf message <code>google.cloud.domains.v1beta1.RegisterDomainRequest</code>
+ * Generated from protobuf message <code>google.cloud.domains.v1beta1.TransferDomainRequest</code>
  */
-class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
+class TransferDomainRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent resource of the `Registration`. Must be in the
@@ -24,37 +24,40 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
     /**
      * Required. The complete `Registration` resource to be created.
+     * You can leave `registration.dns_settings` unset to import the
+     * domain's current DNS configuration from its current registrar. Use this
+     * option only if you are sure that the domain's current DNS service
+     * does not cease upon transfer, as is often the case for DNS services
+     * provided for free by the registrar.
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1beta1.Registration registration = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $registration = null;
     /**
-     * The list of domain notices that you acknowledge. Call
-     * `RetrieveRegisterParameters` to see the notices that need acknowledgement.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.DomainNotice domain_notices = 3;</code>
-     */
-    private $domain_notices;
-    /**
-     * The list of contact notices that the caller acknowledges. The notices
+     * The list of contact notices that you acknowledge. The notices
      * needed here depend on the values specified in
      * `registration.contact_settings`.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.ContactNotice contact_notices = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.ContactNotice contact_notices = 3;</code>
      */
     private $contact_notices;
     /**
-     * Required. Yearly price to register or renew the domain.
-     * The value that should be put here can be obtained from
-     * RetrieveRegisterParameters or SearchDomains calls.
+     * Required. Acknowledgement of the price to transfer or renew the domain for one year.
+     * Call `RetrieveTransferParameters` to obtain the price, which you must
+     * acknowledge.
      *
-     * Generated from protobuf field <code>.google.type.Money yearly_price = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.type.Money yearly_price = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $yearly_price = null;
     /**
-     * When true, only validation is performed, without actually registering
-     * the domain. Follows:
-     * https://cloud.google.com/apis/design/design_patterns#request_validation
+     * The domain's transfer authorization code. You can obtain this from the
+     * domain's current registrar.
+     *
+     * Generated from protobuf field <code>.google.cloud.domains.v1beta1.AuthorizationCode authorization_code = 5;</code>
+     */
+    private $authorization_code = null;
+    /**
+     * Validate the request without actually transferring the domain.
      *
      * Generated from protobuf field <code>bool validate_only = 6;</code>
      */
@@ -71,21 +74,24 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
      *           format `projects/&#42;&#47;locations/&#42;`.
      *     @type \Google\Cloud\Domains\V1beta1\Registration $registration
      *           Required. The complete `Registration` resource to be created.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $domain_notices
-     *           The list of domain notices that you acknowledge. Call
-     *           `RetrieveRegisterParameters` to see the notices that need acknowledgement.
+     *           You can leave `registration.dns_settings` unset to import the
+     *           domain's current DNS configuration from its current registrar. Use this
+     *           option only if you are sure that the domain's current DNS service
+     *           does not cease upon transfer, as is often the case for DNS services
+     *           provided for free by the registrar.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $contact_notices
-     *           The list of contact notices that the caller acknowledges. The notices
+     *           The list of contact notices that you acknowledge. The notices
      *           needed here depend on the values specified in
      *           `registration.contact_settings`.
      *     @type \Google\Type\Money $yearly_price
-     *           Required. Yearly price to register or renew the domain.
-     *           The value that should be put here can be obtained from
-     *           RetrieveRegisterParameters or SearchDomains calls.
+     *           Required. Acknowledgement of the price to transfer or renew the domain for one year.
+     *           Call `RetrieveTransferParameters` to obtain the price, which you must
+     *           acknowledge.
+     *     @type \Google\Cloud\Domains\V1beta1\AuthorizationCode $authorization_code
+     *           The domain's transfer authorization code. You can obtain this from the
+     *           domain's current registrar.
      *     @type bool $validate_only
-     *           When true, only validation is performed, without actually registering
-     *           the domain. Follows:
-     *           https://cloud.google.com/apis/design/design_patterns#request_validation
+     *           Validate the request without actually transferring the domain.
      * }
      */
     public function __construct($data = NULL) {
@@ -123,6 +129,11 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The complete `Registration` resource to be created.
+     * You can leave `registration.dns_settings` unset to import the
+     * domain's current DNS configuration from its current registrar. Use this
+     * option only if you are sure that the domain's current DNS service
+     * does not cease upon transfer, as is often the case for DNS services
+     * provided for free by the registrar.
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1beta1.Registration registration = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Domains\V1beta1\Registration|null
@@ -144,6 +155,11 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The complete `Registration` resource to be created.
+     * You can leave `registration.dns_settings` unset to import the
+     * domain's current DNS configuration from its current registrar. Use this
+     * option only if you are sure that the domain's current DNS service
+     * does not cease upon transfer, as is often the case for DNS services
+     * provided for free by the registrar.
      *
      * Generated from protobuf field <code>.google.cloud.domains.v1beta1.Registration registration = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Domains\V1beta1\Registration $var
@@ -158,39 +174,11 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of domain notices that you acknowledge. Call
-     * `RetrieveRegisterParameters` to see the notices that need acknowledgement.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.DomainNotice domain_notices = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getDomainNotices()
-    {
-        return $this->domain_notices;
-    }
-
-    /**
-     * The list of domain notices that you acknowledge. Call
-     * `RetrieveRegisterParameters` to see the notices that need acknowledgement.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.DomainNotice domain_notices = 3;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setDomainNotices($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Domains\V1beta1\DomainNotice::class);
-        $this->domain_notices = $arr;
-
-        return $this;
-    }
-
-    /**
-     * The list of contact notices that the caller acknowledges. The notices
+     * The list of contact notices that you acknowledge. The notices
      * needed here depend on the values specified in
      * `registration.contact_settings`.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.ContactNotice contact_notices = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.ContactNotice contact_notices = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getContactNotices()
@@ -199,11 +187,11 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of contact notices that the caller acknowledges. The notices
+     * The list of contact notices that you acknowledge. The notices
      * needed here depend on the values specified in
      * `registration.contact_settings`.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.ContactNotice contact_notices = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.ContactNotice contact_notices = 3;</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -216,11 +204,11 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Yearly price to register or renew the domain.
-     * The value that should be put here can be obtained from
-     * RetrieveRegisterParameters or SearchDomains calls.
+     * Required. Acknowledgement of the price to transfer or renew the domain for one year.
+     * Call `RetrieveTransferParameters` to obtain the price, which you must
+     * acknowledge.
      *
-     * Generated from protobuf field <code>.google.type.Money yearly_price = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.type.Money yearly_price = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Type\Money|null
      */
     public function getYearlyPrice()
@@ -239,11 +227,11 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Yearly price to register or renew the domain.
-     * The value that should be put here can be obtained from
-     * RetrieveRegisterParameters or SearchDomains calls.
+     * Required. Acknowledgement of the price to transfer or renew the domain for one year.
+     * Call `RetrieveTransferParameters` to obtain the price, which you must
+     * acknowledge.
      *
-     * Generated from protobuf field <code>.google.type.Money yearly_price = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.type.Money yearly_price = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Type\Money $var
      * @return $this
      */
@@ -256,9 +244,45 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When true, only validation is performed, without actually registering
-     * the domain. Follows:
-     * https://cloud.google.com/apis/design/design_patterns#request_validation
+     * The domain's transfer authorization code. You can obtain this from the
+     * domain's current registrar.
+     *
+     * Generated from protobuf field <code>.google.cloud.domains.v1beta1.AuthorizationCode authorization_code = 5;</code>
+     * @return \Google\Cloud\Domains\V1beta1\AuthorizationCode|null
+     */
+    public function getAuthorizationCode()
+    {
+        return $this->authorization_code;
+    }
+
+    public function hasAuthorizationCode()
+    {
+        return isset($this->authorization_code);
+    }
+
+    public function clearAuthorizationCode()
+    {
+        unset($this->authorization_code);
+    }
+
+    /**
+     * The domain's transfer authorization code. You can obtain this from the
+     * domain's current registrar.
+     *
+     * Generated from protobuf field <code>.google.cloud.domains.v1beta1.AuthorizationCode authorization_code = 5;</code>
+     * @param \Google\Cloud\Domains\V1beta1\AuthorizationCode $var
+     * @return $this
+     */
+    public function setAuthorizationCode($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Domains\V1beta1\AuthorizationCode::class);
+        $this->authorization_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Validate the request without actually transferring the domain.
      *
      * Generated from protobuf field <code>bool validate_only = 6;</code>
      * @return bool
@@ -269,9 +293,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When true, only validation is performed, without actually registering
-     * the domain. Follows:
-     * https://cloud.google.com/apis/design/design_patterns#request_validation
+     * Validate the request without actually transferring the domain.
      *
      * Generated from protobuf field <code>bool validate_only = 6;</code>
      * @param bool $var

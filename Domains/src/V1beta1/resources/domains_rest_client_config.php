@@ -130,6 +130,17 @@ return [
                     ],
                 ],
             ],
+            'RetrieveTransferParameters' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{location=projects/*/locations/*}/registrations:retrieveTransferParameters',
+                'placeholders' => [
+                    'location' => [
+                        'getters' => [
+                            'getLocation',
+                        ],
+                    ],
+                ],
+            ],
             'SearchDomains' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{location=projects/*/locations/*}/registrations:searchDomains',
@@ -137,6 +148,18 @@ return [
                     'location' => [
                         'getters' => [
                             'getLocation',
+                        ],
+                    ],
+                ],
+            ],
+            'TransferDomain' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/registrations:transfer',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -153,12 +176,15 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
         ],
-        'google.longrunning.Operations' => [
-            'ListOperations' => [
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*}/operations',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -167,6 +193,56 @@ return [
                     ],
                 ],
             ],
+            'ListLocations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.iam.v1.IAMPolicy' => [
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/registrations/*}:getIamPolicy',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/registrations/*}:setIamPolicy',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/registrations/*}:testIamPermissions',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.longrunning.Operations' => [
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}',
@@ -178,20 +254,9 @@ return [
                     ],
                 ],
             ],
-            'DeleteOperation' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CancelOperation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}:cancel',
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*}/operations',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
