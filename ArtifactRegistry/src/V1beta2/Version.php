@@ -20,6 +20,8 @@ class Version extends \Google\Protobuf\Internal\Message
     /**
      * The name of the version, for example:
      * "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1".
+     * If the package or version ID parts contain slashes, the slashes are
+     * escaped.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -49,6 +51,15 @@ class Version extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1beta2.Tag related_tags = 7;</code>
      */
     private $related_tags;
+    /**
+     * Output only. Repository-specific Metadata stored against this version.
+     * The fields returned are defined by the underlying repository-specific
+     * resource. Currently, the only resource in use is
+     * [DockerImage][google.devtools.artifactregistry.v1.DockerImage]
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $metadata = null;
 
     /**
      * Constructor.
@@ -59,6 +70,8 @@ class Version extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name of the version, for example:
      *           "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1".
+     *           If the package or version ID parts contain slashes, the slashes are
+     *           escaped.
      *     @type string $description
      *           Optional. Description of the version, as specified in its metadata.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -68,6 +81,11 @@ class Version extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ArtifactRegistry\V1beta2\Tag[]|\Google\Protobuf\Internal\RepeatedField $related_tags
      *           Output only. A list of related tags. Will contain up to 100 tags that
      *           reference this version.
+     *     @type \Google\Protobuf\Struct $metadata
+     *           Output only. Repository-specific Metadata stored against this version.
+     *           The fields returned are defined by the underlying repository-specific
+     *           resource. Currently, the only resource in use is
+     *           [DockerImage][google.devtools.artifactregistry.v1.DockerImage]
      * }
      */
     public function __construct($data = NULL) {
@@ -78,6 +96,8 @@ class Version extends \Google\Protobuf\Internal\Message
     /**
      * The name of the version, for example:
      * "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1".
+     * If the package or version ID parts contain slashes, the slashes are
+     * escaped.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -90,6 +110,8 @@ class Version extends \Google\Protobuf\Internal\Message
     /**
      * The name of the version, for example:
      * "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1".
+     * If the package or version ID parts contain slashes, the slashes are
+     * escaped.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -225,6 +247,48 @@ class Version extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ArtifactRegistry\V1beta2\Tag::class);
         $this->related_tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Repository-specific Metadata stored against this version.
+     * The fields returned are defined by the underlying repository-specific
+     * resource. Currently, the only resource in use is
+     * [DockerImage][google.devtools.artifactregistry.v1.DockerImage]
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
+
+    public function hasMetadata()
+    {
+        return isset($this->metadata);
+    }
+
+    public function clearMetadata()
+    {
+        unset($this->metadata);
+    }
+
+    /**
+     * Output only. Repository-specific Metadata stored against this version.
+     * The fields returned are defined by the underlying repository-specific
+     * resource. Currently, the only resource in use is
+     * [DockerImage][google.devtools.artifactregistry.v1.DockerImage]
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->metadata = $var;
 
         return $this;
     }

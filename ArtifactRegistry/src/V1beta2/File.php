@@ -17,7 +17,8 @@ class File extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the file, for example:
-     * "projects/p1/locations/us-central1/repositories/repo1/files/a/b/c.txt".
+     * "projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt".
+     * If the file ID part contains slashes, they are escaped.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -61,7 +62,8 @@ class File extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the file, for example:
-     *           "projects/p1/locations/us-central1/repositories/repo1/files/a/b/c.txt".
+     *           "projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt".
+     *           If the file ID part contains slashes, they are escaped.
      *     @type int|string $size_bytes
      *           The size of the File in bytes.
      *     @type \Google\Cloud\ArtifactRegistry\V1beta2\Hash[]|\Google\Protobuf\Internal\RepeatedField $hashes
@@ -81,7 +83,8 @@ class File extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the file, for example:
-     * "projects/p1/locations/us-central1/repositories/repo1/files/a/b/c.txt".
+     * "projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt".
+     * If the file ID part contains slashes, they are escaped.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -93,7 +96,8 @@ class File extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the file, for example:
-     * "projects/p1/locations/us-central1/repositories/repo1/files/a/b/c.txt".
+     * "projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt".
+     * If the file ID part contains slashes, they are escaped.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

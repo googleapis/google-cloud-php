@@ -128,6 +128,17 @@ return [
                     ],
                 ],
             ],
+            'GetProjectSettings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta2/{name=projects/*/projectSettings}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRepository' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/repositories/*}',
@@ -157,6 +168,30 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportAptArtifacts' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta2/{parent=projects/*/locations/*/repositories/*}/aptArtifacts:import',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportYumArtifacts' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta2/{parent=projects/*/locations/*/repositories/*}/yumArtifacts:import',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -236,6 +271,19 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateProjectSettings' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta2/{project_settings.name=projects/*/projectSettings}',
+                'body' => 'project_settings',
+                'placeholders' => [
+                    'project_settings.name' => [
+                        'getters' => [
+                            'getProjectSettings',
+                            'getName',
                         ],
                     ],
                 ],
