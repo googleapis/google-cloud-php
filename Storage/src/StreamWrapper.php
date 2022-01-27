@@ -124,7 +124,8 @@ class StreamWrapper
      * Absence of this method presents a warning.
      * https://www.php.net/manual/en/migration74.incompatible.php
      */
-    public function stream_set_option(){
+    public function stream_set_option()
+    {
         return false;
     }
 
