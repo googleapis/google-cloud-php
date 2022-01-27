@@ -17,33 +17,33 @@ class ExportContext extends \Google\Protobuf\Internal\Message
 {
     /**
      * The path to the file in Google Cloud Storage where the export will be
-     * stored. The URI is in the form <b>gs://bucketName/fileName</b>. If the file
-     * already exists, the request succeeds, but the operation fails.
-     * <br>If <b>fileType</b> is <b>SQL</b> and the filename ends with .gz,
+     * stored. The URI is in the form `gs://bucketName/fileName`. If the file
+     * already exists, the request succeeds, but the operation fails. If
+     * `fileType` is `SQL` and the filename ends with .gz,
      * the contents are compressed.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      */
     private $uri = '';
     /**
-     * Databases to be exported. <br /> <b>MySQL instances:</b> If
-     * <b>fileType</b> is <b>SQL</b> and no database is specified, all
-     * databases are exported, except for the <b>mysql</b> system database.
-     * If <b>fileType</b> is <b>CSV</b>, you can specify one database,
+     * Databases to be exported. <br /> `MySQL instances:` If
+     * `fileType` is `SQL` and no database is specified, all
+     * databases are exported, except for the `mysql` system database.
+     * If `fileType` is `CSV`, you can specify one database,
      * either by using this property or by using the
-     * <b>csvExportOptions.selectQuery</b> property, which takes precedence
-     * over this property. <br /> <b>PostgreSQL instances:</b> You must specify
-     * one database to be exported. If <b>fileType</b> is <b>CSV</b>,
+     * `csvExportOptions.selectQuery` property, which takes precedence
+     * over this property. <br /> `PostgreSQL instances:` You must specify
+     * one database to be exported. If `fileType` is `CSV`,
      * this database must match the one specified in the
-     * <b>csvExportOptions.selectQuery</b> property. <br /> <b>SQL Server
-     * instances:</b> You must specify one database to be exported, and the
-     * <b>fileType</b> must be <b>BAK</b>.
+     * `csvExportOptions.selectQuery` property. <br /> `SQL Server
+     * instances:` You must specify one database to be exported, and the
+     * `fileType` must be `BAK`.
      *
      * Generated from protobuf field <code>repeated string databases = 2;</code>
      */
     private $databases;
     /**
-     * This is always <b>sql#exportContext</b>.
+     * This is always `sql#exportContext`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      */
@@ -55,16 +55,14 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      */
     private $sql_export_options = null;
     /**
-     * Options for exporting data as CSV. <b>MySQL</b> and <b>PostgreSQL</b>
+     * Options for exporting data as CSV. `MySQL` and `PostgreSQL`
      * instances only.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.ExportContext.SqlCsvExportOptions csv_export_options = 5;</code>
      */
     private $csv_export_options = null;
     /**
-     * The file type for the specified uri. <br><b>SQL</b>: The file
-     * contains SQL statements. <br><b>CSV</b>: The file contains CSV data.
-     * <br><b>BAK</b>: The file contains backup data for a SQL Server instance.
+     * The file type for the specified uri.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.SqlFileType file_type = 6;</code>
      */
@@ -84,34 +82,32 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      *
      *     @type string $uri
      *           The path to the file in Google Cloud Storage where the export will be
-     *           stored. The URI is in the form <b>gs://bucketName/fileName</b>. If the file
-     *           already exists, the request succeeds, but the operation fails.
-     *           <br>If <b>fileType</b> is <b>SQL</b> and the filename ends with .gz,
+     *           stored. The URI is in the form `gs://bucketName/fileName`. If the file
+     *           already exists, the request succeeds, but the operation fails. If
+     *           `fileType` is `SQL` and the filename ends with .gz,
      *           the contents are compressed.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $databases
-     *           Databases to be exported. <br /> <b>MySQL instances:</b> If
-     *           <b>fileType</b> is <b>SQL</b> and no database is specified, all
-     *           databases are exported, except for the <b>mysql</b> system database.
-     *           If <b>fileType</b> is <b>CSV</b>, you can specify one database,
+     *           Databases to be exported. <br /> `MySQL instances:` If
+     *           `fileType` is `SQL` and no database is specified, all
+     *           databases are exported, except for the `mysql` system database.
+     *           If `fileType` is `CSV`, you can specify one database,
      *           either by using this property or by using the
-     *           <b>csvExportOptions.selectQuery</b> property, which takes precedence
-     *           over this property. <br /> <b>PostgreSQL instances:</b> You must specify
-     *           one database to be exported. If <b>fileType</b> is <b>CSV</b>,
+     *           `csvExportOptions.selectQuery` property, which takes precedence
+     *           over this property. <br /> `PostgreSQL instances:` You must specify
+     *           one database to be exported. If `fileType` is `CSV`,
      *           this database must match the one specified in the
-     *           <b>csvExportOptions.selectQuery</b> property. <br /> <b>SQL Server
-     *           instances:</b> You must specify one database to be exported, and the
-     *           <b>fileType</b> must be <b>BAK</b>.
+     *           `csvExportOptions.selectQuery` property. <br /> `SQL Server
+     *           instances:` You must specify one database to be exported, and the
+     *           `fileType` must be `BAK`.
      *     @type string $kind
-     *           This is always <b>sql#exportContext</b>.
+     *           This is always `sql#exportContext`.
      *     @type \Google\Cloud\Sql\V1beta4\ExportContext\SqlExportOptions $sql_export_options
      *           Options for exporting data as SQL statements.
      *     @type \Google\Cloud\Sql\V1beta4\ExportContext\SqlCsvExportOptions $csv_export_options
-     *           Options for exporting data as CSV. <b>MySQL</b> and <b>PostgreSQL</b>
+     *           Options for exporting data as CSV. `MySQL` and `PostgreSQL`
      *           instances only.
      *     @type int $file_type
-     *           The file type for the specified uri. <br><b>SQL</b>: The file
-     *           contains SQL statements. <br><b>CSV</b>: The file contains CSV data.
-     *           <br><b>BAK</b>: The file contains backup data for a SQL Server instance.
+     *           The file type for the specified uri.
      *     @type \Google\Protobuf\BoolValue $offload
      *           Option for export offload.
      * }
@@ -123,9 +119,9 @@ class ExportContext extends \Google\Protobuf\Internal\Message
 
     /**
      * The path to the file in Google Cloud Storage where the export will be
-     * stored. The URI is in the form <b>gs://bucketName/fileName</b>. If the file
-     * already exists, the request succeeds, but the operation fails.
-     * <br>If <b>fileType</b> is <b>SQL</b> and the filename ends with .gz,
+     * stored. The URI is in the form `gs://bucketName/fileName`. If the file
+     * already exists, the request succeeds, but the operation fails. If
+     * `fileType` is `SQL` and the filename ends with .gz,
      * the contents are compressed.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
@@ -138,9 +134,9 @@ class ExportContext extends \Google\Protobuf\Internal\Message
 
     /**
      * The path to the file in Google Cloud Storage where the export will be
-     * stored. The URI is in the form <b>gs://bucketName/fileName</b>. If the file
-     * already exists, the request succeeds, but the operation fails.
-     * <br>If <b>fileType</b> is <b>SQL</b> and the filename ends with .gz,
+     * stored. The URI is in the form `gs://bucketName/fileName`. If the file
+     * already exists, the request succeeds, but the operation fails. If
+     * `fileType` is `SQL` and the filename ends with .gz,
      * the contents are compressed.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
@@ -156,18 +152,18 @@ class ExportContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Databases to be exported. <br /> <b>MySQL instances:</b> If
-     * <b>fileType</b> is <b>SQL</b> and no database is specified, all
-     * databases are exported, except for the <b>mysql</b> system database.
-     * If <b>fileType</b> is <b>CSV</b>, you can specify one database,
+     * Databases to be exported. <br /> `MySQL instances:` If
+     * `fileType` is `SQL` and no database is specified, all
+     * databases are exported, except for the `mysql` system database.
+     * If `fileType` is `CSV`, you can specify one database,
      * either by using this property or by using the
-     * <b>csvExportOptions.selectQuery</b> property, which takes precedence
-     * over this property. <br /> <b>PostgreSQL instances:</b> You must specify
-     * one database to be exported. If <b>fileType</b> is <b>CSV</b>,
+     * `csvExportOptions.selectQuery` property, which takes precedence
+     * over this property. <br /> `PostgreSQL instances:` You must specify
+     * one database to be exported. If `fileType` is `CSV`,
      * this database must match the one specified in the
-     * <b>csvExportOptions.selectQuery</b> property. <br /> <b>SQL Server
-     * instances:</b> You must specify one database to be exported, and the
-     * <b>fileType</b> must be <b>BAK</b>.
+     * `csvExportOptions.selectQuery` property. <br /> `SQL Server
+     * instances:` You must specify one database to be exported, and the
+     * `fileType` must be `BAK`.
      *
      * Generated from protobuf field <code>repeated string databases = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -178,18 +174,18 @@ class ExportContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Databases to be exported. <br /> <b>MySQL instances:</b> If
-     * <b>fileType</b> is <b>SQL</b> and no database is specified, all
-     * databases are exported, except for the <b>mysql</b> system database.
-     * If <b>fileType</b> is <b>CSV</b>, you can specify one database,
+     * Databases to be exported. <br /> `MySQL instances:` If
+     * `fileType` is `SQL` and no database is specified, all
+     * databases are exported, except for the `mysql` system database.
+     * If `fileType` is `CSV`, you can specify one database,
      * either by using this property or by using the
-     * <b>csvExportOptions.selectQuery</b> property, which takes precedence
-     * over this property. <br /> <b>PostgreSQL instances:</b> You must specify
-     * one database to be exported. If <b>fileType</b> is <b>CSV</b>,
+     * `csvExportOptions.selectQuery` property, which takes precedence
+     * over this property. <br /> `PostgreSQL instances:` You must specify
+     * one database to be exported. If `fileType` is `CSV`,
      * this database must match the one specified in the
-     * <b>csvExportOptions.selectQuery</b> property. <br /> <b>SQL Server
-     * instances:</b> You must specify one database to be exported, and the
-     * <b>fileType</b> must be <b>BAK</b>.
+     * `csvExportOptions.selectQuery` property. <br /> `SQL Server
+     * instances:` You must specify one database to be exported, and the
+     * `fileType` must be `BAK`.
      *
      * Generated from protobuf field <code>repeated string databases = 2;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -204,7 +200,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#exportContext</b>.
+     * This is always `sql#exportContext`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      * @return string
@@ -215,7 +211,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#exportContext</b>.
+     * This is always `sql#exportContext`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      * @param string $var
@@ -266,7 +262,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Options for exporting data as CSV. <b>MySQL</b> and <b>PostgreSQL</b>
+     * Options for exporting data as CSV. `MySQL` and `PostgreSQL`
      * instances only.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.ExportContext.SqlCsvExportOptions csv_export_options = 5;</code>
@@ -288,7 +284,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Options for exporting data as CSV. <b>MySQL</b> and <b>PostgreSQL</b>
+     * Options for exporting data as CSV. `MySQL` and `PostgreSQL`
      * instances only.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.ExportContext.SqlCsvExportOptions csv_export_options = 5;</code>
@@ -304,9 +300,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The file type for the specified uri. <br><b>SQL</b>: The file
-     * contains SQL statements. <br><b>CSV</b>: The file contains CSV data.
-     * <br><b>BAK</b>: The file contains backup data for a SQL Server instance.
+     * The file type for the specified uri.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.SqlFileType file_type = 6;</code>
      * @return int
@@ -317,9 +311,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The file type for the specified uri. <br><b>SQL</b>: The file
-     * contains SQL statements. <br><b>CSV</b>: The file contains CSV data.
-     * <br><b>BAK</b>: The file contains backup data for a SQL Server instance.
+     * The file type for the specified uri.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.SqlFileType file_type = 6;</code>
      * @param int $var

@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Database instance list operations response.
+ * Operations list response.
  *
  * Generated from protobuf message <code>google.cloud.sql.v1beta4.OperationsListResponse</code>
  */
 class OperationsListResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always <b>sql#operationsList</b>.
+     * This is always `sql#operationsList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -42,7 +42,7 @@ class OperationsListResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always <b>sql#operationsList</b>.
+     *           This is always `sql#operationsList`.
      *     @type \Google\Cloud\Sql\V1beta4\Operation[]|\Google\Protobuf\Internal\RepeatedField $items
      *           List of operation resources.
      *     @type string $next_page_token
@@ -56,7 +56,7 @@ class OperationsListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#operationsList</b>.
+     * This is always `sql#operationsList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -67,7 +67,7 @@ class OperationsListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#operationsList</b>.
+     * This is always `sql#operationsList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var

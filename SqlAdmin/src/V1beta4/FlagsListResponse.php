@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class FlagsListResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always <b>sql#flagsList</b>.
+     * This is always `sql#flagsList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -35,7 +35,7 @@ class FlagsListResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always <b>sql#flagsList</b>.
+     *           This is always `sql#flagsList`.
      *     @type \Google\Cloud\Sql\V1beta4\Flag[]|\Google\Protobuf\Internal\RepeatedField $items
      *           List of flags.
      * }
@@ -46,7 +46,7 @@ class FlagsListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#flagsList</b>.
+     * This is always `sql#flagsList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -57,7 +57,7 @@ class FlagsListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#flagsList</b>.
+     * This is always `sql#flagsList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var

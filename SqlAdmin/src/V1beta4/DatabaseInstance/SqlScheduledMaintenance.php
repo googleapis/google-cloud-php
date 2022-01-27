@@ -32,6 +32,12 @@ class SqlScheduledMaintenance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool can_reschedule = 3;</code>
      */
     private $can_reschedule = false;
+    /**
+     * Maintenance cannot be rescheduled to start beyond this deadline.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp schedule_deadline_time = 4;</code>
+     */
+    private $schedule_deadline_time = null;
 
     /**
      * Constructor.
@@ -44,6 +50,8 @@ class SqlScheduledMaintenance extends \Google\Protobuf\Internal\Message
      *     @type bool $can_defer
      *     @type bool $can_reschedule
      *           If the scheduled maintenance can be rescheduled.
+     *     @type \Google\Protobuf\Timestamp $schedule_deadline_time
+     *           Maintenance cannot be rescheduled to start beyond this deadline.
      * }
      */
     public function __construct($data = NULL) {
@@ -139,8 +147,42 @@ class SqlScheduledMaintenance extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * Maintenance cannot be rescheduled to start beyond this deadline.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp schedule_deadline_time = 4;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getScheduleDeadlineTime()
+    {
+        return $this->schedule_deadline_time;
+    }
+
+    public function hasScheduleDeadlineTime()
+    {
+        return isset($this->schedule_deadline_time);
+    }
+
+    public function clearScheduleDeadlineTime()
+    {
+        unset($this->schedule_deadline_time);
+    }
+
+    /**
+     * Maintenance cannot be rescheduled to start beyond this deadline.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp schedule_deadline_time = 4;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setScheduleDeadlineTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->schedule_deadline_time = $var;
+
+        return $this;
+    }
+
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SqlScheduledMaintenance::class, \Google\Cloud\Sql\V1beta4\DatabaseInstance_SqlScheduledMaintenance::class);
 

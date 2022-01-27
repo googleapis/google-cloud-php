@@ -22,7 +22,7 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
      */
     private $host_port = '';
     /**
-     * This is always <b>sql#onPremisesConfiguration</b>.
+     * This is always `sql#onPremisesConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      */
@@ -64,6 +64,12 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string dump_file_path = 8;</code>
      */
     private $dump_file_path = '';
+    /**
+     * The reference to Cloud SQL instance if the source is Cloud SQL.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.InstanceReference source_instance = 15;</code>
+     */
+    private $source_instance = null;
 
     /**
      * Constructor.
@@ -74,7 +80,7 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
      *     @type string $host_port
      *           The host and port of the on-premises instance in host:port format
      *     @type string $kind
-     *           This is always <b>sql#onPremisesConfiguration</b>.
+     *           This is always `sql#onPremisesConfiguration`.
      *     @type string $username
      *           The username for connecting to on-premises instance.
      *     @type string $password
@@ -88,6 +94,8 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
      *           key is encoded in the client's certificate.
      *     @type string $dump_file_path
      *           The dump file to create the Cloud SQL replica.
+     *     @type \Google\Cloud\Sql\V1beta4\InstanceReference $source_instance
+     *           The reference to Cloud SQL instance if the source is Cloud SQL.
      * }
      */
     public function __construct($data = NULL) {
@@ -122,7 +130,7 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#onPremisesConfiguration</b>.
+     * This is always `sql#onPremisesConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      * @return string
@@ -133,7 +141,7 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#onPremisesConfiguration</b>.
+     * This is always `sql#onPremisesConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      * @param string $var
@@ -301,6 +309,42 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->dump_file_path = $var;
+
+        return $this;
+    }
+
+    /**
+     * The reference to Cloud SQL instance if the source is Cloud SQL.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.InstanceReference source_instance = 15;</code>
+     * @return \Google\Cloud\Sql\V1beta4\InstanceReference|null
+     */
+    public function getSourceInstance()
+    {
+        return $this->source_instance;
+    }
+
+    public function hasSourceInstance()
+    {
+        return isset($this->source_instance);
+    }
+
+    public function clearSourceInstance()
+    {
+        unset($this->source_instance);
+    }
+
+    /**
+     * The reference to Cloud SQL instance if the source is Cloud SQL.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.InstanceReference source_instance = 15;</code>
+     * @param \Google\Cloud\Sql\V1beta4\InstanceReference $var
+     * @return $this
+     */
+    public function setSourceInstance($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1beta4\InstanceReference::class);
+        $this->source_instance = $var;
 
         return $this;
     }

@@ -134,6 +134,30 @@ class SqlExternalSyncSettingErrorType
      * Generated from protobuf enum <code>UNSUPPORTED_DEFINER = 21;</code>
      */
     const UNSUPPORTED_DEFINER = 21;
+    /**
+     * SQL Server &#64;&#64;SERVERNAME does not match actual host name
+     *
+     * Generated from protobuf enum <code>SQLSERVER_SERVERNAME_MISMATCH = 22;</code>
+     */
+    const SQLSERVER_SERVERNAME_MISMATCH = 22;
+    /**
+     * The primary instance has been setup and will fail the setup.
+     *
+     * Generated from protobuf enum <code>PRIMARY_ALREADY_SETUP = 23;</code>
+     */
+    const PRIMARY_ALREADY_SETUP = 23;
+    /**
+     * The primary instance has unsupported binary log format.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_BINLOG_FORMAT = 24;</code>
+     */
+    const UNSUPPORTED_BINLOG_FORMAT = 24;
+    /**
+     * The primary instance's binary log retention setting.
+     *
+     * Generated from protobuf enum <code>BINLOG_RETENTION_SETTING = 25;</code>
+     */
+    const BINLOG_RETENTION_SETTING = 25;
 
     private static $valueToName = [
         self::SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED => 'SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED',
@@ -158,6 +182,10 @@ class SqlExternalSyncSettingErrorType
         self::SQLSERVER_AGENT_NOT_RUNNING => 'SQLSERVER_AGENT_NOT_RUNNING',
         self::UNSUPPORTED_TABLE_DEFINITION => 'UNSUPPORTED_TABLE_DEFINITION',
         self::UNSUPPORTED_DEFINER => 'UNSUPPORTED_DEFINER',
+        self::SQLSERVER_SERVERNAME_MISMATCH => 'SQLSERVER_SERVERNAME_MISMATCH',
+        self::PRIMARY_ALREADY_SETUP => 'PRIMARY_ALREADY_SETUP',
+        self::UNSUPPORTED_BINLOG_FORMAT => 'UNSUPPORTED_BINLOG_FORMAT',
+        self::BINLOG_RETENTION_SETTING => 'BINLOG_RETENTION_SETTING',
     ];
 
     public static function name($value)
@@ -181,6 +209,4 @@ class SqlExternalSyncSettingErrorType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SqlExternalSyncSettingErrorType::class, \Google\Cloud\Sql\V1beta4\SqlExternalSyncSettingError_SqlExternalSyncSettingErrorType::class);
 

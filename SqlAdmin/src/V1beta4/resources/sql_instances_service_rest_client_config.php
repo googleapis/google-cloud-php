@@ -311,6 +311,7 @@ return [
             'StartExternalSync' => [
                 'method' => 'post',
                 'uriTemplate' => '/sql/v1beta4/projects/{project}/instances/{instance}/startExternalSync',
+                'body' => '*',
                 'placeholders' => [
                     'instance' => [
                         'getters' => [
@@ -393,6 +394,7 @@ return [
             'VerifyExternalSyncSettings' => [
                 'method' => 'post',
                 'uriTemplate' => '/sql/v1beta4/projects/{project}/instances/{instance}/verifyExternalSyncSettings',
+                'body' => '*',
                 'placeholders' => [
                     'instance' => [
                         'getters' => [

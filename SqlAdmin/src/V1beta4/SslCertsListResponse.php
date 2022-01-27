@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SslCertsListResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always <b>sql#sslCertsList</b>.
+     * This is always `sql#sslCertsList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -35,7 +35,7 @@ class SslCertsListResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always <b>sql#sslCertsList</b>.
+     *           This is always `sql#sslCertsList`.
      *     @type \Google\Cloud\Sql\V1beta4\SslCert[]|\Google\Protobuf\Internal\RepeatedField $items
      *           List of client certificates for the instance.
      * }
@@ -46,7 +46,7 @@ class SslCertsListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#sslCertsList</b>.
+     * This is always `sql#sslCertsList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -57,7 +57,7 @@ class SslCertsListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#sslCertsList</b>.
+     * This is always `sql#sslCertsList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
