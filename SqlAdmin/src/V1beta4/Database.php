@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Database extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always <b>sql#database</b>.
+     * This is always `sql#database`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -75,7 +75,7 @@ class Database extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always <b>sql#database</b>.
+     *           This is always `sql#database`.
      *     @type string $charset
      *           The Cloud SQL charset value.
      *     @type string $collation
@@ -102,7 +102,7 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#database</b>.
+     * This is always `sql#database`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -113,7 +113,7 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#database</b>.
+     * This is always `sql#database`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var

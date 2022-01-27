@@ -98,11 +98,53 @@ class SqlDatabaseVersion
      */
     const MYSQL_8_0 = 20;
     /**
+     * The database major version is MySQL 8.0 and the minor version is 18.
+     *
+     * Generated from protobuf enum <code>MYSQL_8_0_18 = 41;</code>
+     */
+    const MYSQL_8_0_18 = 41;
+    /**
+     * The database major version is MySQL 8.0 and the minor version is 26.
+     *
+     * Generated from protobuf enum <code>MYSQL_8_0_26 = 85;</code>
+     */
+    const MYSQL_8_0_26 = 85;
+    /**
      * The database version is PostgreSQL 13.
      *
      * Generated from protobuf enum <code>POSTGRES_13 = 23;</code>
      */
     const POSTGRES_13 = 23;
+    /**
+     * The database version is PostgreSQL 14.
+     *
+     * Generated from protobuf enum <code>POSTGRES_14 = 110;</code>
+     */
+    const POSTGRES_14 = 110;
+    /**
+     * The database version is SQL Server 2019 Standard.
+     *
+     * Generated from protobuf enum <code>SQLSERVER_2019_STANDARD = 26;</code>
+     */
+    const SQLSERVER_2019_STANDARD = 26;
+    /**
+     * The database version is SQL Server 2019 Enterprise.
+     *
+     * Generated from protobuf enum <code>SQLSERVER_2019_ENTERPRISE = 27;</code>
+     */
+    const SQLSERVER_2019_ENTERPRISE = 27;
+    /**
+     * The database version is SQL Server 2019 Express.
+     *
+     * Generated from protobuf enum <code>SQLSERVER_2019_EXPRESS = 28;</code>
+     */
+    const SQLSERVER_2019_EXPRESS = 28;
+    /**
+     * The database version is SQL Server 2019 Web.
+     *
+     * Generated from protobuf enum <code>SQLSERVER_2019_WEB = 29;</code>
+     */
+    const SQLSERVER_2019_WEB = 29;
 
     private static $valueToName = [
         self::SQL_DATABASE_VERSION_UNSPECIFIED => 'SQL_DATABASE_VERSION_UNSPECIFIED',
@@ -119,7 +161,14 @@ class SqlDatabaseVersion
         self::POSTGRES_10 => 'POSTGRES_10',
         self::POSTGRES_12 => 'POSTGRES_12',
         self::MYSQL_8_0 => 'MYSQL_8_0',
+        self::MYSQL_8_0_18 => 'MYSQL_8_0_18',
+        self::MYSQL_8_0_26 => 'MYSQL_8_0_26',
         self::POSTGRES_13 => 'POSTGRES_13',
+        self::POSTGRES_14 => 'POSTGRES_14',
+        self::SQLSERVER_2019_STANDARD => 'SQLSERVER_2019_STANDARD',
+        self::SQLSERVER_2019_ENTERPRISE => 'SQLSERVER_2019_ENTERPRISE',
+        self::SQLSERVER_2019_EXPRESS => 'SQLSERVER_2019_EXPRESS',
+        self::SQLSERVER_2019_WEB => 'SQLSERVER_2019_WEB',
     ];
 
     public static function name($value)

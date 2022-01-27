@@ -269,6 +269,25 @@
                 }
             }
         },
+        "SqlConnectService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlConnectServiceGapicClient",
+                    "rpcs": {
+                        "GenerateEphemeralCert": {
+                            "methods": [
+                                "generateEphemeralCert"
+                            ]
+                        },
+                        "GetConnectSettings": {
+                            "methods": [
+                                "getConnectSettings"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "SqlTiersService": {
             "clients": {
                 "grpc": {

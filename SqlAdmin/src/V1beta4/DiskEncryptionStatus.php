@@ -22,7 +22,7 @@ class DiskEncryptionStatus extends \Google\Protobuf\Internal\Message
      */
     private $kms_key_version_name = '';
     /**
-     * This is always <b>sql#diskEncryptionStatus</b>.
+     * This is always `sql#diskEncryptionStatus`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      */
@@ -37,7 +37,7 @@ class DiskEncryptionStatus extends \Google\Protobuf\Internal\Message
      *     @type string $kms_key_version_name
      *           KMS key version used to encrypt the Cloud SQL instance resource
      *     @type string $kind
-     *           This is always <b>sql#diskEncryptionStatus</b>.
+     *           This is always `sql#diskEncryptionStatus`.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,7 +72,7 @@ class DiskEncryptionStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#diskEncryptionStatus</b>.
+     * This is always `sql#diskEncryptionStatus`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      * @return string
@@ -83,7 +83,7 @@ class DiskEncryptionStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#diskEncryptionStatus</b>.
+     * This is always `sql#diskEncryptionStatus`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      * @param string $var

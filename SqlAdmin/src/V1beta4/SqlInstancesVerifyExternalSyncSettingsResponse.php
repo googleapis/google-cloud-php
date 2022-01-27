@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SqlInstancesVerifyExternalSyncSettingsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always <b>sql#migrationSettingErrorList</b>.
+     * This is always `sql#migrationSettingErrorList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -41,7 +41,7 @@ class SqlInstancesVerifyExternalSyncSettingsResponse extends \Google\Protobuf\In
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always <b>sql#migrationSettingErrorList</b>.
+     *           This is always `sql#migrationSettingErrorList`.
      *     @type \Google\Cloud\Sql\V1beta4\SqlExternalSyncSettingError[]|\Google\Protobuf\Internal\RepeatedField $errors
      *           List of migration violations.
      *     @type \Google\Cloud\Sql\V1beta4\SqlExternalSyncSettingError[]|\Google\Protobuf\Internal\RepeatedField $warnings
@@ -54,7 +54,7 @@ class SqlInstancesVerifyExternalSyncSettingsResponse extends \Google\Protobuf\In
     }
 
     /**
-     * This is always <b>sql#migrationSettingErrorList</b>.
+     * This is always `sql#migrationSettingErrorList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -65,7 +65,7 @@ class SqlInstancesVerifyExternalSyncSettingsResponse extends \Google\Protobuf\In
     }
 
     /**
-     * This is always <b>sql#migrationSettingErrorList</b>.
+     * This is always `sql#migrationSettingErrorList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var

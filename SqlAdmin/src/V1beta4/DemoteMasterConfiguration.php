@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DemoteMasterConfiguration extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always <b>sql#demoteMasterConfiguration</b>.
+     * This is always `sql#demoteMasterConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -28,7 +28,7 @@ class DemoteMasterConfiguration extends \Google\Protobuf\Internal\Message
      * username, password, certificates, and keys are not stored in the instance
      * metadata. The configuration information is used only to set up the
      * replication connection and is stored by MySQL in a file named
-     * <b>master.info</b> in the data directory.
+     * `master.info` in the data directory.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.DemoteMasterMySqlReplicaConfiguration mysql_replica_configuration = 2;</code>
      */
@@ -41,14 +41,14 @@ class DemoteMasterConfiguration extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always <b>sql#demoteMasterConfiguration</b>.
+     *           This is always `sql#demoteMasterConfiguration`.
      *     @type \Google\Cloud\Sql\V1beta4\DemoteMasterMySqlReplicaConfiguration $mysql_replica_configuration
      *           MySQL specific configuration when replicating from a MySQL on-premises
      *           primary instance. Replication configuration information such as the
      *           username, password, certificates, and keys are not stored in the instance
      *           metadata. The configuration information is used only to set up the
      *           replication connection and is stored by MySQL in a file named
-     *           <b>master.info</b> in the data directory.
+     *           `master.info` in the data directory.
      * }
      */
     public function __construct($data = NULL) {
@@ -57,7 +57,7 @@ class DemoteMasterConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#demoteMasterConfiguration</b>.
+     * This is always `sql#demoteMasterConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -68,7 +68,7 @@ class DemoteMasterConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#demoteMasterConfiguration</b>.
+     * This is always `sql#demoteMasterConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
@@ -88,7 +88,7 @@ class DemoteMasterConfiguration extends \Google\Protobuf\Internal\Message
      * username, password, certificates, and keys are not stored in the instance
      * metadata. The configuration information is used only to set up the
      * replication connection and is stored by MySQL in a file named
-     * <b>master.info</b> in the data directory.
+     * `master.info` in the data directory.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.DemoteMasterMySqlReplicaConfiguration mysql_replica_configuration = 2;</code>
      * @return \Google\Cloud\Sql\V1beta4\DemoteMasterMySqlReplicaConfiguration|null
@@ -114,7 +114,7 @@ class DemoteMasterConfiguration extends \Google\Protobuf\Internal\Message
      * username, password, certificates, and keys are not stored in the instance
      * metadata. The configuration information is used only to set up the
      * replication connection and is stored by MySQL in a file named
-     * <b>master.info</b> in the data directory.
+     * `master.info` in the data directory.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.DemoteMasterMySqlReplicaConfiguration mysql_replica_configuration = 2;</code>
      * @param \Google\Cloud\Sql\V1beta4\DemoteMasterMySqlReplicaConfiguration $var

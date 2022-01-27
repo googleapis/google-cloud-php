@@ -59,6 +59,4 @@ class ExternalSyncMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ExternalSyncMode::class, \Google\Cloud\Sql\V1beta4\SqlInstancesVerifyExternalSyncSettingsRequest_ExternalSyncMode::class);
 

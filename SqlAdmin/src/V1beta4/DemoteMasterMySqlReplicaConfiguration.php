@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DemoteMasterMySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always <b>sql#demoteMasterMysqlReplicaConfiguration</b>.
+     * This is always `sql#demoteMasterMysqlReplicaConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -61,7 +61,7 @@ class DemoteMasterMySqlReplicaConfiguration extends \Google\Protobuf\Internal\Me
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always <b>sql#demoteMasterMysqlReplicaConfiguration</b>.
+     *           This is always `sql#demoteMasterMysqlReplicaConfiguration`.
      *     @type string $username
      *           The username for the replication connection.
      *     @type string $password
@@ -82,7 +82,7 @@ class DemoteMasterMySqlReplicaConfiguration extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * This is always <b>sql#demoteMasterMysqlReplicaConfiguration</b>.
+     * This is always `sql#demoteMasterMysqlReplicaConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -93,7 +93,7 @@ class DemoteMasterMySqlReplicaConfiguration extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * This is always <b>sql#demoteMasterMysqlReplicaConfiguration</b>.
+     * This is always `sql#demoteMasterMysqlReplicaConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
