@@ -32,6 +32,19 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string phrases = 1;</code>
      */
     private $phrases;
+    /**
+     * Hint Boost. Positive value will increase the probability that a specific
+     * phrase will be recognized over other similar sounding phrases. The higher
+     * the boost, the higher the chance of false positive recognition as well.
+     * Negative boost values would correspond to anti-biasing. Anti-biasing is not
+     * enabled, so negative boost will simply be ignored. Though `boost` can
+     * accept a wide range of positive values, most use cases are best served with
+     * values between 0 and 20. We recommend using a binary search approach to
+     * finding the optimal value for your use case.
+     *
+     * Generated from protobuf field <code>float boost = 4;</code>
+     */
+    private $boost = 0.0;
 
     /**
      * Constructor.
@@ -51,6 +64,15 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      *           providing phrase hints for every month of the year, using the $MONTH class
      *           improves the likelihood of correctly transcribing audio that includes
      *           months.
+     *     @type float $boost
+     *           Hint Boost. Positive value will increase the probability that a specific
+     *           phrase will be recognized over other similar sounding phrases. The higher
+     *           the boost, the higher the chance of false positive recognition as well.
+     *           Negative boost values would correspond to anti-biasing. Anti-biasing is not
+     *           enabled, so negative boost will simply be ignored. Though `boost` can
+     *           accept a wide range of positive values, most use cases are best served with
+     *           values between 0 and 20. We recommend using a binary search approach to
+     *           finding the optimal value for your use case.
      * }
      */
     public function __construct($data = NULL) {
@@ -100,6 +122,46 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->phrases = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Hint Boost. Positive value will increase the probability that a specific
+     * phrase will be recognized over other similar sounding phrases. The higher
+     * the boost, the higher the chance of false positive recognition as well.
+     * Negative boost values would correspond to anti-biasing. Anti-biasing is not
+     * enabled, so negative boost will simply be ignored. Though `boost` can
+     * accept a wide range of positive values, most use cases are best served with
+     * values between 0 and 20. We recommend using a binary search approach to
+     * finding the optimal value for your use case.
+     *
+     * Generated from protobuf field <code>float boost = 4;</code>
+     * @return float
+     */
+    public function getBoost()
+    {
+        return $this->boost;
+    }
+
+    /**
+     * Hint Boost. Positive value will increase the probability that a specific
+     * phrase will be recognized over other similar sounding phrases. The higher
+     * the boost, the higher the chance of false positive recognition as well.
+     * Negative boost values would correspond to anti-biasing. Anti-biasing is not
+     * enabled, so negative boost will simply be ignored. Though `boost` can
+     * accept a wide range of positive values, most use cases are best served with
+     * values between 0 and 20. We recommend using a binary search approach to
+     * finding the optimal value for your use case.
+     *
+     * Generated from protobuf field <code>float boost = 4;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setBoost($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->boost = $var;
 
         return $this;
     }

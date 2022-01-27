@@ -14,8 +14,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * messages are streamed back to the client. If there is no recognizable
  * audio, and `single_utterance` is set to false, then no messages are streamed
  * back to the client.
- * Here's an example of a series of ten `StreamingRecognizeResponse`s that might
- * be returned while processing audio:
+ * Here's an example of a series of `StreamingRecognizeResponse`s that might be
+ * returned while processing audio:
  * 1. results { alternatives { transcript: "tube" } stability: 0.01 }
  * 2. results { alternatives { transcript: "to be a" } stability: 0.01 }
  * 3. results { alternatives { transcript: "to be" } stability: 0.9 }
@@ -72,6 +72,13 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.speech.v1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
      */
     private $speech_event_type = 0;
+    /**
+     * When available, billed audio seconds for the stream.
+     * Set only if this is the last response in the stream.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration total_billed_time = 5;</code>
+     */
+    private $total_billed_time = null;
 
     /**
      * Constructor.
@@ -89,6 +96,9 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      *           followed by zero or more `is_final=false` results (the interim results).
      *     @type int $speech_event_type
      *           Indicates the type of speech event.
+     *     @type \Google\Protobuf\Duration $total_billed_time
+     *           When available, billed audio seconds for the stream.
+     *           Set only if this is the last response in the stream.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,11 +111,11 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * specifies the error for the operation.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 1;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getError()
     {
-        return isset($this->error) ? $this->error : null;
+        return $this->error;
     }
 
     public function hasError()
@@ -188,6 +198,44 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Speech\V1\StreamingRecognizeResponse\SpeechEventType::class);
         $this->speech_event_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * When available, billed audio seconds for the stream.
+     * Set only if this is the last response in the stream.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration total_billed_time = 5;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getTotalBilledTime()
+    {
+        return $this->total_billed_time;
+    }
+
+    public function hasTotalBilledTime()
+    {
+        return isset($this->total_billed_time);
+    }
+
+    public function clearTotalBilledTime()
+    {
+        unset($this->total_billed_time);
+    }
+
+    /**
+     * When available, billed audio seconds for the stream.
+     * Set only if this is the last response in the stream.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration total_billed_time = 5;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setTotalBilledTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->total_billed_time = $var;
 
         return $this;
     }
