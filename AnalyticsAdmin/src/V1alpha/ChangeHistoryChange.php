@@ -126,7 +126,7 @@ class ChangeHistoryChange extends \Google\Protobuf\Internal\Message
      */
     public function getResourceBeforeChange()
     {
-        return isset($this->resource_before_change) ? $this->resource_before_change : null;
+        return $this->resource_before_change;
     }
 
     public function hasResourceBeforeChange()
@@ -164,7 +164,7 @@ class ChangeHistoryChange extends \Google\Protobuf\Internal\Message
      */
     public function getResourceAfterChange()
     {
-        return isset($this->resource_after_change) ? $this->resource_after_change : null;
+        return $this->resource_after_change;
     }
 
     public function hasResourceAfterChange()

@@ -79,6 +79,12 @@ class Property extends \Google\Protobuf\Internal\Message
      */
     private $currency_code = '';
     /**
+     * Output only. The Google Analytics service level that applies to this property.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ServiceLevel service_level = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $service_level = 0;
+    /**
      * Output only. If set, the time at which this property was trashed. If not set, then this
      * property is not currently in the trash can.
      *
@@ -93,6 +99,14 @@ class Property extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $expire_time = null;
+    /**
+     * Immutable. The resource name of the parent account
+     * Format: accounts/{account_id}
+     * Example: "accounts/123"
+     *
+     * Generated from protobuf field <code>string account = 13 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     */
+    private $account = '';
 
     /**
      * Constructor.
@@ -131,6 +145,8 @@ class Property extends \Google\Protobuf\Internal\Message
      *           The currency type used in reports involving monetary values.
      *           Format: https://en.wikipedia.org/wiki/ISO_4217
      *           Examples: "USD", "EUR", "JPY"
+     *     @type int $service_level
+     *           Output only. The Google Analytics service level that applies to this property.
      *     @type \Google\Protobuf\Timestamp $delete_time
      *           Output only. If set, the time at which this property was trashed. If not set, then this
      *           property is not currently in the trash can.
@@ -138,6 +154,10 @@ class Property extends \Google\Protobuf\Internal\Message
      *           Output only. If set, the time at which this trashed property will be permanently
      *           deleted. If not set, then this property is not currently in the trash can
      *           and is not slated to be deleted.
+     *     @type string $account
+     *           Immutable. The resource name of the parent account
+     *           Format: accounts/{account_id}
+     *           Example: "accounts/123"
      * }
      */
     public function __construct($data = NULL) {
@@ -183,7 +203,7 @@ class Property extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -219,7 +239,7 @@ class Property extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -404,6 +424,32 @@ class Property extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. The Google Analytics service level that applies to this property.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ServiceLevel service_level = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getServiceLevel()
+    {
+        return $this->service_level;
+    }
+
+    /**
+     * Output only. The Google Analytics service level that applies to this property.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ServiceLevel service_level = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setServiceLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Analytics\Admin\V1alpha\ServiceLevel::class);
+        $this->service_level = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. If set, the time at which this property was trashed. If not set, then this
      * property is not currently in the trash can.
      *
@@ -412,7 +458,7 @@ class Property extends \Google\Protobuf\Internal\Message
      */
     public function getDeleteTime()
     {
-        return isset($this->delete_time) ? $this->delete_time : null;
+        return $this->delete_time;
     }
 
     public function hasDeleteTime()
@@ -451,7 +497,7 @@ class Property extends \Google\Protobuf\Internal\Message
      */
     public function getExpireTime()
     {
-        return isset($this->expire_time) ? $this->expire_time : null;
+        return $this->expire_time;
     }
 
     public function hasExpireTime()
@@ -477,6 +523,36 @@ class Property extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->expire_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The resource name of the parent account
+     * Format: accounts/{account_id}
+     * Example: "accounts/123"
+     *
+     * Generated from protobuf field <code>string account = 13 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAccount()
+    {
+        return $this->account;
+    }
+
+    /**
+     * Immutable. The resource name of the parent account
+     * Format: accounts/{account_id}
+     * Example: "accounts/123"
+     *
+     * Generated from protobuf field <code>string account = 13 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->account = $var;
 
         return $this;
     }

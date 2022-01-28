@@ -29,7 +29,7 @@ class AuditUserLink extends \Google\Protobuf\Internal\Message
     private $email_address = '';
     /**
      * Roles directly assigned to this user for this entity.
-     * Format: predefinedRoles/read
+     * Format: predefinedRoles/viewer
      * Excludes roles that are inherited from an account (if this is for a
      * property), group, or organization admin role.
      *
@@ -39,7 +39,7 @@ class AuditUserLink extends \Google\Protobuf\Internal\Message
     /**
      * Union of all permissions a user has at this account or property (includes
      * direct permissions, group-inherited permissions, etc.).
-     * Format: predefinedRoles/read
+     * Format: predefinedRoles/viewer
      *
      * Generated from protobuf field <code>repeated string effective_roles = 4;</code>
      */
@@ -57,13 +57,13 @@ class AuditUserLink extends \Google\Protobuf\Internal\Message
      *           Email address of the linked user
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $direct_roles
      *           Roles directly assigned to this user for this entity.
-     *           Format: predefinedRoles/read
+     *           Format: predefinedRoles/viewer
      *           Excludes roles that are inherited from an account (if this is for a
      *           property), group, or organization admin role.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $effective_roles
      *           Union of all permissions a user has at this account or property (includes
      *           direct permissions, group-inherited permissions, etc.).
-     *           Format: predefinedRoles/read
+     *           Format: predefinedRoles/viewer
      * }
      */
     public function __construct($data = NULL) {
@@ -125,7 +125,7 @@ class AuditUserLink extends \Google\Protobuf\Internal\Message
 
     /**
      * Roles directly assigned to this user for this entity.
-     * Format: predefinedRoles/read
+     * Format: predefinedRoles/viewer
      * Excludes roles that are inherited from an account (if this is for a
      * property), group, or organization admin role.
      *
@@ -139,7 +139,7 @@ class AuditUserLink extends \Google\Protobuf\Internal\Message
 
     /**
      * Roles directly assigned to this user for this entity.
-     * Format: predefinedRoles/read
+     * Format: predefinedRoles/viewer
      * Excludes roles that are inherited from an account (if this is for a
      * property), group, or organization admin role.
      *
@@ -158,7 +158,7 @@ class AuditUserLink extends \Google\Protobuf\Internal\Message
     /**
      * Union of all permissions a user has at this account or property (includes
      * direct permissions, group-inherited permissions, etc.).
-     * Format: predefinedRoles/read
+     * Format: predefinedRoles/viewer
      *
      * Generated from protobuf field <code>repeated string effective_roles = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -171,7 +171,7 @@ class AuditUserLink extends \Google\Protobuf\Internal\Message
     /**
      * Union of all permissions a user has at this account or property (includes
      * direct permissions, group-inherited permissions, etc.).
-     * Format: predefinedRoles/read
+     * Format: predefinedRoles/viewer
      *
      * Generated from protobuf field <code>repeated string effective_roles = 4;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
