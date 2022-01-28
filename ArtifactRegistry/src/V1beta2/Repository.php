@@ -65,6 +65,7 @@ class Repository extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string kms_key_name = 8;</code>
      */
     private $kms_key_name = '';
+    protected $format_config;
 
     /**
      * Constructor.
@@ -72,6 +73,9 @@ class Repository extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\ArtifactRegistry\V1beta2\Repository\MavenRepositoryConfig $maven_config
+     *           Maven repository config contains repository level configuration
+     *           for the repositories of maven type.
      *     @type string $name
      *           The name of the repository, for example:
      *           "projects/p1/locations/us-central1/repositories/repo1".
@@ -99,6 +103,39 @@ class Repository extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Devtools\Artifactregistry\V1Beta2\Repository::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Maven repository config contains repository level configuration
+     * for the repositories of maven type.
+     *
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1beta2.Repository.MavenRepositoryConfig maven_config = 9;</code>
+     * @return \Google\Cloud\ArtifactRegistry\V1beta2\Repository\MavenRepositoryConfig|null
+     */
+    public function getMavenConfig()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasMavenConfig()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Maven repository config contains repository level configuration
+     * for the repositories of maven type.
+     *
+     * Generated from protobuf field <code>.google.devtools.artifactregistry.v1beta2.Repository.MavenRepositoryConfig maven_config = 9;</code>
+     * @param \Google\Cloud\ArtifactRegistry\V1beta2\Repository\MavenRepositoryConfig $var
+     * @return $this
+     */
+    public function setMavenConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ArtifactRegistry\V1beta2\Repository\MavenRepositoryConfig::class);
+        $this->writeOneof(9, $var);
+
+        return $this;
     }
 
     /**
@@ -317,6 +354,14 @@ class Repository extends \Google\Protobuf\Internal\Message
         $this->kms_key_name = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormatConfig()
+    {
+        return $this->whichOneof("format_config");
     }
 
 }

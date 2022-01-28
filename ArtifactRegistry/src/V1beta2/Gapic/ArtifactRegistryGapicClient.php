@@ -28,11 +28,13 @@ namespace Google\Cloud\ArtifactRegistry\V1beta2\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 
+use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+
+use Google\ApiCore\PathTemplate;
+
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -47,9 +49,14 @@ use Google\Cloud\ArtifactRegistry\V1beta2\DeleteVersionRequest;
 use Google\Cloud\ArtifactRegistry\V1beta2\File;
 use Google\Cloud\ArtifactRegistry\V1beta2\GetFileRequest;
 use Google\Cloud\ArtifactRegistry\V1beta2\GetPackageRequest;
+use Google\Cloud\ArtifactRegistry\V1beta2\GetProjectSettingsRequest;
 use Google\Cloud\ArtifactRegistry\V1beta2\GetRepositoryRequest;
 use Google\Cloud\ArtifactRegistry\V1beta2\GetTagRequest;
 use Google\Cloud\ArtifactRegistry\V1beta2\GetVersionRequest;
+use Google\Cloud\ArtifactRegistry\V1beta2\ImportAptArtifactsGcsSource;
+use Google\Cloud\ArtifactRegistry\V1beta2\ImportAptArtifactsRequest;
+use Google\Cloud\ArtifactRegistry\V1beta2\ImportYumArtifactsGcsSource;
+use Google\Cloud\ArtifactRegistry\V1beta2\ImportYumArtifactsRequest;
 use Google\Cloud\ArtifactRegistry\V1beta2\ListFilesRequest;
 use Google\Cloud\ArtifactRegistry\V1beta2\ListFilesResponse;
 use Google\Cloud\ArtifactRegistry\V1beta2\ListPackagesRequest;
@@ -61,14 +68,16 @@ use Google\Cloud\ArtifactRegistry\V1beta2\ListTagsResponse;
 use Google\Cloud\ArtifactRegistry\V1beta2\ListVersionsRequest;
 use Google\Cloud\ArtifactRegistry\V1beta2\ListVersionsResponse;
 use Google\Cloud\ArtifactRegistry\V1beta2\Package;
+use Google\Cloud\ArtifactRegistry\V1beta2\ProjectSettings;
 use Google\Cloud\ArtifactRegistry\V1beta2\Repository;
 use Google\Cloud\ArtifactRegistry\V1beta2\Tag;
+use Google\Cloud\ArtifactRegistry\V1beta2\UpdateProjectSettingsRequest;
 use Google\Cloud\ArtifactRegistry\V1beta2\UpdateRepositoryRequest;
 use Google\Cloud\ArtifactRegistry\V1beta2\UpdateTagRequest;
 use Google\Cloud\ArtifactRegistry\V1beta2\Version;
+
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
-
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
@@ -98,7 +107,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $artifactRegistryClient = new ArtifactRegistryClient();
  * try {
- *     $operationResponse = $artifactRegistryClient->createRepository();
+ *     $formattedParent = $artifactRegistryClient->locationName('[PROJECT]', '[LOCATION]');
+ *     $operationResponse = $artifactRegistryClient->createRepository($formattedParent);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -109,7 +119,7 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $artifactRegistryClient->createRepository();
+ *     $operationResponse = $artifactRegistryClient->createRepository($formattedParent);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $artifactRegistryClient->resumeOperation($operationName, 'createRepository');
@@ -128,6 +138,11 @@ use Google\Protobuf\GPBEmpty;
  *     $artifactRegistryClient->close();
  * }
  * ```
+ *
+ * Many parameters require resource names to be formatted in a particular way. To
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
  *
  * @experimental
  */
@@ -163,6 +178,14 @@ class ArtifactRegistryGapicClient
         'https://www.googleapis.com/auth/cloud-platform.read-only',
     ];
 
+    private static $locationNameTemplate;
+
+    private static $projectSettingsNameTemplate;
+
+    private static $repositoryNameTemplate;
+
+    private static $pathTemplateMap;
+
     private $operationsClient;
 
     private static function getClientDefaults()
@@ -182,6 +205,148 @@ class ArtifactRegistryGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getLocationNameTemplate()
+    {
+        if (self::$locationNameTemplate == null) {
+            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+        }
+
+        return self::$locationNameTemplate;
+    }
+
+    private static function getProjectSettingsNameTemplate()
+    {
+        if (self::$projectSettingsNameTemplate == null) {
+            self::$projectSettingsNameTemplate = new PathTemplate('projects/{project}/projectSettings');
+        }
+
+        return self::$projectSettingsNameTemplate;
+    }
+
+    private static function getRepositoryNameTemplate()
+    {
+        if (self::$repositoryNameTemplate == null) {
+            self::$repositoryNameTemplate = new PathTemplate('projects/{project}/locations/{location}/repositories/{repository}');
+        }
+
+        return self::$repositoryNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'location' => self::getLocationNameTemplate(),
+                'projectSettings' => self::getProjectSettingsNameTemplate(),
+                'repository' => self::getRepositoryNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a location
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     *
+     * @experimental
+     */
+    public static function locationName($project, $location)
+    {
+        return self::getLocationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_settings resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_settings resource.
+     *
+     * @experimental
+     */
+    public static function projectSettingsName($project)
+    {
+        return self::getProjectSettingsNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a repository
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $repository
+     *
+     * @return string The formatted repository resource.
+     *
+     * @experimental
+     */
+    public static function repositoryName($project, $location, $repository)
+    {
+        return self::getRepositoryNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'repository' => $repository,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - location: projects/{project}/locations/{location}
+     * - projectSettings: projects/{project}/projectSettings
+     * - repository: projects/{project}/locations/{location}/repositories/{repository}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern,
+     * and must match one of the templates listed above. If no $template argument is
+     * provided, or if the $template argument does not match one of the templates
+     * listed, then parseName will check each of the supported templates, and return
+     * the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     *
+     * @experimental
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -291,7 +456,8 @@ class ArtifactRegistryGapicClient
      * ```
      * $artifactRegistryClient = new ArtifactRegistryClient();
      * try {
-     *     $operationResponse = $artifactRegistryClient->createRepository();
+     *     $formattedParent = $artifactRegistryClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $operationResponse = $artifactRegistryClient->createRepository($formattedParent);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -302,7 +468,7 @@ class ArtifactRegistryGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $artifactRegistryClient->createRepository();
+     *     $operationResponse = $artifactRegistryClient->createRepository($formattedParent);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $artifactRegistryClient->resumeOperation($operationName, 'createRepository');
@@ -322,11 +488,10 @@ class ArtifactRegistryGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the parent resource where the repository will be created.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           The name of the parent resource where the repository will be created.
      *     @type string $repositoryId
      *           The repository id to use for this repository.
      *     @type Repository $repository
@@ -344,15 +509,12 @@ class ArtifactRegistryGapicClient
      *
      * @experimental
      */
-    public function createRepository(array $optionalArgs = [])
+    public function createRepository($parent, array $optionalArgs = [])
     {
         $request = new CreateRepositoryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['repositoryId'])) {
             $request->setRepositoryId($optionalArgs['repositoryId']);
         }
@@ -501,7 +663,8 @@ class ArtifactRegistryGapicClient
      * ```
      * $artifactRegistryClient = new ArtifactRegistryClient();
      * try {
-     *     $operationResponse = $artifactRegistryClient->deleteRepository();
+     *     $formattedName = $artifactRegistryClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $operationResponse = $artifactRegistryClient->deleteRepository($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -511,7 +674,7 @@ class ArtifactRegistryGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $artifactRegistryClient->deleteRepository();
+     *     $operationResponse = $artifactRegistryClient->deleteRepository($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $artifactRegistryClient->resumeOperation($operationName, 'deleteRepository');
@@ -530,11 +693,10 @@ class ArtifactRegistryGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the repository to delete.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           The name of the repository to delete.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -548,15 +710,12 @@ class ArtifactRegistryGapicClient
      *
      * @experimental
      */
-    public function deleteRepository(array $optionalArgs = [])
+    public function deleteRepository($name, array $optionalArgs = [])
     {
         $request = new DeleteRepositoryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteRepository', $optionalArgs, $request, $this->getOperationsClient())->wait();
@@ -822,23 +981,65 @@ class ArtifactRegistryGapicClient
     }
 
     /**
+     * Retrieves the Settings for the Project.
+     *
+     * Sample code:
+     * ```
+     * $artifactRegistryClient = new ArtifactRegistryClient();
+     * try {
+     *     $formattedName = $artifactRegistryClient->projectSettingsName('[PROJECT]');
+     *     $response = $artifactRegistryClient->getProjectSettings($formattedName);
+     * } finally {
+     *     $artifactRegistryClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the projectSettings resource.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\ArtifactRegistry\V1beta2\ProjectSettings
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getProjectSettings($name, array $optionalArgs = [])
+    {
+        $request = new GetProjectSettingsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetProjectSettings', ProjectSettings::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Gets a repository.
      *
      * Sample code:
      * ```
      * $artifactRegistryClient = new ArtifactRegistryClient();
      * try {
-     *     $response = $artifactRegistryClient->getRepository();
+     *     $formattedName = $artifactRegistryClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+     *     $response = $artifactRegistryClient->getRepository($formattedName);
      * } finally {
      *     $artifactRegistryClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $name         Required. The name of the repository to retrieve.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $name
-     *           The name of the repository to retrieve.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -852,15 +1053,12 @@ class ArtifactRegistryGapicClient
      *
      * @experimental
      */
-    public function getRepository(array $optionalArgs = [])
+    public function getRepository($name, array $optionalArgs = [])
     {
         $request = new GetRepositoryRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetRepository', Repository::class, $optionalArgs, $request)->wait();
@@ -961,6 +1159,164 @@ class ArtifactRegistryGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetVersion', Version::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Imports Apt artifacts. The returned Operation will complete once the
+     * resources are imported. Package, Version, and File resources are created
+     * based on the imported artifacts. Imported artifacts that conflict with
+     * existing resources are ignored.
+     *
+     * Sample code:
+     * ```
+     * $artifactRegistryClient = new ArtifactRegistryClient();
+     * try {
+     *     $operationResponse = $artifactRegistryClient->importAptArtifacts();
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $artifactRegistryClient->importAptArtifacts();
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $artifactRegistryClient->resumeOperation($operationName, 'importAptArtifacts');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $artifactRegistryClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type ImportAptArtifactsGcsSource $gcsSource
+     *           Google Cloud Storage location where input content is located.
+     *     @type string $parent
+     *           The name of the parent resource where the artifacts will be imported.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function importAptArtifacts(array $optionalArgs = [])
+    {
+        $request = new ImportAptArtifactsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['gcsSource'])) {
+            $request->setGcsSource($optionalArgs['gcsSource']);
+        }
+
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ImportAptArtifacts', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Imports Yum (RPM) artifacts. The returned Operation will complete once the
+     * resources are imported. Package, Version, and File resources are created
+     * based on the imported artifacts. Imported artifacts that conflict with
+     * existing resources are ignored.
+     *
+     * Sample code:
+     * ```
+     * $artifactRegistryClient = new ArtifactRegistryClient();
+     * try {
+     *     $operationResponse = $artifactRegistryClient->importYumArtifacts();
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $artifactRegistryClient->importYumArtifacts();
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $artifactRegistryClient->resumeOperation($operationName, 'importYumArtifacts');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $artifactRegistryClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type ImportYumArtifactsGcsSource $gcsSource
+     *           Google Cloud Storage location where input content is located.
+     *     @type string $parent
+     *           The name of the parent resource where the artifacts will be imported.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function importYumArtifacts(array $optionalArgs = [])
+    {
+        $request = new ImportYumArtifactsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['gcsSource'])) {
+            $request->setGcsSource($optionalArgs['gcsSource']);
+        }
+
+        if (isset($optionalArgs['parent'])) {
+            $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ImportYumArtifacts', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -1135,8 +1491,9 @@ class ArtifactRegistryGapicClient
      * ```
      * $artifactRegistryClient = new ArtifactRegistryClient();
      * try {
+     *     $formattedParent = $artifactRegistryClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $artifactRegistryClient->listRepositories();
+     *     $pagedResponse = $artifactRegistryClient->listRepositories($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1144,7 +1501,7 @@ class ArtifactRegistryGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $artifactRegistryClient->listRepositories();
+     *     $pagedResponse = $artifactRegistryClient->listRepositories($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1153,11 +1510,10 @@ class ArtifactRegistryGapicClient
      * }
      * ```
      *
-     * @param array $optionalArgs {
+     * @param string $parent       Required. The name of the parent resource whose repositories will be listed.
+     * @param array  $optionalArgs {
      *     Optional.
      *
-     *     @type string $parent
-     *           The name of the parent resource whose repositories will be listed.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1180,15 +1536,12 @@ class ArtifactRegistryGapicClient
      *
      * @experimental
      */
-    public function listRepositories(array $optionalArgs = [])
+    public function listRepositories($parent, array $optionalArgs = [])
     {
         $request = new ListRepositoriesRequest();
         $requestParamHeaders = [];
-        if (isset($optionalArgs['parent'])) {
-            $request->setParent($optionalArgs['parent']);
-            $requestParamHeaders['parent'] = $optionalArgs['parent'];
-        }
-
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1332,6 +1685,8 @@ class ArtifactRegistryGapicClient
      *     @type int $view
      *           The view that should be returned in the response.
      *           For allowed values, use constants defined on {@see \Google\Cloud\ArtifactRegistry\V1beta2\VersionView}
+     *     @type string $orderBy
+     *           Optional. The field to order the results by.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1364,6 +1719,10 @@ class ArtifactRegistryGapicClient
 
         if (isset($optionalArgs['view'])) {
             $request->setView($optionalArgs['view']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1467,6 +1826,56 @@ class ArtifactRegistryGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates the Settings for the Project.
+     *
+     * Sample code:
+     * ```
+     * $artifactRegistryClient = new ArtifactRegistryClient();
+     * try {
+     *     $response = $artifactRegistryClient->updateProjectSettings();
+     * } finally {
+     *     $artifactRegistryClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type ProjectSettings $projectSettings
+     *           The project settings.
+     *     @type FieldMask $updateMask
+     *           Field mask to support partial updates.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\ArtifactRegistry\V1beta2\ProjectSettings
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateProjectSettings(array $optionalArgs = [])
+    {
+        $request = new UpdateProjectSettingsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['projectSettings'])) {
+            $request->setProjectSettings($optionalArgs['projectSettings']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateProjectSettings', ProjectSettings::class, $optionalArgs, $request)->wait();
     }
 
     /**
