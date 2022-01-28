@@ -118,11 +118,11 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      * vary.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration start_time = 1;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -164,11 +164,11 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      * vary.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration end_time = 2;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()

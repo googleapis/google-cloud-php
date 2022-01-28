@@ -27,6 +27,11 @@ use Google\Protobuf\Internal\GPBUtil;
  * resources and inline classes. Then use the class' id wrapped in $`{...}`
  * e.g. "${my-months}". To refer to custom classes resources, use the class'
  * id wrapped in `${}` (e.g. `${my-months}`).
+ * Speech-to-Text supports three locations: `global`, `us` (US North America),
+ * and `eu` (Europe). If you are calling the `speech.googleapis.com`
+ * endpoint, use the `global` location. To specify a region, use a
+ * [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
+ * `eu` location value.
  *
  * Generated from protobuf message <code>google.cloud.speech.v1p1beta1.PhraseSet.Phrase</code>
  */
@@ -43,9 +48,8 @@ class Phrase extends \Google\Protobuf\Internal\Message
      * Positive value will increase the probability that a specific phrase will
      * be recognized over other similar sounding phrases. The higher the boost,
      * the higher the chance of false positive recognition as well. Negative
-     * boost values would correspond to anti-biasing. Anti-biasing is not
-     * enabled, so negative boost will simply be ignored. Though `boost` can
-     * accept a wide range of positive values, most use cases are best served
+     * boost will simply be ignored. Though `boost` can accept a wide range of
+     * positive values, most use cases are best served
      * with values between 0 and 20. We recommend using a binary search approach
      * to finding the optimal value for your use case. Speech recognition
      * will skip PhraseSets with a boost value of 0.
@@ -67,9 +71,8 @@ class Phrase extends \Google\Protobuf\Internal\Message
      *           Positive value will increase the probability that a specific phrase will
      *           be recognized over other similar sounding phrases. The higher the boost,
      *           the higher the chance of false positive recognition as well. Negative
-     *           boost values would correspond to anti-biasing. Anti-biasing is not
-     *           enabled, so negative boost will simply be ignored. Though `boost` can
-     *           accept a wide range of positive values, most use cases are best served
+     *           boost will simply be ignored. Though `boost` can accept a wide range of
+     *           positive values, most use cases are best served
      *           with values between 0 and 20. We recommend using a binary search approach
      *           to finding the optimal value for your use case. Speech recognition
      *           will skip PhraseSets with a boost value of 0.
@@ -111,9 +114,8 @@ class Phrase extends \Google\Protobuf\Internal\Message
      * Positive value will increase the probability that a specific phrase will
      * be recognized over other similar sounding phrases. The higher the boost,
      * the higher the chance of false positive recognition as well. Negative
-     * boost values would correspond to anti-biasing. Anti-biasing is not
-     * enabled, so negative boost will simply be ignored. Though `boost` can
-     * accept a wide range of positive values, most use cases are best served
+     * boost will simply be ignored. Though `boost` can accept a wide range of
+     * positive values, most use cases are best served
      * with values between 0 and 20. We recommend using a binary search approach
      * to finding the optimal value for your use case. Speech recognition
      * will skip PhraseSets with a boost value of 0.
@@ -131,9 +133,8 @@ class Phrase extends \Google\Protobuf\Internal\Message
      * Positive value will increase the probability that a specific phrase will
      * be recognized over other similar sounding phrases. The higher the boost,
      * the higher the chance of false positive recognition as well. Negative
-     * boost values would correspond to anti-biasing. Anti-biasing is not
-     * enabled, so negative boost will simply be ignored. Though `boost` can
-     * accept a wide range of positive values, most use cases are best served
+     * boost will simply be ignored. Though `boost` can accept a wide range of
+     * positive values, most use cases are best served
      * with values between 0 and 20. We recommend using a binary search approach
      * to finding the optimal value for your use case. Speech recognition
      * will skip PhraseSets with a boost value of 0.

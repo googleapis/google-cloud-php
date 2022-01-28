@@ -29,6 +29,12 @@ class LongRunningRecognizeRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionAudio audio = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $audio = null;
+    /**
+     * Optional. Specifies an optional destination for the recognition results.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1.TranscriptOutputConfig output_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $output_config = null;
 
     /**
      * Constructor.
@@ -41,6 +47,8 @@ class LongRunningRecognizeRequest extends \Google\Protobuf\Internal\Message
      *           process the request.
      *     @type \Google\Cloud\Speech\V1\RecognitionAudio $audio
      *           Required. The audio data to be recognized.
+     *     @type \Google\Cloud\Speech\V1\TranscriptOutputConfig $output_config
+     *           Optional. Specifies an optional destination for the recognition results.
      * }
      */
     public function __construct($data = NULL) {
@@ -53,11 +61,11 @@ class LongRunningRecognizeRequest extends \Google\Protobuf\Internal\Message
      * process the request.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionConfig config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Speech\V1\RecognitionConfig
+     * @return \Google\Cloud\Speech\V1\RecognitionConfig|null
      */
     public function getConfig()
     {
-        return isset($this->config) ? $this->config : null;
+        return $this->config;
     }
 
     public function hasConfig()
@@ -90,11 +98,11 @@ class LongRunningRecognizeRequest extends \Google\Protobuf\Internal\Message
      * Required. The audio data to be recognized.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionAudio audio = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Speech\V1\RecognitionAudio
+     * @return \Google\Cloud\Speech\V1\RecognitionAudio|null
      */
     public function getAudio()
     {
-        return isset($this->audio) ? $this->audio : null;
+        return $this->audio;
     }
 
     public function hasAudio()
@@ -118,6 +126,42 @@ class LongRunningRecognizeRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Speech\V1\RecognitionAudio::class);
         $this->audio = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies an optional destination for the recognition results.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1.TranscriptOutputConfig output_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Speech\V1\TranscriptOutputConfig|null
+     */
+    public function getOutputConfig()
+    {
+        return $this->output_config;
+    }
+
+    public function hasOutputConfig()
+    {
+        return isset($this->output_config);
+    }
+
+    public function clearOutputConfig()
+    {
+        unset($this->output_config);
+    }
+
+    /**
+     * Optional. Specifies an optional destination for the recognition results.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1.TranscriptOutputConfig output_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Speech\V1\TranscriptOutputConfig $var
+     * @return $this
+     */
+    public function setOutputConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V1\TranscriptOutputConfig::class);
+        $this->output_config = $var;
 
         return $this;
     }
