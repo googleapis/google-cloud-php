@@ -1,0 +1,1 @@
+{"id":"analyticsadmin\/v1alpha\/linkproposalstate","type":"","title":"Google\\Analytics\\Admin\\V1alpha\\LinkProposalState","name":"LinkProposalState","description":"<p>The state of a link proposal resource.<\/p>\n<p>Protobuf type <code>google.analytics.admin.v1alpha.LinkProposalState<\/code><\/p>","examples":[],"resources":[],"methods":[]}
