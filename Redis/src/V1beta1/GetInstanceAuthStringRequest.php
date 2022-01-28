@@ -9,11 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for [Failover][google.cloud.redis.v1beta1.CloudRedis.FailoverInstance].
+ * Request for [GetInstanceAuthString][google.cloud.redis.v1beta1.CloudRedis.GetInstanceAuthString].
  *
- * Generated from protobuf message <code>google.cloud.redis.v1beta1.FailoverInstanceRequest</code>
+ * Generated from protobuf message <code>google.cloud.redis.v1beta1.GetInstanceAuthStringRequest</code>
  */
-class FailoverInstanceRequest extends \Google\Protobuf\Internal\Message
+class GetInstanceAuthStringRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Redis instance resource name using the form:
@@ -23,13 +23,6 @@ class FailoverInstanceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
-    /**
-     * Optional. Available data protection modes that the user can choose. If it's
-     * unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
-     *
-     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.FailoverInstanceRequest.DataProtectionMode data_protection_mode = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    private $data_protection_mode = 0;
 
     /**
      * Constructor.
@@ -41,9 +34,6 @@ class FailoverInstanceRequest extends \Google\Protobuf\Internal\Message
      *           Required. Redis instance resource name using the form:
      *               `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
      *           where `location_id` refers to a GCP region.
-     *     @type int $data_protection_mode
-     *           Optional. Available data protection modes that the user can choose. If it's
-     *           unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,34 +67,6 @@ class FailoverInstanceRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. Available data protection modes that the user can choose. If it's
-     * unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
-     *
-     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.FailoverInstanceRequest.DataProtectionMode data_protection_mode = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return int
-     */
-    public function getDataProtectionMode()
-    {
-        return $this->data_protection_mode;
-    }
-
-    /**
-     * Optional. Available data protection modes that the user can choose. If it's
-     * unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
-     *
-     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.FailoverInstanceRequest.DataProtectionMode data_protection_mode = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setDataProtectionMode($var)
-    {
-        GPBUtil::checkEnum($var, \Google\Cloud\Redis\V1beta1\FailoverInstanceRequest\DataProtectionMode::class);
-        $this->data_protection_mode = $var;
 
         return $this;
     }
