@@ -1,1 +1,1 @@
-{"id":"sqladmin\/v1beta4\/sqlflagtype","type":"","title":"Google\\Cloud\\Sql\\V1beta4\\SqlFlagType","name":"SqlFlagType","description":"<p>LINT.IfChange(sql_flag_type)<\/p>\n<p>Protobuf type <code>google.cloud.sql.v1beta4.SqlFlagType<\/code><\/p>","examples":[],"resources":[],"methods":[]}
+{"id":"sqladmin\/v1beta4\/sqlflagtype","type":"","title":"Google\\Cloud\\Sql\\V1beta4\\SqlFlagType","name":"SqlFlagType","description":"<p>Protobuf type <code>google.cloud.sql.v1beta4.SqlFlagType<\/code><\/p>","examples":[],"resources":[],"methods":[]}
