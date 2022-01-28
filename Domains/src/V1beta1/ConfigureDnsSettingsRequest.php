@@ -31,12 +31,12 @@ class ConfigureDnsSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The field mask describing which fields to update as a comma-separated list.
      * For example, if only the name servers are being updated for an existing
-     * Custom DNS configuration, the `update_mask` would be
+     * Custom DNS configuration, the `update_mask` is
      * `"custom_dns.name_servers"`.
      * When changing the DNS provider from one type to another, pass the new
      * provider's field name as part of the field mask. For example, when changing
      * from a Google Domains DNS configuration to a Custom DNS configuration, the
-     * `update_mask` would be `"custom_dns"`. //
+     * `update_mask` is `"custom_dns"`. //
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -62,12 +62,12 @@ class ConfigureDnsSettingsRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The field mask describing which fields to update as a comma-separated list.
      *           For example, if only the name servers are being updated for an existing
-     *           Custom DNS configuration, the `update_mask` would be
+     *           Custom DNS configuration, the `update_mask` is
      *           `"custom_dns.name_servers"`.
      *           When changing the DNS provider from one type to another, pass the new
      *           provider's field name as part of the field mask. For example, when changing
      *           from a Google Domains DNS configuration to a Custom DNS configuration, the
-     *           `update_mask` would be `"custom_dns"`. //
+     *           `update_mask` is `"custom_dns"`. //
      *     @type bool $validate_only
      *           Validate the request without actually updating the DNS settings.
      * }
@@ -113,7 +113,7 @@ class ConfigureDnsSettingsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDnsSettings()
     {
-        return isset($this->dns_settings) ? $this->dns_settings : null;
+        return $this->dns_settings;
     }
 
     public function hasDnsSettings()
@@ -144,19 +144,19 @@ class ConfigureDnsSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The field mask describing which fields to update as a comma-separated list.
      * For example, if only the name servers are being updated for an existing
-     * Custom DNS configuration, the `update_mask` would be
+     * Custom DNS configuration, the `update_mask` is
      * `"custom_dns.name_servers"`.
      * When changing the DNS provider from one type to another, pass the new
      * provider's field name as part of the field mask. For example, when changing
      * from a Google Domains DNS configuration to a Custom DNS configuration, the
-     * `update_mask` would be `"custom_dns"`. //
+     * `update_mask` is `"custom_dns"`. //
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -172,12 +172,12 @@ class ConfigureDnsSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The field mask describing which fields to update as a comma-separated list.
      * For example, if only the name servers are being updated for an existing
-     * Custom DNS configuration, the `update_mask` would be
+     * Custom DNS configuration, the `update_mask` is
      * `"custom_dns.name_servers"`.
      * When changing the DNS provider from one type to another, pass the new
      * provider's field name as part of the field mask. For example, when changing
      * from a Google Domains DNS configuration to a Custom DNS configuration, the
-     * `update_mask` would be `"custom_dns"`. //
+     * `update_mask` is `"custom_dns"`. //
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

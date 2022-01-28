@@ -31,14 +31,14 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The field mask describing which fields to update as a comma-separated list.
      * For example, if only the registrant contact is being updated, the
-     * `update_mask` would be `"registrant_contact"`.
+     * `update_mask` is `"registrant_contact"`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
     /**
      * The list of contact notices that the caller acknowledges. The notices
-     * required here depend on the values specified in `contact_settings`.
+     * needed here depend on the values specified in `contact_settings`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.ContactNotice contact_notices = 4;</code>
      */
@@ -64,10 +64,10 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The field mask describing which fields to update as a comma-separated list.
      *           For example, if only the registrant contact is being updated, the
-     *           `update_mask` would be `"registrant_contact"`.
+     *           `update_mask` is `"registrant_contact"`.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $contact_notices
      *           The list of contact notices that the caller acknowledges. The notices
-     *           required here depend on the values specified in `contact_settings`.
+     *           needed here depend on the values specified in `contact_settings`.
      *     @type bool $validate_only
      *           Validate the request without actually updating the contact settings.
      * }
@@ -113,7 +113,7 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getContactSettings()
     {
-        return isset($this->contact_settings) ? $this->contact_settings : null;
+        return $this->contact_settings;
     }
 
     public function hasContactSettings()
@@ -144,14 +144,14 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The field mask describing which fields to update as a comma-separated list.
      * For example, if only the registrant contact is being updated, the
-     * `update_mask` would be `"registrant_contact"`.
+     * `update_mask` is `"registrant_contact"`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -167,7 +167,7 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The field mask describing which fields to update as a comma-separated list.
      * For example, if only the registrant contact is being updated, the
-     * `update_mask` would be `"registrant_contact"`.
+     * `update_mask` is `"registrant_contact"`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
@@ -183,7 +183,7 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of contact notices that the caller acknowledges. The notices
-     * required here depend on the values specified in `contact_settings`.
+     * needed here depend on the values specified in `contact_settings`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.ContactNotice contact_notices = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -195,7 +195,7 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of contact notices that the caller acknowledges. The notices
-     * required here depend on the values specified in `contact_settings`.
+     * needed here depend on the values specified in `contact_settings`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.ContactNotice contact_notices = 4;</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var

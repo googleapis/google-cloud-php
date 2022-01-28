@@ -31,7 +31,7 @@ class Issue
      * verify the email address, follow the
      * instructions in the email the `registrant_contact` receives following
      * registration. If you do not complete email verification within
-     * 14 days of registration, the domain is suspended. To resend the
+     * 15 days of registration, the domain is suspended. To resend the
      * verification email, call ConfigureContactSettings and provide the current
      * `registrant_contact.email`.
      *
@@ -66,6 +66,4 @@ class Issue
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Issue::class, \Google\Cloud\Domains\V1beta1\Registration_Issue::class);
 

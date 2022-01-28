@@ -21,8 +21,8 @@ class RenewalMethod
     const RENEWAL_METHOD_UNSPECIFIED = 0;
     /**
      * The domain is automatically renewed each year .
-     * To disable automatic renewals, export the domain by calling
-     * `ExportRegistration` .
+     * To disable automatic renewals, delete the resource by calling
+     * `DeleteRegistration` or export it by calling `ExportRegistration`.
      *
      * Generated from protobuf enum <code>AUTOMATIC_RENEWAL = 1;</code>
      */
@@ -65,6 +65,4 @@ class RenewalMethod
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RenewalMethod::class, \Google\Cloud\Domains\V1beta1\ManagementSettings_RenewalMethod::class);
 

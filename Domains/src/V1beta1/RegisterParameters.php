@@ -189,7 +189,7 @@ class RegisterParameters extends \Google\Protobuf\Internal\Message
      */
     public function getYearlyPrice()
     {
-        return isset($this->yearly_price) ? $this->yearly_price : null;
+        return $this->yearly_price;
     }
 
     public function hasYearlyPrice()
