@@ -111,7 +111,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getLabelDetectionConfig()
     {
-        return isset($this->label_detection_config) ? $this->label_detection_config : null;
+        return $this->label_detection_config;
     }
 
     public function hasLabelDetectionConfig()
@@ -147,7 +147,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getShotChangeDetectionConfig()
     {
-        return isset($this->shot_change_detection_config) ? $this->shot_change_detection_config : null;
+        return $this->shot_change_detection_config;
     }
 
     public function hasShotChangeDetectionConfig()
@@ -183,7 +183,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getExplicitContentDetectionConfig()
     {
-        return isset($this->explicit_content_detection_config) ? $this->explicit_content_detection_config : null;
+        return $this->explicit_content_detection_config;
     }
 
     public function hasExplicitContentDetectionConfig()
@@ -219,7 +219,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getFaceDetectionConfig()
     {
-        return isset($this->face_detection_config) ? $this->face_detection_config : null;
+        return $this->face_detection_config;
     }
 
     public function hasFaceDetectionConfig()
