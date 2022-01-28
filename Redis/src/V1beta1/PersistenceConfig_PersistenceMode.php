@@ -12,5 +12,5 @@ if (false) {
     class PersistenceConfig_PersistenceMode {}
 }
 class_exists(PersistenceConfig\PersistenceMode::class);
-@trigger_error('Google\Cloud\Redis\V1beta1\PersistenceConfig_PersistenceMode is deprecated and will be removed in the next major release. Use Google\Cloud\Redis\V1beta1\PersistenceConfig\PersistenceMode instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Redis\V1beta1\PersistenceConfig_PersistenceMode is deprecated and will be removed in a future release. Use Google\Cloud\Redis\V1beta1\PersistenceConfig\PersistenceMode instead', E_USER_DEPRECATED);
 

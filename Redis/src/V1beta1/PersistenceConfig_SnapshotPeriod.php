@@ -12,5 +12,5 @@ if (false) {
     class PersistenceConfig_SnapshotPeriod {}
 }
 class_exists(PersistenceConfig\SnapshotPeriod::class);
-@trigger_error('Google\Cloud\Redis\V1beta1\PersistenceConfig_SnapshotPeriod is deprecated and will be removed in the next major release. Use Google\Cloud\Redis\V1beta1\PersistenceConfig\SnapshotPeriod instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Redis\V1beta1\PersistenceConfig_SnapshotPeriod is deprecated and will be removed in a future release. Use Google\Cloud\Redis\V1beta1\PersistenceConfig\SnapshotPeriod instead', E_USER_DEPRECATED);
 

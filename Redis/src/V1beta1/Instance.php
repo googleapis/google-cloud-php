@@ -256,6 +256,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.redis.v1beta1.Instance.ReadReplicasMode read_replicas_mode = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $read_replicas_mode = 0;
+    /**
+     * Optional. Persistence configuration parameters
+     *
+     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.PersistenceConfig persistence_config = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $persistence_config = null;
 
     /**
      * Constructor.
@@ -388,6 +394,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type int $read_replicas_mode
      *           Optional. Read replica mode. Can only be specified when trying to create the
      *           instance.
+     *     @type \Google\Cloud\Redis\V1beta1\PersistenceConfig $persistence_config
+     *           Optional. Persistence configuration parameters
      * }
      */
     public function __construct($data = NULL) {
@@ -1309,6 +1317,42 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Redis\V1beta1\Instance\ReadReplicasMode::class);
         $this->read_replicas_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Persistence configuration parameters
+     *
+     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.PersistenceConfig persistence_config = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Redis\V1beta1\PersistenceConfig|null
+     */
+    public function getPersistenceConfig()
+    {
+        return $this->persistence_config;
+    }
+
+    public function hasPersistenceConfig()
+    {
+        return isset($this->persistence_config);
+    }
+
+    public function clearPersistenceConfig()
+    {
+        unset($this->persistence_config);
+    }
+
+    /**
+     * Optional. Persistence configuration parameters
+     *
+     * Generated from protobuf field <code>.google.cloud.redis.v1beta1.PersistenceConfig persistence_config = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Redis\V1beta1\PersistenceConfig $var
+     * @return $this
+     */
+    public function setPersistenceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Redis\V1beta1\PersistenceConfig::class);
+        $this->persistence_config = $var;
 
         return $this;
     }
