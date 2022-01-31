@@ -52,11 +52,16 @@ class ServiceLevelIndicator extends \Google\Protobuf\Internal\Message
      * Basic SLI on a well-known service type.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.BasicSli basic_sli = 4;</code>
-     * @return \Google\Cloud\Monitoring\V3\BasicSli
+     * @return \Google\Cloud\Monitoring\V3\BasicSli|null
      */
     public function getBasicSli()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasBasicSli()
+    {
+        return $this->hasOneof(4);
     }
 
     /**
@@ -78,11 +83,16 @@ class ServiceLevelIndicator extends \Google\Protobuf\Internal\Message
      * Request-based SLIs
      *
      * Generated from protobuf field <code>.google.monitoring.v3.RequestBasedSli request_based = 1;</code>
-     * @return \Google\Cloud\Monitoring\V3\RequestBasedSli
+     * @return \Google\Cloud\Monitoring\V3\RequestBasedSli|null
      */
     public function getRequestBased()
     {
         return $this->readOneof(1);
+    }
+
+    public function hasRequestBased()
+    {
+        return $this->hasOneof(1);
     }
 
     /**
@@ -104,11 +114,16 @@ class ServiceLevelIndicator extends \Google\Protobuf\Internal\Message
      * Windows-based SLIs
      *
      * Generated from protobuf field <code>.google.monitoring.v3.WindowsBasedSli windows_based = 2;</code>
-     * @return \Google\Cloud\Monitoring\V3\WindowsBasedSli
+     * @return \Google\Cloud\Monitoring\V3\WindowsBasedSli|null
      */
     public function getWindowsBased()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasWindowsBased()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

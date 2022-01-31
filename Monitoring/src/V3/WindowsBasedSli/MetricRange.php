@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A `MetricRange` is used when each window is good when the value x of a
- * single `TimeSeries` satisfies `range.min <= x < range.max`. The provided
+ * single `TimeSeries` satisfies `range.min <= x <= range.max`. The provided
  * `TimeSeries` must have `ValueType = INT64` or `ValueType = DOUBLE` and
  * `MetricKind = GAUGE`.
  *
@@ -85,11 +85,21 @@ class MetricRange extends \Google\Protobuf\Internal\Message
      * to an infinite value.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Range range = 4;</code>
-     * @return \Google\Cloud\Monitoring\V3\Range
+     * @return \Google\Cloud\Monitoring\V3\Range|null
      */
     public function getRange()
     {
         return $this->range;
+    }
+
+    public function hasRange()
+    {
+        return isset($this->range);
+    }
+
+    public function clearRange()
+    {
+        unset($this->range);
     }
 
     /**

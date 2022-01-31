@@ -260,7 +260,7 @@ class InternalChecker extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\InternalChecker_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\InternalChecker\State::class);
         $this->state = $var;
 
         return $this;

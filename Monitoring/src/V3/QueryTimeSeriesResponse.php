@@ -73,11 +73,21 @@ class QueryTimeSeriesResponse extends \Google\Protobuf\Internal\Message
      * The descriptor for the time series data.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TimeSeriesDescriptor time_series_descriptor = 8;</code>
-     * @return \Google\Cloud\Monitoring\V3\TimeSeriesDescriptor
+     * @return \Google\Cloud\Monitoring\V3\TimeSeriesDescriptor|null
      */
     public function getTimeSeriesDescriptor()
     {
         return $this->time_series_descriptor;
+    }
+
+    public function hasTimeSeriesDescriptor()
+    {
+        return isset($this->time_series_descriptor);
+    }
+
+    public function clearTimeSeriesDescriptor()
+    {
+        unset($this->time_series_descriptor);
     }
 
     /**

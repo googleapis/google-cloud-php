@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project in which to create the Uptime check. The format is:
+     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
+     * which to create the Uptime check. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -36,7 +37,8 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The project in which to create the Uptime check. The format is:
+     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
+     *           which to create the Uptime check. The format is:
      *               projects/[PROJECT_ID_OR_NUMBER]
      *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig $uptime_check_config
      *           Required. The new Uptime check configuration.
@@ -48,7 +50,8 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project in which to create the Uptime check. The format is:
+     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
+     * which to create the Uptime check. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -60,7 +63,8 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project in which to create the Uptime check. The format is:
+     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
+     * which to create the Uptime check. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -79,11 +83,21 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      * Required. The new Uptime check configuration.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig
+     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig|null
      */
     public function getUptimeCheckConfig()
     {
         return $this->uptime_check_config;
+    }
+
+    public function hasUptimeCheckConfig()
+    {
+        return isset($this->uptime_check_config);
+    }
+
+    public function clearUptimeCheckConfig()
+    {
+        unset($this->uptime_check_config);
     }
 
     /**

@@ -19,14 +19,16 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      * DEPRECATED. Time series ID that resulted in the `status` error.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TimeSeries time_series = 1 [deprecated = true];</code>
+     * @deprecated
      */
-    private $time_series = null;
+    protected $time_series = null;
     /**
      * DEPRECATED. The status of the requested write operation for `time_series`.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2 [deprecated = true];</code>
+     * @deprecated
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.
@@ -49,11 +51,25 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      * DEPRECATED. Time series ID that resulted in the `status` error.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TimeSeries time_series = 1 [deprecated = true];</code>
-     * @return \Google\Cloud\Monitoring\V3\TimeSeries
+     * @return \Google\Cloud\Monitoring\V3\TimeSeries|null
+     * @deprecated
      */
     public function getTimeSeries()
     {
+        @trigger_error('time_series is deprecated.', E_USER_DEPRECATED);
         return $this->time_series;
+    }
+
+    public function hasTimeSeries()
+    {
+        @trigger_error('time_series is deprecated.', E_USER_DEPRECATED);
+        return isset($this->time_series);
+    }
+
+    public function clearTimeSeries()
+    {
+        @trigger_error('time_series is deprecated.', E_USER_DEPRECATED);
+        unset($this->time_series);
     }
 
     /**
@@ -62,9 +78,11 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.monitoring.v3.TimeSeries time_series = 1 [deprecated = true];</code>
      * @param \Google\Cloud\Monitoring\V3\TimeSeries $var
      * @return $this
+     * @deprecated
      */
     public function setTimeSeries($var)
     {
+        @trigger_error('time_series is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\TimeSeries::class);
         $this->time_series = $var;
 
@@ -75,11 +93,25 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      * DEPRECATED. The status of the requested write operation for `time_series`.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2 [deprecated = true];</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
+     * @deprecated
      */
     public function getStatus()
     {
+        @trigger_error('status is deprecated.', E_USER_DEPRECATED);
         return $this->status;
+    }
+
+    public function hasStatus()
+    {
+        @trigger_error('status is deprecated.', E_USER_DEPRECATED);
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        @trigger_error('status is deprecated.', E_USER_DEPRECATED);
+        unset($this->status);
     }
 
     /**
@@ -88,9 +120,11 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.rpc.Status status = 2 [deprecated = true];</code>
      * @param \Google\Rpc\Status $var
      * @return $this
+     * @deprecated
      */
     public function setStatus($var)
     {
+        @trigger_error('status is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
         $this->status = $var;
 

@@ -1,0 +1,307 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.monitoring.v3",
+    "libraryPackage": "Google\\Cloud\\Monitoring\\V3",
+    "services": {
+        "AlertPolicyService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AlertPolicyServiceGapicClient",
+                    "rpcs": {
+                        "CreateAlertPolicy": {
+                            "methods": [
+                                "createAlertPolicy"
+                            ]
+                        },
+                        "DeleteAlertPolicy": {
+                            "methods": [
+                                "deleteAlertPolicy"
+                            ]
+                        },
+                        "GetAlertPolicy": {
+                            "methods": [
+                                "getAlertPolicy"
+                            ]
+                        },
+                        "ListAlertPolicies": {
+                            "methods": [
+                                "listAlertPolicies"
+                            ]
+                        },
+                        "UpdateAlertPolicy": {
+                            "methods": [
+                                "updateAlertPolicy"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "GroupService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GroupServiceGapicClient",
+                    "rpcs": {
+                        "CreateGroup": {
+                            "methods": [
+                                "createGroup"
+                            ]
+                        },
+                        "DeleteGroup": {
+                            "methods": [
+                                "deleteGroup"
+                            ]
+                        },
+                        "GetGroup": {
+                            "methods": [
+                                "getGroup"
+                            ]
+                        },
+                        "ListGroupMembers": {
+                            "methods": [
+                                "listGroupMembers"
+                            ]
+                        },
+                        "ListGroups": {
+                            "methods": [
+                                "listGroups"
+                            ]
+                        },
+                        "UpdateGroup": {
+                            "methods": [
+                                "updateGroup"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "MetricService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "MetricServiceGapicClient",
+                    "rpcs": {
+                        "CreateMetricDescriptor": {
+                            "methods": [
+                                "createMetricDescriptor"
+                            ]
+                        },
+                        "CreateServiceTimeSeries": {
+                            "methods": [
+                                "createServiceTimeSeries"
+                            ]
+                        },
+                        "CreateTimeSeries": {
+                            "methods": [
+                                "createTimeSeries"
+                            ]
+                        },
+                        "DeleteMetricDescriptor": {
+                            "methods": [
+                                "deleteMetricDescriptor"
+                            ]
+                        },
+                        "GetMetricDescriptor": {
+                            "methods": [
+                                "getMetricDescriptor"
+                            ]
+                        },
+                        "GetMonitoredResourceDescriptor": {
+                            "methods": [
+                                "getMonitoredResourceDescriptor"
+                            ]
+                        },
+                        "ListMetricDescriptors": {
+                            "methods": [
+                                "listMetricDescriptors"
+                            ]
+                        },
+                        "ListMonitoredResourceDescriptors": {
+                            "methods": [
+                                "listMonitoredResourceDescriptors"
+                            ]
+                        },
+                        "ListTimeSeries": {
+                            "methods": [
+                                "listTimeSeries"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "NotificationChannelService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "NotificationChannelServiceGapicClient",
+                    "rpcs": {
+                        "CreateNotificationChannel": {
+                            "methods": [
+                                "createNotificationChannel"
+                            ]
+                        },
+                        "DeleteNotificationChannel": {
+                            "methods": [
+                                "deleteNotificationChannel"
+                            ]
+                        },
+                        "GetNotificationChannel": {
+                            "methods": [
+                                "getNotificationChannel"
+                            ]
+                        },
+                        "GetNotificationChannelDescriptor": {
+                            "methods": [
+                                "getNotificationChannelDescriptor"
+                            ]
+                        },
+                        "GetNotificationChannelVerificationCode": {
+                            "methods": [
+                                "getNotificationChannelVerificationCode"
+                            ]
+                        },
+                        "ListNotificationChannelDescriptors": {
+                            "methods": [
+                                "listNotificationChannelDescriptors"
+                            ]
+                        },
+                        "ListNotificationChannels": {
+                            "methods": [
+                                "listNotificationChannels"
+                            ]
+                        },
+                        "SendNotificationChannelVerificationCode": {
+                            "methods": [
+                                "sendNotificationChannelVerificationCode"
+                            ]
+                        },
+                        "UpdateNotificationChannel": {
+                            "methods": [
+                                "updateNotificationChannel"
+                            ]
+                        },
+                        "VerifyNotificationChannel": {
+                            "methods": [
+                                "verifyNotificationChannel"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "QueryService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "QueryServiceGapicClient",
+                    "rpcs": {
+                        "QueryTimeSeries": {
+                            "methods": [
+                                "queryTimeSeries"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ServiceMonitoringService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ServiceMonitoringServiceGapicClient",
+                    "rpcs": {
+                        "CreateService": {
+                            "methods": [
+                                "createService"
+                            ]
+                        },
+                        "CreateServiceLevelObjective": {
+                            "methods": [
+                                "createServiceLevelObjective"
+                            ]
+                        },
+                        "DeleteService": {
+                            "methods": [
+                                "deleteService"
+                            ]
+                        },
+                        "DeleteServiceLevelObjective": {
+                            "methods": [
+                                "deleteServiceLevelObjective"
+                            ]
+                        },
+                        "GetService": {
+                            "methods": [
+                                "getService"
+                            ]
+                        },
+                        "GetServiceLevelObjective": {
+                            "methods": [
+                                "getServiceLevelObjective"
+                            ]
+                        },
+                        "ListServiceLevelObjectives": {
+                            "methods": [
+                                "listServiceLevelObjectives"
+                            ]
+                        },
+                        "ListServices": {
+                            "methods": [
+                                "listServices"
+                            ]
+                        },
+                        "UpdateService": {
+                            "methods": [
+                                "updateService"
+                            ]
+                        },
+                        "UpdateServiceLevelObjective": {
+                            "methods": [
+                                "updateServiceLevelObjective"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "UptimeCheckService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "UptimeCheckServiceGapicClient",
+                    "rpcs": {
+                        "CreateUptimeCheckConfig": {
+                            "methods": [
+                                "createUptimeCheckConfig"
+                            ]
+                        },
+                        "DeleteUptimeCheckConfig": {
+                            "methods": [
+                                "deleteUptimeCheckConfig"
+                            ]
+                        },
+                        "GetUptimeCheckConfig": {
+                            "methods": [
+                                "getUptimeCheckConfig"
+                            ]
+                        },
+                        "ListUptimeCheckConfigs": {
+                            "methods": [
+                                "listUptimeCheckConfigs"
+                            ]
+                        },
+                        "ListUptimeCheckIps": {
+                            "methods": [
+                                "listUptimeCheckIps"
+                            ]
+                        },
+                        "UpdateUptimeCheckConfig": {
+                            "methods": [
+                                "updateUptimeCheckConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -229,7 +229,7 @@ class ListServiceLevelObjectivesRequest extends \Google\Protobuf\Internal\Messag
      */
     public function setView($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\ServiceLevelObjective_View::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\ServiceLevelObjective\View::class);
         $this->view = $var;
 
         return $this;

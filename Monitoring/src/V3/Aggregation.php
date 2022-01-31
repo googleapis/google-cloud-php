@@ -43,10 +43,12 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * [time series][google.monitoring.v3.TimeSeries] into consistent blocks of
      * time. This will be done before the per-series aligner can be applied to
      * the data.
-     * The value must be at least 60 seconds. If a per-series aligner other than
-     * `ALIGN_NONE` is specified, this field is required or an error is returned.
-     * If no per-series aligner is specified, or the aligner `ALIGN_NONE` is
-     * specified, then this field is ignored.
+     * The value must be at least 60 seconds. If a per-series
+     * aligner other than `ALIGN_NONE` is specified, this field is required or an
+     * error is returned. If no per-series aligner is specified, or the aligner
+     * `ALIGN_NONE` is specified, then this field is ignored.
+     * The maximum value of the `alignment_period` is 104 weeks (2 years) for
+     * charts, and 90,000 seconds (25 hours) for alerting policies.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration alignment_period = 1;</code>
      */
@@ -119,10 +121,12 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *           [time series][google.monitoring.v3.TimeSeries] into consistent blocks of
      *           time. This will be done before the per-series aligner can be applied to
      *           the data.
-     *           The value must be at least 60 seconds. If a per-series aligner other than
-     *           `ALIGN_NONE` is specified, this field is required or an error is returned.
-     *           If no per-series aligner is specified, or the aligner `ALIGN_NONE` is
-     *           specified, then this field is ignored.
+     *           The value must be at least 60 seconds. If a per-series
+     *           aligner other than `ALIGN_NONE` is specified, this field is required or an
+     *           error is returned. If no per-series aligner is specified, or the aligner
+     *           `ALIGN_NONE` is specified, then this field is ignored.
+     *           The maximum value of the `alignment_period` is 104 weeks (2 years) for
+     *           charts, and 90,000 seconds (25 hours) for alerting policies.
      *     @type int $per_series_aligner
      *           An `Aligner` describes how to bring the data points in a single
      *           time series into temporal alignment. Except for `ALIGN_NONE`, all
@@ -179,17 +183,29 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * [time series][google.monitoring.v3.TimeSeries] into consistent blocks of
      * time. This will be done before the per-series aligner can be applied to
      * the data.
-     * The value must be at least 60 seconds. If a per-series aligner other than
-     * `ALIGN_NONE` is specified, this field is required or an error is returned.
-     * If no per-series aligner is specified, or the aligner `ALIGN_NONE` is
-     * specified, then this field is ignored.
+     * The value must be at least 60 seconds. If a per-series
+     * aligner other than `ALIGN_NONE` is specified, this field is required or an
+     * error is returned. If no per-series aligner is specified, or the aligner
+     * `ALIGN_NONE` is specified, then this field is ignored.
+     * The maximum value of the `alignment_period` is 104 weeks (2 years) for
+     * charts, and 90,000 seconds (25 hours) for alerting policies.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration alignment_period = 1;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getAlignmentPeriod()
     {
         return $this->alignment_period;
+    }
+
+    public function hasAlignmentPeriod()
+    {
+        return isset($this->alignment_period);
+    }
+
+    public function clearAlignmentPeriod()
+    {
+        unset($this->alignment_period);
     }
 
     /**
@@ -198,10 +214,12 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * [time series][google.monitoring.v3.TimeSeries] into consistent blocks of
      * time. This will be done before the per-series aligner can be applied to
      * the data.
-     * The value must be at least 60 seconds. If a per-series aligner other than
-     * `ALIGN_NONE` is specified, this field is required or an error is returned.
-     * If no per-series aligner is specified, or the aligner `ALIGN_NONE` is
-     * specified, then this field is ignored.
+     * The value must be at least 60 seconds. If a per-series
+     * aligner other than `ALIGN_NONE` is specified, this field is required or an
+     * error is returned. If no per-series aligner is specified, or the aligner
+     * `ALIGN_NONE` is specified, then this field is ignored.
+     * The maximum value of the `alignment_period` is 104 weeks (2 years) for
+     * charts, and 90,000 seconds (25 hours) for alerting policies.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration alignment_period = 1;</code>
      * @param \Google\Protobuf\Duration $var
@@ -261,7 +279,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      */
     public function setPerSeriesAligner($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\Aggregation_Aligner::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\Aggregation\Aligner::class);
         $this->per_series_aligner = $var;
 
         return $this;
@@ -309,7 +327,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      */
     public function setCrossSeriesReducer($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\Aggregation_Reducer::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\Aggregation\Reducer::class);
         $this->cross_series_reducer = $var;
 
         return $this;
