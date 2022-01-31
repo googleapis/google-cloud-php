@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/streamingrecognitionresult_messagetype","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\StreamingRecognitionResult_MessageType","name":"StreamingRecognitionResult_MessageType","description":"<p>This class is deprecated. Use Google\\Cloud\\Dialogflow\\V2\\StreamingRecognitionResult\\MessageType instead.<\/p>","examples":[],"resources":[],"methods":[]}

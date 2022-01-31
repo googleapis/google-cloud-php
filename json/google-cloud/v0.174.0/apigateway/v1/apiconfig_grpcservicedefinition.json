@@ -1,0 +1,1 @@
+{"id":"apigateway\/v1\/apiconfig_grpcservicedefinition","type":"","title":"Google\\Cloud\\ApiGateway\\V1\\ApiConfig_GrpcServiceDefinition","name":"ApiConfig_GrpcServiceDefinition","description":"<p>This class is deprecated. Use Google\\Cloud\\ApiGateway\\V1\\ApiConfig\\GrpcServiceDefinition instead.<\/p>","examples":[],"resources":[],"methods":[]}

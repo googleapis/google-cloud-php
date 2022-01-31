@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/instance\/availability","type":"","title":"Google\\Cloud\\AppEngine\\V1\\Instance\\Availability","name":"Availability","description":"<p>Availability of the instance.<\/p>\n<p>Protobuf type <code>google.appengine.v1.Instance.Availability<\/code><\/p>","examples":[],"resources":[],"methods":[]}

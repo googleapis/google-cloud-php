@@ -1,0 +1,1 @@
+{"id":"recommender\/v1\/insight\/severity","type":"","title":"Google\\Cloud\\Recommender\\V1\\Insight\\Severity","name":"Severity","description":"<p>Insight severity levels.<\/p>\n<p>Protobuf type <code>google.cloud.recommender.v1.Insight.Severity<\/code><\/p>","examples":[],"resources":[],"methods":[]}

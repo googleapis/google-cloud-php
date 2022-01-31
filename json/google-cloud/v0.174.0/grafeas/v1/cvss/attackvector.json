@@ -1,0 +1,1 @@
+{"id":"grafeas\/v1\/cvss\/attackvector","type":"","title":"Grafeas\\V1\\CVSS\\AttackVector","name":"AttackVector","description":"<p>Protobuf type <code>grafeas.v1.CVSS.AttackVector<\/code><\/p>","examples":[],"resources":[],"methods":[]}

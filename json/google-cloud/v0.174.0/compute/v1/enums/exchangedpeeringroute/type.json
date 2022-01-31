@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/exchangedpeeringroute\/type","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\ExchangedPeeringRoute\\Type","name":"Type","description":"<p>Type contains string constants that represent the names of each value in the\ngoogle.cloud.compute.v1.ExchangedPeeringRoute.Type descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"datastoreadmin\/v1\/index_direction","type":"","title":"Google\\Cloud\\Datastore\\Admin\\V1\\Index_Direction","name":"Index_Direction","description":"<p>This class is deprecated. Use Google\\Cloud\\Datastore\\Admin\\V1\\Index\\Direction instead.<\/p>","examples":[],"resources":[],"methods":[]}
