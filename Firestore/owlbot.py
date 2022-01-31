@@ -37,8 +37,8 @@ php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        '*/src/V1/FirestoreClient.php',
-        '*/src/Admin/V1/FirestoreAdminClient.php',
+        src / '*/src/V1/FirestoreClient.php',
+        src / '*/src/Admin/V1/FirestoreAdminClient.php',
     ]
 )
 

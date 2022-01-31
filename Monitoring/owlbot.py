@@ -34,7 +34,7 @@ php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        "*/src/V3/AlertPolicyServiceClient.php"
+        src / "*/src/V3/AlertPolicyServiceClient.php"
     ]
 )
 
