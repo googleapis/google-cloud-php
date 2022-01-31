@@ -30,7 +30,7 @@ php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        "*/src/V1/DataTransferServiceClient.php"
+        src / "*/src/V1/DataTransferServiceClient.php"
     ]
 )
 

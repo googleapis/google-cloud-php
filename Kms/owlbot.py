@@ -34,7 +34,7 @@ php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        "*/src/V1/KeyManagementServiceClient.php"
+        src / "*/src/V1/KeyManagementServiceClient.php"
     ]
 )
 

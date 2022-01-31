@@ -51,6 +51,7 @@ class AlertPolicyServiceClient extends AlertPolicyServiceGapicClient
             'condition' => $condition,
         ]);
     }
+
     /**
      * Formats a string containing the fully-qualified path to represent
      * a project resource.

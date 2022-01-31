@@ -48,6 +48,7 @@ class DataTransferServiceClient extends DataTransferServiceGapicClient
     {
         return self::projectLocationDataSourceName($project, $location, $dataSource);
     }
+
     /**
      * Formats a string containing the fully-qualified path to represent
      * a location_run resource.
@@ -66,6 +67,7 @@ class DataTransferServiceClient extends DataTransferServiceGapicClient
     {
         return self::projectLocationTransferConfigRunName($project, $location, $transferConfig, $run);
     }
+
     /**
      * Formats a string containing the fully-qualified path to represent
      * a location_transfer_config resource.
@@ -83,6 +85,7 @@ class DataTransferServiceClient extends DataTransferServiceGapicClient
     {
         return self::projectLocationTransferConfigName($project, $location, $transferConfig);
     }
+
     /**
      * Formats a string containing the fully-qualified path to represent
      * a project_run resource.
