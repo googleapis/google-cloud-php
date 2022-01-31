@@ -206,7 +206,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      */
     public function getPrimary()
     {
-        return isset($this->primary) ? $this->primary : null;
+        return $this->primary;
     }
 
     public function hasPrimary()
@@ -275,7 +275,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -320,7 +320,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      */
     public function getNextRotationTime()
     {
-        return isset($this->next_rotation_time) ? $this->next_rotation_time : null;
+        return $this->next_rotation_time;
     }
 
     public function hasNextRotationTime()
@@ -411,7 +411,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      */
     public function getVersionTemplate()
     {
-        return isset($this->version_template) ? $this->version_template : null;
+        return $this->version_template;
     }
 
     public function hasVersionTemplate()
@@ -508,7 +508,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      */
     public function getDestroyScheduledDuration()
     {
-        return isset($this->destroy_scheduled_duration) ? $this->destroy_scheduled_duration : null;
+        return $this->destroy_scheduled_duration;
     }
 
     public function hasDestroyScheduledDuration()

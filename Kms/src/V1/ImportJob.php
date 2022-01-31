@@ -251,7 +251,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -287,7 +287,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      */
     public function getGenerateTime()
     {
-        return isset($this->generate_time) ? $this->generate_time : null;
+        return $this->generate_time;
     }
 
     public function hasGenerateTime()
@@ -324,7 +324,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      */
     public function getExpireTime()
     {
-        return isset($this->expire_time) ? $this->expire_time : null;
+        return $this->expire_time;
     }
 
     public function hasExpireTime()
@@ -362,7 +362,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      */
     public function getExpireEventTime()
     {
-        return isset($this->expire_event_time) ? $this->expire_event_time : null;
+        return $this->expire_event_time;
     }
 
     public function hasExpireEventTime()
@@ -429,7 +429,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      */
     public function getPublicKey()
     {
-        return isset($this->public_key) ? $this->public_key : null;
+        return $this->public_key;
     }
 
     public function hasPublicKey()
@@ -471,7 +471,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      */
     public function getAttestation()
     {
-        return isset($this->attestation) ? $this->attestation : null;
+        return $this->attestation;
     }
 
     public function hasAttestation()

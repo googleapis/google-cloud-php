@@ -229,7 +229,7 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCiphertextCrc32C()
     {
-        return isset($this->ciphertext_crc32c) ? $this->ciphertext_crc32c : null;
+        return $this->ciphertext_crc32c;
     }
 
     public function hasCiphertextCrc32C()
@@ -341,7 +341,7 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAdditionalAuthenticatedDataCrc32C()
     {
-        return isset($this->additional_authenticated_data_crc32c) ? $this->additional_authenticated_data_crc32c : null;
+        return $this->additional_authenticated_data_crc32c;
     }
 
     public function hasAdditionalAuthenticatedDataCrc32C()

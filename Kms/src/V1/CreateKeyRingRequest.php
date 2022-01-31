@@ -121,7 +121,7 @@ class CreateKeyRingRequest extends \Google\Protobuf\Internal\Message
      */
     public function getKeyRing()
     {
-        return isset($this->key_ring) ? $this->key_ring : null;
+        return $this->key_ring;
     }
 
     public function hasKeyRing()

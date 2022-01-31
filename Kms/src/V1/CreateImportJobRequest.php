@@ -121,7 +121,7 @@ class CreateImportJobRequest extends \Google\Protobuf\Internal\Message
      */
     public function getImportJob()
     {
-        return isset($this->import_job) ? $this->import_job : null;
+        return $this->import_job;
     }
 
     public function hasImportJob()
