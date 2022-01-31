@@ -42,6 +42,10 @@ class CryptoKeyVersionState
     const DISABLED = 2;
     /**
      * This version is destroyed, and the key material is no longer stored.
+     * This version may only become [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED] again if this version is
+     * [reimport_eligible][google.cloud.kms.v1.CryptoKeyVersion.reimport_eligible] and the original
+     * key material is reimported with a call to
+     * [KeyManagementService.ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion].
      *
      * Generated from protobuf enum <code>DESTROYED = 3;</code>
      */

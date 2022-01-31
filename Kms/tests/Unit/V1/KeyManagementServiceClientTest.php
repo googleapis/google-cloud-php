@@ -172,10 +172,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $signature = '-72';
         $verifiedDigestCrc32c = true;
         $name2 = 'name2-1052831874';
+        $verifiedDataCrc32c = true;
         $expectedResponse = new AsymmetricSignResponse();
         $expectedResponse->setSignature($signature);
         $expectedResponse->setVerifiedDigestCrc32c($verifiedDigestCrc32c);
         $expectedResponse->setName($name2);
+        $expectedResponse->setVerifiedDataCrc32c($verifiedDataCrc32c);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
@@ -318,10 +320,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $importJob = 'importJob2125587491';
         $importFailureReason = 'importFailureReason-494073229';
+        $reimportEligible = true;
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name);
         $expectedResponse->setImportJob($importJob);
         $expectedResponse->setImportFailureReason($importFailureReason);
+        $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
@@ -612,10 +616,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $importJob = 'importJob2125587491';
         $importFailureReason = 'importFailureReason-494073229';
+        $reimportEligible = true;
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setImportJob($importJob);
         $expectedResponse->setImportFailureReason($importFailureReason);
+        $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
@@ -878,10 +884,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $importJob = 'importJob2125587491';
         $importFailureReason = 'importFailureReason-494073229';
+        $reimportEligible = true;
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setImportJob($importJob);
         $expectedResponse->setImportFailureReason($importFailureReason);
+        $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
@@ -1140,10 +1148,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $importJob2 = 'importJob2-1714851050';
         $importFailureReason = 'importFailureReason-494073229';
+        $reimportEligible = true;
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name);
         $expectedResponse->setImportJob($importJob2);
         $expectedResponse->setImportFailureReason($importFailureReason);
+        $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
@@ -1664,10 +1674,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $importJob = 'importJob2125587491';
         $importFailureReason = 'importFailureReason-494073229';
+        $reimportEligible = true;
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setImportJob($importJob);
         $expectedResponse->setImportFailureReason($importFailureReason);
+        $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
@@ -1872,10 +1884,12 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $importJob = 'importJob2125587491';
         $importFailureReason = 'importFailureReason-494073229';
+        $reimportEligible = true;
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name);
         $expectedResponse->setImportJob($importJob);
         $expectedResponse->setImportFailureReason($importFailureReason);
+        $expectedResponse->setReimportEligible($reimportEligible);
         $transport->addResponse($expectedResponse);
         // Mock request
         $cryptoKeyVersion = new CryptoKeyVersion();
