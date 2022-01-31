@@ -103,7 +103,7 @@ class CreateReadSessionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getReadSession()
     {
-        return isset($this->read_session) ? $this->read_session : null;
+        return $this->read_session;
     }
 
     public function hasReadSession()

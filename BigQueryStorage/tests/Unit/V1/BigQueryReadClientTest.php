@@ -83,9 +83,11 @@ class BigQueryReadClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $table = 'table110115790';
+        $estimatedTotalBytesScanned = 452788190;
         $expectedResponse = new ReadSession();
         $expectedResponse->setName($name);
         $expectedResponse->setTable($table);
+        $expectedResponse->setEstimatedTotalBytesScanned($estimatedTotalBytesScanned);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
