@@ -25,12 +25,45 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Cloud\Monitoring\V3\Gapic\AlertPolicyServiceGapicClient;
+use Google\ApiCore\PathTemplate;
 
 /**
  * {@inheritdoc}
  */
 class AlertPolicyServiceClient extends AlertPolicyServiceGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see AlertPolicyServiceGapicClient} class.
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a alert_policy_condition resource.
+     *
+     * @param string $project
+     * @param string $alertPolicy
+     * @param string $condition
+     *
+     * @return string The formatted alert_policy_condition resource.
+     * @deprecated
+     */
+    public static function alertPolicyConditionName($project, $alertPolicy, $condition)
+    {
+        return (new PathTemplate('projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}'))->render([
+            'project' => $project,
+            'alert_policy' => $alertPolicy,
+            'condition' => $condition,
+        ]);
+    }
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @deprecated
+     */
+    public static function projectName($project)
+    {
+        return (new PathTemplate('projects/{project}'))->render([
+            'project' => $project,
+        ]);
+    }
 }
