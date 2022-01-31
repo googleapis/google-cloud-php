@@ -47,11 +47,16 @@ class PerformanceThreshold extends \Google\Protobuf\Internal\Message
      * `RequestBasedSli` to evaluate to judge window quality.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.RequestBasedSli performance = 1;</code>
-     * @return \Google\Cloud\Monitoring\V3\RequestBasedSli
+     * @return \Google\Cloud\Monitoring\V3\RequestBasedSli|null
      */
     public function getPerformance()
     {
         return $this->readOneof(1);
+    }
+
+    public function hasPerformance()
+    {
+        return $this->hasOneof(1);
     }
 
     /**
@@ -73,11 +78,16 @@ class PerformanceThreshold extends \Google\Protobuf\Internal\Message
      * `BasicSli` to evaluate to judge window quality.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.BasicSli basic_sli_performance = 3;</code>
-     * @return \Google\Cloud\Monitoring\V3\BasicSli
+     * @return \Google\Cloud\Monitoring\V3\BasicSli|null
      */
     public function getBasicSliPerformance()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasBasicSliPerformance()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

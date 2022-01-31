@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project in which to create the group. The format is:
+     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
+     * which to create the group. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -43,7 +44,8 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The project in which to create the group. The format is:
+     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
+     *           which to create the group. The format is:
      *               projects/[PROJECT_ID_OR_NUMBER]
      *     @type \Google\Cloud\Monitoring\V3\Group $group
      *           Required. A group definition. It is an error to define the `name` field because
@@ -58,7 +60,8 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project in which to create the group. The format is:
+     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
+     * which to create the group. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -70,7 +73,8 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project in which to create the group. The format is:
+     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) in
+     * which to create the group. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -90,11 +94,21 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
      * the system assigns the name.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Monitoring\V3\Group
+     * @return \Google\Cloud\Monitoring\V3\Group|null
      */
     public function getGroup()
     {
         return $this->group;
+    }
+
+    public function hasGroup()
+    {
+        return isset($this->group);
+    }
+
+    public function clearGroup()
+    {
+        unset($this->group);
     }
 
     /**

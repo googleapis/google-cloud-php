@@ -18,108 +18,54 @@ class UptimeService
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Monitoring\V3\Uptime::initOnce();
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
-            "0aa5160a29676f6f676c652f6d6f6e69746f72696e672f76332f75707469" .
-            "6d655f736572766963652e70726f746f1214676f6f676c652e6d6f6e6974" .
-            "6f72696e672e76331a17676f6f676c652f6170692f636c69656e742e7072" .
-            "6f746f1a1f676f6f676c652f6170692f6669656c645f6265686176696f72" .
-            "2e70726f746f1a19676f6f676c652f6170692f7265736f757263652e7072" .
-            "6f746f1a21676f6f676c652f6d6f6e69746f72696e672f76332f75707469" .
-            "6d652e70726f746f1a1e676f6f676c652f70726f746f6275662f64757261" .
-            "74696f6e2e70726f746f1a1b676f6f676c652f70726f746f6275662f656d" .
-            "7074792e70726f746f1a20676f6f676c652f70726f746f6275662f666965" .
-            "6c645f6d61736b2e70726f746f228b010a1d4c697374557074696d654368" .
-            "65636b436f6e666967735265717565737412430a06706172656e74180120" .
-            "0128094233e04102fa412d122b6d6f6e69746f72696e672e676f6f676c65" .
-            "617069732e636f6d2f557074696d65436865636b436f6e66696712110a09" .
-            "706167655f73697a6518032001280512120a0a706167655f746f6b656e18" .
-            "04200128092294010a1e4c697374557074696d65436865636b436f6e6669" .
-            "6773526573706f6e736512450a14757074696d655f636865636b5f636f6e" .
-            "6669677318012003280b32272e676f6f676c652e6d6f6e69746f72696e67" .
-            "2e76332e557074696d65436865636b436f6e66696712170a0f6e6578745f" .
-            "706167655f746f6b656e18022001280912120a0a746f74616c5f73697a65" .
-            "18032001280522600a1b476574557074696d65436865636b436f6e666967" .
-            "5265717565737412410a046e616d651801200128094233e04102fa412d0a" .
-            "2b6d6f6e69746f72696e672e676f6f676c65617069732e636f6d2f557074" .
-            "696d65436865636b436f6e66696722b0010a1e437265617465557074696d" .
-            "65436865636b436f6e6669675265717565737412430a06706172656e7418" .
-            "01200128094233e04102fa412d122b6d6f6e69746f72696e672e676f6f67" .
-            "6c65617069732e636f6d2f557074696d65436865636b436f6e6669671249" .
-            "0a13757074696d655f636865636b5f636f6e66696718022001280b32272e" .
-            "676f6f676c652e6d6f6e69746f72696e672e76332e557074696d65436865" .
-            "636b436f6e6669674203e04102229c010a1e557064617465557074696d65" .
-            "436865636b436f6e66696752657175657374122f0a0b7570646174655f6d" .
-            "61736b18022001280b321a2e676f6f676c652e70726f746f6275662e4669" .
-            "656c644d61736b12490a13757074696d655f636865636b5f636f6e666967" .
-            "18032001280b32272e676f6f676c652e6d6f6e69746f72696e672e76332e" .
-            "557074696d65436865636b436f6e6669674203e0410222630a1e44656c65" .
-            "7465557074696d65436865636b436f6e6669675265717565737412410a04" .
-            "6e616d651801200128094233e04102fa412d0a2b6d6f6e69746f72696e67" .
-            "2e676f6f676c65617069732e636f6d2f557074696d65436865636b436f6e" .
-            "66696722420a194c697374557074696d65436865636b4970735265717565" .
-            "737412110a09706167655f73697a6518022001280512120a0a706167655f" .
-            "746f6b656e18032001280922740a1a4c697374557074696d65436865636b" .
-            "497073526573706f6e7365123d0a10757074696d655f636865636b5f6970" .
-            "7318012003280b32232e676f6f676c652e6d6f6e69746f72696e672e7633" .
-            "2e557074696d65436865636b497012170a0f6e6578745f706167655f746f" .
-            "6b656e18022001280932bd0a0a12557074696d65436865636b5365727669" .
-            "636512c0010a164c697374557074696d65436865636b436f6e6669677312" .
-            "332e676f6f676c652e6d6f6e69746f72696e672e76332e4c697374557074" .
-            "696d65436865636b436f6e66696773526571756573741a342e676f6f676c" .
-            "652e6d6f6e69746f72696e672e76332e4c697374557074696d6543686563" .
-            "6b436f6e66696773526573706f6e7365223b82d3e493022c122a2f76332f" .
-            "7b706172656e743d70726f6a656374732f2a7d2f757074696d6543686563" .
-            "6b436f6e66696773da4106706172656e7412ad010a14476574557074696d" .
-            "65436865636b436f6e66696712312e676f6f676c652e6d6f6e69746f7269" .
-            "6e672e76332e476574557074696d65436865636b436f6e66696752657175" .
-            "6573741a272e676f6f676c652e6d6f6e69746f72696e672e76332e557074" .
-            "696d65436865636b436f6e666967223982d3e493022c122a2f76332f7b6e" .
-            "616d653d70726f6a656374732f2a2f757074696d65436865636b436f6e66" .
-            "6967732f2a7dda41046e616d6512de010a17437265617465557074696d65" .
-            "436865636b436f6e66696712342e676f6f676c652e6d6f6e69746f72696e" .
-            "672e76332e437265617465557074696d65436865636b436f6e6669675265" .
-            "71756573741a272e676f6f676c652e6d6f6e69746f72696e672e76332e55" .
-            "7074696d65436865636b436f6e666967226482d3e4930241222a2f76332f" .
-            "7b706172656e743d70726f6a656374732f2a7d2f757074696d6543686563" .
-            "6b436f6e666967733a13757074696d655f636865636b5f636f6e666967da" .
-            "411a706172656e742c757074696d655f636865636b5f636f6e66696712eb" .
-            "010a17557064617465557074696d65436865636b436f6e66696712342e67" .
-            "6f6f676c652e6d6f6e69746f72696e672e76332e55706461746555707469" .
-            "6d65436865636b436f6e666967526571756573741a272e676f6f676c652e" .
-            "6d6f6e69746f72696e672e76332e557074696d65436865636b436f6e6669" .
-            "67227182d3e4930255323e2f76332f7b757074696d655f636865636b5f63" .
-            "6f6e6669672e6e616d653d70726f6a656374732f2a2f757074696d654368" .
-            "65636b436f6e666967732f2a7d3a13757074696d655f636865636b5f636f" .
-            "6e666967da4113757074696d655f636865636b5f636f6e66696712a2010a" .
-            "1744656c657465557074696d65436865636b436f6e66696712342e676f6f" .
-            "676c652e6d6f6e69746f72696e672e76332e44656c657465557074696d65" .
-            "436865636b436f6e666967526571756573741a162e676f6f676c652e7072" .
-            "6f746f6275662e456d707479223982d3e493022c2a2a2f76332f7b6e616d" .
-            "653d70726f6a656374732f2a2f757074696d65436865636b436f6e666967" .
-            "732f2a7dda41046e616d651293010a124c697374557074696d6543686563" .
-            "6b497073122f2e676f6f676c652e6d6f6e69746f72696e672e76332e4c69" .
-            "7374557074696d65436865636b497073526571756573741a302e676f6f67" .
-            "6c652e6d6f6e69746f72696e672e76332e4c697374557074696d65436865" .
-            "636b497073526573706f6e7365221a82d3e493021412122f76332f757074" .
-            "696d65436865636b4970731aa901ca41196d6f6e69746f72696e672e676f" .
-            "6f676c65617069732e636f6dd241890168747470733a2f2f7777772e676f" .
-            "6f676c65617069732e636f6d2f617574682f636c6f75642d706c6174666f" .
-            "726d2c68747470733a2f2f7777772e676f6f676c65617069732e636f6d2f" .
-            "617574682f6d6f6e69746f72696e672c68747470733a2f2f7777772e676f" .
-            "6f676c65617069732e636f6d2f617574682f6d6f6e69746f72696e672e72" .
-            "65616442ca010a18636f6d2e676f6f676c652e6d6f6e69746f72696e672e" .
-            "76334212557074696d655365727669636550726f746f50015a3e676f6f67" .
-            "6c652e676f6c616e672e6f72672f67656e70726f746f2f676f6f676c6561" .
-            "7069732f6d6f6e69746f72696e672f76333b6d6f6e69746f72696e67aa02" .
-            "1a476f6f676c652e436c6f75642e4d6f6e69746f72696e672e5633ca021a" .
-            "476f6f676c655c436c6f75645c4d6f6e69746f72696e675c5633ea021d47" .
-            "6f6f676c653a3a436c6f75643a3a4d6f6e69746f72696e673a3a56336206" .
-            "70726f746f33"
-        ), true);
+        $pool->internalAddGeneratedFile(
+            '
+Ê
+)google/monitoring/v3/uptime_service.protogoogle.monitoring.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/longrunning/operations.proto!google/monitoring/v3/uptime.protogoogle/protobuf/duration.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"‹
+ListUptimeCheckConfigsRequestC
+parent (	B3àAúA-+monitoring.googleapis.com/UptimeCheckConfig
+	page_size (
+
+page_token (	"”
+ListUptimeCheckConfigsResponseE
+uptime_check_configs (2\'.google.monitoring.v3.UptimeCheckConfig
+next_page_token (	
+
+total_size ("`
+GetUptimeCheckConfigRequestA
+name (	B3àAúA-
++monitoring.googleapis.com/UptimeCheckConfig"°
+CreateUptimeCheckConfigRequestC
+parent (	B3àAúA-+monitoring.googleapis.com/UptimeCheckConfigI
+uptime_check_config (2\'.google.monitoring.v3.UptimeCheckConfigBàA"œ
+UpdateUptimeCheckConfigRequest/
+update_mask (2.google.protobuf.FieldMaskI
+uptime_check_config (2\'.google.monitoring.v3.UptimeCheckConfigBàA"c
+DeleteUptimeCheckConfigRequestA
+name (	B3àAúA-
++monitoring.googleapis.com/UptimeCheckConfig"B
+ListUptimeCheckIpsRequest
+	page_size (
+
+page_token (	"t
+ListUptimeCheckIpsResponse=
+uptime_check_ips (2#.google.monitoring.v3.UptimeCheckIp
+next_page_token (	2½
+
+UptimeCheckServiceÀ
+ListUptimeCheckConfigs3.google.monitoring.v3.ListUptimeCheckConfigsRequest4.google.monitoring.v3.ListUptimeCheckConfigsResponse";‚Óä“,*/v3/{parent=projects/*}/uptimeCheckConfigsÚAparent­
+GetUptimeCheckConfig1.google.monitoring.v3.GetUptimeCheckConfigRequest\'.google.monitoring.v3.UptimeCheckConfig"9‚Óä“,*/v3/{name=projects/*/uptimeCheckConfigs/*}ÚAnameÞ
+CreateUptimeCheckConfig4.google.monitoring.v3.CreateUptimeCheckConfigRequest\'.google.monitoring.v3.UptimeCheckConfig"d‚Óä“A"*/v3/{parent=projects/*}/uptimeCheckConfigs:uptime_check_configÚAparent,uptime_check_configë
+UpdateUptimeCheckConfig4.google.monitoring.v3.UpdateUptimeCheckConfigRequest\'.google.monitoring.v3.UptimeCheckConfig"q‚Óä“U2>/v3/{uptime_check_config.name=projects/*/uptimeCheckConfigs/*}:uptime_check_configÚAuptime_check_config¢
+DeleteUptimeCheckConfig4.google.monitoring.v3.DeleteUptimeCheckConfigRequest.google.protobuf.Empty"9‚Óä“,**/v3/{name=projects/*/uptimeCheckConfigs/*}ÚAname“
+ListUptimeCheckIps/.google.monitoring.v3.ListUptimeCheckIpsRequest0.google.monitoring.v3.ListUptimeCheckIpsResponse"‚Óä“/v3/uptimeCheckIps©ÊAmonitoring.googleapis.comÒA‰https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÊ
+com.google.monitoring.v3BUptimeServiceProtoPZ>google.golang.org/genproto/googleapis/monitoring/v3;monitoringªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
+        , true);
 
         static::$is_initialized = true;
     }

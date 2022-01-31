@@ -44,11 +44,21 @@ class LatencyCriteria extends \Google\Protobuf\Internal\Message
      * that return in no more than `threshold`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration threshold = 3;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getThreshold()
     {
         return $this->threshold;
+    }
+
+    public function hasThreshold()
+    {
+        return isset($this->threshold);
+    }
+
+    public function clearThreshold()
+    {
+        unset($this->threshold);
     }
 
     /**

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Istio service scoped to an Istio mesh
+ * Istio service scoped to an Istio mesh. Anthos clusters running ASM < 1.6.8
+ * will have their services ingested as this type.
  *
  * Generated from protobuf message <code>google.monitoring.v3.Service.MeshIstio</code>
  */

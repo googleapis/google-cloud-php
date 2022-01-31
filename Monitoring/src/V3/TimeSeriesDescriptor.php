@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A descriptor for the labels and points in a timeseries.
+ * A descriptor for the labels and points in a time series.
  *
  * Generated from protobuf message <code>google.monitoring.v3.TimeSeriesDescriptor</code>
  */

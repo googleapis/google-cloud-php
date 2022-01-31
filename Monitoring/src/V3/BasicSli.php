@@ -196,11 +196,16 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      * that return successfully.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.BasicSli.AvailabilityCriteria availability = 2;</code>
-     * @return \Google\Cloud\Monitoring\V3\BasicSli\AvailabilityCriteria
+     * @return \Google\Cloud\Monitoring\V3\BasicSli\AvailabilityCriteria|null
      */
     public function getAvailability()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasAvailability()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -213,7 +218,7 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      */
     public function setAvailability($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\BasicSli_AvailabilityCriteria::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\BasicSli\AvailabilityCriteria::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -224,11 +229,16 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      * that are fast enough with respect to `latency.threshold`.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.BasicSli.LatencyCriteria latency = 3;</code>
-     * @return \Google\Cloud\Monitoring\V3\BasicSli\LatencyCriteria
+     * @return \Google\Cloud\Monitoring\V3\BasicSli\LatencyCriteria|null
      */
     public function getLatency()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasLatency()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
@@ -241,7 +251,7 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      */
     public function setLatency($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\BasicSli_LatencyCriteria::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\BasicSli\LatencyCriteria::class);
         $this->writeOneof(3, $var);
 
         return $this;

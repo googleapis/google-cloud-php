@@ -76,11 +76,21 @@ class UpdateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      * the new configuration.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
         return $this->update_mask;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
@@ -114,11 +124,21 @@ class UpdateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      * `selected_regions`.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig
+     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig|null
      */
     public function getUptimeCheckConfig()
     {
         return $this->uptime_check_config;
+    }
+
+    public function hasUptimeCheckConfig()
+    {
+        return isset($this->uptime_check_config);
+    }
+
+    public function clearUptimeCheckConfig()
+    {
+        unset($this->uptime_check_config);
     }
 
     /**

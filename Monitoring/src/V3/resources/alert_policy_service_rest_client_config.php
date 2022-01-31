@@ -3,9 +3,21 @@
 return [
     'interfaces' => [
         'google.monitoring.v3.AlertPolicyService' => [
-            'ListAlertPolicies' => [
-                'method' => 'get',
+            'CreateAlertPolicy' => [
+                'method' => 'post',
                 'uriTemplate' => '/v3/{name=projects/*}/alertPolicies',
+                'body' => 'alert_policy',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAlertPolicy' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v3/{name=projects/*/alertPolicies/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -25,21 +37,9 @@ return [
                     ],
                 ],
             ],
-            'CreateAlertPolicy' => [
-                'method' => 'post',
+            'ListAlertPolicies' => [
+                'method' => 'get',
                 'uriTemplate' => '/v3/{name=projects/*}/alertPolicies',
-                'body' => 'alert_policy',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteAlertPolicy' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v3/{name=projects/*/alertPolicies/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

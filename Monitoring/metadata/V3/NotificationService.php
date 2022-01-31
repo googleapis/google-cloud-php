@@ -23,169 +23,74 @@ class NotificationService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
-            "0ac3250a2f676f6f676c652f6d6f6e69746f72696e672f76332f6e6f7469" .
-            "6669636174696f6e5f736572766963652e70726f746f1214676f6f676c65" .
-            "2e6d6f6e69746f72696e672e76331a17676f6f676c652f6170692f636c69" .
-            "656e742e70726f746f1a1f676f6f676c652f6170692f6669656c645f6265" .
-            "686176696f722e70726f746f1a19676f6f676c652f6170692f7265736f75" .
-            "7263652e70726f746f1a27676f6f676c652f6d6f6e69746f72696e672f76" .
-            "332f6e6f74696669636174696f6e2e70726f746f1a1b676f6f676c652f70" .
-            "726f746f6275662f656d7074792e70726f746f1a20676f6f676c652f7072" .
-            "6f746f6275662f6669656c645f6d61736b2e70726f746f1a1c676f6f676c" .
-            "652f70726f746f6275662f7374727563742e70726f746f1a1f676f6f676c" .
-            "652f70726f746f6275662f74696d657374616d702e70726f746f22a1010a" .
-            "294c6973744e6f74696669636174696f6e4368616e6e656c446573637269" .
-            "70746f727352657175657374124d0a046e616d65180420012809423fe041" .
-            "02fa413912376d6f6e69746f72696e672e676f6f676c65617069732e636f" .
-            "6d2f4e6f74696669636174696f6e4368616e6e656c44657363726970746f" .
-            "7212110a09706167655f73697a6518022001280512120a0a706167655f74" .
-            "6f6b656e1803200128092297010a2a4c6973744e6f74696669636174696f" .
-            "6e4368616e6e656c44657363726970746f7273526573706f6e736512500a" .
-            "136368616e6e656c5f64657363726970746f727318012003280b32332e67" .
-            "6f6f676c652e6d6f6e69746f72696e672e76332e4e6f7469666963617469" .
-            "6f6e4368616e6e656c44657363726970746f7212170a0f6e6578745f7061" .
-            "67655f746f6b656e18022001280922780a274765744e6f74696669636174" .
-            "696f6e4368616e6e656c44657363726970746f7252657175657374124d0a" .
-            "046e616d65180320012809423fe04102fa41390a376d6f6e69746f72696e" .
-            "672e676f6f676c65617069732e636f6d2f4e6f74696669636174696f6e43" .
-            "68616e6e656c44657363726970746f7222b5010a204372656174654e6f74" .
-            "696669636174696f6e4368616e6e656c5265717565737412430a046e616d" .
-            "651803200128094235e04102fa412f122d6d6f6e69746f72696e672e676f" .
-            "6f676c65617069732e636f6d2f4e6f74696669636174696f6e4368616e6e" .
-            "656c124c0a146e6f74696669636174696f6e5f6368616e6e656c18022001" .
-            "280b32292e676f6f676c652e6d6f6e69746f72696e672e76332e4e6f7469" .
-            "6669636174696f6e4368616e6e656c4203e0410222af010a1f4c6973744e" .
-            "6f74696669636174696f6e4368616e6e656c735265717565737412430a04" .
-            "6e616d651805200128094235e04102fa412f122d6d6f6e69746f72696e67" .
-            "2e676f6f676c65617069732e636f6d2f4e6f74696669636174696f6e4368" .
-            "616e6e656c120e0a0666696c74657218062001280912100a086f72646572" .
-            "5f627918072001280912110a09706167655f73697a651803200128051212" .
-            "0a0a706167655f746f6b656e1804200128092285010a204c6973744e6f74" .
-            "696669636174696f6e4368616e6e656c73526573706f6e736512480a156e" .
-            "6f74696669636174696f6e5f6368616e6e656c7318032003280b32292e67" .
-            "6f6f676c652e6d6f6e69746f72696e672e76332e4e6f7469666963617469" .
-            "6f6e4368616e6e656c12170a0f6e6578745f706167655f746f6b656e1802" .
-            "2001280922640a1d4765744e6f74696669636174696f6e4368616e6e656c" .
-            "5265717565737412430a046e616d651803200128094235e04102fa412f0a" .
-            "2d6d6f6e69746f72696e672e676f6f676c65617069732e636f6d2f4e6f74" .
-            "696669636174696f6e4368616e6e656c22a1010a205570646174654e6f74" .
-            "696669636174696f6e4368616e6e656c52657175657374122f0a0b757064" .
-            "6174655f6d61736b18022001280b321a2e676f6f676c652e70726f746f62" .
-            "75662e4669656c644d61736b124c0a146e6f74696669636174696f6e5f63" .
-            "68616e6e656c18032001280b32292e676f6f676c652e6d6f6e69746f7269" .
-            "6e672e76332e4e6f74696669636174696f6e4368616e6e656c4203e04102" .
-            "22760a2044656c6574654e6f74696669636174696f6e4368616e6e656c52" .
-            "65717565737412430a046e616d651803200128094235e04102fa412f0a2d" .
-            "6d6f6e69746f72696e672e676f6f676c65617069732e636f6d2f4e6f7469" .
-            "6669636174696f6e4368616e6e656c120d0a05666f726365180520012808" .
-            "22750a2e53656e644e6f74696669636174696f6e4368616e6e656c566572" .
-            "696669636174696f6e436f64655265717565737412430a046e616d651801" .
-            "200128094235e04102fa412f0a2d6d6f6e69746f72696e672e676f6f676c" .
-            "65617069732e636f6d2f4e6f74696669636174696f6e4368616e6e656c22" .
-            "a5010a2d4765744e6f74696669636174696f6e4368616e6e656c56657269" .
-            "6669636174696f6e436f64655265717565737412430a046e616d65180120" .
-            "0128094235e04102fa412f0a2d6d6f6e69746f72696e672e676f6f676c65" .
-            "617069732e636f6d2f4e6f74696669636174696f6e4368616e6e656c122f" .
-            "0a0b6578706972655f74696d6518022001280b321a2e676f6f676c652e70" .
-            "726f746f6275662e54696d657374616d70226f0a2e4765744e6f74696669" .
-            "636174696f6e4368616e6e656c566572696669636174696f6e436f646552" .
-            "6573706f6e7365120c0a04636f6465180120012809122f0a0b6578706972" .
-            "655f74696d6518022001280b321a2e676f6f676c652e70726f746f627566" .
-            "2e54696d657374616d70227a0a205665726966794e6f7469666963617469" .
-            "6f6e4368616e6e656c5265717565737412430a046e616d65180120012809" .
-            "4235e04102fa412f0a2d6d6f6e69746f72696e672e676f6f676c65617069" .
-            "732e636f6d2f4e6f74696669636174696f6e4368616e6e656c12110a0463" .
-            "6f64651802200128094203e0410232ea120a1a4e6f74696669636174696f" .
-            "6e4368616e6e656c5365727669636512ec010a224c6973744e6f74696669" .
-            "636174696f6e4368616e6e656c44657363726970746f7273123f2e676f6f" .
-            "676c652e6d6f6e69746f72696e672e76332e4c6973744e6f746966696361" .
-            "74696f6e4368616e6e656c44657363726970746f7273526571756573741a" .
-            "402e676f6f676c652e6d6f6e69746f72696e672e76332e4c6973744e6f74" .
-            "696669636174696f6e4368616e6e656c44657363726970746f7273526573" .
-            "706f6e7365224382d3e493023612342f76332f7b6e616d653d70726f6a65" .
-            "6374732f2a7d2f6e6f74696669636174696f6e4368616e6e656c44657363" .
-            "726970746f7273da41046e616d6512dd010a204765744e6f746966696361" .
-            "74696f6e4368616e6e656c44657363726970746f72123d2e676f6f676c65" .
-            "2e6d6f6e69746f72696e672e76332e4765744e6f74696669636174696f6e" .
-            "4368616e6e656c44657363726970746f72526571756573741a332e676f6f" .
-            "676c652e6d6f6e69746f72696e672e76332e4e6f74696669636174696f6e" .
-            "4368616e6e656c44657363726970746f72224582d3e493023812362f7633" .
-            "2f7b6e616d653d70726f6a656374732f2a2f6e6f74696669636174696f6e" .
-            "4368616e6e656c44657363726970746f72732f2a7dda41046e616d6512c4" .
-            "010a184c6973744e6f74696669636174696f6e4368616e6e656c7312352e" .
-            "676f6f676c652e6d6f6e69746f72696e672e76332e4c6973744e6f746966" .
-            "69636174696f6e4368616e6e656c73526571756573741a362e676f6f676c" .
-            "652e6d6f6e69746f72696e672e76332e4c6973744e6f7469666963617469" .
-            "6f6e4368616e6e656c73526573706f6e7365223982d3e493022c122a2f76" .
-            "332f7b6e616d653d70726f6a656374732f2a7d2f6e6f7469666963617469" .
-            "6f6e4368616e6e656c73da41046e616d6512b5010a164765744e6f746966" .
-            "69636174696f6e4368616e6e656c12332e676f6f676c652e6d6f6e69746f" .
-            "72696e672e76332e4765744e6f74696669636174696f6e4368616e6e656c" .
-            "526571756573741a292e676f6f676c652e6d6f6e69746f72696e672e7633" .
-            "2e4e6f74696669636174696f6e4368616e6e656c223b82d3e493022e122c" .
-            "2f76332f7b6e616d653d70726f6a656374732f2a2f6e6f74696669636174" .
-            "696f6e4368616e6e656c732f2a7dda41046e616d6512e4010a1943726561" .
-            "74654e6f74696669636174696f6e4368616e6e656c12362e676f6f676c65" .
-            "2e6d6f6e69746f72696e672e76332e4372656174654e6f74696669636174" .
-            "696f6e4368616e6e656c526571756573741a292e676f6f676c652e6d6f6e" .
-            "69746f72696e672e76332e4e6f74696669636174696f6e4368616e6e656c" .
-            "226482d3e4930242222a2f76332f7b6e616d653d70726f6a656374732f2a" .
-            "7d2f6e6f74696669636174696f6e4368616e6e656c733a146e6f74696669" .
-            "636174696f6e5f6368616e6e656cda41196e616d652c6e6f746966696361" .
-            "74696f6e5f6368616e6e656c1283020a195570646174654e6f7469666963" .
-            "6174696f6e4368616e6e656c12362e676f6f676c652e6d6f6e69746f7269" .
-            "6e672e76332e5570646174654e6f74696669636174696f6e4368616e6e65" .
-            "6c526571756573741a292e676f6f676c652e6d6f6e69746f72696e672e76" .
-            "332e4e6f74696669636174696f6e4368616e6e656c22820182d3e4930259" .
-            "32412f76332f7b6e6f74696669636174696f6e5f6368616e6e656c2e6e61" .
-            "6d653d70726f6a656374732f2a2f6e6f74696669636174696f6e4368616e" .
-            "6e656c732f2a7d3a146e6f74696669636174696f6e5f6368616e6e656cda" .
-            "41207570646174655f6d61736b2c6e6f74696669636174696f6e5f636861" .
-            "6e6e656c12ae010a1944656c6574654e6f74696669636174696f6e436861" .
-            "6e6e656c12362e676f6f676c652e6d6f6e69746f72696e672e76332e4465" .
-            "6c6574654e6f74696669636174696f6e4368616e6e656c52657175657374" .
-            "1a162e676f6f676c652e70726f746f6275662e456d707479224182d3e493" .
-            "022e2a2c2f76332f7b6e616d653d70726f6a656374732f2a2f6e6f746966" .
-            "69636174696f6e4368616e6e656c732f2a7dda410a6e616d652c666f7263" .
-            "6512dc010a2753656e644e6f74696669636174696f6e4368616e6e656c56" .
-            "6572696669636174696f6e436f646512442e676f6f676c652e6d6f6e6974" .
-            "6f72696e672e76332e53656e644e6f74696669636174696f6e4368616e6e" .
-            "656c566572696669636174696f6e436f6465526571756573741a162e676f" .
-            "6f676c652e70726f746f6275662e456d707479225382d3e493024622412f" .
-            "76332f7b6e616d653d70726f6a656374732f2a2f6e6f7469666963617469" .
-            "6f6e4368616e6e656c732f2a7d3a73656e64566572696669636174696f6e" .
-            "436f64653a012ada41046e616d651287020a264765744e6f746966696361" .
-            "74696f6e4368616e6e656c566572696669636174696f6e436f646512432e" .
-            "676f6f676c652e6d6f6e69746f72696e672e76332e4765744e6f74696669" .
-            "636174696f6e4368616e6e656c566572696669636174696f6e436f646552" .
-            "6571756573741a442e676f6f676c652e6d6f6e69746f72696e672e76332e" .
-            "4765744e6f74696669636174696f6e4368616e6e656c5665726966696361" .
-            "74696f6e436f6465526573706f6e7365225282d3e493024522402f76332f" .
-            "7b6e616d653d70726f6a656374732f2a2f6e6f74696669636174696f6e43" .
-            "68616e6e656c732f2a7d3a676574566572696669636174696f6e436f6465" .
-            "3a012ada41046e616d6512ca010a195665726966794e6f74696669636174" .
-            "696f6e4368616e6e656c12362e676f6f676c652e6d6f6e69746f72696e67" .
-            "2e76332e5665726966794e6f74696669636174696f6e4368616e6e656c52" .
-            "6571756573741a292e676f6f676c652e6d6f6e69746f72696e672e76332e" .
-            "4e6f74696669636174696f6e4368616e6e656c224a82d3e493023822332f" .
-            "76332f7b6e616d653d70726f6a656374732f2a2f6e6f7469666963617469" .
-            "6f6e4368616e6e656c732f2a7d3a7665726966793a012ada41096e616d65" .
-            "2c636f64651aa901ca41196d6f6e69746f72696e672e676f6f676c656170" .
-            "69732e636f6dd241890168747470733a2f2f7777772e676f6f676c656170" .
-            "69732e636f6d2f617574682f636c6f75642d706c6174666f726d2c687474" .
-            "70733a2f2f7777772e676f6f676c65617069732e636f6d2f617574682f6d" .
-            "6f6e69746f72696e672c68747470733a2f2f7777772e676f6f676c656170" .
-            "69732e636f6d2f617574682f6d6f6e69746f72696e672e7265616442d001" .
-            "0a18636f6d2e676f6f676c652e6d6f6e69746f72696e672e763342184e6f" .
-            "74696669636174696f6e5365727669636550726f746f50015a3e676f6f67" .
-            "6c652e676f6c616e672e6f72672f67656e70726f746f2f676f6f676c6561" .
-            "7069732f6d6f6e69746f72696e672f76333b6d6f6e69746f72696e67aa02" .
-            "1a476f6f676c652e436c6f75642e4d6f6e69746f72696e672e5633ca021a" .
-            "476f6f676c655c436c6f75645c4d6f6e69746f72696e675c5633ea021d47" .
-            "6f6f676c653a3a436c6f75643a3a4d6f6e69746f72696e673a3a56336206" .
-            "70726f746f33"
-        ), true);
+        $pool->internalAddGeneratedFile(
+            '
+×%
+/google/monitoring/v3/notification_service.protogoogle.monitoring.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto\'google/monitoring/v3/notification.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"¡
+)ListNotificationChannelDescriptorsRequestM
+name (	B?àAúA97monitoring.googleapis.com/NotificationChannelDescriptor
+	page_size (
+
+page_token (	"—
+*ListNotificationChannelDescriptorsResponseP
+channel_descriptors (23.google.monitoring.v3.NotificationChannelDescriptor
+next_page_token (	"x
+\'GetNotificationChannelDescriptorRequestM
+name (	B?àAúA9
+7monitoring.googleapis.com/NotificationChannelDescriptor"µ
+ CreateNotificationChannelRequestC
+name (	B5àAúA/-monitoring.googleapis.com/NotificationChannelL
+notification_channel (2).google.monitoring.v3.NotificationChannelBàA"¯
+ListNotificationChannelsRequestC
+name (	B5àAúA/-monitoring.googleapis.com/NotificationChannel
+filter (	
+order_by (	
+	page_size (
+
+page_token (	"™
+ ListNotificationChannelsResponseH
+notification_channels (2).google.monitoring.v3.NotificationChannel
+next_page_token (	
+
+total_size ("d
+GetNotificationChannelRequestC
+name (	B5àAúA/
+-monitoring.googleapis.com/NotificationChannel"¡
+ UpdateNotificationChannelRequest/
+update_mask (2.google.protobuf.FieldMaskL
+notification_channel (2).google.monitoring.v3.NotificationChannelBàA"v
+ DeleteNotificationChannelRequestC
+name (	B5àAúA/
+-monitoring.googleapis.com/NotificationChannel
+force ("u
+.SendNotificationChannelVerificationCodeRequestC
+name (	B5àAúA/
+-monitoring.googleapis.com/NotificationChannel"¥
+-GetNotificationChannelVerificationCodeRequestC
+name (	B5àAúA/
+-monitoring.googleapis.com/NotificationChannel/
+expire_time (2.google.protobuf.Timestamp"o
+.GetNotificationChannelVerificationCodeResponse
+code (	/
+expire_time (2.google.protobuf.Timestamp"z
+ VerifyNotificationChannelRequestC
+name (	B5àAúA/
+-monitoring.googleapis.com/NotificationChannel
+code (	BàA2ê
+NotificationChannelServiceì
+"ListNotificationChannelDescriptors?.google.monitoring.v3.ListNotificationChannelDescriptorsRequest@.google.monitoring.v3.ListNotificationChannelDescriptorsResponse"C‚Óä“64/v3/{name=projects/*}/notificationChannelDescriptorsÚAnameÝ
+ GetNotificationChannelDescriptor=.google.monitoring.v3.GetNotificationChannelDescriptorRequest3.google.monitoring.v3.NotificationChannelDescriptor"E‚Óä“86/v3/{name=projects/*/notificationChannelDescriptors/*}ÚAnameÄ
+ListNotificationChannels5.google.monitoring.v3.ListNotificationChannelsRequest6.google.monitoring.v3.ListNotificationChannelsResponse"9‚Óä“,*/v3/{name=projects/*}/notificationChannelsÚAnameµ
+GetNotificationChannel3.google.monitoring.v3.GetNotificationChannelRequest).google.monitoring.v3.NotificationChannel";‚Óä“.,/v3/{name=projects/*/notificationChannels/*}ÚAnameä
+CreateNotificationChannel6.google.monitoring.v3.CreateNotificationChannelRequest).google.monitoring.v3.NotificationChannel"d‚Óä“B"*/v3/{name=projects/*}/notificationChannels:notification_channelÚAname,notification_channelƒ
+UpdateNotificationChannel6.google.monitoring.v3.UpdateNotificationChannelRequest).google.monitoring.v3.NotificationChannel"‚‚Óä“Y2A/v3/{notification_channel.name=projects/*/notificationChannels/*}:notification_channelÚA update_mask,notification_channel®
+DeleteNotificationChannel6.google.monitoring.v3.DeleteNotificationChannelRequest.google.protobuf.Empty"A‚Óä“.*,/v3/{name=projects/*/notificationChannels/*}ÚA
+name,forceÜ
+\'SendNotificationChannelVerificationCodeD.google.monitoring.v3.SendNotificationChannelVerificationCodeRequest.google.protobuf.Empty"S‚Óä“F"A/v3/{name=projects/*/notificationChannels/*}:sendVerificationCode:*ÚAname‡
+&GetNotificationChannelVerificationCodeC.google.monitoring.v3.GetNotificationChannelVerificationCodeRequestD.google.monitoring.v3.GetNotificationChannelVerificationCodeResponse"R‚Óä“E"@/v3/{name=projects/*/notificationChannels/*}:getVerificationCode:*ÚAnameÊ
+VerifyNotificationChannel6.google.monitoring.v3.VerifyNotificationChannelRequest).google.monitoring.v3.NotificationChannel"J‚Óä“8"3/v3/{name=projects/*/notificationChannels/*}:verify:*ÚA	name,code©ÊAmonitoring.googleapis.comÒA‰https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/monitoring,https://www.googleapis.com/auth/monitoring.readBÐ
+com.google.monitoring.v3BNotificationServiceProtoPZ>google.golang.org/genproto/googleapis/monitoring/v3;monitoringªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
+        , true);
 
         static::$is_initialized = true;
     }
