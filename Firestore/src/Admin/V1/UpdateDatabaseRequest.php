@@ -20,13 +20,13 @@ class UpdateDatabaseRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Database database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $database = null;
+    private $database = null;
     /**
      * The list of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    protected $update_mask = null;
+    private $update_mask = null;
 
     /**
      * Constructor.

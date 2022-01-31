@@ -23,14 +23,14 @@ class Database extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * The location of the database. Available databases are listed at
      * https://cloud.google.com/firestore/docs/locations.
      *
      * Generated from protobuf field <code>string location_id = 9;</code>
      */
-    protected $location_id = '';
+    private $location_id = '';
     /**
      * The type of the database.
      * See https://cloud.google.com/datastore/docs/firestore-or-datastore for
@@ -38,13 +38,13 @@ class Database extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Database.DatabaseType type = 10;</code>
      */
-    protected $type = 0;
+    private $type = 0;
     /**
      * The concurrency control mode to use for this database.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Database.ConcurrencyMode concurrency_mode = 15;</code>
      */
-    protected $concurrency_mode = 0;
+    private $concurrency_mode = 0;
     /**
      * This checksum is computed by the server based on the value of other
      * fields, and may be sent on update and delete requests to ensure the
@@ -52,7 +52,7 @@ class Database extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 99;</code>
      */
-    protected $etag = '';
+    private $etag = '';
 
     /**
      * Constructor.
