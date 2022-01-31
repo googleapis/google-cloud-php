@@ -56,6 +56,14 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $etag = '';
+    /**
+     * Output only. True if payload checksum specified in [SecretPayload][google.cloud.secretmanager.v1.SecretPayload] object has been
+     * received by [SecretManagerService][google.cloud.secretmanager.v1.SecretManagerService] on
+     * [SecretManagerService.AddSecretVersion][google.cloud.secretmanager.v1.SecretManagerService.AddSecretVersion].
+     *
+     * Generated from protobuf field <code>bool client_specified_payload_checksum = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $client_specified_payload_checksum = false;
 
     /**
      * Constructor.
@@ -80,6 +88,10 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      *           The replication status of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *     @type string $etag
      *           Output only. Etag of the currently stored [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     *     @type bool $client_specified_payload_checksum
+     *           Output only. True if payload checksum specified in [SecretPayload][google.cloud.secretmanager.v1.SecretPayload] object has been
+     *           received by [SecretManagerService][google.cloud.secretmanager.v1.SecretManagerService] on
+     *           [SecretManagerService.AddSecretVersion][google.cloud.secretmanager.v1.SecretManagerService.AddSecretVersion].
      * }
      */
     public function __construct($data = NULL) {
@@ -279,6 +291,36 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. True if payload checksum specified in [SecretPayload][google.cloud.secretmanager.v1.SecretPayload] object has been
+     * received by [SecretManagerService][google.cloud.secretmanager.v1.SecretManagerService] on
+     * [SecretManagerService.AddSecretVersion][google.cloud.secretmanager.v1.SecretManagerService.AddSecretVersion].
+     *
+     * Generated from protobuf field <code>bool client_specified_payload_checksum = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getClientSpecifiedPayloadChecksum()
+    {
+        return $this->client_specified_payload_checksum;
+    }
+
+    /**
+     * Output only. True if payload checksum specified in [SecretPayload][google.cloud.secretmanager.v1.SecretPayload] object has been
+     * received by [SecretManagerService][google.cloud.secretmanager.v1.SecretManagerService] on
+     * [SecretManagerService.AddSecretVersion][google.cloud.secretmanager.v1.SecretManagerService.AddSecretVersion].
+     *
+     * Generated from protobuf field <code>bool client_specified_payload_checksum = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setClientSpecifiedPayloadChecksum($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->client_specified_payload_checksum = $var;
 
         return $this;
     }
