@@ -99,7 +99,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $formattedParent = $client->parentName('[PROJECT]', '[DATABASE]', '[COLLECTION_ID]');
         $index = new Index();
 
-        $response = $client->createIndex($formattedParent, $index);
+        $response = $client->createIndexLRO($formattedParent, $index);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -144,7 +144,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $index = new Index();
 
         try {
-            $client->createIndex($formattedParent, $index);
+            $client->createIndexLRO($formattedParent, $index);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -239,7 +239,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         // Mock request
         $formattedName = $client->databaseName('[PROJECT]', '[DATABASE]');
 
-        $response = $client->exportDocuments($formattedName);
+        $response = $client->exportDocumentsLRO($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -280,7 +280,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $formattedName = $client->databaseName('[PROJECT]', '[DATABASE]');
 
         try {
-            $client->exportDocuments($formattedName);
+            $client->exportDocumentsLRO($formattedName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -442,7 +442,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         // Mock request
         $formattedName = $client->databaseName('[PROJECT]', '[DATABASE]');
 
-        $response = $client->importDocuments($formattedName);
+        $response = $client->importDocumentsLRO($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -483,7 +483,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $formattedName = $client->databaseName('[PROJECT]', '[DATABASE]');
 
         try {
-            $client->importDocuments($formattedName);
+            $client->importDocumentsLRO($formattedName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -661,7 +661,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         // Mock request
         $field = new Field();
 
-        $response = $client->updateField($field);
+        $response = $client->updateFieldLRO($field);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -702,7 +702,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $field = new Field();
 
         try {
-            $client->updateField($field);
+            $client->updateFieldLRO($field);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

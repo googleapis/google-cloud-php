@@ -499,7 +499,7 @@ class FirestoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createIndex($parent, $index, array $optionalArgs = [])
+    public function createIndexLRO($parent, $index, array $optionalArgs = [])
     {
         $request = new CreateIndexRequest();
         $request->setParent($parent);
@@ -607,7 +607,7 @@ class FirestoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function exportDocuments($name, array $optionalArgs = [])
+    public function exportDocumentsLRO($name, array $optionalArgs = [])
     {
         $request = new ExportDocumentsRequest();
         $request->setName($name);
@@ -758,7 +758,7 @@ class FirestoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importDocuments($name, array $optionalArgs = [])
+    public function importDocumentsLRO($name, array $optionalArgs = [])
     {
         $request = new ImportDocumentsRequest();
         $request->setName($name);
@@ -989,7 +989,7 @@ class FirestoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateField($field, array $optionalArgs = [])
+    public function updateFieldLRO($field, array $optionalArgs = [])
     {
         $request = new UpdateFieldRequest();
         $request->setField($field);
