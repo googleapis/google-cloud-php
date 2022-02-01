@@ -20,7 +20,7 @@ class Geolocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string region_code = 1;</code>
      */
-    protected $region_code = '';
+    private $region_code = '';
 
     /**
      * Constructor.

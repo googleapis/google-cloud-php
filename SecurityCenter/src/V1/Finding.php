@@ -90,11 +90,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $security_marks = null;
     /**
-     * The time at which the event took place, or when an update to the finding
-     * occurred. For example, if the finding represents an open firewall it would
-     * capture the time the detector believes the firewall became open. The
-     * accuracy is determined by the detector. If the finding were to be resolved
-     * afterward, this time would reflect when the finding was resolved. Must not
+     * The time the finding was first detected. If an existing finding is updated,
+     * then this is the time the update occurred.
+     * For example, if the finding represents an open firewall, this property
+     * captures the time the detector believes the firewall became open. The
+     * accuracy is determined by the detector. If the finding is later resolved,
+     * then this time reflects when the finding was resolved. This must not
      * be set to a value greater than the current timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
@@ -169,6 +170,13 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $external_systems;
     /**
+     * Access details associated to the Finding, such as more information on the
+     * caller, which method was accessed, from where, etc.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Access access = 26;</code>
+     */
+    private $access = null;
+    /**
      * First known as mute_annotation. Records additional information about the
      * mute operation e.g. mute config that muted the finding, user who muted the
      * finding, etc.
@@ -221,11 +229,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           managed by the user and come from the SecurityMarks resource that belongs
      *           to the finding.
      *     @type \Google\Protobuf\Timestamp $event_time
-     *           The time at which the event took place, or when an update to the finding
-     *           occurred. For example, if the finding represents an open firewall it would
-     *           capture the time the detector believes the firewall became open. The
-     *           accuracy is determined by the detector. If the finding were to be resolved
-     *           afterward, this time would reflect when the finding was resolved. Must not
+     *           The time the finding was first detected. If an existing finding is updated,
+     *           then this is the time the update occurred.
+     *           For example, if the finding represents an open firewall, this property
+     *           captures the time the detector believes the firewall became open. The
+     *           accuracy is determined by the detector. If the finding is later resolved,
+     *           then this time reflects when the finding was resolved. This must not
      *           be set to a value greater than the current timestamp.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time at which the finding was created in Security Command Center.
@@ -259,6 +268,9 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $external_systems
      *           Output only. Third party SIEM/SOAR fields within SCC, contains external system
      *           information and external system finding fields.
+     *     @type \Google\Cloud\SecurityCenter\V1\Access $access
+     *           Access details associated to the Finding, such as more information on the
+     *           caller, which method was accessed, from where, etc.
      *     @type string $mute_initiator
      *           First known as mute_annotation. Records additional information about the
      *           mute operation e.g. mute config that muted the finding, user who muted the
@@ -531,11 +543,12 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the event took place, or when an update to the finding
-     * occurred. For example, if the finding represents an open firewall it would
-     * capture the time the detector believes the firewall became open. The
-     * accuracy is determined by the detector. If the finding were to be resolved
-     * afterward, this time would reflect when the finding was resolved. Must not
+     * The time the finding was first detected. If an existing finding is updated,
+     * then this is the time the update occurred.
+     * For example, if the finding represents an open firewall, this property
+     * captures the time the detector believes the firewall became open. The
+     * accuracy is determined by the detector. If the finding is later resolved,
+     * then this time reflects when the finding was resolved. This must not
      * be set to a value greater than the current timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
@@ -557,11 +570,12 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the event took place, or when an update to the finding
-     * occurred. For example, if the finding represents an open firewall it would
-     * capture the time the detector believes the firewall became open. The
-     * accuracy is determined by the detector. If the finding were to be resolved
-     * afterward, this time would reflect when the finding was resolved. Must not
+     * The time the finding was first detected. If an existing finding is updated,
+     * then this is the time the update occurred.
+     * For example, if the finding represents an open firewall, this property
+     * captures the time the detector believes the firewall became open. The
+     * accuracy is determined by the detector. If the finding is later resolved,
+     * then this time reflects when the finding was resolved. This must not
      * be set to a value greater than the current timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
@@ -874,6 +888,44 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\ExternalSystem::class);
         $this->external_systems = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Access details associated to the Finding, such as more information on the
+     * caller, which method was accessed, from where, etc.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Access access = 26;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\Access|null
+     */
+    public function getAccess()
+    {
+        return $this->access;
+    }
+
+    public function hasAccess()
+    {
+        return isset($this->access);
+    }
+
+    public function clearAccess()
+    {
+        unset($this->access);
+    }
+
+    /**
+     * Access details associated to the Finding, such as more information on the
+     * caller, which method was accessed, from where, etc.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Access access = 26;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\Access $var
+     * @return $this
+     */
+    public function setAccess($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Access::class);
+        $this->access = $var;
 
         return $this;
     }
