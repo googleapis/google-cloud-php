@@ -65,7 +65,8 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      */
     private $machine_type = '';
     /**
-     * Additional experiment flags for the job.
+     * Additional experiment flags for the job, specified with the
+     * `--experiments` option.
      *
      * Generated from protobuf field <code>repeated string additional_experiments = 7;</code>
      */
@@ -169,7 +170,8 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *           The machine type to use for the job. Defaults to the value from the
      *           template if not specified.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $additional_experiments
-     *           Additional experiment flags for the job.
+     *           Additional experiment flags for the job, specified with the
+     *           `--experiments` option.
      *     @type string $network
      *           Network to which VMs will be assigned.  If empty or unspecified,
      *           the service will use the network "default".
@@ -412,7 +414,8 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Additional experiment flags for the job.
+     * Additional experiment flags for the job, specified with the
+     * `--experiments` option.
      *
      * Generated from protobuf field <code>repeated string additional_experiments = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -423,7 +426,8 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Additional experiment flags for the job.
+     * Additional experiment flags for the job, specified with the
+     * `--experiments` option.
      *
      * Generated from protobuf field <code>repeated string additional_experiments = 7;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
