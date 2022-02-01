@@ -406,10 +406,9 @@ class Database
         $statements = $this->pluck('statements', $options, false) ?: [];
 
         $databaseId = DatabaseAdminClient::parseName($this->name())['database'];
-        if(isset($options['databaseDialect']) && $options['databaseDialect'] === DatabaseDialect::POSTGRESQL){
+        if (isset($options['databaseDialect']) && $options['databaseDialect'] === DatabaseDialect::POSTGRESQL) {
             $statement = sprintf('CREATE DATABASE "%s"', $databaseId);
-        }
-        else{
+        } else {
             $statement = sprintf('CREATE DATABASE `%s`', $databaseId);
         }
 

@@ -126,7 +126,7 @@ class AdminTest extends SpannerTestCase
         $instance = self::$instance;
 
         $dbName = uniqid(self::TESTING_PREFIX);
-        $op = $instance->createDatabase($dbName,[
+        $op = $instance->createDatabase($dbName, [
             'databaseDialect' => DatabaseDialect::POSTGRESQL
         ]);
 
