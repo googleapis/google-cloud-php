@@ -48,7 +48,7 @@ use stdClass;
  *
  * @group gapic
  */
-class FirestoreAdminClientTest extends GeneratedTest
+class FirestoreAdminClientBCTest extends GeneratedTest
 {
     /**
      * @return TransportInterface
