@@ -9,9 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A request to list data transfer runs. UI can use this method to show/filter
- * specific data transfer runs. The data source can use this method to request
- * all scheduled transfer runs.
+ * A request to list data transfer runs.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.datatransfer.v1.ListTransferRunsRequest</code>
  */
