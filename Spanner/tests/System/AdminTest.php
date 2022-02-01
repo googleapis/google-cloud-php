@@ -123,6 +123,8 @@ class AdminTest extends SpannerTestCase
 
     public function testPgDatabase()
     {
+        $this->skipEmulatorTests();
+        
         $instance = self::$instance;
 
         $dbName = uniqid(self::TESTING_PREFIX);
