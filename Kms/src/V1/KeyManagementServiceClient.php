@@ -25,10 +25,30 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Cloud\Kms\V1\Gapic\KeyManagementServiceGapicClient;
+use Google\ApiCore\PathTemplate;
 
 /** {@inheritdoc} */
 class KeyManagementServiceClient extends KeyManagementServiceGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual additions to
-    // the generated {@see KeyManagementServiceGapicClient} class.
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a crypto_key_path resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKeyPath
+     *
+     * @return string The formatted crypto_key_path resource.
+     * @deprecated Use cryptoKeyName instead
+     */
+    public static function cryptoKeyPathName($project, $location, $keyRing, $cryptoKeyPath)
+    {
+        return (new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key_path=**}'))->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key_path' => $cryptoKeyPath,
+        ]);
+    }
 }

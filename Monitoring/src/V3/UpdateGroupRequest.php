@@ -52,11 +52,21 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
      * excepting `name`, are replaced with the corresponding fields of this group.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Monitoring\V3\Group
+     * @return \Google\Cloud\Monitoring\V3\Group|null
      */
     public function getGroup()
     {
         return $this->group;
+    }
+
+    public function hasGroup()
+    {
+        return isset($this->group);
+    }
+
+    public function clearGroup()
+    {
+        unset($this->group);
     }
 
     /**

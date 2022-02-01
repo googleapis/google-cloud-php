@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project whose Uptime check configurations are listed. The format is:
+     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name)
+     * whose Uptime check configurations are listed. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -47,7 +48,8 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The project whose Uptime check configurations are listed. The format is:
+     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name)
+     *           whose Uptime check configurations are listed. The format is:
      *               projects/[PROJECT_ID_OR_NUMBER]
      *     @type int $page_size
      *           The maximum number of results to return in a single response. The server
@@ -66,7 +68,8 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project whose Uptime check configurations are listed. The format is:
+     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name)
+     * whose Uptime check configurations are listed. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -78,7 +81,8 @@ class ListUptimeCheckConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project whose Uptime check configurations are listed. The format is:
+     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name)
+     * whose Uptime check configurations are listed. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

@@ -36,8 +36,8 @@ class RecommenderGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists insights for a Cloud project. Requires the recommender.*.list IAM
-     * permission for the specified insight type.
+     * Lists insights for the specified Cloud Resource. Requires the
+     * recommender.*.list IAM permission for the specified insight type.
      * @param \Google\Cloud\Recommender\V1\ListInsightsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -88,8 +88,8 @@ class RecommenderGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists recommendations for a Cloud project. Requires the recommender.*.list
-     * IAM permission for the specified recommender.
+     * Lists recommendations for the specified Cloud Resource. Requires the
+     * recommender.*.list IAM permission for the specified recommender.
      * @param \Google\Cloud\Recommender\V1\ListRecommendationsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

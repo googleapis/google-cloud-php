@@ -1,3 +1,3 @@
 docker:
   image: gcr.io/cloud-devrel-public-resources/owlbot-php:latest
-  digest: sha256:e215bc183776155c1d26ec4f7d99fb545e83e5c7b5a35cf90fe0d6600e9d7aaa
+  digest: sha256:02e3f5f7581f89b5d8eeaf2c38e6e406164b0f0ec76302e9e6261c477dae1d71

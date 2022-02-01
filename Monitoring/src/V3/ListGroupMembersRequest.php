@@ -222,11 +222,21 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
      * membership over the last minute is returned.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 6;</code>
-     * @return \Google\Cloud\Monitoring\V3\TimeInterval
+     * @return \Google\Cloud\Monitoring\V3\TimeInterval|null
      */
     public function getInterval()
     {
         return $this->interval;
+    }
+
+    public function hasInterval()
+    {
+        return isset($this->interval);
+    }
+
+    public function clearInterval()
+    {
+        unset($this->interval);
     }
 
     /**

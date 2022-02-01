@@ -22,7 +22,7 @@ class UpdateKeyRequest extends \Google\Protobuf\Internal\Message
      */
     private $key = null;
     /**
-     * Optional. The mask to control which field of the key get updated. If the mask is not
+     * Optional. The mask to control which fields of the key get updated. If the mask is not
      * present, all fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -38,7 +38,7 @@ class UpdateKeyRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\Key $key
      *           Required. The key to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Optional. The mask to control which field of the key get updated. If the mask is not
+     *           Optional. The mask to control which fields of the key get updated. If the mask is not
      *           present, all fields will be updated.
      * }
      */
@@ -55,7 +55,7 @@ class UpdateKeyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getKey()
     {
-        return isset($this->key) ? $this->key : null;
+        return $this->key;
     }
 
     public function hasKey()
@@ -84,7 +84,7 @@ class UpdateKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The mask to control which field of the key get updated. If the mask is not
+     * Optional. The mask to control which fields of the key get updated. If the mask is not
      * present, all fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -92,7 +92,7 @@ class UpdateKeyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -106,7 +106,7 @@ class UpdateKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The mask to control which field of the key get updated. If the mask is not
+     * Optional. The mask to control which fields of the key get updated. If the mask is not
      * present, all fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>

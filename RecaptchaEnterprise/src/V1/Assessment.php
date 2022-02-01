@@ -40,6 +40,13 @@ class Assessment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TokenProperties token_properties = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $token_properties = null;
+    /**
+     * Assessment returned by Account Defender when a hashed_account_id is
+     * provided.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6;</code>
+     */
+    private $account_defender_assessment = null;
 
     /**
      * Constructor.
@@ -56,6 +63,9 @@ class Assessment extends \Google\Protobuf\Internal\Message
      *           Output only. The risk analysis result for the event being assessed.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TokenProperties $token_properties
      *           Output only. Properties of the provided event token.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment $account_defender_assessment
+     *           Assessment returned by Account Defender when a hashed_account_id is
+     *           provided.
      * }
      */
     public function __construct($data = NULL) {
@@ -99,7 +109,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
      */
     public function getEvent()
     {
-        return isset($this->event) ? $this->event : null;
+        return $this->event;
     }
 
     public function hasEvent()
@@ -135,7 +145,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
      */
     public function getRiskAnalysis()
     {
-        return isset($this->risk_analysis) ? $this->risk_analysis : null;
+        return $this->risk_analysis;
     }
 
     public function hasRiskAnalysis()
@@ -171,7 +181,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
      */
     public function getTokenProperties()
     {
-        return isset($this->token_properties) ? $this->token_properties : null;
+        return $this->token_properties;
     }
 
     public function hasTokenProperties()
@@ -195,6 +205,44 @@ class Assessment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\TokenProperties::class);
         $this->token_properties = $var;
+
+        return $this;
+    }
+
+    /**
+     * Assessment returned by Account Defender when a hashed_account_id is
+     * provided.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6;</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment|null
+     */
+    public function getAccountDefenderAssessment()
+    {
+        return $this->account_defender_assessment;
+    }
+
+    public function hasAccountDefenderAssessment()
+    {
+        return isset($this->account_defender_assessment);
+    }
+
+    public function clearAccountDefenderAssessment()
+    {
+        unset($this->account_defender_assessment);
+    }
+
+    /**
+     * Assessment returned by Account Defender when a hashed_account_id is
+     * provided.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6;</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment $var
+     * @return $this
+     */
+    public function setAccountDefenderAssessment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment::class);
+        $this->account_defender_assessment = $var;
 
         return $this;
     }

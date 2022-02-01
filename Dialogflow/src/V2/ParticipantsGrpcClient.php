@@ -144,4 +144,20 @@ class ParticipantsGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Gets smart replies for a participant based on specific historical
+     * messages.
+     * @param \Google\Cloud\Dialogflow\V2\SuggestSmartRepliesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function SuggestSmartReplies(\Google\Cloud\Dialogflow\V2\SuggestSmartRepliesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dialogflow.v2.Participants/SuggestSmartReplies',
+        $argument,
+        ['\Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse', 'decode'],
+        $metadata, $options);
+    }
+
 }

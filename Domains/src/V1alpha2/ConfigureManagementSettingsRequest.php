@@ -31,7 +31,7 @@ class ConfigureManagementSettingsRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Required. The field mask describing which fields to update as a comma-separated list.
      * For example, if only the transfer lock is being updated, the `update_mask`
-     * would be `"transfer_lock_state"`.
+     * is `"transfer_lock_state"`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -51,7 +51,7 @@ class ConfigureManagementSettingsRequest extends \Google\Protobuf\Internal\Messa
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The field mask describing which fields to update as a comma-separated list.
      *           For example, if only the transfer lock is being updated, the `update_mask`
-     *           would be `"transfer_lock_state"`.
+     *           is `"transfer_lock_state"`.
      * }
      */
     public function __construct($data = NULL) {
@@ -95,7 +95,7 @@ class ConfigureManagementSettingsRequest extends \Google\Protobuf\Internal\Messa
      */
     public function getManagementSettings()
     {
-        return isset($this->management_settings) ? $this->management_settings : null;
+        return $this->management_settings;
     }
 
     public function hasManagementSettings()
@@ -126,14 +126,14 @@ class ConfigureManagementSettingsRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Required. The field mask describing which fields to update as a comma-separated list.
      * For example, if only the transfer lock is being updated, the `update_mask`
-     * would be `"transfer_lock_state"`.
+     * is `"transfer_lock_state"`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -149,7 +149,7 @@ class ConfigureManagementSettingsRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Required. The field mask describing which fields to update as a comma-separated list.
      * For example, if only the transfer lock is being updated, the `update_mask`
-     * would be `"transfer_lock_state"`.
+     * is `"transfer_lock_state"`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

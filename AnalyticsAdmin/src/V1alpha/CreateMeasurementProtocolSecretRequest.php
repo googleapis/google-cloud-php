@@ -91,7 +91,7 @@ class CreateMeasurementProtocolSecretRequest extends \Google\Protobuf\Internal\M
      */
     public function getMeasurementProtocolSecret()
     {
-        return isset($this->measurement_protocol_secret) ? $this->measurement_protocol_secret : null;
+        return $this->measurement_protocol_secret;
     }
 
     public function hasMeasurementProtocolSecret()

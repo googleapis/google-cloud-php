@@ -105,6 +105,18 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue enabled = 11;</code>
      */
     private $enabled = null;
+    /**
+     * Record of the creation of this channel.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.MutationRecord creation_record = 12;</code>
+     */
+    private $creation_record = null;
+    /**
+     * Records of the modification of this channel.
+     *
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.MutationRecord mutation_records = 13;</code>
+     */
+    private $mutation_records;
 
     /**
      * Constructor.
@@ -166,6 +178,10 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      *           the channel. This is a more convenient approach when the change is
      *           temporary and you want to receive notifications from the same set
      *           of alerting policies on the channel at some point in the future.
+     *     @type \Google\Cloud\Monitoring\V3\MutationRecord $creation_record
+     *           Record of the creation of this channel.
+     *     @type \Google\Cloud\Monitoring\V3\MutationRecord[]|\Google\Protobuf\Internal\RepeatedField $mutation_records
+     *           Records of the modification of this channel.
      * }
      */
     public function __construct($data = NULL) {
@@ -415,7 +431,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      */
     public function setVerificationStatus($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\NotificationChannel_VerificationStatus::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\NotificationChannel\VerificationStatus::class);
         $this->verification_status = $var;
 
         return $this;
@@ -430,11 +446,21 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      * of alerting policies on the channel at some point in the future.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enabled = 11;</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getEnabled()
     {
         return $this->enabled;
+    }
+
+    public function hasEnabled()
+    {
+        return isset($this->enabled);
+    }
+
+    public function clearEnabled()
+    {
+        unset($this->enabled);
     }
 
     /**
@@ -493,6 +519,68 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
     {
         $this->writeWrapperValue("enabled", $var);
         return $this;}
+
+    /**
+     * Record of the creation of this channel.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.MutationRecord creation_record = 12;</code>
+     * @return \Google\Cloud\Monitoring\V3\MutationRecord|null
+     */
+    public function getCreationRecord()
+    {
+        return $this->creation_record;
+    }
+
+    public function hasCreationRecord()
+    {
+        return isset($this->creation_record);
+    }
+
+    public function clearCreationRecord()
+    {
+        unset($this->creation_record);
+    }
+
+    /**
+     * Record of the creation of this channel.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.MutationRecord creation_record = 12;</code>
+     * @param \Google\Cloud\Monitoring\V3\MutationRecord $var
+     * @return $this
+     */
+    public function setCreationRecord($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\MutationRecord::class);
+        $this->creation_record = $var;
+
+        return $this;
+    }
+
+    /**
+     * Records of the modification of this channel.
+     *
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.MutationRecord mutation_records = 13;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getMutationRecords()
+    {
+        return $this->mutation_records;
+    }
+
+    /**
+     * Records of the modification of this channel.
+     *
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.MutationRecord mutation_records = 13;</code>
+     * @param \Google\Cloud\Monitoring\V3\MutationRecord[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setMutationRecords($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Monitoring\V3\MutationRecord::class);
+        $this->mutation_records = $arr;
+
+        return $this;
+    }
 
 }
 

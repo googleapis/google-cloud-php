@@ -1,5 +1,360 @@
 # Changelog
 
+## 0.174.0
+
+<details><summary>google/analytics-admin 0.5.0</summary>
+
+
+
+### Features
+
+* update client libraries to support Database operations ([#4975](https://github.com/googleapis/google-cloud-php/issues/4975)) ([ab44e61](https://github.com/googleapis/google-cloud-php/commit/ab44e61daefdf29e9d69f1249ad974d2a929e51f))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 0.2.0</summary>
+
+
+
+### Features
+
+* add APIs for importing and uploading Apt and Yum artifacts feat: add version policy support for Maven repositories feat: add order_by support for listing versions fix!: mark a few resource name fields as required ([#5040](https://github.com/googleapis/google-cloud-php/issues/5040)) ([33c2989](https://github.com/googleapis/google-cloud-php/commit/33c2989fb0f219dad57ea85eecaadd8c762601ab))
+
+</details>
+
+<details><summary>google/cloud-asset 1.6.4</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** update dependency google/cloud-osconfig to ^0.4 ([#4434](https://github.com/googleapis/google-cloud-php/issues/4434)) ([e86537d](https://github.com/googleapis/google-cloud-php/commit/e86537d0d1027a572696a42fd7665ef03ef6a47d))
+
+</details>
+
+<details><summary>google/cloud-automl 1.4.3</summary>
+
+
+
+### Bug Fixes
+
+* [AutoMl] proto field markdown comment for the display_name field in annotation_payload.proto, add back java_multiple_files option to the text_sentiment.proto ([#5032](https://github.com/googleapis/google-cloud-php/issues/5032)) ([d9b1163](https://github.com/googleapis/google-cloud-php/commit/d9b1163be5423c10fab38dbf72bc9f99cfb61d3c))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.23.2</summary>
+
+
+
+### Bug Fixes
+
+* [Core] Add a default argument to ArrayTrait::isAssoc ([#5024](https://github.com/googleapis/google-cloud-php/issues/5024)) ([c81eea7](https://github.com/googleapis/google-cloud-php/commit/c81eea7ce21a8f2aaed92e9bc4ed5cce5c336b91))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.2.7</summary>
+
+
+
+### Bug Fixes
+
+* add missing static methods to veneers instead of to owlbot ([#5058](https://github.com/googleapis/google-cloud-php/issues/5058)) ([914e3fe](https://github.com/googleapis/google-cloud-php/commit/914e3fef3ca4f4f9f2585f5748ca66fa088056f2))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 0.2.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-channel 0.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-common-protos 0.3.1</summary>
+
+
+
+### Bug Fixes
+
+* allow v2.0 for common protos ([#5031](https://github.com/googleapis/google-cloud-php/issues/5031)) ([580b8db](https://github.com/googleapis/google-cloud-php/commit/580b8db4db619fd099e7c6897aeea83bcfe9b08c))
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container 1.6.0</summary>
+
+
+
+### Features
+
+* [Container] service update ([#5057](https://github.com/googleapis/google-cloud-php/issues/5057)) ([102388f](https://github.com/googleapis/google-cloud-php/commit/102388fdee98ece3a1cbbe3e2033b5fd940a7095))
+
+
+### Bug Fixes
+
+* [Container] reverting unintentional breaking change: GetOpenIdConfigRequest, GetOpenIdConfigResponse ([#5060](https://github.com/googleapis/google-cloud-php/issues/5060)) ([d36e7ea](https://github.com/googleapis/google-cloud-php/commit/d36e7ea2f7ba1769157f1cbf1d560afa0a511b0d))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.1.4</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** update dependency google/grafeas to ^0.2.0 ([#4816](https://github.com/googleapis/google-cloud-php/issues/4816)) ([ddcbe37](https://github.com/googleapis/google-cloud-php/commit/ddcbe372aeaf0b617d9fb8607e5eae483e0e6e94))
+
+</details>
+
+<details><summary>google/cloud-core 1.44.0</summary>
+
+
+
+### Features
+
+* allow failure file env-var to prevent logging ([#4982](https://github.com/googleapis/google-cloud-php/issues/4982)) ([eacb8a1](https://github.com/googleapis/google-cloud-php/commit/eacb8a14218677e5d12dcfe4e3b2b9f6704e54f4)), closes [#3832](https://github.com/googleapis/google-cloud-php/issues/3832)
+
+
+### Bug Fixes
+
+* [Core] Add a default argument to ArrayTrait::isAssoc ([#5024](https://github.com/googleapis/google-cloud-php/issues/5024)) ([c81eea7](https://github.com/googleapis/google-cloud-php/commit/c81eea7ce21a8f2aaed92e9bc4ed5cce5c336b91))
+* allow v2.0 for common protos ([#5031](https://github.com/googleapis/google-cloud-php/issues/5031)) ([580b8db](https://github.com/googleapis/google-cloud-php/commit/580b8db4db619fd099e7c6897aeea83bcfe9b08c))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.1.0</summary>
+
+
+
+### Features
+
+* [DataCatalog] service update ([#5049](https://github.com/googleapis/google-cloud-php/issues/5049)) ([8cf5981](https://github.com/googleapis/google-cloud-php/commit/8cf59812222d8156066df4474a6e5d05a9fc9951))
+
+</details>
+
+<details><summary>google/cloud-data-fusion 0.2.0</summary>
+
+
+
+### Features
+
+* [DataFusion] publish updated definitions for cloud/datafusion/v1 and cloud/datafusion/v1beta1 fix!: multiple fields now have field_behavior REQUIRED in cloud/datafusion/v1 service definition fix!: multiple fields now have field_behavior REQUIRED ... ([#5028](https://github.com/googleapis/google-cloud-php/issues/5028)) ([01d1991](https://github.com/googleapis/google-cloud-php/commit/01d1991a22104bd8aaed916742029eb291a52dd6))
+
+
+### Bug Fixes
+
+* [DataFusion] remove protobuf deprecated classes and aliases ([#5030](https://github.com/googleapis/google-cloud-php/issues/5030)) ([399b260](https://github.com/googleapis/google-cloud-php/commit/399b26049665170a74ef86a7de1932342f99ea42))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.13.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-debugger 1.4.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.25.0</summary>
+
+
+
+### Features
+
+* [Dialogflow] added conversation process config, ImportDocument and SuggestSmartReplies API ([#5042](https://github.com/googleapis/google-cloud-php/issues/5042)) ([1e21fa3](https://github.com/googleapis/google-cloud-php/commit/1e21fa3f4b7f34151d9cbd0969ddb4df1d98d53b))
+
+</details>
+
+<details><summary>google/cloud-domains 0.2.0</summary>
+
+
+
+### Features
+
+* update client libraries to support Database operations ([#4938](https://github.com/googleapis/google-cloud-php/issues/4938)) ([a6d01a9](https://github.com/googleapis/google-cloud-php/commit/a6d01a936788c7bf7cf5b895a156b6ccfff34657))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.20.4</summary>
+
+
+
+### Bug Fixes
+
+* add missing static methods to veneers instead of to owlbot ([#5058](https://github.com/googleapis/google-cloud-php/issues/5058)) ([914e3fe](https://github.com/googleapis/google-cloud-php/commit/914e3fef3ca4f4f9f2585f5748ca66fa088056f2))
+
+</details>
+
+<details><summary>google/cloud-iam-credentials 0.1.3</summary>
+
+
+
+### Bug Fixes
+
+* allow v2.0 for common protos ([#5031](https://github.com/googleapis/google-cloud-php/issues/5031)) ([580b8db](https://github.com/googleapis/google-cloud-php/commit/580b8db4db619fd099e7c6897aeea83bcfe9b08c))
+
+</details>
+
+<details><summary>google/cloud-kms 1.12.3</summary>
+
+
+
+### Bug Fixes
+
+* [KMS] add removed resource name methods in owlbot ([#5043](https://github.com/googleapis/google-cloud-php/issues/5043)) ([5ff33d8](https://github.com/googleapis/google-cloud-php/commit/5ff33d85ae29efecac5874cf73f40b5f55d108c5))
+* add missing static methods to veneers instead of to owlbot ([#5058](https://github.com/googleapis/google-cloud-php/issues/5058)) ([914e3fe](https://github.com/googleapis/google-cloud-php/commit/914e3fef3ca4f4f9f2585f5748ca66fa088056f2))
+
+</details>
+
+<details><summary>google/cloud-logging 1.23.0</summary>
+
+
+
+### Features
+
+* [Logging] service update ([#5046](https://github.com/googleapis/google-cloud-php/issues/5046)) ([5193195](https://github.com/googleapis/google-cloud-php/commit/5193195f1200fb186ba316c2effd9eb9299a82cf))
+
+</details>
+
+<details><summary>google/cloud-managed-identities 0.2.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [ManagedIdentities] add ancillary service bindings to service_yaml (#5037)
+
+### Features
+
+* [ManagedIdentities] add ancillary service bindings to service_yaml ([#5037](https://github.com/googleapis/google-cloud-php/issues/5037)) ([d61f554](https://github.com/googleapis/google-cloud-php/commit/d61f55416aab7fe1e9a3e1d81343301badc56a96))
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.0.4</summary>
+
+
+
+### Bug Fixes
+
+* add missing static methods to veneers instead of to owlbot ([#5058](https://github.com/googleapis/google-cloud-php/issues/5058)) ([914e3fe](https://github.com/googleapis/google-cloud-php/commit/914e3fef3ca4f4f9f2585f5748ca66fa088056f2))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.2.0</summary>
+
+
+
+### Features
+
+* [RecaptchaEnterprise] service update ([#5045](https://github.com/googleapis/google-cloud-php/issues/5045)) ([5216b73](https://github.com/googleapis/google-cloud-php/commit/5216b7307d77bd82b438aea7308e74c796064abf))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.6.0</summary>
+
+
+
+### Features
+
+* recommendation priority / insight severity ([#5066](https://github.com/googleapis/google-cloud-php/issues/5066)) ([1cfac42](https://github.com/googleapis/google-cloud-php/commit/1cfac42be0dd9b118f2c649563ea0ddf34f6755a))
+
+</details>
+
+<details><summary>google/cloud-redis 1.4.2</summary>
+
+
+
+### Bug Fixes
+
+* [Cloud Memorystore for Redis] Add missing fields for TLS and Maintenance Window features ([#5027](https://github.com/googleapis/google-cloud-php/issues/5027)) ([2f06a5e](https://github.com/googleapis/google-cloud-php/commit/2f06a5ebe31040cf5ac78991856f43b9dd187310))
+
+</details>
+
+<details><summary>google/cloud-service-control 0.3.4</summary>
+
+
+
+### Bug Fixes
+
+* allow v2.0 for common protos ([#5031](https://github.com/googleapis/google-cloud-php/issues/5031)) ([580b8db](https://github.com/googleapis/google-cloud-php/commit/580b8db4db619fd099e7c6897aeea83bcfe9b08c))
+
+</details>
+
+<details><summary>google/cloud-service-management 0.2.4</summary>
+
+
+
+### Bug Fixes
+
+* allow v2.0 for common protos ([#5031](https://github.com/googleapis/google-cloud-php/issues/5031)) ([580b8db](https://github.com/googleapis/google-cloud-php/commit/580b8db4db619fd099e7c6897aeea83bcfe9b08c))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.47.0</summary>
+
+
+
+### Features
+
+* add database dialect ([#5056](https://github.com/googleapis/google-cloud-php/issues/5056)) ([521f638](https://github.com/googleapis/google-cloud-php/commit/521f638abbc231358aa9660ce1d251e964285ead))
+
+</details>
+
+<details><summary>google/cloud-speech 1.5.0</summary>
+
+
+
+### Features
+
+* update client libraries to support Database operations ([#4887](https://github.com/googleapis/google-cloud-php/issues/4887)) ([a0137e1](https://github.com/googleapis/google-cloud-php/commit/a0137e1aeb27d1f781d9f8f9630829cf82d698ff))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.2.0</summary>
+
+
+
+### Features
+
+* add new fields to `DatabaseInstance` message in the cloud_sql_resources.proto and cleanup proto descriptions ([#5061](https://github.com/googleapis/google-cloud-php/issues/5061)) ([bcd6732](https://github.com/googleapis/google-cloud-php/commit/bcd6732b1c7c925da32f8bbf883932b32e8e9fe8))
+
+</details>
+
+<details><summary>google/cloud-storage 1.26.1</summary>
+
+
+
+### Bug Fixes
+
+* **storage:** Added stream_set_option in StreamWrapper ([#5067](https://github.com/googleapis/google-cloud-php/issues/5067)) ([e13eac3](https://github.com/googleapis/google-cloud-php/commit/e13eac3a2d7bf4c24c3af924718e506825b42c78))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.12.6</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-workflows 0.2.4</summary>
+
+
+
+</details>
+
 ## 0.173.1
 
 <details><summary>google/cloud-compute 1.0.0</summary>

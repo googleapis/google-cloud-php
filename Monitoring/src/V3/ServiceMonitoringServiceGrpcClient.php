@@ -40,6 +40,7 @@ class ServiceMonitoringServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\CreateServiceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function CreateService(\Google\Cloud\Monitoring\V3\CreateServiceRequest $argument,
       $metadata = [], $options = []) {
@@ -54,6 +55,7 @@ class ServiceMonitoringServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\GetServiceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function GetService(\Google\Cloud\Monitoring\V3\GetServiceRequest $argument,
       $metadata = [], $options = []) {
@@ -68,6 +70,7 @@ class ServiceMonitoringServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\ListServicesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function ListServices(\Google\Cloud\Monitoring\V3\ListServicesRequest $argument,
       $metadata = [], $options = []) {
@@ -82,6 +85,7 @@ class ServiceMonitoringServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\UpdateServiceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function UpdateService(\Google\Cloud\Monitoring\V3\UpdateServiceRequest $argument,
       $metadata = [], $options = []) {
@@ -96,6 +100,7 @@ class ServiceMonitoringServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\DeleteServiceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function DeleteService(\Google\Cloud\Monitoring\V3\DeleteServiceRequest $argument,
       $metadata = [], $options = []) {
@@ -110,6 +115,7 @@ class ServiceMonitoringServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\CreateServiceLevelObjectiveRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function CreateServiceLevelObjective(\Google\Cloud\Monitoring\V3\CreateServiceLevelObjectiveRequest $argument,
       $metadata = [], $options = []) {
@@ -124,6 +130,7 @@ class ServiceMonitoringServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\GetServiceLevelObjectiveRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function GetServiceLevelObjective(\Google\Cloud\Monitoring\V3\GetServiceLevelObjectiveRequest $argument,
       $metadata = [], $options = []) {
@@ -138,6 +145,7 @@ class ServiceMonitoringServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\ListServiceLevelObjectivesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function ListServiceLevelObjectives(\Google\Cloud\Monitoring\V3\ListServiceLevelObjectivesRequest $argument,
       $metadata = [], $options = []) {
@@ -152,6 +160,7 @@ class ServiceMonitoringServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\UpdateServiceLevelObjectiveRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function UpdateServiceLevelObjective(\Google\Cloud\Monitoring\V3\UpdateServiceLevelObjectiveRequest $argument,
       $metadata = [], $options = []) {
@@ -166,6 +175,7 @@ class ServiceMonitoringServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\DeleteServiceLevelObjectiveRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function DeleteServiceLevelObjective(\Google\Cloud\Monitoring\V3\DeleteServiceLevelObjectiveRequest $argument,
       $metadata = [], $options = []) {

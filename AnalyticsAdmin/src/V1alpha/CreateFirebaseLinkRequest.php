@@ -83,7 +83,7 @@ class CreateFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFirebaseLink()
     {
-        return isset($this->firebase_link) ? $this->firebase_link : null;
+        return $this->firebase_link;
     }
 
     public function hasFirebaseLink()

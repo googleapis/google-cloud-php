@@ -19,6 +19,9 @@ class Tag extends \Google\Protobuf\Internal\Message
     /**
      * The name of the tag, for example:
      * "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1".
+     * If the package part contains slashes, the slashes are escaped.
+     * The tag part can only have characters in [a-zA-Z0-9\-._~:&#64;], anything else
+     * must be URL encoded.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -26,6 +29,8 @@ class Tag extends \Google\Protobuf\Internal\Message
     /**
      * The name of the version the tag refers to, for example:
      * "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/sha256:5243811"
+     * If the package or version ID parts contain slashes, the slashes are
+     * escaped.
      *
      * Generated from protobuf field <code>string version = 2;</code>
      */
@@ -40,9 +45,14 @@ class Tag extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name of the tag, for example:
      *           "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1".
+     *           If the package part contains slashes, the slashes are escaped.
+     *           The tag part can only have characters in [a-zA-Z0-9\-._~:&#64;], anything else
+     *           must be URL encoded.
      *     @type string $version
      *           The name of the version the tag refers to, for example:
      *           "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/sha256:5243811"
+     *           If the package or version ID parts contain slashes, the slashes are
+     *           escaped.
      * }
      */
     public function __construct($data = NULL) {
@@ -53,6 +63,9 @@ class Tag extends \Google\Protobuf\Internal\Message
     /**
      * The name of the tag, for example:
      * "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1".
+     * If the package part contains slashes, the slashes are escaped.
+     * The tag part can only have characters in [a-zA-Z0-9\-._~:&#64;], anything else
+     * must be URL encoded.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -65,6 +78,9 @@ class Tag extends \Google\Protobuf\Internal\Message
     /**
      * The name of the tag, for example:
      * "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1".
+     * If the package part contains slashes, the slashes are escaped.
+     * The tag part can only have characters in [a-zA-Z0-9\-._~:&#64;], anything else
+     * must be URL encoded.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -81,6 +97,8 @@ class Tag extends \Google\Protobuf\Internal\Message
     /**
      * The name of the version the tag refers to, for example:
      * "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/sha256:5243811"
+     * If the package or version ID parts contain slashes, the slashes are
+     * escaped.
      *
      * Generated from protobuf field <code>string version = 2;</code>
      * @return string
@@ -93,6 +111,8 @@ class Tag extends \Google\Protobuf\Internal\Message
     /**
      * The name of the version the tag refers to, for example:
      * "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/sha256:5243811"
+     * If the package or version ID parts contain slashes, the slashes are
+     * escaped.
      *
      * Generated from protobuf field <code>string version = 2;</code>
      * @param string $var

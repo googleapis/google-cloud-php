@@ -44,11 +44,16 @@ class RequestBasedSli extends \Google\Protobuf\Internal\Message
      * `total_service` is computed from two `TimeSeries`.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TimeSeriesRatio good_total_ratio = 1;</code>
-     * @return \Google\Cloud\Monitoring\V3\TimeSeriesRatio
+     * @return \Google\Cloud\Monitoring\V3\TimeSeriesRatio|null
      */
     public function getGoodTotalRatio()
     {
         return $this->readOneof(1);
+    }
+
+    public function hasGoodTotalRatio()
+    {
+        return $this->hasOneof(1);
     }
 
     /**
@@ -74,11 +79,16 @@ class RequestBasedSli extends \Google\Protobuf\Internal\Message
      * `Distribution`.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.DistributionCut distribution_cut = 3;</code>
-     * @return \Google\Cloud\Monitoring\V3\DistributionCut
+     * @return \Google\Cloud\Monitoring\V3\DistributionCut|null
      */
     public function getDistributionCut()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasDistributionCut()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

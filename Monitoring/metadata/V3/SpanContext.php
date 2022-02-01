@@ -14,19 +14,14 @@ class SpanContext
         if (static::$is_initialized == true) {
           return;
         }
-        $pool->internalAddGeneratedFile(hex2bin(
-            "0ab4020a27676f6f676c652f6d6f6e69746f72696e672f76332f7370616e" .
-            "5f636f6e746578742e70726f746f1214676f6f676c652e6d6f6e69746f72" .
-            "696e672e763322200a0b5370616e436f6e7465787412110a097370616e5f" .
-            "6e616d6518012001280942c8010a18636f6d2e676f6f676c652e6d6f6e69" .
-            "746f72696e672e763342105370616e436f6e7465787450726f746f50015a" .
-            "3e676f6f676c652e676f6c616e672e6f72672f67656e70726f746f2f676f" .
-            "6f676c65617069732f6d6f6e69746f72696e672f76333b6d6f6e69746f72" .
-            "696e67aa021a476f6f676c652e436c6f75642e4d6f6e69746f72696e672e" .
-            "5633ca021a476f6f676c655c436c6f75645c4d6f6e69746f72696e675c56" .
-            "33ea021d476f6f676c653a3a436c6f75643a3a4d6f6e69746f72696e673a" .
-            "3a5633620670726f746f33"
-        ), true);
+        $pool->internalAddGeneratedFile(
+            '
+´
+\'google/monitoring/v3/span_context.protogoogle.monitoring.v3" 
+SpanContext
+	span_name (	BÈ
+com.google.monitoring.v3BSpanContextProtoPZ>google.golang.org/genproto/googleapis/monitoring/v3;monitoringªGoogle.Cloud.Monitoring.V3ÊGoogle\\Cloud\\Monitoring\\V3êGoogle::Cloud::Monitoring::V3bproto3'
+        , true);
 
         static::$is_initialized = true;
     }

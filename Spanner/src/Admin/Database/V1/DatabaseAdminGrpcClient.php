@@ -21,10 +21,11 @@ namespace Google\Cloud\Spanner\Admin\Database\V1;
 /**
  * Cloud Spanner Database Admin API
  *
- * The Cloud Spanner Database Admin API can be used to create, drop, and
- * list databases. It also enables updating the schema of pre-existing
- * databases. It can be also used to create, delete and list backups for a
- * database and to restore from an existing backup.
+ * The Cloud Spanner Database Admin API can be used to:
+ *   * create, drop, and list databases
+ *   * update the schema of pre-existing databases
+ *   * create, delete and list backups for a database
+ *   * restore a database from an existing backup
  */
 class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
 
@@ -114,6 +115,8 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * Drops (aka deletes) a Cloud Spanner database.
      * Completed backups for the database will be retained according to their
      * `expire_time`.
+     * Note: Cloud Spanner might continue to accept requests for a few seconds
+     * after the database has been deleted.
      * @param \Google\Cloud\Spanner\Admin\Database\V1\DropDatabaseRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

@@ -137,7 +137,7 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCryptoKey()
     {
-        return isset($this->crypto_key) ? $this->crypto_key : null;
+        return $this->crypto_key;
     }
 
     public function hasCryptoKey()

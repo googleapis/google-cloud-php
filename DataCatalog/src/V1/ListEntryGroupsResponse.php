@@ -17,14 +17,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListEntryGroupsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * EntryGroup details.
+     * Entry group details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.EntryGroup entry_groups = 1;</code>
      */
     private $entry_groups;
     /**
-     * Token to retrieve the next page of results. It is set to empty if no items
-     * remain in results.
+     * Pagination token to specify in the next call to retrieve the next page of
+     * results. Empty if there are no more items.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -37,10 +37,10 @@ class ListEntryGroupsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DataCatalog\V1\EntryGroup[]|\Google\Protobuf\Internal\RepeatedField $entry_groups
-     *           EntryGroup details.
+     *           Entry group details.
      *     @type string $next_page_token
-     *           Token to retrieve the next page of results. It is set to empty if no items
-     *           remain in results.
+     *           Pagination token to specify in the next call to retrieve the next page of
+     *           results. Empty if there are no more items.
      * }
      */
     public function __construct($data = NULL) {
@@ -49,7 +49,7 @@ class ListEntryGroupsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * EntryGroup details.
+     * Entry group details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.EntryGroup entry_groups = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -60,7 +60,7 @@ class ListEntryGroupsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * EntryGroup details.
+     * Entry group details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.EntryGroup entry_groups = 1;</code>
      * @param \Google\Cloud\DataCatalog\V1\EntryGroup[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -75,8 +75,8 @@ class ListEntryGroupsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Token to retrieve the next page of results. It is set to empty if no items
-     * remain in results.
+     * Pagination token to specify in the next call to retrieve the next page of
+     * results. Empty if there are no more items.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -87,8 +87,8 @@ class ListEntryGroupsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Token to retrieve the next page of results. It is set to empty if no items
-     * remain in results.
+     * Pagination token to specify in the next call to retrieve the next page of
+     * results. Empty if there are no more items.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

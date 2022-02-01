@@ -157,7 +157,7 @@ class AsymmetricDecryptRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCiphertextCrc32C()
     {
-        return isset($this->ciphertext_crc32c) ? $this->ciphertext_crc32c : null;
+        return $this->ciphertext_crc32c;
     }
 
     public function hasCiphertextCrc32C()

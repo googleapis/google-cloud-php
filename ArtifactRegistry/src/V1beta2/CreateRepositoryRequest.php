@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the parent resource where the repository will be created.
+     * Required. The name of the parent resource where the repository will be created.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -41,7 +41,7 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The name of the parent resource where the repository will be created.
+     *           Required. The name of the parent resource where the repository will be created.
      *     @type string $repository_id
      *           The repository id to use for this repository.
      *     @type \Google\Cloud\ArtifactRegistry\V1beta2\Repository $repository
@@ -54,9 +54,9 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the parent resource where the repository will be created.
+     * Required. The name of the parent resource where the repository will be created.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -65,9 +65,9 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the parent resource where the repository will be created.
+     * Required. The name of the parent resource where the repository will be created.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

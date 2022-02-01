@@ -14,12 +14,12 @@ class AnnotationSpec
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
+        \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ò
-,google/cloud/automl/v1/annotation_spec.protogoogle.cloud.automl.v1google/api/annotations.proto"Ö
+ï
+,google/cloud/automl/v1/annotation_spec.protogoogle.cloud.automl.v1google/api/resource.proto"Ö
 AnnotationSpec
 name (	
 display_name (	

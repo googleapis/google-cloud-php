@@ -43,6 +43,26 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'ImportAptArtifacts' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ArtifactRegistry\V1beta2\ImportAptArtifactsResponse',
+                    'metadataReturnType' => '\Google\Cloud\ArtifactRegistry\V1beta2\ImportAptArtifactsMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'ImportYumArtifacts' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\ArtifactRegistry\V1beta2\ImportYumArtifactsResponse',
+                    'metadataReturnType' => '\Google\Cloud\ArtifactRegistry\V1beta2\ImportYumArtifactsMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'ListFiles' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

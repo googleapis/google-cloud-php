@@ -49,6 +49,8 @@ use Google\Cloud\Dialogflow\V2\SuggestArticlesRequest;
 use Google\Cloud\Dialogflow\V2\SuggestArticlesResponse;
 use Google\Cloud\Dialogflow\V2\SuggestFaqAnswersRequest;
 use Google\Cloud\Dialogflow\V2\SuggestFaqAnswersResponse;
+use Google\Cloud\Dialogflow\V2\SuggestSmartRepliesRequest;
+use Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse;
 use Google\Cloud\Dialogflow\V2\TextInput;
 use Google\Cloud\Dialogflow\V2\UpdateParticipantRequest;
 use Google\Protobuf\FieldMask;
@@ -797,13 +799,13 @@ class ParticipantsGapicClient
      *     Optional.
      *
      *     @type string $latestMessage
-     *           The name of the latest conversation message to compile suggestion
+     *           Optional. The name of the latest conversation message to compile suggestion
      *           for. If empty, it will be the latest message of the conversation.
      *
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *     @type int $contextSize
-     *           Max number of messages prior to and including
+     *           Optional. Max number of messages prior to and including
      *           [latest_message][google.cloud.dialogflow.v2.SuggestArticlesRequest.latest_message] to use as context
      *           when compiling the suggestion. By default 20 and at most 50.
      *     @type AssistQueryParameters $assistQueryParams
@@ -864,13 +866,13 @@ class ParticipantsGapicClient
      *     Optional.
      *
      *     @type string $latestMessage
-     *           The name of the latest conversation message to compile suggestion
+     *           Optional. The name of the latest conversation message to compile suggestion
      *           for. If empty, it will be the latest message of the conversation.
      *
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *     @type int $contextSize
-     *           Max number of messages prior to and including
+     *           Optional. Max number of messages prior to and including
      *           [latest_message] to use as context when compiling the
      *           suggestion. By default 20 and at most 50.
      *     @type AssistQueryParameters $assistQueryParams
@@ -907,6 +909,75 @@ class ParticipantsGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SuggestFaqAnswers', SuggestFaqAnswersResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets smart replies for a participant based on specific historical
+     * messages.
+     *
+     * Sample code:
+     * ```
+     * $participantsClient = new ParticipantsClient();
+     * try {
+     *     $formattedParent = $participantsClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
+     *     $response = $participantsClient->suggestSmartReplies($formattedParent);
+     * } finally {
+     *     $participantsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The name of the participant to fetch suggestion for.
+     *                             Format: `projects/<Project ID>/locations/<Location
+     *                             ID>/conversations/<Conversation ID>/participants/<Participant ID>`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type TextInput $currentTextInput
+     *           The current natural language text segment to compile suggestion
+     *           for. This provides a way for user to get follow up smart reply suggestion
+     *           after a smart reply selection, without sending a text message.
+     *     @type string $latestMessage
+     *           The name of the latest conversation message to compile suggestion
+     *           for. If empty, it will be the latest message of the conversation.
+     *
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
+     *     @type int $contextSize
+     *           Max number of messages prior to and including
+     *           [latest_message] to use as context when compiling the
+     *           suggestion. By default 20 and at most 50.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function suggestSmartReplies($parent, array $optionalArgs = [])
+    {
+        $request = new SuggestSmartRepliesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['currentTextInput'])) {
+            $request->setCurrentTextInput($optionalArgs['currentTextInput']);
+        }
+
+        if (isset($optionalArgs['latestMessage'])) {
+            $request->setLatestMessage($optionalArgs['latestMessage']);
+        }
+
+        if (isset($optionalArgs['contextSize'])) {
+            $request->setContextSize($optionalArgs['contextSize']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SuggestSmartReplies', SuggestSmartRepliesResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**

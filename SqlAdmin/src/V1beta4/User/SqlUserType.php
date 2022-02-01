@@ -59,6 +59,4 @@ class SqlUserType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SqlUserType::class, \Google\Cloud\Sql\V1beta4\User_SqlUserType::class);
 

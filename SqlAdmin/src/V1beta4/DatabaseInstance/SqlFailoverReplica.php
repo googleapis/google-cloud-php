@@ -16,8 +16,7 @@ class SqlFailoverReplica extends \Google\Protobuf\Internal\Message
     /**
      * The name of the failover replica. If specified at instance creation, a
      * failover replica is created for the instance. The name
-     * doesn't include the project ID. This property is applicable only to
-     * Second Generation instances.
+     * doesn't include the project ID.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -40,8 +39,7 @@ class SqlFailoverReplica extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name of the failover replica. If specified at instance creation, a
      *           failover replica is created for the instance. The name
-     *           doesn't include the project ID. This property is applicable only to
-     *           Second Generation instances.
+     *           doesn't include the project ID.
      *     @type \Google\Protobuf\BoolValue $available
      *           The availability status of the failover replica. A false status indicates
      *           that the failover replica is out of sync. The primary instance can only
@@ -56,8 +54,7 @@ class SqlFailoverReplica extends \Google\Protobuf\Internal\Message
     /**
      * The name of the failover replica. If specified at instance creation, a
      * failover replica is created for the instance. The name
-     * doesn't include the project ID. This property is applicable only to
-     * Second Generation instances.
+     * doesn't include the project ID.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -70,8 +67,7 @@ class SqlFailoverReplica extends \Google\Protobuf\Internal\Message
     /**
      * The name of the failover replica. If specified at instance creation, a
      * failover replica is created for the instance. The name
-     * doesn't include the project ID. This property is applicable only to
-     * Second Generation instances.
+     * doesn't include the project ID.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -158,6 +154,4 @@ class SqlFailoverReplica extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SqlFailoverReplica::class, \Google\Cloud\Sql\V1beta4\DatabaseInstance_SqlFailoverReplica::class);
 

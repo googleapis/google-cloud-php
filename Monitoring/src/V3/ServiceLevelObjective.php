@@ -48,6 +48,17 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>double goal = 4;</code>
      */
     private $goal = 0.0;
+    /**
+     * Labels which have been used to annotate the service-level objective. Label
+     * keys must start with a letter. Label keys and values may contain lowercase
+     * letters, numbers, underscores, and dashes. Label keys and values have a
+     * maximum length of 63 characters, and must be less than 128 bytes in size.
+     * Up to 64 label entries may be stored. For labels which do not have a
+     * semantic value, the empty string may be supplied for the label value.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 12;</code>
+     */
+    private $user_labels;
     protected $period;
 
     /**
@@ -75,6 +86,13 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
      *           A calendar period, semantically "since the start of the current
      *           `<calendar_period>`". At this time, only `DAY`, `WEEK`, `FORTNIGHT`, and
      *           `MONTH` are supported.
+     *     @type array|\Google\Protobuf\Internal\MapField $user_labels
+     *           Labels which have been used to annotate the service-level objective. Label
+     *           keys must start with a letter. Label keys and values may contain lowercase
+     *           letters, numbers, underscores, and dashes. Label keys and values have a
+     *           maximum length of 63 characters, and must be less than 128 bytes in size.
+     *           Up to 64 label entries may be stored. For labels which do not have a
+     *           semantic value, the empty string may be supplied for the label value.
      * }
      */
     public function __construct($data = NULL) {
@@ -142,11 +160,21 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
      * quality.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.ServiceLevelIndicator service_level_indicator = 3;</code>
-     * @return \Google\Cloud\Monitoring\V3\ServiceLevelIndicator
+     * @return \Google\Cloud\Monitoring\V3\ServiceLevelIndicator|null
      */
     public function getServiceLevelIndicator()
     {
         return $this->service_level_indicator;
+    }
+
+    public function hasServiceLevelIndicator()
+    {
+        return isset($this->service_level_indicator);
+    }
+
+    public function clearServiceLevelIndicator()
+    {
+        unset($this->service_level_indicator);
     }
 
     /**
@@ -199,11 +227,16 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
      * Must be an integer multiple of 1 day no larger than 30 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration rolling_period = 5;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getRollingPeriod()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasRollingPeriod()
+    {
+        return $this->hasOneof(5);
     }
 
     /**
@@ -235,6 +268,11 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
         return $this->readOneof(6);
     }
 
+    public function hasCalendarPeriod()
+    {
+        return $this->hasOneof(6);
+    }
+
     /**
      * A calendar period, semantically "since the start of the current
      * `<calendar_period>`". At this time, only `DAY`, `WEEK`, `FORTNIGHT`, and
@@ -248,6 +286,42 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Type\CalendarPeriod::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Labels which have been used to annotate the service-level objective. Label
+     * keys must start with a letter. Label keys and values may contain lowercase
+     * letters, numbers, underscores, and dashes. Label keys and values have a
+     * maximum length of 63 characters, and must be less than 128 bytes in size.
+     * Up to 64 label entries may be stored. For labels which do not have a
+     * semantic value, the empty string may be supplied for the label value.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 12;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getUserLabels()
+    {
+        return $this->user_labels;
+    }
+
+    /**
+     * Labels which have been used to annotate the service-level objective. Label
+     * keys must start with a letter. Label keys and values may contain lowercase
+     * letters, numbers, underscores, and dashes. Label keys and values have a
+     * maximum length of 63 characters, and must be less than 128 bytes in size.
+     * Up to 64 label entries may be stored. For labels which do not have a
+     * semantic value, the empty string may be supplied for the label value.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 12;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setUserLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->user_labels = $arr;
 
         return $this;
     }

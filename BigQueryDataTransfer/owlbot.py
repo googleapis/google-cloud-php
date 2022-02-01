@@ -26,7 +26,13 @@ logging.basicConfig(level=logging.DEBUG)
 src = Path(f"../{php.STAGING_DIR}/BigQueryDataTransfer").resolve()
 dest = Path().resolve()
 
-php.owlbot_main(src=src, dest=dest)
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "*/src/V1/DataTransferServiceClient.php"
+    ]
+)
 
 
 

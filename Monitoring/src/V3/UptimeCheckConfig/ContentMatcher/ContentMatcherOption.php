@@ -40,6 +40,7 @@ class ContentMatcherOption
     /**
      * Selects regular-expression matching. The match succeeds of the output
      * matches the regular expression specified in the `content` string.
+     * Regex matching is only supported for HTTP/HTTPS checks.
      *
      * Generated from protobuf enum <code>MATCHES_REGEX = 3;</code>
      */
@@ -47,7 +48,8 @@ class ContentMatcherOption
     /**
      * Selects negation of regular-expression matching. The match succeeds if
      * the output does _NOT_ match the regular expression specified in the
-     * `content` string.
+     * `content` string. Regex matching is only supported for HTTP/HTTPS
+     * checks.
      *
      * Generated from protobuf enum <code>NOT_MATCHES_REGEX = 4;</code>
      */

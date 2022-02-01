@@ -53,6 +53,11 @@ class TypedValue extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasBoolValue()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * A Boolean value: `true` or `false`.
      *
@@ -77,6 +82,11 @@ class TypedValue extends \Google\Protobuf\Internal\Message
     public function getInt64Value()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasInt64Value()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -107,6 +117,11 @@ class TypedValue extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasDoubleValue()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * A 64-bit double-precision floating-point number. Its magnitude
      * is approximately &plusmn;10<sup>&plusmn;300</sup> and it has 16
@@ -135,6 +150,11 @@ class TypedValue extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasStringValue()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * A variable-length string value.
      *
@@ -154,11 +174,16 @@ class TypedValue extends \Google\Protobuf\Internal\Message
      * A distribution value.
      *
      * Generated from protobuf field <code>.google.api.Distribution distribution_value = 5;</code>
-     * @return \Google\Api\Distribution
+     * @return \Google\Api\Distribution|null
      */
     public function getDistributionValue()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasDistributionValue()
+    {
+        return $this->hasOneof(5);
     }
 
     /**

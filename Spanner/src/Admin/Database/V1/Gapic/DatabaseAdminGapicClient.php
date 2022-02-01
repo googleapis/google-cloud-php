@@ -63,6 +63,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest;
+
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseMetadata;
@@ -77,10 +78,11 @@ use Google\Protobuf\GPBEmpty;
 /**
  * Service Description: Cloud Spanner Database Admin API
  *
- * The Cloud Spanner Database Admin API can be used to create, drop, and
- * list databases. It also enables updating the schema of pre-existing
- * databases. It can be also used to create, delete and list backups for a
- * database and to restore from an existing backup.
+ * The Cloud Spanner Database Admin API can be used to:
+ * * create, drop, and list databases
+ * * update the schema of pre-existing databases
+ * * create, delete and list backups for a database
+ * * restore a database from an existing backup
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -659,6 +661,9 @@ class DatabaseAdminGapicClient
      *           Optional. The encryption configuration for the database. If this field is not
      *           specified, Cloud Spanner will encrypt/decrypt all data at rest using
      *           Google default encryption.
+     *     @type int $databaseDialect
+     *           Optional. The dialect of the Cloud Spanner Database.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -686,6 +691,10 @@ class DatabaseAdminGapicClient
 
         if (isset($optionalArgs['encryptionConfig'])) {
             $request->setEncryptionConfig($optionalArgs['encryptionConfig']);
+        }
+
+        if (isset($optionalArgs['databaseDialect'])) {
+            $request->setDatabaseDialect($optionalArgs['databaseDialect']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -755,6 +764,8 @@ class DatabaseAdminGapicClient
      * Drops (aka deletes) a Cloud Spanner database.
      * Completed backups for the database will be retained according to their
      * `expire_time`.
+     * Note: Cloud Spanner might continue to accept requests for a few seconds
+     * after the database has been deleted.
      *
      * Sample code:
      * ```

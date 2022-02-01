@@ -16,7 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project on which to execute the request. The format is:
+     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
+     * which to execute the request. The format is:
+     * 4
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -37,7 +39,9 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The project on which to execute the request. The format is:
+     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
+     *           which to execute the request. The format is:
+     *           4
      *               projects/[PROJECT_ID_OR_NUMBER]
      *     @type \Google\Api\MetricDescriptor $metric_descriptor
      *           Required. The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
@@ -50,7 +54,9 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project on which to execute the request. The format is:
+     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
+     * which to execute the request. The format is:
+     * 4
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -62,7 +68,9 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project on which to execute the request. The format is:
+     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
+     * which to execute the request. The format is:
+     * 4
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -82,11 +90,21 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      * descriptor.
      *
      * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Api\MetricDescriptor
+     * @return \Google\Api\MetricDescriptor|null
      */
     public function getMetricDescriptor()
     {
         return $this->metric_descriptor;
+    }
+
+    public function hasMetricDescriptor()
+    {
+        return isset($this->metric_descriptor);
+    }
+
+    public function clearMetricDescriptor()
+    {
+        unset($this->metric_descriptor);
     }
 
     /**
