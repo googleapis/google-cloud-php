@@ -159,6 +159,22 @@ return [
                     ],
                 ],
             ],
+            'PartialUpdateCluster' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{cluster.name=projects/*/instances/*/clusters/*}',
+                'body' => 'cluster',
+                'placeholders' => [
+                    'cluster.name' => [
+                        'getters' => [
+                            'getCluster',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
             'PartialUpdateInstance' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v2/{instance.name=projects/*/instances/*}',
