@@ -16,6 +16,7 @@
  */
 
 namespace Google\Cloud\Firestore\Tests\Unit;
+
 use Google\Cloud\Core\Testing\ArrayHasSameValuesToken;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
