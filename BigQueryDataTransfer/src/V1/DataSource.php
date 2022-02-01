@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents data source metadata. Metadata is sufficient to
- * render UI and request proper OAuth tokens.
+ * Defines the properties and custom parameters for a data source.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.datatransfer.v1.DataSource</code>
  */
@@ -690,7 +689,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
      */
     public function getMinimumScheduleInterval()
     {
-        return isset($this->minimum_schedule_interval) ? $this->minimum_schedule_interval : null;
+        return $this->minimum_schedule_interval;
     }
 
     public function hasMinimumScheduleInterval()

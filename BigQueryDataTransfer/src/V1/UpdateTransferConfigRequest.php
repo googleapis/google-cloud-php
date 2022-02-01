@@ -124,7 +124,7 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTransferConfig()
     {
-        return isset($this->transfer_config) ? $this->transfer_config : null;
+        return $this->transfer_config;
     }
 
     public function hasTransferConfig()
@@ -214,7 +214,7 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

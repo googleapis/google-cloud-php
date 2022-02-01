@@ -20,7 +20,7 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>optional string email = 1;</code>
      */
-    protected $email = null;
+    private $email = null;
 
     /**
      * Constructor.

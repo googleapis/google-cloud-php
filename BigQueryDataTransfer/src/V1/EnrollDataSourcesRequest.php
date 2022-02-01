@@ -22,7 +22,7 @@ class EnrollDataSourcesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * Data sources that are enrolled. It is required to provide at least one
      * data source id.
