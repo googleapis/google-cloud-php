@@ -46,7 +46,14 @@ php.owlbot_main(
 admin_library = Path(f"../{php.STAGING_DIR}/Firestore/v1/Admin").resolve()
 
 # copy all src
-s.move(admin_library / f'src', 'src/Admin', merge=preserve_copyright_year)
+s.move(
+    admin_library / f'src',
+    'src/Admin',
+    merge=preserve_copyright_year,
+    excludes=[
+        admin_library / 'src/V1/FirestoreAdminClient.php',
+    ]
+)
 
 # copy proto files to src also
 s.move(admin_library / f'proto/src/Google/Cloud/Firestore', f'src/', merge=preserve_copyright_year)
@@ -140,5 +147,16 @@ s.replace(
     r"\1](https://cloud.google.com\2)"
 )
 
-# Address breaking changes
-subprocess.run('git show 00edd91a0bcd94deccbeb312a5ddae4e81a178e0 | git apply', shell=True)
+# fix backwards-compatibility issues with LRO methods
+lro_methods = ['createIndex', 'exportDocuments', 'importDocuments', 'updateField']
+for lro_method in lro_methods:
+    s.replace(
+        "src/Admin/V1/Gapic/FirestoreAdminGapicClient.php",
+        rf'{lro_method}\(',
+        rf'{lro_method}LRO(',
+    )
+    s.replace(
+        "tests/Unit/Admin/V1/FirestoreAdminClientTest.php",
+        rf'{lro_method}\(',
+        rf'{lro_method}LRO(',
+    )
