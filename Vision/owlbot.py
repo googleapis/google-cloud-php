@@ -29,12 +29,11 @@ dest = Path().resolve()
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
-# Exclude gapic_metadata.json and partial veneer files.
+# Exclude partial veneer files.
 php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        src / "*/src/*/gapic_metadata.json",
         src / "*/src/*/*.php"
     ]
 )
