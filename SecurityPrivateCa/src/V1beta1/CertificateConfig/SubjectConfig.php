@@ -62,7 +62,7 @@ class SubjectConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSubject()
     {
-        return isset($this->subject) ? $this->subject : null;
+        return $this->subject;
     }
 
     public function hasSubject()
@@ -124,7 +124,7 @@ class SubjectConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSubjectAltName()
     {
-        return isset($this->subject_alt_name) ? $this->subject_alt_name : null;
+        return $this->subject_alt_name;
     }
 
     public function hasSubjectAltName()
@@ -154,6 +154,4 @@ class SubjectConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SubjectConfig::class, \Google\Cloud\Security\PrivateCA\V1beta1\CertificateConfig_SubjectConfig::class);
 

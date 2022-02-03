@@ -304,7 +304,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getConfig()
     {
-        return isset($this->config) ? $this->config : null;
+        return $this->config;
     }
 
     public function hasConfig()
@@ -342,7 +342,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getLifetime()
     {
-        return isset($this->lifetime) ? $this->lifetime : null;
+        return $this->lifetime;
     }
 
     public function hasLifetime()
@@ -383,7 +383,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getKeySpec()
     {
-        return isset($this->key_spec) ? $this->key_spec : null;
+        return $this->key_spec;
     }
 
     public function hasKeySpec()
@@ -423,7 +423,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getCertificatePolicy()
     {
-        return isset($this->certificate_policy) ? $this->certificate_policy : null;
+        return $this->certificate_policy;
     }
 
     public function hasCertificatePolicy()
@@ -461,7 +461,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getIssuingOptions()
     {
-        return isset($this->issuing_options) ? $this->issuing_options : null;
+        return $this->issuing_options;
     }
 
     public function hasIssuingOptions()
@@ -500,7 +500,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getSubordinateConfig()
     {
-        return isset($this->subordinate_config) ? $this->subordinate_config : null;
+        return $this->subordinate_config;
     }
 
     public function hasSubordinateConfig()
@@ -661,7 +661,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getAccessUrls()
     {
-        return isset($this->access_urls) ? $this->access_urls : null;
+        return $this->access_urls;
     }
 
     public function hasAccessUrls()
@@ -698,7 +698,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -734,7 +734,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -771,7 +771,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getDeleteTime()
     {
-        return isset($this->delete_time) ? $this->delete_time : null;
+        return $this->delete_time;
     }
 
     public function hasDeleteTime()

@@ -153,7 +153,7 @@ class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Mess
      */
     public function getSubordinateConfig()
     {
-        return isset($this->subordinate_config) ? $this->subordinate_config : null;
+        return $this->subordinate_config;
     }
 
     public function hasSubordinateConfig()

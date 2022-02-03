@@ -81,7 +81,7 @@ class UpdateCertificateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCertificate()
     {
-        return isset($this->certificate) ? $this->certificate : null;
+        return $this->certificate;
     }
 
     public function hasCertificate()
@@ -117,7 +117,7 @@ class UpdateCertificateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

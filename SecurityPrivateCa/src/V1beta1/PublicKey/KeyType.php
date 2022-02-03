@@ -61,6 +61,4 @@ class KeyType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KeyType::class, \Google\Cloud\Security\PrivateCA\V1beta1\PublicKey_KeyType::class);
 

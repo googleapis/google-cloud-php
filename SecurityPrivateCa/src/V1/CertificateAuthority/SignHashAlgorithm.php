@@ -14,7 +14,7 @@ use UnexpectedValueException;
  * [CryptoKeyVersionAlgorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
  * values. For RSA signing algorithms, the PSS algorithms should be preferred,
  * use PKCS1 algorithms if required for compatibility. For further
- * recommandations, see
+ * recommendations, see
  * https://cloud.google.com/kms/docs/algorithms#algorithm_recommendations.
  *
  * Protobuf type <code>google.cloud.security.privateca.v1.CertificateAuthority.SignHashAlgorithm</code>
@@ -109,6 +109,4 @@ class SignHashAlgorithm
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SignHashAlgorithm::class, \Google\Cloud\Security\PrivateCA\V1\CertificateAuthority_SignHashAlgorithm::class);
 

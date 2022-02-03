@@ -60,6 +60,4 @@ class Tier
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Tier::class, \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority_Tier::class);
 

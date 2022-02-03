@@ -25,10 +25,9 @@ class SubordinateConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $certificate_authority
-     *           Required. This can refer to a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the same project that
-     *           was used to create a subordinate [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]. This field
-     *           is used for information and usability purposes only. The resource name
-     *           is in the format
+     *           Required. This can refer to a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] that was used to create a
+     *           subordinate [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]. This field is used for information
+     *           and usability purposes only. The resource name is in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *     @type \Google\Cloud\Security\PrivateCA\V1\SubordinateConfig\SubordinateConfigChain $pem_issuer_chain
      *           Required. Contains the PEM certificate chain for the issuers of this
@@ -41,10 +40,9 @@ class SubordinateConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. This can refer to a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the same project that
-     * was used to create a subordinate [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]. This field
-     * is used for information and usability purposes only. The resource name
-     * is in the format
+     * Required. This can refer to a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] that was used to create a
+     * subordinate [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]. This field is used for information
+     * and usability purposes only. The resource name is in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
      * Generated from protobuf field <code>string certificate_authority = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -61,10 +59,9 @@ class SubordinateConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. This can refer to a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] in the same project that
-     * was used to create a subordinate [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]. This field
-     * is used for information and usability purposes only. The resource name
-     * is in the format
+     * Required. This can refer to a [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority] that was used to create a
+     * subordinate [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]. This field is used for information
+     * and usability purposes only. The resource name is in the format
      * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
      *
      * Generated from protobuf field <code>string certificate_authority = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

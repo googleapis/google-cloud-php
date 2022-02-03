@@ -82,7 +82,7 @@ class UpdateCertificateRevocationListRequest extends \Google\Protobuf\Internal\M
      */
     public function getCertificateRevocationList()
     {
-        return isset($this->certificate_revocation_list) ? $this->certificate_revocation_list : null;
+        return $this->certificate_revocation_list;
     }
 
     public function hasCertificateRevocationList()
@@ -118,7 +118,7 @@ class UpdateCertificateRevocationListRequest extends \Google\Protobuf\Internal\M
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
