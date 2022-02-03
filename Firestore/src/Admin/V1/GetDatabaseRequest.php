@@ -9,19 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [FirestoreAdmin.DeleteIndex][google.firestore.admin.v1.FirestoreAdmin.DeleteIndex].
+ * The request for [FirestoreAdmin.GetDatabase][google.firestore.admin.v1.FirestoreAdmin.GetDatabase].
  *
- * Generated from protobuf message <code>google.firestore.admin.v1.DeleteIndexRequest</code>
+ * Generated from protobuf message <code>google.firestore.admin.v1.GetDatabaseRequest</code>
  */
-class DeleteIndexRequest extends \Google\Protobuf\Internal\Message
+class GetDatabaseRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. A name of the form
-     * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
+     * `projects/{project_id}/databases/{database_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $name = '';
+    private $name = '';
 
     /**
      * Constructor.
@@ -31,7 +31,7 @@ class DeleteIndexRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. A name of the form
-     *           `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
+     *           `projects/{project_id}/databases/{database_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +41,7 @@ class DeleteIndexRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A name of the form
-     * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
+     * `projects/{project_id}/databases/{database_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -53,7 +53,7 @@ class DeleteIndexRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A name of the form
-     * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
+     * `projects/{project_id}/databases/{database_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

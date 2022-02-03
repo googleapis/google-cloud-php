@@ -3,6 +3,18 @@
 return [
     'interfaces' => [
         'google.firestore.v1.Firestore' => [
+            'BatchGetDocuments' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{database=projects/*/databases/*}/documents:batchGet',
+                'body' => '*',
+                'placeholders' => [
+                    'database' => [
+                        'getters' => [
+                            'getDatabase',
+                        ],
+                    ],
+                ],
+            ],
             'BatchWrite' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{database=projects/*/databases/*}/documents:batchWrite',
@@ -54,6 +66,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'document_id',
                 ],
             ],
             'DeleteDocument' => [
@@ -144,6 +159,25 @@ return [
                     ],
                 ],
             ],
+            'RunQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents}:runQuery',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents/*/**}:runQuery',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateDocument' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{document.name=projects/*/databases/*/documents/*/**}',
@@ -155,6 +189,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Field extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A field name of the form
+     * Required. A field name of the form
      * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
      * A field path may be a simple field name, e.g. `address` or a path to fields
      * within map_value , e.g. `address.city`,
@@ -41,7 +41,7 @@ class Field extends \Google\Protobuf\Internal\Message
      * Indexes defined on this `Field` will be applied to all fields which do not
      * have their own `Field` index configuration.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
@@ -61,7 +61,7 @@ class Field extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           A field name of the form
+     *           Required. A field name of the form
      *           `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
      *           A field path may be a simple field name, e.g. `address` or a path to fields
      *           within map_value , e.g. `address.city`,
@@ -96,7 +96,7 @@ class Field extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A field name of the form
+     * Required. A field name of the form
      * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
      * A field path may be a simple field name, e.g. `address` or a path to fields
      * within map_value , e.g. `address.city`,
@@ -119,7 +119,7 @@ class Field extends \Google\Protobuf\Internal\Message
      * Indexes defined on this `Field` will be applied to all fields which do not
      * have their own `Field` index configuration.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -128,7 +128,7 @@ class Field extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A field name of the form
+     * Required. A field name of the form
      * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
      * A field path may be a simple field name, e.g. `address` or a path to fields
      * within map_value , e.g. `address.city`,
@@ -151,7 +151,7 @@ class Field extends \Google\Protobuf\Internal\Message
      * Indexes defined on this `Field` will be applied to all fields which do not
      * have their own `Field` index configuration.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
