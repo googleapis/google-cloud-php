@@ -35,40 +35,40 @@ class FirestoreAdminClient extends FirestoreAdminGapicClient
      * @return \Google\LongRunning\Operation
      * @deprecated use createIndexLRO instead
      */
-    // public function createIndex($parent, $index, array $optionalArgs = [])
-    // {
-    //     return $this->createIndexLRO($parent, $index, $optionalArgs)->getLastProtoResponse();
-    // }
+    public function createIndex($parent, $index, array $optionalArgs = [])
+    {
+        return $this->createIndexLRO($parent, $index, $optionalArgs)->getLastProtoResponse();
+    }
 
     /**
      * @see FirestoreAdminClient::exportDocumentsLRO
      * @return \Google\LongRunning\Operation
      * @deprecated use exportDocumentsLRO instead
      */
-    // public function exportDocuments($name, array $optionalArgs = [])
-    // {
-    //     return $this->exportDocumentsLRO($name, $optionalArgs)->getLastProtoResponse();
-    // }
+    public function exportDocuments($name, array $optionalArgs = [])
+    {
+        return $this->exportDocumentsLRO($name, $optionalArgs)->getLastProtoResponse();
+    }
 
     /**
      * @see FirestoreAdminClient::importDocumentsLRO
      * @return \Google\LongRunning\Operation
      * @deprecated use importDocumentsLRO instead
      */
-    // public function importDocuments($name, array $optionalArgs = [])
-    // {
-    //     return $this->importDocumentsLRO($name, $optionalArgs)->getLastProtoResponse();
-    // }
+    public function importDocuments($name, array $optionalArgs = [])
+    {
+        return $this->importDocumentsLRO($name, $optionalArgs)->getLastProtoResponse();
+    }
 
     /**
      * @return \Google\LongRunning\Operation
      * @deprecated use updateFieldLRO instead
      * @see FirestoreAdminClient::updateFieldLRO
      */
-    // public function updateField($field, array $optionalArgs = [])
-    // {
-    //     return $this->updateFieldLRO($field, $optionalArgs)->getLastProtoResponse();
-    // }
+    public function updateField($field, array $optionalArgs = [])
+    {
+        return $this->updateFieldLRO($field, $optionalArgs)->getLastProtoResponse();
+    }
 
     /**
      * Formats a string containing the fully-qualified path to represent
