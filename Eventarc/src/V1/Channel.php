@@ -25,26 +25,26 @@ class Channel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * Output only. Server assigned unique identifier for the channel. The value is a UUID4
      * string and guaranteed to remain unchanged until the resource is deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $uid = '';
+    private $uid = '';
     /**
      * Output only. The creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $create_time = null;
+    private $create_time = null;
     /**
      * Output only. The last-modified time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $update_time = null;
+    private $update_time = null;
     /**
      * Required. The name of the event provider (e.g. Eventarc SaaS partner) associated
      * with the channel. This provider will be granted permissions to publish
@@ -53,20 +53,20 @@ class Channel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string provider = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $provider = '';
+    private $provider = '';
     /**
      * Output only. The state of a Channel.
      *
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.Channel.State state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $state = 0;
+    private $state = 0;
     /**
      * Output only. The activation token for the channel. The token must be used by the
      * provider to register the channel for publishing.
      *
      * Generated from protobuf field <code>string activation_token = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $activation_token = '';
+    private $activation_token = '';
     protected $transport;
 
     /**

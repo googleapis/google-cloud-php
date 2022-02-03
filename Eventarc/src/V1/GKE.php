@@ -21,7 +21,7 @@ class GKE extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $cluster = '';
+    private $cluster = '';
     /**
      * Required. The name of the Google Compute Engine in which the cluster resides, which
      * can either be compute zone (for example, us-central1-a) for the zonal
@@ -29,19 +29,19 @@ class GKE extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string location = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $location = '';
+    private $location = '';
     /**
      * Required. The namespace the GKE service is running in.
      *
      * Generated from protobuf field <code>string namespace = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $namespace = '';
+    private $namespace = '';
     /**
      * Required. Name of the GKE service.
      *
      * Generated from protobuf field <code>string service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $service = '';
+    private $service = '';
     /**
      * Optional. The relative path on the GKE service the events should be sent to.
      * The value must conform to the definition of a URI path segment (section 3.3
@@ -49,7 +49,7 @@ class GKE extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $path = '';
+    private $path = '';
 
     /**
      * Constructor.

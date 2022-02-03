@@ -3,6 +3,37 @@
 return [
     'interfaces' => [
         'google.cloud.eventarc.v1.Eventarc' => [
+            'CreateChannel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/channels',
+                'body' => 'channel',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'channel_id',
+                    'validate_only',
+                ],
+            ],
+            'CreateChannelConnection' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/channelConnections',
+                'body' => 'channel_connection',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'channel_connection_id',
+                ],
+            ],
             'CreateTrigger' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/triggers',
@@ -19,6 +50,31 @@ return [
                     'validate_only',
                 ],
             ],
+            'DeleteChannel' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'validate_only',
+                ],
+            ],
+            'DeleteChannelConnection' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/channelConnections/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteTrigger' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/triggers/*}',
@@ -33,6 +89,28 @@ return [
                     'validate_only',
                 ],
             ],
+            'GetChannel' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/channels/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetChannelConnection' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/channelConnections/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetTrigger' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/triggers/*}',
@@ -40,6 +118,28 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListChannelConnections' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/channelConnections',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListChannels' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/channels',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -53,6 +153,22 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+            ],
+            'UpdateChannel' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{channel.name=projects/*/locations/*/channels/*}',
+                'body' => 'channel',
+                'placeholders' => [
+                    'channel.name' => [
+                        'getters' => [
+                            'getChannel',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'validate_only',
                 ],
             ],
             'UpdateTrigger' => [
@@ -100,6 +216,16 @@ return [
             'GetIamPolicy' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{resource=projects/*/locations/*/triggers/*}:getIamPolicy',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/channels/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/channelConnections/*}:getIamPolicy',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -112,6 +238,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/locations/*/triggers/*}:setIamPolicy',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/channels/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/channelConnections/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -124,6 +262,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/locations/*/triggers/*}:testIamPermissions',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/channels/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/channelConnections/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [

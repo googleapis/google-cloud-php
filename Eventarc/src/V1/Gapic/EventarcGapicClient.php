@@ -37,12 +37,25 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Eventarc\V1\Channel;
+use Google\Cloud\Eventarc\V1\ChannelConnection;
+use Google\Cloud\Eventarc\V1\CreateChannelConnectionRequest;
+use Google\Cloud\Eventarc\V1\CreateChannelRequest;
 use Google\Cloud\Eventarc\V1\CreateTriggerRequest;
+use Google\Cloud\Eventarc\V1\DeleteChannelConnectionRequest;
+use Google\Cloud\Eventarc\V1\DeleteChannelRequest;
 use Google\Cloud\Eventarc\V1\DeleteTriggerRequest;
+use Google\Cloud\Eventarc\V1\GetChannelConnectionRequest;
+use Google\Cloud\Eventarc\V1\GetChannelRequest;
 use Google\Cloud\Eventarc\V1\GetTriggerRequest;
+use Google\Cloud\Eventarc\V1\ListChannelConnectionsRequest;
+use Google\Cloud\Eventarc\V1\ListChannelConnectionsResponse;
+use Google\Cloud\Eventarc\V1\ListChannelsRequest;
+use Google\Cloud\Eventarc\V1\ListChannelsResponse;
 use Google\Cloud\Eventarc\V1\ListTriggersRequest;
 use Google\Cloud\Eventarc\V1\ListTriggersResponse;
 use Google\Cloud\Eventarc\V1\Trigger;
+use Google\Cloud\Eventarc\V1\UpdateChannelRequest;
 use Google\Cloud\Eventarc\V1\UpdateTriggerRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
@@ -58,10 +71,10 @@ use Google\Protobuf\FieldMask;
  * $eventarcClient = new EventarcClient();
  * try {
  *     $formattedParent = $eventarcClient->locationName('[PROJECT]', '[LOCATION]');
- *     $trigger = new Trigger();
- *     $triggerId = 'trigger_id';
+ *     $channel = new Channel();
+ *     $channelId = 'channel_id';
  *     $validateOnly = false;
- *     $operationResponse = $eventarcClient->createTrigger($formattedParent, $trigger, $triggerId, $validateOnly);
+ *     $operationResponse = $eventarcClient->createChannel($formattedParent, $channel, $channelId, $validateOnly);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -72,10 +85,10 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $eventarcClient->createTrigger($formattedParent, $trigger, $triggerId, $validateOnly);
+ *     $operationResponse = $eventarcClient->createChannel($formattedParent, $channel, $channelId, $validateOnly);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
- *     $newOperationResponse = $eventarcClient->resumeOperation($operationName, 'createTrigger');
+ *     $newOperationResponse = $eventarcClient->resumeOperation($operationName, 'createChannel');
  *     while (!$newOperationResponse->isDone()) {
  *         // ... do other work
  *         $newOperationResponse->reload();
@@ -128,6 +141,10 @@ class EventarcGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $channelNameTemplate;
+
+    private static $channelConnectionNameTemplate;
+
     private static $locationNameTemplate;
 
     private static $serviceAccountNameTemplate;
@@ -161,6 +178,28 @@ class EventarcGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getChannelNameTemplate()
+    {
+        if (self::$channelNameTemplate == null) {
+            self::$channelNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/channels/{channel}'
+            );
+        }
+
+        return self::$channelNameTemplate;
+    }
+
+    private static function getChannelConnectionNameTemplate()
+    {
+        if (self::$channelConnectionNameTemplate == null) {
+            self::$channelConnectionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/channelConnections/{channel_connection}'
+            );
+        }
+
+        return self::$channelConnectionNameTemplate;
     }
 
     private static function getLocationNameTemplate()
@@ -200,6 +239,8 @@ class EventarcGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'channel' => self::getChannelNameTemplate(),
+                'channelConnection' => self::getChannelConnectionNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'serviceAccount' => self::getServiceAccountNameTemplate(),
                 'trigger' => self::getTriggerNameTemplate(),
@@ -207,6 +248,47 @@ class EventarcGapicClient
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a channel
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $channel
+     *
+     * @return string The formatted channel resource.
+     */
+    public static function channelName($project, $location, $channel)
+    {
+        return self::getChannelNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'channel' => $channel,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * channel_connection resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $channelConnection
+     *
+     * @return string The formatted channel_connection resource.
+     */
+    public static function channelConnectionName(
+        $project,
+        $location,
+        $channelConnection
+    ) {
+        return self::getChannelConnectionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'channel_connection' => $channelConnection,
+        ]);
     }
 
     /**
@@ -266,6 +348,8 @@ class EventarcGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - channel: projects/{project}/locations/{location}/channels/{channel}
+     * - channelConnection: projects/{project}/locations/{location}/channelConnections/{channel_connection}
      * - location: projects/{project}/locations/{location}
      * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
      * - trigger: projects/{project}/locations/{location}/triggers/{trigger}
@@ -409,6 +493,179 @@ class EventarcGapicClient
     }
 
     /**
+     * Create a new channel in a particular project and location.
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $formattedParent = $eventarcClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $channel = new Channel();
+     *     $channelId = 'channel_id';
+     *     $validateOnly = false;
+     *     $operationResponse = $eventarcClient->createChannel($formattedParent, $channel, $channelId, $validateOnly);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $eventarcClient->createChannel($formattedParent, $channel, $channelId, $validateOnly);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $eventarcClient->resumeOperation($operationName, 'createChannel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param string  $parent       Required. The parent collection in which to add this channel.
+     * @param Channel $channel      Required. The channel to create.
+     * @param string  $channelId    Required. The user-provided ID to be assigned to the channel.
+     * @param bool    $validateOnly Required. If set, validate the request and preview the review, but do not
+     *                              post it.
+     * @param array   $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createChannel(
+        $parent,
+        $channel,
+        $channelId,
+        $validateOnly,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateChannelRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setChannel($channel);
+        $request->setChannelId($channelId);
+        $request->setValidateOnly($validateOnly);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateChannel',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Create a new ChannelConnection in a particular project and location.
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $formattedParent = $eventarcClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $channelConnection = new ChannelConnection();
+     *     $channelConnectionId = 'channel_connection_id';
+     *     $operationResponse = $eventarcClient->createChannelConnection($formattedParent, $channelConnection, $channelConnectionId);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $eventarcClient->createChannelConnection($formattedParent, $channelConnection, $channelConnectionId);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $eventarcClient->resumeOperation($operationName, 'createChannelConnection');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param string            $parent              Required. The parent collection in which to add this channel connection.
+     * @param ChannelConnection $channelConnection   Required. Channel connection to create.
+     * @param string            $channelConnectionId Required. The user-provided ID to be assigned to the channel connection.
+     * @param array             $optionalArgs        {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createChannelConnection(
+        $parent,
+        $channelConnection,
+        $channelConnectionId,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateChannelConnectionRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setChannelConnection($channelConnection);
+        $request->setChannelConnectionId($channelConnectionId);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateChannelConnection',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Create a new trigger in a particular project and location.
      *
      * Sample code:
@@ -453,7 +710,7 @@ class EventarcGapicClient
      * @param string  $parent       Required. The parent collection in which to add this trigger.
      * @param Trigger $trigger      Required. The trigger to create.
      * @param string  $triggerId    Required. The user-provided ID to be assigned to the trigger.
-     * @param bool    $validateOnly Required. If set, validate the request and preview the review, but do not actually
+     * @param bool    $validateOnly Required. If set, validate the request and preview the review, but do not
      *                              post it.
      * @param array   $optionalArgs {
      *     Optional.
@@ -491,6 +748,161 @@ class EventarcGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'CreateTrigger',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Delete a single channel.
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $formattedName = $eventarcClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
+     *     $validateOnly = false;
+     *     $operationResponse = $eventarcClient->deleteChannel($formattedName, $validateOnly);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $eventarcClient->deleteChannel($formattedName, $validateOnly);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $eventarcClient->resumeOperation($operationName, 'deleteChannel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the channel to be deleted.
+     * @param bool   $validateOnly Required. If set, validate the request and preview the review, but do not
+     *                             post it.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteChannel(
+        $name,
+        $validateOnly,
+        array $optionalArgs = []
+    ) {
+        $request = new DeleteChannelRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setValidateOnly($validateOnly);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteChannel',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Delete a single ChannelConnection.
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $formattedName = $eventarcClient->channelConnectionName('[PROJECT]', '[LOCATION]', '[CHANNEL_CONNECTION]');
+     *     $operationResponse = $eventarcClient->deleteChannelConnection($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $eventarcClient->deleteChannelConnection($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $eventarcClient->resumeOperation($operationName, 'deleteChannelConnection');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the channel connection to delete.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteChannelConnection($name, array $optionalArgs = [])
+    {
+        $request = new DeleteChannelConnectionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteChannelConnection',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -538,7 +950,7 @@ class EventarcGapicClient
      * ```
      *
      * @param string $name         Required. The name of the trigger to be deleted.
-     * @param bool   $validateOnly Required. If set, validate the request and preview the review, but do not actually
+     * @param bool   $validateOnly Required. If set, validate the request and preview the review, but do not
      *                             post it.
      * @param array  $optionalArgs {
      *     Optional.
@@ -593,6 +1005,104 @@ class EventarcGapicClient
     }
 
     /**
+     * Get a single Channel.
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $formattedName = $eventarcClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
+     *     $response = $eventarcClient->getChannel($formattedName);
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the channel to get.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Eventarc\V1\Channel
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getChannel($name, array $optionalArgs = [])
+    {
+        $request = new GetChannelRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetChannel',
+            Channel::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Get a single ChannelConnection.
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $formattedName = $eventarcClient->channelConnectionName('[PROJECT]', '[LOCATION]', '[CHANNEL_CONNECTION]');
+     *     $response = $eventarcClient->getChannelConnection($formattedName);
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the channel connection to get.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Eventarc\V1\ChannelConnection
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getChannelConnection($name, array $optionalArgs = [])
+    {
+        $request = new GetChannelConnectionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetChannelConnection',
+            ChannelConnection::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Get a single trigger.
      *
      * Sample code:
@@ -642,6 +1152,171 @@ class EventarcGapicClient
     }
 
     /**
+     * List channel connections.
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $formattedParent = $eventarcClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $eventarcClient->listChannelConnections($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $eventarcClient->listChannelConnections($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent collection from which to list channel connections.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listChannelConnections($parent, array $optionalArgs = [])
+    {
+        $request = new ListChannelConnectionsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListChannelConnections',
+            $optionalArgs,
+            ListChannelConnectionsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * List channels.
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $formattedParent = $eventarcClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $eventarcClient->listChannels($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $eventarcClient->listChannels($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent collection to list channels on.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $orderBy
+     *           The sorting order of the resources returned. Value should be a
+     *           comma-separated list of fields. The default sorting order is ascending. To
+     *           specify descending order for a field, append a `desc` suffix; for example:
+     *           `name desc, channel_id`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listChannels($parent, array $optionalArgs = [])
+    {
+        $request = new ListChannelsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListChannels',
+            $optionalArgs,
+            ListChannelsResponse::class,
+            $request
+        );
+    }
+
+    /**
      * List triggers.
      *
      * Sample code:
@@ -681,9 +1356,9 @@ class EventarcGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $orderBy
-     *           The sorting order of the resources returned. Value should be a comma
-     *           separated list of fields. The default sorting oder is ascending. To specify
-     *           descending order for a field, append a ` desc` suffix; for example:
+     *           The sorting order of the resources returned. Value should be a
+     *           comma-separated list of fields. The default sorting order is ascending. To
+     *           specify descending order for a field, append a `desc` suffix; for example:
      *           `name desc, trigger_id`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
@@ -729,6 +1404,94 @@ class EventarcGapicClient
     }
 
     /**
+     * Update a single channel.
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $validateOnly = false;
+     *     $operationResponse = $eventarcClient->updateChannel($validateOnly);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $eventarcClient->updateChannel($validateOnly);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $eventarcClient->resumeOperation($operationName, 'updateChannel');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param bool  $validateOnly Required. If set, validate the request and preview the review, but do not
+     *                            post it.
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type Channel $channel
+     *           The channel to be updated.
+     *     @type FieldMask $updateMask
+     *           The fields to be updated; only fields explicitly provided are updated.
+     *           If no field mask is provided, all provided fields in the request are
+     *           updated. To update all fields, provide a field mask of "*".
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateChannel($validateOnly, array $optionalArgs = [])
+    {
+        $request = new UpdateChannelRequest();
+        $requestParamHeaders = [];
+        $request->setValidateOnly($validateOnly);
+        if (isset($optionalArgs['channel'])) {
+            $request->setChannel($optionalArgs['channel']);
+        }
+
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateChannel',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Update a single trigger.
      *
      * Sample code:
@@ -767,7 +1530,7 @@ class EventarcGapicClient
      * }
      * ```
      *
-     * @param bool  $validateOnly Required. If set, validate the request and preview the review, but do not actually
+     * @param bool  $validateOnly Required. If set, validate the request and preview the review, but do not
      *                            post it.
      * @param array $optionalArgs {
      *     Optional.
@@ -775,8 +1538,8 @@ class EventarcGapicClient
      *     @type Trigger $trigger
      *           The trigger to be updated.
      *     @type FieldMask $updateMask
-     *           The fields to be updated; only fields explicitly provided will be updated.
-     *           If no field mask is provided, all provided fields in the request will be
+     *           The fields to be updated; only fields explicitly provided are updated.
+     *           If no field mask is provided, all provided fields in the request are
      *           updated. To update all fields, provide a field mask of "*".
      *     @type bool $allowMissing
      *           If set to true, and the trigger is not found, a new trigger will be

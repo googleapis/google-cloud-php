@@ -9,18 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for the GetTrigger method.
+ * The request message for the GetChannel method.
  *
- * Generated from protobuf message <code>google.cloud.eventarc.v1.GetTriggerRequest</code>
+ * Generated from protobuf message <code>google.cloud.eventarc.v1.GetChannelRequest</code>
  */
-class GetTriggerRequest extends \Google\Protobuf\Internal\Message
+class GetChannelRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the trigger to get.
+     * Required. The name of the channel to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $name = '';
+    private $name = '';
 
     /**
      * Constructor.
@@ -29,7 +29,7 @@ class GetTriggerRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the trigger to get.
+     *           Required. The name of the channel to get.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class GetTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the trigger to get.
+     * Required. The name of the channel to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -49,7 +49,7 @@ class GetTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the trigger to get.
+     * Required. The name of the channel to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

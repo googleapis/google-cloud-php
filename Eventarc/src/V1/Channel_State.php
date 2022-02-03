@@ -12,5 +12,5 @@ if (false) {
     class Channel_State {}
 }
 class_exists(Channel\State::class);
-@trigger_error('Google\Cloud\Eventarc\V1\Channel_State is deprecated and will be removed in the next major release. Use Google\Cloud\Eventarc\V1\Channel\State instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Eventarc\V1\Channel_State is deprecated and will be removed in a future release. Use Google\Cloud\Eventarc\V1\Channel\State instead', E_USER_DEPRECATED);
 

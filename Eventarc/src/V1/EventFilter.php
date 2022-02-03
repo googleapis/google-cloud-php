@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class EventFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of a CloudEvents attribute. Currently, only a subset of
-     * attributes are supported for filtering.
+     * Required. The name of a CloudEvents attribute. Currently, only a subset of attributes
+     * are supported for filtering.
      * All triggers MUST provide a filter for the 'type' attribute.
      *
      * Generated from protobuf field <code>string attribute = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -29,6 +29,15 @@ class EventFilter extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $value = '';
+    /**
+     * Optional. The operator used for matching the events with the value of the
+     * filter. If not specified, only events that have an exact key-value pair
+     * specified in the filter are matched. The only allowed value is
+     * `match-path-pattern`.
+     *
+     * Generated from protobuf field <code>string operator = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $operator = '';
 
     /**
      * Constructor.
@@ -37,11 +46,16 @@ class EventFilter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $attribute
-     *           Required. The name of a CloudEvents attribute. Currently, only a subset of
-     *           attributes are supported for filtering.
+     *           Required. The name of a CloudEvents attribute. Currently, only a subset of attributes
+     *           are supported for filtering.
      *           All triggers MUST provide a filter for the 'type' attribute.
      *     @type string $value
      *           Required. The value for the attribute.
+     *     @type string $operator
+     *           Optional. The operator used for matching the events with the value of the
+     *           filter. If not specified, only events that have an exact key-value pair
+     *           specified in the filter are matched. The only allowed value is
+     *           `match-path-pattern`.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,8 +64,8 @@ class EventFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of a CloudEvents attribute. Currently, only a subset of
-     * attributes are supported for filtering.
+     * Required. The name of a CloudEvents attribute. Currently, only a subset of attributes
+     * are supported for filtering.
      * All triggers MUST provide a filter for the 'type' attribute.
      *
      * Generated from protobuf field <code>string attribute = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -63,8 +77,8 @@ class EventFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of a CloudEvents attribute. Currently, only a subset of
-     * attributes are supported for filtering.
+     * Required. The name of a CloudEvents attribute. Currently, only a subset of attributes
+     * are supported for filtering.
      * All triggers MUST provide a filter for the 'type' attribute.
      *
      * Generated from protobuf field <code>string attribute = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -101,6 +115,38 @@ class EventFilter extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->value = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The operator used for matching the events with the value of the
+     * filter. If not specified, only events that have an exact key-value pair
+     * specified in the filter are matched. The only allowed value is
+     * `match-path-pattern`.
+     *
+     * Generated from protobuf field <code>string operator = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getOperator()
+    {
+        return $this->operator;
+    }
+
+    /**
+     * Optional. The operator used for matching the events with the value of the
+     * filter. If not specified, only events that have an exact key-value pair
+     * specified in the filter are matched. The only allowed value is
+     * `match-path-pattern`.
+     *
+     * Generated from protobuf field <code>string operator = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOperator($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->operator = $var;
 
         return $this;
     }

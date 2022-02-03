@@ -20,14 +20,14 @@ class ListChannelConnectionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $parent = '';
+    private $parent = '';
     /**
      * The maximum number of channel connections to return on each page.
      * Note: The service may send fewer responses.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
-    protected $page_size = 0;
+    private $page_size = 0;
     /**
      * The page token; provide the value from the `next_page_token` field in a
      * previous `ListChannelConnections` call to retrieve the subsequent page.
@@ -36,7 +36,7 @@ class ListChannelConnectionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
-    protected $page_token = '';
+    private $page_token = '';
 
     /**
      * Constructor.
