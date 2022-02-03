@@ -9,24 +9,28 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KeyManagementService.ListImportJobs][google.cloud.kms.v1.KeyManagementService.ListImportJobs].
+ * Request message for
+ * [KeyManagementService.ListImportJobs][google.cloud.kms.v1.KeyManagementService.ListImportJobs].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.ListImportJobsRequest</code>
  */
 class ListImportJobsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing] to list, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
+     * Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
+     * to list, in the format `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional. Optional limit on the number of [ImportJobs][google.cloud.kms.v1.ImportJob] to include in the
-     * response. Further [ImportJobs][google.cloud.kms.v1.ImportJob] can subsequently be obtained by
-     * including the [ListImportJobsResponse.next_page_token][google.cloud.kms.v1.ListImportJobsResponse.next_page_token] in a subsequent
-     * request. If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of
+     * [ImportJobs][google.cloud.kms.v1.ImportJob] to include in the response.
+     * Further [ImportJobs][google.cloud.kms.v1.ImportJob] can subsequently be
+     * obtained by including the
+     * [ListImportJobsResponse.next_page_token][google.cloud.kms.v1.ListImportJobsResponse.next_page_token]
+     * in a subsequent request. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -64,13 +68,16 @@ class ListImportJobsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing] to list, in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
+     *           Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
+     *           to list, in the format `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
      *     @type int $page_size
-     *           Optional. Optional limit on the number of [ImportJobs][google.cloud.kms.v1.ImportJob] to include in the
-     *           response. Further [ImportJobs][google.cloud.kms.v1.ImportJob] can subsequently be obtained by
-     *           including the [ListImportJobsResponse.next_page_token][google.cloud.kms.v1.ListImportJobsResponse.next_page_token] in a subsequent
-     *           request. If unspecified, the server will pick an appropriate default.
+     *           Optional. Optional limit on the number of
+     *           [ImportJobs][google.cloud.kms.v1.ImportJob] to include in the response.
+     *           Further [ImportJobs][google.cloud.kms.v1.ImportJob] can subsequently be
+     *           obtained by including the
+     *           [ListImportJobsResponse.next_page_token][google.cloud.kms.v1.ListImportJobsResponse.next_page_token]
+     *           in a subsequent request. If unspecified, the server will pick an
+     *           appropriate default.
      *     @type string $page_token
      *           Optional. Optional pagination token, returned earlier via
      *           [ListImportJobsResponse.next_page_token][google.cloud.kms.v1.ListImportJobsResponse.next_page_token].
@@ -92,8 +99,8 @@ class ListImportJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing] to list, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
+     * Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
+     * to list, in the format `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -104,8 +111,8 @@ class ListImportJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing] to list, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
+     * Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
+     * to list, in the format `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -120,10 +127,13 @@ class ListImportJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional limit on the number of [ImportJobs][google.cloud.kms.v1.ImportJob] to include in the
-     * response. Further [ImportJobs][google.cloud.kms.v1.ImportJob] can subsequently be obtained by
-     * including the [ListImportJobsResponse.next_page_token][google.cloud.kms.v1.ListImportJobsResponse.next_page_token] in a subsequent
-     * request. If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of
+     * [ImportJobs][google.cloud.kms.v1.ImportJob] to include in the response.
+     * Further [ImportJobs][google.cloud.kms.v1.ImportJob] can subsequently be
+     * obtained by including the
+     * [ListImportJobsResponse.next_page_token][google.cloud.kms.v1.ListImportJobsResponse.next_page_token]
+     * in a subsequent request. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -134,10 +144,13 @@ class ListImportJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional limit on the number of [ImportJobs][google.cloud.kms.v1.ImportJob] to include in the
-     * response. Further [ImportJobs][google.cloud.kms.v1.ImportJob] can subsequently be obtained by
-     * including the [ListImportJobsResponse.next_page_token][google.cloud.kms.v1.ListImportJobsResponse.next_page_token] in a subsequent
-     * request. If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of
+     * [ImportJobs][google.cloud.kms.v1.ImportJob] to include in the response.
+     * Further [ImportJobs][google.cloud.kms.v1.ImportJob] can subsequently be
+     * obtained by including the
+     * [ListImportJobsResponse.next_page_token][google.cloud.kms.v1.ListImportJobsResponse.next_page_token]
+     * in a subsequent request. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

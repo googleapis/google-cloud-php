@@ -245,9 +245,11 @@ class KeyManagementServiceClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $importOnly = true;
+        $cryptoKeyBackend = 'cryptoKeyBackend-1526615498';
         $expectedResponse = new CryptoKey();
         $expectedResponse->setName($name);
         $expectedResponse->setImportOnly($importOnly);
+        $expectedResponse->setCryptoKeyBackend($cryptoKeyBackend);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->keyRingName('[PROJECT]', '[LOCATION]', '[KEY_RING]');
@@ -817,9 +819,11 @@ class KeyManagementServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $importOnly = true;
+        $cryptoKeyBackend = 'cryptoKeyBackend-1526615498';
         $expectedResponse = new CryptoKey();
         $expectedResponse->setName($name2);
         $expectedResponse->setImportOnly($importOnly);
+        $expectedResponse->setCryptoKeyBackend($cryptoKeyBackend);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
@@ -1743,9 +1747,11 @@ class KeyManagementServiceClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $importOnly = true;
+        $cryptoKeyBackend = 'cryptoKeyBackend-1526615498';
         $expectedResponse = new CryptoKey();
         $expectedResponse->setName($name);
         $expectedResponse->setImportOnly($importOnly);
+        $expectedResponse->setCryptoKeyBackend($cryptoKeyBackend);
         $transport->addResponse($expectedResponse);
         // Mock request
         $cryptoKey = new CryptoKey();
@@ -1813,9 +1819,11 @@ class KeyManagementServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $importOnly = true;
+        $cryptoKeyBackend = 'cryptoKeyBackend-1526615498';
         $expectedResponse = new CryptoKey();
         $expectedResponse->setName($name2);
         $expectedResponse->setImportOnly($importOnly);
+        $expectedResponse->setCryptoKeyBackend($cryptoKeyBackend);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');

@@ -9,27 +9,35 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A [CryptoKeyVersionTemplate][google.cloud.kms.v1.CryptoKeyVersionTemplate] specifies the properties to use when creating
- * a new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], either manually with
- * [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion] or
- * automatically as a result of auto-rotation.
+ * A [CryptoKeyVersionTemplate][google.cloud.kms.v1.CryptoKeyVersionTemplate]
+ * specifies the properties to use when creating a new
+ * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], either manually
+ * with
+ * [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]
+ * or automatically as a result of auto-rotation.
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.CryptoKeyVersionTemplate</code>
  */
 class CryptoKeyVersionTemplate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when creating a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] based on
-     * this template. Immutable. Defaults to [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE].
+     * [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when creating
+     * a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] based on this
+     * template. Immutable. Defaults to
+     * [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 1;</code>
      */
     private $protection_level = 0;
     /**
-     * Required. [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] to use
-     * when creating a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] based on this template.
+     * Required.
+     * [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
+     * to use when creating a
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] based on this
+     * template.
      * For backwards compatibility, GOOGLE_SYMMETRIC_ENCRYPTION is implied if both
-     * this field is omitted and [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] is
+     * this field is omitted and
+     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] is
      * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -43,13 +51,19 @@ class CryptoKeyVersionTemplate extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $protection_level
-     *           [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when creating a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] based on
-     *           this template. Immutable. Defaults to [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE].
+     *           [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when creating
+     *           a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] based on this
+     *           template. Immutable. Defaults to
+     *           [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE].
      *     @type int $algorithm
-     *           Required. [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] to use
-     *           when creating a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] based on this template.
+     *           Required.
+     *           [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
+     *           to use when creating a
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] based on this
+     *           template.
      *           For backwards compatibility, GOOGLE_SYMMETRIC_ENCRYPTION is implied if both
-     *           this field is omitted and [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] is
+     *           this field is omitted and
+     *           [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] is
      *           [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
      * }
      */
@@ -59,8 +73,10 @@ class CryptoKeyVersionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when creating a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] based on
-     * this template. Immutable. Defaults to [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE].
+     * [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when creating
+     * a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] based on this
+     * template. Immutable. Defaults to
+     * [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 1;</code>
      * @return int
@@ -71,8 +87,10 @@ class CryptoKeyVersionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when creating a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] based on
-     * this template. Immutable. Defaults to [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE].
+     * [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when creating
+     * a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] based on this
+     * template. Immutable. Defaults to
+     * [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 1;</code>
      * @param int $var
@@ -87,10 +105,14 @@ class CryptoKeyVersionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] to use
-     * when creating a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] based on this template.
+     * Required.
+     * [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
+     * to use when creating a
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] based on this
+     * template.
      * For backwards compatibility, GOOGLE_SYMMETRIC_ENCRYPTION is implied if both
-     * this field is omitted and [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] is
+     * this field is omitted and
+     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] is
      * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -102,10 +124,14 @@ class CryptoKeyVersionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] to use
-     * when creating a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] based on this template.
+     * Required.
+     * [Algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
+     * to use when creating a
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] based on this
+     * template.
      * For backwards compatibility, GOOGLE_SYMMETRIC_ENCRYPTION is implied if both
-     * this field is omitted and [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] is
+     * this field is omitted and
+     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] is
      * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 3 [(.google.api.field_behavior) = REQUIRED];</code>

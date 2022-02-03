@@ -7,9 +7,9 @@ namespace Google\Cloud\Kms\V1;
 use UnexpectedValueException;
 
 /**
- * [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] specifies how cryptographic operations are performed.
- * For more information, see [Protection levels]
- * (https://cloud.google.com/kms/docs/algorithms#protection_levels).
+ * [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] specifies how
+ * cryptographic operations are performed. For more information, see [Protection
+ * levels] (https://cloud.google.com/kms/docs/algorithms#protection_levels).
  *
  * Protobuf type <code>google.cloud.kms.v1.ProtectionLevel</code>
  */
@@ -39,12 +39,19 @@ class ProtectionLevel
      * Generated from protobuf enum <code>EXTERNAL = 3;</code>
      */
     const EXTERNAL = 3;
+    /**
+     * Crypto operations are performed in an EKM-over-VPC backend.
+     *
+     * Generated from protobuf enum <code>EXTERNAL_VPC = 4;</code>
+     */
+    const EXTERNAL_VPC = 4;
 
     private static $valueToName = [
         self::PROTECTION_LEVEL_UNSPECIFIED => 'PROTECTION_LEVEL_UNSPECIFIED',
         self::SOFTWARE => 'SOFTWARE',
         self::HSM => 'HSM',
         self::EXTERNAL => 'EXTERNAL',
+        self::EXTERNAL_VPC => 'EXTERNAL_VPC',
     ];
 
     public static function name($value)

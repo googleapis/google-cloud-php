@@ -9,15 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [KeyManagementService.MacSign][google.cloud.kms.v1.KeyManagementService.MacSign].
+ * Response message for
+ * [KeyManagementService.MacSign][google.cloud.kms.v1.KeyManagementService.MacSign].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.MacSignResponse</code>
  */
 class MacSignResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing. Check
-     * this field to verify that the intended resource was used for signing.
+     * The resource name of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
+     * Check this field to verify that the intended resource was used for signing.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -30,35 +32,44 @@ class MacSignResponse extends \Google\Protobuf\Internal\Message
     private $mac = '';
     /**
      * Integrity verification field. A CRC32C checksum of the returned
-     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac]. An integrity check of
-     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] can be performed by computing the
-     * CRC32C checksum of [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] and comparing your
-     * results to this field. Discard the response in case of non-matching
-     * checksum values, and perform a limited number of retries. A persistent
-     * mismatch may indicate an issue in your computation of the CRC32C checksum.
-     * Note: This field is defined as int64 for reasons of compatibility across
-     * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac]. An
+     * integrity check of
+     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] can be
+     * performed by computing the CRC32C checksum of
+     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] and
+     * comparing your results to this field. Discard the response in case of
+     * non-matching checksum values, and perform a limited number of retries. A
+     * persistent mismatch may indicate an issue in your computation of the CRC32C
+     * checksum. Note: This field is defined as int64 for reasons of compatibility
+     * across different languages. However, it is a non-negative integer, which
+     * will never exceed 2^32-1, and can be safely downconverted to uint32 in
+     * languages that support this type.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value mac_crc32c = 3;</code>
      */
     private $mac_crc32c = null;
     /**
      * Integrity verification field. A flag indicating whether
-     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c] was received by
-     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] and used for the integrity verification of the
-     * [data][google.cloud.kms.v1.MacSignRequest.data]. A false value of this field
-     * indicates either that [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c] was left
-     * unset or that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've
-     * set [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c] but this field is still false,
-     * discard the response and perform a limited number of retries.
+     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c]
+     * was received by
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] and used
+     * for the integrity verification of the
+     * [data][google.cloud.kms.v1.MacSignRequest.data]. A false value of this
+     * field indicates either that
+     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c]
+     * was left unset or that it was not delivered to
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've
+     * set
+     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c]
+     * but this field is still false, discard the response and perform a limited
+     * number of retries.
      *
      * Generated from protobuf field <code>bool verified_data_crc32c = 4;</code>
      */
     private $verified_data_crc32c = false;
     /**
-     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 5;</code>
      */
@@ -71,33 +82,43 @@ class MacSignResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing. Check
-     *           this field to verify that the intended resource was used for signing.
+     *           The resource name of the
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
+     *           Check this field to verify that the intended resource was used for signing.
      *     @type string $mac
      *           The created signature.
      *     @type \Google\Protobuf\Int64Value $mac_crc32c
      *           Integrity verification field. A CRC32C checksum of the returned
-     *           [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac]. An integrity check of
-     *           [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] can be performed by computing the
-     *           CRC32C checksum of [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] and comparing your
-     *           results to this field. Discard the response in case of non-matching
-     *           checksum values, and perform a limited number of retries. A persistent
-     *           mismatch may indicate an issue in your computation of the CRC32C checksum.
-     *           Note: This field is defined as int64 for reasons of compatibility across
-     *           different languages. However, it is a non-negative integer, which will
-     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     *           that support this type.
+     *           [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac]. An
+     *           integrity check of
+     *           [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] can be
+     *           performed by computing the CRC32C checksum of
+     *           [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] and
+     *           comparing your results to this field. Discard the response in case of
+     *           non-matching checksum values, and perform a limited number of retries. A
+     *           persistent mismatch may indicate an issue in your computation of the CRC32C
+     *           checksum. Note: This field is defined as int64 for reasons of compatibility
+     *           across different languages. However, it is a non-negative integer, which
+     *           will never exceed 2^32-1, and can be safely downconverted to uint32 in
+     *           languages that support this type.
      *     @type bool $verified_data_crc32c
      *           Integrity verification field. A flag indicating whether
-     *           [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c] was received by
-     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] and used for the integrity verification of the
-     *           [data][google.cloud.kms.v1.MacSignRequest.data]. A false value of this field
-     *           indicates either that [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c] was left
-     *           unset or that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've
-     *           set [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c] but this field is still false,
-     *           discard the response and perform a limited number of retries.
+     *           [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c]
+     *           was received by
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] and used
+     *           for the integrity verification of the
+     *           [data][google.cloud.kms.v1.MacSignRequest.data]. A false value of this
+     *           field indicates either that
+     *           [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c]
+     *           was left unset or that it was not delivered to
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've
+     *           set
+     *           [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c]
+     *           but this field is still false, discard the response and perform a limited
+     *           number of retries.
      *     @type int $protection_level
-     *           The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
+     *           The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
      * }
      */
     public function __construct($data = NULL) {
@@ -106,8 +127,9 @@ class MacSignResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing. Check
-     * this field to verify that the intended resource was used for signing.
+     * The resource name of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
+     * Check this field to verify that the intended resource was used for signing.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -118,8 +140,9 @@ class MacSignResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing. Check
-     * this field to verify that the intended resource was used for signing.
+     * The resource name of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
+     * Check this field to verify that the intended resource was used for signing.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -161,16 +184,18 @@ class MacSignResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Integrity verification field. A CRC32C checksum of the returned
-     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac]. An integrity check of
-     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] can be performed by computing the
-     * CRC32C checksum of [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] and comparing your
-     * results to this field. Discard the response in case of non-matching
-     * checksum values, and perform a limited number of retries. A persistent
-     * mismatch may indicate an issue in your computation of the CRC32C checksum.
-     * Note: This field is defined as int64 for reasons of compatibility across
-     * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac]. An
+     * integrity check of
+     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] can be
+     * performed by computing the CRC32C checksum of
+     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] and
+     * comparing your results to this field. Discard the response in case of
+     * non-matching checksum values, and perform a limited number of retries. A
+     * persistent mismatch may indicate an issue in your computation of the CRC32C
+     * checksum. Note: This field is defined as int64 for reasons of compatibility
+     * across different languages. However, it is a non-negative integer, which
+     * will never exceed 2^32-1, and can be safely downconverted to uint32 in
+     * languages that support this type.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value mac_crc32c = 3;</code>
      * @return \Google\Protobuf\Int64Value|null
@@ -194,16 +219,18 @@ class MacSignResponse extends \Google\Protobuf\Internal\Message
      * Returns the unboxed value from <code>getMacCrc32C()</code>
 
      * Integrity verification field. A CRC32C checksum of the returned
-     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac]. An integrity check of
-     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] can be performed by computing the
-     * CRC32C checksum of [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] and comparing your
-     * results to this field. Discard the response in case of non-matching
-     * checksum values, and perform a limited number of retries. A persistent
-     * mismatch may indicate an issue in your computation of the CRC32C checksum.
-     * Note: This field is defined as int64 for reasons of compatibility across
-     * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac]. An
+     * integrity check of
+     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] can be
+     * performed by computing the CRC32C checksum of
+     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] and
+     * comparing your results to this field. Discard the response in case of
+     * non-matching checksum values, and perform a limited number of retries. A
+     * persistent mismatch may indicate an issue in your computation of the CRC32C
+     * checksum. Note: This field is defined as int64 for reasons of compatibility
+     * across different languages. However, it is a non-negative integer, which
+     * will never exceed 2^32-1, and can be safely downconverted to uint32 in
+     * languages that support this type.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value mac_crc32c = 3;</code>
      * @return int|string|null
@@ -215,16 +242,18 @@ class MacSignResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Integrity verification field. A CRC32C checksum of the returned
-     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac]. An integrity check of
-     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] can be performed by computing the
-     * CRC32C checksum of [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] and comparing your
-     * results to this field. Discard the response in case of non-matching
-     * checksum values, and perform a limited number of retries. A persistent
-     * mismatch may indicate an issue in your computation of the CRC32C checksum.
-     * Note: This field is defined as int64 for reasons of compatibility across
-     * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac]. An
+     * integrity check of
+     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] can be
+     * performed by computing the CRC32C checksum of
+     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] and
+     * comparing your results to this field. Discard the response in case of
+     * non-matching checksum values, and perform a limited number of retries. A
+     * persistent mismatch may indicate an issue in your computation of the CRC32C
+     * checksum. Note: This field is defined as int64 for reasons of compatibility
+     * across different languages. However, it is a non-negative integer, which
+     * will never exceed 2^32-1, and can be safely downconverted to uint32 in
+     * languages that support this type.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value mac_crc32c = 3;</code>
      * @param \Google\Protobuf\Int64Value $var
@@ -242,16 +271,18 @@ class MacSignResponse extends \Google\Protobuf\Internal\Message
      * Sets the field by wrapping a primitive type in a Google\Protobuf\Int64Value object.
 
      * Integrity verification field. A CRC32C checksum of the returned
-     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac]. An integrity check of
-     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] can be performed by computing the
-     * CRC32C checksum of [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] and comparing your
-     * results to this field. Discard the response in case of non-matching
-     * checksum values, and perform a limited number of retries. A persistent
-     * mismatch may indicate an issue in your computation of the CRC32C checksum.
-     * Note: This field is defined as int64 for reasons of compatibility across
-     * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac]. An
+     * integrity check of
+     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] can be
+     * performed by computing the CRC32C checksum of
+     * [MacSignResponse.mac][google.cloud.kms.v1.MacSignResponse.mac] and
+     * comparing your results to this field. Discard the response in case of
+     * non-matching checksum values, and perform a limited number of retries. A
+     * persistent mismatch may indicate an issue in your computation of the CRC32C
+     * checksum. Note: This field is defined as int64 for reasons of compatibility
+     * across different languages. However, it is a non-negative integer, which
+     * will never exceed 2^32-1, and can be safely downconverted to uint32 in
+     * languages that support this type.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value mac_crc32c = 3;</code>
      * @param int|string|null $var
@@ -264,13 +295,19 @@ class MacSignResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Integrity verification field. A flag indicating whether
-     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c] was received by
-     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] and used for the integrity verification of the
-     * [data][google.cloud.kms.v1.MacSignRequest.data]. A false value of this field
-     * indicates either that [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c] was left
-     * unset or that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've
-     * set [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c] but this field is still false,
-     * discard the response and perform a limited number of retries.
+     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c]
+     * was received by
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] and used
+     * for the integrity verification of the
+     * [data][google.cloud.kms.v1.MacSignRequest.data]. A false value of this
+     * field indicates either that
+     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c]
+     * was left unset or that it was not delivered to
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've
+     * set
+     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c]
+     * but this field is still false, discard the response and perform a limited
+     * number of retries.
      *
      * Generated from protobuf field <code>bool verified_data_crc32c = 4;</code>
      * @return bool
@@ -282,13 +319,19 @@ class MacSignResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Integrity verification field. A flag indicating whether
-     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c] was received by
-     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] and used for the integrity verification of the
-     * [data][google.cloud.kms.v1.MacSignRequest.data]. A false value of this field
-     * indicates either that [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c] was left
-     * unset or that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've
-     * set [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c] but this field is still false,
-     * discard the response and perform a limited number of retries.
+     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c]
+     * was received by
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] and used
+     * for the integrity verification of the
+     * [data][google.cloud.kms.v1.MacSignRequest.data]. A false value of this
+     * field indicates either that
+     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c]
+     * was left unset or that it was not delivered to
+     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've
+     * set
+     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c]
+     * but this field is still false, discard the response and perform a limited
+     * number of retries.
      *
      * Generated from protobuf field <code>bool verified_data_crc32c = 4;</code>
      * @param bool $var
@@ -303,7 +346,8 @@ class MacSignResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 5;</code>
      * @return int
@@ -314,7 +358,8 @@ class MacSignResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 5;</code>
      * @param int $var

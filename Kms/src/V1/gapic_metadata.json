@@ -5,6 +5,50 @@
     "protoPackage": "google.cloud.kms.v1",
     "libraryPackage": "Google\\Cloud\\Kms\\V1",
     "services": {
+        "EkmService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "EkmServiceGapicClient",
+                    "rpcs": {
+                        "CreateEkmConnection": {
+                            "methods": [
+                                "createEkmConnection"
+                            ]
+                        },
+                        "GetEkmConnection": {
+                            "methods": [
+                                "getEkmConnection"
+                            ]
+                        },
+                        "ListEkmConnections": {
+                            "methods": [
+                                "listEkmConnections"
+                            ]
+                        },
+                        "UpdateEkmConnection": {
+                            "methods": [
+                                "updateEkmConnection"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "KeyManagementService": {
             "clients": {
                 "grpc": {
