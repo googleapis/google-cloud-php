@@ -36,6 +36,16 @@ use Google\Cloud\Firestore\V1\Gapic\FirestoreGapicClient;
 class FirestoreClient extends FirestoreGapicClient
 {
     /**
+     * @see FirestoreClient::partitionQueryPaginated
+     * @return \Google\Cloud\Firestore\V1\PartitionQueryResponse
+     * @deprecated use partitionQueryPaginated instead
+     */
+    // public function partitionQuery(array $optionalArgs = [])
+    // {
+    //     return $this->partitionQueryPaginated($optionalArgs)->getPage()->getResponseObject();
+    // }
+
+    /**
      * Formats a string containing the fully-qualified path to represent
      * a any_path resource.
      *
