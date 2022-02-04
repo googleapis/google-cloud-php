@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2019 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,32 +24,13 @@ namespace Google\Cloud\Firestore\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
 
-use Google\ApiCore\BidiStream;
-
 use Google\ApiCore\CredentialsWrapper;
 
-use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 
-use Google\Cloud\Firestore\V1\BatchGetDocumentsResponse;
-
-use Google\Cloud\Firestore\V1\BatchWriteResponse;
-use Google\Cloud\Firestore\V1\BeginTransactionResponse;
-use Google\Cloud\Firestore\V1\CommitResponse;
-use Google\Cloud\Firestore\V1\Cursor;
-use Google\Cloud\Firestore\V1\Document;
-use Google\Cloud\Firestore\V1\DocumentMask;
 use Google\Cloud\Firestore\V1\FirestoreClient;
-use Google\Cloud\Firestore\V1\ListCollectionIdsResponse;
-use Google\Cloud\Firestore\V1\ListDocumentsResponse;
-use Google\Cloud\Firestore\V1\ListenRequest;
-use Google\Cloud\Firestore\V1\ListenResponse;
 use Google\Cloud\Firestore\V1\PartitionQueryResponse;
-use Google\Cloud\Firestore\V1\RunQueryResponse;
-use Google\Cloud\Firestore\V1\WriteRequest;
-use Google\Cloud\Firestore\V1\WriteResponse;
-use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -58,7 +39,7 @@ use stdClass;
  *
  * @group gapic
  */
-class FirestoreClientTest extends GeneratedTest
+class FirestoreClientBCTest extends GeneratedTest
 {
     /**
      * @return TransportInterface
