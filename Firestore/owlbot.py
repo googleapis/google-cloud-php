@@ -160,3 +160,15 @@ for lro_method in lro_methods:
         rf'{lro_method}\(',
         rf'{lro_method}LRO(',
     )
+# fix backwards-compatibility issues with paginated methods
+pagnated_method = 'partitionQuery'
+s.replace(
+    "src/V1/Gapic/FirestoreGapicClient.php",
+    rf'{paginated_method}\(',
+    rf'{paginated_method}Paginated(',
+)
+s.replace(
+    "tests/Unit/V1/FirestoreClientTest.php",
+    rf'{paginated_method}\(',
+    rf'{paginated_method}Paginated(',
+)
