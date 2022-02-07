@@ -236,6 +236,7 @@ class SubscriberClientTest extends GeneratedTest
         $enableMessageOrdering2 = false;
         $filter2 = 'filter2-721168085';
         $detached2 = false;
+        $enableExactlyOnceDelivery2 = true;
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name2);
         $expectedResponse->setTopic($topic2);
@@ -244,6 +245,7 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setEnableMessageOrdering($enableMessageOrdering2);
         $expectedResponse->setFilter($filter2);
         $expectedResponse->setDetached($detached2);
+        $expectedResponse->setEnableExactlyOnceDelivery($enableExactlyOnceDelivery2);
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
@@ -504,6 +506,7 @@ class SubscriberClientTest extends GeneratedTest
         $enableMessageOrdering = true;
         $filter = 'filter-1274492040';
         $detached = true;
+        $enableExactlyOnceDelivery = false;
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name);
         $expectedResponse->setTopic($topic);
@@ -512,6 +515,7 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setEnableMessageOrdering($enableMessageOrdering);
         $expectedResponse->setFilter($filter);
         $expectedResponse->setDetached($detached);
+        $expectedResponse->setEnableExactlyOnceDelivery($enableExactlyOnceDelivery);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
@@ -1160,6 +1164,7 @@ class SubscriberClientTest extends GeneratedTest
         $enableMessageOrdering = true;
         $filter = 'filter-1274492040';
         $detached = true;
+        $enableExactlyOnceDelivery = false;
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name);
         $expectedResponse->setTopic($topic);
@@ -1168,6 +1173,7 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setEnableMessageOrdering($enableMessageOrdering);
         $expectedResponse->setFilter($filter);
         $expectedResponse->setDetached($detached);
+        $expectedResponse->setEnableExactlyOnceDelivery($enableExactlyOnceDelivery);
         $transport->addResponse($expectedResponse);
         // Mock request
         $subscription = new Subscription();
