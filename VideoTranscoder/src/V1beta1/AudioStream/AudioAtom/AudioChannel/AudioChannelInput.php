@@ -171,6 +171,4 @@ class AudioChannelInput extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AudioChannelInput::class, \Google\Cloud\Video\Transcoder\V1beta1\AudioStream_AudioAtom_AudioChannel_AudioChannelInput::class);
 
