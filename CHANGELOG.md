@@ -22,10 +22,13 @@
 
 </details>
 
-<details><summary>google/cloud-firestore 1.20.5</summary>
+<details><summary>google/cloud-firestore 1.21.0</summary>
 
 
 
+### Features
+
+* [Firestore] add admin database operations ([#5095](https://github.com/googleapis/google-cloud-php/issues/5095)) ([9c55fd0](https://github.com/googleapis/google-cloud-php/commit/9c55fd0ada5c7522bb35dbdf22a4b66333a3a2a7))
 </details>
 
 <details><summary>google/cloud-monitoring 1.1.0</summary>

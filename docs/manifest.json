@@ -1562,7 +1562,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
-                "v1.20.5",
+                "v1.21.0",
                 "v1.20.4",
                 "v1.20.3",
                 "v1.20.2",
