@@ -65,6 +65,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      * Currently supported case-sensitive values are:
      * * `relevance` that can only be descending
      * * `last_modified_timestamp [asc|desc]` with descending (`desc`) as default
+     * * `default` that can only be descending
      * If this parameter is omitted, it defaults to the descending `relevance`.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
@@ -110,6 +111,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      *           Currently supported case-sensitive values are:
      *           * `relevance` that can only be descending
      *           * `last_modified_timestamp [asc|desc]` with descending (`desc`) as default
+     *           * `default` that can only be descending
      *           If this parameter is omitted, it defaults to the descending `relevance`.
      * }
      */
@@ -277,6 +279,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      * Currently supported case-sensitive values are:
      * * `relevance` that can only be descending
      * * `last_modified_timestamp [asc|desc]` with descending (`desc`) as default
+     * * `default` that can only be descending
      * If this parameter is omitted, it defaults to the descending `relevance`.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>
@@ -292,6 +295,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      * Currently supported case-sensitive values are:
      * * `relevance` that can only be descending
      * * `last_modified_timestamp [asc|desc]` with descending (`desc`) as default
+     * * `default` that can only be descending
      * If this parameter is omitted, it defaults to the descending `relevance`.
      *
      * Generated from protobuf field <code>string order_by = 5;</code>

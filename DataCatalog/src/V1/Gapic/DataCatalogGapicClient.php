@@ -34,6 +34,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\DataCatalog\V1\Contacts;
 use Google\Cloud\DataCatalog\V1\CreateEntryGroupRequest;
 use Google\Cloud\DataCatalog\V1\CreateEntryRequest;
 use Google\Cloud\DataCatalog\V1\CreateTagRequest;
@@ -46,6 +47,7 @@ use Google\Cloud\DataCatalog\V1\DeleteTagTemplateFieldRequest;
 use Google\Cloud\DataCatalog\V1\DeleteTagTemplateRequest;
 use Google\Cloud\DataCatalog\V1\Entry;
 use Google\Cloud\DataCatalog\V1\EntryGroup;
+use Google\Cloud\DataCatalog\V1\EntryOverview;
 use Google\Cloud\DataCatalog\V1\GetEntryGroupRequest;
 use Google\Cloud\DataCatalog\V1\GetEntryRequest;
 use Google\Cloud\DataCatalog\V1\GetTagTemplateRequest;
@@ -56,14 +58,20 @@ use Google\Cloud\DataCatalog\V1\ListEntryGroupsResponse;
 use Google\Cloud\DataCatalog\V1\ListTagsRequest;
 use Google\Cloud\DataCatalog\V1\ListTagsResponse;
 use Google\Cloud\DataCatalog\V1\LookupEntryRequest;
+use Google\Cloud\DataCatalog\V1\ModifyEntryContactsRequest;
+use Google\Cloud\DataCatalog\V1\ModifyEntryOverviewRequest;
 use Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldEnumValueRequest;
 use Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldRequest;
 use Google\Cloud\DataCatalog\V1\SearchCatalogRequest;
 use Google\Cloud\DataCatalog\V1\SearchCatalogRequest\Scope;
 use Google\Cloud\DataCatalog\V1\SearchCatalogResponse;
+use Google\Cloud\DataCatalog\V1\StarEntryRequest;
+use Google\Cloud\DataCatalog\V1\StarEntryResponse;
 use Google\Cloud\DataCatalog\V1\Tag;
 use Google\Cloud\DataCatalog\V1\TagTemplate;
 use Google\Cloud\DataCatalog\V1\TagTemplateField;
+use Google\Cloud\DataCatalog\V1\UnstarEntryRequest;
+use Google\Cloud\DataCatalog\V1\UnstarEntryResponse;
 use Google\Cloud\DataCatalog\V1\UpdateEntryGroupRequest;
 use Google\Cloud\DataCatalog\V1\UpdateEntryRequest;
 use Google\Cloud\DataCatalog\V1\UpdateTagRequest;
@@ -1401,6 +1409,8 @@ class DataCatalogGapicClient
 
     /**
      * Lists tags assigned to an [Entry][google.cloud.datacatalog.v1.Entry].
+     * The [columns][google.cloud.datacatalog.v1.Tag.column] in the response are
+     * lowercased.
      *
      * Sample code:
      * ```
@@ -1556,6 +1566,100 @@ class DataCatalogGapicClient
         }
 
         return $this->startCall('LookupEntry', Entry::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Modifies contacts, part of the business context of an
+     * [Entry][google.cloud.datacatalog.v1.Entry].
+     *
+     * To call this method, you must have the `datacatalog.entries.updateContacts`
+     * IAM permission on the corresponding project.
+     *
+     * Sample code:
+     * ```
+     * $dataCatalogClient = new DataCatalogClient();
+     * try {
+     *     $formattedName = $dataCatalogClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+     *     $contacts = new Contacts();
+     *     $response = $dataCatalogClient->modifyEntryContacts($formattedName, $contacts);
+     * } finally {
+     *     $dataCatalogClient->close();
+     * }
+     * ```
+     *
+     * @param string   $name         Required. The full resource name of the entry.
+     * @param Contacts $contacts     Required. The new value for the Contacts.
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\DataCatalog\V1\Contacts
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function modifyEntryContacts($name, $contacts, array $optionalArgs = [])
+    {
+        $request = new ModifyEntryContactsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setContacts($contacts);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ModifyEntryContacts', Contacts::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Modifies entry overview, part of the business context of an
+     * [Entry][google.cloud.datacatalog.v1.Entry].
+     *
+     * To call this method, you must have the `datacatalog.entries.updateOverview`
+     * IAM permission on the corresponding project.
+     *
+     * Sample code:
+     * ```
+     * $dataCatalogClient = new DataCatalogClient();
+     * try {
+     *     $formattedName = $dataCatalogClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+     *     $entryOverview = new EntryOverview();
+     *     $response = $dataCatalogClient->modifyEntryOverview($formattedName, $entryOverview);
+     * } finally {
+     *     $dataCatalogClient->close();
+     * }
+     * ```
+     *
+     * @param string        $name          Required. The full resource name of the entry.
+     * @param EntryOverview $entryOverview Required. The new value for the Entry Overview.
+     * @param array         $optionalArgs  {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\DataCatalog\V1\EntryOverview
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function modifyEntryOverview($name, $entryOverview, array $optionalArgs = [])
+    {
+        $request = new ModifyEntryOverviewRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setEntryOverview($entryOverview);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ModifyEntryOverview', EntryOverview::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1728,6 +1832,7 @@ class DataCatalogGapicClient
      *
      *           * `relevance` that can only be descending
      *           * `last_modified_timestamp [asc|desc]` with descending (`desc`) as default
+     *           * `default` that can only be descending
      *
      *           If this parameter is omitted, it defaults to the descending `relevance`.
      *     @type RetrySettings|array $retrySettings
@@ -1825,6 +1930,47 @@ class DataCatalogGapicClient
     }
 
     /**
+     * Marks an [Entry][google.cloud.datacatalog.v1.Entry] as starred by
+     * the current user. Starring information is private to each user.
+     *
+     * Sample code:
+     * ```
+     * $dataCatalogClient = new DataCatalogClient();
+     * try {
+     *     $formattedName = $dataCatalogClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+     *     $response = $dataCatalogClient->starEntry($formattedName);
+     * } finally {
+     *     $dataCatalogClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the entry to mark as starred.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\DataCatalog\V1\StarEntryResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function starEntry($name, array $optionalArgs = [])
+    {
+        $request = new StarEntryRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('StarEntry', StarEntryResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Gets your permissions on a resource.
      *
      * Returns an empty set of permissions if the resource doesn't exist.
@@ -1882,6 +2028,47 @@ class DataCatalogGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Marks an [Entry][google.cloud.datacatalog.v1.Entry] as NOT starred by
+     * the current user. Starring information is private to each user.
+     *
+     * Sample code:
+     * ```
+     * $dataCatalogClient = new DataCatalogClient();
+     * try {
+     *     $formattedName = $dataCatalogClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+     *     $response = $dataCatalogClient->unstarEntry($formattedName);
+     * } finally {
+     *     $dataCatalogClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the entry to mark as **not** starred.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\DataCatalog\V1\UnstarEntryResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function unstarEntry($name, array $optionalArgs = [])
+    {
+        $request = new UnstarEntryRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UnstarEntry', UnstarEntryResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2104,9 +2291,7 @@ class DataCatalogGapicClient
      *           request body, their values are emptied.
      *
      *           Note: Updating the `is_publicly_readable` field may require up to 12
-     *           hours to take effect in search results. Additionally, it also requires
-     *           the `tagTemplates.getIamPolicy` and `tagTemplates.setIamPolicy`
-     *           permissions.
+     *           hours to take effect in search results.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry

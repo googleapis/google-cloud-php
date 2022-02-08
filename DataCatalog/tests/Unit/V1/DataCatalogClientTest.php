@@ -28,9 +28,11 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 
+use Google\Cloud\DataCatalog\V1\Contacts;
 use Google\Cloud\DataCatalog\V1\DataCatalogClient;
 use Google\Cloud\DataCatalog\V1\Entry;
 use Google\Cloud\DataCatalog\V1\EntryGroup;
+use Google\Cloud\DataCatalog\V1\EntryOverview;
 use Google\Cloud\DataCatalog\V1\FieldType;
 use Google\Cloud\DataCatalog\V1\ListEntriesResponse;
 use Google\Cloud\DataCatalog\V1\ListEntryGroupsResponse;
@@ -38,10 +40,12 @@ use Google\Cloud\DataCatalog\V1\ListTagsResponse;
 use Google\Cloud\DataCatalog\V1\SearchCatalogRequest\Scope;
 use Google\Cloud\DataCatalog\V1\SearchCatalogResponse;
 use Google\Cloud\DataCatalog\V1\SearchCatalogResult;
+use Google\Cloud\DataCatalog\V1\StarEntryResponse;
 use Google\Cloud\DataCatalog\V1\Tag;
 use Google\Cloud\DataCatalog\V1\TagField;
 use Google\Cloud\DataCatalog\V1\TagTemplate;
 use Google\Cloud\DataCatalog\V1\TagTemplateField;
+use Google\Cloud\DataCatalog\V1\UnstarEntryResponse;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Protobuf\GPBEmpty;
@@ -1380,6 +1384,140 @@ class DataCatalogClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function modifyEntryContactsTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new Contacts();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $contacts = new Contacts();
+        $response = $client->modifyEntryContacts($formattedName, $contacts);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/ModifyEntryContacts', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getContacts();
+        $this->assertProtobufEquals($contacts, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function modifyEntryContactsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $contacts = new Contacts();
+        try {
+            $client->modifyEntryContacts($formattedName, $contacts);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function modifyEntryOverviewTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $overview = 'overview530115961';
+        $expectedResponse = new EntryOverview();
+        $expectedResponse->setOverview($overview);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $entryOverview = new EntryOverview();
+        $response = $client->modifyEntryOverview($formattedName, $entryOverview);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/ModifyEntryOverview', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getEntryOverview();
+        $this->assertProtobufEquals($entryOverview, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function modifyEntryOverviewExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $entryOverview = new EntryOverview();
+        try {
+            $client->modifyEntryOverview($formattedName, $entryOverview);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function renameTagTemplateFieldTest()
     {
         $transport = $this->createTransport();
@@ -1678,6 +1816,68 @@ class DataCatalogClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function starEntryTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new StarEntryResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $response = $client->starEntry($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/StarEntry', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function starEntryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        try {
+            $client->starEntry($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1730,6 +1930,68 @@ class DataCatalogClientTest extends GeneratedTest
         $permissions = [];
         try {
             $client->testIamPermissions($resource, $permissions);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function unstarEntryTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new UnstarEntryResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $response = $client->unstarEntry($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/UnstarEntry', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function unstarEntryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        try {
+            $client->unstarEntry($formattedName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
