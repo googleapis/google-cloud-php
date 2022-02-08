@@ -29,11 +29,13 @@ use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Firestore\Admin\V1\Database;
 use Google\Cloud\Firestore\Admin\V1\ExportDocumentsResponse;
-use Google\Cloud\Firestore\Admin\V1\Field;
 
+use Google\Cloud\Firestore\Admin\V1\Field;
 use Google\Cloud\Firestore\Admin\V1\FirestoreAdminClient;
 use Google\Cloud\Firestore\Admin\V1\Index;
+use Google\Cloud\Firestore\Admin\V1\ListDatabasesResponse;
 use Google\Cloud\Firestore\Admin\V1\ListFieldsResponse;
 use Google\Cloud\Firestore\Admin\V1\ListIndexesResponse;
 use Google\LongRunning\GetOperationRequest;
@@ -82,39 +84,68 @@ class FirestoreAdminClientTest extends GeneratedTest
      */
     public function createIndexTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
+        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createIndexTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
-        $done = true;
-        $expectedResponse = new Operation();
+        $expectedResponse = new Index();
         $expectedResponse->setName($name);
-        $expectedResponse->setDone($done);
-        $transport->addResponse($expectedResponse);
-
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/createIndexTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->parentName('[PROJECT]', '[DATABASE]', '[COLLECTION_ID]');
+        $formattedParent = $client->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
         $index = new Index();
-
-        $response = $client->createIndex($formattedParent, $index);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/CreateIndex', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getParent();
-
+        $response = $client->createIndexLRO($formattedParent, $index);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/CreateIndex', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getIndex();
-
+        $actualValue = $actualApiRequestObject->getIndex();
         $this->assertProtobufEquals($index, $actualValue);
-
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createIndexTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -122,39 +153,57 @@ class FirestoreAdminClientTest extends GeneratedTest
      */
     public function createIndexExceptionTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/createIndexTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
         $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
+        $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->parentName('[PROJECT]', '[DATABASE]', '[COLLECTION_ID]');
+        $formattedParent = $client->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
         $index = new Index();
-
+        $response = $client->createIndexLRO($formattedParent, $index);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/createIndexTest');
         try {
-            $client->createIndex($formattedParent, $index);
-            // If the $client method call did not throw, fail the test
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
+        // Call popReceivedCalls to ensure the stubs are exhausted
         $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -223,35 +272,65 @@ class FirestoreAdminClientTest extends GeneratedTest
      */
     public function exportDocumentsTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
+        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $name2 = 'name2-1052831874';
-        $done = true;
-        $expectedResponse = new Operation();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setDone($done);
-        $transport->addResponse($expectedResponse);
-
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/exportDocumentsTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $outputUriPrefix2 = 'outputUriPrefix2-377757258';
+        $expectedResponse = new ExportDocumentsResponse();
+        $expectedResponse->setOutputUriPrefix($outputUriPrefix2);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/exportDocumentsTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $client->databaseName('[PROJECT]', '[DATABASE]');
-
-        $response = $client->exportDocuments($formattedName);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/ExportDocuments', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getName();
-
+        $response = $client->exportDocumentsLRO($formattedName);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/ExportDocuments', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
-
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/exportDocumentsTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -259,35 +338,121 @@ class FirestoreAdminClientTest extends GeneratedTest
      */
     public function exportDocumentsExceptionTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/exportDocumentsTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
         $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
+        $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $client->databaseName('[PROJECT]', '[DATABASE]');
-
+        $response = $client->exportDocumentsLRO($formattedName);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/exportDocumentsTest');
         try {
-            $client->exportDocuments($formattedName);
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getDatabaseTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $locationId = 'locationId552319461';
+        $etag = 'etag3123477';
+        $expectedResponse = new Database();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setLocationId($locationId);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $client->databaseName('[PROJECT]', '[DATABASE]');
+        $response = $client->getDatabase($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/GetDatabase', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getDatabaseExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $client->databaseName('[PROJECT]', '[DATABASE]');
+        try {
+            $client->getDatabase($formattedName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -426,35 +591,63 @@ class FirestoreAdminClientTest extends GeneratedTest
      */
     public function importDocumentsTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
+        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $name2 = 'name2-1052831874';
-        $done = true;
-        $expectedResponse = new Operation();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setDone($done);
-        $transport->addResponse($expectedResponse);
-
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/importDocumentsTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/importDocumentsTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $client->databaseName('[PROJECT]', '[DATABASE]');
-
-        $response = $client->importDocuments($formattedName);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/ImportDocuments', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getName();
-
+        $response = $client->importDocumentsLRO($formattedName);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/ImportDocuments', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
-
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/importDocumentsTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -462,35 +655,115 @@ class FirestoreAdminClientTest extends GeneratedTest
      */
     public function importDocumentsExceptionTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/importDocumentsTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
         $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
+        $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $client->databaseName('[PROJECT]', '[DATABASE]');
-
+        $response = $client->importDocumentsLRO($formattedName);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/importDocumentsTest');
         try {
-            $client->importDocuments($formattedName);
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listDatabasesTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ListDatabasesResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $client->projectName('[PROJECT]');
+        $response = $client->listDatabases($formattedParent);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/ListDatabases', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listDatabasesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $client->projectName('[PROJECT]');
+        try {
+            $client->listDatabases($formattedParent);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -643,37 +916,196 @@ class FirestoreAdminClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function updateDatabaseTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateDatabaseTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $locationId = 'locationId552319461';
+        $etag = 'etag3123477';
+        $expectedResponse = new Database();
+        $expectedResponse->setName($name);
+        $expectedResponse->setLocationId($locationId);
+        $expectedResponse->setEtag($etag);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateDatabaseTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $database = new Database();
+        $response = $client->updateDatabase($database);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/UpdateDatabase', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getDatabase();
+        $this->assertProtobufEquals($database, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateDatabaseTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateDatabaseExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateDatabaseTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $database = new Database();
+        $response = $client->updateDatabase($database);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateDatabaseTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function updateFieldTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
+        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateFieldTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
-        $done = true;
-        $expectedResponse = new Operation();
+        $expectedResponse = new Field();
         $expectedResponse->setName($name);
-        $expectedResponse->setDone($done);
-        $transport->addResponse($expectedResponse);
-
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateFieldTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
         // Mock request
         $field = new Field();
-
-        $response = $client->updateField($field);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/UpdateField', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getField();
-
+        $fieldName = 'fieldName1265009317';
+        $field->setName($fieldName);
+        $response = $client->updateFieldLRO($field);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.admin.v1.FirestoreAdmin/UpdateField', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getField();
         $this->assertProtobufEquals($field, $actualValue);
-
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateFieldTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -681,37 +1113,57 @@ class FirestoreAdminClientTest extends GeneratedTest
      */
     public function updateFieldExceptionTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateFieldTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
         $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
+        $operationsTransport->addResponse(null, $status);
         // Mock request
         $field = new Field();
-
+        $fieldName = 'fieldName1265009317';
+        $field->setName($fieldName);
+        $response = $client->updateFieldLRO($field);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateFieldTest');
         try {
-            $client->updateField($field);
-            // If the $client method call did not throw, fail the test
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
+        // Call popReceivedCalls to ensure the stubs are exhausted
         $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 }

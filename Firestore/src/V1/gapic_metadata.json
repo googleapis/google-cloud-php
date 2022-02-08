@@ -1,0 +1,93 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.firestore.v1",
+    "libraryPackage": "Google\\Cloud\\Firestore\\V1",
+    "services": {
+        "Firestore": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "FirestoreGapicClient",
+                    "rpcs": {
+                        "BatchGetDocuments": {
+                            "methods": [
+                                "batchGetDocuments"
+                            ]
+                        },
+                        "BatchWrite": {
+                            "methods": [
+                                "batchWrite"
+                            ]
+                        },
+                        "BeginTransaction": {
+                            "methods": [
+                                "beginTransaction"
+                            ]
+                        },
+                        "Commit": {
+                            "methods": [
+                                "commit"
+                            ]
+                        },
+                        "CreateDocument": {
+                            "methods": [
+                                "createDocument"
+                            ]
+                        },
+                        "DeleteDocument": {
+                            "methods": [
+                                "deleteDocument"
+                            ]
+                        },
+                        "GetDocument": {
+                            "methods": [
+                                "getDocument"
+                            ]
+                        },
+                        "ListCollectionIds": {
+                            "methods": [
+                                "listCollectionIds"
+                            ]
+                        },
+                        "ListDocuments": {
+                            "methods": [
+                                "listDocuments"
+                            ]
+                        },
+                        "Listen": {
+                            "methods": [
+                                "listen"
+                            ]
+                        },
+                        "PartitionQuery": {
+                            "methods": [
+                                "partitionQuery"
+                            ]
+                        },
+                        "Rollback": {
+                            "methods": [
+                                "rollback"
+                            ]
+                        },
+                        "RunQuery": {
+                            "methods": [
+                                "runQuery"
+                            ]
+                        },
+                        "UpdateDocument": {
+                            "methods": [
+                                "updateDocument"
+                            ]
+                        },
+                        "Write": {
+                            "methods": [
+                                "write"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
