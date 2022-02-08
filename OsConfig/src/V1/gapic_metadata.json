@@ -54,6 +54,21 @@
                             "methods": [
                                 "listPatchJobs"
                             ]
+                        },
+                        "PausePatchDeployment": {
+                            "methods": [
+                                "pausePatchDeployment"
+                            ]
+                        },
+                        "ResumePatchDeployment": {
+                            "methods": [
+                                "resumePatchDeployment"
+                            ]
+                        },
+                        "UpdatePatchDeployment": {
+                            "methods": [
+                                "updatePatchDeployment"
+                            ]
                         }
                     }
                 }

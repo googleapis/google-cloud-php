@@ -68,6 +68,12 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.ExecStep post_step = 9;</code>
      */
     private $post_step = null;
+    /**
+     * Allows the patch job to run on Managed instance groups (MIGs).
+     *
+     * Generated from protobuf field <code>bool mig_instances_allowed = 10;</code>
+     */
+    private $mig_instances_allowed = false;
 
     /**
      * Constructor.
@@ -95,6 +101,8 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      *           The `ExecStep` to run before the patch update.
      *     @type \Google\Cloud\OsConfig\V1\ExecStep $post_step
      *           The `ExecStep` to run after the patch update.
+     *     @type bool $mig_instances_allowed
+     *           Allows the patch job to run on Managed instance groups (MIGs).
      * }
      */
     public function __construct($data = NULL) {
@@ -384,6 +392,32 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\OsConfig\V1\ExecStep::class);
         $this->post_step = $var;
+
+        return $this;
+    }
+
+    /**
+     * Allows the patch job to run on Managed instance groups (MIGs).
+     *
+     * Generated from protobuf field <code>bool mig_instances_allowed = 10;</code>
+     * @return bool
+     */
+    public function getMigInstancesAllowed()
+    {
+        return $this->mig_instances_allowed;
+    }
+
+    /**
+     * Allows the patch job to run on Managed instance groups (MIGs).
+     *
+     * Generated from protobuf field <code>bool mig_instances_allowed = 10;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setMigInstancesAllowed($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->mig_instances_allowed = $var;
 
         return $this;
     }

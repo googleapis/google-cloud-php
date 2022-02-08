@@ -51,7 +51,11 @@ use Google\Cloud\OsConfig\V1\PatchDeployment;
 use Google\Cloud\OsConfig\V1\PatchInstanceFilter;
 use Google\Cloud\OsConfig\V1\PatchJob;
 use Google\Cloud\OsConfig\V1\PatchRollout;
+use Google\Cloud\OsConfig\V1\PausePatchDeploymentRequest;
+use Google\Cloud\OsConfig\V1\ResumePatchDeploymentRequest;
+use Google\Cloud\OsConfig\V1\UpdatePatchDeploymentRequest;
 use Google\Protobuf\Duration;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
 /**
@@ -852,5 +856,136 @@ class OsConfigServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListPatchJobs', $optionalArgs, ListPatchJobsResponse::class, $request);
+    }
+
+    /**
+     * Change state of patch deployment to "PAUSED".
+     * Patch deployment in paused state doesn't generate patch jobs.
+     *
+     * Sample code:
+     * ```
+     * $osConfigServiceClient = new OsConfigServiceClient();
+     * try {
+     *     $formattedName = $osConfigServiceClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
+     *     $response = $osConfigServiceClient->pausePatchDeployment($formattedName);
+     * } finally {
+     *     $osConfigServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the patch deployment in the form
+     *                             `projects/&#42;/patchDeployments/*`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\OsConfig\V1\PatchDeployment
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function pausePatchDeployment($name, array $optionalArgs = [])
+    {
+        $request = new PausePatchDeploymentRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('PausePatchDeployment', PatchDeployment::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Change state of patch deployment back to "ACTIVE".
+     * Patch deployment in active state continues to generate patch jobs.
+     *
+     * Sample code:
+     * ```
+     * $osConfigServiceClient = new OsConfigServiceClient();
+     * try {
+     *     $formattedName = $osConfigServiceClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
+     *     $response = $osConfigServiceClient->resumePatchDeployment($formattedName);
+     * } finally {
+     *     $osConfigServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the patch deployment in the form
+     *                             `projects/&#42;/patchDeployments/*`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\OsConfig\V1\PatchDeployment
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function resumePatchDeployment($name, array $optionalArgs = [])
+    {
+        $request = new ResumePatchDeploymentRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ResumePatchDeployment', PatchDeployment::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Update an OS Config patch deployment.
+     *
+     * Sample code:
+     * ```
+     * $osConfigServiceClient = new OsConfigServiceClient();
+     * try {
+     *     $patchDeployment = new PatchDeployment();
+     *     $response = $osConfigServiceClient->updatePatchDeployment($patchDeployment);
+     * } finally {
+     *     $osConfigServiceClient->close();
+     * }
+     * ```
+     *
+     * @param PatchDeployment $patchDeployment Required. The patch deployment to Update.
+     * @param array           $optionalArgs    {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           Optional. Field mask that controls which fields of the patch deployment
+     *           should be updated.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\OsConfig\V1\PatchDeployment
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updatePatchDeployment($patchDeployment, array $optionalArgs = [])
+    {
+        $request = new UpdatePatchDeploymentRequest();
+        $requestParamHeaders = [];
+        $request->setPatchDeployment($patchDeployment);
+        $requestParamHeaders['patch_deployment.name'] = $patchDeployment->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdatePatchDeployment', PatchDeployment::class, $optionalArgs, $request)->wait();
     }
 }
