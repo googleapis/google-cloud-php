@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/notificationconfig\/messageformat","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\NotificationConfig\\MessageFormat","name":"MessageFormat","description":"<p>Format of cloud pub\/sub message.<\/p>\n<p>Protobuf type <code>google.cloud.dialogflow.v2.NotificationConfig.MessageFormat<\/code><\/p>","examples":[],"resources":[],"methods":[]}

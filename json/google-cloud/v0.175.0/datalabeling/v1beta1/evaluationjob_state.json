@@ -1,0 +1,1 @@
+{"id":"datalabeling\/v1beta1\/evaluationjob_state","type":"","title":"Google\\Cloud\\DataLabeling\\V1beta1\\EvaluationJob_State","name":"EvaluationJob_State","description":"<p>This class is deprecated. Use Google\\Cloud\\DataLabeling\\V1beta1\\EvaluationJob\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}

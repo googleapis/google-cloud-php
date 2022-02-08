@@ -1,0 +1,1 @@
+{"id":"sqladmin\/v1beta4\/sqldatadisktype","type":"","title":"Google\\Cloud\\Sql\\V1beta4\\SqlDataDiskType","name":"SqlDataDiskType","description":"<p>The type of disk that is used for a v2 instance to use.<\/p>\n<p>Protobuf type <code>google.cloud.sql.v1beta4.SqlDataDiskType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

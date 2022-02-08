@@ -1,0 +1,1 @@
+{"id":"gkehub\/v1beta1\/membershipstate\/code","type":"","title":"Google\\Cloud\\GkeHub\\V1beta1\\MembershipState\\Code","name":"Code","description":"<p>Code describes the state of a Membership resource.<\/p>\n<p>Protobuf type <code>google.cloud.gkehub.v1beta1.MembershipState.Code<\/code><\/p>","examples":[],"resources":[],"methods":[]}
