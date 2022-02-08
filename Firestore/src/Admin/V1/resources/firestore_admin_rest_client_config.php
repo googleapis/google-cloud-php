@@ -38,6 +38,17 @@ return [
                     ],
                 ],
             ],
+            'GetDatabase' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetField' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/databases/*/collectionGroups/*/fields/*}',
@@ -72,6 +83,17 @@ return [
                     ],
                 ],
             ],
+            'ListDatabases' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*}/databases',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListFields' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/databases/*/collectionGroups/*}/fields',
@@ -94,6 +116,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateDatabase' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{database.name=projects/*/databases/*}',
+                'body' => 'database',
+                'placeholders' => [
+                    'database.name' => [
+                        'getters' => [
+                            'getDatabase',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateField' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{field.name=projects/*/databases/*/collectionGroups/*/fields/*}',
@@ -109,20 +144,10 @@ return [
             ],
         ],
         'google.longrunning.Operations' => [
-            'ListOperations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/databases/*}/operations',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/databases/*/operations/*}',
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/operations/*}:cancel',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -142,10 +167,20 @@ return [
                     ],
                 ],
             ],
-            'CancelOperation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/databases/*/operations/*}:cancel',
-                'body' => '*',
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*}/operations',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

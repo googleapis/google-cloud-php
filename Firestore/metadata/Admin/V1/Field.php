@@ -14,15 +14,16 @@ class Field
         if (static::$is_initialized == true) {
           return;
         }
+        \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Firestore\Admin\V1\Index::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-”
-%google/firestore/admin/v1/field.protogoogle.firestore.admin.v1%google/firestore/admin/v1/index.protogoogle/api/annotations.proto"‡
-Field
-name (	B
+Û
+%google/firestore/admin/v1/field.protogoogle.firestore.admin.v1google/api/resource.proto%google/firestore/admin/v1/index.protogoogle/api/annotations.proto"Â
+Field
+name (	B‡AB
 index_config (2,.google.firestore.admin.v1.Field.IndexConfigâ
 IndexConfig1
 indexes (2 .google.firestore.admin.v1.Index
