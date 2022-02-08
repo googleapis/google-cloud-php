@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.175.0",
                 "v0.174.0",
                 "v0.173.1",
                 "v0.173.0",
@@ -561,6 +562,7 @@
             "name": "google/cloud-bigquerydatatransfer",
             "defaultService": "bigquerydatatransfer/readme",
             "versions": [
+                "v1.3.0",
                 "v1.2.7",
                 "v1.2.6",
                 "v1.2.5",
@@ -617,6 +619,7 @@
             "name": "google/cloud-bigtable",
             "defaultService": "bigtable/readme",
             "versions": [
+                "v1.12.0",
                 "v1.11.3",
                 "v1.11.2",
                 "v1.11.1",
@@ -1559,6 +1562,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v1.21.0",
                 "v1.20.4",
                 "v1.20.3",
                 "v1.20.2",
@@ -2039,6 +2043,7 @@
             "name": "google/cloud-monitoring",
             "defaultService": "monitoring/readme",
             "versions": [
+                "v1.1.0",
                 "v1.0.4",
                 "v1.0.3",
                 "v1.0.2",
@@ -2291,6 +2296,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v1.35.0",
                 "v1.34.3",
                 "v1.34.2",
                 "v1.34.1",
@@ -2464,6 +2470,7 @@
             "name": "google/cloud-redis",
             "defaultService": "redis/readme",
             "versions": [
+                "v1.5.0",
                 "v1.4.2",
                 "v1.4.1",
                 "v1.4.0",
@@ -3110,6 +3117,7 @@
             "name": "google/cloud-text-to-speech",
             "defaultService": "texttospeech/readme",
             "versions": [
+                "v1.3.4",
                 "v1.3.3",
                 "v1.3.2",
                 "v1.3.1",
@@ -3377,6 +3385,7 @@
             "name": "google/cloud-vision",
             "defaultService": "vision/visionclient",
             "versions": [
+                "v1.5.4",
                 "v1.5.3",
                 "v1.5.2",
                 "v1.5.1",

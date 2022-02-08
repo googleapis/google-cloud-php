@@ -1,5 +1,78 @@
 # Changelog
 
+## 0.175.0
+
+<details><summary>google/cloud-bigquerydatatransfer 1.3.0</summary>
+
+
+
+### Features
+
+* add owner email to TransferConfig message, allow customer to enroll a datasource programmatically ([#5036](https://github.com/googleapis/google-cloud-php/issues/5036)) ([1c65fd1](https://github.com/googleapis/google-cloud-php/commit/1c65fd19c51e0ec1cfe56e7033c9edbd852a00e6))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.12.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add ability to partially update a cluster ([#5088](https://github.com/googleapis/google-cloud-php/issues/5088)) ([8d280df](https://github.com/googleapis/google-cloud-php/commit/8d280df6b807971d36bcacdf420785b8c7079b00))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.21.0</summary>
+
+
+
+### Features
+
+* [Firestore] add admin database operations ([#5095](https://github.com/googleapis/google-cloud-php/issues/5095)) ([9c55fd0](https://github.com/googleapis/google-cloud-php/commit/9c55fd0ada5c7522bb35dbdf22a4b66333a3a2a7))
+</details>
+
+<details><summary>google/cloud-monitoring 1.1.0</summary>
+
+
+
+### Features
+
+* update client libraries to support Database operations ([#4917](https://github.com/googleapis/google-cloud-php/issues/4917)) ([eda71e5](https://github.com/googleapis/google-cloud-php/commit/eda71e56c5ab91ec9224770f17a2d16c2c46a025))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.35.0</summary>
+
+
+
+### Features
+
+* [PubSub] add exactly once delivery flag ([#5098](https://github.com/googleapis/google-cloud-php/issues/5098)) ([a2287b6](https://github.com/googleapis/google-cloud-php/commit/a2287b649375f66f0a0e849abbb2b2ffc3c05ed9))
+
+</details>
+
+<details><summary>google/cloud-redis 1.5.0</summary>
+
+
+
+### Features
+
+* [Redis] Add automated RDB (AKA persistence) ([#5071](https://github.com/googleapis/google-cloud-php/issues/5071)) ([6ad467b](https://github.com/googleapis/google-cloud-php/commit/6ad467b4c140526e6379b2a99975f037a7de67c8))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.3.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vision 1.5.4</summary>
+
+
+
+</details>
+
 ## 0.174.0
 
 <details><summary>google/analytics-admin 0.5.0</summary>
