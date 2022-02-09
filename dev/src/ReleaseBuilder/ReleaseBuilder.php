@@ -44,7 +44,7 @@ class ReleaseBuilder extends GoogleCloudCommand
 
     const GITHUB_RELEASES_ENDPOINT = 'https://api.github.com/repos/%s/%s/releases/tags/%s';
     const GITHUB_PULL_ENDPOINT = 'https://api.github.com/repos/%s/%s/pulls/%s';
-    const GITHUB_COMPARE_ENDPOINT = 'https://api.github.com/repos/%s/%s/compare/%s...master';
+    const GITHUB_COMPARE_ENDPOINT = 'https://api.github.com/repos/%s/%s/compare/%s...main';
 
     CONST LEVEL_PATCH = 0;
     const LEVEL_MINOR = 1;
@@ -203,7 +203,7 @@ class ReleaseBuilder extends GoogleCloudCommand
     {
         foreach ($release as $key => &$component) {
             $latestVersion = $this->getComponentVersion($this->manifest, $key);
-            $latestVersion = $latestVersion !== 'master'
+            $latestVersion = $latestVersion !== 'main'
                 ? $latestVersion
                 : '0.0.0';
 
