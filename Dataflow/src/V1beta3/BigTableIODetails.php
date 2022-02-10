@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata for a Cloud BigTable connector used by the job.
+ * Metadata for a Cloud Bigtable connector used by the job.
  *
  * Generated from protobuf message <code>google.dataflow.v1beta3.BigTableIODetails</code>
  */

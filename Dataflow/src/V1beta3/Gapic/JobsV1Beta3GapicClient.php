@@ -27,9 +27,10 @@
 namespace Google\Cloud\Dataflow\V1beta3\Gapic;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
+
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -268,12 +269,14 @@ class JobsV1Beta3GapicClient
     public function aggregatedListJobs(array $optionalArgs = [])
     {
         $request = new ListJobsRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
 
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
         }
 
         if (isset($optionalArgs['view'])) {
@@ -292,6 +295,12 @@ class JobsV1Beta3GapicClient
             $request->setLocation($optionalArgs['location']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
         return $this->getPagedListResponse(
             'AggregatedListJobs',
             $optionalArgs,
@@ -397,8 +406,10 @@ class JobsV1Beta3GapicClient
     public function createJob(array $optionalArgs = [])
     {
         $request = new CreateJobRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
         }
 
         if (isset($optionalArgs['job'])) {
@@ -415,8 +426,15 @@ class JobsV1Beta3GapicClient
 
         if (isset($optionalArgs['location'])) {
             $request->setLocation($optionalArgs['location']);
+            $requestParamHeaders['location'] = $optionalArgs['location'];
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
         return $this->startCall(
             'CreateJob',
             Job::class,
@@ -474,12 +492,15 @@ class JobsV1Beta3GapicClient
     public function getJob(array $optionalArgs = [])
     {
         $request = new GetJobRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
         }
 
         if (isset($optionalArgs['jobId'])) {
             $request->setJobId($optionalArgs['jobId']);
+            $requestParamHeaders['job_id'] = $optionalArgs['jobId'];
         }
 
         if (isset($optionalArgs['view'])) {
@@ -488,8 +509,15 @@ class JobsV1Beta3GapicClient
 
         if (isset($optionalArgs['location'])) {
             $request->setLocation($optionalArgs['location']);
+            $requestParamHeaders['location'] = $optionalArgs['location'];
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
         return $this->startCall(
             'GetJob',
             Job::class,
@@ -571,12 +599,14 @@ class JobsV1Beta3GapicClient
     public function listJobs(array $optionalArgs = [])
     {
         $request = new ListJobsRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
 
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
         }
 
         if (isset($optionalArgs['view'])) {
@@ -593,8 +623,15 @@ class JobsV1Beta3GapicClient
 
         if (isset($optionalArgs['location'])) {
             $request->setLocation($optionalArgs['location']);
+            $requestParamHeaders['location'] = $optionalArgs['location'];
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
         return $this->getPagedListResponse(
             'ListJobs',
             $optionalArgs,
@@ -647,12 +684,15 @@ class JobsV1Beta3GapicClient
     public function snapshotJob(array $optionalArgs = [])
     {
         $request = new SnapshotJobRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
         }
 
         if (isset($optionalArgs['jobId'])) {
             $request->setJobId($optionalArgs['jobId']);
+            $requestParamHeaders['job_id'] = $optionalArgs['jobId'];
         }
 
         if (isset($optionalArgs['ttl'])) {
@@ -661,6 +701,7 @@ class JobsV1Beta3GapicClient
 
         if (isset($optionalArgs['location'])) {
             $request->setLocation($optionalArgs['location']);
+            $requestParamHeaders['location'] = $optionalArgs['location'];
         }
 
         if (isset($optionalArgs['snapshotSources'])) {
@@ -671,6 +712,12 @@ class JobsV1Beta3GapicClient
             $request->setDescription($optionalArgs['description']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
         return $this->startCall(
             'SnapshotJob',
             Snapshot::class,
@@ -728,12 +775,15 @@ class JobsV1Beta3GapicClient
     public function updateJob(array $optionalArgs = [])
     {
         $request = new UpdateJobRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
         }
 
         if (isset($optionalArgs['jobId'])) {
             $request->setJobId($optionalArgs['jobId']);
+            $requestParamHeaders['job_id'] = $optionalArgs['jobId'];
         }
 
         if (isset($optionalArgs['job'])) {
@@ -742,8 +792,15 @@ class JobsV1Beta3GapicClient
 
         if (isset($optionalArgs['location'])) {
             $request->setLocation($optionalArgs['location']);
+            $requestParamHeaders['location'] = $optionalArgs['location'];
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
         return $this->startCall(
             'UpdateJob',
             Job::class,

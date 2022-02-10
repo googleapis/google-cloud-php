@@ -27,9 +27,10 @@
 namespace Google\Cloud\Dataflow\V1beta3\Gapic;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
+
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -270,12 +271,15 @@ class MessagesV1Beta3GapicClient
     public function listJobMessages(array $optionalArgs = [])
     {
         $request = new ListJobMessagesRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
         }
 
         if (isset($optionalArgs['jobId'])) {
             $request->setJobId($optionalArgs['jobId']);
+            $requestParamHeaders['job_id'] = $optionalArgs['jobId'];
         }
 
         if (isset($optionalArgs['minimumImportance'])) {
@@ -300,8 +304,15 @@ class MessagesV1Beta3GapicClient
 
         if (isset($optionalArgs['location'])) {
             $request->setLocation($optionalArgs['location']);
+            $requestParamHeaders['location'] = $optionalArgs['location'];
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
         return $this->getPagedListResponse(
             'ListJobMessages',
             $optionalArgs,

@@ -27,9 +27,10 @@
 namespace Google\Cloud\Dataflow\V1beta3\Gapic;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
+
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -260,16 +261,20 @@ class MetricsV1Beta3GapicClient
     public function getJobExecutionDetails(array $optionalArgs = [])
     {
         $request = new GetJobExecutionDetailsRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
         }
 
         if (isset($optionalArgs['jobId'])) {
             $request->setJobId($optionalArgs['jobId']);
+            $requestParamHeaders['job_id'] = $optionalArgs['jobId'];
         }
 
         if (isset($optionalArgs['location'])) {
             $request->setLocation($optionalArgs['location']);
+            $requestParamHeaders['location'] = $optionalArgs['location'];
         }
 
         if (isset($optionalArgs['pageSize'])) {
@@ -280,6 +285,12 @@ class MetricsV1Beta3GapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
         return $this->getPagedListResponse(
             'GetJobExecutionDetails',
             $optionalArgs,
@@ -337,12 +348,15 @@ class MetricsV1Beta3GapicClient
     public function getJobMetrics(array $optionalArgs = [])
     {
         $request = new GetJobMetricsRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
         }
 
         if (isset($optionalArgs['jobId'])) {
             $request->setJobId($optionalArgs['jobId']);
+            $requestParamHeaders['job_id'] = $optionalArgs['jobId'];
         }
 
         if (isset($optionalArgs['startTime'])) {
@@ -351,8 +365,15 @@ class MetricsV1Beta3GapicClient
 
         if (isset($optionalArgs['location'])) {
             $request->setLocation($optionalArgs['location']);
+            $requestParamHeaders['location'] = $optionalArgs['location'];
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
         return $this->startCall(
             'GetJobMetrics',
             JobMetrics::class,
@@ -431,20 +452,25 @@ class MetricsV1Beta3GapicClient
     public function getStageExecutionDetails(array $optionalArgs = [])
     {
         $request = new GetStageExecutionDetailsRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
         }
 
         if (isset($optionalArgs['jobId'])) {
             $request->setJobId($optionalArgs['jobId']);
+            $requestParamHeaders['job_id'] = $optionalArgs['jobId'];
         }
 
         if (isset($optionalArgs['location'])) {
             $request->setLocation($optionalArgs['location']);
+            $requestParamHeaders['location'] = $optionalArgs['location'];
         }
 
         if (isset($optionalArgs['stageId'])) {
             $request->setStageId($optionalArgs['stageId']);
+            $requestParamHeaders['stage_id'] = $optionalArgs['stageId'];
         }
 
         if (isset($optionalArgs['pageSize'])) {
@@ -463,6 +489,12 @@ class MetricsV1Beta3GapicClient
             $request->setEndTime($optionalArgs['endTime']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
         return $this->getPagedListResponse(
             'GetStageExecutionDetails',
             $optionalArgs,
