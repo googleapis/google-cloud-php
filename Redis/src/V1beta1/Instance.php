@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Google Cloud Redis instance.
+ * A Memorystore for Redis instance.
  *
  * Generated from protobuf message <code>google.cloud.redis.v1beta1.Instance</code>
  */
@@ -85,6 +85,16 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string reserved_ip_range = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $reserved_ip_range = '';
+    /**
+     * Optional. Additional IP range for node placement. Required when enabling read
+     * replicas on an existing instance. For DIRECT_PEERING mode value must be a
+     * CIDR range of size /28, or "auto". For PRIVATE_SERVICE_ACCESS mode value
+     * must be the name of an allocated address range associated with the private
+     * service access connection, or "auto".
+     *
+     * Generated from protobuf field <code>string secondary_ip_range = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $secondary_ip_range = '';
     /**
      * Output only. Hostname or IP address of the exposed Redis endpoint used by
      *  clients to connect to the service.
@@ -250,8 +260,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $read_endpoint_port = 0;
     /**
-     * Optional. Read replica mode. Can only be specified when trying to create the
-     * instance.
+     * Optional. Read replicas mode for the instance. Defaults to READ_REPLICAS_DISABLED.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1beta1.Instance.ReadReplicasMode read_replicas_mode = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -311,6 +320,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           If not provided, the service will choose an unused /29 block, for
      *           example, 10.0.0.0/29 or 192.168.0.0/29. For READ_REPLICAS_ENABLED
      *           the default block size is /28.
+     *     @type string $secondary_ip_range
+     *           Optional. Additional IP range for node placement. Required when enabling read
+     *           replicas on an existing instance. For DIRECT_PEERING mode value must be a
+     *           CIDR range of size /28, or "auto". For PRIVATE_SERVICE_ACCESS mode value
+     *           must be the name of an allocated address range associated with the private
+     *           service access connection, or "auto".
      *     @type string $host
      *           Output only. Hostname or IP address of the exposed Redis endpoint used by
      *            clients to connect to the service.
@@ -392,8 +407,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Output only. The port number of the exposed readonly redis
      *           endpoint. Standard tier only. Write requests should target 'port'.
      *     @type int $read_replicas_mode
-     *           Optional. Read replica mode. Can only be specified when trying to create the
-     *           instance.
+     *           Optional. Read replicas mode for the instance. Defaults to READ_REPLICAS_DISABLED.
      *     @type \Google\Cloud\Redis\V1beta1\PersistenceConfig $persistence_config
      *           Optional. Persistence configuration parameters
      * }
@@ -637,6 +651,40 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->reserved_ip_range = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Additional IP range for node placement. Required when enabling read
+     * replicas on an existing instance. For DIRECT_PEERING mode value must be a
+     * CIDR range of size /28, or "auto". For PRIVATE_SERVICE_ACCESS mode value
+     * must be the name of an allocated address range associated with the private
+     * service access connection, or "auto".
+     *
+     * Generated from protobuf field <code>string secondary_ip_range = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSecondaryIpRange()
+    {
+        return $this->secondary_ip_range;
+    }
+
+    /**
+     * Optional. Additional IP range for node placement. Required when enabling read
+     * replicas on an existing instance. For DIRECT_PEERING mode value must be a
+     * CIDR range of size /28, or "auto". For PRIVATE_SERVICE_ACCESS mode value
+     * must be the name of an allocated address range associated with the private
+     * service access connection, or "auto".
+     *
+     * Generated from protobuf field <code>string secondary_ip_range = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSecondaryIpRange($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->secondary_ip_range = $var;
 
         return $this;
     }
@@ -1294,8 +1342,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Read replica mode. Can only be specified when trying to create the
-     * instance.
+     * Optional. Read replicas mode for the instance. Defaults to READ_REPLICAS_DISABLED.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1beta1.Instance.ReadReplicasMode read_replicas_mode = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -1306,8 +1353,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Read replica mode. Can only be specified when trying to create the
-     * instance.
+     * Optional. Read replicas mode for the instance. Defaults to READ_REPLICAS_DISABLED.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1beta1.Instance.ReadReplicasMode read_replicas_mode = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
