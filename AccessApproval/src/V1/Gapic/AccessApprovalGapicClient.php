@@ -26,8 +26,9 @@ namespace Google\Cloud\AccessApproval\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
+
+use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -53,17 +54,17 @@ use Google\Protobuf\Timestamp;
  *
  * - The API has a collection of
  * [ApprovalRequest][google.cloud.accessapproval.v1.ApprovalRequest]
- * resources, named `approvalRequests/{approval_request_id}`
+ * resources, named `approvalRequests/{approval_request}`
  * - The API has top-level settings per Project/Folder/Organization, named
  * `accessApprovalSettings`
  *
  * The service also periodically emails a list of recipients, defined at the
  * Project/Folder/Organization level in the accessApprovalSettings, when there
  * is a pending ApprovalRequest for them to act on. The ApprovalRequests can
- * also optionally be published to a Cloud Pub/Sub topic owned by the customer
- * (for Beta, the Pub/Sub setup is managed manually).
+ * also optionally be published to a Pub/Sub topic owned by the customer
+ * (contact support if you would like to enable Pub/Sub notifications).
  *
- * ApprovalRequests can be approved or dismissed. Google personel can only
+ * ApprovalRequests can be approved or dismissed. Google personnel can only
  * access the indicated resource or resources if the request is approved
  * (subject to some exclusions:
  * https://cloud.google.com/access-approval/docs/overview#exclusions).
@@ -93,6 +94,11 @@ use Google\Protobuf\Timestamp;
  *     $accessApprovalClient->close();
  * }
  * ```
+ *
+ * Many parameters require resource names to be formatted in a particular way. To
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
  */
 class AccessApprovalGapicClient
 {
@@ -125,6 +131,30 @@ class AccessApprovalGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $accessApprovalSettingsNameTemplate;
+
+    private static $approvalRequestNameTemplate;
+
+    private static $folderNameTemplate;
+
+    private static $folderAccessApprovalSettingsNameTemplate;
+
+    private static $folderApprovalRequestNameTemplate;
+
+    private static $organizationNameTemplate;
+
+    private static $organizationAccessApprovalSettingsNameTemplate;
+
+    private static $organizationApprovalRequestNameTemplate;
+
+    private static $projectNameTemplate;
+
+    private static $projectAccessApprovalSettingsNameTemplate;
+
+    private static $projectApprovalRequestNameTemplate;
+
+    private static $pathTemplateMap;
+
     private static function getClientDefaults()
     {
         return [
@@ -142,6 +172,350 @@ class AccessApprovalGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getAccessApprovalSettingsNameTemplate()
+    {
+        if (self::$accessApprovalSettingsNameTemplate == null) {
+            self::$accessApprovalSettingsNameTemplate = new PathTemplate('projects/{project}/accessApprovalSettings');
+        }
+
+        return self::$accessApprovalSettingsNameTemplate;
+    }
+
+    private static function getApprovalRequestNameTemplate()
+    {
+        if (self::$approvalRequestNameTemplate == null) {
+            self::$approvalRequestNameTemplate = new PathTemplate('projects/{project}/approvalRequests/{approval_request}');
+        }
+
+        return self::$approvalRequestNameTemplate;
+    }
+
+    private static function getFolderNameTemplate()
+    {
+        if (self::$folderNameTemplate == null) {
+            self::$folderNameTemplate = new PathTemplate('folders/{folder}');
+        }
+
+        return self::$folderNameTemplate;
+    }
+
+    private static function getFolderAccessApprovalSettingsNameTemplate()
+    {
+        if (self::$folderAccessApprovalSettingsNameTemplate == null) {
+            self::$folderAccessApprovalSettingsNameTemplate = new PathTemplate('folders/{folder}/accessApprovalSettings');
+        }
+
+        return self::$folderAccessApprovalSettingsNameTemplate;
+    }
+
+    private static function getFolderApprovalRequestNameTemplate()
+    {
+        if (self::$folderApprovalRequestNameTemplate == null) {
+            self::$folderApprovalRequestNameTemplate = new PathTemplate('folders/{folder}/approvalRequests/{approval_request}');
+        }
+
+        return self::$folderApprovalRequestNameTemplate;
+    }
+
+    private static function getOrganizationNameTemplate()
+    {
+        if (self::$organizationNameTemplate == null) {
+            self::$organizationNameTemplate = new PathTemplate('organizations/{organization}');
+        }
+
+        return self::$organizationNameTemplate;
+    }
+
+    private static function getOrganizationAccessApprovalSettingsNameTemplate()
+    {
+        if (self::$organizationAccessApprovalSettingsNameTemplate == null) {
+            self::$organizationAccessApprovalSettingsNameTemplate = new PathTemplate('organizations/{organization}/accessApprovalSettings');
+        }
+
+        return self::$organizationAccessApprovalSettingsNameTemplate;
+    }
+
+    private static function getOrganizationApprovalRequestNameTemplate()
+    {
+        if (self::$organizationApprovalRequestNameTemplate == null) {
+            self::$organizationApprovalRequestNameTemplate = new PathTemplate('organizations/{organization}/approvalRequests/{approval_request}');
+        }
+
+        return self::$organizationApprovalRequestNameTemplate;
+    }
+
+    private static function getProjectNameTemplate()
+    {
+        if (self::$projectNameTemplate == null) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
+    private static function getProjectAccessApprovalSettingsNameTemplate()
+    {
+        if (self::$projectAccessApprovalSettingsNameTemplate == null) {
+            self::$projectAccessApprovalSettingsNameTemplate = new PathTemplate('projects/{project}/accessApprovalSettings');
+        }
+
+        return self::$projectAccessApprovalSettingsNameTemplate;
+    }
+
+    private static function getProjectApprovalRequestNameTemplate()
+    {
+        if (self::$projectApprovalRequestNameTemplate == null) {
+            self::$projectApprovalRequestNameTemplate = new PathTemplate('projects/{project}/approvalRequests/{approval_request}');
+        }
+
+        return self::$projectApprovalRequestNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'accessApprovalSettings' => self::getAccessApprovalSettingsNameTemplate(),
+                'approvalRequest' => self::getApprovalRequestNameTemplate(),
+                'folder' => self::getFolderNameTemplate(),
+                'folderAccessApprovalSettings' => self::getFolderAccessApprovalSettingsNameTemplate(),
+                'folderApprovalRequest' => self::getFolderApprovalRequestNameTemplate(),
+                'organization' => self::getOrganizationNameTemplate(),
+                'organizationAccessApprovalSettings' => self::getOrganizationAccessApprovalSettingsNameTemplate(),
+                'organizationApprovalRequest' => self::getOrganizationApprovalRequestNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
+                'projectAccessApprovalSettings' => self::getProjectAccessApprovalSettingsNameTemplate(),
+                'projectApprovalRequest' => self::getProjectApprovalRequestNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * access_approval_settings resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted access_approval_settings resource.
+     */
+    public static function accessApprovalSettingsName($project)
+    {
+        return self::getAccessApprovalSettingsNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * approval_request resource.
+     *
+     * @param string $project
+     * @param string $approvalRequest
+     *
+     * @return string The formatted approval_request resource.
+     */
+    public static function approvalRequestName($project, $approvalRequest)
+    {
+        return self::getApprovalRequestNameTemplate()->render([
+            'project' => $project,
+            'approval_request' => $approvalRequest,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a folder
+     * resource.
+     *
+     * @param string $folder
+     *
+     * @return string The formatted folder resource.
+     */
+    public static function folderName($folder)
+    {
+        return self::getFolderNameTemplate()->render([
+            'folder' => $folder,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_accessApprovalSettings resource.
+     *
+     * @param string $folder
+     *
+     * @return string The formatted folder_accessApprovalSettings resource.
+     */
+    public static function folderAccessApprovalSettingsName($folder)
+    {
+        return self::getFolderAccessApprovalSettingsNameTemplate()->render([
+            'folder' => $folder,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_approval_request resource.
+     *
+     * @param string $folder
+     * @param string $approvalRequest
+     *
+     * @return string The formatted folder_approval_request resource.
+     */
+    public static function folderApprovalRequestName($folder, $approvalRequest)
+    {
+        return self::getFolderApprovalRequestNameTemplate()->render([
+            'folder' => $folder,
+            'approval_request' => $approvalRequest,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a organization
+     * resource.
+     *
+     * @param string $organization
+     *
+     * @return string The formatted organization resource.
+     */
+    public static function organizationName($organization)
+    {
+        return self::getOrganizationNameTemplate()->render([
+            'organization' => $organization,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_accessApprovalSettings resource.
+     *
+     * @param string $organization
+     *
+     * @return string The formatted organization_accessApprovalSettings resource.
+     */
+    public static function organizationAccessApprovalSettingsName($organization)
+    {
+        return self::getOrganizationAccessApprovalSettingsNameTemplate()->render([
+            'organization' => $organization,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_approval_request resource.
+     *
+     * @param string $organization
+     * @param string $approvalRequest
+     *
+     * @return string The formatted organization_approval_request resource.
+     */
+    public static function organizationApprovalRequestName($organization, $approvalRequest)
+    {
+        return self::getOrganizationApprovalRequestNameTemplate()->render([
+            'organization' => $organization,
+            'approval_request' => $approvalRequest,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a project
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_accessApprovalSettings resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_accessApprovalSettings resource.
+     */
+    public static function projectAccessApprovalSettingsName($project)
+    {
+        return self::getProjectAccessApprovalSettingsNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_approval_request resource.
+     *
+     * @param string $project
+     * @param string $approvalRequest
+     *
+     * @return string The formatted project_approval_request resource.
+     */
+    public static function projectApprovalRequestName($project, $approvalRequest)
+    {
+        return self::getProjectApprovalRequestNameTemplate()->render([
+            'project' => $project,
+            'approval_request' => $approvalRequest,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - accessApprovalSettings: projects/{project}/accessApprovalSettings
+     * - approvalRequest: projects/{project}/approvalRequests/{approval_request}
+     * - folder: folders/{folder}
+     * - folderAccessApprovalSettings: folders/{folder}/accessApprovalSettings
+     * - folderApprovalRequest: folders/{folder}/approvalRequests/{approval_request}
+     * - organization: organizations/{organization}
+     * - organizationAccessApprovalSettings: organizations/{organization}/accessApprovalSettings
+     * - organizationApprovalRequest: organizations/{organization}/approvalRequests/{approval_request}
+     * - project: projects/{project}
+     * - projectAccessApprovalSettings: projects/{project}/accessApprovalSettings
+     * - projectApprovalRequest: projects/{project}/approvalRequests/{approval_request}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern,
+     * and must match one of the templates listed above. If no $template argument is
+     * provided, or if the $template argument does not match one of the templates
+     * listed, then parseName will check each of the supported templates, and return
+     * the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -374,7 +748,8 @@ class AccessApprovalGapicClient
      *     Optional.
      *
      *     @type string $name
-     *           Name of the AccessApprovalSettings to retrieve.
+     *           The name of the AccessApprovalSettings to retrieve.
+     *           Format: "{projects|folders|organizations}/{id}/accessApprovalSettings"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -417,7 +792,9 @@ class AccessApprovalGapicClient
      *     Optional.
      *
      *     @type string $name
-     *           Name of the approval request to retrieve.
+     *           The name of the approval request to retrieve.
+     *           Format:
+     *           "{projects|folders|organizations}/{id}/approvalRequests/{approval_request}"
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -474,18 +851,21 @@ class AccessApprovalGapicClient
      *     Optional.
      *
      *     @type string $parent
-     *           The parent resource. This may be "projects/{project_id}",
-     *           "folders/{folder_id}", or "organizations/{organization_id}".
+     *           The parent resource. This may be "projects/{project}",
+     *           "folders/{folder}", or "organizations/{organization}".
      *     @type string $filter
      *           A filter on the type of approval requests to retrieve. Must be one of the
      *           following values:
      *
-     *           - [not set]: Requests that are pending or have active approvals.
-     *           - ALL: All requests.
-     *           - PENDING: Only pending requests.
-     *           - ACTIVE: Only active (i.e. currently approved) requests.
-     *           - DISMISSED: Only dismissed (including expired) requests.
-     *
+     *           * [not set]: Requests that are pending or have active approvals.
+     *           * ALL: All requests.
+     *           * PENDING: Only pending requests.
+     *           * ACTIVE: Only active (i.e. currently approved) requests.
+     *           * DISMISSED: Only requests that have been dismissed, or requests that
+     *           are not approved and past expiration.
+     *           * EXPIRED: Only requests that have been approved, and the approval has
+     *           expired.
+     *           * HISTORY: Active, dismissed and expired requests.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if

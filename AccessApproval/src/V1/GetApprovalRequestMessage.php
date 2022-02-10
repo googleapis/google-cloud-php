@@ -16,9 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetApprovalRequestMessage extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the approval request to retrieve.
+     * The name of the approval request to retrieve.
+     * Format:
+     * "{projects|folders|organizations}/{id}/approvalRequests/{approval_request}"
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -29,7 +31,9 @@ class GetApprovalRequestMessage extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of the approval request to retrieve.
+     *           The name of the approval request to retrieve.
+     *           Format:
+     *           "{projects|folders|organizations}/{id}/approvalRequests/{approval_request}"
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +42,11 @@ class GetApprovalRequestMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the approval request to retrieve.
+     * The name of the approval request to retrieve.
+     * Format:
+     * "{projects|folders|organizations}/{id}/approvalRequests/{approval_request}"
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -49,9 +55,11 @@ class GetApprovalRequestMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the approval request to retrieve.
+     * The name of the approval request to retrieve.
+     * Format:
+     * "{projects|folders|organizations}/{id}/approvalRequests/{approval_request}"
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

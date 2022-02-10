@@ -16,9 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetAccessApprovalSettingsMessage extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the AccessApprovalSettings to retrieve.
+     * The name of the AccessApprovalSettings to retrieve.
+     * Format: "{projects|folders|organizations}/{id}/accessApprovalSettings"
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -29,7 +30,8 @@ class GetAccessApprovalSettingsMessage extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of the AccessApprovalSettings to retrieve.
+     *           The name of the AccessApprovalSettings to retrieve.
+     *           Format: "{projects|folders|organizations}/{id}/accessApprovalSettings"
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +40,10 @@ class GetAccessApprovalSettingsMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the AccessApprovalSettings to retrieve.
+     * The name of the AccessApprovalSettings to retrieve.
+     * Format: "{projects|folders|organizations}/{id}/accessApprovalSettings"
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -49,9 +52,10 @@ class GetAccessApprovalSettingsMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the AccessApprovalSettings to retrieve.
+     * The name of the AccessApprovalSettings to retrieve.
+     * Format: "{projects|folders|organizations}/{id}/accessApprovalSettings"
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
