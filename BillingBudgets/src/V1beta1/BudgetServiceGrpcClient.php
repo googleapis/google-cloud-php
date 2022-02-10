@@ -35,7 +35,7 @@ class BudgetServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Creates a new budget. See
-     * <a href="https://cloud.google.com/billing/quotas">Quotas and limits</a>
+     * [Quotas and limits](https://cloud.google.com/billing/quotas)
      * for more information on the limits of the number of budgets you can create.
      * @param \Google\Cloud\Billing\Budgets\V1beta1\CreateBudgetRequest $argument input argument
      * @param array $metadata metadata
