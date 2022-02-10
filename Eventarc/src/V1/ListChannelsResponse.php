@@ -9,20 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response message for the `ListTriggers` method.
+ * The response message for the `ListChannels` method.
  *
- * Generated from protobuf message <code>google.cloud.eventarc.v1.ListTriggersResponse</code>
+ * Generated from protobuf message <code>google.cloud.eventarc.v1.ListChannelsResponse</code>
  */
-class ListTriggersResponse extends \Google\Protobuf\Internal\Message
+class ListChannelsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The requested triggers, up to the number specified in `page_size`.
+     * The requested channels, up to the number specified in `page_size`.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.Trigger triggers = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.Channel channels = 1;</code>
      */
-    private $triggers;
+    private $channels;
     /**
-     * A page token that can be sent to ListTriggers to request the next page.
+     * A page token that can be sent to ListChannels to request the next page.
      * If this is empty, then there are no more pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
@@ -41,10 +41,10 @@ class ListTriggersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Eventarc\V1\Trigger[]|\Google\Protobuf\Internal\RepeatedField $triggers
-     *           The requested triggers, up to the number specified in `page_size`.
+     *     @type \Google\Cloud\Eventarc\V1\Channel[]|\Google\Protobuf\Internal\RepeatedField $channels
+     *           The requested channels, up to the number specified in `page_size`.
      *     @type string $next_page_token
-     *           A page token that can be sent to ListTriggers to request the next page.
+     *           A page token that can be sent to ListChannels to request the next page.
      *           If this is empty, then there are no more pages.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Unreachable resources, if any.
@@ -56,33 +56,33 @@ class ListTriggersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The requested triggers, up to the number specified in `page_size`.
+     * The requested channels, up to the number specified in `page_size`.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.Trigger triggers = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.Channel channels = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
-    public function getTriggers()
+    public function getChannels()
     {
-        return $this->triggers;
+        return $this->channels;
     }
 
     /**
-     * The requested triggers, up to the number specified in `page_size`.
+     * The requested channels, up to the number specified in `page_size`.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.Trigger triggers = 1;</code>
-     * @param \Google\Cloud\Eventarc\V1\Trigger[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.Channel channels = 1;</code>
+     * @param \Google\Cloud\Eventarc\V1\Channel[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
-    public function setTriggers($var)
+    public function setChannels($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Eventarc\V1\Trigger::class);
-        $this->triggers = $arr;
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Eventarc\V1\Channel::class);
+        $this->channels = $arr;
 
         return $this;
     }
 
     /**
-     * A page token that can be sent to ListTriggers to request the next page.
+     * A page token that can be sent to ListChannels to request the next page.
      * If this is empty, then there are no more pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
@@ -94,7 +94,7 @@ class ListTriggersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token that can be sent to ListTriggers to request the next page.
+     * A page token that can be sent to ListChannels to request the next page.
      * If this is empty, then there are no more pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>

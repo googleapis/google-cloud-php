@@ -9,30 +9,30 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for the CreateTrigger method.
+ * The request message for the CreateChannel method.
  *
- * Generated from protobuf message <code>google.cloud.eventarc.v1.CreateTriggerRequest</code>
+ * Generated from protobuf message <code>google.cloud.eventarc.v1.CreateChannelRequest</code>
  */
-class CreateTriggerRequest extends \Google\Protobuf\Internal\Message
+class CreateChannelRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent collection in which to add this trigger.
+     * Required. The parent collection in which to add this channel.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Required. The trigger to create.
+     * Required. The channel to create.
      *
-     * Generated from protobuf field <code>.google.cloud.eventarc.v1.Trigger trigger = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.Channel channel = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $trigger = null;
+    private $channel = null;
     /**
-     * Required. The user-provided ID to be assigned to the trigger.
+     * Required. The user-provided ID to be assigned to the channel.
      *
-     * Generated from protobuf field <code>string trigger_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string channel_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $trigger_id = '';
+    private $channel_id = '';
     /**
      * Required. If set, validate the request and preview the review, but do not
      * post it.
@@ -48,11 +48,11 @@ class CreateTriggerRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent collection in which to add this trigger.
-     *     @type \Google\Cloud\Eventarc\V1\Trigger $trigger
-     *           Required. The trigger to create.
-     *     @type string $trigger_id
-     *           Required. The user-provided ID to be assigned to the trigger.
+     *           Required. The parent collection in which to add this channel.
+     *     @type \Google\Cloud\Eventarc\V1\Channel $channel
+     *           Required. The channel to create.
+     *     @type string $channel_id
+     *           Required. The user-provided ID to be assigned to the channel.
      *     @type bool $validate_only
      *           Required. If set, validate the request and preview the review, but do not
      *           post it.
@@ -64,7 +64,7 @@ class CreateTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent collection in which to add this trigger.
+     * Required. The parent collection in which to add this channel.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -75,7 +75,7 @@ class CreateTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent collection in which to add this trigger.
+     * Required. The parent collection in which to add this channel.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -90,63 +90,63 @@ class CreateTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The trigger to create.
+     * Required. The channel to create.
      *
-     * Generated from protobuf field <code>.google.cloud.eventarc.v1.Trigger trigger = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Eventarc\V1\Trigger|null
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.Channel channel = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Eventarc\V1\Channel|null
      */
-    public function getTrigger()
+    public function getChannel()
     {
-        return $this->trigger;
+        return $this->channel;
     }
 
-    public function hasTrigger()
+    public function hasChannel()
     {
-        return isset($this->trigger);
+        return isset($this->channel);
     }
 
-    public function clearTrigger()
+    public function clearChannel()
     {
-        unset($this->trigger);
+        unset($this->channel);
     }
 
     /**
-     * Required. The trigger to create.
+     * Required. The channel to create.
      *
-     * Generated from protobuf field <code>.google.cloud.eventarc.v1.Trigger trigger = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Eventarc\V1\Trigger $var
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.Channel channel = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param \Google\Cloud\Eventarc\V1\Channel $var
      * @return $this
      */
-    public function setTrigger($var)
+    public function setChannel($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Eventarc\V1\Trigger::class);
-        $this->trigger = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\Eventarc\V1\Channel::class);
+        $this->channel = $var;
 
         return $this;
     }
 
     /**
-     * Required. The user-provided ID to be assigned to the trigger.
+     * Required. The user-provided ID to be assigned to the channel.
      *
-     * Generated from protobuf field <code>string trigger_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string channel_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
-    public function getTriggerId()
+    public function getChannelId()
     {
-        return $this->trigger_id;
+        return $this->channel_id;
     }
 
     /**
-     * Required. The user-provided ID to be assigned to the trigger.
+     * Required. The user-provided ID to be assigned to the channel.
      *
-     * Generated from protobuf field <code>string trigger_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string channel_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
-    public function setTriggerId($var)
+    public function setChannelId($var)
     {
         GPBUtil::checkString($var, True);
-        $this->trigger_id = $var;
+        $this->channel_id = $var;
 
         return $this;
     }

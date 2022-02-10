@@ -108,4 +108,139 @@ class EventarcGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Get a single Channel.
+     * @param \Google\Cloud\Eventarc\V1\GetChannelRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetChannel(\Google\Cloud\Eventarc\V1\GetChannelRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.eventarc.v1.Eventarc/GetChannel',
+        $argument,
+        ['\Google\Cloud\Eventarc\V1\Channel', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * List channels.
+     * @param \Google\Cloud\Eventarc\V1\ListChannelsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListChannels(\Google\Cloud\Eventarc\V1\ListChannelsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.eventarc.v1.Eventarc/ListChannels',
+        $argument,
+        ['\Google\Cloud\Eventarc\V1\ListChannelsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Create a new channel in a particular project and location.
+     * @param \Google\Cloud\Eventarc\V1\CreateChannelRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateChannel(\Google\Cloud\Eventarc\V1\CreateChannelRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.eventarc.v1.Eventarc/CreateChannel',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Update a single channel.
+     * @param \Google\Cloud\Eventarc\V1\UpdateChannelRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateChannel(\Google\Cloud\Eventarc\V1\UpdateChannelRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.eventarc.v1.Eventarc/UpdateChannel',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Delete a single channel.
+     * @param \Google\Cloud\Eventarc\V1\DeleteChannelRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteChannel(\Google\Cloud\Eventarc\V1\DeleteChannelRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.eventarc.v1.Eventarc/DeleteChannel',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Get a single ChannelConnection.
+     * @param \Google\Cloud\Eventarc\V1\GetChannelConnectionRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetChannelConnection(\Google\Cloud\Eventarc\V1\GetChannelConnectionRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.eventarc.v1.Eventarc/GetChannelConnection',
+        $argument,
+        ['\Google\Cloud\Eventarc\V1\ChannelConnection', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * List channel connections.
+     * @param \Google\Cloud\Eventarc\V1\ListChannelConnectionsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListChannelConnections(\Google\Cloud\Eventarc\V1\ListChannelConnectionsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.eventarc.v1.Eventarc/ListChannelConnections',
+        $argument,
+        ['\Google\Cloud\Eventarc\V1\ListChannelConnectionsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Create a new ChannelConnection in a particular project and location.
+     * @param \Google\Cloud\Eventarc\V1\CreateChannelConnectionRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateChannelConnection(\Google\Cloud\Eventarc\V1\CreateChannelConnectionRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.eventarc.v1.Eventarc/CreateChannelConnection',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Delete a single ChannelConnection.
+     * @param \Google\Cloud\Eventarc\V1\DeleteChannelConnectionRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteChannelConnection(\Google\Cloud\Eventarc\V1\DeleteChannelConnectionRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.eventarc.v1.Eventarc/DeleteChannelConnection',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
 }

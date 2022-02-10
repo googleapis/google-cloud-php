@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents the transport intermediaries created for the trigger in order to
+ * Represents the transport intermediaries created for the trigger to
  * deliver events.
  *
  * Generated from protobuf message <code>google.cloud.eventarc.v1.Transport</code>
@@ -25,7 +25,7 @@ class Transport extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Eventarc\V1\Pubsub $pubsub
-     *           The Pub/Sub topic and subscription used by Eventarc as delivery
+     *           The Pub/Sub topic and subscription used by Eventarc as a transport
      *           intermediary.
      * }
      */
@@ -35,7 +35,7 @@ class Transport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Pub/Sub topic and subscription used by Eventarc as delivery
+     * The Pub/Sub topic and subscription used by Eventarc as a transport
      * intermediary.
      *
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.Pubsub pubsub = 1;</code>
@@ -52,7 +52,7 @@ class Transport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Pub/Sub topic and subscription used by Eventarc as delivery
+     * The Pub/Sub topic and subscription used by Eventarc as a transport
      * intermediary.
      *
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.Pubsub pubsub = 1;</code>

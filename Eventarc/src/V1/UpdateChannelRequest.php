@@ -9,18 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for the UpdateTrigger method.
+ * The request message for the UpdateChannel method.
  *
- * Generated from protobuf message <code>google.cloud.eventarc.v1.UpdateTriggerRequest</code>
+ * Generated from protobuf message <code>google.cloud.eventarc.v1.UpdateChannelRequest</code>
  */
-class UpdateTriggerRequest extends \Google\Protobuf\Internal\Message
+class UpdateChannelRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The trigger to be updated.
+     * The channel to be updated.
      *
-     * Generated from protobuf field <code>.google.cloud.eventarc.v1.Trigger trigger = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.Channel channel = 1;</code>
      */
-    private $trigger = null;
+    private $channel = null;
     /**
      * The fields to be updated; only fields explicitly provided are updated.
      * If no field mask is provided, all provided fields in the request are
@@ -30,17 +30,10 @@ class UpdateTriggerRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
     /**
-     * If set to true, and the trigger is not found, a new trigger will be
-     * created. In this situation, `update_mask` is ignored.
-     *
-     * Generated from protobuf field <code>bool allow_missing = 3;</code>
-     */
-    private $allow_missing = false;
-    /**
      * Required. If set, validate the request and preview the review, but do not
      * post it.
      *
-     * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $validate_only = false;
 
@@ -50,15 +43,12 @@ class UpdateTriggerRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Eventarc\V1\Trigger $trigger
-     *           The trigger to be updated.
+     *     @type \Google\Cloud\Eventarc\V1\Channel $channel
+     *           The channel to be updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The fields to be updated; only fields explicitly provided are updated.
      *           If no field mask is provided, all provided fields in the request are
      *           updated. To update all fields, provide a field mask of "*".
-     *     @type bool $allow_missing
-     *           If set to true, and the trigger is not found, a new trigger will be
-     *           created. In this situation, `update_mask` is ignored.
      *     @type bool $validate_only
      *           Required. If set, validate the request and preview the review, but do not
      *           post it.
@@ -70,37 +60,37 @@ class UpdateTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The trigger to be updated.
+     * The channel to be updated.
      *
-     * Generated from protobuf field <code>.google.cloud.eventarc.v1.Trigger trigger = 1;</code>
-     * @return \Google\Cloud\Eventarc\V1\Trigger|null
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.Channel channel = 1;</code>
+     * @return \Google\Cloud\Eventarc\V1\Channel|null
      */
-    public function getTrigger()
+    public function getChannel()
     {
-        return $this->trigger;
+        return $this->channel;
     }
 
-    public function hasTrigger()
+    public function hasChannel()
     {
-        return isset($this->trigger);
+        return isset($this->channel);
     }
 
-    public function clearTrigger()
+    public function clearChannel()
     {
-        unset($this->trigger);
+        unset($this->channel);
     }
 
     /**
-     * The trigger to be updated.
+     * The channel to be updated.
      *
-     * Generated from protobuf field <code>.google.cloud.eventarc.v1.Trigger trigger = 1;</code>
-     * @param \Google\Cloud\Eventarc\V1\Trigger $var
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.Channel channel = 1;</code>
+     * @param \Google\Cloud\Eventarc\V1\Channel $var
      * @return $this
      */
-    public function setTrigger($var)
+    public function setChannel($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Eventarc\V1\Trigger::class);
-        $this->trigger = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\Eventarc\V1\Channel::class);
+        $this->channel = $var;
 
         return $this;
     }
@@ -146,38 +136,10 @@ class UpdateTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, and the trigger is not found, a new trigger will be
-     * created. In this situation, `update_mask` is ignored.
-     *
-     * Generated from protobuf field <code>bool allow_missing = 3;</code>
-     * @return bool
-     */
-    public function getAllowMissing()
-    {
-        return $this->allow_missing;
-    }
-
-    /**
-     * If set to true, and the trigger is not found, a new trigger will be
-     * created. In this situation, `update_mask` is ignored.
-     *
-     * Generated from protobuf field <code>bool allow_missing = 3;</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setAllowMissing($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->allow_missing = $var;
-
-        return $this;
-    }
-
-    /**
      * Required. If set, validate the request and preview the review, but do not
      * post it.
      *
-     * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return bool
      */
     public function getValidateOnly()
@@ -189,7 +151,7 @@ class UpdateTriggerRequest extends \Google\Protobuf\Internal\Message
      * Required. If set, validate the request and preview the review, but do not
      * post it.
      *
-     * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param bool $var
      * @return $this
      */

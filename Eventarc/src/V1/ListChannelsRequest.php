@@ -9,20 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for the ListTriggers method.
+ * The request message for the ListChannels method.
  *
- * Generated from protobuf message <code>google.cloud.eventarc.v1.ListTriggersRequest</code>
+ * Generated from protobuf message <code>google.cloud.eventarc.v1.ListChannelsRequest</code>
  */
-class ListTriggersRequest extends \Google\Protobuf\Internal\Message
+class ListChannelsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent collection to list triggers on.
+     * Required. The parent collection to list channels on.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The maximum number of triggers to return on each page.
+     * The maximum number of channels to return on each page.
      * Note: The service may send fewer.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -30,9 +30,9 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * The page token; provide the value from the `next_page_token` field in a
-     * previous `ListTriggers` call to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListTriggers` must match
-     * the call that provided the page token.
+     * previous `ListChannels` call to retrieve the subsequent page.
+     * When paginating, all other parameters provided to `ListChannels` must
+     * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
@@ -41,7 +41,7 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
      * The sorting order of the resources returned. Value should be a
      * comma-separated list of fields. The default sorting order is ascending. To
      * specify descending order for a field, append a `desc` suffix; for example:
-     * `name desc, trigger_id`.
+     * `name desc, channel_id`.
      *
      * Generated from protobuf field <code>string order_by = 4;</code>
      */
@@ -54,20 +54,20 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent collection to list triggers on.
+     *           Required. The parent collection to list channels on.
      *     @type int $page_size
-     *           The maximum number of triggers to return on each page.
+     *           The maximum number of channels to return on each page.
      *           Note: The service may send fewer.
      *     @type string $page_token
      *           The page token; provide the value from the `next_page_token` field in a
-     *           previous `ListTriggers` call to retrieve the subsequent page.
-     *           When paginating, all other parameters provided to `ListTriggers` must match
-     *           the call that provided the page token.
+     *           previous `ListChannels` call to retrieve the subsequent page.
+     *           When paginating, all other parameters provided to `ListChannels` must
+     *           match the call that provided the page token.
      *     @type string $order_by
      *           The sorting order of the resources returned. Value should be a
      *           comma-separated list of fields. The default sorting order is ascending. To
      *           specify descending order for a field, append a `desc` suffix; for example:
-     *           `name desc, trigger_id`.
+     *           `name desc, channel_id`.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,7 +76,7 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent collection to list triggers on.
+     * Required. The parent collection to list channels on.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -87,7 +87,7 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent collection to list triggers on.
+     * Required. The parent collection to list channels on.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -102,7 +102,7 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of triggers to return on each page.
+     * The maximum number of channels to return on each page.
      * Note: The service may send fewer.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -114,7 +114,7 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of triggers to return on each page.
+     * The maximum number of channels to return on each page.
      * Note: The service may send fewer.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -131,9 +131,9 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The page token; provide the value from the `next_page_token` field in a
-     * previous `ListTriggers` call to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListTriggers` must match
-     * the call that provided the page token.
+     * previous `ListChannels` call to retrieve the subsequent page.
+     * When paginating, all other parameters provided to `ListChannels` must
+     * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -145,9 +145,9 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The page token; provide the value from the `next_page_token` field in a
-     * previous `ListTriggers` call to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListTriggers` must match
-     * the call that provided the page token.
+     * previous `ListChannels` call to retrieve the subsequent page.
+     * When paginating, all other parameters provided to `ListChannels` must
+     * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var
@@ -165,7 +165,7 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
      * The sorting order of the resources returned. Value should be a
      * comma-separated list of fields. The default sorting order is ascending. To
      * specify descending order for a field, append a `desc` suffix; for example:
-     * `name desc, trigger_id`.
+     * `name desc, channel_id`.
      *
      * Generated from protobuf field <code>string order_by = 4;</code>
      * @return string
@@ -179,7 +179,7 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
      * The sorting order of the resources returned. Value should be a
      * comma-separated list of fields. The default sorting order is ascending. To
      * specify descending order for a field, append a `desc` suffix; for example:
-     * `name desc, trigger_id`.
+     * `name desc, channel_id`.
      *
      * Generated from protobuf field <code>string order_by = 4;</code>
      * @param string $var
