@@ -82,6 +82,12 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchRollout rollout = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $rollout = null;
+    /**
+     * Output only. Current state of the patch deployment.
+     *
+     * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchDeployment.State state = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $state = 0;
     protected $schedule;
 
     /**
@@ -121,6 +127,8 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      *           format.
      *     @type \Google\Cloud\OsConfig\V1\PatchRollout $rollout
      *           Optional. Rollout strategy of the patch job.
+     *     @type int $state
+     *           Output only. Current state of the patch deployment.
      * }
      */
     public function __construct($data = NULL) {
@@ -508,6 +516,32 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\OsConfig\V1\PatchRollout::class);
         $this->rollout = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Current state of the patch deployment.
+     *
+     * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchDeployment.State state = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Output only. Current state of the patch deployment.
+     *
+     * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchDeployment.State state = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\OsConfig\V1\PatchDeployment\State::class);
+        $this->state = $var;
 
         return $this;
     }

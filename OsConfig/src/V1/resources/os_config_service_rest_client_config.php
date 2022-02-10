@@ -108,6 +108,43 @@ return [
                     ],
                 ],
             ],
+            'PausePatchDeployment' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/patchDeployments/*}:pause',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ResumePatchDeployment' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/patchDeployments/*}:resume',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdatePatchDeployment' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{patch_deployment.name=projects/*/patchDeployments/*}',
+                'body' => 'patch_deployment',
+                'placeholders' => [
+                    'patch_deployment.name' => [
+                        'getters' => [
+                            'getPatchDeployment',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
             'CancelOperation' => [

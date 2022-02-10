@@ -20,22 +20,22 @@ class Frequency
      */
     const FREQUENCY_UNSPECIFIED = 0;
     /**
-     * Indicates that the frequency should be expressed in terms of
-     * weeks.
+     * Indicates that the frequency of recurrence should be expressed in terms
+     * of weeks.
      *
      * Generated from protobuf enum <code>WEEKLY = 1;</code>
      */
     const WEEKLY = 1;
     /**
-     * Indicates that the frequency should be expressed in terms of
-     * months.
+     * Indicates that the frequency of recurrence should be expressed in terms
+     * of months.
      *
      * Generated from protobuf enum <code>MONTHLY = 2;</code>
      */
     const MONTHLY = 2;
     /**
-     * Indicates that the frequency should be expressed in terms of
-     * days.
+     * Indicates that the frequency of recurrence should be expressed in terms
+     * of days.
      *
      * Generated from protobuf enum <code>DAILY = 3;</code>
      */
