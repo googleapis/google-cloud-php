@@ -431,25 +431,7 @@ class PsrLogger implements LoggerInterface, \Serializable
      */
     public function serialize()
     {
-        $debugOutputResource = null;
-        if (is_resource($this->debugOutputResource)) {
-            $metadata = stream_get_meta_data($this->debugOutputResource);
-            $debugOutputResource = [
-                'uri' => $metadata['uri'],
-                'mode' => $metadata['mode']
-            ];
-        }
-
-        return serialize([
-            $this->messageKey,
-            $this->batchEnabled,
-            $this->metadataProvider,
-            $this->debugOutput,
-            $this->clientConfig,
-            $this->batchMethod,
-            $this->logName,
-            $debugOutputResource
-        ]);
+        return serialize($this->__serialize());
     }
 
     /**
@@ -460,6 +442,34 @@ class PsrLogger implements LoggerInterface, \Serializable
      */
     public function unserialize($data)
     {
+        $this->__unserialize(unserialize($data));
+    }
+
+    public function __serialize()
+    {
+        $debugOutputResource = null;
+        if (is_resource($this->debugOutputResource)) {
+            $metadata = stream_get_meta_data($this->debugOutputResource);
+            $debugOutputResource = [
+                'uri' => $metadata['uri'],
+                'mode' => $metadata['mode']
+            ];
+        }
+
+        return [
+            $this->messageKey,
+            $this->batchEnabled,
+            $this->metadataProvider,
+            $this->debugOutput,
+            $this->clientConfig,
+            $this->batchMethod,
+            $this->logName,
+            $debugOutputResource
+        ];
+    }
+
+    public function __unserialize(array $data)
+    {
         list(
             $this->messageKey,
             $this->batchEnabled,
@@ -469,7 +479,7 @@ class PsrLogger implements LoggerInterface, \Serializable
             $this->batchMethod,
             $this->logName,
             $debugOutputResource
-        ) = unserialize($data);
+        ) = $data;
 
         if (is_array($debugOutputResource)) {
             $this->debugOutputResource = fopen(
