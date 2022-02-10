@@ -294,6 +294,44 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Modifies entry overview, part of the business context of an
+     * [Entry][google.cloud.datacatalog.v1.Entry].
+     *
+     * To call this method, you must have the `datacatalog.entries.updateOverview`
+     * IAM permission on the corresponding project.
+     * @param \Google\Cloud\DataCatalog\V1\ModifyEntryOverviewRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ModifyEntryOverview(\Google\Cloud\DataCatalog\V1\ModifyEntryOverviewRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.datacatalog.v1.DataCatalog/ModifyEntryOverview',
+        $argument,
+        ['\Google\Cloud\DataCatalog\V1\EntryOverview', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Modifies contacts, part of the business context of an
+     * [Entry][google.cloud.datacatalog.v1.Entry].
+     *
+     * To call this method, you must have the `datacatalog.entries.updateContacts`
+     * IAM permission on the corresponding project.
+     * @param \Google\Cloud\DataCatalog\V1\ModifyEntryContactsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ModifyEntryContacts(\Google\Cloud\DataCatalog\V1\ModifyEntryContactsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.datacatalog.v1.DataCatalog/ModifyEntryContacts',
+        $argument,
+        ['\Google\Cloud\DataCatalog\V1\Contacts', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates a tag template.
      *
      * You must enable the Data Catalog API in the project identified by the
@@ -525,6 +563,8 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Lists tags assigned to an [Entry][google.cloud.datacatalog.v1.Entry].
+     * The [columns][google.cloud.datacatalog.v1.Tag.column] in the response are
+     * lowercased.
      * @param \Google\Cloud\DataCatalog\V1\ListTagsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -535,6 +575,38 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.datacatalog.v1.DataCatalog/ListTags',
         $argument,
         ['\Google\Cloud\DataCatalog\V1\ListTagsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Marks an [Entry][google.cloud.datacatalog.v1.Entry] as starred by
+     * the current user. Starring information is private to each user.
+     * @param \Google\Cloud\DataCatalog\V1\StarEntryRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function StarEntry(\Google\Cloud\DataCatalog\V1\StarEntryRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.datacatalog.v1.DataCatalog/StarEntry',
+        $argument,
+        ['\Google\Cloud\DataCatalog\V1\StarEntryResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Marks an [Entry][google.cloud.datacatalog.v1.Entry] as NOT starred by
+     * the current user. Starring information is private to each user.
+     * @param \Google\Cloud\DataCatalog\V1\UnstarEntryRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UnstarEntry(\Google\Cloud\DataCatalog\V1\UnstarEntryRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.datacatalog.v1.DataCatalog/UnstarEntry',
+        $argument,
+        ['\Google\Cloud\DataCatalog\V1\UnstarEntryResponse', 'decode'],
         $metadata, $options);
     }
 

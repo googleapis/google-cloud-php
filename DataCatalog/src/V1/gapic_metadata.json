@@ -100,6 +100,16 @@
                                 "lookupEntry"
                             ]
                         },
+                        "ModifyEntryContacts": {
+                            "methods": [
+                                "modifyEntryContacts"
+                            ]
+                        },
+                        "ModifyEntryOverview": {
+                            "methods": [
+                                "modifyEntryOverview"
+                            ]
+                        },
                         "RenameTagTemplateField": {
                             "methods": [
                                 "renameTagTemplateField"
@@ -120,9 +130,19 @@
                                 "setIamPolicy"
                             ]
                         },
+                        "StarEntry": {
+                            "methods": [
+                                "starEntry"
+                            ]
+                        },
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
+                            ]
+                        },
+                        "UnstarEntry": {
+                            "methods": [
+                                "unstarEntry"
                             ]
                         },
                         "UpdateEntry": {
