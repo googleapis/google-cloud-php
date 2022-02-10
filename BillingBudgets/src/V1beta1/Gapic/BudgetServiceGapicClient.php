@@ -305,7 +305,7 @@ class BudgetServiceGapicClient
 
     /**
      * Creates a new budget. See
-     * <a href="https://cloud.google.com/billing/quotas">Quotas and limits</a>
+     * [Quotas and limits](https://cloud.google.com/billing/quotas)
      * for more information on the limits of the number of budgets you can create.
      *
      * Sample code:
