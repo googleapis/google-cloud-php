@@ -109,6 +109,7 @@ class CloudRedisClientTest extends GeneratedTest
         $alternativeLocationId = 'alternativeLocationId-718920621';
         $redisVersion = 'redisVersion-685310444';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $secondaryIpRange = 'secondaryIpRange-1484975472';
         $host = 'host3208616';
         $port = 3446913;
         $currentLocationId = 'currentLocationId1312712735';
@@ -127,6 +128,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setAlternativeLocationId($alternativeLocationId);
         $expectedResponse->setRedisVersion($redisVersion);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setSecondaryIpRange($secondaryIpRange);
         $expectedResponse->setHost($host);
         $expectedResponse->setPort($port);
         $expectedResponse->setCurrentLocationId($currentLocationId);
@@ -405,6 +407,7 @@ class CloudRedisClientTest extends GeneratedTest
         $alternativeLocationId = 'alternativeLocationId-718920621';
         $redisVersion = 'redisVersion-685310444';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $secondaryIpRange = 'secondaryIpRange-1484975472';
         $host = 'host3208616';
         $port = 3446913;
         $currentLocationId = 'currentLocationId1312712735';
@@ -423,6 +426,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setAlternativeLocationId($alternativeLocationId);
         $expectedResponse->setRedisVersion($redisVersion);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setSecondaryIpRange($secondaryIpRange);
         $expectedResponse->setHost($host);
         $expectedResponse->setPort($port);
         $expectedResponse->setCurrentLocationId($currentLocationId);
@@ -564,6 +568,7 @@ class CloudRedisClientTest extends GeneratedTest
         $alternativeLocationId = 'alternativeLocationId-718920621';
         $redisVersion = 'redisVersion-685310444';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $secondaryIpRange = 'secondaryIpRange-1484975472';
         $host = 'host3208616';
         $port = 3446913;
         $currentLocationId = 'currentLocationId1312712735';
@@ -582,6 +587,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setAlternativeLocationId($alternativeLocationId);
         $expectedResponse->setRedisVersion($redisVersion);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setSecondaryIpRange($secondaryIpRange);
         $expectedResponse->setHost($host);
         $expectedResponse->setPort($port);
         $expectedResponse->setCurrentLocationId($currentLocationId);
@@ -707,6 +713,7 @@ class CloudRedisClientTest extends GeneratedTest
         $alternativeLocationId = 'alternativeLocationId-718920621';
         $redisVersion = 'redisVersion-685310444';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $secondaryIpRange = 'secondaryIpRange-1484975472';
         $host = 'host3208616';
         $port = 3446913;
         $currentLocationId = 'currentLocationId1312712735';
@@ -725,6 +732,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setAlternativeLocationId($alternativeLocationId);
         $expectedResponse->setRedisVersion($redisVersion);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setSecondaryIpRange($secondaryIpRange);
         $expectedResponse->setHost($host);
         $expectedResponse->setPort($port);
         $expectedResponse->setCurrentLocationId($currentLocationId);
@@ -879,6 +887,7 @@ class CloudRedisClientTest extends GeneratedTest
         $alternativeLocationId = 'alternativeLocationId-718920621';
         $redisVersion = 'redisVersion-685310444';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $secondaryIpRange = 'secondaryIpRange-1484975472';
         $host = 'host3208616';
         $port = 3446913;
         $currentLocationId = 'currentLocationId1312712735';
@@ -897,6 +906,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setAlternativeLocationId($alternativeLocationId);
         $expectedResponse->setRedisVersion($redisVersion);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setSecondaryIpRange($secondaryIpRange);
         $expectedResponse->setHost($host);
         $expectedResponse->setPort($port);
         $expectedResponse->setCurrentLocationId($currentLocationId);
@@ -1110,6 +1120,7 @@ class CloudRedisClientTest extends GeneratedTest
         $alternativeLocationId = 'alternativeLocationId-718920621';
         $redisVersion = 'redisVersion-685310444';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $secondaryIpRange = 'secondaryIpRange-1484975472';
         $host = 'host3208616';
         $port = 3446913;
         $currentLocationId = 'currentLocationId1312712735';
@@ -1128,6 +1139,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setAlternativeLocationId($alternativeLocationId);
         $expectedResponse->setRedisVersion($redisVersion);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setSecondaryIpRange($secondaryIpRange);
         $expectedResponse->setHost($host);
         $expectedResponse->setPort($port);
         $expectedResponse->setCurrentLocationId($currentLocationId);
@@ -1269,6 +1281,7 @@ class CloudRedisClientTest extends GeneratedTest
         $alternativeLocationId = 'alternativeLocationId-718920621';
         $redisVersion = 'redisVersion-685310444';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $secondaryIpRange = 'secondaryIpRange-1484975472';
         $host = 'host3208616';
         $port = 3446913;
         $currentLocationId = 'currentLocationId1312712735';
@@ -1287,6 +1300,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setAlternativeLocationId($alternativeLocationId);
         $expectedResponse->setRedisVersion($redisVersion);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setSecondaryIpRange($secondaryIpRange);
         $expectedResponse->setHost($host);
         $expectedResponse->setPort($port);
         $expectedResponse->setCurrentLocationId($currentLocationId);
@@ -1440,6 +1454,7 @@ class CloudRedisClientTest extends GeneratedTest
         $alternativeLocationId = 'alternativeLocationId-718920621';
         $redisVersion2 = 'redisVersion2-1453337401';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $secondaryIpRange = 'secondaryIpRange-1484975472';
         $host = 'host3208616';
         $port = 3446913;
         $currentLocationId = 'currentLocationId1312712735';
@@ -1458,6 +1473,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setAlternativeLocationId($alternativeLocationId);
         $expectedResponse->setRedisVersion($redisVersion2);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setSecondaryIpRange($secondaryIpRange);
         $expectedResponse->setHost($host);
         $expectedResponse->setPort($port);
         $expectedResponse->setCurrentLocationId($currentLocationId);
