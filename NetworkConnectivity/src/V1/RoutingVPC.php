@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * RoutingVPC contains information about the VPC network that is associated with
- * a hub's spokes.
+ * RoutingVPC contains information about the VPC networks that are associated
+ * with a hub's spokes.
  *
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.RoutingVPC</code>
  */
@@ -22,6 +22,16 @@ class RoutingVPC extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string uri = 1 [(.google.api.resource_reference) = {</code>
      */
     private $uri = '';
+    /**
+     * Output only. If true, indicates that this VPC network is currently associated with
+     * spokes that use the data transfer feature (spokes where the
+     * site_to_site_data_transfer field is set to true). If you create new spokes
+     * that use data transfer, they must be associated with this VPC network. At
+     * most, one VPC network will have this field set to true.
+     *
+     * Generated from protobuf field <code>bool required_for_new_site_to_site_data_transfer_spokes = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $required_for_new_site_to_site_data_transfer_spokes = false;
 
     /**
      * Constructor.
@@ -31,6 +41,12 @@ class RoutingVPC extends \Google\Protobuf\Internal\Message
      *
      *     @type string $uri
      *           The URI of the VPC network.
+     *     @type bool $required_for_new_site_to_site_data_transfer_spokes
+     *           Output only. If true, indicates that this VPC network is currently associated with
+     *           spokes that use the data transfer feature (spokes where the
+     *           site_to_site_data_transfer field is set to true). If you create new spokes
+     *           that use data transfer, they must be associated with this VPC network. At
+     *           most, one VPC network will have this field set to true.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +76,40 @@ class RoutingVPC extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If true, indicates that this VPC network is currently associated with
+     * spokes that use the data transfer feature (spokes where the
+     * site_to_site_data_transfer field is set to true). If you create new spokes
+     * that use data transfer, they must be associated with this VPC network. At
+     * most, one VPC network will have this field set to true.
+     *
+     * Generated from protobuf field <code>bool required_for_new_site_to_site_data_transfer_spokes = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getRequiredForNewSiteToSiteDataTransferSpokes()
+    {
+        return $this->required_for_new_site_to_site_data_transfer_spokes;
+    }
+
+    /**
+     * Output only. If true, indicates that this VPC network is currently associated with
+     * spokes that use the data transfer feature (spokes where the
+     * site_to_site_data_transfer field is set to true). If you create new spokes
+     * that use data transfer, they must be associated with this VPC network. At
+     * most, one VPC network will have this field set to true.
+     *
+     * Generated from protobuf field <code>bool required_for_new_site_to_site_data_transfer_spokes = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRequiredForNewSiteToSiteDataTransferSpokes($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->required_for_new_site_to_site_data_transfer_spokes = $var;
 
         return $this;
     }
