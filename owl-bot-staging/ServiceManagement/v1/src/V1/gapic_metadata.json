@@ -1,0 +1,93 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.api.servicemanagement.v1",
+    "libraryPackage": "Google\\Cloud\\ServiceManagement\\V1",
+    "services": {
+        "ServiceManager": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ServiceManagerGapicClient",
+                    "rpcs": {
+                        "CreateService": {
+                            "methods": [
+                                "createService"
+                            ]
+                        },
+                        "CreateServiceConfig": {
+                            "methods": [
+                                "createServiceConfig"
+                            ]
+                        },
+                        "CreateServiceRollout": {
+                            "methods": [
+                                "createServiceRollout"
+                            ]
+                        },
+                        "DeleteService": {
+                            "methods": [
+                                "deleteService"
+                            ]
+                        },
+                        "DisableService": {
+                            "methods": [
+                                "disableService"
+                            ]
+                        },
+                        "EnableService": {
+                            "methods": [
+                                "enableService"
+                            ]
+                        },
+                        "GenerateConfigReport": {
+                            "methods": [
+                                "generateConfigReport"
+                            ]
+                        },
+                        "GetService": {
+                            "methods": [
+                                "getService"
+                            ]
+                        },
+                        "GetServiceConfig": {
+                            "methods": [
+                                "getServiceConfig"
+                            ]
+                        },
+                        "GetServiceRollout": {
+                            "methods": [
+                                "getServiceRollout"
+                            ]
+                        },
+                        "ListServiceConfigs": {
+                            "methods": [
+                                "listServiceConfigs"
+                            ]
+                        },
+                        "ListServiceRollouts": {
+                            "methods": [
+                                "listServiceRollouts"
+                            ]
+                        },
+                        "ListServices": {
+                            "methods": [
+                                "listServices"
+                            ]
+                        },
+                        "SubmitConfigSource": {
+                            "methods": [
+                                "submitConfigSource"
+                            ]
+                        },
+                        "UndeleteService": {
+                            "methods": [
+                                "undeleteService"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
