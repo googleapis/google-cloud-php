@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class Interpreter
 {
     /**
-     * Defaults to NONE.
+     * Invalid value, the request will return validation error.
      *
      * Generated from protobuf enum <code>INTERPRETER_UNSPECIFIED = 0;</code>
      */
