@@ -25,6 +25,11 @@
                                 "mutateRows"
                             ]
                         },
+                        "PingAndWarm": {
+                            "methods": [
+                                "pingAndWarm"
+                            ]
+                        },
                         "ReadModifyWriteRow": {
                             "methods": [
                                 "readModifyWriteRow"

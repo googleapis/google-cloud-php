@@ -118,6 +118,22 @@ class BigtableGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Warm up associated instance metadata for this connection.
+     * This call is not required but may be useful for connection keep-alive.
+     * @param \Google\Cloud\Bigtable\V2\PingAndWarmRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function PingAndWarm(\Google\Cloud\Bigtable\V2\PingAndWarmRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.bigtable.v2.Bigtable/PingAndWarm',
+        $argument,
+        ['\Google\Cloud\Bigtable\V2\PingAndWarmResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Modifies a row atomically on the server. The method reads the latest
      * existing timestamp and value from the specified columns and writes a new
      * entry based on pre-defined read/modify/write rules. The new value for the

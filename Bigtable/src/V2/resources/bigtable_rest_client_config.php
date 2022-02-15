@@ -39,6 +39,18 @@ return [
                     ],
                 ],
             ],
+            'PingAndWarm' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*}:ping',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ReadModifyWriteRow' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:readModifyWriteRow',
