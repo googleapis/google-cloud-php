@@ -46,16 +46,6 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
-                "DisableService": {
-                    "timeout_millis": 10000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
-                },
-                "EnableService": {
-                    "timeout_millis": 10000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
-                },
                 "GenerateConfigReport": {
                     "timeout_millis": 10000,
                     "retry_codes_name": "no_retry_1_codes",
