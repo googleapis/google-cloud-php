@@ -14,16 +14,12 @@ class Image
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
-        \GPBMetadata\Google\Api\Resource::initOnce();
-        \GPBMetadata\Google\Cloud\Automl\V1\AnnotationSpec::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1\Classification::initOnce();
-        \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¸	
-"google/cloud/automl/v1/image.protogoogle.cloud.automl.v1google/api/field_behavior.protogoogle/api/resource.proto,google/cloud/automl/v1/annotation_spec.proto+google/cloud/automl/v1/classification.protogoogle/protobuf/timestamp.proto"r
+­
+"google/cloud/automl/v1/image.protogoogle.cloud.automl.v1+google/cloud/automl/v1/classification.proto"r
 "ImageClassificationDatasetMetadataL
 classification_type (2*.google.cloud.automl.v1.ClassificationTypeBàA"%
 #ImageObjectDetectionDatasetMetadata"÷
