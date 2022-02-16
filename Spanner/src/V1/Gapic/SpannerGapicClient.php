@@ -610,18 +610,18 @@ class SpannerGapicClient
      * $spannerClient = new SpannerClient();
      * try {
      *     $formattedDatabase = $spannerClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-     *     $response = $spannerClient->createSession($formattedDatabase);
+     *     $session = new Session();
+     *     $response = $spannerClient->createSession($formattedDatabase, $session);
      * } finally {
      *     $spannerClient->close();
      * }
      * ```
      *
-     * @param string $database     Required. The database in which the new session is created.
-     * @param array  $optionalArgs {
+     * @param string  $database     Required. The database in which the new session is created.
+     * @param Session $session      Required. The session to create.
+     * @param array   $optionalArgs {
      *     Optional.
      *
-     *     @type Session $session
-     *           The session to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -633,16 +633,13 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSession($database, array $optionalArgs = [])
+    public function createSession($database, $session, array $optionalArgs = [])
     {
         $request = new CreateSessionRequest();
         $requestParamHeaders = [];
         $request->setDatabase($database);
+        $request->setSession($session);
         $requestParamHeaders['database'] = $database;
-        if (isset($optionalArgs['session'])) {
-            $request->setSession($optionalArgs['session']);
-        }
-
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

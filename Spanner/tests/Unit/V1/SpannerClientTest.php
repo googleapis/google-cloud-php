@@ -296,7 +296,8 @@ class SpannerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-        $response = $client->createSession($formattedDatabase);
+        $session = new Session();
+        $response = $client->createSession($formattedDatabase, $session);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -305,6 +306,8 @@ class SpannerClientTest extends GeneratedTest
         $this->assertSame('/google.spanner.v1.Spanner/CreateSession', $actualFuncCall);
         $actualValue = $actualRequestObject->getDatabase();
         $this->assertProtobufEquals($formattedDatabase, $actualValue);
+        $actualValue = $actualRequestObject->getSession();
+        $this->assertProtobufEquals($session, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -330,8 +333,9 @@ class SpannerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $session = new Session();
         try {
-            $client->createSession($formattedDatabase);
+            $client->createSession($formattedDatabase, $session);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

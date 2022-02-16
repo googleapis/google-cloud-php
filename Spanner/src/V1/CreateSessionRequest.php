@@ -22,9 +22,9 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
      */
     private $database = '';
     /**
-     * The session to create.
+     * Required. The session to create.
      *
-     * Generated from protobuf field <code>.google.spanner.v1.Session session = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.Session session = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $session = null;
 
@@ -37,7 +37,7 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
      *     @type string $database
      *           Required. The database in which the new session is created.
      *     @type \Google\Cloud\Spanner\V1\Session $session
-     *           The session to create.
+     *           Required. The session to create.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,9 +72,9 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The session to create.
+     * Required. The session to create.
      *
-     * Generated from protobuf field <code>.google.spanner.v1.Session session = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.Session session = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Spanner\V1\Session|null
      */
     public function getSession()
@@ -93,9 +93,9 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The session to create.
+     * Required. The session to create.
      *
-     * Generated from protobuf field <code>.google.spanner.v1.Session session = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.Session session = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Spanner\V1\Session $var
      * @return $this
      */
