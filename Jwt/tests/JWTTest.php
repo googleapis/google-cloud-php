@@ -4,6 +4,10 @@ namespace Firebase\JWT;
 
 use ArrayObject;
 use PHPUnit\Framework\TestCase;
+use DomainException;
+use InvalidArgumentException;
+use UnexpectedValueException;
+use stdClass;
 
 class JWTTest extends TestCase
 {
@@ -19,68 +23,61 @@ class JWTTest extends TestCase
         }
     }
 
-    public function testDecodeFromPython()
-    {
-        $msg = 'eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9.Iio6aHR0cDovL2FwcGxpY2F0aW9uL2NsaWNreT9ibGFoPTEuMjMmZi5vbz00NTYgQUMwMDAgMTIzIg.E_U8X2YpMT5K1cEiT_3-IvBYfrdIFIeVYeOqre_Z5Cg';
-        $this->assertEquals(
-            JWT::decode($msg, new Key('my_key', 'HS256')),
-            '*:http://application/clicky?blah=1.23&f.oo=456 AC000 123'
-        );
-    }
-
     public function testUrlSafeCharacters()
     {
-        $encoded = JWT::encode('f?', 'a', 'HS256');
-        $this->assertEquals('f?', JWT::decode($encoded, new Key('a', 'HS256')));
+        $encoded = JWT::encode(['message' => 'f?'], 'a', 'HS256');
+        $expected = new stdClass();
+        $expected->message = 'f?';
+        $this->assertEquals($expected, JWT::decode($encoded, new Key('a', 'HS256')));
     }
 
     public function testMalformedUtf8StringsFail()
     {
-        $this->setExpectedException('DomainException');
-        JWT::encode(pack('c', 128), 'a', 'HS256');
+        $this->setExpectedException(DomainException::class);
+        JWT::encode(['message' => pack('c', 128)], 'a', 'HS256');
     }
 
     public function testMalformedJsonThrowsException()
     {
-        $this->setExpectedException('DomainException');
+        $this->setExpectedException(DomainException::class);
         JWT::jsonDecode('this is not valid JSON string');
     }
 
     public function testExpiredToken()
     {
-        $this->setExpectedException('Firebase\JWT\ExpiredException');
-        $payload = array(
+        $this->setExpectedException(ExpiredException::class);
+        $payload = [
             "message" => "abc",
-            "exp" => time() - 20); // time in the past
+            "exp" => time() - 20]; // time in the past
         $encoded = JWT::encode($payload, 'my_key', 'HS256');
         JWT::decode($encoded, new Key('my_key', 'HS256'));
     }
 
     public function testBeforeValidTokenWithNbf()
     {
-        $this->setExpectedException('Firebase\JWT\BeforeValidException');
-        $payload = array(
+        $this->setExpectedException(BeforeValidException::class);
+        $payload = [
             "message" => "abc",
-            "nbf" => time() + 20); // time in the future
+            "nbf" => time() + 20]; // time in the future
         $encoded = JWT::encode($payload, 'my_key', 'HS256');
         JWT::decode($encoded, new Key('my_key', 'HS256'));
     }
 
     public function testBeforeValidTokenWithIat()
     {
-        $this->setExpectedException('Firebase\JWT\BeforeValidException');
-        $payload = array(
+        $this->setExpectedException(BeforeValidException::class);
+        $payload = [
             "message" => "abc",
-            "iat" => time() + 20); // time in the future
+            "iat" => time() + 20]; // time in the future
         $encoded = JWT::encode($payload, 'my_key', 'HS256');
         JWT::decode($encoded, new Key('my_key', 'HS256'));
     }
 
     public function testValidToken()
     {
-        $payload = array(
+        $payload = [
             "message" => "abc",
-            "exp" => time() + JWT::$leeway + 20); // time in the future
+            "exp" => time() + JWT::$leeway + 20]; // time in the future
         $encoded = JWT::encode($payload, 'my_key', 'HS256');
         $decoded = JWT::decode($encoded, new Key('my_key', 'HS256'));
         $this->assertEquals($decoded->message, 'abc');
@@ -89,9 +86,9 @@ class JWTTest extends TestCase
     public function testValidTokenWithLeeway()
     {
         JWT::$leeway = 60;
-        $payload = array(
+        $payload = [
             "message" => "abc",
-            "exp" => time() - 20); // time in the past
+            "exp" => time() - 20]; // time in the past
         $encoded = JWT::encode($payload, 'my_key', 'HS256');
         $decoded = JWT::decode($encoded, new Key('my_key', 'HS256'));
         $this->assertEquals($decoded->message, 'abc');
@@ -101,10 +98,10 @@ class JWTTest extends TestCase
     public function testExpiredTokenWithLeeway()
     {
         JWT::$leeway = 60;
-        $payload = array(
+        $payload = [
             "message" => "abc",
-            "exp" => time() - 70); // time far in the past
-        $this->setExpectedException('Firebase\JWT\ExpiredException');
+            "exp" => time() - 70]; // time far in the past
+        $this->setExpectedException(ExpiredException::class);
         $encoded = JWT::encode($payload, 'my_key', 'HS256');
         $decoded = JWT::decode($encoded, new Key('my_key', 'HS256'));
         $this->assertEquals($decoded->message, 'abc');
@@ -113,11 +110,11 @@ class JWTTest extends TestCase
 
     public function testValidTokenWithNbf()
     {
-        $payload = array(
+        $payload = [
             "message" => "abc",
             "iat" => time(),
             "exp" => time() + 20, // time in the future
-            "nbf" => time() - 20);
+            "nbf" => time() - 20];
         $encoded = JWT::encode($payload, 'my_key', 'HS256');
         $decoded = JWT::decode($encoded, new Key('my_key', 'HS256'));
         $this->assertEquals($decoded->message, 'abc');
@@ -126,9 +123,9 @@ class JWTTest extends TestCase
     public function testValidTokenWithNbfLeeway()
     {
         JWT::$leeway = 60;
-        $payload = array(
+        $payload = [
             "message" => "abc",
-            "nbf"     => time() + 20); // not before in near (leeway) future
+            "nbf"     => time() + 20]; // not before in near (leeway) future
         $encoded = JWT::encode($payload, 'my_key', 'HS256');
         $decoded = JWT::decode($encoded, new Key('my_key', 'HS256'));
         $this->assertEquals($decoded->message, 'abc');
@@ -138,11 +135,11 @@ class JWTTest extends TestCase
     public function testInvalidTokenWithNbfLeeway()
     {
         JWT::$leeway = 60;
-        $payload = array(
+        $payload = [
             "message" => "abc",
-            "nbf"     => time() + 65); // not before too far in future
+            "nbf"     => time() + 65]; // not before too far in future
         $encoded = JWT::encode($payload, 'my_key', 'HS256');
-        $this->setExpectedException('Firebase\JWT\BeforeValidException');
+        $this->setExpectedException(BeforeValidException::class);
         JWT::decode($encoded, new Key('my_key', 'HS256'));
         JWT::$leeway = 0;
     }
@@ -150,9 +147,9 @@ class JWTTest extends TestCase
     public function testValidTokenWithIatLeeway()
     {
         JWT::$leeway = 60;
-        $payload = array(
+        $payload = [
             "message" => "abc",
-            "iat"     => time() + 20); // issued in near (leeway) future
+            "iat"     => time() + 20]; // issued in near (leeway) future
         $encoded = JWT::encode($payload, 'my_key', 'HS256');
         $decoded = JWT::decode($encoded, new Key('my_key', 'HS256'));
         $this->assertEquals($decoded->message, 'abc');
@@ -162,123 +159,133 @@ class JWTTest extends TestCase
     public function testInvalidTokenWithIatLeeway()
     {
         JWT::$leeway = 60;
-        $payload = array(
+        $payload = [
             "message" => "abc",
-            "iat"     => time() + 65); // issued too far in future
+            "iat"     => time() + 65]; // issued too far in future
         $encoded = JWT::encode($payload, 'my_key', 'HS256');
-        $this->setExpectedException('Firebase\JWT\BeforeValidException');
+        $this->setExpectedException(BeforeValidException::class);
         JWT::decode($encoded, new Key('my_key', 'HS256'));
         JWT::$leeway = 0;
     }
 
     public function testInvalidToken()
     {
-        $payload = array(
+        $payload = [
             "message" => "abc",
-            "exp" => time() + 20); // time in the future
+            "exp" => time() + 20]; // time in the future
         $encoded = JWT::encode($payload, 'my_key', 'HS256');
-        $this->setExpectedException('Firebase\JWT\SignatureInvalidException');
+        $this->setExpectedException(SignatureInvalidException::class);
         JWT::decode($encoded, new Key('my_key2', 'HS256'));
     }
 
     public function testNullKeyFails()
     {
-        $payload = array(
+        $payload = [
             "message" => "abc",
-            "exp" => time() + JWT::$leeway + 20); // time in the future
+            "exp" => time() + JWT::$leeway + 20]; // time in the future
         $encoded = JWT::encode($payload, 'my_key', 'HS256');
-        $this->setExpectedException('InvalidArgumentException');
+        $this->setExpectedException('TypeError');
         JWT::decode($encoded, new Key(null, 'HS256'));
     }
 
     public function testEmptyKeyFails()
     {
-        $payload = array(
+        $payload = [
             "message" => "abc",
-            "exp" => time() + JWT::$leeway + 20); // time in the future
+            "exp" => time() + JWT::$leeway + 20]; // time in the future
         $encoded = JWT::encode($payload, 'my_key', 'HS256');
-        $this->setExpectedException('InvalidArgumentException');
+        $this->setExpectedException(InvalidArgumentException::class);
         JWT::decode($encoded, new Key('', 'HS256'));
     }
 
     public function testKIDChooser()
     {
-        $keys = array(
+        $keys = [
             '1' => new Key('my_key', 'HS256'),
             '2' => new Key('my_key2', 'HS256')
-        );
-        $msg = JWT::encode('abc', $keys['1']->getKeyMaterial(), 'HS256', '1');
+        ];
+        $msg = JWT::encode(['message' => 'abc'], $keys['1']->getKeyMaterial(), 'HS256', '1');
         $decoded = JWT::decode($msg, $keys);
-        $this->assertEquals($decoded, 'abc');
+        $expected = new stdClass();
+        $expected->message = 'abc';
+        $this->assertEquals($decoded, $expected);
     }
 
     public function testArrayAccessKIDChooser()
     {
-        $keys = new ArrayObject(array(
+        $keys = new ArrayObject([
             '1' => new Key('my_key', 'HS256'),
             '2' => new Key('my_key2', 'HS256'),
-        ));
-        $msg = JWT::encode('abc', $keys['1']->getKeyMaterial(), 'HS256', '1');
+        ]);
+        $msg = JWT::encode(['message' => 'abc'], $keys['1']->getKeyMaterial(), 'HS256', '1');
         $decoded = JWT::decode($msg, $keys);
-        $this->assertEquals($decoded, 'abc');
+        $expected = new stdClass();
+        $expected->message = 'abc';
+        $this->assertEquals($decoded, $expected);
     }
 
     public function testNoneAlgorithm()
     {
-        $msg = JWT::encode('abc', 'my_key', 'HS256');
-        $this->setExpectedException('UnexpectedValueException');
+        $msg = JWT::encode(['message' => 'abc'], 'my_key', 'HS256');
+        $this->setExpectedException(UnexpectedValueException::class);
         JWT::decode($msg, new Key('my_key', 'none'));
     }
 
     public function testIncorrectAlgorithm()
     {
-        $msg = JWT::encode('abc', 'my_key', 'HS256');
-        $this->setExpectedException('UnexpectedValueException');
+        $msg = JWT::encode(['message' => 'abc'], 'my_key', 'HS256');
+        $this->setExpectedException(UnexpectedValueException::class);
         JWT::decode($msg, new Key('my_key', 'RS256'));
     }
 
     public function testEmptyAlgorithm()
     {
-        $msg = JWT::encode('abc', 'my_key', 'HS256');
-        $this->setExpectedException('UnexpectedValueException');
+        $msg = JWT::encode(['message' => 'abc'], 'my_key', 'HS256');
+        $this->setExpectedException(InvalidArgumentException::class);
         JWT::decode($msg, new Key('my_key', ''));
     }
 
     public function testAdditionalHeaders()
     {
-        $msg = JWT::encode('abc', 'my_key', 'HS256', null, array('cty' => 'test-eit;v=1'));
-        $this->assertEquals(JWT::decode($msg, new Key('my_key', 'HS256')), 'abc');
+        $msg = JWT::encode(['message' => 'abc'], 'my_key', 'HS256', null, ['cty' => 'test-eit;v=1']);
+        $expected = new stdClass();
+        $expected->message = 'abc';
+        $this->assertEquals(JWT::decode($msg, new Key('my_key', 'HS256')), $expected);
     }
 
     public function testInvalidSegmentCount()
     {
-        $this->setExpectedException('UnexpectedValueException');
+        $this->setExpectedException(UnexpectedValueException::class);
         JWT::decode('brokenheader.brokenbody', new Key('my_key', 'HS256'));
     }
 
     public function testInvalidSignatureEncoding()
     {
         $msg = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwibmFtZSI6ImZvbyJ9.Q4Kee9E8o0Xfo4ADXvYA8t7dN_X_bU9K5w6tXuiSjlUxx";
-        $this->setExpectedException('UnexpectedValueException');
+        $this->setExpectedException(UnexpectedValueException::class);
         JWT::decode($msg, new Key('secret', 'HS256'));
     }
 
     public function testHSEncodeDecode()
     {
-        $msg = JWT::encode('abc', 'my_key', 'HS256');
-        $this->assertEquals(JWT::decode($msg, new Key('my_key', 'HS256')), 'abc');
+        $msg = JWT::encode(['message' => 'abc'], 'my_key', 'HS256');
+        $expected = new stdClass();
+        $expected->message = 'abc';
+        $this->assertEquals(JWT::decode($msg, new Key('my_key', 'HS256')), $expected);
     }
 
     public function testRSEncodeDecode()
     {
-        $privKey = openssl_pkey_new(array('digest_alg' => 'sha256',
+        $privKey = openssl_pkey_new(['digest_alg' => 'sha256',
             'private_key_bits' => 1024,
-            'private_key_type' => OPENSSL_KEYTYPE_RSA));
-        $msg = JWT::encode('abc', $privKey, 'RS256');
+            'private_key_type' => OPENSSL_KEYTYPE_RSA]);
+        $msg = JWT::encode(['message' => 'abc'], $privKey, 'RS256');
         $pubKey = openssl_pkey_get_details($privKey);
         $pubKey = $pubKey['key'];
         $decoded = JWT::decode($msg, new Key($pubKey, 'RS256'));
-        $this->assertEquals($decoded, 'abc');
+        $expected = new stdClass();
+        $expected->message = 'abc';
+        $this->assertEquals($decoded, $expected);
     }
 
     public function testEdDsaEncodeDecode()
@@ -286,7 +293,7 @@ class JWTTest extends TestCase
         $keyPair = sodium_crypto_sign_keypair();
         $privKey = base64_encode(sodium_crypto_sign_secretkey($keyPair));
 
-        $payload = array('foo' => 'bar');
+        $payload = ['foo' => 'bar'];
         $msg = JWT::encode($payload, $privKey, 'EdDSA');
 
         $pubKey = base64_encode(sodium_crypto_sign_publickey($keyPair));
@@ -299,13 +306,13 @@ class JWTTest extends TestCase
         $keyPair = sodium_crypto_sign_keypair();
         $privKey = base64_encode(sodium_crypto_sign_secretkey($keyPair));
 
-        $payload = array('foo' => 'bar');
+        $payload = ['foo' => 'bar'];
         $msg = JWT::encode($payload, $privKey, 'EdDSA');
 
         // Generate a different key.
         $keyPair = sodium_crypto_sign_keypair();
         $pubKey = base64_encode(sodium_crypto_sign_publickey($keyPair));
-        $this->setExpectedException('Firebase\JWT\SignatureInvalidException');
+        $this->setExpectedException(SignatureInvalidException::class);
         JWT::decode($msg, new Key($pubKey, 'EdDSA'));
     }
 
@@ -316,11 +323,13 @@ class JWTTest extends TestCase
             'passphrase'
         );
 
-        $jwt = JWT::encode('abc', $privateKey, 'RS256');
+        $jwt = JWT::encode(['message' => 'abc'], $privateKey, 'RS256');
         $keyDetails = openssl_pkey_get_details($privateKey);
         $pubKey = $keyDetails['key'];
         $decoded = JWT::decode($jwt, new Key($pubKey, 'RS256'));
-        $this->assertEquals($decoded, 'abc');
+        $expected = new stdClass();
+        $expected->message = 'abc';
+        $this->assertEquals($decoded, $expected);
     }
 
     /**
@@ -330,7 +339,7 @@ class JWTTest extends TestCase
     public function testEncodeDecode($privateKeyFile, $publicKeyFile, $alg)
     {
         $privateKey = file_get_contents($privateKeyFile);
-        $payload = array('foo' => 'bar');
+        $payload = ['foo' => 'bar'];
         $encoded = JWT::encode($payload, $privateKey, $alg);
 
         // Verify decoding succeeds
@@ -342,12 +351,12 @@ class JWTTest extends TestCase
 
     public function provideEncodeDecode()
     {
-        return array(
-            array(__DIR__ . '/data/ecdsa-private.pem', __DIR__ . '/data/ecdsa-public.pem', 'ES256'),
-            array(__DIR__ . '/data/ecdsa384-private.pem', __DIR__ . '/data/ecdsa384-public.pem', 'ES384'),
-            array(__DIR__ . '/data/rsa1-private.pem', __DIR__ . '/data/rsa1-public.pub', 'RS512'),
-            array(__DIR__ . '/data/ed25519-1.sec', __DIR__ . '/data/ed25519-1.pub', 'EdDSA'),
-        );
+        return [
+            [__DIR__ . '/data/ecdsa-private.pem', __DIR__ . '/data/ecdsa-public.pem', 'ES256'],
+            [__DIR__ . '/data/ecdsa384-private.pem', __DIR__ . '/data/ecdsa384-public.pem', 'ES384'],
+            [__DIR__ . '/data/rsa1-private.pem', __DIR__ . '/data/rsa1-public.pub', 'RS512'],
+            [__DIR__ . '/data/ed25519-1.sec', __DIR__ . '/data/ed25519-1.pub', 'EdDSA'],
+        ];
     }
 
     public function testEncodeDecodeWithResource()
@@ -356,7 +365,7 @@ class JWTTest extends TestCase
         $resource = openssl_pkey_get_public($pem);
         $privateKey = file_get_contents(__DIR__ . '/data/rsa1-private.pem');
 
-        $payload = array('foo' => 'bar');
+        $payload = ['foo' => 'bar'];
         $encoded = JWT::encode($payload, $privateKey, 'RS512');
 
         // Verify decoding succeeds

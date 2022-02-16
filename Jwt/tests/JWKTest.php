@@ -3,6 +3,8 @@
 namespace Firebase\JWT;
 
 use PHPUnit\Framework\TestCase;
+use InvalidArgumentException;
+use UnexpectedValueException;
 
 class JWKTest extends TestCase
 {
@@ -13,29 +15,29 @@ class JWKTest extends TestCase
     public function testMissingKty()
     {
         $this->setExpectedException(
-            'UnexpectedValueException',
+            UnexpectedValueException::class,
             'JWK must contain a "kty" parameter'
         );
 
-        $badJwk = array('kid' => 'foo');
-        $keys = JWK::parseKeySet(array('keys' => array($badJwk)));
+        $badJwk = ['kid' => 'foo'];
+        $keys = JWK::parseKeySet(['keys' => [$badJwk]]);
     }
 
     public function testInvalidAlgorithm()
     {
         $this->setExpectedException(
-            'UnexpectedValueException',
+            UnexpectedValueException::class,
             'No supported algorithms found in JWK Set'
         );
 
-        $badJwk = array('kty' => 'BADALG', 'alg' => 'RSA256');
-        $keys = JWK::parseKeySet(array('keys' => array($badJwk)));
+        $badJwk = ['kty' => 'BADTYPE', 'alg' => 'RSA256'];
+        $keys = JWK::parseKeySet(['keys' => [$badJwk]]);
     }
 
     public function testParsePrivateKey()
     {
         $this->setExpectedException(
-            'UnexpectedValueException',
+            UnexpectedValueException::class,
             'RSA private keys are not supported'
         );
 
@@ -51,7 +53,7 @@ class JWKTest extends TestCase
     public function testParsePrivateKeyWithoutAlg()
     {
         $this->setExpectedException(
-            'UnexpectedValueException',
+            UnexpectedValueException::class,
             'JWK must contain an "alg" parameter'
         );
 
@@ -92,16 +94,16 @@ class JWKTest extends TestCase
 
     public function testParseJwkKey_empty()
     {
-        $this->setExpectedException('InvalidArgumentException', 'JWK must not be empty');
+        $this->setExpectedException(InvalidArgumentException::class, 'JWK must not be empty');
 
-        JWK::parseKeySet(array('keys' => array(array())));
+        JWK::parseKeySet(['keys' => [[]]]);
     }
 
     public function testParseJwkKeySet_empty()
     {
-        $this->setExpectedException('InvalidArgumentException', 'JWK Set did not contain any keys');
+        $this->setExpectedException(InvalidArgumentException::class, 'JWK Set did not contain any keys');
 
-        JWK::parseKeySet(array('keys' => array()));
+        JWK::parseKeySet(['keys' => []]);
     }
 
     /**
@@ -110,12 +112,12 @@ class JWKTest extends TestCase
     public function testDecodeByJwkKeySetTokenExpired()
     {
         $privKey1 = file_get_contents(__DIR__ . '/data/rsa1-private.pem');
-        $payload = array('exp' => strtotime('-1 hour'));
+        $payload = ['exp' => strtotime('-1 hour')];
         $msg = JWT::encode($payload, $privKey1, 'RS256', 'jwk1');
 
-        $this->setExpectedException('Firebase\JWT\ExpiredException');
+        $this->setExpectedException(ExpiredException::class);
 
-        JWT::decode($msg, self::$keys, array('RS256'));
+        JWT::decode($msg, self::$keys);
     }
 
     /**
@@ -124,10 +126,10 @@ class JWKTest extends TestCase
     public function testDecodeByJwkKeySet()
     {
         $privKey1 = file_get_contents(__DIR__ . '/data/rsa1-private.pem');
-        $payload = array('sub' => 'foo', 'exp' => strtotime('+10 seconds'));
+        $payload = ['sub' => 'foo', 'exp' => strtotime('+10 seconds')];
         $msg = JWT::encode($payload, $privKey1, 'RS256', 'jwk1');
 
-        $result = JWT::decode($msg, self::$keys, array('RS256'));
+        $result = JWT::decode($msg, self::$keys);
 
         $this->assertEquals("foo", $result->sub);
     }
@@ -138,10 +140,10 @@ class JWKTest extends TestCase
     public function testDecodeByMultiJwkKeySet()
     {
         $privKey2 = file_get_contents(__DIR__ . '/data/rsa2-private.pem');
-        $payload = array('sub' => 'bar', 'exp' => strtotime('+10 seconds'));
+        $payload = ['sub' => 'bar', 'exp' => strtotime('+10 seconds')];
         $msg = JWT::encode($payload, $privKey2, 'RS256', 'jwk2');
 
-        $result = JWT::decode($msg, self::$keys, array('RS256'));
+        $result = JWT::decode($msg, self::$keys);
 
         $this->assertEquals("bar", $result->sub);
     }
