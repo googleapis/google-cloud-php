@@ -33,13 +33,14 @@ class JWK
      *
      * @uses parseKey
      */
-    public static function parseKeySet(array $jwks)
+    public static function parseKeySet(array $jwks): array
     {
-        $keys = array();
+        $keys = [];
 
         if (!isset($jwks['keys'])) {
             throw new UnexpectedValueException('"keys" member must exist in the JWK Set');
         }
+
         if (empty($jwks['keys'])) {
             throw new InvalidArgumentException('JWK Set did not contain any keys');
         }
@@ -71,14 +72,16 @@ class JWK
      *
      * @uses createPemFromModulusAndExponent
      */
-    public static function parseKey(array $jwk)
+    public static function parseKey(array $jwk): ?Key
     {
         if (empty($jwk)) {
             throw new InvalidArgumentException('JWK must not be empty');
         }
+
         if (!isset($jwk['kty'])) {
             throw new UnexpectedValueException('JWK must contain a "kty" parameter');
         }
+
         if (!isset($jwk['alg'])) {
             // The "alg" parameter is optional in a KTY, but is required for parsing in
             // this library. Add it manually to your JWK array if it doesn't already exist.
@@ -107,6 +110,8 @@ class JWK
                 // Currently only RSA is supported
                 break;
         }
+
+        return null;
     }
 
     /**
@@ -124,10 +129,10 @@ class JWK
         $modulus = JWT::urlsafeB64Decode($n);
         $publicExponent = JWT::urlsafeB64Decode($e);
 
-        $components = array(
+        $components = [
             'modulus' => \pack('Ca*a*', 2, self::encodeLength(\strlen($modulus)), $modulus),
             'publicExponent' => \pack('Ca*a*', 2, self::encodeLength(\strlen($publicExponent)), $publicExponent)
-        );
+        ];
 
         $rsaPublicKey = \pack(
             'Ca*a*a*',
