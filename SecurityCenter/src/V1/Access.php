@@ -20,39 +20,39 @@ class Access extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string principal_email = 1;</code>
      */
-    protected $principal_email = '';
+    private $principal_email = '';
     /**
      * Caller's IP address, such as "1.1.1.1".
      *
      * Generated from protobuf field <code>string caller_ip = 2;</code>
      */
-    protected $caller_ip = '';
+    private $caller_ip = '';
     /**
      * The caller IP's geolocation, which identifies where the call came from.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Geolocation caller_ip_geo = 3;</code>
      */
-    protected $caller_ip_geo = null;
+    private $caller_ip_geo = null;
     /**
      * What kind of user agent is associated, e.g. operating system shells,
      * embedded or stand-alone applications, etc.
      *
      * Generated from protobuf field <code>string user_agent_family = 4;</code>
      */
-    protected $user_agent_family = '';
+    private $user_agent_family = '';
     /**
      * This is the API service that the service account made a call to, e.g.
      * "iam.googleapis.com"
      *
      * Generated from protobuf field <code>string service_name = 5;</code>
      */
-    protected $service_name = '';
+    private $service_name = '';
     /**
      * The method that the service account called, e.g. "SetIamPolicy".
      *
      * Generated from protobuf field <code>string method_name = 6;</code>
      */
-    protected $method_name = '';
+    private $method_name = '';
 
     /**
      * Constructor.
