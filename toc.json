@@ -10,8 +10,8 @@
     }, {
         "title": "Contributing",
         "id": "contributing",
-        "edit": "https://github.com/googleapis/google-cloud-php/edit/master/CONTRIBUTING.md",
-        "contents": "https://raw.githubusercontent.com/googleapis/google-cloud-php/master/CONTRIBUTING.md"
+        "edit": "https://github.com/googleapis/google-cloud-php/edit/main/CONTRIBUTING.md",
+        "contents": "https://raw.githubusercontent.com/googleapis/google-cloud-php/main/CONTRIBUTING.md"
     }],
     "services": []
 }
