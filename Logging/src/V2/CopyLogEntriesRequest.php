@@ -22,20 +22,20 @@ class CopyLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * Optional. A filter specifying which log entries to copy. The filter must be no more
      * than 20k characters. An empty filter matches all log entries.
      *
      * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $filter = '';
+    private $filter = '';
     /**
      * Required. Destination to which to copy log entries.
      *
      * Generated from protobuf field <code>string destination = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $destination = '';
+    private $destination = '';
 
     /**
      * Constructor.

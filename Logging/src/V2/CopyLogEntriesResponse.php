@@ -20,7 +20,7 @@ class CopyLogEntriesResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 log_entries_copied_count = 1;</code>
      */
-    protected $log_entries_copied_count = 0;
+    private $log_entries_copied_count = 0;
 
     /**
      * Constructor.

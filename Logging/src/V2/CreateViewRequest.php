@@ -17,9 +17,9 @@ class CreateViewRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The bucket in which to create the view
-     *     "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     * Example:
-     * `"projects/my-logging-project/locations/my-location/buckets/my-bucket"`
+     *     `"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"`
+     * For example:
+     *   `"projects/my-project/locations/global/buckets/my-bucket"`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -45,9 +45,9 @@ class CreateViewRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The bucket in which to create the view
-     *               "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *           Example:
-     *           `"projects/my-logging-project/locations/my-location/buckets/my-bucket"`
+     *               `"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"`
+     *           For example:
+     *             `"projects/my-project/locations/global/buckets/my-bucket"`
      *     @type string $view_id
      *           Required. The id to use for this view.
      *     @type \Google\Cloud\Logging\V2\LogView $view
@@ -61,9 +61,9 @@ class CreateViewRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The bucket in which to create the view
-     *     "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     * Example:
-     * `"projects/my-logging-project/locations/my-location/buckets/my-bucket"`
+     *     `"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"`
+     * For example:
+     *   `"projects/my-project/locations/global/buckets/my-bucket"`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -75,9 +75,9 @@ class CreateViewRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The bucket in which to create the view
-     *     "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     * Example:
-     * `"projects/my-logging-project/locations/my-location/buckets/my-bucket"`
+     *     `"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"`
+     * For example:
+     *   `"projects/my-project/locations/global/buckets/my-bucket"`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

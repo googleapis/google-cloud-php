@@ -40,6 +40,11 @@
                 }
             },
             "methods": {
+                "CopyLogEntries": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "CreateBucket": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
@@ -95,6 +100,11 @@
                     "retry_codes_name": "retry_policy_3_codes",
                     "retry_params_name": "retry_policy_3_params"
                 },
+                "GetSettings": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "GetSink": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_3_codes",
@@ -144,6 +154,11 @@
                     "timeout_millis": 120000,
                     "retry_codes_name": "no_retry_2_codes",
                     "retry_params_name": "no_retry_2_params"
+                },
+                "UpdateSettings": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "UpdateSink": {
                     "timeout_millis": 60000,

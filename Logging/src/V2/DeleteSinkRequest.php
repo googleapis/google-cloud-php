@@ -22,7 +22,8 @@ class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
      *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     * Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     * For example:
+     *   `"projects/my-project/sinks/my-sink"`
      *
      * Generated from protobuf field <code>string sink_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -41,7 +42,8 @@ class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
      *               "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *               "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
      *               "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     *           Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     *           For example:
+     *             `"projects/my-project/sinks/my-sink"`
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +58,8 @@ class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
      *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     * Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     * For example:
+     *   `"projects/my-project/sinks/my-sink"`
      *
      * Generated from protobuf field <code>string sink_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -73,7 +76,8 @@ class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
      *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
-     * Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     * For example:
+     *   `"projects/my-project/sinks/my-sink"`
      *
      * Generated from protobuf field <code>string sink_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

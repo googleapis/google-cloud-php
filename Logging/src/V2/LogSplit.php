@@ -24,7 +24,7 @@ class LogSplit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string uid = 1;</code>
      */
-    protected $uid = '';
+    private $uid = '';
     /**
      * The index of this LogEntry in the sequence of split log entries. Log
      * entries are given |index| values 0, 1, ..., n-1 for a sequence of n log
@@ -32,13 +32,13 @@ class LogSplit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 index = 2;</code>
      */
-    protected $index = 0;
+    private $index = 0;
     /**
      * The total number of log entries that the original LogEntry was split into.
      *
      * Generated from protobuf field <code>int32 total_splits = 3;</code>
      */
-    protected $total_splits = 0;
+    private $total_splits = 0;
 
     /**
      * Constructor.

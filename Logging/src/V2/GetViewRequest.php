@@ -18,8 +18,8 @@ class GetViewRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the policy:
      *     "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     * Example:
-     * `"projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view-id"`.
+     * For example:
+     *   `"projects/my-project/locations/global/buckets/my-bucket/views/my-view"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -34,8 +34,8 @@ class GetViewRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The resource name of the policy:
      *               "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     *           Example:
-     *           `"projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view-id"`.
+     *           For example:
+     *             `"projects/my-project/locations/global/buckets/my-bucket/views/my-view"`
      * }
      */
     public function __construct($data = NULL) {
@@ -46,8 +46,8 @@ class GetViewRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the policy:
      *     "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     * Example:
-     * `"projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view-id"`.
+     * For example:
+     *   `"projects/my-project/locations/global/buckets/my-bucket/views/my-view"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -60,8 +60,8 @@ class GetViewRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the policy:
      *     "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     * Example:
-     * `"projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view-id"`.
+     * For example:
+     *   `"projects/my-project/locations/global/buckets/my-bucket/views/my-view"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

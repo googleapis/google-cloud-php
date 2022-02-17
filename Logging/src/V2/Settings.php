@@ -21,7 +21,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * Optional. The Cloud region that will be used for _Default and _Required log buckets
      * for newly created projects and folders. For example `europe-west1`.
@@ -29,7 +29,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string storage_location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $storage_location = '';
+    private $storage_location = '';
     /**
      * Optional. If set to true, the _Default sink in newly created projects and folders
      * will created in a disabled state. This can be used to automatically disable
@@ -38,7 +38,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_default_sink = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $disable_default_sink = false;
+    private $disable_default_sink = false;
 
     /**
      * Constructor.

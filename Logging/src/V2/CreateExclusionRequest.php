@@ -21,7 +21,9 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
-     * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
+     * For examples:
+     *   `"projects/my-logging-project"`
+     *   `"organizations/123456789"`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -46,7 +48,9 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
      *               "organizations/[ORGANIZATION_ID]"
      *               "billingAccounts/[BILLING_ACCOUNT_ID]"
      *               "folders/[FOLDER_ID]"
-     *           Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
+     *           For examples:
+     *             `"projects/my-logging-project"`
+     *             `"organizations/123456789"`
      *     @type \Google\Cloud\Logging\V2\LogExclusion $exclusion
      *           Required. The new exclusion, whose `name` parameter is an exclusion name
      *           that is not already used in the parent resource.
@@ -63,7 +67,9 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
-     * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
+     * For examples:
+     *   `"projects/my-logging-project"`
+     *   `"organizations/123456789"`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -79,7 +85,9 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
-     * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
+     * For examples:
+     *   `"projects/my-logging-project"`
+     *   `"organizations/123456789"`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

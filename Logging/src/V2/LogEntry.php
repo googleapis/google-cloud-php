@@ -30,7 +30,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * following characters: upper and lower case alphanumeric characters,
      * forward-slash, underscore, hyphen, and period.
      * For backward compatibility, if `log_name` begins with a forward-slash, such
-     * as `/projects/...`, then the log entry is ingested as usual but the
+     * as `/projects/...`, then the log entry is ingested as usual, but the
      * forward-slash is removed. Listing the log entry will not show the leading
      * slash and filtering for a log name with a leading slash will never return
      * any results.
@@ -81,7 +81,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * removed in a single query result. However, there are no guarantees of
      * de-duplication in the export of logs.
      * If the `insert_id` is omitted when writing a log entry, the Logging API
-     *  assigns its own unique identifier in this field.
+     * assigns its own unique identifier in this field.
      * In queries, the `insert_id` is also used to order log entries that have
      * the same `log_name` and `timestamp` values.
      *
@@ -96,8 +96,17 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      */
     private $http_request = null;
     /**
-     * Optional. A set of user-defined (key, value) data that provides additional
-     * information about the log entry.
+     * Optional. A map of key, value pairs that provides additional information about the
+     * log entry. The labels can be user-defined or system-defined.
+     * User-defined labels are arbitrary key, value pairs that you can use to
+     * classify logs.
+     * System-defined labels are defined by GCP services for platform logs.
+     * They have two components - a service namespace component and the
+     * attribute name. For example: `compute.googleapis.com/resource_name`.
+     * Cloud Logging truncates label keys that exceed 512 B and label
+     * values that exceed 64 KB upon their associated log entry being
+     * written. The truncation is indicated by an ellipsis at the
+     * end of the character string.
      *
      * Generated from protobuf field <code>map<string, string> labels = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -144,6 +153,13 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.logging.v2.LogEntrySourceLocation source_location = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $source_location = null;
+    /**
+     * Optional. Information indicating this LogEntry is part of a sequence of multiple log
+     * entries split from a single LogEntry.
+     *
+     * Generated from protobuf field <code>.google.logging.v2.LogSplit split = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $split = null;
     protected $payload;
 
     /**
@@ -167,7 +183,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *           following characters: upper and lower case alphanumeric characters,
      *           forward-slash, underscore, hyphen, and period.
      *           For backward compatibility, if `log_name` begins with a forward-slash, such
-     *           as `/projects/...`, then the log entry is ingested as usual but the
+     *           as `/projects/...`, then the log entry is ingested as usual, but the
      *           forward-slash is removed. Listing the log entry will not show the leading
      *           slash and filtering for a log name with a leading slash will never return
      *           any results.
@@ -210,15 +226,24 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *           removed in a single query result. However, there are no guarantees of
      *           de-duplication in the export of logs.
      *           If the `insert_id` is omitted when writing a log entry, the Logging API
-     *            assigns its own unique identifier in this field.
+     *           assigns its own unique identifier in this field.
      *           In queries, the `insert_id` is also used to order log entries that have
      *           the same `log_name` and `timestamp` values.
      *     @type \Google\Cloud\Logging\Type\HttpRequest $http_request
      *           Optional. Information about the HTTP request associated with this log entry, if
      *           applicable.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Optional. A set of user-defined (key, value) data that provides additional
-     *           information about the log entry.
+     *           Optional. A map of key, value pairs that provides additional information about the
+     *           log entry. The labels can be user-defined or system-defined.
+     *           User-defined labels are arbitrary key, value pairs that you can use to
+     *           classify logs.
+     *           System-defined labels are defined by GCP services for platform logs.
+     *           They have two components - a service namespace component and the
+     *           attribute name. For example: `compute.googleapis.com/resource_name`.
+     *           Cloud Logging truncates label keys that exceed 512 B and label
+     *           values that exceed 64 KB upon their associated log entry being
+     *           written. The truncation is indicated by an ellipsis at the
+     *           end of the character string.
      *     @type \Google\Cloud\Logging\V2\LogEntryOperation $operation
      *           Optional. Information about an operation associated with the log entry, if
      *           applicable.
@@ -241,6 +266,9 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *           request correlation identifier. The default is False.
      *     @type \Google\Cloud\Logging\V2\LogEntrySourceLocation $source_location
      *           Optional. Source code location information associated with the log entry, if any.
+     *     @type \Google\Cloud\Logging\V2\LogSplit $split
+     *           Optional. Information indicating this LogEntry is part of a sequence of multiple log
+     *           entries split from a single LogEntry.
      * }
      */
     public function __construct($data = NULL) {
@@ -263,7 +291,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * following characters: upper and lower case alphanumeric characters,
      * forward-slash, underscore, hyphen, and period.
      * For backward compatibility, if `log_name` begins with a forward-slash, such
-     * as `/projects/...`, then the log entry is ingested as usual but the
+     * as `/projects/...`, then the log entry is ingested as usual, but the
      * forward-slash is removed. Listing the log entry will not show the leading
      * slash and filtering for a log name with a leading slash will never return
      * any results.
@@ -291,7 +319,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * following characters: upper and lower case alphanumeric characters,
      * forward-slash, underscore, hyphen, and period.
      * For backward compatibility, if `log_name` begins with a forward-slash, such
-     * as `/projects/...`, then the log entry is ingested as usual but the
+     * as `/projects/...`, then the log entry is ingested as usual, but the
      * forward-slash is removed. Listing the log entry will not show the leading
      * slash and filtering for a log name with a leading slash will never return
      * any results.
@@ -578,7 +606,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * removed in a single query result. However, there are no guarantees of
      * de-duplication in the export of logs.
      * If the `insert_id` is omitted when writing a log entry, the Logging API
-     *  assigns its own unique identifier in this field.
+     * assigns its own unique identifier in this field.
      * In queries, the `insert_id` is also used to order log entries that have
      * the same `log_name` and `timestamp` values.
      *
@@ -597,7 +625,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * removed in a single query result. However, there are no guarantees of
      * de-duplication in the export of logs.
      * If the `insert_id` is omitted when writing a log entry, the Logging API
-     *  assigns its own unique identifier in this field.
+     * assigns its own unique identifier in this field.
      * In queries, the `insert_id` is also used to order log entries that have
      * the same `log_name` and `timestamp` values.
      *
@@ -652,8 +680,17 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A set of user-defined (key, value) data that provides additional
-     * information about the log entry.
+     * Optional. A map of key, value pairs that provides additional information about the
+     * log entry. The labels can be user-defined or system-defined.
+     * User-defined labels are arbitrary key, value pairs that you can use to
+     * classify logs.
+     * System-defined labels are defined by GCP services for platform logs.
+     * They have two components - a service namespace component and the
+     * attribute name. For example: `compute.googleapis.com/resource_name`.
+     * Cloud Logging truncates label keys that exceed 512 B and label
+     * values that exceed 64 KB upon their associated log entry being
+     * written. The truncation is indicated by an ellipsis at the
+     * end of the character string.
      *
      * Generated from protobuf field <code>map<string, string> labels = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -664,8 +701,17 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A set of user-defined (key, value) data that provides additional
-     * information about the log entry.
+     * Optional. A map of key, value pairs that provides additional information about the
+     * log entry. The labels can be user-defined or system-defined.
+     * User-defined labels are arbitrary key, value pairs that you can use to
+     * classify logs.
+     * System-defined labels are defined by GCP services for platform logs.
+     * They have two components - a service namespace component and the
+     * attribute name. For example: `compute.googleapis.com/resource_name`.
+     * Cloud Logging truncates label keys that exceed 512 B and label
+     * values that exceed 64 KB upon their associated log entry being
+     * written. The truncation is indicated by an ellipsis at the
+     * end of the character string.
      *
      * Generated from protobuf field <code>map<string, string> labels = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -849,6 +895,44 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Logging\V2\LogEntrySourceLocation::class);
         $this->source_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Information indicating this LogEntry is part of a sequence of multiple log
+     * entries split from a single LogEntry.
+     *
+     * Generated from protobuf field <code>.google.logging.v2.LogSplit split = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Logging\V2\LogSplit|null
+     */
+    public function getSplit()
+    {
+        return $this->split;
+    }
+
+    public function hasSplit()
+    {
+        return isset($this->split);
+    }
+
+    public function clearSplit()
+    {
+        unset($this->split);
+    }
+
+    /**
+     * Optional. Information indicating this LogEntry is part of a sequence of multiple log
+     * entries split from a single LogEntry.
+     *
+     * Generated from protobuf field <code>.google.logging.v2.LogSplit split = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Logging\V2\LogSplit $var
+     * @return $this
+     */
+    public function setSplit($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Logging\V2\LogSplit::class);
+        $this->split = $var;
 
         return $this;
     }

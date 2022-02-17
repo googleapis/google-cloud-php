@@ -28,6 +28,9 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 
+use Google\ApiCore\LongRunning\OperationsClient;
+
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -35,6 +38,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Logging\V2\CmekSettings;
+use Google\Cloud\Logging\V2\CopyLogEntriesRequest;
 use Google\Cloud\Logging\V2\CreateBucketRequest;
 use Google\Cloud\Logging\V2\CreateExclusionRequest;
 use Google\Cloud\Logging\V2\CreateSinkRequest;
@@ -46,6 +50,7 @@ use Google\Cloud\Logging\V2\DeleteViewRequest;
 use Google\Cloud\Logging\V2\GetBucketRequest;
 use Google\Cloud\Logging\V2\GetCmekSettingsRequest;
 use Google\Cloud\Logging\V2\GetExclusionRequest;
+use Google\Cloud\Logging\V2\GetSettingsRequest;
 use Google\Cloud\Logging\V2\GetSinkRequest;
 use Google\Cloud\Logging\V2\GetViewRequest;
 use Google\Cloud\Logging\V2\ListBucketsRequest;
@@ -60,12 +65,15 @@ use Google\Cloud\Logging\V2\LogBucket;
 use Google\Cloud\Logging\V2\LogExclusion;
 use Google\Cloud\Logging\V2\LogSink;
 use Google\Cloud\Logging\V2\LogView;
+use Google\Cloud\Logging\V2\Settings;
 use Google\Cloud\Logging\V2\UndeleteBucketRequest;
 use Google\Cloud\Logging\V2\UpdateBucketRequest;
 use Google\Cloud\Logging\V2\UpdateCmekSettingsRequest;
 use Google\Cloud\Logging\V2\UpdateExclusionRequest;
+use Google\Cloud\Logging\V2\UpdateSettingsRequest;
 use Google\Cloud\Logging\V2\UpdateSinkRequest;
 use Google\Cloud\Logging\V2\UpdateViewRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
@@ -78,10 +86,34 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $configServiceV2Client = new ConfigServiceV2Client();
  * try {
- *     $formattedParent = $configServiceV2Client->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
- *     $bucketId = 'bucket_id';
- *     $bucket = new LogBucket();
- *     $response = $configServiceV2Client->createBucket($formattedParent, $bucketId, $bucket);
+ *     $name = 'name';
+ *     $destination = 'destination';
+ *     $operationResponse = $configServiceV2Client->copyLogEntries($name, $destination);
+ *     $operationResponse->pollUntilComplete();
+ *     if ($operationResponse->operationSucceeded()) {
+ *         $result = $operationResponse->getResult();
+ *     // doSomethingWith($result)
+ *     } else {
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
+ *     }
+ *     // Alternatively:
+ *     // start the operation, keep the operation name, and resume later
+ *     $operationResponse = $configServiceV2Client->copyLogEntries($name, $destination);
+ *     $operationName = $operationResponse->getName();
+ *     // ... do other work
+ *     $newOperationResponse = $configServiceV2Client->resumeOperation($operationName, 'copyLogEntries');
+ *     while (!$newOperationResponse->isDone()) {
+ *         // ... do other work
+ *         $newOperationResponse->reload();
+ *     }
+ *     if ($newOperationResponse->operationSucceeded()) {
+ *         $result = $newOperationResponse->getResult();
+ *     // doSomethingWith($result)
+ *     } else {
+ *         $error = $newOperationResponse->getError();
+ *         // handleError($error)
+ *     }
  * } finally {
  *     $configServiceV2Client->close();
  * }
@@ -138,6 +170,8 @@ class ConfigServiceV2GapicClient
 
     private static $billingAccountLocationBucketViewNameTemplate;
 
+    private static $billingAccountSettingsNameTemplate;
+
     private static $billingAccountSinkNameTemplate;
 
     private static $cmekSettingsNameTemplate;
@@ -153,6 +187,8 @@ class ConfigServiceV2GapicClient
     private static $folderLocationBucketNameTemplate;
 
     private static $folderLocationBucketViewNameTemplate;
+
+    private static $folderSettingsNameTemplate;
 
     private static $folderSinkNameTemplate;
 
@@ -178,6 +214,8 @@ class ConfigServiceV2GapicClient
 
     private static $organizationLocationBucketViewNameTemplate;
 
+    private static $organizationSettingsNameTemplate;
+
     private static $organizationSinkNameTemplate;
 
     private static $projectNameTemplate;
@@ -190,9 +228,15 @@ class ConfigServiceV2GapicClient
 
     private static $projectLocationBucketViewNameTemplate;
 
+    private static $projectSettingsNameTemplate;
+
     private static $projectSinkNameTemplate;
 
+    private static $settingsNameTemplate;
+
     private static $pathTemplateMap;
+
+    private $operationsClient;
 
     private static function getClientDefaults()
     {
@@ -267,6 +311,15 @@ class ConfigServiceV2GapicClient
         return self::$billingAccountLocationBucketViewNameTemplate;
     }
 
+    private static function getBillingAccountSettingsNameTemplate()
+    {
+        if (self::$billingAccountSettingsNameTemplate == null) {
+            self::$billingAccountSettingsNameTemplate = new PathTemplate('billingAccounts/{billing_account}/settings');
+        }
+
+        return self::$billingAccountSettingsNameTemplate;
+    }
+
     private static function getBillingAccountSinkNameTemplate()
     {
         if (self::$billingAccountSinkNameTemplate == null) {
@@ -337,6 +390,15 @@ class ConfigServiceV2GapicClient
         }
 
         return self::$folderLocationBucketViewNameTemplate;
+    }
+
+    private static function getFolderSettingsNameTemplate()
+    {
+        if (self::$folderSettingsNameTemplate == null) {
+            self::$folderSettingsNameTemplate = new PathTemplate('folders/{folder}/settings');
+        }
+
+        return self::$folderSettingsNameTemplate;
     }
 
     private static function getFolderSinkNameTemplate()
@@ -447,6 +509,15 @@ class ConfigServiceV2GapicClient
         return self::$organizationLocationBucketViewNameTemplate;
     }
 
+    private static function getOrganizationSettingsNameTemplate()
+    {
+        if (self::$organizationSettingsNameTemplate == null) {
+            self::$organizationSettingsNameTemplate = new PathTemplate('organizations/{organization}/settings');
+        }
+
+        return self::$organizationSettingsNameTemplate;
+    }
+
     private static function getOrganizationSinkNameTemplate()
     {
         if (self::$organizationSinkNameTemplate == null) {
@@ -501,6 +572,15 @@ class ConfigServiceV2GapicClient
         return self::$projectLocationBucketViewNameTemplate;
     }
 
+    private static function getProjectSettingsNameTemplate()
+    {
+        if (self::$projectSettingsNameTemplate == null) {
+            self::$projectSettingsNameTemplate = new PathTemplate('projects/{project}/settings');
+        }
+
+        return self::$projectSettingsNameTemplate;
+    }
+
     private static function getProjectSinkNameTemplate()
     {
         if (self::$projectSinkNameTemplate == null) {
@@ -508,6 +588,15 @@ class ConfigServiceV2GapicClient
         }
 
         return self::$projectSinkNameTemplate;
+    }
+
+    private static function getSettingsNameTemplate()
+    {
+        if (self::$settingsNameTemplate == null) {
+            self::$settingsNameTemplate = new PathTemplate('projects/{project}/settings');
+        }
+
+        return self::$settingsNameTemplate;
     }
 
     private static function getPathTemplateMap()
@@ -520,6 +609,7 @@ class ConfigServiceV2GapicClient
                 'billingAccountLocation' => self::getBillingAccountLocationNameTemplate(),
                 'billingAccountLocationBucket' => self::getBillingAccountLocationBucketNameTemplate(),
                 'billingAccountLocationBucketView' => self::getBillingAccountLocationBucketViewNameTemplate(),
+                'billingAccountSettings' => self::getBillingAccountSettingsNameTemplate(),
                 'billingAccountSink' => self::getBillingAccountSinkNameTemplate(),
                 'cmekSettings' => self::getCmekSettingsNameTemplate(),
                 'folder' => self::getFolderNameTemplate(),
@@ -528,6 +618,7 @@ class ConfigServiceV2GapicClient
                 'folderLocation' => self::getFolderLocationNameTemplate(),
                 'folderLocationBucket' => self::getFolderLocationBucketNameTemplate(),
                 'folderLocationBucketView' => self::getFolderLocationBucketViewNameTemplate(),
+                'folderSettings' => self::getFolderSettingsNameTemplate(),
                 'folderSink' => self::getFolderSinkNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'logBucket' => self::getLogBucketNameTemplate(),
@@ -540,13 +631,16 @@ class ConfigServiceV2GapicClient
                 'organizationLocation' => self::getOrganizationLocationNameTemplate(),
                 'organizationLocationBucket' => self::getOrganizationLocationBucketNameTemplate(),
                 'organizationLocationBucketView' => self::getOrganizationLocationBucketViewNameTemplate(),
+                'organizationSettings' => self::getOrganizationSettingsNameTemplate(),
                 'organizationSink' => self::getOrganizationSinkNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'projectCmekSettings' => self::getProjectCmekSettingsNameTemplate(),
                 'projectExclusion' => self::getProjectExclusionNameTemplate(),
                 'projectLocationBucket' => self::getProjectLocationBucketNameTemplate(),
                 'projectLocationBucketView' => self::getProjectLocationBucketViewNameTemplate(),
+                'projectSettings' => self::getProjectSettingsNameTemplate(),
                 'projectSink' => self::getProjectSinkNameTemplate(),
+                'settings' => self::getSettingsNameTemplate(),
             ];
         }
 
@@ -654,6 +748,21 @@ class ConfigServiceV2GapicClient
             'location' => $location,
             'bucket' => $bucket,
             'view' => $view,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * billing_account_settings resource.
+     *
+     * @param string $billingAccount
+     *
+     * @return string The formatted billing_account_settings resource.
+     */
+    public static function billingAccountSettingsName($billingAccount)
+    {
+        return self::getBillingAccountSettingsNameTemplate()->render([
+            'billing_account' => $billingAccount,
         ]);
     }
 
@@ -790,6 +899,21 @@ class ConfigServiceV2GapicClient
             'location' => $location,
             'bucket' => $bucket,
             'view' => $view,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_settings resource.
+     *
+     * @param string $folder
+     *
+     * @return string The formatted folder_settings resource.
+     */
+    public static function folderSettingsName($folder)
+    {
+        return self::getFolderSettingsNameTemplate()->render([
+            'folder' => $folder,
         ]);
     }
 
@@ -1007,6 +1131,21 @@ class ConfigServiceV2GapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_settings resource.
+     *
+     * @param string $organization
+     *
+     * @return string The formatted organization_settings resource.
+     */
+    public static function organizationSettingsName($organization)
+    {
+        return self::getOrganizationSettingsNameTemplate()->render([
+            'organization' => $organization,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * organization_sink resource.
      *
      * @param string $organization
@@ -1110,6 +1249,21 @@ class ConfigServiceV2GapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_settings resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_settings resource.
+     */
+    public static function projectSettingsName($project)
+    {
+        return self::getProjectSettingsNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project_sink
      * resource.
      *
@@ -1127,6 +1281,21 @@ class ConfigServiceV2GapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a settings
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted settings resource.
+     */
+    public static function settingsName($project)
+    {
+        return self::getSettingsNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -1136,6 +1305,7 @@ class ConfigServiceV2GapicClient
      * - billingAccountLocation: billingAccounts/{billing_account}/locations/{location}
      * - billingAccountLocationBucket: billingAccounts/{billing_account}/locations/{location}/buckets/{bucket}
      * - billingAccountLocationBucketView: billingAccounts/{billing_account}/locations/{location}/buckets/{bucket}/views/{view}
+     * - billingAccountSettings: billingAccounts/{billing_account}/settings
      * - billingAccountSink: billingAccounts/{billing_account}/sinks/{sink}
      * - cmekSettings: projects/{project}/cmekSettings
      * - folder: folders/{folder}
@@ -1144,6 +1314,7 @@ class ConfigServiceV2GapicClient
      * - folderLocation: folders/{folder}/locations/{location}
      * - folderLocationBucket: folders/{folder}/locations/{location}/buckets/{bucket}
      * - folderLocationBucketView: folders/{folder}/locations/{location}/buckets/{bucket}/views/{view}
+     * - folderSettings: folders/{folder}/settings
      * - folderSink: folders/{folder}/sinks/{sink}
      * - location: projects/{project}/locations/{location}
      * - logBucket: projects/{project}/locations/{location}/buckets/{bucket}
@@ -1156,13 +1327,16 @@ class ConfigServiceV2GapicClient
      * - organizationLocation: organizations/{organization}/locations/{location}
      * - organizationLocationBucket: organizations/{organization}/locations/{location}/buckets/{bucket}
      * - organizationLocationBucketView: organizations/{organization}/locations/{location}/buckets/{bucket}/views/{view}
+     * - organizationSettings: organizations/{organization}/settings
      * - organizationSink: organizations/{organization}/sinks/{sink}
      * - project: projects/{project}
      * - projectCmekSettings: projects/{project}/cmekSettings
      * - projectExclusion: projects/{project}/exclusions/{exclusion}
      * - projectLocationBucket: projects/{project}/locations/{location}/buckets/{bucket}
      * - projectLocationBucketView: projects/{project}/locations/{location}/buckets/{bucket}/views/{view}
+     * - projectSettings: projects/{project}/settings
      * - projectSink: projects/{project}/sinks/{sink}
+     * - settings: projects/{project}/settings
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -1197,6 +1371,35 @@ class ConfigServiceV2GapicClient
         }
 
         throw new ValidationException("Input did not match any known format. Input: $formattedName");
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+        return $operation;
     }
 
     /**
@@ -1260,11 +1463,87 @@ class ConfigServiceV2GapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /**
-     * Creates a bucket that can be used to store log entries. Once a bucket has
-     * been created, the region cannot be changed.
+     * Copies a set of log entries from a log bucket to a Cloud Storage bucket.
+     *
+     * Sample code:
+     * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
+     * try {
+     *     $name = 'name';
+     *     $destination = 'destination';
+     *     $operationResponse = $configServiceV2Client->copyLogEntries($name, $destination);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $configServiceV2Client->copyLogEntries($name, $destination);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $configServiceV2Client->resumeOperation($operationName, 'copyLogEntries');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Log bucket from which to copy log entries.
+     *
+     *                             For example:
+     *
+     *                             `"projects/my-project/locations/global/buckets/my-source-bucket"`
+     * @param string $destination  Required. Destination to which to copy log entries.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           Optional. A filter specifying which log entries to copy. The filter must be no more
+     *           than 20k characters. An empty filter matches all log entries.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function copyLogEntries($name, $destination, array $optionalArgs = [])
+    {
+        $request = new CopyLogEntriesRequest();
+        $request->setName($name);
+        $request->setDestination($destination);
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        return $this->startOperationsCall('CopyLogEntries', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Creates a log bucket that can be used to store log entries. After a bucket
+     * has been created, the bucket's location cannot be changed.
      *
      * Sample code:
      * ```
@@ -1279,14 +1558,16 @@ class ConfigServiceV2GapicClient
      * }
      * ```
      *
-     * @param string    $parent       Required. The resource in which to create the bucket:
+     * @param string    $parent       Required. The resource in which to create the log bucket:
      *
      *                                "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
      *
-     *                                Example: `"projects/my-logging-project/locations/global"`
-     * @param string    $bucketId     Required. A client-assigned identifier such as `"my-bucket"`. Identifiers are
-     *                                limited to 100 characters and can include only letters, digits,
-     *                                underscores, hyphens, and periods.
+     *                                For example:
+     *
+     *                                `"projects/my-project/locations/global"`
+     * @param string    $bucketId     Required. A client-assigned identifier such as `"my-bucket"`. Identifiers are limited
+     *                                to 100 characters and can include only letters, digits, underscores,
+     *                                hyphens, and periods.
      * @param LogBucket $bucket       Required. The new bucket. The region specified in the new bucket must be compliant
      *                                with any Location Restriction Org Policy. The name field in the bucket is
      *                                ignored.
@@ -1318,9 +1599,9 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Creates a new exclusion in a specified parent resource.
-     * Only log entries belonging to that resource can be excluded.
-     * You can have up to 10 exclusions in a resource.
+     * Creates a new exclusion in the _Default sink in a specified parent
+     * resource. Only log entries belonging to that resource can be excluded. You
+     * can have up to 10 exclusions in a resource.
      *
      * Sample code:
      * ```
@@ -1341,7 +1622,10 @@ class ConfigServiceV2GapicClient
      *                                   "billingAccounts/[BILLING_ACCOUNT_ID]"
      *                                   "folders/[FOLDER_ID]"
      *
-     *                                   Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
+     *                                   For examples:
+     *
+     *                                   `"projects/my-logging-project"`
+     *                                   `"organizations/123456789"`
      * @param LogExclusion $exclusion    Required. The new exclusion, whose `name` parameter is an exclusion name
      *                                   that is not already used in the parent resource.
      * @param array        $optionalArgs {
@@ -1395,7 +1679,10 @@ class ConfigServiceV2GapicClient
      *                              "billingAccounts/[BILLING_ACCOUNT_ID]"
      *                              "folders/[FOLDER_ID]"
      *
-     *                              Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
+     *                              For examples:
+     *
+     *                              `"projects/my-project"`
+     *                              `"organizations/123456789"`
      * @param LogSink $sink         Required. The new sink, whose `name` parameter is a sink identifier that
      *                              is not already in use.
      * @param array   $optionalArgs {
@@ -1405,9 +1692,9 @@ class ConfigServiceV2GapicClient
      *           Optional. Determines the kind of IAM identity returned as `writer_identity`
      *           in the new sink. If this value is omitted or set to false, and if the
      *           sink's parent is a project, then the value returned as `writer_identity` is
-     *           the same group or service account used by Logging before the addition of
-     *           writer identities to this API. The sink's destination must be in the same
-     *           project as the sink itself.
+     *           the same group or service account used by Cloud Logging before the addition
+     *           of writer identities to this API. The sink's destination must be in the
+     *           same project as the sink itself.
      *
      *           If this field is set to true, or if the sink is owned by a non-project
      *           resource such as an organization, then the value of `writer_identity` will
@@ -1441,8 +1728,8 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Creates a view over logs in a bucket. A bucket may contain a maximum of
-     * 50 views.
+     * Creates a view over log entries in a log bucket. A bucket may contain a
+     * maximum of 30 views.
      *
      * Sample code:
      * ```
@@ -1459,10 +1746,11 @@ class ConfigServiceV2GapicClient
      *
      * @param string  $parent       Required. The bucket in which to create the view
      *
-     *                              "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
+     *                              `"projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"`
      *
-     *                              Example:
-     *                              `"projects/my-logging-project/locations/my-location/buckets/my-bucket"`
+     *                              For example:
+     *
+     *                              `"projects/my-project/locations/global/buckets/my-bucket"`
      * @param string  $viewId       Required. The id to use for this view.
      * @param LogView $view         Required. The new view.
      * @param array   $optionalArgs {
@@ -1493,10 +1781,11 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Deletes a bucket.
-     * Moves the bucket to the DELETE_REQUESTED state. After 7 days, the
-     * bucket will be purged and all logs in the bucket will be permanently
-     * deleted.
+     * Deletes a log bucket.
+     *
+     * Changes the bucket's `lifecycle_state` to the `DELETE_REQUESTED` state.
+     * After 7 days, the bucket will be purged and all log entries in the bucket
+     * will be permanently deleted.
      *
      * Sample code:
      * ```
@@ -1516,8 +1805,9 @@ class ConfigServiceV2GapicClient
      *                             "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      *                             "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      *
-     *                             Example:
-     *                             `"projects/my-project-id/locations/my-location/buckets/my-bucket-id"`.
+     *                             For example:
+     *
+     *                             `"projects/my-project/locations/global/buckets/my-bucket"`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1542,7 +1832,7 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Deletes an exclusion.
+     * Deletes an exclusion in the _Default sink.
      *
      * Sample code:
      * ```
@@ -1562,7 +1852,9 @@ class ConfigServiceV2GapicClient
      *                             "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
      *                             "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
      *
-     *                             Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     *                             For example:
+     *
+     *                             `"projects/my-project/exclusions/my-exclusion"`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1609,7 +1901,9 @@ class ConfigServiceV2GapicClient
      *                             "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
      *                             "folders/[FOLDER_ID]/sinks/[SINK_ID]"
      *
-     *                             Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     *                             For example:
+     *
+     *                             `"projects/my-project/sinks/my-sink"`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1634,7 +1928,10 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Deletes a view from a bucket.
+     * Deletes a view on a log bucket.
+     * If an `UNAVAILABLE` error is returned, this indicates that system is not in
+     * a state where it can delete the view. If this occurs, please try again in a
+     * few minutes.
      *
      * Sample code:
      * ```
@@ -1651,8 +1948,9 @@ class ConfigServiceV2GapicClient
      *
      *                             "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
      *
-     *                             Example:
-     *                             `"projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view-id"`.
+     *                             For example:
+     *
+     *                             `"projects/my-project/locations/global/buckets/my-bucket/views/my-view"`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1677,7 +1975,7 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Gets a bucket.
+     * Gets a log bucket.
      *
      * Sample code:
      * ```
@@ -1697,8 +1995,9 @@ class ConfigServiceV2GapicClient
      *                             "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      *                             "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      *
-     *                             Example:
-     *                             `"projects/my-project-id/locations/my-location/buckets/my-bucket-id"`.
+     *                             For example:
+     *
+     *                             `"projects/my-project/locations/global/buckets/my-bucket"`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1725,13 +2024,14 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Gets the Logs Router CMEK settings for the given resource.
+     * Gets the Logging CMEK settings for the given resource.
      *
-     * Note: CMEK for the Logs Router can currently only be configured for GCP
-     * organizations. Once configured, it applies to all projects and folders in
-     * the GCP organization.
+     * Note: CMEK for the Log Router can be configured for Google Cloud projects,
+     * folders, organizations and billing accounts. Once configured for an
+     * organization, it applies to all projects and folders in the Google Cloud
+     * organization.
      *
-     * See [Enabling CMEK for Logs
+     * See [Enabling CMEK for Log
      * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
      * for more information.
      *
@@ -1756,11 +2056,14 @@ class ConfigServiceV2GapicClient
      *           "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
      *           "folders/[FOLDER_ID]/cmekSettings"
      *
-     *           Example: `"organizations/12345/cmekSettings"`.
+     *           For example:
      *
-     *           Note: CMEK for the Logs Router can currently only be configured for GCP
-     *           organizations. Once configured, it applies to all projects and folders in
-     *           the GCP organization.
+     *           `"organizations/12345/cmekSettings"`
+     *
+     *           Note: CMEK for the Log Router can be configured for Google Cloud projects,
+     *           folders, organizations and billing accounts. Once configured for an
+     *           organization, it applies to all projects and folders in the Google Cloud
+     *           organization.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1787,7 +2090,7 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Gets the description of an exclusion.
+     * Gets the description of an exclusion in the _Default sink.
      *
      * Sample code:
      * ```
@@ -1807,7 +2110,9 @@ class ConfigServiceV2GapicClient
      *                             "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
      *                             "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
      *
-     *                             Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     *                             For example:
+     *
+     *                             `"projects/my-project/exclusions/my-exclusion"`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1834,6 +2139,69 @@ class ConfigServiceV2GapicClient
     }
 
     /**
+     * Gets the Log Router settings for the given resource.
+     *
+     * Note: Settings for the Log Router can be get for Google Cloud projects,
+     * folders, organizations and billing accounts. Currently it can only be
+     * configured for organizations. Once configured for an organization, it
+     * applies to all projects and folders in the Google Cloud organization.
+     *
+     * See [Enabling CMEK for Log
+     * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+     * for more information.
+     *
+     * Sample code:
+     * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
+     * try {
+     *     $formattedName = $configServiceV2Client->settingsName('[PROJECT]');
+     *     $response = $configServiceV2Client->getSettings($formattedName);
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource for which to retrieve settings.
+     *
+     *                             "projects/[PROJECT_ID]/settings"
+     *                             "organizations/[ORGANIZATION_ID]/settings"
+     *                             "billingAccounts/[BILLING_ACCOUNT_ID]/settings"
+     *                             "folders/[FOLDER_ID]/settings"
+     *
+     *                             For example:
+     *
+     *                             `"organizations/12345/settings"`
+     *
+     *                             Note: Settings for the Log Router can be get for Google Cloud projects,
+     *                             folders, organizations and billing accounts. Currently it can only be
+     *                             configured for organizations. Once configured for an organization, it
+     *                             applies to all projects and folders in the Google Cloud organization.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Logging\V2\Settings
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getSettings($name, array $optionalArgs = [])
+    {
+        $request = new GetSettingsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetSettings', Settings::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Gets a sink.
      *
      * Sample code:
@@ -1854,7 +2222,9 @@ class ConfigServiceV2GapicClient
      *                             "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
      *                             "folders/[FOLDER_ID]/sinks/[SINK_ID]"
      *
-     *                             Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     *                             For example:
+     *
+     *                             `"projects/my-project/sinks/my-sink"`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1881,7 +2251,7 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Gets a view.
+     * Gets a view on a log bucket..
      *
      * Sample code:
      * ```
@@ -1898,8 +2268,9 @@ class ConfigServiceV2GapicClient
      *
      *                             "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
      *
-     *                             Example:
-     *                             `"projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view-id"`.
+     *                             For example:
+     *
+     *                             `"projects/my-project/locations/global/buckets/my-bucket/views/my-view"`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1926,7 +2297,7 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Lists buckets.
+     * Lists log buckets.
      *
      * Sample code:
      * ```
@@ -2004,7 +2375,7 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Lists all the exclusions in a parent resource.
+     * Lists all the exclusions on the _Default sink in a parent resource.
      *
      * Sample code:
      * ```
@@ -2152,7 +2523,7 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Lists views on a bucket.
+     * Lists views on a log bucket.
      *
      * Sample code:
      * ```
@@ -2223,8 +2594,8 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Undeletes a bucket. A bucket that has been deleted may be undeleted within
-     * the grace period of 7 days.
+     * Undeletes a log bucket. A bucket that has been deleted can be undeleted
+     * within the grace period of 7 days.
      *
      * Sample code:
      * ```
@@ -2244,8 +2615,9 @@ class ConfigServiceV2GapicClient
      *                             "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      *                             "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      *
-     *                             Example:
-     *                             `"projects/my-project-id/locations/my-location/buckets/my-bucket-id"`.
+     *                             For example:
+     *
+     *                             `"projects/my-project/locations/global/buckets/my-bucket"`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2270,16 +2642,16 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Updates a bucket. This method replaces the following fields in the
+     * Updates a log bucket. This method replaces the following fields in the
      * existing bucket with values from the new bucket: `retention_period`
      *
      * If the retention period is decreased and the bucket is locked,
-     * FAILED_PRECONDITION will be returned.
+     * `FAILED_PRECONDITION` will be returned.
      *
-     * If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION
-     * will be returned.
+     * If the bucket has a `lifecycle_state` of `DELETE_REQUESTED`, then
+     * `FAILED_PRECONDITION` will be returned.
      *
-     * A buckets region may not be modified after it is created.
+     * After a bucket has been created, the bucket's location cannot be changed.
      *
      * Sample code:
      * ```
@@ -2301,19 +2673,18 @@ class ConfigServiceV2GapicClient
      *                                "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      *                                "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      *
-     *                                Example:
-     *                                `"projects/my-project-id/locations/my-location/buckets/my-bucket-id"`. Also
-     *                                requires permission "resourcemanager.projects.updateLiens" to set the
-     *                                locked property
+     *                                For example:
+     *
+     *                                `"projects/my-project/locations/global/buckets/my-bucket"`
      * @param LogBucket $bucket       Required. The updated bucket.
      * @param FieldMask $updateMask   Required. Field mask that specifies the fields in `bucket` that need an update. A
-     *                                bucket field will be overwritten if, and only if, it is in the update
-     *                                mask. `name` and output only fields cannot be updated.
+     *                                bucket field will be overwritten if, and only if, it is in the update mask.
+     *                                `name` and output only fields cannot be updated.
      *
-     *                                For a detailed `FieldMask` definition, see
+     *                                For a detailed `FieldMask` definition, see:
      *                                https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
      *
-     *                                Example: `updateMask=retention_days`.
+     *                                For example: `updateMask=retention_days`
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -2342,11 +2713,11 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Updates the Logs Router CMEK settings for the given resource.
+     * Updates the Log Router CMEK settings for the given resource.
      *
-     * Note: CMEK for the Logs Router can currently only be configured for GCP
-     * organizations. Once configured, it applies to all projects and folders in
-     * the GCP organization.
+     * Note: CMEK for the Log Router can currently only be configured for Google
+     * Cloud organizations. Once configured, it applies to all projects and
+     * folders in the Google Cloud organization.
      *
      * [UpdateCmekSettings][google.logging.v2.ConfigServiceV2.UpdateCmekSettings]
      * will fail if 1) `kms_key_name` is invalid, or 2) the associated service
@@ -2354,7 +2725,7 @@ class ConfigServiceV2GapicClient
      * `roles/cloudkms.cryptoKeyEncrypterDecrypter` role assigned for the key, or
      * 3) access to the key is disabled.
      *
-     * See [Enabling CMEK for Logs
+     * See [Enabling CMEK for Log
      * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
      * for more information.
      *
@@ -2379,15 +2750,17 @@ class ConfigServiceV2GapicClient
      *           "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
      *           "folders/[FOLDER_ID]/cmekSettings"
      *
-     *           Example: `"organizations/12345/cmekSettings"`.
+     *           For example:
      *
-     *           Note: CMEK for the Logs Router can currently only be configured for GCP
-     *           organizations. Once configured, it applies to all projects and folders in
-     *           the GCP organization.
+     *           `"organizations/12345/cmekSettings"`
+     *
+     *           Note: CMEK for the Log Router can currently only be configured for Google
+     *           Cloud organizations. Once configured, it applies to all projects and
+     *           folders in the Google Cloud organization.
      *     @type CmekSettings $cmekSettings
      *           Required. The CMEK settings to update.
      *
-     *           See [Enabling CMEK for Logs
+     *           See [Enabling CMEK for Log
      *           Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
      *           for more information.
      *     @type FieldMask $updateMask
@@ -2397,7 +2770,7 @@ class ConfigServiceV2GapicClient
      *
      *           See [FieldMask][google.protobuf.FieldMask] for more information.
      *
-     *           Example: `"updateMask=kmsKeyName"`
+     *           For example: `"updateMask=kmsKeyName"`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -2432,7 +2805,8 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Changes one or more properties of an existing exclusion.
+     * Changes one or more properties of an existing exclusion in the _Default
+     * sink.
      *
      * Sample code:
      * ```
@@ -2454,7 +2828,9 @@ class ConfigServiceV2GapicClient
      *                                   "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
      *                                   "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
      *
-     *                                   Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     *                                   For example:
+     *
+     *                                   `"projects/my-project/exclusions/my-exclusion"`
      * @param LogExclusion $exclusion    Required. New values for the existing exclusion. Only the fields specified in
      *                                   `update_mask` are relevant.
      * @param FieldMask    $updateMask   Required. A non-empty list of fields to change in the existing exclusion. New values
@@ -2492,6 +2868,90 @@ class ConfigServiceV2GapicClient
     }
 
     /**
+     * Updates the Log Router settings for the given resource.
+     *
+     * Note: Settings for the Log Router can currently only be configured for
+     * Google Cloud organizations. Once configured, it applies to all projects and
+     * folders in the Google Cloud organization.
+     *
+     * [UpdateSettings][google.logging.v2.ConfigServiceV2.UpdateSettings]
+     * will fail if 1) `kms_key_name` is invalid, or 2) the associated service
+     * account does not have the required
+     * `roles/cloudkms.cryptoKeyEncrypterDecrypter` role assigned for the key, or
+     * 3) access to the key is disabled. 4) `location_id` is not supported by
+     * Logging. 5) `location_id` violate OrgPolicy.
+     *
+     * See [Enabling CMEK for Log
+     * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+     * for more information.
+     *
+     * Sample code:
+     * ```
+     * $configServiceV2Client = new ConfigServiceV2Client();
+     * try {
+     *     $name = 'name';
+     *     $settings = new Settings();
+     *     $response = $configServiceV2Client->updateSettings($name, $settings);
+     * } finally {
+     *     $configServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string   $name         Required. The resource name for the settings to update.
+     *
+     *                               "organizations/[ORGANIZATION_ID]/settings"
+     *
+     *                               For example:
+     *
+     *                               `"organizations/12345/settings"`
+     *
+     *                               Note: Settings for the Log Router can currently only be configured for
+     *                               Google Cloud organizations. Once configured, it applies to all projects and
+     *                               folders in the Google Cloud organization.
+     * @param Settings $settings     Required. The settings to update.
+     *
+     *                               See [Enabling CMEK for Log
+     *                               Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+     *                               for more information.
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           Optional. Field mask identifying which fields from `settings` should
+     *           be updated. A field will be overwritten if and only if it is in the update
+     *           mask. Output only fields cannot be updated.
+     *
+     *           See [FieldMask][google.protobuf.FieldMask] for more information.
+     *
+     *           For example: `"updateMask=kmsKeyName"`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Logging\V2\Settings
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateSettings($name, $settings, array $optionalArgs = [])
+    {
+        $request = new UpdateSettingsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setSettings($settings);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateSettings', Settings::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Updates a sink. This method replaces the following fields in the existing
      * sink with values from the new sink: `destination`, and `filter`.
      *
@@ -2518,7 +2978,9 @@ class ConfigServiceV2GapicClient
      *                              "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
      *                              "folders/[FOLDER_ID]/sinks/[SINK_ID]"
      *
-     *                              Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     *                              For example:
+     *
+     *                              `"projects/my-project/sinks/my-sink"`
      * @param LogSink $sink         Required. The updated sink, whose name is the same identifier that appears as part
      *                              of `sink_name`.
      * @param array   $optionalArgs {
@@ -2541,16 +3003,18 @@ class ConfigServiceV2GapicClient
      *           an update. A sink field will be overwritten if, and only if, it is
      *           in the update mask. `name` and output only fields cannot be updated.
      *
-     *           An empty updateMask is temporarily treated as using the following mask
+     *           An empty `updateMask` is temporarily treated as using the following mask
      *           for backwards compatibility purposes:
-     *           destination,filter,includeChildren
+     *
+     *           `destination,filter,includeChildren`
+     *
      *           At some point in the future, behavior will be removed and specifying an
-     *           empty updateMask will be an error.
+     *           empty `updateMask` will be an error.
      *
      *           For a detailed `FieldMask` definition, see
      *           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
      *
-     *           Example: `updateMask=filter`.
+     *           For example: `updateMask=filter`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -2583,8 +3047,11 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Updates a view. This method replaces the following fields in the existing
-     * view with values from the new view: `filter`.
+     * Updates a view on a log bucket. This method replaces the following fields
+     * in the existing view with values from the new view: `filter`.
+     * If an `UNAVAILABLE` error is returned, this indicates that system is not in
+     * a state where it can update the view. If this occurs, please try again in a
+     * few minutes.
      *
      * Sample code:
      * ```
@@ -2602,8 +3069,9 @@ class ConfigServiceV2GapicClient
      *
      *                              "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
      *
-     *                              Example:
-     *                              `"projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view-id"`.
+     *                              For example:
+     *
+     *                              `"projects/my-project/locations/global/buckets/my-bucket/views/my-view"`
      * @param LogView $view         Required. The updated view.
      * @param array   $optionalArgs {
      *     Optional.
@@ -2616,7 +3084,7 @@ class ConfigServiceV2GapicClient
      *           For a detailed `FieldMask` definition, see
      *           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
      *
-     *           Example: `updateMask=filter`.
+     *           For example: `updateMask=filter`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry

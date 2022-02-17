@@ -16,17 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateBucketRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource in which to create the bucket:
+     * Required. The resource in which to create the log bucket:
      *     "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
-     * Example: `"projects/my-logging-project/locations/global"`
+     * For example:
+     *   `"projects/my-project/locations/global"`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Required. A client-assigned identifier such as `"my-bucket"`. Identifiers are
-     * limited to 100 characters and can include only letters, digits,
-     * underscores, hyphens, and periods.
+     * Required. A client-assigned identifier such as `"my-bucket"`. Identifiers are limited
+     * to 100 characters and can include only letters, digits, underscores,
+     * hyphens, and periods.
      *
      * Generated from protobuf field <code>string bucket_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -47,13 +48,14 @@ class CreateBucketRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource in which to create the bucket:
+     *           Required. The resource in which to create the log bucket:
      *               "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
-     *           Example: `"projects/my-logging-project/locations/global"`
+     *           For example:
+     *             `"projects/my-project/locations/global"`
      *     @type string $bucket_id
-     *           Required. A client-assigned identifier such as `"my-bucket"`. Identifiers are
-     *           limited to 100 characters and can include only letters, digits,
-     *           underscores, hyphens, and periods.
+     *           Required. A client-assigned identifier such as `"my-bucket"`. Identifiers are limited
+     *           to 100 characters and can include only letters, digits, underscores,
+     *           hyphens, and periods.
      *     @type \Google\Cloud\Logging\V2\LogBucket $bucket
      *           Required. The new bucket. The region specified in the new bucket must be compliant
      *           with any Location Restriction Org Policy. The name field in the bucket is
@@ -66,9 +68,10 @@ class CreateBucketRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource in which to create the bucket:
+     * Required. The resource in which to create the log bucket:
      *     "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
-     * Example: `"projects/my-logging-project/locations/global"`
+     * For example:
+     *   `"projects/my-project/locations/global"`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -79,9 +82,10 @@ class CreateBucketRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource in which to create the bucket:
+     * Required. The resource in which to create the log bucket:
      *     "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
-     * Example: `"projects/my-logging-project/locations/global"`
+     * For example:
+     *   `"projects/my-project/locations/global"`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -96,9 +100,9 @@ class CreateBucketRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A client-assigned identifier such as `"my-bucket"`. Identifiers are
-     * limited to 100 characters and can include only letters, digits,
-     * underscores, hyphens, and periods.
+     * Required. A client-assigned identifier such as `"my-bucket"`. Identifiers are limited
+     * to 100 characters and can include only letters, digits, underscores,
+     * hyphens, and periods.
      *
      * Generated from protobuf field <code>string bucket_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -109,9 +113,9 @@ class CreateBucketRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A client-assigned identifier such as `"my-bucket"`. Identifiers are
-     * limited to 100 characters and can include only letters, digits,
-     * underscores, hyphens, and periods.
+     * Required. A client-assigned identifier such as `"my-bucket"`. Identifiers are limited
+     * to 100 characters and can include only letters, digits, underscores,
+     * hyphens, and periods.
      *
      * Generated from protobuf field <code>string bucket_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
