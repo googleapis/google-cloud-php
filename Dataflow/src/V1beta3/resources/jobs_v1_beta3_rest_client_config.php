@@ -16,12 +16,12 @@ return [
             ],
             'CreateJob' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1b3/projects/{project_id}/jobs',
+                'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/jobs',
                 'body' => 'job',
                 'additionalBindings' => [
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/jobs',
+                        'uriTemplate' => '/v1b3/projects/{project_id}/jobs',
                         'body' => 'job',
                     ],
                 ],
@@ -40,11 +40,11 @@ return [
             ],
             'GetJob' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1b3/projects/{project_id}/jobs/{job_id}',
+                'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/jobs/{job_id}',
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/jobs/{job_id}',
+                        'uriTemplate' => '/v1b3/projects/{project_id}/jobs/{job_id}',
                     ],
                 ],
                 'placeholders' => [
@@ -67,11 +67,11 @@ return [
             ],
             'ListJobs' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1b3/projects/{project_id}/jobs',
+                'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/jobs',
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/jobs',
+                        'uriTemplate' => '/v1b3/projects/{project_id}/jobs',
                     ],
                 ],
                 'placeholders' => [
@@ -89,12 +89,12 @@ return [
             ],
             'SnapshotJob' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1b3/projects/{project_id}/jobs/{job_id}:snapshot',
+                'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/jobs/{job_id}:snapshot',
                 'body' => '*',
                 'additionalBindings' => [
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/jobs/{job_id}:snapshot',
+                        'uriTemplate' => '/v1b3/projects/{project_id}/jobs/{job_id}:snapshot',
                         'body' => '*',
                     ],
                 ],
@@ -118,12 +118,12 @@ return [
             ],
             'UpdateJob' => [
                 'method' => 'put',
-                'uriTemplate' => '/v1b3/projects/{project_id}/jobs/{job_id}',
+                'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/jobs/{job_id}',
                 'body' => 'job',
                 'additionalBindings' => [
                     [
                         'method' => 'put',
-                        'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/jobs/{job_id}',
+                        'uriTemplate' => '/v1b3/projects/{project_id}/jobs/{job_id}',
                         'body' => 'job',
                     ],
                 ],

@@ -5,11 +5,11 @@ return [
         'google.dataflow.v1beta3.SnapshotsV1Beta3' => [
             'DeleteSnapshot' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1b3/projects/{project_id}/snapshots',
+                'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/snapshots/{snapshot_id}',
                 'additionalBindings' => [
                     [
                         'method' => 'delete',
-                        'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/snapshots/{snapshot_id}',
+                        'uriTemplate' => '/v1b3/projects/{project_id}/snapshots',
                     ],
                 ],
                 'placeholders' => [
@@ -32,11 +32,11 @@ return [
             ],
             'GetSnapshot' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1b3/projects/{project_id}/snapshots/{snapshot_id}',
+                'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/snapshots/{snapshot_id}',
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/snapshots/{snapshot_id}',
+                        'uriTemplate' => '/v1b3/projects/{project_id}/snapshots/{snapshot_id}',
                     ],
                 ],
                 'placeholders' => [
@@ -59,7 +59,7 @@ return [
             ],
             'ListSnapshots' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1b3/projects/{project_id}/snapshots',
+                'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/jobs/{job_id}/snapshots',
                 'additionalBindings' => [
                     [
                         'method' => 'get',
@@ -67,7 +67,7 @@ return [
                     ],
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/jobs/{job_id}/snapshots',
+                        'uriTemplate' => '/v1b3/projects/{project_id}/snapshots',
                     ],
                 ],
                 'placeholders' => [

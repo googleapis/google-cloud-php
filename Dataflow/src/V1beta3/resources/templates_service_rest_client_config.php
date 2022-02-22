@@ -5,12 +5,12 @@ return [
         'google.dataflow.v1beta3.TemplatesService' => [
             'CreateJobFromTemplate' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1b3/projects/{project_id}/templates',
+                'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/templates',
                 'body' => '*',
                 'additionalBindings' => [
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/templates',
+                        'uriTemplate' => '/v1b3/projects/{project_id}/templates',
                         'body' => '*',
                     ],
                 ],
@@ -29,11 +29,11 @@ return [
             ],
             'GetTemplate' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1b3/projects/{project_id}/templates:get',
+                'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/templates:get',
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/templates:get',
+                        'uriTemplate' => '/v1b3/projects/{project_id}/templates:get',
                     ],
                 ],
                 'placeholders' => [
@@ -51,12 +51,12 @@ return [
             ],
             'LaunchTemplate' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1b3/projects/{project_id}/templates:launch',
+                'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/templates:launch',
                 'body' => 'launch_parameters',
                 'additionalBindings' => [
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/templates:launch',
+                        'uriTemplate' => '/v1b3/projects/{project_id}/templates:launch',
                         'body' => 'launch_parameters',
                     ],
                 ],
