@@ -16,11 +16,10 @@ class ExternalSystem
         }
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ò
-4google/cloud/securitycenter/v1/external_system.protogoogle.cloud.securitycenter.v1google/protobuf/timestamp.protogoogle/api/annotations.proto"à
+Ô
+4google/cloud/securitycenter/v1/external_system.protogoogle.cloud.securitycenter.v1google/protobuf/timestamp.proto"à
 ExternalSystem
 name (	
 	assignees (	
