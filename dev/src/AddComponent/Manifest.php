@@ -130,7 +130,7 @@ class Manifest
             'id' => $this->info['name'],
             'name' => 'google/'. $this->info['name'],
             'defaultService' => $defaultService,
-            'versions' => ['master']
+            'versions' => ['main']
         ];
 
         $modules[] = $manifestEntry;

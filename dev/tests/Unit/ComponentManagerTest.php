@@ -168,13 +168,13 @@ class ComponentManagerTest extends TestCase
                 'id' => 'component-a',
                 'versions' => [
                     'v0.1.0',
-                    'master'
+                    'main'
                 ]
             ], [
                 'id' => 'component-b',
                 'versions' => [
                     'v1.0.0',
-                    'master'
+                    'main'
                 ]
             ]
         ]
