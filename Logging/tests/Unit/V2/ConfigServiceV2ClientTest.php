@@ -993,10 +993,14 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $kmsServiceAccountId = 'kmsServiceAccountId-263326747';
         $storageLocation = 'storageLocation-612882183';
         $disableDefaultSink = true;
         $expectedResponse = new Settings();
         $expectedResponse->setName($name2);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setKmsServiceAccountId($kmsServiceAccountId);
         $expectedResponse->setStorageLocation($storageLocation);
         $expectedResponse->setDisableDefaultSink($disableDefaultSink);
         $transport->addResponse($expectedResponse);
@@ -1780,10 +1784,14 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $kmsServiceAccountId = 'kmsServiceAccountId-263326747';
         $storageLocation = 'storageLocation-612882183';
         $disableDefaultSink = true;
         $expectedResponse = new Settings();
         $expectedResponse->setName($name2);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setKmsServiceAccountId($kmsServiceAccountId);
         $expectedResponse->setStorageLocation($storageLocation);
         $expectedResponse->setDisableDefaultSink($disableDefaultSink);
         $transport->addResponse($expectedResponse);
