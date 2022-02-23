@@ -23,7 +23,7 @@ class JWK
     /**
      * Parse a set of JWK keys
      *
-     * @param array $jwks The JSON Web Key Set as an associative array
+     * @param array<mixed> $jwks The JSON Web Key Set as an associative array
      *
      * @return array<string, Key> An associative array of key IDs (kid) to Key objects
      *
@@ -48,7 +48,7 @@ class JWK
         foreach ($jwks['keys'] as $k => $v) {
             $kid = isset($v['kid']) ? $v['kid'] : $k;
             if ($key = self::parseKey($v)) {
-                $keys[$kid] = $key;
+                $keys[(string) $kid] = $key;
             }
         }
 
@@ -62,7 +62,7 @@ class JWK
     /**
      * Parse a JWK key
      *
-     * @param array $jwk An individual JWK
+     * @param array<mixed> $jwk An individual JWK
      *
      * @return Key The key object for the JWK
      *
@@ -124,10 +124,16 @@ class JWK
      *
      * @uses encodeLength
      */
-    private static function createPemFromModulusAndExponent($n, $e)
-    {
-        $modulus = JWT::urlsafeB64Decode($n);
-        $publicExponent = JWT::urlsafeB64Decode($e);
+    private static function createPemFromModulusAndExponent(
+        string $n,
+        string $e
+    ): string {
+        if (false === ($modulus = JWT::urlsafeB64Decode($n))) {
+            throw new UnexpectedValueException('Invalid JWK encoding');
+        }
+        if (false === ($publicExponent = JWT::urlsafeB64Decode($e))) {
+            throw new UnexpectedValueException('Invalid header encoding');
+        }
 
         $components = [
             'modulus' => \pack('Ca*a*', 2, self::encodeLength(\strlen($modulus)), $modulus),

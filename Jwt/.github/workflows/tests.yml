@@ -54,4 +54,4 @@ jobs:
     - name: Run Script
       run: |
         composer global require phpstan/phpstan
-        ~/.composer/vendor/bin/phpstan analyse src
+        ~/.composer/vendor/bin/phpstan analyse
