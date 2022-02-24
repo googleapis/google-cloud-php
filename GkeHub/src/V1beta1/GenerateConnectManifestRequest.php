@@ -18,8 +18,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GenerateConnectManifestRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The Membership resource name the Agent will associate with, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
+     * Required. The Membership resource name the Agent will associate with, in
+     * the format `projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -31,7 +31,8 @@ class GenerateConnectManifestRequest extends \Google\Protobuf\Internal\Message
      */
     private $connect_agent = null;
     /**
-     * Optional. The Connect agent version to use. Defaults to the most current version.
+     * Optional. The Connect agent version to use. Defaults to the most current
+     * version.
      *
      * Generated from protobuf field <code>string version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -64,12 +65,13 @@ class GenerateConnectManifestRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The Membership resource name the Agent will associate with, in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
+     *           Required. The Membership resource name the Agent will associate with, in
+     *           the format `projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
      *     @type \Google\Cloud\GkeHub\V1beta1\ConnectAgent $connect_agent
      *           Optional. The connect agent to generate manifest for.
      *     @type string $version
-     *           Optional. The Connect agent version to use. Defaults to the most current version.
+     *           Optional. The Connect agent version to use. Defaults to the most current
+     *           version.
      *     @type bool $is_upgrade
      *           Optional. If true, generate the resources for upgrade only. Some resources
      *           generated only for installation (e.g. secrets) will be excluded.
@@ -86,8 +88,8 @@ class GenerateConnectManifestRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Membership resource name the Agent will associate with, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
+     * Required. The Membership resource name the Agent will associate with, in
+     * the format `projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -98,8 +100,8 @@ class GenerateConnectManifestRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Membership resource name the Agent will associate with, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
+     * Required. The Membership resource name the Agent will associate with, in
+     * the format `projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -150,7 +152,8 @@ class GenerateConnectManifestRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Connect agent version to use. Defaults to the most current version.
+     * Optional. The Connect agent version to use. Defaults to the most current
+     * version.
      *
      * Generated from protobuf field <code>string version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -161,7 +164,8 @@ class GenerateConnectManifestRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Connect agent version to use. Defaults to the most current version.
+     * Optional. The Connect agent version to use. Defaults to the most current
+     * version.
      *
      * Generated from protobuf field <code>string version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
