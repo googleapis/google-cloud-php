@@ -3,6 +3,25 @@
 return [
     'interfaces' => [
         'google.cloud.dialogflow.v2.ConversationProfiles' => [
+            'ClearSuggestionFeatureConfig' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{conversation_profile=projects/*/conversationProfiles/*}:clearSuggestionFeatureConfig',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{conversation_profile=projects/*/locations/*/conversationProfiles/*}:clearSuggestionFeatureConfig',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'conversation_profile' => [
+                        'getters' => [
+                            'getConversationProfile',
+                        ],
+                    ],
+                ],
+            ],
             'CreateConversationProfile' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*}/conversationProfiles',
@@ -69,6 +88,25 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'SetSuggestionFeatureConfig' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{conversation_profile=projects/*/conversationProfiles/*}:setSuggestionFeatureConfig',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{conversation_profile=projects/*/locations/*/conversationProfiles/*}:setSuggestionFeatureConfig',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'conversation_profile' => [
+                        'getters' => [
+                            'getConversationProfile',
                         ],
                     ],
                 ],
