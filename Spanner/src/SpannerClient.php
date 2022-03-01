@@ -619,7 +619,7 @@ class SpannerClient
      *
      * Example:
      * ```
-     * $numeric = $spanner->numeric('99999999999999999999999999999999999999.999999999');
+     * $pgNumeric = $spanner->pgNumeric('99999999999999999999999999999999999999.000000999999999');
      * ```
      *
      * @param string|int|float $value The Numeric value.
