@@ -21,6 +21,7 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\V1\TypeCode;
+use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 
 /**
  * Manage value mappings between Google Cloud PHP and Cloud Spanner
@@ -274,7 +275,12 @@ class ValueMapper
                 break;
 
             case self::TYPE_NUMERIC:
-                $value = new Numeric($value);
+                if(isset($type['typeAnnotation']) && $type['typeAnnotation'] === TypeAnnotationCode::PG_NUMERIC) {
+                    $value = new PgNumeric($value);
+                }
+                else {
+                    $value = new Numeric($value);
+                }
                 break;
 
             case self::TYPE_FLOAT64:
