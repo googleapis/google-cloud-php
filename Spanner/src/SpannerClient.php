@@ -610,6 +610,28 @@ class SpannerClient
     }
 
     /**
+     * Represents a value with a data type of
+     * [PG Numeric](https://cloud.google.com/spanner/docs/data-types) for the 
+     * Postgres Dialect database.
+     *
+     * It supports a value precision of up to 131072 digits before the decimal point
+     * and up to 16383 digits after the decimal point
+     *
+     * Example:
+     * ```
+     * $numeric = $spanner->numeric('99999999999999999999999999999999999999.999999999');
+     * ```
+     *
+     * @param string|int|float $value The Numeric value.
+     * @return Numeric
+     * @throws \InvalidArgumentException
+     */
+    public function pgNumeric($value)
+    {
+        return new PgNumeric($value);
+    }
+
+    /**
      * Create an Int64 object. This can be used to work with 64 bit integers as
      * a string value while on a 32 bit platform.
      *

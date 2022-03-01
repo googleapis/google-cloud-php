@@ -621,6 +621,7 @@ class ValueMapper
 
         $type = $this->typeObject(
             self::TYPE_ARRAY,
+            null,
             $typeObject,
             'arrayElementType'
         );
@@ -643,8 +644,12 @@ class ValueMapper
         }
 
         if ($value instanceof ValueInterface) {
+            $typeAnnotation = $value instanceof TypeAnnotationInterface
+                          ? $value->typeAnnotation()
+                          : null;
+
             return [
-                $this->typeObject($value->type()),
+                $this->typeObject($value->type(), $typeAnnotation),
                 $value->formatAsString()
             ];
         }
@@ -667,17 +672,19 @@ class ValueMapper
      * Create a type object with a code and definition, if provided.
      *
      * @param int $type The type code.
+     * @param int $typeAnnotation The type annotation code
      * @param array $nestedDefinition [optional] A nested definition, to define
      *        the structure of an array or struct type.
      * @param string $nestedDefinitionType [optional] Either `arrayElementType`
      *        or `structType`.
      * @return array
      */
-    private function typeObject($type, array $nestedDefinition = [], $nestedDefinitionType = null)
+    private function typeObject($type, $typeAnnotation = null, array $nestedDefinition = [], $nestedDefinitionType = null)
     {
         return array_filter([
             'code' => $type,
-            $nestedDefinitionType => $nestedDefinition
+            $nestedDefinitionType => $nestedDefinition,
+            'typeAnnotation' => $typeAnnotation
         ]);
     }
 
