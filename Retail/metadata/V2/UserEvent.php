@@ -14,7 +14,6 @@ class UserEvent
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Cloud\Retail\V2\Common::initOnce();
         \GPBMetadata\Google\Cloud\Retail\V2\Product::initOnce();
@@ -22,8 +21,8 @@ class UserEvent
         \GPBMetadata\Google\Protobuf\Wrappers::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ÿ
-\'google/cloud/retail/v2/user_event.protogoogle.cloud.retail.v2google/api/field_behavior.proto#google/cloud/retail/v2/common.proto$google/cloud/retail/v2/product.protogoogle/protobuf/timestamp.protogoogle/protobuf/wrappers.proto"‡
+þ
+\'google/cloud/retail/v2/user_event.protogoogle.cloud.retail.v2#google/cloud/retail/v2/common.proto$google/cloud/retail/v2/product.protogoogle/protobuf/timestamp.protogoogle/protobuf/wrappers.proto"‡
 	UserEvent
 
 event_type (	BàA
