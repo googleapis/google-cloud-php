@@ -18,15 +18,13 @@ class UptimeService
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
-        \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Monitoring\V3\Uptime::initOnce();
-        \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ê
-)google/monitoring/v3/uptime_service.protogoogle.monitoring.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/longrunning/operations.proto!google/monitoring/v3/uptime.protogoogle/protobuf/duration.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"‹
+…
+)google/monitoring/v3/uptime_service.protogoogle.monitoring.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto!google/monitoring/v3/uptime.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"‹
 ListUptimeCheckConfigsRequestC
 parent (	B3àAúA-+monitoring.googleapis.com/UptimeCheckConfig
 	page_size (
