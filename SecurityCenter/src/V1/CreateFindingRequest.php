@@ -31,8 +31,8 @@ class CreateFindingRequest extends \Google\Protobuf\Internal\Message
      */
     private $finding_id = '';
     /**
-     * Required. The Finding being created. The name and security_marks will be ignored as
-     * they are both output only fields on this resource.
+     * Required. The Finding being created. The name and security_marks will be
+     * ignored as they are both output only fields on this resource.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding finding = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -52,8 +52,8 @@ class CreateFindingRequest extends \Google\Protobuf\Internal\Message
      *           It must be alphanumeric and less than or equal to 32 characters and
      *           greater than 0 characters in length.
      *     @type \Google\Cloud\SecurityCenter\V1\Finding $finding
-     *           Required. The Finding being created. The name and security_marks will be ignored as
-     *           they are both output only fields on this resource.
+     *           Required. The Finding being created. The name and security_marks will be
+     *           ignored as they are both output only fields on this resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -120,8 +120,8 @@ class CreateFindingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Finding being created. The name and security_marks will be ignored as
-     * they are both output only fields on this resource.
+     * Required. The Finding being created. The name and security_marks will be
+     * ignored as they are both output only fields on this resource.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding finding = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\SecurityCenter\V1\Finding|null
@@ -142,8 +142,8 @@ class CreateFindingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Finding being created. The name and security_marks will be ignored as
-     * they are both output only fields on this resource.
+     * Required. The Finding being created. The name and security_marks will be
+     * ignored as they are both output only fields on this resource.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding finding = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\SecurityCenter\V1\Finding $var

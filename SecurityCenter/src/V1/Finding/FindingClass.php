@@ -45,6 +45,12 @@ class FindingClass
      * Generated from protobuf enum <code>OBSERVATION = 4;</code>
      */
     const OBSERVATION = 4;
+    /**
+     * Describes an error that prevents some SCC functionality.
+     *
+     * Generated from protobuf enum <code>SCC_ERROR = 5;</code>
+     */
+    const SCC_ERROR = 5;
 
     private static $valueToName = [
         self::FINDING_CLASS_UNSPECIFIED => 'FINDING_CLASS_UNSPECIFIED',
@@ -52,6 +58,7 @@ class FindingClass
         self::VULNERABILITY => 'VULNERABILITY',
         self::MISCONFIGURATION => 'MISCONFIGURATION',
         self::OBSERVATION => 'OBSERVATION',
+        self::SCC_ERROR => 'SCC_ERROR',
     ];
 
     public static function name($value)

@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateFindingRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The finding resource to update or create if it does not already exist.
-     * parent, security_marks, and update_time will be ignored.
+     * Required. The finding resource to update or create if it does not already
+     * exist. parent, security_marks, and update_time will be ignored.
      * In the case of creation, the finding id portion of the name must be
      * alphanumeric and less than or equal to 32 characters and greater than 0
      * characters in length.
@@ -44,8 +44,8 @@ class UpdateFindingRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\SecurityCenter\V1\Finding $finding
-     *           Required. The finding resource to update or create if it does not already exist.
-     *           parent, security_marks, and update_time will be ignored.
+     *           Required. The finding resource to update or create if it does not already
+     *           exist. parent, security_marks, and update_time will be ignored.
      *           In the case of creation, the finding id portion of the name must be
      *           alphanumeric and less than or equal to 32 characters and greater than 0
      *           characters in length.
@@ -64,8 +64,8 @@ class UpdateFindingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The finding resource to update or create if it does not already exist.
-     * parent, security_marks, and update_time will be ignored.
+     * Required. The finding resource to update or create if it does not already
+     * exist. parent, security_marks, and update_time will be ignored.
      * In the case of creation, the finding id portion of the name must be
      * alphanumeric and less than or equal to 32 characters and greater than 0
      * characters in length.
@@ -89,8 +89,8 @@ class UpdateFindingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The finding resource to update or create if it does not already exist.
-     * parent, security_marks, and update_time will be ignored.
+     * Required. The finding resource to update or create if it does not already
+     * exist. parent, security_marks, and update_time will be ignored.
      * In the case of creation, the finding id portion of the name must be
      * alphanumeric and less than or equal to 32 characters and greater than 0
      * characters in length.

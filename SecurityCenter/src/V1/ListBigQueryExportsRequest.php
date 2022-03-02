@@ -9,16 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for listing  mute configs at a given scope e.g. organization,
- * folder or project.
+ * Request message for listing  BigQuery exports at a given scope e.g.
+ * organization, folder or project.
  *
- * Generated from protobuf message <code>google.cloud.securitycenter.v1.ListMuteConfigsRequest</code>
+ * Generated from protobuf message <code>google.cloud.securitycenter.v1.ListBigQueryExportsRequest</code>
  */
-class ListMuteConfigsRequest extends \Google\Protobuf\Internal\Message
+class ListBigQueryExportsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent, which owns the collection of mute configs. Its format
-     * is "organizations/[organization_id]", "folders/[folder_id]",
+     * Required. The parent, which owns the collection of BigQuery exports. Its
+     * format is "organizations/[organization_id]", "folders/[folder_id]",
      * "projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -34,10 +34,10 @@ class ListMuteConfigsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
     /**
-     * A page token, received from a previous `ListMuteConfigs` call.
+     * A page token, received from a previous `ListBigQueryExports` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListMuteConfigs` must
-     * match the call that provided the page token.
+     * When paginating, all other parameters provided to `ListBigQueryExports`
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
@@ -50,8 +50,8 @@ class ListMuteConfigsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent, which owns the collection of mute configs. Its format
-     *           is "organizations/[organization_id]", "folders/[folder_id]",
+     *           Required. The parent, which owns the collection of BigQuery exports. Its
+     *           format is "organizations/[organization_id]", "folders/[folder_id]",
      *           "projects/[project_id]".
      *     @type int $page_size
      *           The maximum number of configs to return. The service may return fewer than
@@ -59,10 +59,10 @@ class ListMuteConfigsRequest extends \Google\Protobuf\Internal\Message
      *           If unspecified, at most 10 configs will be returned.
      *           The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     @type string $page_token
-     *           A page token, received from a previous `ListMuteConfigs` call.
+     *           A page token, received from a previous `ListBigQueryExports` call.
      *           Provide this to retrieve the subsequent page.
-     *           When paginating, all other parameters provided to `ListMuteConfigs` must
-     *           match the call that provided the page token.
+     *           When paginating, all other parameters provided to `ListBigQueryExports`
+     *           must match the call that provided the page token.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,8 +71,8 @@ class ListMuteConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent, which owns the collection of mute configs. Its format
-     * is "organizations/[organization_id]", "folders/[folder_id]",
+     * Required. The parent, which owns the collection of BigQuery exports. Its
+     * format is "organizations/[organization_id]", "folders/[folder_id]",
      * "projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -84,8 +84,8 @@ class ListMuteConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent, which owns the collection of mute configs. Its format
-     * is "organizations/[organization_id]", "folders/[folder_id]",
+     * Required. The parent, which owns the collection of BigQuery exports. Its
+     * format is "organizations/[organization_id]", "folders/[folder_id]",
      * "projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -133,10 +133,10 @@ class ListMuteConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token, received from a previous `ListMuteConfigs` call.
+     * A page token, received from a previous `ListBigQueryExports` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListMuteConfigs` must
-     * match the call that provided the page token.
+     * When paginating, all other parameters provided to `ListBigQueryExports`
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -147,10 +147,10 @@ class ListMuteConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token, received from a previous `ListMuteConfigs` call.
+     * A page token, received from a previous `ListBigQueryExports` call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListMuteConfigs` must
-     * match the call that provided the page token.
+     * When paginating, all other parameters provided to `ListBigQueryExports`
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var
