@@ -141,6 +141,21 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Gets a big query export.
+     * @param \Google\Cloud\SecurityCenter\V1\GetBigQueryExportRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetBigQueryExport(\Google\Cloud\SecurityCenter\V1\GetBigQueryExportRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/GetBigQueryExport',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\BigQueryExport', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Gets the access control policy on the specified Source.
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
@@ -515,6 +530,70 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/UpdateSecurityMarks',
         $argument,
         ['\Google\Cloud\SecurityCenter\V1\SecurityMarks', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a big query export.
+     * @param \Google\Cloud\SecurityCenter\V1\CreateBigQueryExportRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateBigQueryExport(\Google\Cloud\SecurityCenter\V1\CreateBigQueryExportRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/CreateBigQueryExport',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\BigQueryExport', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes an existing big query export.
+     * @param \Google\Cloud\SecurityCenter\V1\DeleteBigQueryExportRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteBigQueryExport(\Google\Cloud\SecurityCenter\V1\DeleteBigQueryExportRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/DeleteBigQueryExport',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a BigQuery export.
+     * @param \Google\Cloud\SecurityCenter\V1\UpdateBigQueryExportRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateBigQueryExport(\Google\Cloud\SecurityCenter\V1\UpdateBigQueryExportRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/UpdateBigQueryExport',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\BigQueryExport', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists BigQuery exports. Note that when requesting BigQuery exports at a
+     * given level all exports under that level are also returned e.g. if
+     * requesting BigQuery exports under a folder, then all BigQuery exports
+     * immediately under the folder plus the ones created under the projects
+     * within the folder are returned.
+     * @param \Google\Cloud\SecurityCenter\V1\ListBigQueryExportsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListBigQueryExports(\Google\Cloud\SecurityCenter\V1\ListBigQueryExportsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/ListBigQueryExports',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\ListBigQueryExportsResponse', 'decode'],
         $metadata, $options);
     }
 

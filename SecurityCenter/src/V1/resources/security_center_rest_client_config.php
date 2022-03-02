@@ -27,6 +27,39 @@ return [
                     ],
                 ],
             ],
+            'CreateBigQueryExport' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*}/bigQueryExports',
+                'body' => 'big_query_export',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=folders/*}/bigQueryExports',
+                        'body' => 'big_query_export',
+                        'queryParams' => [
+                            'big_query_export_id',
+                        ],
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*}/bigQueryExports',
+                        'body' => 'big_query_export',
+                        'queryParams' => [
+                            'big_query_export_id',
+                        ],
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'big_query_export_id',
+                ],
+            ],
             'CreateFinding' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=organizations/*/sources/*}/findings',
@@ -102,6 +135,27 @@ return [
                     ],
                 ],
             ],
+            'DeleteBigQueryExport' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=organizations/*/bigQueryExports/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=folders/*/bigQueryExports/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/bigQueryExports/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteMuteConfig' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=organizations/*/muteConfigs/*}',
@@ -126,6 +180,27 @@ return [
             'DeleteNotificationConfig' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=organizations/*/notificationConfigs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBigQueryExport' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/bigQueryExports/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=folders/*/bigQueryExports/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/bigQueryExports/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -259,6 +334,27 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{parent=projects/*}/assets',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBigQueryExports' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=organizations/*}/bigQueryExports',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*}/bigQueryExports',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*}/bigQueryExports',
                     ],
                 ],
                 'placeholders' => [
@@ -427,6 +523,31 @@ return [
                     ],
                 ],
             ],
+            'UpdateBigQueryExport' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{big_query_export.name=organizations/*/bigQueryExports/*}',
+                'body' => 'big_query_export',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{big_query_export.name=folders/*/bigQueryExports/*}',
+                        'body' => 'big_query_export',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{big_query_export.name=projects/*/bigQueryExports/*}',
+                        'body' => 'big_query_export',
+                    ],
+                ],
+                'placeholders' => [
+                    'big_query_export.name' => [
+                        'getters' => [
+                            'getBigQueryExport',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateExternalSystem' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{external_system.name=organizations/*/sources/*/findings/*/externalSystems/*}',
@@ -586,7 +707,6 @@ return [
             'CancelOperation' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=organizations/*/operations/*}:cancel',
-                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

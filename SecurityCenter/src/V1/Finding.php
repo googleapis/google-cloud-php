@@ -164,12 +164,19 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $mute_update_time = null;
     /**
-     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
-     * information and external system finding fields.
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external
+     * system information and external system finding fields.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $external_systems;
+    /**
+     * MITRE ATT&CK tactics and techniques related to this finding.
+     * See: https://attack.mitre.org
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.MitreAttack mitre_attack = 25;</code>
+     */
+    private $mitre_attack = null;
     /**
      * Access details associated to the Finding, such as more information on the
      * caller, which method was accessed, from where, etc.
@@ -269,8 +276,11 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $mute_update_time
      *           Output only. The most recent time this finding was muted or unmuted.
      *     @type array|\Google\Protobuf\Internal\MapField $external_systems
-     *           Output only. Third party SIEM/SOAR fields within SCC, contains external system
-     *           information and external system finding fields.
+     *           Output only. Third party SIEM/SOAR fields within SCC, contains external
+     *           system information and external system finding fields.
+     *     @type \Google\Cloud\SecurityCenter\V1\MitreAttack $mitre_attack
+     *           MITRE ATT&CK tactics and techniques related to this finding.
+     *           See: https://attack.mitre.org
      *     @type \Google\Cloud\SecurityCenter\V1\Access $access
      *           Access details associated to the Finding, such as more information on the
      *           caller, which method was accessed, from where, etc.
@@ -871,8 +881,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
-     * information and external system finding fields.
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external
+     * system information and external system finding fields.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -883,8 +893,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
-     * information and external system finding fields.
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external
+     * system information and external system finding fields.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -894,6 +904,44 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\ExternalSystem::class);
         $this->external_systems = $arr;
+
+        return $this;
+    }
+
+    /**
+     * MITRE ATT&CK tactics and techniques related to this finding.
+     * See: https://attack.mitre.org
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.MitreAttack mitre_attack = 25;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\MitreAttack|null
+     */
+    public function getMitreAttack()
+    {
+        return $this->mitre_attack;
+    }
+
+    public function hasMitreAttack()
+    {
+        return isset($this->mitre_attack);
+    }
+
+    public function clearMitreAttack()
+    {
+        unset($this->mitre_attack);
+    }
+
+    /**
+     * MITRE ATT&CK tactics and techniques related to this finding.
+     * See: https://attack.mitre.org
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.MitreAttack mitre_attack = 25;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\MitreAttack $var
+     * @return $this
+     */
+    public function setMitreAttack($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\MitreAttack::class);
+        $this->mitre_attack = $var;
 
         return $this;
     }
