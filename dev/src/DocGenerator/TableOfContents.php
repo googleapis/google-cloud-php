@@ -47,7 +47,7 @@ class TableOfContents
         $tpl['services'] = $this->services($toc);
         $tpl['tagName'] = $this->release
             ? $this->componentVersion
-            : 'master';
+            : 'main';
 
         $writer = new Writer($tpl, $this->outputPath, $pretty);
         $writer->write('toc.json');

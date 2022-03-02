@@ -27,9 +27,10 @@
 namespace Google\Cloud\Dataflow\V1beta3\Gapic;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
+
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -225,8 +226,10 @@ class FlexTemplatesServiceGapicClient
     public function launchFlexTemplate(array $optionalArgs = [])
     {
         $request = new LaunchFlexTemplateRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
         }
 
         if (isset($optionalArgs['launchParameter'])) {
@@ -235,12 +238,19 @@ class FlexTemplatesServiceGapicClient
 
         if (isset($optionalArgs['location'])) {
             $request->setLocation($optionalArgs['location']);
+            $requestParamHeaders['location'] = $optionalArgs['location'];
         }
 
         if (isset($optionalArgs['validateOnly'])) {
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
         return $this->startCall(
             'LaunchFlexTemplate',
             LaunchFlexTemplateResponse::class,

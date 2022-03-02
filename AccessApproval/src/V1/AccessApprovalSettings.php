@@ -17,11 +17,11 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the settings. Format is one of:
-     * - "projects/{project_id}/accessApprovalSettings"
-     * - "folders/{folder_id}/accessApprovalSettings"
-     * - "organizations/{organization_id}/accessApprovalSettings"
+     *   * "projects/{project}/accessApprovalSettings"
+     *   * "folders/{folder}/accessApprovalSettings"
+     *   * "organizations/{organization}/accessApprovalSettings"
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -50,7 +50,7 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
     private $enrolled_services;
     /**
      * Output only. This field is read only (not settable via
-     * UpdateAccessAccessApprovalSettings method). If the field is true, that
+     * UpdateAccessApprovalSettings method). If the field is true, that
      * indicates that at least one service is enrolled for Access Approval in one
      * or more ancestors of the Project or Folder (this field will always be
      * unset for the organization since organizations do not have ancestors).
@@ -67,9 +67,9 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the settings. Format is one of:
-     *           - "projects/{project_id}/accessApprovalSettings"
-     *           - "folders/{folder_id}/accessApprovalSettings"
-     *           - "organizations/{organization_id}/accessApprovalSettings"
+     *             * "projects/{project}/accessApprovalSettings"
+     *             * "folders/{folder}/accessApprovalSettings"
+     *             * "organizations/{organization}/accessApprovalSettings"
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $notification_emails
      *           A list of email addresses to which notifications relating to approval
      *           requests should be sent. Notifications relating to a resource will be sent
@@ -88,7 +88,7 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
      *           services is expanded.
      *     @type bool $enrolled_ancestor
      *           Output only. This field is read only (not settable via
-     *           UpdateAccessAccessApprovalSettings method). If the field is true, that
+     *           UpdateAccessApprovalSettings method). If the field is true, that
      *           indicates that at least one service is enrolled for Access Approval in one
      *           or more ancestors of the Project or Folder (this field will always be
      *           unset for the organization since organizations do not have ancestors).
@@ -101,11 +101,11 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the settings. Format is one of:
-     * - "projects/{project_id}/accessApprovalSettings"
-     * - "folders/{folder_id}/accessApprovalSettings"
-     * - "organizations/{organization_id}/accessApprovalSettings"
+     *   * "projects/{project}/accessApprovalSettings"
+     *   * "folders/{folder}/accessApprovalSettings"
+     *   * "organizations/{organization}/accessApprovalSettings"
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -115,11 +115,11 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the settings. Format is one of:
-     * - "projects/{project_id}/accessApprovalSettings"
-     * - "folders/{folder_id}/accessApprovalSettings"
-     * - "organizations/{organization_id}/accessApprovalSettings"
+     *   * "projects/{project}/accessApprovalSettings"
+     *   * "folders/{folder}/accessApprovalSettings"
+     *   * "organizations/{organization}/accessApprovalSettings"
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -209,7 +209,7 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. This field is read only (not settable via
-     * UpdateAccessAccessApprovalSettings method). If the field is true, that
+     * UpdateAccessApprovalSettings method). If the field is true, that
      * indicates that at least one service is enrolled for Access Approval in one
      * or more ancestors of the Project or Folder (this field will always be
      * unset for the organization since organizations do not have ancestors).
@@ -224,7 +224,7 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. This field is read only (not settable via
-     * UpdateAccessAccessApprovalSettings method). If the field is true, that
+     * UpdateAccessApprovalSettings method). If the field is true, that
      * indicates that at least one service is enrolled for Access Approval in one
      * or more ancestors of the Project or Folder (this field will always be
      * unset for the organization since organizations do not have ancestors).

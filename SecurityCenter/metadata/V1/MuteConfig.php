@@ -17,11 +17,10 @@ class MuteConfig
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ó
-0google/cloud/securitycenter/v1/mute_config.protogoogle.cloud.securitycenter.v1google/api/resource.protogoogle/protobuf/timestamp.protogoogle/api/annotations.proto"®
+µ
+0google/cloud/securitycenter/v1/mute_config.protogoogle.cloud.securitycenter.v1google/api/resource.protogoogle/protobuf/timestamp.proto"®
 
 MuteConfig
 name (	

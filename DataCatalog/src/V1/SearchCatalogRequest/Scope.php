@@ -55,18 +55,20 @@ class Scope extends \Google\Protobuf\Internal\Message
      */
     private $restricted_locations;
     /**
-     * Optional. If `true`, include [public tag
-     * templates][google.cloud.datacatalog.v1.TagTemplate.is_publicly_readable]
-     * in the search results. By default, they are included only if you have
-     * explicit permissions on them to view them. For example, if you are the
-     * owner.
-     * Other scope fields, for example, `include_org_ids`,
-     * still restrict the returned public tag templates and at least one of
-     * them is required.
+     * Optional. If `true`, search only among starred entries.
+     * By default, all results are returned, starred or not.
      *
-     * Generated from protobuf field <code>bool include_public_tag_templates = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool starred_only = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $include_public_tag_templates = false;
+    private $starred_only = false;
+    /**
+     * Optional. This field is deprecated. The search mechanism for public and private tag
+     * templates is the same.
+     *
+     * Generated from protobuf field <code>bool include_public_tag_templates = 19 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
+     */
+    protected $include_public_tag_templates = false;
 
     /**
      * Constructor.
@@ -97,15 +99,12 @@ class Scope extends \Google\Protobuf\Internal\Message
      *           `SearchCatalogResponse.unreachable` field. To get additional information
      *           on the error, repeat the search request and set the location name as the
      *           value of this parameter.
+     *     @type bool $starred_only
+     *           Optional. If `true`, search only among starred entries.
+     *           By default, all results are returned, starred or not.
      *     @type bool $include_public_tag_templates
-     *           Optional. If `true`, include [public tag
-     *           templates][google.cloud.datacatalog.v1.TagTemplate.is_publicly_readable]
-     *           in the search results. By default, they are included only if you have
-     *           explicit permissions on them to view them. For example, if you are the
-     *           owner.
-     *           Other scope fields, for example, `include_org_ids`,
-     *           still restrict the returned public tag templates and at least one of
-     *           them is required.
+     *           Optional. This field is deprecated. The search mechanism for public and private tag
+     *           templates is the same.
      * }
      */
     public function __construct($data = NULL) {
@@ -248,39 +247,59 @@ class Scope extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If `true`, include [public tag
-     * templates][google.cloud.datacatalog.v1.TagTemplate.is_publicly_readable]
-     * in the search results. By default, they are included only if you have
-     * explicit permissions on them to view them. For example, if you are the
-     * owner.
-     * Other scope fields, for example, `include_org_ids`,
-     * still restrict the returned public tag templates and at least one of
-     * them is required.
+     * Optional. If `true`, search only among starred entries.
+     * By default, all results are returned, starred or not.
      *
-     * Generated from protobuf field <code>bool include_public_tag_templates = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool starred_only = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
+     */
+    public function getStarredOnly()
+    {
+        return $this->starred_only;
+    }
+
+    /**
+     * Optional. If `true`, search only among starred entries.
+     * By default, all results are returned, starred or not.
+     *
+     * Generated from protobuf field <code>bool starred_only = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setStarredOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->starred_only = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This field is deprecated. The search mechanism for public and private tag
+     * templates is the same.
+     *
+     * Generated from protobuf field <code>bool include_public_tag_templates = 19 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     * @deprecated
      */
     public function getIncludePublicTagTemplates()
     {
+        @trigger_error('include_public_tag_templates is deprecated.', E_USER_DEPRECATED);
         return $this->include_public_tag_templates;
     }
 
     /**
-     * Optional. If `true`, include [public tag
-     * templates][google.cloud.datacatalog.v1.TagTemplate.is_publicly_readable]
-     * in the search results. By default, they are included only if you have
-     * explicit permissions on them to view them. For example, if you are the
-     * owner.
-     * Other scope fields, for example, `include_org_ids`,
-     * still restrict the returned public tag templates and at least one of
-     * them is required.
+     * Optional. This field is deprecated. The search mechanism for public and private tag
+     * templates is the same.
      *
-     * Generated from protobuf field <code>bool include_public_tag_templates = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool include_public_tag_templates = 19 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setIncludePublicTagTemplates($var)
     {
+        @trigger_error('include_public_tag_templates is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->include_public_tag_templates = $var;
 

@@ -277,7 +277,7 @@ class PsrLoggerTest extends TestCase
         );
         $this->assertEquals(
             PHPUnit_Framework_Assert::readAttribute($psrLogger, 'logName'),
-            $this->logName
+            $options['logName']
         );
     }
 

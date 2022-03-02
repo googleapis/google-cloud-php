@@ -27,9 +27,10 @@
 namespace Google\Cloud\Dataflow\V1beta3\Gapic;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
+
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -221,18 +222,28 @@ class SnapshotsV1Beta3GapicClient
     public function deleteSnapshot(array $optionalArgs = [])
     {
         $request = new DeleteSnapshotRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
         }
 
         if (isset($optionalArgs['snapshotId'])) {
             $request->setSnapshotId($optionalArgs['snapshotId']);
+            $requestParamHeaders['snapshot_id'] = $optionalArgs['snapshotId'];
         }
 
         if (isset($optionalArgs['location'])) {
             $request->setLocation($optionalArgs['location']);
+            $requestParamHeaders['location'] = $optionalArgs['location'];
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
         return $this->startCall(
             'DeleteSnapshot',
             DeleteSnapshotResponse::class,
@@ -279,18 +290,28 @@ class SnapshotsV1Beta3GapicClient
     public function getSnapshot(array $optionalArgs = [])
     {
         $request = new GetSnapshotRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
         }
 
         if (isset($optionalArgs['snapshotId'])) {
             $request->setSnapshotId($optionalArgs['snapshotId']);
+            $requestParamHeaders['snapshot_id'] = $optionalArgs['snapshotId'];
         }
 
         if (isset($optionalArgs['location'])) {
             $request->setLocation($optionalArgs['location']);
+            $requestParamHeaders['location'] = $optionalArgs['location'];
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
         return $this->startCall(
             'GetSnapshot',
             Snapshot::class,
@@ -337,18 +358,28 @@ class SnapshotsV1Beta3GapicClient
     public function listSnapshots(array $optionalArgs = [])
     {
         $request = new ListSnapshotsRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['projectId'])) {
             $request->setProjectId($optionalArgs['projectId']);
+            $requestParamHeaders['project_id'] = $optionalArgs['projectId'];
         }
 
         if (isset($optionalArgs['jobId'])) {
             $request->setJobId($optionalArgs['jobId']);
+            $requestParamHeaders['job_id'] = $optionalArgs['jobId'];
         }
 
         if (isset($optionalArgs['location'])) {
             $request->setLocation($optionalArgs['location']);
+            $requestParamHeaders['location'] = $optionalArgs['location'];
         }
 
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
         return $this->startCall(
             'ListSnapshots',
             ListSnapshotsResponse::class,

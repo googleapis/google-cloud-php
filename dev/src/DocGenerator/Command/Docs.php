@@ -52,7 +52,7 @@ class Docs extends GoogleCloudCommand
         $this->setName('docs')
             ->setDescription('Generate Documentation')
             ->addOption('release', 'r', InputOption::VALUE_NONE, 'If set, docs will be generated into tag folders' .
-                ' such as v1.0.0 rather than master.')
+                ' such as v1.0.0 rather than main.')
             ->addOption('pretty', 'p', InputOption::VALUE_NONE, 'If set, json files will be written with pretty'.
                 ' formatting using PHP\'s JSON_PRETTY_PRINT flag')
             ->addOption('component', 'c', InputOption::VALUE_OPTIONAL, 'Generate docs only for a single component.')
@@ -184,7 +184,7 @@ class Docs extends GoogleCloudCommand
 
         $outputPath = ($release)
             ? $paths['output'] .'/'. $component['id'] .'/'. $version
-            : $paths['output'] .'/'. $component['id'] .'/master';
+            : $paths['output'] .'/'. $component['id'] .'/main';
 
         $output->writeln(sprintf('Writing to %s', realpath($outputPath)));
 

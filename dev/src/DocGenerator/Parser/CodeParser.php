@@ -851,7 +851,7 @@ class CodeParser implements ParserInterface
         if ($componentId) {
             $version = ($this->release)
                 ? $this->getComponentVersion($this->manifestPath, $componentId)
-                : 'master';
+                : 'main';
 
             $type = $componentId .'/'. $version .'/'. $type;
         }

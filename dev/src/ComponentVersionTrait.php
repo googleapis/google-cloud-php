@@ -60,7 +60,7 @@ trait ComponentVersionTrait
 
         $replacement = sprintf("const VERSION = '%s';", $version);
 
-        $entry = preg_replace("/const VERSION = [\'\\\"]([0-9.]{0,}|master)[\'\\\"]\;/", $replacement, $entry);
+        $entry = preg_replace("/const VERSION = [\'\\\"]([0-9.]{0,}|main)[\'\\\"]\;/", $replacement, $entry);
 
         $result = file_put_contents($path, $entry);
 

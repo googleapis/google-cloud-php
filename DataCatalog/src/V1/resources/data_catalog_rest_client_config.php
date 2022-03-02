@@ -249,6 +249,30 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1/entries:lookup',
             ],
+            'ModifyEntryContacts' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}:modifyEntryContacts',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ModifyEntryOverview' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}:modifyEntryOverview',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'RenameTagTemplateField' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/tagTemplates/*/fields/*}:rename',
@@ -297,6 +321,18 @@ return [
                     ],
                 ],
             ],
+            'StarEntry' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}:star',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'TestIamPermissions' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/locations/*/tagTemplates/*}:testIamPermissions',
@@ -317,6 +353,18 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'UnstarEntry' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}:unstar',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

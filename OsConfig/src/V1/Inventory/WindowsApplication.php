@@ -9,11 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Contains information about a Windows application as retrieved from the
- * Windows Registry. For more information about these fields, see
- * [Windows Installer Properties for the Uninstall
- * Registry](https://docs.microsoft.com/en-us/windows/win32/msi/uninstall-registry-key){:
- * class="external" }
+ * Contains information about a Windows application that is retrieved from the
+ * Windows Registry. For more information about these fields, see:
+ * https://docs.microsoft.com/en-us/windows/win32/msi/uninstall-registry-key
  *
  * Generated from protobuf message <code>google.cloud.osconfig.v1.Inventory.WindowsApplication</code>
  */
