@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListFilesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the parent resource whose files will be listed.
+     * The name of the repository whose files will be listed. For example:
+     * "projects/p1/locations/us-central1/repositories/repo1
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
@@ -55,7 +56,8 @@ class ListFilesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The name of the parent resource whose files will be listed.
+     *           The name of the repository whose files will be listed. For example:
+     *           "projects/p1/locations/us-central1/repositories/repo1
      *     @type string $filter
      *           An expression for filtering the results of the request. Filter rules are
      *           case insensitive. The fields eligible for filtering are:
@@ -78,7 +80,8 @@ class ListFilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the parent resource whose files will be listed.
+     * The name of the repository whose files will be listed. For example:
+     * "projects/p1/locations/us-central1/repositories/repo1
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -89,7 +92,8 @@ class ListFilesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the parent resource whose files will be listed.
+     * The name of the repository whose files will be listed. For example:
+     * "projects/p1/locations/us-central1/repositories/repo1
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var
