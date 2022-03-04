@@ -12,5 +12,5 @@ if (false) {
     class CustomMetric_RestrictedMetricType {}
 }
 class_exists(CustomMetric\RestrictedMetricType::class);
-@trigger_error('Google\Analytics\Admin\V1alpha\CustomMetric_RestrictedMetricType is deprecated and will be removed in the next major release. Use Google\Analytics\Admin\V1alpha\CustomMetric\RestrictedMetricType instead', E_USER_DEPRECATED);
+@trigger_error('Google\Analytics\Admin\V1alpha\CustomMetric_RestrictedMetricType is deprecated and will be removed in a future release. Use Google\Analytics\Admin\V1alpha\CustomMetric\RestrictedMetricType instead', E_USER_DEPRECATED);
 

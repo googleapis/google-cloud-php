@@ -17,9 +17,7 @@ class CreateMeasurementProtocolSecretRequest extends \Google\Protobuf\Internal\M
 {
     /**
      * Required. The parent resource where this secret will be created.
-     * Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream)
-     * may be a parent.
-     * Format: properties/{property}/webDataStreams/{webDataStream}
+     * Format: properties/{property}/dataStreams/{dataStream}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -39,9 +37,7 @@ class CreateMeasurementProtocolSecretRequest extends \Google\Protobuf\Internal\M
      *
      *     @type string $parent
      *           Required. The parent resource where this secret will be created.
-     *           Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream)
-     *           may be a parent.
-     *           Format: properties/{property}/webDataStreams/{webDataStream}
+     *           Format: properties/{property}/dataStreams/{dataStream}
      *     @type \Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret $measurement_protocol_secret
      *           Required. The measurement protocol secret to create.
      * }
@@ -53,9 +49,7 @@ class CreateMeasurementProtocolSecretRequest extends \Google\Protobuf\Internal\M
 
     /**
      * Required. The parent resource where this secret will be created.
-     * Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream)
-     * may be a parent.
-     * Format: properties/{property}/webDataStreams/{webDataStream}
+     * Format: properties/{property}/dataStreams/{dataStream}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -67,9 +61,7 @@ class CreateMeasurementProtocolSecretRequest extends \Google\Protobuf\Internal\M
 
     /**
      * Required. The parent resource where this secret will be created.
-     * Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream)
-     * may be a parent.
-     * Format: properties/{property}/webDataStreams/{webDataStream}
+     * Format: properties/{property}/dataStreams/{dataStream}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
