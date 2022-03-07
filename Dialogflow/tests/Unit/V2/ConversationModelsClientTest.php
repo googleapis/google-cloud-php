@@ -247,7 +247,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->conversationModelName('[PROJECT]', '[CONVERSATION_MODEL]');
+        $formattedParent = $client->conversationModelName('[PROJECT]', '[LOCATION]', '[CONVERSATION_MODEL]');
         $conversationModelEvaluation = new ConversationModelEvaluation();
         $response = $client->createConversationModelEvaluation($formattedParent, $conversationModelEvaluation);
         $this->assertFalse($response->isDone());
@@ -316,7 +316,7 @@ class ConversationModelsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->conversationModelName('[PROJECT]', '[CONVERSATION_MODEL]');
+        $formattedParent = $client->conversationModelName('[PROJECT]', '[LOCATION]', '[CONVERSATION_MODEL]');
         $conversationModelEvaluation = new ConversationModelEvaluation();
         $response = $client->createConversationModelEvaluation($formattedParent, $conversationModelEvaluation);
         $this->assertFalse($response->isDone());

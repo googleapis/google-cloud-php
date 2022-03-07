@@ -172,7 +172,7 @@ class ConversationModelsGapicClient
     private static function getConversationModelNameTemplate()
     {
         if (self::$conversationModelNameTemplate == null) {
-            self::$conversationModelNameTemplate = new PathTemplate('projects/{project}/conversationModels/{conversation_model}');
+            self::$conversationModelNameTemplate = new PathTemplate('projects/{project}/locations/{location}/conversationModels/{conversation_model}');
         }
 
         return self::$conversationModelNameTemplate;
@@ -244,14 +244,16 @@ class ConversationModelsGapicClient
      * conversation_model resource.
      *
      * @param string $project
+     * @param string $location
      * @param string $conversationModel
      *
      * @return string The formatted conversation_model resource.
      */
-    public static function conversationModelName($project, $conversationModel)
+    public static function conversationModelName($project, $location, $conversationModel)
     {
         return self::getConversationModelNameTemplate()->render([
             'project' => $project,
+            'location' => $location,
             'conversation_model' => $conversationModel,
         ]);
     }
@@ -349,7 +351,7 @@ class ConversationModelsGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - conversationModel: projects/{project}/conversationModels/{conversation_model}
+     * - conversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
      * - conversationModelEvaluation: projects/{project}/conversationModels/{conversation_model}/evaluations/evaluation
      * - projectConversationModel: projects/{project}/conversationModels/{conversation_model}
      * - projectConversationModelEvaluation: projects/{project}/conversationModels/{conversation_model}/evaluations/evaluation
@@ -570,7 +572,7 @@ class ConversationModelsGapicClient
      * ```
      * $conversationModelsClient = new ConversationModelsClient();
      * try {
-     *     $formattedParent = $conversationModelsClient->conversationModelName('[PROJECT]', '[CONVERSATION_MODEL]');
+     *     $formattedParent = $conversationModelsClient->conversationModelName('[PROJECT]', '[LOCATION]', '[CONVERSATION_MODEL]');
      *     $conversationModelEvaluation = new ConversationModelEvaluation();
      *     $operationResponse = $conversationModelsClient->createConversationModelEvaluation($formattedParent, $conversationModelEvaluation);
      *     $operationResponse->pollUntilComplete();
