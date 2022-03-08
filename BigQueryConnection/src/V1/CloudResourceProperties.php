@@ -28,7 +28,7 @@ class CloudResourceProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $service_account_id = '';
+    private $service_account_id = '';
 
     /**
      * Constructor.
