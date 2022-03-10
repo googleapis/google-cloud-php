@@ -20,13 +20,13 @@ class CustomVoiceParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $model = '';
+    private $model = '';
     /**
      * Optional. The usage of the synthesized audio to be reported.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomVoiceParams.ReportedUsage reported_usage = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $reported_usage = 0;
+    private $reported_usage = 0;
 
     /**
      * Constructor.
