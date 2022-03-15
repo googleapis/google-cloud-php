@@ -50,6 +50,11 @@
                                 "listInstances"
                             ]
                         },
+                        "RescheduleMaintenance": {
+                            "methods": [
+                                "rescheduleMaintenance"
+                            ]
+                        },
                         "UpdateInstance": {
                             "methods": [
                                 "updateInstance"

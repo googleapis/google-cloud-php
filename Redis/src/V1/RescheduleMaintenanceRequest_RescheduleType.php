@@ -12,5 +12,5 @@ if (false) {
     class RescheduleMaintenanceRequest_RescheduleType {}
 }
 class_exists(RescheduleMaintenanceRequest\RescheduleType::class);
-@trigger_error('Google\Cloud\Redis\V1\RescheduleMaintenanceRequest_RescheduleType is deprecated and will be removed in the next major release. Use Google\Cloud\Redis\V1\RescheduleMaintenanceRequest\RescheduleType instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Redis\V1\RescheduleMaintenanceRequest_RescheduleType is deprecated and will be removed in a future release. Use Google\Cloud\Redis\V1\RescheduleMaintenanceRequest\RescheduleType instead', E_USER_DEPRECATED);
 

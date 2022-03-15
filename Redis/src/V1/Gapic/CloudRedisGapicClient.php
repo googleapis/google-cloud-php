@@ -50,11 +50,14 @@ use Google\Cloud\Redis\V1\InstanceAuthString;
 use Google\Cloud\Redis\V1\ListInstancesRequest;
 use Google\Cloud\Redis\V1\ListInstancesResponse;
 use Google\Cloud\Redis\V1\OutputConfig;
+use Google\Cloud\Redis\V1\RescheduleMaintenanceRequest;
 
+use Google\Cloud\Redis\V1\RescheduleMaintenanceRequest\RescheduleType;
 use Google\Cloud\Redis\V1\UpdateInstanceRequest;
 use Google\Cloud\Redis\V1\UpgradeInstanceRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\Timestamp;
 
 /**
  * Service Description: Configures and manages Cloud Memorystore for Redis instances
@@ -925,6 +928,86 @@ class CloudRedisGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListInstances', $optionalArgs, ListInstancesResponse::class, $request);
+    }
+
+    /**
+     * Reschedule maintenance for a given instance in a given project and
+     * location.
+     *
+     * Sample code:
+     * ```
+     * $cloudRedisClient = new Google\Cloud\Redis\V1\CloudRedisClient();
+     * try {
+     *     $formattedName = $cloudRedisClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $rescheduleType = RescheduleType::RESCHEDULE_TYPE_UNSPECIFIED;
+     *     $operationResponse = $cloudRedisClient->rescheduleMaintenance($formattedName, $rescheduleType);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudRedisClient->rescheduleMaintenance($formattedName, $rescheduleType);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudRedisClient->resumeOperation($operationName, 'rescheduleMaintenance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudRedisClient->close();
+     * }
+     * ```
+     *
+     * @param string $name           Required. Redis instance resource name using the form:
+     *                               `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *                               where `location_id` refers to a GCP region.
+     * @param int    $rescheduleType Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as well.
+     *                               For allowed values, use constants defined on {@see \Google\Cloud\Redis\V1\RescheduleMaintenanceRequest\RescheduleType}
+     * @param array  $optionalArgs   {
+     *     Optional.
+     *
+     *     @type Timestamp $scheduleTime
+     *           Optional. Timestamp when the maintenance shall be rescheduled to if
+     *           reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for
+     *           example `2012-11-15T16:19:00.094Z`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function rescheduleMaintenance($name, $rescheduleType, array $optionalArgs = [])
+    {
+        $request = new RescheduleMaintenanceRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $request->setRescheduleType($rescheduleType);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['scheduleTime'])) {
+            $request->setScheduleTime($optionalArgs['scheduleTime']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('RescheduleMaintenance', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**

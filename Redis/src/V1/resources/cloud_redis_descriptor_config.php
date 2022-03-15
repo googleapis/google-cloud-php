@@ -53,6 +53,16 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'RescheduleMaintenance' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Redis\V1\Instance',
+                    'metadataReturnType' => '\Google\Cloud\Redis\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'UpdateInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Redis\V1\Instance',

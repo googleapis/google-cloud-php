@@ -214,6 +214,20 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $transit_encryption_mode = 0;
     /**
+     * Optional. The maintenance policy for the instance. If not provided,
+     * maintenance events can be performed at any time.
+     *
+     * Generated from protobuf field <code>.google.cloud.redis.v1.MaintenancePolicy maintenance_policy = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $maintenance_policy = null;
+    /**
+     * Output only. Date and time of upcoming maintenance events which have been
+     * scheduled.
+     *
+     * Generated from protobuf field <code>.google.cloud.redis.v1.MaintenanceSchedule maintenance_schedule = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $maintenance_schedule = null;
+    /**
      * Optional. The number of replica nodes. The valid range for the Standard Tier with
      * read replicas enabled is [1-5] and defaults to 2. If read replicas are not
      * enabled for a Standard Tier instance, the only valid value is 1 and the
@@ -364,6 +378,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type int $transit_encryption_mode
      *           Optional. The TLS mode of the Redis instance.
      *           If not provided, TLS is disabled for the instance.
+     *     @type \Google\Cloud\Redis\V1\MaintenancePolicy $maintenance_policy
+     *           Optional. The maintenance policy for the instance. If not provided,
+     *           maintenance events can be performed at any time.
+     *     @type \Google\Cloud\Redis\V1\MaintenanceSchedule $maintenance_schedule
+     *           Output only. Date and time of upcoming maintenance events which have been
+     *           scheduled.
      *     @type int $replica_count
      *           Optional. The number of replica nodes. The valid range for the Standard Tier with
      *           read replicas enabled is [1-5] and defaults to 2. If read replicas are not
@@ -1113,6 +1133,82 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Redis\V1\Instance\TransitEncryptionMode::class);
         $this->transit_encryption_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The maintenance policy for the instance. If not provided,
+     * maintenance events can be performed at any time.
+     *
+     * Generated from protobuf field <code>.google.cloud.redis.v1.MaintenancePolicy maintenance_policy = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Redis\V1\MaintenancePolicy|null
+     */
+    public function getMaintenancePolicy()
+    {
+        return $this->maintenance_policy;
+    }
+
+    public function hasMaintenancePolicy()
+    {
+        return isset($this->maintenance_policy);
+    }
+
+    public function clearMaintenancePolicy()
+    {
+        unset($this->maintenance_policy);
+    }
+
+    /**
+     * Optional. The maintenance policy for the instance. If not provided,
+     * maintenance events can be performed at any time.
+     *
+     * Generated from protobuf field <code>.google.cloud.redis.v1.MaintenancePolicy maintenance_policy = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Redis\V1\MaintenancePolicy $var
+     * @return $this
+     */
+    public function setMaintenancePolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Redis\V1\MaintenancePolicy::class);
+        $this->maintenance_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Date and time of upcoming maintenance events which have been
+     * scheduled.
+     *
+     * Generated from protobuf field <code>.google.cloud.redis.v1.MaintenanceSchedule maintenance_schedule = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Redis\V1\MaintenanceSchedule|null
+     */
+    public function getMaintenanceSchedule()
+    {
+        return $this->maintenance_schedule;
+    }
+
+    public function hasMaintenanceSchedule()
+    {
+        return isset($this->maintenance_schedule);
+    }
+
+    public function clearMaintenanceSchedule()
+    {
+        unset($this->maintenance_schedule);
+    }
+
+    /**
+     * Output only. Date and time of upcoming maintenance events which have been
+     * scheduled.
+     *
+     * Generated from protobuf field <code>.google.cloud.redis.v1.MaintenanceSchedule maintenance_schedule = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Redis\V1\MaintenanceSchedule $var
+     * @return $this
+     */
+    public function setMaintenanceSchedule($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Redis\V1\MaintenanceSchedule::class);
+        $this->maintenance_schedule = $var;
 
         return $this;
     }

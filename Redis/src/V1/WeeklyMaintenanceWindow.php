@@ -21,19 +21,19 @@ class WeeklyMaintenanceWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.type.DayOfWeek day = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $day = 0;
+    private $day = 0;
     /**
      * Required. Start time of the window in UTC time.
      *
      * Generated from protobuf field <code>.google.type.TimeOfDay start_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $start_time = null;
+    private $start_time = null;
     /**
      * Output only. Duration of the maintenance window. The current window is fixed at 1 hour.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $duration = null;
+    private $duration = null;
 
     /**
      * Constructor.

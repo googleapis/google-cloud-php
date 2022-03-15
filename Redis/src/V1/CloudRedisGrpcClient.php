@@ -236,4 +236,20 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Reschedule maintenance for a given instance in a given project and
+     * location.
+     * @param \Google\Cloud\Redis\V1\RescheduleMaintenanceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RescheduleMaintenance(\Google\Cloud\Redis\V1\RescheduleMaintenanceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.redis.v1.CloudRedis/RescheduleMaintenance',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
 }
