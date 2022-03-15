@@ -35,6 +35,11 @@
                                 "getInstance"
                             ]
                         },
+                        "GetInstanceAuthString": {
+                            "methods": [
+                                "getInstanceAuthString"
+                            ]
+                        },
                         "ImportInstance": {
                             "methods": [
                                 "importInstance"

@@ -12,5 +12,5 @@ if (false) {
     class Instance_TransitEncryptionMode {}
 }
 class_exists(Instance\TransitEncryptionMode::class);
-@trigger_error('Google\Cloud\Redis\V1\Instance_TransitEncryptionMode is deprecated and will be removed in the next major release. Use Google\Cloud\Redis\V1\Instance\TransitEncryptionMode instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Redis\V1\Instance_TransitEncryptionMode is deprecated and will be removed in a future release. Use Google\Cloud\Redis\V1\Instance\TransitEncryptionMode instead', E_USER_DEPRECATED);
 

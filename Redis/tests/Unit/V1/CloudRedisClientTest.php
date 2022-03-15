@@ -34,6 +34,7 @@ use Google\Cloud\Redis\V1\InputConfig;
 
 use Google\Cloud\Redis\V1\Instance;
 use Google\Cloud\Redis\V1\Instance\Tier;
+use Google\Cloud\Redis\V1\InstanceAuthString;
 use Google\Cloud\Redis\V1\ListInstancesResponse;
 use Google\Cloud\Redis\V1\OutputConfig;
 use Google\LongRunning\GetOperationRequest;
@@ -107,6 +108,7 @@ class CloudRedisClientTest extends GeneratedTest
         $alternativeLocationId = 'alternativeLocationId-718920621';
         $redisVersion = 'redisVersion-685310444';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $secondaryIpRange = 'secondaryIpRange-1484975472';
         $host = 'host3208616';
         $port = 3446913;
         $currentLocationId = 'currentLocationId1312712735';
@@ -114,6 +116,7 @@ class CloudRedisClientTest extends GeneratedTest
         $memorySizeGb = 34199707;
         $authorizedNetwork = 'authorizedNetwork-1733809270';
         $persistenceIamIdentity = 'persistenceIamIdentity1061944584';
+        $authEnabled = true;
         $replicaCount = 564075208;
         $readEndpoint = 'readEndpoint-2081202658';
         $readEndpointPort = 1676143102;
@@ -124,6 +127,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setAlternativeLocationId($alternativeLocationId);
         $expectedResponse->setRedisVersion($redisVersion);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setSecondaryIpRange($secondaryIpRange);
         $expectedResponse->setHost($host);
         $expectedResponse->setPort($port);
         $expectedResponse->setCurrentLocationId($currentLocationId);
@@ -131,6 +135,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setMemorySizeGb($memorySizeGb);
         $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
         $expectedResponse->setPersistenceIamIdentity($persistenceIamIdentity);
+        $expectedResponse->setAuthEnabled($authEnabled);
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setReadEndpoint($readEndpoint);
         $expectedResponse->setReadEndpointPort($readEndpointPort);
@@ -401,6 +406,7 @@ class CloudRedisClientTest extends GeneratedTest
         $alternativeLocationId = 'alternativeLocationId-718920621';
         $redisVersion = 'redisVersion-685310444';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $secondaryIpRange = 'secondaryIpRange-1484975472';
         $host = 'host3208616';
         $port = 3446913;
         $currentLocationId = 'currentLocationId1312712735';
@@ -408,6 +414,7 @@ class CloudRedisClientTest extends GeneratedTest
         $memorySizeGb = 34199707;
         $authorizedNetwork = 'authorizedNetwork-1733809270';
         $persistenceIamIdentity = 'persistenceIamIdentity1061944584';
+        $authEnabled = true;
         $replicaCount = 564075208;
         $readEndpoint = 'readEndpoint-2081202658';
         $readEndpointPort = 1676143102;
@@ -418,6 +425,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setAlternativeLocationId($alternativeLocationId);
         $expectedResponse->setRedisVersion($redisVersion);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setSecondaryIpRange($secondaryIpRange);
         $expectedResponse->setHost($host);
         $expectedResponse->setPort($port);
         $expectedResponse->setCurrentLocationId($currentLocationId);
@@ -425,6 +433,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setMemorySizeGb($memorySizeGb);
         $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
         $expectedResponse->setPersistenceIamIdentity($persistenceIamIdentity);
+        $expectedResponse->setAuthEnabled($authEnabled);
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setReadEndpoint($readEndpoint);
         $expectedResponse->setReadEndpointPort($readEndpointPort);
@@ -558,6 +567,7 @@ class CloudRedisClientTest extends GeneratedTest
         $alternativeLocationId = 'alternativeLocationId-718920621';
         $redisVersion = 'redisVersion-685310444';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $secondaryIpRange = 'secondaryIpRange-1484975472';
         $host = 'host3208616';
         $port = 3446913;
         $currentLocationId = 'currentLocationId1312712735';
@@ -565,6 +575,7 @@ class CloudRedisClientTest extends GeneratedTest
         $memorySizeGb = 34199707;
         $authorizedNetwork = 'authorizedNetwork-1733809270';
         $persistenceIamIdentity = 'persistenceIamIdentity1061944584';
+        $authEnabled = true;
         $replicaCount = 564075208;
         $readEndpoint = 'readEndpoint-2081202658';
         $readEndpointPort = 1676143102;
@@ -575,6 +586,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setAlternativeLocationId($alternativeLocationId);
         $expectedResponse->setRedisVersion($redisVersion);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setSecondaryIpRange($secondaryIpRange);
         $expectedResponse->setHost($host);
         $expectedResponse->setPort($port);
         $expectedResponse->setCurrentLocationId($currentLocationId);
@@ -582,6 +594,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setMemorySizeGb($memorySizeGb);
         $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
         $expectedResponse->setPersistenceIamIdentity($persistenceIamIdentity);
+        $expectedResponse->setAuthEnabled($authEnabled);
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setReadEndpoint($readEndpoint);
         $expectedResponse->setReadEndpointPort($readEndpointPort);
@@ -699,6 +712,7 @@ class CloudRedisClientTest extends GeneratedTest
         $alternativeLocationId = 'alternativeLocationId-718920621';
         $redisVersion = 'redisVersion-685310444';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $secondaryIpRange = 'secondaryIpRange-1484975472';
         $host = 'host3208616';
         $port = 3446913;
         $currentLocationId = 'currentLocationId1312712735';
@@ -706,6 +720,7 @@ class CloudRedisClientTest extends GeneratedTest
         $memorySizeGb = 34199707;
         $authorizedNetwork = 'authorizedNetwork-1733809270';
         $persistenceIamIdentity = 'persistenceIamIdentity1061944584';
+        $authEnabled = true;
         $replicaCount = 564075208;
         $readEndpoint = 'readEndpoint-2081202658';
         $readEndpointPort = 1676143102;
@@ -716,6 +731,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setAlternativeLocationId($alternativeLocationId);
         $expectedResponse->setRedisVersion($redisVersion);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setSecondaryIpRange($secondaryIpRange);
         $expectedResponse->setHost($host);
         $expectedResponse->setPort($port);
         $expectedResponse->setCurrentLocationId($currentLocationId);
@@ -723,6 +739,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setMemorySizeGb($memorySizeGb);
         $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
         $expectedResponse->setPersistenceIamIdentity($persistenceIamIdentity);
+        $expectedResponse->setAuthEnabled($authEnabled);
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setReadEndpoint($readEndpoint);
         $expectedResponse->setReadEndpointPort($readEndpointPort);
@@ -779,6 +796,70 @@ class CloudRedisClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function getInstanceAuthStringTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $authString = 'authString-554020216';
+        $expectedResponse = new InstanceAuthString();
+        $expectedResponse->setAuthString($authString);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $response = $client->getInstanceAuthString($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.redis.v1.CloudRedis/GetInstanceAuthString', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getInstanceAuthStringExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        try {
+            $client->getInstanceAuthString($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function importInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -805,6 +886,7 @@ class CloudRedisClientTest extends GeneratedTest
         $alternativeLocationId = 'alternativeLocationId-718920621';
         $redisVersion = 'redisVersion-685310444';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $secondaryIpRange = 'secondaryIpRange-1484975472';
         $host = 'host3208616';
         $port = 3446913;
         $currentLocationId = 'currentLocationId1312712735';
@@ -812,6 +894,7 @@ class CloudRedisClientTest extends GeneratedTest
         $memorySizeGb = 34199707;
         $authorizedNetwork = 'authorizedNetwork-1733809270';
         $persistenceIamIdentity = 'persistenceIamIdentity1061944584';
+        $authEnabled = true;
         $replicaCount = 564075208;
         $readEndpoint = 'readEndpoint-2081202658';
         $readEndpointPort = 1676143102;
@@ -822,6 +905,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setAlternativeLocationId($alternativeLocationId);
         $expectedResponse->setRedisVersion($redisVersion);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setSecondaryIpRange($secondaryIpRange);
         $expectedResponse->setHost($host);
         $expectedResponse->setPort($port);
         $expectedResponse->setCurrentLocationId($currentLocationId);
@@ -829,6 +913,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setMemorySizeGb($memorySizeGb);
         $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
         $expectedResponse->setPersistenceIamIdentity($persistenceIamIdentity);
+        $expectedResponse->setAuthEnabled($authEnabled);
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setReadEndpoint($readEndpoint);
         $expectedResponse->setReadEndpointPort($readEndpointPort);
@@ -1034,6 +1119,7 @@ class CloudRedisClientTest extends GeneratedTest
         $alternativeLocationId = 'alternativeLocationId-718920621';
         $redisVersion = 'redisVersion-685310444';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $secondaryIpRange = 'secondaryIpRange-1484975472';
         $host = 'host3208616';
         $port = 3446913;
         $currentLocationId = 'currentLocationId1312712735';
@@ -1041,6 +1127,7 @@ class CloudRedisClientTest extends GeneratedTest
         $memorySizeGb = 34199707;
         $authorizedNetwork = 'authorizedNetwork-1733809270';
         $persistenceIamIdentity = 'persistenceIamIdentity1061944584';
+        $authEnabled = true;
         $replicaCount = 564075208;
         $readEndpoint = 'readEndpoint-2081202658';
         $readEndpointPort = 1676143102;
@@ -1051,6 +1138,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setAlternativeLocationId($alternativeLocationId);
         $expectedResponse->setRedisVersion($redisVersion);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setSecondaryIpRange($secondaryIpRange);
         $expectedResponse->setHost($host);
         $expectedResponse->setPort($port);
         $expectedResponse->setCurrentLocationId($currentLocationId);
@@ -1058,6 +1146,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setMemorySizeGb($memorySizeGb);
         $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
         $expectedResponse->setPersistenceIamIdentity($persistenceIamIdentity);
+        $expectedResponse->setAuthEnabled($authEnabled);
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setReadEndpoint($readEndpoint);
         $expectedResponse->setReadEndpointPort($readEndpointPort);
@@ -1203,6 +1292,7 @@ class CloudRedisClientTest extends GeneratedTest
         $alternativeLocationId = 'alternativeLocationId-718920621';
         $redisVersion2 = 'redisVersion2-1453337401';
         $reservedIpRange = 'reservedIpRange-1082940580';
+        $secondaryIpRange = 'secondaryIpRange-1484975472';
         $host = 'host3208616';
         $port = 3446913;
         $currentLocationId = 'currentLocationId1312712735';
@@ -1210,6 +1300,7 @@ class CloudRedisClientTest extends GeneratedTest
         $memorySizeGb = 34199707;
         $authorizedNetwork = 'authorizedNetwork-1733809270';
         $persistenceIamIdentity = 'persistenceIamIdentity1061944584';
+        $authEnabled = true;
         $replicaCount = 564075208;
         $readEndpoint = 'readEndpoint-2081202658';
         $readEndpointPort = 1676143102;
@@ -1220,6 +1311,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setAlternativeLocationId($alternativeLocationId);
         $expectedResponse->setRedisVersion($redisVersion2);
         $expectedResponse->setReservedIpRange($reservedIpRange);
+        $expectedResponse->setSecondaryIpRange($secondaryIpRange);
         $expectedResponse->setHost($host);
         $expectedResponse->setPort($port);
         $expectedResponse->setCurrentLocationId($currentLocationId);
@@ -1227,6 +1319,7 @@ class CloudRedisClientTest extends GeneratedTest
         $expectedResponse->setMemorySizeGb($memorySizeGb);
         $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
         $expectedResponse->setPersistenceIamIdentity($persistenceIamIdentity);
+        $expectedResponse->setAuthEnabled($authEnabled);
         $expectedResponse->setReplicaCount($replicaCount);
         $expectedResponse->setReadEndpoint($readEndpoint);
         $expectedResponse->setReadEndpointPort($readEndpointPort);

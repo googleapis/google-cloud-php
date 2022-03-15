@@ -20,7 +20,7 @@ class InstanceAuthString extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string auth_string = 1;</code>
      */
-    protected $auth_string = '';
+    private $auth_string = '';
 
     /**
      * Constructor.
