@@ -943,6 +943,8 @@ class JobServiceGapicClient
      *           * `count(numeric_histogram_facet, list of buckets)`: Count the number of
      *           matching entities within each bucket.
      *
+     *           A maximum of 200 histogram buckets are supported.
+     *
      *           Data types:
      *
      *           * Histogram facet: facet names with format `[a-zA-Z][a-zA-Z0-9_]+`.
@@ -1282,6 +1284,8 @@ class JobServiceGapicClient
      *           for each distinct attribute value.
      *           * `count(numeric_histogram_facet, list of buckets)`: Count the number of
      *           matching entities within each bucket.
+     *
+     *           A maximum of 200 histogram buckets are supported.
      *
      *           Data types:
      *
