@@ -36,13 +36,15 @@ class JWT
      * When checking nbf, iat or expiration times,
      * we want to provide some extra leeway time to
      * account for clock skew.
+     *
+     * @var int
      */
-    public static int $leeway = 0;
+    public static $leeway = 0;
 
     /**
      * @var array<string, string[]>
      */
-    public static array $supported_algs = [
+    public static $supported_algs = [
         'ES384' => ['openssl', 'SHA384'],
         'ES256' => ['openssl', 'SHA256'],
         'HS256' => ['hash_hmac', 'SHA256'],
@@ -77,8 +79,10 @@ class JWT
      * @uses jsonDecode
      * @uses urlsafeB64Decode
      */
-    public static function decode(string $jwt, Key|array|ArrayAccess $keyOrKeyArray): stdClass
-    {
+    public static function decode(
+        string $jwt,
+        $keyOrKeyArray
+    ): stdClass {
         // Validate JWT
         $timestamp = \time();
 
@@ -90,24 +94,18 @@ class JWT
             throw new UnexpectedValueException('Wrong number of segments');
         }
         list($headb64, $bodyb64, $cryptob64) = $tks;
-        if (false === ($headerRaw = static::urlsafeB64Decode($headb64))) {
-            throw new UnexpectedValueException('Invalid header encoding');
-        }
+        $headerRaw = static::urlsafeB64Decode($headb64);
         if (null === ($header = static::jsonDecode($headerRaw))) {
             throw new UnexpectedValueException('Invalid header encoding');
         }
-        if (false === ($payloadRaw = static::urlsafeB64Decode($bodyb64))) {
-            throw new UnexpectedValueException('Invalid claims encoding');
-        }
+        $payloadRaw = static::urlsafeB64Decode($bodyb64);
         if (null === ($payload = static::jsonDecode($payloadRaw))) {
             throw new UnexpectedValueException('Invalid claims encoding');
         }
         if (!$payload instanceof stdClass) {
             throw new UnexpectedValueException('Payload must be a JSON object');
         }
-        if (false === ($sig = static::urlsafeB64Decode($cryptob64))) {
-            throw new UnexpectedValueException('Invalid signature encoding');
-        }
+        $sig = static::urlsafeB64Decode($cryptob64);
         if (empty($header->alg)) {
             throw new UnexpectedValueException('Empty algorithm');
         }
@@ -159,7 +157,7 @@ class JWT
      * Converts and signs a PHP object or array into a JWT string.
      *
      * @param array<mixed>          $payload PHP array
-     * @param string|OpenSSLAsymmetricKey|OpenSSLCertificate|array<mixed> $key The secret key.
+     * @param string|resource|OpenSSLAsymmetricKey|OpenSSLCertificate $key The secret key.
      * @param string                $keyId
      * @param array<string, string> $head    An array with header elements to attach
      *
@@ -170,7 +168,7 @@ class JWT
      */
     public static function encode(
         array $payload,
-        string|OpenSSLAsymmetricKey|OpenSSLCertificate|array $key,
+        $key,
         string $alg,
         string $keyId = null,
         array $head = null
@@ -197,7 +195,7 @@ class JWT
      * Sign a string with a given key and algorithm.
      *
      * @param string $msg  The message to sign
-     * @param string|OpenSSLAsymmetricKey|OpenSSLCertificate|array<mixed>  $key  The secret key.
+     * @param string|resource|OpenSSLAsymmetricKey|OpenSSLCertificate  $key  The secret key.
      * @param string $alg  Supported algorithms are 'ES384','ES256', 'HS256', 'HS384',
      *                    'HS512', 'RS256', 'RS384', and 'RS512'
      *
@@ -207,7 +205,7 @@ class JWT
      */
     public static function sign(
         string $msg,
-        string|OpenSSLAsymmetricKey|OpenSSLCertificate|array $key,
+        $key,
         string $alg
     ): string {
         if (empty(static::$supported_algs[$alg])) {
@@ -222,7 +220,7 @@ class JWT
                 return \hash_hmac($algorithm, $msg, $key, true);
             case 'openssl':
                 $signature = '';
-                $success = \openssl_sign($msg, $signature, $key, $algorithm);
+                $success = \openssl_sign($msg, $signature, $key, $algorithm); // @phpstan-ignore-line
                 if (!$success) {
                     throw new DomainException("OpenSSL unable to sign data");
                 }
@@ -258,7 +256,7 @@ class JWT
      *
      * @param string $msg         The original message (header and body)
      * @param string $signature   The original signature
-     * @param string|OpenSSLAsymmetricKey|OpenSSLCertificate|array<mixed>  $keyMaterial For HS*, a string key works. for RS*, must be an instance of OpenSSLAsymmetricKey
+     * @param string|resource|OpenSSLAsymmetricKey|OpenSSLCertificate  $keyMaterial For HS*, a string key works. for RS*, must be an instance of OpenSSLAsymmetricKey
      * @param string $alg         The algorithm
      *
      * @return bool
@@ -268,7 +266,7 @@ class JWT
     private static function verify(
         string $msg,
         string $signature,
-        string|OpenSSLAsymmetricKey|OpenSSLCertificate|array $keyMaterial,
+        $keyMaterial,
         string $alg
     ): bool {
         if (empty(static::$supported_algs[$alg])) {
@@ -278,7 +276,7 @@ class JWT
         list($function, $algorithm) = static::$supported_algs[$alg];
         switch ($function) {
             case 'openssl':
-                $success = \openssl_verify($msg, $signature, $keyMaterial, $algorithm);
+                $success = \openssl_verify($msg, $signature, $keyMaterial, $algorithm); // @phpstan-ignore-line
                 if ($success === 1) {
                     return true;
                 } elseif ($success === 0) {
@@ -322,7 +320,7 @@ class JWT
      *
      * @throws DomainException Provided string was invalid JSON
      */
-    public static function jsonDecode(string $input): mixed
+    public static function jsonDecode(string $input)
     {
         $obj = \json_decode($input, false, 512, JSON_BIGINT_AS_STRING);
 
@@ -339,11 +337,11 @@ class JWT
      *
      * @param array<mixed> $input A PHP array
      *
-     * @return string|false JSON representation of the PHP array
+     * @return string JSON representation of the PHP array
      *
      * @throws DomainException Provided object could not be encoded to valid JSON
      */
-    public static function jsonEncode(array $input): string|false
+    public static function jsonEncode(array $input): string
     {
         if (PHP_VERSION_ID >= 50400) {
             $json = \json_encode($input, \JSON_UNESCAPED_SLASHES);
@@ -356,6 +354,9 @@ class JWT
         } elseif ($json === 'null' && $input !== null) {
             throw new DomainException('Null result with non-null input');
         }
+        if ($json === false) {
+            throw new DomainException('Provided object could not be encoded to valid JSON');
+        }
         return $json;
     }
 
@@ -365,8 +366,10 @@ class JWT
      * @param string $input A Base64 encoded string
      *
      * @return string A decoded string
+     *
+     * @throws InvalidArgumentException invalid base64 characters
      */
-    public static function urlsafeB64Decode(string $input): string|false
+    public static function urlsafeB64Decode(string $input): string
     {
         $remainder = \strlen($input) % 4;
         if ($remainder) {
@@ -399,8 +402,10 @@ class JWT
      *
      * @return Key
      */
-    private static function getKey(Key|array|ArrayAccess $keyOrKeyArray, ?string $kid): Key
-    {
+    private static function getKey(
+        $keyOrKeyArray,
+        ?string $kid
+    ): Key {
         if ($keyOrKeyArray instanceof Key) {
             return $keyOrKeyArray;
         }
