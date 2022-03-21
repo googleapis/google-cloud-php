@@ -406,11 +406,7 @@ class Database
         $statements = $this->pluck('statements', $options, false) ?: [];
 
         $databaseId = DatabaseAdminClient::parseName($this->name())['database'];
-        if (isset($options['databaseDialect']) && $options['databaseDialect'] === DatabaseDialect::POSTGRESQL) {
-            $statement = sprintf('CREATE DATABASE "%s"', $databaseId);
-        } else {
-            $statement = sprintf('CREATE DATABASE `%s`', $databaseId);
-        }
+        $statement = $this->getCreateDbStatement($options['databaseDialect']);
 
         $operation = $this->connection->createDatabase([
             'instance' => $this->instance->name(),
@@ -2076,5 +2072,19 @@ class Database
             return $name;
         }
         //@codeCoverageIgnoreEnd
+    }
+
+    /**
+     * Returns the 'CREATE DATABASE' statement as per the given database dialect
+     * 
+     * @param string $dialect The dialect of the database to be created
+     * @return string The specific 'CREATE DATABASE' statement
+     */
+    private function getCreateDbStatement($dialect) {
+        if ($dialect === DatabaseDialect::POSTGRESQL) {
+            return sprintf('CREATE DATABASE "%s"', $databaseId);
+        }
+
+        return sprintf('CREATE DATABASE `%s`', $databaseId);
     }
 }
