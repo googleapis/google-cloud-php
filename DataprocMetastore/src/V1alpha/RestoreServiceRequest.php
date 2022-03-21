@@ -18,7 +18,7 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The relative resource name of the metastore service to run restore, in the
      * following form:
-     * `projects/{project_id}/locations/{location_id}/services/{service_id}`
+     * `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -26,7 +26,7 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The relative resource name of the metastore service backup to restore
      * from, in the following form:
-     * `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`
+     * `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      *
      * Generated from protobuf field <code>string backup = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -62,11 +62,11 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
      *     @type string $service
      *           Required. The relative resource name of the metastore service to run restore, in the
      *           following form:
-     *           `projects/{project_id}/locations/{location_id}/services/{service_id}`
+     *           `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      *     @type string $backup
      *           Required. The relative resource name of the metastore service backup to restore
      *           from, in the following form:
-     *           `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`
+     *           `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      *     @type int $restore_type
      *           Optional. The type of restore. If unspecified, defaults to `METADATA_ONLY`.
      *     @type string $request_id
@@ -90,7 +90,7 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The relative resource name of the metastore service to run restore, in the
      * following form:
-     * `projects/{project_id}/locations/{location_id}/services/{service_id}`
+     * `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -103,7 +103,7 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The relative resource name of the metastore service to run restore, in the
      * following form:
-     * `projects/{project_id}/locations/{location_id}/services/{service_id}`
+     * `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -120,7 +120,7 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The relative resource name of the metastore service backup to restore
      * from, in the following form:
-     * `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`
+     * `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      *
      * Generated from protobuf field <code>string backup = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -133,7 +133,7 @@ class RestoreServiceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The relative resource name of the metastore service backup to restore
      * from, in the following form:
-     * `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`
+     * `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      *
      * Generated from protobuf field <code>string backup = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
