@@ -87,6 +87,8 @@ class AdminTest extends SpannerTestCase
      */
     public function testDatabase()
     {
+        $this->skipEmulatorTests();
+        
         $instance = self::$instance;
 
         $dbName = uniqid(self::TESTING_PREFIX);
