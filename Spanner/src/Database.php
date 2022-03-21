@@ -404,13 +404,13 @@ class Database
     public function create(array $options = [])
     {
         $statements = $this->pluck('statements', $options, false) ?: [];
+        $dialect = isset($options['databaseDialect']) ? $options['databaseDialect'] : null;
 
-        $databaseId = DatabaseAdminClient::parseName($this->name())['database'];
-        $statement = $this->getCreateDbStatement($options['databaseDialect']);
+        $createStatement = $this->getCreateDbStatement($dialect);
 
         $operation = $this->connection->createDatabase([
             'instance' => $this->instance->name(),
-            'createStatement' => $statement,
+            'createStatement' => $createStatement,
             'extraStatements' => $statements
         ] + $options);
 
@@ -2081,6 +2081,8 @@ class Database
      * @return string The specific 'CREATE DATABASE' statement
      */
     private function getCreateDbStatement($dialect) {
+        $databaseId = DatabaseAdminClient::parseName($this->name())['database'];
+
         if ($dialect === DatabaseDialect::POSTGRESQL) {
             return sprintf('CREATE DATABASE "%s"', $databaseId);
         }
