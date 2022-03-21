@@ -21,7 +21,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $parent = '';
+    private $parent = '';
     /**
      * Required. The id of the backup copy.
      * The `backup_id` appended to `parent` forms the full backup_uri of the form
@@ -29,7 +29,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string backup_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $backup_id = '';
+    private $backup_id = '';
     /**
      * Required. The source backup to be copied.
      * The source backup needs to be in READY state for it to be copied.
@@ -40,7 +40,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_backup = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $source_backup = '';
+    private $source_backup = '';
     /**
      * Required. The expiration time of the backup in microsecond granularity.
      * The expiration time must be at least 6 hours and at most 366 days
@@ -50,7 +50,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $expire_time = null;
+    private $expire_time = null;
     /**
      * Optional. The encryption configuration used to encrypt the backup. If this field is
      * not specified, the backup will use the same
@@ -60,7 +60,7 @@ class CopyBackupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.CopyBackupEncryptionConfig encryption_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $encryption_config = null;
+    private $encryption_config = null;
 
     /**
      * Constructor.

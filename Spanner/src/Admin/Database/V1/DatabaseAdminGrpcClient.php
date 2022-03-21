@@ -241,6 +241,32 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Starts copying a Cloud Spanner Backup.
+     * The returned backup [long-running operation][google.longrunning.Operation]
+     * will have a name of the format
+     * `projects/<project>/instances/<instance>/backups/<backup>/operations/<operation_id>`
+     * and can be used to track copying of the backup. The operation is associated
+     * with the destination backup.
+     * The [metadata][google.longrunning.Operation.metadata] field type is
+     * [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
+     * [Backup][google.spanner.admin.database.v1.Backup], if successful. Cancelling the returned operation will stop the
+     * copying and delete the backup.
+     * Concurrent CopyBackup requests can run on the same source backup.
+     * @param \Google\Cloud\Spanner\Admin\Database\V1\CopyBackupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CopyBackup(\Google\Cloud\Spanner\Admin\Database\V1\CopyBackupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/CopyBackup',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Gets metadata on a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
      * @param \Google\Cloud\Spanner\Admin\Database\V1\GetBackupRequest $argument input argument
      * @param array $metadata metadata

@@ -9,34 +9,38 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata type for the operation returned by
- * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup].
+ * Metadata type for the google.longrunning.Operation returned by
+ * [CopyBackup][google.spanner.admin.database.v1.DatabaseAdmin.CopyBackup].
  *
- * Generated from protobuf message <code>google.spanner.admin.database.v1.CreateBackupMetadata</code>
+ * Generated from protobuf message <code>google.spanner.admin.database.v1.CopyBackupMetadata</code>
  */
-class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
+class CopyBackupMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the backup being created.
+     * The name of the backup being created through the copy operation.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/backups/<backup>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
-     * The name of the database the backup is created from.
+     * The name of the source backup that is being copied.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/backups/<backup>`.
      *
-     * Generated from protobuf field <code>string database = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string source_backup = 2 [(.google.api.resource_reference) = {</code>
      */
-    protected $database = '';
+    private $source_backup = '';
     /**
      * The progress of the
-     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
+     * [CopyBackup][google.spanner.admin.database.v1.DatabaseAdmin.CopyBackup] operation.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 3;</code>
      */
-    protected $progress = null;
+    private $progress = null;
     /**
-     * The time at which cancellation of this operation was received.
+     * The time at which cancellation of CopyBackup operation was received.
      * [Operations.CancelOperation][google.longrunning.Operations.CancelOperation]
      * starts asynchronous cancellation on a long-running operation. The server
      * makes a best effort to cancel the operation, but success is not guaranteed.
@@ -51,7 +55,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 4;</code>
      */
-    protected $cancel_time = null;
+    private $cancel_time = null;
 
     /**
      * Constructor.
@@ -60,14 +64,18 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of the backup being created.
-     *     @type string $database
-     *           The name of the database the backup is created from.
+     *           The name of the backup being created through the copy operation.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/backups/<backup>`.
+     *     @type string $source_backup
+     *           The name of the source backup that is being copied.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/backups/<backup>`.
      *     @type \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress $progress
      *           The progress of the
-     *           [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
+     *           [CopyBackup][google.spanner.admin.database.v1.DatabaseAdmin.CopyBackup] operation.
      *     @type \Google\Protobuf\Timestamp $cancel_time
-     *           The time at which cancellation of this operation was received.
+     *           The time at which cancellation of CopyBackup operation was received.
      *           [Operations.CancelOperation][google.longrunning.Operations.CancelOperation]
      *           starts asynchronous cancellation on a long-running operation. The server
      *           makes a best effort to cancel the operation, but success is not guaranteed.
@@ -87,7 +95,9 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the backup being created.
+     * The name of the backup being created through the copy operation.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/backups/<backup>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -98,7 +108,9 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the backup being created.
+     * The name of the backup being created through the copy operation.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/backups/<backup>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -113,34 +125,38 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the database the backup is created from.
+     * The name of the source backup that is being copied.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/backups/<backup>`.
      *
-     * Generated from protobuf field <code>string database = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string source_backup = 2 [(.google.api.resource_reference) = {</code>
      * @return string
      */
-    public function getDatabase()
+    public function getSourceBackup()
     {
-        return $this->database;
+        return $this->source_backup;
     }
 
     /**
-     * The name of the database the backup is created from.
+     * The name of the source backup that is being copied.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/backups/<backup>`.
      *
-     * Generated from protobuf field <code>string database = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string source_backup = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
-    public function setDatabase($var)
+    public function setSourceBackup($var)
     {
         GPBUtil::checkString($var, True);
-        $this->database = $var;
+        $this->source_backup = $var;
 
         return $this;
     }
 
     /**
      * The progress of the
-     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
+     * [CopyBackup][google.spanner.admin.database.v1.DatabaseAdmin.CopyBackup] operation.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 3;</code>
      * @return \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress|null
@@ -162,7 +178,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The progress of the
-     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
+     * [CopyBackup][google.spanner.admin.database.v1.DatabaseAdmin.CopyBackup] operation.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 3;</code>
      * @param \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress $var
@@ -177,7 +193,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which cancellation of this operation was received.
+     * The time at which cancellation of CopyBackup operation was received.
      * [Operations.CancelOperation][google.longrunning.Operations.CancelOperation]
      * starts asynchronous cancellation on a long-running operation. The server
      * makes a best effort to cancel the operation, but success is not guaranteed.
@@ -209,7 +225,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which cancellation of this operation was received.
+     * The time at which cancellation of CopyBackup operation was received.
      * [Operations.CancelOperation][google.longrunning.Operations.CancelOperation]
      * starts asynchronous cancellation on a long-running operation. The server
      * makes a best effort to cancel the operation, but success is not guaranteed.
