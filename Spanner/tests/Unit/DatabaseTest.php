@@ -26,6 +26,7 @@ use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreInfo;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
@@ -319,6 +320,29 @@ class DatabaseTest extends TestCase
             'statements' => [
                 'CREATE TABLE bar'
             ]
+        ]);
+
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
+    }
+
+    /**
+     * @group spanner-admin
+     */
+    public function testCreatePostgresDialect()
+    {
+        $createStatement = sprintf('CREATE DATABASE "%s"', self::DATABASE);
+
+        $this->connection->createDatabase(Argument::allOf(
+            Argument::withEntry('createStatement', $createStatement),
+            Argument::withEntry('extraStatements', [])
+        ))->shouldBeCalled()->willReturn([
+            'name' => 'my-operation'
+        ]);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $op = $this->database->create([
+            'databaseDialect'=> DatabaseDialect::POSTGRESQL
         ]);
 
         $this->assertInstanceOf(LongRunningOperation::class, $op);

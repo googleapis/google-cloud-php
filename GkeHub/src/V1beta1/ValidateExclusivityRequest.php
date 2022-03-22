@@ -17,22 +17,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class ValidateExclusivityRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent (project and location) where the Memberships will be created.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The parent (project and location) where the Memberships will be
+     * created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
-     * Optional. The YAML of the membership CR in the cluster. Empty if the membership
-     * CR does not exist.
+     * Optional. The YAML of the membership CR in the cluster. Empty if the
+     * membership CR does not exist.
      *
      * Generated from protobuf field <code>string cr_manifest = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $cr_manifest = '';
     /**
-     * Required. The intended membership name under the `parent`. This method only does
-     * validation in anticipation of a CreateMembership call with the same name.
+     * Required. The intended membership name under the `parent`. This method only
+     * does validation in anticipation of a CreateMembership call with the same
+     * name.
      *
      * Generated from protobuf field <code>string intended_membership = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -45,14 +46,15 @@ class ValidateExclusivityRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent (project and location) where the Memberships will be created.
-     *           Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     *           Required. The parent (project and location) where the Memberships will be
+     *           created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *     @type string $cr_manifest
-     *           Optional. The YAML of the membership CR in the cluster. Empty if the membership
-     *           CR does not exist.
+     *           Optional. The YAML of the membership CR in the cluster. Empty if the
+     *           membership CR does not exist.
      *     @type string $intended_membership
-     *           Required. The intended membership name under the `parent`. This method only does
-     *           validation in anticipation of a CreateMembership call with the same name.
+     *           Required. The intended membership name under the `parent`. This method only
+     *           does validation in anticipation of a CreateMembership call with the same
+     *           name.
      * }
      */
     public function __construct($data = NULL) {
@@ -61,8 +63,8 @@ class ValidateExclusivityRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent (project and location) where the Memberships will be created.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The parent (project and location) where the Memberships will be
+     * created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -73,8 +75,8 @@ class ValidateExclusivityRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent (project and location) where the Memberships will be created.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Required. The parent (project and location) where the Memberships will be
+     * created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -89,8 +91,8 @@ class ValidateExclusivityRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The YAML of the membership CR in the cluster. Empty if the membership
-     * CR does not exist.
+     * Optional. The YAML of the membership CR in the cluster. Empty if the
+     * membership CR does not exist.
      *
      * Generated from protobuf field <code>string cr_manifest = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -101,8 +103,8 @@ class ValidateExclusivityRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The YAML of the membership CR in the cluster. Empty if the membership
-     * CR does not exist.
+     * Optional. The YAML of the membership CR in the cluster. Empty if the
+     * membership CR does not exist.
      *
      * Generated from protobuf field <code>string cr_manifest = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -117,8 +119,9 @@ class ValidateExclusivityRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The intended membership name under the `parent`. This method only does
-     * validation in anticipation of a CreateMembership call with the same name.
+     * Required. The intended membership name under the `parent`. This method only
+     * does validation in anticipation of a CreateMembership call with the same
+     * name.
      *
      * Generated from protobuf field <code>string intended_membership = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -129,8 +132,9 @@ class ValidateExclusivityRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The intended membership name under the `parent`. This method only does
-     * validation in anticipation of a CreateMembership call with the same name.
+     * Required. The intended membership name under the `parent`. This method only
+     * does validation in anticipation of a CreateMembership call with the same
+     * name.
      *
      * Generated from protobuf field <code>string intended_membership = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
