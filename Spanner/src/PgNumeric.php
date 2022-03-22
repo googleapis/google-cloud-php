@@ -49,7 +49,8 @@ class PgNumeric implements ValueInterface, TypeAnnotationInterface
      */
     public function __construct($value)
     {
-        $value = (string) $value;
+        // null shouldn't be casted to an empty string
+        $value = is_null($value) ? $value : (string) $value;
         $this->value = $value;
     }
 

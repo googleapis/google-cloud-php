@@ -60,6 +60,16 @@ class ValueMapper
         self::TYPE_JSON,
     ];
 
+    /*
+     * Types declared here will be mapped to a class type.
+     * Native types are identified only by typeCodes,
+     * But custom types may need a typeCodeAnnotation along with the code.
+     * Declaring the type here takes care of encoding such types
+     */
+    public static $typeToClassMap = [
+        'pgNumeric' => PgNumeric::class
+    ];
+
     /**
      * @var bool
      */
@@ -336,6 +346,14 @@ class ValueMapper
         $definition = null,
         $allowMixedArrayType = false
     ) {
+
+        // if the given type maps to a custom class
+        // initialize the value as the custom class(type)
+        if(!is_null($givenType) && array_key_exists($givenType, self::$typeToClassMap)) {
+            $cls = self::$typeToClassMap[$givenType];
+            $value = new $cls($value);
+        }
+        
         $valueType = gettype($value);
 
         // If a definition is provided, the type is set to `array` to force

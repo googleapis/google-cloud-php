@@ -28,6 +28,7 @@ use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Database\State;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
@@ -114,6 +115,7 @@ class Database
     const TYPE_ARRAY = TypeCode::PBARRAY;
     const TYPE_STRUCT = TypeCode::STRUCT;
     const TYPE_NUMERIC = TypeCode::NUMERIC;
+    const TYPE_PG_NUMERIC = 'pgNumeric';
     const TYPE_JSON = TypeCode::JSON;
 
     /**
