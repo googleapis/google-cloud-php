@@ -87,8 +87,6 @@ class AdminTest extends SpannerTestCase
      */
     public function testDatabase()
     {
-        $this->skipEmulatorTests();
-        
         $instance = self::$instance;
 
         $dbName = uniqid(self::TESTING_PREFIX);
@@ -109,9 +107,15 @@ class AdminTest extends SpannerTestCase
 
         $this->assertInstanceOf(Database::class, current($database));
         $this->assertTrue($db->exists());
-        // since we didn't pass any dialect while creation,
-        // it should equal GSSQL
-        $this->assertEquals($db->info()['databaseDialect'], DatabaseDialect::GOOGLE_STANDARD_SQL);
+
+        $expectedDatabaseDialect = DatabaseDialect::GOOGLE_STANDARD_SQL;
+
+        // TODO: Remove this, when the emulator supports PGSQL
+        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
+            $expectedDatabaseDialect = DatabaseDialect::DATABASE_DIALECT_UNSPECIFIED;
+        }
+
+        $this->assertEquals($db->info()['databaseDialect'], $expectedDatabaseDialect);
 
         $stmt = "CREATE TABLE Ids (\n" .
             "  id INT64 NOT NULL,\n" .

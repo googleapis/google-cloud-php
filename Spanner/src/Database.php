@@ -2080,7 +2080,8 @@ class Database
      * @param string $dialect The dialect of the database to be created
      * @return string The specific 'CREATE DATABASE' statement
      */
-    private function getCreateDbStatement($dialect) {
+    private function getCreateDbStatement($dialect)
+    {
         $databaseId = DatabaseAdminClient::parseName($this->name())['database'];
 
         if ($dialect === DatabaseDialect::POSTGRESQL) {
