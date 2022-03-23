@@ -285,10 +285,9 @@ class ValueMapper
                 break;
 
             case self::TYPE_NUMERIC:
-                if(isset($type['typeAnnotation']) && $type['typeAnnotation'] === TypeAnnotationCode::PG_NUMERIC) {
+                if (isset($type['typeAnnotation']) && $type['typeAnnotation'] === TypeAnnotationCode::PG_NUMERIC) {
                     $value = new PgNumeric($value);
-                }
-                else {
+                } else {
                     $value = new Numeric($value);
                 }
                 break;
@@ -349,7 +348,7 @@ class ValueMapper
 
         // if the given type maps to a custom class
         // initialize the value as the custom class(type)
-        if(!is_null($givenType) && array_key_exists($givenType, self::$typeToClassMap)) {
+        if (!is_null($givenType) && array_key_exists($givenType, self::$typeToClassMap)) {
             $cls = self::$typeToClassMap[$givenType];
             $value = new $cls($value);
         }
@@ -703,8 +702,12 @@ class ValueMapper
      *        or `structType`.
      * @return array
      */
-    private function typeObject($type, $typeAnnotation = null, array $nestedDefinition = [], $nestedDefinitionType = null)
-    {
+    private function typeObject(
+        $type,
+        $typeAnnotation = null,
+        array $nestedDefinition = [],
+        $nestedDefinitionType = null
+    ) {
         return array_filter([
             'code' => $type,
             $nestedDefinitionType => $nestedDefinition,

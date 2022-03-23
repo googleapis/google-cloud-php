@@ -312,13 +312,15 @@ class QueryTest extends SpannerTestCase
 
         // insert some dummy values
         $db->runTransaction(function (Transaction $t) use ($val) {
-            $t->executeUpdate('INSERT INTO test (id, numeric_col) VALUES ($1, $2)',
+            $t->executeUpdate(
+                'INSERT INTO test (id, numeric_col) VALUES ($1, $2)',
                 [
                     'parameters' => [
                         'p1' => 1,
                         'p2' => $val
                     ]
-                ]);
+                ]
+            );
             $t->commit();
         });
 
@@ -344,7 +346,8 @@ class QueryTest extends SpannerTestCase
 
         // insert some dummy values
         $db->runTransaction(function (Transaction $t) use ($val) {
-            $t->executeUpdate('INSERT INTO test (id, numeric_col) VALUES ($1, $2)',
+            $t->executeUpdate(
+                'INSERT INTO test (id, numeric_col) VALUES ($1, $2)',
                 [
                     'parameters' => [
                         'p1' => 2,
@@ -353,7 +356,8 @@ class QueryTest extends SpannerTestCase
                     'types' => [
                         'p2' => Database::TYPE_PG_NUMERIC
                     ]
-                ]);
+                ]
+            );
             $t->commit();
         });
 

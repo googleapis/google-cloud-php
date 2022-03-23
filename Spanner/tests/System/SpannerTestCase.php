@@ -130,11 +130,12 @@ class SpannerTestCase extends SystemTestCase
         }
     }
 
-    private static function setupPgDB(){
+    private static function setupPgDB()
+    {
         self::$pgDbName = uniqid(self::TESTING_PREFIX);
 
         // create a PG DB first
-        $op = self::$instance->createDatabase(self::$pgDbName,[
+        $op = self::$instance->createDatabase(self::$pgDbName, [
             'databaseDialect' => DatabaseDialect::POSTGRESQL
         ]);
 

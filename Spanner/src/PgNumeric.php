@@ -21,7 +21,7 @@ use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 
 /**
  * Represents a value with a data type of
- * [PG Numeric](https://cloud.google.com/spanner/docs/data-types) for the 
+ * [PG Numeric](https://cloud.google.com/spanner/docs/data-types) for the
  * Postgres Dialect database.
  *
  * It supports a value precision of up to 131072 digits before the decimal point
@@ -76,7 +76,7 @@ class PgNumeric implements ValueInterface, TypeAnnotationInterface
 
     /**
      * Get the typeAnnotationCode.
-     * This is to be used along type, to differentiate the value from TypeCode::NUMERIC 
+     * This is to be used along type, to differentiate the value from TypeCode::NUMERIC
      */
     public function typeAnnotation()
     {

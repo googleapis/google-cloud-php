@@ -611,7 +611,7 @@ class SpannerClient
 
     /**
      * Represents a value with a data type of
-     * [PG Numeric](https://cloud.google.com/spanner/docs/data-types) for the 
+     * [PG Numeric](https://cloud.google.com/spanner/docs/data-types) for the
      * Postgres Dialect database.
      *
      * It supports a value precision of up to 131072 digits before the decimal point
