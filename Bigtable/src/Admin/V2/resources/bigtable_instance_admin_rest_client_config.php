@@ -148,6 +148,17 @@ return [
                     ],
                 ],
             ],
+            'ListHotTablets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*/clusters/*}/hotTablets',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListInstances' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*}/instances',
