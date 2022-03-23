@@ -16,11 +16,10 @@ class GcpUserAccessBinding
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-â
-Egoogle/identity/accesscontextmanager/v1/gcp_user_access_binding.proto\'google.identity.accesscontextmanager.v1google/api/resource.protogoogle/api/annotations.proto"£
+Î
+Egoogle/identity/accesscontextmanager/v1/gcp_user_access_binding.proto\'google.identity.accesscontextmanager.v1google/api/resource.proto"£
 GcpUserAccessBinding
 name (	B‡A
 	group_key (	B‡A‡AN
