@@ -197,7 +197,7 @@ class Backup
      * $destInstance = $spanner->instance('destination-instance-id');
      * $sourceBackup = $sourceInstance->backup('source-backup-id');
      * $destBackup = $instance->backup('new-backup-id');
-     * 
+     *
      * $operation = $sourceBackup->createCopy($destBackup, new \DateTime('+7 hours'));
      * ```
      *
