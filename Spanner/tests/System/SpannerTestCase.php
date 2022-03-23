@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\System;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner;
 use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 
 /**
  * @group spanner
@@ -36,7 +37,9 @@ class SpannerTestCase extends SystemTestCase
     protected static $instance;
     protected static $database;
     protected static $database2;
+    protected static $pgDatabase;
     protected static $dbName;
+    protected static $pgDbName;
 
     private static $hasSetUp = false;
 
@@ -75,6 +78,8 @@ class SpannerTestCase extends SystemTestCase
 
         self::$database = $db;
         self::$database2 = self::getDatabaseInstance(self::$dbName);
+
+        self::setupPgDB();
 
         self::$hasSetUp = true;
     }
@@ -123,5 +128,35 @@ class SpannerTestCase extends SystemTestCase
         if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
             self::markTestSkipped('This test is not supported by the emulator.');
         }
+    }
+
+    private static function setupPgDB(){
+        self::$pgDbName = uniqid(self::TESTING_PREFIX);
+
+        // create a PG DB first
+        $op = self::$instance->createDatabase(self::$pgDbName,[
+            'databaseDialect' => DatabaseDialect::POSTGRESQL
+        ]);
+
+        // wait for the DB to be ready
+        $op->pollUntilComplete();
+
+        // connect to the DB
+        $pgDb = self::getDatabaseInstance(self::$pgDbName);
+        self::$pgDatabase = $pgDb;
+
+        // add some schema
+        $op = $pgDb->updateDdl(
+            'CREATE TABLE test (
+                id		           bigint NOT NULL PRIMARY KEY,
+                numeric_col        numeric
+            )'
+        );
+        $op->pollUntilComplete();
+
+        // add it for deletion
+        self::$deletionQueue->add(function () use ($pgDb) {
+            $pgDb->drop();
+        });
     }
 }
