@@ -19,7 +19,7 @@ class Write extends \Google\Protobuf\Internal\Message
     /**
      * Required. The table whose rows will be written.
      *
-     * Generated from protobuf field <code>string table = 1;</code>
+     * Generated from protobuf field <code>string table = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $table = '';
     /**
@@ -77,7 +77,7 @@ class Write extends \Google\Protobuf\Internal\Message
     /**
      * Required. The table whose rows will be written.
      *
-     * Generated from protobuf field <code>string table = 1;</code>
+     * Generated from protobuf field <code>string table = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTable()
@@ -88,7 +88,7 @@ class Write extends \Google\Protobuf\Internal\Message
     /**
      * Required. The table whose rows will be written.
      *
-     * Generated from protobuf field <code>string table = 1;</code>
+     * Generated from protobuf field <code>string table = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

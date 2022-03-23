@@ -621,7 +621,7 @@ class SpannerGapicClient
      *     Optional.
      *
      *     @type Session $session
-     *           The session to create.
+     *           Required. The session to create.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry

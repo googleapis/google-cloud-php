@@ -14,13 +14,11 @@ class CommitResponse
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
-        \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ö
-\'google/spanner/v1/commit_response.protogoogle.spanner.v1google/protobuf/duration.protogoogle/protobuf/timestamp.proto"²
+µ
+\'google/spanner/v1/commit_response.protogoogle.spanner.v1"²
 CommitResponse4
 commit_timestamp (2.google.protobuf.TimestampC
 commit_stats (2-.google.spanner.v1.CommitResponse.CommitStats%

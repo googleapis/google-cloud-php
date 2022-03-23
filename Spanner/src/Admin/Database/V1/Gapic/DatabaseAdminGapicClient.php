@@ -43,6 +43,9 @@ use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup;
+use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupEncryptionConfig;
+use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupMetadata;
+use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupRequest;
@@ -63,8 +66,8 @@ use Google\Cloud\Spanner\Admin\Database\V1\ListBackupsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest;
-
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesResponse;
+
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest;
@@ -74,6 +77,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Timestamp;
 
 /**
  * Service Description: Cloud Spanner Database Admin API
@@ -92,8 +96,9 @@ use Google\Protobuf\GPBEmpty;
  * try {
  *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
  *     $backupId = 'backup_id';
- *     $backup = new Backup();
- *     $operationResponse = $databaseAdminClient->createBackup($formattedParent, $backupId, $backup);
+ *     $formattedSourceBackup = $databaseAdminClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
+ *     $expireTime = new Timestamp();
+ *     $operationResponse = $databaseAdminClient->copyBackup($formattedParent, $backupId, $formattedSourceBackup, $expireTime);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -104,10 +109,10 @@ use Google\Protobuf\GPBEmpty;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $databaseAdminClient->createBackup($formattedParent, $backupId, $backup);
+ *     $operationResponse = $databaseAdminClient->copyBackup($formattedParent, $backupId, $formattedSourceBackup, $expireTime);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
- *     $newOperationResponse = $databaseAdminClient->resumeOperation($operationName, 'createBackup');
+ *     $newOperationResponse = $databaseAdminClient->resumeOperation($operationName, 'copyBackup');
  *     while (!$newOperationResponse->isDone()) {
  *         // ... do other work
  *         $newOperationResponse->reload();
@@ -481,6 +486,127 @@ class DatabaseAdminGapicClient
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
+    }
+
+    /**
+     * Starts copying a Cloud Spanner Backup.
+     * The returned backup [long-running operation][google.longrunning.Operation]
+     * will have a name of the format
+     * `projects/<project>/instances/<instance>/backups/<backup>/operations/<operation_id>`
+     * and can be used to track copying of the backup. The operation is associated
+     * with the destination backup.
+     * The [metadata][google.longrunning.Operation.metadata] field type is
+     * [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
+     * [Backup][google.spanner.admin.database.v1.Backup], if successful. Cancelling the returned operation will stop the
+     * copying and delete the backup.
+     * Concurrent CopyBackup requests can run on the same source backup.
+     *
+     * Sample code:
+     * ```
+     * $databaseAdminClient = new DatabaseAdminClient();
+     * try {
+     *     $formattedParent = $databaseAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $backupId = 'backup_id';
+     *     $formattedSourceBackup = $databaseAdminClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
+     *     $expireTime = new Timestamp();
+     *     $operationResponse = $databaseAdminClient->copyBackup($formattedParent, $backupId, $formattedSourceBackup, $expireTime);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $databaseAdminClient->copyBackup($formattedParent, $backupId, $formattedSourceBackup, $expireTime);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $databaseAdminClient->resumeOperation($operationName, 'copyBackup');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $databaseAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string    $parent       Required. The name of the destination instance that will contain the backup copy.
+     *                                Values are of the form: `projects/<project>/instances/<instance>`.
+     * @param string    $backupId     Required. The id of the backup copy.
+     *                                The `backup_id` appended to `parent` forms the full backup_uri of the form
+     *                                `projects/<project>/instances/<instance>/backups/<backup>`.
+     * @param string    $sourceBackup Required. The source backup to be copied.
+     *                                The source backup needs to be in READY state for it to be copied.
+     *                                Once CopyBackup is in progress, the source backup cannot be deleted or
+     *                                cleaned up on expiration until CopyBackup is finished.
+     *                                Values are of the form:
+     *                                `projects/<project>/instances/<instance>/backups/<backup>`.
+     * @param Timestamp $expireTime   Required. The expiration time of the backup in microsecond granularity.
+     *                                The expiration time must be at least 6 hours and at most 366 days
+     *                                from the `create_time` of the source backup. Once the `expire_time` has
+     *                                passed, the backup is eligible to be automatically deleted by Cloud Spanner
+     *                                to free the resources used by the backup.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type CopyBackupEncryptionConfig $encryptionConfig
+     *           Optional. The encryption configuration used to encrypt the backup. If this field is
+     *           not specified, the backup will use the same
+     *           encryption configuration as the source backup by default, namely
+     *           [encryption_type][google.spanner.admin.database.v1.CopyBackupEncryptionConfig.encryption_type] =
+     *           `USE_CONFIG_DEFAULT_OR_BACKUP_ENCRYPTION`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function copyBackup(
+        $parent,
+        $backupId,
+        $sourceBackup,
+        $expireTime,
+        array $optionalArgs = []
+    ) {
+        $request = new CopyBackupRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setBackupId($backupId);
+        $request->setSourceBackup($sourceBackup);
+        $request->setExpireTime($expireTime);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['encryptionConfig'])) {
+            $request->setEncryptionConfig($optionalArgs['encryptionConfig']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CopyBackup',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -1087,6 +1213,8 @@ class DatabaseAdminGapicClient
      *           for [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata] is
      *           `type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata`.
      *           * `metadata.<field_name>` - any field in metadata.value.
+     *           `metadata.&#64;type` must be specified first if filtering on metadata
+     *           fields.
      *           * `error` - Error associated with the long-running operation.
      *           * `response.&#64;type` - the type of response.
      *           * `response.<field_name>` - any field in response.value.
@@ -1098,8 +1226,11 @@ class DatabaseAdminGapicClient
      *           Here are a few examples:
      *
      *           * `done:true` - The operation is complete.
-     *           * `metadata.database:prod` - The database the backup was taken from has
-     *           a name containing the string "prod".
+     *           * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
+     *           `metadata.database:prod` - Returns operations where:
+     *           * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
+     *           * The database the backup was taken from has a name containing the
+     *           string "prod".
      *           * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
      *           `(metadata.name:howl) AND` \
      *           `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
@@ -1107,6 +1238,29 @@ class DatabaseAdminGapicClient
      *           * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
      *           * The backup name contains the string "howl".
      *           * The operation started before 2018-03-28T14:50:00Z.
+     *           * The operation resulted in an error.
+     *           * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CopyBackupMetadata) AND` \
+     *           `(metadata.source_backup:test) AND` \
+     *           `(metadata.progress.start_time < \"2022-01-18T14:50:00Z\") AND` \
+     *           `(error:*)` - Returns operations where:
+     *           * The operation's metadata type is [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata].
+     *           * The source backup of the copied backup name contains the string
+     *           "test".
+     *           * The operation started before 2022-01-18T14:50:00Z.
+     *           * The operation resulted in an error.
+     *           * `((metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
+     *           `(metadata.database:test_db)) OR` \
+     *           `((metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CopyBackupMetadata)
+     *           AND` \
+     *           `(metadata.source_backup:test_bkp)) AND` \
+     *           `(error:*)` - Returns operations where:
+     *           * The operation's metadata matches either of criteria:
+     *           * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata] AND the
+     *           database the backup was taken from has name containing string
+     *           "test_db"
+     *           * The operation's metadata type is [CopyBackupMetadata][google.spanner.admin.database.v1.CopyBackupMetadata] AND the
+     *           backup the backup was copied from has name containing string
+     *           "test_bkp"
      *           * The operation resulted in an error.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
@@ -1337,6 +1491,8 @@ class DatabaseAdminGapicClient
      *           for [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata] is
      *           `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`.
      *           * `metadata.<field_name>` - any field in metadata.value.
+     *           `metadata.&#64;type` must be specified first, if filtering on metadata
+     *           fields.
      *           * `error` - Error associated with the long-running operation.
      *           * `response.&#64;type` - the type of response.
      *           * `response.<field_name>` - any field in response.value.
