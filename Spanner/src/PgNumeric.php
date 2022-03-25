@@ -76,7 +76,7 @@ class PgNumeric implements ValueInterface, TypeAnnotationInterface
     /**
      * Get the typeAnnotationCode.
      * This is to be used along type, to differentiate the value from TypeCode::NUMERIC.
-     * 
+     *
      * @return int
      */
     public function typeAnnotation()
