@@ -21,11 +21,11 @@ use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 
 /**
  * Represents a value with a data type of
- * [PG Numeric](https://cloud.google.com/spanner/docs/data-types) for the
+ * [PG Numeric](https://cloud.google.com/spanner/docs/reference/postgresql/data-types) for the
  * Postgres Dialect database.
  *
  * It supports a value precision of up to 131072 digits before the decimal point
- * and up to 16383 digits after the decimal point
+ * and up to 16383 digits after the decimal point.
  *
  * Example:
  * ```
@@ -44,8 +44,7 @@ class PgNumeric implements ValueInterface, TypeAnnotationInterface
     private $value;
 
     /**
-     * @param string|int|float $value The NUMERIC value.
-     * @throws \InvalidArgumentException
+     * @param string|int|float $value The PG_NUMERIC value.
      */
     public function __construct($value)
     {
@@ -76,7 +75,9 @@ class PgNumeric implements ValueInterface, TypeAnnotationInterface
 
     /**
      * Get the typeAnnotationCode.
-     * This is to be used along type, to differentiate the value from TypeCode::NUMERIC
+     * This is to be used along type, to differentiate the value from TypeCode::NUMERIC.
+     * 
+     * @return int
      */
     public function typeAnnotation()
     {

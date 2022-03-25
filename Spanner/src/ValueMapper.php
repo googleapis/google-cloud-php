@@ -63,10 +63,12 @@ class ValueMapper
     /*
      * Types declared here will be mapped to a class type.
      * Native types are identified only by typeCodes,
-     * But custom types may need a typeCodeAnnotation along with the code.
-     * Declaring the type here takes care of encoding such types
+     * but custom types may need a typeCodeAnnotation along with the code.
+     * Declaring the type here takes care of encoding such types.
+     * 
+     * @var array
      */
-    public static $typeToClassMap = [
+    private static $typeToClassMap = [
         'pgNumeric' => PgNumeric::class
     ];
 
@@ -346,7 +348,7 @@ class ValueMapper
         $allowMixedArrayType = false
     ) {
 
-        // if the given type maps to a custom class
+        // If the given type maps to a custom class
         // initialize the value as the custom class(type)
         if (!is_null($givenType) && array_key_exists($givenType, self::$typeToClassMap)) {
             $cls = self::$typeToClassMap[$givenType];
