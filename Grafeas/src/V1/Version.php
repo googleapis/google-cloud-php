@@ -35,6 +35,17 @@ class Version extends \Google\Protobuf\Internal\Message
      */
     private $revision = '';
     /**
+     * Whether this version is specifying part of an inclusive range. Grafeas
+     * does not have the capability to specify version ranges; instead we have
+     * fields that specify start version and end versions. At times this is
+     * insufficient - we also need to specify whether the version is included in
+     * the range or is excluded from the range. This boolean is expected to be set
+     * to true when the version is included in a range.
+     *
+     * Generated from protobuf field <code>bool inclusive = 6;</code>
+     */
+    private $inclusive = false;
+    /**
      * Required. Distinguishes between sentinel MIN/MAX versions and normal
      * versions.
      *
@@ -62,6 +73,13 @@ class Version extends \Google\Protobuf\Internal\Message
      *           name.
      *     @type string $revision
      *           The iteration of the package build from the above version.
+     *     @type bool $inclusive
+     *           Whether this version is specifying part of an inclusive range. Grafeas
+     *           does not have the capability to specify version ranges; instead we have
+     *           fields that specify start version and end versions. At times this is
+     *           insufficient - we also need to specify whether the version is included in
+     *           the range or is excluded from the range. This boolean is expected to be set
+     *           to true when the version is included in a range.
      *     @type int $kind
      *           Required. Distinguishes between sentinel MIN/MAX versions and normal
      *           versions.
@@ -151,6 +169,42 @@ class Version extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->revision = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether this version is specifying part of an inclusive range. Grafeas
+     * does not have the capability to specify version ranges; instead we have
+     * fields that specify start version and end versions. At times this is
+     * insufficient - we also need to specify whether the version is included in
+     * the range or is excluded from the range. This boolean is expected to be set
+     * to true when the version is included in a range.
+     *
+     * Generated from protobuf field <code>bool inclusive = 6;</code>
+     * @return bool
+     */
+    public function getInclusive()
+    {
+        return $this->inclusive;
+    }
+
+    /**
+     * Whether this version is specifying part of an inclusive range. Grafeas
+     * does not have the capability to specify version ranges; instead we have
+     * fields that specify start version and end versions. At times this is
+     * insufficient - we also need to specify whether the version is included in
+     * the range or is excluded from the range. This boolean is expected to be set
+     * to true when the version is included in a range.
+     *
+     * Generated from protobuf field <code>bool inclusive = 6;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setInclusive($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->inclusive = $var;
 
         return $this;
     }

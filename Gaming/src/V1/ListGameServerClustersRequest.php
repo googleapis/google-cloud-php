@@ -16,14 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListGameServerClustersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * "projects/{project}/locations/{location}/realms/{realm}".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of items to return.  If unspecified, the server
+     * Optional. The maximum number of items to return. If unspecified, the server
      * will pick an appropriate default. The server may return fewer items than
      * requested. A caller should only rely on response's
      * [next_page_token][google.cloud.gaming.v1.ListGameServerClustersResponse.next_page_token] to
@@ -51,6 +51,17 @@ class ListGameServerClustersRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $order_by = '';
+    /**
+     * Optional. View for the returned GameServerCluster objects. When `FULL` is
+     * specified, the `cluster_state` field is also returned in the
+     * GameServerCluster object, which includes the state of the referenced
+     * Kubernetes cluster such as versions and provider info. The default/unset
+     * value is GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED, same as BASIC, which does
+     * not return the `cluster_state` field.
+     *
+     * Generated from protobuf field <code>.google.cloud.gaming.v1.GameServerClusterView view = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $view = 0;
 
     /**
      * Constructor.
@@ -59,10 +70,10 @@ class ListGameServerClustersRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource name. Uses the form:
+     *           Required. The parent resource name, in the following form:
      *           "projects/{project}/locations/{location}/realms/{realm}".
      *     @type int $page_size
-     *           Optional. The maximum number of items to return.  If unspecified, the server
+     *           Optional. The maximum number of items to return. If unspecified, the server
      *           will pick an appropriate default. The server may return fewer items than
      *           requested. A caller should only rely on response's
      *           [next_page_token][google.cloud.gaming.v1.ListGameServerClustersResponse.next_page_token] to
@@ -74,6 +85,13 @@ class ListGameServerClustersRequest extends \Google\Protobuf\Internal\Message
      *     @type string $order_by
      *           Optional. Specifies the ordering of results following syntax at
      *           https://cloud.google.com/apis/design/design_patterns#sorting_order.
+     *     @type int $view
+     *           Optional. View for the returned GameServerCluster objects. When `FULL` is
+     *           specified, the `cluster_state` field is also returned in the
+     *           GameServerCluster object, which includes the state of the referenced
+     *           Kubernetes cluster such as versions and provider info. The default/unset
+     *           value is GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED, same as BASIC, which does
+     *           not return the `cluster_state` field.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +100,7 @@ class ListGameServerClustersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * "projects/{project}/locations/{location}/realms/{realm}".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -94,7 +112,7 @@ class ListGameServerClustersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * "projects/{project}/locations/{location}/realms/{realm}".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -110,7 +128,7 @@ class ListGameServerClustersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of items to return.  If unspecified, the server
+     * Optional. The maximum number of items to return. If unspecified, the server
      * will pick an appropriate default. The server may return fewer items than
      * requested. A caller should only rely on response's
      * [next_page_token][google.cloud.gaming.v1.ListGameServerClustersResponse.next_page_token] to
@@ -125,7 +143,7 @@ class ListGameServerClustersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of items to return.  If unspecified, the server
+     * Optional. The maximum number of items to return. If unspecified, the server
      * will pick an appropriate default. The server may return fewer items than
      * requested. A caller should only rely on response's
      * [next_page_token][google.cloud.gaming.v1.ListGameServerClustersResponse.next_page_token] to
@@ -219,6 +237,42 @@ class ListGameServerClustersRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. View for the returned GameServerCluster objects. When `FULL` is
+     * specified, the `cluster_state` field is also returned in the
+     * GameServerCluster object, which includes the state of the referenced
+     * Kubernetes cluster such as versions and provider info. The default/unset
+     * value is GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED, same as BASIC, which does
+     * not return the `cluster_state` field.
+     *
+     * Generated from protobuf field <code>.google.cloud.gaming.v1.GameServerClusterView view = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getView()
+    {
+        return $this->view;
+    }
+
+    /**
+     * Optional. View for the returned GameServerCluster objects. When `FULL` is
+     * specified, the `cluster_state` field is also returned in the
+     * GameServerCluster object, which includes the state of the referenced
+     * Kubernetes cluster such as versions and provider info. The default/unset
+     * value is GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED, same as BASIC, which does
+     * not return the `cluster_state` field.
+     *
+     * Generated from protobuf field <code>.google.cloud.gaming.v1.GameServerClusterView view = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setView($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Gaming\V1\GameServerClusterView::class);
+        $this->view = $var;
 
         return $this;
     }

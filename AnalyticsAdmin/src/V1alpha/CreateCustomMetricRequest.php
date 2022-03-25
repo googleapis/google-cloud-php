@@ -79,7 +79,7 @@ class CreateCustomMetricRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCustomMetric()
     {
-        return isset($this->custom_metric) ? $this->custom_metric : null;
+        return $this->custom_metric;
     }
 
     public function hasCustomMetric()

@@ -53,7 +53,7 @@ class BetweenFilter extends \Google\Protobuf\Internal\Message
      */
     public function getFromValue()
     {
-        return isset($this->from_value) ? $this->from_value : null;
+        return $this->from_value;
     }
 
     public function hasFromValue()
@@ -89,7 +89,7 @@ class BetweenFilter extends \Google\Protobuf\Internal\Message
      */
     public function getToValue()
     {
-        return isset($this->to_value) ? $this->to_value : null;
+        return $this->to_value;
     }
 
     public function hasToValue()
@@ -119,6 +119,4 @@ class BetweenFilter extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BetweenFilter::class, \Google\Analytics\Data\V1beta\Filter_BetweenFilter::class);
 

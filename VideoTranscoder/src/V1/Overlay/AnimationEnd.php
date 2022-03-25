@@ -47,7 +47,7 @@ class AnimationEnd extends \Google\Protobuf\Internal\Message
      */
     public function getStartTimeOffset()
     {
-        return isset($this->start_time_offset) ? $this->start_time_offset : null;
+        return $this->start_time_offset;
     }
 
     public function hasStartTimeOffset()
@@ -77,6 +77,4 @@ class AnimationEnd extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AnimationEnd::class, \Google\Cloud\Video\Transcoder\V1\Overlay_AnimationEnd::class);
 

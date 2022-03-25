@@ -62,6 +62,4 @@ class Condition
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Condition::class, \Google\Cloud\Retail\V2\SearchRequest_QueryExpansionSpec_Condition::class);
 

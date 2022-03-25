@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/assuredworkloads/v1beta1/.*-php/(.*)
+      dest: /owl-bot-staging/AssuredWorkloads/v1beta1/$1
+api-name: AssuredWorkloads

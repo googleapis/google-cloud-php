@@ -39,7 +39,7 @@ class IndexField extends \Google\Protobuf\Internal\Message
      *           be omitted.
      *     @type int $order
      *           Indicates that this field supports ordering by the specified order or
-     *           comparing using =, <, <=, >, >=.
+     *           comparing using =, !=, <, <=, >, >=.
      *     @type int $array_config
      *           Indicates that this field supports operations on `array_value`s.
      * }
@@ -81,7 +81,7 @@ class IndexField extends \Google\Protobuf\Internal\Message
 
     /**
      * Indicates that this field supports ordering by the specified order or
-     * comparing using =, <, <=, >, >=.
+     * comparing using =, !=, <, <=, >, >=.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Index.IndexField.Order order = 2;</code>
      * @return int
@@ -98,7 +98,7 @@ class IndexField extends \Google\Protobuf\Internal\Message
 
     /**
      * Indicates that this field supports ordering by the specified order or
-     * comparing using =, <, <=, >, >=.
+     * comparing using =, !=, <, <=, >, >=.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Index.IndexField.Order order = 2;</code>
      * @param int $var

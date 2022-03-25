@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SslCertsInsertResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always <b>sql#sslCertsInsert</b>.
+     * This is always `sql#sslCertsInsert`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -49,7 +49,7 @@ class SslCertsInsertResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always <b>sql#sslCertsInsert</b>.
+     *           This is always `sql#sslCertsInsert`.
      *     @type \Google\Cloud\Sql\V1beta4\Operation $operation
      *           The operation to track the ssl certs insert request.
      *     @type \Google\Cloud\Sql\V1beta4\SslCert $server_ca_cert
@@ -66,7 +66,7 @@ class SslCertsInsertResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#sslCertsInsert</b>.
+     * This is always `sql#sslCertsInsert`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -77,7 +77,7 @@ class SslCertsInsertResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#sslCertsInsert</b>.
+     * This is always `sql#sslCertsInsert`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var

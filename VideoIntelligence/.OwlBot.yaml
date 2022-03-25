@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/videointelligence/(v1|v1beta2)/.*-php/(.*)
+      dest: /owl-bot-staging/VideoIntelligence/$1/$2
+api-name: VideoIntelligence

@@ -74,6 +74,4 @@ class StockState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StockState::class, \Google\Cloud\RecommendationEngine\V1beta1\ProductCatalogItem_StockState::class);
 

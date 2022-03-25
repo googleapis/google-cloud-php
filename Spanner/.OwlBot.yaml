@@ -1,0 +1,8 @@
+deep-copy-regex:
+    - source: /google/spanner/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/Spanner/$1/$2
+    - source: /google/spanner/admin/database/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/Spanner/$1/Admin/Database/$1/$2
+    - source: /google/spanner/admin/instance/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/Spanner/$1/Admin/Instance/$1/$2
+api-name: Spanner

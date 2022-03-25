@@ -18,7 +18,7 @@ class InterconnectLocationList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>optional string id = 3355;</code>
      */
     private $id = null;
     /**
@@ -30,25 +30,25 @@ class InterconnectLocationList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of resource. Always compute#interconnectLocationList for lists of interconnect locations.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
      *
-     * Generated from protobuf field <code>string next_page_token = 79797525;</code>
+     * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      */
     private $next_page_token = null;
     /**
      * [Output Only] Server-defined URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * [Output Only] Informational warning message.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
     private $warning = null;
 
@@ -80,7 +80,7 @@ class InterconnectLocationList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>optional string id = 3355;</code>
      * @return string
      */
     public function getId()
@@ -101,7 +101,7 @@ class InterconnectLocationList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>optional string id = 3355;</code>
      * @param string $var
      * @return $this
      */
@@ -142,7 +142,7 @@ class InterconnectLocationList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of resource. Always compute#interconnectLocationList for lists of interconnect locations.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -163,7 +163,7 @@ class InterconnectLocationList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of resource. Always compute#interconnectLocationList for lists of interconnect locations.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -178,7 +178,7 @@ class InterconnectLocationList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
      *
-     * Generated from protobuf field <code>string next_page_token = 79797525;</code>
+     * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @return string
      */
     public function getNextPageToken()
@@ -199,7 +199,7 @@ class InterconnectLocationList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
      *
-     * Generated from protobuf field <code>string next_page_token = 79797525;</code>
+     * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @param string $var
      * @return $this
      */
@@ -214,7 +214,7 @@ class InterconnectLocationList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -235,7 +235,7 @@ class InterconnectLocationList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -250,12 +250,12 @@ class InterconnectLocationList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Informational warning message.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @return \Google\Cloud\Compute\V1\Warning|null
      */
     public function getWarning()
     {
-        return isset($this->warning) ? $this->warning : null;
+        return $this->warning;
     }
 
     public function hasWarning()
@@ -271,7 +271,7 @@ class InterconnectLocationList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Informational warning message.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var
      * @return $this
      */

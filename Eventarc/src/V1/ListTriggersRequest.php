@@ -38,9 +38,9 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * The sorting order of the resources returned. Value should be a comma
-     * separated list of fields. The default sorting oder is ascending. To specify
-     * descending order for a field, append a ` desc` suffix; for example:
+     * The sorting order of the resources returned. Value should be a
+     * comma-separated list of fields. The default sorting order is ascending. To
+     * specify descending order for a field, append a `desc` suffix; for example:
      * `name desc, trigger_id`.
      *
      * Generated from protobuf field <code>string order_by = 4;</code>
@@ -64,9 +64,9 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
      *           When paginating, all other parameters provided to `ListTriggers` must match
      *           the call that provided the page token.
      *     @type string $order_by
-     *           The sorting order of the resources returned. Value should be a comma
-     *           separated list of fields. The default sorting oder is ascending. To specify
-     *           descending order for a field, append a ` desc` suffix; for example:
+     *           The sorting order of the resources returned. Value should be a
+     *           comma-separated list of fields. The default sorting order is ascending. To
+     *           specify descending order for a field, append a `desc` suffix; for example:
      *           `name desc, trigger_id`.
      * }
      */
@@ -162,9 +162,9 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The sorting order of the resources returned. Value should be a comma
-     * separated list of fields. The default sorting oder is ascending. To specify
-     * descending order for a field, append a ` desc` suffix; for example:
+     * The sorting order of the resources returned. Value should be a
+     * comma-separated list of fields. The default sorting order is ascending. To
+     * specify descending order for a field, append a `desc` suffix; for example:
      * `name desc, trigger_id`.
      *
      * Generated from protobuf field <code>string order_by = 4;</code>
@@ -176,9 +176,9 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The sorting order of the resources returned. Value should be a comma
-     * separated list of fields. The default sorting oder is ascending. To specify
-     * descending order for a field, append a ` desc` suffix; for example:
+     * The sorting order of the resources returned. Value should be a
+     * comma-separated list of fields. The default sorting order is ascending. To
+     * specify descending order for a field, append a `desc` suffix; for example:
      * `name desc, trigger_id`.
      *
      * Generated from protobuf field <code>string order_by = 4;</code>

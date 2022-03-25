@@ -20,24 +20,32 @@ class Frequency
      */
     const FREQUENCY_UNSPECIFIED = 0;
     /**
-     * Indicates that the frequency should be expressed in terms of
-     * weeks.
+     * Indicates that the frequency of recurrence should be expressed in terms
+     * of weeks.
      *
      * Generated from protobuf enum <code>WEEKLY = 1;</code>
      */
     const WEEKLY = 1;
     /**
-     * Indicates that the frequency should be expressed in terms of
-     * months.
+     * Indicates that the frequency of recurrence should be expressed in terms
+     * of months.
      *
      * Generated from protobuf enum <code>MONTHLY = 2;</code>
      */
     const MONTHLY = 2;
+    /**
+     * Indicates that the frequency of recurrence should be expressed in terms
+     * of days.
+     *
+     * Generated from protobuf enum <code>DAILY = 3;</code>
+     */
+    const DAILY = 3;
 
     private static $valueToName = [
         self::FREQUENCY_UNSPECIFIED => 'FREQUENCY_UNSPECIFIED',
         self::WEEKLY => 'WEEKLY',
         self::MONTHLY => 'MONTHLY',
+        self::DAILY => 'DAILY',
     ];
 
     public static function name($value)
@@ -61,6 +69,4 @@ class Frequency
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Frequency::class, \Google\Cloud\OsConfig\V1\RecurringSchedule_Frequency::class);
 

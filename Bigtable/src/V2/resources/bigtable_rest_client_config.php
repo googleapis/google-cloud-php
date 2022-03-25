@@ -27,10 +27,45 @@ return [
                     ],
                 ],
             ],
+            'MutateRows' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:mutateRows',
+                'body' => '*',
+                'placeholders' => [
+                    'table_name' => [
+                        'getters' => [
+                            'getTableName',
+                        ],
+                    ],
+                ],
+            ],
             'ReadModifyWriteRow' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:readModifyWriteRow',
                 'body' => '*',
+                'placeholders' => [
+                    'table_name' => [
+                        'getters' => [
+                            'getTableName',
+                        ],
+                    ],
+                ],
+            ],
+            'ReadRows' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:readRows',
+                'body' => '*',
+                'placeholders' => [
+                    'table_name' => [
+                        'getters' => [
+                            'getTableName',
+                        ],
+                    ],
+                ],
+            ],
+            'SampleRowKeys' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{table_name=projects/*/instances/*/tables/*}:sampleRowKeys',
                 'placeholders' => [
                     'table_name' => [
                         'getters' => [

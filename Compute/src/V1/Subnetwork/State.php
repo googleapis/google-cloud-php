@@ -20,10 +20,14 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
+     * Subnetwork is being drained.
+     *
      * Generated from protobuf enum <code>DRAINING = 480455402;</code>
      */
     const DRAINING = 480455402;
     /**
+     * Subnetwork is ready for use.
+     *
      * Generated from protobuf enum <code>READY = 77848963;</code>
      */
     const READY = 77848963;

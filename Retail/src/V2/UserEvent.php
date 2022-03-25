@@ -110,12 +110,12 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `detail-page-view`
      * * `purchase-complete`
      * In a `search` event, this field represents the products returned to the end
-     * user on the current page (the end user may have not finished broswing the
+     * user on the current page (the end user may have not finished browsing the
      * whole page yet). When a new page is returned to the end user, after
      * pagination/filtering/ordering even for the same query, a new `search` event
      * with different
      * [product_details][google.cloud.retail.v2.UserEvent.product_details] is
-     * desired. The end user may have not finished broswing the whole page yet.
+     * desired. The end user may have not finished browsing the whole page yet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ProductDetail product_details = 6;</code>
      */
@@ -142,7 +142,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      */
     private $attributes;
     /**
-     * The id or name of the associated shopping cart. This id is used
+     * The ID or name of the associated shopping cart. This ID is used
      * to associate multiple items added or present in the cart before purchase.
      * This can only be set for `add-to-cart`, `purchase-complete`, or
      * `shopping-cart-page-view` events.
@@ -249,7 +249,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      */
     private $referrer_uri = '';
     /**
-     * A unique id of a web page view.
+     * A unique ID of a web page view.
      * This should be kept the same for all user events triggered from the same
      * pageview. For example, an item detail page view could trigger multiple
      * events as the user is browsing the page. The `pageViewId` property should
@@ -338,12 +338,12 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           * `detail-page-view`
      *           * `purchase-complete`
      *           In a `search` event, this field represents the products returned to the end
-     *           user on the current page (the end user may have not finished broswing the
+     *           user on the current page (the end user may have not finished browsing the
      *           whole page yet). When a new page is returned to the end user, after
      *           pagination/filtering/ordering even for the same query, a new `search` event
      *           with different
      *           [product_details][google.cloud.retail.v2.UserEvent.product_details] is
-     *           desired. The end user may have not finished broswing the whole page yet.
+     *           desired. The end user may have not finished browsing the whole page yet.
      *     @type \Google\Cloud\Retail\V2\CompletionDetail $completion_detail
      *           The main completion details related to the event.
      *           In a `completion` event, this field represents the completions returned to
@@ -358,7 +358,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           at the site by coming to the site directly, or coming through Google
      *           search, and etc.
      *     @type string $cart_id
-     *           The id or name of the associated shopping cart. This id is used
+     *           The ID or name of the associated shopping cart. This ID is used
      *           to associate multiple items added or present in the cart before purchase.
      *           This can only be set for `add-to-cart`, `purchase-complete`, or
      *           `shopping-cart-page-view` events.
@@ -425,7 +425,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           When using the client side event reporting with JavaScript pixel and Google
      *           Tag Manager, this value is filled in automatically.
      *     @type string $page_view_id
-     *           A unique id of a web page view.
+     *           A unique ID of a web page view.
      *           This should be kept the same for all user events triggered from the same
      *           pageview. For example, an item detail page view could trigger multiple
      *           events as the user is browsing the page. The `pageViewId` property should
@@ -580,7 +580,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      */
     public function getEventTime()
     {
-        return isset($this->event_time) ? $this->event_time : null;
+        return $this->event_time;
     }
 
     public function hasEventTime()
@@ -715,12 +715,12 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `detail-page-view`
      * * `purchase-complete`
      * In a `search` event, this field represents the products returned to the end
-     * user on the current page (the end user may have not finished broswing the
+     * user on the current page (the end user may have not finished browsing the
      * whole page yet). When a new page is returned to the end user, after
      * pagination/filtering/ordering even for the same query, a new `search` event
      * with different
      * [product_details][google.cloud.retail.v2.UserEvent.product_details] is
-     * desired. The end user may have not finished broswing the whole page yet.
+     * desired. The end user may have not finished browsing the whole page yet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ProductDetail product_details = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -737,12 +737,12 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `detail-page-view`
      * * `purchase-complete`
      * In a `search` event, this field represents the products returned to the end
-     * user on the current page (the end user may have not finished broswing the
+     * user on the current page (the end user may have not finished browsing the
      * whole page yet). When a new page is returned to the end user, after
      * pagination/filtering/ordering even for the same query, a new `search` event
      * with different
      * [product_details][google.cloud.retail.v2.UserEvent.product_details] is
-     * desired. The end user may have not finished broswing the whole page yet.
+     * desired. The end user may have not finished browsing the whole page yet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ProductDetail product_details = 6;</code>
      * @param \Google\Cloud\Retail\V2\ProductDetail[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -767,7 +767,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      */
     public function getCompletionDetail()
     {
-        return isset($this->completion_detail) ? $this->completion_detail : null;
+        return $this->completion_detail;
     }
 
     public function hasCompletionDetail()
@@ -837,7 +837,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The id or name of the associated shopping cart. This id is used
+     * The ID or name of the associated shopping cart. This ID is used
      * to associate multiple items added or present in the cart before purchase.
      * This can only be set for `add-to-cart`, `purchase-complete`, or
      * `shopping-cart-page-view` events.
@@ -851,7 +851,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The id or name of the associated shopping cart. This id is used
+     * The ID or name of the associated shopping cart. This ID is used
      * to associate multiple items added or present in the cart before purchase.
      * This can only be set for `add-to-cart`, `purchase-complete`, or
      * `shopping-cart-page-view` events.
@@ -878,7 +878,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      */
     public function getPurchaseTransaction()
     {
-        return isset($this->purchase_transaction) ? $this->purchase_transaction : null;
+        return $this->purchase_transaction;
     }
 
     public function hasPurchaseTransaction()
@@ -1120,7 +1120,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      */
     public function getUserInfo()
     {
-        return isset($this->user_info) ? $this->user_info : null;
+        return $this->user_info;
     }
 
     public function hasUserInfo()
@@ -1211,7 +1211,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique id of a web page view.
+     * A unique ID of a web page view.
      * This should be kept the same for all user events triggered from the same
      * pageview. For example, an item detail page view could trigger multiple
      * events as the user is browsing the page. The `pageViewId` property should
@@ -1229,7 +1229,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique id of a web page view.
+     * A unique ID of a web page view.
      * This should be kept the same for all user events triggered from the same
      * pageview. For example, an item detail page view could trigger multiple
      * events as the user is browsing the page. The `pageViewId` property should

@@ -7,9 +7,7 @@ namespace Google\Cloud\Compute\V1\ForwardingRule;
 use UnexpectedValueException;
 
 /**
- * This signifies the networking tier used for configuring this load balancer and can only take the following values: PREMIUM, STANDARD.
- * For regional ForwardingRule, the valid values are PREMIUM and STANDARD. For GlobalForwardingRule, the valid value is PREMIUM.
- * If this field is not specified, it is assumed to be PREMIUM. If IPAddress is specified, this value must be equal to the networkTier of the Address.
+ * This signifies the networking tier used for configuring this load balancer and can only take the following values: PREMIUM, STANDARD. For regional ForwardingRule, the valid values are PREMIUM and STANDARD. For GlobalForwardingRule, the valid value is PREMIUM. If this field is not specified, it is assumed to be PREMIUM. If IPAddress is specified, this value must be equal to the networkTier of the Address.
  *
  * Protobuf type <code>google.cloud.compute.v1.ForwardingRule.NetworkTier</code>
  */
@@ -22,10 +20,14 @@ class NetworkTier
      */
     const UNDEFINED_NETWORK_TIER = 0;
     /**
+     * High quality, Google-grade network tier, support for all networking products.
+     *
      * Generated from protobuf enum <code>PREMIUM = 399530551;</code>
      */
     const PREMIUM = 399530551;
     /**
+     * Public internet quality, only limited support for other networking products.
+     *
      * Generated from protobuf enum <code>STANDARD = 484642493;</code>
      */
     const STANDARD = 484642493;

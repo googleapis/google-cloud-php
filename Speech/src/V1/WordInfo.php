@@ -44,7 +44,19 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      */
     private $word = '';
     /**
-     * A distinct integer value is assigned for every speaker within
+     * The confidence estimate between 0.0 and 1.0. A higher number
+     * indicates an estimated greater likelihood that the recognized words are
+     * correct. This field is set only for the top alternative of a non-streaming
+     * result or, of a streaming result where `is_final=true`.
+     * This field is not guaranteed to be accurate and users should not rely on it
+     * to be always provided.
+     * The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     *
+     * Generated from protobuf field <code>float confidence = 4;</code>
+     */
+    private $confidence = 0.0;
+    /**
+     * Output only. A distinct integer value is assigned for every speaker within
      * the audio. This field specifies which one of those speakers was detected to
      * have spoken this word. Value ranges from '1' to diarization_speaker_count.
      * speaker_tag is set if enable_speaker_diarization = 'true' and only in the
@@ -76,8 +88,16 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      *           vary.
      *     @type string $word
      *           The word corresponding to this set of information.
+     *     @type float $confidence
+     *           The confidence estimate between 0.0 and 1.0. A higher number
+     *           indicates an estimated greater likelihood that the recognized words are
+     *           correct. This field is set only for the top alternative of a non-streaming
+     *           result or, of a streaming result where `is_final=true`.
+     *           This field is not guaranteed to be accurate and users should not rely on it
+     *           to be always provided.
+     *           The default of 0.0 is a sentinel value indicating `confidence` was not set.
      *     @type int $speaker_tag
-     *           A distinct integer value is assigned for every speaker within
+     *           Output only. A distinct integer value is assigned for every speaker within
      *           the audio. This field specifies which one of those speakers was detected to
      *           have spoken this word. Value ranges from '1' to diarization_speaker_count.
      *           speaker_tag is set if enable_speaker_diarization = 'true' and only in the
@@ -98,11 +118,11 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      * vary.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration start_time = 1;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -144,11 +164,11 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      * vary.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration end_time = 2;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -208,7 +228,45 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A distinct integer value is assigned for every speaker within
+     * The confidence estimate between 0.0 and 1.0. A higher number
+     * indicates an estimated greater likelihood that the recognized words are
+     * correct. This field is set only for the top alternative of a non-streaming
+     * result or, of a streaming result where `is_final=true`.
+     * This field is not guaranteed to be accurate and users should not rely on it
+     * to be always provided.
+     * The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     *
+     * Generated from protobuf field <code>float confidence = 4;</code>
+     * @return float
+     */
+    public function getConfidence()
+    {
+        return $this->confidence;
+    }
+
+    /**
+     * The confidence estimate between 0.0 and 1.0. A higher number
+     * indicates an estimated greater likelihood that the recognized words are
+     * correct. This field is set only for the top alternative of a non-streaming
+     * result or, of a streaming result where `is_final=true`.
+     * This field is not guaranteed to be accurate and users should not rely on it
+     * to be always provided.
+     * The default of 0.0 is a sentinel value indicating `confidence` was not set.
+     *
+     * Generated from protobuf field <code>float confidence = 4;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setConfidence($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->confidence = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A distinct integer value is assigned for every speaker within
      * the audio. This field specifies which one of those speakers was detected to
      * have spoken this word. Value ranges from '1' to diarization_speaker_count.
      * speaker_tag is set if enable_speaker_diarization = 'true' and only in the
@@ -223,7 +281,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A distinct integer value is assigned for every speaker within
+     * Output only. A distinct integer value is assigned for every speaker within
      * the audio. This field specifies which one of those speakers was detected to
      * have spoken this word. Value ranges from '1' to diarization_speaker_count.
      * speaker_tag is set if enable_speaker_diarization = 'true' and only in the

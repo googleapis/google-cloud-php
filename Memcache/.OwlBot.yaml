@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/memcache/(.*)/.*-php/(.*)
+      dest: /owl-bot-staging/Memcache/$1/$2
+api-name: Memcache

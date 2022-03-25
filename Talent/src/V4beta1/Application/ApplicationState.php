@@ -83,6 +83,4 @@ class ApplicationState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ApplicationState::class, \Google\Cloud\Talent\V4beta1\Application_ApplicationState::class);
 

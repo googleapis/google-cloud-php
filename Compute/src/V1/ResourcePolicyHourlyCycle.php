@@ -18,19 +18,19 @@ class ResourcePolicyHourlyCycle extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] Duration of the time window, automatically chosen to be smallest possible in the given scenario.
      *
-     * Generated from protobuf field <code>string duration = 155471252;</code>
+     * Generated from protobuf field <code>optional string duration = 155471252;</code>
      */
     private $duration = null;
     /**
      * Defines a schedule with units measured in hours. The value determines how many hours pass between the start of each cycle.
      *
-     * Generated from protobuf field <code>int32 hours_in_cycle = 526763132;</code>
+     * Generated from protobuf field <code>optional int32 hours_in_cycle = 526763132;</code>
      */
     private $hours_in_cycle = null;
     /**
      * Time within the window to start the operations. It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
      *
-     * Generated from protobuf field <code>string start_time = 37467274;</code>
+     * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      */
     private $start_time = null;
 
@@ -56,7 +56,7 @@ class ResourcePolicyHourlyCycle extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] Duration of the time window, automatically chosen to be smallest possible in the given scenario.
      *
-     * Generated from protobuf field <code>string duration = 155471252;</code>
+     * Generated from protobuf field <code>optional string duration = 155471252;</code>
      * @return string
      */
     public function getDuration()
@@ -77,7 +77,7 @@ class ResourcePolicyHourlyCycle extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] Duration of the time window, automatically chosen to be smallest possible in the given scenario.
      *
-     * Generated from protobuf field <code>string duration = 155471252;</code>
+     * Generated from protobuf field <code>optional string duration = 155471252;</code>
      * @param string $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class ResourcePolicyHourlyCycle extends \Google\Protobuf\Internal\Message
     /**
      * Defines a schedule with units measured in hours. The value determines how many hours pass between the start of each cycle.
      *
-     * Generated from protobuf field <code>int32 hours_in_cycle = 526763132;</code>
+     * Generated from protobuf field <code>optional int32 hours_in_cycle = 526763132;</code>
      * @return int
      */
     public function getHoursInCycle()
@@ -113,7 +113,7 @@ class ResourcePolicyHourlyCycle extends \Google\Protobuf\Internal\Message
     /**
      * Defines a schedule with units measured in hours. The value determines how many hours pass between the start of each cycle.
      *
-     * Generated from protobuf field <code>int32 hours_in_cycle = 526763132;</code>
+     * Generated from protobuf field <code>optional int32 hours_in_cycle = 526763132;</code>
      * @param int $var
      * @return $this
      */
@@ -128,7 +128,7 @@ class ResourcePolicyHourlyCycle extends \Google\Protobuf\Internal\Message
     /**
      * Time within the window to start the operations. It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
      *
-     * Generated from protobuf field <code>string start_time = 37467274;</code>
+     * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      * @return string
      */
     public function getStartTime()
@@ -149,7 +149,7 @@ class ResourcePolicyHourlyCycle extends \Google\Protobuf\Internal\Message
     /**
      * Time within the window to start the operations. It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
      *
-     * Generated from protobuf field <code>string start_time = 37467274;</code>
+     * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      * @param string $var
      * @return $this
      */

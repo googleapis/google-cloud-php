@@ -263,7 +263,7 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEarliestChangeTime()
     {
-        return isset($this->earliest_change_time) ? $this->earliest_change_time : null;
+        return $this->earliest_change_time;
     }
 
     public function hasEarliestChangeTime()
@@ -299,7 +299,7 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getLatestChangeTime()
     {
-        return isset($this->latest_change_time) ? $this->latest_change_time : null;
+        return $this->latest_change_time;
     }
 
     public function hasLatestChangeTime()

@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/recommendationengine/(v1beta1)/.*-php/(.*)
+      dest: /owl-bot-staging/RecommendationEngine/$1/$2
+api-name: RecommendationEngine

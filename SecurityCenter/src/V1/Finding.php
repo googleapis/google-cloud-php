@@ -90,11 +90,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $security_marks = null;
     /**
-     * The time at which the event took place, or when an update to the finding
-     * occurred. For example, if the finding represents an open firewall it would
-     * capture the time the detector believes the firewall became open. The
-     * accuracy is determined by the detector. If the finding were to be resolved
-     * afterward, this time would reflect when the finding was resolved. Must not
+     * The time the finding was first detected. If an existing finding is updated,
+     * then this is the time the update occurred.
+     * For example, if the finding represents an open firewall, this property
+     * captures the time the detector believes the firewall became open. The
+     * accuracy is determined by the detector. If the finding is later resolved,
+     * then this time reflects when the finding was resolved. This must not
      * be set to a value greater than the current timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
@@ -125,6 +126,14 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $canonical_name = '';
     /**
+     * Indicates the mute state of a finding (either unspecified, muted, unmuted
+     * or undefined). Unlike other attributes of a finding, a finding provider
+     * shouldn't set the value of mute.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.Mute mute = 15;</code>
+     */
+    private $mute = 0;
+    /**
      * The class of the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.FindingClass finding_class = 17;</code>
@@ -148,6 +157,35 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Vulnerability vulnerability = 20;</code>
      */
     private $vulnerability = null;
+    /**
+     * Output only. The most recent time this finding was muted or unmuted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp mute_update_time = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $mute_update_time = null;
+    /**
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     * information and external system finding fields.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $external_systems;
+    /**
+     * Access details associated to the Finding, such as more information on the
+     * caller, which method was accessed, from where, etc.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Access access = 26;</code>
+     */
+    private $access = null;
+    /**
+     * First known as mute_annotation. Records additional information about the
+     * mute operation e.g. mute config that muted the finding, user who muted the
+     * finding, etc. Unlike other attributes of a finding, a finding provider
+     * shouldn't set the value of mute.
+     *
+     * Generated from protobuf field <code>string mute_initiator = 28;</code>
+     */
+    private $mute_initiator = '';
 
     /**
      * Constructor.
@@ -193,11 +231,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           managed by the user and come from the SecurityMarks resource that belongs
      *           to the finding.
      *     @type \Google\Protobuf\Timestamp $event_time
-     *           The time at which the event took place, or when an update to the finding
-     *           occurred. For example, if the finding represents an open firewall it would
-     *           capture the time the detector believes the firewall became open. The
-     *           accuracy is determined by the detector. If the finding were to be resolved
-     *           afterward, this time would reflect when the finding was resolved. Must not
+     *           The time the finding was first detected. If an existing finding is updated,
+     *           then this is the time the update occurred.
+     *           For example, if the finding represents an open firewall, this property
+     *           captures the time the detector believes the firewall became open. The
+     *           accuracy is determined by the detector. If the finding is later resolved,
+     *           then this time reflects when the finding was resolved. This must not
      *           be set to a value greater than the current timestamp.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time at which the finding was created in Security Command Center.
@@ -211,6 +250,10 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           "projects/{project_number}/sources/{source_id}/findings/{finding_id}",
      *           depending on the closest CRM ancestor of the resource associated with the
      *           finding.
+     *     @type int $mute
+     *           Indicates the mute state of a finding (either unspecified, muted, unmuted
+     *           or undefined). Unlike other attributes of a finding, a finding provider
+     *           shouldn't set the value of mute.
      *     @type int $finding_class
      *           The class of the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\Indicator $indicator
@@ -223,6 +266,19 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Represents vulnerability specific fields like cve, cvss scores etc.
      *           CVE stands for Common Vulnerabilities and Exposures
      *           (https://cve.mitre.org/about/)
+     *     @type \Google\Protobuf\Timestamp $mute_update_time
+     *           Output only. The most recent time this finding was muted or unmuted.
+     *     @type array|\Google\Protobuf\Internal\MapField $external_systems
+     *           Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     *           information and external system finding fields.
+     *     @type \Google\Cloud\SecurityCenter\V1\Access $access
+     *           Access details associated to the Finding, such as more information on the
+     *           caller, which method was accessed, from where, etc.
+     *     @type string $mute_initiator
+     *           First known as mute_annotation. Records additional information about the
+     *           mute operation e.g. mute config that muted the finding, user who muted the
+     *           finding, etc. Unlike other attributes of a finding, a finding provider
+     *           shouldn't set the value of mute.
      * }
      */
     public function __construct($data = NULL) {
@@ -491,11 +547,12 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the event took place, or when an update to the finding
-     * occurred. For example, if the finding represents an open firewall it would
-     * capture the time the detector believes the firewall became open. The
-     * accuracy is determined by the detector. If the finding were to be resolved
-     * afterward, this time would reflect when the finding was resolved. Must not
+     * The time the finding was first detected. If an existing finding is updated,
+     * then this is the time the update occurred.
+     * For example, if the finding represents an open firewall, this property
+     * captures the time the detector believes the firewall became open. The
+     * accuracy is determined by the detector. If the finding is later resolved,
+     * then this time reflects when the finding was resolved. This must not
      * be set to a value greater than the current timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
@@ -517,11 +574,12 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the event took place, or when an update to the finding
-     * occurred. For example, if the finding represents an open firewall it would
-     * capture the time the detector believes the firewall became open. The
-     * accuracy is determined by the detector. If the finding were to be resolved
-     * afterward, this time would reflect when the finding was resolved. Must not
+     * The time the finding was first detected. If an existing finding is updated,
+     * then this is the time the update occurred.
+     * For example, if the finding represents an open firewall, this property
+     * captures the time the detector believes the firewall became open. The
+     * accuracy is determined by the detector. If the finding is later resolved,
+     * then this time reflects when the finding was resolved. This must not
      * be set to a value greater than the current timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
@@ -637,6 +695,36 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Indicates the mute state of a finding (either unspecified, muted, unmuted
+     * or undefined). Unlike other attributes of a finding, a finding provider
+     * shouldn't set the value of mute.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.Mute mute = 15;</code>
+     * @return int
+     */
+    public function getMute()
+    {
+        return $this->mute;
+    }
+
+    /**
+     * Indicates the mute state of a finding (either unspecified, muted, unmuted
+     * or undefined). Unlike other attributes of a finding, a finding provider
+     * shouldn't set the value of mute.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.Mute mute = 15;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMute($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1\Finding\Mute::class);
+        $this->mute = $var;
+
+        return $this;
+    }
+
+    /**
      * The class of the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.FindingClass finding_class = 17;</code>
@@ -742,6 +830,140 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Vulnerability::class);
         $this->vulnerability = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The most recent time this finding was muted or unmuted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp mute_update_time = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getMuteUpdateTime()
+    {
+        return $this->mute_update_time;
+    }
+
+    public function hasMuteUpdateTime()
+    {
+        return isset($this->mute_update_time);
+    }
+
+    public function clearMuteUpdateTime()
+    {
+        unset($this->mute_update_time);
+    }
+
+    /**
+     * Output only. The most recent time this finding was muted or unmuted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp mute_update_time = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setMuteUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->mute_update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     * information and external system finding fields.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getExternalSystems()
+    {
+        return $this->external_systems;
+    }
+
+    /**
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     * information and external system finding fields.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setExternalSystems($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\ExternalSystem::class);
+        $this->external_systems = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Access details associated to the Finding, such as more information on the
+     * caller, which method was accessed, from where, etc.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Access access = 26;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\Access|null
+     */
+    public function getAccess()
+    {
+        return $this->access;
+    }
+
+    public function hasAccess()
+    {
+        return isset($this->access);
+    }
+
+    public function clearAccess()
+    {
+        unset($this->access);
+    }
+
+    /**
+     * Access details associated to the Finding, such as more information on the
+     * caller, which method was accessed, from where, etc.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Access access = 26;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\Access $var
+     * @return $this
+     */
+    public function setAccess($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Access::class);
+        $this->access = $var;
+
+        return $this;
+    }
+
+    /**
+     * First known as mute_annotation. Records additional information about the
+     * mute operation e.g. mute config that muted the finding, user who muted the
+     * finding, etc. Unlike other attributes of a finding, a finding provider
+     * shouldn't set the value of mute.
+     *
+     * Generated from protobuf field <code>string mute_initiator = 28;</code>
+     * @return string
+     */
+    public function getMuteInitiator()
+    {
+        return $this->mute_initiator;
+    }
+
+    /**
+     * First known as mute_annotation. Records additional information about the
+     * mute operation e.g. mute config that muted the finding, user who muted the
+     * finding, etc. Unlike other attributes of a finding, a finding provider
+     * shouldn't set the value of mute.
+     *
+     * Generated from protobuf field <code>string mute_initiator = 28;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMuteInitiator($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->mute_initiator = $var;
 
         return $this;
     }

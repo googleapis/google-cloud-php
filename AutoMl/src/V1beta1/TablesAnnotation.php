@@ -164,7 +164,7 @@ class TablesAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getPredictionInterval()
     {
-        return isset($this->prediction_interval) ? $this->prediction_interval : null;
+        return $this->prediction_interval;
     }
 
     public function hasPredictionInterval()
@@ -208,7 +208,7 @@ class TablesAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getValue()
     {
-        return isset($this->value) ? $this->value : null;
+        return $this->value;
     }
 
     public function hasValue()

@@ -205,7 +205,7 @@ class Patent extends \Google\Protobuf\Internal\Message
      */
     public function getPatentStatusDate()
     {
-        return isset($this->patent_status_date) ? $this->patent_status_date : null;
+        return $this->patent_status_date;
     }
 
     public function hasPatentStatusDate()
@@ -241,7 +241,7 @@ class Patent extends \Google\Protobuf\Internal\Message
      */
     public function getPatentFilingDate()
     {
-        return isset($this->patent_filing_date) ? $this->patent_filing_date : null;
+        return $this->patent_filing_date;
     }
 
     public function hasPatentFilingDate()

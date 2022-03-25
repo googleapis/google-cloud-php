@@ -17,47 +17,45 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
     /**
      * The value of the host header in the HTTPS health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
      *
-     * Generated from protobuf field <code>string host = 3208616;</code>
+     * Generated from protobuf field <code>optional string host = 3208616;</code>
      */
     private $host = null;
     /**
      * The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.
      *
-     * Generated from protobuf field <code>int32 port = 3446913;</code>
+     * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      */
     private $port = null;
     /**
      * Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
      *
-     * Generated from protobuf field <code>string port_name = 41534345;</code>
+     * Generated from protobuf field <code>optional string port_name = 41534345;</code>
      */
     private $port_name = null;
     /**
-     * Specifies how port is selected for health checking, can be one of following values:
-     * USE_FIXED_PORT: The port number in port is used for health checking.
-     * USE_NAMED_PORT: The portName is used for health checking.
-     * USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
-     * If not specified, HTTPS health check follows behavior specified in port and portName fields.
+     * Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking. If not specified, HTTPS health check follows behavior specified in port and portName fields.
+     * Check the PortSpecification enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HTTPSHealthCheck.PortSpecification port_specification = 51590597;</code>
+     * Generated from protobuf field <code>optional string port_specification = 51590597;</code>
      */
     private $port_specification = null;
     /**
      * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     * Check the ProxyHeader enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HTTPSHealthCheck.ProxyHeader proxy_header = 160374142;</code>
+     * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
      */
     private $proxy_header = null;
     /**
      * The request path of the HTTPS health check request. The default value is /.
      *
-     * Generated from protobuf field <code>string request_path = 229403605;</code>
+     * Generated from protobuf field <code>optional string request_path = 229403605;</code>
      */
     private $request_path = null;
     /**
      * The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
      *
-     * Generated from protobuf field <code>string response = 196547649;</code>
+     * Generated from protobuf field <code>optional string response = 196547649;</code>
      */
     private $response = null;
 
@@ -73,14 +71,12 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
      *           The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.
      *     @type string $port_name
      *           Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
-     *     @type int $port_specification
-     *           Specifies how port is selected for health checking, can be one of following values:
-     *           USE_FIXED_PORT: The port number in port is used for health checking.
-     *           USE_NAMED_PORT: The portName is used for health checking.
-     *           USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
-     *           If not specified, HTTPS health check follows behavior specified in port and portName fields.
-     *     @type int $proxy_header
+     *     @type string $port_specification
+     *           Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking. If not specified, HTTPS health check follows behavior specified in port and portName fields.
+     *           Check the PortSpecification enum for the list of possible values.
+     *     @type string $proxy_header
      *           Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     *           Check the ProxyHeader enum for the list of possible values.
      *     @type string $request_path
      *           The request path of the HTTPS health check request. The default value is /.
      *     @type string $response
@@ -95,7 +91,7 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
     /**
      * The value of the host header in the HTTPS health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
      *
-     * Generated from protobuf field <code>string host = 3208616;</code>
+     * Generated from protobuf field <code>optional string host = 3208616;</code>
      * @return string
      */
     public function getHost()
@@ -116,7 +112,7 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
     /**
      * The value of the host header in the HTTPS health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
      *
-     * Generated from protobuf field <code>string host = 3208616;</code>
+     * Generated from protobuf field <code>optional string host = 3208616;</code>
      * @param string $var
      * @return $this
      */
@@ -131,7 +127,7 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
     /**
      * The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.
      *
-     * Generated from protobuf field <code>int32 port = 3446913;</code>
+     * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      * @return int
      */
     public function getPort()
@@ -152,7 +148,7 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
     /**
      * The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.
      *
-     * Generated from protobuf field <code>int32 port = 3446913;</code>
+     * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      * @param int $var
      * @return $this
      */
@@ -167,7 +163,7 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
     /**
      * Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
      *
-     * Generated from protobuf field <code>string port_name = 41534345;</code>
+     * Generated from protobuf field <code>optional string port_name = 41534345;</code>
      * @return string
      */
     public function getPortName()
@@ -188,7 +184,7 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
     /**
      * Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
      *
-     * Generated from protobuf field <code>string port_name = 41534345;</code>
+     * Generated from protobuf field <code>optional string port_name = 41534345;</code>
      * @param string $var
      * @return $this
      */
@@ -201,18 +197,15 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how port is selected for health checking, can be one of following values:
-     * USE_FIXED_PORT: The port number in port is used for health checking.
-     * USE_NAMED_PORT: The portName is used for health checking.
-     * USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
-     * If not specified, HTTPS health check follows behavior specified in port and portName fields.
+     * Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking. If not specified, HTTPS health check follows behavior specified in port and portName fields.
+     * Check the PortSpecification enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HTTPSHealthCheck.PortSpecification port_specification = 51590597;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string port_specification = 51590597;</code>
+     * @return string
      */
     public function getPortSpecification()
     {
-        return isset($this->port_specification) ? $this->port_specification : 0;
+        return isset($this->port_specification) ? $this->port_specification : '';
     }
 
     public function hasPortSpecification()
@@ -226,19 +219,16 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how port is selected for health checking, can be one of following values:
-     * USE_FIXED_PORT: The port number in port is used for health checking.
-     * USE_NAMED_PORT: The portName is used for health checking.
-     * USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
-     * If not specified, HTTPS health check follows behavior specified in port and portName fields.
+     * Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking. If not specified, HTTPS health check follows behavior specified in port and portName fields.
+     * Check the PortSpecification enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HTTPSHealthCheck.PortSpecification port_specification = 51590597;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string port_specification = 51590597;</code>
+     * @param string $var
      * @return $this
      */
     public function setPortSpecification($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\HTTPSHealthCheck\PortSpecification::class);
+        GPBUtil::checkString($var, True);
         $this->port_specification = $var;
 
         return $this;
@@ -246,13 +236,14 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     * Check the ProxyHeader enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HTTPSHealthCheck.ProxyHeader proxy_header = 160374142;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
+     * @return string
      */
     public function getProxyHeader()
     {
-        return isset($this->proxy_header) ? $this->proxy_header : 0;
+        return isset($this->proxy_header) ? $this->proxy_header : '';
     }
 
     public function hasProxyHeader()
@@ -267,14 +258,15 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     * Check the ProxyHeader enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HTTPSHealthCheck.ProxyHeader proxy_header = 160374142;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
+     * @param string $var
      * @return $this
      */
     public function setProxyHeader($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\HTTPSHealthCheck\ProxyHeader::class);
+        GPBUtil::checkString($var, True);
         $this->proxy_header = $var;
 
         return $this;
@@ -283,7 +275,7 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
     /**
      * The request path of the HTTPS health check request. The default value is /.
      *
-     * Generated from protobuf field <code>string request_path = 229403605;</code>
+     * Generated from protobuf field <code>optional string request_path = 229403605;</code>
      * @return string
      */
     public function getRequestPath()
@@ -304,7 +296,7 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
     /**
      * The request path of the HTTPS health check request. The default value is /.
      *
-     * Generated from protobuf field <code>string request_path = 229403605;</code>
+     * Generated from protobuf field <code>optional string request_path = 229403605;</code>
      * @param string $var
      * @return $this
      */
@@ -319,7 +311,7 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
     /**
      * The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
      *
-     * Generated from protobuf field <code>string response = 196547649;</code>
+     * Generated from protobuf field <code>optional string response = 196547649;</code>
      * @return string
      */
     public function getResponse()
@@ -340,7 +332,7 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
     /**
      * The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
      *
-     * Generated from protobuf field <code>string response = 196547649;</code>
+     * Generated from protobuf field <code>optional string response = 196547649;</code>
      * @param string $var
      * @return $this
      */

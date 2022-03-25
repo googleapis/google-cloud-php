@@ -3,20 +3,22 @@
 return [
     'interfaces' => [
         'google.cloud.tasks.v2beta2.CloudTasks' => [
-            'ListQueues' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2beta2/{parent=projects/*/locations/*}/queues',
+            'AcknowledgeTask' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2beta2/{name=projects/*/locations/*/queues/*/tasks/*}:acknowledge',
+                'body' => '*',
                 'placeholders' => [
-                    'parent' => [
+                    'name' => [
                         'getters' => [
-                            'getParent',
+                            'getName',
                         ],
                     ],
                 ],
             ],
-            'GetQueue' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2beta2/{name=projects/*/locations/*/queues/*}',
+            'CancelLease' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2beta2/{name=projects/*/locations/*/queues/*/tasks/*}:cancelLease',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -37,15 +39,14 @@ return [
                     ],
                 ],
             ],
-            'UpdateQueue' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v2beta2/{queue.name=projects/*/locations/*/queues/*}',
-                'body' => 'queue',
+            'CreateTask' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2beta2/{parent=projects/*/locations/*/queues/*}/tasks',
+                'body' => '*',
                 'placeholders' => [
-                    'queue.name' => [
+                    'parent' => [
                         'getters' => [
-                            'getQueue',
-                            'getName',
+                            'getParent',
                         ],
                     ],
                 ],
@@ -53,6 +54,97 @@ return [
             'DeleteQueue' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2beta2/{name=projects/*/locations/*/queues/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTask' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2beta2/{name=projects/*/locations/*/queues/*/tasks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2beta2/{resource=projects/*/locations/*/queues/*}:getIamPolicy',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'GetQueue' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2beta2/{name=projects/*/locations/*/queues/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetTask' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2beta2/{name=projects/*/locations/*/queues/*/tasks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'LeaseTasks' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2beta2/{parent=projects/*/locations/*/queues/*}/tasks:lease',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListQueues' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2beta2/{parent=projects/*/locations/*}/queues',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListTasks' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2beta2/{parent=projects/*/locations/*/queues/*}/tasks',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'PauseQueue' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2beta2/{name=projects/*/locations/*/queues/*}:pause',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -73,9 +165,9 @@ return [
                     ],
                 ],
             ],
-            'PauseQueue' => [
+            'RenewLease' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2beta2/{name=projects/*/locations/*/queues/*}:pause',
+                'uriTemplate' => '/v2beta2/{name=projects/*/locations/*/queues/*/tasks/*}:renewLease',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -97,14 +189,14 @@ return [
                     ],
                 ],
             ],
-            'GetIamPolicy' => [
+            'RunTask' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2beta2/{resource=projects/*/locations/*/queues/*}:getIamPolicy',
+                'uriTemplate' => '/v2beta2/{name=projects/*/locations/*/queues/*/tasks/*}:run',
                 'body' => '*',
                 'placeholders' => [
-                    'resource' => [
+                    'name' => [
                         'getters' => [
-                            'getResource',
+                            'getName',
                         ],
                     ],
                 ],
@@ -133,106 +225,14 @@ return [
                     ],
                 ],
             ],
-            'ListTasks' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2beta2/{parent=projects/*/locations/*/queues/*}/tasks',
+            'UpdateQueue' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2beta2/{queue.name=projects/*/locations/*/queues/*}',
+                'body' => 'queue',
                 'placeholders' => [
-                    'parent' => [
+                    'queue.name' => [
                         'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetTask' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2beta2/{name=projects/*/locations/*/queues/*/tasks/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CreateTask' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2beta2/{parent=projects/*/locations/*/queues/*}/tasks',
-                'body' => '*',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteTask' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2beta2/{name=projects/*/locations/*/queues/*/tasks/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'LeaseTasks' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2beta2/{parent=projects/*/locations/*/queues/*}/tasks:lease',
-                'body' => '*',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'AcknowledgeTask' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2beta2/{name=projects/*/locations/*/queues/*/tasks/*}:acknowledge',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'RenewLease' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2beta2/{name=projects/*/locations/*/queues/*/tasks/*}:renewLease',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CancelLease' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2beta2/{name=projects/*/locations/*/queues/*/tasks/*}:cancelLease',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'RunTask' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2beta2/{name=projects/*/locations/*/queues/*/tasks/*}:run',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
+                            'getQueue',
                             'getName',
                         ],
                     ],

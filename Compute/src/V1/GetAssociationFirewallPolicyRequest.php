@@ -24,7 +24,7 @@ class GetAssociationFirewallPolicyRequest extends \Google\Protobuf\Internal\Mess
     /**
      * The name of the association to get from the firewall policy.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
 
@@ -74,7 +74,7 @@ class GetAssociationFirewallPolicyRequest extends \Google\Protobuf\Internal\Mess
     /**
      * The name of the association to get from the firewall policy.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -95,7 +95,7 @@ class GetAssociationFirewallPolicyRequest extends \Google\Protobuf\Internal\Mess
     /**
      * The name of the association to get from the firewall policy.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */

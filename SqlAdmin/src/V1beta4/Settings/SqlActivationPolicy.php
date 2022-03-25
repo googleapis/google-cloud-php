@@ -66,6 +66,4 @@ class SqlActivationPolicy
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SqlActivationPolicy::class, \Google\Cloud\Sql\V1beta4\Settings_SqlActivationPolicy::class);
 

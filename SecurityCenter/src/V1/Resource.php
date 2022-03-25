@@ -29,7 +29,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      */
     private $project = '';
     /**
-     * The human readable name of project that the resource belongs to.
+     * The project id that the resource belongs to.
      *
      * Generated from protobuf field <code>string project_display_name = 3;</code>
      */
@@ -79,7 +79,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      *     @type string $project
      *           The full resource name of project that the resource belongs to.
      *     @type string $project_display_name
-     *           The human readable name of project that the resource belongs to.
+     *           The project id that the resource belongs to.
      *     @type string $parent
      *           The full resource name of resource's parent.
      *     @type string $parent_display_name
@@ -154,7 +154,7 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The human readable name of project that the resource belongs to.
+     * The project id that the resource belongs to.
      *
      * Generated from protobuf field <code>string project_display_name = 3;</code>
      * @return string
@@ -165,7 +165,7 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The human readable name of project that the resource belongs to.
+     * The project id that the resource belongs to.
      *
      * Generated from protobuf field <code>string project_display_name = 3;</code>
      * @param string $var

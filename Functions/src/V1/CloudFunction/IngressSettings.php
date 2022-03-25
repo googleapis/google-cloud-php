@@ -68,6 +68,4 @@ class IngressSettings
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IngressSettings::class, \Google\Cloud\Functions\V1\CloudFunction_IngressSettings::class);
 

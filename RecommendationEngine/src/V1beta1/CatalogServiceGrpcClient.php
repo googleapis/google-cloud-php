@@ -37,6 +37,7 @@ class CatalogServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecommendationEngine\V1beta1\CreateCatalogItemRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function CreateCatalogItem(\Google\Cloud\RecommendationEngine\V1beta1\CreateCatalogItemRequest $argument,
       $metadata = [], $options = []) {
@@ -51,6 +52,7 @@ class CatalogServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecommendationEngine\V1beta1\GetCatalogItemRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function GetCatalogItem(\Google\Cloud\RecommendationEngine\V1beta1\GetCatalogItemRequest $argument,
       $metadata = [], $options = []) {
@@ -65,6 +67,7 @@ class CatalogServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecommendationEngine\V1beta1\ListCatalogItemsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function ListCatalogItems(\Google\Cloud\RecommendationEngine\V1beta1\ListCatalogItemsRequest $argument,
       $metadata = [], $options = []) {
@@ -80,6 +83,7 @@ class CatalogServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecommendationEngine\V1beta1\UpdateCatalogItemRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function UpdateCatalogItem(\Google\Cloud\RecommendationEngine\V1beta1\UpdateCatalogItemRequest $argument,
       $metadata = [], $options = []) {
@@ -94,6 +98,7 @@ class CatalogServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecommendationEngine\V1beta1\DeleteCatalogItemRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function DeleteCatalogItem(\Google\Cloud\RecommendationEngine\V1beta1\DeleteCatalogItemRequest $argument,
       $metadata = [], $options = []) {
@@ -113,6 +118,7 @@ class CatalogServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecommendationEngine\V1beta1\ImportCatalogItemsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function ImportCatalogItems(\Google\Cloud\RecommendationEngine\V1beta1\ImportCatalogItemsRequest $argument,
       $metadata = [], $options = []) {

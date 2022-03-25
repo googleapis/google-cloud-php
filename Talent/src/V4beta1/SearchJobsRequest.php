@@ -76,7 +76,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * * `count(numeric_histogram_facet, list of buckets)`: Count the number of
      * matching entities within each bucket.
      * Data types:
-     * * Histogram facet: facet names with format [a-zA-Z][a-zA-Z0-9_]+.
+     * * Histogram facet: facet names with format `[a-zA-Z][a-zA-Z0-9_]+`.
      * * String: string like "any string with backslash escape for quote(\")."
      * * Number: whole number and floating point number like 10, -1 and -0.01.
      * * List: list of elements with comma(,) separator surrounded by square
@@ -324,7 +324,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *           * `count(numeric_histogram_facet, list of buckets)`: Count the number of
      *           matching entities within each bucket.
      *           Data types:
-     *           * Histogram facet: facet names with format [a-zA-Z][a-zA-Z0-9_]+.
+     *           * Histogram facet: facet names with format `[a-zA-Z][a-zA-Z0-9_]+`.
      *           * String: string like "any string with backslash escape for quote(\")."
      *           * Number: whole number and floating point number like 10, -1 and -0.01.
      *           * List: list of elements with comma(,) separator surrounded by square
@@ -569,7 +569,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestMetadata()
     {
-        return isset($this->request_metadata) ? $this->request_metadata : null;
+        return $this->request_metadata;
     }
 
     public function hasRequestMetadata()
@@ -607,7 +607,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getJobQuery()
     {
-        return isset($this->job_query) ? $this->job_query : null;
+        return $this->job_query;
     }
 
     public function hasJobQuery()
@@ -715,7 +715,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * * `count(numeric_histogram_facet, list of buckets)`: Count the number of
      * matching entities within each bucket.
      * Data types:
-     * * Histogram facet: facet names with format [a-zA-Z][a-zA-Z0-9_]+.
+     * * Histogram facet: facet names with format `[a-zA-Z][a-zA-Z0-9_]+`.
      * * String: string like "any string with backslash escape for quote(\")."
      * * Number: whole number and floating point number like 10, -1 and -0.01.
      * * List: list of elements with comma(,) separator surrounded by square
@@ -804,7 +804,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * * `count(numeric_histogram_facet, list of buckets)`: Count the number of
      * matching entities within each bucket.
      * Data types:
-     * * Histogram facet: facet names with format [a-zA-Z][a-zA-Z0-9_]+.
+     * * Histogram facet: facet names with format `[a-zA-Z][a-zA-Z0-9_]+`.
      * * String: string like "any string with backslash escape for quote(\")."
      * * Number: whole number and floating point number like 10, -1 and -0.01.
      * * List: list of elements with comma(,) separator surrounded by square
@@ -1184,7 +1184,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCustomRankingInfo()
     {
-        return isset($this->custom_ranking_info) ? $this->custom_ranking_info : null;
+        return $this->custom_ranking_info;
     }
 
     public function hasCustomRankingInfo()

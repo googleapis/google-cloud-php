@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/speech/(v1|v1p1beta1)/.*-php/(.*)
+      dest: /owl-bot-staging/Speech/$1/$2
+api-name: Speech

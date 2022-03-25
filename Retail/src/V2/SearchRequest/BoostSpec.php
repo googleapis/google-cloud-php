@@ -77,6 +77,4 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BoostSpec::class, \Google\Cloud\Retail\V2\SearchRequest_BoostSpec::class);
 

@@ -24,22 +24,28 @@ class SuggestFaqAnswersRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * The name of the latest conversation message to compile suggestion
+     * Optional. The name of the latest conversation message to compile suggestion
      * for. If empty, it will be the latest message of the conversation.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *
-     * Generated from protobuf field <code>string latest_message = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string latest_message = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $latest_message = '';
     /**
-     * Max number of messages prior to and including
+     * Optional. Max number of messages prior to and including
      * [latest_message] to use as context when compiling the
      * suggestion. By default 20 and at most 50.
      *
-     * Generated from protobuf field <code>int32 context_size = 3;</code>
+     * Generated from protobuf field <code>int32 context_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $context_size = 0;
+    /**
+     * Parameters for a human assist query.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 4;</code>
+     */
+    private $assist_query_params = null;
 
     /**
      * Constructor.
@@ -52,14 +58,16 @@ class SuggestFaqAnswersRequest extends \Google\Protobuf\Internal\Message
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversations/<Conversation ID>/participants/<Participant ID>`.
      *     @type string $latest_message
-     *           The name of the latest conversation message to compile suggestion
+     *           Optional. The name of the latest conversation message to compile suggestion
      *           for. If empty, it will be the latest message of the conversation.
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *     @type int $context_size
-     *           Max number of messages prior to and including
+     *           Optional. Max number of messages prior to and including
      *           [latest_message] to use as context when compiling the
      *           suggestion. By default 20 and at most 50.
+     *     @type \Google\Cloud\Dialogflow\V2\AssistQueryParameters $assist_query_params
+     *           Parameters for a human assist query.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,12 +106,12 @@ class SuggestFaqAnswersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the latest conversation message to compile suggestion
+     * Optional. The name of the latest conversation message to compile suggestion
      * for. If empty, it will be the latest message of the conversation.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *
-     * Generated from protobuf field <code>string latest_message = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string latest_message = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getLatestMessage()
@@ -112,12 +120,12 @@ class SuggestFaqAnswersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the latest conversation message to compile suggestion
+     * Optional. The name of the latest conversation message to compile suggestion
      * for. If empty, it will be the latest message of the conversation.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/conversations/<Conversation ID>/messages/<Message ID>`.
      *
-     * Generated from protobuf field <code>string latest_message = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string latest_message = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -130,11 +138,11 @@ class SuggestFaqAnswersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Max number of messages prior to and including
+     * Optional. Max number of messages prior to and including
      * [latest_message] to use as context when compiling the
      * suggestion. By default 20 and at most 50.
      *
-     * Generated from protobuf field <code>int32 context_size = 3;</code>
+     * Generated from protobuf field <code>int32 context_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getContextSize()
@@ -143,11 +151,11 @@ class SuggestFaqAnswersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Max number of messages prior to and including
+     * Optional. Max number of messages prior to and including
      * [latest_message] to use as context when compiling the
      * suggestion. By default 20 and at most 50.
      *
-     * Generated from protobuf field <code>int32 context_size = 3;</code>
+     * Generated from protobuf field <code>int32 context_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -155,6 +163,42 @@ class SuggestFaqAnswersRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->context_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * Parameters for a human assist query.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 4;</code>
+     * @return \Google\Cloud\Dialogflow\V2\AssistQueryParameters|null
+     */
+    public function getAssistQueryParams()
+    {
+        return $this->assist_query_params;
+    }
+
+    public function hasAssistQueryParams()
+    {
+        return isset($this->assist_query_params);
+    }
+
+    public function clearAssistQueryParams()
+    {
+        unset($this->assist_query_params);
+    }
+
+    /**
+     * Parameters for a human assist query.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AssistQueryParameters assist_query_params = 4;</code>
+     * @param \Google\Cloud\Dialogflow\V2\AssistQueryParameters $var
+     * @return $this
+     */
+    public function setAssistQueryParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\AssistQueryParameters::class);
+        $this->assist_query_params = $var;
 
         return $this;
     }

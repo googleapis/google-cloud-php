@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -105,8 +106,16 @@ class AdminTest extends SpannerTestCase
         });
 
         $this->assertInstanceOf(Database::class, current($database));
-
         $this->assertTrue($db->exists());
+
+        $expectedDatabaseDialect = DatabaseDialect::GOOGLE_STANDARD_SQL;
+
+        // TODO: Remove this, when the emulator supports PGSQL
+        if ((bool) getenv("SPANNER_EMULATOR_HOST")) {
+            $expectedDatabaseDialect = DatabaseDialect::DATABASE_DIALECT_UNSPECIFIED;
+        }
+
+        $this->assertEquals($db->info()['databaseDialect'], $expectedDatabaseDialect);
 
         $stmt = "CREATE TABLE Ids (\n" .
             "  id INT64 NOT NULL,\n" .
@@ -116,6 +125,35 @@ class AdminTest extends SpannerTestCase
         $op->pollUntilComplete();
 
         $this->assertEquals($db->ddl()[0], $stmt);
+    }
+
+    public function testPgDatabase()
+    {
+        $this->skipEmulatorTests();
+        
+        $instance = self::$instance;
+
+        $dbName = uniqid(self::TESTING_PREFIX);
+        $op = $instance->createDatabase($dbName, [
+            'databaseDialect' => DatabaseDialect::POSTGRESQL
+        ]);
+
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
+        $db = $op->pollUntilComplete();
+        $this->assertInstanceOf(Database::class, $db);
+
+        self::$deletionQueue->add(function () use ($db) {
+            $db->drop();
+        });
+
+        $databases = $instance->databases();
+        $database = array_filter(iterator_to_array($databases), function ($db) use ($dbName) {
+            return $this->parseDbName($db->name()) === $dbName;
+        });
+
+        $this->assertInstanceOf(Database::class, current($database));
+        $this->assertTrue($db->exists());
+        $this->assertEquals($db->info()['databaseDialect'], DatabaseDialect::POSTGRESQL);
     }
 
     /**

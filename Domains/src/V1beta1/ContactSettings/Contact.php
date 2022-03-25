@@ -73,7 +73,7 @@ class Contact extends \Google\Protobuf\Internal\Message
      */
     public function getPostalAddress()
     {
-        return isset($this->postal_address) ? $this->postal_address : null;
+        return $this->postal_address;
     }
 
     public function hasPostalAddress()
@@ -185,6 +185,4 @@ class Contact extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Contact::class, \Google\Cloud\Domains\V1beta1\ContactSettings_Contact::class);
 

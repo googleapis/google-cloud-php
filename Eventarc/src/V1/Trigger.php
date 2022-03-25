@@ -16,17 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class Trigger extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the trigger. Must be unique within the
-     * location on the project and must be in
+     * Required. The resource name of the trigger. Must be unique within the location of the
+     * project and must be in
      * `projects/{project}/locations/{location}/triggers/{trigger}` format.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
-     * Output only. Server assigned unique identifier for the trigger. The value
-     * is a UUID4 string and guaranteed to remain unchanged until the resource is
-     * deleted.
+     * Output only. Server-assigned unique identifier for the trigger. The value is a UUID4
+     * string and guaranteed to remain unchanged until the resource is deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -44,8 +43,8 @@ class Trigger extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Required. null The list of filters that applies to event attributes. Only
-     * events that match all the provided filters will be sent to the destination.
+     * Required. null The list of filters that applies to event attributes. Only events that
+     * match all the provided filters are sent to the destination.
      *
      * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.EventFilter event_filters = 8 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -53,7 +52,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The IAM service account email associated with the trigger. The
      * service account represents the identity of the trigger.
-     * The principal who calls this API must have `iam.serviceAccounts.actAs`
+     * The principal who calls this API must have the `iam.serviceAccounts.actAs`
      * permission in the service account. See
      * https://cloud.google.com/iam/docs/understanding-service-accounts?hl=en#sa_common
      * for more information.
@@ -61,8 +60,8 @@ class Trigger extends \Google\Protobuf\Internal\Message
      * identity tokens when invoking the service. See
      * https://cloud.google.com/run/docs/triggering/pubsub-push#create-service-account
      * for information on how to invoke authenticated Cloud Run services.
-     * In order to create Audit Log triggers, the service account should also
-     * have `roles/eventarc.eventReceiver` IAM role.
+     * To create Audit Log triggers, the service account should also
+     * have the `roles/eventarc.eventReceiver` IAM role.
      *
      * Generated from protobuf field <code>string service_account = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -74,25 +73,32 @@ class Trigger extends \Google\Protobuf\Internal\Message
      */
     private $destination = null;
     /**
-     * Optional. In order to deliver messages, Eventarc may use other GCP
-     * products as transport intermediary. This field contains a reference to that
-     * transport intermediary. This information can be used for debugging
+     * Optional. To deliver messages, Eventarc might use other GCP
+     * products as a transport intermediary. This field contains a reference to
+     * that transport intermediary. This information can be used for debugging
      * purposes.
      *
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.Transport transport = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $transport = null;
     /**
-     * Optional. User labels attached to the triggers that can be used to group
-     * resources.
+     * Optional. User labels attached to the triggers that can be used to group resources.
      *
      * Generated from protobuf field <code>map<string, string> labels = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
     /**
-     * Output only. This checksum is computed by the server based on the value of
-     * other fields, and may be sent only on create requests to ensure the client
-     * has an up-to-date value before proceeding.
+     * Optional. The name of the channel associated with the trigger in
+     * `projects/{project}/locations/{location}/channels/{channel}` format.
+     * You must provide a channel to receive events from Eventarc SaaS partners.
+     *
+     * Generated from protobuf field <code>string channel = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $channel = '';
+    /**
+     * Output only. This checksum is computed by the server based on the value of other
+     * fields, and might be sent only on create requests to ensure that the
+     * client has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -105,24 +111,23 @@ class Trigger extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the trigger. Must be unique within the
-     *           location on the project and must be in
+     *           Required. The resource name of the trigger. Must be unique within the location of the
+     *           project and must be in
      *           `projects/{project}/locations/{location}/triggers/{trigger}` format.
      *     @type string $uid
-     *           Output only. Server assigned unique identifier for the trigger. The value
-     *           is a UUID4 string and guaranteed to remain unchanged until the resource is
-     *           deleted.
+     *           Output only. Server-assigned unique identifier for the trigger. The value is a UUID4
+     *           string and guaranteed to remain unchanged until the resource is deleted.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The creation time.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last-modified time.
      *     @type \Google\Cloud\Eventarc\V1\EventFilter[]|\Google\Protobuf\Internal\RepeatedField $event_filters
-     *           Required. null The list of filters that applies to event attributes. Only
-     *           events that match all the provided filters will be sent to the destination.
+     *           Required. null The list of filters that applies to event attributes. Only events that
+     *           match all the provided filters are sent to the destination.
      *     @type string $service_account
      *           Optional. The IAM service account email associated with the trigger. The
      *           service account represents the identity of the trigger.
-     *           The principal who calls this API must have `iam.serviceAccounts.actAs`
+     *           The principal who calls this API must have the `iam.serviceAccounts.actAs`
      *           permission in the service account. See
      *           https://cloud.google.com/iam/docs/understanding-service-accounts?hl=en#sa_common
      *           for more information.
@@ -130,22 +135,25 @@ class Trigger extends \Google\Protobuf\Internal\Message
      *           identity tokens when invoking the service. See
      *           https://cloud.google.com/run/docs/triggering/pubsub-push#create-service-account
      *           for information on how to invoke authenticated Cloud Run services.
-     *           In order to create Audit Log triggers, the service account should also
-     *           have `roles/eventarc.eventReceiver` IAM role.
+     *           To create Audit Log triggers, the service account should also
+     *           have the `roles/eventarc.eventReceiver` IAM role.
      *     @type \Google\Cloud\Eventarc\V1\Destination $destination
      *           Required. Destination specifies where the events should be sent to.
      *     @type \Google\Cloud\Eventarc\V1\Transport $transport
-     *           Optional. In order to deliver messages, Eventarc may use other GCP
-     *           products as transport intermediary. This field contains a reference to that
-     *           transport intermediary. This information can be used for debugging
+     *           Optional. To deliver messages, Eventarc might use other GCP
+     *           products as a transport intermediary. This field contains a reference to
+     *           that transport intermediary. This information can be used for debugging
      *           purposes.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Optional. User labels attached to the triggers that can be used to group
-     *           resources.
+     *           Optional. User labels attached to the triggers that can be used to group resources.
+     *     @type string $channel
+     *           Optional. The name of the channel associated with the trigger in
+     *           `projects/{project}/locations/{location}/channels/{channel}` format.
+     *           You must provide a channel to receive events from Eventarc SaaS partners.
      *     @type string $etag
-     *           Output only. This checksum is computed by the server based on the value of
-     *           other fields, and may be sent only on create requests to ensure the client
-     *           has an up-to-date value before proceeding.
+     *           Output only. This checksum is computed by the server based on the value of other
+     *           fields, and might be sent only on create requests to ensure that the
+     *           client has an up-to-date value before proceeding.
      * }
      */
     public function __construct($data = NULL) {
@@ -154,8 +162,8 @@ class Trigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the trigger. Must be unique within the
-     * location on the project and must be in
+     * Required. The resource name of the trigger. Must be unique within the location of the
+     * project and must be in
      * `projects/{project}/locations/{location}/triggers/{trigger}` format.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -167,8 +175,8 @@ class Trigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the trigger. Must be unique within the
-     * location on the project and must be in
+     * Required. The resource name of the trigger. Must be unique within the location of the
+     * project and must be in
      * `projects/{project}/locations/{location}/triggers/{trigger}` format.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -184,9 +192,8 @@ class Trigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Server assigned unique identifier for the trigger. The value
-     * is a UUID4 string and guaranteed to remain unchanged until the resource is
-     * deleted.
+     * Output only. Server-assigned unique identifier for the trigger. The value is a UUID4
+     * string and guaranteed to remain unchanged until the resource is deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -197,9 +204,8 @@ class Trigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Server assigned unique identifier for the trigger. The value
-     * is a UUID4 string and guaranteed to remain unchanged until the resource is
-     * deleted.
+     * Output only. Server-assigned unique identifier for the trigger. The value is a UUID4
+     * string and guaranteed to remain unchanged until the resource is deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -286,8 +292,8 @@ class Trigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. null The list of filters that applies to event attributes. Only
-     * events that match all the provided filters will be sent to the destination.
+     * Required. null The list of filters that applies to event attributes. Only events that
+     * match all the provided filters are sent to the destination.
      *
      * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.EventFilter event_filters = 8 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -298,8 +304,8 @@ class Trigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. null The list of filters that applies to event attributes. Only
-     * events that match all the provided filters will be sent to the destination.
+     * Required. null The list of filters that applies to event attributes. Only events that
+     * match all the provided filters are sent to the destination.
      *
      * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.EventFilter event_filters = 8 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Eventarc\V1\EventFilter[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -316,7 +322,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The IAM service account email associated with the trigger. The
      * service account represents the identity of the trigger.
-     * The principal who calls this API must have `iam.serviceAccounts.actAs`
+     * The principal who calls this API must have the `iam.serviceAccounts.actAs`
      * permission in the service account. See
      * https://cloud.google.com/iam/docs/understanding-service-accounts?hl=en#sa_common
      * for more information.
@@ -324,8 +330,8 @@ class Trigger extends \Google\Protobuf\Internal\Message
      * identity tokens when invoking the service. See
      * https://cloud.google.com/run/docs/triggering/pubsub-push#create-service-account
      * for information on how to invoke authenticated Cloud Run services.
-     * In order to create Audit Log triggers, the service account should also
-     * have `roles/eventarc.eventReceiver` IAM role.
+     * To create Audit Log triggers, the service account should also
+     * have the `roles/eventarc.eventReceiver` IAM role.
      *
      * Generated from protobuf field <code>string service_account = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -338,7 +344,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The IAM service account email associated with the trigger. The
      * service account represents the identity of the trigger.
-     * The principal who calls this API must have `iam.serviceAccounts.actAs`
+     * The principal who calls this API must have the `iam.serviceAccounts.actAs`
      * permission in the service account. See
      * https://cloud.google.com/iam/docs/understanding-service-accounts?hl=en#sa_common
      * for more information.
@@ -346,8 +352,8 @@ class Trigger extends \Google\Protobuf\Internal\Message
      * identity tokens when invoking the service. See
      * https://cloud.google.com/run/docs/triggering/pubsub-push#create-service-account
      * for information on how to invoke authenticated Cloud Run services.
-     * In order to create Audit Log triggers, the service account should also
-     * have `roles/eventarc.eventReceiver` IAM role.
+     * To create Audit Log triggers, the service account should also
+     * have the `roles/eventarc.eventReceiver` IAM role.
      *
      * Generated from protobuf field <code>string service_account = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -398,9 +404,9 @@ class Trigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. In order to deliver messages, Eventarc may use other GCP
-     * products as transport intermediary. This field contains a reference to that
-     * transport intermediary. This information can be used for debugging
+     * Optional. To deliver messages, Eventarc might use other GCP
+     * products as a transport intermediary. This field contains a reference to
+     * that transport intermediary. This information can be used for debugging
      * purposes.
      *
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.Transport transport = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -422,9 +428,9 @@ class Trigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. In order to deliver messages, Eventarc may use other GCP
-     * products as transport intermediary. This field contains a reference to that
-     * transport intermediary. This information can be used for debugging
+     * Optional. To deliver messages, Eventarc might use other GCP
+     * products as a transport intermediary. This field contains a reference to
+     * that transport intermediary. This information can be used for debugging
      * purposes.
      *
      * Generated from protobuf field <code>.google.cloud.eventarc.v1.Transport transport = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -440,8 +446,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User labels attached to the triggers that can be used to group
-     * resources.
+     * Optional. User labels attached to the triggers that can be used to group resources.
      *
      * Generated from protobuf field <code>map<string, string> labels = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -452,8 +457,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User labels attached to the triggers that can be used to group
-     * resources.
+     * Optional. User labels attached to the triggers that can be used to group resources.
      *
      * Generated from protobuf field <code>map<string, string> labels = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -468,9 +472,39 @@ class Trigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This checksum is computed by the server based on the value of
-     * other fields, and may be sent only on create requests to ensure the client
-     * has an up-to-date value before proceeding.
+     * Optional. The name of the channel associated with the trigger in
+     * `projects/{project}/locations/{location}/channels/{channel}` format.
+     * You must provide a channel to receive events from Eventarc SaaS partners.
+     *
+     * Generated from protobuf field <code>string channel = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getChannel()
+    {
+        return $this->channel;
+    }
+
+    /**
+     * Optional. The name of the channel associated with the trigger in
+     * `projects/{project}/locations/{location}/channels/{channel}` format.
+     * You must provide a channel to receive events from Eventarc SaaS partners.
+     *
+     * Generated from protobuf field <code>string channel = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setChannel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->channel = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. This checksum is computed by the server based on the value of other
+     * fields, and might be sent only on create requests to ensure that the
+     * client has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -481,9 +515,9 @@ class Trigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This checksum is computed by the server based on the value of
-     * other fields, and may be sent only on create requests to ensure the client
-     * has an up-to-date value before proceeding.
+     * Output only. This checksum is computed by the server based on the value of other
+     * fields, and might be sent only on create requests to ensure that the
+     * client has an up-to-date value before proceeding.
      *
      * Generated from protobuf field <code>string etag = 99 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

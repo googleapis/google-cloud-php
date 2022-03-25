@@ -137,7 +137,7 @@ class EditAtom extends \Google\Protobuf\Internal\Message
      */
     public function getEndTimeOffset()
     {
-        return isset($this->end_time_offset) ? $this->end_time_offset : null;
+        return $this->end_time_offset;
     }
 
     public function hasEndTimeOffset()
@@ -176,7 +176,7 @@ class EditAtom extends \Google\Protobuf\Internal\Message
      */
     public function getStartTimeOffset()
     {
-        return isset($this->start_time_offset) ? $this->start_time_offset : null;
+        return $this->start_time_offset;
     }
 
     public function hasStartTimeOffset()

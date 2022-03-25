@@ -117,7 +117,7 @@ class TextClassificationConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSentimentConfig()
     {
-        return isset($this->sentiment_config) ? $this->sentiment_config : null;
+        return $this->sentiment_config;
     }
 
     public function hasSentimentConfig()

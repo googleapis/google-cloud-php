@@ -2,6 +2,30 @@
 
 return [
     'interfaces' => [
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta2/{name=projects/*/locations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLocations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta2/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
         'google.devtools.artifactregistry.v1beta2.ArtifactRegistry' => [
             'CreateRepository' => [
                 'method' => 'post',
@@ -104,6 +128,17 @@ return [
                     ],
                 ],
             ],
+            'GetProjectSettings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta2/{name=projects/*/projectSettings}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRepository' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/repositories/*}',
@@ -133,6 +168,30 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportAptArtifacts' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta2/{parent=projects/*/locations/*/repositories/*}/aptArtifacts:import',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportYumArtifacts' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta2/{parent=projects/*/locations/*/repositories/*}/yumArtifacts:import',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -216,6 +275,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateProjectSettings' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta2/{project_settings.name=projects/*/projectSettings}',
+                'body' => 'project_settings',
+                'placeholders' => [
+                    'project_settings.name' => [
+                        'getters' => [
+                            'getProjectSettings',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateRepository' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1beta2/{repository.name=projects/*/locations/*/repositories/*}',
@@ -244,42 +316,9 @@ return [
             ],
         ],
         'google.longrunning.Operations' => [
-            'ListOperations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta2/{name=projects/*/locations/*}/operations',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/operations/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteOperation' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/operations/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CancelOperation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/operations/*}:cancel',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

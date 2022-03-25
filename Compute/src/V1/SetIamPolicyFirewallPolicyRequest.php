@@ -53,7 +53,7 @@ class SetIamPolicyFirewallPolicyRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getGlobalOrganizationSetPolicyRequestResource()
     {
-        return isset($this->global_organization_set_policy_request_resource) ? $this->global_organization_set_policy_request_resource : null;
+        return $this->global_organization_set_policy_request_resource;
     }
 
     public function hasGlobalOrganizationSetPolicyRequestResource()

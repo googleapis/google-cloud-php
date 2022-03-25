@@ -55,7 +55,7 @@ class CreateConversionEventRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConversionEvent()
     {
-        return isset($this->conversion_event) ? $this->conversion_event : null;
+        return $this->conversion_event;
     }
 
     public function hasConversionEvent()

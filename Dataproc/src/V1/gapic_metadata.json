@@ -39,6 +39,35 @@
                 }
             }
         },
+        "BatchController": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BatchControllerGapicClient",
+                    "rpcs": {
+                        "CreateBatch": {
+                            "methods": [
+                                "createBatch"
+                            ]
+                        },
+                        "DeleteBatch": {
+                            "methods": [
+                                "deleteBatch"
+                            ]
+                        },
+                        "GetBatch": {
+                            "methods": [
+                                "getBatch"
+                            ]
+                        },
+                        "ListBatches": {
+                            "methods": [
+                                "listBatches"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "ClusterController": {
             "clients": {
                 "grpc": {

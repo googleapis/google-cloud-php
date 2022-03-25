@@ -154,11 +154,13 @@ class RecommenderClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $recommenderSubtype = 'recommenderSubtype-1488504412';
         $etag = 'etag3123477';
+        $xorGroupId = 'xorGroupId381095487';
         $expectedResponse = new Recommendation();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setRecommenderSubtype($recommenderSubtype);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setXorGroupId($xorGroupId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
@@ -442,11 +444,13 @@ class RecommenderClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $recommenderSubtype = 'recommenderSubtype-1488504412';
         $etag2 = 'etag2-1293302904';
+        $xorGroupId = 'xorGroupId381095487';
         $expectedResponse = new Recommendation();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setRecommenderSubtype($recommenderSubtype);
         $expectedResponse->setEtag($etag2);
+        $expectedResponse->setXorGroupId($xorGroupId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
@@ -516,11 +520,13 @@ class RecommenderClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $recommenderSubtype = 'recommenderSubtype-1488504412';
         $etag2 = 'etag2-1293302904';
+        $xorGroupId = 'xorGroupId381095487';
         $expectedResponse = new Recommendation();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setRecommenderSubtype($recommenderSubtype);
         $expectedResponse->setEtag($etag2);
+        $expectedResponse->setXorGroupId($xorGroupId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
@@ -590,11 +596,13 @@ class RecommenderClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $recommenderSubtype = 'recommenderSubtype-1488504412';
         $etag2 = 'etag2-1293302904';
+        $xorGroupId = 'xorGroupId381095487';
         $expectedResponse = new Recommendation();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setRecommenderSubtype($recommenderSubtype);
         $expectedResponse->setEtag($etag2);
+        $expectedResponse->setXorGroupId($xorGroupId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');

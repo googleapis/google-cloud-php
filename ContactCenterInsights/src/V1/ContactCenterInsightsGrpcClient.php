@@ -411,6 +411,21 @@ class ContactCenterInsightsGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Updates a phrase matcher.
+     * @param \Google\Cloud\ContactCenterInsights\V1\UpdatePhraseMatcherRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdatePhraseMatcher(\Google\Cloud\ContactCenterInsights\V1\UpdatePhraseMatcherRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdatePhraseMatcher',
+        $argument,
+        ['\Google\Cloud\ContactCenterInsights\V1\PhraseMatcher', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Gets conversation statistics.
      * @param \Google\Cloud\ContactCenterInsights\V1\CalculateStatsRequest $argument input argument
      * @param array $metadata metadata
@@ -452,6 +467,81 @@ class ContactCenterInsightsGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateSettings',
         $argument,
         ['\Google\Cloud\ContactCenterInsights\V1\Settings', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a view.
+     * @param \Google\Cloud\ContactCenterInsights\V1\CreateViewRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateView(\Google\Cloud\ContactCenterInsights\V1\CreateViewRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/CreateView',
+        $argument,
+        ['\Google\Cloud\ContactCenterInsights\V1\View', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets a view.
+     * @param \Google\Cloud\ContactCenterInsights\V1\GetViewRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetView(\Google\Cloud\ContactCenterInsights\V1\GetViewRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/GetView',
+        $argument,
+        ['\Google\Cloud\ContactCenterInsights\V1\View', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists views.
+     * @param \Google\Cloud\ContactCenterInsights\V1\ListViewsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListViews(\Google\Cloud\ContactCenterInsights\V1\ListViewsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/ListViews',
+        $argument,
+        ['\Google\Cloud\ContactCenterInsights\V1\ListViewsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a view.
+     * @param \Google\Cloud\ContactCenterInsights\V1\UpdateViewRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateView(\Google\Cloud\ContactCenterInsights\V1\UpdateViewRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/UpdateView',
+        $argument,
+        ['\Google\Cloud\ContactCenterInsights\V1\View', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a view.
+     * @param \Google\Cloud\ContactCenterInsights\V1\DeleteViewRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteView(\Google\Cloud\ContactCenterInsights\V1\DeleteViewRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.contactcenterinsights.v1.ContactCenterInsights/DeleteView',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
         $metadata, $options);
     }
 

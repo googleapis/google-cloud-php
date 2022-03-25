@@ -36,8 +36,7 @@ class SqlTiersServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Lists all available machine types (tiers) for Cloud SQL, for example,
-     * db-custom-1-3840. For related information, see <a
-     * href="/sql/pricing">Pricing</a>.
+     * `db-custom-1-3840`. For related information, see [Pricing](https://cloud.google.com/sql/pricing).
      * @param \Google\Cloud\Sql\V1beta4\SqlTiersListRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

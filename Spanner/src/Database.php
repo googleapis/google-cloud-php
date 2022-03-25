@@ -28,6 +28,7 @@ use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Database\State;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
@@ -403,13 +404,13 @@ class Database
     public function create(array $options = [])
     {
         $statements = $this->pluck('statements', $options, false) ?: [];
+        $dialect = isset($options['databaseDialect']) ? $options['databaseDialect'] : null;
 
-        $databaseId = DatabaseAdminClient::parseName($this->name())['database'];
-        $statement = sprintf('CREATE DATABASE `%s`', $databaseId);
+        $createStatement = $this->getCreateDbStatement($dialect);
 
         $operation = $this->connection->createDatabase([
             'instance' => $this->instance->name(),
-            'createStatement' => $statement,
+            'createStatement' => $createStatement,
             'extraStatements' => $statements
         ] + $options);
 
@@ -2071,5 +2072,22 @@ class Database
             return $name;
         }
         //@codeCoverageIgnoreEnd
+    }
+
+    /**
+     * Returns the 'CREATE DATABASE' statement as per the given database dialect
+     * 
+     * @param string $dialect The dialect of the database to be created
+     * @return string The specific 'CREATE DATABASE' statement
+     */
+    private function getCreateDbStatement($dialect)
+    {
+        $databaseId = DatabaseAdminClient::parseName($this->name())['database'];
+
+        if ($dialect === DatabaseDialect::POSTGRESQL) {
+            return sprintf('CREATE DATABASE "%s"', $databaseId);
+        }
+
+        return sprintf('CREATE DATABASE `%s`', $databaseId);
     }
 }

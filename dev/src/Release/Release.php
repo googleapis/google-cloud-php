@@ -140,7 +140,7 @@ class Release extends GoogleCloudCommand
     {
         $manifest = $this->getComponentManifest($this->manifest, $component['id']);
 
-        if ($manifest['versions'][0] === 'master') {
+        if ($manifest['versions'][0] === 'main') {
             $lastRelease = new version('0.0.0');
         } else {
             $lastRelease = new version($manifest['versions'][0]);

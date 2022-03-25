@@ -16,19 +16,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class DemoteMasterContext extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always <b>sql#demoteMasterContext</b>.
+     * This is always `sql#demoteMasterContext`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
     private $kind = '';
     /**
-     * Verify GTID consistency for demote operation. Default value:
-     * <b>True</b>. Second Generation instances only.  Setting this flag to
-     * false enables you to bypass GTID consistency check between on-premises
-     * primary instance and Cloud SQL instance during the demotion operation but
-     * also exposes you to the risk of future replication failures. Change the
-     * value only if you know the reason for the GTID divergence and are confident
-     * that doing so will not cause any replication issues.
+     * Verify the GTID consistency for demote operation. Default value:
+     * `True`. Setting this flag to `false` enables you to bypass the GTID
+     * consistency check between on-premises primary instance and Cloud SQL
+     * instance during the demotion operation but also exposes you to the risk of
+     * future replication failures. Change the value only if you know the reason
+     * for the GTID divergence and are confident that doing so will not cause any
+     * replication issues.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue verify_gtid_consistency = 2;</code>
      */
@@ -47,6 +47,12 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.DemoteMasterConfiguration replica_configuration = 4;</code>
      */
     private $replica_configuration = null;
+    /**
+     * Flag to skip replication setup on the instance.
+     *
+     * Generated from protobuf field <code>bool skip_replication_setup = 5;</code>
+     */
+    private $skip_replication_setup = false;
 
     /**
      * Constructor.
@@ -55,21 +61,23 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always <b>sql#demoteMasterContext</b>.
+     *           This is always `sql#demoteMasterContext`.
      *     @type \Google\Protobuf\BoolValue $verify_gtid_consistency
-     *           Verify GTID consistency for demote operation. Default value:
-     *           <b>True</b>. Second Generation instances only.  Setting this flag to
-     *           false enables you to bypass GTID consistency check between on-premises
-     *           primary instance and Cloud SQL instance during the demotion operation but
-     *           also exposes you to the risk of future replication failures. Change the
-     *           value only if you know the reason for the GTID divergence and are confident
-     *           that doing so will not cause any replication issues.
+     *           Verify the GTID consistency for demote operation. Default value:
+     *           `True`. Setting this flag to `false` enables you to bypass the GTID
+     *           consistency check between on-premises primary instance and Cloud SQL
+     *           instance during the demotion operation but also exposes you to the risk of
+     *           future replication failures. Change the value only if you know the reason
+     *           for the GTID divergence and are confident that doing so will not cause any
+     *           replication issues.
      *     @type string $master_instance_name
      *           The name of the instance which will act as on-premises primary instance
      *           in the replication setup.
      *     @type \Google\Cloud\Sql\V1beta4\DemoteMasterConfiguration $replica_configuration
      *           Configuration specific to read-replicas replicating from the on-premises
      *           primary instance.
+     *     @type bool $skip_replication_setup
+     *           Flag to skip replication setup on the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,7 +86,7 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#demoteMasterContext</b>.
+     * This is always `sql#demoteMasterContext`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -89,7 +97,7 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#demoteMasterContext</b>.
+     * This is always `sql#demoteMasterContext`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
@@ -104,13 +112,13 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Verify GTID consistency for demote operation. Default value:
-     * <b>True</b>. Second Generation instances only.  Setting this flag to
-     * false enables you to bypass GTID consistency check between on-premises
-     * primary instance and Cloud SQL instance during the demotion operation but
-     * also exposes you to the risk of future replication failures. Change the
-     * value only if you know the reason for the GTID divergence and are confident
-     * that doing so will not cause any replication issues.
+     * Verify the GTID consistency for demote operation. Default value:
+     * `True`. Setting this flag to `false` enables you to bypass the GTID
+     * consistency check between on-premises primary instance and Cloud SQL
+     * instance during the demotion operation but also exposes you to the risk of
+     * future replication failures. Change the value only if you know the reason
+     * for the GTID divergence and are confident that doing so will not cause any
+     * replication issues.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue verify_gtid_consistency = 2;</code>
      * @return \Google\Protobuf\BoolValue|null
@@ -133,13 +141,13 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getVerifyGtidConsistency()</code>
 
-     * Verify GTID consistency for demote operation. Default value:
-     * <b>True</b>. Second Generation instances only.  Setting this flag to
-     * false enables you to bypass GTID consistency check between on-premises
-     * primary instance and Cloud SQL instance during the demotion operation but
-     * also exposes you to the risk of future replication failures. Change the
-     * value only if you know the reason for the GTID divergence and are confident
-     * that doing so will not cause any replication issues.
+     * Verify the GTID consistency for demote operation. Default value:
+     * `True`. Setting this flag to `false` enables you to bypass the GTID
+     * consistency check between on-premises primary instance and Cloud SQL
+     * instance during the demotion operation but also exposes you to the risk of
+     * future replication failures. Change the value only if you know the reason
+     * for the GTID divergence and are confident that doing so will not cause any
+     * replication issues.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue verify_gtid_consistency = 2;</code>
      * @return bool|null
@@ -150,13 +158,13 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Verify GTID consistency for demote operation. Default value:
-     * <b>True</b>. Second Generation instances only.  Setting this flag to
-     * false enables you to bypass GTID consistency check between on-premises
-     * primary instance and Cloud SQL instance during the demotion operation but
-     * also exposes you to the risk of future replication failures. Change the
-     * value only if you know the reason for the GTID divergence and are confident
-     * that doing so will not cause any replication issues.
+     * Verify the GTID consistency for demote operation. Default value:
+     * `True`. Setting this flag to `false` enables you to bypass the GTID
+     * consistency check between on-premises primary instance and Cloud SQL
+     * instance during the demotion operation but also exposes you to the risk of
+     * future replication failures. Change the value only if you know the reason
+     * for the GTID divergence and are confident that doing so will not cause any
+     * replication issues.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue verify_gtid_consistency = 2;</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -173,13 +181,13 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
 
-     * Verify GTID consistency for demote operation. Default value:
-     * <b>True</b>. Second Generation instances only.  Setting this flag to
-     * false enables you to bypass GTID consistency check between on-premises
-     * primary instance and Cloud SQL instance during the demotion operation but
-     * also exposes you to the risk of future replication failures. Change the
-     * value only if you know the reason for the GTID divergence and are confident
-     * that doing so will not cause any replication issues.
+     * Verify the GTID consistency for demote operation. Default value:
+     * `True`. Setting this flag to `false` enables you to bypass the GTID
+     * consistency check between on-premises primary instance and Cloud SQL
+     * instance during the demotion operation but also exposes you to the risk of
+     * future replication failures. Change the value only if you know the reason
+     * for the GTID divergence and are confident that doing so will not cause any
+     * replication issues.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue verify_gtid_consistency = 2;</code>
      * @param bool|null $var
@@ -252,6 +260,32 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1beta4\DemoteMasterConfiguration::class);
         $this->replica_configuration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Flag to skip replication setup on the instance.
+     *
+     * Generated from protobuf field <code>bool skip_replication_setup = 5;</code>
+     * @return bool
+     */
+    public function getSkipReplicationSetup()
+    {
+        return $this->skip_replication_setup;
+    }
+
+    /**
+     * Flag to skip replication setup on the instance.
+     *
+     * Generated from protobuf field <code>bool skip_replication_setup = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSkipReplicationSetup($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->skip_replication_setup = $var;
 
         return $this;
     }

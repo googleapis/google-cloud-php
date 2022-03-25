@@ -9,13 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An [admission rule][google.cloud.binaryauthorization.v1beta1.AdmissionRule]
- * specifies either that all container images used in a pod creation request
- * must be attested to by one or more
- * [attestors][google.cloud.binaryauthorization.v1beta1.Attestor], that all pod
- * creations will be allowed, or that all pod creations will be denied.
- * Images matching an [admission allowlist
- * pattern][google.cloud.binaryauthorization.v1beta1.AdmissionWhitelistPattern]
+ * An [admission rule][google.cloud.binaryauthorization.v1beta1.AdmissionRule] specifies either that all container images
+ * used in a pod creation request must be attested to by one or more
+ * [attestors][google.cloud.binaryauthorization.v1beta1.Attestor], that all pod creations will be allowed, or that all
+ * pod creations will be denied.
+ * Images matching an [admission allowlist pattern][google.cloud.binaryauthorization.v1beta1.AdmissionWhitelistPattern]
  * are exempted from admission rules and will never block a pod creation.
  *
  * Generated from protobuf message <code>google.cloud.binaryauthorization.v1beta1.AdmissionRule</code>

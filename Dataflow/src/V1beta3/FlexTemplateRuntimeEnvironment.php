@@ -155,6 +155,42 @@ class FlexTemplateRuntimeEnvironment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string sdk_container_image = 18;</code>
      */
     private $sdk_container_image = '';
+    /**
+     * Worker disk size, in gigabytes.
+     *
+     * Generated from protobuf field <code>int32 disk_size_gb = 20;</code>
+     */
+    private $disk_size_gb = 0;
+    /**
+     * The algorithm to use for autoscaling
+     *
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.AutoscalingAlgorithm autoscaling_algorithm = 21;</code>
+     */
+    private $autoscaling_algorithm = 0;
+    /**
+     * If true, save a heap dump before killing a thread or process which is GC
+     * thrashing or out of memory. The location of the heap file will either be
+     * echoed back to the user, or the user will be given the opportunity to
+     * download the heap file.
+     *
+     * Generated from protobuf field <code>bool dump_heap_on_oom = 22;</code>
+     */
+    private $dump_heap_on_oom = false;
+    /**
+     * Cloud Storage bucket (directory) to upload heap dumps to the given
+     * location. Enabling this implies that heap dumps should be generated on OOM
+     * (dump_heap_on_oom is set to true).
+     *
+     * Generated from protobuf field <code>string save_heap_dumps_to_gcs_path = 23;</code>
+     */
+    private $save_heap_dumps_to_gcs_path = '';
+    /**
+     * The machine type to use for launching the job. The default is
+     * n1-standard-1.
+     *
+     * Generated from protobuf field <code>string launcher_machine_type = 24;</code>
+     */
+    private $launcher_machine_type = '';
 
     /**
      * Constructor.
@@ -230,6 +266,22 @@ class FlexTemplateRuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *           Docker registry location of container image to use for the 'worker harness.
      *           Default is the container for the version of the SDK. Note this field is
      *           only valid for portable pipelines.
+     *     @type int $disk_size_gb
+     *           Worker disk size, in gigabytes.
+     *     @type int $autoscaling_algorithm
+     *           The algorithm to use for autoscaling
+     *     @type bool $dump_heap_on_oom
+     *           If true, save a heap dump before killing a thread or process which is GC
+     *           thrashing or out of memory. The location of the heap file will either be
+     *           echoed back to the user, or the user will be given the opportunity to
+     *           download the heap file.
+     *     @type string $save_heap_dumps_to_gcs_path
+     *           Cloud Storage bucket (directory) to upload heap dumps to the given
+     *           location. Enabling this implies that heap dumps should be generated on OOM
+     *           (dump_heap_on_oom is set to true).
+     *     @type string $launcher_machine_type
+     *           The machine type to use for launching the job. The default is
+     *           n1-standard-1.
      * }
      */
     public function __construct($data = NULL) {
@@ -765,6 +817,148 @@ class FlexTemplateRuntimeEnvironment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->sdk_container_image = $var;
+
+        return $this;
+    }
+
+    /**
+     * Worker disk size, in gigabytes.
+     *
+     * Generated from protobuf field <code>int32 disk_size_gb = 20;</code>
+     * @return int
+     */
+    public function getDiskSizeGb()
+    {
+        return $this->disk_size_gb;
+    }
+
+    /**
+     * Worker disk size, in gigabytes.
+     *
+     * Generated from protobuf field <code>int32 disk_size_gb = 20;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDiskSizeGb($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->disk_size_gb = $var;
+
+        return $this;
+    }
+
+    /**
+     * The algorithm to use for autoscaling
+     *
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.AutoscalingAlgorithm autoscaling_algorithm = 21;</code>
+     * @return int
+     */
+    public function getAutoscalingAlgorithm()
+    {
+        return $this->autoscaling_algorithm;
+    }
+
+    /**
+     * The algorithm to use for autoscaling
+     *
+     * Generated from protobuf field <code>.google.dataflow.v1beta3.AutoscalingAlgorithm autoscaling_algorithm = 21;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAutoscalingAlgorithm($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataflow\V1beta3\AutoscalingAlgorithm::class);
+        $this->autoscaling_algorithm = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, save a heap dump before killing a thread or process which is GC
+     * thrashing or out of memory. The location of the heap file will either be
+     * echoed back to the user, or the user will be given the opportunity to
+     * download the heap file.
+     *
+     * Generated from protobuf field <code>bool dump_heap_on_oom = 22;</code>
+     * @return bool
+     */
+    public function getDumpHeapOnOom()
+    {
+        return $this->dump_heap_on_oom;
+    }
+
+    /**
+     * If true, save a heap dump before killing a thread or process which is GC
+     * thrashing or out of memory. The location of the heap file will either be
+     * echoed back to the user, or the user will be given the opportunity to
+     * download the heap file.
+     *
+     * Generated from protobuf field <code>bool dump_heap_on_oom = 22;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDumpHeapOnOom($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->dump_heap_on_oom = $var;
+
+        return $this;
+    }
+
+    /**
+     * Cloud Storage bucket (directory) to upload heap dumps to the given
+     * location. Enabling this implies that heap dumps should be generated on OOM
+     * (dump_heap_on_oom is set to true).
+     *
+     * Generated from protobuf field <code>string save_heap_dumps_to_gcs_path = 23;</code>
+     * @return string
+     */
+    public function getSaveHeapDumpsToGcsPath()
+    {
+        return $this->save_heap_dumps_to_gcs_path;
+    }
+
+    /**
+     * Cloud Storage bucket (directory) to upload heap dumps to the given
+     * location. Enabling this implies that heap dumps should be generated on OOM
+     * (dump_heap_on_oom is set to true).
+     *
+     * Generated from protobuf field <code>string save_heap_dumps_to_gcs_path = 23;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSaveHeapDumpsToGcsPath($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->save_heap_dumps_to_gcs_path = $var;
+
+        return $this;
+    }
+
+    /**
+     * The machine type to use for launching the job. The default is
+     * n1-standard-1.
+     *
+     * Generated from protobuf field <code>string launcher_machine_type = 24;</code>
+     * @return string
+     */
+    public function getLauncherMachineType()
+    {
+        return $this->launcher_machine_type;
+    }
+
+    /**
+     * The machine type to use for launching the job. The default is
+     * n1-standard-1.
+     *
+     * Generated from protobuf field <code>string launcher_machine_type = 24;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLauncherMachineType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->launcher_machine_type = $var;
 
         return $this;
     }

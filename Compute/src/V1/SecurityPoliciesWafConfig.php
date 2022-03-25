@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SecurityPoliciesWafConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PreconfiguredWafSet waf_rules = 74899924;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.PreconfiguredWafSet waf_rules = 74899924;</code>
      */
     private $waf_rules = null;
 
@@ -34,12 +34,12 @@ class SecurityPoliciesWafConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PreconfiguredWafSet waf_rules = 74899924;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.PreconfiguredWafSet waf_rules = 74899924;</code>
      * @return \Google\Cloud\Compute\V1\PreconfiguredWafSet|null
      */
     public function getWafRules()
     {
-        return isset($this->waf_rules) ? $this->waf_rules : null;
+        return $this->waf_rules;
     }
 
     public function hasWafRules()
@@ -53,7 +53,7 @@ class SecurityPoliciesWafConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PreconfiguredWafSet waf_rules = 74899924;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.PreconfiguredWafSet waf_rules = 74899924;</code>
      * @param \Google\Cloud\Compute\V1\PreconfiguredWafSet $var
      * @return $this
      */

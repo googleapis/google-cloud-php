@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\Compute\Tests\System\V1;
 
-use Google\Cloud\Compute\V1\ZonesClient;
 use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\ZonesClient;
+use Google\Cloud\Compute\V1\AcceleratorTypesClient;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -28,8 +29,10 @@ use PHPUnit\Framework\TestCase;
 class PaginationTest extends TestCase
 {
     private static $instancesClient;
+    private static $acceleratorTypesClient;
     private static $zonesClient;
     private static $projectId;
+    private static $zone;
 
     public static function setUpBeforeClass(): void
     {
@@ -39,12 +42,15 @@ class PaginationTest extends TestCase
         }
         self::$instancesClient = new InstancesClient();
         self::$zonesClient = new ZonesClient();
+        self::$acceleratorTypesClient = new AcceleratorTypesClient();
+        self::$zone = 'us-central1-a';
     }
 
     public static function tearDownAfterClass(): void
     {
         self::$instancesClient->close();
         self::$zonesClient->close();
+        self::$acceleratorTypesClient->close();
     }
 
     public function testPageToken()
@@ -98,6 +104,40 @@ class PaginationTest extends TestCase
         $page = $response->getPage();
         $arr = iterator_to_array($page->getIterator());
         self::assertCount(10, $arr);
+    }
+
+    public function testAutoPaginationList()
+    {
+        $response = self::$acceleratorTypesClient->list(
+            self::$projectId,
+            self::$zone,
+            ['maxResults' => 2]
+        );
+        $presented = false;
+        foreach ($response->iterateAllElements() as $element){
+            if ($element->getName() == 'nvidia-tesla-t4'){
+                $presented = true;
+            }
+        }
+        self::assertTrue($presented);
+    }
+
+    public function testAutoPaginationMapResponse()
+    {
+        $response = self::$acceleratorTypesClient->aggregatedList(
+            self::$projectId,
+            ['maxResults' => 2]
+        );
+        $presented = false;
+        foreach ($response->iterateAllElements() as $zone => $element){
+            $types = $element->getAcceleratorTypes();
+            foreach ($types as $type){
+                if ($type->getName() == 'nvidia-tesla-t4'){
+                    $presented = true;
+                }
+            }
+        }
+        self::assertTrue($presented);
     }
 
     public function testAggregatedPageToken()

@@ -18,13 +18,13 @@ class RouterAdvertisedIpRange extends \Google\Protobuf\Internal\Message
     /**
      * User-specified description for the IP range.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * The IP range to advertise. The value must be a CIDR-formatted string.
      *
-     * Generated from protobuf field <code>string range = 108280125;</code>
+     * Generated from protobuf field <code>optional string range = 108280125;</code>
      */
     private $range = null;
 
@@ -48,7 +48,7 @@ class RouterAdvertisedIpRange extends \Google\Protobuf\Internal\Message
     /**
      * User-specified description for the IP range.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -69,7 +69,7 @@ class RouterAdvertisedIpRange extends \Google\Protobuf\Internal\Message
     /**
      * User-specified description for the IP range.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -84,7 +84,7 @@ class RouterAdvertisedIpRange extends \Google\Protobuf\Internal\Message
     /**
      * The IP range to advertise. The value must be a CIDR-formatted string.
      *
-     * Generated from protobuf field <code>string range = 108280125;</code>
+     * Generated from protobuf field <code>optional string range = 108280125;</code>
      * @return string
      */
     public function getRange()
@@ -105,7 +105,7 @@ class RouterAdvertisedIpRange extends \Google\Protobuf\Internal\Message
     /**
      * The IP range to advertise. The value must be a CIDR-formatted string.
      *
-     * Generated from protobuf field <code>string range = 108280125;</code>
+     * Generated from protobuf field <code>optional string range = 108280125;</code>
      * @param string $var
      * @return $this
      */

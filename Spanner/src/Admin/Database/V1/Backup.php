@@ -99,6 +99,34 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.EncryptionInfo encryption_info = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $encryption_info = null;
+    /**
+     * Output only. The database dialect information for the backup.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.DatabaseDialect database_dialect = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $database_dialect = 0;
+    /**
+     * Output only. The names of the destination backups being created by copying
+     * this source backup. The backup names are of the form
+     * `projects/<project>/instances/<instance>/backups/<backup>`.
+     * Referencing backups may exist in different instances. The existence of
+     * any referencing backup prevents the backup from being deleted. When the
+     * copy operation is done (either successfully completed or cancelled or the
+     * destination backup is deleted), the reference to the backup is removed.
+     *
+     * Generated from protobuf field <code>repeated string referencing_backups = 11 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    private $referencing_backups;
+    /**
+     * Output only. The max allowed expiration time of the backup, with
+     * microseconds granularity. A backup's expiration time can be configured in
+     * multiple APIs: CreateBackup, UpdateBackup, CopyBackup. When updating or
+     * copying an existing backup, the expiration time specified must be
+     * less than `Backup.max_expire_time`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp max_expire_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $max_expire_time = null;
 
     /**
      * Constructor.
@@ -154,6 +182,22 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           to the backup is removed.
      *     @type \Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo $encryption_info
      *           Output only. The encryption information for the backup.
+     *     @type int $database_dialect
+     *           Output only. The database dialect information for the backup.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $referencing_backups
+     *           Output only. The names of the destination backups being created by copying
+     *           this source backup. The backup names are of the form
+     *           `projects/<project>/instances/<instance>/backups/<backup>`.
+     *           Referencing backups may exist in different instances. The existence of
+     *           any referencing backup prevents the backup from being deleted. When the
+     *           copy operation is done (either successfully completed or cancelled or the
+     *           destination backup is deleted), the reference to the backup is removed.
+     *     @type \Google\Protobuf\Timestamp $max_expire_time
+     *           Output only. The max allowed expiration time of the backup, with
+     *           microseconds granularity. A backup's expiration time can be configured in
+     *           multiple APIs: CreateBackup, UpdateBackup, CopyBackup. When updating or
+     *           copying an existing backup, the expiration time specified must be
+     *           less than `Backup.max_expire_time`.
      * }
      */
     public function __construct($data = NULL) {
@@ -491,6 +535,114 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo::class);
         $this->encryption_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The database dialect information for the backup.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.DatabaseDialect database_dialect = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getDatabaseDialect()
+    {
+        return $this->database_dialect;
+    }
+
+    /**
+     * Output only. The database dialect information for the backup.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.DatabaseDialect database_dialect = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDatabaseDialect($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect::class);
+        $this->database_dialect = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The names of the destination backups being created by copying
+     * this source backup. The backup names are of the form
+     * `projects/<project>/instances/<instance>/backups/<backup>`.
+     * Referencing backups may exist in different instances. The existence of
+     * any referencing backup prevents the backup from being deleted. When the
+     * copy operation is done (either successfully completed or cancelled or the
+     * destination backup is deleted), the reference to the backup is removed.
+     *
+     * Generated from protobuf field <code>repeated string referencing_backups = 11 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getReferencingBackups()
+    {
+        return $this->referencing_backups;
+    }
+
+    /**
+     * Output only. The names of the destination backups being created by copying
+     * this source backup. The backup names are of the form
+     * `projects/<project>/instances/<instance>/backups/<backup>`.
+     * Referencing backups may exist in different instances. The existence of
+     * any referencing backup prevents the backup from being deleted. When the
+     * copy operation is done (either successfully completed or cancelled or the
+     * destination backup is deleted), the reference to the backup is removed.
+     *
+     * Generated from protobuf field <code>repeated string referencing_backups = 11 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setReferencingBackups($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->referencing_backups = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The max allowed expiration time of the backup, with
+     * microseconds granularity. A backup's expiration time can be configured in
+     * multiple APIs: CreateBackup, UpdateBackup, CopyBackup. When updating or
+     * copying an existing backup, the expiration time specified must be
+     * less than `Backup.max_expire_time`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp max_expire_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getMaxExpireTime()
+    {
+        return $this->max_expire_time;
+    }
+
+    public function hasMaxExpireTime()
+    {
+        return isset($this->max_expire_time);
+    }
+
+    public function clearMaxExpireTime()
+    {
+        unset($this->max_expire_time);
+    }
+
+    /**
+     * Output only. The max allowed expiration time of the backup, with
+     * microseconds granularity. A backup's expiration time can be configured in
+     * multiple APIs: CreateBackup, UpdateBackup, CopyBackup. When updating or
+     * copying an existing backup, the expiration time specified must be
+     * less than `Backup.max_expire_time`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp max_expire_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setMaxExpireTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->max_expire_time = $var;
 
         return $this;
     }

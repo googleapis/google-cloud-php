@@ -66,7 +66,7 @@ class CompensationRange extends \Google\Protobuf\Internal\Message
      */
     public function getMaxCompensation()
     {
-        return isset($this->max_compensation) ? $this->max_compensation : null;
+        return $this->max_compensation;
     }
 
     public function hasMaxCompensation()
@@ -107,7 +107,7 @@ class CompensationRange extends \Google\Protobuf\Internal\Message
      */
     public function getMinCompensation()
     {
-        return isset($this->min_compensation) ? $this->min_compensation : null;
+        return $this->min_compensation;
     }
 
     public function hasMinCompensation()
@@ -139,6 +139,4 @@ class CompensationRange extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CompensationRange::class, \Google\Cloud\Talent\V4beta1\CompensationInfo_CompensationRange::class);
 

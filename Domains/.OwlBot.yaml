@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/domains/(v1alpha2|v1beta1)/.*-php/(.*)
+      dest: /owl-bot-staging/Domains/$1/$2
+api-name: Domains

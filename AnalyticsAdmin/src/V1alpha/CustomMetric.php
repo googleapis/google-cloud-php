@@ -50,9 +50,9 @@ class CustomMetric extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Required. Immutable. The type for the custom metric's value.
+     * Required. The type for the custom metric's value.
      *
-     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CustomMetric.MeasurementUnit measurement_unit = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CustomMetric.MeasurementUnit measurement_unit = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $measurement_unit = 0;
     /**
@@ -87,7 +87,7 @@ class CustomMetric extends \Google\Protobuf\Internal\Message
      *           Optional. Description for this custom dimension.
      *           Max length of 150 characters.
      *     @type int $measurement_unit
-     *           Required. Immutable. The type for the custom metric's value.
+     *           Required. The type for the custom metric's value.
      *     @type int $scope
      *           Required. Immutable. The scope of this custom metric.
      * }
@@ -222,9 +222,9 @@ class CustomMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The type for the custom metric's value.
+     * Required. The type for the custom metric's value.
      *
-     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CustomMetric.MeasurementUnit measurement_unit = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CustomMetric.MeasurementUnit measurement_unit = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getMeasurementUnit()
@@ -233,9 +233,9 @@ class CustomMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Immutable. The type for the custom metric's value.
+     * Required. The type for the custom metric's value.
      *
-     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CustomMetric.MeasurementUnit measurement_unit = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CustomMetric.MeasurementUnit measurement_unit = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */

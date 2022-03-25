@@ -19,10 +19,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the search engine placement, such as
      * `projects/&#42;&#47;locations/global/catalogs/default_catalog/placements/default_search`.
-     * This field is used to identify the set of models that will be used to make
-     * the search.
-     * We currently support one placement with the following ID:
-     * * `default_search`.
+     * This field is used to identify the serving configuration name and the set
+     * of models that will be used to make the search.
      *
      * Generated from protobuf field <code>string placement = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -97,7 +95,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * The filter syntax consists of an expression language for constructing a
      * predicate from one or more fields of the products being filtered. Filter
      * expression is case-sensitive. See more details at this [user
-     * guide](https://cloud.google.com/retail/private/docs/filter-and-order#filter).
+     * guide](https://cloud.google.com/retail/docs/filter-and-order#filter).
      * If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *
      * Generated from protobuf field <code>string filter = 10;</code>
@@ -121,7 +119,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * a field in an [Product][google.cloud.retail.v2.Product] object. Leave it
      * unset if ordered by relevance. OrderBy expression is case-sensitive. See
      * more details at this [user
-     * guide](https://cloud.google.com/retail/private/docs/filter-and-order#order).
+     * guide](https://cloud.google.com/retail/docs/filter-and-order#order).
      * If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *
      * Generated from protobuf field <code>string order_by = 11;</code>
@@ -138,16 +136,20 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * The specification for dynamically generated facets. Notice that only
      * textual facets can be dynamically generated.
-     * This feature requires additional allowlisting. Contact Retail Support
-     * (retail-search-support&#64;google.com) if you are interested in using dynamic
-     * facet feature.
+     * This feature requires additional allowlisting. Contact Retail Search
+     * support team if you are interested in using dynamic facet feature.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.DynamicFacetSpec dynamic_facet_spec = 21;</code>
      */
     private $dynamic_facet_spec = null;
     /**
      * Boost specification to boost certain products. See more details at this
-     * [user guide](https://cloud.google.com/retail/private/docs/boosting).
+     * [user guide](https://cloud.google.com/retail/docs/boosting).
+     * Notice that if both [ServingConfig.boost_control_ids][] and
+     * [SearchRequest.boost_spec] are set, the boost conditions from both places
+     * are evaluated. If a search request matches multiple boost conditions,
+     * the final boost score is equal to the sum of the boost scores from all
+     * matched boost conditions.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.BoostSpec boost_spec = 13;</code>
      */
@@ -155,7 +157,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * The query expansion specification that specifies the conditions under which
      * query expansion will occur. See more details at this [user
-     * guide](https://cloud.google.com/retail/private/docs/result-size#query_expansion).
+     * guide](https://cloud.google.com/retail/docs/result-size#query_expansion).
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.QueryExpansionSpec query_expansion_spec = 14;</code>
      */
@@ -169,36 +171,57 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Notice that rollup [variant][google.cloud.retail.v2.Product.Type.VARIANT]
      * [Product][google.cloud.retail.v2.Product]s attributes will lead to extra
      * query latency. Maximum number of keys is 10.
-     * For
-     * [Product.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info],
-     * a fulfillment type and a fulfillment ID must be provided in the format of
-     * "fulfillmentType.filfillmentId". E.g., in "pickupInStore.store123",
+     * For [FulfillmentInfo][google.cloud.retail.v2.FulfillmentInfo], a
+     * fulfillment type and a fulfillment ID must be provided in the format of
+     * "fulfillmentType.fulfillmentId". E.g., in "pickupInStore.store123",
      * "pickupInStore" is fulfillment type and "store123" is the store ID.
      * Supported keys are:
      * * colorFamilies
      * * price
      * * originalPrice
      * * discount
+     * * variantId
+     * * inventory(place_id,price)
+     * * inventory(place_id,attributes.key), where key is any key in the
+     *   [Product.inventories.attributes][] map.
      * * attributes.key, where key is any key in the
      *   [Product.attributes][google.cloud.retail.v2.Product.attributes] map.
-     * * pickupInStore.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.PICKUP_IN_STORE][].
-     * * shipToStore.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.SHIP_TO_STORE][].
-     * * sameDayDelivery.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.SAME_DAY_DELIVERY][].
-     * * nextDayDelivery.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.NEXT_DAY_DELIVERY][].
-     * * customFulfillment1.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.CUSTOM_TYPE_1][].
-     * * customFulfillment2.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.CUSTOM_TYPE_2][].
-     * * customFulfillment3.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.CUSTOM_TYPE_3][].
-     * * customFulfillment4.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.CUSTOM_TYPE_4][].
-     * * customFulfillment5.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.CUSTOM_TYPE_5][].
+     * * pickupInStore.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "pickup-in-store".
+     * * shipToStore.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "ship-to-store".
+     * * sameDayDelivery.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "same-day-delivery".
+     * * nextDayDelivery.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "next-day-delivery".
+     * * customFulfillment1.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "custom-type-1".
+     * * customFulfillment2.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "custom-type-2".
+     * * customFulfillment3.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "custom-type-3".
+     * * customFulfillment4.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "custom-type-4".
+     * * customFulfillment5.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "custom-type-5".
      * If this field is set to an invalid value other than these, an
      * INVALID_ARGUMENT error is returned.
      *
@@ -220,6 +243,13 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string page_categories = 23;</code>
      */
     private $page_categories;
+    /**
+     * The search mode of the search request. If not specified, a single search
+     * request triggers both product search and faceted search.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.SearchMode search_mode = 31;</code>
+     */
+    private $search_mode = 0;
 
     /**
      * Constructor.
@@ -230,10 +260,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *     @type string $placement
      *           Required. The resource name of the search engine placement, such as
      *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/placements/default_search`.
-     *           This field is used to identify the set of models that will be used to make
-     *           the search.
-     *           We currently support one placement with the following ID:
-     *           * `default_search`.
+     *           This field is used to identify the serving configuration name and the set
+     *           of models that will be used to make the search.
      *     @type string $branch
      *           The branch resource name, such as
      *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/0`.
@@ -276,7 +304,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           The filter syntax consists of an expression language for constructing a
      *           predicate from one or more fields of the products being filtered. Filter
      *           expression is case-sensitive. See more details at this [user
-     *           guide](https://cloud.google.com/retail/private/docs/filter-and-order#filter).
+     *           guide](https://cloud.google.com/retail/docs/filter-and-order#filter).
      *           If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *     @type string $canonical_filter
      *           The filter applied to every search request when quality improvement such as
@@ -292,7 +320,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           a field in an [Product][google.cloud.retail.v2.Product] object. Leave it
      *           unset if ordered by relevance. OrderBy expression is case-sensitive. See
      *           more details at this [user
-     *           guide](https://cloud.google.com/retail/private/docs/filter-and-order#order).
+     *           guide](https://cloud.google.com/retail/docs/filter-and-order#order).
      *           If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *     @type \Google\Cloud\Retail\V2\SearchRequest\FacetSpec[]|\Google\Protobuf\Internal\RepeatedField $facet_specs
      *           Facet specifications for faceted search. If empty, no facets are returned.
@@ -301,16 +329,20 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Retail\V2\SearchRequest\DynamicFacetSpec $dynamic_facet_spec
      *           The specification for dynamically generated facets. Notice that only
      *           textual facets can be dynamically generated.
-     *           This feature requires additional allowlisting. Contact Retail Support
-     *           (retail-search-support&#64;google.com) if you are interested in using dynamic
-     *           facet feature.
+     *           This feature requires additional allowlisting. Contact Retail Search
+     *           support team if you are interested in using dynamic facet feature.
      *     @type \Google\Cloud\Retail\V2\SearchRequest\BoostSpec $boost_spec
      *           Boost specification to boost certain products. See more details at this
-     *           [user guide](https://cloud.google.com/retail/private/docs/boosting).
+     *           [user guide](https://cloud.google.com/retail/docs/boosting).
+     *           Notice that if both [ServingConfig.boost_control_ids][] and
+     *           [SearchRequest.boost_spec] are set, the boost conditions from both places
+     *           are evaluated. If a search request matches multiple boost conditions,
+     *           the final boost score is equal to the sum of the boost scores from all
+     *           matched boost conditions.
      *     @type \Google\Cloud\Retail\V2\SearchRequest\QueryExpansionSpec $query_expansion_spec
      *           The query expansion specification that specifies the conditions under which
      *           query expansion will occur. See more details at this [user
-     *           guide](https://cloud.google.com/retail/private/docs/result-size#query_expansion).
+     *           guide](https://cloud.google.com/retail/docs/result-size#query_expansion).
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $variant_rollup_keys
      *           The keys to fetch and rollup the matching
      *           [variant][google.cloud.retail.v2.Product.Type.VARIANT]
@@ -320,36 +352,57 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           Notice that rollup [variant][google.cloud.retail.v2.Product.Type.VARIANT]
      *           [Product][google.cloud.retail.v2.Product]s attributes will lead to extra
      *           query latency. Maximum number of keys is 10.
-     *           For
-     *           [Product.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info],
-     *           a fulfillment type and a fulfillment ID must be provided in the format of
-     *           "fulfillmentType.filfillmentId". E.g., in "pickupInStore.store123",
+     *           For [FulfillmentInfo][google.cloud.retail.v2.FulfillmentInfo], a
+     *           fulfillment type and a fulfillment ID must be provided in the format of
+     *           "fulfillmentType.fulfillmentId". E.g., in "pickupInStore.store123",
      *           "pickupInStore" is fulfillment type and "store123" is the store ID.
      *           Supported keys are:
      *           * colorFamilies
      *           * price
      *           * originalPrice
      *           * discount
+     *           * variantId
+     *           * inventory(place_id,price)
+     *           * inventory(place_id,attributes.key), where key is any key in the
+     *             [Product.inventories.attributes][] map.
      *           * attributes.key, where key is any key in the
      *             [Product.attributes][google.cloud.retail.v2.Product.attributes] map.
-     *           * pickupInStore.id, where id is any [FulfillmentInfo.ids][] for type
-     *             [FulfillmentInfo.Type.PICKUP_IN_STORE][].
-     *           * shipToStore.id, where id is any [FulfillmentInfo.ids][] for type
-     *             [FulfillmentInfo.Type.SHIP_TO_STORE][].
-     *           * sameDayDelivery.id, where id is any [FulfillmentInfo.ids][] for type
-     *             [FulfillmentInfo.Type.SAME_DAY_DELIVERY][].
-     *           * nextDayDelivery.id, where id is any [FulfillmentInfo.ids][] for type
-     *             [FulfillmentInfo.Type.NEXT_DAY_DELIVERY][].
-     *           * customFulfillment1.id, where id is any [FulfillmentInfo.ids][] for type
-     *             [FulfillmentInfo.Type.CUSTOM_TYPE_1][].
-     *           * customFulfillment2.id, where id is any [FulfillmentInfo.ids][] for type
-     *             [FulfillmentInfo.Type.CUSTOM_TYPE_2][].
-     *           * customFulfillment3.id, where id is any [FulfillmentInfo.ids][] for type
-     *             [FulfillmentInfo.Type.CUSTOM_TYPE_3][].
-     *           * customFulfillment4.id, where id is any [FulfillmentInfo.ids][] for type
-     *             [FulfillmentInfo.Type.CUSTOM_TYPE_4][].
-     *           * customFulfillment5.id, where id is any [FulfillmentInfo.ids][] for type
-     *             [FulfillmentInfo.Type.CUSTOM_TYPE_5][].
+     *           * pickupInStore.id, where id is any
+     *           [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     *           for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *             "pickup-in-store".
+     *           * shipToStore.id, where id is any
+     *           [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     *           for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *             "ship-to-store".
+     *           * sameDayDelivery.id, where id is any
+     *           [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     *           for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *             "same-day-delivery".
+     *           * nextDayDelivery.id, where id is any
+     *           [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     *           for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *             "next-day-delivery".
+     *           * customFulfillment1.id, where id is any
+     *           [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     *           for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *             "custom-type-1".
+     *           * customFulfillment2.id, where id is any
+     *           [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     *           for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *             "custom-type-2".
+     *           * customFulfillment3.id, where id is any
+     *           [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     *           for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *             "custom-type-3".
+     *           * customFulfillment4.id, where id is any
+     *           [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     *           for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *             "custom-type-4".
+     *           * customFulfillment5.id, where id is any
+     *           [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     *           for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *             "custom-type-5".
      *           If this field is set to an invalid value other than these, an
      *           INVALID_ARGUMENT error is returned.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $page_categories
@@ -363,6 +416,9 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           Category pages include special pages such as sales or promotions. For
      *           instance, a special sale page may have the category hierarchy:
      *           "pageCategories" : ["Sales > 2017 Black Friday Deals"].
+     *     @type int $search_mode
+     *           The search mode of the search request. If not specified, a single search
+     *           request triggers both product search and faceted search.
      * }
      */
     public function __construct($data = NULL) {
@@ -373,10 +429,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the search engine placement, such as
      * `projects/&#42;&#47;locations/global/catalogs/default_catalog/placements/default_search`.
-     * This field is used to identify the set of models that will be used to make
-     * the search.
-     * We currently support one placement with the following ID:
-     * * `default_search`.
+     * This field is used to identify the serving configuration name and the set
+     * of models that will be used to make the search.
      *
      * Generated from protobuf field <code>string placement = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -389,10 +443,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the search engine placement, such as
      * `projects/&#42;&#47;locations/global/catalogs/default_catalog/placements/default_search`.
-     * This field is used to identify the set of models that will be used to make
-     * the search.
-     * We currently support one placement with the following ID:
-     * * `default_search`.
+     * This field is used to identify the serving configuration name and the set
+     * of models that will be used to make the search.
      *
      * Generated from protobuf field <code>string placement = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -508,7 +560,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUserInfo()
     {
-        return isset($this->user_info) ? $this->user_info : null;
+        return $this->user_info;
     }
 
     public function hasUserInfo()
@@ -650,7 +702,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * The filter syntax consists of an expression language for constructing a
      * predicate from one or more fields of the products being filtered. Filter
      * expression is case-sensitive. See more details at this [user
-     * guide](https://cloud.google.com/retail/private/docs/filter-and-order#filter).
+     * guide](https://cloud.google.com/retail/docs/filter-and-order#filter).
      * If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *
      * Generated from protobuf field <code>string filter = 10;</code>
@@ -665,7 +717,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * The filter syntax consists of an expression language for constructing a
      * predicate from one or more fields of the products being filtered. Filter
      * expression is case-sensitive. See more details at this [user
-     * guide](https://cloud.google.com/retail/private/docs/filter-and-order#filter).
+     * guide](https://cloud.google.com/retail/docs/filter-and-order#filter).
      * If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *
      * Generated from protobuf field <code>string filter = 10;</code>
@@ -725,7 +777,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * a field in an [Product][google.cloud.retail.v2.Product] object. Leave it
      * unset if ordered by relevance. OrderBy expression is case-sensitive. See
      * more details at this [user
-     * guide](https://cloud.google.com/retail/private/docs/filter-and-order#order).
+     * guide](https://cloud.google.com/retail/docs/filter-and-order#order).
      * If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *
      * Generated from protobuf field <code>string order_by = 11;</code>
@@ -741,7 +793,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * a field in an [Product][google.cloud.retail.v2.Product] object. Leave it
      * unset if ordered by relevance. OrderBy expression is case-sensitive. See
      * more details at this [user
-     * guide](https://cloud.google.com/retail/private/docs/filter-and-order#order).
+     * guide](https://cloud.google.com/retail/docs/filter-and-order#order).
      * If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *
      * Generated from protobuf field <code>string order_by = 11;</code>
@@ -789,16 +841,15 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * The specification for dynamically generated facets. Notice that only
      * textual facets can be dynamically generated.
-     * This feature requires additional allowlisting. Contact Retail Support
-     * (retail-search-support&#64;google.com) if you are interested in using dynamic
-     * facet feature.
+     * This feature requires additional allowlisting. Contact Retail Search
+     * support team if you are interested in using dynamic facet feature.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.DynamicFacetSpec dynamic_facet_spec = 21;</code>
      * @return \Google\Cloud\Retail\V2\SearchRequest\DynamicFacetSpec|null
      */
     public function getDynamicFacetSpec()
     {
-        return isset($this->dynamic_facet_spec) ? $this->dynamic_facet_spec : null;
+        return $this->dynamic_facet_spec;
     }
 
     public function hasDynamicFacetSpec()
@@ -814,9 +865,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * The specification for dynamically generated facets. Notice that only
      * textual facets can be dynamically generated.
-     * This feature requires additional allowlisting. Contact Retail Support
-     * (retail-search-support&#64;google.com) if you are interested in using dynamic
-     * facet feature.
+     * This feature requires additional allowlisting. Contact Retail Search
+     * support team if you are interested in using dynamic facet feature.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.DynamicFacetSpec dynamic_facet_spec = 21;</code>
      * @param \Google\Cloud\Retail\V2\SearchRequest\DynamicFacetSpec $var
@@ -832,14 +882,19 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Boost specification to boost certain products. See more details at this
-     * [user guide](https://cloud.google.com/retail/private/docs/boosting).
+     * [user guide](https://cloud.google.com/retail/docs/boosting).
+     * Notice that if both [ServingConfig.boost_control_ids][] and
+     * [SearchRequest.boost_spec] are set, the boost conditions from both places
+     * are evaluated. If a search request matches multiple boost conditions,
+     * the final boost score is equal to the sum of the boost scores from all
+     * matched boost conditions.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.BoostSpec boost_spec = 13;</code>
      * @return \Google\Cloud\Retail\V2\SearchRequest\BoostSpec|null
      */
     public function getBoostSpec()
     {
-        return isset($this->boost_spec) ? $this->boost_spec : null;
+        return $this->boost_spec;
     }
 
     public function hasBoostSpec()
@@ -854,7 +909,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Boost specification to boost certain products. See more details at this
-     * [user guide](https://cloud.google.com/retail/private/docs/boosting).
+     * [user guide](https://cloud.google.com/retail/docs/boosting).
+     * Notice that if both [ServingConfig.boost_control_ids][] and
+     * [SearchRequest.boost_spec] are set, the boost conditions from both places
+     * are evaluated. If a search request matches multiple boost conditions,
+     * the final boost score is equal to the sum of the boost scores from all
+     * matched boost conditions.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.BoostSpec boost_spec = 13;</code>
      * @param \Google\Cloud\Retail\V2\SearchRequest\BoostSpec $var
@@ -871,14 +931,14 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * The query expansion specification that specifies the conditions under which
      * query expansion will occur. See more details at this [user
-     * guide](https://cloud.google.com/retail/private/docs/result-size#query_expansion).
+     * guide](https://cloud.google.com/retail/docs/result-size#query_expansion).
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.QueryExpansionSpec query_expansion_spec = 14;</code>
      * @return \Google\Cloud\Retail\V2\SearchRequest\QueryExpansionSpec|null
      */
     public function getQueryExpansionSpec()
     {
-        return isset($this->query_expansion_spec) ? $this->query_expansion_spec : null;
+        return $this->query_expansion_spec;
     }
 
     public function hasQueryExpansionSpec()
@@ -894,7 +954,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * The query expansion specification that specifies the conditions under which
      * query expansion will occur. See more details at this [user
-     * guide](https://cloud.google.com/retail/private/docs/result-size#query_expansion).
+     * guide](https://cloud.google.com/retail/docs/result-size#query_expansion).
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.QueryExpansionSpec query_expansion_spec = 14;</code>
      * @param \Google\Cloud\Retail\V2\SearchRequest\QueryExpansionSpec $var
@@ -917,36 +977,57 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Notice that rollup [variant][google.cloud.retail.v2.Product.Type.VARIANT]
      * [Product][google.cloud.retail.v2.Product]s attributes will lead to extra
      * query latency. Maximum number of keys is 10.
-     * For
-     * [Product.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info],
-     * a fulfillment type and a fulfillment ID must be provided in the format of
-     * "fulfillmentType.filfillmentId". E.g., in "pickupInStore.store123",
+     * For [FulfillmentInfo][google.cloud.retail.v2.FulfillmentInfo], a
+     * fulfillment type and a fulfillment ID must be provided in the format of
+     * "fulfillmentType.fulfillmentId". E.g., in "pickupInStore.store123",
      * "pickupInStore" is fulfillment type and "store123" is the store ID.
      * Supported keys are:
      * * colorFamilies
      * * price
      * * originalPrice
      * * discount
+     * * variantId
+     * * inventory(place_id,price)
+     * * inventory(place_id,attributes.key), where key is any key in the
+     *   [Product.inventories.attributes][] map.
      * * attributes.key, where key is any key in the
      *   [Product.attributes][google.cloud.retail.v2.Product.attributes] map.
-     * * pickupInStore.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.PICKUP_IN_STORE][].
-     * * shipToStore.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.SHIP_TO_STORE][].
-     * * sameDayDelivery.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.SAME_DAY_DELIVERY][].
-     * * nextDayDelivery.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.NEXT_DAY_DELIVERY][].
-     * * customFulfillment1.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.CUSTOM_TYPE_1][].
-     * * customFulfillment2.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.CUSTOM_TYPE_2][].
-     * * customFulfillment3.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.CUSTOM_TYPE_3][].
-     * * customFulfillment4.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.CUSTOM_TYPE_4][].
-     * * customFulfillment5.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.CUSTOM_TYPE_5][].
+     * * pickupInStore.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "pickup-in-store".
+     * * shipToStore.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "ship-to-store".
+     * * sameDayDelivery.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "same-day-delivery".
+     * * nextDayDelivery.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "next-day-delivery".
+     * * customFulfillment1.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "custom-type-1".
+     * * customFulfillment2.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "custom-type-2".
+     * * customFulfillment3.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "custom-type-3".
+     * * customFulfillment4.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "custom-type-4".
+     * * customFulfillment5.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "custom-type-5".
      * If this field is set to an invalid value other than these, an
      * INVALID_ARGUMENT error is returned.
      *
@@ -967,36 +1048,57 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Notice that rollup [variant][google.cloud.retail.v2.Product.Type.VARIANT]
      * [Product][google.cloud.retail.v2.Product]s attributes will lead to extra
      * query latency. Maximum number of keys is 10.
-     * For
-     * [Product.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info],
-     * a fulfillment type and a fulfillment ID must be provided in the format of
-     * "fulfillmentType.filfillmentId". E.g., in "pickupInStore.store123",
+     * For [FulfillmentInfo][google.cloud.retail.v2.FulfillmentInfo], a
+     * fulfillment type and a fulfillment ID must be provided in the format of
+     * "fulfillmentType.fulfillmentId". E.g., in "pickupInStore.store123",
      * "pickupInStore" is fulfillment type and "store123" is the store ID.
      * Supported keys are:
      * * colorFamilies
      * * price
      * * originalPrice
      * * discount
+     * * variantId
+     * * inventory(place_id,price)
+     * * inventory(place_id,attributes.key), where key is any key in the
+     *   [Product.inventories.attributes][] map.
      * * attributes.key, where key is any key in the
      *   [Product.attributes][google.cloud.retail.v2.Product.attributes] map.
-     * * pickupInStore.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.PICKUP_IN_STORE][].
-     * * shipToStore.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.SHIP_TO_STORE][].
-     * * sameDayDelivery.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.SAME_DAY_DELIVERY][].
-     * * nextDayDelivery.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.NEXT_DAY_DELIVERY][].
-     * * customFulfillment1.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.CUSTOM_TYPE_1][].
-     * * customFulfillment2.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.CUSTOM_TYPE_2][].
-     * * customFulfillment3.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.CUSTOM_TYPE_3][].
-     * * customFulfillment4.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.CUSTOM_TYPE_4][].
-     * * customFulfillment5.id, where id is any [FulfillmentInfo.ids][] for type
-     *   [FulfillmentInfo.Type.CUSTOM_TYPE_5][].
+     * * pickupInStore.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "pickup-in-store".
+     * * shipToStore.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "ship-to-store".
+     * * sameDayDelivery.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "same-day-delivery".
+     * * nextDayDelivery.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "next-day-delivery".
+     * * customFulfillment1.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "custom-type-1".
+     * * customFulfillment2.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "custom-type-2".
+     * * customFulfillment3.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "custom-type-3".
+     * * customFulfillment4.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "custom-type-4".
+     * * customFulfillment5.id, where id is any
+     * [FulfillmentInfo.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
+     * for [FulfillmentInfo.type][google.cloud.retail.v2.FulfillmentInfo.type]
+     *   "custom-type-5".
      * If this field is set to an invalid value other than these, an
      * INVALID_ARGUMENT error is returned.
      *
@@ -1052,6 +1154,34 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->page_categories = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The search mode of the search request. If not specified, a single search
+     * request triggers both product search and faceted search.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.SearchMode search_mode = 31;</code>
+     * @return int
+     */
+    public function getSearchMode()
+    {
+        return $this->search_mode;
+    }
+
+    /**
+     * The search mode of the search request. If not specified, a single search
+     * request triggers both product search and faceted search.
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.SearchMode search_mode = 31;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSearchMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Retail\V2\SearchRequest\SearchMode::class);
+        $this->search_mode = $var;
 
         return $this;
     }

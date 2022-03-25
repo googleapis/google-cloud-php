@@ -22,8 +22,8 @@ class UpdateTriggerRequest extends \Google\Protobuf\Internal\Message
      */
     private $trigger = null;
     /**
-     * The fields to be updated; only fields explicitly provided will be updated.
-     * If no field mask is provided, all provided fields in the request will be
+     * The fields to be updated; only fields explicitly provided are updated.
+     * If no field mask is provided, all provided fields in the request are
      * updated. To update all fields, provide a field mask of "*".
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
@@ -37,7 +37,7 @@ class UpdateTriggerRequest extends \Google\Protobuf\Internal\Message
      */
     private $allow_missing = false;
     /**
-     * Required. If set, validate the request and preview the review, but do not actually
+     * Required. If set, validate the request and preview the review, but do not
      * post it.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -53,14 +53,14 @@ class UpdateTriggerRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Eventarc\V1\Trigger $trigger
      *           The trigger to be updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           The fields to be updated; only fields explicitly provided will be updated.
-     *           If no field mask is provided, all provided fields in the request will be
+     *           The fields to be updated; only fields explicitly provided are updated.
+     *           If no field mask is provided, all provided fields in the request are
      *           updated. To update all fields, provide a field mask of "*".
      *     @type bool $allow_missing
      *           If set to true, and the trigger is not found, a new trigger will be
      *           created. In this situation, `update_mask` is ignored.
      *     @type bool $validate_only
-     *           Required. If set, validate the request and preview the review, but do not actually
+     *           Required. If set, validate the request and preview the review, but do not
      *           post it.
      * }
      */
@@ -106,8 +106,8 @@ class UpdateTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fields to be updated; only fields explicitly provided will be updated.
-     * If no field mask is provided, all provided fields in the request will be
+     * The fields to be updated; only fields explicitly provided are updated.
+     * If no field mask is provided, all provided fields in the request are
      * updated. To update all fields, provide a field mask of "*".
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
@@ -129,8 +129,8 @@ class UpdateTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fields to be updated; only fields explicitly provided will be updated.
-     * If no field mask is provided, all provided fields in the request will be
+     * The fields to be updated; only fields explicitly provided are updated.
+     * If no field mask is provided, all provided fields in the request are
      * updated. To update all fields, provide a field mask of "*".
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
@@ -174,7 +174,7 @@ class UpdateTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. If set, validate the request and preview the review, but do not actually
+     * Required. If set, validate the request and preview the review, but do not
      * post it.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -186,7 +186,7 @@ class UpdateTriggerRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. If set, validate the request and preview the review, but do not actually
+     * Required. If set, validate the request and preview the review, but do not
      * post it.
      *
      * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = REQUIRED];</code>

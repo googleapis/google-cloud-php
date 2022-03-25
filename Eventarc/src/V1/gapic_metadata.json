@@ -10,9 +10,29 @@
                 "grpc": {
                     "libraryClient": "EventarcGapicClient",
                     "rpcs": {
+                        "CreateChannel": {
+                            "methods": [
+                                "createChannel"
+                            ]
+                        },
+                        "CreateChannelConnection": {
+                            "methods": [
+                                "createChannelConnection"
+                            ]
+                        },
                         "CreateTrigger": {
                             "methods": [
                                 "createTrigger"
+                            ]
+                        },
+                        "DeleteChannel": {
+                            "methods": [
+                                "deleteChannel"
+                            ]
+                        },
+                        "DeleteChannelConnection": {
+                            "methods": [
+                                "deleteChannelConnection"
                             ]
                         },
                         "DeleteTrigger": {
@@ -20,14 +40,39 @@
                                 "deleteTrigger"
                             ]
                         },
+                        "GetChannel": {
+                            "methods": [
+                                "getChannel"
+                            ]
+                        },
+                        "GetChannelConnection": {
+                            "methods": [
+                                "getChannelConnection"
+                            ]
+                        },
                         "GetTrigger": {
                             "methods": [
                                 "getTrigger"
                             ]
                         },
+                        "ListChannelConnections": {
+                            "methods": [
+                                "listChannelConnections"
+                            ]
+                        },
+                        "ListChannels": {
+                            "methods": [
+                                "listChannels"
+                            ]
+                        },
                         "ListTriggers": {
                             "methods": [
                                 "listTriggers"
+                            ]
+                        },
+                        "UpdateChannel": {
+                            "methods": [
+                                "updateChannel"
                             ]
                         },
                         "UpdateTrigger": {

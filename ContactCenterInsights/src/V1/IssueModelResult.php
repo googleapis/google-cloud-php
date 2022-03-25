@@ -17,8 +17,9 @@ class IssueModelResult extends \Google\Protobuf\Internal\Message
 {
     /**
      * Issue model that generates the result.
+     * Format: projects/{project}/locations/{location}/issueModels/{issue_model}
      *
-     * Generated from protobuf field <code>string issue_model = 1;</code>
+     * Generated from protobuf field <code>string issue_model = 1 [(.google.api.resource_reference) = {</code>
      */
     private $issue_model = '';
     /**
@@ -36,6 +37,7 @@ class IssueModelResult extends \Google\Protobuf\Internal\Message
      *
      *     @type string $issue_model
      *           Issue model that generates the result.
+     *           Format: projects/{project}/locations/{location}/issueModels/{issue_model}
      *     @type \Google\Cloud\ContactCenterInsights\V1\IssueAssignment[]|\Google\Protobuf\Internal\RepeatedField $issues
      *           All the matched issues.
      * }
@@ -47,8 +49,9 @@ class IssueModelResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Issue model that generates the result.
+     * Format: projects/{project}/locations/{location}/issueModels/{issue_model}
      *
-     * Generated from protobuf field <code>string issue_model = 1;</code>
+     * Generated from protobuf field <code>string issue_model = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getIssueModel()
@@ -58,8 +61,9 @@ class IssueModelResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Issue model that generates the result.
+     * Format: projects/{project}/locations/{location}/issueModels/{issue_model}
      *
-     * Generated from protobuf field <code>string issue_model = 1;</code>
+     * Generated from protobuf field <code>string issue_model = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

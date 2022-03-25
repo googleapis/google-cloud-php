@@ -95,6 +95,61 @@ class DomainsGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Gets parameters needed to transfer a domain name from another registrar to
+     * Cloud Domains. For domains managed by Google Domains, transferring to Cloud
+     * Domains is not supported.
+     *
+     *
+     * Use the returned values to call `TransferDomain`.
+     * @param \Google\Cloud\Domains\V1alpha2\RetrieveTransferParametersRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RetrieveTransferParameters(\Google\Cloud\Domains\V1alpha2\RetrieveTransferParametersRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.domains.v1alpha2.Domains/RetrieveTransferParameters',
+        $argument,
+        ['\Google\Cloud\Domains\V1alpha2\RetrieveTransferParametersResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Transfers a domain name from another registrar to Cloud Domains.  For
+     * domains managed by Google Domains, transferring to Cloud Domains is not
+     * supported.
+     *
+     *
+     * Before calling this method, go to the domain's current registrar to unlock
+     * the domain for transfer and retrieve the domain's transfer authorization
+     * code. Then call `RetrieveTransferParameters` to confirm that the domain is
+     * unlocked and to get values needed to build a call to this method.
+     *
+     * A successful call creates a `Registration` resource in state
+     * `TRANSFER_PENDING`. It can take several days to complete the transfer
+     * process. The registrant can often speed up this process by approving the
+     * transfer through the current registrar, either by clicking a link in an
+     * email from the registrar or by visiting the registrar's website.
+     *
+     * A few minutes after transfer approval, the resource transitions to state
+     * `ACTIVE`, indicating that the transfer was successful. If the transfer is
+     * rejected or the request expires without being approved, the resource can
+     * end up in state `TRANSFER_FAILED`. If transfer fails, you can safely delete
+     * the resource and retry the transfer.
+     * @param \Google\Cloud\Domains\V1alpha2\TransferDomainRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function TransferDomain(\Google\Cloud\Domains\V1alpha2\TransferDomainRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.domains.v1alpha2.Domains/TransferDomain',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Lists the `Registration` resources in a project.
      * @param \Google\Cloud\Domains\V1alpha2\ListRegistrationsRequest $argument input argument
      * @param array $metadata metadata
@@ -191,20 +246,15 @@ class DomainsGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Exports a `Registration` that you no longer want to use with
-     * Cloud Domains. You can continue to use the domain in
-     * [Google Domains](https://domains.google/) until it expires.
+     * Exports a `Registration` resource, such that it is no longer managed by
+     * Cloud Domains.
      *
-     * If the export is successful:
-     *
-     * * The resource's `state` becomes `EXPORTED`, meaning that it is no longer
-     * managed by Cloud Domains
-     * * Because individual users can own domains in Google Domains, the calling
-     * user becomes the domain's sole owner. Permissions for the domain are
-     * subsequently managed in Google Domains.
-     * * Without further action, the domain does not renew automatically.
-     * The new owner can set up billing in Google Domains to renew the domain
-     * if needed.
+     * When an active domain is successfully exported, you can continue to use the
+     * domain in [Google Domains](https://domains.google/) until it expires. The
+     * calling user becomes the domain's sole owner in Google Domains, and
+     * permissions for the domain are subsequently managed there. The domain does
+     * not renew automatically unless the new owner sets up billing in Google
+     * Domains.
      * @param \Google\Cloud\Domains\V1alpha2\ExportRegistrationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -221,10 +271,23 @@ class DomainsGrpcClient extends \Grpc\BaseStub {
     /**
      * Deletes a `Registration` resource.
      *
-     * This method only works on resources in one of the following states:
+     * This method works on any `Registration` resource using [Subscription or
+     * Commitment billing](https://cloud.google.com/domains/pricing#billing-models), provided that the
+     * resource was created at least 1 day in the past.
+     *
+     * For `Registration` resources using
+     * [Monthly billing](https://cloud.google.com/domains/pricing#billing-models), this method works if:
      *
      * * `state` is `EXPORTED` with `expire_time` in the past
      * * `state` is `REGISTRATION_FAILED`
+     * * `state` is `TRANSFER_FAILED`
+     *
+     * When an active registration is successfully deleted, you can continue to
+     * use the domain in [Google Domains](https://domains.google/) until it
+     * expires. The calling user becomes the domain's sole owner in Google
+     * Domains, and permissions for the domain are subsequently managed there. The
+     * domain does not renew automatically unless the new owner sets up billing in
+     * Google Domains.
      * @param \Google\Cloud\Domains\V1alpha2\DeleteRegistrationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

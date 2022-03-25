@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for
- * [Failover][google.cloud.redis.v1beta1.CloudRedis.FailoverInstance].
+ * Request for [Failover][google.cloud.redis.v1beta1.CloudRedis.FailoverInstance].
  *
  * Generated from protobuf message <code>google.cloud.redis.v1beta1.FailoverInstanceRequest</code>
  */

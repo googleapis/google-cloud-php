@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Backend;
 use UnexpectedValueException;
 
 /**
- * Specifies how to determine whether the backend of a load balancer can handle additional traffic or is fully loaded. For usage guidelines, see  Connection balancing mode.
+ * Specifies how to determine whether the backend of a load balancer can handle additional traffic or is fully loaded. For usage guidelines, see Connection balancing mode. Backends must use compatible balancing modes. For more information, see Supported balancing modes and target capacity settings and Restrictions and guidance for instance groups. Note: Currently, if you use the API to configure incompatible balancing modes, the configuration might be accepted even though it has no impact and is ignored. Specifically, Backend.maxUtilization is ignored when Backend.balancingMode is RATE. In the future, this incompatible combination will be rejected.
  *
  * Protobuf type <code>google.cloud.compute.v1.Backend.BalancingMode</code>
  */
@@ -20,14 +20,20 @@ class BalancingMode
      */
     const UNDEFINED_BALANCING_MODE = 0;
     /**
+     * Balance based on the number of simultaneous connections.
+     *
      * Generated from protobuf enum <code>CONNECTION = 246311646;</code>
      */
     const CONNECTION = 246311646;
     /**
+     * Balance based on requests per second (RPS).
+     *
      * Generated from protobuf enum <code>RATE = 2508000;</code>
      */
     const RATE = 2508000;
     /**
+     * Balance based on the backend utilization.
+     *
      * Generated from protobuf enum <code>UTILIZATION = 157008386;</code>
      */
     const UTILIZATION = 157008386;

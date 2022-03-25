@@ -20,10 +20,14 @@ class DefaultNetworkTier
      */
     const UNDEFINED_DEFAULT_NETWORK_TIER = 0;
     /**
+     * High quality, Google-grade network tier, support for all networking products.
+     *
      * Generated from protobuf enum <code>PREMIUM = 399530551;</code>
      */
     const PREMIUM = 399530551;
     /**
+     * Public internet quality, only limited support for other networking products.
+     *
      * Generated from protobuf enum <code>STANDARD = 484642493;</code>
      */
     const STANDARD = 484642493;

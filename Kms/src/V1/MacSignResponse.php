@@ -177,7 +177,7 @@ class MacSignResponse extends \Google\Protobuf\Internal\Message
      */
     public function getMacCrc32C()
     {
-        return isset($this->mac_crc32c) ? $this->mac_crc32c : null;
+        return $this->mac_crc32c;
     }
 
     public function hasMacCrc32C()

@@ -18,31 +18,32 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     /**
      * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DELETED. This is only informational and the status will not change unless the client explicitly changes it.
      *
-     * Generated from protobuf field <code>string deleted = 476721177;</code>
+     * Generated from protobuf field <code>optional string deleted = 476721177;</code>
      */
     private $deleted = null;
     /**
      * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DEPRECATED. This is only informational and the status will not change unless the client explicitly changes it.
      *
-     * Generated from protobuf field <code>string deprecated = 515138995;</code>
+     * Generated from protobuf field <code>optional string deprecated = 515138995;</code>
      */
     private $deprecated = null;
     /**
      * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to OBSOLETE. This is only informational and the status will not change unless the client explicitly changes it.
      *
-     * Generated from protobuf field <code>string obsolete = 357647769;</code>
+     * Generated from protobuf field <code>optional string obsolete = 357647769;</code>
      */
     private $obsolete = null;
     /**
      * The URL of the suggested replacement for a deprecated resource. The suggested replacement resource must be the same kind of resource as the deprecated resource.
      *
-     * Generated from protobuf field <code>string replacement = 430919186;</code>
+     * Generated from protobuf field <code>optional string replacement = 430919186;</code>
      */
     private $replacement = null;
     /**
      * The deprecation state of this resource. This can be ACTIVE, DEPRECATED, OBSOLETE, or DELETED. Operations which communicate the end of life date for an image, can use ACTIVE. Operations which create a new resource using a DEPRECATED resource will return successfully, but with a warning indicating the deprecated resource and recommending its replacement. Operations which use OBSOLETE or DELETED resources will be rejected and result in an error.
+     * Check the State enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DeprecationStatus.State state = 109757585;</code>
+     * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
     private $state = null;
 
@@ -60,8 +61,9 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
      *           An optional RFC3339 timestamp on or after which the state of this resource is intended to change to OBSOLETE. This is only informational and the status will not change unless the client explicitly changes it.
      *     @type string $replacement
      *           The URL of the suggested replacement for a deprecated resource. The suggested replacement resource must be the same kind of resource as the deprecated resource.
-     *     @type int $state
+     *     @type string $state
      *           The deprecation state of this resource. This can be ACTIVE, DEPRECATED, OBSOLETE, or DELETED. Operations which communicate the end of life date for an image, can use ACTIVE. Operations which create a new resource using a DEPRECATED resource will return successfully, but with a warning indicating the deprecated resource and recommending its replacement. Operations which use OBSOLETE or DELETED resources will be rejected and result in an error.
+     *           Check the State enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,7 +74,7 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     /**
      * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DELETED. This is only informational and the status will not change unless the client explicitly changes it.
      *
-     * Generated from protobuf field <code>string deleted = 476721177;</code>
+     * Generated from protobuf field <code>optional string deleted = 476721177;</code>
      * @return string
      */
     public function getDeleted()
@@ -93,7 +95,7 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     /**
      * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DELETED. This is only informational and the status will not change unless the client explicitly changes it.
      *
-     * Generated from protobuf field <code>string deleted = 476721177;</code>
+     * Generated from protobuf field <code>optional string deleted = 476721177;</code>
      * @param string $var
      * @return $this
      */
@@ -108,7 +110,7 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     /**
      * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DEPRECATED. This is only informational and the status will not change unless the client explicitly changes it.
      *
-     * Generated from protobuf field <code>string deprecated = 515138995;</code>
+     * Generated from protobuf field <code>optional string deprecated = 515138995;</code>
      * @return string
      */
     public function getDeprecated()
@@ -129,7 +131,7 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     /**
      * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DEPRECATED. This is only informational and the status will not change unless the client explicitly changes it.
      *
-     * Generated from protobuf field <code>string deprecated = 515138995;</code>
+     * Generated from protobuf field <code>optional string deprecated = 515138995;</code>
      * @param string $var
      * @return $this
      */
@@ -144,7 +146,7 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     /**
      * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to OBSOLETE. This is only informational and the status will not change unless the client explicitly changes it.
      *
-     * Generated from protobuf field <code>string obsolete = 357647769;</code>
+     * Generated from protobuf field <code>optional string obsolete = 357647769;</code>
      * @return string
      */
     public function getObsolete()
@@ -165,7 +167,7 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     /**
      * An optional RFC3339 timestamp on or after which the state of this resource is intended to change to OBSOLETE. This is only informational and the status will not change unless the client explicitly changes it.
      *
-     * Generated from protobuf field <code>string obsolete = 357647769;</code>
+     * Generated from protobuf field <code>optional string obsolete = 357647769;</code>
      * @param string $var
      * @return $this
      */
@@ -180,7 +182,7 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     /**
      * The URL of the suggested replacement for a deprecated resource. The suggested replacement resource must be the same kind of resource as the deprecated resource.
      *
-     * Generated from protobuf field <code>string replacement = 430919186;</code>
+     * Generated from protobuf field <code>optional string replacement = 430919186;</code>
      * @return string
      */
     public function getReplacement()
@@ -201,7 +203,7 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
     /**
      * The URL of the suggested replacement for a deprecated resource. The suggested replacement resource must be the same kind of resource as the deprecated resource.
      *
-     * Generated from protobuf field <code>string replacement = 430919186;</code>
+     * Generated from protobuf field <code>optional string replacement = 430919186;</code>
      * @param string $var
      * @return $this
      */
@@ -215,13 +217,14 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
 
     /**
      * The deprecation state of this resource. This can be ACTIVE, DEPRECATED, OBSOLETE, or DELETED. Operations which communicate the end of life date for an image, can use ACTIVE. Operations which create a new resource using a DEPRECATED resource will return successfully, but with a warning indicating the deprecated resource and recommending its replacement. Operations which use OBSOLETE or DELETED resources will be rejected and result in an error.
+     * Check the State enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DeprecationStatus.State state = 109757585;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string state = 109757585;</code>
+     * @return string
      */
     public function getState()
     {
-        return isset($this->state) ? $this->state : 0;
+        return isset($this->state) ? $this->state : '';
     }
 
     public function hasState()
@@ -236,14 +239,15 @@ class DeprecationStatus extends \Google\Protobuf\Internal\Message
 
     /**
      * The deprecation state of this resource. This can be ACTIVE, DEPRECATED, OBSOLETE, or DELETED. Operations which communicate the end of life date for an image, can use ACTIVE. Operations which create a new resource using a DEPRECATED resource will return successfully, but with a warning indicating the deprecated resource and recommending its replacement. Operations which use OBSOLETE or DELETED resources will be rejected and result in an error.
+     * Check the State enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DeprecationStatus.State state = 109757585;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string state = 109757585;</code>
+     * @param string $var
      * @return $this
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\DeprecationStatus\State::class);
+        GPBUtil::checkString($var, True);
         $this->state = $var;
 
         return $this;

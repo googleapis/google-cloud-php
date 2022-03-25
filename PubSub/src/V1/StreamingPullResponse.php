@@ -23,6 +23,20 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
      */
     private $received_messages;
     /**
+     * This field will only be set if `enable_exactly_once_delivery` is set to
+     * `true`.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation acknowlege_confirmation = 2;</code>
+     */
+    private $acknowlege_confirmation = null;
+    /**
+     * This field will only be set if `enable_exactly_once_delivery` is set to
+     * `true`.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.ModifyAckDeadlineConfirmation modify_ack_deadline_confirmation = 3;</code>
+     */
+    private $modify_ack_deadline_confirmation = null;
+    /**
      * Properties associated with this subscription.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.SubscriptionProperties subscription_properties = 4;</code>
@@ -37,6 +51,12 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\PubSub\V1\ReceivedMessage[]|\Google\Protobuf\Internal\RepeatedField $received_messages
      *           Received Pub/Sub messages. This will not be empty.
+     *     @type \Google\Cloud\PubSub\V1\StreamingPullResponse\AcknowledgeConfirmation $acknowlege_confirmation
+     *           This field will only be set if `enable_exactly_once_delivery` is set to
+     *           `true`.
+     *     @type \Google\Cloud\PubSub\V1\StreamingPullResponse\ModifyAckDeadlineConfirmation $modify_ack_deadline_confirmation
+     *           This field will only be set if `enable_exactly_once_delivery` is set to
+     *           `true`.
      *     @type \Google\Cloud\PubSub\V1\StreamingPullResponse\SubscriptionProperties $subscription_properties
      *           Properties associated with this subscription.
      * }
@@ -68,6 +88,82 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\PubSub\V1\ReceivedMessage::class);
         $this->received_messages = $arr;
+
+        return $this;
+    }
+
+    /**
+     * This field will only be set if `enable_exactly_once_delivery` is set to
+     * `true`.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation acknowlege_confirmation = 2;</code>
+     * @return \Google\Cloud\PubSub\V1\StreamingPullResponse\AcknowledgeConfirmation|null
+     */
+    public function getAcknowlegeConfirmation()
+    {
+        return $this->acknowlege_confirmation;
+    }
+
+    public function hasAcknowlegeConfirmation()
+    {
+        return isset($this->acknowlege_confirmation);
+    }
+
+    public function clearAcknowlegeConfirmation()
+    {
+        unset($this->acknowlege_confirmation);
+    }
+
+    /**
+     * This field will only be set if `enable_exactly_once_delivery` is set to
+     * `true`.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation acknowlege_confirmation = 2;</code>
+     * @param \Google\Cloud\PubSub\V1\StreamingPullResponse\AcknowledgeConfirmation $var
+     * @return $this
+     */
+    public function setAcknowlegeConfirmation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\StreamingPullResponse\AcknowledgeConfirmation::class);
+        $this->acknowlege_confirmation = $var;
+
+        return $this;
+    }
+
+    /**
+     * This field will only be set if `enable_exactly_once_delivery` is set to
+     * `true`.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.ModifyAckDeadlineConfirmation modify_ack_deadline_confirmation = 3;</code>
+     * @return \Google\Cloud\PubSub\V1\StreamingPullResponse\ModifyAckDeadlineConfirmation|null
+     */
+    public function getModifyAckDeadlineConfirmation()
+    {
+        return $this->modify_ack_deadline_confirmation;
+    }
+
+    public function hasModifyAckDeadlineConfirmation()
+    {
+        return isset($this->modify_ack_deadline_confirmation);
+    }
+
+    public function clearModifyAckDeadlineConfirmation()
+    {
+        unset($this->modify_ack_deadline_confirmation);
+    }
+
+    /**
+     * This field will only be set if `enable_exactly_once_delivery` is set to
+     * `true`.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.ModifyAckDeadlineConfirmation modify_ack_deadline_confirmation = 3;</code>
+     * @param \Google\Cloud\PubSub\V1\StreamingPullResponse\ModifyAckDeadlineConfirmation $var
+     * @return $this
+     */
+    public function setModifyAckDeadlineConfirmation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\StreamingPullResponse\ModifyAckDeadlineConfirmation::class);
+        $this->modify_ack_deadline_confirmation = $var;
 
         return $this;
     }

@@ -22,9 +22,9 @@ class CreateHubRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. A unique identifier for the hub.
+     * Required. A unique identifier for the hub.
      *
-     * Generated from protobuf field <code>string hub_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string hub_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $hub_id = '';
     /**
@@ -60,7 +60,7 @@ class CreateHubRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent resource.
      *     @type string $hub_id
-     *           Optional. A unique identifier for the hub.
+     *           Required. A unique identifier for the hub.
      *     @type \Google\Cloud\NetworkConnectivity\V1\Hub $hub
      *           Required. The initial values for a new hub.
      *     @type string $request_id
@@ -110,9 +110,9 @@ class CreateHubRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique identifier for the hub.
+     * Required. A unique identifier for the hub.
      *
-     * Generated from protobuf field <code>string hub_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string hub_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getHubId()
@@ -121,9 +121,9 @@ class CreateHubRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique identifier for the hub.
+     * Required. A unique identifier for the hub.
      *
-     * Generated from protobuf field <code>string hub_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string hub_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

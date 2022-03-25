@@ -18,12 +18,15 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The container resource on which to execute the request.
      * Acceptable formats:
-     * 1.
-     * "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]",
+     * * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     * * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     * * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     * * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     * * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
      * LOCATION here refers to GCP Locations:
      * https://cloud.google.com/about/locations/
      * INSIGHT_TYPE_ID refers to supported insight types:
-     * https://cloud.google.com/recommender/docs/insights/insight-types.)
+     * https://cloud.google.com/recommender/docs/insights/insight-types.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -47,8 +50,17 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
     private $page_token = '';
     /**
      * Optional. Filter expression to restrict the insights returned. Supported
-     * filter fields: state
-     * Eg: `state:"DISMISSED" or state:"ACTIVE"
+     * filter fields:
+     * * `stateInfo.state`
+     * * `insightSubtype`
+     * * `severity`
+     * Examples:
+     * * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
+     * * `insightSubtype = PERMISSIONS_USAGE`
+     * * `severity = CRITICAL OR severity = HIGH`
+     * * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)`
+     * (These expressions are based on the filter language described at
+     * https://google.aip.dev/160)
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -63,12 +75,15 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The container resource on which to execute the request.
      *           Acceptable formats:
-     *           1.
-     *           "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]",
+     *           * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     *           * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     *           * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     *           * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     *           * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
      *           LOCATION here refers to GCP Locations:
      *           https://cloud.google.com/about/locations/
      *           INSIGHT_TYPE_ID refers to supported insight types:
-     *           https://cloud.google.com/recommender/docs/insights/insight-types.)
+     *           https://cloud.google.com/recommender/docs/insights/insight-types.
      *     @type int $page_size
      *           Optional. The maximum number of results to return from this request.  Non-positive
      *           values are ignored. If not specified, the server will determine the number
@@ -80,8 +95,17 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
      *           to those in the previous call.
      *     @type string $filter
      *           Optional. Filter expression to restrict the insights returned. Supported
-     *           filter fields: state
-     *           Eg: `state:"DISMISSED" or state:"ACTIVE"
+     *           filter fields:
+     *           * `stateInfo.state`
+     *           * `insightSubtype`
+     *           * `severity`
+     *           Examples:
+     *           * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
+     *           * `insightSubtype = PERMISSIONS_USAGE`
+     *           * `severity = CRITICAL OR severity = HIGH`
+     *           * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)`
+     *           (These expressions are based on the filter language described at
+     *           https://google.aip.dev/160)
      * }
      */
     public function __construct($data = NULL) {
@@ -92,12 +116,15 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The container resource on which to execute the request.
      * Acceptable formats:
-     * 1.
-     * "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]",
+     * * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     * * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     * * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     * * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     * * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
      * LOCATION here refers to GCP Locations:
      * https://cloud.google.com/about/locations/
      * INSIGHT_TYPE_ID refers to supported insight types:
-     * https://cloud.google.com/recommender/docs/insights/insight-types.)
+     * https://cloud.google.com/recommender/docs/insights/insight-types.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -110,12 +137,15 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The container resource on which to execute the request.
      * Acceptable formats:
-     * 1.
-     * "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]",
+     * * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     * * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     * * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     * * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+     * * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
      * LOCATION here refers to GCP Locations:
      * https://cloud.google.com/about/locations/
      * INSIGHT_TYPE_ID refers to supported insight types:
-     * https://cloud.google.com/recommender/docs/insights/insight-types.)
+     * https://cloud.google.com/recommender/docs/insights/insight-types.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -193,8 +223,17 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Filter expression to restrict the insights returned. Supported
-     * filter fields: state
-     * Eg: `state:"DISMISSED" or state:"ACTIVE"
+     * filter fields:
+     * * `stateInfo.state`
+     * * `insightSubtype`
+     * * `severity`
+     * Examples:
+     * * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
+     * * `insightSubtype = PERMISSIONS_USAGE`
+     * * `severity = CRITICAL OR severity = HIGH`
+     * * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)`
+     * (These expressions are based on the filter language described at
+     * https://google.aip.dev/160)
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -206,8 +245,17 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Filter expression to restrict the insights returned. Supported
-     * filter fields: state
-     * Eg: `state:"DISMISSED" or state:"ACTIVE"
+     * filter fields:
+     * * `stateInfo.state`
+     * * `insightSubtype`
+     * * `severity`
+     * Examples:
+     * * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
+     * * `insightSubtype = PERMISSIONS_USAGE`
+     * * `severity = CRITICAL OR severity = HIGH`
+     * * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)`
+     * (These expressions are based on the filter language described at
+     * https://google.aip.dev/160)
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

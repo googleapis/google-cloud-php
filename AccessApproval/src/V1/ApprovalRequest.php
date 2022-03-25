@@ -17,7 +17,7 @@ class ApprovalRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the request. Format is
-     * "{projects|folders|organizations}/{id}/approvalRequests/{approval_request_id}".
+     * "{projects|folders|organizations}/{id}/approvalRequests/{approval_request}".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -75,7 +75,7 @@ class ApprovalRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the request. Format is
-     *           "{projects|folders|organizations}/{id}/approvalRequests/{approval_request_id}".
+     *           "{projects|folders|organizations}/{id}/approvalRequests/{approval_request}".
      *     @type string $requested_resource_name
      *           The resource for which approval is being requested. The format of the
      *           resource name is defined at
@@ -108,7 +108,7 @@ class ApprovalRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the request. Format is
-     * "{projects|folders|organizations}/{id}/approvalRequests/{approval_request_id}".
+     * "{projects|folders|organizations}/{id}/approvalRequests/{approval_request}".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -120,7 +120,7 @@ class ApprovalRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the request. Format is
-     * "{projects|folders|organizations}/{id}/approvalRequests/{approval_request_id}".
+     * "{projects|folders|organizations}/{id}/approvalRequests/{approval_request}".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

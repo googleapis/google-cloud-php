@@ -53,7 +53,7 @@ class UpdateTableSpecRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTableSpec()
     {
-        return isset($this->table_spec) ? $this->table_spec : null;
+        return $this->table_spec;
     }
 
     public function hasTableSpec()
@@ -89,7 +89,7 @@ class UpdateTableSpecRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

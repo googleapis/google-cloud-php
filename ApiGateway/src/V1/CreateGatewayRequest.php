@@ -121,7 +121,7 @@ class CreateGatewayRequest extends \Google\Protobuf\Internal\Message
      */
     public function getGateway()
     {
-        return isset($this->gateway) ? $this->gateway : null;
+        return $this->gateway;
     }
 
     public function hasGateway()

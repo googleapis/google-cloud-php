@@ -21,14 +21,14 @@ class AccessLocations extends \Google\Protobuf\Internal\Message
      * limited situations Google systems may refer refer to a region code instead
      * of a country code.
      * Possible Region Codes:
-     * - ASI: Asia
-     * - EUR: Europe
-     * - OCE: Oceania
-     * - AFR: Africa
-     * - NAM: North America
-     * - SAM: South America
-     * - ANT: Antarctica
-     * - ANY: Any location
+     *   * ASI: Asia
+     *   * EUR: Europe
+     *   * OCE: Oceania
+     *   * AFR: Africa
+     *   * NAM: North America
+     *   * SAM: South America
+     *   * ANT: Antarctica
+     *   * ANY: Any location
      *
      * Generated from protobuf field <code>string principal_office_country = 1;</code>
      */
@@ -39,14 +39,14 @@ class AccessLocations extends \Google\Protobuf\Internal\Message
      * a region code. In some limited situations Google systems may refer refer to
      * a region code instead of a country code.
      * Possible Region Codes:
-     * - ASI: Asia
-     * - EUR: Europe
-     * - OCE: Oceania
-     * - AFR: Africa
-     * - NAM: North America
-     * - SAM: South America
-     * - ANT: Antarctica
-     * - ANY: Any location
+     *   * ASI: Asia
+     *   * EUR: Europe
+     *   * OCE: Oceania
+     *   * AFR: Africa
+     *   * NAM: North America
+     *   * SAM: South America
+     *   * ANT: Antarctica
+     *   * ANY: Any location
      *
      * Generated from protobuf field <code>string principal_physical_location_country = 2;</code>
      */
@@ -64,28 +64,28 @@ class AccessLocations extends \Google\Protobuf\Internal\Message
      *           limited situations Google systems may refer refer to a region code instead
      *           of a country code.
      *           Possible Region Codes:
-     *           - ASI: Asia
-     *           - EUR: Europe
-     *           - OCE: Oceania
-     *           - AFR: Africa
-     *           - NAM: North America
-     *           - SAM: South America
-     *           - ANT: Antarctica
-     *           - ANY: Any location
+     *             * ASI: Asia
+     *             * EUR: Europe
+     *             * OCE: Oceania
+     *             * AFR: Africa
+     *             * NAM: North America
+     *             * SAM: South America
+     *             * ANT: Antarctica
+     *             * ANY: Any location
      *     @type string $principal_physical_location_country
      *           Physical location of the principal at the time of the access. A
      *           two-letter country code (ISO 3166-1 alpha-2), such as "US", "DE" or "GB" or
      *           a region code. In some limited situations Google systems may refer refer to
      *           a region code instead of a country code.
      *           Possible Region Codes:
-     *           - ASI: Asia
-     *           - EUR: Europe
-     *           - OCE: Oceania
-     *           - AFR: Africa
-     *           - NAM: North America
-     *           - SAM: South America
-     *           - ANT: Antarctica
-     *           - ANY: Any location
+     *             * ASI: Asia
+     *             * EUR: Europe
+     *             * OCE: Oceania
+     *             * AFR: Africa
+     *             * NAM: North America
+     *             * SAM: South America
+     *             * ANT: Antarctica
+     *             * ANY: Any location
      * }
      */
     public function __construct($data = NULL) {
@@ -99,14 +99,14 @@ class AccessLocations extends \Google\Protobuf\Internal\Message
      * limited situations Google systems may refer refer to a region code instead
      * of a country code.
      * Possible Region Codes:
-     * - ASI: Asia
-     * - EUR: Europe
-     * - OCE: Oceania
-     * - AFR: Africa
-     * - NAM: North America
-     * - SAM: South America
-     * - ANT: Antarctica
-     * - ANY: Any location
+     *   * ASI: Asia
+     *   * EUR: Europe
+     *   * OCE: Oceania
+     *   * AFR: Africa
+     *   * NAM: North America
+     *   * SAM: South America
+     *   * ANT: Antarctica
+     *   * ANY: Any location
      *
      * Generated from protobuf field <code>string principal_office_country = 1;</code>
      * @return string
@@ -122,14 +122,14 @@ class AccessLocations extends \Google\Protobuf\Internal\Message
      * limited situations Google systems may refer refer to a region code instead
      * of a country code.
      * Possible Region Codes:
-     * - ASI: Asia
-     * - EUR: Europe
-     * - OCE: Oceania
-     * - AFR: Africa
-     * - NAM: North America
-     * - SAM: South America
-     * - ANT: Antarctica
-     * - ANY: Any location
+     *   * ASI: Asia
+     *   * EUR: Europe
+     *   * OCE: Oceania
+     *   * AFR: Africa
+     *   * NAM: North America
+     *   * SAM: South America
+     *   * ANT: Antarctica
+     *   * ANY: Any location
      *
      * Generated from protobuf field <code>string principal_office_country = 1;</code>
      * @param string $var
@@ -149,14 +149,14 @@ class AccessLocations extends \Google\Protobuf\Internal\Message
      * a region code. In some limited situations Google systems may refer refer to
      * a region code instead of a country code.
      * Possible Region Codes:
-     * - ASI: Asia
-     * - EUR: Europe
-     * - OCE: Oceania
-     * - AFR: Africa
-     * - NAM: North America
-     * - SAM: South America
-     * - ANT: Antarctica
-     * - ANY: Any location
+     *   * ASI: Asia
+     *   * EUR: Europe
+     *   * OCE: Oceania
+     *   * AFR: Africa
+     *   * NAM: North America
+     *   * SAM: South America
+     *   * ANT: Antarctica
+     *   * ANY: Any location
      *
      * Generated from protobuf field <code>string principal_physical_location_country = 2;</code>
      * @return string
@@ -172,14 +172,14 @@ class AccessLocations extends \Google\Protobuf\Internal\Message
      * a region code. In some limited situations Google systems may refer refer to
      * a region code instead of a country code.
      * Possible Region Codes:
-     * - ASI: Asia
-     * - EUR: Europe
-     * - OCE: Oceania
-     * - AFR: Africa
-     * - NAM: North America
-     * - SAM: South America
-     * - ANT: Antarctica
-     * - ANY: Any location
+     *   * ASI: Asia
+     *   * EUR: Europe
+     *   * OCE: Oceania
+     *   * AFR: Africa
+     *   * NAM: North America
+     *   * SAM: South America
+     *   * ANT: Antarctica
+     *   * ANY: Any location
      *
      * Generated from protobuf field <code>string principal_physical_location_country = 2;</code>
      * @param string $var

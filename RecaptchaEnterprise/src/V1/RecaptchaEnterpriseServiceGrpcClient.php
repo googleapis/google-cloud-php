@@ -49,7 +49,7 @@ class RecaptchaEnterpriseServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Annotates a previously created Assessment to provide additional information
-     * on whether the event turned out to be authentic or fradulent.
+     * on whether the event turned out to be authentic or fraudulent.
      * @param \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -135,6 +135,87 @@ class RecaptchaEnterpriseServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/DeleteKey',
         $argument,
         ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Migrates an existing key from reCAPTCHA to reCAPTCHA Enterprise.
+     * Once a key is migrated, it can be used from either product. SiteVerify
+     * requests are billed as CreateAssessment calls. You must be
+     * authenticated as one of the current owners of the reCAPTCHA Site Key, and
+     * your user must have the reCAPTCHA Enterprise Admin IAM role in the
+     * destination project.
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\MigrateKeyRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function MigrateKey(\Google\Cloud\RecaptchaEnterprise\V1\MigrateKeyRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/MigrateKey',
+        $argument,
+        ['\Google\Cloud\RecaptchaEnterprise\V1\Key', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Get some aggregated metrics for a Key. This data can be used to build
+     * dashboards.
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\GetMetricsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetMetrics(\Google\Cloud\RecaptchaEnterprise\V1\GetMetricsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/GetMetrics',
+        $argument,
+        ['\Google\Cloud\RecaptchaEnterprise\V1\Metrics', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * List groups of related accounts.
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListRelatedAccountGroups(\Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/ListRelatedAccountGroups',
+        $argument,
+        ['\Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Get the memberships in a group of related accounts.
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupMembershipsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListRelatedAccountGroupMemberships(\Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupMembershipsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/ListRelatedAccountGroupMemberships',
+        $argument,
+        ['\Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupMembershipsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Search group memberships related to a given account.
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function SearchRelatedAccountGroupMemberships(\Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/SearchRelatedAccountGroupMemberships',
+        $argument,
+        ['\Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsResponse', 'decode'],
         $metadata, $options);
     }
 

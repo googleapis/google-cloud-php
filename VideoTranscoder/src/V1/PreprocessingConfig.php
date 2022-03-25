@@ -85,7 +85,7 @@ class PreprocessingConfig extends \Google\Protobuf\Internal\Message
      */
     public function getColor()
     {
-        return isset($this->color) ? $this->color : null;
+        return $this->color;
     }
 
     public function hasColor()
@@ -121,7 +121,7 @@ class PreprocessingConfig extends \Google\Protobuf\Internal\Message
      */
     public function getDenoise()
     {
-        return isset($this->denoise) ? $this->denoise : null;
+        return $this->denoise;
     }
 
     public function hasDenoise()
@@ -157,7 +157,7 @@ class PreprocessingConfig extends \Google\Protobuf\Internal\Message
      */
     public function getDeblock()
     {
-        return isset($this->deblock) ? $this->deblock : null;
+        return $this->deblock;
     }
 
     public function hasDeblock()
@@ -193,7 +193,7 @@ class PreprocessingConfig extends \Google\Protobuf\Internal\Message
      */
     public function getAudio()
     {
-        return isset($this->audio) ? $this->audio : null;
+        return $this->audio;
     }
 
     public function hasAudio()
@@ -229,7 +229,7 @@ class PreprocessingConfig extends \Google\Protobuf\Internal\Message
      */
     public function getCrop()
     {
-        return isset($this->crop) ? $this->crop : null;
+        return $this->crop;
     }
 
     public function hasCrop()
@@ -265,7 +265,7 @@ class PreprocessingConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPad()
     {
-        return isset($this->pad) ? $this->pad : null;
+        return $this->pad;
     }
 
     public function hasPad()

@@ -1,6 +1,6 @@
 {
     "distribution_name": "google/cloud-compute",
-    "release_level": "beta",
+    "release_level": "ga",
     "client_documentation": "https://googleapis.github.io/google-cloud-php/#/docs/cloud-compute/latest",
     "library_type": "GAPIC_AUTO"
 }

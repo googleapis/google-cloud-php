@@ -35,6 +35,4 @@ class Retry extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Retry::class, \Google\Cloud\Functions\V1\FailurePolicy_Retry::class);
 

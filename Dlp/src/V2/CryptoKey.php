@@ -10,10 +10,11 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * This is a data encryption key (DEK) (as opposed to
- * a key encryption key (KEK) stored by KMS).
- * When using KMS to wrap/unwrap DEKs, be sure to set an appropriate
- * IAM policy on the KMS CryptoKey (KEK) to ensure an attacker cannot
- * unwrap the data crypto key.
+ * a key encryption key (KEK) stored by Cloud Key Management Service
+ * (Cloud KMS).
+ * When using Cloud KMS to wrap or unwrap a DEK, be sure to set an appropriate
+ * IAM policy on the KEK to ensure an attacker cannot
+ * unwrap the DEK.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CryptoKey</code>
  */
@@ -32,7 +33,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\UnwrappedCryptoKey $unwrapped
      *           Unwrapped crypto key
      *     @type \Google\Cloud\Dlp\V2\KmsWrappedCryptoKey $kms_wrapped
-     *           Kms wrapped key
+     *           Key wrapped using Cloud KMS
      * }
      */
     public function __construct($data = NULL) {
@@ -103,7 +104,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Kms wrapped key
+     * Key wrapped using Cloud KMS
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.KmsWrappedCryptoKey kms_wrapped = 3;</code>
      * @return \Google\Cloud\Dlp\V2\KmsWrappedCryptoKey|null
@@ -119,7 +120,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Kms wrapped key
+     * Key wrapped using Cloud KMS
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.KmsWrappedCryptoKey kms_wrapped = 3;</code>
      * @param \Google\Cloud\Dlp\V2\KmsWrappedCryptoKey $var

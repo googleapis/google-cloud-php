@@ -153,11 +153,21 @@ class TextLocator extends \Google\Protobuf\Internal\Message
      * The position of the first byte within the text.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TextLocator.Position start_position = 2;</code>
-     * @return \Google\Cloud\Monitoring\V3\TextLocator\Position
+     * @return \Google\Cloud\Monitoring\V3\TextLocator\Position|null
      */
     public function getStartPosition()
     {
         return $this->start_position;
+    }
+
+    public function hasStartPosition()
+    {
+        return isset($this->start_position);
+    }
+
+    public function clearStartPosition()
+    {
+        unset($this->start_position);
     }
 
     /**
@@ -169,7 +179,7 @@ class TextLocator extends \Google\Protobuf\Internal\Message
      */
     public function setStartPosition($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\TextLocator_Position::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\TextLocator\Position::class);
         $this->start_position = $var;
 
         return $this;
@@ -179,11 +189,21 @@ class TextLocator extends \Google\Protobuf\Internal\Message
      * The position of the last byte within the text.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TextLocator.Position end_position = 3;</code>
-     * @return \Google\Cloud\Monitoring\V3\TextLocator\Position
+     * @return \Google\Cloud\Monitoring\V3\TextLocator\Position|null
      */
     public function getEndPosition()
     {
         return $this->end_position;
+    }
+
+    public function hasEndPosition()
+    {
+        return isset($this->end_position);
+    }
+
+    public function clearEndPosition()
+    {
+        unset($this->end_position);
     }
 
     /**
@@ -195,7 +215,7 @@ class TextLocator extends \Google\Protobuf\Internal\Message
      */
     public function setEndPosition($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\TextLocator_Position::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\TextLocator\Position::class);
         $this->end_position = $var;
 
         return $this;
@@ -208,11 +228,21 @@ class TextLocator extends \Google\Protobuf\Internal\Message
      * identifies the location within that object.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TextLocator nested_locator = 4;</code>
-     * @return \Google\Cloud\Monitoring\V3\TextLocator
+     * @return \Google\Cloud\Monitoring\V3\TextLocator|null
      */
     public function getNestedLocator()
     {
         return $this->nested_locator;
+    }
+
+    public function hasNestedLocator()
+    {
+        return isset($this->nested_locator);
+    }
+
+    public function clearNestedLocator()
+    {
+        unset($this->nested_locator);
     }
 
     /**

@@ -71,7 +71,7 @@ class GrpcServiceDefinition extends \Google\Protobuf\Internal\Message
      */
     public function getFileDescriptorSet()
     {
-        return isset($this->file_descriptor_set) ? $this->file_descriptor_set : null;
+        return $this->file_descriptor_set;
     }
 
     public function hasFileDescriptorSet()

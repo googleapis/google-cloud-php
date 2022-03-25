@@ -19,6 +19,8 @@ class AdvertisedGroups
      */
     const UNDEFINED_ADVERTISED_GROUPS = 0;
     /**
+     * Advertise all available subnets (including peer VPC subnets).
+     *
      * Generated from protobuf enum <code>ALL_SUBNETS = 3622872;</code>
      */
     const ALL_SUBNETS = 3622872;

@@ -119,6 +119,4 @@ class Source extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Source::class, \Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy_Rule_Source::class);
 

@@ -6,7 +6,7 @@
             "defaultService": "foo",
             "versions": [
                 "v1.0.0",
-                "master"
+                "main"
             ]
         }, {
             "id": "component-a",
@@ -14,7 +14,7 @@
             "defaultService": "foo",
             "versions": [
                 "v0.1.0",
-                "master"
+                "main"
             ]
         }, {
             "id": "component-b",
@@ -22,7 +22,7 @@
             "defaultService": "foo",
             "versions": [
                 "v1.0.0",
-                "master"
+                "main"
             ]
         }
     ]

@@ -45,6 +45,42 @@ class ArtifactRegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Imports Apt artifacts. The returned Operation will complete once the
+     * resources are imported. Package, Version, and File resources are created
+     * based on the imported artifacts. Imported artifacts that conflict with
+     * existing resources are ignored.
+     * @param \Google\Cloud\ArtifactRegistry\V1beta2\ImportAptArtifactsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ImportAptArtifacts(\Google\Cloud\ArtifactRegistry\V1beta2\ImportAptArtifactsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/ImportAptArtifacts',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Imports Yum (RPM) artifacts. The returned Operation will complete once the
+     * resources are imported. Package, Version, and File resources are created
+     * based on the imported artifacts. Imported artifacts that conflict with
+     * existing resources are ignored.
+     * @param \Google\Cloud\ArtifactRegistry\V1beta2\ImportYumArtifactsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ImportYumArtifacts(\Google\Cloud\ArtifactRegistry\V1beta2\ImportYumArtifactsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/ImportYumArtifacts',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Lists repositories.
      * @param \Google\Cloud\ArtifactRegistry\V1beta2\ListRepositoriesRequest $argument input argument
      * @param array $metadata metadata
@@ -361,6 +397,36 @@ class ArtifactRegistryGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/TestIamPermissions',
         $argument,
         ['\Google\Cloud\Iam\V1\TestIamPermissionsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Retrieves the Settings for the Project.
+     * @param \Google\Cloud\ArtifactRegistry\V1beta2\GetProjectSettingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetProjectSettings(\Google\Cloud\ArtifactRegistry\V1beta2\GetProjectSettingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/GetProjectSettings',
+        $argument,
+        ['\Google\Cloud\ArtifactRegistry\V1beta2\ProjectSettings', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates the Settings for the Project.
+     * @param \Google\Cloud\ArtifactRegistry\V1beta2\UpdateProjectSettingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateProjectSettings(\Google\Cloud\ArtifactRegistry\V1beta2\UpdateProjectSettingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/UpdateProjectSettings',
+        $argument,
+        ['\Google\Cloud\ArtifactRegistry\V1beta2\ProjectSettings', 'decode'],
         $metadata, $options);
     }
 

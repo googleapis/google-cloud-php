@@ -88,7 +88,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     private $destroy_event_time = null;
     /**
-     * Output only. The name of the [ImportJob][google.cloud.kms.v1.ImportJob] used to import this
+     * Output only. The name of the [ImportJob][google.cloud.kms.v1.ImportJob] used in the most recent import of this
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Only present if the underlying key material was
      * imported.
      *
@@ -97,13 +97,13 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     private $import_job = '';
     /**
      * Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material
-     * was imported.
+     * was most recently imported.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp import_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $import_time = null;
     /**
-     * Output only. The root cause of an import failure. Only present if
+     * Output only. The root cause of the most recent import failure. Only present if
      * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      * [IMPORT_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED].
      *
@@ -118,6 +118,14 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.kms.v1.ExternalProtectionLevelOptions external_protection_level_options = 17;</code>
      */
     private $external_protection_level_options = null;
+    /**
+     * Output only. Whether or not this key version is eligible for reimport, by being
+     * specified as a target in
+     * [ImportCryptoKeyVersionRequest.crypto_key_version][google.cloud.kms.v1.ImportCryptoKeyVersionRequest.crypto_key_version].
+     *
+     * Generated from protobuf field <code>bool reimport_eligible = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $reimport_eligible = false;
 
     /**
      * Constructor.
@@ -155,20 +163,24 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *           destroyed. Only present if [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      *           [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED].
      *     @type string $import_job
-     *           Output only. The name of the [ImportJob][google.cloud.kms.v1.ImportJob] used to import this
+     *           Output only. The name of the [ImportJob][google.cloud.kms.v1.ImportJob] used in the most recent import of this
      *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Only present if the underlying key material was
      *           imported.
      *     @type \Google\Protobuf\Timestamp $import_time
      *           Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material
-     *           was imported.
+     *           was most recently imported.
      *     @type string $import_failure_reason
-     *           Output only. The root cause of an import failure. Only present if
+     *           Output only. The root cause of the most recent import failure. Only present if
      *           [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      *           [IMPORT_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED].
      *     @type \Google\Cloud\Kms\V1\ExternalProtectionLevelOptions $external_protection_level_options
      *           ExternalProtectionLevelOptions stores a group of additional fields for
      *           configuring a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] that are specific to the
      *           [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] protection level.
+     *     @type bool $reimport_eligible
+     *           Output only. Whether or not this key version is eligible for reimport, by being
+     *           specified as a target in
+     *           [ImportCryptoKeyVersionRequest.crypto_key_version][google.cloud.kms.v1.ImportCryptoKeyVersionRequest.crypto_key_version].
      * }
      */
     public function __construct($data = NULL) {
@@ -297,7 +309,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     public function getAttestation()
     {
-        return isset($this->attestation) ? $this->attestation : null;
+        return $this->attestation;
     }
 
     public function hasAttestation()
@@ -336,7 +348,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -373,7 +385,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     public function getGenerateTime()
     {
-        return isset($this->generate_time) ? $this->generate_time : null;
+        return $this->generate_time;
     }
 
     public function hasGenerateTime()
@@ -412,7 +424,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     public function getDestroyTime()
     {
-        return isset($this->destroy_time) ? $this->destroy_time : null;
+        return $this->destroy_time;
     }
 
     public function hasDestroyTime()
@@ -452,7 +464,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     public function getDestroyEventTime()
     {
-        return isset($this->destroy_event_time) ? $this->destroy_event_time : null;
+        return $this->destroy_event_time;
     }
 
     public function hasDestroyEventTime()
@@ -483,7 +495,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the [ImportJob][google.cloud.kms.v1.ImportJob] used to import this
+     * Output only. The name of the [ImportJob][google.cloud.kms.v1.ImportJob] used in the most recent import of this
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Only present if the underlying key material was
      * imported.
      *
@@ -496,7 +508,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the [ImportJob][google.cloud.kms.v1.ImportJob] used to import this
+     * Output only. The name of the [ImportJob][google.cloud.kms.v1.ImportJob] used in the most recent import of this
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Only present if the underlying key material was
      * imported.
      *
@@ -514,14 +526,14 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material
-     * was imported.
+     * was most recently imported.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp import_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getImportTime()
     {
-        return isset($this->import_time) ? $this->import_time : null;
+        return $this->import_time;
     }
 
     public function hasImportTime()
@@ -536,7 +548,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s key material
-     * was imported.
+     * was most recently imported.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp import_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -551,7 +563,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The root cause of an import failure. Only present if
+     * Output only. The root cause of the most recent import failure. Only present if
      * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      * [IMPORT_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED].
      *
@@ -564,7 +576,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The root cause of an import failure. Only present if
+     * Output only. The root cause of the most recent import failure. Only present if
      * [state][google.cloud.kms.v1.CryptoKeyVersion.state] is
      * [IMPORT_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED].
      *
@@ -590,7 +602,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      */
     public function getExternalProtectionLevelOptions()
     {
-        return isset($this->external_protection_level_options) ? $this->external_protection_level_options : null;
+        return $this->external_protection_level_options;
     }
 
     public function hasExternalProtectionLevelOptions()
@@ -616,6 +628,36 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Kms\V1\ExternalProtectionLevelOptions::class);
         $this->external_protection_level_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Whether or not this key version is eligible for reimport, by being
+     * specified as a target in
+     * [ImportCryptoKeyVersionRequest.crypto_key_version][google.cloud.kms.v1.ImportCryptoKeyVersionRequest.crypto_key_version].
+     *
+     * Generated from protobuf field <code>bool reimport_eligible = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getReimportEligible()
+    {
+        return $this->reimport_eligible;
+    }
+
+    /**
+     * Output only. Whether or not this key version is eligible for reimport, by being
+     * specified as a target in
+     * [ImportCryptoKeyVersionRequest.crypto_key_version][google.cloud.kms.v1.ImportCryptoKeyVersionRequest.crypto_key_version].
+     *
+     * Generated from protobuf field <code>bool reimport_eligible = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReimportEligible($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->reimport_eligible = $var;
 
         return $this;
     }

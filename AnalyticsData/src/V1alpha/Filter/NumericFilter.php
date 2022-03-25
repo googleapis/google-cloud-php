@@ -109,6 +109,4 @@ class NumericFilter extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NumericFilter::class, \Google\Analytics\Data\V1alpha\Filter_NumericFilter::class);
 

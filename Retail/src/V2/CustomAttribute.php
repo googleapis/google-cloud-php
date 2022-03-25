@@ -48,7 +48,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * Only set if type [text][google.cloud.retail.v2.CustomAttribute.text] is
      * set. Otherwise, a INVALID_ARGUMENT error is returned.
      *
-     * Generated from protobuf field <code>bool searchable = 3;</code>
+     * Generated from protobuf field <code>optional bool searchable = 3;</code>
      */
     private $searchable = null;
     /**
@@ -62,7 +62,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * [SearchRequest.boost_spec][google.cloud.retail.v2.SearchRequest.boost_spec]
      * for more details.
      *
-     * Generated from protobuf field <code>bool indexable = 4;</code>
+     * Generated from protobuf field <code>optional bool indexable = 4;</code>
      */
     private $indexable = null;
 
@@ -197,7 +197,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * Only set if type [text][google.cloud.retail.v2.CustomAttribute.text] is
      * set. Otherwise, a INVALID_ARGUMENT error is returned.
      *
-     * Generated from protobuf field <code>bool searchable = 3;</code>
+     * Generated from protobuf field <code>optional bool searchable = 3;</code>
      * @return bool
      */
     public function getSearchable()
@@ -222,7 +222,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * Only set if type [text][google.cloud.retail.v2.CustomAttribute.text] is
      * set. Otherwise, a INVALID_ARGUMENT error is returned.
      *
-     * Generated from protobuf field <code>bool searchable = 3;</code>
+     * Generated from protobuf field <code>optional bool searchable = 3;</code>
      * @param bool $var
      * @return $this
      */
@@ -245,7 +245,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * [SearchRequest.boost_spec][google.cloud.retail.v2.SearchRequest.boost_spec]
      * for more details.
      *
-     * Generated from protobuf field <code>bool indexable = 4;</code>
+     * Generated from protobuf field <code>optional bool indexable = 4;</code>
      * @return bool
      */
     public function getIndexable()
@@ -274,7 +274,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * [SearchRequest.boost_spec][google.cloud.retail.v2.SearchRequest.boost_spec]
      * for more details.
      *
-     * Generated from protobuf field <code>bool indexable = 4;</code>
+     * Generated from protobuf field <code>optional bool indexable = 4;</code>
      * @param bool $var
      * @return $this
      */

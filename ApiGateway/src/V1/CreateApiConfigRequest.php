@@ -121,7 +121,7 @@ class CreateApiConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getApiConfig()
     {
-        return isset($this->api_config) ? $this->api_config : null;
+        return $this->api_config;
     }
 
     public function hasApiConfig()

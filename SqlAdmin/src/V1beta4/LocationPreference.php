@@ -9,11 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Preferred location. This specifies where a Cloud SQL instance
- * is located, either in a specific Compute Engine zone, or
- * co-located with an App Engine application. Note that if the preferred
- * location is not available, the instance will be located as close as possible
- * within the region. Only one location may be specified.
+ * Preferred location. This specifies where a Cloud SQL instance is located.
+ * Note that if the preferred location is not available, the instance will be
+ * located as close as possible within the region. Only one location may be
+ * specified.
  *
  * Generated from protobuf message <code>google.cloud.sql.v1beta4.LocationPreference</code>
  */
@@ -21,7 +20,7 @@ class LocationPreference extends \Google\Protobuf\Internal\Message
 {
     /**
      * The App Engine application to follow, it must be in the same region as the
-     * Cloud SQL instance.
+     * Cloud SQL instance. WARNING: Changing this might restart the instance.
      *
      * Generated from protobuf field <code>string follow_gae_application = 1 [deprecated = true];</code>
      * @deprecated
@@ -29,7 +28,7 @@ class LocationPreference extends \Google\Protobuf\Internal\Message
     protected $follow_gae_application = '';
     /**
      * The preferred Compute Engine zone (for example: us-central1-a,
-     * us-central1-b, etc.).
+     * us-central1-b, etc.). WARNING: Changing this might restart the instance.
      *
      * Generated from protobuf field <code>string zone = 2;</code>
      */
@@ -43,7 +42,7 @@ class LocationPreference extends \Google\Protobuf\Internal\Message
      */
     private $secondary_zone = '';
     /**
-     * This is always <b>sql#locationPreference</b>.
+     * This is always `sql#locationPreference`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      */
@@ -57,16 +56,16 @@ class LocationPreference extends \Google\Protobuf\Internal\Message
      *
      *     @type string $follow_gae_application
      *           The App Engine application to follow, it must be in the same region as the
-     *           Cloud SQL instance.
+     *           Cloud SQL instance. WARNING: Changing this might restart the instance.
      *     @type string $zone
      *           The preferred Compute Engine zone (for example: us-central1-a,
-     *           us-central1-b, etc.).
+     *           us-central1-b, etc.). WARNING: Changing this might restart the instance.
      *     @type string $secondary_zone
      *           The preferred Compute Engine zone for the secondary/failover
      *           (for example: us-central1-a, us-central1-b, etc.).
      *           Reserved for future use.
      *     @type string $kind
-     *           This is always <b>sql#locationPreference</b>.
+     *           This is always `sql#locationPreference`.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,7 +75,7 @@ class LocationPreference extends \Google\Protobuf\Internal\Message
 
     /**
      * The App Engine application to follow, it must be in the same region as the
-     * Cloud SQL instance.
+     * Cloud SQL instance. WARNING: Changing this might restart the instance.
      *
      * Generated from protobuf field <code>string follow_gae_application = 1 [deprecated = true];</code>
      * @return string
@@ -90,7 +89,7 @@ class LocationPreference extends \Google\Protobuf\Internal\Message
 
     /**
      * The App Engine application to follow, it must be in the same region as the
-     * Cloud SQL instance.
+     * Cloud SQL instance. WARNING: Changing this might restart the instance.
      *
      * Generated from protobuf field <code>string follow_gae_application = 1 [deprecated = true];</code>
      * @param string $var
@@ -108,7 +107,7 @@ class LocationPreference extends \Google\Protobuf\Internal\Message
 
     /**
      * The preferred Compute Engine zone (for example: us-central1-a,
-     * us-central1-b, etc.).
+     * us-central1-b, etc.). WARNING: Changing this might restart the instance.
      *
      * Generated from protobuf field <code>string zone = 2;</code>
      * @return string
@@ -120,7 +119,7 @@ class LocationPreference extends \Google\Protobuf\Internal\Message
 
     /**
      * The preferred Compute Engine zone (for example: us-central1-a,
-     * us-central1-b, etc.).
+     * us-central1-b, etc.). WARNING: Changing this might restart the instance.
      *
      * Generated from protobuf field <code>string zone = 2;</code>
      * @param string $var
@@ -165,7 +164,7 @@ class LocationPreference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#locationPreference</b>.
+     * This is always `sql#locationPreference`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      * @return string
@@ -176,7 +175,7 @@ class LocationPreference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#locationPreference</b>.
+     * This is always `sql#locationPreference`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      * @param string $var

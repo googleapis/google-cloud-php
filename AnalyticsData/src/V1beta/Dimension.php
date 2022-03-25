@@ -26,7 +26,7 @@ class Dimension extends \Google\Protobuf\Internal\Message
      * would like within the allowed character set. For example if a
      * `dimensionExpression` concatenates `country` and `city`, you could call
      * that dimension `countryAndCity`. Dimension names that you choose must match
-     * the regular expression "^[a-zA-Z0-9_]$".
+     * the regular expression `^[a-zA-Z0-9_]$`.
      * Dimensions are referenced by `name` in `dimensionFilter`, `orderBys`,
      * `dimensionExpression`, and `pivots`.
      *
@@ -55,7 +55,7 @@ class Dimension extends \Google\Protobuf\Internal\Message
      *           would like within the allowed character set. For example if a
      *           `dimensionExpression` concatenates `country` and `city`, you could call
      *           that dimension `countryAndCity`. Dimension names that you choose must match
-     *           the regular expression "^[a-zA-Z0-9_]$".
+     *           the regular expression `^[a-zA-Z0-9_]$`.
      *           Dimensions are referenced by `name` in `dimensionFilter`, `orderBys`,
      *           `dimensionExpression`, and `pivots`.
      *     @type \Google\Analytics\Data\V1beta\DimensionExpression $dimension_expression
@@ -76,7 +76,7 @@ class Dimension extends \Google\Protobuf\Internal\Message
      * would like within the allowed character set. For example if a
      * `dimensionExpression` concatenates `country` and `city`, you could call
      * that dimension `countryAndCity`. Dimension names that you choose must match
-     * the regular expression "^[a-zA-Z0-9_]$".
+     * the regular expression `^[a-zA-Z0-9_]$`.
      * Dimensions are referenced by `name` in `dimensionFilter`, `orderBys`,
      * `dimensionExpression`, and `pivots`.
      *
@@ -96,7 +96,7 @@ class Dimension extends \Google\Protobuf\Internal\Message
      * would like within the allowed character set. For example if a
      * `dimensionExpression` concatenates `country` and `city`, you could call
      * that dimension `countryAndCity`. Dimension names that you choose must match
-     * the regular expression "^[a-zA-Z0-9_]$".
+     * the regular expression `^[a-zA-Z0-9_]$`.
      * Dimensions are referenced by `name` in `dimensionFilter`, `orderBys`,
      * `dimensionExpression`, and `pivots`.
      *
@@ -121,7 +121,7 @@ class Dimension extends \Google\Protobuf\Internal\Message
      */
     public function getDimensionExpression()
     {
-        return isset($this->dimension_expression) ? $this->dimension_expression : null;
+        return $this->dimension_expression;
     }
 
     public function hasDimensionExpression()

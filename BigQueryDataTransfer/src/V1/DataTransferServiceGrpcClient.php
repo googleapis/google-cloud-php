@@ -19,10 +19,7 @@
 namespace Google\Cloud\BigQuery\DataTransfer\V1;
 
 /**
- * The Google BigQuery Data Transfer Service API enables BigQuery users to
- * configure the transfer of their data from other Google Products into
- * BigQuery. This service contains methods that are end user exposed. It backs
- * up the frontend.
+ * This API allows users to manage their data transfers into BigQuery.
  */
 class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
 
@@ -36,8 +33,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Retrieves a supported data source and returns its settings,
-     * which can be used for UI rendering.
+     * Retrieves a supported data source and returns its settings.
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\GetDataSourceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -52,8 +48,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists supported data sources and returns their settings,
-     * which can be used for UI rendering.
+     * Lists supported data sources and returns their settings.
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\ListDataSourcesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -99,8 +94,8 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes a data transfer configuration,
-     * including any associated transfer runs and logs.
+     * Deletes a data transfer configuration, including any associated transfer
+     * runs and logs.
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\DeleteTransferConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -130,7 +125,8 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns information about all data transfers in the project.
+     * Returns information about all transfer configs owned by a project in the
+     * specified location.
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferConfigsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -212,7 +208,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns information about running and completed jobs.
+     * Returns information about running and completed transfer runs.
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -227,7 +223,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns user facing log messages for the data transfer run.
+     * Returns log messages for the transfer run.
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferLogsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -244,10 +240,6 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Returns true if valid credentials exist for the given data source and
      * requesting user.
-     * Some data sources doesn't support service account, so we need to talk to
-     * them on behalf of the end user. This API just checks whether we have OAuth
-     * token for the particular user, which is a pre-requisite before user can
-     * create a transfer config.
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -258,6 +250,26 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.bigquery.datatransfer.v1.DataTransferService/CheckValidCreds',
         $argument,
         ['\Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Enroll data sources in a user project. This allows users to create transfer
+     * configurations for these data sources. They will also appear in the
+     * ListDataSources RPC and as such, will appear in the BigQuery UI
+     * 'https://bigquery.cloud.google.com' (and the documents can be found at
+     * https://cloud.google.com/bigquery/bigquery-web-ui and
+     * https://cloud.google.com/bigquery/docs/working-with-transfers).
+     * @param \Google\Cloud\BigQuery\DataTransfer\V1\EnrollDataSourcesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function EnrollDataSources(\Google\Cloud\BigQuery\DataTransfer\V1\EnrollDataSourcesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.bigquery.datatransfer.v1.DataTransferService/EnrollDataSources',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
         $metadata, $options);
     }
 

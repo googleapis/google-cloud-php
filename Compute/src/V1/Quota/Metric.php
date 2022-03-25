@@ -48,6 +48,10 @@ class Metric
      */
     const C2_CPUS = 317601211;
     /**
+     * Generated from protobuf enum <code>C3_CPUS = 346230362;</code>
+     */
+    const C3_CPUS = 346230362;
+    /**
      * Generated from protobuf enum <code>COMMITMENTS = 456141790;</code>
      */
     const COMMITMENTS = 456141790;
@@ -63,6 +67,10 @@ class Metric
      * Generated from protobuf enum <code>COMMITTED_C2_CPUS = 223725528;</code>
      */
     const COMMITTED_C2_CPUS = 223725528;
+    /**
+     * Generated from protobuf enum <code>COMMITTED_C3_CPUS = 252354679;</code>
+     */
+    const COMMITTED_C3_CPUS = 252354679;
     /**
      * Generated from protobuf enum <code>COMMITTED_CPUS = 292394702;</code>
      */
@@ -120,6 +128,12 @@ class Metric
      */
     const COMMITTED_NVIDIA_V100_GPUS = 219562;
     /**
+     * Generated from protobuf enum <code>COMMITTED_T2D_CPUS = 382266439;</code>
+     */
+    const COMMITTED_T2D_CPUS = 382266439;
+    /**
+     * Guest CPUs
+     *
      * Generated from protobuf enum <code>CPUS = 2075595;</code>
      */
     const CPUS = 2075595;
@@ -368,6 +382,10 @@ class Metric
      */
     const PSC_ILB_CONSUMER_FORWARDING_RULES_PER_PRODUCER_NETWORK = 231164291;
     /**
+     * Generated from protobuf enum <code>PSC_INTERNAL_LB_FORWARDING_RULES = 169005435;</code>
+     */
+    const PSC_INTERNAL_LB_FORWARDING_RULES = 169005435;
+    /**
      * Generated from protobuf enum <code>PUBLIC_ADVERTISED_PREFIXES = 471371980;</code>
      */
     const PUBLIC_ADVERTISED_PREFIXES = 471371980;
@@ -404,6 +422,10 @@ class Metric
      */
     const SECURITY_POLICIES = 189518703;
     /**
+     * Generated from protobuf enum <code>SECURITY_POLICIES_PER_REGION = 249041734;</code>
+     */
+    const SECURITY_POLICIES_PER_REGION = 249041734;
+    /**
      * Generated from protobuf enum <code>SECURITY_POLICY_CEVAL_RULES = 470815689;</code>
      */
     const SECURITY_POLICY_CEVAL_RULES = 470815689;
@@ -412,6 +434,16 @@ class Metric
      */
     const SECURITY_POLICY_RULES = 203549225;
     /**
+     * Generated from protobuf enum <code>SECURITY_POLICY_RULES_PER_REGION = 126510156;</code>
+     */
+    const SECURITY_POLICY_RULES_PER_REGION = 126510156;
+    /**
+     * Generated from protobuf enum <code>SERVICE_ATTACHMENTS = 471521510;</code>
+     */
+    const SERVICE_ATTACHMENTS = 471521510;
+    /**
+     * The total number of snapshots allowed for a single project.
+     *
      * Generated from protobuf enum <code>SNAPSHOTS = 343405327;</code>
      */
     const SNAPSHOTS = 343405327;
@@ -435,6 +467,10 @@ class Metric
      * Generated from protobuf enum <code>SUBNETWORKS = 421330469;</code>
      */
     const SUBNETWORKS = 421330469;
+    /**
+     * Generated from protobuf enum <code>T2D_CPUS = 71187140;</code>
+     */
+    const T2D_CPUS = 71187140;
     /**
      * Generated from protobuf enum <code>TARGET_HTTPS_PROXIES = 219522506;</code>
      */
@@ -489,10 +525,12 @@ class Metric
         self::BACKEND_SERVICES => 'BACKEND_SERVICES',
         self::C2D_CPUS => 'C2D_CPUS',
         self::C2_CPUS => 'C2_CPUS',
+        self::C3_CPUS => 'C3_CPUS',
         self::COMMITMENTS => 'COMMITMENTS',
         self::COMMITTED_A2_CPUS => 'COMMITTED_A2_CPUS',
         self::COMMITTED_C2D_CPUS => 'COMMITTED_C2D_CPUS',
         self::COMMITTED_C2_CPUS => 'COMMITTED_C2_CPUS',
+        self::COMMITTED_C3_CPUS => 'COMMITTED_C3_CPUS',
         self::COMMITTED_CPUS => 'COMMITTED_CPUS',
         self::COMMITTED_E2_CPUS => 'COMMITTED_E2_CPUS',
         self::COMMITTED_LICENSES => 'COMMITTED_LICENSES',
@@ -507,6 +545,7 @@ class Metric
         self::COMMITTED_NVIDIA_P4_GPUS => 'COMMITTED_NVIDIA_P4_GPUS',
         self::COMMITTED_NVIDIA_T4_GPUS => 'COMMITTED_NVIDIA_T4_GPUS',
         self::COMMITTED_NVIDIA_V100_GPUS => 'COMMITTED_NVIDIA_V100_GPUS',
+        self::COMMITTED_T2D_CPUS => 'COMMITTED_T2D_CPUS',
         self::CPUS => 'CPUS',
         self::CPUS_ALL_REGIONS => 'CPUS_ALL_REGIONS',
         self::DISKS_TOTAL_GB => 'DISKS_TOTAL_GB',
@@ -569,6 +608,7 @@ class Metric
         self::PREEMPTIBLE_NVIDIA_T4_VWS_GPUS => 'PREEMPTIBLE_NVIDIA_T4_VWS_GPUS',
         self::PREEMPTIBLE_NVIDIA_V100_GPUS => 'PREEMPTIBLE_NVIDIA_V100_GPUS',
         self::PSC_ILB_CONSUMER_FORWARDING_RULES_PER_PRODUCER_NETWORK => 'PSC_ILB_CONSUMER_FORWARDING_RULES_PER_PRODUCER_NETWORK',
+        self::PSC_INTERNAL_LB_FORWARDING_RULES => 'PSC_INTERNAL_LB_FORWARDING_RULES',
         self::PUBLIC_ADVERTISED_PREFIXES => 'PUBLIC_ADVERTISED_PREFIXES',
         self::PUBLIC_DELEGATED_PREFIXES => 'PUBLIC_DELEGATED_PREFIXES',
         self::REGIONAL_AUTOSCALERS => 'REGIONAL_AUTOSCALERS',
@@ -578,14 +618,18 @@ class Metric
         self::ROUTERS => 'ROUTERS',
         self::ROUTES => 'ROUTES',
         self::SECURITY_POLICIES => 'SECURITY_POLICIES',
+        self::SECURITY_POLICIES_PER_REGION => 'SECURITY_POLICIES_PER_REGION',
         self::SECURITY_POLICY_CEVAL_RULES => 'SECURITY_POLICY_CEVAL_RULES',
         self::SECURITY_POLICY_RULES => 'SECURITY_POLICY_RULES',
+        self::SECURITY_POLICY_RULES_PER_REGION => 'SECURITY_POLICY_RULES_PER_REGION',
+        self::SERVICE_ATTACHMENTS => 'SERVICE_ATTACHMENTS',
         self::SNAPSHOTS => 'SNAPSHOTS',
         self::SSD_TOTAL_GB => 'SSD_TOTAL_GB',
         self::SSL_CERTIFICATES => 'SSL_CERTIFICATES',
         self::STATIC_ADDRESSES => 'STATIC_ADDRESSES',
         self::STATIC_BYOIP_ADDRESSES => 'STATIC_BYOIP_ADDRESSES',
         self::SUBNETWORKS => 'SUBNETWORKS',
+        self::T2D_CPUS => 'T2D_CPUS',
         self::TARGET_HTTPS_PROXIES => 'TARGET_HTTPS_PROXIES',
         self::TARGET_HTTP_PROXIES => 'TARGET_HTTP_PROXIES',
         self::TARGET_INSTANCES => 'TARGET_INSTANCES',

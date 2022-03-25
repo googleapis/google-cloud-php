@@ -29,6 +29,12 @@ class IssueStats extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 labeled_conversations_count = 2;</code>
      */
     private $labeled_conversations_count = 0;
+    /**
+     * Display name of the issue.
+     *
+     * Generated from protobuf field <code>string display_name = 3;</code>
+     */
+    private $display_name = '';
 
     /**
      * Constructor.
@@ -42,6 +48,8 @@ class IssueStats extends \Google\Protobuf\Internal\Message
      *           projects/{project}/locations/{location}/issueModels/{issue_model}/issues/{issue}
      *     @type int|string $labeled_conversations_count
      *           Number of conversations attached to the issue at this point in time.
+     *     @type string $display_name
+     *           Display name of the issue.
      * }
      */
     public function __construct($data = NULL) {
@@ -105,8 +113,32 @@ class IssueStats extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * Display name of the issue.
+     *
+     * Generated from protobuf field <code>string display_name = 3;</code>
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->display_name;
+    }
+
+    /**
+     * Display name of the issue.
+     *
+     * Generated from protobuf field <code>string display_name = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_name = $var;
+
+        return $this;
+    }
+
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IssueStats::class, \Google\Cloud\ContactCenterInsights\V1\IssueModelLabelStats_IssueStats::class);
 

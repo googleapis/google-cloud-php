@@ -52,11 +52,11 @@ class RecognizeRequest extends \Google\Protobuf\Internal\Message
      * process the request.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionConfig config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Speech\V1\RecognitionConfig
+     * @return \Google\Cloud\Speech\V1\RecognitionConfig|null
      */
     public function getConfig()
     {
-        return isset($this->config) ? $this->config : null;
+        return $this->config;
     }
 
     public function hasConfig()
@@ -89,11 +89,11 @@ class RecognizeRequest extends \Google\Protobuf\Internal\Message
      * Required. The audio data to be recognized.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionAudio audio = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Speech\V1\RecognitionAudio
+     * @return \Google\Cloud\Speech\V1\RecognitionAudio|null
      */
     public function getAudio()
     {
-        return isset($this->audio) ? $this->audio : null;
+        return $this->audio;
     }
 
     public function hasAudio()

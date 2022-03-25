@@ -37,7 +37,7 @@ class SsmlVoiceGender
      */
     const FEMALE = 2;
     /**
-     * A gender-neutral voice.
+     * A gender-neutral voice. This voice is not yet supported.
      *
      * Generated from protobuf enum <code>NEUTRAL = 3;</code>
      */

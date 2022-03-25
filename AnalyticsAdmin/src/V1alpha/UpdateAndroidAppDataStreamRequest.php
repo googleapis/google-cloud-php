@@ -60,7 +60,7 @@ class UpdateAndroidAppDataStreamRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getAndroidAppDataStream()
     {
-        return isset($this->android_app_data_stream) ? $this->android_app_data_stream : null;
+        return $this->android_app_data_stream;
     }
 
     public function hasAndroidAppDataStream()
@@ -99,7 +99,7 @@ class UpdateAndroidAppDataStreamRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

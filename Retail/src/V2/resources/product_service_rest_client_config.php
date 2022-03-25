@@ -26,6 +26,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'product_id',
+                ],
             ],
             'DeleteProduct' => [
                 'method' => 'delete',
@@ -118,11 +121,11 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/operations/*}',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/branches/*/operations/*}',
                     ],
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/branches/*/operations/*}',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/operations/*}',
                     ],
                 ],
                 'placeholders' => [

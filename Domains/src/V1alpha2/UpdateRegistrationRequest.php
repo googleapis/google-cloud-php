@@ -23,8 +23,8 @@ class UpdateRegistrationRequest extends \Google\Protobuf\Internal\Message
     private $registration = null;
     /**
      * Required. The field mask describing which fields to update as a comma-separated list.
-     * For example, if only the labels are being updated, the `update_mask` would
-     * be `"labels"`.
+     * For example, if only the labels are being updated, the `update_mask` is
+     * `"labels"`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -40,8 +40,8 @@ class UpdateRegistrationRequest extends \Google\Protobuf\Internal\Message
      *           Fields of the `Registration` to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The field mask describing which fields to update as a comma-separated list.
-     *           For example, if only the labels are being updated, the `update_mask` would
-     *           be `"labels"`.
+     *           For example, if only the labels are being updated, the `update_mask` is
+     *           `"labels"`.
      * }
      */
     public function __construct($data = NULL) {
@@ -57,7 +57,7 @@ class UpdateRegistrationRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRegistration()
     {
-        return isset($this->registration) ? $this->registration : null;
+        return $this->registration;
     }
 
     public function hasRegistration()
@@ -87,15 +87,15 @@ class UpdateRegistrationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The field mask describing which fields to update as a comma-separated list.
-     * For example, if only the labels are being updated, the `update_mask` would
-     * be `"labels"`.
+     * For example, if only the labels are being updated, the `update_mask` is
+     * `"labels"`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -110,8 +110,8 @@ class UpdateRegistrationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The field mask describing which fields to update as a comma-separated list.
-     * For example, if only the labels are being updated, the `update_mask` would
-     * be `"labels"`.
+     * For example, if only the labels are being updated, the `update_mask` is
+     * `"labels"`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

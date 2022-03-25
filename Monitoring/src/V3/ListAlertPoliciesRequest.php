@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAlertPoliciesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project whose alert policies are to be listed. The format is:
+     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name)
+     * whose alert policies are to be listed. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      * Note that this field names the parent container in which the alerting
      * policies to be listed are stored. To retrieve a single alerting policy
@@ -68,7 +69,8 @@ class ListAlertPoliciesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The project whose alert policies are to be listed. The format is:
+     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name)
+     *           whose alert policies are to be listed. The format is:
      *               projects/[PROJECT_ID_OR_NUMBER]
      *           Note that this field names the parent container in which the alerting
      *           policies to be listed are stored. To retrieve a single alerting policy
@@ -100,7 +102,8 @@ class ListAlertPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project whose alert policies are to be listed. The format is:
+     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name)
+     * whose alert policies are to be listed. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      * Note that this field names the parent container in which the alerting
      * policies to be listed are stored. To retrieve a single alerting policy
@@ -117,7 +120,8 @@ class ListAlertPoliciesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project whose alert policies are to be listed. The format is:
+     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name)
+     * whose alert policies are to be listed. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      * Note that this field names the parent container in which the alerting
      * policies to be listed are stored. To retrieve a single alerting policy

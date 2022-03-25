@@ -119,6 +119,4 @@ class PredictionResult extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PredictionResult::class, \Google\Cloud\Retail\V2\PredictResponse_PredictionResult::class);
 

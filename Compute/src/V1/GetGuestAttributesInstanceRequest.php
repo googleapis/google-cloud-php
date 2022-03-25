@@ -30,13 +30,13 @@ class GetGuestAttributesInstanceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Specifies the guest attributes path to be queried.
      *
-     * Generated from protobuf field <code>string query_path = 368591164;</code>
+     * Generated from protobuf field <code>optional string query_path = 368591164;</code>
      */
     private $query_path = null;
     /**
      * Specifies the key for the guest attributes entry.
      *
-     * Generated from protobuf field <code>string variable_key = 164364828;</code>
+     * Generated from protobuf field <code>optional string variable_key = 164364828;</code>
      */
     private $variable_key = null;
     /**
@@ -124,7 +124,7 @@ class GetGuestAttributesInstanceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Specifies the guest attributes path to be queried.
      *
-     * Generated from protobuf field <code>string query_path = 368591164;</code>
+     * Generated from protobuf field <code>optional string query_path = 368591164;</code>
      * @return string
      */
     public function getQueryPath()
@@ -145,7 +145,7 @@ class GetGuestAttributesInstanceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Specifies the guest attributes path to be queried.
      *
-     * Generated from protobuf field <code>string query_path = 368591164;</code>
+     * Generated from protobuf field <code>optional string query_path = 368591164;</code>
      * @param string $var
      * @return $this
      */
@@ -160,7 +160,7 @@ class GetGuestAttributesInstanceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Specifies the key for the guest attributes entry.
      *
-     * Generated from protobuf field <code>string variable_key = 164364828;</code>
+     * Generated from protobuf field <code>optional string variable_key = 164364828;</code>
      * @return string
      */
     public function getVariableKey()
@@ -181,7 +181,7 @@ class GetGuestAttributesInstanceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Specifies the key for the guest attributes entry.
      *
-     * Generated from protobuf field <code>string variable_key = 164364828;</code>
+     * Generated from protobuf field <code>optional string variable_key = 164364828;</code>
      * @param string $var
      * @return $this
      */

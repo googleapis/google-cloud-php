@@ -73,6 +73,4 @@ class Role
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Role::class, \Google\Cloud\ContactCenterInsights\V1\ConversationParticipant_Role::class);
 

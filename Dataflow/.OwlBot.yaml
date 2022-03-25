@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/dataflow/v1beta3/.*-php/(.*)
+      dest: /owl-bot-staging/Dataflow/v1beta3/$1
+api-name: Dataflow

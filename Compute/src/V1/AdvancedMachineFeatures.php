@@ -18,13 +18,13 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
     /**
      * Whether to enable nested virtualization or not (default is false).
      *
-     * Generated from protobuf field <code>bool enable_nested_virtualization = 16639365;</code>
+     * Generated from protobuf field <code>optional bool enable_nested_virtualization = 16639365;</code>
      */
     private $enable_nested_virtualization = null;
     /**
      * The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.
      *
-     * Generated from protobuf field <code>int32 threads_per_core = 352611671;</code>
+     * Generated from protobuf field <code>optional int32 threads_per_core = 352611671;</code>
      */
     private $threads_per_core = null;
 
@@ -48,7 +48,7 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
     /**
      * Whether to enable nested virtualization or not (default is false).
      *
-     * Generated from protobuf field <code>bool enable_nested_virtualization = 16639365;</code>
+     * Generated from protobuf field <code>optional bool enable_nested_virtualization = 16639365;</code>
      * @return bool
      */
     public function getEnableNestedVirtualization()
@@ -69,7 +69,7 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
     /**
      * Whether to enable nested virtualization or not (default is false).
      *
-     * Generated from protobuf field <code>bool enable_nested_virtualization = 16639365;</code>
+     * Generated from protobuf field <code>optional bool enable_nested_virtualization = 16639365;</code>
      * @param bool $var
      * @return $this
      */
@@ -84,7 +84,7 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
     /**
      * The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.
      *
-     * Generated from protobuf field <code>int32 threads_per_core = 352611671;</code>
+     * Generated from protobuf field <code>optional int32 threads_per_core = 352611671;</code>
      * @return int
      */
     public function getThreadsPerCore()
@@ -105,7 +105,7 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
     /**
      * The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.
      *
-     * Generated from protobuf field <code>int32 threads_per_core = 352611671;</code>
+     * Generated from protobuf field <code>optional int32 threads_per_core = 352611671;</code>
      * @param int $var
      * @return $this
      */

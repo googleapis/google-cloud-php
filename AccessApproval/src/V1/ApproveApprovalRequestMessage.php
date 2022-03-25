@@ -18,7 +18,7 @@ class ApproveApprovalRequestMessage extends \Google\Protobuf\Internal\Message
     /**
      * Name of the approval request to approve.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -48,7 +48,7 @@ class ApproveApprovalRequestMessage extends \Google\Protobuf\Internal\Message
     /**
      * Name of the approval request to approve.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -59,7 +59,7 @@ class ApproveApprovalRequestMessage extends \Google\Protobuf\Internal\Message
     /**
      * Name of the approval request to approve.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
