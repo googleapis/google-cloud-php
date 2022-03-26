@@ -13,6 +13,16 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'AddLocalInventories' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Retail\V2\AddLocalInventoriesResponse',
+                    'metadataReturnType' => '\Google\Cloud\Retail\V2\AddLocalInventoriesMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'ImportProducts' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Retail\V2\ImportProductsResponse',
@@ -27,6 +37,16 @@ return [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Retail\V2\RemoveFulfillmentPlacesResponse',
                     'metadataReturnType' => '\Google\Cloud\Retail\V2\RemoveFulfillmentPlacesMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'RemoveLocalInventories' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Retail\V2\RemoveLocalInventoriesResponse',
+                    'metadataReturnType' => '\Google\Cloud\Retail\V2\RemoveLocalInventoriesMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',

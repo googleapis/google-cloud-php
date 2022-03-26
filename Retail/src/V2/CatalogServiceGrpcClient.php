@@ -97,10 +97,6 @@ class CatalogServiceGrpcClient extends \Grpc\BaseStub {
      *   (if branch is not explicitly set).
      * * UserEventService will only join events with products from branch
      *   {newBranch}.
-     *
-     * This feature is only available for users who have Retail Search enabled.
-     * Please submit a form [here](https://cloud.google.com/contact) to contact
-     * cloud sales if you are interested in using Retail Search.
      * @param \Google\Cloud\Retail\V2\SetDefaultBranchRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -118,10 +114,6 @@ class CatalogServiceGrpcClient extends \Grpc\BaseStub {
      * Get which branch is currently default branch set by
      * [CatalogService.SetDefaultBranch][google.cloud.retail.v2.CatalogService.SetDefaultBranch]
      * method under a specified parent catalog.
-     *
-     * This feature is only available for users who have Retail Search enabled.
-     * Please submit a form [here](https://cloud.google.com/contact) to contact
-     * cloud sales if you are interested in using Retail Search.
      * @param \Google\Cloud\Retail\V2\GetDefaultBranchRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
