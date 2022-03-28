@@ -118,6 +118,7 @@
         "cloud-video-transcoder",
         "cloud-videointelligence",
         "cloud-vision",
+        "cloud-vm-migration",
         "cloud-vpc-access",
         "cloud-web-risk",
         "cloud-web-security-scanner",

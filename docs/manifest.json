@@ -3518,6 +3518,14 @@
             ]
         },
         {
+            "id": "cloud-vm-migration",
+            "name": "google/cloud-vm-migration",
+            "defaultService": "vmmigration/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-vpc-access",
             "name": "google/cloud-vpc-access",
             "defaultService": "vpcaccess/readme",
