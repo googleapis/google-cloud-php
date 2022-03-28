@@ -281,6 +281,14 @@
             ]
         },
         {
+            "id": "cloud-ai-platform",
+            "name": "google/cloud-ai-platform",
+            "defaultService": "aiplatform/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-api-gateway",
             "name": "google/cloud-api-gateway",
             "defaultService": "apigateway/readme",
@@ -752,6 +760,14 @@
             ]
         },
         {
+            "id": "cloud-certificate-manager",
+            "name": "google/cloud-certificate-manager",
+            "defaultService": "certificatemanager/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-channel",
             "name": "google/cloud-channel",
             "defaultService": "channel/readme",
@@ -1038,6 +1054,14 @@
                 "v0.1.2",
                 "v0.1.1",
                 "v0.1.0",
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-dataplex",
+            "name": "google/cloud-dataplex",
+            "defaultService": "dataplex/readme",
+            "versions": [
                 "main"
             ]
         },
@@ -1547,6 +1571,14 @@
             ]
         },
         {
+            "id": "cloud-eventarc-publishing",
+            "name": "google/cloud-eventarc-publishing",
+            "defaultService": "eventarcpublishing/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-filestore",
             "name": "google/cloud-filestore",
             "defaultService": "filestore/readme",
@@ -1719,6 +1751,14 @@
                 "v0.1.2",
                 "v0.1.1",
                 "v0.1.0",
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-ids",
+            "name": "google/cloud-ids",
+            "defaultService": "ids/readme",
+            "versions": [
                 "main"
             ]
         },
@@ -3287,6 +3327,22 @@
                 "v0.2.1",
                 "v0.2.0",
                 "v0.1.0",
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-video-live-stream",
+            "name": "google/cloud-video-live-stream",
+            "defaultService": "videolivestream/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-video-stitcher",
+            "name": "google/cloud-video-stitcher",
+            "defaultService": "videostitcher/readme",
+            "versions": [
                 "main"
             ]
         },

@@ -1,0 +1,19 @@
+{
+    "title": "Datastream",
+    "defaultService": "datastream\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "datastream\/readme"
+        },
+        {
+            "title": "DatastreamClient (v1)",
+            "type": "datastream\/v1\/datastreamclient"
+        },
+        {
+            "title": "DatastreamClient (v1alpha1)",
+            "type": "datastream\/v1alpha1\/datastreamclient"
+        }
+    ],
+    "pattern": "datastream\/\\w{1,}"
+}
