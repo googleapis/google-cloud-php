@@ -23,7 +23,6 @@ use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Numeric;
-use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\StructValue;
@@ -302,72 +301,6 @@ class QueryTest extends SpannerTestCase
         $this->assertNull($row['foo']);
     }
 
-    public function testBindPgNumericParameter()
-    {
-        $this->skipEmulatorTests();
-        $db = self::$pgDatabase;
-
-        $str = '0.000009876543210003';
-        $val = new PgNumeric($str);
-
-        // insert some dummy values
-        $db->runTransaction(function (Transaction $t) use ($val) {
-            $t->executeUpdate(
-                'INSERT INTO test (id, numeric_col) VALUES ($1, $2)',
-                [
-                    'parameters' => [
-                        'p1' => 1,
-                        'p2' => $val
-                    ]
-                ]
-            );
-            $t->commit();
-        });
-
-        // try to fetch the value
-        $res = $db->execute('SELECT numeric_col AS foo FROM test WHERE numeric_col = $1', [
-            'parameters' => [
-                'p1' => $val
-            ]
-        ]);
-
-        $row = $res->rows()->current();
-        $this->assertInstanceOf(PgNumeric::class, $row['foo']);
-        $this->assertEquals($str, $val->formatAsString());
-        $this->assertEquals($str, (string)$val->get());
-    }
-
-    public function testBindPgNumericParameterNull()
-    {
-        $this->skipEmulatorTests();
-        $db = self::$pgDatabase;
-
-        $val = null;
-
-        // insert some dummy values
-        $db->runTransaction(function (Transaction $t) use ($val) {
-            $t->executeUpdate(
-                'INSERT INTO test (id, numeric_col) VALUES ($1, $2)',
-                [
-                    'parameters' => [
-                        'p1' => 2,
-                        'p2' => $val
-                    ],
-                    'types' => [
-                        'p2' => Database::TYPE_PG_NUMERIC
-                    ]
-                ]
-            );
-            $t->commit();
-        });
-
-        // try to fetch the value
-        $res = $db->execute('SELECT id FROM test WHERE numeric_col IS NULL');
-
-        $row = $res->rows()->current();
-        $this->assertEquals(2, $row['id']);
-    }
-
     /**
      * covers 31
      */
@@ -538,7 +471,7 @@ class QueryTest extends SpannerTestCase
      */
     public function testBindArrayOfType($value, $result = null, $resultType = null, callable $filter = null)
     {
-        if ($resultType == Numeric::class || $resultType == PgNumeric::class) {
+        if ($resultType == Numeric::class) {
             $this->skipEmulatorTests();
         }
 

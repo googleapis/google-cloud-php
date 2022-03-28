@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Google Inc.
+ * Copyright 2022 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,8 +24,9 @@ use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 
 /**
  * @group spanner
+ * @group spanner-postgres
  */
-class SpannerTestCase extends SystemTestCase
+class SpannerPgTestCase extends SystemTestCase
 {
     const TESTING_PREFIX = 'gcloud_testing_';
     // const INSTANCE_NAME = 'google-cloud-php-system-tests';
@@ -53,7 +54,12 @@ class SpannerTestCase extends SystemTestCase
         self::$instance = self::$client->instance(self::INSTANCE_NAME);
 
         self::$dbName = uniqid(self::TESTING_PREFIX);
-        $op = self::$instance->createDatabase(self::$dbName);
+
+        // create a PG DB first
+        $op = self::$instance->createDatabase(self::$dbName, [
+            'databaseDialect' => DatabaseDialect::POSTGRESQL
+        ]);
+        // wait for the DB to be ready
         $op->pollUntilComplete();
 
         $db = self::getDatabaseInstance(self::$dbName);
@@ -61,19 +67,6 @@ class SpannerTestCase extends SystemTestCase
         self::$deletionQueue->add(function () use ($db) {
             $db->drop();
         });
-
-        $db->updateDdl(
-            'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
-                id INT64 NOT NULL,
-                name STRING(MAX) NOT NULL,
-                birthday DATE NOT NULL
-            ) PRIMARY KEY (id)'
-        )->pollUntilComplete();
-
-        $db->updateDdl(
-            'CREATE UNIQUE INDEX ' . self::TEST_INDEX_NAME . '
-            ON ' . self::TEST_TABLE_NAME . ' (name)'
-        )->pollUntilComplete();
 
         self::$database = $db;
         self::$database2 = self::getDatabaseInstance(self::$dbName);
