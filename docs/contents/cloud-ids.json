@@ -1,0 +1,15 @@
+{
+    "title": "Ids",
+    "defaultService": "ids\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "ids\/readme"
+        },
+        {
+            "title": "IDSClient (v1)",
+            "type": "ids\/v1\/idsclient"
+        }
+    ],
+    "pattern": "ids\/\\w{1,}"
+}
