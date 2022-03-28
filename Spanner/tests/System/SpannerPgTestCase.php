@@ -29,8 +29,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 class SpannerPgTestCase extends SystemTestCase
 {
     const TESTING_PREFIX = 'gcloud_testing_';
-    // const INSTANCE_NAME = 'google-cloud-php-system-tests';
-    const INSTANCE_NAME = 'phpunit-test';
+    const INSTANCE_NAME = 'google-cloud-php-system-tests';
 
     const TEST_TABLE_NAME = 'Users';
     const TEST_INDEX_NAME = 'uniqueIndex';
