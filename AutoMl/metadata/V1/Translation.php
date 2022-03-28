@@ -14,13 +14,12 @@ class Translation
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1\DataItems::initOnce();
         $pool->internalAddGeneratedFile(
             '
- 
-(google/cloud/automl/v1/translation.protogoogle.cloud.automl.v1google/api/field_behavior.proto\'google/cloud/automl/v1/data_items.proto"b
+©
+(google/cloud/automl/v1/translation.protogoogle.cloud.automl.v1\'google/cloud/automl/v1/data_items.proto"b
 TranslationDatasetMetadata!
 source_language_code (	B‡A!
 target_language_code (	B‡A"K

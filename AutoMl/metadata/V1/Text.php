@@ -14,13 +14,11 @@ class Text
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
-        \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1\Classification::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¸
-!google/cloud/automl/v1/text.protogoogle.cloud.automl.v1google/api/field_behavior.proto+google/cloud/automl/v1/classification.proto"l
+ê
+!google/cloud/automl/v1/text.protogoogle.cloud.automl.v1"l
 !TextClassificationDatasetMetadataG
 classification_type (2*.google.cloud.automl.v1.ClassificationType"j
 TextClassificationModelMetadataG

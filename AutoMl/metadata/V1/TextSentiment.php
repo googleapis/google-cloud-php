@@ -14,12 +14,11 @@ class TextSentiment
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1\Classification::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Œ
-+google/cloud/automl/v1/text_sentiment.protogoogle.cloud.automl.v1+google/cloud/automl/v1/classification.proto",
+ß
++google/cloud/automl/v1/text_sentiment.protogoogle.cloud.automl.v1",
 TextSentimentAnnotation
 	sentiment (" 
 TextSentimentEvaluationMetrics
