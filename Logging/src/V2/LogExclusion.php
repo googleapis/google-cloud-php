@@ -9,12 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Specifies a set of log entries that are not to be stored in
- * Logging. If your GCP resource receives a large volume of logs, you can
- * use exclusions to reduce your chargeable logs. Exclusions are
- * processed after log sinks, so you can export log entries before they are
- * excluded. Note that organization-level and folder-level exclusions don't
- * apply to child resources, and that you can't exclude audit log entries.
+ * Specifies a set of log entries that are filtered out by a sink. If
+ * your Google Cloud resource receives a large volume of log entries, you can
+ * use exclusions to reduce your chargeable logs. Note that exclusions on
+ * organization-level and folder-level sinks don't apply to child resources.
+ * Note also that you cannot modify the _Required sink or exclude logs from it.
  *
  * Generated from protobuf message <code>google.logging.v2.LogExclusion</code>
  */
@@ -41,9 +40,9 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      * matches the log entries to be excluded. By using the [sample
      * function](https://cloud.google.com/logging/docs/view/advanced-queries#sample),
      * you can exclude less than 100% of the matching log entries.
-     * For example, the following query matches 99% of low-severity log
-     * entries from Google Cloud Storage buckets:
-     * `"resource.type=gcs_bucket severity<ERROR sample(insertId, 0.99)"`
+     * For example, the following query matches 99% of low-severity log entries
+     * from Google Cloud Storage buckets:
+     *   `resource.type=gcs_bucket severity<ERROR sample(insertId, 0.99)`
      *
      * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -91,9 +90,9 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      *           matches the log entries to be excluded. By using the [sample
      *           function](https://cloud.google.com/logging/docs/view/advanced-queries#sample),
      *           you can exclude less than 100% of the matching log entries.
-     *           For example, the following query matches 99% of low-severity log
-     *           entries from Google Cloud Storage buckets:
-     *           `"resource.type=gcs_bucket severity<ERROR sample(insertId, 0.99)"`
+     *           For example, the following query matches 99% of low-severity log entries
+     *           from Google Cloud Storage buckets:
+     *             `resource.type=gcs_bucket severity<ERROR sample(insertId, 0.99)`
      *     @type bool $disabled
      *           Optional. If set to True, then this exclusion is disabled and it does not
      *           exclude any log entries. You can [update an
@@ -176,9 +175,9 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      * matches the log entries to be excluded. By using the [sample
      * function](https://cloud.google.com/logging/docs/view/advanced-queries#sample),
      * you can exclude less than 100% of the matching log entries.
-     * For example, the following query matches 99% of low-severity log
-     * entries from Google Cloud Storage buckets:
-     * `"resource.type=gcs_bucket severity<ERROR sample(insertId, 0.99)"`
+     * For example, the following query matches 99% of low-severity log entries
+     * from Google Cloud Storage buckets:
+     *   `resource.type=gcs_bucket severity<ERROR sample(insertId, 0.99)`
      *
      * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -194,9 +193,9 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      * matches the log entries to be excluded. By using the [sample
      * function](https://cloud.google.com/logging/docs/view/advanced-queries#sample),
      * you can exclude less than 100% of the matching log entries.
-     * For example, the following query matches 99% of low-severity log
-     * entries from Google Cloud Storage buckets:
-     * `"resource.type=gcs_bucket severity<ERROR sample(insertId, 0.99)"`
+     * For example, the following query matches 99% of low-severity log entries
+     * from Google Cloud Storage buckets:
+     *   `resource.type=gcs_bucket severity<ERROR sample(insertId, 0.99)`
      *
      * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

@@ -17,15 +17,15 @@ class TailLogEntriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of a parent resource from which to retrieve log entries:
-     *     "projects/[PROJECT_ID]"
-     *     "organizations/[ORGANIZATION_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     "folders/[FOLDER_ID]"
+     * *  `projects/[PROJECT_ID]`
+     * *  `organizations/[ORGANIZATION_ID]`
+     * *  `billingAccounts/[BILLING_ACCOUNT_ID]`
+     * *  `folders/[FOLDER_ID]`
      * May alternatively be one or more views:
-     *     "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     *     "organization/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     *     "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
+     *  * `projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *  * `organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *  * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *  * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *
      * Generated from protobuf field <code>repeated string resource_names = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -60,15 +60,15 @@ class TailLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_names
      *           Required. Name of a parent resource from which to retrieve log entries:
-     *               "projects/[PROJECT_ID]"
-     *               "organizations/[ORGANIZATION_ID]"
-     *               "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *               "folders/[FOLDER_ID]"
+     *           *  `projects/[PROJECT_ID]`
+     *           *  `organizations/[ORGANIZATION_ID]`
+     *           *  `billingAccounts/[BILLING_ACCOUNT_ID]`
+     *           *  `folders/[FOLDER_ID]`
      *           May alternatively be one or more views:
-     *               "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     *               "organization/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     *               "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     *               "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
+     *            * `projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *            * `organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *            * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *            * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *     @type string $filter
      *           Optional. A filter that chooses which log entries to return.  See [Advanced
      *           Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).
@@ -91,15 +91,15 @@ class TailLogEntriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of a parent resource from which to retrieve log entries:
-     *     "projects/[PROJECT_ID]"
-     *     "organizations/[ORGANIZATION_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     "folders/[FOLDER_ID]"
+     * *  `projects/[PROJECT_ID]`
+     * *  `organizations/[ORGANIZATION_ID]`
+     * *  `billingAccounts/[BILLING_ACCOUNT_ID]`
+     * *  `folders/[FOLDER_ID]`
      * May alternatively be one or more views:
-     *     "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     *     "organization/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     *     "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
+     *  * `projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *  * `organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *  * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *  * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *
      * Generated from protobuf field <code>repeated string resource_names = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -111,15 +111,15 @@ class TailLogEntriesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of a parent resource from which to retrieve log entries:
-     *     "projects/[PROJECT_ID]"
-     *     "organizations/[ORGANIZATION_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]"
-     *     "folders/[FOLDER_ID]"
+     * *  `projects/[PROJECT_ID]`
+     * *  `organizations/[ORGANIZATION_ID]`
+     * *  `billingAccounts/[BILLING_ACCOUNT_ID]`
+     * *  `folders/[FOLDER_ID]`
      * May alternatively be one or more views:
-     *     "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     *     "organization/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
-     *     "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]"
+     *  * `projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *  * `organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *  * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
+     *  * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *
      * Generated from protobuf field <code>repeated string resource_names = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

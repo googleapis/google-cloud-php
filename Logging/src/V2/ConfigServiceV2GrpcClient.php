@@ -33,7 +33,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists buckets.
+     * Lists log buckets.
      * @param \Google\Cloud\Logging\V2\ListBucketsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -48,7 +48,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets a bucket.
+     * Gets a log bucket.
      * @param \Google\Cloud\Logging\V2\GetBucketRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -63,8 +63,8 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a bucket that can be used to store log entries. Once a bucket has
-     * been created, the region cannot be changed.
+     * Creates a log bucket that can be used to store log entries. After a bucket
+     * has been created, the bucket's location cannot be changed.
      * @param \Google\Cloud\Logging\V2\CreateBucketRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -79,16 +79,16 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates a bucket. This method replaces the following fields in the
+     * Updates a log bucket. This method replaces the following fields in the
      * existing bucket with values from the new bucket: `retention_period`
      *
      * If the retention period is decreased and the bucket is locked,
-     * FAILED_PRECONDITION will be returned.
+     * `FAILED_PRECONDITION` will be returned.
      *
-     * If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION
-     * will be returned.
+     * If the bucket has a `lifecycle_state` of `DELETE_REQUESTED`, then
+     * `FAILED_PRECONDITION` will be returned.
      *
-     * A buckets region may not be modified after it is created.
+     * After a bucket has been created, the bucket's location cannot be changed.
      * @param \Google\Cloud\Logging\V2\UpdateBucketRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -103,10 +103,11 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes a bucket.
-     * Moves the bucket to the DELETE_REQUESTED state. After 7 days, the
-     * bucket will be purged and all logs in the bucket will be permanently
-     * deleted.
+     * Deletes a log bucket.
+     *
+     * Changes the bucket's `lifecycle_state` to the `DELETE_REQUESTED` state.
+     * After 7 days, the bucket will be purged and all log entries in the bucket
+     * will be permanently deleted.
      * @param \Google\Cloud\Logging\V2\DeleteBucketRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -121,8 +122,8 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Undeletes a bucket. A bucket that has been deleted may be undeleted within
-     * the grace period of 7 days.
+     * Undeletes a log bucket. A bucket that has been deleted can be undeleted
+     * within the grace period of 7 days.
      * @param \Google\Cloud\Logging\V2\UndeleteBucketRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -137,7 +138,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists views on a bucket.
+     * Lists views on a log bucket.
      * @param \Google\Cloud\Logging\V2\ListViewsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -152,7 +153,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets a view.
+     * Gets a view on a log bucket..
      * @param \Google\Cloud\Logging\V2\GetViewRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -167,8 +168,8 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a view over logs in a bucket. A bucket may contain a maximum of
-     * 50 views.
+     * Creates a view over log entries in a log bucket. A bucket may contain a
+     * maximum of 30 views.
      * @param \Google\Cloud\Logging\V2\CreateViewRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -183,8 +184,11 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates a view. This method replaces the following fields in the existing
-     * view with values from the new view: `filter`.
+     * Updates a view on a log bucket. This method replaces the following fields
+     * in the existing view with values from the new view: `filter`.
+     * If an `UNAVAILABLE` error is returned, this indicates that system is not in
+     * a state where it can update the view. If this occurs, please try again in a
+     * few minutes.
      * @param \Google\Cloud\Logging\V2\UpdateViewRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -199,7 +203,10 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes a view from a bucket.
+     * Deletes a view on a log bucket.
+     * If an `UNAVAILABLE` error is returned, this indicates that system is not in
+     * a state where it can delete the view. If this occurs, please try again in a
+     * few minutes.
      * @param \Google\Cloud\Logging\V2\DeleteViewRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -297,7 +304,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists all the exclusions in a parent resource.
+     * Lists all the exclusions on the _Default sink in a parent resource.
      * @param \Google\Cloud\Logging\V2\ListExclusionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -312,7 +319,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets the description of an exclusion.
+     * Gets the description of an exclusion in the _Default sink.
      * @param \Google\Cloud\Logging\V2\GetExclusionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -327,9 +334,9 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a new exclusion in a specified parent resource.
-     * Only log entries belonging to that resource can be excluded.
-     * You can have up to 10 exclusions in a resource.
+     * Creates a new exclusion in the _Default sink in a specified parent
+     * resource. Only log entries belonging to that resource can be excluded. You
+     * can have up to 10 exclusions in a resource.
      * @param \Google\Cloud\Logging\V2\CreateExclusionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -344,7 +351,8 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Changes one or more properties of an existing exclusion.
+     * Changes one or more properties of an existing exclusion in the _Default
+     * sink.
      * @param \Google\Cloud\Logging\V2\UpdateExclusionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -359,7 +367,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes an exclusion.
+     * Deletes an exclusion in the _Default sink.
      * @param \Google\Cloud\Logging\V2\DeleteExclusionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -374,13 +382,14 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets the Logs Router CMEK settings for the given resource.
+     * Gets the Logging CMEK settings for the given resource.
      *
-     * Note: CMEK for the Logs Router can currently only be configured for GCP
-     * organizations. Once configured, it applies to all projects and folders in
-     * the GCP organization.
+     * Note: CMEK for the Log Router can be configured for Google Cloud projects,
+     * folders, organizations and billing accounts. Once configured for an
+     * organization, it applies to all projects and folders in the Google Cloud
+     * organization.
      *
-     * See [Enabling CMEK for Logs
+     * See [Enabling CMEK for Log
      * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
      * for more information.
      * @param \Google\Cloud\Logging\V2\GetCmekSettingsRequest $argument input argument
@@ -397,11 +406,11 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates the Logs Router CMEK settings for the given resource.
+     * Updates the Log Router CMEK settings for the given resource.
      *
-     * Note: CMEK for the Logs Router can currently only be configured for GCP
-     * organizations. Once configured, it applies to all projects and folders in
-     * the GCP organization.
+     * Note: CMEK for the Log Router can currently only be configured for Google
+     * Cloud organizations. Once configured, it applies to all projects and
+     * folders in the Google Cloud organization.
      *
      * [UpdateCmekSettings][google.logging.v2.ConfigServiceV2.UpdateCmekSettings]
      * will fail if 1) `kms_key_name` is invalid, or 2) the associated service
@@ -409,7 +418,7 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
      * `roles/cloudkms.cryptoKeyEncrypterDecrypter` role assigned for the key, or
      * 3) access to the key is disabled.
      *
-     * See [Enabling CMEK for Logs
+     * See [Enabling CMEK for Log
      * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
      * for more information.
      * @param \Google\Cloud\Logging\V2\UpdateCmekSettingsRequest $argument input argument
@@ -422,6 +431,75 @@ class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/UpdateCmekSettings',
         $argument,
         ['\Google\Cloud\Logging\V2\CmekSettings', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets the Log Router settings for the given resource.
+     *
+     * Note: Settings for the Log Router can be get for Google Cloud projects,
+     * folders, organizations and billing accounts. Currently it can only be
+     * configured for organizations. Once configured for an organization, it
+     * applies to all projects and folders in the Google Cloud organization.
+     *
+     * See [Enabling CMEK for Log
+     * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+     * for more information.
+     * @param \Google\Cloud\Logging\V2\GetSettingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetSettings(\Google\Cloud\Logging\V2\GetSettingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/GetSettings',
+        $argument,
+        ['\Google\Cloud\Logging\V2\Settings', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates the Log Router settings for the given resource.
+     *
+     * Note: Settings for the Log Router can currently only be configured for
+     * Google Cloud organizations. Once configured, it applies to all projects and
+     * folders in the Google Cloud organization.
+     *
+     * [UpdateSettings][google.logging.v2.ConfigServiceV2.UpdateSettings]
+     * will fail if 1) `kms_key_name` is invalid, or 2) the associated service
+     * account does not have the required
+     * `roles/cloudkms.cryptoKeyEncrypterDecrypter` role assigned for the key, or
+     * 3) access to the key is disabled. 4) `location_id` is not supported by
+     * Logging. 5) `location_id` violate OrgPolicy.
+     *
+     * See [Enabling CMEK for Log
+     * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+     * for more information.
+     * @param \Google\Cloud\Logging\V2\UpdateSettingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateSettings(\Google\Cloud\Logging\V2\UpdateSettingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/UpdateSettings',
+        $argument,
+        ['\Google\Cloud\Logging\V2\Settings', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Copies a set of log entries from a log bucket to a Cloud Storage bucket.
+     * @param \Google\Cloud\Logging\V2\CopyLogEntriesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CopyLogEntries(\Google\Cloud\Logging\V2\CopyLogEntriesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/CopyLogEntries',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 

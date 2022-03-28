@@ -3,6 +3,11 @@
 return [
     'interfaces' => [
         'google.logging.v2.ConfigServiceV2' => [
+            'CopyLogEntries' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/entries:copy',
+                'body' => '*',
+            ],
             'CreateBucket' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=*/*/locations/*}/buckets',
@@ -320,7 +325,19 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*}/cmekSettings',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v2/{name=organizations/*}/cmekSettings',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=folders/*}/cmekSettings',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=billingAccounts/*}/cmekSettings',
                     ],
                 ],
                 'placeholders' => [
@@ -350,6 +367,35 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{name=billingAccounts/*/exclusions/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetSettings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=*/*}/settings',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*}/settings',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=organizations/*}/settings',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=folders/*}/settings',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=billingAccounts/*}/settings',
                     ],
                 ],
                 'placeholders' => [
@@ -683,6 +729,30 @@ return [
                 ],
                 'queryParams' => [
                     'update_mask',
+                ],
+            ],
+            'UpdateSettings' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{name=*/*}/settings',
+                'body' => 'settings',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=organizations/*}/settings',
+                        'body' => 'settings',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=folders/*}/settings',
+                        'body' => 'settings',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'UpdateSink' => [

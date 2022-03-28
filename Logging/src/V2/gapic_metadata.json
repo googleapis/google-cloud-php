@@ -5,11 +5,55 @@
     "protoPackage": "google.logging.v2",
     "libraryPackage": "Google\\Cloud\\Logging\\V2",
     "services": {
+        "LoggingServiceV2": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LoggingServiceV2GapicClient",
+                    "rpcs": {
+                        "DeleteLog": {
+                            "methods": [
+                                "deleteLog"
+                            ]
+                        },
+                        "ListLogEntries": {
+                            "methods": [
+                                "listLogEntries"
+                            ]
+                        },
+                        "ListLogs": {
+                            "methods": [
+                                "listLogs"
+                            ]
+                        },
+                        "ListMonitoredResourceDescriptors": {
+                            "methods": [
+                                "listMonitoredResourceDescriptors"
+                            ]
+                        },
+                        "TailLogEntries": {
+                            "methods": [
+                                "tailLogEntries"
+                            ]
+                        },
+                        "WriteLogEntries": {
+                            "methods": [
+                                "writeLogEntries"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "ConfigServiceV2": {
             "clients": {
                 "grpc": {
                     "libraryClient": "ConfigServiceV2GapicClient",
                     "rpcs": {
+                        "CopyLogEntries": {
+                            "methods": [
+                                "copyLogEntries"
+                            ]
+                        },
                         "CreateBucket": {
                             "methods": [
                                 "createBucket"
@@ -65,6 +109,11 @@
                                 "getExclusion"
                             ]
                         },
+                        "GetSettings": {
+                            "methods": [
+                                "getSettings"
+                            ]
+                        },
                         "GetSink": {
                             "methods": [
                                 "getSink"
@@ -115,6 +164,11 @@
                                 "updateExclusion"
                             ]
                         },
+                        "UpdateSettings": {
+                            "methods": [
+                                "updateSettings"
+                            ]
+                        },
                         "UpdateSink": {
                             "methods": [
                                 "updateSink"
@@ -123,45 +177,6 @@
                         "UpdateView": {
                             "methods": [
                                 "updateView"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "LoggingServiceV2": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "LoggingServiceV2GapicClient",
-                    "rpcs": {
-                        "DeleteLog": {
-                            "methods": [
-                                "deleteLog"
-                            ]
-                        },
-                        "ListLogEntries": {
-                            "methods": [
-                                "listLogEntries"
-                            ]
-                        },
-                        "ListLogs": {
-                            "methods": [
-                                "listLogs"
-                            ]
-                        },
-                        "ListMonitoredResourceDescriptors": {
-                            "methods": [
-                                "listMonitoredResourceDescriptors"
-                            ]
-                        },
-                        "TailLogEntries": {
-                            "methods": [
-                                "tailLogEntries"
-                            ]
-                        },
-                        "WriteLogEntries": {
-                            "methods": [
-                                "writeLogEntries"
                             ]
                         }
                     }

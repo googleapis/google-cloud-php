@@ -9,23 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Describes a repository of logs.
+ * Describes a repository in which log entries are stored.
  *
  * Generated from protobuf message <code>google.logging.v2.LogBucket</code>
  */
 class LogBucket extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the bucket.
+     * Output only. The resource name of the bucket.
      * For example:
-     * "projects/my-project-id/locations/my-location/buckets/my-bucket-id The
-     * supported locations are:
-     *   "global"
-     * For the location of `global` it is unspecified where logs are actually
-     * stored.
-     * Once a bucket has been created, the location can not be changed.
+     *   `projects/my-project/locations/global/buckets/my-bucket`
+     * For a list of supported locations, see [Supported
+     * Regions](https://cloud.google.com/logging/docs/region-support)
+     * For the location of `global` it is unspecified where log entries are
+     * actually stored.
+     * After a bucket has been created, the location cannot be changed.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
@@ -49,17 +49,17 @@ class LogBucket extends \Google\Protobuf\Internal\Message
     private $update_time = null;
     /**
      * Logs will be retained by default for this amount of time, after which they
-     * will automatically be deleted. The minimum retention period is 1 day.
-     * If this value is set to zero at bucket creation time, the default time of
-     * 30 days will be used.
+     * will automatically be deleted. The minimum retention period is 1 day. If
+     * this value is set to zero at bucket creation time, the default time of 30
+     * days will be used.
      *
      * Generated from protobuf field <code>int32 retention_days = 11;</code>
      */
     private $retention_days = 0;
     /**
-     * Whether the bucket has been locked.
-     * The retention period on a locked bucket may not be changed.
-     * Locked buckets may only be deleted if they are empty.
+     * Whether the bucket is locked.
+     * The retention period on a locked bucket cannot be changed. Locked buckets
+     * may only be deleted if they are empty.
      *
      * Generated from protobuf field <code>bool locked = 9;</code>
      */
@@ -70,6 +70,26 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.logging.v2.LifecycleState lifecycle_state = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $lifecycle_state = 0;
+    /**
+     * Log entry field paths that are denied access in this bucket.
+     * The following fields and their children are eligible: `textPayload`,
+     * `jsonPayload`, `protoPayload`, `httpRequest`, `labels`, `sourceLocation`.
+     * Restricting a repeated field will restrict all values. Adding a parent will
+     * block all child fields. (e.g. `foo.bar` will block `foo.bar.baz`)
+     *
+     * Generated from protobuf field <code>repeated string restricted_fields = 15;</code>
+     */
+    private $restricted_fields;
+    /**
+     * The CMEK settings of the log bucket. If present, new log entries written to
+     * this log bucket are encrypted using the CMEK key provided in this
+     * configuration. If a log bucket has CMEK settings, the CMEK settings cannot
+     * be disabled later by updating the log bucket. Changing the KMS key is
+     * allowed.
+     *
+     * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 19;</code>
+     */
+    private $cmek_settings = null;
 
     /**
      * Constructor.
@@ -78,14 +98,14 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the bucket.
+     *           Output only. The resource name of the bucket.
      *           For example:
-     *           "projects/my-project-id/locations/my-location/buckets/my-bucket-id The
-     *           supported locations are:
-     *             "global"
-     *           For the location of `global` it is unspecified where logs are actually
-     *           stored.
-     *           Once a bucket has been created, the location can not be changed.
+     *             `projects/my-project/locations/global/buckets/my-bucket`
+     *           For a list of supported locations, see [Supported
+     *           Regions](https://cloud.google.com/logging/docs/region-support)
+     *           For the location of `global` it is unspecified where log entries are
+     *           actually stored.
+     *           After a bucket has been created, the location cannot be changed.
      *     @type string $description
      *           Describes this bucket.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -95,15 +115,27 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      *           Output only. The last update timestamp of the bucket.
      *     @type int $retention_days
      *           Logs will be retained by default for this amount of time, after which they
-     *           will automatically be deleted. The minimum retention period is 1 day.
-     *           If this value is set to zero at bucket creation time, the default time of
-     *           30 days will be used.
+     *           will automatically be deleted. The minimum retention period is 1 day. If
+     *           this value is set to zero at bucket creation time, the default time of 30
+     *           days will be used.
      *     @type bool $locked
-     *           Whether the bucket has been locked.
-     *           The retention period on a locked bucket may not be changed.
-     *           Locked buckets may only be deleted if they are empty.
+     *           Whether the bucket is locked.
+     *           The retention period on a locked bucket cannot be changed. Locked buckets
+     *           may only be deleted if they are empty.
      *     @type int $lifecycle_state
      *           Output only. The bucket lifecycle state.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $restricted_fields
+     *           Log entry field paths that are denied access in this bucket.
+     *           The following fields and their children are eligible: `textPayload`,
+     *           `jsonPayload`, `protoPayload`, `httpRequest`, `labels`, `sourceLocation`.
+     *           Restricting a repeated field will restrict all values. Adding a parent will
+     *           block all child fields. (e.g. `foo.bar` will block `foo.bar.baz`)
+     *     @type \Google\Cloud\Logging\V2\CmekSettings $cmek_settings
+     *           The CMEK settings of the log bucket. If present, new log entries written to
+     *           this log bucket are encrypted using the CMEK key provided in this
+     *           configuration. If a log bucket has CMEK settings, the CMEK settings cannot
+     *           be disabled later by updating the log bucket. Changing the KMS key is
+     *           allowed.
      * }
      */
     public function __construct($data = NULL) {
@@ -112,16 +144,16 @@ class LogBucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the bucket.
+     * Output only. The resource name of the bucket.
      * For example:
-     * "projects/my-project-id/locations/my-location/buckets/my-bucket-id The
-     * supported locations are:
-     *   "global"
-     * For the location of `global` it is unspecified where logs are actually
-     * stored.
-     * Once a bucket has been created, the location can not be changed.
+     *   `projects/my-project/locations/global/buckets/my-bucket`
+     * For a list of supported locations, see [Supported
+     * Regions](https://cloud.google.com/logging/docs/region-support)
+     * For the location of `global` it is unspecified where log entries are
+     * actually stored.
+     * After a bucket has been created, the location cannot be changed.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -130,16 +162,16 @@ class LogBucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the bucket.
+     * Output only. The resource name of the bucket.
      * For example:
-     * "projects/my-project-id/locations/my-location/buckets/my-bucket-id The
-     * supported locations are:
-     *   "global"
-     * For the location of `global` it is unspecified where logs are actually
-     * stored.
-     * Once a bucket has been created, the location can not be changed.
+     *   `projects/my-project/locations/global/buckets/my-bucket`
+     * For a list of supported locations, see [Supported
+     * Regions](https://cloud.google.com/logging/docs/region-support)
+     * For the location of `global` it is unspecified where log entries are
+     * actually stored.
+     * After a bucket has been created, the location cannot be changed.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -253,9 +285,9 @@ class LogBucket extends \Google\Protobuf\Internal\Message
 
     /**
      * Logs will be retained by default for this amount of time, after which they
-     * will automatically be deleted. The minimum retention period is 1 day.
-     * If this value is set to zero at bucket creation time, the default time of
-     * 30 days will be used.
+     * will automatically be deleted. The minimum retention period is 1 day. If
+     * this value is set to zero at bucket creation time, the default time of 30
+     * days will be used.
      *
      * Generated from protobuf field <code>int32 retention_days = 11;</code>
      * @return int
@@ -267,9 +299,9 @@ class LogBucket extends \Google\Protobuf\Internal\Message
 
     /**
      * Logs will be retained by default for this amount of time, after which they
-     * will automatically be deleted. The minimum retention period is 1 day.
-     * If this value is set to zero at bucket creation time, the default time of
-     * 30 days will be used.
+     * will automatically be deleted. The minimum retention period is 1 day. If
+     * this value is set to zero at bucket creation time, the default time of 30
+     * days will be used.
      *
      * Generated from protobuf field <code>int32 retention_days = 11;</code>
      * @param int $var
@@ -284,9 +316,9 @@ class LogBucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the bucket has been locked.
-     * The retention period on a locked bucket may not be changed.
-     * Locked buckets may only be deleted if they are empty.
+     * Whether the bucket is locked.
+     * The retention period on a locked bucket cannot be changed. Locked buckets
+     * may only be deleted if they are empty.
      *
      * Generated from protobuf field <code>bool locked = 9;</code>
      * @return bool
@@ -297,9 +329,9 @@ class LogBucket extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether the bucket has been locked.
-     * The retention period on a locked bucket may not be changed.
-     * Locked buckets may only be deleted if they are empty.
+     * Whether the bucket is locked.
+     * The retention period on a locked bucket cannot be changed. Locked buckets
+     * may only be deleted if they are empty.
      *
      * Generated from protobuf field <code>bool locked = 9;</code>
      * @param bool $var
@@ -335,6 +367,84 @@ class LogBucket extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Logging\V2\LifecycleState::class);
         $this->lifecycle_state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Log entry field paths that are denied access in this bucket.
+     * The following fields and their children are eligible: `textPayload`,
+     * `jsonPayload`, `protoPayload`, `httpRequest`, `labels`, `sourceLocation`.
+     * Restricting a repeated field will restrict all values. Adding a parent will
+     * block all child fields. (e.g. `foo.bar` will block `foo.bar.baz`)
+     *
+     * Generated from protobuf field <code>repeated string restricted_fields = 15;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRestrictedFields()
+    {
+        return $this->restricted_fields;
+    }
+
+    /**
+     * Log entry field paths that are denied access in this bucket.
+     * The following fields and their children are eligible: `textPayload`,
+     * `jsonPayload`, `protoPayload`, `httpRequest`, `labels`, `sourceLocation`.
+     * Restricting a repeated field will restrict all values. Adding a parent will
+     * block all child fields. (e.g. `foo.bar` will block `foo.bar.baz`)
+     *
+     * Generated from protobuf field <code>repeated string restricted_fields = 15;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRestrictedFields($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->restricted_fields = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The CMEK settings of the log bucket. If present, new log entries written to
+     * this log bucket are encrypted using the CMEK key provided in this
+     * configuration. If a log bucket has CMEK settings, the CMEK settings cannot
+     * be disabled later by updating the log bucket. Changing the KMS key is
+     * allowed.
+     *
+     * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 19;</code>
+     * @return \Google\Cloud\Logging\V2\CmekSettings|null
+     */
+    public function getCmekSettings()
+    {
+        return $this->cmek_settings;
+    }
+
+    public function hasCmekSettings()
+    {
+        return isset($this->cmek_settings);
+    }
+
+    public function clearCmekSettings()
+    {
+        unset($this->cmek_settings);
+    }
+
+    /**
+     * The CMEK settings of the log bucket. If present, new log entries written to
+     * this log bucket are encrypted using the CMEK key provided in this
+     * configuration. If a log bucket has CMEK settings, the CMEK settings cannot
+     * be disabled later by updating the log bucket. Changing the KMS key is
+     * allowed.
+     *
+     * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 19;</code>
+     * @param \Google\Cloud\Logging\V2\CmekSettings $var
+     * @return $this
+     */
+    public function setCmekSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Logging\V2\CmekSettings::class);
+        $this->cmek_settings = $var;
 
         return $this;
     }

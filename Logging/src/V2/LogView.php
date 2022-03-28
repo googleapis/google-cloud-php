@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Describes a view over logs in a bucket.
+ * Describes a view over log entries in a bucket.
  *
  * Generated from protobuf message <code>google.logging.v2.LogView</code>
  */
@@ -17,8 +17,8 @@ class LogView extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the view.
-     * For example
-     * "projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view
+     * For example:
+     *   `projects/my-project/locations/global/buckets/my-bucket/views/my-view`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -43,13 +43,15 @@ class LogView extends \Google\Protobuf\Internal\Message
     private $update_time = null;
     /**
      * Filter that restricts which log entries in a bucket are visible in this
-     * view. Filters are restricted to be a logical AND of ==/!= of any of the
+     * view.
+     * Filters are restricted to be a logical AND of ==/!= of any of the
      * following:
-     *   originating project/folder/organization/billing account.
-     *   resource type
-     *   log id
-     * Example: SOURCE("projects/myproject") AND resource.type = "gce_instance"
-     *             AND LOG_ID("stdout")
+     *   - originating project/folder/organization/billing account.
+     *   - resource type
+     *   - log id
+     * For example:
+     *   SOURCE("projects/myproject") AND resource.type = "gce_instance"
+     *                                AND LOG_ID("stdout")
      *
      * Generated from protobuf field <code>string filter = 7;</code>
      */
@@ -63,8 +65,8 @@ class LogView extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the view.
-     *           For example
-     *           "projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view
+     *           For example:
+     *             `projects/my-project/locations/global/buckets/my-bucket/views/my-view`
      *     @type string $description
      *           Describes this view.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -73,13 +75,15 @@ class LogView extends \Google\Protobuf\Internal\Message
      *           Output only. The last update timestamp of the view.
      *     @type string $filter
      *           Filter that restricts which log entries in a bucket are visible in this
-     *           view. Filters are restricted to be a logical AND of ==/!= of any of the
+     *           view.
+     *           Filters are restricted to be a logical AND of ==/!= of any of the
      *           following:
-     *             originating project/folder/organization/billing account.
-     *             resource type
-     *             log id
-     *           Example: SOURCE("projects/myproject") AND resource.type = "gce_instance"
-     *                       AND LOG_ID("stdout")
+     *             - originating project/folder/organization/billing account.
+     *             - resource type
+     *             - log id
+     *           For example:
+     *             SOURCE("projects/myproject") AND resource.type = "gce_instance"
+     *                                          AND LOG_ID("stdout")
      * }
      */
     public function __construct($data = NULL) {
@@ -89,8 +93,8 @@ class LogView extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the view.
-     * For example
-     * "projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view
+     * For example:
+     *   `projects/my-project/locations/global/buckets/my-bucket/views/my-view`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -102,8 +106,8 @@ class LogView extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the view.
-     * For example
-     * "projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view
+     * For example:
+     *   `projects/my-project/locations/global/buckets/my-bucket/views/my-view`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -217,13 +221,15 @@ class LogView extends \Google\Protobuf\Internal\Message
 
     /**
      * Filter that restricts which log entries in a bucket are visible in this
-     * view. Filters are restricted to be a logical AND of ==/!= of any of the
+     * view.
+     * Filters are restricted to be a logical AND of ==/!= of any of the
      * following:
-     *   originating project/folder/organization/billing account.
-     *   resource type
-     *   log id
-     * Example: SOURCE("projects/myproject") AND resource.type = "gce_instance"
-     *             AND LOG_ID("stdout")
+     *   - originating project/folder/organization/billing account.
+     *   - resource type
+     *   - log id
+     * For example:
+     *   SOURCE("projects/myproject") AND resource.type = "gce_instance"
+     *                                AND LOG_ID("stdout")
      *
      * Generated from protobuf field <code>string filter = 7;</code>
      * @return string
@@ -235,13 +241,15 @@ class LogView extends \Google\Protobuf\Internal\Message
 
     /**
      * Filter that restricts which log entries in a bucket are visible in this
-     * view. Filters are restricted to be a logical AND of ==/!= of any of the
+     * view.
+     * Filters are restricted to be a logical AND of ==/!= of any of the
      * following:
-     *   originating project/folder/organization/billing account.
-     *   resource type
-     *   log id
-     * Example: SOURCE("projects/myproject") AND resource.type = "gce_instance"
-     *             AND LOG_ID("stdout")
+     *   - originating project/folder/organization/billing account.
+     *   - resource type
+     *   - log id
+     * For example:
+     *   SOURCE("projects/myproject") AND resource.type = "gce_instance"
+     *                                AND LOG_ID("stdout")
      *
      * Generated from protobuf field <code>string filter = 7;</code>
      * @param string $var

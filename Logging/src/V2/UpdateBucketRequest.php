@@ -21,10 +21,8 @@ class UpdateBucketRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      *     "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     * Example:
-     * `"projects/my-project-id/locations/my-location/buckets/my-bucket-id"`. Also
-     * requires permission "resourcemanager.projects.updateLiens" to set the
-     * locked property
+     * For example:
+     *   `"projects/my-project/locations/global/buckets/my-bucket"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -37,11 +35,11 @@ class UpdateBucketRequest extends \Google\Protobuf\Internal\Message
     private $bucket = null;
     /**
      * Required. Field mask that specifies the fields in `bucket` that need an update. A
-     * bucket field will be overwritten if, and only if, it is in the update
-     * mask. `name` and output only fields cannot be updated.
-     * For a detailed `FieldMask` definition, see
+     * bucket field will be overwritten if, and only if, it is in the update mask.
+     * `name` and output only fields cannot be updated.
+     * For a detailed `FieldMask` definition, see:
      * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
-     * Example: `updateMask=retention_days`.
+     * For example: `updateMask=retention_days`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -59,19 +57,17 @@ class UpdateBucketRequest extends \Google\Protobuf\Internal\Message
      *               "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      *               "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      *               "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     *           Example:
-     *           `"projects/my-project-id/locations/my-location/buckets/my-bucket-id"`. Also
-     *           requires permission "resourcemanager.projects.updateLiens" to set the
-     *           locked property
+     *           For example:
+     *             `"projects/my-project/locations/global/buckets/my-bucket"`
      *     @type \Google\Cloud\Logging\V2\LogBucket $bucket
      *           Required. The updated bucket.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. Field mask that specifies the fields in `bucket` that need an update. A
-     *           bucket field will be overwritten if, and only if, it is in the update
-     *           mask. `name` and output only fields cannot be updated.
-     *           For a detailed `FieldMask` definition, see
+     *           bucket field will be overwritten if, and only if, it is in the update mask.
+     *           `name` and output only fields cannot be updated.
+     *           For a detailed `FieldMask` definition, see:
      *           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
-     *           Example: `updateMask=retention_days`.
+     *           For example: `updateMask=retention_days`
      * }
      */
     public function __construct($data = NULL) {
@@ -85,10 +81,8 @@ class UpdateBucketRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      *     "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     * Example:
-     * `"projects/my-project-id/locations/my-location/buckets/my-bucket-id"`. Also
-     * requires permission "resourcemanager.projects.updateLiens" to set the
-     * locked property
+     * For example:
+     *   `"projects/my-project/locations/global/buckets/my-bucket"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -104,10 +98,8 @@ class UpdateBucketRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
      *     "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]"
-     * Example:
-     * `"projects/my-project-id/locations/my-location/buckets/my-bucket-id"`. Also
-     * requires permission "resourcemanager.projects.updateLiens" to set the
-     * locked property
+     * For example:
+     *   `"projects/my-project/locations/global/buckets/my-bucket"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -159,11 +151,11 @@ class UpdateBucketRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Field mask that specifies the fields in `bucket` that need an update. A
-     * bucket field will be overwritten if, and only if, it is in the update
-     * mask. `name` and output only fields cannot be updated.
-     * For a detailed `FieldMask` definition, see
+     * bucket field will be overwritten if, and only if, it is in the update mask.
+     * `name` and output only fields cannot be updated.
+     * For a detailed `FieldMask` definition, see:
      * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
-     * Example: `updateMask=retention_days`.
+     * For example: `updateMask=retention_days`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -185,11 +177,11 @@ class UpdateBucketRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Field mask that specifies the fields in `bucket` that need an update. A
-     * bucket field will be overwritten if, and only if, it is in the update
-     * mask. `name` and output only fields cannot be updated.
-     * For a detailed `FieldMask` definition, see
+     * bucket field will be overwritten if, and only if, it is in the update mask.
+     * `name` and output only fields cannot be updated.
+     * For a detailed `FieldMask` definition, see:
      * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMask
-     * Example: `updateMask=retention_days`.
+     * For example: `updateMask=retention_days`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

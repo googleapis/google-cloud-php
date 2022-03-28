@@ -25,11 +25,14 @@ namespace Google\Cloud\Logging\Tests\Unit\V2;
 use Google\ApiCore\ApiException;
 
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-use Google\ApiCore\Testing\MockTransport;
 
+use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Logging\V2\CmekSettings;
 use Google\Cloud\Logging\V2\ConfigServiceV2Client;
+
+use Google\Cloud\Logging\V2\CopyLogEntriesResponse;
 use Google\Cloud\Logging\V2\ListBucketsResponse;
 use Google\Cloud\Logging\V2\ListExclusionsResponse;
 use Google\Cloud\Logging\V2\ListSinksResponse;
@@ -38,6 +41,10 @@ use Google\Cloud\Logging\V2\LogBucket;
 use Google\Cloud\Logging\V2\LogExclusion;
 use Google\Cloud\Logging\V2\LogSink;
 use Google\Cloud\Logging\V2\LogView;
+use Google\Cloud\Logging\V2\Settings;
+use Google\LongRunning\GetOperationRequest;
+use Google\LongRunning\Operation;
+use Google\Protobuf\Any;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
@@ -75,6 +82,133 @@ class ConfigServiceV2ClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new ConfigServiceV2Client($options);
+    }
+
+    /**
+     * @test
+     */
+    public function copyLogEntriesTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/copyLogEntriesTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $logEntriesCopiedCount = 2134326978;
+        $expectedResponse = new CopyLogEntriesResponse();
+        $expectedResponse->setLogEntriesCopiedCount($logEntriesCopiedCount);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/copyLogEntriesTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $name = 'name3373707';
+        $destination = 'destination-1429847026';
+        $response = $client->copyLogEntries($name, $destination);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.logging.v2.ConfigServiceV2/CopyLogEntries', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $actualValue = $actualApiRequestObject->getDestination();
+        $this->assertProtobufEquals($destination, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/copyLogEntriesTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function copyLogEntriesExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/copyLogEntriesTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $name = 'name3373707';
+        $destination = 'destination-1429847026';
+        $response = $client->copyLogEntries($name, $destination);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/copyLogEntriesTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -850,6 +984,78 @@ class ConfigServiceV2ClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function getSettingsTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $kmsServiceAccountId = 'kmsServiceAccountId-263326747';
+        $storageLocation = 'storageLocation-612882183';
+        $disableDefaultSink = true;
+        $expectedResponse = new Settings();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setKmsServiceAccountId($kmsServiceAccountId);
+        $expectedResponse->setStorageLocation($storageLocation);
+        $expectedResponse->setDisableDefaultSink($disableDefaultSink);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $client->settingsName('[PROJECT]');
+        $response = $client->getSettings($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.logging.v2.ConfigServiceV2/GetSettings', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getSettingsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $client->settingsName('[PROJECT]');
+        try {
+            $client->getSettings($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function getSinkTest()
     {
         $transport = $this->createTransport();
@@ -1555,6 +1761,82 @@ class ConfigServiceV2ClientTest extends GeneratedTest
         $updateMask = new FieldMask();
         try {
             $client->updateExclusion($formattedName, $exclusion, $updateMask);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateSettingsTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $kmsKeyName = 'kmsKeyName2094986649';
+        $kmsServiceAccountId = 'kmsServiceAccountId-263326747';
+        $storageLocation = 'storageLocation-612882183';
+        $disableDefaultSink = true;
+        $expectedResponse = new Settings();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setKmsServiceAccountId($kmsServiceAccountId);
+        $expectedResponse->setStorageLocation($storageLocation);
+        $expectedResponse->setDisableDefaultSink($disableDefaultSink);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $name = 'name3373707';
+        $settings = new Settings();
+        $response = $client->updateSettings($name, $settings);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.logging.v2.ConfigServiceV2/UpdateSettings', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $actualValue = $actualRequestObject->getSettings();
+        $this->assertProtobufEquals($settings, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateSettingsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $name = 'name3373707';
+        $settings = new Settings();
+        try {
+            $client->updateSettings($name, $settings);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -21,7 +21,8 @@ class UpdateExclusionRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
      *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     * For example:
+     *   `"projects/my-project/exclusions/my-exclusion"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -57,7 +58,8 @@ class UpdateExclusionRequest extends \Google\Protobuf\Internal\Message
      *               "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
      *               "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
      *               "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     *           Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     *           For example:
+     *             `"projects/my-project/exclusions/my-exclusion"`
      *     @type \Google\Cloud\Logging\V2\LogExclusion $exclusion
      *           Required. New values for the existing exclusion. Only the fields specified in
      *           `update_mask` are relevant.
@@ -81,7 +83,8 @@ class UpdateExclusionRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
      *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     * For example:
+     *   `"projects/my-project/exclusions/my-exclusion"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -97,7 +100,8 @@ class UpdateExclusionRequest extends \Google\Protobuf\Internal\Message
      *     "organizations/[ORGANIZATION_ID]/exclusions/[EXCLUSION_ID]"
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/exclusions/[EXCLUSION_ID]"
      *     "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]"
-     * Example: `"projects/my-project-id/exclusions/my-exclusion-id"`.
+     * For example:
+     *   `"projects/my-project/exclusions/my-exclusion"`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

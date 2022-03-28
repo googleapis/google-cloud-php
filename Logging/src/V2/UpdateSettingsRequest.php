@@ -10,41 +10,38 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The parameters to
- * [UpdateCmekSettings][google.logging.v2.ConfigServiceV2.UpdateCmekSettings].
+ * [UpdateSettings][google.logging.v2.ConfigServiceV2.UpdateSettings].
  * See [Enabling CMEK for Log
  * Router](https://cloud.google.com/logging/docs/routing/managed-encryption) for
  * more information.
  *
- * Generated from protobuf message <code>google.logging.v2.UpdateCmekSettingsRequest</code>
+ * Generated from protobuf message <code>google.logging.v2.UpdateSettingsRequest</code>
  */
-class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
+class UpdateSettingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name for the CMEK settings to update.
-     *     "projects/[PROJECT_ID]/cmekSettings"
-     *     "organizations/[ORGANIZATION_ID]/cmekSettings"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
-     *     "folders/[FOLDER_ID]/cmekSettings"
+     * Required. The resource name for the settings to update.
+     *     "organizations/[ORGANIZATION_ID]/settings"
      * For example:
-     *   `"organizations/12345/cmekSettings"`
-     * Note: CMEK for the Log Router can currently only be configured for Google
-     * Cloud organizations. Once configured, it applies to all projects and
+     *   `"organizations/12345/settings"`
+     * Note: Settings for the Log Router can currently only be configured for
+     * Google Cloud organizations. Once configured, it applies to all projects and
      * folders in the Google Cloud organization.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
-     * Required. The CMEK settings to update.
+     * Required. The settings to update.
      * See [Enabling CMEK for Log
      * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
      * for more information.
      *
-     * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.logging.v2.Settings settings = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $cmek_settings = null;
+    private $settings = null;
     /**
-     * Optional. Field mask identifying which fields from `cmek_settings` should
+     * Optional. Field mask identifying which fields from `settings` should
      * be updated. A field will be overwritten if and only if it is in the update
      * mask. Output only fields cannot be updated.
      * See [FieldMask][google.protobuf.FieldMask] for more information.
@@ -61,23 +58,20 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name for the CMEK settings to update.
-     *               "projects/[PROJECT_ID]/cmekSettings"
-     *               "organizations/[ORGANIZATION_ID]/cmekSettings"
-     *               "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
-     *               "folders/[FOLDER_ID]/cmekSettings"
+     *           Required. The resource name for the settings to update.
+     *               "organizations/[ORGANIZATION_ID]/settings"
      *           For example:
-     *             `"organizations/12345/cmekSettings"`
-     *           Note: CMEK for the Log Router can currently only be configured for Google
-     *           Cloud organizations. Once configured, it applies to all projects and
+     *             `"organizations/12345/settings"`
+     *           Note: Settings for the Log Router can currently only be configured for
+     *           Google Cloud organizations. Once configured, it applies to all projects and
      *           folders in the Google Cloud organization.
-     *     @type \Google\Cloud\Logging\V2\CmekSettings $cmek_settings
-     *           Required. The CMEK settings to update.
+     *     @type \Google\Cloud\Logging\V2\Settings $settings
+     *           Required. The settings to update.
      *           See [Enabling CMEK for Log
      *           Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
      *           for more information.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Optional. Field mask identifying which fields from `cmek_settings` should
+     *           Optional. Field mask identifying which fields from `settings` should
      *           be updated. A field will be overwritten if and only if it is in the update
      *           mask. Output only fields cannot be updated.
      *           See [FieldMask][google.protobuf.FieldMask] for more information.
@@ -90,15 +84,12 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name for the CMEK settings to update.
-     *     "projects/[PROJECT_ID]/cmekSettings"
-     *     "organizations/[ORGANIZATION_ID]/cmekSettings"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
-     *     "folders/[FOLDER_ID]/cmekSettings"
+     * Required. The resource name for the settings to update.
+     *     "organizations/[ORGANIZATION_ID]/settings"
      * For example:
-     *   `"organizations/12345/cmekSettings"`
-     * Note: CMEK for the Log Router can currently only be configured for Google
-     * Cloud organizations. Once configured, it applies to all projects and
+     *   `"organizations/12345/settings"`
+     * Note: Settings for the Log Router can currently only be configured for
+     * Google Cloud organizations. Once configured, it applies to all projects and
      * folders in the Google Cloud organization.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -110,15 +101,12 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name for the CMEK settings to update.
-     *     "projects/[PROJECT_ID]/cmekSettings"
-     *     "organizations/[ORGANIZATION_ID]/cmekSettings"
-     *     "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings"
-     *     "folders/[FOLDER_ID]/cmekSettings"
+     * Required. The resource name for the settings to update.
+     *     "organizations/[ORGANIZATION_ID]/settings"
      * For example:
-     *   `"organizations/12345/cmekSettings"`
-     * Note: CMEK for the Log Router can currently only be configured for Google
-     * Cloud organizations. Once configured, it applies to all projects and
+     *   `"organizations/12345/settings"`
+     * Note: Settings for the Log Router can currently only be configured for
+     * Google Cloud organizations. Once configured, it applies to all projects and
      * folders in the Google Cloud organization.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -134,49 +122,49 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The CMEK settings to update.
+     * Required. The settings to update.
      * See [Enabling CMEK for Log
      * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
      * for more information.
      *
-     * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Logging\V2\CmekSettings|null
+     * Generated from protobuf field <code>.google.logging.v2.Settings settings = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Logging\V2\Settings|null
      */
-    public function getCmekSettings()
+    public function getSettings()
     {
-        return $this->cmek_settings;
+        return $this->settings;
     }
 
-    public function hasCmekSettings()
+    public function hasSettings()
     {
-        return isset($this->cmek_settings);
+        return isset($this->settings);
     }
 
-    public function clearCmekSettings()
+    public function clearSettings()
     {
-        unset($this->cmek_settings);
+        unset($this->settings);
     }
 
     /**
-     * Required. The CMEK settings to update.
+     * Required. The settings to update.
      * See [Enabling CMEK for Log
      * Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
      * for more information.
      *
-     * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Logging\V2\CmekSettings $var
+     * Generated from protobuf field <code>.google.logging.v2.Settings settings = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param \Google\Cloud\Logging\V2\Settings $var
      * @return $this
      */
-    public function setCmekSettings($var)
+    public function setSettings($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Logging\V2\CmekSettings::class);
-        $this->cmek_settings = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\Logging\V2\Settings::class);
+        $this->settings = $var;
 
         return $this;
     }
 
     /**
-     * Optional. Field mask identifying which fields from `cmek_settings` should
+     * Optional. Field mask identifying which fields from `settings` should
      * be updated. A field will be overwritten if and only if it is in the update
      * mask. Output only fields cannot be updated.
      * See [FieldMask][google.protobuf.FieldMask] for more information.
@@ -201,7 +189,7 @@ class UpdateCmekSettingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Field mask identifying which fields from `cmek_settings` should
+     * Optional. Field mask identifying which fields from `settings` should
      * be updated. A field will be overwritten if and only if it is in the update
      * mask. Output only fields cannot be updated.
      * See [FieldMask][google.protobuf.FieldMask] for more information.

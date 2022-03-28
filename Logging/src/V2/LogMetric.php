@@ -27,11 +27,11 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * following characters: `A-Z`, `a-z`, `0-9`, and the special characters
      * `_-.,+!*',()%/`. The forward-slash character (`/`) denotes a hierarchy of
      * name pieces, and it cannot be the first character of the name.
-     * The metric identifier in this field must not be
-     * [URL-encoded](https://en.wikipedia.org/wiki/Percent-encoding).
-     * However, when the metric identifier appears as the `[METRIC_ID]` part of a
-     * `metric_name` API parameter, then the metric identifier must be
-     * URL-encoded. Example: `"projects/my-project/metrics/nginx%2Frequests"`.
+     * This field is the `[METRIC_ID]` part of a metric resource name in the
+     * format "projects/[PROJECT_ID]/metrics/[METRIC_ID]". Example: If the
+     * resource name of a metric is
+     * `"projects/my-project/metrics/nginx%2Frequests"`, this field's value is
+     * `"nginx/requests"`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -53,6 +53,13 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $filter = '';
+    /**
+     * Optional. If set to True, then this metric is disabled and it does not
+     * generate any points.
+     *
+     * Generated from protobuf field <code>bool disabled = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $disabled = false;
     /**
      * Optional. The metric descriptor associated with the logs-based metric.
      * If unspecified, it uses a default metric descriptor with a DELTA metric
@@ -158,11 +165,11 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      *           following characters: `A-Z`, `a-z`, `0-9`, and the special characters
      *           `_-.,+!*',()%/`. The forward-slash character (`/`) denotes a hierarchy of
      *           name pieces, and it cannot be the first character of the name.
-     *           The metric identifier in this field must not be
-     *           [URL-encoded](https://en.wikipedia.org/wiki/Percent-encoding).
-     *           However, when the metric identifier appears as the `[METRIC_ID]` part of a
-     *           `metric_name` API parameter, then the metric identifier must be
-     *           URL-encoded. Example: `"projects/my-project/metrics/nginx%2Frequests"`.
+     *           This field is the `[METRIC_ID]` part of a metric resource name in the
+     *           format "projects/[PROJECT_ID]/metrics/[METRIC_ID]". Example: If the
+     *           resource name of a metric is
+     *           `"projects/my-project/metrics/nginx%2Frequests"`, this field's value is
+     *           `"nginx/requests"`.
      *     @type string $description
      *           Optional. A description of this metric, which is used in documentation.
      *           The maximum length of the description is 8000 characters.
@@ -172,6 +179,9 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      *           is used to match log entries. Example:
      *               "resource.type=gae_app AND severity>=ERROR"
      *           The maximum length of the filter is 20000 characters.
+     *     @type bool $disabled
+     *           Optional. If set to True, then this metric is disabled and it does not
+     *           generate any points.
      *     @type \Google\Api\MetricDescriptor $metric_descriptor
      *           Optional. The metric descriptor associated with the logs-based metric.
      *           If unspecified, it uses a default metric descriptor with a DELTA metric
@@ -248,11 +258,11 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * following characters: `A-Z`, `a-z`, `0-9`, and the special characters
      * `_-.,+!*',()%/`. The forward-slash character (`/`) denotes a hierarchy of
      * name pieces, and it cannot be the first character of the name.
-     * The metric identifier in this field must not be
-     * [URL-encoded](https://en.wikipedia.org/wiki/Percent-encoding).
-     * However, when the metric identifier appears as the `[METRIC_ID]` part of a
-     * `metric_name` API parameter, then the metric identifier must be
-     * URL-encoded. Example: `"projects/my-project/metrics/nginx%2Frequests"`.
+     * This field is the `[METRIC_ID]` part of a metric resource name in the
+     * format "projects/[PROJECT_ID]/metrics/[METRIC_ID]". Example: If the
+     * resource name of a metric is
+     * `"projects/my-project/metrics/nginx%2Frequests"`, this field's value is
+     * `"nginx/requests"`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -269,11 +279,11 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * following characters: `A-Z`, `a-z`, `0-9`, and the special characters
      * `_-.,+!*',()%/`. The forward-slash character (`/`) denotes a hierarchy of
      * name pieces, and it cannot be the first character of the name.
-     * The metric identifier in this field must not be
-     * [URL-encoded](https://en.wikipedia.org/wiki/Percent-encoding).
-     * However, when the metric identifier appears as the `[METRIC_ID]` part of a
-     * `metric_name` API parameter, then the metric identifier must be
-     * URL-encoded. Example: `"projects/my-project/metrics/nginx%2Frequests"`.
+     * This field is the `[METRIC_ID]` part of a metric resource name in the
+     * format "projects/[PROJECT_ID]/metrics/[METRIC_ID]". Example: If the
+     * resource name of a metric is
+     * `"projects/my-project/metrics/nginx%2Frequests"`, this field's value is
+     * `"nginx/requests"`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -345,6 +355,34 @@ class LogMetric extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to True, then this metric is disabled and it does not
+     * generate any points.
+     *
+     * Generated from protobuf field <code>bool disabled = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisabled()
+    {
+        return $this->disabled;
+    }
+
+    /**
+     * Optional. If set to True, then this metric is disabled and it does not
+     * generate any points.
+     *
+     * Generated from protobuf field <code>bool disabled = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disabled = $var;
 
         return $this;
     }
