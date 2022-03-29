@@ -88,6 +88,17 @@ return [
                     ],
                 ],
             ],
+            'GetInstanceAuthString' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}/authString',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ImportInstance' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}:import',
@@ -107,6 +118,18 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RescheduleMaintenance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}:rescheduleMaintenance',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
