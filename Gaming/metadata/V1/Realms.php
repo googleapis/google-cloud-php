@@ -19,11 +19,10 @@ class Realms
         \GPBMetadata\Google\Cloud\Gaming\V1\Common::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-É
-#google/cloud/gaming/v1/realms.protogoogle.cloud.gaming.v1google/api/resource.proto#google/cloud/gaming/v1/common.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.protogoogle/api/annotations.proto"«
+«
+#google/cloud/gaming/v1/realms.protogoogle.cloud.gaming.v1google/api/resource.proto#google/cloud/gaming/v1/common.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"«
 ListRealmsRequest9
 parent (	B)àAúA#!gameservices.googleapis.com/Realm
 	page_size (BàA

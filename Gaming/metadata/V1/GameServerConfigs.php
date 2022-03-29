@@ -18,11 +18,10 @@ class GameServerConfigs
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Gaming\V1\Common::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¨
-0google/cloud/gaming/v1/game_server_configs.protogoogle.cloud.gaming.v1google/api/resource.proto#google/cloud/gaming/v1/common.protogoogle/protobuf/timestamp.protogoogle/api/annotations.proto"¡
+é
+0google/cloud/gaming/v1/game_server_configs.protogoogle.cloud.gaming.v1google/api/resource.proto#google/cloud/gaming/v1/common.protogoogle/protobuf/timestamp.proto"¡
 ListGameServerConfigsRequestD
 parent (	B4‡A˙A.,gameservices.googleapis.com/GameServerConfig
 	page_size (B‡A
