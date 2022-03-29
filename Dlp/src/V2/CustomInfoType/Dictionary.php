@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Plane](https://en.wikipedia.org/wiki/Plane_%28Unicode%29#Basic_Multilingual_Plane)
  * will be replaced with whitespace when scanning for matches, so the
  * dictionary phrase "Sam Johnson" will match all three phrases "sam johnson",
- * Plane](https://en.wikipedia.org/wiki/Plane_%28Unicode%29#Basic_Multilingual_Plane)
+ * "Sam, Johnson", and "Sam (Johnson)". Additionally, the characters
  * surrounding any match must be of a different type than the adjacent
  * characters within the word, so letters must be next to non-letters and
  * digits next to non-digits. For example, the dictionary word "jen" will
@@ -29,7 +29,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [limits](https://cloud.google.com/dlp/limits) page contains details about
  * the size limits of dictionaries. For dictionaries that do not fit within
  * these constraints, consider using `LargeCustomDictionaryConfig` in the
- * [limits](https://cloud.google.com/dlp/limits) page contains details about
+ * `StoredInfoType` API.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CustomInfoType.Dictionary</code>
  */

@@ -88,6 +88,22 @@ class FileType
      * Generated from protobuf enum <code>TSV = 9;</code>
      */
     const TSV = 9;
+    /**
+     * Powerpoint files >30 MB will be scanned as binary files.
+     * Included file extensions:
+     *   pptx, pptm, potx, potm, pot
+     *
+     * Generated from protobuf enum <code>POWERPOINT = 11;</code>
+     */
+    const POWERPOINT = 11;
+    /**
+     * Excel files >30 MB will be scanned as binary files.
+     * Included file extensions:
+     *   xlsx, xlsm, xltx, xltm
+     *
+     * Generated from protobuf enum <code>EXCEL = 12;</code>
+     */
+    const EXCEL = 12;
 
     private static $valueToName = [
         self::FILE_TYPE_UNSPECIFIED => 'FILE_TYPE_UNSPECIFIED',
@@ -99,6 +115,8 @@ class FileType
         self::AVRO => 'AVRO',
         self::CSV => 'CSV',
         self::TSV => 'TSV',
+        self::POWERPOINT => 'POWERPOINT',
+        self::EXCEL => 'EXCEL',
     ];
 
     public static function name($value)
