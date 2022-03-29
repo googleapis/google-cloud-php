@@ -158,6 +158,12 @@ class SqlExternalSyncSettingErrorType
      * Generated from protobuf enum <code>BINLOG_RETENTION_SETTING = 25;</code>
      */
     const BINLOG_RETENTION_SETTING = 25;
+    /**
+     * The primary instance has tables with unsupported storage engine.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED_STORAGE_ENGINE = 26;</code>
+     */
+    const UNSUPPORTED_STORAGE_ENGINE = 26;
 
     private static $valueToName = [
         self::SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED => 'SQL_EXTERNAL_SYNC_SETTING_ERROR_TYPE_UNSPECIFIED',
@@ -186,6 +192,7 @@ class SqlExternalSyncSettingErrorType
         self::PRIMARY_ALREADY_SETUP => 'PRIMARY_ALREADY_SETUP',
         self::UNSUPPORTED_BINLOG_FORMAT => 'UNSUPPORTED_BINLOG_FORMAT',
         self::BINLOG_RETENTION_SETTING => 'BINLOG_RETENTION_SETTING',
+        self::UNSUPPORTED_STORAGE_ENGINE => 'UNSUPPORTED_STORAGE_ENGINE',
     ];
 
     public static function name($value)

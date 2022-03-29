@@ -36,7 +36,6 @@ class LocationPreference extends \Google\Protobuf\Internal\Message
     /**
      * The preferred Compute Engine zone for the secondary/failover
      * (for example: us-central1-a, us-central1-b, etc.).
-     * Reserved for future use.
      *
      * Generated from protobuf field <code>string secondary_zone = 4;</code>
      */
@@ -63,7 +62,6 @@ class LocationPreference extends \Google\Protobuf\Internal\Message
      *     @type string $secondary_zone
      *           The preferred Compute Engine zone for the secondary/failover
      *           (for example: us-central1-a, us-central1-b, etc.).
-     *           Reserved for future use.
      *     @type string $kind
      *           This is always `sql#locationPreference`.
      * }
@@ -136,7 +134,6 @@ class LocationPreference extends \Google\Protobuf\Internal\Message
     /**
      * The preferred Compute Engine zone for the secondary/failover
      * (for example: us-central1-a, us-central1-b, etc.).
-     * Reserved for future use.
      *
      * Generated from protobuf field <code>string secondary_zone = 4;</code>
      * @return string
@@ -149,7 +146,6 @@ class LocationPreference extends \Google\Protobuf\Internal\Message
     /**
      * The preferred Compute Engine zone for the secondary/failover
      * (for example: us-central1-a, us-central1-b, etc.).
-     * Reserved for future use.
      *
      * Generated from protobuf field <code>string secondary_zone = 4;</code>
      * @param string $var

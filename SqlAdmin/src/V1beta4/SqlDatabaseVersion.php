@@ -110,6 +110,18 @@ class SqlDatabaseVersion
      */
     const MYSQL_8_0_26 = 85;
     /**
+     * The database major version is MySQL 8.0 and the minor version is 27.
+     *
+     * Generated from protobuf enum <code>MYSQL_8_0_27 = 111;</code>
+     */
+    const MYSQL_8_0_27 = 111;
+    /**
+     * The database major version is MySQL 8.0 and the minor version is 28.
+     *
+     * Generated from protobuf enum <code>MYSQL_8_0_28 = 132;</code>
+     */
+    const MYSQL_8_0_28 = 132;
+    /**
      * The database version is PostgreSQL 13.
      *
      * Generated from protobuf enum <code>POSTGRES_13 = 23;</code>
@@ -163,6 +175,8 @@ class SqlDatabaseVersion
         self::MYSQL_8_0 => 'MYSQL_8_0',
         self::MYSQL_8_0_18 => 'MYSQL_8_0_18',
         self::MYSQL_8_0_26 => 'MYSQL_8_0_26',
+        self::MYSQL_8_0_27 => 'MYSQL_8_0_27',
+        self::MYSQL_8_0_28 => 'MYSQL_8_0_28',
         self::POSTGRES_13 => 'POSTGRES_13',
         self::POSTGRES_14 => 'POSTGRES_14',
         self::SQLSERVER_2019_STANDARD => 'SQLSERVER_2019_STANDARD',

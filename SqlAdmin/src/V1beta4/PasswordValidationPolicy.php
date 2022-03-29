@@ -46,6 +46,12 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration password_change_interval = 5;</code>
      */
     private $password_change_interval = null;
+    /**
+     * Whether the password policy is enabled or not.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_password_policy = 6;</code>
+     */
+    private $enable_password_policy = null;
 
     /**
      * Constructor.
@@ -64,6 +70,8 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $password_change_interval
      *           Minimum interval after which the password can be changed. This flag is only
      *           supported for PostgresSQL.
+     *     @type \Google\Protobuf\BoolValue $enable_password_policy
+     *           Whether the password policy is enabled or not.
      * }
      */
     public function __construct($data = NULL) {
@@ -323,6 +331,69 @@ class PasswordValidationPolicy extends \Google\Protobuf\Internal\Message
 
         return $this;
     }
+
+    /**
+     * Whether the password policy is enabled or not.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_password_policy = 6;</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getEnablePasswordPolicy()
+    {
+        return $this->enable_password_policy;
+    }
+
+    public function hasEnablePasswordPolicy()
+    {
+        return isset($this->enable_password_policy);
+    }
+
+    public function clearEnablePasswordPolicy()
+    {
+        unset($this->enable_password_policy);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getEnablePasswordPolicy()</code>
+
+     * Whether the password policy is enabled or not.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_password_policy = 6;</code>
+     * @return bool|null
+     */
+    public function getEnablePasswordPolicyValue()
+    {
+        return $this->readWrapperValue("enable_password_policy");
+    }
+
+    /**
+     * Whether the password policy is enabled or not.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_password_policy = 6;</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setEnablePasswordPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->enable_password_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Whether the password policy is enabled or not.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_password_policy = 6;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setEnablePasswordPolicyValue($var)
+    {
+        $this->writeWrapperValue("enable_password_policy", $var);
+        return $this;}
 
 }
 
