@@ -1,0 +1,1 @@
+{"id":"servicemanagement\/v1\/rollout\/rolloutstatus","type":"","title":"Google\\Cloud\\ServiceManagement\\V1\\Rollout\\RolloutStatus","name":"RolloutStatus","description":"<p>Status of a Rollout.<\/p>\n<p>Protobuf type <code>google.api.servicemanagement.v1.Rollout.RolloutStatus<\/code><\/p>","examples":[],"resources":[],"methods":[]}

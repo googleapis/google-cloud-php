@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/fulfillment\/feature\/type","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Fulfillment\\Feature\\Type","name":"Type","description":"<p>The type of the feature.<\/p>\n<p>Protobuf type <code>google.cloud.dialogflow.v2.Fulfillment.Feature.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

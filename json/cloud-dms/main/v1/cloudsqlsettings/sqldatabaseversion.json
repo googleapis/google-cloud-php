@@ -1,0 +1,1 @@
+{"id":"dms\/v1\/cloudsqlsettings\/sqldatabaseversion","type":"","title":"Google\\Cloud\\CloudDms\\V1\\CloudSqlSettings\\SqlDatabaseVersion","name":"SqlDatabaseVersion","description":"<p>The database engine type and version.<\/p>\n<p>Protobuf type <code>google.cloud.clouddms.v1.CloudSqlSettings.SqlDatabaseVersion<\/code><\/p>","examples":[],"resources":[],"methods":[]}

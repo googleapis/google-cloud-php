@@ -1,0 +1,1 @@
+{"id":"dataflow\/v1beta3\/jobmessageimportance","type":"","title":"Google\\Cloud\\Dataflow\\V1beta3\\JobMessageImportance","name":"JobMessageImportance","description":"<p>Indicates the importance of the message.<\/p>\n<p>Protobuf type <code>google.dataflow.v1beta3.JobMessageImportance<\/code><\/p>","examples":[],"resources":[],"methods":[]}

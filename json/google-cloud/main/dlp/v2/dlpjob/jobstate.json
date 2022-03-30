@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/dlpjob\/jobstate","type":"","title":"Google\\Cloud\\Dlp\\V2\\DlpJob\\JobState","name":"JobState","description":"<p>Possible states of a job. New items may be added.<\/p>\n<p>Protobuf type <code>google.privacy.dlp.v2.DlpJob.JobState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

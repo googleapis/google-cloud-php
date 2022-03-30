@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/publicadvertisedprefix\/status","type":"","title":"Google\\Cloud\\Compute\\V1\\PublicAdvertisedPrefix\\Status","name":"Status","description":"<p>The status of the public advertised prefix.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.PublicAdvertisedPrefix.Status<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"filestore\/v1\/nfsexportoptions\/squashmode","type":"","title":"Google\\Cloud\\Filestore\\V1\\NfsExportOptions\\SquashMode","name":"SquashMode","description":"<p>The squash mode.<\/p>\n<p>Protobuf type <code>google.cloud.filestore.v1.NfsExportOptions.SquashMode<\/code><\/p>","examples":[],"resources":[],"methods":[]}

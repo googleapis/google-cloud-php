@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/urlmap\/redirecthttpresponsecode","type":"","title":"Google\\Cloud\\AppEngine\\V1\\UrlMap\\RedirectHttpResponseCode","name":"RedirectHttpResponseCode","description":"<p>Redirect codes.<\/p>\n<p>Protobuf type <code>google.appengine.v1.UrlMap.RedirectHttpResponseCode<\/code><\/p>","examples":[],"resources":[],"methods":[]}

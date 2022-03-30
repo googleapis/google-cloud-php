@@ -1,0 +1,1 @@
+{"id":"channel\/v1\/transfereligibility\/reason","type":"","title":"Google\\Cloud\\Channel\\V1\\TransferEligibility\\Reason","name":"Reason","description":"<p>Reason of ineligibility.<\/p>\n<p>Protobuf type <code>google.cloud.channel.v1.TransferEligibility.Reason<\/code><\/p>","examples":[],"resources":[],"methods":[]}

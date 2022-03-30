@@ -1,0 +1,1 @@
+{"id":"networkmanagement\/v1\/routeinfo\/nexthoptype","type":"","title":"Google\\Cloud\\NetworkManagement\\V1\\RouteInfo\\NextHopType","name":"NextHopType","description":"<p>Type of next hop:<\/p>\n<p>Protobuf type <code>google.cloud.networkmanagement.v1.RouteInfo.NextHopType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

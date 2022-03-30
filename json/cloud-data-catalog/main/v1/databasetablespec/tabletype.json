@@ -1,0 +1,1 @@
+{"id":"datacatalog\/v1\/databasetablespec\/tabletype","type":"","title":"Google\\Cloud\\DataCatalog\\V1\\DatabaseTableSpec\\TableType","name":"TableType","description":"<p>Type of the table.<\/p>\n<p>Protobuf type <code>google.cloud.datacatalog.v1.DatabaseTableSpec.TableType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

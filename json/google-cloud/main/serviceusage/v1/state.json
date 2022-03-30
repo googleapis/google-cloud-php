@@ -1,0 +1,1 @@
+{"id":"serviceusage\/v1\/state","type":"","title":"Google\\Cloud\\ServiceUsage\\V1\\State","name":"State","description":"<p>Whether or not a service has been enabled for use by a consumer.<\/p>\n<p>Protobuf type <code>google.api.serviceusage.v1.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

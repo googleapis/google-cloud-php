@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/routerbgp\/advertisemode","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\RouterBgp\\AdvertiseMode","name":"AdvertiseMode","description":"<p>AdvertiseMode contains string constants that represent the names of each value\nin the google.cloud.compute.v1.RouterBgp.AdvertiseMode descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

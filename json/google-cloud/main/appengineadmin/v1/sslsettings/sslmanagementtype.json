@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/sslsettings\/sslmanagementtype","type":"","title":"Google\\Cloud\\AppEngine\\V1\\SslSettings\\SslManagementType","name":"SslManagementType","description":"<p>The SSL management type for this domain.<\/p>\n<p>Protobuf type <code>google.appengine.v1.SslSettings.SslManagementType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

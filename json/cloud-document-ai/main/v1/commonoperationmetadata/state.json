@@ -1,0 +1,1 @@
+{"id":"documentai\/v1\/commonoperationmetadata\/state","type":"","title":"Google\\Cloud\\DocumentAI\\V1\\CommonOperationMetadata\\State","name":"State","description":"<p>State of the longrunning operation.<\/p>\n<p>Protobuf type <code>google.cloud.documentai.v1.CommonOperationMetadata.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
