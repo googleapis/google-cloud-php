@@ -3399,7 +3399,7 @@
             "name": "google/cloud-video-stitcher",
             "defaultService": "videostitcher/readme",
             "versions": [
-                "v0.0.1",
+                "v0.1.0",
                 "main"
             ]
         },
