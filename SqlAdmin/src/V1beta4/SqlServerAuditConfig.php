@@ -27,6 +27,18 @@ class SqlServerAuditConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string bucket = 2;</code>
      */
     private $bucket = '';
+    /**
+     * How long to keep generated audit files.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration retention_interval = 3;</code>
+     */
+    private $retention_interval = null;
+    /**
+     * How often to upload generated audit files.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration upload_interval = 4;</code>
+     */
+    private $upload_interval = null;
 
     /**
      * Constructor.
@@ -38,6 +50,10 @@ class SqlServerAuditConfig extends \Google\Protobuf\Internal\Message
      *           This is always sql#sqlServerAuditConfig
      *     @type string $bucket
      *           The name of the destination bucket (e.g., gs://mybucket).
+     *     @type \Google\Protobuf\Duration $retention_interval
+     *           How long to keep generated audit files.
+     *     @type \Google\Protobuf\Duration $upload_interval
+     *           How often to upload generated audit files.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +109,78 @@ class SqlServerAuditConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->bucket = $var;
+
+        return $this;
+    }
+
+    /**
+     * How long to keep generated audit files.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration retention_interval = 3;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getRetentionInterval()
+    {
+        return $this->retention_interval;
+    }
+
+    public function hasRetentionInterval()
+    {
+        return isset($this->retention_interval);
+    }
+
+    public function clearRetentionInterval()
+    {
+        unset($this->retention_interval);
+    }
+
+    /**
+     * How long to keep generated audit files.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration retention_interval = 3;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setRetentionInterval($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->retention_interval = $var;
+
+        return $this;
+    }
+
+    /**
+     * How often to upload generated audit files.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration upload_interval = 4;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getUploadInterval()
+    {
+        return $this->upload_interval;
+    }
+
+    public function hasUploadInterval()
+    {
+        return isset($this->upload_interval);
+    }
+
+    public function clearUploadInterval()
+    {
+        unset($this->upload_interval);
+    }
+
+    /**
+     * How often to upload generated audit files.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration upload_interval = 4;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setUploadInterval($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->upload_interval = $var;
 
         return $this;
     }

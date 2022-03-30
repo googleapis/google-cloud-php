@@ -197,7 +197,6 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * from for a regional instance. This value could be different
      * from the zone that was specified when the instance
      * was created if the instance has failed over to its secondary/failover zone.
-     * Reserved for future use.
      *
      * Generated from protobuf field <code>string secondary_gce_zone = 34;</code>
      */
@@ -357,7 +356,6 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           from for a regional instance. This value could be different
      *           from the zone that was specified when the instance
      *           was created if the instance has failed over to its secondary/failover zone.
-     *           Reserved for future use.
      *     @type \Google\Cloud\Sql\V1beta4\DiskEncryptionConfiguration $disk_encryption_configuration
      *           Disk encryption configuration specific to an instance.
      *     @type \Google\Cloud\Sql\V1beta4\DiskEncryptionStatus $disk_encryption_status
@@ -1249,7 +1247,6 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * from for a regional instance. This value could be different
      * from the zone that was specified when the instance
      * was created if the instance has failed over to its secondary/failover zone.
-     * Reserved for future use.
      *
      * Generated from protobuf field <code>string secondary_gce_zone = 34;</code>
      * @return string
@@ -1264,7 +1261,6 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * from for a regional instance. This value could be different
      * from the zone that was specified when the instance
      * was created if the instance has failed over to its secondary/failover zone.
-     * Reserved for future use.
      *
      * Generated from protobuf field <code>string secondary_gce_zone = 34;</code>
      * @param string $var
