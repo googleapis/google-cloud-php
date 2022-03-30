@@ -83,6 +83,9 @@ class Query implements QueryInterface
     const OP_GREATER_THAN           = 'GREATER_THAN';
     const OP_GREATER_THAN_OR_EQUAL  = 'GREATER_THAN_OR_EQUAL';
     const OP_EQUALS                 = 'EQUAL';
+    const OP_NOT_EQUALS             = 'NOT_EQUAL';
+    const OP_IN                     = 'IN';
+    const OP_NOT_IN                 = 'NOT_IN';
     const OP_HAS_ANCESTOR           = 'HAS_ANCESTOR';
 
     const ORDER_DEFAULT             = self::ORDER_ASCENDING;
@@ -99,6 +102,9 @@ class Query implements QueryInterface
         self::OP_GREATER_THAN_OR_EQUAL,
         self::OP_EQUALS,
         self::OP_HAS_ANCESTOR,
+        self::OP_NOT_EQUALS,
+        self::OP_IN,
+        self::OP_NOT_IN,
     ];
 
     /**
@@ -109,7 +115,10 @@ class Query implements QueryInterface
         '<=' => self::OP_LESS_THAN_OR_EQUAL,
         '>'  => self::OP_GREATER_THAN,
         '>=' => self::OP_GREATER_THAN_OR_EQUAL,
-        '='  => self::OP_EQUALS
+        '='  => self::OP_EQUALS,
+        '!='  => self::OP_NOT_EQUALS,
+        'IN'  => self::OP_IN,
+        'NOT_IN'  => self::OP_NOT_IN,
     ];
 
     /**
