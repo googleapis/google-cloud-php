@@ -31,7 +31,7 @@ jobs:
             command: composer require --dev phpdocumentor/reflection:^4.0
         - name: Build Documentation
           run: |
-            if [ "$tagName" = "main"]; then
+            if [ "$tagName" = "main" ]; then
               ./dev/google-cloud docs
             else
               ./dev/google-cloud docs -r
