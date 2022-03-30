@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/application_servingstatus","type":"","title":"Google\\Cloud\\AppEngine\\V1\\Application_ServingStatus","name":"Application_ServingStatus","description":"<p>This class is deprecated. Use Google\\Cloud\\AppEngine\\V1\\Application\\ServingStatus instead.<\/p>","examples":[],"resources":[],"methods":[]}

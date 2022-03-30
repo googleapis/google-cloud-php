@@ -1,0 +1,1 @@
+{"id":"artifactregistry\/v1beta2\/yumartifact\/packagetype","type":"","title":"Google\\Cloud\\ArtifactRegistry\\V1beta2\\YumArtifact\\PackageType","name":"PackageType","description":"<p>Package type is either binary or source.<\/p>\n<p>Protobuf type <code>google.devtools.artifactregistry.v1beta2.YumArtifact.PackageType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

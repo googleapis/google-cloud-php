@@ -1,0 +1,1 @@
+{"id":"dataprocmetastore\/v1alpha\/backup\/state","type":"","title":"Google\\Cloud\\Metastore\\V1alpha\\Backup\\State","name":"State","description":"<p>The current state of the backup.<\/p>\n<p>Protobuf type <code>google.cloud.metastore.v1alpha.Backup.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

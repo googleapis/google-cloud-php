@@ -1,0 +1,1 @@
+{"id":"networkconnectivity\/v1\/locationfeature","type":"","title":"Google\\Cloud\\NetworkConnectivity\\V1\\LocationFeature","name":"LocationFeature","description":"<p>Supported features for a location<\/p>\n<p>Protobuf type <code>google.cloud.networkconnectivity.v1.LocationFeature<\/code><\/p>","examples":[],"resources":[],"methods":[]}

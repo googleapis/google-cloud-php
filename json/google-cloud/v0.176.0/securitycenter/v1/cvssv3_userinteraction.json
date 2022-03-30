@@ -1,0 +1,1 @@
+{"id":"securitycenter\/v1\/cvssv3_userinteraction","type":"","title":"Google\\Cloud\\SecurityCenter\\V1\\Cvssv3_UserInteraction","name":"Cvssv3_UserInteraction","description":"<p>This class is deprecated. Use Google\\Cloud\\SecurityCenter\\V1\\Cvssv3\\UserInteraction instead.<\/p>","examples":[],"resources":[],"methods":[]}

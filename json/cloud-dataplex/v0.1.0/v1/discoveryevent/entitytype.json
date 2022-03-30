@@ -1,0 +1,1 @@
+{"id":"dataplex\/v1\/discoveryevent\/entitytype","type":"","title":"Google\\Cloud\\Dataplex\\V1\\DiscoveryEvent\\EntityType","name":"EntityType","description":"<p>The type of the entity.<\/p>\n<p>Protobuf type <code>google.cloud.dataplex.v1.DiscoveryEvent.EntityType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

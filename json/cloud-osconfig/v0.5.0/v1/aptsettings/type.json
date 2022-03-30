@@ -1,0 +1,1 @@
+{"id":"osconfig\/v1\/aptsettings\/type","type":"","title":"Google\\Cloud\\OsConfig\\V1\\AptSettings\\Type","name":"Type","description":"<p>Apt patch type.<\/p>\n<p>Protobuf type <code>google.cloud.osconfig.v1.AptSettings.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

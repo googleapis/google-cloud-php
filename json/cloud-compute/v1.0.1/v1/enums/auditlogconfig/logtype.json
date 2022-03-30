@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/auditlogconfig\/logtype","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\AuditLogConfig\\LogType","name":"LogType","description":"<p>LogType contains string constants that represent the names of each value in the\ngoogle.cloud.compute.v1.AuditLogConfig.LogType descriptor.<\/p>","examples":[],"resources":[],"methods":[]}
