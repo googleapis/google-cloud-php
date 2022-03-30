@@ -1,0 +1,118 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.certificatemanager.v1",
+    "libraryPackage": "Google\\Cloud\\CertificateManager\\V1",
+    "services": {
+        "CertificateManager": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CertificateManagerGapicClient",
+                    "rpcs": {
+                        "CreateCertificate": {
+                            "methods": [
+                                "createCertificate"
+                            ]
+                        },
+                        "CreateCertificateMap": {
+                            "methods": [
+                                "createCertificateMap"
+                            ]
+                        },
+                        "CreateCertificateMapEntry": {
+                            "methods": [
+                                "createCertificateMapEntry"
+                            ]
+                        },
+                        "CreateDnsAuthorization": {
+                            "methods": [
+                                "createDnsAuthorization"
+                            ]
+                        },
+                        "DeleteCertificate": {
+                            "methods": [
+                                "deleteCertificate"
+                            ]
+                        },
+                        "DeleteCertificateMap": {
+                            "methods": [
+                                "deleteCertificateMap"
+                            ]
+                        },
+                        "DeleteCertificateMapEntry": {
+                            "methods": [
+                                "deleteCertificateMapEntry"
+                            ]
+                        },
+                        "DeleteDnsAuthorization": {
+                            "methods": [
+                                "deleteDnsAuthorization"
+                            ]
+                        },
+                        "GetCertificate": {
+                            "methods": [
+                                "getCertificate"
+                            ]
+                        },
+                        "GetCertificateMap": {
+                            "methods": [
+                                "getCertificateMap"
+                            ]
+                        },
+                        "GetCertificateMapEntry": {
+                            "methods": [
+                                "getCertificateMapEntry"
+                            ]
+                        },
+                        "GetDnsAuthorization": {
+                            "methods": [
+                                "getDnsAuthorization"
+                            ]
+                        },
+                        "ListCertificateMapEntries": {
+                            "methods": [
+                                "listCertificateMapEntries"
+                            ]
+                        },
+                        "ListCertificateMaps": {
+                            "methods": [
+                                "listCertificateMaps"
+                            ]
+                        },
+                        "ListCertificates": {
+                            "methods": [
+                                "listCertificates"
+                            ]
+                        },
+                        "ListDnsAuthorizations": {
+                            "methods": [
+                                "listDnsAuthorizations"
+                            ]
+                        },
+                        "UpdateCertificate": {
+                            "methods": [
+                                "updateCertificate"
+                            ]
+                        },
+                        "UpdateCertificateMap": {
+                            "methods": [
+                                "updateCertificateMap"
+                            ]
+                        },
+                        "UpdateCertificateMapEntry": {
+                            "methods": [
+                                "updateCertificateMapEntry"
+                            ]
+                        },
+                        "UpdateDnsAuthorization": {
+                            "methods": [
+                                "updateDnsAuthorization"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
