@@ -1,0 +1,23 @@
+{
+    "title": "Dataplex",
+    "defaultService": "dataplex\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "dataplex\/readme"
+        },
+        {
+            "title": "ContentServiceClient (v1)",
+            "type": "dataplex\/v1\/contentserviceclient"
+        },
+        {
+            "title": "DataplexServiceClient (v1)",
+            "type": "dataplex\/v1\/dataplexserviceclient"
+        },
+        {
+            "title": "MetadataServiceClient (v1)",
+            "type": "dataplex\/v1\/metadataserviceclient"
+        }
+    ],
+    "pattern": "dataplex\/\\w{1,}"
+}

@@ -1,0 +1,1 @@
+{"id":"dataplex\/v1\/schema\/type","type":"","title":"Google\\Cloud\\Dataplex\\V1\\Schema\\Type","name":"Type","description":"<p>Type information for fields in schemas and partition schemas.<\/p>\n<p>Protobuf type <code>google.cloud.dataplex.v1.Schema.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

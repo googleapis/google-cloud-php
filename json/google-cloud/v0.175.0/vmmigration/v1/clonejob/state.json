@@ -1,0 +1,1 @@
+{"id":"vmmigration\/v1\/clonejob\/state","type":"","title":"Google\\Cloud\\VMMigration\\V1\\CloneJob\\State","name":"State","description":"<p>Possible states of the clone job.<\/p>\n<p>Protobuf type <code>google.cloud.vmmigration.v1.CloneJob.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

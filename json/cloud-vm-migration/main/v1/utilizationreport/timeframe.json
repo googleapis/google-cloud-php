@@ -1,0 +1,1 @@
+{"id":"vmmigration\/v1\/utilizationreport\/timeframe","type":"","title":"Google\\Cloud\\VMMigration\\V1\\UtilizationReport\\TimeFrame","name":"TimeFrame","description":"<p>Report time frame options.<\/p>\n<p>Protobuf type <code>google.cloud.vmmigration.v1.UtilizationReport.TimeFrame<\/code><\/p>","examples":[],"resources":[],"methods":[]}

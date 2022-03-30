@@ -1,0 +1,1 @@
+{"id":"vmmigration\/v1\/migratingvm\/state","type":"","title":"Google\\Cloud\\VMMigration\\V1\\MigratingVm\\State","name":"State","description":"<p>The possible values of the state\/health of source VM.<\/p>\n<p>Protobuf type <code>google.cloud.vmmigration.v1.MigratingVm.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

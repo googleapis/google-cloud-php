@@ -1,0 +1,71 @@
+{
+    "title": "AiPlatform",
+    "defaultService": "aiplatform\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "aiplatform\/readme"
+        },
+        {
+            "title": "DatasetServiceClient (v1)",
+            "type": "aiplatform\/v1\/datasetserviceclient"
+        },
+        {
+            "title": "EndpointServiceClient (v1)",
+            "type": "aiplatform\/v1\/endpointserviceclient"
+        },
+        {
+            "title": "FeaturestoreOnlineServingServiceClient (v1)",
+            "type": "aiplatform\/v1\/featurestoreonlineservingserviceclient"
+        },
+        {
+            "title": "FeaturestoreServiceClient (v1)",
+            "type": "aiplatform\/v1\/featurestoreserviceclient"
+        },
+        {
+            "title": "IndexEndpointServiceClient (v1)",
+            "type": "aiplatform\/v1\/indexendpointserviceclient"
+        },
+        {
+            "title": "IndexServiceClient (v1)",
+            "type": "aiplatform\/v1\/indexserviceclient"
+        },
+        {
+            "title": "JobServiceClient (v1)",
+            "type": "aiplatform\/v1\/jobserviceclient"
+        },
+        {
+            "title": "MetadataServiceClient (v1)",
+            "type": "aiplatform\/v1\/metadataserviceclient"
+        },
+        {
+            "title": "MigrationServiceClient (v1)",
+            "type": "aiplatform\/v1\/migrationserviceclient"
+        },
+        {
+            "title": "ModelServiceClient (v1)",
+            "type": "aiplatform\/v1\/modelserviceclient"
+        },
+        {
+            "title": "PipelineServiceClient (v1)",
+            "type": "aiplatform\/v1\/pipelineserviceclient"
+        },
+        {
+            "title": "PredictionServiceClient (v1)",
+            "type": "aiplatform\/v1\/predictionserviceclient"
+        },
+        {
+            "title": "SpecialistPoolServiceClient (v1)",
+            "type": "aiplatform\/v1\/specialistpoolserviceclient"
+        },
+        {
+            "title": "TensorboardServiceClient (v1)",
+            "type": "aiplatform\/v1\/tensorboardserviceclient"
+        },
+        {
+            "title": "VizierServiceClient (v1)",
+            "type": "aiplatform\/v1\/vizierserviceclient"
+        }
+    ],
+    "pattern": "aiplatform\/\\w{1,}"
+}
