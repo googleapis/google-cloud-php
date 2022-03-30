@@ -430,9 +430,12 @@
 
 </details>
 
-<details><summary>google/cloud-video-stitcher 0.0.1</summary>
+<details><summary>google/cloud-video-stitcher 0.1.0</summary>
 
 
+
+### Features
+* introduce video stitcher ([#5179](https://github.com/googleapis/google-cloud-php/pull/5179) ([74eef9a](https://github.com/googleapis/google-cloud-php/commit/74eef9a83b78ef90d2cebede05beb16d198c4b61))
 
 </details>
 
