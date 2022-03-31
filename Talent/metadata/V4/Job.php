@@ -18,11 +18,10 @@ class Job
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Talent\V4\Common::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-§
- google/cloud/talent/v4/job.protogoogle.cloud.talent.v4google/api/resource.proto#google/cloud/talent/v4/common.protogoogle/protobuf/timestamp.protogoogle/api/annotations.proto"õ
+‰
+ google/cloud/talent/v4/job.protogoogle.cloud.talent.v4google/api/resource.proto#google/cloud/talent/v4/common.protogoogle/protobuf/timestamp.proto"õ
 Job
 name (	4
 company (	B#àAúA
