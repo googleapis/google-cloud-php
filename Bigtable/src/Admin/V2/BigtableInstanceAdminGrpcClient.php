@@ -366,4 +366,20 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Lists hot tablets in a cluster, within the time range provided. Hot
+     * tablets are ordered based on CPU usage.
+     * @param \Google\Cloud\Bigtable\Admin\V2\ListHotTabletsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListHotTablets(\Google\Cloud\Bigtable\Admin\V2\ListHotTabletsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableInstanceAdmin/ListHotTablets',
+        $argument,
+        ['\Google\Cloud\Bigtable\Admin\V2\ListHotTabletsResponse', 'decode'],
+        $metadata, $options);
+    }
+
 }
