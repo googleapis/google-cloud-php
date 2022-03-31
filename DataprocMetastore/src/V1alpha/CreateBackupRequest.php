@@ -18,7 +18,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The relative resource name of the service in which to create a backup
      * of the following form:
-     * `projects/{project_number}/locations/{location_id}/services/{service_id}`
+     * `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -65,7 +65,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The relative resource name of the service in which to create a backup
      *           of the following form:
-     *           `projects/{project_number}/locations/{location_id}/services/{service_id}`
+     *           `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *     @type string $backup_id
      *           Required. The ID of the backup, which is used as the final component of the
      *           backup's name.
@@ -96,7 +96,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The relative resource name of the service in which to create a backup
      * of the following form:
-     * `projects/{project_number}/locations/{location_id}/services/{service_id}`
+     * `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -109,7 +109,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The relative resource name of the service in which to create a backup
      * of the following form:
-     * `projects/{project_number}/locations/{location_id}/services/{service_id}`
+     * `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

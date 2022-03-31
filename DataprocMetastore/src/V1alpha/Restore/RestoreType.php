@@ -7,7 +7,7 @@ namespace Google\Cloud\Metastore\V1alpha\Restore;
 use UnexpectedValueException;
 
 /**
- * The type of restore.
+ * The type of restore. If unspecified, defaults to `METADATA_ONLY`.
  *
  * Protobuf type <code>google.cloud.metastore.v1alpha.Restore.RestoreType</code>
  */
