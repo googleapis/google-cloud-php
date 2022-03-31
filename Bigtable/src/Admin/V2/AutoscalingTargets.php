@@ -18,7 +18,8 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
     /**
      * The cpu utilization that the Autoscaler should be trying to achieve.
      * This number is on a scale from 0 (no utilization) to
-     * 100 (total utilization).
+     * 100 (total utilization), and is limited between 10 and 80, otherwise it
+     * will return INVALID_ARGUMENT error.
      *
      * Generated from protobuf field <code>int32 cpu_utilization_percent = 2;</code>
      */
@@ -33,7 +34,8 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
      *     @type int $cpu_utilization_percent
      *           The cpu utilization that the Autoscaler should be trying to achieve.
      *           This number is on a scale from 0 (no utilization) to
-     *           100 (total utilization).
+     *           100 (total utilization), and is limited between 10 and 80, otherwise it
+     *           will return INVALID_ARGUMENT error.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,7 +46,8 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
     /**
      * The cpu utilization that the Autoscaler should be trying to achieve.
      * This number is on a scale from 0 (no utilization) to
-     * 100 (total utilization).
+     * 100 (total utilization), and is limited between 10 and 80, otherwise it
+     * will return INVALID_ARGUMENT error.
      *
      * Generated from protobuf field <code>int32 cpu_utilization_percent = 2;</code>
      * @return int
@@ -57,7 +60,8 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
     /**
      * The cpu utilization that the Autoscaler should be trying to achieve.
      * This number is on a scale from 0 (no utilization) to
-     * 100 (total utilization).
+     * 100 (total utilization), and is limited between 10 and 80, otherwise it
+     * will return INVALID_ARGUMENT error.
      *
      * Generated from protobuf field <code>int32 cpu_utilization_percent = 2;</code>
      * @param int $var

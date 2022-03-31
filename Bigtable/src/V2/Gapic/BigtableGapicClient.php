@@ -43,6 +43,8 @@ use Google\Cloud\Bigtable\V2\MutateRowsRequest;
 use Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry;
 use Google\Cloud\Bigtable\V2\MutateRowsResponse;
 use Google\Cloud\Bigtable\V2\Mutation;
+use Google\Cloud\Bigtable\V2\PingAndWarmRequest;
+use Google\Cloud\Bigtable\V2\PingAndWarmResponse;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowRequest;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRowResponse;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
@@ -111,6 +113,8 @@ class BigtableGapicClient
         'https://www.googleapis.com/auth/cloud-platform.read-only',
     ];
 
+    private static $instanceNameTemplate;
+
     private static $tableNameTemplate;
 
     private static $pathTemplateMap;
@@ -134,6 +138,15 @@ class BigtableGapicClient
         ];
     }
 
+    private static function getInstanceNameTemplate()
+    {
+        if (self::$instanceNameTemplate == null) {
+            self::$instanceNameTemplate = new PathTemplate('projects/{project}/instances/{instance}');
+        }
+
+        return self::$instanceNameTemplate;
+    }
+
     private static function getTableNameTemplate()
     {
         if (self::$tableNameTemplate == null) {
@@ -147,11 +160,29 @@ class BigtableGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'instance' => self::getInstanceNameTemplate(),
                 'table' => self::getTableNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a instance
+     * resource.
+     *
+     * @param string $project
+     * @param string $instance
+     *
+     * @return string The formatted instance resource.
+     */
+    public static function instanceName($project, $instance)
+    {
+        return self::getInstanceNameTemplate()->render([
+            'project' => $project,
+            'instance' => $instance,
+        ]);
     }
 
     /**
@@ -177,6 +208,7 @@ class BigtableGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - instance: projects/{project}/instances/{instance}
      * - table: projects/{project}/instances/{instance}/tables/{table}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -490,6 +522,61 @@ class BigtableGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('MutateRows', MutateRowsResponse::class, $optionalArgs, $request, Call::SERVER_STREAMING_CALL);
+    }
+
+    /**
+     * Warm up associated instance metadata for this connection.
+     * This call is not required but may be useful for connection keep-alive.
+     *
+     * Sample code:
+     * ```
+     * $bigtableClient = new Google\Cloud\Bigtable\V2\BigtableClient();
+     * try {
+     *     $formattedName = $bigtableClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $response = $bigtableClient->pingAndWarm($formattedName);
+     * } finally {
+     *     $bigtableClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The unique name of the instance to check permissions for as well as
+     *                             respond. Values are of the form `projects/<project>/instances/<instance>`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $appProfileId
+     *           This value specifies routing for replication. If not specified, the
+     *           "default" application profile will be used.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Bigtable\V2\PingAndWarmResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function pingAndWarm($name, array $optionalArgs = [])
+    {
+        $request = new PingAndWarmRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $nameMatches = [];
+        if (preg_match('/^(?<name>projects\/[^\/]+\/instances\/[^\/]+)$/', $name, $nameMatches)) {
+            $requestParamHeaders['name'] = $nameMatches['name'];
+        }
+
+        
+        if (isset($optionalArgs['appProfileId'])) {
+            $request->setAppProfileId($optionalArgs['appProfileId']);
+            $requestParamHeaders['app_profile_id'] = $optionalArgs['app_profile_id'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('PingAndWarm', PingAndWarmResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**

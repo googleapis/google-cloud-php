@@ -27,7 +27,7 @@ class BigtableInstanceAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Á@
+ÍD
 6google/bigtable/admin/v2/bigtable_instance_admin.protogoogle.bigtable.admin.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto\'google/bigtable/admin/v2/instance.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Û
 CreateInstanceRequestC
 parent (	B3àAúA-
@@ -127,7 +127,19 @@ page_token (	"ˆ
 name (	B/àAúA)
 \'bigtableadmin.googleapis.com/AppProfile
 ignore_warnings (BàA"
-UpdateAppProfileMetadata2‰ 
+UpdateAppProfileMetadata"Ú
+ListHotTabletsRequest<
+parent (	B,àAúA&
+$bigtableadmin.googleapis.com/Cluster.
+
+start_time (2.google.protobuf.Timestamp,
+end_time (2.google.protobuf.Timestamp
+	page_size (
+
+page_token (	"k
+ListHotTabletsResponse8
+hot_tablets (2#.google.bigtable.admin.v2.HotTablet
+next_page_token (	2Ë!
 BigtableInstanceAdminÚ
 CreateInstance/.google.bigtable.admin.v2.CreateInstanceRequest.google.longrunning.Operation"x‚Óä“&"!/v2/{parent=projects/*}/instances:*ÚA$parent,instance_id,instance,clustersÊA"
 InstanceCreateInstanceMetadata‘
@@ -156,7 +168,8 @@ AppProfileUpdateAppProfileMetadata
 DeleteAppProfile1.google.bigtable.admin.v2.DeleteAppProfileRequest.google.protobuf.Empty">‚Óä“1*//v2/{name=projects/*/instances/*/appProfiles/*}ÚAname“
 GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"H‚Óä“7"2/v2/{resource=projects/*/instances/*}:getIamPolicy:*ÚAresourceš
 SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"O‚Óä“7"2/v2/{resource=projects/*/instances/*}:setIamPolicy:*ÚAresource,policyÅ
-TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"Z‚Óä“="8/v2/{resource=projects/*/instances/*}:testIamPermissions:*ÚAresource,permissionsšÊAbigtableadmin.googleapis.comÒA÷https://www.googleapis.com/auth/bigtable.admin,https://www.googleapis.com/auth/bigtable.admin.cluster,https://www.googleapis.com/auth/bigtable.admin.instance,https://www.googleapis.com/auth/cloud-bigtable.admin,https://www.googleapis.com/auth/cloud-bigtable.admin.cluster,https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBâ
+TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"Z‚Óä“="8/v2/{resource=projects/*/instances/*}:testIamPermissions:*ÚAresource,permissions¿
+ListHotTablets/.google.bigtable.admin.v2.ListHotTabletsRequest0.google.bigtable.admin.v2.ListHotTabletsResponse"J‚Óä“;9/v2/{parent=projects/*/instances/*/clusters/*}/hotTabletsÚAparentšÊAbigtableadmin.googleapis.comÒA÷https://www.googleapis.com/auth/bigtable.admin,https://www.googleapis.com/auth/bigtable.admin.cluster,https://www.googleapis.com/auth/bigtable.admin.instance,https://www.googleapis.com/auth/cloud-bigtable.admin,https://www.googleapis.com/auth/cloud-bigtable.admin.cluster,https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBâ
 com.google.bigtable.admin.v2BBigtableInstanceAdminProtoPZ=google.golang.org/genproto/googleapis/bigtable/admin/v2;adminªGoogle.Cloud.Bigtable.Admin.V2ÊGoogle\\Cloud\\Bigtable\\Admin\\V2ê"Google::Cloud::Bigtable::Admin::V2bproto3'
         , true);
 
