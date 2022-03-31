@@ -26,9 +26,9 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
      * This field will only be set if `enable_exactly_once_delivery` is set to
      * `true`.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation acknowlege_confirmation = 2;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation acknowledge_confirmation = 5;</code>
      */
-    private $acknowlege_confirmation = null;
+    private $acknowledge_confirmation = null;
     /**
      * This field will only be set if `enable_exactly_once_delivery` is set to
      * `true`.
@@ -51,7 +51,7 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\PubSub\V1\ReceivedMessage[]|\Google\Protobuf\Internal\RepeatedField $received_messages
      *           Received Pub/Sub messages. This will not be empty.
-     *     @type \Google\Cloud\PubSub\V1\StreamingPullResponse\AcknowledgeConfirmation $acknowlege_confirmation
+     *     @type \Google\Cloud\PubSub\V1\StreamingPullResponse\AcknowledgeConfirmation $acknowledge_confirmation
      *           This field will only be set if `enable_exactly_once_delivery` is set to
      *           `true`.
      *     @type \Google\Cloud\PubSub\V1\StreamingPullResponse\ModifyAckDeadlineConfirmation $modify_ack_deadline_confirmation
@@ -96,36 +96,36 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
      * This field will only be set if `enable_exactly_once_delivery` is set to
      * `true`.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation acknowlege_confirmation = 2;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation acknowledge_confirmation = 5;</code>
      * @return \Google\Cloud\PubSub\V1\StreamingPullResponse\AcknowledgeConfirmation|null
      */
-    public function getAcknowlegeConfirmation()
+    public function getAcknowledgeConfirmation()
     {
-        return $this->acknowlege_confirmation;
+        return $this->acknowledge_confirmation;
     }
 
-    public function hasAcknowlegeConfirmation()
+    public function hasAcknowledgeConfirmation()
     {
-        return isset($this->acknowlege_confirmation);
+        return isset($this->acknowledge_confirmation);
     }
 
-    public function clearAcknowlegeConfirmation()
+    public function clearAcknowledgeConfirmation()
     {
-        unset($this->acknowlege_confirmation);
+        unset($this->acknowledge_confirmation);
     }
 
     /**
      * This field will only be set if `enable_exactly_once_delivery` is set to
      * `true`.
      *
-     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation acknowlege_confirmation = 2;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.AcknowledgeConfirmation acknowledge_confirmation = 5;</code>
      * @param \Google\Cloud\PubSub\V1\StreamingPullResponse\AcknowledgeConfirmation $var
      * @return $this
      */
-    public function setAcknowlegeConfirmation($var)
+    public function setAcknowledgeConfirmation($var)
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\StreamingPullResponse\AcknowledgeConfirmation::class);
-        $this->acknowlege_confirmation = $var;
+        $this->acknowledge_confirmation = $var;
 
         return $this;
     }
