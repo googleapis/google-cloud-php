@@ -84,8 +84,14 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      */
     private $commute_filter = null;
     /**
-     * This filter specifies the exact company [Company.display_name][google.cloud.talent.v4.Company.display_name]
-     * of the jobs to search against.
+     * This filter specifies the company [Company.display_name][google.cloud.talent.v4.Company.display_name]
+     * of the jobs to search against. The company name must match the value
+     * exactly (case sensitive).
+     * Alternatively, if the value being searched for is wrapped in
+     * `SUBSTRING_MATCH([value])`, the company name must contain a case
+     * insensitive substring match of the value. Using this function may increase
+     * latency.
+     * Sample Values: `["Google LLC", "SUBSTRING_MATCH(google)"]`
      * If a value isn't specified, jobs within the search results are
      * associated with any company.
      * If multiple values are specified, jobs within the search results may be
@@ -226,8 +232,14 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *           [location_filters][google.cloud.talent.v4.JobQuery.location_filters] is ignored.
      *            Currently we don't support sorting by commute time.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $company_display_names
-     *           This filter specifies the exact company [Company.display_name][google.cloud.talent.v4.Company.display_name]
-     *           of the jobs to search against.
+     *           This filter specifies the company [Company.display_name][google.cloud.talent.v4.Company.display_name]
+     *           of the jobs to search against. The company name must match the value
+     *           exactly (case sensitive).
+     *           Alternatively, if the value being searched for is wrapped in
+     *           `SUBSTRING_MATCH([value])`, the company name must contain a case
+     *           insensitive substring match of the value. Using this function may increase
+     *           latency.
+     *           Sample Values: `["Google LLC", "SUBSTRING_MATCH(google)"]`
      *           If a value isn't specified, jobs within the search results are
      *           associated with any company.
      *           If multiple values are specified, jobs within the search results may be
@@ -522,8 +534,14 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This filter specifies the exact company [Company.display_name][google.cloud.talent.v4.Company.display_name]
-     * of the jobs to search against.
+     * This filter specifies the company [Company.display_name][google.cloud.talent.v4.Company.display_name]
+     * of the jobs to search against. The company name must match the value
+     * exactly (case sensitive).
+     * Alternatively, if the value being searched for is wrapped in
+     * `SUBSTRING_MATCH([value])`, the company name must contain a case
+     * insensitive substring match of the value. Using this function may increase
+     * latency.
+     * Sample Values: `["Google LLC", "SUBSTRING_MATCH(google)"]`
      * If a value isn't specified, jobs within the search results are
      * associated with any company.
      * If multiple values are specified, jobs within the search results may be
@@ -539,8 +557,14 @@ class JobQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This filter specifies the exact company [Company.display_name][google.cloud.talent.v4.Company.display_name]
-     * of the jobs to search against.
+     * This filter specifies the company [Company.display_name][google.cloud.talent.v4.Company.display_name]
+     * of the jobs to search against. The company name must match the value
+     * exactly (case sensitive).
+     * Alternatively, if the value being searched for is wrapped in
+     * `SUBSTRING_MATCH([value])`, the company name must contain a case
+     * insensitive substring match of the value. Using this function may increase
+     * latency.
+     * Sample Values: `["Google LLC", "SUBSTRING_MATCH(google)"]`
      * If a value isn't specified, jobs within the search results are
      * associated with any company.
      * If multiple values are specified, jobs within the search results may be

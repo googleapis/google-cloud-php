@@ -16,11 +16,10 @@ class Tenant
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Á
-#google/cloud/talent/v4/tenant.protogoogle.cloud.talent.v4google/api/resource.protogoogle/api/annotations.proto"v
+…
+#google/cloud/talent/v4/tenant.protogoogle.cloud.talent.v4google/api/resource.proto"v
 Tenant
 name (	
 external_id (	B‡A:DÍAA
