@@ -26,11 +26,11 @@ return [
             ],
             'GetJobMetrics' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1b3/projects/{project_id}/jobs/{job_id}/metrics',
+                'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/jobs/{job_id}/metrics',
                 'additionalBindings' => [
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1b3/projects/{project_id}/locations/{location}/jobs/{job_id}/metrics',
+                        'uriTemplate' => '/v1b3/projects/{project_id}/jobs/{job_id}/metrics',
                     ],
                 ],
                 'placeholders' => [
