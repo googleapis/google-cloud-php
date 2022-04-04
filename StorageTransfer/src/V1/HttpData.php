@@ -26,9 +26,9 @@ use Google\Protobuf\Internal\GPBUtil;
  * transferred to a data sink, the name of the object at the data sink is
  * `<hostname>/<URL-path>`.
  * * If the specified size of an object does not match the actual size of the
- * object fetched, the object will not be transferred.
+ * object fetched, the object is not transferred.
  * * If the specified MD5 does not match the MD5 computed from the transferred
- * bytes, the object transfer will fail.
+ * bytes, the object transfer fails.
  * * Ensure that each URL you specify is publicly accessible. For
  * example, in Cloud Storage you can
  * [share an object publicly]
@@ -36,8 +36,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * * Storage Transfer Service obeys `robots.txt` rules and requires the source
  * HTTP server to support `Range` requests and to return a `Content-Length`
  * header in each response.
- * * [ObjectConditions][google.storagetransfer.v1.ObjectConditions] have no
- * effect when filtering objects to transfer.
+ * * [ObjectConditions][google.storagetransfer.v1.ObjectConditions] have no effect when filtering objects to transfer.
  *
  * Generated from protobuf message <code>google.storagetransfer.v1.HttpData</code>
  */

@@ -119,6 +119,45 @@ class TransferCounters extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 bytes_failed_to_delete_from_sink = 16;</code>
      */
     private $bytes_failed_to_delete_from_sink = 0;
+    /**
+     * For transfers involving PosixFilesystem only.
+     * Number of directories found while listing. For example, if the root
+     * directory of the transfer is `base/` and there are two other directories,
+     * `a/` and `b/` under this directory, the count after listing `base/`,
+     * `base/a/` and `base/b/` is 3.
+     *
+     * Generated from protobuf field <code>int64 directories_found_from_source = 17;</code>
+     */
+    private $directories_found_from_source = 0;
+    /**
+     * For transfers involving PosixFilesystem only.
+     * Number of listing failures for each directory found at the source.
+     * Potential failures when listing a directory include permission failure or
+     * block failure. If listing a directory fails, no files in the directory are
+     * transferred.
+     *
+     * Generated from protobuf field <code>int64 directories_failed_to_list_from_source = 18;</code>
+     */
+    private $directories_failed_to_list_from_source = 0;
+    /**
+     * For transfers involving PosixFilesystem only.
+     * Number of successful listings for each directory found at the source.
+     *
+     * Generated from protobuf field <code>int64 directories_successfully_listed_from_source = 19;</code>
+     */
+    private $directories_successfully_listed_from_source = 0;
+    /**
+     * Number of successfully cleaned up intermediate objects.
+     *
+     * Generated from protobuf field <code>int64 intermediate_objects_cleaned_up = 22;</code>
+     */
+    private $intermediate_objects_cleaned_up = 0;
+    /**
+     * Number of intermediate objects failed cleaned up.
+     *
+     * Generated from protobuf field <code>int64 intermediate_objects_failed_cleaned_up = 23;</code>
+     */
+    private $intermediate_objects_failed_cleaned_up = 0;
 
     /**
      * Constructor.
@@ -166,6 +205,25 @@ class TransferCounters extends \Google\Protobuf\Internal\Message
      *           Objects that failed to be deleted from the data sink.
      *     @type int|string $bytes_failed_to_delete_from_sink
      *           Bytes that failed to be deleted from the data sink.
+     *     @type int|string $directories_found_from_source
+     *           For transfers involving PosixFilesystem only.
+     *           Number of directories found while listing. For example, if the root
+     *           directory of the transfer is `base/` and there are two other directories,
+     *           `a/` and `b/` under this directory, the count after listing `base/`,
+     *           `base/a/` and `base/b/` is 3.
+     *     @type int|string $directories_failed_to_list_from_source
+     *           For transfers involving PosixFilesystem only.
+     *           Number of listing failures for each directory found at the source.
+     *           Potential failures when listing a directory include permission failure or
+     *           block failure. If listing a directory fails, no files in the directory are
+     *           transferred.
+     *     @type int|string $directories_successfully_listed_from_source
+     *           For transfers involving PosixFilesystem only.
+     *           Number of successful listings for each directory found at the source.
+     *     @type int|string $intermediate_objects_cleaned_up
+     *           Number of successfully cleaned up intermediate objects.
+     *     @type int|string $intermediate_objects_failed_cleaned_up
+     *           Number of intermediate objects failed cleaned up.
      * }
      */
     public function __construct($data = NULL) {
@@ -601,6 +659,154 @@ class TransferCounters extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->bytes_failed_to_delete_from_sink = $var;
+
+        return $this;
+    }
+
+    /**
+     * For transfers involving PosixFilesystem only.
+     * Number of directories found while listing. For example, if the root
+     * directory of the transfer is `base/` and there are two other directories,
+     * `a/` and `b/` under this directory, the count after listing `base/`,
+     * `base/a/` and `base/b/` is 3.
+     *
+     * Generated from protobuf field <code>int64 directories_found_from_source = 17;</code>
+     * @return int|string
+     */
+    public function getDirectoriesFoundFromSource()
+    {
+        return $this->directories_found_from_source;
+    }
+
+    /**
+     * For transfers involving PosixFilesystem only.
+     * Number of directories found while listing. For example, if the root
+     * directory of the transfer is `base/` and there are two other directories,
+     * `a/` and `b/` under this directory, the count after listing `base/`,
+     * `base/a/` and `base/b/` is 3.
+     *
+     * Generated from protobuf field <code>int64 directories_found_from_source = 17;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setDirectoriesFoundFromSource($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->directories_found_from_source = $var;
+
+        return $this;
+    }
+
+    /**
+     * For transfers involving PosixFilesystem only.
+     * Number of listing failures for each directory found at the source.
+     * Potential failures when listing a directory include permission failure or
+     * block failure. If listing a directory fails, no files in the directory are
+     * transferred.
+     *
+     * Generated from protobuf field <code>int64 directories_failed_to_list_from_source = 18;</code>
+     * @return int|string
+     */
+    public function getDirectoriesFailedToListFromSource()
+    {
+        return $this->directories_failed_to_list_from_source;
+    }
+
+    /**
+     * For transfers involving PosixFilesystem only.
+     * Number of listing failures for each directory found at the source.
+     * Potential failures when listing a directory include permission failure or
+     * block failure. If listing a directory fails, no files in the directory are
+     * transferred.
+     *
+     * Generated from protobuf field <code>int64 directories_failed_to_list_from_source = 18;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setDirectoriesFailedToListFromSource($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->directories_failed_to_list_from_source = $var;
+
+        return $this;
+    }
+
+    /**
+     * For transfers involving PosixFilesystem only.
+     * Number of successful listings for each directory found at the source.
+     *
+     * Generated from protobuf field <code>int64 directories_successfully_listed_from_source = 19;</code>
+     * @return int|string
+     */
+    public function getDirectoriesSuccessfullyListedFromSource()
+    {
+        return $this->directories_successfully_listed_from_source;
+    }
+
+    /**
+     * For transfers involving PosixFilesystem only.
+     * Number of successful listings for each directory found at the source.
+     *
+     * Generated from protobuf field <code>int64 directories_successfully_listed_from_source = 19;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setDirectoriesSuccessfullyListedFromSource($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->directories_successfully_listed_from_source = $var;
+
+        return $this;
+    }
+
+    /**
+     * Number of successfully cleaned up intermediate objects.
+     *
+     * Generated from protobuf field <code>int64 intermediate_objects_cleaned_up = 22;</code>
+     * @return int|string
+     */
+    public function getIntermediateObjectsCleanedUp()
+    {
+        return $this->intermediate_objects_cleaned_up;
+    }
+
+    /**
+     * Number of successfully cleaned up intermediate objects.
+     *
+     * Generated from protobuf field <code>int64 intermediate_objects_cleaned_up = 22;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setIntermediateObjectsCleanedUp($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->intermediate_objects_cleaned_up = $var;
+
+        return $this;
+    }
+
+    /**
+     * Number of intermediate objects failed cleaned up.
+     *
+     * Generated from protobuf field <code>int64 intermediate_objects_failed_cleaned_up = 23;</code>
+     * @return int|string
+     */
+    public function getIntermediateObjectsFailedCleanedUp()
+    {
+        return $this->intermediate_objects_failed_cleaned_up;
+    }
+
+    /**
+     * Number of intermediate objects failed cleaned up.
+     *
+     * Generated from protobuf field <code>int64 intermediate_objects_failed_cleaned_up = 23;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setIntermediateObjectsFailedCleanedUp($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->intermediate_objects_failed_cleaned_up = $var;
 
         return $this;
     }
