@@ -1,0 +1,83 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.storagetransfer.v1",
+    "libraryPackage": "Google\\Cloud\\StorageTransfer\\V1",
+    "services": {
+        "StorageTransferService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "StorageTransferServiceGapicClient",
+                    "rpcs": {
+                        "CreateAgentPool": {
+                            "methods": [
+                                "createAgentPool"
+                            ]
+                        },
+                        "CreateTransferJob": {
+                            "methods": [
+                                "createTransferJob"
+                            ]
+                        },
+                        "DeleteAgentPool": {
+                            "methods": [
+                                "deleteAgentPool"
+                            ]
+                        },
+                        "GetAgentPool": {
+                            "methods": [
+                                "getAgentPool"
+                            ]
+                        },
+                        "GetGoogleServiceAccount": {
+                            "methods": [
+                                "getGoogleServiceAccount"
+                            ]
+                        },
+                        "GetTransferJob": {
+                            "methods": [
+                                "getTransferJob"
+                            ]
+                        },
+                        "ListAgentPools": {
+                            "methods": [
+                                "listAgentPools"
+                            ]
+                        },
+                        "ListTransferJobs": {
+                            "methods": [
+                                "listTransferJobs"
+                            ]
+                        },
+                        "PauseTransferOperation": {
+                            "methods": [
+                                "pauseTransferOperation"
+                            ]
+                        },
+                        "ResumeTransferOperation": {
+                            "methods": [
+                                "resumeTransferOperation"
+                            ]
+                        },
+                        "RunTransferJob": {
+                            "methods": [
+                                "runTransferJob"
+                            ]
+                        },
+                        "UpdateAgentPool": {
+                            "methods": [
+                                "updateAgentPool"
+                            ]
+                        },
+                        "UpdateTransferJob": {
+                            "methods": [
+                                "updateTransferJob"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
