@@ -7,7 +7,8 @@ namespace Google\Cloud\Kms\V1\ImportJob;
 use UnexpectedValueException;
 
 /**
- * The state of the [ImportJob][google.cloud.kms.v1.ImportJob], indicating if it can be used.
+ * The state of the [ImportJob][google.cloud.kms.v1.ImportJob], indicating if
+ * it can be used.
  *
  * Protobuf type <code>google.cloud.kms.v1.ImportJob.ImportJobState</code>
  */
@@ -22,14 +23,16 @@ class ImportJobState
     /**
      * The wrapping key for this job is still being generated. It may not be
      * used. Cloud KMS will automatically mark this job as
-     * [ACTIVE][google.cloud.kms.v1.ImportJob.ImportJobState.ACTIVE] as soon as the wrapping key is generated.
+     * [ACTIVE][google.cloud.kms.v1.ImportJob.ImportJobState.ACTIVE] as soon as
+     * the wrapping key is generated.
      *
      * Generated from protobuf enum <code>PENDING_GENERATION = 1;</code>
      */
     const PENDING_GENERATION = 1;
     /**
      * This job may be used in
-     * [CreateCryptoKey][google.cloud.kms.v1.KeyManagementService.CreateCryptoKey] and
+     * [CreateCryptoKey][google.cloud.kms.v1.KeyManagementService.CreateCryptoKey]
+     * and
      * [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]
      * requests.
      *

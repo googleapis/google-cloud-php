@@ -9,25 +9,29 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KeyManagementService.ListCryptoKeyVersions][google.cloud.kms.v1.KeyManagementService.ListCryptoKeyVersions].
+ * Request message for
+ * [KeyManagementService.ListCryptoKeyVersions][google.cloud.kms.v1.KeyManagementService.ListCryptoKeyVersions].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.ListCryptoKeyVersionsRequest</code>
  */
 class ListCryptoKeyVersionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to list, in the format
+     * Required. The resource name of the
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey] to list, in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional. Optional limit on the number of [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] to
-     * include in the response. Further [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] can
-     * subsequently be obtained by including the
-     * [ListCryptoKeyVersionsResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeyVersionsResponse.next_page_token] in a subsequent request.
-     * If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of
+     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] to include in the
+     * response. Further [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]
+     * can subsequently be obtained by including the
+     * [ListCryptoKeyVersionsResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeyVersionsResponse.next_page_token]
+     * in a subsequent request. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -71,14 +75,17 @@ class ListCryptoKeyVersionsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to list, in the format
+     *           Required. The resource name of the
+     *           [CryptoKey][google.cloud.kms.v1.CryptoKey] to list, in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *     @type int $page_size
-     *           Optional. Optional limit on the number of [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] to
-     *           include in the response. Further [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] can
-     *           subsequently be obtained by including the
-     *           [ListCryptoKeyVersionsResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeyVersionsResponse.next_page_token] in a subsequent request.
-     *           If unspecified, the server will pick an appropriate default.
+     *           Optional. Optional limit on the number of
+     *           [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] to include in the
+     *           response. Further [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]
+     *           can subsequently be obtained by including the
+     *           [ListCryptoKeyVersionsResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeyVersionsResponse.next_page_token]
+     *           in a subsequent request. If unspecified, the server will pick an
+     *           appropriate default.
      *     @type string $page_token
      *           Optional. Optional pagination token, returned earlier via
      *           [ListCryptoKeyVersionsResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeyVersionsResponse.next_page_token].
@@ -102,7 +109,8 @@ class ListCryptoKeyVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to list, in the format
+     * Required. The resource name of the
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey] to list, in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -114,7 +122,8 @@ class ListCryptoKeyVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to list, in the format
+     * Required. The resource name of the
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey] to list, in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -130,11 +139,13 @@ class ListCryptoKeyVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional limit on the number of [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] to
-     * include in the response. Further [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] can
-     * subsequently be obtained by including the
-     * [ListCryptoKeyVersionsResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeyVersionsResponse.next_page_token] in a subsequent request.
-     * If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of
+     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] to include in the
+     * response. Further [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]
+     * can subsequently be obtained by including the
+     * [ListCryptoKeyVersionsResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeyVersionsResponse.next_page_token]
+     * in a subsequent request. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -145,11 +156,13 @@ class ListCryptoKeyVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional limit on the number of [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] to
-     * include in the response. Further [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] can
-     * subsequently be obtained by including the
-     * [ListCryptoKeyVersionsResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeyVersionsResponse.next_page_token] in a subsequent request.
-     * If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of
+     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] to include in the
+     * response. Further [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]
+     * can subsequently be obtained by including the
+     * [ListCryptoKeyVersionsResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeyVersionsResponse.next_page_token]
+     * in a subsequent request. If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
