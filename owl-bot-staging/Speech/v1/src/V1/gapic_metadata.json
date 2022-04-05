@@ -1,0 +1,33 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.speech.v1",
+    "libraryPackage": "Google\\Cloud\\Speech\\V1",
+    "services": {
+        "Speech": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SpeechGapicClient",
+                    "rpcs": {
+                        "LongRunningRecognize": {
+                            "methods": [
+                                "longRunningRecognize"
+                            ]
+                        },
+                        "Recognize": {
+                            "methods": [
+                                "recognize"
+                            ]
+                        },
+                        "StreamingRecognize": {
+                            "methods": [
+                                "streamingRecognize"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
