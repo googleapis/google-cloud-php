@@ -22,6 +22,18 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string cluster = 1 [(.google.api.resource_reference) = {</code>
      */
     private $cluster = '';
+    /**
+     * Optional. If true, `cluster` is accessed using the private IP address of the control
+     * plane endpoint. Otherwise, the default IP address of the control plane
+     * endpoint is used. The default IP address is the private IP address for
+     * clusters with private control-plane endpoints and the public IP address
+     * otherwise.
+     * Only specify this option when `cluster` is a [private GKE
+     * cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/private-cluster-concept).
+     *
+     * Generated from protobuf field <code>bool internal_ip = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $internal_ip = false;
 
     /**
      * Constructor.
@@ -32,6 +44,14 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
      *     @type string $cluster
      *           Information specifying a GKE Cluster. Format is
      *           `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}.
+     *     @type bool $internal_ip
+     *           Optional. If true, `cluster` is accessed using the private IP address of the control
+     *           plane endpoint. Otherwise, the default IP address of the control plane
+     *           endpoint is used. The default IP address is the private IP address for
+     *           clusters with private control-plane endpoints and the public IP address
+     *           otherwise.
+     *           Only specify this option when `cluster` is a [private GKE
+     *           cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/private-cluster-concept).
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +83,44 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cluster = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, `cluster` is accessed using the private IP address of the control
+     * plane endpoint. Otherwise, the default IP address of the control plane
+     * endpoint is used. The default IP address is the private IP address for
+     * clusters with private control-plane endpoints and the public IP address
+     * otherwise.
+     * Only specify this option when `cluster` is a [private GKE
+     * cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/private-cluster-concept).
+     *
+     * Generated from protobuf field <code>bool internal_ip = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getInternalIp()
+    {
+        return $this->internal_ip;
+    }
+
+    /**
+     * Optional. If true, `cluster` is accessed using the private IP address of the control
+     * plane endpoint. Otherwise, the default IP address of the control plane
+     * endpoint is used. The default IP address is the private IP address for
+     * clusters with private control-plane endpoints and the public IP address
+     * otherwise.
+     * Only specify this option when `cluster` is a [private GKE
+     * cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/private-cluster-concept).
+     *
+     * Generated from protobuf field <code>bool internal_ip = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setInternalIp($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->internal_ip = $var;
 
         return $this;
     }

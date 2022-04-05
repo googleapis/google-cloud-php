@@ -22,13 +22,13 @@ class ReleaseRenderEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message = 1;</code>
      */
-    protected $message = '';
+    private $message = '';
     /**
      * The name of the `Release`.
      *
      * Generated from protobuf field <code>string release = 2;</code>
      */
-    protected $release = '';
+    private $release = '';
 
     /**
      * Constructor.

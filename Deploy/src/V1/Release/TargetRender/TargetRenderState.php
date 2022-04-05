@@ -66,6 +66,4 @@ class TargetRenderState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TargetRenderState::class, \Google\Cloud\Deploy\V1\Release_TargetRender_TargetRenderState::class);
 

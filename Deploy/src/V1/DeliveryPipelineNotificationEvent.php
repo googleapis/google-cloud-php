@@ -22,19 +22,19 @@ class DeliveryPipelineNotificationEvent extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string message = 1;</code>
      */
-    protected $message = '';
+    private $message = '';
     /**
      * The name of the `Delivery Pipeline`.
      *
      * Generated from protobuf field <code>string delivery_pipeline = 2;</code>
      */
-    protected $delivery_pipeline = '';
+    private $delivery_pipeline = '';
     /**
      * Type of this notification, e.g. for a Pub/Sub failure.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Type type = 3;</code>
      */
-    protected $type = 0;
+    private $type = 0;
 
     /**
      * Constructor.

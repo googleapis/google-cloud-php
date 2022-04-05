@@ -22,37 +22,37 @@ class RolloutNotificationEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message = 1;</code>
      */
-    protected $message = '';
+    private $message = '';
     /**
      * Unique identifier of the `DeliveryPipeline`.
      *
      * Generated from protobuf field <code>string pipeline_uid = 2;</code>
      */
-    protected $pipeline_uid = '';
+    private $pipeline_uid = '';
     /**
      * Unique identifier of the `Release`.
      *
      * Generated from protobuf field <code>string release_uid = 3;</code>
      */
-    protected $release_uid = '';
+    private $release_uid = '';
     /**
      * The name of the `Rollout`.
      *
      * Generated from protobuf field <code>string rollout = 4;</code>
      */
-    protected $rollout = '';
+    private $rollout = '';
     /**
      * Type of this notification, e.g. for a Pub/Sub failure.
      *
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Type type = 5;</code>
      */
-    protected $type = 0;
+    private $type = 0;
     /**
      * ID of the `Target` that the rollout is deployed to.
      *
      * Generated from protobuf field <code>string target_id = 6;</code>
      */
-    protected $target_id = '';
+    private $target_id = '';
 
     /**
      * Constructor.

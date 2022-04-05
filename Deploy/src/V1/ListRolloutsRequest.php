@@ -39,7 +39,7 @@ class ListRolloutsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Optional. Filter builds to be returned. See https://google.aip.dev/160 for more
+     * Optional. Filter rollouts to be returned. See https://google.aip.dev/160 for more
      * details.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -70,7 +70,7 @@ class ListRolloutsRequest extends \Google\Protobuf\Internal\Message
      *           When paginating, all other provided parameters match
      *           the call that provided the page token.
      *     @type string $filter
-     *           Optional. Filter builds to be returned. See https://google.aip.dev/160 for more
+     *           Optional. Filter rollouts to be returned. See https://google.aip.dev/160 for more
      *           details.
      *     @type string $order_by
      *           Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
@@ -170,7 +170,7 @@ class ListRolloutsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Filter builds to be returned. See https://google.aip.dev/160 for more
+     * Optional. Filter rollouts to be returned. See https://google.aip.dev/160 for more
      * details.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -182,7 +182,7 @@ class ListRolloutsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Filter builds to be returned. See https://google.aip.dev/160 for more
+     * Optional. Filter rollouts to be returned. See https://google.aip.dev/160 for more
      * details.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
