@@ -20,14 +20,11 @@ class Containeranalysis
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Iam\V1\IamPolicy::initOnce();
         \GPBMetadata\Google\Iam\V1\Policy::initOnce();
-        \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Grafeas\V1\Common::initOnce();
-        \GPBMetadata\Grafeas\V1\Grafeas::initOnce();
         \GPBMetadata\Grafeas\V1\Severity::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¢
-<google/devtools/containeranalysis/v1/containeranalysis.proto$google.devtools.containeranalysis.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/timestamp.protografeas/v1/common.protografeas/v1/grafeas.protografeas/v1/severity.proto"€
+Î
+<google/devtools/containeranalysis/v1/containeranalysis.proto$google.devtools.containeranalysis.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protografeas/v1/severity.proto"€
 )GetVulnerabilityOccurrencesSummaryRequestC
 parent (	B3àAúA-
 +cloudresourcemanager.googleapis.com/Project
