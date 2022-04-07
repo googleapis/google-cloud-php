@@ -80,16 +80,16 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Output only. Email address of the user who last edited the big query
-     * export. This field is set by the server and will be ignored if provided on
-     * export creation or update.
+     * Output only. Email address of the user who last edited the big query export.
+     * This field is set by the server and will be ignored if provided on export
+     * creation or update.
      *
      * Generated from protobuf field <code>string most_recent_editor = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $most_recent_editor = '';
     /**
-     * Output only. The service account that needs permission to create table,
-     * upload data to the big query dataset.
+     * Output only. The service account that needs permission to create table, upload data to
+     * the big query dataset.
      *
      * Generated from protobuf field <code>string principal = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -142,12 +142,12 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
      *           This field is set by the server and will be ignored if provided on export
      *           creation or update.
      *     @type string $most_recent_editor
-     *           Output only. Email address of the user who last edited the big query
-     *           export. This field is set by the server and will be ignored if provided on
-     *           export creation or update.
+     *           Output only. Email address of the user who last edited the big query export.
+     *           This field is set by the server and will be ignored if provided on export
+     *           creation or update.
      *     @type string $principal
-     *           Output only. The service account that needs permission to create table,
-     *           upload data to the big query dataset.
+     *           Output only. The service account that needs permission to create table, upload data to
+     *           the big query dataset.
      * }
      */
     public function __construct($data = NULL) {
@@ -388,9 +388,9 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Email address of the user who last edited the big query
-     * export. This field is set by the server and will be ignored if provided on
-     * export creation or update.
+     * Output only. Email address of the user who last edited the big query export.
+     * This field is set by the server and will be ignored if provided on export
+     * creation or update.
      *
      * Generated from protobuf field <code>string most_recent_editor = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -401,9 +401,9 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Email address of the user who last edited the big query
-     * export. This field is set by the server and will be ignored if provided on
-     * export creation or update.
+     * Output only. Email address of the user who last edited the big query export.
+     * This field is set by the server and will be ignored if provided on export
+     * creation or update.
      *
      * Generated from protobuf field <code>string most_recent_editor = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -418,8 +418,8 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The service account that needs permission to create table,
-     * upload data to the big query dataset.
+     * Output only. The service account that needs permission to create table, upload data to
+     * the big query dataset.
      *
      * Generated from protobuf field <code>string principal = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -430,8 +430,8 @@ class BigQueryExport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The service account that needs permission to create table,
-     * upload data to the big query dataset.
+     * Output only. The service account that needs permission to create table, upload data to
+     * the big query dataset.
      *
      * Generated from protobuf field <code>string principal = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

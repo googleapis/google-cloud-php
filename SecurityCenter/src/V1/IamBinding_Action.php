@@ -12,5 +12,5 @@ if (false) {
     class IamBinding_Action {}
 }
 class_exists(IamBinding\Action::class);
-@trigger_error('Google\Cloud\SecurityCenter\V1\IamBinding_Action is deprecated and will be removed in the next major release. Use Google\Cloud\SecurityCenter\V1\IamBinding\Action instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\SecurityCenter\V1\IamBinding_Action is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\IamBinding\Action instead', E_USER_DEPRECATED);
 

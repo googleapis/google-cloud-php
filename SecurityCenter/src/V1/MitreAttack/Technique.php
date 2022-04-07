@@ -9,6 +9,7 @@ use UnexpectedValueException;
 /**
  * MITRE ATT&CK techniques that can be referenced by SCC findings.
  * See: https://attack.mitre.org/techniques/enterprise/
+ * Next ID: 30
  *
  * Protobuf type <code>google.cloud.securitycenter.v1.MitreAttack.Technique</code>
  */
@@ -188,6 +189,12 @@ class Technique
      * Generated from protobuf enum <code>MODIFY_AUTHENTICATION_PROCESS = 28;</code>
      */
     const MODIFY_AUTHENTICATION_PROCESS = 28;
+    /**
+     * T1485
+     *
+     * Generated from protobuf enum <code>DATA_DESTRUCTION = 29;</code>
+     */
+    const DATA_DESTRUCTION = 29;
 
     private static $valueToName = [
         self::TECHNIQUE_UNSPECIFIED => 'TECHNIQUE_UNSPECIFIED',
@@ -219,6 +226,7 @@ class Technique
         self::MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE => 'MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE',
         self::EXPLOIT_PUBLIC_FACING_APPLICATION => 'EXPLOIT_PUBLIC_FACING_APPLICATION',
         self::MODIFY_AUTHENTICATION_PROCESS => 'MODIFY_AUTHENTICATION_PROCESS',
+        self::DATA_DESTRUCTION => 'DATA_DESTRUCTION',
     ];
 
     public static function name($value)

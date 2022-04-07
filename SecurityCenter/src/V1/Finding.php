@@ -126,7 +126,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $canonical_name = '';
     /**
-     * Indicates the mute state of a finding (either unspecified, muted, unmuted
+     * Indicates the mute state of a finding (either muted, unmuted
      * or undefined). Unlike other attributes of a finding, a finding provider
      * shouldn't set the value of mute.
      *
@@ -164,8 +164,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $mute_update_time = null;
     /**
-     * Output only. Third party SIEM/SOAR fields within SCC, contains external
-     * system information and external system finding fields.
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     * information and external system finding fields.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -193,6 +193,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string mute_initiator = 28;</code>
      */
     private $mute_initiator = '';
+    /**
+     * Represents IAM bindings associated with the Finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.IamBinding iam_bindings = 39;</code>
+     */
+    private $iam_bindings;
 
     /**
      * Constructor.
@@ -258,7 +264,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           depending on the closest CRM ancestor of the resource associated with the
      *           finding.
      *     @type int $mute
-     *           Indicates the mute state of a finding (either unspecified, muted, unmuted
+     *           Indicates the mute state of a finding (either muted, unmuted
      *           or undefined). Unlike other attributes of a finding, a finding provider
      *           shouldn't set the value of mute.
      *     @type int $finding_class
@@ -276,8 +282,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $mute_update_time
      *           Output only. The most recent time this finding was muted or unmuted.
      *     @type array|\Google\Protobuf\Internal\MapField $external_systems
-     *           Output only. Third party SIEM/SOAR fields within SCC, contains external
-     *           system information and external system finding fields.
+     *           Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     *           information and external system finding fields.
      *     @type \Google\Cloud\SecurityCenter\V1\MitreAttack $mitre_attack
      *           MITRE ATT&CK tactics and techniques related to this finding.
      *           See: https://attack.mitre.org
@@ -289,6 +295,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           mute operation e.g. mute config that muted the finding, user who muted the
      *           finding, etc. Unlike other attributes of a finding, a finding provider
      *           shouldn't set the value of mute.
+     *     @type \Google\Cloud\SecurityCenter\V1\IamBinding[]|\Google\Protobuf\Internal\RepeatedField $iam_bindings
+     *           Represents IAM bindings associated with the Finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -705,7 +713,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates the mute state of a finding (either unspecified, muted, unmuted
+     * Indicates the mute state of a finding (either muted, unmuted
      * or undefined). Unlike other attributes of a finding, a finding provider
      * shouldn't set the value of mute.
      *
@@ -718,7 +726,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates the mute state of a finding (either unspecified, muted, unmuted
+     * Indicates the mute state of a finding (either muted, unmuted
      * or undefined). Unlike other attributes of a finding, a finding provider
      * shouldn't set the value of mute.
      *
@@ -881,8 +889,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Third party SIEM/SOAR fields within SCC, contains external
-     * system information and external system finding fields.
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     * information and external system finding fields.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -893,8 +901,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Third party SIEM/SOAR fields within SCC, contains external
-     * system information and external system finding fields.
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     * information and external system finding fields.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -1012,6 +1020,32 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->mute_initiator = $var;
+
+        return $this;
+    }
+
+    /**
+     * Represents IAM bindings associated with the Finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.IamBinding iam_bindings = 39;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getIamBindings()
+    {
+        return $this->iam_bindings;
+    }
+
+    /**
+     * Represents IAM bindings associated with the Finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.IamBinding iam_bindings = 39;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\IamBinding[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setIamBindings($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\IamBinding::class);
+        $this->iam_bindings = $arr;
 
         return $this;
     }
