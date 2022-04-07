@@ -45,7 +45,6 @@ class PgQueryTest extends SpannerPgTestCase
 
     public static function setUpBeforeClass()
     {
-        self::skipEmulatorTests();
         parent::setUpBeforeClass();
 
         self::$database->updateDdl(

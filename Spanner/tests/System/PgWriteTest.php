@@ -40,7 +40,6 @@ class PgWriteTest extends SpannerPgTestCase
 
     public static function setupBeforeClass()
     {
-        self::skipEmulatorTests();
         parent::setUpBeforeClass();
 
         self::$database->updateDdlBatch([
