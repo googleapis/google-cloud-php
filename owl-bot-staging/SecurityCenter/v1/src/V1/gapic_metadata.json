@@ -1,0 +1,198 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.securitycenter.v1",
+    "libraryPackage": "Google\\Cloud\\SecurityCenter\\V1",
+    "services": {
+        "SecurityCenter": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SecurityCenterGapicClient",
+                    "rpcs": {
+                        "BulkMuteFindings": {
+                            "methods": [
+                                "bulkMuteFindings"
+                            ]
+                        },
+                        "CreateBigQueryExport": {
+                            "methods": [
+                                "createBigQueryExport"
+                            ]
+                        },
+                        "CreateFinding": {
+                            "methods": [
+                                "createFinding"
+                            ]
+                        },
+                        "CreateMuteConfig": {
+                            "methods": [
+                                "createMuteConfig"
+                            ]
+                        },
+                        "CreateNotificationConfig": {
+                            "methods": [
+                                "createNotificationConfig"
+                            ]
+                        },
+                        "CreateSource": {
+                            "methods": [
+                                "createSource"
+                            ]
+                        },
+                        "DeleteBigQueryExport": {
+                            "methods": [
+                                "deleteBigQueryExport"
+                            ]
+                        },
+                        "DeleteMuteConfig": {
+                            "methods": [
+                                "deleteMuteConfig"
+                            ]
+                        },
+                        "DeleteNotificationConfig": {
+                            "methods": [
+                                "deleteNotificationConfig"
+                            ]
+                        },
+                        "GetBigQueryExport": {
+                            "methods": [
+                                "getBigQueryExport"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetMuteConfig": {
+                            "methods": [
+                                "getMuteConfig"
+                            ]
+                        },
+                        "GetNotificationConfig": {
+                            "methods": [
+                                "getNotificationConfig"
+                            ]
+                        },
+                        "GetOrganizationSettings": {
+                            "methods": [
+                                "getOrganizationSettings"
+                            ]
+                        },
+                        "GetSource": {
+                            "methods": [
+                                "getSource"
+                            ]
+                        },
+                        "GroupAssets": {
+                            "methods": [
+                                "groupAssets"
+                            ]
+                        },
+                        "GroupFindings": {
+                            "methods": [
+                                "groupFindings"
+                            ]
+                        },
+                        "ListAssets": {
+                            "methods": [
+                                "listAssets"
+                            ]
+                        },
+                        "ListBigQueryExports": {
+                            "methods": [
+                                "listBigQueryExports"
+                            ]
+                        },
+                        "ListFindings": {
+                            "methods": [
+                                "listFindings"
+                            ]
+                        },
+                        "ListMuteConfigs": {
+                            "methods": [
+                                "listMuteConfigs"
+                            ]
+                        },
+                        "ListNotificationConfigs": {
+                            "methods": [
+                                "listNotificationConfigs"
+                            ]
+                        },
+                        "ListSources": {
+                            "methods": [
+                                "listSources"
+                            ]
+                        },
+                        "RunAssetDiscovery": {
+                            "methods": [
+                                "runAssetDiscovery"
+                            ]
+                        },
+                        "SetFindingState": {
+                            "methods": [
+                                "setFindingState"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "SetMute": {
+                            "methods": [
+                                "setMute"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateBigQueryExport": {
+                            "methods": [
+                                "updateBigQueryExport"
+                            ]
+                        },
+                        "UpdateExternalSystem": {
+                            "methods": [
+                                "updateExternalSystem"
+                            ]
+                        },
+                        "UpdateFinding": {
+                            "methods": [
+                                "updateFinding"
+                            ]
+                        },
+                        "UpdateMuteConfig": {
+                            "methods": [
+                                "updateMuteConfig"
+                            ]
+                        },
+                        "UpdateNotificationConfig": {
+                            "methods": [
+                                "updateNotificationConfig"
+                            ]
+                        },
+                        "UpdateOrganizationSettings": {
+                            "methods": [
+                                "updateOrganizationSettings"
+                            ]
+                        },
+                        "UpdateSecurityMarks": {
+                            "methods": [
+                                "updateSecurityMarks"
+                            ]
+                        },
+                        "UpdateSource": {
+                            "methods": [
+                                "updateSource"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
