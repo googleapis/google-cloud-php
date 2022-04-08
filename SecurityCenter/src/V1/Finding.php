@@ -199,6 +199,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.IamBinding iam_bindings = 39;</code>
      */
     private $iam_bindings;
+    /**
+     * Next steps associate to the finding.
+     *
+     * Generated from protobuf field <code>string next_steps = 40;</code>
+     */
+    private $next_steps = '';
 
     /**
      * Constructor.
@@ -297,6 +303,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           shouldn't set the value of mute.
      *     @type \Google\Cloud\SecurityCenter\V1\IamBinding[]|\Google\Protobuf\Internal\RepeatedField $iam_bindings
      *           Represents IAM bindings associated with the Finding.
+     *     @type string $next_steps
+     *           Next steps associate to the finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -1046,6 +1054,32 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\IamBinding::class);
         $this->iam_bindings = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Next steps associate to the finding.
+     *
+     * Generated from protobuf field <code>string next_steps = 40;</code>
+     * @return string
+     */
+    public function getNextSteps()
+    {
+        return $this->next_steps;
+    }
+
+    /**
+     * Next steps associate to the finding.
+     *
+     * Generated from protobuf field <code>string next_steps = 40;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNextSteps($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->next_steps = $var;
 
         return $this;
     }

@@ -319,6 +319,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
         $muteInitiator = 'muteInitiator7603081';
+        $nextSteps = 'nextSteps-921338149';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name);
         $expectedResponse->setParent($parent2);
@@ -327,6 +328,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
         $expectedResponse->setMuteInitiator($muteInitiator);
+        $expectedResponse->setNextSteps($nextSteps);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->sourceName('[ORGANIZATION]', '[SOURCE]');
@@ -1953,6 +1955,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
         $muteInitiator = 'muteInitiator7603081';
+        $nextSteps = 'nextSteps-921338149';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name2);
         $expectedResponse->setParent($parent);
@@ -1961,6 +1964,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
         $expectedResponse->setMuteInitiator($muteInitiator);
+        $expectedResponse->setNextSteps($nextSteps);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
@@ -2107,6 +2111,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
         $muteInitiator = 'muteInitiator7603081';
+        $nextSteps = 'nextSteps-921338149';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name2);
         $expectedResponse->setParent($parent);
@@ -2115,6 +2120,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
         $expectedResponse->setMuteInitiator($muteInitiator);
+        $expectedResponse->setNextSteps($nextSteps);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
@@ -2395,6 +2401,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
         $muteInitiator = 'muteInitiator7603081';
+        $nextSteps = 'nextSteps-921338149';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name);
         $expectedResponse->setParent($parent);
@@ -2403,6 +2410,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
         $expectedResponse->setMuteInitiator($muteInitiator);
+        $expectedResponse->setNextSteps($nextSteps);
         $transport->addResponse($expectedResponse);
         // Mock request
         $finding = new Finding();
