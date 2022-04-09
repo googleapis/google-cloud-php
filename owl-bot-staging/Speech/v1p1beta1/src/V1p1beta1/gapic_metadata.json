@@ -1,0 +1,92 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.speech.v1p1beta1",
+    "libraryPackage": "Google\\Cloud\\Speech\\V1p1beta1",
+    "services": {
+        "Speech": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SpeechGapicClient",
+                    "rpcs": {
+                        "LongRunningRecognize": {
+                            "methods": [
+                                "longRunningRecognize"
+                            ]
+                        },
+                        "Recognize": {
+                            "methods": [
+                                "recognize"
+                            ]
+                        },
+                        "StreamingRecognize": {
+                            "methods": [
+                                "streamingRecognize"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Adaptation": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AdaptationGapicClient",
+                    "rpcs": {
+                        "CreateCustomClass": {
+                            "methods": [
+                                "createCustomClass"
+                            ]
+                        },
+                        "CreatePhraseSet": {
+                            "methods": [
+                                "createPhraseSet"
+                            ]
+                        },
+                        "DeleteCustomClass": {
+                            "methods": [
+                                "deleteCustomClass"
+                            ]
+                        },
+                        "DeletePhraseSet": {
+                            "methods": [
+                                "deletePhraseSet"
+                            ]
+                        },
+                        "GetCustomClass": {
+                            "methods": [
+                                "getCustomClass"
+                            ]
+                        },
+                        "GetPhraseSet": {
+                            "methods": [
+                                "getPhraseSet"
+                            ]
+                        },
+                        "ListCustomClasses": {
+                            "methods": [
+                                "listCustomClasses"
+                            ]
+                        },
+                        "ListPhraseSet": {
+                            "methods": [
+                                "listPhraseSet"
+                            ]
+                        },
+                        "UpdateCustomClass": {
+                            "methods": [
+                                "updateCustomClass"
+                            ]
+                        },
+                        "UpdatePhraseSet": {
+                            "methods": [
+                                "updatePhraseSet"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
