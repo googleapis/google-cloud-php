@@ -9,24 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [ReservationService.UpdateCapacityCommitment][google.cloud.bigquery.reservation.v1.ReservationService.UpdateCapacityCommitment].
+ * The request for [ReservationService.UpdateAssignment][google.cloud.bigquery.reservation.v1.ReservationService.UpdateAssignment].
  *
- * Generated from protobuf message <code>google.cloud.bigquery.reservation.v1.UpdateCapacityCommitmentRequest</code>
+ * Generated from protobuf message <code>google.cloud.bigquery.reservation.v1.UpdateAssignmentRequest</code>
  */
-class UpdateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
+class UpdateAssignmentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Content of the capacity commitment to update.
+     * Content of the assignment to update.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment capacity_commitment = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Assignment assignment = 1;</code>
      */
-    protected $capacity_commitment = null;
+    private $assignment = null;
     /**
      * Standard field mask for the set of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    protected $update_mask = null;
+    private $update_mask = null;
 
     /**
      * Constructor.
@@ -34,8 +34,8 @@ class UpdateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment $capacity_commitment
-     *           Content of the capacity commitment to update.
+     *     @type \Google\Cloud\BigQuery\Reservation\V1\Assignment $assignment
+     *           Content of the assignment to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Standard field mask for the set of fields to be updated.
      * }
@@ -46,37 +46,37 @@ class UpdateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Content of the capacity commitment to update.
+     * Content of the assignment to update.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment capacity_commitment = 1;</code>
-     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment|null
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Assignment assignment = 1;</code>
+     * @return \Google\Cloud\BigQuery\Reservation\V1\Assignment|null
      */
-    public function getCapacityCommitment()
+    public function getAssignment()
     {
-        return $this->capacity_commitment;
+        return $this->assignment;
     }
 
-    public function hasCapacityCommitment()
+    public function hasAssignment()
     {
-        return isset($this->capacity_commitment);
+        return isset($this->assignment);
     }
 
-    public function clearCapacityCommitment()
+    public function clearAssignment()
     {
-        unset($this->capacity_commitment);
+        unset($this->assignment);
     }
 
     /**
-     * Content of the capacity commitment to update.
+     * Content of the assignment to update.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment capacity_commitment = 1;</code>
-     * @param \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment $var
+     * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Assignment assignment = 1;</code>
+     * @param \Google\Cloud\BigQuery\Reservation\V1\Assignment $var
      * @return $this
      */
-    public function setCapacityCommitment($var)
+    public function setAssignment($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment::class);
-        $this->capacity_commitment = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Reservation\V1\Assignment::class);
+        $this->assignment = $var;
 
         return $this;
     }
