@@ -110,7 +110,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     private $network = '';
     /**
-     * If true, expose the Endpoint via private service connect.
+     * Deprecated: If true, expose the Endpoint via private service connect.
      * Only one of the fields, [network][google.cloud.aiplatform.v1.Endpoint.network] or
      * [enable_private_service_connect][google.cloud.aiplatform.v1.Endpoint.enable_private_service_connect],
      * can be set.
@@ -191,7 +191,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           Where `{project}` is a project number, as in `12345`, and `{network}` is
      *           network name.
      *     @type bool $enable_private_service_connect
-     *           If true, expose the Endpoint via private service connect.
+     *           Deprecated: If true, expose the Endpoint via private service connect.
      *           Only one of the fields, [network][google.cloud.aiplatform.v1.Endpoint.network] or
      *           [enable_private_service_connect][google.cloud.aiplatform.v1.Endpoint.enable_private_service_connect],
      *           can be set.
@@ -580,7 +580,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, expose the Endpoint via private service connect.
+     * Deprecated: If true, expose the Endpoint via private service connect.
      * Only one of the fields, [network][google.cloud.aiplatform.v1.Endpoint.network] or
      * [enable_private_service_connect][google.cloud.aiplatform.v1.Endpoint.enable_private_service_connect],
      * can be set.
@@ -596,7 +596,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, expose the Endpoint via private service connect.
+     * Deprecated: If true, expose the Endpoint via private service connect.
      * Only one of the fields, [network][google.cloud.aiplatform.v1.Endpoint.network] or
      * [enable_private_service_connect][google.cloud.aiplatform.v1.Endpoint.enable_private_service_connect],
      * can be set.

@@ -23,19 +23,19 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Output only. Points to a YAML file stored on Google Cloud Storage describing the
+     * Points to a YAML file stored on Google Cloud Storage describing the
      * [metrics][google.cloud.aiplatform.v1.ModelEvaluation.metrics] of this ModelEvaluation. The schema is
      * defined as an OpenAPI 3.0.2 [Schema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      *
-     * Generated from protobuf field <code>string metrics_schema_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string metrics_schema_uri = 2;</code>
      */
     private $metrics_schema_uri = '';
     /**
-     * Output only. Evaluation metrics of the Model. The schema of the metrics is stored in
+     * Evaluation metrics of the Model. The schema of the metrics is stored in
      * [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluation.metrics_schema_uri]
      *
-     * Generated from protobuf field <code>.google.protobuf.Value metrics = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.protobuf.Value metrics = 3;</code>
      */
     private $metrics = null;
     /**
@@ -45,22 +45,55 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
-     * Output only. All possible [dimensions][ModelEvaluationSlice.slice.dimension] of
+     * All possible [dimensions][ModelEvaluationSlice.slice.dimension] of
      * ModelEvaluationSlices. The dimensions can be used as the filter of the
      * [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices] request, in the form of
      * `slice.dimension = <dimension>`.
      *
-     * Generated from protobuf field <code>repeated string slice_dimensions = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated string slice_dimensions = 5;</code>
      */
     private $slice_dimensions;
     /**
-     * Output only. Aggregated explanation metrics for the Model's prediction output over the
+     * Points to a YAML file stored on Google Cloud Storage describing
+     * [EvaluatedDataItemView.data_item_payload][] and
+     * [EvaluatedAnnotation.data_item_payload][]. The schema is defined as an
+     * OpenAPI 3.0.2 [Schema
+     * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
+     * This field is not populated if there are neither EvaluatedDataItemViews nor
+     * EvaluatedAnnotations under this ModelEvaluation.
+     *
+     * Generated from protobuf field <code>string data_item_schema_uri = 6;</code>
+     */
+    private $data_item_schema_uri = '';
+    /**
+     * Points to a YAML file stored on Google Cloud Storage describing
+     * [EvaluatedDataItemView.predictions][],
+     * [EvaluatedDataItemView.ground_truths][],
+     * [EvaluatedAnnotation.predictions][], and
+     * [EvaluatedAnnotation.ground_truths][]. The schema is defined as an
+     * OpenAPI 3.0.2 [Schema
+     * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
+     * This field is not populated if there are neither EvaluatedDataItemViews nor
+     * EvaluatedAnnotations under this ModelEvaluation.
+     *
+     * Generated from protobuf field <code>string annotation_schema_uri = 7;</code>
+     */
+    private $annotation_schema_uri = '';
+    /**
+     * Aggregated explanation metrics for the Model's prediction output over the
      * data this ModelEvaluation uses. This field is populated only if the Model
      * is evaluated with explanations, and only for AutoML tabular Models.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelExplanation model_explanation = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelExplanation model_explanation = 8;</code>
      */
     private $model_explanation = null;
+    /**
+     * Describes the values of [ExplanationSpec][google.cloud.aiplatform.v1.ExplanationSpec] that are used for explaining
+     * the predicted values on the evaluated data.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelEvaluation.ModelEvaluationExplanationSpec explanation_specs = 9;</code>
+     */
+    private $explanation_specs;
 
     /**
      * Constructor.
@@ -71,24 +104,45 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The resource name of the ModelEvaluation.
      *     @type string $metrics_schema_uri
-     *           Output only. Points to a YAML file stored on Google Cloud Storage describing the
+     *           Points to a YAML file stored on Google Cloud Storage describing the
      *           [metrics][google.cloud.aiplatform.v1.ModelEvaluation.metrics] of this ModelEvaluation. The schema is
      *           defined as an OpenAPI 3.0.2 [Schema
      *           Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      *     @type \Google\Protobuf\Value $metrics
-     *           Output only. Evaluation metrics of the Model. The schema of the metrics is stored in
+     *           Evaluation metrics of the Model. The schema of the metrics is stored in
      *           [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluation.metrics_schema_uri]
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this ModelEvaluation was created.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $slice_dimensions
-     *           Output only. All possible [dimensions][ModelEvaluationSlice.slice.dimension] of
+     *           All possible [dimensions][ModelEvaluationSlice.slice.dimension] of
      *           ModelEvaluationSlices. The dimensions can be used as the filter of the
      *           [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices] request, in the form of
      *           `slice.dimension = <dimension>`.
+     *     @type string $data_item_schema_uri
+     *           Points to a YAML file stored on Google Cloud Storage describing
+     *           [EvaluatedDataItemView.data_item_payload][] and
+     *           [EvaluatedAnnotation.data_item_payload][]. The schema is defined as an
+     *           OpenAPI 3.0.2 [Schema
+     *           Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
+     *           This field is not populated if there are neither EvaluatedDataItemViews nor
+     *           EvaluatedAnnotations under this ModelEvaluation.
+     *     @type string $annotation_schema_uri
+     *           Points to a YAML file stored on Google Cloud Storage describing
+     *           [EvaluatedDataItemView.predictions][],
+     *           [EvaluatedDataItemView.ground_truths][],
+     *           [EvaluatedAnnotation.predictions][], and
+     *           [EvaluatedAnnotation.ground_truths][]. The schema is defined as an
+     *           OpenAPI 3.0.2 [Schema
+     *           Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
+     *           This field is not populated if there are neither EvaluatedDataItemViews nor
+     *           EvaluatedAnnotations under this ModelEvaluation.
      *     @type \Google\Cloud\AIPlatform\V1\ModelExplanation $model_explanation
-     *           Output only. Aggregated explanation metrics for the Model's prediction output over the
+     *           Aggregated explanation metrics for the Model's prediction output over the
      *           data this ModelEvaluation uses. This field is populated only if the Model
      *           is evaluated with explanations, and only for AutoML tabular Models.
+     *     @type \Google\Cloud\AIPlatform\V1\ModelEvaluation\ModelEvaluationExplanationSpec[]|\Google\Protobuf\Internal\RepeatedField $explanation_specs
+     *           Describes the values of [ExplanationSpec][google.cloud.aiplatform.v1.ExplanationSpec] that are used for explaining
+     *           the predicted values on the evaluated data.
      * }
      */
     public function __construct($data = NULL) {
@@ -123,12 +177,12 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Points to a YAML file stored on Google Cloud Storage describing the
+     * Points to a YAML file stored on Google Cloud Storage describing the
      * [metrics][google.cloud.aiplatform.v1.ModelEvaluation.metrics] of this ModelEvaluation. The schema is
      * defined as an OpenAPI 3.0.2 [Schema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      *
-     * Generated from protobuf field <code>string metrics_schema_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string metrics_schema_uri = 2;</code>
      * @return string
      */
     public function getMetricsSchemaUri()
@@ -137,12 +191,12 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Points to a YAML file stored on Google Cloud Storage describing the
+     * Points to a YAML file stored on Google Cloud Storage describing the
      * [metrics][google.cloud.aiplatform.v1.ModelEvaluation.metrics] of this ModelEvaluation. The schema is
      * defined as an OpenAPI 3.0.2 [Schema
      * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
      *
-     * Generated from protobuf field <code>string metrics_schema_uri = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string metrics_schema_uri = 2;</code>
      * @param string $var
      * @return $this
      */
@@ -155,10 +209,10 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Evaluation metrics of the Model. The schema of the metrics is stored in
+     * Evaluation metrics of the Model. The schema of the metrics is stored in
      * [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluation.metrics_schema_uri]
      *
-     * Generated from protobuf field <code>.google.protobuf.Value metrics = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.protobuf.Value metrics = 3;</code>
      * @return \Google\Protobuf\Value|null
      */
     public function getMetrics()
@@ -177,10 +231,10 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Evaluation metrics of the Model. The schema of the metrics is stored in
+     * Evaluation metrics of the Model. The schema of the metrics is stored in
      * [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluation.metrics_schema_uri]
      *
-     * Generated from protobuf field <code>.google.protobuf.Value metrics = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.protobuf.Value metrics = 3;</code>
      * @param \Google\Protobuf\Value $var
      * @return $this
      */
@@ -229,12 +283,12 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. All possible [dimensions][ModelEvaluationSlice.slice.dimension] of
+     * All possible [dimensions][ModelEvaluationSlice.slice.dimension] of
      * ModelEvaluationSlices. The dimensions can be used as the filter of the
      * [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices] request, in the form of
      * `slice.dimension = <dimension>`.
      *
-     * Generated from protobuf field <code>repeated string slice_dimensions = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated string slice_dimensions = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSliceDimensions()
@@ -243,12 +297,12 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. All possible [dimensions][ModelEvaluationSlice.slice.dimension] of
+     * All possible [dimensions][ModelEvaluationSlice.slice.dimension] of
      * ModelEvaluationSlices. The dimensions can be used as the filter of the
      * [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices] request, in the form of
      * `slice.dimension = <dimension>`.
      *
-     * Generated from protobuf field <code>repeated string slice_dimensions = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>repeated string slice_dimensions = 5;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -261,11 +315,91 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Aggregated explanation metrics for the Model's prediction output over the
+     * Points to a YAML file stored on Google Cloud Storage describing
+     * [EvaluatedDataItemView.data_item_payload][] and
+     * [EvaluatedAnnotation.data_item_payload][]. The schema is defined as an
+     * OpenAPI 3.0.2 [Schema
+     * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
+     * This field is not populated if there are neither EvaluatedDataItemViews nor
+     * EvaluatedAnnotations under this ModelEvaluation.
+     *
+     * Generated from protobuf field <code>string data_item_schema_uri = 6;</code>
+     * @return string
+     */
+    public function getDataItemSchemaUri()
+    {
+        return $this->data_item_schema_uri;
+    }
+
+    /**
+     * Points to a YAML file stored on Google Cloud Storage describing
+     * [EvaluatedDataItemView.data_item_payload][] and
+     * [EvaluatedAnnotation.data_item_payload][]. The schema is defined as an
+     * OpenAPI 3.0.2 [Schema
+     * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
+     * This field is not populated if there are neither EvaluatedDataItemViews nor
+     * EvaluatedAnnotations under this ModelEvaluation.
+     *
+     * Generated from protobuf field <code>string data_item_schema_uri = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDataItemSchemaUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->data_item_schema_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Points to a YAML file stored on Google Cloud Storage describing
+     * [EvaluatedDataItemView.predictions][],
+     * [EvaluatedDataItemView.ground_truths][],
+     * [EvaluatedAnnotation.predictions][], and
+     * [EvaluatedAnnotation.ground_truths][]. The schema is defined as an
+     * OpenAPI 3.0.2 [Schema
+     * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
+     * This field is not populated if there are neither EvaluatedDataItemViews nor
+     * EvaluatedAnnotations under this ModelEvaluation.
+     *
+     * Generated from protobuf field <code>string annotation_schema_uri = 7;</code>
+     * @return string
+     */
+    public function getAnnotationSchemaUri()
+    {
+        return $this->annotation_schema_uri;
+    }
+
+    /**
+     * Points to a YAML file stored on Google Cloud Storage describing
+     * [EvaluatedDataItemView.predictions][],
+     * [EvaluatedDataItemView.ground_truths][],
+     * [EvaluatedAnnotation.predictions][], and
+     * [EvaluatedAnnotation.ground_truths][]. The schema is defined as an
+     * OpenAPI 3.0.2 [Schema
+     * Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject).
+     * This field is not populated if there are neither EvaluatedDataItemViews nor
+     * EvaluatedAnnotations under this ModelEvaluation.
+     *
+     * Generated from protobuf field <code>string annotation_schema_uri = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAnnotationSchemaUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->annotation_schema_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Aggregated explanation metrics for the Model's prediction output over the
      * data this ModelEvaluation uses. This field is populated only if the Model
      * is evaluated with explanations, and only for AutoML tabular Models.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelExplanation model_explanation = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelExplanation model_explanation = 8;</code>
      * @return \Google\Cloud\AIPlatform\V1\ModelExplanation|null
      */
     public function getModelExplanation()
@@ -284,11 +418,11 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Aggregated explanation metrics for the Model's prediction output over the
+     * Aggregated explanation metrics for the Model's prediction output over the
      * data this ModelEvaluation uses. This field is populated only if the Model
      * is evaluated with explanations, and only for AutoML tabular Models.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelExplanation model_explanation = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelExplanation model_explanation = 8;</code>
      * @param \Google\Cloud\AIPlatform\V1\ModelExplanation $var
      * @return $this
      */
@@ -296,6 +430,34 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ModelExplanation::class);
         $this->model_explanation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Describes the values of [ExplanationSpec][google.cloud.aiplatform.v1.ExplanationSpec] that are used for explaining
+     * the predicted values on the evaluated data.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelEvaluation.ModelEvaluationExplanationSpec explanation_specs = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getExplanationSpecs()
+    {
+        return $this->explanation_specs;
+    }
+
+    /**
+     * Describes the values of [ExplanationSpec][google.cloud.aiplatform.v1.ExplanationSpec] that are used for explaining
+     * the predicted values on the evaluated data.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelEvaluation.ModelEvaluationExplanationSpec explanation_specs = 9;</code>
+     * @param \Google\Cloud\AIPlatform\V1\ModelEvaluation\ModelEvaluationExplanationSpec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setExplanationSpecs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\ModelEvaluation\ModelEvaluationExplanationSpec::class);
+        $this->explanation_specs = $arr;
 
         return $this;
     }

@@ -54,9 +54,9 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Required. The spec of the pipeline.
+     * The spec of the pipeline.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct pipeline_spec = 7 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct pipeline_spec = 7;</code>
      */
     private $pipeline_spec = null;
     /**
@@ -153,7 +153,7 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Timestamp when this PipelineJob was most recently updated.
      *     @type \Google\Protobuf\Struct $pipeline_spec
-     *           Required. The spec of the pipeline.
+     *           The spec of the pipeline.
      *     @type int $state
      *           Output only. The detailed state of the job.
      *     @type \Google\Cloud\AIPlatform\V1\PipelineJobDetail $job_detail
@@ -402,9 +402,9 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The spec of the pipeline.
+     * The spec of the pipeline.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct pipeline_spec = 7 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct pipeline_spec = 7;</code>
      * @return \Google\Protobuf\Struct|null
      */
     public function getPipelineSpec()
@@ -423,9 +423,9 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The spec of the pipeline.
+     * The spec of the pipeline.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct pipeline_spec = 7 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct pipeline_spec = 7;</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */

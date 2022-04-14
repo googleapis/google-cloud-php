@@ -21,15 +21,21 @@ class ModelEvaluation
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‘
-1google/cloud/aiplatform/v1/model_evaluation.protogoogle.cloud.aiplatform.v1google/api/resource.proto,google/cloud/aiplatform/v1/explanation.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"ó
+Ë
+1google/cloud/aiplatform/v1/model_evaluation.protogoogle.cloud.aiplatform.v1google/api/resource.proto,google/cloud/aiplatform/v1/explanation.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"´
 ModelEvaluation
-name (	B‡A
-metrics_schema_uri (	B‡A,
-metrics (2.google.protobuf.ValueB‡A4
-create_time (2.google.protobuf.TimestampB‡A
-slice_dimensions (	B‡AL
-model_explanation (2,.google.cloud.aiplatform.v1.ModelExplanationB‡A:ÍA|
+name (	B‡A
+metrics_schema_uri (	\'
+metrics (2.google.protobuf.Value4
+create_time (2.google.protobuf.TimestampB‡A
+slice_dimensions (	
+data_item_schema_uri (	
+annotation_schema_uri (	G
+model_explanation (2,.google.cloud.aiplatform.v1.ModelExplanatione
+explanation_specs	 (2J.google.cloud.aiplatform.v1.ModelEvaluation.ModelEvaluationExplanationSpecÅ
+ModelEvaluationExplanationSpec
+explanation_type (	E
+explanation_spec (2+.google.cloud.aiplatform.v1.ExplanationSpec:ÍA|
 )aiplatform.googleapis.com/ModelEvaluationOprojects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}Bÿ
 com.google.cloud.aiplatform.v1BModelEvaluationProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatform™Google.Cloud.AIPlatform.V1 Google\\Cloud\\AIPlatform\\V1ÍGoogle::Cloud::AIPlatform::V1bproto3'
         , true);

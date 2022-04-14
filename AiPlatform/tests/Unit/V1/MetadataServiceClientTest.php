@@ -51,7 +51,6 @@ use Google\Cloud\AIPlatform\V1\PurgeExecutionsResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -2519,8 +2518,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $artifact = new Artifact();
-        $updateMask = new FieldMask();
-        $response = $client->updateArtifact($artifact, $updateMask);
+        $response = $client->updateArtifact($artifact);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2529,8 +2527,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/UpdateArtifact', $actualFuncCall);
         $actualValue = $actualRequestObject->getArtifact();
         $this->assertProtobufEquals($artifact, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2556,9 +2552,8 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $artifact = new Artifact();
-        $updateMask = new FieldMask();
         try {
-            $client->updateArtifact($artifact, $updateMask);
+            $client->updateArtifact($artifact);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2597,8 +2592,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $context = new Context();
-        $updateMask = new FieldMask();
-        $response = $client->updateContext($context, $updateMask);
+        $response = $client->updateContext($context);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2607,8 +2601,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/UpdateContext', $actualFuncCall);
         $actualValue = $actualRequestObject->getContext();
         $this->assertProtobufEquals($context, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2634,9 +2626,8 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $context = new Context();
-        $updateMask = new FieldMask();
         try {
-            $client->updateContext($context, $updateMask);
+            $client->updateContext($context);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2675,8 +2666,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $execution = new Execution();
-        $updateMask = new FieldMask();
-        $response = $client->updateExecution($execution, $updateMask);
+        $response = $client->updateExecution($execution);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2685,8 +2675,6 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/UpdateExecution', $actualFuncCall);
         $actualValue = $actualRequestObject->getExecution();
         $this->assertProtobufEquals($execution, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2712,9 +2700,8 @@ class MetadataServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $execution = new Execution();
-        $updateMask = new FieldMask();
         try {
-            $client->updateExecution($execution, $updateMask);
+            $client->updateExecution($execution);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

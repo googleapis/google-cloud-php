@@ -38,6 +38,9 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      * * `end_time`: Supports `=`, `!=`, `<`, `>`, `<=`, and `>=` comparisons.
      *   Values must be in RFC 3339 format.
      * * `labels`: Supports key-value equality and key presence.
+     * * `template_uri`: Supports `=`, `!=` comparisons, and `:` wildcard.
+     * * `template_metadata.version_name`: Supports `=`, `!=` comparisons, and `:`
+     * wildcard.
      * Filter expressions can be combined together using logical operators
      * (`AND` & `OR`).
      * For example: `pipeline_name="test" AND create_time>"2020-05-18T13:30:00Z"`.
@@ -111,6 +114,9 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      *           * `end_time`: Supports `=`, `!=`, `<`, `>`, `<=`, and `>=` comparisons.
      *             Values must be in RFC 3339 format.
      *           * `labels`: Supports key-value equality and key presence.
+     *           * `template_uri`: Supports `=`, `!=` comparisons, and `:` wildcard.
+     *           * `template_metadata.version_name`: Supports `=`, `!=` comparisons, and `:`
+     *           wildcard.
      *           Filter expressions can be combined together using logical operators
      *           (`AND` & `OR`).
      *           For example: `pipeline_name="test" AND create_time>"2020-05-18T13:30:00Z"`.
@@ -193,6 +199,9 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      * * `end_time`: Supports `=`, `!=`, `<`, `>`, `<=`, and `>=` comparisons.
      *   Values must be in RFC 3339 format.
      * * `labels`: Supports key-value equality and key presence.
+     * * `template_uri`: Supports `=`, `!=` comparisons, and `:` wildcard.
+     * * `template_metadata.version_name`: Supports `=`, `!=` comparisons, and `:`
+     * wildcard.
      * Filter expressions can be combined together using logical operators
      * (`AND` & `OR`).
      * For example: `pipeline_name="test" AND create_time>"2020-05-18T13:30:00Z"`.
@@ -229,6 +238,9 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      * * `end_time`: Supports `=`, `!=`, `<`, `>`, `<=`, and `>=` comparisons.
      *   Values must be in RFC 3339 format.
      * * `labels`: Supports key-value equality and key presence.
+     * * `template_uri`: Supports `=`, `!=` comparisons, and `:` wildcard.
+     * * `template_metadata.version_name`: Supports `=`, `!=` comparisons, and `:`
+     * wildcard.
      * Filter expressions can be combined together using logical operators
      * (`AND` & `OR`).
      * For example: `pipeline_name="test" AND create_time>"2020-05-18T13:30:00Z"`.

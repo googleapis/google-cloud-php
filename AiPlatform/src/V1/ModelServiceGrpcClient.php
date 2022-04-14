@@ -129,6 +129,21 @@ class ModelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Imports an externally generated ModelEvaluation.
+     * @param \Google\Cloud\AIPlatform\V1\ImportModelEvaluationRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ImportModelEvaluation(\Google\Cloud\AIPlatform\V1\ImportModelEvaluationRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.ModelService/ImportModelEvaluation',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\ModelEvaluation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Gets a ModelEvaluation.
      * @param \Google\Cloud\AIPlatform\V1\GetModelEvaluationRequest $argument input argument
      * @param array $metadata metadata

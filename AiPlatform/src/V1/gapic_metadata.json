@@ -681,6 +681,11 @@
                                 "getModelEvaluationSlice"
                             ]
                         },
+                        "ImportModelEvaluation": {
+                            "methods": [
+                                "importModelEvaluation"
+                            ]
+                        },
                         "ListModelEvaluationSlices": {
                             "methods": [
                                 "listModelEvaluationSlices"

@@ -17,11 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class OnlineServingConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The number of nodes for each cluster. The number of nodes will not
-     * scale automatically but can be scaled manually by providing different
-     * values when updating.
-     * Only one of `fixed_node_count` and `scaling` can be set. Setting one will
-     * reset the other.
+     * The number of nodes for the online store. The number of nodes doesn't
+     * scale automatically, but you can manually update the number of
+     * nodes. If set to 0, the featurestore will not have an
+     * online store and cannot be used for online serving.
      *
      * Generated from protobuf field <code>int32 fixed_node_count = 2;</code>
      */
@@ -34,11 +33,10 @@ class OnlineServingConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $fixed_node_count
-     *           The number of nodes for each cluster. The number of nodes will not
-     *           scale automatically but can be scaled manually by providing different
-     *           values when updating.
-     *           Only one of `fixed_node_count` and `scaling` can be set. Setting one will
-     *           reset the other.
+     *           The number of nodes for the online store. The number of nodes doesn't
+     *           scale automatically, but you can manually update the number of
+     *           nodes. If set to 0, the featurestore will not have an
+     *           online store and cannot be used for online serving.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,11 +45,10 @@ class OnlineServingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of nodes for each cluster. The number of nodes will not
-     * scale automatically but can be scaled manually by providing different
-     * values when updating.
-     * Only one of `fixed_node_count` and `scaling` can be set. Setting one will
-     * reset the other.
+     * The number of nodes for the online store. The number of nodes doesn't
+     * scale automatically, but you can manually update the number of
+     * nodes. If set to 0, the featurestore will not have an
+     * online store and cannot be used for online serving.
      *
      * Generated from protobuf field <code>int32 fixed_node_count = 2;</code>
      * @return int
@@ -62,11 +59,10 @@ class OnlineServingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of nodes for each cluster. The number of nodes will not
-     * scale automatically but can be scaled manually by providing different
-     * values when updating.
-     * Only one of `fixed_node_count` and `scaling` can be set. Setting one will
-     * reset the other.
+     * The number of nodes for the online store. The number of nodes doesn't
+     * scale automatically, but you can manually update the number of
+     * nodes. If set to 0, the featurestore will not have an
+     * online store and cannot be used for online serving.
      *
      * Generated from protobuf field <code>int32 fixed_node_count = 2;</code>
      * @param int $var

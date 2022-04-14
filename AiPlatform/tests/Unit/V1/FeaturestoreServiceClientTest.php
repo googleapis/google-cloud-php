@@ -38,7 +38,6 @@ use Google\Cloud\AIPlatform\V1\Feature;
 use Google\Cloud\AIPlatform\V1\Feature\ValueType;
 use Google\Cloud\AIPlatform\V1\FeatureSelector;
 use Google\Cloud\AIPlatform\V1\Featurestore;
-use Google\Cloud\AIPlatform\V1\Featurestore\OnlineServingConfig;
 use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
 use Google\Cloud\AIPlatform\V1\FeatureValueDestination;
 use Google\Cloud\AIPlatform\V1\IdMatcher;
@@ -652,8 +651,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $featurestore = new Featurestore();
-        $featurestoreOnlineServingConfig = new OnlineServingConfig();
-        $featurestore->setOnlineServingConfig($featurestoreOnlineServingConfig);
         $featurestoreId = 'featurestoreId-2136676817';
         $response = $client->createFeaturestore($formattedParent, $featurestore, $featurestoreId);
         $this->assertFalse($response->isDone());
@@ -726,8 +723,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $featurestore = new Featurestore();
-        $featurestoreOnlineServingConfig = new OnlineServingConfig();
-        $featurestore->setOnlineServingConfig($featurestoreOnlineServingConfig);
         $featurestoreId = 'featurestoreId-2136676817';
         $response = $client->createFeaturestore($formattedParent, $featurestore, $featurestoreId);
         $this->assertFalse($response->isDone());
@@ -2053,8 +2048,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $featurestore = new Featurestore();
-        $featurestoreOnlineServingConfig = new OnlineServingConfig();
-        $featurestore->setOnlineServingConfig($featurestoreOnlineServingConfig);
         $response = $client->updateFeaturestore($featurestore);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2121,8 +2114,6 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $featurestore = new Featurestore();
-        $featurestoreOnlineServingConfig = new OnlineServingConfig();
-        $featurestore->setOnlineServingConfig($featurestoreOnlineServingConfig);
         $response = $client->updateFeaturestore($featurestore);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
