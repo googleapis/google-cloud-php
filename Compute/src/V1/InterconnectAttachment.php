@@ -29,6 +29,12 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     private $bandwidth = null;
     /**
+     * This field is not available.
+     *
+     * Generated from protobuf field <code>repeated string candidate_ipv6_subnets = 70682522;</code>
+     */
+    private $candidate_ipv6_subnets;
+    /**
      * Up to 16 candidate prefixes that can be used to restrict the allocation of cloudRouterIpAddress and customerRouterIpAddress for this attachment. All prefixes must be within link-local address space (169.254.0.0/16) and must be /29 or shorter (/28, /27, etc). Google will attempt to select an unused /29 from the supplied candidate prefix(es). The request will fail if all possible /29s are in use on Google's edge. If not supplied, Google will randomly select an unused /29 from all of link-local space.
      *
      * Generated from protobuf field <code>repeated string candidate_subnets = 237842938;</code>
@@ -40,6 +46,18 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string cloud_router_ip_address = 287392776;</code>
      */
     private $cloud_router_ip_address = null;
+    /**
+     * [Output Only] IPv6 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
+     *
+     * Generated from protobuf field <code>optional string cloud_router_ipv6_address = 451922376;</code>
+     */
+    private $cloud_router_ipv6_address = null;
+    /**
+     * This field is not available.
+     *
+     * Generated from protobuf field <code>optional string cloud_router_ipv6_interface_id = 521282701;</code>
+     */
+    private $cloud_router_ipv6_interface_id = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
@@ -53,7 +71,19 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     private $customer_router_ip_address = null;
     /**
-     * [Output Only] Dataplane version for this InterconnectAttachment.
+     * [Output Only] IPv6 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
+     *
+     * Generated from protobuf field <code>optional string customer_router_ipv6_address = 290127089;</code>
+     */
+    private $customer_router_ipv6_address = null;
+    /**
+     * This field is not available.
+     *
+     * Generated from protobuf field <code>optional string customer_router_ipv6_interface_id = 380994308;</code>
+     */
+    private $customer_router_ipv6_interface_id = null;
+    /**
+     * [Output Only] Dataplane version for this InterconnectAttachment. This field is only present for Dataplane version 2 and higher. Absence of this field in the API output indicates that the Dataplane is version 1.
      *
      * Generated from protobuf field <code>optional int32 dataplane_version = 34920075;</code>
      */
@@ -176,6 +206,13 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
+     * The stack type for this interconnect attachment to identify whether the IPv6 feature is enabled or not. If not specified, IPV4_ONLY will be used. This field can be both set at interconnect attachments creation and update interconnect attachment operations.
+     * Check the StackType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
+     */
+    private $stack_type = null;
+    /**
      * [Output Only] The current state of this attachment's functionality. Enum values ACTIVE and UNPROVISIONED are shared by DEDICATED/PRIVATE, PARTNER, and PARTNER_PROVIDER interconnect attachments, while enum values PENDING_PARTNER, PARTNER_REQUEST_RECEIVED, and PENDING_CUSTOMER are used for only PARTNER and PARTNER_PROVIDER interconnect attachments. This state can take one of the following values: - ACTIVE: The attachment has been turned up and is ready to use. - UNPROVISIONED: The attachment is not ready to use yet, because turnup is not complete. - PENDING_PARTNER: A newly-created PARTNER attachment that has not yet been configured on the Partner side. - PARTNER_REQUEST_RECEIVED: A PARTNER attachment is in the process of provisioning after a PARTNER_PROVIDER attachment was created that references it. - PENDING_CUSTOMER: A PARTNER or PARTNER_PROVIDER attachment that is waiting for a customer to activate it. - DEFUNCT: The attachment was deleted externally and is no longer functional. This could be because the associated Interconnect was removed, or because the other side of a Partner attachment was deleted.
      * Check the State enum for the list of possible values.
      *
@@ -207,16 +244,26 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *     @type string $bandwidth
      *           Provisioned bandwidth capacity for the interconnect attachment. For attachments of type DEDICATED, the user can set the bandwidth. For attachments of type PARTNER, the Google Partner that is operating the interconnect must set the bandwidth. Output only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED, and can take one of the following values: - BPS_50M: 50 Mbit/s - BPS_100M: 100 Mbit/s - BPS_200M: 200 Mbit/s - BPS_300M: 300 Mbit/s - BPS_400M: 400 Mbit/s - BPS_500M: 500 Mbit/s - BPS_1G: 1 Gbit/s - BPS_2G: 2 Gbit/s - BPS_5G: 5 Gbit/s - BPS_10G: 10 Gbit/s - BPS_20G: 20 Gbit/s - BPS_50G: 50 Gbit/s
      *           Check the Bandwidth enum for the list of possible values.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $candidate_ipv6_subnets
+     *           This field is not available.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $candidate_subnets
      *           Up to 16 candidate prefixes that can be used to restrict the allocation of cloudRouterIpAddress and customerRouterIpAddress for this attachment. All prefixes must be within link-local address space (169.254.0.0/16) and must be /29 or shorter (/28, /27, etc). Google will attempt to select an unused /29 from the supplied candidate prefix(es). The request will fail if all possible /29s are in use on Google's edge. If not supplied, Google will randomly select an unused /29 from all of link-local space.
      *     @type string $cloud_router_ip_address
      *           [Output Only] IPv4 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
+     *     @type string $cloud_router_ipv6_address
+     *           [Output Only] IPv6 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
+     *     @type string $cloud_router_ipv6_interface_id
+     *           This field is not available.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $customer_router_ip_address
      *           [Output Only] IPv4 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
+     *     @type string $customer_router_ipv6_address
+     *           [Output Only] IPv6 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
+     *     @type string $customer_router_ipv6_interface_id
+     *           This field is not available.
      *     @type int $dataplane_version
-     *           [Output Only] Dataplane version for this InterconnectAttachment.
+     *           [Output Only] Dataplane version for this InterconnectAttachment. This field is only present for Dataplane version 2 and higher. Absence of this field in the API output indicates that the Dataplane is version 1.
      *     @type string $description
      *           An optional description of this resource.
      *     @type string $edge_availability_domain
@@ -258,6 +305,9 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *           [Output Only] Set to true if the resource satisfies the zone separation organization policy constraints and false otherwise. Defaults to false if the field is not present.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
+     *     @type string $stack_type
+     *           The stack type for this interconnect attachment to identify whether the IPv6 feature is enabled or not. If not specified, IPV4_ONLY will be used. This field can be both set at interconnect attachments creation and update interconnect attachment operations.
+     *           Check the StackType enum for the list of possible values.
      *     @type string $state
      *           [Output Only] The current state of this attachment's functionality. Enum values ACTIVE and UNPROVISIONED are shared by DEDICATED/PRIVATE, PARTNER, and PARTNER_PROVIDER interconnect attachments, while enum values PENDING_PARTNER, PARTNER_REQUEST_RECEIVED, and PENDING_CUSTOMER are used for only PARTNER and PARTNER_PROVIDER interconnect attachments. This state can take one of the following values: - ACTIVE: The attachment has been turned up and is ready to use. - UNPROVISIONED: The attachment is not ready to use yet, because turnup is not complete. - PENDING_PARTNER: A newly-created PARTNER attachment that has not yet been configured on the Partner side. - PARTNER_REQUEST_RECEIVED: A PARTNER attachment is in the process of provisioning after a PARTNER_PROVIDER attachment was created that references it. - PENDING_CUSTOMER: A PARTNER or PARTNER_PROVIDER attachment that is waiting for a customer to activate it. - DEFUNCT: The attachment was deleted externally and is no longer functional. This could be because the associated Interconnect was removed, or because the other side of a Partner attachment was deleted.
      *           Check the State enum for the list of possible values.
@@ -348,6 +398,32 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * This field is not available.
+     *
+     * Generated from protobuf field <code>repeated string candidate_ipv6_subnets = 70682522;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCandidateIpv6Subnets()
+    {
+        return $this->candidate_ipv6_subnets;
+    }
+
+    /**
+     * This field is not available.
+     *
+     * Generated from protobuf field <code>repeated string candidate_ipv6_subnets = 70682522;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCandidateIpv6Subnets($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->candidate_ipv6_subnets = $arr;
+
+        return $this;
+    }
+
+    /**
      * Up to 16 candidate prefixes that can be used to restrict the allocation of cloudRouterIpAddress and customerRouterIpAddress for this attachment. All prefixes must be within link-local address space (169.254.0.0/16) and must be /29 or shorter (/28, /27, etc). Google will attempt to select an unused /29 from the supplied candidate prefix(es). The request will fail if all possible /29s are in use on Google's edge. If not supplied, Google will randomly select an unused /29 from all of link-local space.
      *
      * Generated from protobuf field <code>repeated string candidate_subnets = 237842938;</code>
@@ -405,6 +481,78 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cloud_router_ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] IPv6 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
+     *
+     * Generated from protobuf field <code>optional string cloud_router_ipv6_address = 451922376;</code>
+     * @return string
+     */
+    public function getCloudRouterIpv6Address()
+    {
+        return isset($this->cloud_router_ipv6_address) ? $this->cloud_router_ipv6_address : '';
+    }
+
+    public function hasCloudRouterIpv6Address()
+    {
+        return isset($this->cloud_router_ipv6_address);
+    }
+
+    public function clearCloudRouterIpv6Address()
+    {
+        unset($this->cloud_router_ipv6_address);
+    }
+
+    /**
+     * [Output Only] IPv6 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
+     *
+     * Generated from protobuf field <code>optional string cloud_router_ipv6_address = 451922376;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCloudRouterIpv6Address($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cloud_router_ipv6_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * This field is not available.
+     *
+     * Generated from protobuf field <code>optional string cloud_router_ipv6_interface_id = 521282701;</code>
+     * @return string
+     */
+    public function getCloudRouterIpv6InterfaceId()
+    {
+        return isset($this->cloud_router_ipv6_interface_id) ? $this->cloud_router_ipv6_interface_id : '';
+    }
+
+    public function hasCloudRouterIpv6InterfaceId()
+    {
+        return isset($this->cloud_router_ipv6_interface_id);
+    }
+
+    public function clearCloudRouterIpv6InterfaceId()
+    {
+        unset($this->cloud_router_ipv6_interface_id);
+    }
+
+    /**
+     * This field is not available.
+     *
+     * Generated from protobuf field <code>optional string cloud_router_ipv6_interface_id = 521282701;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCloudRouterIpv6InterfaceId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cloud_router_ipv6_interface_id = $var;
 
         return $this;
     }
@@ -482,7 +630,79 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Dataplane version for this InterconnectAttachment.
+     * [Output Only] IPv6 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
+     *
+     * Generated from protobuf field <code>optional string customer_router_ipv6_address = 290127089;</code>
+     * @return string
+     */
+    public function getCustomerRouterIpv6Address()
+    {
+        return isset($this->customer_router_ipv6_address) ? $this->customer_router_ipv6_address : '';
+    }
+
+    public function hasCustomerRouterIpv6Address()
+    {
+        return isset($this->customer_router_ipv6_address);
+    }
+
+    public function clearCustomerRouterIpv6Address()
+    {
+        unset($this->customer_router_ipv6_address);
+    }
+
+    /**
+     * [Output Only] IPv6 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
+     *
+     * Generated from protobuf field <code>optional string customer_router_ipv6_address = 290127089;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCustomerRouterIpv6Address($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->customer_router_ipv6_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * This field is not available.
+     *
+     * Generated from protobuf field <code>optional string customer_router_ipv6_interface_id = 380994308;</code>
+     * @return string
+     */
+    public function getCustomerRouterIpv6InterfaceId()
+    {
+        return isset($this->customer_router_ipv6_interface_id) ? $this->customer_router_ipv6_interface_id : '';
+    }
+
+    public function hasCustomerRouterIpv6InterfaceId()
+    {
+        return isset($this->customer_router_ipv6_interface_id);
+    }
+
+    public function clearCustomerRouterIpv6InterfaceId()
+    {
+        unset($this->customer_router_ipv6_interface_id);
+    }
+
+    /**
+     * This field is not available.
+     *
+     * Generated from protobuf field <code>optional string customer_router_ipv6_interface_id = 380994308;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCustomerRouterIpv6InterfaceId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->customer_router_ipv6_interface_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Dataplane version for this InterconnectAttachment. This field is only present for Dataplane version 2 and higher. Absence of this field in the API output indicates that the Dataplane is version 1.
      *
      * Generated from protobuf field <code>optional int32 dataplane_version = 34920075;</code>
      * @return int
@@ -503,7 +723,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Dataplane version for this InterconnectAttachment.
+     * [Output Only] Dataplane version for this InterconnectAttachment. This field is only present for Dataplane version 2 and higher. Absence of this field in the API output indicates that the Dataplane is version 1.
      *
      * Generated from protobuf field <code>optional int32 dataplane_version = 34920075;</code>
      * @param int $var
@@ -1193,6 +1413,44 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * The stack type for this interconnect attachment to identify whether the IPv6 feature is enabled or not. If not specified, IPV4_ONLY will be used. This field can be both set at interconnect attachments creation and update interconnect attachment operations.
+     * Check the StackType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
+     * @return string
+     */
+    public function getStackType()
+    {
+        return isset($this->stack_type) ? $this->stack_type : '';
+    }
+
+    public function hasStackType()
+    {
+        return isset($this->stack_type);
+    }
+
+    public function clearStackType()
+    {
+        unset($this->stack_type);
+    }
+
+    /**
+     * The stack type for this interconnect attachment to identify whether the IPv6 feature is enabled or not. If not specified, IPV4_ONLY will be used. This field can be both set at interconnect attachments creation and update interconnect attachment operations.
+     * Check the StackType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStackType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->stack_type = $var;
 
         return $this;
     }

@@ -17,12 +17,14 @@ class Condition extends \Google\Protobuf\Internal\Message
 {
     /**
      * This is deprecated and has no effect. Do not use.
+     * Check the Iam enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string iam = 104021;</code>
      */
     private $iam = null;
     /**
      * This is deprecated and has no effect. Do not use.
+     * Check the Op enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string op = 3553;</code>
      */
@@ -35,6 +37,7 @@ class Condition extends \Google\Protobuf\Internal\Message
     private $svc = null;
     /**
      * This is deprecated and has no effect. Do not use.
+     * Check the Sys enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string sys = 114381;</code>
      */
@@ -54,12 +57,15 @@ class Condition extends \Google\Protobuf\Internal\Message
      *
      *     @type string $iam
      *           This is deprecated and has no effect. Do not use.
+     *           Check the Iam enum for the list of possible values.
      *     @type string $op
      *           This is deprecated and has no effect. Do not use.
+     *           Check the Op enum for the list of possible values.
      *     @type string $svc
      *           This is deprecated and has no effect. Do not use.
      *     @type string $sys
      *           This is deprecated and has no effect. Do not use.
+     *           Check the Sys enum for the list of possible values.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $values
      *           This is deprecated and has no effect. Do not use.
      * }
@@ -71,6 +77,7 @@ class Condition extends \Google\Protobuf\Internal\Message
 
     /**
      * This is deprecated and has no effect. Do not use.
+     * Check the Iam enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string iam = 104021;</code>
      * @return string
@@ -92,6 +99,7 @@ class Condition extends \Google\Protobuf\Internal\Message
 
     /**
      * This is deprecated and has no effect. Do not use.
+     * Check the Iam enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string iam = 104021;</code>
      * @param string $var
@@ -107,6 +115,7 @@ class Condition extends \Google\Protobuf\Internal\Message
 
     /**
      * This is deprecated and has no effect. Do not use.
+     * Check the Op enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string op = 3553;</code>
      * @return string
@@ -128,6 +137,7 @@ class Condition extends \Google\Protobuf\Internal\Message
 
     /**
      * This is deprecated and has no effect. Do not use.
+     * Check the Op enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string op = 3553;</code>
      * @param string $var
@@ -179,6 +189,7 @@ class Condition extends \Google\Protobuf\Internal\Message
 
     /**
      * This is deprecated and has no effect. Do not use.
+     * Check the Sys enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string sys = 114381;</code>
      * @return string
@@ -200,6 +211,7 @@ class Condition extends \Google\Protobuf\Internal\Message
 
     /**
      * This is deprecated and has no effect. Do not use.
+     * Check the Sys enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string sys = 114381;</code>
      * @param string $var

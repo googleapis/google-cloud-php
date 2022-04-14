@@ -8,6 +8,9 @@ use UnexpectedValueException;
 
 /**
  * [Output Only] The status of the instance. This field is empty when the instance does not exist.
+ * Additional supported values which may be not listed in the enum directly due to technical reasons:
+ * STOPPING
+ * SUSPENDING
  *
  * Protobuf type <code>google.cloud.compute.v1.ManagedInstance.InstanceStatus</code>
  */
@@ -56,8 +59,6 @@ class InstanceStatus
      */
     const STOPPED = 444276141;
     /**
-     * The instance is currently stopping (either being deleted or killed).
-     *
      * Generated from protobuf enum <code>STOPPING = 350791796;</code>
      */
     const STOPPING = 350791796;
@@ -68,8 +69,6 @@ class InstanceStatus
      */
     const SUSPENDED = 51223995;
     /**
-     * The instance is suspending.
-     *
      * Generated from protobuf enum <code>SUSPENDING = 514206246;</code>
      */
     const SUSPENDING = 514206246;

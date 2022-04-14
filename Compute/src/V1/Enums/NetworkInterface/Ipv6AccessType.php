@@ -34,5 +34,7 @@ class Ipv6AccessType
 
     const EXTERNAL = 'EXTERNAL';
 
+    const INTERNAL = 'INTERNAL';
+
     const UNSPECIFIED_IPV6_ACCESS_TYPE = 'UNSPECIFIED_IPV6_ACCESS_TYPE';
 }

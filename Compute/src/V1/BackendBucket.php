@@ -46,6 +46,12 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
+     * [Output Only] The resource URL for the edge security policy associated with this backend bucket.
+     *
+     * Generated from protobuf field <code>optional string edge_security_policy = 41036943;</code>
+     */
+    private $edge_security_policy = null;
+    /**
      * If true, enable Cloud CDN for this BackendBucket.
      *
      * Generated from protobuf field <code>optional bool enable_cdn = 282942321;</code>
@@ -92,6 +98,8 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      *           Headers that the HTTP/S load balancer should add to proxied responses.
      *     @type string $description
      *           An optional textual description of the resource; provided by the client when the resource is created.
+     *     @type string $edge_security_policy
+     *           [Output Only] The resource URL for the edge security policy associated with this backend bucket.
      *     @type bool $enable_cdn
      *           If true, enable Cloud CDN for this BackendBucket.
      *     @type int|string $id
@@ -275,6 +283,42 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The resource URL for the edge security policy associated with this backend bucket.
+     *
+     * Generated from protobuf field <code>optional string edge_security_policy = 41036943;</code>
+     * @return string
+     */
+    public function getEdgeSecurityPolicy()
+    {
+        return isset($this->edge_security_policy) ? $this->edge_security_policy : '';
+    }
+
+    public function hasEdgeSecurityPolicy()
+    {
+        return isset($this->edge_security_policy);
+    }
+
+    public function clearEdgeSecurityPolicy()
+    {
+        unset($this->edge_security_policy);
+    }
+
+    /**
+     * [Output Only] The resource URL for the edge security policy associated with this backend bucket.
+     *
+     * Generated from protobuf field <code>optional string edge_security_policy = 41036943;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEdgeSecurityPolicy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->edge_security_policy = $var;
 
         return $this;
     }

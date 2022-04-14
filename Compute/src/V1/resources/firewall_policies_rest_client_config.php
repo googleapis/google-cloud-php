@@ -119,9 +119,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'parent_id',
-                ],
             ],
             'Patch' => [
                 'method' => 'patch',

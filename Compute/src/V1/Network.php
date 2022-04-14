@@ -40,6 +40,12 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
+     * Enable ULA internal ipv6 on this network. Enabling this feature will assign a /48 from google defined ULA prefix fd20::/20. .
+     *
+     * Generated from protobuf field <code>optional bool enable_ula_internal_ipv6 = 423757720;</code>
+     */
+    private $enable_ula_internal_ipv6 = null;
+    /**
      * [Output Only] The gateway address for default routing out of the network, selected by GCP.
      *
      * Generated from protobuf field <code>optional string gateway_i_pv4 = 178678877;</code>
@@ -51,6 +57,12 @@ class Network extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
+    /**
+     * When enabling ula internal ipv6, caller optionally can specify the /48 range they want from the google defined ULA prefix fd20::/20. The input must be a valid /48 ULA IPv6 address and must be within the fd20::/20. Operation will fail if the speficied /48 is already in used by another resource. If the field is not speficied, then a /48 range will be randomly allocated from fd20::/20 and returned via this field. .
+     *
+     * Generated from protobuf field <code>optional string internal_ipv6_range = 277456807;</code>
+     */
+    private $internal_ipv6_range = null;
     /**
      * [Output Only] Type of the resource. Always compute#network for networks.
      *
@@ -70,6 +82,13 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
+     * The network firewall policy enforcement order. Can be either AFTER_CLASSIC_FIREWALL or BEFORE_CLASSIC_FIREWALL. Defaults to AFTER_CLASSIC_FIREWALL if the field is not specified.
+     * Check the NetworkFirewallPolicyEnforcementOrder enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string network_firewall_policy_enforcement_order = 6504784;</code>
+     */
+    private $network_firewall_policy_enforcement_order = null;
+    /**
      * [Output Only] A list of network peerings for the resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkPeering peerings = 69883187;</code>
@@ -87,6 +106,12 @@ class Network extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
+    /**
+     * [Output Only] Server-defined URL for this resource with the resource id.
+     *
+     * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
+     */
+    private $self_link_with_id = null;
     /**
      * [Output Only] Server-defined fully-qualified URLs for all subnetworks in this VPC network.
      *
@@ -108,22 +133,31 @@ class Network extends \Google\Protobuf\Internal\Message
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this field when you create the resource.
+     *     @type bool $enable_ula_internal_ipv6
+     *           Enable ULA internal ipv6 on this network. Enabling this feature will assign a /48 from google defined ULA prefix fd20::/20. .
      *     @type string $gateway_i_pv4
      *           [Output Only] The gateway address for default routing out of the network, selected by GCP.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *     @type string $internal_ipv6_range
+     *           When enabling ula internal ipv6, caller optionally can specify the /48 range they want from the google defined ULA prefix fd20::/20. The input must be a valid /48 ULA IPv6 address and must be within the fd20::/20. Operation will fail if the speficied /48 is already in used by another resource. If the field is not speficied, then a /48 range will be randomly allocated from fd20::/20 and returned via this field. .
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#network for networks.
      *     @type int $mtu
      *           Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1500 bytes. If unspecified, defaults to 1460.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
+     *     @type string $network_firewall_policy_enforcement_order
+     *           The network firewall policy enforcement order. Can be either AFTER_CLASSIC_FIREWALL or BEFORE_CLASSIC_FIREWALL. Defaults to AFTER_CLASSIC_FIREWALL if the field is not specified.
+     *           Check the NetworkFirewallPolicyEnforcementOrder enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\NetworkPeering[]|\Google\Protobuf\Internal\RepeatedField $peerings
      *           [Output Only] A list of network peerings for the resource.
      *     @type \Google\Cloud\Compute\V1\NetworkRoutingConfig $routing_config
      *           The network-level routing configuration for this network. Used by Cloud Router to determine what type of network-wide routing behavior to enforce.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
+     *     @type string $self_link_with_id
+     *           [Output Only] Server-defined URL for this resource with the resource id.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $subnetworks
      *           [Output Only] Server-defined fully-qualified URLs for all subnetworks in this VPC network.
      * }
@@ -278,6 +312,42 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Enable ULA internal ipv6 on this network. Enabling this feature will assign a /48 from google defined ULA prefix fd20::/20. .
+     *
+     * Generated from protobuf field <code>optional bool enable_ula_internal_ipv6 = 423757720;</code>
+     * @return bool
+     */
+    public function getEnableUlaInternalIpv6()
+    {
+        return isset($this->enable_ula_internal_ipv6) ? $this->enable_ula_internal_ipv6 : false;
+    }
+
+    public function hasEnableUlaInternalIpv6()
+    {
+        return isset($this->enable_ula_internal_ipv6);
+    }
+
+    public function clearEnableUlaInternalIpv6()
+    {
+        unset($this->enable_ula_internal_ipv6);
+    }
+
+    /**
+     * Enable ULA internal ipv6 on this network. Enabling this feature will assign a /48 from google defined ULA prefix fd20::/20. .
+     *
+     * Generated from protobuf field <code>optional bool enable_ula_internal_ipv6 = 423757720;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableUlaInternalIpv6($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_ula_internal_ipv6 = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] The gateway address for default routing out of the network, selected by GCP.
      *
      * Generated from protobuf field <code>optional string gateway_i_pv4 = 178678877;</code>
@@ -345,6 +415,42 @@ class Network extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint64($var);
         $this->id = $var;
+
+        return $this;
+    }
+
+    /**
+     * When enabling ula internal ipv6, caller optionally can specify the /48 range they want from the google defined ULA prefix fd20::/20. The input must be a valid /48 ULA IPv6 address and must be within the fd20::/20. Operation will fail if the speficied /48 is already in used by another resource. If the field is not speficied, then a /48 range will be randomly allocated from fd20::/20 and returned via this field. .
+     *
+     * Generated from protobuf field <code>optional string internal_ipv6_range = 277456807;</code>
+     * @return string
+     */
+    public function getInternalIpv6Range()
+    {
+        return isset($this->internal_ipv6_range) ? $this->internal_ipv6_range : '';
+    }
+
+    public function hasInternalIpv6Range()
+    {
+        return isset($this->internal_ipv6_range);
+    }
+
+    public function clearInternalIpv6Range()
+    {
+        unset($this->internal_ipv6_range);
+    }
+
+    /**
+     * When enabling ula internal ipv6, caller optionally can specify the /48 range they want from the google defined ULA prefix fd20::/20. The input must be a valid /48 ULA IPv6 address and must be within the fd20::/20. Operation will fail if the speficied /48 is already in used by another resource. If the field is not speficied, then a /48 range will be randomly allocated from fd20::/20 and returned via this field. .
+     *
+     * Generated from protobuf field <code>optional string internal_ipv6_range = 277456807;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInternalIpv6Range($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->internal_ipv6_range = $var;
 
         return $this;
     }
@@ -458,6 +564,44 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The network firewall policy enforcement order. Can be either AFTER_CLASSIC_FIREWALL or BEFORE_CLASSIC_FIREWALL. Defaults to AFTER_CLASSIC_FIREWALL if the field is not specified.
+     * Check the NetworkFirewallPolicyEnforcementOrder enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string network_firewall_policy_enforcement_order = 6504784;</code>
+     * @return string
+     */
+    public function getNetworkFirewallPolicyEnforcementOrder()
+    {
+        return isset($this->network_firewall_policy_enforcement_order) ? $this->network_firewall_policy_enforcement_order : '';
+    }
+
+    public function hasNetworkFirewallPolicyEnforcementOrder()
+    {
+        return isset($this->network_firewall_policy_enforcement_order);
+    }
+
+    public function clearNetworkFirewallPolicyEnforcementOrder()
+    {
+        unset($this->network_firewall_policy_enforcement_order);
+    }
+
+    /**
+     * The network firewall policy enforcement order. Can be either AFTER_CLASSIC_FIREWALL or BEFORE_CLASSIC_FIREWALL. Defaults to AFTER_CLASSIC_FIREWALL if the field is not specified.
+     * Check the NetworkFirewallPolicyEnforcementOrder enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string network_firewall_policy_enforcement_order = 6504784;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNetworkFirewallPolicyEnforcementOrder($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->network_firewall_policy_enforcement_order = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] A list of network peerings for the resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkPeering peerings = 69883187;</code>
@@ -551,6 +695,42 @@ class Network extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Server-defined URL for this resource with the resource id.
+     *
+     * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
+     * @return string
+     */
+    public function getSelfLinkWithId()
+    {
+        return isset($this->self_link_with_id) ? $this->self_link_with_id : '';
+    }
+
+    public function hasSelfLinkWithId()
+    {
+        return isset($this->self_link_with_id);
+    }
+
+    public function clearSelfLinkWithId()
+    {
+        unset($this->self_link_with_id);
+    }
+
+    /**
+     * [Output Only] Server-defined URL for this resource with the resource id.
+     *
+     * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSelfLinkWithId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->self_link_with_id = $var;
 
         return $this;
     }

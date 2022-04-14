@@ -39,7 +39,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
      */
     private $short_name = null;
     /**
-     * [Output Only] The type of the firewall policy.
+     * [Output Only] The type of the firewall policy. Can be one of HIERARCHY, NETWORK, NETWORK_REGIONAL.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -61,7 +61,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
      *     @type string $short_name
      *           [Output Only] The short name of the firewall policy.
      *     @type string $type
-     *           [Output Only] The type of the firewall policy.
+     *           [Output Only] The type of the firewall policy. Can be one of HIERARCHY, NETWORK, NETWORK_REGIONAL.
      *           Check the Type enum for the list of possible values.
      * }
      */
@@ -205,7 +205,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
     }
 
     /**
-     * [Output Only] The type of the firewall policy.
+     * [Output Only] The type of the firewall policy. Can be one of HIERARCHY, NETWORK, NETWORK_REGIONAL.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -227,7 +227,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
     }
 
     /**
-     * [Output Only] The type of the firewall policy.
+     * [Output Only] The type of the firewall policy. Can be one of HIERARCHY, NETWORK, NETWORK_REGIONAL.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>

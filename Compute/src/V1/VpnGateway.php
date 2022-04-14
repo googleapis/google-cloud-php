@@ -76,6 +76,13 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
+     * The stack type for this VPN gateway to identify the IP protocols that are enabled. If not specified, IPV4_ONLY will be used.
+     * Check the StackType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
+     */
+    private $stack_type = null;
+    /**
      * The list of VPN interfaces associated with this VPN gateway.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGatewayVpnGatewayInterface vpn_interfaces = 91842181;</code>
@@ -108,6 +115,9 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
      *           [Output Only] URL of the region where the VPN gateway resides.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
+     *     @type string $stack_type
+     *           The stack type for this VPN gateway to identify the IP protocols that are enabled. If not specified, IPV4_ONLY will be used.
+     *           Check the StackType enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\VpnGatewayVpnGatewayInterface[]|\Google\Protobuf\Internal\RepeatedField $vpn_interfaces
      *           The list of VPN interfaces associated with this VPN gateway.
      * }
@@ -463,6 +473,44 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * The stack type for this VPN gateway to identify the IP protocols that are enabled. If not specified, IPV4_ONLY will be used.
+     * Check the StackType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
+     * @return string
+     */
+    public function getStackType()
+    {
+        return isset($this->stack_type) ? $this->stack_type : '';
+    }
+
+    public function hasStackType()
+    {
+        return isset($this->stack_type);
+    }
+
+    public function clearStackType()
+    {
+        unset($this->stack_type);
+    }
+
+    /**
+     * The stack type for this VPN gateway to identify the IP protocols that are enabled. If not specified, IPV4_ONLY will be used.
+     * Check the StackType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStackType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->stack_type = $var;
 
         return $this;
     }

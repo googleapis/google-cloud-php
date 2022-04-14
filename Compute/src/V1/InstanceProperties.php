@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceProperties extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Controls for advanced machine-related behavior features.
+     * Controls for advanced machine-related behavior features. Note that for MachineImage, this is not supported yet.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AdvancedMachineFeatures advanced_machine_features = 409646002;</code>
      */
@@ -27,7 +27,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      */
     private $can_ip_forward = null;
     /**
-     * Specifies the Confidential Instance options.
+     * Specifies the Confidential Instance options. Note that for MachineImage, this is not supported yet.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ConfidentialInstanceConfig confidential_instance_config = 490637685;</code>
      */
@@ -81,20 +81,32 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      */
     private $network_interfaces;
     /**
-     * The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default.
+     * Note that for MachineImage, this is not supported yet.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPerformanceConfig network_performance_config = 398330850;</code>
+     */
+    private $network_performance_config = null;
+    /**
+     * The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default. Note that for MachineImage, this is not supported yet.
      * Check the PrivateIpv6GoogleAccess enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string private_ipv6_google_access = 48277006;</code>
      */
     private $private_ipv6_google_access = null;
     /**
-     * Specifies the reservations that instances can consume from.
+     * Specifies the reservations that instances can consume from. Note that for MachineImage, this is not supported yet.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAffinity reservation_affinity = 157850683;</code>
      */
     private $reservation_affinity = null;
     /**
-     * Resource policies (names, not ULRs) applied to instances created from these properties.
+     * Resource manager tags to be bound to the instance. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>
+     */
+    private $resource_manager_tags;
+    /**
+     * Resource policies (names, not URLs) applied to instances created from these properties. Note that for MachineImage, this is not supported yet.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
      */
@@ -112,6 +124,8 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      */
     private $service_accounts;
     /**
+     * Note that for MachineImage, this is not supported yet.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShieldedInstanceConfig shielded_instance_config = 12862901;</code>
      */
     private $shielded_instance_config = null;
@@ -129,11 +143,11 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\AdvancedMachineFeatures $advanced_machine_features
-     *           Controls for advanced machine-related behavior features.
+     *           Controls for advanced machine-related behavior features. Note that for MachineImage, this is not supported yet.
      *     @type bool $can_ip_forward
      *           Enables instances created based on these properties to send packets with source IP addresses other than their own and receive packets with destination IP addresses other than their own. If these instances will be used as an IP gateway or it will be set as the next-hop in a Route resource, specify true. If unsure, leave this set to false. See the Enable IP forwarding documentation for more information.
      *     @type \Google\Cloud\Compute\V1\ConfidentialInstanceConfig $confidential_instance_config
-     *           Specifies the Confidential Instance options.
+     *           Specifies the Confidential Instance options. Note that for MachineImage, this is not supported yet.
      *     @type string $description
      *           An optional text description for the instances that are created from these properties.
      *     @type \Google\Cloud\Compute\V1\AttachedDisk[]|\Google\Protobuf\Internal\RepeatedField $disks
@@ -150,18 +164,23 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      *           Minimum cpu/platform to be used by instances. The instance may be scheduled on the specified or newer cpu/platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: "Intel Haswell" or minCpuPlatform: "Intel Sandy Bridge". For more information, read Specifying a Minimum CPU Platform.
      *     @type \Google\Cloud\Compute\V1\NetworkInterface[]|\Google\Protobuf\Internal\RepeatedField $network_interfaces
      *           An array of network access configurations for this interface.
+     *     @type \Google\Cloud\Compute\V1\NetworkPerformanceConfig $network_performance_config
+     *           Note that for MachineImage, this is not supported yet.
      *     @type string $private_ipv6_google_access
-     *           The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default.
+     *           The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default. Note that for MachineImage, this is not supported yet.
      *           Check the PrivateIpv6GoogleAccess enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\ReservationAffinity $reservation_affinity
-     *           Specifies the reservations that instances can consume from.
+     *           Specifies the reservations that instances can consume from. Note that for MachineImage, this is not supported yet.
+     *     @type array|\Google\Protobuf\Internal\MapField $resource_manager_tags
+     *           Resource manager tags to be bound to the instance. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_policies
-     *           Resource policies (names, not ULRs) applied to instances created from these properties.
+     *           Resource policies (names, not URLs) applied to instances created from these properties. Note that for MachineImage, this is not supported yet.
      *     @type \Google\Cloud\Compute\V1\Scheduling $scheduling
      *           Specifies the scheduling options for the instances that are created from these properties.
      *     @type \Google\Cloud\Compute\V1\ServiceAccount[]|\Google\Protobuf\Internal\RepeatedField $service_accounts
      *           A list of service accounts with specified scopes. Access tokens for these service accounts are available to the instances that are created from these properties. Use metadata queries to obtain the access tokens for these instances.
      *     @type \Google\Cloud\Compute\V1\ShieldedInstanceConfig $shielded_instance_config
+     *           Note that for MachineImage, this is not supported yet.
      *     @type \Google\Cloud\Compute\V1\Tags $tags
      *           A list of tags to apply to the instances that are created from these properties. The tags identify valid sources or targets for network firewalls. The setTags method can modify this list of tags. Each tag within the list must comply with RFC1035.
      * }
@@ -172,7 +191,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Controls for advanced machine-related behavior features.
+     * Controls for advanced machine-related behavior features. Note that for MachineImage, this is not supported yet.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AdvancedMachineFeatures advanced_machine_features = 409646002;</code>
      * @return \Google\Cloud\Compute\V1\AdvancedMachineFeatures|null
@@ -193,7 +212,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Controls for advanced machine-related behavior features.
+     * Controls for advanced machine-related behavior features. Note that for MachineImage, this is not supported yet.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AdvancedMachineFeatures advanced_machine_features = 409646002;</code>
      * @param \Google\Cloud\Compute\V1\AdvancedMachineFeatures $var
@@ -244,7 +263,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the Confidential Instance options.
+     * Specifies the Confidential Instance options. Note that for MachineImage, this is not supported yet.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ConfidentialInstanceConfig confidential_instance_config = 490637685;</code>
      * @return \Google\Cloud\Compute\V1\ConfidentialInstanceConfig|null
@@ -265,7 +284,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the Confidential Instance options.
+     * Specifies the Confidential Instance options. Note that for MachineImage, this is not supported yet.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ConfidentialInstanceConfig confidential_instance_config = 490637685;</code>
      * @param \Google\Cloud\Compute\V1\ConfidentialInstanceConfig $var
@@ -528,7 +547,43 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default.
+     * Note that for MachineImage, this is not supported yet.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPerformanceConfig network_performance_config = 398330850;</code>
+     * @return \Google\Cloud\Compute\V1\NetworkPerformanceConfig|null
+     */
+    public function getNetworkPerformanceConfig()
+    {
+        return $this->network_performance_config;
+    }
+
+    public function hasNetworkPerformanceConfig()
+    {
+        return isset($this->network_performance_config);
+    }
+
+    public function clearNetworkPerformanceConfig()
+    {
+        unset($this->network_performance_config);
+    }
+
+    /**
+     * Note that for MachineImage, this is not supported yet.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPerformanceConfig network_performance_config = 398330850;</code>
+     * @param \Google\Cloud\Compute\V1\NetworkPerformanceConfig $var
+     * @return $this
+     */
+    public function setNetworkPerformanceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\NetworkPerformanceConfig::class);
+        $this->network_performance_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default. Note that for MachineImage, this is not supported yet.
      * Check the PrivateIpv6GoogleAccess enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string private_ipv6_google_access = 48277006;</code>
@@ -550,7 +605,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default.
+     * The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default. Note that for MachineImage, this is not supported yet.
      * Check the PrivateIpv6GoogleAccess enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string private_ipv6_google_access = 48277006;</code>
@@ -566,7 +621,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the reservations that instances can consume from.
+     * Specifies the reservations that instances can consume from. Note that for MachineImage, this is not supported yet.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAffinity reservation_affinity = 157850683;</code>
      * @return \Google\Cloud\Compute\V1\ReservationAffinity|null
@@ -587,7 +642,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the reservations that instances can consume from.
+     * Specifies the reservations that instances can consume from. Note that for MachineImage, this is not supported yet.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAffinity reservation_affinity = 157850683;</code>
      * @param \Google\Cloud\Compute\V1\ReservationAffinity $var
@@ -602,7 +657,33 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource policies (names, not ULRs) applied to instances created from these properties.
+     * Resource manager tags to be bound to the instance. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getResourceManagerTags()
+    {
+        return $this->resource_manager_tags;
+    }
+
+    /**
+     * Resource manager tags to be bound to the instance. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setResourceManagerTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->resource_manager_tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Resource policies (names, not URLs) applied to instances created from these properties. Note that for MachineImage, this is not supported yet.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -613,7 +694,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource policies (names, not ULRs) applied to instances created from these properties.
+     * Resource policies (names, not URLs) applied to instances created from these properties. Note that for MachineImage, this is not supported yet.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -690,6 +771,8 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Note that for MachineImage, this is not supported yet.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShieldedInstanceConfig shielded_instance_config = 12862901;</code>
      * @return \Google\Cloud\Compute\V1\ShieldedInstanceConfig|null
      */
@@ -709,6 +792,8 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Note that for MachineImage, this is not supported yet.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShieldedInstanceConfig shielded_instance_config = 12862901;</code>
      * @param \Google\Cloud\Compute\V1\ShieldedInstanceConfig $var
      * @return $this
