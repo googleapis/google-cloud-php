@@ -181,7 +181,7 @@ class ConversationModelsGapicClient
     private static function getConversationModelEvaluationNameTemplate()
     {
         if (self::$conversationModelEvaluationNameTemplate == null) {
-            self::$conversationModelEvaluationNameTemplate = new PathTemplate('projects/{project}/conversationModels/{conversation_model}/evaluations/evaluation');
+            self::$conversationModelEvaluationNameTemplate = new PathTemplate('projects/{project}/conversationModels/{conversation_model}/evaluations/{evaluation}');
         }
 
         return self::$conversationModelEvaluationNameTemplate;
@@ -199,7 +199,7 @@ class ConversationModelsGapicClient
     private static function getProjectConversationModelEvaluationNameTemplate()
     {
         if (self::$projectConversationModelEvaluationNameTemplate == null) {
-            self::$projectConversationModelEvaluationNameTemplate = new PathTemplate('projects/{project}/conversationModels/{conversation_model}/evaluations/evaluation');
+            self::$projectConversationModelEvaluationNameTemplate = new PathTemplate('projects/{project}/conversationModels/{conversation_model}/evaluations/{evaluation}');
         }
 
         return self::$projectConversationModelEvaluationNameTemplate;
@@ -217,7 +217,7 @@ class ConversationModelsGapicClient
     private static function getProjectLocationConversationModelEvaluationNameTemplate()
     {
         if (self::$projectLocationConversationModelEvaluationNameTemplate == null) {
-            self::$projectLocationConversationModelEvaluationNameTemplate = new PathTemplate('projects/{project}/locations/{location}/conversationModels/{conversation_model}/evaluations/evaluation');
+            self::$projectLocationConversationModelEvaluationNameTemplate = new PathTemplate('projects/{project}/locations/{location}/conversationModels/{conversation_model}/evaluations/{evaluation}');
         }
 
         return self::$projectLocationConversationModelEvaluationNameTemplate;
@@ -264,14 +264,16 @@ class ConversationModelsGapicClient
      *
      * @param string $project
      * @param string $conversationModel
+     * @param string $evaluation
      *
      * @return string The formatted conversation_model_evaluation resource.
      */
-    public static function conversationModelEvaluationName($project, $conversationModel)
+    public static function conversationModelEvaluationName($project, $conversationModel, $evaluation)
     {
         return self::getConversationModelEvaluationNameTemplate()->render([
             'project' => $project,
             'conversation_model' => $conversationModel,
+            'evaluation' => $evaluation,
         ]);
     }
 
@@ -298,14 +300,16 @@ class ConversationModelsGapicClient
      *
      * @param string $project
      * @param string $conversationModel
+     * @param string $evaluation
      *
      * @return string The formatted project_conversation_model_evaluation resource.
      */
-    public static function projectConversationModelEvaluationName($project, $conversationModel)
+    public static function projectConversationModelEvaluationName($project, $conversationModel, $evaluation)
     {
         return self::getProjectConversationModelEvaluationNameTemplate()->render([
             'project' => $project,
             'conversation_model' => $conversationModel,
+            'evaluation' => $evaluation,
         ]);
     }
 
@@ -335,15 +339,17 @@ class ConversationModelsGapicClient
      * @param string $project
      * @param string $location
      * @param string $conversationModel
+     * @param string $evaluation
      *
      * @return string The formatted project_location_conversation_model_evaluation resource.
      */
-    public static function projectLocationConversationModelEvaluationName($project, $location, $conversationModel)
+    public static function projectLocationConversationModelEvaluationName($project, $location, $conversationModel, $evaluation)
     {
         return self::getProjectLocationConversationModelEvaluationNameTemplate()->render([
             'project' => $project,
             'location' => $location,
             'conversation_model' => $conversationModel,
+            'evaluation' => $evaluation,
         ]);
     }
 
@@ -352,11 +358,11 @@ class ConversationModelsGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - conversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
-     * - conversationModelEvaluation: projects/{project}/conversationModels/{conversation_model}/evaluations/evaluation
+     * - conversationModelEvaluation: projects/{project}/conversationModels/{conversation_model}/evaluations/{evaluation}
      * - projectConversationModel: projects/{project}/conversationModels/{conversation_model}
-     * - projectConversationModelEvaluation: projects/{project}/conversationModels/{conversation_model}/evaluations/evaluation
+     * - projectConversationModelEvaluation: projects/{project}/conversationModels/{conversation_model}/evaluations/{evaluation}
      * - projectLocationConversationModel: projects/{project}/locations/{location}/conversationModels/{conversation_model}
-     * - projectLocationConversationModelEvaluation: projects/{project}/locations/{location}/conversationModels/{conversation_model}/evaluations/evaluation
+     * - projectLocationConversationModelEvaluation: projects/{project}/locations/{location}/conversationModels/{conversation_model}/evaluations/{evaluation}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
