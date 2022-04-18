@@ -1397,8 +1397,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, at which bulk action needs to be applied. Its format
-     *                             is "organizations/[organization_id]", "folders/[folder_id]",
+     * @param string $parent       Required. The parent, at which bulk action needs to be applied. Its format is
+     *                             "organizations/[organization_id]", "folders/[folder_id]",
      *                             "projects/[project_id]".
      * @param array  $optionalArgs {
      *     Optional.
@@ -1530,8 +1530,8 @@ class SecurityCenterGapicClient
      * @param string  $findingId    Required. Unique identifier provided by the client within the parent scope.
      *                              It must be alphanumeric and less than or equal to 32 characters and
      *                              greater than 0 characters in length.
-     * @param Finding $finding      Required. The Finding being created. The name and security_marks will be
-     *                              ignored as they are both output only fields on this resource.
+     * @param Finding $finding      Required. The Finding being created. The name and security_marks will be ignored as
+     *                              they are both output only fields on this resource.
      * @param array   $optionalArgs {
      *     Optional.
      *
@@ -1626,15 +1626,14 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string             $parent             Required. Resource name of the new notification config's parent. Its format
-     *                                               is "organizations/[organization_id]".
+     * @param string             $parent             Required. Resource name of the new notification config's parent. Its format is
+     *                                               "organizations/[organization_id]".
      * @param string             $configId           Required.
      *                                               Unique identifier provided by the client within the parent scope.
      *                                               It must be between 1 and 128 characters, and contains alphanumeric
      *                                               characters, underscores or hyphens only.
-     * @param NotificationConfig $notificationConfig Required. The notification config being created. The name and the service
-     *                                               account will be ignored as they are both output only fields on this
-     *                                               resource.
+     * @param NotificationConfig $notificationConfig Required. The notification config being created. The name and the service account
+     *                                               will be ignored as they are both output only fields on this resource.
      * @param array              $optionalArgs       {
      *     Optional.
      *
@@ -1679,8 +1678,8 @@ class SecurityCenterGapicClient
      *
      * @param string $parent       Required. Resource name of the new source's parent. Its format should be
      *                             "organizations/[organization_id]".
-     * @param Source $source       Required. The Source being created, only the display_name and description
-     *                             will be used. All other fields will be ignored.
+     * @param Source $source       Required. The Source being created, only the display_name and description will be
+     *                             used. All other fields will be ignored.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2017,8 +2016,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Name of the organization to get organization settings for. Its
-     *                             format is "organizations/[organization_id]/organizationSettings".
+     * @param string $name         Required. Name of the organization to get organization settings for. Its format is
+     *                             "organizations/[organization_id]/organizationSettings".
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2116,9 +2115,9 @@ class SecurityCenterGapicClient
      * @param string $parent       Required. Name of the organization to groupBy. Its format is
      *                             "organizations/[organization_id], folders/[folder_id], or
      *                             projects/[project_id]".
-     * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping.
-     *                             The string value should follow SQL syntax: comma separated list of fields.
-     *                             For example:
+     * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping. The string
+     *                             value should follow SQL syntax: comma separated list of fields. For
+     *                             example:
      *                             "security_center_properties.resource_project,security_center_properties.project".
      *
      *                             The following fields are supported when compare_duration is not set:
@@ -2325,9 +2324,9 @@ class SecurityCenterGapicClient
      *                             provide a source_id of `-`. For example:
      *                             organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-,
      *                             or projects/{project_id}/sources/-
-     * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping
-     *                             (including `state_change`). The string value should follow SQL syntax:
-     *                             comma separated list of fields. For example: "parent,resource_name".
+     * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping (including
+     *                             `state_change`). The string value should follow SQL syntax: comma separated
+     *                             list of fields. For example: "parent,resource_name".
      *
      *                             The following fields are supported:
      *
@@ -2733,8 +2732,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns the collection of BigQuery exports. Its
-     *                             format is "organizations/[organization_id]", "folders/[folder_id]",
+     * @param string $parent       Required. The parent, which owns the collection of BigQuery exports. Its format is
+     *                             "organizations/[organization_id]", "folders/[folder_id]",
      *                             "projects/[project_id]".
      * @param array  $optionalArgs {
      *     Optional.
@@ -3022,8 +3021,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns the collection of mute configs. Its format
-     *                             is "organizations/[organization_id]", "folders/[folder_id]",
+     * @param string $parent       Required. The parent, which owns the collection of mute configs. Its format is
+     *                             "organizations/[organization_id]", "folders/[folder_id]",
      *                             "projects/[project_id]".
      * @param array  $optionalArgs {
      *     Optional.
@@ -3163,8 +3162,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the parent of sources to list. Its format should
-     *                             be "organizations/[organization_id], folders/[folder_id], or
+     * @param string $parent       Required. Resource name of the parent of sources to list. Its format should be
+     *                             "organizations/[organization_id], folders/[folder_id], or
      *                             projects/[project_id]".
      * @param array  $optionalArgs {
      *     Optional.
@@ -3252,8 +3251,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the organization to run asset discovery for. Its format
-     *                             is "organizations/[organization_id]".
+     * @param string $parent       Required. Name of the organization to run asset discovery for. Its format is
+     *                             "organizations/[organization_id]".
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -3592,8 +3591,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param Finding $finding      Required. The finding resource to update or create if it does not already
-     *                              exist. parent, security_marks, and update_time will be ignored.
+     * @param Finding $finding      Required. The finding resource to update or create if it does not already exist.
+     *                              parent, security_marks, and update_time will be ignored.
      *
      *                              In the case of creation, the finding id portion of the name must be
      *                              alphanumeric and less than or equal to 32 characters and greater than 0

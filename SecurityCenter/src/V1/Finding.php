@@ -185,6 +185,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $access = null;
     /**
+     * Contains information about the IP connection associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Connection connections = 31;</code>
+     */
+    private $connections;
+    /**
      * First known as mute_annotation. Records additional information about the
      * mute operation e.g. mute config that muted the finding, user who muted the
      * finding, etc. Unlike other attributes of a finding, a finding provider
@@ -193,6 +199,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string mute_initiator = 28;</code>
      */
     private $mute_initiator = '';
+    /**
+     * Contains more detail about the finding.
+     *
+     * Generated from protobuf field <code>string description = 37;</code>
+     */
+    private $description = '';
     /**
      * Represents IAM bindings associated with the Finding.
      *
@@ -296,11 +308,15 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\SecurityCenter\V1\Access $access
      *           Access details associated to the Finding, such as more information on the
      *           caller, which method was accessed, from where, etc.
+     *     @type \Google\Cloud\SecurityCenter\V1\Connection[]|\Google\Protobuf\Internal\RepeatedField $connections
+     *           Contains information about the IP connection associated with the finding.
      *     @type string $mute_initiator
      *           First known as mute_annotation. Records additional information about the
      *           mute operation e.g. mute config that muted the finding, user who muted the
      *           finding, etc. Unlike other attributes of a finding, a finding provider
      *           shouldn't set the value of mute.
+     *     @type string $description
+     *           Contains more detail about the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\IamBinding[]|\Google\Protobuf\Internal\RepeatedField $iam_bindings
      *           Represents IAM bindings associated with the Finding.
      *     @type string $next_steps
@@ -1001,6 +1017,32 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Contains information about the IP connection associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Connection connections = 31;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getConnections()
+    {
+        return $this->connections;
+    }
+
+    /**
+     * Contains information about the IP connection associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Connection connections = 31;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\Connection[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setConnections($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\Connection::class);
+        $this->connections = $arr;
+
+        return $this;
+    }
+
+    /**
      * First known as mute_annotation. Records additional information about the
      * mute operation e.g. mute config that muted the finding, user who muted the
      * finding, etc. Unlike other attributes of a finding, a finding provider
@@ -1028,6 +1070,32 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->mute_initiator = $var;
+
+        return $this;
+    }
+
+    /**
+     * Contains more detail about the finding.
+     *
+     * Generated from protobuf field <code>string description = 37;</code>
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Contains more detail about the finding.
+     *
+     * Generated from protobuf field <code>string description = 37;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDescription($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->description = $var;
 
         return $this;
     }

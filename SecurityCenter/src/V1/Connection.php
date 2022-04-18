@@ -21,32 +21,32 @@ class Connection extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string destination_ip = 1;</code>
      */
-    protected $destination_ip = '';
+    private $destination_ip = '';
     /**
      * Destination port. Not present for sockets that are listening and not
      * connected.
      *
      * Generated from protobuf field <code>int32 destination_port = 2;</code>
      */
-    protected $destination_port = 0;
+    private $destination_port = 0;
     /**
      * Source IP address.
      *
      * Generated from protobuf field <code>string source_ip = 3;</code>
      */
-    protected $source_ip = '';
+    private $source_ip = '';
     /**
      * Source port.
      *
      * Generated from protobuf field <code>int32 source_port = 4;</code>
      */
-    protected $source_port = 0;
+    private $source_port = 0;
     /**
      * IANA Internet Protocol Number such as TCP(6) and UDP(17).
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Connection.Protocol protocol = 5;</code>
      */
-    protected $protocol = 0;
+    private $protocol = 0;
 
     /**
      * Constructor.

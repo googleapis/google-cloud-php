@@ -12,5 +12,5 @@ if (false) {
     class Connection_Protocol {}
 }
 class_exists(Connection\Protocol::class);
-@trigger_error('Google\Cloud\SecurityCenter\V1\Connection_Protocol is deprecated and will be removed in the next major release. Use Google\Cloud\SecurityCenter\V1\Connection\Protocol instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\SecurityCenter\V1\Connection_Protocol is deprecated and will be removed in a future release. Use Google\Cloud\SecurityCenter\V1\Connection\Protocol instead', E_USER_DEPRECATED);
 

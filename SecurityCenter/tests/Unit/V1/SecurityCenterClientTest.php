@@ -319,6 +319,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
         $muteInitiator = 'muteInitiator7603081';
+        $description = 'description-1724546052';
         $nextSteps = 'nextSteps-921338149';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name);
@@ -328,6 +329,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
         $expectedResponse->setMuteInitiator($muteInitiator);
+        $expectedResponse->setDescription($description);
         $expectedResponse->setNextSteps($nextSteps);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -1955,6 +1957,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
         $muteInitiator = 'muteInitiator7603081';
+        $description = 'description-1724546052';
         $nextSteps = 'nextSteps-921338149';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name2);
@@ -1964,6 +1967,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
         $expectedResponse->setMuteInitiator($muteInitiator);
+        $expectedResponse->setDescription($description);
         $expectedResponse->setNextSteps($nextSteps);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -2111,6 +2115,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
         $muteInitiator = 'muteInitiator7603081';
+        $description = 'description-1724546052';
         $nextSteps = 'nextSteps-921338149';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name2);
@@ -2120,6 +2125,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
         $expectedResponse->setMuteInitiator($muteInitiator);
+        $expectedResponse->setDescription($description);
         $expectedResponse->setNextSteps($nextSteps);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -2401,6 +2407,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
         $muteInitiator = 'muteInitiator7603081';
+        $description = 'description-1724546052';
         $nextSteps = 'nextSteps-921338149';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name);
@@ -2410,6 +2417,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
         $expectedResponse->setMuteInitiator($muteInitiator);
+        $expectedResponse->setDescription($description);
         $expectedResponse->setNextSteps($nextSteps);
         $transport->addResponse($expectedResponse);
         // Mock request
