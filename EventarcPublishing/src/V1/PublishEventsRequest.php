@@ -9,19 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for the PublishChannelConnectionEvents method.
+ * The request message for the PublishEvents method.
  *
- * Generated from protobuf message <code>google.cloud.eventarc.publishing.v1.PublishChannelConnectionEventsRequest</code>
+ * Generated from protobuf message <code>google.cloud.eventarc.publishing.v1.PublishEventsRequest</code>
  */
-class PublishChannelConnectionEventsRequest extends \Google\Protobuf\Internal\Message
+class PublishEventsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The channel_connection that the events are published from. For example:
-     * `projects/{partner_project_id}/locations/{location}/channelConnections/{channel_connection_id}`.
+     * The full name of the channel to publish to. For example:
+     * `projects/{project}/locations/{location}/channels/{channel-id}`.
      *
-     * Generated from protobuf field <code>string channel_connection = 1;</code>
+     * Generated from protobuf field <code>string channel = 1;</code>
      */
-    protected $channel_connection = '';
+    private $channel = '';
     /**
      * The CloudEvents v1.0 events to publish. No other types are allowed.
      *
@@ -35,9 +35,9 @@ class PublishChannelConnectionEventsRequest extends \Google\Protobuf\Internal\Me
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $channel_connection
-     *           The channel_connection that the events are published from. For example:
-     *           `projects/{partner_project_id}/locations/{location}/channelConnections/{channel_connection_id}`.
+     *     @type string $channel
+     *           The full name of the channel to publish to. For example:
+     *           `projects/{project}/locations/{location}/channels/{channel-id}`.
      *     @type \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $events
      *           The CloudEvents v1.0 events to publish. No other types are allowed.
      * }
@@ -48,29 +48,29 @@ class PublishChannelConnectionEventsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The channel_connection that the events are published from. For example:
-     * `projects/{partner_project_id}/locations/{location}/channelConnections/{channel_connection_id}`.
+     * The full name of the channel to publish to. For example:
+     * `projects/{project}/locations/{location}/channels/{channel-id}`.
      *
-     * Generated from protobuf field <code>string channel_connection = 1;</code>
+     * Generated from protobuf field <code>string channel = 1;</code>
      * @return string
      */
-    public function getChannelConnection()
+    public function getChannel()
     {
-        return $this->channel_connection;
+        return $this->channel;
     }
 
     /**
-     * The channel_connection that the events are published from. For example:
-     * `projects/{partner_project_id}/locations/{location}/channelConnections/{channel_connection_id}`.
+     * The full name of the channel to publish to. For example:
+     * `projects/{project}/locations/{location}/channels/{channel-id}`.
      *
-     * Generated from protobuf field <code>string channel_connection = 1;</code>
+     * Generated from protobuf field <code>string channel = 1;</code>
      * @param string $var
      * @return $this
      */
-    public function setChannelConnection($var)
+    public function setChannel($var)
     {
         GPBUtil::checkString($var, True);
-        $this->channel_connection = $var;
+        $this->channel = $var;
 
         return $this;
     }

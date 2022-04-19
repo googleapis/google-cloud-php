@@ -35,6 +35,8 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Eventarc\Publishing\V1\PublishChannelConnectionEventsRequest;
 use Google\Cloud\Eventarc\Publishing\V1\PublishChannelConnectionEventsResponse;
+use Google\Cloud\Eventarc\Publishing\V1\PublishEventsRequest;
+use Google\Cloud\Eventarc\Publishing\V1\PublishEventsResponse;
 use Google\Protobuf\Any;
 
 /**
@@ -249,6 +251,65 @@ class PublisherGapicClient
         return $this->startCall(
             'PublishChannelConnectionEvents',
             PublishChannelConnectionEventsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Publish events to a subscriber's channel.
+     *
+     * Sample code:
+     * ```
+     * $publisherClient = new PublisherClient();
+     * try {
+     *     $response = $publisherClient->publishEvents();
+     * } finally {
+     *     $publisherClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $channel
+     *           The full name of the channel to publish to. For example:
+     *           `projects/{project}/locations/{location}/channels/{channel-id}`.
+     *     @type Any[] $events
+     *           The CloudEvents v1.0 events to publish. No other types are allowed.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Eventarc\Publishing\V1\PublishEventsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function publishEvents(array $optionalArgs = [])
+    {
+        $request = new PublishEventsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['channel'])) {
+            $request->setChannel($optionalArgs['channel']);
+            $requestParamHeaders['channel'] = $optionalArgs['channel'];
+        }
+
+        if (isset($optionalArgs['events'])) {
+            $request->setEvents($optionalArgs['events']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'PublishEvents',
+            PublishEventsResponse::class,
             $optionalArgs,
             $request
         )->wait();
