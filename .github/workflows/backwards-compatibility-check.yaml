@@ -1,0 +1,14 @@
+on: [pull_request]
+jobs:
+  backwards-compatibility-check:
+    name: Backwards Compatibility Check
+    runs-on: ubuntu-latest
+    # Disable this check by applying the 'breaking change allowed' label to the PR.
+    if: "!contains(github.event.pull_request.labels.*.name, 'breaking change allowed')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Check for BC breaks
+        # More info at https://github.com/Roave/BackwardCompatibilityCheck.
+        uses: docker://nyholm/roave-bc-check-ga
