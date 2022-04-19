@@ -1,3 +1,4 @@
+name: Backwards Compatibility Check
 on: [pull_request]
 jobs:
   backwards-compatibility-check:
