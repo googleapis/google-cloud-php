@@ -56,8 +56,7 @@ class FirestoreSessionHandlerTest extends TestCase
     public function testOpen()
     {
         $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1)
-            ->willReturn(['transaction' => 123]);;
+            ->shouldBeCalledTimes(1);
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
             $this->valueMapper->reveal(),
@@ -91,9 +90,6 @@ class FirestoreSessionHandlerTest extends TestCase
      */
     public function testReadNotAllowed()
     {
-        $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1)
-            ->willThrow(new ServiceException(''));
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
             $this->valueMapper->reveal(),
@@ -128,8 +124,7 @@ class FirestoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn(null);
         $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1)
-            ->willReturn(['transaction' => 123]);
+            ->shouldBeCalledTimes(1);
         $this->connection->batchGetDocuments([
             'database' => $this->dbName(),
             'documents' => [$this->documentName()],
@@ -155,8 +150,7 @@ class FirestoreSessionHandlerTest extends TestCase
     public function testReadWithException()
     {
         $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1)
-            ->willReturn(['transaction' => 123]);
+            ->shouldBeCalledTimes(1);
         $this->connection->batchGetDocuments([
             'database' => $this->dbName(),
             'documents' => [$this->documentName()],
@@ -223,8 +217,7 @@ class FirestoreSessionHandlerTest extends TestCase
                 return ['data' => ['stringValue' => 'sessiondata']];
             });
         $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1)
-            ->willReturn(['transaction' => 123]);
+            ->shouldBeCalledTimes(1);
         $this->connection->commit([
             'database' => $this->dbName(),
             'writes' => [

@@ -36,7 +36,6 @@ class QueryResultsTest extends TestCase
     public $jobId = 'myJobId';
     public $queryData = [
         'jobComplete' => true,
-        'jobReference' => ['location' => null],
         'rows' => [
             ['f' => [['v' => 'Alton'], ['v' => 1]]]
         ],
