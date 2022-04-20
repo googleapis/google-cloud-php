@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/sslpolicy\/mintlsversion","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\SslPolicy\\MinTlsVersion","name":"MinTlsVersion","description":"<p>MinTlsVersion contains string constants that represent the names of each value\nin the google.cloud.compute.v1.SslPolicy.MinTlsVersion descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

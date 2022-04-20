@@ -1,0 +1,1 @@
+{"id":"container\/v1\/monitoringcomponentconfig\/component","type":"","title":"Google\\Cloud\\Container\\V1\\MonitoringComponentConfig\\Component","name":"Component","description":"<p>GKE components exposing metrics<\/p>\n<p>Protobuf type <code>google.container.v1.MonitoringComponentConfig.Component<\/code><\/p>","examples":[],"resources":[],"methods":[]}

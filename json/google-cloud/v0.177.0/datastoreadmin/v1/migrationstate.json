@@ -1,0 +1,1 @@
+{"id":"datastoreadmin\/v1\/migrationstate","type":"","title":"Google\\Cloud\\Datastore\\Admin\\V1\\MigrationState","name":"MigrationState","description":"<p>States for a migration.<\/p>\n<p>Protobuf type <code>google.datastore.admin.v1.MigrationState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

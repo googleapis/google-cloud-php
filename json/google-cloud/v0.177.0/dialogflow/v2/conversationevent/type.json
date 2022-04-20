@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/conversationevent\/type","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\ConversationEvent\\Type","name":"Type","description":"<p>Enumeration of the types of events available.<\/p>\n<p>Protobuf type <code>google.cloud.dialogflow.v2.ConversationEvent.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

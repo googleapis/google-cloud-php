@@ -1,0 +1,1 @@
+{"id":"tpu\/v1\/node\/health","type":"","title":"Google\\Cloud\\Tpu\\V1\\Node\\Health","name":"Health","description":"<p>Health defines the status of a TPU node as reported by\nHealth Monitor.<\/p>\n<p>Protobuf type <code>google.cloud.tpu.v1.Node.Health<\/code><\/p>","examples":[],"resources":[],"methods":[]}

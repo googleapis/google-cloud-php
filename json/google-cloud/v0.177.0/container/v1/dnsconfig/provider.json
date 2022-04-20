@@ -1,0 +1,1 @@
+{"id":"container\/v1\/dnsconfig\/provider","type":"","title":"Google\\Cloud\\Container\\V1\\DNSConfig\\Provider","name":"Provider","description":"<p>Provider lists the various in-cluster DNS providers.<\/p>\n<p>Protobuf type <code>google.container.v1.DNSConfig.Provider<\/code><\/p>","examples":[],"resources":[],"methods":[]}

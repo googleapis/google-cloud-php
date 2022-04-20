@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/attacheddisk\/pbinterface","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\AttachedDisk\\PBInterface","name":"PBInterface","description":"<p>Interface contains string constants that represent the names of each value in\nthe google.cloud.compute.v1.AttachedDisk.Interface descriptor.<\/p>","examples":[],"resources":[],"methods":[]}
