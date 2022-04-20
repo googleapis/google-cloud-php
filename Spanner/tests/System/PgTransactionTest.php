@@ -49,7 +49,7 @@ class PgTransactionTest extends SpannerPgTestCase
             'CREATE TABLE ' . self::$table2 . ' (
                 id bigint NOT NULL,
                 name varchar(1024) NOT NULL,
-                birthday timestamptz,
+                birthday date,
                 PRIMARY KEY (id)
             )'
         ])->pollUntilComplete();
@@ -57,7 +57,7 @@ class PgTransactionTest extends SpannerPgTestCase
         self::$row = [
             'id' => rand(1000, 9999),
             'name' => uniqid(self::TESTING_PREFIX),
-            'birthday' => new Timestamp(new \DateTime('2000-01-01'))
+            'birthday' => new Date(new \DateTime('2000-01-01'))
         ];
 
         self::$database->insert(self::$table2, self::$row);
@@ -72,7 +72,7 @@ class PgTransactionTest extends SpannerPgTestCase
             $t->insert(self::$table2, [
                 'id' => $id,
                 'name' => uniqid(self::TESTING_PREFIX),
-                'birthday' => new Timestamp(new \DateTime('2000-01-01'))
+                'birthday' => new Date(new \DateTime('2000-01-01'))
             ]);
 
             $t->commit();

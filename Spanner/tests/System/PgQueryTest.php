@@ -56,6 +56,7 @@ class PgQueryTest extends SpannerPgTestCase
                 rating float,
                 bytes_col bytea,
                 created_at timestamptz,
+                dt date,
                 PRIMARY KEY (id)
             )'
         )->pollUntilComplete();
@@ -70,7 +71,8 @@ class PgQueryTest extends SpannerPgTestCase
             'rating' => 4.2,
             'age' => 22,
             'bytes_col' => new Bytes('hello'),
-            'created_at' => self::$timestampVal
+            'created_at' => self::$timestampVal,
+            'dt' => '2020-01-01'
             ],
             [
             'id' => 2,
@@ -78,7 +80,8 @@ class PgQueryTest extends SpannerPgTestCase
             'registered' => false,
             'rating' => 5.0,
             'age' => 26,
-            'created_at' => self::$timestampVal
+            'created_at' => self::$timestampVal,
+            'dt' => '2021-01-01'
             ]
         ]);
     }
@@ -400,5 +403,54 @@ class PgQueryTest extends SpannerPgTestCase
         $res = self::$database->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE bytes_col IS NULL');
 
         $this->assertCount(7, iterator_to_array($res));
+    }
+
+    public function testBindDateParameter()
+    {
+        $res = self::$database->execute("SELECT * FROM " . self::TABLE_NAME . " WHERE dt BETWEEN $1 AND $2", [
+            'parameters' => [
+                'p1' => new Date(new \DateTime('2020-01-01')),
+                'p2' => new Date(new \DateTime('2021-01-01'))
+            ]
+        ]);
+
+        $this->assertCount(2, iterator_to_array($res));
+
+        $row = $res->rows()->current();
+        $this->assertInstanceOf(Date::class, $row['dt']);
+        $this->assertEquals('2020-01-01', $row['dt']->get()->format('Y-m-d'));
+    }
+
+    public function testBindDateParameterNull()
+    {
+        $res = self::$database->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE dt IS NULL');
+        $currentNullCount = count(iterator_to_array($res));
+
+        // insert a value with a date param binded to null
+        self::$database->runTransaction(function (Transaction $t) {
+            $t->executeUpdate(
+                'INSERT INTO ' . self::TABLE_NAME . '(id, name, registered, rating, age, dt) '
+                . 'VALUES($1, $2, $3, $4, $5, $6)',
+                [
+                    'parameters' => [
+                        'p1' => 9,
+                        'p2' => 'Raja',
+                        'p3' => true,
+                        'p4' => 5.0,
+                        'p5' => 30,
+                        'p6' => null
+                    ],
+                    'types' => [
+                        'p6' => Database::TYPE_DATE
+                    ]
+                ]
+            );
+            $t->commit();
+        });
+
+        $res = self::$database->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE dt IS NULL');
+
+        // the new null count should have been incremented by 1
+        $this->assertCount($currentNullCount + 1, iterator_to_array($res));
     }
 }
