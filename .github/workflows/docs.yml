@@ -8,7 +8,7 @@ on:
 
 jobs:
     docs:
-        name: "Generate Project Documentation"
+        name: "Generate Project Do                ghcumentation"
         runs-on: ubuntu-latest
         steps:
         - id: getTag
@@ -21,7 +21,7 @@ jobs:
         - name: Setup PHP
           uses: shivammathur/setup-php@v2
           with:
-            php-version: '7.3'
+            php-version: '8.0'
             ini-values: memory_limit=2048M
         - name: Install Dependencies
           uses: nick-invision/retry@v1
