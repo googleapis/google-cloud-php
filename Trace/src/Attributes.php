@@ -51,6 +51,7 @@ class Attributes implements \ArrayAccess
      * @param string $offset
      * @param mixed $value
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         $this->attributes[$offset] = $value;
@@ -62,6 +63,7 @@ class Attributes implements \ArrayAccess
      * @access private
      * @param string $offset
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->attributes[$offset]);
@@ -73,6 +75,7 @@ class Attributes implements \ArrayAccess
      * @access private
      * @param string $offset
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->attributes[$offset]);
@@ -84,6 +87,7 @@ class Attributes implements \ArrayAccess
      * @access private
      * @param string $offset
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return isset($this->attributes[$offset])
