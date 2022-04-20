@@ -19,7 +19,8 @@
 namespace Google\Cloud\ServiceManagement\V1;
 
 /**
- * [Google Service Management API](https://cloud.google.com/service-management/overview)
+ * [Google Service Management
+ * API](https://cloud.google.com/service-infrastructure/docs/overview)
  */
 class ServiceManagerGrpcClient extends \Grpc\BaseStub {
 
@@ -95,8 +96,10 @@ class ServiceManagerGrpcClient extends \Grpc\BaseStub {
     /**
      * Deletes a managed service. This method will change the service to the
      * `Soft-Delete` state for 30 days. Within this period, service producers may
-     * call [UndeleteService][google.api.servicemanagement.v1.ServiceManager.UndeleteService] to restore the service.
-     * After 30 days, the service will be permanently deleted.
+     * call
+     * [UndeleteService][google.api.servicemanagement.v1.ServiceManager.UndeleteService]
+     * to restore the service. After 30 days, the service will be permanently
+     * deleted.
      *
      * Operation<response: google.protobuf.Empty>
      * @param \Google\Cloud\ServiceManagement\V1\DeleteServiceRequest $argument input argument
@@ -192,7 +195,8 @@ class ServiceManagerGrpcClient extends \Grpc\BaseStub {
      * Specification). This method stores the source configurations as well as the
      * generated service configuration. To rollout the service configuration to
      * other services,
-     * please call [CreateServiceRollout][google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout].
+     * please call
+     * [CreateServiceRollout][google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout].
      *
      * Only the 100 most recent configuration sources and ones referenced by
      * existing service configurtions are kept for each service. The rest will be
@@ -229,7 +233,8 @@ class ServiceManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets a service configuration [rollout][google.api.servicemanagement.v1.Rollout].
+     * Gets a service configuration
+     * [rollout][google.api.servicemanagement.v1.Rollout].
      * @param \Google\Cloud\ServiceManagement\V1\GetServiceRolloutRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
