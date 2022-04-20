@@ -33,21 +33,25 @@ class SampleEntity implements EntityInterface, \arrayaccess
         ];
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetSet($key, $val)
     {
         $this->entity[$key] = $val;
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetExists($key)
     {
         return isset($this->entity[$key]);
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetUnset($key)
     {
         unset($this->entity[$key]);
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetGet($key)
     {
         return isset($this->entity[$key])
