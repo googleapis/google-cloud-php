@@ -45,8 +45,8 @@ echo "Running Snippet Test Suite"
 vendor/bin/phpunit -c phpunit${PHPUNIT_SUFFIX}.xml.dist --verbose --log-junit \
                    ${SNIPPETS_LOG_FILENAME}
 
-# Run docs gen on PHP 8.0 only
-if [ "8.0" == ${PHP_VERSION:0:3} ]; then
+# Run docs gen on PHP 7.4 only
+if [ "7.4" == ${PHP_VERSION:0:3} ]; then
     echo "Running Doc Generator"
 
     # Require phpdocumentor:4 for docs generation
