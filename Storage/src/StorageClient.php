@@ -263,8 +263,11 @@ class StorageClient
      *     @type array $defaultObjectAcl Default access controls to apply to new
      *           objects when no ACL is provided.
      *     @type array|Lifecycle $lifecycle The bucket's lifecycle configuration.
-     *     @type string $location The location of the bucket. **Defaults to**
-     *           `"US"`.
+     *     @type string $location The location of the bucket. A dual-region can
+     *           be specified as a string (e.g. "US-CENTRAL1+US-WEST1"). For
+     *           more information, see
+     *           [Bucket Locations](https://cloud.google.com/storage/docs/locations).
+     *           **Defaults to** `"US"`.
      *     @type array $logging The bucket's logging configuration, which
      *           defines the destination bucket and optional name prefix for the
      *           current bucket's logs.
