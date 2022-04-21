@@ -15,18 +15,23 @@ class Publisher
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        \GPBMetadata\Google\Protobuf\Any::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
+        \GPBMetadata\Google\Protobuf\Any::initOnce();
         $pool->internalAddGeneratedFile(
             '
-­
-3google/cloud/eventarc/publishing/v1/publisher.proto#google.cloud.eventarc.publishing.v1google/protobuf/any.protogoogle/api/client.proto"i
+è	
+3google/cloud/eventarc/publishing/v1/publisher.proto#google.cloud.eventarc.publishing.v1google/api/client.protogoogle/protobuf/any.proto"i
 %PublishChannelConnectionEventsRequest
 channel_connection (	$
 events (2.google.protobuf.Any"(
-&PublishChannelConnectionEventsResponse2ý
+&PublishChannelConnectionEventsResponse"M
+PublishEventsRequest
+channel (	$
+events (2.google.protobuf.Any"
+PublishEventsResponse2Ð
 	Publisher˜
-PublishChannelConnectionEventsJ.google.cloud.eventarc.publishing.v1.PublishChannelConnectionEventsRequestK.google.cloud.eventarc.publishing.v1.PublishChannelConnectionEventsResponse"]‚Óä“W"R/v1/{channel_connection=projects/*/locations/*/channelConnections/*}:publishEvents:*UÊA!eventarcpublishing.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÿ
+PublishChannelConnectionEventsJ.google.cloud.eventarc.publishing.v1.PublishChannelConnectionEventsRequestK.google.cloud.eventarc.publishing.v1.PublishChannelConnectionEventsResponse"]‚Óä“W"R/v1/{channel_connection=projects/*/locations/*/channelConnections/*}:publishEvents:*Ð
+PublishEvents9.google.cloud.eventarc.publishing.v1.PublishEventsRequest:.google.cloud.eventarc.publishing.v1.PublishEventsResponse"H‚Óä“B"=/v1/{channel=projects/*/locations/*/channels/*}:publishEvents:*UÊA!eventarcpublishing.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÿ
 \'com.google.cloud.eventarc.publishing.v1BPublisherProtoPZLgoogle.golang.org/genproto/googleapis/cloud/eventarc/publishing/v1;publisherª#Google.Cloud.Eventarc.Publishing.V1Ê#Google\\Cloud\\Eventarc\\Publishing\\V1ê\'Google::Cloud::Eventarc::Publishing::V1bproto3'
         , true);
 
