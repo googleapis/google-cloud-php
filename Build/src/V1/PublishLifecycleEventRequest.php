@@ -60,6 +60,17 @@ class PublishLifecycleEventRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string project_id = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
+    /**
+     * Whether to require a previously received matching parent lifecycle event
+     * for the current request's event before continuing processing.
+     * - InvocationAttemptStarted and BuildFinished events require a BuildEnqueued
+     *   parent event.
+     * - InvocationAttemptFinished events require an InvocationAttemptStarted
+     *   parent event.
+     *
+     * Generated from protobuf field <code>bool check_preceding_lifecycle_events_present = 7;</code>
+     */
+    private $check_preceding_lifecycle_events_present = false;
 
     /**
      * Constructor.
@@ -87,6 +98,13 @@ class PublishLifecycleEventRequest extends \Google\Protobuf\Internal\Message
      *           Required. The project this build is associated with.
      *           This should match the project used for the initial call to
      *           PublishLifecycleEvent (containing a BuildEnqueued message).
+     *     @type bool $check_preceding_lifecycle_events_present
+     *           Whether to require a previously received matching parent lifecycle event
+     *           for the current request's event before continuing processing.
+     *           - InvocationAttemptStarted and BuildFinished events require a BuildEnqueued
+     *             parent event.
+     *           - InvocationAttemptFinished events require an InvocationAttemptStarted
+     *             parent event.
      * }
      */
     public function __construct($data = NULL) {
@@ -260,6 +278,42 @@ class PublishLifecycleEventRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->project_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether to require a previously received matching parent lifecycle event
+     * for the current request's event before continuing processing.
+     * - InvocationAttemptStarted and BuildFinished events require a BuildEnqueued
+     *   parent event.
+     * - InvocationAttemptFinished events require an InvocationAttemptStarted
+     *   parent event.
+     *
+     * Generated from protobuf field <code>bool check_preceding_lifecycle_events_present = 7;</code>
+     * @return bool
+     */
+    public function getCheckPrecedingLifecycleEventsPresent()
+    {
+        return $this->check_preceding_lifecycle_events_present;
+    }
+
+    /**
+     * Whether to require a previously received matching parent lifecycle event
+     * for the current request's event before continuing processing.
+     * - InvocationAttemptStarted and BuildFinished events require a BuildEnqueued
+     *   parent event.
+     * - InvocationAttemptFinished events require an InvocationAttemptStarted
+     *   parent event.
+     *
+     * Generated from protobuf field <code>bool check_preceding_lifecycle_events_present = 7;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCheckPrecedingLifecycleEventsPresent($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->check_preceding_lifecycle_events_present = $var;
 
         return $this;
     }

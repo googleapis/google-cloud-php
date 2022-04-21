@@ -328,6 +328,13 @@ class PublishBuildEventGapicClient
      *           them. They are used while notifying internal systems of new builds and
      *           invocations if the OrderedBuildEvent.event type is
      *           BuildEnqueued/InvocationAttemptStarted.
+     *     @type bool $checkPrecedingLifecycleEventsPresent
+     *           Whether to require a previously received matching parent lifecycle event
+     *           for the current request's event before continuing processing.
+     *           - InvocationAttemptStarted and BuildFinished events require a BuildEnqueued
+     *           parent event.
+     *           - InvocationAttemptFinished events require an InvocationAttemptStarted
+     *           parent event.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -354,6 +361,10 @@ class PublishBuildEventGapicClient
 
         if (isset($optionalArgs['notificationKeywords'])) {
             $request->setNotificationKeywords($optionalArgs['notificationKeywords']);
+        }
+
+        if (isset($optionalArgs['checkPrecedingLifecycleEventsPresent'])) {
+            $request->setCheckPrecedingLifecycleEventsPresent($optionalArgs['checkPrecedingLifecycleEventsPresent']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
