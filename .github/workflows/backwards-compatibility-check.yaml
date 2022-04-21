@@ -10,13 +10,5 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Install PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.4
-      - name: Install roave BC checker
-        run: composer global require roave/backward-compatibility-check
       - name: Check for BC breaks
-        run: |
-          export PATH=$PATH:~/.composer/vendor/bin
-          roave-backward-compatibility-check
+        uses: docker://nyholm/roave-bc-check-ga
