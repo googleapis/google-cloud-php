@@ -655,11 +655,19 @@ class ValueMapper
             throw new \InvalidArgumentException('Array data does not match given array parameter type.');
         }
 
-        $typeCode = $arrayObj->type() === null && $inferredTypes
-            ? $inferredTypes[0]['code']
-            : $arrayObj->type();
+        // get typeCode either from the array type or the first element's inferred type
+        $typeCode = $arrayObj->type();
 
-        $typeAnnotationCode = $inferredTypes[0]['typeAnnotation'] ?? null;
+        if (is_null($typeCode) && count($inferredTypes) > 0 && isset($inferredTypes[0]['code'])) {
+            $typeCode = $inferredTypes[0]['code'];
+        }
+
+        // get typeAnnotationCode either from the array type or the first element's inferred type
+        $typeAnnotationCode = $arrayObj->typeAnnotation();
+        
+        if (is_null($typeAnnotationCode) && count($inferredTypes) > 0 && isset($inferredTypes[0]['typeAnnotation'])) {
+            $typeAnnotationCode = $inferredTypes[0]['typeAnnotation'];
+        }
 
         if ($nested) {
             $nestedDefType = $this->resolveTypeDefinition($nested);
@@ -794,7 +802,7 @@ class ValueMapper
         $arrayTypeCode = $arrayType->type();
         $arrayTypeAnnotation = $arrayType->typeAnnotation();
 
-        if (!empty($value) &&
+        if (!empty($value) && $arrayTypeCode && $arrayTypeAnnotation &&
             ($arrayTypeCode !== $inferredTypes[0]['code'] ||
                 (isset($inferredTypes[0]['typeAnnotation']) &&
                 $arrayTypeAnnotation !== $inferredTypes[0]['typeAnnotation'])

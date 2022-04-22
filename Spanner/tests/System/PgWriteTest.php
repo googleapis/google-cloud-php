@@ -53,6 +53,14 @@ class PgWriteTest extends SpannerPgTestCase
                 stringfield varchar(1024),
                 timestampfield timestamptz,
                 pgnumericfield numeric,
+                arrayfield bigint[],
+                arrayboolfield boolean[],
+                arrayfloatfield float[],
+                arraystringfield varchar(1024)[],
+                arraybytesfield bytea[],
+                arraytimestampfield timestamptz[],
+                arraydatefield date[],
+                arraypgnumericfield numeric[],
                 PRIMARY KEY (id)
             )',
             'CREATE TABLE ' . self::COMMIT_TIMESTAMP_TABLE_NAME . ' (
@@ -210,6 +218,115 @@ class PgWriteTest extends SpannerPgTestCase
 
         $row = $exec->rows()->current();
         $this->assertNull($row[$field]);
+    }
+
+    public function arrayFieldValueProvider()
+    {
+        return [
+            [$this->randId(), 'arrayfield', []],
+            [$this->randId(), 'arrayfield', [1,2,null,4,5]],
+            [$this->randId(), 'arrayfield', null],
+            [$this->randId(), 'arrayboolfield', [true,false]],
+            [$this->randId(), 'arrayboolfield', []],
+            [$this->randId(), 'arrayboolfield', [true, false, null, false]],
+            [$this->randId(), 'arrayboolfield', null],
+            [$this->randId(), 'arrayfloatfield', [1.1, 1.2, 1.3]],
+            [$this->randId(), 'arrayfloatfield', []],
+            [$this->randId(), 'arrayfloatfield', [1.1, null, 1.3]],
+            [$this->randId(), 'arrayfloatfield', null],
+            [$this->randId(), 'arraystringfield', ['foo','bar','baz']],
+            [$this->randId(), 'arraystringfield', []],
+            [$this->randId(), 'arraystringfield', ['foo',null,'baz']],
+            [$this->randId(), 'arraystringfield', null],
+            [$this->randId(), 'arraybytesfield', []],
+            [$this->randId(), 'arraybytesfield', null],
+            [$this->randId(), 'arraytimestampfield', []],
+            [$this->randId(), 'arraytimestampfield', null],
+            [$this->randId(), 'arraydatefield', []],
+            [$this->randId(), 'arraydatefield', null],
+            [$this->randId(), 'arraypgnumericfield', []],
+            [$this->randId(), 'arraypgnumericfield', null],
+        ];
+    }
+
+    /**
+     * @dataProvider arrayFieldValueProvider
+     */
+    public function testWriteAndReadBackArrayValue($id, $field, $value)
+    {
+        $db = self::$database;
+
+        $db->insert(self::TABLE_NAME, [
+            'id' => $id,
+            $field => $value
+        ]);
+
+        // test result from read
+        $keyset = new KeySet(['keys' => [$id]]);
+        $read = $db->read(self::TABLE_NAME, $keyset, [$field]);
+        $row = $read->rows()->current();
+
+        $this->assertEquals($value, $row[$field]);
+
+        // test result from executeSql
+        $exec = $db->execute(sprintf('SELECT %s FROM %s WHERE id = $1', $field, self::TABLE_NAME), [
+            'parameters' => [
+                'p1' => $id
+            ]
+        ]);
+
+        $row = $exec->rows()->current();
+
+        if ($value instanceof Bytes) {
+            $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
+        } else {
+            $this->assertEquals($value, $row[$field]);
+        }
+    }
+
+    public function arrayFieldComplexValueProvider()
+    {
+        return [
+            [$this->randId(), 'arraybytesfield', [new Bytes('foo'),null,new Bytes('baz')]],
+            [$this->randId(), 'arraytimestampfield', [new Timestamp(new \DateTime),null,new Timestamp(new \DateTime)]],
+            [$this->randId(), 'arraydatefield', [new Date(new \DateTime),null,new Date(new \DateTime)]],
+            [$this->randId(), 'arraypgnumericfield', [new PgNumeric("0.12345"),null,new PgNumeric("12345")]],
+        ];
+    }
+
+    /**
+     * @dataProvider arrayFieldComplexValueProvider
+     */
+    public function testWriteAndReadBackArrayComplexValue($id, $field, $value)
+    {
+        $db = self::$database;
+
+        $db->insert(self::TABLE_NAME, [
+            'id' => $id,
+            $field => $value
+        ]);
+
+        // test result from read
+        $keyset = new KeySet(['keys' => [$id]]);
+        $read = $db->read(self::TABLE_NAME, $keyset, [$field]);
+
+        // test result from executeSql
+        $exec = $db->execute(sprintf('SELECT %s FROM %s WHERE id = $1', $field, self::TABLE_NAME), [
+            'parameters' => [
+                'p1' => $id
+            ]
+        ]);
+
+        $row1 = $read->rows()->current();
+        $row2 = $exec->rows()->current();
+
+        foreach ($row2[$field] as $item) {
+            if (is_null($item)) {
+                continue;
+            }
+
+            $this->assertInstanceOf(get_class($value[0]), $item);
+        }
     }
 
     /**

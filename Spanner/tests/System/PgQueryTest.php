@@ -453,4 +453,187 @@ class PgQueryTest extends SpannerPgTestCase
         // the new null count should have been incremented by 1
         $this->assertCount($currentNullCount + 1, iterator_to_array($res));
     }
+
+    public function arrayTypesProvider()
+    {
+        return [
+            // boolean
+            [[true,true,false]],
+
+            // int64
+            [[5,4,3,2,1]],
+
+            // float64
+            [[3.14, 4.13, 1.43]],
+
+            // string
+            [['hello','world','google','cloud']],
+
+            // bytes
+            [
+                [new Bytes('hello'), new Bytes('world'), new Bytes('google'), new Bytes('cloud')],
+                ['hello', 'world', 'google', 'cloud'],
+                Bytes::class,
+                function (array $res) {
+                    foreach ($res as $idx => $val) {
+                        $res[$idx] = (string) $val->get();
+                    }
+
+                    return $res;
+                }
+            ],
+
+            // timestamp
+            [
+                [
+                    new Timestamp(new \DateTime('2010-01-01')),
+                    new Timestamp(new \DateTime('2011-01-01')),
+                    new Timestamp(new \DateTime('2012-01-01'))
+                ],
+                ['2010-01-01', '2011-01-01', '2012-01-01'],
+                Timestamp::class,
+                function (array $res) {
+                    foreach ($res as $idx => $val) {
+                        $res[$idx] = $val->get()->format('Y-m-d');
+                    }
+
+                    return $res;
+                }
+            ],
+
+            // date
+            [
+                [
+                    new Date(new \DateTime('2010-01-01')),
+                    new Date(new \DateTime('2011-01-01')),
+                    new Date(new \DateTime('2012-01-01'))
+                ],
+                ['2010-01-01', '2011-01-01', '2012-01-01'],
+                Date::class,
+                function (array $res) {
+                    foreach ($res as $idx => $val) {
+                        $res[$idx] = $val->get()->format('Y-m-d');
+                    }
+
+                    return $res;
+                }
+            ],
+            // pg_numeric
+            [
+                [
+                    new PgNumeric('0.98765432187347'),
+                    new PgNumeric('98765432187347'),
+                    new PgNumeric('123456789033928239823.123456789433434344334')
+                ],
+                ['0.98765432187347', '98765432187347', '123456789033928239823.123456789433434344334'],
+                Numeric::class,
+                function (array $res) {
+                    foreach ($res as $idx => $val) {
+                        $res[$idx] = $val->get();
+                    }
+
+                    return $res;
+                }
+            ]
+        ];
+    }
+
+    /**
+     * @dataProvider arrayTypesProvider
+     */
+    public function testBindArrayOfType($value, $result = null, $resultType = null, callable $filter = null)
+    {
+        if (!$filter) {
+            $filter = function ($val) {
+                return $val;
+            };
+        }
+
+        $db = self::$database;
+
+        $res = $db->execute('SELECT $1 as foo', [
+            'parameters' => [
+                'p1' => $value
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $param = $filter($row['foo']);
+
+        if ($resultType) {
+            $this->assertContainsOnlyInstancesOf($resultType, $row['foo']);
+        }
+
+        $this->assertEquals($param, $result ?: $value);
+    }
+
+    public function arrayTypesEmptyProvider()
+    {
+        return [
+            [Database::TYPE_BOOL],
+            [Database::TYPE_INT64],
+            [Database::TYPE_FLOAT64],
+            [Database::TYPE_STRING],
+            [Database::TYPE_BYTES],
+            [Database::TYPE_TIMESTAMP],
+            [Database::TYPE_DATE],
+            [Database::TYPE_PG_NUMERIC],
+        ];
+    }
+
+    /**
+     * @dataProvider arrayTypesEmptyProvider
+     */
+    public function testBindEmptyArrayOfType($type)
+    {
+        $db = self::$database;
+
+        $res = $db->execute('SELECT $1 as foo', [
+            'parameters' => [
+                'p1' => []
+            ],
+            'types' => [
+                'p1' => new ArrayType($type)
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+
+        $this->assertEmpty($row['foo']);
+    }
+
+    public function arrayTypesNullProvider()
+    {
+        return [
+            [Database::TYPE_BOOL],
+            [Database::TYPE_INT64],
+            [Database::TYPE_FLOAT64],
+            [Database::TYPE_STRING],
+            [Database::TYPE_BYTES],
+            [Database::TYPE_TIMESTAMP],
+            [Database::TYPE_DATE],
+            [Database::TYPE_PG_NUMERIC],
+        ];
+    }
+
+    /**
+     * @dataProvider arrayTypesNullProvider
+     */
+    public function testBindNullArrayOfType($type)
+    {
+        $db = self::$database;
+
+        $res = $db->execute('SELECT $1 as foo', [
+            'parameters' => [
+                'p1' => null
+            ],
+            'types' => [
+                'p1' => new ArrayType($type)
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+
+        $this->assertNull($row['foo']);
+    }
 }
