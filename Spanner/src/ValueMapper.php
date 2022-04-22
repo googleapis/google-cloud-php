@@ -42,6 +42,7 @@ class ValueMapper
     const TYPE_STRUCT = TypeCode::STRUCT;
     const TYPE_NUMERIC = TypeCode::NUMERIC;
     const TYPE_JSON = TypeCode::JSON;
+    const TYPE_PG_NUMERIC = 'pgNumeric';
 
     /**
      * @var array
@@ -58,6 +59,7 @@ class ValueMapper
         self::TYPE_STRUCT,
         self::TYPE_NUMERIC,
         self::TYPE_JSON,
+        self::TYPE_PG_NUMERIC,
     ];
 
     /*
@@ -339,7 +341,8 @@ class ValueMapper
      * @param bool $allowMixedArrayType If true, array values may be of mixed type.
      *        This is useful when reading against complex keys containing multiple
      *        elements of differing types.
-     * @return array The Value type.
+     * @return array The Value, typeCode and optionally the typeAnnotation
+     *        in the format: [<value>, ['code' => <typeCode>, 'typeAnnotation' => <typeAnnotation>]].
      */
     private function paramType(
         $value,
@@ -350,9 +353,8 @@ class ValueMapper
 
         // If the given type maps to a custom class
         // initialize the value as the custom class(type)
-        if (!is_null($givenType) && array_key_exists($givenType, self::$typeToClassMap)) {
-            $cls = self::$typeToClassMap[$givenType];
-            $value = new $cls($value);
+        if (!is_null($givenType) && self::isCustomType($givenType)) {
+            $value = self::getCustomTypeObj($givenType, $value);
         }
         
         $valueType = gettype($value);
@@ -590,50 +592,74 @@ class ValueMapper
      * Create value and paramater type declarations for array SQL parameters.
      *
      * @param array $value The array values.
-     * @param ArrayType $arrayType The array type declaration.
+     * @param ArrayType $arrayObj The array type declaration.
      * @param bool $allowMixedArrayType [optional] If true, array values may be of mixed type.
      *        This is useful when reading against complex keys containing multiple
      *        elements of differing types.
      * @return [array, array] An array containing the value and type.
      */
-    private function arrayParam($value, ArrayType $arrayType, $allowMixedArrayType = false)
+    private function arrayParam($value, ArrayType $arrayObj, $allowMixedArrayType = false)
     {
         if (!is_array($value) && $value !== null) {
             throw new \InvalidArgumentException('Array value must be an array or null.');
         }
 
+        // tracks the diff typeCode, typeAnnotation of all elements
+        // inside the array
         $inferredTypes = [];
+
+        // counts the diff data types used inside the array
+        $uniqueTypes = [];
         $res = null;
         if ($value !== null) {
             $res = [];
+
             foreach ($value as $element) {
+                $givenType = null;
+
+                if ($arrayObj->type() === Database::TYPE_STRUCT) {
+                    $givenType = $arrayObj->type();
+                } elseif (!is_null($arrayObj->customType())) {
+                    $givenType = $arrayObj->customType();
+                }
+
                 $type = $this->paramType(
                     $element,
-                    $arrayType->type() === Database::TYPE_STRUCT ? $arrayType->type() : null,
-                    $arrayType->structType()
+                    $givenType,
+                    $arrayObj->structType()
                 );
 
                 $res[] = $type[0];
                 if (isset($type[1]['code'])) {
-                    $inferredTypes[] = $type[1]['code'];
+                    $typeCode = $type[1]['code'];
+                    $inferredType = ['code' => $typeCode];
+
+                    $uniqueTypes[$typeCode] = true;
+
+                    if (isset($type[1]['typeAnnotation'])) {
+                        $inferredType['typeAnnotation'] = $type[1]['typeAnnotation'];
+                    }
+
+                    $inferredTypes[] = $inferredType;
                 }
             }
         }
 
-        if (!$allowMixedArrayType && count(array_unique($inferredTypes)) > 1) {
+        if (!$allowMixedArrayType && count($uniqueTypes) > 1) {
             throw new \InvalidArgumentException('Array values may not be of mixed type');
         }
 
-        $nested = $arrayType->structType();
-        $arrayType = $arrayType->type();
+        $nested = $arrayObj->structType();
 
-        if (!empty($value) && $arrayType && $arrayType !== $inferredTypes[0]) {
+        if ($this->arrayDataMismatch($value, $arrayObj, $inferredTypes)) {
             throw new \InvalidArgumentException('Array data does not match given array parameter type.');
         }
 
-        $typeCode = $arrayType === null && $inferredTypes
-            ? $inferredTypes[0]
-            : $arrayType;
+        $typeCode = $arrayObj->type() === null && $inferredTypes
+            ? $inferredTypes[0]['code']
+            : $arrayObj->type();
+
+        $typeAnnotationCode = $inferredTypes[0]['typeAnnotation'] ?? null;
 
         if ($nested) {
             $nestedDefType = $this->resolveTypeDefinition($nested);
@@ -641,7 +667,7 @@ class ValueMapper
 
             $typeObject = $nestedDef[1];
         } else {
-            $typeObject = $this->typeObject($typeCode);
+            $typeObject = $this->typeObject($typeCode, $typeAnnotationCode);
         }
 
         $type = $this->typeObject(
@@ -735,5 +761,48 @@ class ValueMapper
         return (isset($columns[$index]['name']) && $columns[$index]['name'])
             ? $columns[$index]['name']
             : $index;
+    }
+
+    /**
+     * Is the data type a custom type(w/ typeAnnotation) ?
+     *
+     * @return bool
+     */
+    public static function isCustomType($type)
+    {
+        return array_key_exists($type, self::$typeToClassMap);
+    }
+
+    /**
+     * Wrap the value in the custom data type class
+     *
+     * @return mixed
+     */
+    public static function getCustomTypeObj($type, $val)
+    {
+        $cls = self::$typeToClassMap[$type];
+        return new $cls($val);
+    }
+
+    /**
+     * Checks if the data type of elements is the same as data type of array
+     *
+     * @return bool
+     */
+    private function arrayDataMismatch($value, $arrayType, $inferredTypes)
+    {
+        $arrayTypeCode = $arrayType->type();
+        $arrayTypeAnnotation = $arrayType->typeAnnotation();
+
+        if (!empty($value) &&
+            ($arrayTypeCode !== $inferredTypes[0]['code'] ||
+                (isset($inferredTypes[0]['typeAnnotation']) &&
+                $arrayTypeAnnotation !== $inferredTypes[0]['typeAnnotation'])
+            )
+        ) {
+            return true;
+        }
+
+        return false;
     }
 }
