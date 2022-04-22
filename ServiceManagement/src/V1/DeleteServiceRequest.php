@@ -17,7 +17,7 @@ class DeleteServiceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the service.  See the
-     * [overview](https://cloud.google.com/service-management/overview) for naming requirements.  For
+     * [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
      * example: `example.googleapis.com`.
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -32,7 +32,7 @@ class DeleteServiceRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $service_name
      *           Required. The name of the service.  See the
-     *           [overview](https://cloud.google.com/service-management/overview) for naming requirements.  For
+     *           [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
      *           example: `example.googleapis.com`.
      * }
      */
@@ -43,7 +43,7 @@ class DeleteServiceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the service.  See the
-     * [overview](https://cloud.google.com/service-management/overview) for naming requirements.  For
+     * [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
      * example: `example.googleapis.com`.
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -56,7 +56,7 @@ class DeleteServiceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the service.  See the
-     * [overview](https://cloud.google.com/service-management/overview) for naming requirements.  For
+     * [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
      * example: `example.googleapis.com`.
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
