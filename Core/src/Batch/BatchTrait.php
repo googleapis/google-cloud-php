@@ -130,7 +130,7 @@ trait BatchTrait
      *
      * @return array
      */
-    protected abstract function getCallback();
+    abstract protected function getCallback();
 
     /**
      * @param array $options [optional] {

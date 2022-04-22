@@ -421,6 +421,7 @@ class Key implements JsonSerializable
     /**
      * @access private
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return $this->keyObject();

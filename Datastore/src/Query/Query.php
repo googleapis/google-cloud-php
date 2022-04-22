@@ -485,6 +485,7 @@ class Query implements QueryInterface
     /**
      * @access private
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return $this->queryObject();

@@ -1,5 +1,162 @@
 # Changelog
 
+## 0.177.0
+
+<details><summary>google/cloud-bigquery 1.23.4</summary>
+
+
+
+### Bug Fixes
+
+* Improve PHP 8.1 compatibility by disabling deprecation notices ([#4746](https://github.com/googleapis/google-cloud-php/issues/4746)) ([6702b54](https://github.com/googleapis/google-cloud-php/commit/6702b54836b8423bc36d0ab88cfd34621d91bceb))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.6.0</summary>
+
+
+
+### Features
+
+* [BigQueryConnection] Add Cloud_Resource Connection Support ([#5152](https://github.com/googleapis/google-cloud-php/issues/5152)) ([e9c7e49](https://github.com/googleapis/google-cloud-php/commit/e9c7e490bbb8ce28d2d5c304940b3cbe65f2f3db))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.13.0</summary>
+
+
+
+### Features
+
+* introduce hot tablet/ping and warm RPCs ([#5119](https://github.com/googleapis/google-cloud-php/issues/5119)) ([a1986cb](https://github.com/googleapis/google-cloud-php/commit/a1986cb1be62f0351ea845a8e08fc2a2b82a74f8))
+
+
+### Bug Fixes
+
+* Improve PHP 8.1 compatibility by disabling deprecation notices ([#4746](https://github.com/googleapis/google-cloud-php/issues/4746)) ([6702b54](https://github.com/googleapis/google-cloud-php/commit/6702b54836b8423bc36d0ab88cfd34621d91bceb))
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 0.1.1</summary>
+
+
+
+### Bug Fixes
+
+* [CertificateManager] Updated resource patterns to comply with https://google.aip.dev/123#annotating-resource-types ([#5199](https://github.com/googleapis/google-cloud-php/issues/5199)) ([8525ec9](https://github.com/googleapis/google-cloud-php/commit/8525ec9d268329491489762fb5fd6bdc53aa1fbf))
+
+</details>
+
+<details><summary>google/cloud-core 1.44.2</summary>
+
+
+
+### Bug Fixes
+
+* Improve PHP 8.1 compatibility by disabling deprecation notices ([#4746](https://github.com/googleapis/google-cloud-php/issues/4746)) ([6702b54](https://github.com/googleapis/google-cloud-php/commit/6702b54836b8423bc36d0ab88cfd34621d91bceb))
+
+</details>
+
+<details><summary>google/cloud-dataflow 0.3.0</summary>
+
+
+
+### Features
+
+* Add the ability to plumb environment capabilities through v1beta3 protos. ([#5137](https://github.com/googleapis/google-cloud-php/issues/5137)) ([59ff4e9](https://github.com/googleapis/google-cloud-php/commit/59ff4e9b838bd827a99739ebf52c010051718d8f))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 0.3.0</summary>
+
+
+
+### Features
+
+* [DataprocMetastore] Added DatabaseType field for the type of backing store used ([#5162](https://github.com/googleapis/google-cloud-php/issues/5162)) ([643f2e6](https://github.com/googleapis/google-cloud-php/commit/643f2e664abdd71538eae52b10605ac66211f8f3))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.13.4</summary>
+
+
+
+### Bug Fixes
+
+* Improve PHP 8.1 compatibility by disabling deprecation notices ([#4746](https://github.com/googleapis/google-cloud-php/issues/4746)) ([6702b54](https://github.com/googleapis/google-cloud-php/commit/6702b54836b8423bc36d0ab88cfd34621d91bceb))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.4.5</summary>
+
+
+
+### Bug Fixes
+
+* Improve PHP 8.1 compatibility by disabling deprecation notices ([#4746](https://github.com/googleapis/google-cloud-php/issues/4746)) ([6702b54](https://github.com/googleapis/google-cloud-php/commit/6702b54836b8423bc36d0ab88cfd34621d91bceb))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.21.1</summary>
+
+
+
+### Bug Fixes
+
+* Improve PHP 8.1 compatibility by disabling deprecation notices ([#4746](https://github.com/googleapis/google-cloud-php/issues/4746)) ([6702b54](https://github.com/googleapis/google-cloud-php/commit/6702b54836b8423bc36d0ab88cfd34621d91bceb))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.35.1</summary>
+
+
+
+### Bug Fixes
+
+* [PubSub] removing misspelled field, add correctly spelled field ([#5115](https://github.com/googleapis/google-cloud-php/issues/5115)) ([95aa7a7](https://github.com/googleapis/google-cloud-php/commit/95aa7a75fef0e16c268e77f16b2daad23b27d6ab))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.48.1</summary>
+
+
+
+### Bug Fixes
+
+* Improve PHP 8.1 compatibility by disabling deprecation notices ([#4746](https://github.com/googleapis/google-cloud-php/issues/4746)) ([6702b54](https://github.com/googleapis/google-cloud-php/commit/6702b54836b8423bc36d0ab88cfd34621d91bceb))
+
+</details>
+
+<details><summary>google/cloud-storage 1.26.2</summary>
+
+
+
+### Bug Fixes
+
+* Improve PHP 8.1 compatibility by disabling deprecation notices ([#4746](https://github.com/googleapis/google-cloud-php/issues/4746)) ([6702b54](https://github.com/googleapis/google-cloud-php/commit/6702b54836b8423bc36d0ab88cfd34621d91bceb))
+
+</details>
+
+<details><summary>google/cloud-talent 0.16.3</summary>
+
+
+
+### Documentation
+
+* [Talent] Added functionality in the companyDisplayNames filter to support fuzzy matching ([#5159](https://github.com/googleapis/google-cloud-php/issues/5159)) ([4390ec8](https://github.com/googleapis/google-cloud-php/commit/4390ec8766169455e590e87ca062483e60983a00))
+
+</details>
+
+<details><summary>google/cloud-trace 1.4.4</summary>
+
+
+
+### Bug Fixes
+
+* Improve PHP 8.1 compatibility by disabling deprecation notices ([#4746](https://github.com/googleapis/google-cloud-php/issues/4746)) ([6702b54](https://github.com/googleapis/google-cloud-php/commit/6702b54836b8423bc36d0ab88cfd34621d91bceb))
+
+</details>
+
 ## 0.176.0
 
 <details><summary>google/cloud-access-approval 0.4.0</summary>

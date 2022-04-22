@@ -15,6 +15,18 @@ return [
                     ],
                 ],
             ],
+            'PublishEvents' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{channel=projects/*/locations/*/channels/*}:publishEvents',
+                'body' => '*',
+                'placeholders' => [
+                    'channel' => [
+                        'getters' => [
+                            'getChannel',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
 ];
