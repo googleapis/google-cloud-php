@@ -67,7 +67,7 @@ class ValueMapper
      * Native types are identified only by typeCodes,
      * but custom types may need a typeCodeAnnotation along with the code.
      * Declaring the type here takes care of encoding such types.
-     * 
+     *
      * @var array
      */
     private static $typeToClassMap = [
@@ -788,6 +788,10 @@ class ValueMapper
      */
     public static function getCustomTypeObj($type, $val)
     {
+        if (!self::isCustomType($type)) {
+            return false;
+        }
+            
         $cls = self::$typeToClassMap[$type];
         return new $cls($val);
     }
@@ -802,15 +806,20 @@ class ValueMapper
         $arrayTypeCode = $arrayType->type();
         $arrayTypeAnnotation = $arrayType->typeAnnotation();
 
-        if (!empty($value) && $arrayTypeCode && $arrayTypeAnnotation &&
-            ($arrayTypeCode !== $inferredTypes[0]['code'] ||
-                (isset($inferredTypes[0]['typeAnnotation']) &&
-                $arrayTypeAnnotation !== $inferredTypes[0]['typeAnnotation'])
-            )
-        ) {
-            return true;
+        $mismatch = false;
+
+        if (!empty($value)) {
+            if ($arrayTypeCode && isset($inferredTypes[0]['code'])  &&
+            $arrayTypeCode !== $inferredTypes[0]['code']) {
+                $mismatch = true;
+            }
+
+            if ($arrayTypeAnnotation && isset($inferredTypes[0]['typeAnnotation']) &&
+            $arrayTypeAnnotation !== $inferredTypes[0]['typeAnnotation']) {
+                $mismatch = true;
+            }
         }
 
-        return false;
+        return $mismatch;
     }
 }

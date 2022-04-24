@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Database;
+use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Spanner\StructType;
 use PHPUnit\Framework\TestCase;
 
@@ -28,10 +29,52 @@ use PHPUnit\Framework\TestCase;
  */
 class ArrayTypeTest extends TestCase
 {
-    public function testArrayType()
+    public function typesProvider()
     {
-        $arr = new ArrayType(Database::TYPE_STRING);
-        $this->assertEquals(Database::TYPE_STRING, $arr->type());
+        return [
+            // native types (w/o typeAnnotation)
+            [Database::TYPE_BOOL],
+            [Database::TYPE_INT64],
+            [Database::TYPE_FLOAT64],
+            [Database::TYPE_TIMESTAMP],
+            [Database::TYPE_DATE],
+            [Database::TYPE_STRING],
+            [Database::TYPE_BYTES],
+            [Database::TYPE_NUMERIC],
+            [Database::TYPE_JSON],
+
+            // custom types (w/ typeAnnotation)
+            [Database::TYPE_PG_NUMERIC],
+        ];
+    }
+
+    public function invalidTypeProvider()
+    {
+        return [
+            ['hello'],
+            [100],
+            [3.1415],
+            [Database::TYPE_ARRAY],
+            [Database::TYPE_STRUCT]
+        ];
+    }
+
+    /**
+     * @dataProvider typesProvider
+     */
+    public function testArrayType($type)
+    {
+        $arr = new ArrayType($type);
+        $isCustomType = ValueMapper::isCustomType($type);
+
+        // for custom types, the typeCode is derived by creating an object
+        if ($isCustomType) {
+            $obj = ValueMapper::getCustomTypeObj($type, null);
+            $this->assertEquals($obj->type(), $arr->type());
+        } // for native types, the typeCode is simply passed ahead to the ArrayType
+        else {
+            $this->assertEquals($type, $arr->type());
+        }
     }
 
     public function testArrayTypeStruct()
@@ -44,7 +87,7 @@ class ArrayTypeTest extends TestCase
     }
 
     /**
-     * @dataProvider invalidType
+     * @dataProvider invalidTypeProvider
      * @expectedException \InvalidArgumentException
      */
     public function testFailsOnInvalidType($type)
@@ -52,14 +95,40 @@ class ArrayTypeTest extends TestCase
         new ArrayType($type);
     }
 
-    public function invalidType()
+    /**
+     * @dataProvider typesProvider
+     */
+    public function testTypeAnnotation($type)
     {
-        return [
-            ['hello'],
-            [100],
-            [3.1415],
-            [Database::TYPE_ARRAY],
-            [Database::TYPE_STRUCT]
-        ];
+        $arr = new ArrayType($type);
+        $isCustomType = ValueMapper::isCustomType($type);
+
+        // for custom types, the typeAnnotation is derived by creating an object
+        if ($isCustomType) {
+            $obj = ValueMapper::getCustomTypeObj($type, null);
+            $this->assertEquals($obj->typeAnnotation(), $arr->typeAnnotation());
+        } // for native types, the typeAnnotation is null
+        else {
+            $this->assertNull($arr->typeAnnotation());
+        }
+    }
+
+    /**
+     * @dataProvider typesProvider
+     */
+    public function testCustomType($type)
+    {
+        $arr = new ArrayType($type);
+        $isCustomType = ValueMapper::isCustomType($type);
+
+        // for custom types, the customType is equal to the type passed
+        // to the ArrayType constructor
+        if ($isCustomType) {
+            $obj = ValueMapper::getCustomTypeObj($type, null);
+            $this->assertEquals($type, $arr->customType());
+        } // for native types, the customType getter is null
+        else {
+            $this->assertNull($arr->customType());
+        }
     }
 }

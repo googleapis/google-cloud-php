@@ -293,6 +293,32 @@ class ValueMapperTest extends TestCase
         $this->mapper->formatParamsForExecuteSql($params, $types);
     }
 
+    public function testFormatParamsForExecuteSqlArrayForCustomTypes()
+    {
+        $params = [
+            'foo' => [1,2,3]
+        ];
+
+        $types = [
+            'foo' => new ArrayType(Database::TYPE_PG_NUMERIC)
+        ];
+
+        // no exception should be thrown as for a pgNumeric value
+        // we wrap the value in numeric strings, so,
+        // 1, 1.0, '1' are all supported
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+
+        $this->assertEquals([
+            'foo' => [
+                'code' => Database::TYPE_ARRAY,
+                'arrayElementType' => [
+                    'code' => Database::TYPE_NUMERIC,
+                    'typeAnnotation' => TypeAnnotationCode::PG_NUMERIC
+                ]
+            ]
+        ], $res['paramTypes']);
+    }
+
     /**
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Array parameter types must be an instance of Google\Cloud\Spanner\ArrayType.
@@ -988,6 +1014,36 @@ class ValueMapperTest extends TestCase
 
         $this->assertEquals('1337', $res['ID']);
         $this->assertEquals('John', $res[1]);
+    }
+
+    public function testIsCustomType()
+    {
+        // map of all custom types we know should return true
+        $customTypes = [Database::TYPE_PG_NUMERIC => true];
+
+        // run the assertion for all allowed types in ValueMapper
+        foreach ($this->mapper::$allowedTypes as $type) {
+            if (array_key_exists($type, $customTypes)) {
+                $this->assertTrue($this->mapper::isCustomType($type));
+            } else {
+                $this->assertFalse($this->mapper::isCustomType($type));
+            }
+        }
+    }
+
+    public function testGetCustomTypeObj()
+    {
+        // doesn't matter what value is passed,
+        // the $obj returned should be of the type PgNumeric
+        $obj = $this->mapper::getCustomTypeObj(Database::TYPE_PG_NUMERIC, null);
+        $this->assertInstanceOf(PgNumeric::class, $obj);
+    }
+
+    public function testGetCustomTypeObjForInvalidType()
+    {
+        // if a non custom type is sent, getCustomTypeObj should return false
+        $obj = $this->mapper::getCustomTypeObj(Database::TYPE_NUMERIC, null);
+        $this->assertFalse($obj);
     }
 
     private function createField($code, $typeAnnotationCode = null, $type = null, array $typeObj = [])
