@@ -71,8 +71,8 @@ class ArrayTypeTest extends TestCase
         if ($isCustomType) {
             $obj = ValueMapper::getCustomTypeObj($type, null);
             $this->assertEquals($obj->type(), $arr->type());
-        } // for native types, the typeCode is simply passed ahead to the ArrayType
-        else {
+        } else {
+            // for native types, the typeCode is simply passed ahead to the ArrayType
             $this->assertEquals($type, $arr->type());
         }
     }
@@ -107,8 +107,8 @@ class ArrayTypeTest extends TestCase
         if ($isCustomType) {
             $obj = ValueMapper::getCustomTypeObj($type, null);
             $this->assertEquals($obj->typeAnnotation(), $arr->typeAnnotation());
-        } // for native types, the typeAnnotation is null
-        else {
+        } else {
+            // for native types, the typeAnnotation is null
             $this->assertNull($arr->typeAnnotation());
         }
     }
@@ -126,8 +126,8 @@ class ArrayTypeTest extends TestCase
         if ($isCustomType) {
             $obj = ValueMapper::getCustomTypeObj($type, null);
             $this->assertEquals($type, $arr->customType());
-        } // for native types, the customType getter is null
-        else {
+        } else {
+            // for native types, the customType getter is null
             $this->assertNull($arr->customType());
         }
     }
