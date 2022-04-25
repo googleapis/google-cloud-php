@@ -218,6 +218,12 @@ class Grpc implements ConnectionInterface
                 : null
         );
 
+        // make sure that transportConfig overrides are passed on
+        // to GAPIC constructors
+        if (isset($config['transportConfig'])) {
+            $grpcConfig['transportConfig'] = $config['transportConfig'];
+        }
+
         $config += [
             'emulatorHost' => null,
             'queryOptions' => []
