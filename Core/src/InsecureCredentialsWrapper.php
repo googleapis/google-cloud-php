@@ -25,7 +25,9 @@ use Google\ApiCore\CredentialsWrapper;
  */
 class InsecureCredentialsWrapper extends CredentialsWrapper
 {
-    function __construct() {}
+    public function __construct()
+    {
+    }
 
     public function getAuthorizationHeaderCallback($audience = null)
     {

@@ -227,7 +227,7 @@ class Grpc implements ConnectionInterface
                 $grpcConfig,
                 $this->emulatorGapicConfig($config['emulatorHost'])
             );
-        } else if (isset($config['apiEndpoint'])) {
+        } elseif (isset($config['apiEndpoint'])) {
             $grpcConfig['apiEndpoint'] = $config['apiEndpoint'];
         }
         $this->credentialsWrapper = $grpcConfig['credentials'];
