@@ -20,6 +20,7 @@ namespace Google\Cloud\PubSub;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
@@ -722,10 +723,16 @@ class Subscription
     {
         $this->validateBatch($messages, Message::class);
 
-        $this->connection->acknowledge($options + [
-            'subscription' => $this->name,
-            'ackIds' => $this->getMessageAckIds($messages)
-        ]);
+        // the rpc may throw errors for a sub with EOD enabled
+        // but we don't act on the exception to maintain compatibility
+        try{
+            $this->connection->acknowledge($options + [
+                'subscription' => $this->name,
+                'ackIds' => $this->getMessageAckIds($messages)
+            ]);
+        }
+        catch(BadRequestException $e){
+        }
     }
 
     /**
@@ -806,11 +813,17 @@ class Subscription
     {
         $this->validateBatch($messages, Message::class);
 
-        $this->connection->modifyAckDeadline($options + [
-            'subscription' => $this->name,
-            'ackIds' => $this->getMessageAckIds($messages),
-            'ackDeadlineSeconds' => $seconds
-        ]);
+        // the rpc may throw errors for a sub with EOD enabled
+        // but we don't act on the exception to maintain compatibility
+        try{
+            $this->connection->modifyAckDeadline($options + [
+                'subscription' => $this->name,
+                'ackIds' => $this->getMessageAckIds($messages),
+                'ackDeadlineSeconds' => $seconds
+            ]);
+        }
+        catch(BadRequestException $e){
+        }
     }
 
     /**
