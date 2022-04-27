@@ -25,8 +25,7 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      */
     private $transaction = '';
     /**
-     * A query result.
-     * Not set when reporting partial progress.
+     * A query result, not set when reporting partial progress.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Document document = 1;</code>
      */
@@ -62,8 +61,7 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      *           [RunQueryRequest.new_transaction][google.firestore.v1.RunQueryRequest.new_transaction] was set in the request.
      *           If set, no other fields will be set in this response.
      *     @type \Google\Cloud\Firestore\V1\Document $document
-     *           A query result.
-     *           Not set when reporting partial progress.
+     *           A query result, not set when reporting partial progress.
      *     @type \Google\Protobuf\Timestamp $read_time
      *           The time at which the document was read. This may be monotonically
      *           increasing; in this case, the previous documents in the result stream are
@@ -114,8 +112,7 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A query result.
-     * Not set when reporting partial progress.
+     * A query result, not set when reporting partial progress.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Document document = 1;</code>
      * @return \Google\Cloud\Firestore\V1\Document|null
@@ -136,8 +133,7 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A query result.
-     * Not set when reporting partial progress.
+     * A query result, not set when reporting partial progress.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Document document = 1;</code>
      * @param \Google\Cloud\Firestore\V1\Document $var
