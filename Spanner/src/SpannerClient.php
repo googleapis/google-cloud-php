@@ -615,16 +615,15 @@ class SpannerClient
      * Postgres Dialect database.
      *
      * It supports a value precision of up to 131072 digits before the decimal point
-     * and up to 16383 digits after the decimal point
+     * and up to 16383 digits after the decimal point.
      *
      * Example:
      * ```
      * $pgNumeric = $spanner->pgNumeric('99999999999999999999999999999999999999.000000999999999');
      * ```
      *
-     * @param string|int|float $value The Numeric value.
-     * @return Numeric
-     * @throws \InvalidArgumentException
+     * @param string|int|float $value The PgNumeric value.
+     * @return PgNumeric
      */
     public function pgNumeric($value)
     {

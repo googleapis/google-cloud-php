@@ -82,7 +82,7 @@ class ArrayType
     private $structType;
 
     /**
-     * @param int|null|StructType $type A value type code or nested struct
+     * @param int|string|null|StructType $type A value type code or nested struct
      *        definition. Accepted integer values are defined as constants on
      *        {@see Google\Cloud\Spanner\Database}, and are as follows:
      *        `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
@@ -90,8 +90,9 @@ class ArrayType
      *        `Database::TYPE_DATE`, `Database::TYPE_STRING` and
      *        `Database::TYPE_BYTES`. Nested arrays are not supported in Cloud
      *        Spanner, and attempts to use `Database::TYPE_ARRAY` will result in
-     *        an exception. If null is given, Google Cloud PHP will attempt to
-     *        infer the array type.
+     *        an exception. If a string is provided it is to be a custom data type(ex PG numeric),
+     *        which is inferred by ValueMapper::isCustomType.
+     *        If null is given, Google Cloud PHP will attempt to infer the array type.
      * @throws \InvalidArgumentException If an invalid type is provided, or if
      *        a struct is defined but the given type is not
      *        `Database::TYPE_STRUCT`.
@@ -153,6 +154,7 @@ class ArrayType
     /**
      * Get the type annotation code
      *
+     * @access private
      * @return int|null;
      */
     public function typeAnnotation()
@@ -163,6 +165,7 @@ class ArrayType
     /**
      * Get the custom type
      *
+     * @access private
      * @return string|null
      */
     public function customType()

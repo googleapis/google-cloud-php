@@ -44,7 +44,7 @@ class PgNumeric implements ValueInterface, TypeAnnotationInterface
     private $value;
 
     /**
-     * @param string|int|float $value The PG_NUMERIC value.
+     * @param string|int|float|null $value The PG_NUMERIC value.
      */
     public function __construct($value)
     {

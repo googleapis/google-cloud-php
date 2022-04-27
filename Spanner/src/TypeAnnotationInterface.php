@@ -25,7 +25,7 @@ namespace Google\Cloud\Spanner;
 interface TypeAnnotationInterface
 {
     /**
-     * @return int|string
+     * @return int
      */
     public function typeAnnotation();
 }
