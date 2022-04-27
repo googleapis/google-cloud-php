@@ -39,6 +39,14 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
+    /**
+     * Optional. Filters applied to the [CloudChannelService.ListCustomers] results. See
+     * https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers
+     * for more information.
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $filter = '';
 
     /**
      * Constructor.
@@ -58,6 +66,10 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
      *           Obtained through
      *           [ListCustomersResponse.next_page_token][google.cloud.channel.v1.ListCustomersResponse.next_page_token] of the previous
      *           [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers] call.
+     *     @type string $filter
+     *           Optional. Filters applied to the [CloudChannelService.ListCustomers] results. See
+     *           https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers
+     *           for more information.
      * }
      */
     public function __construct($data = NULL) {
@@ -151,6 +163,36 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Filters applied to the [CloudChannelService.ListCustomers] results. See
+     * https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers
+     * for more information.
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Optional. Filters applied to the [CloudChannelService.ListCustomers] results. See
+     * https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers
+     * for more information.
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }

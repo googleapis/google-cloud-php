@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ProvisionedService extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Provisioning ID of the entitlement. For Google Workspace, this would be the
-     * underlying Subscription ID. For Google Cloud Platform, this would be the
+     * Output only. Provisioning ID of the entitlement. For Google Workspace, this is the
+     * underlying Subscription ID. For Google Cloud Platform, this is the
      * Billing Account ID of the billing subaccount."
      *
      * Generated from protobuf field <code>string provisioning_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -44,8 +44,8 @@ class ProvisionedService extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $provisioning_id
-     *           Output only. Provisioning ID of the entitlement. For Google Workspace, this would be the
-     *           underlying Subscription ID. For Google Cloud Platform, this would be the
+     *           Output only. Provisioning ID of the entitlement. For Google Workspace, this is the
+     *           underlying Subscription ID. For Google Cloud Platform, this is the
      *           Billing Account ID of the billing subaccount."
      *     @type string $product_id
      *           Output only. The product pertaining to the provisioning resource as specified in the
@@ -60,8 +60,8 @@ class ProvisionedService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Provisioning ID of the entitlement. For Google Workspace, this would be the
-     * underlying Subscription ID. For Google Cloud Platform, this would be the
+     * Output only. Provisioning ID of the entitlement. For Google Workspace, this is the
+     * underlying Subscription ID. For Google Cloud Platform, this is the
      * Billing Account ID of the billing subaccount."
      *
      * Generated from protobuf field <code>string provisioning_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -73,8 +73,8 @@ class ProvisionedService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Provisioning ID of the entitlement. For Google Workspace, this would be the
-     * underlying Subscription ID. For Google Cloud Platform, this would be the
+     * Output only. Provisioning ID of the entitlement. For Google Workspace, this is the
+     * underlying Subscription ID. For Google Cloud Platform, this is the
      * Billing Account ID of the billing subaccount."
      *
      * Generated from protobuf field <code>string provisioning_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

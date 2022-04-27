@@ -123,6 +123,26 @@ return [
                     'resourcesGetMethod' => 'getChannelPartnerLinks',
                 ],
             ],
+            'ListChannelPartnerRepricingConfigs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getChannelPartnerRepricingConfigs',
+                ],
+            ],
+            'ListCustomerRepricingConfigs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getCustomerRepricingConfigs',
+                ],
+            ],
             'ListCustomers' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
