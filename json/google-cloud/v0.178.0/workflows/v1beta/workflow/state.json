@@ -1,0 +1,1 @@
+{"id":"workflows\/v1beta\/workflow\/state","type":"","title":"Google\\Cloud\\Workflows\\V1beta\\Workflow\\State","name":"State","description":"<p>Describes the current state of workflow deployment. More states may be\nadded in the future.<\/p>\n<p>Protobuf type <code>google.cloud.workflows.v1beta.Workflow.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

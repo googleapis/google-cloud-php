@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/commitment\/category","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\Commitment\\Category","name":"Category","description":"<p>Category contains string constants that represent the names of each value in the\ngoogle.cloud.compute.v1.Commitment.Category descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/networkinterface\/nictype","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\NetworkInterface\\NicType","name":"NicType","description":"<p>NicType contains string constants that represent the names of each value in the\ngoogle.cloud.compute.v1.NetworkInterface.NicType descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

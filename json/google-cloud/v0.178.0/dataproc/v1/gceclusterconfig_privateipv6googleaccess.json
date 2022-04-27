@@ -1,0 +1,1 @@
+{"id":"dataproc\/v1\/gceclusterconfig_privateipv6googleaccess","type":"","title":"Google\\Cloud\\Dataproc\\V1\\GceClusterConfig_PrivateIpv6GoogleAccess","name":"GceClusterConfig_PrivateIpv6GoogleAccess","description":"<p>This class is deprecated. Use Google\\Cloud\\Dataproc\\V1\\GceClusterConfig\\PrivateIpv6GoogleAccess instead.<\/p>","examples":[],"resources":[],"methods":[]}

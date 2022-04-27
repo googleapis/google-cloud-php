@@ -1,0 +1,1 @@
+{"id":"workflows\/executions\/v1beta\/executionview","type":"","title":"Google\\Cloud\\Workflows\\Executions\\V1beta\\ExecutionView","name":"ExecutionView","description":"<p>Defines possible views for execution resource.<\/p>\n<p>Protobuf type <code>google.cloud.workflows.executions.v1beta.ExecutionView<\/code><\/p>","examples":[],"resources":[],"methods":[]}

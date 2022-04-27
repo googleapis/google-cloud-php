@@ -1,0 +1,1 @@
+{"id":"channel\/v1\/entitlement\/provisioningstate","type":"","title":"Google\\Cloud\\Channel\\V1\\Entitlement\\ProvisioningState","name":"ProvisioningState","description":"<p>Indicates the current provisioning state of the entitlement.<\/p>\n<p>Protobuf type <code>google.cloud.channel.v1.Entitlement.ProvisioningState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"monitoring\/v3\/uptimecheckregion","type":"","title":"Google\\Cloud\\Monitoring\\V3\\UptimeCheckRegion","name":"UptimeCheckRegion","description":"<p>The regions from which an Uptime check can be run.<\/p>\n<p>Protobuf type <code>google.monitoring.v3.UptimeCheckRegion<\/code><\/p>","examples":[],"resources":[],"methods":[]}

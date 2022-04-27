@@ -1,0 +1,1 @@
+{"id":"datacatalog\/v1\/bigqueryconnectionspec_connectiontype","type":"","title":"Google\\Cloud\\DataCatalog\\V1\\BigQueryConnectionSpec_ConnectionType","name":"BigQueryConnectionSpec_ConnectionType","description":"<p>This class is deprecated. Use Google\\Cloud\\DataCatalog\\V1\\BigQueryConnectionSpec\\ConnectionType instead.<\/p>","examples":[],"resources":[],"methods":[]}

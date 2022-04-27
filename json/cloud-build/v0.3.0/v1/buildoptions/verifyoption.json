@@ -1,0 +1,1 @@
+{"id":"build\/v1\/buildoptions\/verifyoption","type":"","title":"Google\\Cloud\\Build\\V1\\BuildOptions\\VerifyOption","name":"VerifyOption","description":"<p>Specifies the manner in which the build should be verified, if at all.<\/p>\n<p>Protobuf type <code>google.devtools.cloudbuild.v1.BuildOptions.VerifyOption<\/code><\/p>","examples":[],"resources":[],"methods":[]}

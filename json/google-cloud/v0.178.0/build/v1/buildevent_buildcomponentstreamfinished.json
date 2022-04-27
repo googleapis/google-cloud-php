@@ -1,0 +1,1 @@
+{"id":"build\/v1\/buildevent_buildcomponentstreamfinished","type":"","title":"Google\\Cloud\\Build\\V1\\BuildEvent_BuildComponentStreamFinished","name":"BuildEvent_BuildComponentStreamFinished","description":"<p>This class is deprecated. Use Google\\Cloud\\Build\\V1\\BuildEvent\\BuildComponentStreamFinished instead.<\/p>","examples":[],"resources":[],"methods":[]}

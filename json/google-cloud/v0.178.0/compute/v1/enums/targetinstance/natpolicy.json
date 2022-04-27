@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/targetinstance\/natpolicy","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\TargetInstance\\NatPolicy","name":"NatPolicy","description":"<p>NatPolicy contains string constants that represent the names of each value in\nthe google.cloud.compute.v1.TargetInstance.NatPolicy descriptor.<\/p>","examples":[],"resources":[],"methods":[]}
