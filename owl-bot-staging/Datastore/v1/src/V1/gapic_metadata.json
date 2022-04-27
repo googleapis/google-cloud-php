@@ -1,0 +1,53 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.datastore.v1",
+    "libraryPackage": "Google\\Cloud\\Datastore\\V1",
+    "services": {
+        "Datastore": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DatastoreGapicClient",
+                    "rpcs": {
+                        "AllocateIds": {
+                            "methods": [
+                                "allocateIds"
+                            ]
+                        },
+                        "BeginTransaction": {
+                            "methods": [
+                                "beginTransaction"
+                            ]
+                        },
+                        "Commit": {
+                            "methods": [
+                                "commit"
+                            ]
+                        },
+                        "Lookup": {
+                            "methods": [
+                                "lookup"
+                            ]
+                        },
+                        "ReserveIds": {
+                            "methods": [
+                                "reserveIds"
+                            ]
+                        },
+                        "Rollback": {
+                            "methods": [
+                                "rollback"
+                            ]
+                        },
+                        "RunQuery": {
+                            "methods": [
+                                "runQuery"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
