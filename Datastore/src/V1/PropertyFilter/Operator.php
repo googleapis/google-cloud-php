@@ -20,41 +20,79 @@ class Operator
      */
     const OPERATOR_UNSPECIFIED = 0;
     /**
-     * Less than.
+     * The given `property` is less than the given `value`.
+     * Requires:
+     * * That `property` comes first in `order_by`.
      *
      * Generated from protobuf enum <code>LESS_THAN = 1;</code>
      */
     const LESS_THAN = 1;
     /**
-     * Less than or equal.
+     * The given `property` is less than or equal to the given `value`.
+     * Requires:
+     * * That `property` comes first in `order_by`.
      *
      * Generated from protobuf enum <code>LESS_THAN_OR_EQUAL = 2;</code>
      */
     const LESS_THAN_OR_EQUAL = 2;
     /**
-     * Greater than.
+     * The given `property` is greater than the given `value`.
+     * Requires:
+     * * That `property` comes first in `order_by`.
      *
      * Generated from protobuf enum <code>GREATER_THAN = 3;</code>
      */
     const GREATER_THAN = 3;
     /**
-     * Greater than or equal.
+     * The given `property` is greater than or equal to the given `value`.
+     * Requires:
+     * * That `property` comes first in `order_by`.
      *
      * Generated from protobuf enum <code>GREATER_THAN_OR_EQUAL = 4;</code>
      */
     const GREATER_THAN_OR_EQUAL = 4;
     /**
-     * Equal.
+     * The given `property` is equal to the given `value`.
      *
      * Generated from protobuf enum <code>EQUAL = 5;</code>
      */
     const EQUAL = 5;
     /**
-     * Has ancestor.
+     * The given `property` is equal to at least one value in the given array.
+     * Requires:
+     * * That `value` is a non-empty `ArrayValue` with at most 10 values.
+     * * No other `IN` or `NOT_IN` is in the same query.
+     *
+     * Generated from protobuf enum <code>IN = 6;</code>
+     */
+    const IN = 6;
+    /**
+     * The given `property` is not equal to the given `value`.
+     * Requires:
+     * * No other `NOT_EQUAL` or `NOT_IN` is in the same query.
+     * * That `property` comes first in the `order_by`.
+     *
+     * Generated from protobuf enum <code>NOT_EQUAL = 9;</code>
+     */
+    const NOT_EQUAL = 9;
+    /**
+     * Limit the result set to the given entity and its descendants.
+     * Requires:
+     * * That `value` is an entity key.
      *
      * Generated from protobuf enum <code>HAS_ANCESTOR = 11;</code>
      */
     const HAS_ANCESTOR = 11;
+    /**
+     * The value of the `property` is not in the given array.
+     * Requires:
+     * * That `value` is a non-empty `ArrayValue` with at most 10 values.
+     * * No other `IN`, `NOT_IN`, `NOT_EQUAL` is in the same query.
+     * * That `field` comes first in the `order_by`.
+     *
+     * Generated from protobuf enum <code>NOT_IN = 13;</code>
+     */
+    const NOT_IN = 13;
 
     private static $valueToName = [
         self::OPERATOR_UNSPECIFIED => 'OPERATOR_UNSPECIFIED',
@@ -63,7 +101,10 @@ class Operator
         self::GREATER_THAN => 'GREATER_THAN',
         self::GREATER_THAN_OR_EQUAL => 'GREATER_THAN_OR_EQUAL',
         self::EQUAL => 'EQUAL',
+        self::IN => 'IN',
+        self::NOT_EQUAL => 'NOT_EQUAL',
         self::HAS_ANCESTOR => 'HAS_ANCESTOR',
+        self::NOT_IN => 'NOT_IN',
     ];
 
     public static function name($value)
