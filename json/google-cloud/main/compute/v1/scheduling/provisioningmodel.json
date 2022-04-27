@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/scheduling\/provisioningmodel","type":"","title":"Google\\Cloud\\Compute\\V1\\Scheduling\\ProvisioningModel","name":"ProvisioningModel","description":"<p>Specifies the provisioning model of the instance.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.Scheduling.ProvisioningModel<\/code><\/p>","examples":[],"resources":[],"methods":[]}

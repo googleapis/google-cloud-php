@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/networkperformanceconfig\/totalegressbandwidthtier","type":"","title":"Google\\Cloud\\Compute\\V1\\NetworkPerformanceConfig\\TotalEgressBandwidthTier","name":"TotalEgressBandwidthTier","description":"<p>Protobuf type <code>google.cloud.compute.v1.NetworkPerformanceConfig.TotalEgressBandwidthTier<\/code><\/p>","examples":[],"resources":[],"methods":[]}
