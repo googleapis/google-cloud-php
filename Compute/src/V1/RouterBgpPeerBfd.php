@@ -33,7 +33,7 @@ class RouterBgpPeerBfd extends \Google\Protobuf\Internal\Message
      */
     private $multiplier = null;
     /**
-     * The BFD session initialization mode for this BGP peer. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer. The default is PASSIVE.
+     * The BFD session initialization mode for this BGP peer. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer. The default is DISABLED.
      * Check the SessionInitializationMode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string session_initialization_mode = 105957049;</code>
@@ -53,7 +53,7 @@ class RouterBgpPeerBfd extends \Google\Protobuf\Internal\Message
      *     @type int $multiplier
      *           The number of consecutive BFD packets that must be missed before BFD declares that a peer is unavailable. If set, the value must be a value between 5 and 16. The default is 5.
      *     @type string $session_initialization_mode
-     *           The BFD session initialization mode for this BGP peer. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer. The default is PASSIVE.
+     *           The BFD session initialization mode for this BGP peer. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer. The default is DISABLED.
      *           Check the SessionInitializationMode enum for the list of possible values.
      * }
      */
@@ -171,7 +171,7 @@ class RouterBgpPeerBfd extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BFD session initialization mode for this BGP peer. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer. The default is PASSIVE.
+     * The BFD session initialization mode for this BGP peer. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer. The default is DISABLED.
      * Check the SessionInitializationMode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string session_initialization_mode = 105957049;</code>
@@ -193,7 +193,7 @@ class RouterBgpPeerBfd extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BFD session initialization mode for this BGP peer. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer. The default is PASSIVE.
+     * The BFD session initialization mode for this BGP peer. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer. The default is DISABLED.
      * Check the SessionInitializationMode enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string session_initialization_mode = 105957049;</code>

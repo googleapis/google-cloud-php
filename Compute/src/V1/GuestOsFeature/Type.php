@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\GuestOsFeature;
 use UnexpectedValueException;
 
 /**
- * The ID of a supported feature. Read Enabling guest operating system features to see a list of available options.
+ * The ID of a supported feature. To add multiple values, use commas to separate values. Set to one or more of the following values: - VIRTIO_SCSI_MULTIQUEUE - WINDOWS - MULTI_IP_SUBNET - UEFI_COMPATIBLE - GVNIC - SEV_CAPABLE - SUSPEND_RESUME_COMPATIBLE - SEV_SNP_CAPABLE For more information, see Enabling guest operating system features.
  *
  * Protobuf type <code>google.cloud.compute.v1.GuestOsFeature.Type</code>
  */

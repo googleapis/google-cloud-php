@@ -68,6 +68,28 @@ return [
                     ],
                 ],
             ],
+            'Update' => [
+                'method' => 'patch',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/commitments/{commitment}',
+                'body' => 'commitment_resource',
+                'placeholders' => [
+                    'commitment' => [
+                        'getters' => [
+                            'getCommitment',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.compute.v1.RegionOperations' => [
             'Delete' => [

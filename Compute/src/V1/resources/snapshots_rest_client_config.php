@@ -51,6 +51,18 @@ return [
                     ],
                 ],
             ],
+            'Insert' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/snapshots',
+                'body' => 'snapshot_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'List' => [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/snapshots',

@@ -22,6 +22,12 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
      */
     private $enable_nested_virtualization = null;
     /**
+     * Whether to enable UEFI networking for instance creation.
+     *
+     * Generated from protobuf field <code>optional bool enable_uefi_networking = 334485668;</code>
+     */
+    private $enable_uefi_networking = null;
+    /**
      * The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.
      *
      * Generated from protobuf field <code>optional int32 threads_per_core = 352611671;</code>
@@ -36,6 +42,8 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $enable_nested_virtualization
      *           Whether to enable nested virtualization or not (default is false).
+     *     @type bool $enable_uefi_networking
+     *           Whether to enable UEFI networking for instance creation.
      *     @type int $threads_per_core
      *           The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.
      * }
@@ -77,6 +85,42 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_nested_virtualization = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether to enable UEFI networking for instance creation.
+     *
+     * Generated from protobuf field <code>optional bool enable_uefi_networking = 334485668;</code>
+     * @return bool
+     */
+    public function getEnableUefiNetworking()
+    {
+        return isset($this->enable_uefi_networking) ? $this->enable_uefi_networking : false;
+    }
+
+    public function hasEnableUefiNetworking()
+    {
+        return isset($this->enable_uefi_networking);
+    }
+
+    public function clearEnableUefiNetworking()
+    {
+        unset($this->enable_uefi_networking);
+    }
+
+    /**
+     * Whether to enable UEFI networking for instance creation.
+     *
+     * Generated from protobuf field <code>optional bool enable_uefi_networking = 334485668;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableUefiNetworking($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_uefi_networking = $var;
 
         return $this;
     }

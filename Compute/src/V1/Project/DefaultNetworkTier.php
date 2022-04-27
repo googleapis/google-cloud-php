@@ -20,6 +20,12 @@ class DefaultNetworkTier
      */
     const UNDEFINED_DEFAULT_NETWORK_TIER = 0;
     /**
+     * Public internet quality with fixed bandwidth.
+     *
+     * Generated from protobuf enum <code>FIXED_STANDARD = 310464328;</code>
+     */
+    const FIXED_STANDARD = 310464328;
+    /**
      * High quality, Google-grade network tier, support for all networking products.
      *
      * Generated from protobuf enum <code>PREMIUM = 399530551;</code>
@@ -31,11 +37,19 @@ class DefaultNetworkTier
      * Generated from protobuf enum <code>STANDARD = 484642493;</code>
      */
     const STANDARD = 484642493;
+    /**
+     * (Output only) Temporary tier for FIXED_STANDARD when fixed standard tier is expired or not configured.
+     *
+     * Generated from protobuf enum <code>STANDARD_OVERRIDES_FIXED_STANDARD = 465847234;</code>
+     */
+    const STANDARD_OVERRIDES_FIXED_STANDARD = 465847234;
 
     private static $valueToName = [
         self::UNDEFINED_DEFAULT_NETWORK_TIER => 'UNDEFINED_DEFAULT_NETWORK_TIER',
+        self::FIXED_STANDARD => 'FIXED_STANDARD',
         self::PREMIUM => 'PREMIUM',
         self::STANDARD => 'STANDARD',
+        self::STANDARD_OVERRIDES_FIXED_STANDARD => 'STANDARD_OVERRIDES_FIXED_STANDARD',
     ];
 
     public static function name($value)

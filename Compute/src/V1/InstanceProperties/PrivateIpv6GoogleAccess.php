@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InstanceProperties;
 use UnexpectedValueException;
 
 /**
- * The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default.
+ * The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default. Note that for MachineImage, this is not supported yet.
  *
  * Protobuf type <code>google.cloud.compute.v1.InstanceProperties.PrivateIpv6GoogleAccess</code>
  */

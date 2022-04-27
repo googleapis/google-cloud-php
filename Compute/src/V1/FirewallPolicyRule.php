@@ -65,6 +65,12 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      */
     private $priority = null;
     /**
+     * An optional name for the rule. This field is not a unique identifier and can be updated.
+     *
+     * Generated from protobuf field <code>optional string rule_name = 55286254;</code>
+     */
+    private $rule_name = null;
+    /**
      * [Output Only] Calculation of the complexity of a single firewall policy rule.
      *
      * Generated from protobuf field <code>optional int32 rule_tuple_count = 388342037;</code>
@@ -76,6 +82,12 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string target_resources = 528230647;</code>
      */
     private $target_resources;
+    /**
+     * A list of secure tags that controls which instances the firewall rule applies to. If targetSecureTag are specified, then the firewall rule applies only to instances in the VPC network that have one of those EFFECTIVE secure tags, if all the target_secure_tag are in INEFFECTIVE state, then this rule will be ignored. targetSecureTag may not be set at the same time as targetServiceAccounts. If neither targetServiceAccounts nor targetSecureTag are specified, the firewall rule applies to all instances on the specified network. Maximum number of target label tags allowed is 256.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRuleSecureTag target_secure_tags = 468132403;</code>
+     */
+    private $target_secure_tags;
     /**
      * A list of service accounts indicating the sets of instances that are applied with this rule.
      *
@@ -106,10 +118,14 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
      *           A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding 'action' is enforced.
      *     @type int $priority
      *           An integer indicating the priority of a rule in the list. The priority must be a positive value between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the highest priority and 2147483647 is the lowest prority.
+     *     @type string $rule_name
+     *           An optional name for the rule. This field is not a unique identifier and can be updated.
      *     @type int $rule_tuple_count
      *           [Output Only] Calculation of the complexity of a single firewall policy rule.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $target_resources
      *           A list of network resource URLs to which this rule applies. This field allows you to control which network's VMs get this rule. If this field is left blank, all VMs within the organization will receive the rule.
+     *     @type \Google\Cloud\Compute\V1\FirewallPolicyRuleSecureTag[]|\Google\Protobuf\Internal\RepeatedField $target_secure_tags
+     *           A list of secure tags that controls which instances the firewall rule applies to. If targetSecureTag are specified, then the firewall rule applies only to instances in the VPC network that have one of those EFFECTIVE secure tags, if all the target_secure_tag are in INEFFECTIVE state, then this rule will be ignored. targetSecureTag may not be set at the same time as targetServiceAccounts. If neither targetServiceAccounts nor targetSecureTag are specified, the firewall rule applies to all instances on the specified network. Maximum number of target label tags allowed is 256.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $target_service_accounts
      *           A list of service accounts indicating the sets of instances that are applied with this rule.
      * }
@@ -410,6 +426,42 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * An optional name for the rule. This field is not a unique identifier and can be updated.
+     *
+     * Generated from protobuf field <code>optional string rule_name = 55286254;</code>
+     * @return string
+     */
+    public function getRuleName()
+    {
+        return isset($this->rule_name) ? $this->rule_name : '';
+    }
+
+    public function hasRuleName()
+    {
+        return isset($this->rule_name);
+    }
+
+    public function clearRuleName()
+    {
+        unset($this->rule_name);
+    }
+
+    /**
+     * An optional name for the rule. This field is not a unique identifier and can be updated.
+     *
+     * Generated from protobuf field <code>optional string rule_name = 55286254;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRuleName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->rule_name = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] Calculation of the complexity of a single firewall policy rule.
      *
      * Generated from protobuf field <code>optional int32 rule_tuple_count = 388342037;</code>
@@ -467,6 +519,32 @@ class FirewallPolicyRule extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->target_resources = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A list of secure tags that controls which instances the firewall rule applies to. If targetSecureTag are specified, then the firewall rule applies only to instances in the VPC network that have one of those EFFECTIVE secure tags, if all the target_secure_tag are in INEFFECTIVE state, then this rule will be ignored. targetSecureTag may not be set at the same time as targetServiceAccounts. If neither targetServiceAccounts nor targetSecureTag are specified, the firewall rule applies to all instances on the specified network. Maximum number of target label tags allowed is 256.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRuleSecureTag target_secure_tags = 468132403;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTargetSecureTags()
+    {
+        return $this->target_secure_tags;
+    }
+
+    /**
+     * A list of secure tags that controls which instances the firewall rule applies to. If targetSecureTag are specified, then the firewall rule applies only to instances in the VPC network that have one of those EFFECTIVE secure tags, if all the target_secure_tag are in INEFFECTIVE state, then this rule will be ignored. targetSecureTag may not be set at the same time as targetServiceAccounts. If neither targetServiceAccounts nor targetSecureTag are specified, the firewall rule applies to all instances on the specified network. Maximum number of target label tags allowed is 256.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRuleSecureTag target_secure_tags = 468132403;</code>
+     * @param \Google\Cloud\Compute\V1\FirewallPolicyRuleSecureTag[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTargetSecureTags($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\FirewallPolicyRuleSecureTag::class);
+        $this->target_secure_tags = $arr;
 
         return $this;
     }

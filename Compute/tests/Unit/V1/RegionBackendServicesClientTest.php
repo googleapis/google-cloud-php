@@ -210,6 +210,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $affinityCookieTtlSec = 1777486694;
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
+        $edgeSecurityPolicy = 'edgeSecurityPolicy-1032704881';
         $enableCDN = false;
         $fingerprint = 'fingerprint-1375934236';
         $id = 3355;
@@ -230,6 +231,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $expectedResponse->setAffinityCookieTtlSec($affinityCookieTtlSec);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setEdgeSecurityPolicy($edgeSecurityPolicy);
         $expectedResponse->setEnableCDN($enableCDN);
         $expectedResponse->setFingerprint($fingerprint);
         $expectedResponse->setId($id);

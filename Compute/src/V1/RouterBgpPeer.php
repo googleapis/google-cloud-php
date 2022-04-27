@@ -54,6 +54,12 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      */
     private $enable = null;
     /**
+     * Enable IPv6 traffic over BGP Peer. If not specified, it is disabled by default.
+     *
+     * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
+     */
+    private $enable_ipv6 = null;
+    /**
      * Name of the interface the BGP peer is associated with.
      *
      * Generated from protobuf field <code>optional string interface_name = 437854673;</code>
@@ -65,6 +71,12 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      */
     private $ip_address = null;
+    /**
+     * IPv6 address of the interface inside Google Cloud Platform.
+     *
+     * Generated from protobuf field <code>optional string ipv6_nexthop_address = 27968211;</code>
+     */
+    private $ipv6_nexthop_address = null;
     /**
      * [Output Only] The resource that configures and manages this BGP peer. - MANAGED_BY_USER is the default value and can be managed by you or other users - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
      * Check the ManagementType enum for the list of possible values.
@@ -90,6 +102,12 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string peer_ip_address = 207735769;</code>
      */
     private $peer_ip_address = null;
+    /**
+     * IPv6 address of the BGP interface outside Google Cloud Platform.
+     *
+     * Generated from protobuf field <code>optional string peer_ipv6_nexthop_address = 491486608;</code>
+     */
+    private $peer_ipv6_nexthop_address = null;
     /**
      * URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance must be located in zones contained in the same region as this Cloud Router. The VM instance is the peer side of the BGP session.
      *
@@ -118,10 +136,14 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *     @type string $enable
      *           The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.
      *           Check the Enable enum for the list of possible values.
+     *     @type bool $enable_ipv6
+     *           Enable IPv6 traffic over BGP Peer. If not specified, it is disabled by default.
      *     @type string $interface_name
      *           Name of the interface the BGP peer is associated with.
      *     @type string $ip_address
      *           IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
+     *     @type string $ipv6_nexthop_address
+     *           IPv6 address of the interface inside Google Cloud Platform.
      *     @type string $management_type
      *           [Output Only] The resource that configures and manages this BGP peer. - MANAGED_BY_USER is the default value and can be managed by you or other users - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
      *           Check the ManagementType enum for the list of possible values.
@@ -131,6 +153,8 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *           Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.
      *     @type string $peer_ip_address
      *           IP address of the BGP interface outside Google Cloud Platform. Only IPv4 is supported.
+     *     @type string $peer_ipv6_nexthop_address
+     *           IPv6 address of the BGP interface outside Google Cloud Platform.
      *     @type string $router_appliance_instance
      *           URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance must be located in zones contained in the same region as this Cloud Router. The VM instance is the peer side of the BGP session.
      * }
@@ -343,6 +367,42 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Enable IPv6 traffic over BGP Peer. If not specified, it is disabled by default.
+     *
+     * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
+     * @return bool
+     */
+    public function getEnableIpv6()
+    {
+        return isset($this->enable_ipv6) ? $this->enable_ipv6 : false;
+    }
+
+    public function hasEnableIpv6()
+    {
+        return isset($this->enable_ipv6);
+    }
+
+    public function clearEnableIpv6()
+    {
+        unset($this->enable_ipv6);
+    }
+
+    /**
+     * Enable IPv6 traffic over BGP Peer. If not specified, it is disabled by default.
+     *
+     * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableIpv6($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_ipv6 = $var;
+
+        return $this;
+    }
+
+    /**
      * Name of the interface the BGP peer is associated with.
      *
      * Generated from protobuf field <code>optional string interface_name = 437854673;</code>
@@ -410,6 +470,42 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * IPv6 address of the interface inside Google Cloud Platform.
+     *
+     * Generated from protobuf field <code>optional string ipv6_nexthop_address = 27968211;</code>
+     * @return string
+     */
+    public function getIpv6NexthopAddress()
+    {
+        return isset($this->ipv6_nexthop_address) ? $this->ipv6_nexthop_address : '';
+    }
+
+    public function hasIpv6NexthopAddress()
+    {
+        return isset($this->ipv6_nexthop_address);
+    }
+
+    public function clearIpv6NexthopAddress()
+    {
+        unset($this->ipv6_nexthop_address);
+    }
+
+    /**
+     * IPv6 address of the interface inside Google Cloud Platform.
+     *
+     * Generated from protobuf field <code>optional string ipv6_nexthop_address = 27968211;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpv6NexthopAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ipv6_nexthop_address = $var;
 
         return $this;
     }
@@ -556,6 +652,42 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->peer_ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * IPv6 address of the BGP interface outside Google Cloud Platform.
+     *
+     * Generated from protobuf field <code>optional string peer_ipv6_nexthop_address = 491486608;</code>
+     * @return string
+     */
+    public function getPeerIpv6NexthopAddress()
+    {
+        return isset($this->peer_ipv6_nexthop_address) ? $this->peer_ipv6_nexthop_address : '';
+    }
+
+    public function hasPeerIpv6NexthopAddress()
+    {
+        return isset($this->peer_ipv6_nexthop_address);
+    }
+
+    public function clearPeerIpv6NexthopAddress()
+    {
+        unset($this->peer_ipv6_nexthop_address);
+    }
+
+    /**
+     * IPv6 address of the BGP interface outside Google Cloud Platform.
+     *
+     * Generated from protobuf field <code>optional string peer_ipv6_nexthop_address = 491486608;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPeerIpv6NexthopAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->peer_ipv6_nexthop_address = $var;
 
         return $this;
     }

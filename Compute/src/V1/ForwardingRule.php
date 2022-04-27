@@ -171,7 +171,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
-     * Service Directory resources to register this forwarding rule with. Currently, only supports a single Service Directory resource. It is only supported for internal load balancing.
+     * Service Directory resources to register this forwarding rule with. Currently, only supports a single Service Directory resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ForwardingRuleServiceDirectoryRegistration service_directory_registrations = 223549694;</code>
      */
@@ -261,7 +261,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type \Google\Cloud\Compute\V1\ForwardingRuleServiceDirectoryRegistration[]|\Google\Protobuf\Internal\RepeatedField $service_directory_registrations
-     *           Service Directory resources to register this forwarding rule with. Currently, only supports a single Service Directory resource. It is only supported for internal load balancing.
+     *           Service Directory resources to register this forwarding rule with. Currently, only supports a single Service Directory resource.
      *     @type string $service_label
      *           An optional prefix to the service name for this Forwarding Rule. If specified, the prefix is the first label of the fully qualified service name. The label must be 1-63 characters long, and comply with RFC1035. Specifically, the label must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. This field is only used for internal load balancing.
      *     @type string $service_name
@@ -1157,7 +1157,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Service Directory resources to register this forwarding rule with. Currently, only supports a single Service Directory resource. It is only supported for internal load balancing.
+     * Service Directory resources to register this forwarding rule with. Currently, only supports a single Service Directory resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ForwardingRuleServiceDirectoryRegistration service_directory_registrations = 223549694;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1168,7 +1168,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Service Directory resources to register this forwarding rule with. Currently, only supports a single Service Directory resource. It is only supported for internal load balancing.
+     * Service Directory resources to register this forwarding rule with. Currently, only supports a single Service Directory resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ForwardingRuleServiceDirectoryRegistration service_directory_registrations = 223549694;</code>
      * @param \Google\Cloud\Compute\V1\ForwardingRuleServiceDirectoryRegistration[]|\Google\Protobuf\Internal\RepeatedField $var

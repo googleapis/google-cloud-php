@@ -557,6 +557,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $name = 'name3373707';
         $parent = 'parent-995424086';
+        $region = 'region-934795532';
         $ruleTupleCount = 388342037;
         $selfLink = 'selfLink-1691268851';
         $selfLinkWithId = 'selfLinkWithId-1029220862';
@@ -570,6 +571,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
         $expectedResponse->setParent($parent);
+        $expectedResponse->setRegion($region);
         $expectedResponse->setRuleTupleCount($ruleTupleCount);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSelfLinkWithId($selfLinkWithId);
@@ -782,6 +784,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $enableLogging = false;
         $kind = 'kind3292052';
         $priority2 = 978365527;
+        $ruleName = 'ruleName-2092197394';
         $ruleTupleCount = 388342037;
         $expectedResponse = new FirewallPolicyRule();
         $expectedResponse->setAction($action);
@@ -791,6 +794,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setEnableLogging($enableLogging);
         $expectedResponse->setKind($kind);
         $expectedResponse->setPriority($priority2);
+        $expectedResponse->setRuleName($ruleName);
         $expectedResponse->setRuleTupleCount($ruleTupleCount);
         $transport->addResponse($expectedResponse);
         // Mock request

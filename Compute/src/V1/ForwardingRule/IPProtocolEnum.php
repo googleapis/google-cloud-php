@@ -32,6 +32,10 @@ class IPProtocolEnum
      */
     const ICMP = 2241597;
     /**
+     * Generated from protobuf enum <code>L3_DEFAULT = 48151369;</code>
+     */
+    const L3_DEFAULT = 48151369;
+    /**
      * Generated from protobuf enum <code>SCTP = 2539724;</code>
      */
     const SCTP = 2539724;
@@ -49,6 +53,7 @@ class IPProtocolEnum
         self::AH => 'AH',
         self::ESP => 'ESP',
         self::ICMP => 'ICMP',
+        self::L3_DEFAULT => 'L3_DEFAULT',
         self::SCTP => 'SCTP',
         self::TCP => 'TCP',
         self::UDP => 'UDP',

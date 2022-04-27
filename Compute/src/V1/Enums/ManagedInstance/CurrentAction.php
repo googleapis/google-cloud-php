@@ -48,5 +48,9 @@ class CurrentAction
 
     const RESTARTING = 'RESTARTING';
 
+    const RESUMING = 'RESUMING';
+
+    const STARTING = 'STARTING';
+
     const VERIFYING = 'VERIFYING';
 }
