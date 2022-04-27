@@ -1,5 +1,117 @@
 # Changelog
 
+## 0.178.0
+
+<details><summary>google/cloud-asset 1.6.6</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** update dependency google/cloud-osconfig to ^0.5 ([#5196](https://github.com/googleapis/google-cloud-php/issues/5196)) ([390268d](https://github.com/googleapis/google-cloud-php/commit/390268dc958504f4c4831892a3001696fc342e63))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.23.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* add presubmit and continuous kokoro tests ([#5229](https://github.com/googleapis/google-cloud-php/issues/5229)) ([edce5c0](https://github.com/googleapis/google-cloud-php/commit/edce5c0296a0e8308b00a29376ad63a11f5472e4))
+
+</details>
+
+<details><summary>google/cloud-build 0.3.0</summary>
+
+
+
+### Features
+
+* [Build] Add field `check_preceding_lifecycle_events_present` to PublishBuildToolEventStreamRequest and PublishLifecycleEventRequest proto messages ([#5220](https://github.com/googleapis/google-cloud-php/issues/5220)) ([0bb44a5](https://github.com/googleapis/google-cloud-php/commit/0bb44a5d5052fa7b3837ad34caa62f0e068ca1c4))
+
+</details>
+
+<details><summary>google/cloud-channel 0.6.3</summary>
+
+
+
+### Bug Fixes
+
+* ensure channel specific operation metadata is loaded into the descriptor pool ([#5239](https://github.com/googleapis/google-cloud-php/issues/5239)) ([cd5d118](https://github.com/googleapis/google-cloud-php/commit/cd5d118dbb8f4007ef5efd48092a01abd4e0a0af))
+
+</details>
+
+<details><summary>google/cloud-compute 1.0.2</summary>
+
+
+
+### Bug Fixes
+
+* **compute:** revert proto3_optional, required removal on parent_id ([#714](https://github.com/googleapis/google-cloud-php/issues/714)) ([#5113](https://github.com/googleapis/google-cloud-php/issues/5113)) ([5cb8692](https://github.com/googleapis/google-cloud-php/commit/5cb86921b124310dea9d751a0123a2a328765ed1))
+
+</details>
+
+<details><summary>google/cloud-core 1.44.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add presubmit and continuous kokoro tests ([#5229](https://github.com/googleapis/google-cloud-php/issues/5229)) ([edce5c0](https://github.com/googleapis/google-cloud-php/commit/edce5c0296a0e8308b00a29376ad63a11f5472e4))
+
+</details>
+
+<details><summary>google/cloud-eventarc-publishing 0.2.0</summary>
+
+
+
+### Features
+
+* [EventarcPublishing] Add publishing methods for channel resources ([#5226](https://github.com/googleapis/google-cloud-php/issues/5226)) ([3b9605f](https://github.com/googleapis/google-cloud-php/commit/3b9605ff5d84545c327675be0d9ed4ed8d5b7bbe))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.21.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* add presubmit and continuous kokoro tests ([#5229](https://github.com/googleapis/google-cloud-php/issues/5229)) ([edce5c0](https://github.com/googleapis/google-cloud-php/commit/edce5c0296a0e8308b00a29376ad63a11f5472e4))
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.1.2</summary>
+
+
+
+### Bug Fixes
+
+* add back projectName methods for monitoring clients ([#5219](https://github.com/googleapis/google-cloud-php/issues/5219)) ([de741e7](https://github.com/googleapis/google-cloud-php/commit/de741e74534295129253affa8a714fe8c2a4da24))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.48.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* add presubmit and continuous kokoro tests ([#5229](https://github.com/googleapis/google-cloud-php/issues/5229)) ([edce5c0](https://github.com/googleapis/google-cloud-php/commit/edce5c0296a0e8308b00a29376ad63a11f5472e4))
+
+</details>
+
+<details><summary>google/cloud-storage 1.26.3</summary>
+
+
+
+### Documentation
+
+* Document dual-region bucket support ([bebe078](https://github.com/googleapis/google-cloud-php/commit/bebe078a938b80c7c5d3e7857b03d87fef279ce2))
+
+</details>
+
 ## 0.177.0
 
 <details><summary>google/cloud-bigquery 1.23.4</summary>
