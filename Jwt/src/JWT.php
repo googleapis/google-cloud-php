@@ -2,6 +2,7 @@
 
 namespace Firebase\JWT;
 
+use ArrayAccess;
 use DateTime;
 use DomainException;
 use Exception;
@@ -9,7 +10,6 @@ use InvalidArgumentException;
 use OpenSSLAsymmetricKey;
 use OpenSSLCertificate;
 use stdClass;
-use TypeError;
 use UnexpectedValueException;
 
 /**
@@ -68,7 +68,7 @@ class JWT
      * Decodes a JWT string into a PHP object.
      *
      * @param string                 $jwt            The JWT
-     * @param Key|array<string, Key> $keyOrKeyArray  The Key or associative array of key IDs (kid) to Key objects.
+     * @param Key|array<string,Key> $keyOrKeyArray  The Key or associative array of key IDs (kid) to Key objects.
      *                                               If the algorithm used is asymmetric, this is the public key
      *                                               Each Key object contains an algorithm and matching key.
      *                                               Supported algorithms are 'ES384','ES256', 'HS256', 'HS384',
@@ -409,7 +409,7 @@ class JWT
     /**
      * Determine if an algorithm has been provided for each Key
      *
-     * @param Key|array<string, Key> $keyOrKeyArray
+     * @param Key|ArrayAccess<string,Key>|array<string,Key> $keyOrKeyArray
      * @param string|null            $kid
      *
      * @throws UnexpectedValueException
@@ -424,15 +424,12 @@ class JWT
             return $keyOrKeyArray;
         }
 
-        foreach ($keyOrKeyArray as $keyId => $key) {
-            if (!$key instanceof Key) {
-                throw new TypeError(
-                    '$keyOrKeyArray must be an instance of Firebase\JWT\Key key or an '
-                    . 'array of Firebase\JWT\Key keys'
-                );
-            }
+        if ($keyOrKeyArray instanceof CachedKeySet) {
+            // Skip "isset" check, as this will automatically refresh if not set
+            return $keyOrKeyArray[$kid];
         }
-        if (!isset($kid)) {
+
+        if (empty($kid)) {
             throw new UnexpectedValueException('"kid" empty, unable to lookup correct key');
         }
         if (!isset($keyOrKeyArray[$kid])) {
