@@ -111,4 +111,82 @@ class PublishAndPullTest extends PubSubTestCase
 
         $this->assertEquals($key, $pulled[0]->orderingKey());
     }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testLateAcknowledge($client){
+        $topic = self::topic($client);
+
+        $subscription = self::subscription($client, $topic);
+        $expiry = $subscription->info()['ackDeadlineSeconds'];
+
+        $eodSubscription = self::exactlyOnceSubscription($client, $topic);
+        $eodExpiry = $eodSubscription->info()['ackDeadlineSeconds'];
+
+        $topic->publish(['data'=>'test']);
+        $messages = $subscription->pull();
+        $eodMessages = $eodSubscription->pull();
+
+        // we sleep for more than the expiry
+        // so that the EOD enabled sub throws an exception
+        sleep(max($expiry, $eodExpiry) + 1);
+
+        // the sub shouldn't throw an exception for the test to pass
+        try{
+            $subscription->acknowledgeBatch($messages);
+            $this->assertTrue(true);
+        }
+        catch(\Exception $e){
+            $this->fail();
+        }
+
+        // the sub shouldn't throw an exception for the test to pass
+        try{
+            $eodSubscription->acknowledgeBatch($eodMessages);
+            $this->assertTrue(true);
+        }
+        catch(\Exception $e){
+            $this->fail();
+        }
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testLateModifyAcknowledge($client){
+        $topic = self::topic($client);
+
+        $subscription = self::subscription($client, $topic);
+        $expiry = $subscription->info()['ackDeadlineSeconds'];
+
+        $eodSubscription = self::exactlyOnceSubscription($client, $topic);
+        $eodExpiry = $eodSubscription->info()['ackDeadlineSeconds'];
+
+        $topic->publish(['data'=>'test']);
+        $messages = $subscription->pull();
+        $eodMessages = $eodSubscription->pull();
+
+        // we sleep for more than the expiry
+        // so that the EOD enabled sub throws an exception
+        sleep(max($expiry, $eodExpiry) + 1);
+
+        // the sub shouldn't throw an exception for the test to pass
+        try{
+            $subscription->modifyAckDeadlineBatch($messages, 20);
+            $this->assertTrue(true);
+        }
+        catch(\Exception $e){
+            $this->fail();
+        }
+
+        // the sub shouldn't throw an exception for the test to pass
+        try{
+            $eodSubscription->modifyAckDeadlineBatch($eodMessages, 20);
+            $this->assertTrue(true);
+        }
+        catch(\Exception $e){
+            $this->fail();
+        }
+    }
 }
