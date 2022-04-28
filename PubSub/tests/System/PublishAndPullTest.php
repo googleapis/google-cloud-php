@@ -115,7 +115,8 @@ class PublishAndPullTest extends PubSubTestCase
     /**
      * @dataProvider clientProvider
      */
-    public function testLateAcknowledge($client){
+    public function testLateAcknowledge($client)
+    {
         $topic = self::topic($client);
 
         $subscription = self::subscription($client, $topic);
@@ -133,20 +134,18 @@ class PublishAndPullTest extends PubSubTestCase
         sleep(max($expiry, $eodExpiry) + 1);
 
         // the sub shouldn't throw an exception for the test to pass
-        try{
+        try {
             $subscription->acknowledgeBatch($messages);
             $this->assertTrue(true);
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             $this->fail();
         }
 
         // the sub shouldn't throw an exception for the test to pass
-        try{
+        try {
             $eodSubscription->acknowledgeBatch($eodMessages);
             $this->assertTrue(true);
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             $this->fail();
         }
     }
@@ -154,7 +153,8 @@ class PublishAndPullTest extends PubSubTestCase
     /**
      * @dataProvider clientProvider
      */
-    public function testLateModifyAcknowledge($client){
+    public function testLateModifyAcknowledge($client)
+    {
         $topic = self::topic($client);
 
         $subscription = self::subscription($client, $topic);
@@ -172,20 +172,18 @@ class PublishAndPullTest extends PubSubTestCase
         sleep(max($expiry, $eodExpiry) + 1);
 
         // the sub shouldn't throw an exception for the test to pass
-        try{
+        try {
             $subscription->modifyAckDeadlineBatch($messages, 20);
             $this->assertTrue(true);
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             $this->fail();
         }
 
         // the sub shouldn't throw an exception for the test to pass
-        try{
+        try {
             $eodSubscription->modifyAckDeadlineBatch($eodMessages, 20);
             $this->assertTrue(true);
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             $this->fail();
         }
     }

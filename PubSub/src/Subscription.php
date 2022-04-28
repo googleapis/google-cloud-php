@@ -725,13 +725,12 @@ class Subscription
 
         // the rpc may throw errors for a sub with EOD enabled
         // but we don't act on the exception to maintain compatibility
-        try{
+        try {
             $this->connection->acknowledge($options + [
                 'subscription' => $this->name,
                 'ackIds' => $this->getMessageAckIds($messages)
             ]);
-        }
-        catch(BadRequestException $e){
+        } catch (BadRequestException $e) {
         }
     }
 
@@ -815,14 +814,13 @@ class Subscription
 
         // the rpc may throw errors for a sub with EOD enabled
         // but we don't act on the exception to maintain compatibility
-        try{
+        try {
             $this->connection->modifyAckDeadline($options + [
                 'subscription' => $this->name,
                 'ackIds' => $this->getMessageAckIds($messages),
                 'ackDeadlineSeconds' => $seconds
             ]);
-        }
-        catch(BadRequestException $e){
+        } catch (BadRequestException $e) {
         }
     }
 
