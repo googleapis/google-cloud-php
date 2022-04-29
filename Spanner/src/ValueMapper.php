@@ -659,10 +659,14 @@ class ValueMapper
 
 
         // get typeCode either from the array type or the first element's inferred type
-        $typeCode = self::isCustomType($arrayObj->type()) ? self::getTypeCodeFromString($arrayObj->type()) : $arrayObj->type();
+        $typeCode = self::isCustomType($arrayObj->type())
+            ? self::getTypeCodeFromString($arrayObj->type())
+            : $arrayObj->type();
 
         // get typeAnnotationCode either from the array type or the first element's inferred type
-        $typeAnnotationCode = self::isCustomType($arrayObj->type()) ? self::getTypeAnnotationFromString($arrayObj->type()) : null;
+        $typeAnnotationCode = self::isCustomType($arrayObj->type())
+            ? self::getTypeAnnotationFromString($arrayObj->type())
+            : null;
 
         if ($this->arrayDataMismatch($value, $typeCode, $typeAnnotationCode, $inferredTypes)) {
             throw new \InvalidArgumentException('Array data does not match given array parameter type.');

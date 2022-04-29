@@ -37,8 +37,7 @@ class PgNumericTest extends TestCase
         $val = new PgNumeric($value);
         $this->assertInstanceOf(PgNumeric::class, $val);
 
-        if(is_null($value))
-        {
+        if (is_null($value)) {
             $this->assertNull($val->get());
         } else {
             $this->assertEquals((string) $value, $val->get());

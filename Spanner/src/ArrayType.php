@@ -98,7 +98,7 @@ class ArrayType
      *        `Database::TYPE_STRUCT`.
      */
     public function __construct($type)
-    {   
+    {
         if ($type === Database::TYPE_STRUCT) {
             throw new \InvalidArgumentException(
                 '`Database::TYPE_STRUCT` is not a valid array type. ' .
