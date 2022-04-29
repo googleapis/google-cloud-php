@@ -573,6 +573,7 @@
     "scripts": {
         "google-cloud": "dev/google-cloud",
         "style": "dev/sh/style",
+        "style-fix": "dev/sh/style-fix",
         "tests": "dev/sh/tests"
     },
     "bin": [
