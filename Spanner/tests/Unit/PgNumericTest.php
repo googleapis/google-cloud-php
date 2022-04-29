@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
+use Google\Cloud\Spanner\ValueMapper;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -35,7 +36,13 @@ class PgNumericTest extends TestCase
     {
         $val = new PgNumeric($value);
         $this->assertInstanceOf(PgNumeric::class, $val);
-        $this->assertEquals((string) $value, $val->get());
+
+        if(is_null($value))
+        {
+            $this->assertNull($val->get());
+        } else {
+            $this->assertEquals((string) $value, $val->get());
+        }
     }
 
     public function validValueProvider()
@@ -55,7 +62,9 @@ class PgNumericTest extends TestCase
                 ['.123'],
                 ['1.123e+10'],
                 ['1.123E-4'],
-                ['-1E10']
+                ['-1E10'],
+                [null],
+                ['NaN'],
             ];
     }
 
@@ -63,8 +72,11 @@ class PgNumericTest extends TestCase
     {
         $numeric = new PgNumeric('0');
 
-        $this->assertEquals(TypeCode::NUMERIC, $numeric->type());
-        $this->assertEquals(TypeAnnotationCode::PG_NUMERIC, $numeric->typeAnnotation());
+        $typeCode = ValueMapper::getTypeCodeFromString('pgNumeric');
+        $typeAnnotation = ValueMapper::getTypeAnnotationFromString('pgNumeric');
+
+        $this->assertEquals($typeCode, $numeric->type());
+        $this->assertEquals($typeAnnotation, $numeric->typeAnnotation());
     }
 
     public function testToString()

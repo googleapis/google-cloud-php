@@ -43,7 +43,7 @@ class ArrayTypeTest extends TestCase
             [Database::TYPE_NUMERIC],
             [Database::TYPE_JSON],
 
-            // custom types (w/ typeAnnotation)
+            // types (w/ typeAnnotation)
             [Database::TYPE_PG_NUMERIC],
         ];
     }
@@ -65,16 +65,7 @@ class ArrayTypeTest extends TestCase
     public function testArrayType($type)
     {
         $arr = new ArrayType($type);
-        $isCustomType = ValueMapper::isCustomType($type);
-
-        // for custom types, the typeCode is derived by creating an object
-        if ($isCustomType) {
-            $obj = ValueMapper::getCustomTypeObj($type, null);
-            $this->assertEquals($obj->type(), $arr->type());
-        } else {
-            // for native types, the typeCode is simply passed ahead to the ArrayType
-            $this->assertEquals($type, $arr->type());
-        }
+        $this->assertEquals($type, $arr->type());
     }
 
     public function testArrayTypeStruct()
@@ -93,42 +84,5 @@ class ArrayTypeTest extends TestCase
     public function testFailsOnInvalidType($type)
     {
         new ArrayType($type);
-    }
-
-    /**
-     * @dataProvider typesProvider
-     */
-    public function testTypeAnnotation($type)
-    {
-        $arr = new ArrayType($type);
-        $isCustomType = ValueMapper::isCustomType($type);
-
-        // for custom types, the typeAnnotation is derived by creating an object
-        if ($isCustomType) {
-            $obj = ValueMapper::getCustomTypeObj($type, null);
-            $this->assertEquals($obj->typeAnnotation(), $arr->typeAnnotation());
-        } else {
-            // for native types, the typeAnnotation is null
-            $this->assertNull($arr->typeAnnotation());
-        }
-    }
-
-    /**
-     * @dataProvider typesProvider
-     */
-    public function testCustomType($type)
-    {
-        $arr = new ArrayType($type);
-        $isCustomType = ValueMapper::isCustomType($type);
-
-        // for custom types, the customType is equal to the type passed
-        // to the ArrayType constructor
-        if ($isCustomType) {
-            $obj = ValueMapper::getCustomTypeObj($type, null);
-            $this->assertEquals($type, $arr->customType());
-        } else {
-            // for native types, the customType getter is null
-            $this->assertNull($arr->customType());
-        }
     }
 }
