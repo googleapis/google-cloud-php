@@ -433,7 +433,7 @@ class PgQueryTest extends SpannerPgTestCase
                 . 'VALUES($1, $2, $3, $4, $5, $6)',
                 [
                     'parameters' => [
-                        'p1' => 9,
+                        'p1' => 10,
                         'p2' => 'Raja',
                         'p3' => true,
                         'p4' => 5.0,
@@ -526,7 +526,7 @@ class PgQueryTest extends SpannerPgTestCase
                     new PgNumeric('123456789033928239823.123456789433434344334')
                 ],
                 ['0.98765432187347', '98765432187347', '123456789033928239823.123456789433434344334'],
-                Numeric::class,
+                PgNumeric::class,
                 function (array $res) {
                     foreach ($res as $idx => $val) {
                         $res[$idx] = $val->get();

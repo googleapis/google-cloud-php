@@ -62,19 +62,9 @@ namespace Google\Cloud\Spanner;
 class ArrayType
 {
     /**
-     * @var string|null
-     */
-    private $customType;
-
-    /**
      * @var int|null
      */
     private $type;
-
-    /**
-     * @var int|null
-     */
-    private $typeAnnotation;
 
     /**
      * @var StructType|null
