@@ -223,13 +223,14 @@ class Grpc implements ConnectionInterface
             'queryOptions' => []
         ];
         if ((bool) $config['emulatorHost']) {
-            $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
-        } else {
-            $this->credentialsWrapper = $grpcConfig['credentials'];
-            if (isset($config['apiEndpoint'])) {
-                $grpcConfig['apiEndpoint'] = $config['apiEndpoint'];
-            }
+            $grpcConfig = array_merge(
+                $grpcConfig,
+                $this->emulatorGapicConfig($config['emulatorHost'])
+            );
+        } elseif (isset($config['apiEndpoint'])) {
+            $grpcConfig['apiEndpoint'] = $config['apiEndpoint'];
         }
+        $this->credentialsWrapper = $grpcConfig['credentials'];
 
         $this->defaultQueryOptions = $config['queryOptions'];
 
