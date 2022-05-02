@@ -622,7 +622,7 @@ class SpannerClient
      * $pgNumeric = $spanner->pgNumeric('99999999999999999999999999999999999999.000000999999999');
      * ```
      *
-     * @param string|int|float $value The PgNumeric value.
+     * @param string|int|float|null $value The PgNumeric value.
      * @return PgNumeric
      */
     public function pgNumeric($value)

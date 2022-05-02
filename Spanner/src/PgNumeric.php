@@ -37,7 +37,7 @@ namespace Google\Cloud\Spanner;
 class PgNumeric implements ValueInterface, TypeAnnotationInterface
 {
     /**
-     * @var string
+     * @var string|int|float|null
      */
     private $value;
 
@@ -54,7 +54,7 @@ class PgNumeric implements ValueInterface, TypeAnnotationInterface
     /**
      * Get the underlying value.
      *
-     * @return string
+     * @return string|int|float|null
      */
     public function get()
     {
@@ -64,7 +64,8 @@ class PgNumeric implements ValueInterface, TypeAnnotationInterface
     /**
      * Get the type.
      *
-     * @return string
+     * @access private
+     * @return int
      */
     public function type()
     {
@@ -75,6 +76,7 @@ class PgNumeric implements ValueInterface, TypeAnnotationInterface
      * Get the typeAnnotationCode.
      * This is to be used along type, to differentiate the value from TypeCode::NUMERIC.
      *
+     * @access private
      * @return int
      */
     public function typeAnnotation()
@@ -89,7 +91,7 @@ class PgNumeric implements ValueInterface, TypeAnnotationInterface
      */
     public function formatAsString()
     {
-        return $this->value;
+        return (string) $this->value;
     }
 
     /**
@@ -99,6 +101,6 @@ class PgNumeric implements ValueInterface, TypeAnnotationInterface
      */
     public function __toString()
     {
-        return $this->value;
+        return (string) $this->value;
     }
 }

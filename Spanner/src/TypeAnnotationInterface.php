@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner;
 
 /**
  * @internal
- * Contract for Spanner Values that need a typeAnnotationCode along with a type
+ * Contract for Spanner Values that need a type annotation code along with a type.
  * Note: This interface is internal and shouldn't be considered GA
  */
 interface TypeAnnotationInterface
