@@ -39,12 +39,12 @@ class ServiceException extends GoogleException
      *
      * @param string $message
      * @param int $code
-     * @param Exception $serviceException
+     * @param Exception|null $serviceException
      * @param array $metadata [optional] Exception metadata.
      */
     public function __construct(
         $message,
-        $code = null,
+        $code = 0,
         Exception $serviceException = null,
         array $metadata = []
     ) {
