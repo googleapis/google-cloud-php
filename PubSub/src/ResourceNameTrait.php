@@ -123,6 +123,7 @@ trait ResourceNameTrait
                 $type
             ));
         }
+        $name = empty($name) ? '' : $name;
         return (preg_match($this->regexes[$type], $name) === 1);
     }
 }
