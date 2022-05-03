@@ -129,8 +129,8 @@ trait EncryptionTrait
         $signature = '';
 
         if (class_exists(RSA3::class) && !$forceOpenssl) {
-            $rsa = (RSA3::loadPrivateKey($privateKey))
-                ->withPadding(RSA3::SIGNATURE_PKCS1)
+            $rsa = RSA3::loadPrivateKey($privateKey);
+            $rsa = $rsa->withPadding(RSA3::SIGNATURE_PKCS1)
                 ->withHash('sha256');
 
             $signature = $rsa->sign($data);
