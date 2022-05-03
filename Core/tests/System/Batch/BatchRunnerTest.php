@@ -19,7 +19,7 @@ namespace Google\Cloud\Core\Tests\System\Batch;
 
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\Retry;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -49,7 +49,7 @@ class BatchRunnerTest extends TestCase
         return rmdir($dir);
     }
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         self::$testDir = sprintf(
             '%s/google-cloud-system-test-%d',
@@ -90,7 +90,7 @@ class BatchRunnerTest extends TestCase
         }
     }
 
-    public static function tearDownAfterClass()
+    public static function tear_down_after_class()
     {
         @proc_terminate(self::$daemon);
         @proc_close(self::$daemon);
@@ -101,7 +101,7 @@ class BatchRunnerTest extends TestCase
         putenv('IS_BATCH_DAEMON_RUNNING');
     }
 
-    public function setup()
+    public function set_up()
     {
         $this->runner = new BatchRunner();
         $myJob = new MyJob(self::$commandFile, self::$targetFile);

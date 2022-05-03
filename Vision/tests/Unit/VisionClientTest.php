@@ -34,7 +34,7 @@ class VisionClientTest extends TestCase
 
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->client = TestHelpers::stub(VisionClient::class);
         $this->connection = $this->prophesize(ConnectionInterface::class);

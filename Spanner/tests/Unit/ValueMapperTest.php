@@ -31,7 +31,7 @@ use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group spanner
@@ -45,7 +45,7 @@ class ValueMapperTest extends TestCase
 
     private $mapper;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
         $this->mapper = new ValueMapper(false);

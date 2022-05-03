@@ -39,7 +39,7 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
     private $connection;
     private $client;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         parent::setUpBeforeClass();
 
@@ -52,7 +52,7 @@ class FirestoreSessionHandlerTest extends SnippetTestCase
         self::snippetFromMethod(FirestoreClient::class, 'sessionHandler');
     }
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 

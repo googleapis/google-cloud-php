@@ -20,7 +20,7 @@ namespace Google\Cloud\Storage\Tests\Unit;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group storage
@@ -29,7 +29,7 @@ class AclTest extends TestCase
 {
     public $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }

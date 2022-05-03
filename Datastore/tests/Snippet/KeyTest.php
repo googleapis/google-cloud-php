@@ -29,7 +29,7 @@ class KeyTest extends SnippetTestCase
 {
     private $key;
 
-    public function setUp()
+    public function set_up()
     {
         $this->key = new Key('my-awesome-project');
     }

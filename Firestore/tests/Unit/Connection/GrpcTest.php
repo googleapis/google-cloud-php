@@ -31,7 +31,7 @@ use Google\Cloud\Firestore\V1\TransactionOptions;
 use Google\Cloud\Firestore\V1\TransactionOptions_ReadWrite;
 use Google\Cloud\Firestore\V1\Value;
 use Google\Cloud\Firestore\V1\Write;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -48,7 +48,7 @@ class GrpcTest extends TestCase
 
     private $successMessage;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 

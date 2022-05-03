@@ -31,7 +31,7 @@ use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\SpannerClient;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -54,7 +54,7 @@ class BatchSnapshotTest extends TestCase
     private $connection;
     private $snapshot;
 
-    public function setUp()
+    public function set_up()
     {
         $sessData = SpannerClient::parseName(self::SESSION, 'session');
         $this->session = $this->prophesize(Session::class);

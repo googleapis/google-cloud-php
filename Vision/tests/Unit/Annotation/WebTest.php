@@ -31,7 +31,7 @@ class WebTest extends TestCase
     private $info;
     private $annotation;
 
-    public function setUp()
+    public function set_up()
     {
         $this->info = [
             'webEntities' => [

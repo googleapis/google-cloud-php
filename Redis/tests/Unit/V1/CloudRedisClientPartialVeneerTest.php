@@ -20,7 +20,7 @@ namespace Google\Cloud\Redis\Tests\Unit\V1;
 use Google\ApiCore\Transport\GrpcTransport;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Redis\V1\CloudRedisClient;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group redis
@@ -30,7 +30,7 @@ class CloudRedisClientPartialVeneerTest extends TestCase
 {
     use GrpcTestTrait;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
     }

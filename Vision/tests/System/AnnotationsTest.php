@@ -37,7 +37,7 @@ class AnnotationsTest extends VisionTestCase
 {
     private $client;
 
-    public function setUp()
+    public function set_up()
     {
         $this->client = parent::$vision;
     }

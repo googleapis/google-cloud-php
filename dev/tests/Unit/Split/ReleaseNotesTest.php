@@ -18,7 +18,7 @@
 namespace Google\Cloud\Dev\Tests\Unit;
 
 use Google\Cloud\Dev\Split\ReleaseNotes;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group dev
@@ -28,7 +28,7 @@ class ReleaseNotesTest extends TestCase
 {
     private $releaseNotes;
 
-    public function setUp()
+    public function set_up()
     {
         $this->releaseNotes = new ReleaseNotes(
             file_get_contents(__DIR__ . '/../../fixtures/split/release-notes.md')

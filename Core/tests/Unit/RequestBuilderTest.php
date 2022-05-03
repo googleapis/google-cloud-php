@@ -19,14 +19,14 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\Testing\TestHelpers;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
  */
 class RequestBuilderTest extends TestCase
 {
-    public function setUp()
+    public function set_up()
     {
         $this->builder = new RequestBuilder(
             Fixtures::SERVICE_FIXTURE(),

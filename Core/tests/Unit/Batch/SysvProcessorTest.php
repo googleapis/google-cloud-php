@@ -20,7 +20,7 @@ namespace Google\Cloud\Core\Tests\Unit\Batch;
 use Google\Cloud\Core\Batch\BatchDaemonTrait;
 use Google\Cloud\Core\Batch\SysvProcessor;
 use Google\Cloud\Core\SysvTrait;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -35,7 +35,7 @@ class SysvProcessorTest extends TestCase
     private $processor;
     private $queue;
 
-    public function setUp()
+    public function set_up()
     {
         putenv('GOOGLE_CLOUD_SYSV_ID=U');
         if (! $this->isSysvIPCLoaded()) {
@@ -48,7 +48,7 @@ class SysvProcessorTest extends TestCase
         $this->clearQueue();
     }
 
-    public function tearDown()
+    public function tear_down()
     {
         if ($this->isSysvIPCLoaded()) {
             $this->clearQueue();

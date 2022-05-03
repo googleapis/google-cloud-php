@@ -36,7 +36,7 @@ class DirectoryTest extends StreamWrapperTestCase
         'bar/',
     ];
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         parent::setUpBeforeClass();
 
@@ -46,7 +46,7 @@ class DirectoryTest extends StreamWrapperTestCase
         }
     }
 
-    public static function tearDownAfterClass()
+    public static function tear_down_after_class()
     {
         foreach (self::$createObjects as $name) {
             self::$bucket->object($name)->delete();

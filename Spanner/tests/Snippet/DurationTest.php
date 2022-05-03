@@ -33,7 +33,7 @@ class DurationTest extends SnippetTestCase
 
     private $duration;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 

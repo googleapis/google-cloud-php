@@ -30,7 +30,7 @@ class OperationsTest extends SpannerTestCase
     private static $name1;
     private static $name2;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         self::$id1 = rand(1000, 9999);
         self::$id2 = rand(1, 999);

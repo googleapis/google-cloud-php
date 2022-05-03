@@ -42,7 +42,7 @@ use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group bigtable
@@ -63,7 +63,7 @@ class TableTest extends TestCase
     private $options;
     private $serverStream;
 
-    public function setUp()
+    public function set_up()
     {
         $this->bigtableClient = $this->prophesize(TableClient::class);
         $this->serverStream = $this->prophesize(ServerStream::class);

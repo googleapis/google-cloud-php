@@ -28,7 +28,7 @@ class CropHintTest extends TestCase
     private $info;
     private $hint;
 
-    public function setUp()
+    public function set_up()
     {
         $this->info = [
             'boundingPoly' => ['foo' => 'bar'],

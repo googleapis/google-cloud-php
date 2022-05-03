@@ -32,7 +32,7 @@ class PsrLoggerTest extends SnippetTestCase
     private $connection;
     private $psr;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
 

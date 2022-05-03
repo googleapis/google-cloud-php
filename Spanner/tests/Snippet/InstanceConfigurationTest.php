@@ -40,7 +40,7 @@ class InstanceConfigurationTest extends SnippetTestCase
     private $connection;
     private $config;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 

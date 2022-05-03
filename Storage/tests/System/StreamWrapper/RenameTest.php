@@ -27,7 +27,7 @@ class RenameTest extends StreamWrapperTestCase
     const TEST_FILE = 'some_folder/foo.txt';
     const NEW_TEST_FILE = 'some_folder/bar.txt';
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         parent::setUpBeforeClass();
 

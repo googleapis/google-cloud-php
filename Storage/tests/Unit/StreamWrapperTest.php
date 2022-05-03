@@ -25,7 +25,7 @@ use Google\Cloud\Storage\StorageObject;
 use Google\Cloud\Storage\StreamWrapper;
 use GuzzleHttp\Psr7\BufferStream;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group storage
@@ -37,10 +37,8 @@ class StreamWrapperTest extends TestCase
 
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
-        parent::setUp();
-
         $this->client = $this->prophesize(StorageClient::class);
         $this->bucket = $this->prophesize(Bucket::class);
         $this->client->bucket('my_bucket')->willReturn($this->bucket->reveal());
@@ -48,11 +46,9 @@ class StreamWrapperTest extends TestCase
         StreamWrapper::register($this->client->reveal());
     }
 
-    public function tearDown()
+    public function tear_down()
     {
         StreamWrapper::unregister();
-
-        parent::tearDown();
     }
 
     /**

@@ -23,7 +23,7 @@ use Google\Cloud\Debugger\SourceContext;
 use Google\Cloud\Debugger\ExtendedSourceContext;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group debugger
@@ -32,7 +32,7 @@ class DebuggeeTest extends TestCase
 {
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }

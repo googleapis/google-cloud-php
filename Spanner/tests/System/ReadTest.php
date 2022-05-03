@@ -31,7 +31,7 @@ class ReadTest extends SpannerTestCase
     private static $indexes = [];
     private static $dataset;
 
-    public static function setupBeforeClass()
+    public static function set_up_before_class()
     {
         parent::setupBeforeClass();
 

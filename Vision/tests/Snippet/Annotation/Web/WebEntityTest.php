@@ -32,7 +32,7 @@ class WebEntityTest extends SnippetTestCase
     private $info;
     private $entity;
 
-    public function setUp()
+    public function set_up()
     {
         $this->info = [
             'entityId' => 'foo',

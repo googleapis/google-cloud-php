@@ -27,7 +27,7 @@ class SafeSearchTest extends TestCase
 {
     private $safeSearch;
 
-    public function setUp()
+    public function set_up()
     {
         $this->safeSearch = new SafeSearch([
             'adult' => 'VERY_LIKELY',

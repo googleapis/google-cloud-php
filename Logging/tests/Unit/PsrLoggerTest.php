@@ -24,7 +24,7 @@ use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use PHPUnit_Framework_Assert;
 
 /**
@@ -40,7 +40,7 @@ class PsrLoggerTest extends TestCase
     public $resource = ['type' => 'global'];
     public $severity = 'ALERT';
 
-    public function setUp()
+    public function set_up()
     {
         $this->formattedName = "projects/$this->projectId/logs/$this->logName";
         $this->connection = $this->prophesize(ConnectionInterface::class);

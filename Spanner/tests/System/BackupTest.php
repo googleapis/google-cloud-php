@@ -52,7 +52,7 @@ class BackupTest extends SpannerTestCase
 
     private static $hasSetUp = false;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         self::skipEmulatorTests();
 

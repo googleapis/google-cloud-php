@@ -39,7 +39,7 @@ use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -58,7 +58,7 @@ class SpannerClientTest extends TestCase
     private $client;
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 

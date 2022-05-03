@@ -29,7 +29,7 @@ class LandmarksTest extends TestCase
     private $data;
     private $landmarks;
 
-    public function setUp()
+    public function set_up()
     {
         $this->data = json_decode(file_get_contents(Fixtures::FACE_LANDMARKS_FIXTURE()), true);
         $this->landmarks = new Landmarks($this->data);

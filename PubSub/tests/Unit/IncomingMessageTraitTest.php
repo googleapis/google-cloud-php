@@ -22,7 +22,7 @@ use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\IncomingMessageTrait;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Subscription;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group pubsub
@@ -34,7 +34,7 @@ class IncomingMessageTraitTest extends TestCase
     private $connection;
     private $stub;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->stub = TestHelpers::impl(IncomingMessageTrait::class);

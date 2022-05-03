@@ -28,7 +28,7 @@ class HmacKeyTest extends StorageTestCase
 {
     private static $serviceAccountEmail;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         parent::setUpBeforeClass();
 

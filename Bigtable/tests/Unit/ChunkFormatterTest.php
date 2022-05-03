@@ -23,7 +23,7 @@ use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\ReadRowsResponse\CellChunk as ReadRowsResponse_CellChunk;
 use Google\Protobuf\StringValue;
 use Google\Protobuf\BytesValue;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group bigtable
@@ -35,7 +35,7 @@ class ChunkFormatterTest extends TestCase
     private $serverStream;
     private $chunkFormatter;
 
-    public function setUp()
+    public function set_up()
     {
         $this->serverStream = $this->prophesize(ServerStream::class);
         $this->chunkFormatter = new ChunkFormatter(

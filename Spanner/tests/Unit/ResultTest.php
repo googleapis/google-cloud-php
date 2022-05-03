@@ -24,7 +24,7 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group spanner
@@ -46,7 +46,7 @@ class ResultTest extends TestCase
         ]
     ];
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
     }

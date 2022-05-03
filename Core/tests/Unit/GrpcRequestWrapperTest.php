@@ -35,7 +35,7 @@ use Google\Rpc\BadRequest\FieldViolation;
 use Google\Rpc\Code;
 use Google\Rpc\PreconditionFailure;
 use Google\Rpc\Status;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -44,7 +44,7 @@ class GrpcRequestWrapperTest extends TestCase
 {
     use GrpcTestTrait;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
     }

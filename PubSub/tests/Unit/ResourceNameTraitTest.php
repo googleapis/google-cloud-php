@@ -19,7 +19,7 @@ namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\ResourceNameTrait;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group pubsub
@@ -28,7 +28,7 @@ class ResourceNameTraitTest extends TestCase
 {
     private $trait;
 
-    public function setUp()
+    public function set_up()
     {
         $this->trait = TestHelpers::impl(ResourceNameTrait::class);
     }

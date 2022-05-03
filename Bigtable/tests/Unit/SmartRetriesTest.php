@@ -34,7 +34,7 @@ use Google\Protobuf\StringValue;
 use Google\Protobuf\BytesValue;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group bigtable
@@ -56,7 +56,7 @@ class SmartRetriesTest extends TestCase
     private $retryingApiException;
     private $nonRetryingApiException;
 
-    public function setUp()
+    public function set_up()
     {
         $this->retryingApiException = new ApiException(
             'DEADLINE_EXCEEDED',

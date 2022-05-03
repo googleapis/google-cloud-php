@@ -20,7 +20,7 @@ namespace Google\Cloud\Datastore\Tests\Unit;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group datastore
@@ -30,7 +30,7 @@ class EntityTest extends TestCase
     private $key;
     private $mapper;
 
-    public function setUp()
+    public function set_up()
     {
         $this->key = new Key('foo', ['path' => [
             ['kind' => 'kind', 'name' => 'name']

@@ -71,7 +71,7 @@ class BucketTest extends SnippetTestCase
         ]
     ];
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->connection->projectId()

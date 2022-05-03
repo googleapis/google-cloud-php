@@ -27,7 +27,7 @@ class ManageRoutinesTest extends BigQueryTestCase
 {
     private static $routines = [];
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         parent::setUpBeforeClass();
 

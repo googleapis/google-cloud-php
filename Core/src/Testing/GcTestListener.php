@@ -14,10 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+use PHPUnit\Framework\TestListener;
+use PHPUnit\Framework\TestListenerDefaultImplementation;
+use PHPUnit\Framework\TestSuite;
 
-class GcTestListener extends PHPUnit_Framework_BaseTestListener
+class GcTestListener implements TestListener
 {
-    public function endTestSuite(\PHPUnit_Framework_TestSuite $suite)
+    use TestListenerDefaultImplementation;
+
+    public function endTestSuite(TestSuite $suite): void
     {
         gc_collect_cycles();
     }

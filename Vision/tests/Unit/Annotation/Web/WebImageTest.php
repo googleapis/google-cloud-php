@@ -28,7 +28,7 @@ class WebImageTest extends TestCase
     private $info;
     private $image;
 
-    public function setUp()
+    public function set_up()
     {
         $this->info = [
             'url' => 'http://foo.bar/bat',

@@ -37,7 +37,7 @@ class WriteTest extends SpannerTestCase
     const TABLE_NAME = 'Writes';
     const COMMIT_TIMESTAMP_TABLE_NAME = 'CommitTimestamps';
 
-    public static function setupBeforeClass()
+    public static function set_up_before_class()
     {
         self::skipEmulatorTests();
         parent::setUpBeforeClass();

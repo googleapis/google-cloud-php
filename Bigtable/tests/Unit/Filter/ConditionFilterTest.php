@@ -21,7 +21,7 @@ use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Filter\ConditionFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\RowFilter\Condition;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group bigtable
@@ -32,7 +32,7 @@ class ConditionFilterTest extends TestCase
     private $conditionFilter;
     private $condition;
 
-    public function setUp()
+    public function set_up()
     {
         $this->conditionFilter = new ConditionFilter(Filter::pass());
         $this->condition = new Condition();

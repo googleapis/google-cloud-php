@@ -30,13 +30,9 @@ class PsrLoggerCompatibilityTest extends LoggerInterfaceTest
 {
     public static $logs = [];
 
-    public function setUp()
-    {
-        self::$logs = [];
-    }
-
     public function getLogger()
     {
+        self::$logs = [];
         $connection = $this->prophesize(ConnectionInterface::class);
         $connection->writeEntries(Argument::any())
             ->will(function ($entries) {

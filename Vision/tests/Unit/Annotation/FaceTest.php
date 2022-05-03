@@ -28,7 +28,7 @@ class FaceTest extends TestCase
 {
     private $face;
 
-    public function setUp()
+    public function set_up()
     {
         $this->face = new Face([
             'landmarks' => [],

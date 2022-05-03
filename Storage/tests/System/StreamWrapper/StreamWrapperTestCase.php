@@ -26,13 +26,13 @@ use Google\Cloud\Storage\Tests\System\StorageTestCase;
  */
 class StreamWrapperTestCase extends StorageTestCase
 {
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         parent::setUpBeforeClass();
         self::$client->registerStreamWrapper();
     }
 
-    public static function tearDownAfterClass()
+    public static function tear_down_after_class()
     {
         self::$client->unregisterStreamWrapper();
         parent::tearDownAfterClass();

@@ -23,7 +23,7 @@ use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\ConfigStorageInterface;
 use Google\Cloud\Core\Batch\ProcessItemInterface;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -34,7 +34,7 @@ class BatchRunnerTest extends TestCase
     private $configStorage;
     private $processor;
 
-    public function setUp()
+    public function set_up()
     {
         $this->configStorage = $this->prophesize(ConfigStorageInterface::class);
         $this->processor = $this->prophesize(ProcessItemInterface::class);

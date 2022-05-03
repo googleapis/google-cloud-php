@@ -21,7 +21,7 @@ use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iam\IamConnectionInterface;
 use Google\Cloud\Core\Iam\PolicyBuilder;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -33,7 +33,7 @@ class IamTest extends TestCase
 
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(IamConnectionInterface::class);
     }

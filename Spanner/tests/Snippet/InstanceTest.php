@@ -52,7 +52,7 @@ class InstanceTest extends SnippetTestCase
     private $connection;
     private $instance;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -290,7 +290,7 @@ class InstanceTest extends SnippetTestCase
                     ]
                 ]
             ]);
-    
+
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('backups');
@@ -348,7 +348,7 @@ class InstanceTest extends SnippetTestCase
                     ]
                 ]
             ]);
-    
+
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('databaseOperations');

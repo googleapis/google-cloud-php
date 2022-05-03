@@ -19,7 +19,7 @@ namespace Google\Cloud\Bigtable\Tests\Unit\Filter\Builder;
 
 use Google\Cloud\Bigtable\Filter\Builder\Range;
 use Google\Cloud\Core\Testing\TestHelpers;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group bigtable
@@ -29,7 +29,7 @@ class RangeTest extends TestCase
 {
     private $range;
 
-    public function setUp()
+    public function set_up()
     {
         $this->range = TestHelpers::stub(Range::class);
     }

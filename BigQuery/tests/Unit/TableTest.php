@@ -32,7 +32,7 @@ use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Upload\AbstractUploader;
 use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
 use Google\Cloud\Storage\StorageObject;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -74,7 +74,7 @@ class TableTest extends TestCase
         ]
     ];
 
-    public function setUp()
+    public function set_up()
     {
         $this->mapper = new ValueMapper(false);
         $this->connection = $this->prophesize(ConnectionInterface::class);

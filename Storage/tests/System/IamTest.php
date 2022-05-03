@@ -25,7 +25,7 @@ class IamTest extends StorageTestCase
 {
     private $b;
 
-    public function setUp()
+    public function set_up()
     {
         $this->b = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
         $this->b->update($this->bucketConfig());

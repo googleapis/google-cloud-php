@@ -21,7 +21,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
 use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Debugger\DebuggerClient;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -34,7 +34,7 @@ class DebuggerClientTest extends TestCase
     private $client;
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->client = TestHelpers::stub(DebuggerClient::class, [
             ['projectId' => self::PROJECT]

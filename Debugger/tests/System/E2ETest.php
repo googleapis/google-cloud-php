@@ -22,7 +22,7 @@ use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\TestUtils\EventuallyConsistentTestTrait;
 use Google\Cloud\TestUtils\AppEngineDeploymentTrait;
 use GuzzleHttp\Client;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * The test deploys the sample app contained in the app folder to Google App
@@ -50,7 +50,7 @@ class E2ETest extends TestCase
         self::$gcloudWrapper->setDir(implode(DIRECTORY_SEPARATOR, [__DIR__, 'app']));
     }
 
-    public function setUp()
+    public function set_up()
     {
         $url = self::$gcloudWrapper->getBaseUrl();
         $this->httpClient = new Client(['base_uri' => $url]);
@@ -64,7 +64,7 @@ class E2ETest extends TestCase
         }, 5, true);
     }
 
-    public static function tearDownAfterClass()
+    public static function tear_down_after_class()
     {
         self::deleteApp();
     }

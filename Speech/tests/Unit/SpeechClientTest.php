@@ -23,7 +23,7 @@ use Google\Cloud\Speech\Operation;
 use Google\Cloud\Speech\Result;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageObject;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -36,7 +36,7 @@ class SpeechClientTest extends TestCase
     private $client;
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->client = TestHelpers::stub(SpeechClient::class, [
             ['languageCode' => 'en-US']

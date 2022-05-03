@@ -35,7 +35,7 @@ class RestTest extends TestCase
     private $requestWrapper;
     private $successBody;
 
-    public function setUp()
+    public function set_up()
     {
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);
         $this->successBody = '{"canI":"kickIt"}';

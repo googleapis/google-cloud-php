@@ -37,7 +37,7 @@ use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Upload\AbstractUploader;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -63,7 +63,7 @@ class BigQueryClientTest extends TestCase
         ]
     ];
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }

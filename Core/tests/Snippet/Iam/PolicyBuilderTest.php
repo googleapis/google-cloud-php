@@ -28,7 +28,7 @@ class PolicyBuilderTest extends SnippetTestCase
     private $pb;
     private $policy;
 
-    public function setUp()
+    public function set_up()
     {
         $this->pb = new PolicyBuilder;
         $this->policy = ['etag' => 'foo'];

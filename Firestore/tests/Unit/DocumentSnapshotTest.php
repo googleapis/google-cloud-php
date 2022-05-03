@@ -24,7 +24,7 @@ use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\ValueMapper;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group firestore
@@ -37,7 +37,7 @@ class DocumentSnapshotTest extends TestCase
 
     private $snapshot;
 
-    public function setUp()
+    public function set_up()
     {
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::NAME);

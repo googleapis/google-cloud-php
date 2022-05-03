@@ -39,7 +39,7 @@ class SubscriptionTest extends SnippetTestCase
     private $subscription;
     private $pubsub;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->subscription = TestHelpers::stub(Subscription::class, [

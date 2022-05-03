@@ -25,7 +25,7 @@ class TransactionTest extends FirestoreTestCase
 {
     private $document;
 
-    public function setUp()
+    public function set_up()
     {
         $doc = self::$collection->newDocument();
         $this->document = $doc;

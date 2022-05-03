@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group spanner
@@ -30,7 +30,7 @@ class BytesTest extends TestCase
 
     private $content = 'hello';
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
     }

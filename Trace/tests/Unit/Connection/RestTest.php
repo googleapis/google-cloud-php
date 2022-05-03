@@ -23,7 +23,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Trace\Connection\Rest;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 
@@ -35,7 +35,7 @@ class RestTest extends TestCase
     private $requestWrapper;
     private $successBody;
 
-    public function setUp()
+    public function set_up()
     {
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);
         $this->successBody = '{"canI":"kickIt"}';

@@ -20,7 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\StructType;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group spanner
@@ -30,7 +30,7 @@ class StructTypeTest extends TestCase
 {
     private $definition;
 
-    public function setUp()
+    public function set_up()
     {
         $this->definition = [
             [

@@ -29,7 +29,7 @@ class TraceTest extends SnippetTestCase
 {
     private $trace;
 
-    public function setUp()
+    public function set_up()
     {
         $this->trace = new Trace('my-project-id', 'abcd1234');
     }

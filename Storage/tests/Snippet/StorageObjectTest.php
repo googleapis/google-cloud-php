@@ -48,7 +48,7 @@ class StorageObjectTest extends SnippetTestCase
     private $connection;
     private $object;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->object = TestHelpers::stub(StorageObject::class, [

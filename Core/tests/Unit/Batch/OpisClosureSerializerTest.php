@@ -19,7 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit\Batch;
 
 use Google\Cloud\Core\Batch\OpisClosureSerializer;
 use Opis\Closure\SerializableClosure;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -29,7 +29,7 @@ class OpisClosureSerializerTest extends TestCase
 {
     private $serialzer;
 
-    public function setUp()
+    public function set_up()
     {
         $this->serializer = new OpisClosureSerializer();
     }

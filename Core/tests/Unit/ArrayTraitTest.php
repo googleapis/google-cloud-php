@@ -19,7 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -28,7 +28,7 @@ class ArrayTraitTest extends TestCase
 {
     private $impl;
 
-    public function setUp()
+    public function set_up()
     {
         $this->impl = TestHelpers::impl(ArrayTrait::class);
     }

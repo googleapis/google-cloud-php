@@ -20,7 +20,7 @@ namespace Google\Cloud\BigQuery\Tests\Unit;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\JobWaitTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group bigquery
@@ -30,7 +30,7 @@ class JobWaitTraitTest extends TestCase
     private $trait;
     private $job;
 
-    public function setUp()
+    public function set_up()
     {
         $this->trait = TestHelpers::impl(JobWaitTrait::class);
         $this->job = $this->prophesize(Job::class)->reveal();

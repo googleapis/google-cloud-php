@@ -36,7 +36,7 @@ class SchemaTest extends SnippetTestCase
     private $connection;
     private $schema;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->schema = TestHelpers::stub(Schema::class, [

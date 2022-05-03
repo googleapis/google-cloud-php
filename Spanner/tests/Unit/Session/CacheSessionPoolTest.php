@@ -28,7 +28,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use Prophecy\Argument;
 use Prophecy\Argument\ArgumentsWildcard;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group spanner
@@ -46,7 +46,7 @@ class CacheSessionPoolTest extends TestCase
     private $time;
     private $cacheKey;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
         putenv('GOOGLE_CLOUD_SYSV_ID=U');

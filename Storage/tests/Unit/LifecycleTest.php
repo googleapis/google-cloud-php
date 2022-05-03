@@ -18,7 +18,7 @@
 namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Cloud\Storage\Lifecycle;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group storage
@@ -31,7 +31,7 @@ class LifecycleTest extends TestCase
         'age' => 50
     ];
 
-    public function setUp()
+    public function set_up()
     {
         $this->lifecycle = new Lifecycle;
     }

@@ -37,7 +37,7 @@ class MessageTest extends SnippetTestCase
     private $metadata;
     private $message;
 
-    public function setUp()
+    public function set_up()
     {
         $this->msg = [
             'data' => 'hello world',

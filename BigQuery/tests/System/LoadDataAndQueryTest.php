@@ -35,7 +35,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
     private $row;
     private $geographyPattern;
 
-    public function setUp()
+    public function set_up()
     {
         $this->row = [
             'Name' => 'Dave',

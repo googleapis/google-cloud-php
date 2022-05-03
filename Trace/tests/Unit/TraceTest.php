@@ -20,7 +20,7 @@ namespace Google\Cloud\Trace\Tests\Unit;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Trace;
 use Google\Cloud\Trace\Span;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group trace
@@ -30,7 +30,7 @@ class TraceTest extends TestCase
     /** @var ConnectionInterface|ObjectProphecy */
     public $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }

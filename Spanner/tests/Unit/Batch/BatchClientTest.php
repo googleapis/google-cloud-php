@@ -27,7 +27,7 @@ use Google\Cloud\Spanner\Batch\ReadPartition;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 
@@ -49,7 +49,7 @@ class BatchClientTest extends TestCase
     private $connection;
     private $client;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->getConnStub();
         $this->client = TestHelpers::stub(BatchClient::class, [

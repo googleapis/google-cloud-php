@@ -22,7 +22,7 @@ use Google\Cloud\Language\Annotation;
 use Google\Cloud\Language\Connection\ConnectionInterface;
 use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\Storage\StorageObject;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -33,7 +33,7 @@ class LanguageClientTest extends TestCase
     private $client;
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->client = TestHelpers::stub(LanguageClient::class);
         $this->connection = $this->prophesize(ConnectionInterface::class);

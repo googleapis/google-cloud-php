@@ -20,14 +20,14 @@ namespace Google\Cloud\Debugger\Tests\Unit;
 use Google\Cloud\Debugger\StatusMessage;
 use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\SourceLocation;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group debugger
  */
 class BreakpointValidationTest extends TestCase
 {
-    public function setUp()
+    public function set_up()
     {
         if (!extension_loaded('stackdriver_debugger')) {
             $this->markTestSkipped('Breakpoint validation requires stackdriver_debugger extension');

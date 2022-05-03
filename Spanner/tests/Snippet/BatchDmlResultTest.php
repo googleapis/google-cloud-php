@@ -41,7 +41,7 @@ class BatchDmlResultTest extends SnippetTestCase
 
     private $result;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 

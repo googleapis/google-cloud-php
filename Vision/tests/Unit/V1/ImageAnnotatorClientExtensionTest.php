@@ -47,7 +47,7 @@ class ImageAnnotatorClientExtensionTest extends TestCase
     private $client;
     private $transport;
 
-    public function setUp()
+    public function set_up()
     {
         $this->transport = $this->prophesize(TransportInterface::class);
         $this->client = new ImageAnnotatorClient([

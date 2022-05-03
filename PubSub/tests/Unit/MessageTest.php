@@ -19,7 +19,7 @@ namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Subscription;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group pubsub
@@ -30,7 +30,7 @@ class MessageTest extends TestCase
 
     private $time = '2016-09-27T13:21:30.242Z';
 
-    public function setUp()
+    public function set_up()
     {
         $this->message = new Message([
             'data' => 'hello world',

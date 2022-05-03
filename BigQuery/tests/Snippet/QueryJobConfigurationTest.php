@@ -35,7 +35,7 @@ class QueryJobConfigurationTest extends SnippetTestCase
 
     private $config;
 
-    public function setUp()
+    public function set_up()
     {
         $this->config = new QueryJobConfiguration(
             new ValueMapper(false),

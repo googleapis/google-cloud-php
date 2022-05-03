@@ -37,7 +37,7 @@ use Google\Cloud\Storage\SigningHelper;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -53,7 +53,7 @@ class BucketTest extends TestCase
     private $connection;
     private $resumableUploader;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->resumableUploader = $this->prophesize(ResumableUploader::class);

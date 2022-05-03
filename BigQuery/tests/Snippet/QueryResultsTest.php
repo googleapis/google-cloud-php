@@ -38,7 +38,7 @@ class QueryResultsTest extends SnippetTestCase
     private $connection;
     private $qr;
 
-    public function setUp()
+    public function set_up()
     {
         $this->info = [
             'totalBytesProcessed' => 3,

@@ -30,7 +30,7 @@ class SnapshotTest extends SpannerTestCase
 
     private static $tableName;
 
-    public static function setupBeforeClass()
+    public static function set_up_before_class()
     {
         parent::setUpBeforeClass();
 

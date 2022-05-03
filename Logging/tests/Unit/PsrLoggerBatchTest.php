@@ -26,7 +26,7 @@ use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Logging\PsrLogger;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group logging
@@ -41,7 +41,7 @@ class PsrLoggerBatchTest extends TestCase
     private static $logName;
     private static $entry;
 
-    public function setUp()
+    public function set_up()
     {
         $this->runner = $this->prophesize(BatchRunner::class);
         $this->logger = $this->prophesize(Logger::class);

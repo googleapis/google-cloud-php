@@ -31,7 +31,7 @@ class SignedUrlTest extends StorageTestCase
 
     private $guzzle;
 
-    public function setUp()
+    public function set_up()
     {
         $this->guzzle = new Client;
     }

@@ -23,7 +23,7 @@ use Google\Cloud\Redis\V1\Instance;
 use Google\Cloud\Redis\V1\Instance\Tier;
 use Google\Cloud\Redis\V1\OperationMetadata;
 use Google\Protobuf\GPBEmpty;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group redis
@@ -44,7 +44,7 @@ class CloudRedisClientTest extends TestCase
         ];
     }
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         if (self::$hasSetUp) {
             return;

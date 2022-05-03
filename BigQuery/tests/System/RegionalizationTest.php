@@ -31,7 +31,7 @@ class RegionalizationTest extends BigQueryTestCase
     private static $tableAsia;
     private static $bucketAsia;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         parent::setUpBeforeClass();
         self::$datasetAsia = self::createDataset(

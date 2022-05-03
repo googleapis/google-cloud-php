@@ -40,7 +40,7 @@ class ModelTest extends SnippetTestCase
     const MODEL_ID = 'myModelId';
     const JOB_ID = 'myJob';
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->model = TestHelpers::stub(Model::class, [

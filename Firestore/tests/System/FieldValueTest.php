@@ -28,7 +28,7 @@ class FieldValueTest extends FirestoreTestCase
 {
     private $document;
 
-    public function setUp()
+    public function set_up()
     {
         $this->document = self::$collection->add([
             'firstName' => 'John',

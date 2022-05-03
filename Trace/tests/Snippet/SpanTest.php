@@ -33,7 +33,7 @@ class SpanTest extends SnippetTestCase
 
     private $span;
 
-    public function setUp()
+    public function set_up()
     {
         $this->span = new Span('abcd1234', ['name' => 'span name']);
     }

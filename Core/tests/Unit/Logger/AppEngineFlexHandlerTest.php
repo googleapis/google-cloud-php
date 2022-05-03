@@ -19,7 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit\Logger;
 
 use Google\Cloud\Core\Logger\AppEngineFlexHandlerFactory;
 use Monolog\Logger;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -30,7 +30,7 @@ class AppEngineFlexHandlerTest extends TestCase
     private $stream;
     private $log;
 
-    public function setUp()
+    public function set_up()
     {
         $this->stream = tmpfile();
 
@@ -40,7 +40,7 @@ class AppEngineFlexHandlerTest extends TestCase
         $this->log->pushHandler($handler);
     }
 
-    public function tearDown()
+    public function tear_down()
     {
         fclose($this->stream);
     }

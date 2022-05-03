@@ -35,7 +35,7 @@ class DatasetTest extends SnippetTestCase
     private $connection;
     private $mapper;
 
-    public function setUp()
+    public function set_up()
     {
         $this->mapper = new ValueMapper(false);
         $this->identity = ['datasetId' => 'id', 'projectId' => 'projectId'];

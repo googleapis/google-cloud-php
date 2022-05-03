@@ -21,7 +21,7 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Notification;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group storage
@@ -38,7 +38,7 @@ class NotificationTest extends TestCase
         'kind' => 'storage#notification'
     ];
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }

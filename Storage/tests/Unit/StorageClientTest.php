@@ -28,7 +28,7 @@ use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StreamWrapper;
 use GuzzleHttp\Psr7\Utils;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -40,7 +40,7 @@ class StorageClientTest extends TestCase
     const PROJECT = 'my-project';
     public $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->client = TestHelpers::stub(StorageClient::class, [['projectId' => self::PROJECT]]);

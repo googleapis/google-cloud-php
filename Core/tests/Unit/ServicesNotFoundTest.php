@@ -19,7 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\ServiceBuilder;
 use Composer\Autoload\ClassLoader;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -30,7 +30,7 @@ class ServicesNotFoundTest extends TestCase
     private static $newAutoloadFunc;
     private static $cloud;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         self::$cloud = new ServiceBuilder;
         foreach (spl_autoload_functions() as $function) {
@@ -46,7 +46,7 @@ class ServicesNotFoundTest extends TestCase
         }
     }
 
-    public static function tearDownAfterClass()
+    public static function tear_down_after_class()
     {
         spl_autoload_register(self::$previousAutoloadFunc);
         spl_autoload_unregister(self::$newAutoloadFunc);

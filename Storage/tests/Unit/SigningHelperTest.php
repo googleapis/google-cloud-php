@@ -24,7 +24,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\SigningHelper;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -41,7 +41,7 @@ class SigningHelperTest extends TestCase
 
     private $helper;
 
-    public function setUp()
+    public function set_up()
     {
         $this->helper = TestHelpers::stub(SigningHelperStub::class);
     }

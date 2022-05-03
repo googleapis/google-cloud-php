@@ -19,7 +19,7 @@ namespace Google\Cloud\Bigtable\Tests\Unit\Filter\Builder;
 
 use Google\Cloud\Bigtable\Filter\Builder\RegexTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group bigtable
@@ -29,7 +29,7 @@ class RegexTraitTest extends TestCase
 {
     private $implementation;
 
-    public function setUp()
+    public function set_up()
     {
         $this->implementation = TestHelpers::impl(RegexTrait::class);
     }

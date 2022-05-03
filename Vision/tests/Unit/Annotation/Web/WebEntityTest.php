@@ -28,7 +28,7 @@ class WebEntityTest extends TestCase
     private $info;
     private $entity;
 
-    public function setUp()
+    public function set_up()
     {
         $this->info = [
             'entityId' => 'foo',

@@ -27,7 +27,7 @@ use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\FirestoreSessionHandler;
 use Google\Cloud\Firestore\Transaction;
 use InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 use Iterator;
 
@@ -46,7 +46,7 @@ class FirestoreSessionHandlerTest extends TestCase
     private $valueMapper;
     private $documents;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->valueMapper = $this->prophesize(ValueMapper::class);

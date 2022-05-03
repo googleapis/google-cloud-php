@@ -19,7 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\ValidateTrait;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -28,7 +28,7 @@ class ValidateTraitTest extends TestCase
 {
     private $stub;
 
-    public function setUp()
+    public function set_up()
     {
         $this->stub = TestHelpers::impl(ValidateTrait::class);
     }

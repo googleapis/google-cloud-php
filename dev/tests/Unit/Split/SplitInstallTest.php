@@ -20,7 +20,7 @@ namespace Google\Cloud\Dev\Tests\Unit\Split;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Dev\Split\RunShell;
 use Google\Cloud\Dev\Split\SplitInstall;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group dev
@@ -34,7 +34,7 @@ class SplitInstallTest extends TestCase
     private $shell;
     private $install;
 
-    public function setUp()
+    public function set_up()
     {
         $this->shell = $this->prophesize(RunShell::class);
         $this->install = TestHelpers::stub(SplitInstallStub::class, [

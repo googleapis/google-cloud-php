@@ -39,7 +39,7 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
     private $connection;
     private $client;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         parent::setUpBeforeClass();
 
@@ -51,7 +51,7 @@ class DatastoreSessionHandlerTest extends SnippetTestCase
         self::snippetFromClass(DatastoreSessionHandler::class, 1);
     }
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(DatastoreClient::class, [], [

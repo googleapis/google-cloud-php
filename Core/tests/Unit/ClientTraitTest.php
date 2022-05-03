@@ -21,7 +21,7 @@ use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\Testing\TestHelpers;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -32,7 +32,7 @@ class ClientTraitTest extends TestCase
     private $impl;
     private $dependency;
 
-    public function setUp()
+    public function set_up()
     {
         $this->impl = TestHelpers::impl(ClientTrait::class);
 

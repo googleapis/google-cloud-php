@@ -46,7 +46,7 @@ class RequesterPaysTest extends StorageTestCase
     private static $topic;
     private static $notificationId;
 
-    public static function setupBeforeClass()
+    public static function set_up_before_class()
     {
         parent::setupBeforeClass();
 

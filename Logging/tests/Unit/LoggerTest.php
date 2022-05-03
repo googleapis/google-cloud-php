@@ -20,7 +20,7 @@ namespace Google\Cloud\Logging\Tests\Unit;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Logger;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -38,7 +38,7 @@ class LoggerTest extends TestCase
     private $microtime = 315532800.000000;
     private $formattedTimestamp = '1980-01-01T00:00:00.000000Z';
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }

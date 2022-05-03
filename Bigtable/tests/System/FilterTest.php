@@ -28,7 +28,7 @@ class FilterTest extends BigtableTestCase
 {
     protected static $rowMutations = [];
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         parent::setUpBeforeClass();
         self::$table->mutateRows(self::$rowMutations);

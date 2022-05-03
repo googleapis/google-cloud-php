@@ -29,7 +29,7 @@ class LikelihoodTraitTest extends TestCase
 {
     private $stub;
 
-    public function setUp()
+    public function set_up()
     {
         $this->stub = TestHelpers::impl(LikelihoodTrait::class);
     }

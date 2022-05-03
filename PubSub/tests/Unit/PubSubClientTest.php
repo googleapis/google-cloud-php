@@ -34,7 +34,7 @@ use Google\Cloud\PubSub\Topic;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use Google\Cloud\PubSub\V1\SubscriberClient;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -51,7 +51,7 @@ class PubSubClientTest extends TestCase
 
     private $client;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
 

@@ -28,7 +28,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Protobuf\NullValue;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group firestore
@@ -41,7 +41,7 @@ class ValueMapperTest extends TestCase
     private $connection;
     private $mapper;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->mapper = TestHelpers::stub(ValueMapper::class, [

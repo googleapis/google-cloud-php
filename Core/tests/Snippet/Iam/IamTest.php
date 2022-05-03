@@ -34,7 +34,7 @@ class IamTest extends SnippetTestCase
 
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->policyData = [];
         $this->resource = 'testObject';

@@ -40,7 +40,7 @@ class VisionHelpersTraitTest extends TestCase
 
     private $implementation;
 
-    public function setUp()
+    public function set_up()
     {
         $this->implementation = TestHelpers::impl(VisionHelpersTrait::class);
     }

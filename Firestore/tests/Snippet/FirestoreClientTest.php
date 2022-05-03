@@ -47,7 +47,7 @@ class FirestoreClientTest extends SnippetTestCase
     private $connection;
     private $client;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 

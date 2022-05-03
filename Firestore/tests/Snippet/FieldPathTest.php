@@ -31,7 +31,7 @@ class FieldPathTest extends SnippetTestCase
 
     private $fieldPath;
 
-    public function setUp()
+    public function set_up()
     {
         $this->fieldPath = new FieldPath([]);
     }

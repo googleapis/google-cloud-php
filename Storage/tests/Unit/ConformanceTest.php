@@ -18,7 +18,7 @@
 namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Cloud\Storage\StorageClient;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group storage
@@ -28,7 +28,7 @@ class ConformanceTest extends TestCase
 {
     private static $cases;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         static $setup = false;
         if ($setup) {

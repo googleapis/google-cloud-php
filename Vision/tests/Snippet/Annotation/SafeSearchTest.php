@@ -32,7 +32,7 @@ class SafeSearchTest extends SnippetTestCase
     private $ssData;
     private $ss;
 
-    public function setUp()
+    public function set_up()
     {
         $this->ssData = [
             'adult' => 'VERY_LIKELY',

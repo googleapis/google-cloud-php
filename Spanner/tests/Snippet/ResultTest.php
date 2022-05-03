@@ -36,7 +36,7 @@ class ResultTest extends SnippetTestCase
     private $database;
     private $result;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 

@@ -49,7 +49,7 @@ class BackupTest extends SnippetTestCase
     private $instance;
     private $expireTime;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -206,7 +206,7 @@ class BackupTest extends SnippetTestCase
             ->WillReturn(['state' => Backup::STATE_READY]);
 
         $this->backup->___setProperty('connection', $this->connection->reveal());
-        
+
         $res = $snippet->invoke();
         $this->assertEquals('Backup is ready!', $res->output());
     }

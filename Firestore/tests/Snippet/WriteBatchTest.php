@@ -41,7 +41,7 @@ class WriteBatchTest extends SnippetTestCase
     private $connection;
     private $batch;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->batch = TestHelpers::stub(WriteBatch::class, [

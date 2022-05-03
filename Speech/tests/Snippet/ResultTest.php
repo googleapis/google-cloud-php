@@ -33,7 +33,7 @@ class ResultTest extends SnippetTestCase
     private $resultData;
     private $result;
 
-    public function setUp()
+    public function set_up()
     {
         $this->transcript = 'hello world';
         $this->resultData = [

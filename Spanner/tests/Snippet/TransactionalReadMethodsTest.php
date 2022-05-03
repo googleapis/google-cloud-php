@@ -65,7 +65,7 @@ class TransactionalReadMethodsTest extends SnippetTestCase
     private $transaction;
     private $snapshot;
 
-    public function setUp()
+    public function set_up()
     {
         parent::setUpBeforeClass();
 

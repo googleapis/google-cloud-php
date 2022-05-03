@@ -30,7 +30,7 @@ class GetAllDocumentsTest extends FirestoreTestCase
     private static $refsExist = [];
     private static $refsNonExist = [];
 
-    public static function setupBeforeClass()
+    public static function set_up_before_class()
     {
         parent::setupBeforeClass();
 
