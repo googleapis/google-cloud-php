@@ -33,6 +33,15 @@ class MutationResult extends \Google\Protobuf\Internal\Message
      */
     private $version = 0;
     /**
+     * The update time of the entity on the server after processing the mutation.
+     * If the mutation doesn't change anything on the server, then the timestamp
+     * will be the update timestamp of the current entity. This field will not be
+     * set after a 'delete'.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
+     */
+    private $update_time = null;
+    /**
      * Whether a conflict was detected for this mutation. Always false when a
      * conflict detection strategy field is not set in the mutation.
      *
@@ -55,6 +64,11 @@ class MutationResult extends \Google\Protobuf\Internal\Message
      *           be the version of the current entity or, if no entity is present, a version
      *           that is strictly greater than the version of any previous entity and less
      *           than the version of any possible future entity.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           The update time of the entity on the server after processing the mutation.
+     *           If the mutation doesn't change anything on the server, then the timestamp
+     *           will be the update timestamp of the current entity. This field will not be
+     *           set after a 'delete'.
      *     @type bool $conflict_detected
      *           Whether a conflict was detected for this mutation. Always false when a
      *           conflict detection strategy field is not set in the mutation.
@@ -133,6 +147,48 @@ class MutationResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->version = $var;
+
+        return $this;
+    }
+
+    /**
+     * The update time of the entity on the server after processing the mutation.
+     * If the mutation doesn't change anything on the server, then the timestamp
+     * will be the update timestamp of the current entity. This field will not be
+     * set after a 'delete'.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * The update time of the entity on the server after processing the mutation.
+     * If the mutation doesn't change anything on the server, then the timestamp
+     * will be the update timestamp of the current entity. This field will not be
+     * set after a 'delete'.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
 
         return $this;
     }

@@ -23,8 +23,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * contexts.
  * Foreign partition IDs (in which the project ID does
  * not match the context project ID ) are discouraged.
- * Reads and writes of foreign partition IDs may fail if the project is not in
- * an active state.
+ * Reads and writes of foreign partition IDs may fail if the project is not in an active state.
  *
  * Generated from protobuf message <code>google.datastore.v1.PartitionId</code>
  */
