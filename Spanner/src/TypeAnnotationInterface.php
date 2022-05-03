@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2022 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,28 +18,14 @@
 namespace Google\Cloud\Spanner;
 
 /**
- * Contract for various Spanner values.
- * Note: This interface may become internal in the next major version change
+ * @internal
+ * Contract for Spanner Values that need a type annotation code along with a type.
+ * Note: This interface is internal and shouldn't be considered GA
  */
-interface ValueInterface
+interface TypeAnnotationInterface
 {
     /**
-     * @return int|string
+     * @return int
      */
-    public function type();
-
-    /**
-     * @return mixed
-     */
-    public function get();
-
-    /**
-     * @return string
-     */
-    public function formatAsString();
-
-    /**
-     * @return string
-     */
-    public function __toString();
+    public function typeAnnotation();
 }

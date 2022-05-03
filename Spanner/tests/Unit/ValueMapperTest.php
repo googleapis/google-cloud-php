@@ -24,11 +24,13 @@ use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Numeric;
+use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -289,6 +291,32 @@ class ValueMapperTest extends TestCase
         ];
 
         $this->mapper->formatParamsForExecuteSql($params, $types);
+    }
+
+    public function testFormatParamsForExecuteSqlArrayForCustomTypes()
+    {
+        $params = [
+            'foo' => [1,2,3]
+        ];
+
+        $types = [
+            'foo' => new ArrayType(Database::TYPE_PG_NUMERIC)
+        ];
+
+        // no exception should be thrown as for a pgNumeric value
+        // we wrap the value in numeric strings, so,
+        // 1, 1.0, '1' are all supported
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+
+        $this->assertEquals([
+            'foo' => [
+                'code' => Database::TYPE_ARRAY,
+                'arrayElementType' => [
+                    'code' => Database::TYPE_NUMERIC,
+                    'typeAnnotation' => TypeAnnotationCode::PG_NUMERIC
+                ]
+            ]
+        ], $res['paramTypes']);
     }
 
     /**
@@ -885,7 +913,7 @@ class ValueMapperTest extends TestCase
     public function testDecodeValuesArray()
     {
         $res = $this->mapper->decodeValues(
-            $this->createField(Database::TYPE_ARRAY, 'arrayElementType', [
+            $this->createField(Database::TYPE_ARRAY, null, 'arrayElementType', [
                 'code' => Database::TYPE_STRING
             ]),
             $this->createRow(['foo', 'bar']),
@@ -944,6 +972,17 @@ class ValueMapperTest extends TestCase
         $this->assertEquals('99999999999999999999999999999.999999999', $res['rowName']->formatAsString());
     }
 
+    public function testDecodeValuesPgNumeric()
+    {
+        $res = $this->mapper->decodeValues(
+            $this->createField(Database::TYPE_NUMERIC, TypeAnnotationCode::PG_NUMERIC),
+            $this->createRow('99999999999999999999999999999.0000999999999'),
+            Result::RETURN_ASSOCIATIVE
+        );
+        $this->assertInstanceOf(PgNumeric::class, $res['rowName']);
+        $this->assertEquals('99999999999999999999999999999.0000999999999', $res['rowName']->formatAsString());
+    }
+
     public function testDecodeValuesJson()
     {
         $res = $this->mapper->decodeValues(
@@ -977,12 +1016,13 @@ class ValueMapperTest extends TestCase
         $this->assertEquals('John', $res[1]);
     }
 
-    private function createField($code, $type = null, array $typeObj = [])
+    private function createField($code, $typeAnnotationCode = null, $type = null, array $typeObj = [])
     {
         return [[
             'name' => 'rowName',
             'type' => array_filter([
                 'code' => $code,
+                'typeAnnotation' => $typeAnnotationCode,
                 $type => $typeObj
             ])
         ]];
