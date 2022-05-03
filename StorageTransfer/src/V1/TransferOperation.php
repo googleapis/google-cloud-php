@@ -22,7 +22,7 @@ class TransferOperation extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The ID of the Google Cloud Platform Project that owns the operation.
+     * The ID of the Google Cloud project that owns the operation.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
@@ -85,7 +85,7 @@ class TransferOperation extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           A globally unique ID assigned by the system.
      *     @type string $project_id
-     *           The ID of the Google Cloud Platform Project that owns the operation.
+     *           The ID of the Google Cloud project that owns the operation.
      *     @type \Google\Cloud\StorageTransfer\V1\TransferSpec $transfer_spec
      *           Transfer specification.
      *     @type \Google\Cloud\StorageTransfer\V1\NotificationConfig $notification_config
@@ -136,7 +136,7 @@ class TransferOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the Google Cloud Platform Project that owns the operation.
+     * The ID of the Google Cloud project that owns the operation.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      * @return string
@@ -147,7 +147,7 @@ class TransferOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the Google Cloud Platform Project that owns the operation.
+     * The ID of the Google Cloud project that owns the operation.
      *
      * Generated from protobuf field <code>string project_id = 2;</code>
      * @param string $var

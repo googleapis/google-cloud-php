@@ -26,19 +26,26 @@ namespace Google\Cloud\StorageTransfer\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
+
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\StorageTransfer\V1\AgentPool;
+use Google\Cloud\StorageTransfer\V1\CreateAgentPoolRequest;
 use Google\Cloud\StorageTransfer\V1\CreateTransferJobRequest;
+use Google\Cloud\StorageTransfer\V1\DeleteAgentPoolRequest;
+use Google\Cloud\StorageTransfer\V1\GetAgentPoolRequest;
 use Google\Cloud\StorageTransfer\V1\GetGoogleServiceAccountRequest;
 use Google\Cloud\StorageTransfer\V1\GetTransferJobRequest;
 use Google\Cloud\StorageTransfer\V1\GoogleServiceAccount;
+use Google\Cloud\StorageTransfer\V1\ListAgentPoolsRequest;
+use Google\Cloud\StorageTransfer\V1\ListAgentPoolsResponse;
 use Google\Cloud\StorageTransfer\V1\ListTransferJobsRequest;
 use Google\Cloud\StorageTransfer\V1\ListTransferJobsResponse;
 use Google\Cloud\StorageTransfer\V1\PauseTransferOperationRequest;
@@ -46,6 +53,7 @@ use Google\Cloud\StorageTransfer\V1\ResumeTransferOperationRequest;
 use Google\Cloud\StorageTransfer\V1\RunTransferJobRequest;
 use Google\Cloud\StorageTransfer\V1\TransferJob;
 use Google\Cloud\StorageTransfer\V1\TransferOperation;
+use Google\Cloud\StorageTransfer\V1\UpdateAgentPoolRequest;
 use Google\Cloud\StorageTransfer\V1\UpdateTransferJobRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
@@ -62,12 +70,19 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $storageTransferServiceClient = new StorageTransferServiceClient();
  * try {
- *     $transferJob = new TransferJob();
- *     $response = $storageTransferServiceClient->createTransferJob($transferJob);
+ *     $projectId = 'project_id';
+ *     $agentPool = new AgentPool();
+ *     $agentPoolId = 'agent_pool_id';
+ *     $response = $storageTransferServiceClient->createAgentPool($projectId, $agentPool, $agentPoolId);
  * } finally {
  *     $storageTransferServiceClient->close();
  * }
  * ```
+ *
+ * Many parameters require resource names to be formatted in a particular way. To
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
  */
 class StorageTransferServiceGapicClient
 {
@@ -100,6 +115,10 @@ class StorageTransferServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $agentPoolsNameTemplate;
+
+    private static $pathTemplateMap;
+
     private $operationsClient;
 
     private static function getClientDefaults()
@@ -128,6 +147,90 @@ class StorageTransferServiceGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getAgentPoolsNameTemplate()
+    {
+        if (self::$agentPoolsNameTemplate == null) {
+            self::$agentPoolsNameTemplate = new PathTemplate(
+                'projects/{project_id}/agentPools/{agent_pool_id}'
+            );
+        }
+
+        return self::$agentPoolsNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'agentPools' => self::getAgentPoolsNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a agent_pools
+     * resource.
+     *
+     * @param string $projectId
+     * @param string $agentPoolId
+     *
+     * @return string The formatted agent_pools resource.
+     */
+    public static function agentPoolsName($projectId, $agentPoolId)
+    {
+        return self::getAgentPoolsNameTemplate()->render([
+            'project_id' => $projectId,
+            'agent_pool_id' => $agentPoolId,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - agentPools: projects/{project_id}/agentPools/{agent_pool_id}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern,
+     * and must match one of the templates listed above. If no $template argument is
+     * provided, or if the $template argument does not match one of the templates
+     * listed, then parseName will check each of the supported templates, and return
+     * the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -230,6 +333,78 @@ class StorageTransferServiceGapicClient
     }
 
     /**
+     * Creates an agent pool resource.
+     *
+     * Sample code:
+     * ```
+     * $storageTransferServiceClient = new StorageTransferServiceClient();
+     * try {
+     *     $projectId = 'project_id';
+     *     $agentPool = new AgentPool();
+     *     $agentPoolId = 'agent_pool_id';
+     *     $response = $storageTransferServiceClient->createAgentPool($projectId, $agentPool, $agentPoolId);
+     * } finally {
+     *     $storageTransferServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string    $projectId    Required. The ID of the Google Cloud project that owns the
+     *                                agent pool.
+     * @param AgentPool $agentPool    Required. The agent pool to create.
+     * @param string    $agentPoolId  Required. The ID of the agent pool to create.
+     *
+     *                                The `agent_pool_id` must meet the following requirements:
+     *
+     *                                *   Length of 128 characters or less.
+     *                                *   Not start with the string `goog`.
+     *                                *   Start with a lowercase ASCII character, followed by:
+     *                                *   Zero or more: lowercase Latin alphabet characters, numerals,
+     *                                hyphens (`-`), periods (`.`), underscores (`_`), or tildes (`~`).
+     *                                *   One or more numerals or lowercase ASCII characters.
+     *
+     *                                As expressed by the regular expression:
+     *                                `^(?!goog)[a-z]([a-z0-9-._~]*[a-z0-9])?$`.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\StorageTransfer\V1\AgentPool
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createAgentPool(
+        $projectId,
+        $agentPool,
+        $agentPoolId,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateAgentPoolRequest();
+        $requestParamHeaders = [];
+        $request->setProjectId($projectId);
+        $request->setAgentPool($agentPool);
+        $request->setAgentPoolId($agentPoolId);
+        $requestParamHeaders['project_id'] = $projectId;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateAgentPool',
+            AgentPool::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Creates a transfer job that runs periodically.
      *
      * Sample code:
@@ -271,10 +446,106 @@ class StorageTransferServiceGapicClient
     }
 
     /**
+     * Deletes an agent pool.
+     *
+     * Sample code:
+     * ```
+     * $storageTransferServiceClient = new StorageTransferServiceClient();
+     * try {
+     *     $name = 'name';
+     *     $storageTransferServiceClient->deleteAgentPool($name);
+     * } finally {
+     *     $storageTransferServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the agent pool to delete.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteAgentPool($name, array $optionalArgs = [])
+    {
+        $request = new DeleteAgentPoolRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteAgentPool',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets an agent pool.
+     *
+     * Sample code:
+     * ```
+     * $storageTransferServiceClient = new StorageTransferServiceClient();
+     * try {
+     *     $name = 'name';
+     *     $response = $storageTransferServiceClient->getAgentPool($name);
+     * } finally {
+     *     $storageTransferServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the agent pool to get.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\StorageTransfer\V1\AgentPool
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getAgentPool($name, array $optionalArgs = [])
+    {
+        $request = new GetAgentPoolRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetAgentPool',
+            AgentPool::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Returns the Google service account that is used by Storage Transfer
      * Service to access buckets in the project where transfers
      * run or in other projects. Each Google service account is associated
-     * with one Google Cloud Platform Console project. Users
+     * with one Google Cloud project. Users
      * should add this service account to the Google Cloud Storage bucket
      * ACLs to grant access to Storage Transfer Service. This service
      * account is created and owned by Storage Transfer Service and can
@@ -291,8 +562,8 @@ class StorageTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $projectId    Required. The ID of the Google Cloud Platform Console project that the
-     *                             Google service account is associated with.
+     * @param string $projectId    Required. The ID of the Google Cloud project that the Google service
+     *                             account is associated with.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -344,9 +615,8 @@ class StorageTransferServiceGapicClient
      * }
      * ```
      *
-     * @param string $jobName      Required.
-     *                             The job to get.
-     * @param string $projectId    Required. The ID of the Google Cloud Platform Console project that owns the
+     * @param string $jobName      Required. The job to get.
+     * @param string $projectId    Required. The ID of the Google Cloud project that owns the
      *                             job.
      * @param array  $optionalArgs {
      *     Optional.
@@ -384,6 +654,97 @@ class StorageTransferServiceGapicClient
             $optionalArgs,
             $request
         )->wait();
+    }
+
+    /**
+     * Lists agent pools.
+     *
+     * Sample code:
+     * ```
+     * $storageTransferServiceClient = new StorageTransferServiceClient();
+     * try {
+     *     $projectId = 'project_id';
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $storageTransferServiceClient->listAgentPools($projectId);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $storageTransferServiceClient->listAgentPools($projectId);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $storageTransferServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $projectId    Required. The ID of the Google Cloud project that owns the job.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           An optional list of query parameters specified as JSON text in the
+     *           form of:
+     *
+     *           `{"agentPoolNames":["agentpool1","agentpool2",...]}`
+     *
+     *           Since `agentPoolNames` support multiple values, its values must be
+     *           specified with array notation. When the filter is either empty or not
+     *           provided, the list returns all agent pools for the project.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listAgentPools($projectId, array $optionalArgs = [])
+    {
+        $request = new ListAgentPoolsRequest();
+        $requestParamHeaders = [];
+        $request->setProjectId($projectId);
+        $requestParamHeaders['project_id'] = $projectId;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListAgentPools',
+            $optionalArgs,
+            ListAgentPoolsResponse::class,
+            $request
+        );
     }
 
     /**
@@ -564,7 +925,7 @@ class StorageTransferServiceGapicClient
     /**
      * Attempts to start a new TransferOperation for the current TransferJob. A
      * TransferJob has a maximum of one active TransferOperation. If this method
-     * is called while a TransferOperation is active, an error wil be returned.
+     * is called while a TransferOperation is active, an error will be returned.
      *
      * Sample code:
      * ```
@@ -602,8 +963,8 @@ class StorageTransferServiceGapicClient
      * ```
      *
      * @param string $jobName      Required. The name of the transfer job.
-     * @param string $projectId    Required. The ID of the Google Cloud Platform Console project that owns the
-     *                             transfer job.
+     * @param string $projectId    Required. The ID of the Google Cloud project that owns the transfer
+     *                             job.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -643,11 +1004,82 @@ class StorageTransferServiceGapicClient
     }
 
     /**
+     * Updates an existing agent pool resource.
+     *
+     * Sample code:
+     * ```
+     * $storageTransferServiceClient = new StorageTransferServiceClient();
+     * try {
+     *     $agentPool = new AgentPool();
+     *     $response = $storageTransferServiceClient->updateAgentPool($agentPool);
+     * } finally {
+     *     $storageTransferServiceClient->close();
+     * }
+     * ```
+     *
+     * @param AgentPool $agentPool    Required. The agent pool to update. `agent_pool` is expected to specify following
+     *                                fields:
+     *
+     *                                *  [name][google.storagetransfer.v1.AgentPool.name]
+     *
+     *                                *  [display_name][google.storagetransfer.v1.AgentPool.display_name]
+     *
+     *                                *  [bandwidth_limit][google.storagetransfer.v1.AgentPool.bandwidth_limit]
+     *                                An `UpdateAgentPoolRequest` with any other fields is rejected
+     *                                with the error [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           The [field mask]
+     *           (https://developers.google.com/protocol-buffers/docs/reference/google.protobuf)
+     *           of the fields in `agentPool` to update in this request.
+     *           The following `agentPool` fields can be updated:
+     *
+     *           *  [display_name][google.storagetransfer.v1.AgentPool.display_name]
+     *
+     *           *  [bandwidth_limit][google.storagetransfer.v1.AgentPool.bandwidth_limit]
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\StorageTransfer\V1\AgentPool
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateAgentPool($agentPool, array $optionalArgs = [])
+    {
+        $request = new UpdateAgentPoolRequest();
+        $requestParamHeaders = [];
+        $request->setAgentPool($agentPool);
+        $requestParamHeaders['agent_pool.name'] = $agentPool->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateAgentPool',
+            AgentPool::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Updates a transfer job. Updating a job's transfer spec does not affect
      * transfer operations that are running already.
      *
-     * **Note:** The job's [status][google.storagetransfer.v1.TransferJob.status]
-     * field can be modified using this RPC (for example, to set a job's status to
+     * **Note:** The job's [status][google.storagetransfer.v1.TransferJob.status] field can be modified
+     * using this RPC (for example, to set a job's status to
      * [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED],
      * [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], or
      * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED]).
@@ -666,18 +1098,17 @@ class StorageTransferServiceGapicClient
      * ```
      *
      * @param string      $jobName      Required. The name of job to update.
-     * @param string      $projectId    Required. The ID of the Google Cloud Platform Console project that owns the
+     * @param string      $projectId    Required. The ID of the Google Cloud project that owns the
      *                                  job.
-     * @param TransferJob $transferJob  Required. The job to update. `transferJob` is expected to specify only
-     *                                  four fields:
-     *                                  [description][google.storagetransfer.v1.TransferJob.description],
+     * @param TransferJob $transferJob  Required. The job to update. `transferJob` is expected to specify one or more of
+     *                                  five fields: [description][google.storagetransfer.v1.TransferJob.description],
      *                                  [transfer_spec][google.storagetransfer.v1.TransferJob.transfer_spec],
      *                                  [notification_config][google.storagetransfer.v1.TransferJob.notification_config],
-     *                                  and [status][google.storagetransfer.v1.TransferJob.status].  An
-     *                                  `UpdateTransferJobRequest` that specifies other fields are rejected with
-     *                                  the error [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a
-     *                                  job status to
-     *                                  [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
+     *                                  [logging_config][google.storagetransfer.v1.TransferJob.logging_config], and
+     *                                  [status][google.storagetransfer.v1.TransferJob.status].  An `UpdateTransferJobRequest` that specifies
+     *                                  other fields are rejected with the error
+     *                                  [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a job status
+     *                                  to [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
      *                                  `storagetransfer.jobs.delete` permissions.
      * @param array       $optionalArgs {
      *     Optional.
@@ -688,10 +1119,10 @@ class StorageTransferServiceGapicClient
      *           [description][google.storagetransfer.v1.TransferJob.description],
      *           [transfer_spec][google.storagetransfer.v1.TransferJob.transfer_spec],
      *           [notification_config][google.storagetransfer.v1.TransferJob.notification_config],
-     *           and [status][google.storagetransfer.v1.TransferJob.status].  To update the
-     *           `transfer_spec` of the job, a complete transfer specification must be
-     *           provided. An incomplete specification missing any required fields is
-     *           rejected with the error
+     *           [logging_config][google.storagetransfer.v1.TransferJob.logging_config], and
+     *           [status][google.storagetransfer.v1.TransferJob.status].  To update the `transfer_spec` of the job, a
+     *           complete transfer specification must be provided. An incomplete
+     *           specification missing any required fields is rejected with the error
      *           [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a

@@ -10,9 +10,24 @@
                 "grpc": {
                     "libraryClient": "StorageTransferServiceGapicClient",
                     "rpcs": {
+                        "CreateAgentPool": {
+                            "methods": [
+                                "createAgentPool"
+                            ]
+                        },
                         "CreateTransferJob": {
                             "methods": [
                                 "createTransferJob"
+                            ]
+                        },
+                        "DeleteAgentPool": {
+                            "methods": [
+                                "deleteAgentPool"
+                            ]
+                        },
+                        "GetAgentPool": {
+                            "methods": [
+                                "getAgentPool"
                             ]
                         },
                         "GetGoogleServiceAccount": {
@@ -23,6 +38,11 @@
                         "GetTransferJob": {
                             "methods": [
                                 "getTransferJob"
+                            ]
+                        },
+                        "ListAgentPools": {
+                            "methods": [
+                                "listAgentPools"
                             ]
                         },
                         "ListTransferJobs": {
@@ -43,6 +63,11 @@
                         "RunTransferJob": {
                             "methods": [
                                 "runTransferJob"
+                            ]
+                        },
+                        "UpdateAgentPool": {
+                            "methods": [
+                                "updateAgentPool"
                             ]
                         },
                         "UpdateTransferJob": {

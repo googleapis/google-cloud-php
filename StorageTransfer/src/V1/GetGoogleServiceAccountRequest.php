@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetGoogleServiceAccountRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The ID of the Google Cloud Platform Console project that the
-     * Google service account is associated with.
+     * Required. The ID of the Google Cloud project that the Google service
+     * account is associated with.
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -30,8 +30,8 @@ class GetGoogleServiceAccountRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Required. The ID of the Google Cloud Platform Console project that the
-     *           Google service account is associated with.
+     *           Required. The ID of the Google Cloud project that the Google service
+     *           account is associated with.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class GetGoogleServiceAccountRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the Google Cloud Platform Console project that the
-     * Google service account is associated with.
+     * Required. The ID of the Google Cloud project that the Google service
+     * account is associated with.
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -52,8 +52,8 @@ class GetGoogleServiceAccountRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the Google Cloud Platform Console project that the
-     * Google service account is associated with.
+     * Required. The ID of the Google Cloud project that the Google service
+     * account is associated with.
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
