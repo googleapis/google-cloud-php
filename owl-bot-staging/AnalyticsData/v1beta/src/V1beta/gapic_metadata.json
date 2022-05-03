@@ -1,0 +1,53 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.analytics.data.v1beta",
+    "libraryPackage": "Google\\Analytics\\Data\\V1beta",
+    "services": {
+        "BetaAnalyticsData": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BetaAnalyticsDataGapicClient",
+                    "rpcs": {
+                        "BatchRunPivotReports": {
+                            "methods": [
+                                "batchRunPivotReports"
+                            ]
+                        },
+                        "BatchRunReports": {
+                            "methods": [
+                                "batchRunReports"
+                            ]
+                        },
+                        "CheckCompatibility": {
+                            "methods": [
+                                "checkCompatibility"
+                            ]
+                        },
+                        "GetMetadata": {
+                            "methods": [
+                                "getMetadata"
+                            ]
+                        },
+                        "RunPivotReport": {
+                            "methods": [
+                                "runPivotReport"
+                            ]
+                        },
+                        "RunRealtimeReport": {
+                            "methods": [
+                                "runRealtimeReport"
+                            ]
+                        },
+                        "RunReport": {
+                            "methods": [
+                                "runReport"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
