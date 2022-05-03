@@ -32,8 +32,8 @@ trait KeyPairGenerateTrait
 
     private function getKeyPair()
     {
-        $key = (RSA::createKey())
-            ->withPadding(RSA::SIGNATURE_PKCS1)
+        $key = RSA::createKey();
+        $key = $key->withPadding(RSA::SIGNATURE_PKCS1)
             ->withHash('sha256');
 
         return [$key->toString('PKCS1'), $key->getPublicKey()];
