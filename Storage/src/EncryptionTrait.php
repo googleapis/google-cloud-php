@@ -139,6 +139,8 @@ trait EncryptionTrait
             $rsa->loadKey($privateKey);
             $rsa->setSignatureMode(RSA2::SIGNATURE_PKCS1);
             $rsa->setHash('sha256');
+
+            $signature = $rsa->sign($data);
         } elseif (extension_loaded('openssl')) {
             openssl_sign($data, $signature, $privateKey, 'sha256WithRSAEncryption');
         } else {
