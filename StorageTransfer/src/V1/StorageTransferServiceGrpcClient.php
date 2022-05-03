@@ -38,7 +38,7 @@ class StorageTransferServiceGrpcClient extends \Grpc\BaseStub {
      * Returns the Google service account that is used by Storage Transfer
      * Service to access buckets in the project where transfers
      * run or in other projects. Each Google service account is associated
-     * with one Google Cloud Platform Console project. Users
+     * with one Google Cloud project. Users
      * should add this service account to the Google Cloud Storage bucket
      * ACLs to grant access to Storage Transfer Service. This service
      * account is created and owned by Storage Transfer Service and can
@@ -75,8 +75,8 @@ class StorageTransferServiceGrpcClient extends \Grpc\BaseStub {
      * Updates a transfer job. Updating a job's transfer spec does not affect
      * transfer operations that are running already.
      *
-     * **Note:** The job's [status][google.storagetransfer.v1.TransferJob.status]
-     * field can be modified using this RPC (for example, to set a job's status to
+     * **Note:** The job's [status][google.storagetransfer.v1.TransferJob.status] field can be modified
+     * using this RPC (for example, to set a job's status to
      * [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED],
      * [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], or
      * [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED]).
@@ -156,7 +156,7 @@ class StorageTransferServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Attempts to start a new TransferOperation for the current TransferJob. A
      * TransferJob has a maximum of one active TransferOperation. If this method
-     * is called while a TransferOperation is active, an error wil be returned.
+     * is called while a TransferOperation is active, an error will be returned.
      * @param \Google\Cloud\StorageTransfer\V1\RunTransferJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -167,6 +167,81 @@ class StorageTransferServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.storagetransfer.v1.StorageTransferService/RunTransferJob',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates an agent pool resource.
+     * @param \Google\Cloud\StorageTransfer\V1\CreateAgentPoolRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateAgentPool(\Google\Cloud\StorageTransfer\V1\CreateAgentPoolRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.storagetransfer.v1.StorageTransferService/CreateAgentPool',
+        $argument,
+        ['\Google\Cloud\StorageTransfer\V1\AgentPool', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates an existing agent pool resource.
+     * @param \Google\Cloud\StorageTransfer\V1\UpdateAgentPoolRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateAgentPool(\Google\Cloud\StorageTransfer\V1\UpdateAgentPoolRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.storagetransfer.v1.StorageTransferService/UpdateAgentPool',
+        $argument,
+        ['\Google\Cloud\StorageTransfer\V1\AgentPool', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets an agent pool.
+     * @param \Google\Cloud\StorageTransfer\V1\GetAgentPoolRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetAgentPool(\Google\Cloud\StorageTransfer\V1\GetAgentPoolRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.storagetransfer.v1.StorageTransferService/GetAgentPool',
+        $argument,
+        ['\Google\Cloud\StorageTransfer\V1\AgentPool', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists agent pools.
+     * @param \Google\Cloud\StorageTransfer\V1\ListAgentPoolsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListAgentPools(\Google\Cloud\StorageTransfer\V1\ListAgentPoolsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.storagetransfer.v1.StorageTransferService/ListAgentPools',
+        $argument,
+        ['\Google\Cloud\StorageTransfer\V1\ListAgentPoolsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes an agent pool.
+     * @param \Google\Cloud\StorageTransfer\V1\DeleteAgentPoolRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteAgentPool(\Google\Cloud\StorageTransfer\V1\DeleteAgentPoolRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.storagetransfer.v1.StorageTransferService/DeleteAgentPool',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
         $metadata, $options);
     }
 

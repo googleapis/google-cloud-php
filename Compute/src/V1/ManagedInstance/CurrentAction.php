@@ -7,7 +7,10 @@ namespace Google\Cloud\Compute\V1\ManagedInstance;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The current action that the managed instance group has scheduled for the instance. Possible values: - NONE The instance is running, and the managed instance group does not have any scheduled actions for this instance. - CREATING The managed instance group is creating this instance. If the group fails to create this instance, it will try again until it is successful. - CREATING_WITHOUT_RETRIES The managed instance group is attempting to create this instance only once. If the group fails to create this instance, it does not try again and the group's targetSize value is decreased instead. - RECREATING The managed instance group is recreating this instance. - DELETING The managed instance group is permanently deleting this instance. - ABANDONING The managed instance group is abandoning this instance. The instance will be removed from the instance group and from any target pools that are associated with this group. - RESTARTING The managed instance group is restarting the instance. - REFRESHING The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance. - VERIFYING The managed instance group has created the instance and it is in the process of being verified. 
+ * [Output Only] The current action that the managed instance group has scheduled for the instance. Possible values: - NONE The instance is running, and the managed instance group does not have any scheduled actions for this instance. - CREATING The managed instance group is creating this instance. If the group fails to create this instance, it will try again until it is successful. - CREATING_WITHOUT_RETRIES The managed instance group is attempting to create this instance only once. If the group fails to create this instance, it does not try again and the group's targetSize value is decreased instead. - RECREATING The managed instance group is recreating this instance. - DELETING The managed instance group is permanently deleting this instance. - ABANDONING The managed instance group is abandoning this instance. The instance will be removed from the instance group and from any target pools that are associated with this group. - RESTARTING The managed instance group is restarting the instance. - REFRESHING The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance. - VERIFYING The managed instance group has created the instance and it is in the process of being verified.
+ * Additional supported values which may be not listed in the enum directly due to technical reasons:
+ * STOPPING
+ * SUSPENDING
  *
  * Protobuf type <code>google.cloud.compute.v1.ManagedInstance.CurrentAction</code>
  */
@@ -68,6 +71,18 @@ class CurrentAction
      */
     const RESTARTING = 320534387;
     /**
+     * The managed instance group is resuming this instance.
+     *
+     * Generated from protobuf enum <code>RESUMING = 446856618;</code>
+     */
+    const RESUMING = 446856618;
+    /**
+     * The managed instance group is starting this instance.
+     *
+     * Generated from protobuf enum <code>STARTING = 488820800;</code>
+     */
+    const STARTING = 488820800;
+    /**
      * The managed instance group is verifying this already created instance. Verification happens every time the instance is (re)created or restarted and consists of: 1. Waiting until health check specified as part of this managed instance group's autohealing policy reports HEALTHY. Note: Applies only if autohealing policy has a health check specified 2. Waiting for addition verification steps performed as post-instance creation (subject to future extensions).
      *
      * Generated from protobuf enum <code>VERIFYING = 16982185;</code>
@@ -84,6 +99,8 @@ class CurrentAction
         self::RECREATING => 'RECREATING',
         self::REFRESHING => 'REFRESHING',
         self::RESTARTING => 'RESTARTING',
+        self::RESUMING => 'RESUMING',
+        self::STARTING => 'STARTING',
         self::VERIFYING => 'VERIFYING',
     ];
 

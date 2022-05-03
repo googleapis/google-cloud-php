@@ -22,23 +22,22 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
      */
     private $job_name = '';
     /**
-     * Required. The ID of the Google Cloud Platform Console project that owns the
+     * Required. The ID of the Google Cloud project that owns the
      * job.
      *
      * Generated from protobuf field <code>string project_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
     /**
-     * Required. The job to update. `transferJob` is expected to specify only
-     * four fields:
-     * [description][google.storagetransfer.v1.TransferJob.description],
+     * Required. The job to update. `transferJob` is expected to specify one or more of
+     * five fields: [description][google.storagetransfer.v1.TransferJob.description],
      * [transfer_spec][google.storagetransfer.v1.TransferJob.transfer_spec],
      * [notification_config][google.storagetransfer.v1.TransferJob.notification_config],
-     * and [status][google.storagetransfer.v1.TransferJob.status].  An
-     * `UpdateTransferJobRequest` that specifies other fields are rejected with
-     * the error [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a
-     * job status to
-     * [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
+     * [logging_config][google.storagetransfer.v1.TransferJob.logging_config], and
+     * [status][google.storagetransfer.v1.TransferJob.status].  An `UpdateTransferJobRequest` that specifies
+     * other fields are rejected with the error
+     * [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a job status
+     * to [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
      * `storagetransfer.jobs.delete` permissions.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferJob transfer_job = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -50,10 +49,10 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
      * [description][google.storagetransfer.v1.TransferJob.description],
      * [transfer_spec][google.storagetransfer.v1.TransferJob.transfer_spec],
      * [notification_config][google.storagetransfer.v1.TransferJob.notification_config],
-     * and [status][google.storagetransfer.v1.TransferJob.status].  To update the
-     * `transfer_spec` of the job, a complete transfer specification must be
-     * provided. An incomplete specification missing any required fields is
-     * rejected with the error
+     * [logging_config][google.storagetransfer.v1.TransferJob.logging_config], and
+     * [status][google.storagetransfer.v1.TransferJob.status].  To update the `transfer_spec` of the job, a
+     * complete transfer specification must be provided. An incomplete
+     * specification missing any required fields is rejected with the error
      * [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_transfer_job_field_mask = 4;</code>
@@ -69,19 +68,18 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
      *     @type string $job_name
      *           Required. The name of job to update.
      *     @type string $project_id
-     *           Required. The ID of the Google Cloud Platform Console project that owns the
+     *           Required. The ID of the Google Cloud project that owns the
      *           job.
      *     @type \Google\Cloud\StorageTransfer\V1\TransferJob $transfer_job
-     *           Required. The job to update. `transferJob` is expected to specify only
-     *           four fields:
-     *           [description][google.storagetransfer.v1.TransferJob.description],
+     *           Required. The job to update. `transferJob` is expected to specify one or more of
+     *           five fields: [description][google.storagetransfer.v1.TransferJob.description],
      *           [transfer_spec][google.storagetransfer.v1.TransferJob.transfer_spec],
      *           [notification_config][google.storagetransfer.v1.TransferJob.notification_config],
-     *           and [status][google.storagetransfer.v1.TransferJob.status].  An
-     *           `UpdateTransferJobRequest` that specifies other fields are rejected with
-     *           the error [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a
-     *           job status to
-     *           [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
+     *           [logging_config][google.storagetransfer.v1.TransferJob.logging_config], and
+     *           [status][google.storagetransfer.v1.TransferJob.status].  An `UpdateTransferJobRequest` that specifies
+     *           other fields are rejected with the error
+     *           [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a job status
+     *           to [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
      *           `storagetransfer.jobs.delete` permissions.
      *     @type \Google\Protobuf\FieldMask $update_transfer_job_field_mask
      *           The field mask of the fields in `transferJob` that are to be updated in
@@ -89,10 +87,10 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
      *           [description][google.storagetransfer.v1.TransferJob.description],
      *           [transfer_spec][google.storagetransfer.v1.TransferJob.transfer_spec],
      *           [notification_config][google.storagetransfer.v1.TransferJob.notification_config],
-     *           and [status][google.storagetransfer.v1.TransferJob.status].  To update the
-     *           `transfer_spec` of the job, a complete transfer specification must be
-     *           provided. An incomplete specification missing any required fields is
-     *           rejected with the error
+     *           [logging_config][google.storagetransfer.v1.TransferJob.logging_config], and
+     *           [status][google.storagetransfer.v1.TransferJob.status].  To update the `transfer_spec` of the job, a
+     *           complete transfer specification must be provided. An incomplete
+     *           specification missing any required fields is rejected with the error
      *           [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      * }
      */
@@ -128,7 +126,7 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the Google Cloud Platform Console project that owns the
+     * Required. The ID of the Google Cloud project that owns the
      * job.
      *
      * Generated from protobuf field <code>string project_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -140,7 +138,7 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the Google Cloud Platform Console project that owns the
+     * Required. The ID of the Google Cloud project that owns the
      * job.
      *
      * Generated from protobuf field <code>string project_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -156,16 +154,15 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The job to update. `transferJob` is expected to specify only
-     * four fields:
-     * [description][google.storagetransfer.v1.TransferJob.description],
+     * Required. The job to update. `transferJob` is expected to specify one or more of
+     * five fields: [description][google.storagetransfer.v1.TransferJob.description],
      * [transfer_spec][google.storagetransfer.v1.TransferJob.transfer_spec],
      * [notification_config][google.storagetransfer.v1.TransferJob.notification_config],
-     * and [status][google.storagetransfer.v1.TransferJob.status].  An
-     * `UpdateTransferJobRequest` that specifies other fields are rejected with
-     * the error [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a
-     * job status to
-     * [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
+     * [logging_config][google.storagetransfer.v1.TransferJob.logging_config], and
+     * [status][google.storagetransfer.v1.TransferJob.status].  An `UpdateTransferJobRequest` that specifies
+     * other fields are rejected with the error
+     * [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a job status
+     * to [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
      * `storagetransfer.jobs.delete` permissions.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferJob transfer_job = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -187,16 +184,15 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The job to update. `transferJob` is expected to specify only
-     * four fields:
-     * [description][google.storagetransfer.v1.TransferJob.description],
+     * Required. The job to update. `transferJob` is expected to specify one or more of
+     * five fields: [description][google.storagetransfer.v1.TransferJob.description],
      * [transfer_spec][google.storagetransfer.v1.TransferJob.transfer_spec],
      * [notification_config][google.storagetransfer.v1.TransferJob.notification_config],
-     * and [status][google.storagetransfer.v1.TransferJob.status].  An
-     * `UpdateTransferJobRequest` that specifies other fields are rejected with
-     * the error [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a
-     * job status to
-     * [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
+     * [logging_config][google.storagetransfer.v1.TransferJob.logging_config], and
+     * [status][google.storagetransfer.v1.TransferJob.status].  An `UpdateTransferJobRequest` that specifies
+     * other fields are rejected with the error
+     * [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a job status
+     * to [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
      * `storagetransfer.jobs.delete` permissions.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferJob transfer_job = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -217,10 +213,10 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
      * [description][google.storagetransfer.v1.TransferJob.description],
      * [transfer_spec][google.storagetransfer.v1.TransferJob.transfer_spec],
      * [notification_config][google.storagetransfer.v1.TransferJob.notification_config],
-     * and [status][google.storagetransfer.v1.TransferJob.status].  To update the
-     * `transfer_spec` of the job, a complete transfer specification must be
-     * provided. An incomplete specification missing any required fields is
-     * rejected with the error
+     * [logging_config][google.storagetransfer.v1.TransferJob.logging_config], and
+     * [status][google.storagetransfer.v1.TransferJob.status].  To update the `transfer_spec` of the job, a
+     * complete transfer specification must be provided. An incomplete
+     * specification missing any required fields is rejected with the error
      * [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_transfer_job_field_mask = 4;</code>
@@ -247,10 +243,10 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
      * [description][google.storagetransfer.v1.TransferJob.description],
      * [transfer_spec][google.storagetransfer.v1.TransferJob.transfer_spec],
      * [notification_config][google.storagetransfer.v1.TransferJob.notification_config],
-     * and [status][google.storagetransfer.v1.TransferJob.status].  To update the
-     * `transfer_spec` of the job, a complete transfer specification must be
-     * provided. An incomplete specification missing any required fields is
-     * rejected with the error
+     * [logging_config][google.storagetransfer.v1.TransferJob.logging_config], and
+     * [status][google.storagetransfer.v1.TransferJob.status].  To update the `transfer_spec` of the job, a
+     * complete transfer specification must be provided. An incomplete
+     * specification missing any required fields is rejected with the error
      * [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_transfer_job_field_mask = 4;</code>

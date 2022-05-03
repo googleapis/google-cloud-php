@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\PublicDelegatedPrefix;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the public delegated prefix.
+ * [Output Only] The status of the public delegated prefix, which can be one of following values: - `INITIALIZING` The public delegated prefix is being initialized and addresses cannot be created yet. - `READY_TO_ANNOUNCE` The public delegated prefix is a live migration prefix and is active. - `ANNOUNCED` The public delegated prefix is active. - `DELETING` The public delegated prefix is being deprovsioned. 
  *
  * Protobuf type <code>google.cloud.compute.v1.PublicDelegatedPrefix.Status</code>
  */
@@ -20,18 +20,26 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
+     * The public delegated prefix is active.
+     *
      * Generated from protobuf enum <code>ANNOUNCED = 365103355;</code>
      */
     const ANNOUNCED = 365103355;
     /**
+     * The public delegated prefix is being deprovsioned.
+     *
      * Generated from protobuf enum <code>DELETING = 528602024;</code>
      */
     const DELETING = 528602024;
     /**
+     * The public delegated prefix is being initialized and addresses cannot be created yet.
+     *
      * Generated from protobuf enum <code>INITIALIZING = 306588749;</code>
      */
     const INITIALIZING = 306588749;
     /**
+     * The public delegated prefix is currently withdrawn but ready to be announced.
+     *
      * Generated from protobuf enum <code>READY_TO_ANNOUNCE = 64641265;</code>
      */
     const READY_TO_ANNOUNCE = 64641265;

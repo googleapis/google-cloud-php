@@ -53,6 +53,12 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
+     * If specified, the domain name will be used during the integration between the PSC connected endpoints and the Cloud DNS. For example, this is a valid domain name: "p.mycompany.com.". Current max number of domain names supported is 1.
+     *
+     * Generated from protobuf field <code>repeated string domain_names = 6450189;</code>
+     */
+    private $domain_names;
+    /**
      * If true, enable the proxy protocol which is for supplying client TCP/IP address data in TCP connections that traverse proxies on their way to destination servers.
      *
      * Generated from protobuf field <code>optional bool enable_proxy_protocol = 363791237;</code>
@@ -138,6 +144,8 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $domain_names
+     *           If specified, the domain name will be used during the integration between the PSC connected endpoints and the Cloud DNS. For example, this is a valid domain name: "p.mycompany.com.". Current max number of domain names supported is 1.
      *     @type bool $enable_proxy_protocol
      *           If true, enable the proxy protocol which is for supplying client TCP/IP address data in TCP connections that traverse proxies on their way to destination servers.
      *     @type string $fingerprint
@@ -351,6 +359,32 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * If specified, the domain name will be used during the integration between the PSC connected endpoints and the Cloud DNS. For example, this is a valid domain name: "p.mycompany.com.". Current max number of domain names supported is 1.
+     *
+     * Generated from protobuf field <code>repeated string domain_names = 6450189;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getDomainNames()
+    {
+        return $this->domain_names;
+    }
+
+    /**
+     * If specified, the domain name will be used during the integration between the PSC connected endpoints and the Cloud DNS. For example, this is a valid domain name: "p.mycompany.com.". Current max number of domain names supported is 1.
+     *
+     * Generated from protobuf field <code>repeated string domain_names = 6450189;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setDomainNames($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->domain_names = $arr;
 
         return $this;
     }

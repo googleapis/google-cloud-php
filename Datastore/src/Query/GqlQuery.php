@@ -214,6 +214,7 @@ class GqlQuery implements QueryInterface
      * @access private
      * @return array
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return $this->queryObject();

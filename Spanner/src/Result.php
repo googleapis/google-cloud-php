@@ -374,6 +374,7 @@ class Result implements \IteratorAggregate
      * @access private
      * @return \Generator
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return $this->rows();

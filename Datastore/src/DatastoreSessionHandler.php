@@ -189,6 +189,7 @@ class DatastoreSessionHandler implements SessionHandlerInterface
      *        used here. It will use this value as the Datastore kind.
      * @return bool
      */
+    #[\ReturnTypeWillChange]
     public function open($savePath, $sessionName)
     {
         $this->kind = $sessionName;
@@ -206,6 +207,7 @@ class DatastoreSessionHandler implements SessionHandlerInterface
     /**
      * Just return true for this implementation.
      */
+    #[\ReturnTypeWillChange]
     public function close()
     {
         return true;
@@ -214,6 +216,7 @@ class DatastoreSessionHandler implements SessionHandlerInterface
     /**
      * Read the session data from Cloud Datastore.
      */
+    #[\ReturnTypeWillChange]
     public function read($id)
     {
         try {
@@ -243,6 +246,7 @@ class DatastoreSessionHandler implements SessionHandlerInterface
      * @param string $data The session data to write to the {@see \Google\Cloud\Datastore\Entity}.
      * @return bool
      */
+    #[\ReturnTypeWillChange]
     public function write($id, $data)
     {
         try {
@@ -274,6 +278,7 @@ class DatastoreSessionHandler implements SessionHandlerInterface
     /**
      * Delete the session data from Cloud Datastore.
      */
+    #[\ReturnTypeWillChange]
     public function destroy($id)
     {
         try {
@@ -297,6 +302,7 @@ class DatastoreSessionHandler implements SessionHandlerInterface
     /**
      * Delete the old session data from Cloud Datastore.
      */
+    #[\ReturnTypeWillChange]
     public function gc($maxlifetime)
     {
         if ($this->gcLimit === 0) {

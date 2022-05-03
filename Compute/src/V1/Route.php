@@ -112,6 +112,13 @@ class Route extends \Google\Protobuf\Internal\Message
      */
     private $priority = null;
     /**
+     * [Output only] The status of the route.
+     * Check the RouteStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string route_status = 418162344;</code>
+     */
+    private $route_status = null;
+    /**
      * [Output Only] The type of this route, which can be one of the following values: - 'TRANSIT' for a transit route that this router learned from another Cloud Router and will readvertise to one of its BGP peers - 'SUBNET' for a route from a subnet of the VPC - 'BGP' for a route learned from a BGP peer of this router - 'STATIC' for a static route
      * Check the RouteType enum for the list of possible values.
      *
@@ -175,6 +182,9 @@ class Route extends \Google\Protobuf\Internal\Message
      *           The URL to a VpnTunnel that should handle matching packets.
      *     @type int $priority
      *           The priority of this route. Priority is used to break ties in cases where there is more than one matching route of equal prefix length. In cases where multiple routes have equal prefix length, the one with the lowest-numbered priority value wins. The default value is `1000`. The priority value must be from `0` to `65535`, inclusive.
+     *     @type string $route_status
+     *           [Output only] The status of the route.
+     *           Check the RouteStatus enum for the list of possible values.
      *     @type string $route_type
      *           [Output Only] The type of this route, which can be one of the following values: - 'TRANSIT' for a transit route that this router learned from another Cloud Router and will readvertise to one of its BGP peers - 'SUBNET' for a route from a subnet of the VPC - 'BGP' for a route learned from a BGP peer of this router - 'STATIC' for a static route
      *           Check the RouteType enum for the list of possible values.
@@ -753,6 +763,44 @@ class Route extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint32($var);
         $this->priority = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output only] The status of the route.
+     * Check the RouteStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string route_status = 418162344;</code>
+     * @return string
+     */
+    public function getRouteStatus()
+    {
+        return isset($this->route_status) ? $this->route_status : '';
+    }
+
+    public function hasRouteStatus()
+    {
+        return isset($this->route_status);
+    }
+
+    public function clearRouteStatus()
+    {
+        unset($this->route_status);
+    }
+
+    /**
+     * [Output only] The status of the route.
+     * Check the RouteStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string route_status = 418162344;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRouteStatus($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->route_status = $var;
 
         return $this;
     }

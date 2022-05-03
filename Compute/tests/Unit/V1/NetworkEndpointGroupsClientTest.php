@@ -555,6 +555,7 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $name = 'name3373707';
         $network = 'network1843485230';
         $networkEndpointType = 'networkEndpointType118301523';
+        $pscTargetService = 'pscTargetService1879744870';
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $size = 3530753;
@@ -569,6 +570,7 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setNetworkEndpointType($networkEndpointType);
+        $expectedResponse->setPscTargetService($pscTargetService);
         $expectedResponse->setRegion($region);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSize($size);

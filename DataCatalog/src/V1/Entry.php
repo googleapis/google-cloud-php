@@ -87,7 +87,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Business Context of the entry. Not supported for BigQuery datasets.
+     * Business Context of the entry. Not supported for BigQuery datasets
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BusinessContext business_context = 37;</code>
      */
@@ -222,6 +222,9 @@ class Entry extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DataCatalog\V1\RoutineSpec $routine_spec
      *           Specification that applies to a user-defined function or procedure. Valid
      *           only for entries with the `ROUTINE` type.
+     *     @type \Google\Cloud\DataCatalog\V1\FilesetSpec $fileset_spec
+     *           Specification that applies to a fileset resource. Valid only
+     *           for entries with the `FILESET` type.
      *     @type string $display_name
      *           Display name of an entry.
      *           The name must contain only Unicode letters, numbers (0-9), underscores (_),
@@ -237,7 +240,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      *           The maximum size is 2000 bytes when encoded in UTF-8.
      *           Default value is an empty string.
      *     @type \Google\Cloud\DataCatalog\V1\BusinessContext $business_context
-     *           Business Context of the entry. Not supported for BigQuery datasets.
+     *           Business Context of the entry. Not supported for BigQuery datasets
      *     @type \Google\Cloud\DataCatalog\V1\Schema $schema
      *           Schema of the entry. An entry might not have any schema attached to it.
      *     @type \Google\Cloud\DataCatalog\V1\SystemTimestamps $source_system_timestamps
@@ -753,6 +756,39 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Specification that applies to a fileset resource. Valid only
+     * for entries with the `FILESET` type.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.FilesetSpec fileset_spec = 33;</code>
+     * @return \Google\Cloud\DataCatalog\V1\FilesetSpec|null
+     */
+    public function getFilesetSpec()
+    {
+        return $this->readOneof(33);
+    }
+
+    public function hasFilesetSpec()
+    {
+        return $this->hasOneof(33);
+    }
+
+    /**
+     * Specification that applies to a fileset resource. Valid only
+     * for entries with the `FILESET` type.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.FilesetSpec fileset_spec = 33;</code>
+     * @param \Google\Cloud\DataCatalog\V1\FilesetSpec $var
+     * @return $this
+     */
+    public function setFilesetSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\FilesetSpec::class);
+        $this->writeOneof(33, $var);
+
+        return $this;
+    }
+
+    /**
      * Display name of an entry.
      * The name must contain only Unicode letters, numbers (0-9), underscores (_),
      * dashes (-), spaces ( ), and can't start or end with spaces.
@@ -825,7 +861,7 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Business Context of the entry. Not supported for BigQuery datasets.
+     * Business Context of the entry. Not supported for BigQuery datasets
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BusinessContext business_context = 37;</code>
      * @return \Google\Cloud\DataCatalog\V1\BusinessContext|null
@@ -846,7 +882,7 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Business Context of the entry. Not supported for BigQuery datasets.
+     * Business Context of the entry. Not supported for BigQuery datasets
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BusinessContext business_context = 37;</code>
      * @param \Google\Cloud\DataCatalog\V1\BusinessContext $var

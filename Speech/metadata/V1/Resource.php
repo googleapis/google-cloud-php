@@ -15,12 +15,10 @@ class Resource
           return;
         }
         \GPBMetadata\Google\Api\Resource::initOnce();
-        \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Å
-%google/cloud/speech/v1/resource.protogoogle.cloud.speech.v1google/protobuf/timestamp.protogoogle/api/annotations.proto"ü
+†
+%google/cloud/speech/v1/resource.protogoogle.cloud.speech.v1"ü
 CustomClass
 name (	
 custom_class_id (	<

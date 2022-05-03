@@ -65,11 +65,11 @@ s.replace(
 
 # fix copyright year
 s.replace(
-    'src/V1/**/*Client.php',
+    'src/V1/**/KeyManagementService*.php',
     r'Copyright \d{4}',
     r'Copyright 2018')
 s.replace(
-    'tests/**/V1/*Test.php',
+    'tests/**/V1/KeyManagementService*.php',
     r'Copyright \d{4}',
     r'Copyright 2018')
 

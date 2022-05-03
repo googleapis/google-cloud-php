@@ -17,15 +17,14 @@ class Reachability
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
-        \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Networkmanagement\V1\ConnectivityTest::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ø
-4google/cloud/networkmanagement/v1/reachability.proto!google.cloud.networkmanagement.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto9google/cloud/networkmanagement/v1/connectivity_test.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"|
+§
+4google/cloud/networkmanagement/v1/reachability.proto!google.cloud.networkmanagement.v1google/api/client.protogoogle/api/field_behavior.proto9google/cloud/networkmanagement/v1/connectivity_test.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"|
 ListConnectivityTestsRequest
 parent (	B‡A
 	page_size (

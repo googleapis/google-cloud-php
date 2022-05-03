@@ -26,8 +26,12 @@ class Ipv6AccessType
      */
     const EXTERNAL = 35607499;
     /**
-     * IPv6 access type not set. Means this network interface hasn't been turned on IPv6 yet.
+     * This network interface can have internal IPv6.
      *
+     * Generated from protobuf enum <code>INTERNAL = 279295677;</code>
+     */
+    const INTERNAL = 279295677;
+    /**
      * Generated from protobuf enum <code>UNSPECIFIED_IPV6_ACCESS_TYPE = 313080613;</code>
      */
     const UNSPECIFIED_IPV6_ACCESS_TYPE = 313080613;
@@ -35,6 +39,7 @@ class Ipv6AccessType
     private static $valueToName = [
         self::UNDEFINED_IPV6_ACCESS_TYPE => 'UNDEFINED_IPV6_ACCESS_TYPE',
         self::EXTERNAL => 'EXTERNAL',
+        self::INTERNAL => 'INTERNAL',
         self::UNSPECIFIED_IPV6_ACCESS_TYPE => 'UNSPECIFIED_IPV6_ACCESS_TYPE',
     ];
 

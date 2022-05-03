@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Preference for a given location: ALLOW or DENY.
+     * Preference for a given location.
      * Check the Preference enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string preference = 150781147;</code>
@@ -29,7 +29,7 @@ class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $preference
-     *           Preference for a given location: ALLOW or DENY.
+     *           Preference for a given location.
      *           Check the Preference enum for the list of possible values.
      * }
      */
@@ -39,7 +39,7 @@ class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Preference for a given location: ALLOW or DENY.
+     * Preference for a given location.
      * Check the Preference enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string preference = 150781147;</code>
@@ -61,7 +61,7 @@ class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Preference for a given location: ALLOW or DENY.
+     * Preference for a given location.
      * Check the Preference enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string preference = 150781147;</code>

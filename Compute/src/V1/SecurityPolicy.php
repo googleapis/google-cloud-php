@@ -30,6 +30,10 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      */
     private $creation_timestamp = null;
     /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyDdosProtectionConfig ddos_protection_config = 50315853;</code>
+     */
+    private $ddos_protection_config = null;
+    /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
@@ -60,6 +64,16 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRecaptchaOptionsConfig recaptcha_options_config = 519006811;</code>
+     */
+    private $recaptcha_options_config = null;
+    /**
+     * [Output Only] URL of the region where the regional security policy resides. This field is not applicable to global security policies.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     */
+    private $region = null;
+    /**
      * A list of rules that belong to this policy. There must always be a default rule (rule with priority 2147483647 and match "*"). If no rules are provided when creating a security policy, a default rule with action "allow" will be added.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRule rules = 108873975;</code>
@@ -71,6 +85,13 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
+    /**
+     * The type indicates the intended use of the security policy. - CLOUD_ARMOR: Cloud Armor backend security policies can be configured to filter incoming HTTP requests targeting backend services. They filter requests before they hit the origin servers. - CLOUD_ARMOR_EDGE: Cloud Armor edge security policies can be configured to filter incoming HTTP requests targeting backend services (including Cloud CDN-enabled) as well as backend buckets (Cloud Storage). They filter requests before the request is served from Google's cache. - CLOUD_ARMOR_INTERNAL_SERVICE: Cloud Armor internal service policies can be configured to filter HTTP requests targeting services managed by Traffic Director in a service mesh. They filter requests before the request is served from the application. This field can be set only at resource creation time.
+     * Check the Type enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
+     */
+    private $type = null;
 
     /**
      * Constructor.
@@ -82,6 +103,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyAdvancedOptionsConfig $advanced_options_config
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
+     *     @type \Google\Cloud\Compute\V1\SecurityPolicyDdosProtectionConfig $ddos_protection_config
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type string $fingerprint
@@ -92,10 +114,16 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      *           [Output only] Type of the resource. Always compute#securityPolicyfor security policies
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *     @type \Google\Cloud\Compute\V1\SecurityPolicyRecaptchaOptionsConfig $recaptcha_options_config
+     *     @type string $region
+     *           [Output Only] URL of the region where the regional security policy resides. This field is not applicable to global security policies.
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyRule[]|\Google\Protobuf\Internal\RepeatedField $rules
      *           A list of rules that belong to this policy. There must always be a default rule (rule with priority 2147483647 and match "*"). If no rules are provided when creating a security policy, a default rule with action "allow" will be added.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
+     *     @type string $type
+     *           The type indicates the intended use of the security policy. - CLOUD_ARMOR: Cloud Armor backend security policies can be configured to filter incoming HTTP requests targeting backend services. They filter requests before they hit the origin servers. - CLOUD_ARMOR_EDGE: Cloud Armor edge security policies can be configured to filter incoming HTTP requests targeting backend services (including Cloud CDN-enabled) as well as backend buckets (Cloud Storage). They filter requests before the request is served from Google's cache. - CLOUD_ARMOR_INTERNAL_SERVICE: Cloud Armor internal service policies can be configured to filter HTTP requests targeting services managed by Traffic Director in a service mesh. They filter requests before the request is served from the application. This field can be set only at resource creation time.
+     *           Check the Type enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -199,6 +227,38 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->creation_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyDdosProtectionConfig ddos_protection_config = 50315853;</code>
+     * @return \Google\Cloud\Compute\V1\SecurityPolicyDdosProtectionConfig|null
+     */
+    public function getDdosProtectionConfig()
+    {
+        return $this->ddos_protection_config;
+    }
+
+    public function hasDdosProtectionConfig()
+    {
+        return isset($this->ddos_protection_config);
+    }
+
+    public function clearDdosProtectionConfig()
+    {
+        unset($this->ddos_protection_config);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyDdosProtectionConfig ddos_protection_config = 50315853;</code>
+     * @param \Google\Cloud\Compute\V1\SecurityPolicyDdosProtectionConfig $var
+     * @return $this
+     */
+    public function setDdosProtectionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\SecurityPolicyDdosProtectionConfig::class);
+        $this->ddos_protection_config = $var;
 
         return $this;
     }
@@ -384,6 +444,74 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRecaptchaOptionsConfig recaptcha_options_config = 519006811;</code>
+     * @return \Google\Cloud\Compute\V1\SecurityPolicyRecaptchaOptionsConfig|null
+     */
+    public function getRecaptchaOptionsConfig()
+    {
+        return $this->recaptcha_options_config;
+    }
+
+    public function hasRecaptchaOptionsConfig()
+    {
+        return isset($this->recaptcha_options_config);
+    }
+
+    public function clearRecaptchaOptionsConfig()
+    {
+        unset($this->recaptcha_options_config);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRecaptchaOptionsConfig recaptcha_options_config = 519006811;</code>
+     * @param \Google\Cloud\Compute\V1\SecurityPolicyRecaptchaOptionsConfig $var
+     * @return $this
+     */
+    public function setRecaptchaOptionsConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\SecurityPolicyRecaptchaOptionsConfig::class);
+        $this->recaptcha_options_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] URL of the region where the regional security policy resides. This field is not applicable to global security policies.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * @return string
+     */
+    public function getRegion()
+    {
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
+    }
+
+    /**
+     * [Output Only] URL of the region where the regional security policy resides. This field is not applicable to global security policies.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->region = $var;
+
+        return $this;
+    }
+
+    /**
      * A list of rules that belong to this policy. There must always be a default rule (rule with priority 2147483647 and match "*"). If no rules are provided when creating a security policy, a default rule with action "allow" will be added.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRule rules = 108873975;</code>
@@ -441,6 +569,44 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * The type indicates the intended use of the security policy. - CLOUD_ARMOR: Cloud Armor backend security policies can be configured to filter incoming HTTP requests targeting backend services. They filter requests before they hit the origin servers. - CLOUD_ARMOR_EDGE: Cloud Armor edge security policies can be configured to filter incoming HTTP requests targeting backend services (including Cloud CDN-enabled) as well as backend buckets (Cloud Storage). They filter requests before the request is served from Google's cache. - CLOUD_ARMOR_INTERNAL_SERVICE: Cloud Armor internal service policies can be configured to filter HTTP requests targeting services managed by Traffic Director in a service mesh. They filter requests before the request is served from the application. This field can be set only at resource creation time.
+     * Check the Type enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
+     * @return string
+     */
+    public function getType()
+    {
+        return isset($this->type) ? $this->type : '';
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
+    }
+
+    /**
+     * The type indicates the intended use of the security policy. - CLOUD_ARMOR: Cloud Armor backend security policies can be configured to filter incoming HTTP requests targeting backend services. They filter requests before they hit the origin servers. - CLOUD_ARMOR_EDGE: Cloud Armor edge security policies can be configured to filter incoming HTTP requests targeting backend services (including Cloud CDN-enabled) as well as backend buckets (Cloud Storage). They filter requests before the request is served from Google's cache. - CLOUD_ARMOR_INTERNAL_SERVICE: Cloud Armor internal service policies can be configured to filter HTTP requests targeting services managed by Traffic Director in a service mesh. They filter requests before the request is served from the application. This field can be set only at resource creation time.
+     * Check the Type enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->type = $var;
 
         return $this;
     }

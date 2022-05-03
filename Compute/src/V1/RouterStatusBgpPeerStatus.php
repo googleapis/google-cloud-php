@@ -21,6 +21,10 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      */
     private $advertised_routes;
     /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BfdStatus bfd_status = 395631729;</code>
+     */
+    private $bfd_status = null;
+    /**
      * IP address of the local BGP interface.
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
@@ -57,7 +61,7 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      */
     private $router_appliance_instance = null;
     /**
-     * BGP state as specified in RFC1771.
+     * The state of the BGP session. For a list of possible values for this field, see BGP session states.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
@@ -90,6 +94,7 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Compute\V1\Route[]|\Google\Protobuf\Internal\RepeatedField $advertised_routes
      *           Routes that were advertised to the remote BGP peer
+     *     @type \Google\Cloud\Compute\V1\BfdStatus $bfd_status
      *     @type string $ip_address
      *           IP address of the local BGP interface.
      *     @type string $linked_vpn_tunnel
@@ -103,7 +108,7 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      *     @type string $router_appliance_instance
      *           [Output only] URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance is the peer side of the BGP session.
      *     @type string $state
-     *           BGP state as specified in RFC1771.
+     *           The state of the BGP session. For a list of possible values for this field, see BGP session states.
      *     @type string $status
      *           Status of the BGP peer: {UP, DOWN}
      *           Check the Status enum for the list of possible values.
@@ -140,6 +145,38 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\Route::class);
         $this->advertised_routes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BfdStatus bfd_status = 395631729;</code>
+     * @return \Google\Cloud\Compute\V1\BfdStatus|null
+     */
+    public function getBfdStatus()
+    {
+        return $this->bfd_status;
+    }
+
+    public function hasBfdStatus()
+    {
+        return isset($this->bfd_status);
+    }
+
+    public function clearBfdStatus()
+    {
+        unset($this->bfd_status);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BfdStatus bfd_status = 395631729;</code>
+     * @param \Google\Cloud\Compute\V1\BfdStatus $var
+     * @return $this
+     */
+    public function setBfdStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\BfdStatus::class);
+        $this->bfd_status = $var;
 
         return $this;
     }
@@ -361,7 +398,7 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * BGP state as specified in RFC1771.
+     * The state of the BGP session. For a list of possible values for this field, see BGP session states.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      * @return string
@@ -382,7 +419,7 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * BGP state as specified in RFC1771.
+     * The state of the BGP session. For a list of possible values for this field, see BGP session states.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      * @param string $var

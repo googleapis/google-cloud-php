@@ -28,10 +28,43 @@ use PHPUnit\Framework\TestCase;
  */
 class ArrayTypeTest extends TestCase
 {
-    public function testArrayType()
+    public function typesProvider()
     {
-        $arr = new ArrayType(Database::TYPE_STRING);
-        $this->assertEquals(Database::TYPE_STRING, $arr->type());
+        return [
+            // native types (w/o typeAnnotation)
+            [Database::TYPE_BOOL],
+            [Database::TYPE_INT64],
+            [Database::TYPE_FLOAT64],
+            [Database::TYPE_TIMESTAMP],
+            [Database::TYPE_DATE],
+            [Database::TYPE_STRING],
+            [Database::TYPE_BYTES],
+            [Database::TYPE_NUMERIC],
+            [Database::TYPE_JSON],
+
+            // types (w/ typeAnnotation)
+            [Database::TYPE_PG_NUMERIC],
+        ];
+    }
+
+    public function invalidTypeProvider()
+    {
+        return [
+            ['hello'],
+            [100],
+            [3.1415],
+            [Database::TYPE_ARRAY],
+            [Database::TYPE_STRUCT]
+        ];
+    }
+
+    /**
+     * @dataProvider typesProvider
+     */
+    public function testArrayType($type)
+    {
+        $arr = new ArrayType($type);
+        $this->assertEquals($type, $arr->type());
     }
 
     public function testArrayTypeStruct()
@@ -44,22 +77,11 @@ class ArrayTypeTest extends TestCase
     }
 
     /**
-     * @dataProvider invalidType
+     * @dataProvider invalidTypeProvider
      * @expectedException \InvalidArgumentException
      */
     public function testFailsOnInvalidType($type)
     {
         new ArrayType($type);
-    }
-
-    public function invalidType()
-    {
-        return [
-            ['hello'],
-            [100],
-            [3.1415],
-            [Database::TYPE_ARRAY],
-            [Database::TYPE_STRUCT]
-        ];
     }
 }

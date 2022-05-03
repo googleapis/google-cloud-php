@@ -20,7 +20,7 @@ class Operator
      */
     const OPERATOR_UNSPECIFIED = 0;
     /**
-     * The results are required to satisfy each of the combined filters.
+     * Documents are required to satisfy all of the combined filters.
      *
      * Generated from protobuf enum <code>AND = 1;</code>
      */

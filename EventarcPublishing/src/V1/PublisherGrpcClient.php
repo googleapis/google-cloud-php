@@ -70,4 +70,19 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Publish events to a subscriber's channel.
+     * @param \Google\Cloud\Eventarc\Publishing\V1\PublishEventsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function PublishEvents(\Google\Cloud\Eventarc\Publishing\V1\PublishEventsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.eventarc.publishing.v1.Publisher/PublishEvents',
+        $argument,
+        ['\Google\Cloud\Eventarc\Publishing\V1\PublishEventsResponse', 'decode'],
+        $metadata, $options);
+    }
+
 }

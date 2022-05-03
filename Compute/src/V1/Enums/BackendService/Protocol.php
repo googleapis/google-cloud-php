@@ -45,4 +45,6 @@ class Protocol
     const TCP = 'TCP';
 
     const UDP = 'UDP';
+
+    const UNSPECIFIED = 'UNSPECIFIED';
 }

@@ -21,6 +21,7 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\V1\TypeCode;
+use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 
 /**
  * Manage value mappings between Google Cloud PHP and Cloud Spanner
@@ -41,6 +42,7 @@ class ValueMapper
     const TYPE_STRUCT = TypeCode::STRUCT;
     const TYPE_NUMERIC = TypeCode::NUMERIC;
     const TYPE_JSON = TypeCode::JSON;
+    const TYPE_PG_NUMERIC = 'pgNumeric';
 
     /**
      * @var array
@@ -57,6 +59,40 @@ class ValueMapper
         self::TYPE_STRUCT,
         self::TYPE_NUMERIC,
         self::TYPE_JSON,
+        self::TYPE_PG_NUMERIC,
+    ];
+
+    /*
+     * Library defined wrapper types declared here will be mapped to a class.
+     *
+     * Types outside this map are identified only by type codes,
+     * but these wrapper classes require a type code annotation as well.
+     * Declaring the type here takes care of encoding such types.
+     *
+     * @var array
+     */
+    private static $typeToClassMap = [
+        self::TYPE_PG_NUMERIC => PgNumeric::class,
+    ];
+
+    /*
+     * Maps library defined wrapper types (e.g., {@see Google\Cloud\Spanner\PgNumeric})
+     * which have an accompanying type annotation code to the underlying type code.
+     *
+     * @var array
+     */
+    private static $typeCodes = [
+        self::TYPE_PG_NUMERIC => self::TYPE_NUMERIC,
+    ];
+
+    /*
+     * Maps library defined wrapper types (e.g., {@see Google\Cloud\Spanner\PgNumeric}) to
+     * their associated type annotation code.
+     *
+     * @var array
+     */
+    private static $typeAnnotations = [
+        self::TYPE_PG_NUMERIC => TypeAnnotationCode::PG_NUMERIC,
     ];
 
     /**
@@ -274,7 +310,11 @@ class ValueMapper
                 break;
 
             case self::TYPE_NUMERIC:
-                $value = new Numeric($value);
+                if (isset($type['typeAnnotation']) && $type['typeAnnotation'] === TypeAnnotationCode::PG_NUMERIC) {
+                    $value = new PgNumeric($value);
+                } else {
+                    $value = new Numeric($value);
+                }
                 break;
 
             case self::TYPE_FLOAT64:
@@ -322,7 +362,8 @@ class ValueMapper
      * @param bool $allowMixedArrayType If true, array values may be of mixed type.
      *        This is useful when reading against complex keys containing multiple
      *        elements of differing types.
-     * @return array The Value type.
+     * @return array The Value, typeCode and optionally the typeAnnotation
+     *        in the format: [<value>, ['code' => <typeCode>, 'typeAnnotation' => <typeAnnotation>]].
      */
     private function paramType(
         $value,
@@ -331,6 +372,7 @@ class ValueMapper
         $allowMixedArrayType = false
     ) {
         $valueType = gettype($value);
+        $typeAnnotation = null;
 
         // If a definition is provided, the type is set to `array` to force
         // the value to be interpreted as an array or a struct, even if null.
@@ -338,18 +380,25 @@ class ValueMapper
             $valueType = 'array';
         }
 
+        // Convert library specific wrapper type to type code and type
+        // code annotation, if applicable.
+        if (isset(self::$typeCodes[$givenType])) {
+            $typeAnnotation = self::$typeAnnotations[$givenType];
+            $givenType = self::$typeCodes[$givenType];
+        }
+
         switch ($valueType) {
             case 'boolean':
-                $type = $this->typeObject($givenType ?: self::TYPE_BOOL);
+                $type = $this->typeObject($givenType ?: self::TYPE_BOOL, $typeAnnotation);
                 break;
 
             case 'integer':
                 $value = (string) $value;
-                $type = $this->typeObject($givenType ?: self::TYPE_INT64);
+                $type = $this->typeObject($givenType ?: self::TYPE_INT64, $typeAnnotation);
                 break;
 
             case 'double':
-                $type = $this->typeObject($givenType ?: self::TYPE_FLOAT64);
+                $type = $this->typeObject($givenType ?: self::TYPE_FLOAT64, $typeAnnotation);
                 switch ($value) {
                     case INF:
                         $value = 'Infinity';
@@ -367,11 +416,11 @@ class ValueMapper
                 break;
 
             case 'string':
-                $type = $this->typeObject($givenType ?: self::TYPE_STRING);
+                $type = $this->typeObject($givenType ?: self::TYPE_STRING, $typeAnnotation);
                 break;
 
             case 'resource':
-                $type = $this->typeObject($givenType ?: self::TYPE_BYTES);
+                $type = $this->typeObject($givenType ?: self::TYPE_BYTES, $typeAnnotation);
                 $value = base64_encode(stream_get_contents($value));
                 break;
 
@@ -406,7 +455,8 @@ class ValueMapper
                 break;
 
             case 'NULL':
-                $type = $this->typeObject($givenType);
+                $type = $this->typeObject($givenType, $typeAnnotation);
+
                 break;
 
             default:
@@ -565,50 +615,87 @@ class ValueMapper
      * Create value and paramater type declarations for array SQL parameters.
      *
      * @param array $value The array values.
-     * @param ArrayType $arrayType The array type declaration.
+     * @param ArrayType $arrayObj The array type declaration.
      * @param bool $allowMixedArrayType [optional] If true, array values may be of mixed type.
      *        This is useful when reading against complex keys containing multiple
      *        elements of differing types.
      * @return [array, array] An array containing the value and type.
      */
-    private function arrayParam($value, ArrayType $arrayType, $allowMixedArrayType = false)
+    private function arrayParam($value, ArrayType $arrayObj, $allowMixedArrayType = false)
     {
         if (!is_array($value) && $value !== null) {
             throw new \InvalidArgumentException('Array value must be an array or null.');
         }
 
+        // tracks the diff typeCode, typeAnnotation of all elements
+        // inside the array
         $inferredTypes = [];
+
+        // counts the diff data types used inside the array
+        $uniqueTypes = [];
         $res = null;
         if ($value !== null) {
             $res = [];
+
             foreach ($value as $element) {
+                $givenType = null;
+
+                if ($arrayObj->type() === Database::TYPE_STRUCT) {
+                    $givenType = $arrayObj->type();
+                } elseif (self::isCustomType($arrayObj->type())) {
+                    $givenType = $arrayObj->type();
+                }
+
                 $type = $this->paramType(
                     $element,
-                    $arrayType->type() === Database::TYPE_STRUCT ? $arrayType->type() : null,
-                    $arrayType->structType()
+                    $givenType,
+                    $arrayObj->structType()
                 );
 
                 $res[] = $type[0];
                 if (isset($type[1]['code'])) {
-                    $inferredTypes[] = $type[1]['code'];
+                    $typeCode = $type[1]['code'];
+                    $inferredType = ['code' => $typeCode];
+
+                    $uniqueTypes[$typeCode] = true;
+
+                    if (isset($type[1]['typeAnnotation'])) {
+                        $inferredType['typeAnnotation'] = $type[1]['typeAnnotation'];
+                    }
+
+                    $inferredTypes[] = $inferredType;
                 }
             }
         }
 
-        if (!$allowMixedArrayType && count(array_unique($inferredTypes)) > 1) {
+        if (!$allowMixedArrayType && count($uniqueTypes) > 1) {
             throw new \InvalidArgumentException('Array values may not be of mixed type');
         }
 
-        $nested = $arrayType->structType();
-        $arrayType = $arrayType->type();
 
-        if (!empty($value) && $arrayType && $arrayType !== $inferredTypes[0]) {
+        // get typeCode either from the array type or the first element's inferred type
+        $typeCode = self::isCustomType($arrayObj->type())
+            ? self::getTypeCodeFromString($arrayObj->type())
+            : $arrayObj->type();
+
+        // get typeAnnotationCode either from the array type or the first element's inferred type
+        $typeAnnotationCode = self::isCustomType($arrayObj->type())
+            ? self::getTypeAnnotationFromString($arrayObj->type())
+            : null;
+
+        if ($this->arrayDataMismatch($value, $typeCode, $typeAnnotationCode, $inferredTypes)) {
             throw new \InvalidArgumentException('Array data does not match given array parameter type.');
         }
 
-        $typeCode = $arrayType === null && $inferredTypes
-            ? $inferredTypes[0]
-            : $arrayType;
+        if (is_null($typeCode) && count($inferredTypes) > 0 && isset($inferredTypes[0]['code'])) {
+            $typeCode = $inferredTypes[0]['code'];
+        }
+        
+        if (is_null($typeAnnotationCode) && count($inferredTypes) > 0 && isset($inferredTypes[0]['typeAnnotation'])) {
+            $typeAnnotationCode = $inferredTypes[0]['typeAnnotation'];
+        }
+
+        $nested = $arrayObj->structType();
 
         if ($nested) {
             $nestedDefType = $this->resolveTypeDefinition($nested);
@@ -616,11 +703,12 @@ class ValueMapper
 
             $typeObject = $nestedDef[1];
         } else {
-            $typeObject = $this->typeObject($typeCode);
+            $typeObject = $this->typeObject($typeCode, $typeAnnotationCode);
         }
 
         $type = $this->typeObject(
             self::TYPE_ARRAY,
+            null,
             $typeObject,
             'arrayElementType'
         );
@@ -643,8 +731,12 @@ class ValueMapper
         }
 
         if ($value instanceof ValueInterface) {
+            $typeAnnotation = $value instanceof TypeAnnotationInterface
+                          ? $value->typeAnnotation()
+                          : null;
+
             return [
-                $this->typeObject($value->type()),
+                $this->typeObject($value->type(), $typeAnnotation),
                 $value->formatAsString()
             ];
         }
@@ -667,17 +759,23 @@ class ValueMapper
      * Create a type object with a code and definition, if provided.
      *
      * @param int $type The type code.
+     * @param int $typeAnnotation The type annotation code
      * @param array $nestedDefinition [optional] A nested definition, to define
      *        the structure of an array or struct type.
      * @param string $nestedDefinitionType [optional] Either `arrayElementType`
      *        or `structType`.
      * @return array
      */
-    private function typeObject($type, array $nestedDefinition = [], $nestedDefinitionType = null)
-    {
+    private function typeObject(
+        $type,
+        $typeAnnotation = null,
+        array $nestedDefinition = [],
+        $nestedDefinitionType = null
+    ) {
         return array_filter([
             'code' => $type,
-            $nestedDefinitionType => $nestedDefinition
+            $nestedDefinitionType => $nestedDefinition,
+            'typeAnnotation' => $typeAnnotation
         ]);
     }
 
@@ -699,5 +797,64 @@ class ValueMapper
         return (isset($columns[$index]['name']) && $columns[$index]['name'])
             ? $columns[$index]['name']
             : $index;
+    }
+
+    /**
+     * Is the data type a custom type (w/ typeAnnotation)?
+     *
+     * @param string $type
+     * @return bool
+     */
+    private static function isCustomType($type)
+    {
+        return array_key_exists($type, self::$typeToClassMap);
+    }
+
+    /**
+     * Given a type name(ex: pgNumeric), this method returns a typeCode
+     * without having to initialize an object of the corressponding class
+     *
+     * @param string $type
+     * @return int
+     */
+    private static function getTypeCodeFromString($type)
+    {
+        return array_key_exists($type, self::$typeCodes) ? self::$typeCodes[$type] : null;
+    }
+
+    /**
+     * Given a type name(ex: pgNumeric), this method returns a typeAnnotation
+     * without having to initialize an object of the corressponding class
+     *
+     * @param string $type
+     * @return int
+     */
+    private static function getTypeAnnotationFromString($type)
+    {
+        return array_key_exists($type, self::$typeAnnotations) ? self::$typeAnnotations[$type] : null;
+    }
+
+    /**
+     * Checks if the data type of elements is the same as data type of array
+     *
+     * @return bool
+     */
+    private function arrayDataMismatch($value, $arrayTypeCode, $arrayTypeAnnotation, $inferredTypes)
+    {
+        $mismatch = false;
+
+        if (!empty($value)) {
+            if ($arrayTypeCode && isset($inferredTypes[0]['code'])  &&
+            $arrayTypeCode !== $inferredTypes[0]['code']) {
+                $mismatch = true;
+            }
+
+            if ($arrayTypeAnnotation && isset($inferredTypes[0]['typeAnnotation']) &&
+            $arrayTypeAnnotation !== $inferredTypes[0]['typeAnnotation']) {
+                $mismatch = true;
+            }
+        }
+
+        return $mismatch;
     }
 }

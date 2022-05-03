@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner;
 
 /**
  * Contract for various Spanner values.
+ * Note: This interface may become internal in the next major version change
  */
 interface ValueInterface
 {

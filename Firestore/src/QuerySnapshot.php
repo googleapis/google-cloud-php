@@ -112,6 +112,7 @@ class QuerySnapshot implements \IteratorAggregate
      * @access private
      * @return \ArrayIterator
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return new \ArrayIterator($this->rows);

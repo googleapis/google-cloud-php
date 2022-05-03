@@ -158,6 +158,16 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $network_interfaces;
     /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPerformanceConfig network_performance_config = 398330850;</code>
+     */
+    private $network_performance_config = null;
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceParams params = 78313862;</code>
+     */
+    private $params = null;
+    /**
      * The private IPv6 google access type for the VM. If not specified, use INHERIT_FROM_SUBNETWORK as default.
      * Check the PrivateIpv6GoogleAccess enum for the list of possible values.
      *
@@ -208,6 +218,18 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShieldedInstanceIntegrityPolicy shielded_instance_integrity_policy = 163696919;</code>
      */
     private $shielded_instance_integrity_policy = null;
+    /**
+     * Source machine image
+     *
+     * Generated from protobuf field <code>optional string source_machine_image = 21769791;</code>
+     */
+    private $source_machine_image = null;
+    /**
+     * Source machine image encryption key when creating an instance from a machine image.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_machine_image_encryption_key = 192839075;</code>
+     */
+    private $source_machine_image_encryption_key = null;
     /**
      * [Output Only] Whether a VM has been restricted for start because Compute Engine has detected suspicious activity.
      *
@@ -293,6 +315,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type \Google\Cloud\Compute\V1\NetworkInterface[]|\Google\Protobuf\Internal\RepeatedField $network_interfaces
      *           An array of network configurations for this instance. These specify how interfaces are configured to interact with other network services, such as connecting to the internet. Multiple interfaces are supported per instance.
+     *     @type \Google\Cloud\Compute\V1\NetworkPerformanceConfig $network_performance_config
+     *     @type \Google\Cloud\Compute\V1\InstanceParams $params
+     *           Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
      *     @type string $private_ipv6_google_access
      *           The private IPv6 google access type for the VM. If not specified, use INHERIT_FROM_SUBNETWORK as default.
      *           Check the PrivateIpv6GoogleAccess enum for the list of possible values.
@@ -310,6 +335,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           A list of service accounts, with their specified scopes, authorized for this instance. Only one service account per VM instance is supported. Service accounts generate access tokens that can be accessed through the metadata server and used to authenticate applications on the instance. See Service Accounts for more information.
      *     @type \Google\Cloud\Compute\V1\ShieldedInstanceConfig $shielded_instance_config
      *     @type \Google\Cloud\Compute\V1\ShieldedInstanceIntegrityPolicy $shielded_instance_integrity_policy
+     *     @type string $source_machine_image
+     *           Source machine image
+     *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $source_machine_image_encryption_key
+     *           Source machine image encryption key when creating an instance from a machine image.
      *     @type bool $start_restricted
      *           [Output Only] Whether a VM has been restricted for start because Compute Engine has detected suspicious activity.
      *     @type string $status
@@ -1149,6 +1178,74 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPerformanceConfig network_performance_config = 398330850;</code>
+     * @return \Google\Cloud\Compute\V1\NetworkPerformanceConfig|null
+     */
+    public function getNetworkPerformanceConfig()
+    {
+        return $this->network_performance_config;
+    }
+
+    public function hasNetworkPerformanceConfig()
+    {
+        return isset($this->network_performance_config);
+    }
+
+    public function clearNetworkPerformanceConfig()
+    {
+        unset($this->network_performance_config);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkPerformanceConfig network_performance_config = 398330850;</code>
+     * @param \Google\Cloud\Compute\V1\NetworkPerformanceConfig $var
+     * @return $this
+     */
+    public function setNetworkPerformanceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\NetworkPerformanceConfig::class);
+        $this->network_performance_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceParams params = 78313862;</code>
+     * @return \Google\Cloud\Compute\V1\InstanceParams|null
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
+    }
+
+    /**
+     * Input only. [Input Only] Additional params passed with the request, but not persisted as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceParams params = 78313862;</code>
+     * @param \Google\Cloud\Compute\V1\InstanceParams $var
+     * @return $this
+     */
+    public function setParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstanceParams::class);
+        $this->params = $var;
+
+        return $this;
+    }
+
+    /**
      * The private IPv6 google access type for the VM. If not specified, use INHERIT_FROM_SUBNETWORK as default.
      * Check the PrivateIpv6GoogleAccess enum for the list of possible values.
      *
@@ -1442,6 +1539,78 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ShieldedInstanceIntegrityPolicy::class);
         $this->shielded_instance_integrity_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Source machine image
+     *
+     * Generated from protobuf field <code>optional string source_machine_image = 21769791;</code>
+     * @return string
+     */
+    public function getSourceMachineImage()
+    {
+        return isset($this->source_machine_image) ? $this->source_machine_image : '';
+    }
+
+    public function hasSourceMachineImage()
+    {
+        return isset($this->source_machine_image);
+    }
+
+    public function clearSourceMachineImage()
+    {
+        unset($this->source_machine_image);
+    }
+
+    /**
+     * Source machine image
+     *
+     * Generated from protobuf field <code>optional string source_machine_image = 21769791;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceMachineImage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_machine_image = $var;
+
+        return $this;
+    }
+
+    /**
+     * Source machine image encryption key when creating an instance from a machine image.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_machine_image_encryption_key = 192839075;</code>
+     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey|null
+     */
+    public function getSourceMachineImageEncryptionKey()
+    {
+        return $this->source_machine_image_encryption_key;
+    }
+
+    public function hasSourceMachineImageEncryptionKey()
+    {
+        return isset($this->source_machine_image_encryption_key);
+    }
+
+    public function clearSourceMachineImageEncryptionKey()
+    {
+        unset($this->source_machine_image_encryption_key);
+    }
+
+    /**
+     * Source machine image encryption key when creating an instance from a machine image.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey source_machine_image_encryption_key = 192839075;</code>
+     * @param \Google\Cloud\Compute\V1\CustomerEncryptionKey $var
+     * @return $this
+     */
+    public function setSourceMachineImageEncryptionKey($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\CustomerEncryptionKey::class);
+        $this->source_machine_image_encryption_key = $var;
 
         return $this;
     }

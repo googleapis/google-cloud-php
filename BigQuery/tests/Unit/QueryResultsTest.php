@@ -36,6 +36,7 @@ class QueryResultsTest extends TestCase
     public $jobId = 'myJobId';
     public $queryData = [
         'jobComplete' => true,
+        'jobReference' => ['location' => 123],
         'rows' => [
             ['f' => [['v' => 'Alton'], ['v' => 1]]]
         ],
@@ -203,7 +204,7 @@ class QueryResultsTest extends TestCase
 
     public function testGetsIdentity()
     {
-        $queryResults = $this->getQueryResults($this->connection);
+        $queryResults = $this->getQueryResults($this->connection, $this->queryData);
 
         $this->assertEquals($this->jobId, $queryResults->identity()['jobId']);
         $this->assertEquals($this->projectId, $queryResults->identity()['projectId']);

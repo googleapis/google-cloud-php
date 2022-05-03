@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetServiceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the service.  See the `ServiceManager` overview for naming
-     * requirements.  For example: `example.googleapis.com`.
+     * Required. The name of the service.  See the `ServiceManager` overview for
+     * naming requirements.  For example: `example.googleapis.com`.
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -30,8 +30,8 @@ class GetServiceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $service_name
-     *           Required. The name of the service.  See the `ServiceManager` overview for naming
-     *           requirements.  For example: `example.googleapis.com`.
+     *           Required. The name of the service.  See the `ServiceManager` overview for
+     *           naming requirements.  For example: `example.googleapis.com`.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class GetServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the service.  See the `ServiceManager` overview for naming
-     * requirements.  For example: `example.googleapis.com`.
+     * Required. The name of the service.  See the `ServiceManager` overview for
+     * naming requirements.  For example: `example.googleapis.com`.
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -52,8 +52,8 @@ class GetServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the service.  See the `ServiceManager` overview for naming
-     * requirements.  For example: `example.googleapis.com`.
+     * Required. The name of the service.  See the `ServiceManager` overview for
+     * naming requirements.  For example: `example.googleapis.com`.
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

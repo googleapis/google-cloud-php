@@ -14,13 +14,12 @@ class Endpoint
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ÿ
-/google/cloud/servicedirectory/v1/endpoint.proto google.cloud.servicedirectory.v1google/api/field_behavior.protogoogle/api/resource.proto"ê
+Þ
+/google/cloud/servicedirectory/v1/endpoint.proto google.cloud.servicedirectory.v1google/api/resource.proto"ê
 Endpoint
 name (	BàA
 address (	BàA

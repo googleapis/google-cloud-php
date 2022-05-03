@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Defines a schedule with units measured in months. The value determines how many months pass between the start of each cycle.
+     * Defines a schedule with units measured in days. The value determines how many days pass between the start of each cycle.
      *
      * Generated from protobuf field <code>optional int32 days_in_cycle = 369790004;</code>
      */
@@ -41,7 +41,7 @@ class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $days_in_cycle
-     *           Defines a schedule with units measured in months. The value determines how many months pass between the start of each cycle.
+     *           Defines a schedule with units measured in days. The value determines how many days pass between the start of each cycle.
      *     @type string $duration
      *           [Output only] A predetermined duration for the window, automatically chosen to be the smallest possible in the given scenario.
      *     @type string $start_time
@@ -54,7 +54,7 @@ class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines a schedule with units measured in months. The value determines how many months pass between the start of each cycle.
+     * Defines a schedule with units measured in days. The value determines how many days pass between the start of each cycle.
      *
      * Generated from protobuf field <code>optional int32 days_in_cycle = 369790004;</code>
      * @return int
@@ -75,7 +75,7 @@ class ResourcePolicyDailyCycle extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines a schedule with units measured in months. The value determines how many months pass between the start of each cycle.
+     * Defines a schedule with units measured in days. The value determines how many days pass between the start of each cycle.
      *
      * Generated from protobuf field <code>optional int32 days_in_cycle = 369790004;</code>
      * @param int $var

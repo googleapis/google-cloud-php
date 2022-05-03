@@ -39,6 +39,15 @@ class PublishBuildToolEventStreamRequest extends \Google\Protobuf\Internal\Messa
      * Generated from protobuf field <code>string project_id = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $project_id = '';
+    /**
+     * Whether to require a previously received matching InvocationAttemptStarted
+     * event before continuing event processing for the event in the current
+     * request. BES only performs this check for events with sequence_number 1
+     * i.e. the first event in the stream.
+     *
+     * Generated from protobuf field <code>bool check_preceding_lifecycle_events_present = 7;</code>
+     */
+    private $check_preceding_lifecycle_events_present = false;
 
     /**
      * Constructor.
@@ -58,6 +67,11 @@ class PublishBuildToolEventStreamRequest extends \Google\Protobuf\Internal\Messa
      *           Required. The project this build is associated with.
      *           This should match the project used for the initial call to
      *           PublishLifecycleEvent (containing a BuildEnqueued message).
+     *     @type bool $check_preceding_lifecycle_events_present
+     *           Whether to require a previously received matching InvocationAttemptStarted
+     *           event before continuing event processing for the event in the current
+     *           request. BES only performs this check for events with sequence_number 1
+     *           i.e. the first event in the stream.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,6 +175,38 @@ class PublishBuildToolEventStreamRequest extends \Google\Protobuf\Internal\Messa
     {
         GPBUtil::checkString($var, True);
         $this->project_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether to require a previously received matching InvocationAttemptStarted
+     * event before continuing event processing for the event in the current
+     * request. BES only performs this check for events with sequence_number 1
+     * i.e. the first event in the stream.
+     *
+     * Generated from protobuf field <code>bool check_preceding_lifecycle_events_present = 7;</code>
+     * @return bool
+     */
+    public function getCheckPrecedingLifecycleEventsPresent()
+    {
+        return $this->check_preceding_lifecycle_events_present;
+    }
+
+    /**
+     * Whether to require a previously received matching InvocationAttemptStarted
+     * event before continuing event processing for the event in the current
+     * request. BES only performs this check for events with sequence_number 1
+     * i.e. the first event in the stream.
+     *
+     * Generated from protobuf field <code>bool check_preceding_lifecycle_events_present = 7;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCheckPrecedingLifecycleEventsPresent($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->check_preceding_lifecycle_events_present = $var;
 
         return $this;
     }

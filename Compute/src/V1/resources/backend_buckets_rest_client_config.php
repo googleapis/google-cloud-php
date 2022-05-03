@@ -111,6 +111,23 @@ return [
                     ],
                 ],
             ],
+            'SetEdgeSecurityPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/backendBuckets/{backend_bucket}/setEdgeSecurityPolicy',
+                'body' => 'security_policy_reference_resource',
+                'placeholders' => [
+                    'backend_bucket' => [
+                        'getters' => [
+                            'getBackendBucket',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'Update' => [
                 'method' => 'put',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/backendBuckets/{backend_bucket}',

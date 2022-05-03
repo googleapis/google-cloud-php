@@ -43,5 +43,7 @@ class NetworkEndpointType
 
     const NON_GCP_PRIVATE_IP_PORT = 'NON_GCP_PRIVATE_IP_PORT';
 
+    const PRIVATE_SERVICE_CONNECT = 'PRIVATE_SERVICE_CONNECT';
+
     const SERVERLESS = 'SERVERLESS';
 }

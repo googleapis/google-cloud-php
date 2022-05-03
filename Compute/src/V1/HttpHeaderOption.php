@@ -28,7 +28,7 @@ class HttpHeaderOption extends \Google\Protobuf\Internal\Message
      */
     private $header_value = null;
     /**
-     * If false, headerValue is appended to any values that already exist for the header. If true, headerValue is set for the header, discarding any values that were set for that header. The default value is false.
+     * If false, headerValue is appended to any values that already exist for the header. If true, headerValue is set for the header, discarding any values that were set for that header. The default value is false. 
      *
      * Generated from protobuf field <code>optional bool replace = 20755124;</code>
      */
@@ -45,7 +45,7 @@ class HttpHeaderOption extends \Google\Protobuf\Internal\Message
      *     @type string $header_value
      *           The value of the header to add.
      *     @type bool $replace
-     *           If false, headerValue is appended to any values that already exist for the header. If true, headerValue is set for the header, discarding any values that were set for that header. The default value is false.
+     *           If false, headerValue is appended to any values that already exist for the header. If true, headerValue is set for the header, discarding any values that were set for that header. The default value is false. 
      * }
      */
     public function __construct($data = NULL) {
@@ -126,7 +126,7 @@ class HttpHeaderOption extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If false, headerValue is appended to any values that already exist for the header. If true, headerValue is set for the header, discarding any values that were set for that header. The default value is false.
+     * If false, headerValue is appended to any values that already exist for the header. If true, headerValue is set for the header, discarding any values that were set for that header. The default value is false. 
      *
      * Generated from protobuf field <code>optional bool replace = 20755124;</code>
      * @return bool
@@ -147,7 +147,7 @@ class HttpHeaderOption extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If false, headerValue is appended to any values that already exist for the header. If true, headerValue is set for the header, discarding any values that were set for that header. The default value is false.
+     * If false, headerValue is appended to any values that already exist for the header. If true, headerValue is set for the header, discarding any values that were set for that header. The default value is false. 
      *
      * Generated from protobuf field <code>optional bool replace = 20755124;</code>
      * @param bool $var

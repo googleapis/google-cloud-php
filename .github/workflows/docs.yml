@@ -15,13 +15,13 @@ jobs:
           name: Get Tag
           run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
         - name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
           with:
             persist-credentials: false
         - name: Setup PHP
           uses: shivammathur/setup-php@v2
           with:
-            php-version: '7.3'
+            php-version: '7.4'
             ini-values: memory_limit=2048M
         - name: Install Dependencies
           uses: nick-invision/retry@v1

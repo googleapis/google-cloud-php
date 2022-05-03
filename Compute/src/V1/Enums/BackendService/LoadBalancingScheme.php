@@ -35,6 +35,8 @@ class LoadBalancingScheme
 
     const EXTERNAL = 'EXTERNAL';
 
+    const EXTERNAL_MANAGED = 'EXTERNAL_MANAGED';
+
     const INTERNAL = 'INTERNAL';
 
     const INTERNAL_MANAGED = 'INTERNAL_MANAGED';

@@ -43,10 +43,6 @@ use Google\Cloud\ServiceManagement\V1\CreateServiceConfigRequest;
 use Google\Cloud\ServiceManagement\V1\CreateServiceRequest;
 use Google\Cloud\ServiceManagement\V1\CreateServiceRolloutRequest;
 use Google\Cloud\ServiceManagement\V1\DeleteServiceRequest;
-use Google\Cloud\ServiceManagement\V1\DisableServiceRequest;
-use Google\Cloud\ServiceManagement\V1\DisableServiceResponse;
-use Google\Cloud\ServiceManagement\V1\EnableServiceRequest;
-use Google\Cloud\ServiceManagement\V1\EnableServiceResponse;
 use Google\Cloud\ServiceManagement\V1\GenerateConfigReportRequest;
 use Google\Cloud\ServiceManagement\V1\GenerateConfigReportResponse;
 use Google\Cloud\ServiceManagement\V1\GetServiceConfigRequest;
@@ -69,7 +65,8 @@ use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 
 /**
- * Service Description: [Google Service Management API](https://cloud.google.com/service-management/overview)
+ * Service Description: [Google Service Management
+ * API](https://cloud.google.com/service-infrastructure/docs/overview)
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -259,7 +256,14 @@ class ServiceManagerGapicClient
 
     /**
      * Creates a new managed service.
-     * Please note one producer project can own no more than 20 services.
+     *
+     * A managed service is immutable, and is subject to mandatory 30-day
+     * data retention. You cannot move a service or recreate it within 30 days
+     * after deletion.
+     *
+     * One producer project can own no more than 500 services. For security and
+     * reliability purposes, a production service should be hosted in a
+     * dedicated producer project.
      *
      * Operation<response: ManagedService>
      *
@@ -343,8 +347,9 @@ class ServiceManagerGapicClient
      * }
      * ```
      *
-     * @param string  $serviceName   Required. The name of the service.  See the [overview](https://cloud.google.com/service-management/overview)
-     *                               for naming requirements.  For example: `example.googleapis.com`.
+     * @param string  $serviceName   Required. The name of the service.  See the
+     *                               [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
+     *                               example: `example.googleapis.com`.
      * @param Service $serviceConfig Required. The service configuration resource.
      * @param array   $optionalArgs  {
      *     Optional.
@@ -425,8 +430,9 @@ class ServiceManagerGapicClient
      * }
      * ```
      *
-     * @param string  $serviceName  Required. The name of the service.  See the [overview](https://cloud.google.com/service-management/overview)
-     *                              for naming requirements.  For example: `example.googleapis.com`.
+     * @param string  $serviceName  Required. The name of the service.  See the
+     *                              [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
+     *                              example: `example.googleapis.com`.
      * @param Rollout $rollout      Required. The rollout resource. The `service_name` field is output only.
      * @param array   $optionalArgs {
      *     Optional.
@@ -457,8 +463,10 @@ class ServiceManagerGapicClient
     /**
      * Deletes a managed service. This method will change the service to the
      * `Soft-Delete` state for 30 days. Within this period, service producers may
-     * call [UndeleteService][google.api.servicemanagement.v1.ServiceManager.UndeleteService] to restore the service.
-     * After 30 days, the service will be permanently deleted.
+     * call
+     * [UndeleteService][google.api.servicemanagement.v1.ServiceManager.UndeleteService]
+     * to restore the service. After 30 days, the service will be permanently
+     * deleted.
      *
      * Operation<response: google.protobuf.Empty>
      *
@@ -496,8 +504,9 @@ class ServiceManagerGapicClient
      * }
      * ```
      *
-     * @param string $serviceName  Required. The name of the service.  See the [overview](https://cloud.google.com/service-management/overview)
-     *                             for naming requirements.  For example: `example.googleapis.com`.
+     * @param string $serviceName  Required. The name of the service.  See the
+     *                             [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
+     *                             example: `example.googleapis.com`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -521,173 +530,6 @@ class ServiceManagerGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('DeleteService', $optionalArgs, $request, $this->getOperationsClient())->wait();
-    }
-
-    /**
-     * Disables a [service][google.api.servicemanagement.v1.ManagedService] for a project, so it can no longer be
-     * be used for the project. It prevents accidental usage that may cause
-     * unexpected billing charges or security leaks.
-     *
-     * Operation<response: DisableServiceResponse>
-     *
-     * Sample code:
-     * ```
-     * $serviceManagerClient = new ServiceManagerClient();
-     * try {
-     *     $serviceName = 'service_name';
-     *     $consumerId = 'consumer_id';
-     *     $operationResponse = $serviceManagerClient->disableService($serviceName, $consumerId);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $serviceManagerClient->disableService($serviceName, $consumerId);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $serviceManagerClient->resumeOperation($operationName, 'disableService');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
-     * } finally {
-     *     $serviceManagerClient->close();
-     * }
-     * ```
-     *
-     * @param string $serviceName  Required. Name of the service to disable. Specifying an unknown service name
-     *                             will cause the request to fail.
-     * @param string $consumerId   Required. The identity of consumer resource which service disablement will be
-     *                             applied to.
-     *
-     *                             The Google Service Management implementation accepts the following
-     *                             forms:
-     *                             - "project:<project_id>"
-     *
-     *                             Note: this is made compatible with
-     *                             google.api.servicecontrol.v1.Operation.consumer_id.
-     * @param array  $optionalArgs {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     *
-     * @deprecated This method will be removed in the next major version update.
-     */
-    public function disableService($serviceName, $consumerId, array $optionalArgs = [])
-    {
-        $request = new DisableServiceRequest();
-        $requestParamHeaders = [];
-        $request->setServiceName($serviceName);
-        $request->setConsumerId($consumerId);
-        $requestParamHeaders['service_name'] = $serviceName;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('DisableService', $optionalArgs, $request, $this->getOperationsClient())->wait();
-    }
-
-    /**
-     * Enables a [service][google.api.servicemanagement.v1.ManagedService] for a project, so it can be used
-     * for the project. See
-     * [Cloud Auth Guide](https://cloud.google.com/docs/authentication) for
-     * more information.
-     *
-     * Operation<response: EnableServiceResponse>
-     *
-     * Sample code:
-     * ```
-     * $serviceManagerClient = new ServiceManagerClient();
-     * try {
-     *     $serviceName = 'service_name';
-     *     $consumerId = 'consumer_id';
-     *     $operationResponse = $serviceManagerClient->enableService($serviceName, $consumerId);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $serviceManagerClient->enableService($serviceName, $consumerId);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $serviceManagerClient->resumeOperation($operationName, 'enableService');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
-     * } finally {
-     *     $serviceManagerClient->close();
-     * }
-     * ```
-     *
-     * @param string $serviceName  Required. Name of the service to enable. Specifying an unknown service name will
-     *                             cause the request to fail.
-     * @param string $consumerId   Required. The identity of consumer resource which service enablement will be
-     *                             applied to.
-     *
-     *                             The Google Service Management implementation accepts the following
-     *                             forms:
-     *                             - "project:<project_id>"
-     *
-     *                             Note: this is made compatible with
-     *                             google.api.servicecontrol.v1.Operation.consumer_id.
-     * @param array  $optionalArgs {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\OperationResponse
-     *
-     * @throws ApiException if the remote call fails
-     *
-     * @deprecated This method will be removed in the next major version update.
-     */
-    public function enableService($serviceName, $consumerId, array $optionalArgs = [])
-    {
-        $request = new EnableServiceRequest();
-        $requestParamHeaders = [];
-        $request->setServiceName($serviceName);
-        $request->setConsumerId($consumerId);
-        $requestParamHeaders['service_name'] = $serviceName;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('EnableService', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -765,8 +607,8 @@ class ServiceManagerGapicClient
      * }
      * ```
      *
-     * @param string $serviceName  Required. The name of the service.  See the `ServiceManager` overview for naming
-     *                             requirements.  For example: `example.googleapis.com`.
+     * @param string $serviceName  Required. The name of the service.  See the `ServiceManager` overview for
+     *                             naming requirements.  For example: `example.googleapis.com`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -807,8 +649,9 @@ class ServiceManagerGapicClient
      * }
      * ```
      *
-     * @param string $serviceName  Required. The name of the service.  See the [overview](https://cloud.google.com/service-management/overview)
-     *                             for naming requirements.  For example: `example.googleapis.com`.
+     * @param string $serviceName  Required. The name of the service.  See the
+     *                             [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
+     *                             example: `example.googleapis.com`.
      * @param string $configId     Required. The id of the service configuration resource.
      *
      *                             This field must be specified for the server to return all fields, including
@@ -849,7 +692,8 @@ class ServiceManagerGapicClient
     }
 
     /**
-     * Gets a service configuration [rollout][google.api.servicemanagement.v1.Rollout].
+     * Gets a service configuration
+     * [rollout][google.api.servicemanagement.v1.Rollout].
      *
      * Sample code:
      * ```
@@ -863,8 +707,9 @@ class ServiceManagerGapicClient
      * }
      * ```
      *
-     * @param string $serviceName  Required. The name of the service.  See the [overview](https://cloud.google.com/service-management/overview)
-     *                             for naming requirements.  For example: `example.googleapis.com`.
+     * @param string $serviceName  Required. The name of the service.  See the
+     *                             [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
+     *                             example: `example.googleapis.com`.
      * @param string $rolloutId    Required. The id of the rollout resource.
      * @param array  $optionalArgs {
      *     Optional.
@@ -920,8 +765,9 @@ class ServiceManagerGapicClient
      * }
      * ```
      *
-     * @param string $serviceName  Required. The name of the service.  See the [overview](https://cloud.google.com/service-management/overview)
-     *                             for naming requirements.  For example: `example.googleapis.com`.
+     * @param string $serviceName  Required. The name of the service.  See the
+     *                             [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
+     *                             example: `example.googleapis.com`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -992,8 +838,9 @@ class ServiceManagerGapicClient
      * }
      * ```
      *
-     * @param string $serviceName  Required. The name of the service.  See the [overview](https://cloud.google.com/service-management/overview)
-     *                             for naming requirements.  For example: `example.googleapis.com`.
+     * @param string $serviceName  Required. The name of the service.  See the
+     *                             [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
+     *                             example: `example.googleapis.com`.
      * @param string $filter       Required. Use `filter` to return subset of rollouts.
      *                             The following filters are supported:
      *                             -- To limit the results to only those in
@@ -1051,10 +898,6 @@ class ServiceManagerGapicClient
      * Returns all public services. For authenticated users, also returns all
      * services the calling user has "servicemanagement.services.get" permission
      * for.
-     *
-     * **BETA:** If the caller specifies the `consumer_id`, it returns only the
-     * services enabled on the consumer. The `consumer_id` must have the format
-     * of "project:{PROJECT-ID}".
      *
      * Sample code:
      * ```
@@ -1138,7 +981,8 @@ class ServiceManagerGapicClient
      * Specification). This method stores the source configurations as well as the
      * generated service configuration. To rollout the service configuration to
      * other services,
-     * please call [CreateServiceRollout][google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout].
+     * please call
+     * [CreateServiceRollout][google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout].
      *
      * Only the 100 most recent configuration sources and ones referenced by
      * existing service configurtions are kept for each service. The rest will be
@@ -1183,8 +1027,9 @@ class ServiceManagerGapicClient
      * }
      * ```
      *
-     * @param string       $serviceName  Required. The name of the service.  See the [overview](https://cloud.google.com/service-management/overview)
-     *                                   for naming requirements.  For example: `example.googleapis.com`.
+     * @param string       $serviceName  Required. The name of the service.  See the
+     *                                   [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
+     *                                   example: `example.googleapis.com`.
      * @param ConfigSource $configSource Required. The source configuration for the service.
      * @param array        $optionalArgs {
      *     Optional.
@@ -1264,8 +1109,9 @@ class ServiceManagerGapicClient
      * }
      * ```
      *
-     * @param string $serviceName  Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview)
-     *                             for naming requirements. For example: `example.googleapis.com`.
+     * @param string $serviceName  Required. The name of the service. See the
+     *                             [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements. For
+     *                             example: `example.googleapis.com`.
      * @param array  $optionalArgs {
      *     Optional.
      *

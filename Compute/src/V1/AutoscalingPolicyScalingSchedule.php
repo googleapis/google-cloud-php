@@ -46,7 +46,7 @@ class AutoscalingPolicyScalingSchedule extends \Google\Protobuf\Internal\Message
      */
     private $schedule = null;
     /**
-     * The time zone to use when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database. This field is assigned a default value of “UTC” if left empty.
+     * The time zone to use when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database. This field is assigned a default value of ���UTC��� if left empty.
      *
      * Generated from protobuf field <code>optional string time_zone = 36848094;</code>
      */
@@ -69,7 +69,7 @@ class AutoscalingPolicyScalingSchedule extends \Google\Protobuf\Internal\Message
      *     @type string $schedule
      *           The start timestamps of time intervals when this scaling schedule is to provide a scaling signal. This field uses the extended cron format (with an optional year field). The expression can describe a single timestamp if the optional year is set, in which case the scaling schedule runs once. The schedule is interpreted with respect to time_zone. This field is required. Note: These timestamps only describe when autoscaler starts providing the scaling signal. The VMs need additional time to become serving.
      *     @type string $time_zone
-     *           The time zone to use when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database. This field is assigned a default value of “UTC” if left empty.
+     *           The time zone to use when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database. This field is assigned a default value of ���UTC��� if left empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -258,7 +258,7 @@ class AutoscalingPolicyScalingSchedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time zone to use when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database. This field is assigned a default value of “UTC” if left empty.
+     * The time zone to use when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database. This field is assigned a default value of ���UTC��� if left empty.
      *
      * Generated from protobuf field <code>optional string time_zone = 36848094;</code>
      * @return string
@@ -279,7 +279,7 @@ class AutoscalingPolicyScalingSchedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time zone to use when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database. This field is assigned a default value of “UTC” if left empty.
+     * The time zone to use when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database. This field is assigned a default value of ���UTC��� if left empty.
      *
      * Generated from protobuf field <code>optional string time_zone = 36848094;</code>
      * @param string $var

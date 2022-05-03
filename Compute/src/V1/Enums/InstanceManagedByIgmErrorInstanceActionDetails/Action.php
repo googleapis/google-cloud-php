@@ -49,5 +49,13 @@ class Action
 
     const RESTARTING = 'RESTARTING';
 
+    const RESUMING = 'RESUMING';
+
+    const STARTING = 'STARTING';
+
+    const STOPPING = 'STOPPING';
+
+    const SUSPENDING = 'SUSPENDING';
+
     const VERIFYING = 'VERIFYING';
 }
