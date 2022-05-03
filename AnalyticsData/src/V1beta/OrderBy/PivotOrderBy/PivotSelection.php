@@ -112,6 +112,4 @@ class PivotSelection extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PivotSelection::class, \Google\Analytics\Data\V1beta\OrderBy_PivotOrderBy_PivotSelection::class);
 
