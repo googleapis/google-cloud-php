@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2022 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,7 +19,8 @@
 namespace Google\Cloud\ServiceManagement\V1;
 
 /**
- * [Google Service Management API](https://cloud.google.com/service-management/overview)
+ * [Google Service Management
+ * API](https://cloud.google.com/service-infrastructure/docs/overview)
  */
 class ServiceManagerGrpcClient extends \Grpc\BaseStub {
 
@@ -38,10 +39,6 @@ class ServiceManagerGrpcClient extends \Grpc\BaseStub {
      * Returns all public services. For authenticated users, also returns all
      * services the calling user has "servicemanagement.services.get" permission
      * for.
-     *
-     * **BETA:** If the caller specifies the `consumer_id`, it returns only the
-     * services enabled on the consumer. The `consumer_id` must have the format
-     * of "project:{PROJECT-ID}".
      * @param \Google\Cloud\ServiceManagement\V1\ListServicesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -73,7 +70,14 @@ class ServiceManagerGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Creates a new managed service.
-     * Please note one producer project can own no more than 20 services.
+     *
+     * A managed service is immutable, and is subject to mandatory 30-day
+     * data retention. You cannot move a service or recreate it within 30 days
+     * after deletion.
+     *
+     * One producer project can own no more than 500 services. For security and
+     * reliability purposes, a production service should be hosted in a
+     * dedicated producer project.
      *
      * Operation<response: ManagedService>
      * @param \Google\Cloud\ServiceManagement\V1\CreateServiceRequest $argument input argument
@@ -92,8 +96,10 @@ class ServiceManagerGrpcClient extends \Grpc\BaseStub {
     /**
      * Deletes a managed service. This method will change the service to the
      * `Soft-Delete` state for 30 days. Within this period, service producers may
-     * call [UndeleteService][google.api.servicemanagement.v1.ServiceManager.UndeleteService] to restore the service.
-     * After 30 days, the service will be permanently deleted.
+     * call
+     * [UndeleteService][google.api.servicemanagement.v1.ServiceManager.UndeleteService]
+     * to restore the service. After 30 days, the service will be permanently
+     * deleted.
      *
      * Operation<response: google.protobuf.Empty>
      * @param \Google\Cloud\ServiceManagement\V1\DeleteServiceRequest $argument input argument
@@ -189,7 +195,8 @@ class ServiceManagerGrpcClient extends \Grpc\BaseStub {
      * Specification). This method stores the source configurations as well as the
      * generated service configuration. To rollout the service configuration to
      * other services,
-     * please call [CreateServiceRollout][google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout].
+     * please call
+     * [CreateServiceRollout][google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout].
      *
      * Only the 100 most recent configuration sources and ones referenced by
      * existing service configurtions are kept for each service. The rest will be
@@ -226,7 +233,8 @@ class ServiceManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets a service configuration [rollout][google.api.servicemanagement.v1.Rollout].
+     * Gets a service configuration
+     * [rollout][google.api.servicemanagement.v1.Rollout].
      * @param \Google\Cloud\ServiceManagement\V1\GetServiceRolloutRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -290,45 +298,6 @@ class ServiceManagerGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.api.servicemanagement.v1.ServiceManager/GenerateConfigReport',
         $argument,
         ['\Google\Cloud\ServiceManagement\V1\GenerateConfigReportResponse', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Enables a [service][google.api.servicemanagement.v1.ManagedService] for a project, so it can be used
-     * for the project. See
-     * [Cloud Auth Guide](https://cloud.google.com/docs/authentication) for
-     * more information.
-     *
-     * Operation<response: EnableServiceResponse>
-     * @param \Google\Cloud\ServiceManagement\V1\EnableServiceRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function EnableService(\Google\Cloud\ServiceManagement\V1\EnableServiceRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.api.servicemanagement.v1.ServiceManager/EnableService',
-        $argument,
-        ['\Google\LongRunning\Operation', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Disables a [service][google.api.servicemanagement.v1.ManagedService] for a project, so it can no longer be
-     * be used for the project. It prevents accidental usage that may cause
-     * unexpected billing charges or security leaks.
-     *
-     * Operation<response: DisableServiceResponse>
-     * @param \Google\Cloud\ServiceManagement\V1\DisableServiceRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function DisableService(\Google\Cloud\ServiceManagement\V1\DisableServiceRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.api.servicemanagement.v1.ServiceManager/DisableService',
-        $argument,
-        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 

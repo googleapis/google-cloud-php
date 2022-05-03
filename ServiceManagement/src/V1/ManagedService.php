@@ -17,7 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ManagedService extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the service. See the [overview](https://cloud.google.com/service-management/overview)
+     * The name of the service. See the
+     * [overview](https://cloud.google.com/service-infrastructure/docs/overview)
      * for naming requirements.
      *
      * Generated from protobuf field <code>string service_name = 2;</code>
@@ -37,7 +38,8 @@ class ManagedService extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $service_name
-     *           The name of the service. See the [overview](https://cloud.google.com/service-management/overview)
+     *           The name of the service. See the
+     *           [overview](https://cloud.google.com/service-infrastructure/docs/overview)
      *           for naming requirements.
      *     @type string $producer_project_id
      *           ID of the project that produces and owns this service.
@@ -49,7 +51,8 @@ class ManagedService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the service. See the [overview](https://cloud.google.com/service-management/overview)
+     * The name of the service. See the
+     * [overview](https://cloud.google.com/service-infrastructure/docs/overview)
      * for naming requirements.
      *
      * Generated from protobuf field <code>string service_name = 2;</code>
@@ -61,7 +64,8 @@ class ManagedService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the service. See the [overview](https://cloud.google.com/service-management/overview)
+     * The name of the service. See the
+     * [overview](https://cloud.google.com/service-infrastructure/docs/overview)
      * for naming requirements.
      *
      * Generated from protobuf field <code>string service_name = 2;</code>

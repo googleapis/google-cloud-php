@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetServiceConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the service.  See the [overview](https://cloud.google.com/service-management/overview)
-     * for naming requirements.  For example: `example.googleapis.com`.
+     * Required. The name of the service.  See the
+     * [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
+     * example: `example.googleapis.com`.
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -45,8 +46,9 @@ class GetServiceConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $service_name
-     *           Required. The name of the service.  See the [overview](https://cloud.google.com/service-management/overview)
-     *           for naming requirements.  For example: `example.googleapis.com`.
+     *           Required. The name of the service.  See the
+     *           [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
+     *           example: `example.googleapis.com`.
      *     @type string $config_id
      *           Required. The id of the service configuration resource.
      *           This field must be specified for the server to return all fields, including
@@ -62,8 +64,9 @@ class GetServiceConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the service.  See the [overview](https://cloud.google.com/service-management/overview)
-     * for naming requirements.  For example: `example.googleapis.com`.
+     * Required. The name of the service.  See the
+     * [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
+     * example: `example.googleapis.com`.
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -74,8 +77,9 @@ class GetServiceConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the service.  See the [overview](https://cloud.google.com/service-management/overview)
-     * for naming requirements.  For example: `example.googleapis.com`.
+     * Required. The name of the service.  See the
+     * [overview](https://cloud.google.com/service-infrastructure/docs/overview) for naming requirements.  For
+     * example: `example.googleapis.com`.
      *
      * Generated from protobuf field <code>string service_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
