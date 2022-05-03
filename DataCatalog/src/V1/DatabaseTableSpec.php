@@ -22,6 +22,13 @@ class DatabaseTableSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DatabaseTableSpec.TableType type = 1;</code>
      */
     private $type = 0;
+    /**
+     * Fields specific to a Dataplex table and present only in the Dataplex table
+     * entries.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataplexTableSpec dataplex_table = 2;</code>
+     */
+    private $dataplex_table = null;
 
     /**
      * Constructor.
@@ -31,6 +38,9 @@ class DatabaseTableSpec extends \Google\Protobuf\Internal\Message
      *
      *     @type int $type
      *           Type of this table.
+     *     @type \Google\Cloud\DataCatalog\V1\DataplexTableSpec $dataplex_table
+     *           Fields specific to a Dataplex table and present only in the Dataplex table
+     *           entries.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +70,44 @@ class DatabaseTableSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\DataCatalog\V1\DatabaseTableSpec\TableType::class);
         $this->type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Fields specific to a Dataplex table and present only in the Dataplex table
+     * entries.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataplexTableSpec dataplex_table = 2;</code>
+     * @return \Google\Cloud\DataCatalog\V1\DataplexTableSpec|null
+     */
+    public function getDataplexTable()
+    {
+        return $this->dataplex_table;
+    }
+
+    public function hasDataplexTable()
+    {
+        return isset($this->dataplex_table);
+    }
+
+    public function clearDataplexTable()
+    {
+        unset($this->dataplex_table);
+    }
+
+    /**
+     * Fields specific to a Dataplex table and present only in the Dataplex table
+     * entries.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataplexTableSpec dataplex_table = 2;</code>
+     * @param \Google\Cloud\DataCatalog\V1\DataplexTableSpec $var
+     * @return $this
+     */
+    public function setDataplexTable($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\DataplexTableSpec::class);
+        $this->dataplex_table = $var;
 
         return $this;
     }

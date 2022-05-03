@@ -28,6 +28,13 @@ class DataSource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string resource = 2;</code>
      */
     private $resource = '';
+    /**
+     * Output only. Data Catalog entry name, if applicable.
+     *
+     * Generated from protobuf field <code>string source_entry = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $source_entry = '';
+    protected $properties;
 
     /**
      * Constructor.
@@ -40,6 +47,10 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *     @type string $resource
      *           Full name of a resource as defined by the service. For example:
      *           `//bigquery.googleapis.com/projects/{PROJECT_ID}/locations/{LOCATION}/datasets/{DATASET_ID}/tables/{TABLE_ID}`
+     *     @type string $source_entry
+     *           Output only. Data Catalog entry name, if applicable.
+     *     @type \Google\Cloud\DataCatalog\V1\StorageProperties $storage_properties
+     *           Detailed properties of the underlying storage.
      * }
      */
     public function __construct($data = NULL) {
@@ -99,6 +110,71 @@ class DataSource extends \Google\Protobuf\Internal\Message
         $this->resource = $var;
 
         return $this;
+    }
+
+    /**
+     * Output only. Data Catalog entry name, if applicable.
+     *
+     * Generated from protobuf field <code>string source_entry = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getSourceEntry()
+    {
+        return $this->source_entry;
+    }
+
+    /**
+     * Output only. Data Catalog entry name, if applicable.
+     *
+     * Generated from protobuf field <code>string source_entry = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceEntry($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_entry = $var;
+
+        return $this;
+    }
+
+    /**
+     * Detailed properties of the underlying storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.StorageProperties storage_properties = 4;</code>
+     * @return \Google\Cloud\DataCatalog\V1\StorageProperties|null
+     */
+    public function getStorageProperties()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasStorageProperties()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Detailed properties of the underlying storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.StorageProperties storage_properties = 4;</code>
+     * @param \Google\Cloud\DataCatalog\V1\StorageProperties $var
+     * @return $this
+     */
+    public function setStorageProperties($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\StorageProperties::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProperties()
+    {
+        return $this->whichOneof("properties");
     }
 
 }
