@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [KeyManagementService.ListImportJobs][google.cloud.kms.v1.KeyManagementService.ListImportJobs].
+ * Response message for
+ * [KeyManagementService.ListImportJobs][google.cloud.kms.v1.KeyManagementService.ListImportJobs].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.ListImportJobsResponse</code>
  */
@@ -23,13 +24,15 @@ class ListImportJobsResponse extends \Google\Protobuf\Internal\Message
     private $import_jobs;
     /**
      * A token to retrieve next page of results. Pass this value in
-     * [ListImportJobsRequest.page_token][google.cloud.kms.v1.ListImportJobsRequest.page_token] to retrieve the next page of results.
+     * [ListImportJobsRequest.page_token][google.cloud.kms.v1.ListImportJobsRequest.page_token]
+     * to retrieve the next page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
     /**
-     * The total number of [ImportJobs][google.cloud.kms.v1.ImportJob] that matched the query.
+     * The total number of [ImportJobs][google.cloud.kms.v1.ImportJob] that
+     * matched the query.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      */
@@ -45,9 +48,11 @@ class ListImportJobsResponse extends \Google\Protobuf\Internal\Message
      *           The list of [ImportJobs][google.cloud.kms.v1.ImportJob].
      *     @type string $next_page_token
      *           A token to retrieve next page of results. Pass this value in
-     *           [ListImportJobsRequest.page_token][google.cloud.kms.v1.ListImportJobsRequest.page_token] to retrieve the next page of results.
+     *           [ListImportJobsRequest.page_token][google.cloud.kms.v1.ListImportJobsRequest.page_token]
+     *           to retrieve the next page of results.
      *     @type int $total_size
-     *           The total number of [ImportJobs][google.cloud.kms.v1.ImportJob] that matched the query.
+     *           The total number of [ImportJobs][google.cloud.kms.v1.ImportJob] that
+     *           matched the query.
      * }
      */
     public function __construct($data = NULL) {
@@ -83,7 +88,8 @@ class ListImportJobsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve next page of results. Pass this value in
-     * [ListImportJobsRequest.page_token][google.cloud.kms.v1.ListImportJobsRequest.page_token] to retrieve the next page of results.
+     * [ListImportJobsRequest.page_token][google.cloud.kms.v1.ListImportJobsRequest.page_token]
+     * to retrieve the next page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -95,7 +101,8 @@ class ListImportJobsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve next page of results. Pass this value in
-     * [ListImportJobsRequest.page_token][google.cloud.kms.v1.ListImportJobsRequest.page_token] to retrieve the next page of results.
+     * [ListImportJobsRequest.page_token][google.cloud.kms.v1.ListImportJobsRequest.page_token]
+     * to retrieve the next page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
@@ -110,7 +117,8 @@ class ListImportJobsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The total number of [ImportJobs][google.cloud.kms.v1.ImportJob] that matched the query.
+     * The total number of [ImportJobs][google.cloud.kms.v1.ImportJob] that
+     * matched the query.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      * @return int
@@ -121,7 +129,8 @@ class ListImportJobsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The total number of [ImportJobs][google.cloud.kms.v1.ImportJob] that matched the query.
+     * The total number of [ImportJobs][google.cloud.kms.v1.ImportJob] that
+     * matched the query.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      * @param int $var

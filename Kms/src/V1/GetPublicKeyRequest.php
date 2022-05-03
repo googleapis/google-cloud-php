@@ -9,15 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KeyManagementService.GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
+ * Request message for
+ * [KeyManagementService.GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.GetPublicKeyRequest</code>
  */
 class GetPublicKeyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key to
-     * get.
+     * Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,8 +31,8 @@ class GetPublicKeyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key to
-     *           get.
+     *           Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key to get.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +41,8 @@ class GetPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key to
-     * get.
+     * Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -52,8 +53,8 @@ class GetPublicKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key to
-     * get.
+     * Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

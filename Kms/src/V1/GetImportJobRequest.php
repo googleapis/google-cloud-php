@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KeyManagementService.GetImportJob][google.cloud.kms.v1.KeyManagementService.GetImportJob].
+ * Request message for
+ * [KeyManagementService.GetImportJob][google.cloud.kms.v1.KeyManagementService.GetImportJob].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.GetImportJobRequest</code>
  */
 class GetImportJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [name][google.cloud.kms.v1.ImportJob.name] of the [ImportJob][google.cloud.kms.v1.ImportJob] to get.
+     * Required. The [name][google.cloud.kms.v1.ImportJob.name] of the
+     * [ImportJob][google.cloud.kms.v1.ImportJob] to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -29,7 +31,8 @@ class GetImportJobRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The [name][google.cloud.kms.v1.ImportJob.name] of the [ImportJob][google.cloud.kms.v1.ImportJob] to get.
+     *           Required. The [name][google.cloud.kms.v1.ImportJob.name] of the
+     *           [ImportJob][google.cloud.kms.v1.ImportJob] to get.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +41,8 @@ class GetImportJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.kms.v1.ImportJob.name] of the [ImportJob][google.cloud.kms.v1.ImportJob] to get.
+     * Required. The [name][google.cloud.kms.v1.ImportJob.name] of the
+     * [ImportJob][google.cloud.kms.v1.ImportJob] to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -49,7 +53,8 @@ class GetImportJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.kms.v1.ImportJob.name] of the [ImportJob][google.cloud.kms.v1.ImportJob] to get.
+     * Required. The [name][google.cloud.kms.v1.ImportJob.name] of the
+     * [ImportJob][google.cloud.kms.v1.ImportJob] to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
