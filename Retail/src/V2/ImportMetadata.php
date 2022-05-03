@@ -42,12 +42,12 @@ class ImportMetadata extends \Google\Protobuf\Internal\Message
      */
     private $failure_count = 0;
     /**
-     * Id of the request / operation. This is parroting back the requestId
-     * that was passed in the request.
+     * Deprecated. This field is never set.
      *
-     * Generated from protobuf field <code>string request_id = 5;</code>
+     * Generated from protobuf field <code>string request_id = 5 [deprecated = true];</code>
+     * @deprecated
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Pub/Sub topic for receiving notification. If this field is set,
      * when the import is finished, a notification will be sent to
@@ -75,8 +75,7 @@ class ImportMetadata extends \Google\Protobuf\Internal\Message
      *     @type int|string $failure_count
      *           Count of entries that encountered errors while processing.
      *     @type string $request_id
-     *           Id of the request / operation. This is parroting back the requestId
-     *           that was passed in the request.
+     *           Deprecated. This field is never set.
      *     @type string $notification_pubsub_topic
      *           Pub/Sub topic for receiving notification. If this field is set,
      *           when the import is finished, a notification will be sent to
@@ -217,27 +216,29 @@ class ImportMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Id of the request / operation. This is parroting back the requestId
-     * that was passed in the request.
+     * Deprecated. This field is never set.
      *
-     * Generated from protobuf field <code>string request_id = 5;</code>
+     * Generated from protobuf field <code>string request_id = 5 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getRequestId()
     {
+        @trigger_error('request_id is deprecated.', E_USER_DEPRECATED);
         return $this->request_id;
     }
 
     /**
-     * Id of the request / operation. This is parroting back the requestId
-     * that was passed in the request.
+     * Deprecated. This field is never set.
      *
-     * Generated from protobuf field <code>string request_id = 5;</code>
+     * Generated from protobuf field <code>string request_id = 5 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setRequestId($var)
     {
+        @trigger_error('request_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
 

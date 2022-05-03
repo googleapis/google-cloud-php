@@ -64,6 +64,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/operations/*}',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/operations/*}',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -80,6 +84,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*}/operations',
                     ],
                 ],
                 'placeholders' => [

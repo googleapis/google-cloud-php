@@ -19,9 +19,8 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     /**
      * The textual values of this custom attribute. For example, `["yellow",
      * "green"]` when the key is "color".
-     * At most 400 values are allowed. Empty values are not allowed. Each value
-     * must be a UTF-8 encoded string with a length limit of 256 characters.
-     * Otherwise, an INVALID_ARGUMENT error is returned.
+     * Empty string is not allowed. Otherwise, an INVALID_ARGUMENT error is
+     * returned.
      * Exactly one of [text][google.cloud.retail.v2.CustomAttribute.text] or
      * [numbers][google.cloud.retail.v2.CustomAttribute.numbers] should be set.
      * Otherwise, an INVALID_ARGUMENT error is returned.
@@ -32,8 +31,6 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     /**
      * The numerical values of this custom attribute. For example, `[2.3, 15.4]`
      * when the key is "lengths_cm".
-     * At most 400 values are allowed.Otherwise, an INVALID_ARGUMENT error is
-     * returned.
      * Exactly one of [text][google.cloud.retail.v2.CustomAttribute.text] or
      * [numbers][google.cloud.retail.v2.CustomAttribute.numbers] should be set.
      * Otherwise, an INVALID_ARGUMENT error is returned.
@@ -42,7 +39,11 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      */
     private $numbers;
     /**
-     * If true, custom attribute values are searchable by text queries in
+     * This field will only be used when
+     * [AttributesConfig.attribute_config_level][] of the
+     * [Catalog][google.cloud.retail.v2.Catalog] is
+     * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG', if true, custom attribute values are
+     * searchable by text queries in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      * This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
      * Only set if type [text][google.cloud.retail.v2.CustomAttribute.text] is
@@ -52,8 +53,11 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      */
     private $searchable = null;
     /**
-     * If true, custom attribute values are indexed, so that it can be filtered,
-     * faceted or boosted in
+     * This field will only be used when
+     * [AttributesConfig.attribute_config_level][] of the
+     * [Catalog][google.cloud.retail.v2.Catalog] is
+     * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG', if true, custom attribute values are
+     * indexed, so that it can be filtered, faceted or boosted in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      * This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
      * See [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter],
@@ -75,29 +79,33 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $text
      *           The textual values of this custom attribute. For example, `["yellow",
      *           "green"]` when the key is "color".
-     *           At most 400 values are allowed. Empty values are not allowed. Each value
-     *           must be a UTF-8 encoded string with a length limit of 256 characters.
-     *           Otherwise, an INVALID_ARGUMENT error is returned.
+     *           Empty string is not allowed. Otherwise, an INVALID_ARGUMENT error is
+     *           returned.
      *           Exactly one of [text][google.cloud.retail.v2.CustomAttribute.text] or
      *           [numbers][google.cloud.retail.v2.CustomAttribute.numbers] should be set.
      *           Otherwise, an INVALID_ARGUMENT error is returned.
      *     @type float[]|\Google\Protobuf\Internal\RepeatedField $numbers
      *           The numerical values of this custom attribute. For example, `[2.3, 15.4]`
      *           when the key is "lengths_cm".
-     *           At most 400 values are allowed.Otherwise, an INVALID_ARGUMENT error is
-     *           returned.
      *           Exactly one of [text][google.cloud.retail.v2.CustomAttribute.text] or
      *           [numbers][google.cloud.retail.v2.CustomAttribute.numbers] should be set.
      *           Otherwise, an INVALID_ARGUMENT error is returned.
      *     @type bool $searchable
-     *           If true, custom attribute values are searchable by text queries in
+     *           This field will only be used when
+     *           [AttributesConfig.attribute_config_level][] of the
+     *           [Catalog][google.cloud.retail.v2.Catalog] is
+     *           'PRODUCT_LEVEL_ATTRIBUTE_CONFIG', if true, custom attribute values are
+     *           searchable by text queries in
      *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      *           This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
      *           Only set if type [text][google.cloud.retail.v2.CustomAttribute.text] is
      *           set. Otherwise, a INVALID_ARGUMENT error is returned.
      *     @type bool $indexable
-     *           If true, custom attribute values are indexed, so that it can be filtered,
-     *           faceted or boosted in
+     *           This field will only be used when
+     *           [AttributesConfig.attribute_config_level][] of the
+     *           [Catalog][google.cloud.retail.v2.Catalog] is
+     *           'PRODUCT_LEVEL_ATTRIBUTE_CONFIG', if true, custom attribute values are
+     *           indexed, so that it can be filtered, faceted or boosted in
      *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      *           This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
      *           See [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter],
@@ -115,9 +123,8 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     /**
      * The textual values of this custom attribute. For example, `["yellow",
      * "green"]` when the key is "color".
-     * At most 400 values are allowed. Empty values are not allowed. Each value
-     * must be a UTF-8 encoded string with a length limit of 256 characters.
-     * Otherwise, an INVALID_ARGUMENT error is returned.
+     * Empty string is not allowed. Otherwise, an INVALID_ARGUMENT error is
+     * returned.
      * Exactly one of [text][google.cloud.retail.v2.CustomAttribute.text] or
      * [numbers][google.cloud.retail.v2.CustomAttribute.numbers] should be set.
      * Otherwise, an INVALID_ARGUMENT error is returned.
@@ -133,9 +140,8 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     /**
      * The textual values of this custom attribute. For example, `["yellow",
      * "green"]` when the key is "color".
-     * At most 400 values are allowed. Empty values are not allowed. Each value
-     * must be a UTF-8 encoded string with a length limit of 256 characters.
-     * Otherwise, an INVALID_ARGUMENT error is returned.
+     * Empty string is not allowed. Otherwise, an INVALID_ARGUMENT error is
+     * returned.
      * Exactly one of [text][google.cloud.retail.v2.CustomAttribute.text] or
      * [numbers][google.cloud.retail.v2.CustomAttribute.numbers] should be set.
      * Otherwise, an INVALID_ARGUMENT error is returned.
@@ -155,8 +161,6 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     /**
      * The numerical values of this custom attribute. For example, `[2.3, 15.4]`
      * when the key is "lengths_cm".
-     * At most 400 values are allowed.Otherwise, an INVALID_ARGUMENT error is
-     * returned.
      * Exactly one of [text][google.cloud.retail.v2.CustomAttribute.text] or
      * [numbers][google.cloud.retail.v2.CustomAttribute.numbers] should be set.
      * Otherwise, an INVALID_ARGUMENT error is returned.
@@ -172,8 +176,6 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     /**
      * The numerical values of this custom attribute. For example, `[2.3, 15.4]`
      * when the key is "lengths_cm".
-     * At most 400 values are allowed.Otherwise, an INVALID_ARGUMENT error is
-     * returned.
      * Exactly one of [text][google.cloud.retail.v2.CustomAttribute.text] or
      * [numbers][google.cloud.retail.v2.CustomAttribute.numbers] should be set.
      * Otherwise, an INVALID_ARGUMENT error is returned.
@@ -191,7 +193,11 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, custom attribute values are searchable by text queries in
+     * This field will only be used when
+     * [AttributesConfig.attribute_config_level][] of the
+     * [Catalog][google.cloud.retail.v2.Catalog] is
+     * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG', if true, custom attribute values are
+     * searchable by text queries in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      * This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
      * Only set if type [text][google.cloud.retail.v2.CustomAttribute.text] is
@@ -216,7 +222,11 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, custom attribute values are searchable by text queries in
+     * This field will only be used when
+     * [AttributesConfig.attribute_config_level][] of the
+     * [Catalog][google.cloud.retail.v2.Catalog] is
+     * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG', if true, custom attribute values are
+     * searchable by text queries in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      * This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
      * Only set if type [text][google.cloud.retail.v2.CustomAttribute.text] is
@@ -235,8 +245,11 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, custom attribute values are indexed, so that it can be filtered,
-     * faceted or boosted in
+     * This field will only be used when
+     * [AttributesConfig.attribute_config_level][] of the
+     * [Catalog][google.cloud.retail.v2.Catalog] is
+     * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG', if true, custom attribute values are
+     * indexed, so that it can be filtered, faceted or boosted in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      * This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
      * See [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter],
@@ -264,8 +277,11 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, custom attribute values are indexed, so that it can be filtered,
-     * faceted or boosted in
+     * This field will only be used when
+     * [AttributesConfig.attribute_config_level][] of the
+     * [Catalog][google.cloud.retail.v2.Catalog] is
+     * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG', if true, custom attribute values are
+     * indexed, so that it can be filtered, faceted or boosted in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      * This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
      * See [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter],

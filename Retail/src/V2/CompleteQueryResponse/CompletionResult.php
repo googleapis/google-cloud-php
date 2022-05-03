@@ -22,7 +22,11 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
      */
     private $suggestion = '';
     /**
-     * Additional custom attributes ingested through BigQuery.
+     * Custom attributes for the suggestion term.
+     * * For "user-data", the attributes are additional custom attributes
+     * ingested through BigQuery.
+     * * For "cloud-retail", the attributes are product attributes generated
+     * by Cloud Retail.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.CustomAttribute> attributes = 2;</code>
      */
@@ -37,7 +41,11 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
      *     @type string $suggestion
      *           The suggestion for the query.
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
-     *           Additional custom attributes ingested through BigQuery.
+     *           Custom attributes for the suggestion term.
+     *           * For "user-data", the attributes are additional custom attributes
+     *           ingested through BigQuery.
+     *           * For "cloud-retail", the attributes are product attributes generated
+     *           by Cloud Retail.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,7 +80,11 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Additional custom attributes ingested through BigQuery.
+     * Custom attributes for the suggestion term.
+     * * For "user-data", the attributes are additional custom attributes
+     * ingested through BigQuery.
+     * * For "cloud-retail", the attributes are product attributes generated
+     * by Cloud Retail.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.CustomAttribute> attributes = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -83,7 +95,11 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Additional custom attributes ingested through BigQuery.
+     * Custom attributes for the suggestion term.
+     * * For "user-data", the attributes are additional custom attributes
+     * ingested through BigQuery.
+     * * For "cloud-retail", the attributes are product attributes generated
+     * by Cloud Retail.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.CustomAttribute> attributes = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

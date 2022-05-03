@@ -26,6 +26,9 @@ class SetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
      * The final component of the resource name of a branch.
      * This field must be one of "0", "1" or "2". Otherwise, an INVALID_ARGUMENT
      * error is returned.
+     * If there are no sufficient active products in the targeted branch and
+     * [force][google.cloud.retail.v2.SetDefaultBranchRequest.force] is not set, a
+     * FAILED_PRECONDITION error is returned.
      *
      * Generated from protobuf field <code>string branch_id = 2 [(.google.api.resource_reference) = {</code>
      */
@@ -40,6 +43,14 @@ class SetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string note = 3;</code>
      */
     private $note = '';
+    /**
+     * If set to true, it permits switching to a branch with
+     * [branch_id][google.cloud.retail.v2.SetDefaultBranchRequest.branch_id] even
+     * if it has no sufficient active products.
+     *
+     * Generated from protobuf field <code>bool force = 4;</code>
+     */
+    private $force = false;
 
     /**
      * Constructor.
@@ -54,12 +65,19 @@ class SetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
      *           The final component of the resource name of a branch.
      *           This field must be one of "0", "1" or "2". Otherwise, an INVALID_ARGUMENT
      *           error is returned.
+     *           If there are no sufficient active products in the targeted branch and
+     *           [force][google.cloud.retail.v2.SetDefaultBranchRequest.force] is not set, a
+     *           FAILED_PRECONDITION error is returned.
      *     @type string $note
      *           Some note on this request, this can be retrieved by
      *           [CatalogService.GetDefaultBranch][google.cloud.retail.v2.CatalogService.GetDefaultBranch]
      *           before next valid default branch set occurs.
      *           This field must be a UTF-8 encoded string with a length limit of 1,000
      *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *     @type bool $force
+     *           If set to true, it permits switching to a branch with
+     *           [branch_id][google.cloud.retail.v2.SetDefaultBranchRequest.branch_id] even
+     *           if it has no sufficient active products.
      * }
      */
     public function __construct($data = NULL) {
@@ -99,6 +117,9 @@ class SetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
      * The final component of the resource name of a branch.
      * This field must be one of "0", "1" or "2". Otherwise, an INVALID_ARGUMENT
      * error is returned.
+     * If there are no sufficient active products in the targeted branch and
+     * [force][google.cloud.retail.v2.SetDefaultBranchRequest.force] is not set, a
+     * FAILED_PRECONDITION error is returned.
      *
      * Generated from protobuf field <code>string branch_id = 2 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -112,6 +133,9 @@ class SetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
      * The final component of the resource name of a branch.
      * This field must be one of "0", "1" or "2". Otherwise, an INVALID_ARGUMENT
      * error is returned.
+     * If there are no sufficient active products in the targeted branch and
+     * [force][google.cloud.retail.v2.SetDefaultBranchRequest.force] is not set, a
+     * FAILED_PRECONDITION error is returned.
      *
      * Generated from protobuf field <code>string branch_id = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -155,6 +179,36 @@ class SetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->note = $var;
+
+        return $this;
+    }
+
+    /**
+     * If set to true, it permits switching to a branch with
+     * [branch_id][google.cloud.retail.v2.SetDefaultBranchRequest.branch_id] even
+     * if it has no sufficient active products.
+     *
+     * Generated from protobuf field <code>bool force = 4;</code>
+     * @return bool
+     */
+    public function getForce()
+    {
+        return $this->force;
+    }
+
+    /**
+     * If set to true, it permits switching to a branch with
+     * [branch_id][google.cloud.retail.v2.SetDefaultBranchRequest.branch_id] even
+     * if it has no sufficient active products.
+     *
+     * Generated from protobuf field <code>bool force = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setForce($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->force = $var;
 
         return $this;
     }
