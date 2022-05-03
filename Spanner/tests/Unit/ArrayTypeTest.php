@@ -19,7 +19,6 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Database;
-use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Spanner\StructType;
 use PHPUnit\Framework\TestCase;
 

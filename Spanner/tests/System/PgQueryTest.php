@@ -22,11 +22,7 @@ use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
-use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\PgNumeric;
-use Google\Cloud\Spanner\Result;
-use Google\Cloud\Spanner\StructType;
-use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\RequestOptions\Priority;
@@ -65,23 +61,23 @@ class PgQueryTest extends SpannerPgTestCase
 
         self::$database->insertOrUpdateBatch(self::TABLE_NAME, [
             [
-            'id' => 1,
-            'name' => 'Alice',
-            'registered' => false,
-            'rating' => 4.2,
-            'age' => 22,
-            'bytes_col' => new Bytes('hello'),
-            'created_at' => self::$timestampVal,
-            'dt' => '2020-01-01'
+                'id' => 1,
+                'name' => 'Alice',
+                'registered' => false,
+                'rating' => 4.2,
+                'age' => 22,
+                'bytes_col' => new Bytes('hello'),
+                'created_at' => self::$timestampVal,
+                'dt' => '2020-01-01'
             ],
             [
-            'id' => 2,
-            'name' => 'Bruce',
-            'registered' => false,
-            'rating' => 5.0,
-            'age' => 26,
-            'created_at' => self::$timestampVal,
-            'dt' => '2021-01-01'
+                'id' => 2,
+                'name' => 'Bruce',
+                'registered' => false,
+                'rating' => 5.0,
+                'age' => 26,
+                'created_at' => self::$timestampVal,
+                'dt' => '2021-01-01'
             ]
         ]);
     }

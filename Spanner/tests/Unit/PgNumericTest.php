@@ -20,7 +20,6 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
-use Google\Cloud\Spanner\ValueMapper;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -71,8 +70,8 @@ class PgNumericTest extends TestCase
     {
         $numeric = new PgNumeric('0');
 
-        $typeCode = ValueMapper::getTypeCodeFromString('pgNumeric');
-        $typeAnnotation = ValueMapper::getTypeAnnotationFromString('pgNumeric');
+        $typeCode = TypeCode::NUMERIC;
+        $typeAnnotation = TypeAnnotationCode::PG_NUMERIC;
 
         $this->assertEquals($typeCode, $numeric->type());
         $this->assertEquals($typeAnnotation, $numeric->typeAnnotation());

@@ -27,7 +27,6 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\RequestOptions\Priority;
 
 /**

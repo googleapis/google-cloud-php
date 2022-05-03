@@ -63,23 +63,36 @@ class ValueMapper
     ];
 
     /*
-     * Types declared here will be mapped to a class type.
-     * Native types are identified only by typeCodes,
-     * but custom types may need a typeCodeAnnotation along with the code.
+     * Library defined wrapper types declared here will be mapped to a class.
+     *
+     * Types outside this map are identified only by type codes,
+     * but these wrapper classes require a type code annotation as well.
      * Declaring the type here takes care of encoding such types.
      *
      * @var array
      */
     private static $typeToClassMap = [
-        'pgNumeric' => PgNumeric::class,
+        self::TYPE_PG_NUMERIC => PgNumeric::class,
     ];
 
+    /*
+     * Maps library defined wrapper types (e.g., {@see Google\Cloud\Spanner\PgNumeric})
+     * which have an accompanying type annotation code to the underlying type code.
+     *
+     * @var array
+     */
     private static $typeCodes = [
-        'pgNumeric' => self::TYPE_NUMERIC,
+        self::TYPE_PG_NUMERIC => self::TYPE_NUMERIC,
     ];
 
+    /*
+     * Maps library defined wrapper types (e.g., {@see Google\Cloud\Spanner\PgNumeric}) to
+     * their associated type annotation code.
+     *
+     * @var array
+     */
     private static $typeAnnotations = [
-        'pgNumeric' => TypeAnnotationCode::PG_NUMERIC,
+        self::TYPE_PG_NUMERIC => TypeAnnotationCode::PG_NUMERIC,
     ];
 
     /**
@@ -358,14 +371,8 @@ class ValueMapper
         $definition = null,
         $allowMixedArrayType = false
     ) {
-
-        // If the given type maps to a custom class
-        // initialize the value as the custom class(type)
-        if (!is_null($givenType) && self::isCustomType($givenType)) {
-            $value = self::getCustomTypeObj($givenType, $value);
-        }
-        
         $valueType = gettype($value);
+        $typeAnnotation = null;
 
         // If a definition is provided, the type is set to `array` to force
         // the value to be interpreted as an array or a struct, even if null.
@@ -373,18 +380,25 @@ class ValueMapper
             $valueType = 'array';
         }
 
+        // Convert library specific wrapper type to type code and type
+        // code annotation, if applicable.
+        if (isset(self::$typeCodes[$givenType])) {
+            $typeAnnotation = self::$typeAnnotations[$givenType];
+            $givenType = self::$typeCodes[$givenType];
+        }
+
         switch ($valueType) {
             case 'boolean':
-                $type = $this->typeObject($givenType ?: self::TYPE_BOOL);
+                $type = $this->typeObject($givenType ?: self::TYPE_BOOL, $typeAnnotation);
                 break;
 
             case 'integer':
                 $value = (string) $value;
-                $type = $this->typeObject($givenType ?: self::TYPE_INT64);
+                $type = $this->typeObject($givenType ?: self::TYPE_INT64, $typeAnnotation);
                 break;
 
             case 'double':
-                $type = $this->typeObject($givenType ?: self::TYPE_FLOAT64);
+                $type = $this->typeObject($givenType ?: self::TYPE_FLOAT64, $typeAnnotation);
                 switch ($value) {
                     case INF:
                         $value = 'Infinity';
@@ -402,11 +416,11 @@ class ValueMapper
                 break;
 
             case 'string':
-                $type = $this->typeObject($givenType ?: self::TYPE_STRING);
+                $type = $this->typeObject($givenType ?: self::TYPE_STRING, $typeAnnotation);
                 break;
 
             case 'resource':
-                $type = $this->typeObject($givenType ?: self::TYPE_BYTES);
+                $type = $this->typeObject($givenType ?: self::TYPE_BYTES, $typeAnnotation);
                 $value = base64_encode(stream_get_contents($value));
                 break;
 
@@ -441,7 +455,8 @@ class ValueMapper
                 break;
 
             case 'NULL':
-                $type = $this->typeObject($givenType);
+                $type = $this->typeObject($givenType, $typeAnnotation);
+
                 break;
 
             default:
@@ -785,36 +800,24 @@ class ValueMapper
     }
 
     /**
-     * Is the data type a custom type(w/ typeAnnotation) ?
+     * Is the data type a custom type (w/ typeAnnotation)?
      *
+     * @param string $type
      * @return bool
      */
-    public static function isCustomType($type)
+    private static function isCustomType($type)
     {
         return array_key_exists($type, self::$typeToClassMap);
     }
 
     /**
-     * Wrap the value in the custom data type class
-     *
-     * @return mixed
-     */
-    public static function getCustomTypeObj($type, $val)
-    {
-        if (!self::isCustomType($type)) {
-            return false;
-        }
-            
-        $cls = self::$typeToClassMap[$type];
-        return new $cls($val);
-    }
-
-    /**
      * Given a type name(ex: pgNumeric), this method returns a typeCode
      * without having to initialize an object of the corressponding class
+     *
+     * @param string $type
      * @return int
      */
-    public static function getTypeCodeFromString($type)
+    private static function getTypeCodeFromString($type)
     {
         return array_key_exists($type, self::$typeCodes) ? self::$typeCodes[$type] : null;
     }
@@ -822,9 +825,11 @@ class ValueMapper
     /**
      * Given a type name(ex: pgNumeric), this method returns a typeAnnotation
      * without having to initialize an object of the corressponding class
+     *
+     * @param string $type
      * @return int
      */
-    public static function getTypeAnnotationFromString($type)
+    private static function getTypeAnnotationFromString($type)
     {
         return array_key_exists($type, self::$typeAnnotations) ? self::$typeAnnotations[$type] : null;
     }

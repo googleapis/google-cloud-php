@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\Cloud\Spanner\V1\TypeAnnotationCode;
+
 /**
  * Represents a value with a data type of
  * [PG Numeric](https://cloud.google.com/spanner/docs/reference/postgresql/data-types) for the
@@ -37,7 +39,7 @@ namespace Google\Cloud\Spanner;
 class PgNumeric implements ValueInterface, TypeAnnotationInterface
 {
     /**
-     * @var string|int|float|null
+     * @var string|null
      */
     private $value;
 
@@ -54,7 +56,7 @@ class PgNumeric implements ValueInterface, TypeAnnotationInterface
     /**
      * Get the underlying value.
      *
-     * @return string|int|float|null
+     * @return string|null
      */
     public function get()
     {
@@ -69,11 +71,11 @@ class PgNumeric implements ValueInterface, TypeAnnotationInterface
      */
     public function type()
     {
-        return ValueMapper::getTypeCodeFromString(ValueMapper::TYPE_PG_NUMERIC);
+        return ValueMapper::TYPE_NUMERIC;
     }
 
     /**
-     * Get the typeAnnotationCode.
+     * Get the type annotation code.
      * This is to be used along type, to differentiate the value from TypeCode::NUMERIC.
      *
      * @access private
@@ -81,7 +83,7 @@ class PgNumeric implements ValueInterface, TypeAnnotationInterface
      */
     public function typeAnnotation()
     {
-        return ValueMapper::getTypeAnnotationFromString(ValueMapper::TYPE_PG_NUMERIC);
+        return TypeAnnotationCode::PG_NUMERIC;
     }
 
     /**

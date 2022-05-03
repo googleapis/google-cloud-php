@@ -129,7 +129,7 @@ class ArrayType
     {
         return $this->type;
     }
-    
+
     /**
      * Get the nested struct parameter type.
      *

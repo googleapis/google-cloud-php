@@ -1016,36 +1016,6 @@ class ValueMapperTest extends TestCase
         $this->assertEquals('John', $res[1]);
     }
 
-    public function testIsCustomType()
-    {
-        // map of all custom types we know should return true
-        $customTypes = [Database::TYPE_PG_NUMERIC => true];
-
-        // run the assertion for all allowed types in ValueMapper
-        foreach (ValueMapper::$allowedTypes as $type) {
-            if (array_key_exists($type, $customTypes)) {
-                $this->assertTrue(ValueMapper::isCustomType($type));
-            } else {
-                $this->assertFalse(ValueMapper::isCustomType($type));
-            }
-        }
-    }
-
-    public function testGetCustomTypeObj()
-    {
-        // doesn't matter what value is passed,
-        // the $obj returned should be of the type PgNumeric
-        $obj = ValueMapper::getCustomTypeObj(Database::TYPE_PG_NUMERIC, null);
-        $this->assertInstanceOf(PgNumeric::class, $obj);
-    }
-
-    public function testGetCustomTypeObjForInvalidType()
-    {
-        // if a non custom type is sent, getCustomTypeObj should return false
-        $obj = ValueMapper::getCustomTypeObj(Database::TYPE_NUMERIC, null);
-        $this->assertFalse($obj);
-    }
-
     private function createField($code, $typeAnnotationCode = null, $type = null, array $typeObj = [])
     {
         return [[
