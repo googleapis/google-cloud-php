@@ -42,7 +42,7 @@ class SpannerPgTestCase extends SystemTestCase
 
     private static $hasSetUp = false;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         if (self::$hasSetUp) {
             return;

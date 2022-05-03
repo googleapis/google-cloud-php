@@ -29,6 +29,7 @@ use Psr\Cache\CacheItemPoolInterface;
 use Prophecy\Argument;
 use Prophecy\Argument\ArgumentsWildcard;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -36,6 +37,7 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class CacheSessionPoolTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
 
     const CACHE_KEY_TEMPLATE = CacheSessionPool::CACHE_KEY_TEMPLATE;
@@ -83,11 +85,10 @@ class CacheSessionPoolTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testAcquireThrowsExceptionWhenMaxCyclesMet()
     {
+        $this->expectException('\RuntimeException');
+
         $config = [
             'maxSessions' => 1,
             'maxCyclesToWaitForSession' => 1
@@ -110,11 +111,10 @@ class CacheSessionPoolTest extends TestCase
         $pool->acquire();
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testAcquireThrowsExceptionWithNoAvailableSessions()
     {
+        $this->expectException('\RuntimeException');
+
         $config = [
             'maxSessions' => 1,
             'shouldWaitForSession' => false
@@ -843,11 +843,10 @@ class CacheSessionPoolTest extends TestCase
         $this->assertEquals($data, $gotData);
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testMaintainNoDatabase()
     {
+        $this->expectException('\LogicException');
+
         $cache = $this->getCacheItemPool();
         $pool = new CacheSessionPoolStub($cache, [], $this->time);
         $pool->maintain();

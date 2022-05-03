@@ -25,7 +25,7 @@ class ReadRowsTest extends BigtableTestCase
 {
     public static function set_up_before_class()
     {
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
         $insertRows = [
             'rk1' => [
                 'cf1' => [

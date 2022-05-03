@@ -32,7 +32,7 @@ use Prophecy\Argument;
  */
 class ImageAnnotatorClientTest extends SnippetTestCase
 {
-    /** @var  ImageAnnotatorClient */
+    /** @var ImageAnnotatorClient */
     private $client;
     private $transport;
 

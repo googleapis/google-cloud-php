@@ -25,7 +25,7 @@ class ManageIAMPoliciesTest extends PubSubTestCase
 {
     public static function set_up_before_class()
     {
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
         self::skipIfEmulatorUsed('Emulator does not implement IAM functions.');
     }
 

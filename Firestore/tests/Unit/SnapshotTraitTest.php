@@ -26,6 +26,7 @@ use Google\Cloud\Firestore\SnapshotTrait;
 use Google\Cloud\Firestore\ValueMapper;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group firestore
@@ -33,6 +34,8 @@ use Prophecy\Argument;
  */
 class SnapshotTraitTest extends TestCase
 {
+    use ExpectException;
+
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';
@@ -141,11 +144,10 @@ class SnapshotTraitTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testGetSnapshotReadTimeInvalidReadTime()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->impl->call('getSnapshot', [
             $this->connection->reveal(),
             self::NAME,
@@ -153,11 +155,10 @@ class SnapshotTraitTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\NotFoundException
-     */
     public function testGetSnapshotNotFound()
     {
+        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+
         $this->connection->batchGetDocuments([
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'documents' => [self::NAME]

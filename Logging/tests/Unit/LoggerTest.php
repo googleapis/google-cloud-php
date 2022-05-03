@@ -22,12 +22,15 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Logger;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group logging
  */
 class LoggerTest extends TestCase
 {
+    use ExpectException;
+
     private $connection;
     private $formattedName = 'projects/myProjectId/logs/myLog';
     private $logName = 'myLog';
@@ -187,11 +190,10 @@ class LoggerTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testCreateEntryThrowsExceptionWithInvalidData()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $logger = $this->getLogger($this->connection);
         $entry = $logger->entry(123123);
     }

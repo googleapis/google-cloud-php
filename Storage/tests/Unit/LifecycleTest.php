@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Cloud\Storage\Lifecycle;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
@@ -26,6 +27,8 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class LifecycleTest extends TestCase
 {
+    use ExpectException;
+
     private $lifecycle;
     private static $condition = [
         'age' => 50
@@ -136,11 +139,10 @@ class LifecycleTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testClearRulesThrowsExceptionWithInvalidType()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $this->lifecycle
             ->clearRules(123);
     }

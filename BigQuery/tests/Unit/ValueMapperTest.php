@@ -26,37 +26,37 @@ use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Int64;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group bigquery
  */
 class ValueMapperTest extends TestCase
 {
-    /**
-     * @expectedException \InvalidArgumentException
-     */
+    use ExpectException;
+
     public function testThrowsExceptionWithUnhandledClass()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $mapper = new ValueMapper(false);
         $mapper->toParameter(new \stdClass());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testToParameterThrowsExceptionWithUnhandledType()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $f = fopen('php://temp', 'r');
         fclose($f);
         $mapper = new ValueMapper(false);
         $mapper->toParameter($f);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testFromBigQueryThrowsExceptionWithUnhandledType()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $mapper = new ValueMapper(false);
         $mapper->fromBigQuery(['v' => 'hi'], ['type' => 'BLAH']);
     }

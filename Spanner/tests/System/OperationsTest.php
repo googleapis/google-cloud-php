@@ -37,7 +37,7 @@ class OperationsTest extends SpannerTestCase
         self::$name1 = uniqid(self::TESTING_PREFIX);
         self::$name2 = uniqid(self::TESTING_PREFIX);
 
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
 
         self::$database->insert(self::TEST_TABLE_NAME, [
             'id' => self::$id1,

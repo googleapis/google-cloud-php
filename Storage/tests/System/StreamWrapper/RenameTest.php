@@ -29,7 +29,7 @@ class RenameTest extends StreamWrapperTestCase
 
     public static function set_up_before_class()
     {
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
 
         // create file in folder
         self::$bucket->upload('somedata', ['name' => self::TEST_FILE]);

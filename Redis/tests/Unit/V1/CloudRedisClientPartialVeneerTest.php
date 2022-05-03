@@ -21,6 +21,7 @@ use Google\ApiCore\Transport\GrpcTransport;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Redis\V1\CloudRedisClient;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group redis
@@ -28,6 +29,7 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class CloudRedisClientPartialVeneerTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
 
     public function set_up()
@@ -35,11 +37,10 @@ class CloudRedisClientPartialVeneerTest extends TestCase
         $this->checkAndSkipGrpcTests();
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testRestTransportFails()
     {
+        $this->expectException('InvalidArgumentException');
+
         new CloudRedisClient([
             'transport' => 'rest'
         ]);

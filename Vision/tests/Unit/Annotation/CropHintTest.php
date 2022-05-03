@@ -18,7 +18,7 @@
 namespace Google\Cloud\Vision\Tests\Unit\Annotation;
 
 use Google\Cloud\Vision\Annotation\CropHint;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group vision

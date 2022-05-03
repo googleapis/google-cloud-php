@@ -21,12 +21,15 @@ use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\Debugger\Debuggee;
 use Google\Cloud\Debugger\DebuggerClient;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group debugger
  */
 class BasicTest extends TestCase
 {
+    use AssertIsType;
+
     /**
      * @dataProvider transports
      */
@@ -35,7 +38,7 @@ class BasicTest extends TestCase
         $debuggerClient = $this->getClient($transport);
 
         $debuggees = $debuggerClient->debuggees();
-        $this->assertInternalType('array', $debuggees);
+        $this->assertIsArray($debuggees);
         $this->assertContainsOnlyInstancesOf(
             Debuggee::class,
             $debuggees
@@ -65,7 +68,7 @@ class BasicTest extends TestCase
 
         // Fetch the list of breakpoints
         $breakpoints = $debuggee->breakpoints();
-        $this->assertInternalType('array', $breakpoints);
+        $this->assertIsArray($breakpoints);
         $this->assertContainsOnlyInstancesOf(
             Breakpoint::class,
             $breakpoints

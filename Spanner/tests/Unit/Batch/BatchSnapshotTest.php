@@ -33,6 +33,7 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -41,6 +42,7 @@ use Prophecy\Argument;
  */
 class BatchSnapshotTest extends TestCase
 {
+    use ExpectException;
     use OperationRefreshTrait;
     use ResultGeneratorTrait;
     use StubCreationTrait;
@@ -244,12 +246,11 @@ class BatchSnapshotTest extends TestCase
         $this->assertEquals($identifier, (string) $this->snapshot);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     * @expectedExceptionMessage Unsupported partition type.
-     */
     public function testExecutePartitionInvalidType()
     {
+        $this->expectException('BadMethodCallException');
+        $this->expectExceptionMessage('Unsupported partition type.');
+
         $dummy = new DummyPartition;
         $this->snapshot->executePartition($dummy);
     }

@@ -38,7 +38,7 @@ class DirectoryTest extends StreamWrapperTestCase
 
     public static function set_up_before_class()
     {
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
 
         // create file in folder
         foreach (self::$createObjects as $name) {
@@ -52,7 +52,7 @@ class DirectoryTest extends StreamWrapperTestCase
             self::$bucket->object($name)->delete();
         }
 
-        parent::tearDownAfterClass();
+        parent::tear_down_after_class();
     }
 
     public function testMkDir()

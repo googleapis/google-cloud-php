@@ -20,6 +20,8 @@ namespace Google\Cloud\Storage\Tests\System;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\StreamInterface;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
@@ -27,6 +29,9 @@ use Psr\Http\Message\StreamInterface;
  */
 class ManageObjectsTest extends StorageTestCase
 {
+    use AssertIsType;
+    use ExpectException;
+
     const DATA = 'data';
 
     public function testListsObjects()
@@ -152,7 +157,7 @@ class ManageObjectsTest extends StorageTestCase
     {
         $content = self::$object->downloadAsString();
 
-        $this->assertInternalType('string', $content);
+        $this->assertIsString($content);
     }
 
     public function testDownloadsAsStream()
@@ -193,12 +198,11 @@ class ManageObjectsTest extends StorageTestCase
         $this->assertEquals(self::DATA, $actualData);
     }
 
-    /**
-     * @expectedException \Google\Cloud\Core\Exception\ServiceException
-     * @expectedExceptionCode 401
-     */
     public function testThrowsExceptionWhenDownloadsPrivateFileWithUnauthenticatedClient()
     {
+        $this->expectException('\Google\Cloud\Core\Exception\ServiceException');
+        $this->expectExceptionCode(401);
+
         $objectName = uniqid(self::TESTING_PREFIX);
         self::$bucket->upload(self::DATA, [
             'name' => $objectName,

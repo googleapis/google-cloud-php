@@ -29,6 +29,7 @@ use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group pubsub
@@ -36,6 +37,8 @@ use Prophecy\Argument;
  */
 class SubscriptionTest extends TestCase
 {
+    use ExpectException;
+
     const PROJECT = 'project-id';
     const SUBSCRIPTION = 'projects/project-id/subscriptions/subscription-name';
     const TOPIC = 'projects/project-id/topics/topic-name';
@@ -92,11 +95,10 @@ class SubscriptionTest extends TestCase
         $this->assertEquals($sub['topic'], self::TOPIC);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testCreateWithoutTopicName()
     {
+        $this->expectException('InvalidArgumentException');
+
         $subscription = new Subscription(
             $this->connection->reveal(),
             'project-id',
@@ -441,11 +443,10 @@ class SubscriptionTest extends TestCase
         $this->subscription->acknowledgeBatch($messages, ['foo' => 'bar']);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testAcknowledgeBatchInvalidArgument()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->subscription->acknowledgeBatch(['foo']);
     }
 
@@ -491,11 +492,10 @@ class SubscriptionTest extends TestCase
         $this->subscription->modifyAckDeadlineBatch($messages, $seconds, ['foo' => 'bar']);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testModifyAckDeadlineBatchInvalidArgument()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->subscription->modifyAckDeadlineBatch(['foo'], 100);
     }
 

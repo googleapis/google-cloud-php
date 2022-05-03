@@ -19,6 +19,7 @@ namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\Cloud\PubSub\MessageBuilder;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group pubsub
@@ -26,6 +27,8 @@ use PHPUnit\Framework\TestCase;
  */
 class MessageBuilderTest extends TestCase
 {
+    use ExpectException;
+
     public function testSetters()
     {
         $expected = [
@@ -47,11 +50,10 @@ class MessageBuilderTest extends TestCase
         $this->assertEquals($expected, $builder->build()->toArray());
     }
 
-    /**
-     * @expectedException \BadMethodCallException
-     */
     public function testMissingData()
     {
+        $this->expectException('\BadMethodCallException');
+
         (new MessageBuilder)->build();
     }
 }

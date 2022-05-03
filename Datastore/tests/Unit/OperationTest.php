@@ -38,6 +38,7 @@ use Prophecy\Argument;
  */
 class OperationTest extends TestCase
 {
+    use ExpectException;
     use AssertIsType;
     use ExpectException;
 

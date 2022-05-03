@@ -24,12 +24,15 @@ use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group pubsub
  */
 class SnapshotTest extends TestCase
 {
+    use ExpectException;
+
     const PROJECT = 'my-project';
     const SNAPSHOT_ID = 'snapshot';
 
@@ -94,11 +97,10 @@ class SnapshotTest extends TestCase
         $this->snapshot->create();
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testCreateWithoutSubscription()
     {
+        $this->expectException('BadMethodCallException');
+
         $this->snapshot->create();
     }
 

@@ -21,12 +21,17 @@ use Google\Cloud\Debugger\BufferFullException;
 use Google\Cloud\Debugger\VariableTable;
 use Google\Cloud\Core\Int64;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group debugger
  */
 class VariableTableTest extends TestCase
 {
+    use AssertIsType;
+    use AssertionRenames;
+
     public function testRegisterObjectCreatesVariable()
     {
         $variableTable = new VariableTable();
@@ -49,7 +54,10 @@ class VariableTableTest extends TestCase
         $this->assertEquals('int', $variableData['name']);
         $this->assertArrayNotHasKey('varTableIndex', $variableData);
         $this->assertEquals(Int64::class, $variableData['type']);
-        $this->assertRegexp('/Google\\\\Cloud\\\\Core\\\\Int64 \([0-9a-z]+\)/', $variableData['value']);
+        $this->assertMatchesRegularExpression(
+            '/Google\\\\Cloud\\\\Core\\\\Int64 \([0-9a-z]+\)/',
+            $variableData['value']
+        );
         $this->assertArrayNotHasKey('status', $variableData);
     }
 
@@ -179,7 +187,7 @@ class VariableTableTest extends TestCase
         $data = $variable->info();
         $this->assertCount(3, $data['members']);
         foreach ($data['members'] as $member) {
-            $this->assertInternalType('string', $member['name']);
+            $this->assertIsString($member['name']);
         }
     }
 

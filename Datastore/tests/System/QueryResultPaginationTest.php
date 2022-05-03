@@ -32,7 +32,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
 
     public static function set_up_before_class()
     {
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
         static $setUp = false;
         if ($setUp) {
             return;
@@ -69,7 +69,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
 
     public static function tear_down_after_class()
     {
-        self::setUpBeforeClass();
+        self::set_up_before_class();
 
         $client = self::$restClient;
         $q = $client->query()

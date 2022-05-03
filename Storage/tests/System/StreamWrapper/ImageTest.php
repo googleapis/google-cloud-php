@@ -29,7 +29,7 @@ class ImageTest extends StreamWrapperTestCase
 
     public static function set_up_before_class()
     {
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
 
         // must get contents because we can't pass an fopen stream from the https stream wrapper
         // because it's not seekable

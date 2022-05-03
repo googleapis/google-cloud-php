@@ -26,6 +26,7 @@ use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\RequestOptions\Priority;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -34,14 +35,15 @@ use Google\Cloud\Spanner\V1\RequestOptions\Priority;
  */
 class PgQueryTest extends SpannerPgTestCase
 {
+    use ExpectException;
 
     const TABLE_NAME = 'test';
 
     public static $timestampVal;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
 
         self::$database->updateDdl(
             'CREATE TABLE ' . self::TABLE_NAME . ' (
@@ -106,11 +108,10 @@ class PgQueryTest extends SpannerPgTestCase
         $this->assertEquals(1, $row['foo']);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\BadRequestException
-     */
     public function testInvalidQueryFails()
     {
+        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+
         $db = self::$database;
 
         $db->execute('badquery')->rows()->current();

@@ -44,6 +44,7 @@ use Prophecy\Argument;
  */
 class DatastoreClientTest extends TestCase
 {
+    use ExpectException;
     use DatastoreOperationRefreshTrait;
     use GrpcTestTrait;
     use ExpectException;

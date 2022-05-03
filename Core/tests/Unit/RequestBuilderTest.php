@@ -20,12 +20,15 @@ namespace Google\Cloud\Core\Tests\Unit;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
  */
 class RequestBuilderTest extends TestCase
 {
+    use ExpectException;
+
     public function set_up()
     {
         $this->builder = new RequestBuilder(
@@ -136,11 +139,10 @@ class RequestBuilderTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testThrowsExceptionWithNonExistantMethod()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->builder->build('myResource', 'doesntExist');
     }
 }

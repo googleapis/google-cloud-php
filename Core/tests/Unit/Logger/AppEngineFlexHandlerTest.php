@@ -20,6 +20,8 @@ namespace Google\Cloud\Core\Tests\Unit\Logger;
 use Google\Cloud\Core\Logger\AppEngineFlexHandlerFactory;
 use Monolog\Logger;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * @group core
@@ -27,6 +29,9 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class AppEngineFlexHandlerTest extends TestCase
 {
+    use AssertStringContains;
+    use AssertIsType;
+
     private $stream;
     private $log;
 
@@ -52,9 +57,9 @@ class AppEngineFlexHandlerTest extends TestCase
         rewind($this->stream);
         $log_text = stream_get_contents($this->stream);
         $log_array = json_decode($log_text, true);
-        $this->assertContains($msg, $log_array['message']);
-        $this->assertInternalType('int', $log_array['timestamp']['seconds']);
-        $this->assertInternalType('int', $log_array['timestamp']['nanos']);
+        $this->assertStringContainsString($msg, $log_array['message']);
+        $this->assertIsInt($log_array['timestamp']['seconds']);
+        $this->assertIsInt($log_array['timestamp']['nanos']);
         $this->assertEquals('ERROR', $log_array['severity']);
     }
 
@@ -67,9 +72,9 @@ class AppEngineFlexHandlerTest extends TestCase
         rewind($this->stream);
         $log_text = stream_get_contents($this->stream);
         $log_array = json_decode($log_text, true);
-        $this->assertContains($msg, $log_array['message']);
-        $this->assertInternalType('int', $log_array['timestamp']['seconds']);
-        $this->assertInternalType('int', $log_array['timestamp']['nanos']);
+        $this->assertStringContainsString($msg, $log_array['message']);
+        $this->assertIsInt($log_array['timestamp']['seconds']);
+        $this->assertIsInt($log_array['timestamp']['nanos']);
         $this->assertEquals('ERROR', $log_array['severity']);
         $this->assertEquals('foo', $log_array['traceId']);
 

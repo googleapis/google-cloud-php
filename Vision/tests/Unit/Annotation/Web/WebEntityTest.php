@@ -18,7 +18,7 @@
 namespace Google\Cloud\Vision\Tests\Unit\Annotation\Web;
 
 use Google\Cloud\Vision\Annotation\Web\WebEntity;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group vision

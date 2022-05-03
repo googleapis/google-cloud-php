@@ -32,7 +32,7 @@ class GetAllDocumentsTest extends FirestoreTestCase
 
     public static function set_up_before_class()
     {
-        parent::setupBeforeClass();
+        parent::set_up_before_class();
 
         $c = self::$client->collection(uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($c);

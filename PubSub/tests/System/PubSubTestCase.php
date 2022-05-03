@@ -32,7 +32,7 @@ class PubSubTestCase extends SystemTestCase
 
     public function clientProvider()
     {
-        self::setUpBeforeClass();
+        self::set_up_before_class();
 
         $result = [
             'grpc' => [self::$grpcClient],

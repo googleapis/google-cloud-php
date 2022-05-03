@@ -21,6 +21,7 @@ use Google\Cloud\Core\Batch\BatchDaemonTrait;
 use Google\Cloud\Core\Batch\SysvProcessor;
 use Google\Cloud\Core\SysvTrait;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
@@ -28,6 +29,7 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class SysvProcessorTest extends TestCase
 {
+    use ExpectException;
     use BatchDaemonTrait;
     use SysvTrait;
 
@@ -135,10 +137,11 @@ class SysvProcessorTest extends TestCase
      * Test that submit() method does not stall.
      *
      * @depends testQueueOverflowDirect
-     * @expectedException \Google\Cloud\Core\Batch\QueueOverflowException
      */
     public function testQueueOverflowFile()
     {
+        $this->expectException('\Google\Cloud\Core\Batch\QueueOverflowException');
+
         $queueSize = $this->queueSize();
         $item = str_repeat('a', 8160);
         while ($queueSize >= 8192) {

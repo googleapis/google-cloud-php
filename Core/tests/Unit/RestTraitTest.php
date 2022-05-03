@@ -27,12 +27,15 @@ use GuzzleHttp\Psr7\Response;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * @group core
  */
 class RestTraitTest extends TestCase
 {
+    use AssertStringContains;
+
     private $implementation;
     private $requestBuilder;
     private $requestWrapper;
@@ -100,7 +103,7 @@ class RestTraitTest extends TestCase
             $msg = $e->getMessage();
         }
 
-        $this->assertContains('NOTE: Error may be due to Whitelist Restriction.', $msg);
+        $this->assertStringContainsString('NOTE: Error may be due to Whitelist Restriction.', $msg);
     }
 
     public function testSendsRequestNotFoundNotWhitelisted()
@@ -120,7 +123,7 @@ class RestTraitTest extends TestCase
             $msg = $e->getMessage();
         }
 
-        $this->assertNotContains('NOTE: Error may be due to Whitelist Restriction.', $msg);
+        $this->assertStringNotContainsString('NOTE: Error may be due to Whitelist Restriction.', $msg);
     }
 
     /**

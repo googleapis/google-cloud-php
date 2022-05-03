@@ -33,12 +33,14 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
  */
 class TransactionTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
     use OperationRefreshTrait;
     use ResultGeneratorTrait;
@@ -100,11 +102,10 @@ class TransactionTest extends TestCase
         $this->singleUseTransaction = TestHelpers::stub(Transaction::class, $args, $props);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testSingleUseTagError()
     {
+        $this->expectException('InvalidArgumentException');
+
         new Transaction(
             $this->operation,
             $this->session,
@@ -395,11 +396,10 @@ class TransactionTest extends TestCase
         $this->assertEquals($statements[2], $res->error()['statement']);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testExecuteUpdateBatchInvalidStatement()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->transaction->executeUpdateBatch([
             ['foo' => 'bar']
         ]);
@@ -427,11 +427,10 @@ class TransactionTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testExecuteUpdateNonDml()
     {
+        $this->expectException('InvalidArgumentException');
+
         $sql = 'UPDATE foo SET bar = @bar';
         $this->connection->executeStreamingSql(Argument::allOf(
             Argument::withEntry('sql', $sql),
@@ -527,11 +526,10 @@ class TransactionTest extends TestCase
         $this->assertEquals(['mutationCount' => 1], $this->transaction->getCommitStats());
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testCommitInvalidState()
     {
+        $this->expectException('BadMethodCallException');
+
         $this->transaction->___setProperty('state', 'foo');
         $this->transaction->commit();
     }
@@ -546,11 +544,10 @@ class TransactionTest extends TestCase
         $this->transaction->rollback();
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testRollbackInvalidState()
     {
+        $this->expectException('BadMethodCallException');
+
         $this->transaction->___setProperty('state', 'foo');
         $this->transaction->rollback();
     }
@@ -568,11 +565,10 @@ class TransactionTest extends TestCase
         $this->assertEquals(Transaction::STATE_COMMITTED, $this->transaction->state());
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testInvalidReadContext()
     {
+        $this->expectException('BadMethodCallException');
+
         $this->singleUseTransaction->execute('foo');
     }
 

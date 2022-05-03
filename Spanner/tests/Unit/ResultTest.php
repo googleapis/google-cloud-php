@@ -25,6 +25,7 @@ use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -32,6 +33,7 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class ResultTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
     use ResultTestTrait;
 
@@ -68,11 +70,10 @@ class ResultTest extends TestCase
         $this->assertEquals($fixture['result']['value'], $result);
     }
 
-    /**
-     * @expectedException \Exception
-     */
     public function testFailsWhenStreamThrowsUnrecoverableException()
     {
+        $this->expectException('\Exception');
+
         $result = $this->getResultClass(
             null,
             'r',
@@ -158,11 +159,10 @@ class ResultTest extends TestCase
         $this->assertEquals(2, $timesCalled);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\ServiceException
-     */
     public function testThrowsExceptionWhenCannotRetry()
     {
+        $this->expectException('Google\Cloud\Core\Exception\ServiceException');
+
         $chunks = [
             [
                 'metadata' => $this->metadata,

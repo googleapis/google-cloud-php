@@ -19,6 +19,7 @@ namespace Google\Cloud\Bigtable\Tests\Unit;
 
 use Google\Cloud\Bigtable\DataUtil;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group bigtable
@@ -26,6 +27,8 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class DataUtilTest extends TestCase
 {
+    use ExpectException;
+
     public function set_up()
     {
         if (!DataUtil::isSupported()) {
@@ -33,12 +36,11 @@ class DataUtilTest extends TestCase
         }
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Expected argument to be of type int, instead got
-     */
     public function testIntToByteStringThrowsExceptionWithoutInteger()
     {
+        $this->expectException('\InvalidArgumentException');
+        $this->expectExceptionMessage('Expected argument to be of type int, instead got');
+
         DataUtil::intToByteString('abc');
     }
 

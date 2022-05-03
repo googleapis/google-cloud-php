@@ -36,7 +36,7 @@ class CloudSchedulerSmokeTest extends TestCase
 
     public function clientProvider()
     {
-        self::setUpBeforeClass();
+        self::set_up_before_class();
 
         return [
             [self::$grpcClient],

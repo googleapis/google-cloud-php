@@ -20,12 +20,15 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
  */
 class KeySetTest extends TestCase
 {
+    use ExpectException;
+
     public function testAddRange()
     {
         $set = new KeySet;
@@ -118,19 +121,17 @@ class KeySetTest extends TestCase
         $this->assertTrue($set->matchAll());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testInvalidKeys()
     {
+        $this->expectException('InvalidArgumentException');
+
         new KeySet(['keys' => 'foo']);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testInvalidAll()
     {
+        $this->expectException('InvalidArgumentException');
+
         new KeySet(['all' => 1]);
     }
 

@@ -80,7 +80,7 @@ class DatastoreTestCase extends TestCase
 
     public function clientProvider()
     {
-        self::setupBeforeClass();
+        self::set_up_before_class();
 
         return [
             'restClient' => [self::$restClient],

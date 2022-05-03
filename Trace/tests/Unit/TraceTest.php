@@ -21,12 +21,15 @@ use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Trace;
 use Google\Cloud\Trace\Span;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 
 /**
  * @group trace
  */
 class TraceTest extends TestCase
 {
+    use AssertionRenames;
+
     /** @var ConnectionInterface|ObjectProphecy */
     public $connection;
 
@@ -59,7 +62,7 @@ class TraceTest extends TestCase
     public function testGeneratesDefaultTraceId()
     {
         $trace = new Trace('myproject');
-        $this->assertRegExp('/^[0-9a-f]{32}$/', $trace->traceId());
+        $this->assertMatchesRegularExpression('/^[0-9a-f]{32}$/', $trace->traceId());
     }
 
     public function testBuildsSpan()

@@ -47,6 +47,7 @@ use Prophecy\Argument;
  */
 class GrpcTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
     use GrpcTrait;
     use ExpectException;
@@ -513,6 +514,7 @@ class GrpcTest extends TestCase
     public function testInvalidFilter($filter)
     {
         $this->expectException('InvalidArgumentException');
+
         return $this->testQueryPropertyFilters($filter);
     }
 

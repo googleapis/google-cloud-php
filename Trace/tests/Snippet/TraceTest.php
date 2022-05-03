@@ -21,12 +21,15 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Trace\Span;
 use Google\Cloud\Trace\Trace;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group trace
  */
 class TraceTest extends SnippetTestCase
 {
+    use AssertIsType;
+
     private $trace;
 
     public function set_up()
@@ -55,7 +58,7 @@ class TraceTest extends SnippetTestCase
         $this->trace->setSpans([$this->trace->span(['name' => 'foo'])]);
         $snippet->addLocal('trace', $this->trace);
         $res = $snippet->invoke('spans');
-        $this->assertInternalType('array', $res->returnVal());
+        $this->assertIsArray($res->returnVal());
     }
 
     public function testSpan()

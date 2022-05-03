@@ -32,6 +32,7 @@ use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Backup;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -39,6 +40,7 @@ use Prophecy\Argument;
  */
 class InstanceTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
     use StubCreationTrait;
 
@@ -293,11 +295,10 @@ class InstanceTest extends TestCase
         $this->instance->update(['processingUnits' => 500]);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testUpdateRaisesInvalidArgument()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $this->instance->update(['processingUnits' => 5000, 'nodeCount' => 5]);
     }
 

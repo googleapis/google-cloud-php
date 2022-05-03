@@ -146,7 +146,7 @@ class ConformanceTest extends TestCase
 
     public function signedUrlConformanceCases()
     {
-        self::setUpBeforeClass();
+        self::set_up_before_class();
 
         // rekey with description for more useful error reporting.
         $out = [];
@@ -168,7 +168,7 @@ class ConformanceTest extends TestCase
 
     public function postPolicyConformanceCases()
     {
-        self::setUpBeforeClass();
+        self::set_up_before_class();
 
         // rekey with description for more useful error reporting.
         $out = [];

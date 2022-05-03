@@ -25,12 +25,15 @@ use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageObject;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group speech
  */
 class SpeechClientTest extends TestCase
 {
+    use ExpectException;
+
     const GCS_URI = 'gs://bucket/object';
 
     private $client;
@@ -44,11 +47,10 @@ class SpeechClientTest extends TestCase
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testThrowsExceptionWithoutLanguageCode()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $client = TestHelpers::stub(SpeechClient::class);
         $client->recognize(self::GCS_URI);
     }

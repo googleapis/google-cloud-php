@@ -20,6 +20,7 @@ namespace Google\Cloud\Core\Tests\System\Batch;
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\Retry;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * @group core
@@ -31,6 +32,8 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class BatchRunnerTest extends TestCase
 {
+    use AssertStringContains;
+
     private $runner;
 
     private static $daemon;
@@ -124,7 +127,7 @@ class BatchRunnerTest extends TestCase
 
     public function assertResultContains($expected)
     {
-        $this->assertContains($expected, $this->getResult());
+        $this->assertStringContainsString($expected, $this->getResult());
     }
 
     public function testSubmit()

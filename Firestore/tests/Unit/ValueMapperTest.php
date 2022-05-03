@@ -29,6 +29,7 @@ use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Protobuf\NullValue;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group firestore
@@ -36,6 +37,7 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class ValueMapperTest extends TestCase
 {
+    use ExpectException;
     use TimeTrait;
 
     private $connection;
@@ -178,11 +180,10 @@ class ValueMapperTest extends TestCase
         $this->assertEquals(15, $res['val']->get());
     }
 
-    /**
-     * @expectedException RuntimeException
-     */
     public function testDecodeValuesInvalidValue()
     {
+        $this->expectException('RuntimeException');
+
         $val = ['fooValue' => 15];
         $res = $this->mapper->decodeValues(['val' => $val]);
     }
@@ -355,19 +356,17 @@ class ValueMapperTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException RuntimeException
-     */
     public function testEncodeValuesInvalidObject()
     {
+        $this->expectException('RuntimeException');
+
         $this->mapper->encodeValues(['val' => $this]);
     }
 
-    /**
-     * @expectedException RuntimeException
-     */
     public function testEncodeValuesInvalidArray()
     {
+        $this->expectException('RuntimeException');
+
         $this->mapper->encodeValues(['val' => [
             ['a']
         ]]);
@@ -393,11 +392,10 @@ class ValueMapperTest extends TestCase
         $this->assertEquals($values, $decoded['key']);
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testEncodeInvalidMultiValue()
     {
+        $this->expectException('\RuntimeException');
+
         $this->mapper->encodeMultiValue([[['foo']]]);
     }
 }

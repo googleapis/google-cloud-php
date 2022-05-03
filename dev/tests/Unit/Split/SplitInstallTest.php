@@ -21,6 +21,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Dev\Split\RunShell;
 use Google\Cloud\Dev\Split\SplitInstall;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group dev
@@ -28,6 +29,8 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class SplitInstallTest extends TestCase
 {
+    use ExpectException;
+
     const ROOT_PATH = '/foo/www';
     const INSTALL_PATH = '/foo/bar/bin';
 
@@ -69,12 +72,11 @@ class SplitInstallTest extends TestCase
         ], $res);
     }
 
-    /**
-     * @expectedException RuntimeException
-     * @expectedExceptionMessage Splitsh compile failed with output: Uh oh
-     */
     public function testInstallFromSourceFails()
     {
+        $this->expectException('RuntimeException');
+        $this->expectExceptionMessage('Splitsh compile failed with output: Uh oh');
+
         $cmd = self::ROOT_PATH . '/' . SplitInstall::COMPILE_SCRIPT . ' ' . self::INSTALL_PATH;
         $this->shell->execute($cmd)->shouldBeCalled()->willReturn([false, ['Uh oh']]);
 

@@ -27,12 +27,15 @@ use Google\Cloud\Logging\PsrLogger;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * @group logging
  */
 class PsrLoggerBatchTest extends TestCase
 {
+    use AssertStringContains;
+
     const LOG_NAME = 'my-log';
 
     private $runner;
@@ -80,7 +83,7 @@ class PsrLoggerBatchTest extends TestCase
         if ($expectedOutput === false) {
             $this->assertEmpty($output);
         } else {
-            $this->assertContains($expectedOutput, $output);
+            $this->assertStringContainsString($expectedOutput, $output);
         }
     }
 

@@ -19,6 +19,8 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * @group spanner
@@ -26,6 +28,9 @@ use Google\Cloud\Spanner\KeySet;
  */
 class ReadTest extends SpannerTestCase
 {
+    use AssertStringContains;
+    use ExpectException;
+
     private static $readTableName;
     private static $rangeTableName;
     private static $indexes = [];
@@ -33,7 +38,7 @@ class ReadTest extends SpannerTestCase
 
     public static function set_up_before_class()
     {
-        parent::setupBeforeClass();
+        parent::set_up_before_class();
 
         self::$readTableName = uniqid(self::TESTING_PREFIX);
         self::$rangeTableName = uniqid(self::TESTING_PREFIX);
@@ -81,8 +86,8 @@ class ReadTest extends SpannerTestCase
 
         $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
-        $this->assertNotContains(self::$dataset[0], $rows);
-        $this->assertNotContains(self::$dataset[10], $rows);
+        $this->assertStringNotContainsString(self::$dataset[0], $rows);
+        $this->assertStringNotContainsString(self::$dataset[10], $rows);
     }
 
     /**
@@ -103,8 +108,8 @@ class ReadTest extends SpannerTestCase
 
         $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
-        $this->assertContains(self::$dataset[0], $rows);
-        $this->assertContains(self::$dataset[10], $rows);
+        $this->assertStringContainsString(self::$dataset[0], $rows);
+        $this->assertStringContainsString(self::$dataset[10], $rows);
     }
 
     /**
@@ -124,8 +129,8 @@ class ReadTest extends SpannerTestCase
 
         $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
-        $this->assertNotContains(self::$dataset[0], $rows);
-        $this->assertContains(self::$dataset[10], $rows);
+        $this->assertStringNotContainsString(self::$dataset[0], $rows);
+        $this->assertStringContainsString(self::$dataset[10], $rows);
     }
 
     /**
@@ -145,8 +150,8 @@ class ReadTest extends SpannerTestCase
 
         $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
-        $this->assertContains(self::$dataset[0], $rows);
-        $this->assertNotContains(self::$dataset[10], $rows);
+        $this->assertStringContainsString(self::$dataset[0], $rows);
+        $this->assertStringNotContainsString(self::$dataset[10], $rows);
     }
 
     /**
@@ -165,8 +170,8 @@ class ReadTest extends SpannerTestCase
 
         $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
-        $this->assertNotContains(self::$dataset[0], $rows);
-        $this->assertNotContains(self::$dataset[10], $rows);
+        $this->assertStringNotContainsString(self::$dataset[0], $rows);
+        $this->assertStringNotContainsString(self::$dataset[10], $rows);
     }
 
     /**
@@ -187,8 +192,8 @@ class ReadTest extends SpannerTestCase
 
         $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
-        $this->assertContains(self::$dataset[0], $rows);
-        $this->assertContains(self::$dataset[10], $rows);
+        $this->assertStringContainsString(self::$dataset[0], $rows);
+        $this->assertStringContainsString(self::$dataset[10], $rows);
     }
 
     /**
@@ -209,8 +214,8 @@ class ReadTest extends SpannerTestCase
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertNotContains(self::$dataset[0], $rows);
-        $this->assertNotContains(self::$dataset[10], $rows);
+        $this->assertStringNotContainsString(self::$dataset[0], $rows);
+        $this->assertStringNotContainsString(self::$dataset[10], $rows);
     }
 
     /**
@@ -233,8 +238,8 @@ class ReadTest extends SpannerTestCase
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertContains(self::$dataset[0], $rows);
-        $this->assertContains(self::$dataset[10], $rows);
+        $this->assertStringContainsString(self::$dataset[0], $rows);
+        $this->assertStringContainsString(self::$dataset[10], $rows);
     }
 
     /**
@@ -256,8 +261,8 @@ class ReadTest extends SpannerTestCase
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertNotContains(self::$dataset[0], $rows);
-        $this->assertContains(self::$dataset[10], $rows);
+        $this->assertStringNotContainsString(self::$dataset[0], $rows);
+        $this->assertStringContainsString(self::$dataset[10], $rows);
     }
 
     /**
@@ -279,8 +284,8 @@ class ReadTest extends SpannerTestCase
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertContains(self::$dataset[0], $rows);
-        $this->assertNotContains(self::$dataset[10], $rows);
+        $this->assertStringContainsString(self::$dataset[0], $rows);
+        $this->assertStringNotContainsString(self::$dataset[10], $rows);
     }
 
     /**
@@ -301,8 +306,8 @@ class ReadTest extends SpannerTestCase
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertNotContains(self::$dataset[0], $rows);
-        $this->assertNotContains(self::$dataset[10], $rows);
+        $this->assertStringNotContainsString(self::$dataset[0], $rows);
+        $this->assertStringNotContainsString(self::$dataset[10], $rows);
     }
 
     /**
@@ -325,8 +330,8 @@ class ReadTest extends SpannerTestCase
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertContains(self::$dataset[0], $rows);
-        $this->assertContains(self::$dataset[10], $rows);
+        $this->assertStringContainsString(self::$dataset[0], $rows);
+        $this->assertStringContainsString(self::$dataset[10], $rows);
     }
 
     /**
@@ -395,8 +400,8 @@ class ReadTest extends SpannerTestCase
         $res = $db->read(self::$readTableName, $keyset, array_keys($dataset[0]));
         $rows = $res->rows();
         foreach ($rows as $index => $row) {
-            $this->assertContains($row, $dataset);
-            $this->assertContains($row, $points);
+            $this->assertStringContainsString($row, $dataset);
+            $this->assertStringContainsString($row, $points);
         }
     }
 
@@ -425,17 +430,18 @@ class ReadTest extends SpannerTestCase
         ]);
         $rows = $res->rows();
         foreach ($rows as $index => $row) {
-            $this->assertContains($row, $dataset);
-            $this->assertContains($row, $points);
+            $this->assertStringContainsString($row, $dataset);
+            $this->assertStringContainsString($row, $points);
         }
     }
 
     /**
      * covers 14
-     * @expectedException Google\Cloud\Core\Exception\NotFoundException
      */
     public function testReadInvalidDatabase()
     {
+        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+
         $db = self::$client->connect('google-cloud-php-system-tests', uniqid(self::TESTING_PREFIX));
         $keyset = new KeySet(['all' => true]);
 
@@ -444,10 +450,11 @@ class ReadTest extends SpannerTestCase
 
     /**
      * covers 15
-     * @expectedException Google\Cloud\Core\Exception\NotFoundException
      */
     public function testReadInvalidTable()
     {
+        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+
         $db = self::$database;
         $keyset = new KeySet(['all' => true]);
 
@@ -456,10 +463,11 @@ class ReadTest extends SpannerTestCase
 
     /**
      * covers 16
-     * @expectedException Google\Cloud\Core\Exception\NotFoundException
      */
     public function testReadInvalidColumn()
     {
+        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+
         $db = self::$database;
         $keyset = new KeySet(['all' => true]);
 
@@ -468,10 +476,11 @@ class ReadTest extends SpannerTestCase
 
     /**
      * covers 18
-     * @expectedException Google\Cloud\Core\Exception\DeadlineExceededException
      */
     public function testReadFailsOnDeadlineExceeded()
     {
+        $this->expectException('Google\Cloud\Core\Exception\DeadlineExceededException');
+
         $this->skipEmulatorTests();
         $db = self::$database;
         $keyset = new KeySet(['all' => true]);

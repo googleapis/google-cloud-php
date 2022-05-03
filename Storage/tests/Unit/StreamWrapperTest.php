@@ -26,6 +26,8 @@ use Google\Cloud\Storage\StreamWrapper;
 use GuzzleHttp\Psr7\BufferStream;
 use Prophecy\Argument;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
 
 /**
  * @group storage
@@ -33,6 +35,9 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class StreamWrapperTest extends TestCase
 {
+    use ExpectException;
+    use ExpectPHPException;
+
     private $originalDefaultContext;
 
     private $connection;
@@ -201,10 +206,11 @@ class StreamWrapperTest extends TestCase
 
     /**
      * @group storageInfo
-     * @expectedException PHPUnit_Framework_Error_Warning
      */
     public function testStatOnNonExistentFile()
     {
+        $this->expectError();
+
         $object = $this->prophesize(StorageObject::class);
         $object->info()->willThrow(NotFoundException::class);
         $this->bucket->object('non-existent/file.txt')

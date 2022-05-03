@@ -18,7 +18,7 @@
 namespace Google\Cloud\Vision\Tests\System;
 
 use Google\Cloud\Vision\VisionClient;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group vision

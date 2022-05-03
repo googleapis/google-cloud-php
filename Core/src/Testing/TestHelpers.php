@@ -61,7 +61,7 @@ class TestHelpers
         }
 
         $reflection = new \ReflectionClass($name);
-        return $reflection->newInstanceArgs($args);
+        return $reflection->newInstanceArgs(array_values($args));
     }
 
     /**

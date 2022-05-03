@@ -88,7 +88,7 @@ class AutoMlSmokeTest extends SystemTestCase
 
     public function clientsProvider()
     {
-        self::setUpBeforeClass();
+        self::set_up_before_class();
         return self::$clients;
     }
 }

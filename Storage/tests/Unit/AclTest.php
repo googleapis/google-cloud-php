@@ -21,12 +21,15 @@ use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Prophecy\Argument;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
  */
 class AclTest extends TestCase
 {
+    use ExpectException;
+
     public $connection;
 
     public function set_up()
@@ -34,11 +37,10 @@ class AclTest extends TestCase
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testThrowsExceptionWithInvalidType()
     {
+        $this->expectException('InvalidArgumentException');
+
         $acl = new Acl($this->connection->reveal(), 'nope', ['bucket' => 'bucket']);
     }
 

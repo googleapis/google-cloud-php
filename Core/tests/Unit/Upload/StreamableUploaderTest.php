@@ -26,6 +26,7 @@ use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
@@ -33,6 +34,8 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class StreamableUploaderTest extends TestCase
 {
+    use ExpectException;
+
     private $requestWrapper;
     private $stream;
     private $successBody;
@@ -120,11 +123,10 @@ class StreamableUploaderTest extends TestCase
         $this->assertEquals($resumeUri, $uploader->getResumeUri());
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
-     */
     public function testThrowsExceptionWithFailedUpload()
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $resumeUriResponse = new Response(200, ['Location' => 'theResumeUri']);
 
         $this->requestWrapper->send(
@@ -172,11 +174,10 @@ class StreamableUploaderTest extends TestCase
         $uploader->upload();
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
-     */
     public function testThrowsExceptionWhenAttemptsAsyncUpload()
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $stream = $this->prophesize(StreamInterface::class);
         $uploader = new StreamableUploader(
             $this->requestWrapper->reveal(),

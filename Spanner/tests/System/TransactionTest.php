@@ -35,7 +35,7 @@ class TransactionTest extends SpannerTestCase
 
     public static function set_up_before_class()
     {
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
 
         self::$tableName = uniqid(self::TABLE_NAME);
 

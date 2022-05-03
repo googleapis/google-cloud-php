@@ -24,6 +24,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\TransactionConfigurationTrait;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -31,6 +32,7 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class TransactionConfigurationTraitTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
     use TimeTrait;
 
@@ -141,47 +143,42 @@ class TransactionConfigurationTraitTest extends TestCase
         $this->assertEquals($this->dur, $res['readOnly']['exactStaleness']);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testTransactionSelectorInvalidContext()
     {
+        $this->expectException('BadMethodCallException');
+
         $args = ['transactionType' => 'foo'];
         $this->impl->proxyTransactionSelector($args);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testConfigureSnapshotOptionsInvalidExactStaleness()
     {
+        $this->expectException('BadMethodCallException');
+
         $args = ['exactStaleness' => 'foo'];
         $this->impl->proxyConfigureSnapshotOptions($args);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testConfigureSnapshotOptionsInvalidMaxStaleness()
     {
+        $this->expectException('BadMethodCallException');
+
         $args = ['maxStaleness' => 'foo'];
         $this->impl->proxyConfigureSnapshotOptions($args);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testConfigureSnapshotOptionsInvalidMinReadTimestamp()
     {
+        $this->expectException('BadMethodCallException');
+
         $args = ['minReadTimestamp' => 'foo'];
         $this->impl->proxyConfigureSnapshotOptions($args);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testConfigureSnapshotOptionsInvalidReadTimestamp()
     {
+        $this->expectException('BadMethodCallException');
+
         $args = ['readTimestamp' => 'foo'];
         $this->impl->proxyConfigureSnapshotOptions($args);
     }

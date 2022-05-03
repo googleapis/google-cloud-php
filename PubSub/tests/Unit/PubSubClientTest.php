@@ -36,12 +36,14 @@ use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use Google\Cloud\PubSub\V1\SubscriberClient;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group pubsub
  */
 class PubSubClientTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
 
     const PROJECT = 'project';
@@ -500,11 +502,10 @@ class PubSubClientTest extends TestCase
         $this->assertEquals(['foo' => 'bar'], $res);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\BadRequestException
-     */
     public function testValidateSchemaThrowsException()
     {
+        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+
         $this->connection->validateSchema(Argument::any())
             ->shouldBeCalled()
             ->willThrow(new BadRequestException('foo'));
@@ -565,11 +566,10 @@ class PubSubClientTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testValidateMessageInvalidSchema()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $this->client->validateMessage(1, 'foo', 'bar');
     }
 

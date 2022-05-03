@@ -166,7 +166,7 @@ class GqlQueryTest extends SnippetTestCase
 
     private function provideSnippets($name)
     {
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
 
         return [
             [$this->snippetFromMethod(DatastoreClient::class, 'gqlQuery', $name)],

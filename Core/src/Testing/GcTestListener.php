@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Copyright 2019 Google LLC
@@ -14,15 +15,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-use PHPUnit\Framework\TestListener;
-use PHPUnit\Framework\TestListenerDefaultImplementation;
-use PHPUnit\Framework\TestSuite;
 
+use PHPUnit\Framework\TestListener;
+use Yoast\PHPUnitPolyfills\TestListeners\TestListenerDefaultImplementation;
+
+/**
+ * Garbage collector for tests
+ */
 class GcTestListener implements TestListener
 {
     use TestListenerDefaultImplementation;
 
-    public function endTestSuite(TestSuite $suite): void
+    public function end_test_suite($suite)
     {
         gc_collect_cycles();
     }

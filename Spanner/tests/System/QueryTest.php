@@ -28,6 +28,7 @@ use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\RequestOptions\Priority;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -35,6 +36,8 @@ use Google\Cloud\Spanner\V1\RequestOptions\Priority;
  */
 class QueryTest extends SpannerTestCase
 {
+    use ExpectException;
+
     /**
      * covers 19
      */
@@ -64,10 +67,11 @@ class QueryTest extends SpannerTestCase
 
     /**
      * covers 20
-     * @expectedException Google\Cloud\Core\Exception\BadRequestException
      */
     public function testInvalidQueryFails()
     {
+        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+
         $db = self::$database;
 
         $db->execute('badquery')->rows()->current();

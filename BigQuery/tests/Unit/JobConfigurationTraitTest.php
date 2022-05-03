@@ -20,6 +20,7 @@ namespace Google\Cloud\BigQuery\Tests\Unit;
 use Google\Cloud\BigQuery\JobConfigurationTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -27,6 +28,8 @@ use Ramsey\Uuid\Uuid;
  */
 class JobConfigurationTraitTest extends TestCase
 {
+    use AssertIsType;
+
     const PROJECT_ID = 'project-id';
     const JOB_ID = '1234';
     const LOCATION = 'asia-northeast1';
@@ -82,7 +85,7 @@ class JobConfigurationTraitTest extends TestCase
         ]);
         $jobId = $this->trait->call('toArray')['jobReference']['jobId'];
 
-        $this->assertInternalType('string', $jobId);
+        $this->assertIsString($jobId);
         $this->assertTrue(Uuid::isValid($jobId));
     }
 
@@ -137,7 +140,7 @@ class JobConfigurationTraitTest extends TestCase
     public function testGenerateJobId()
     {
         $uuid = $this->trait->call('generateJobId');
-        $this->assertInternalType('string', $uuid);
+        $this->assertIsString($uuid);
         $this->assertTrue(Uuid::isValid($uuid));
     }
 }

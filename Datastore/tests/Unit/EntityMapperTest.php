@@ -35,6 +35,7 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class EntityMapperTest extends TestCase
 {
+    use ExpectException;
     use AssertIsType;
     use ExpectException;
 

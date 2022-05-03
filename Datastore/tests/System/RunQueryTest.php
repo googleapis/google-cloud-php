@@ -52,7 +52,7 @@ class RunQueryTest extends DatastoreTestCase
 
     public static function set_up_before_class()
     {
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
         self::$ancestor = self::$restClient->key(self::$kind, 'Grandpa Frank');
         $key1 = self::$restClient->key(self::$kind, 'Frank');
         $key1->ancestorKey(self::$ancestor);
