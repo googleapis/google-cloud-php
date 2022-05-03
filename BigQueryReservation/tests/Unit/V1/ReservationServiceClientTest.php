@@ -156,9 +156,11 @@ class ReservationServiceClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $slotCount = 191518834;
+        $multiRegionAuxiliary = false;
         $expectedResponse = new CapacityCommitment();
         $expectedResponse->setName($name);
         $expectedResponse->setSlotCount($slotCount);
+        $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
@@ -223,10 +225,14 @@ class ReservationServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $slotCapacity = 1516717605;
         $ignoreIdleSlots = false;
+        $concurrency = 1476186003;
+        $multiRegionAuxiliary = false;
         $expectedResponse = new Reservation();
         $expectedResponse->setName($name);
         $expectedResponse->setSlotCapacity($slotCapacity);
         $expectedResponse->setIgnoreIdleSlots($ignoreIdleSlots);
+        $expectedResponse->setConcurrency($concurrency);
+        $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
@@ -539,9 +545,11 @@ class ReservationServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $slotCount = 191518834;
+        $multiRegionAuxiliary = false;
         $expectedResponse = new CapacityCommitment();
         $expectedResponse->setName($name2);
         $expectedResponse->setSlotCount($slotCount);
+        $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
@@ -606,10 +614,14 @@ class ReservationServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $slotCapacity = 1516717605;
         $ignoreIdleSlots = false;
+        $concurrency = 1476186003;
+        $multiRegionAuxiliary = false;
         $expectedResponse = new Reservation();
         $expectedResponse->setName($name2);
         $expectedResponse->setSlotCapacity($slotCapacity);
         $expectedResponse->setIgnoreIdleSlots($ignoreIdleSlots);
+        $expectedResponse->setConcurrency($concurrency);
+        $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
@@ -889,9 +901,11 @@ class ReservationServiceClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $slotCount = 191518834;
+        $multiRegionAuxiliary = false;
         $expectedResponse = new CapacityCommitment();
         $expectedResponse->setName($name);
         $expectedResponse->setSlotCount($slotCount);
+        $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
         $transport->addResponse($expectedResponse);
         $response = $client->mergeCapacityCommitments();
         $this->assertEquals($expectedResponse, $response);
@@ -1211,6 +1225,66 @@ class ReservationServiceClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function updateAssignmentTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $assignee = 'assignee-369881649';
+        $expectedResponse = new Assignment();
+        $expectedResponse->setName($name);
+        $expectedResponse->setAssignee($assignee);
+        $transport->addResponse($expectedResponse);
+        $response = $client->updateAssignment();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.bigquery.reservation.v1.ReservationService/UpdateAssignment', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateAssignmentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $client->updateAssignment();
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function updateBiReservationTest()
     {
         $transport = $this->createTransport();
@@ -1281,9 +1355,11 @@ class ReservationServiceClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $slotCount = 191518834;
+        $multiRegionAuxiliary = false;
         $expectedResponse = new CapacityCommitment();
         $expectedResponse->setName($name);
         $expectedResponse->setSlotCount($slotCount);
+        $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
         $transport->addResponse($expectedResponse);
         $response = $client->updateCapacityCommitment();
         $this->assertEquals($expectedResponse, $response);
@@ -1342,10 +1418,14 @@ class ReservationServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $slotCapacity = 1516717605;
         $ignoreIdleSlots = false;
+        $concurrency = 1476186003;
+        $multiRegionAuxiliary = false;
         $expectedResponse = new Reservation();
         $expectedResponse->setName($name);
         $expectedResponse->setSlotCapacity($slotCapacity);
         $expectedResponse->setIgnoreIdleSlots($ignoreIdleSlots);
+        $expectedResponse->setConcurrency($concurrency);
+        $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
         $transport->addResponse($expectedResponse);
         $response = $client->updateReservation();
         $this->assertEquals($expectedResponse, $response);

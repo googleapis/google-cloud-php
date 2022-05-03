@@ -33,7 +33,7 @@ class CreateAssignmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * The optional assignment ID. Assignment name will be generated automatically
      * if this field is empty.
-     * This field must only contain lower case alphanumeric characters or dash.
+     * This field must only contain lower case alphanumeric characters or dashes.
      * Max length is 64 characters.
      *
      * Generated from protobuf field <code>string assignment_id = 4;</code>
@@ -54,7 +54,7 @@ class CreateAssignmentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $assignment_id
      *           The optional assignment ID. Assignment name will be generated automatically
      *           if this field is empty.
-     *           This field must only contain lower case alphanumeric characters or dash.
+     *           This field must only contain lower case alphanumeric characters or dashes.
      *           Max length is 64 characters.
      * }
      */
@@ -130,7 +130,7 @@ class CreateAssignmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * The optional assignment ID. Assignment name will be generated automatically
      * if this field is empty.
-     * This field must only contain lower case alphanumeric characters or dash.
+     * This field must only contain lower case alphanumeric characters or dashes.
      * Max length is 64 characters.
      *
      * Generated from protobuf field <code>string assignment_id = 4;</code>
@@ -144,7 +144,7 @@ class CreateAssignmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * The optional assignment ID. Assignment name will be generated automatically
      * if this field is empty.
-     * This field must only contain lower case alphanumeric characters or dash.
+     * This field must only contain lower case alphanumeric characters or dashes.
      * Max length is 64 characters.
      *
      * Generated from protobuf field <code>string assignment_id = 4;</code>
