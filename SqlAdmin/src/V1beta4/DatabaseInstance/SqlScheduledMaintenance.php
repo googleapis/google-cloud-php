@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Any scheduled maintenancce for this instance.
+ * Any scheduled maintenance for this instance.
  *
  * Generated from protobuf message <code>google.cloud.sql.v1beta4.DatabaseInstance.SqlScheduledMaintenance</code>
  */
