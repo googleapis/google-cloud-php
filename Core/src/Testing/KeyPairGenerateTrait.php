@@ -18,7 +18,8 @@
 namespace Google\Cloud\Core\Testing;
 
 use Google\Cloud\Storage\EncryptionTrait;
-use phpseclib3\Crypt\RSA;
+use phpseclib\Crypt\RSA as RSA2;
+use phpseclib3\Crypt\RSA as RSA3;
 
 /**
  * Trait KeyPairGenerateTrait implements key pair generation functions used for testing
@@ -32,11 +33,21 @@ trait KeyPairGenerateTrait
 
     private function getKeyPair()
     {
-        $key = RSA::createKey();
-        $key = $key->withPadding(RSA::SIGNATURE_PKCS1)
-            ->withHash('sha256');
+        if (class_exists(RSA3::class)) {
+            $key = (RSA3::createKey())
+                ->withPadding(RSA3::SIGNATURE_PKCS1)
+                ->withHash('sha256');
 
-        return [$key->toString('PKCS1'), $key->getPublicKey()];
+            return [$key->toString('PKCS1'), $key->getPublicKey()];
+        }
+
+        $rsa = new RSA2;
+        $rsa->setSignatureMode(RSA2::SIGNATURE_PKCS1);
+        $rsa->setHash('sha256');
+
+        $key = $rsa->createKey();
+        usleep(500);
+        return [$key['privatekey'], $key['publickey']];
     }
 
     private function verifySignature($privateKey, $input, $signature)
