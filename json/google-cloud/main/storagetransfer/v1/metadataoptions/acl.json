@@ -1,0 +1,1 @@
+{"id":"storagetransfer\/v1\/metadataoptions\/acl","type":"","title":"Google\\Cloud\\StorageTransfer\\V1\\MetadataOptions\\Acl","name":"Acl","description":"<p>Options for handling Cloud Storage object ACLs.<\/p>\n<p>Protobuf type <code>google.storagetransfer.v1.MetadataOptions.Acl<\/code><\/p>","examples":[],"resources":[],"methods":[]}
