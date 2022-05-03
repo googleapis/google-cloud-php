@@ -28,12 +28,6 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
      *           A snapshot of an Account resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\Property $property
      *           A snapshot of a Property resource in change history.
-     *     @type \Google\Analytics\Admin\V1alpha\WebDataStream $web_data_stream
-     *           A snapshot of a WebDataStream resource in change history.
-     *     @type \Google\Analytics\Admin\V1alpha\AndroidAppDataStream $android_app_data_stream
-     *           A snapshot of an AndroidAppDataStream resource in change history.
-     *     @type \Google\Analytics\Admin\V1alpha\IosAppDataStream $ios_app_data_stream
-     *           A snapshot of an IosAppDataStream resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\FirebaseLink $firebase_link
      *           A snapshot of a FirebaseLink resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\GoogleAdsLink $google_ads_link
@@ -56,6 +50,8 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
      *           A snapshot of a CustomMetric resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\DataRetentionSettings $data_retention_settings
      *           A snapshot of a data retention settings resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\DataStream $data_stream
+     *           A snapshot of a DataStream resource in change history.
      * }
      */
     public function __construct($data = NULL) {
@@ -121,99 +117,6 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\Property::class);
         $this->writeOneof(2, $var);
-
-        return $this;
-    }
-
-    /**
-     * A snapshot of a WebDataStream resource in change history.
-     *
-     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.WebDataStream web_data_stream = 3;</code>
-     * @return \Google\Analytics\Admin\V1alpha\WebDataStream|null
-     */
-    public function getWebDataStream()
-    {
-        return $this->readOneof(3);
-    }
-
-    public function hasWebDataStream()
-    {
-        return $this->hasOneof(3);
-    }
-
-    /**
-     * A snapshot of a WebDataStream resource in change history.
-     *
-     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.WebDataStream web_data_stream = 3;</code>
-     * @param \Google\Analytics\Admin\V1alpha\WebDataStream $var
-     * @return $this
-     */
-    public function setWebDataStream($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\WebDataStream::class);
-        $this->writeOneof(3, $var);
-
-        return $this;
-    }
-
-    /**
-     * A snapshot of an AndroidAppDataStream resource in change history.
-     *
-     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AndroidAppDataStream android_app_data_stream = 4;</code>
-     * @return \Google\Analytics\Admin\V1alpha\AndroidAppDataStream|null
-     */
-    public function getAndroidAppDataStream()
-    {
-        return $this->readOneof(4);
-    }
-
-    public function hasAndroidAppDataStream()
-    {
-        return $this->hasOneof(4);
-    }
-
-    /**
-     * A snapshot of an AndroidAppDataStream resource in change history.
-     *
-     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AndroidAppDataStream android_app_data_stream = 4;</code>
-     * @param \Google\Analytics\Admin\V1alpha\AndroidAppDataStream $var
-     * @return $this
-     */
-    public function setAndroidAppDataStream($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\AndroidAppDataStream::class);
-        $this->writeOneof(4, $var);
-
-        return $this;
-    }
-
-    /**
-     * A snapshot of an IosAppDataStream resource in change history.
-     *
-     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.IosAppDataStream ios_app_data_stream = 5;</code>
-     * @return \Google\Analytics\Admin\V1alpha\IosAppDataStream|null
-     */
-    public function getIosAppDataStream()
-    {
-        return $this->readOneof(5);
-    }
-
-    public function hasIosAppDataStream()
-    {
-        return $this->hasOneof(5);
-    }
-
-    /**
-     * A snapshot of an IosAppDataStream resource in change history.
-     *
-     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.IosAppDataStream ios_app_data_stream = 5;</code>
-     * @param \Google\Analytics\Admin\V1alpha\IosAppDataStream $var
-     * @return $this
-     */
-    public function setIosAppDataStream($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\IosAppDataStream::class);
-        $this->writeOneof(5, $var);
 
         return $this;
     }
@@ -528,6 +431,37 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\DataRetentionSettings::class);
         $this->writeOneof(15, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of a DataStream resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DataStream data_stream = 18;</code>
+     * @return \Google\Analytics\Admin\V1alpha\DataStream|null
+     */
+    public function getDataStream()
+    {
+        return $this->readOneof(18);
+    }
+
+    public function hasDataStream()
+    {
+        return $this->hasOneof(18);
+    }
+
+    /**
+     * A snapshot of a DataStream resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.DataStream data_stream = 18;</code>
+     * @param \Google\Analytics\Admin\V1alpha\DataStream $var
+     * @return $this
+     */
+    public function setDataStream($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\DataStream::class);
+        $this->writeOneof(18, $var);
 
         return $this;
     }
