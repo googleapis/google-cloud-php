@@ -19,7 +19,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see
+     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      */
@@ -31,7 +32,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
      * This field is optional for FLAC and WAV audio files, but is
-     * required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * required for all other audio formats. For details, see
+     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      */
@@ -235,6 +237,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td><b>Description</b></td>
      *   </tr>
      *   <tr>
+     *     <td><code>latest_long</code></td>
+     *     <td>Best for long form content like media or conversation.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>latest_short</code></td>
+     *     <td>Best for short form content like commands or single shot directed
+     *     speech.</td>
+     *   </tr>
+     *   <tr>
      *     <td><code>command_and_search</code></td>
      *     <td>Best for short queries such as voice commands or voice search.</td>
      *   </tr>
@@ -283,7 +294,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     @type int $encoding
      *           Encoding of audio data sent in all `RecognitionAudio` messages.
      *           This field is optional for `FLAC` and `WAV` audio files and required
-     *           for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     *           for all other audio formats. For details, see
+     *           [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *     @type int $sample_rate_hertz
      *           Sample rate in Hertz of the audio data sent in all
      *           `RecognitionAudio` messages. Valid values are: 8000-48000.
@@ -291,7 +303,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           source to 16000 Hz. If that's not possible, use the native sample rate of
      *           the audio source (instead of re-sampling).
      *           This field is optional for FLAC and WAV audio files, but is
-     *           required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     *           required for all other audio formats. For details, see
+     *           [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *     @type int $audio_channel_count
      *           The number of channels in the input audio data.
      *           ONLY set this for MULTI-CHANNEL recognition.
@@ -417,6 +430,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *               <td><b>Description</b></td>
      *             </tr>
      *             <tr>
+     *               <td><code>latest_long</code></td>
+     *               <td>Best for long form content like media or conversation.</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>latest_short</code></td>
+     *               <td>Best for short form content like commands or single shot directed
+     *               speech.</td>
+     *             </tr>
+     *             <tr>
      *               <td><code>command_and_search</code></td>
      *               <td>Best for short queries such as voice commands or voice search.</td>
      *             </tr>
@@ -457,7 +479,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see
+     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      * @return int
@@ -470,7 +493,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see
+     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      * @param int $var
@@ -491,7 +515,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
      * This field is optional for FLAC and WAV audio files, but is
-     * required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * required for all other audio formats. For details, see
+     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      * @return int
@@ -508,7 +533,8 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
      * This field is optional for FLAC and WAV audio files, but is
-     * required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * required for all other audio formats. For details, see
+     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      * @param int $var
@@ -1299,6 +1325,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td><b>Description</b></td>
      *   </tr>
      *   <tr>
+     *     <td><code>latest_long</code></td>
+     *     <td>Best for long form content like media or conversation.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>latest_short</code></td>
+     *     <td>Best for short form content like commands or single shot directed
+     *     speech.</td>
+     *   </tr>
+     *   <tr>
      *     <td><code>command_and_search</code></td>
      *     <td>Best for short queries such as voice commands or voice search.</td>
      *   </tr>
@@ -1339,6 +1374,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *   <tr>
      *     <td><b>Model</b></td>
      *     <td><b>Description</b></td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>latest_long</code></td>
+     *     <td>Best for long form content like media or conversation.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>latest_short</code></td>
+     *     <td>Best for short form content like commands or single shot directed
+     *     speech.</td>
      *   </tr>
      *   <tr>
      *     <td><code>command_and_search</code></td>
