@@ -76,7 +76,7 @@ page_token (	
 next_page_token (	"°
 UpdateArtifactRequest;
 artifact (2$.google.cloud.aiplatform.v1.ArtifactB‡A4
-update_mask (2.google.protobuf.FieldMaskB‡A
+update_mask (2.google.protobuf.FieldMaskB‡A
 allow_missing ("d
 DeleteArtifactRequest8
 name (	B*‡A˙A$
@@ -112,7 +112,7 @@ page_token (	
 next_page_token (	"û
 UpdateContextRequest9
 context (2#.google.cloud.aiplatform.v1.ContextB‡A4
-update_mask (2.google.protobuf.FieldMaskB‡A
+update_mask (2.google.protobuf.FieldMaskB‡A
 allow_missing ("q
 DeleteContextRequest7
 name (	B)‡A˙A#
@@ -167,7 +167,7 @@ executions (2%.google.cloud.aiplatform.v1.Execution
 next_page_token (	"§
 UpdateExecutionRequest=
 	execution (2%.google.cloud.aiplatform.v1.ExecutionB‡A4
-update_mask (2.google.protobuf.FieldMaskB‡A
+update_mask (2.google.protobuf.FieldMaskB‡A
 allow_missing ("f
 DeleteExecutionRequest9
 name (	B+‡A˙A%

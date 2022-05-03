@@ -75,10 +75,10 @@ class Feature extends \Google\Protobuf\Internal\Message
      */
     private $etag = '';
     /**
-     * Optional. If not set, use the monitoring_config defined for the EntityType
-     * this Feature belongs to. Only Features with type
-     * ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL,
-     * STRING, DOUBLE or INT64 can enable monitoring.
+     * Optional. If not set, use the monitoring_config defined for the EntityType this
+     * Feature belongs to.
+     * Only Features with type ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL, STRING, DOUBLE or
+     * INT64 can enable monitoring.
      * If set to true, all types of data monitoring are disabled despite the
      * config on EntityType.
      *
@@ -86,8 +86,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      */
     private $disable_monitoring = false;
     /**
-     * Output only. The list of historical stats and anomalies with specified
-     * objectives.
+     * Output only. The list of historical stats and anomalies with specified objectives.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Feature.MonitoringStatsAnomaly monitoring_stats_anomalies = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -129,15 +128,14 @@ class Feature extends \Google\Protobuf\Internal\Message
      *           Used to perform a consistent read-modify-write updates. If not set, a blind
      *           "overwrite" update happens.
      *     @type bool $disable_monitoring
-     *           Optional. If not set, use the monitoring_config defined for the EntityType
-     *           this Feature belongs to. Only Features with type
-     *           ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL,
-     *           STRING, DOUBLE or INT64 can enable monitoring.
+     *           Optional. If not set, use the monitoring_config defined for the EntityType this
+     *           Feature belongs to.
+     *           Only Features with type ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL, STRING, DOUBLE or
+     *           INT64 can enable monitoring.
      *           If set to true, all types of data monitoring are disabled despite the
      *           config on EntityType.
      *     @type \Google\Cloud\AIPlatform\V1\Feature\MonitoringStatsAnomaly[]|\Google\Protobuf\Internal\RepeatedField $monitoring_stats_anomalies
-     *           Output only. The list of historical stats and anomalies with specified
-     *           objectives.
+     *           Output only. The list of historical stats and anomalies with specified objectives.
      * }
      */
     public function __construct($data = NULL) {
@@ -378,10 +376,10 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If not set, use the monitoring_config defined for the EntityType
-     * this Feature belongs to. Only Features with type
-     * ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL,
-     * STRING, DOUBLE or INT64 can enable monitoring.
+     * Optional. If not set, use the monitoring_config defined for the EntityType this
+     * Feature belongs to.
+     * Only Features with type ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL, STRING, DOUBLE or
+     * INT64 can enable monitoring.
      * If set to true, all types of data monitoring are disabled despite the
      * config on EntityType.
      *
@@ -394,10 +392,10 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If not set, use the monitoring_config defined for the EntityType
-     * this Feature belongs to. Only Features with type
-     * ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL,
-     * STRING, DOUBLE or INT64 can enable monitoring.
+     * Optional. If not set, use the monitoring_config defined for the EntityType this
+     * Feature belongs to.
+     * Only Features with type ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL, STRING, DOUBLE or
+     * INT64 can enable monitoring.
      * If set to true, all types of data monitoring are disabled despite the
      * config on EntityType.
      *
@@ -414,8 +412,7 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The list of historical stats and anomalies with specified
-     * objectives.
+     * Output only. The list of historical stats and anomalies with specified objectives.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Feature.MonitoringStatsAnomaly monitoring_stats_anomalies = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -426,8 +423,7 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The list of historical stats and anomalies with specified
-     * objectives.
+     * Output only. The list of historical stats and anomalies with specified objectives.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Feature.MonitoringStatsAnomaly monitoring_stats_anomalies = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\AIPlatform\V1\Feature\MonitoringStatsAnomaly[]|\Google\Protobuf\Internal\RepeatedField $var

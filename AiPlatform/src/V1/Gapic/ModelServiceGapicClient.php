@@ -43,6 +43,7 @@ use Google\Cloud\AIPlatform\V1\ExportModelRequest\OutputConfig;
 use Google\Cloud\AIPlatform\V1\GetModelEvaluationRequest;
 use Google\Cloud\AIPlatform\V1\GetModelEvaluationSliceRequest;
 use Google\Cloud\AIPlatform\V1\GetModelRequest;
+use Google\Cloud\AIPlatform\V1\ImportModelEvaluationRequest;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationSlicesRequest;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationSlicesResponse;
 use Google\Cloud\AIPlatform\V1\ListModelEvaluationsRequest;
@@ -809,6 +810,62 @@ class ModelServiceGapicClient
     }
 
     /**
+     * Imports an externally generated ModelEvaluation.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     $formattedParent = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+     *     $modelEvaluation = new ModelEvaluation();
+     *     $response = $modelServiceClient->importModelEvaluation($formattedParent, $modelEvaluation);
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string          $parent          Required. The name of the parent model resource.
+     *                                         Format: `projects/{project}/locations/{location}/models/{model}`
+     * @param ModelEvaluation $modelEvaluation Required. Model evaluation resource to be imported.
+     * @param array           $optionalArgs    {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\ModelEvaluation
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function importModelEvaluation(
+        $parent,
+        $modelEvaluation,
+        array $optionalArgs = []
+    ) {
+        $request = new ImportModelEvaluationRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setModelEvaluation($modelEvaluation);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ImportModelEvaluation',
+            ModelEvaluation::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Lists ModelEvaluationSlices in a ModelEvaluation.
      *
      * Sample code:
@@ -1127,6 +1184,23 @@ class ModelServiceGapicClient
      * ```
      *
      * @param Model     $model        Required. The Model which replaces the resource on the server.
+     *                                When Model Versioning is enabled, the model.name will be used to determine
+     *                                whether to update the model or model version.
+     *                                1. model.name with the &#64; value, e.g. models/123&#64;1, refers to a version
+     *                                specific update.
+     *                                2. model.name without the &#64; value, e.g. models/123, refers to a model
+     *                                update.
+     *                                3. model.name with &#64;-, e.g. models/123&#64;-, refers to a model update.
+     *                                4. Supported model fields: display_name, description; supported
+     *                                version-specific fields: version_description. Labels are supported in both
+     *                                scenarios. Both the model labels and the version labels are merged when a
+     *                                model is returned. When updating labels, if the request is for
+     *                                model-specific update, model label gets updated. Otherwise, version labels
+     *                                get updated.
+     *                                5. A model name or model version name fields update mismatch will cause a
+     *                                precondition error.
+     *                                6. One request cannot update both the model and the version fields. You
+     *                                must update them separately.
      * @param FieldMask $updateMask   Required. The update mask applies to the resource.
      *                                For the `FieldMask` definition, see [google.protobuf.FieldMask][google.protobuf.FieldMask].
      * @param array     $optionalArgs {

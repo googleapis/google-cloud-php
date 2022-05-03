@@ -27,7 +27,7 @@ class ModelService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ü)
+¨,
 .google/cloud/aiplatform/v1/model_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/aiplatform/v1/io.proto&google/cloud/aiplatform/v1/model.proto1google/cloud/aiplatform/v1/model_evaluation.proto7google/cloud/aiplatform/v1/model_evaluation_slice.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"Ü
 UploadModelRequest9
 parent (	B)‡A˙A#
@@ -74,7 +74,11 @@ page_token (	-
 OutputInfo 
 artifact_output_uri (	B‡A
 image_output_uri (	B‡A"
-ExportModelResponse"\\
+ExportModelResponse"£
+ImportModelEvaluationRequest7
+parent (	B\'‡A˙A!
+aiplatform.googleapis.com/ModelJ
+model_evaluation (2+.google.cloud.aiplatform.v1.ModelEvaluationB‡A"\\
 GetModelEvaluationRequest?
 name (	B1‡A˙A+
 )aiplatform.googleapis.com/ModelEvaluation"º
@@ -102,7 +106,7 @@ page_token (	-
 	read_mask (2.google.protobuf.FieldMask"è
 !ListModelEvaluationSlicesResponseQ
 model_evaluation_slices (20.google.cloud.aiplatform.v1.ModelEvaluationSlice
-next_page_token (	2◊
+next_page_token (	2æ
 ModelService‡
 UploadModel..google.cloud.aiplatform.v1.UploadModelRequest.google.longrunning.Operation"ÅÇ”‰ì6"1/v1/{parent=projects/*/locations/*}/models:upload:*⁄Aparent,model A3
 UploadModelResponseUploadModelOperationMetadataï
@@ -113,7 +117,8 @@ ListModels-.google.cloud.aiplatform.v1.ListModelsRequest..google.cloud.aiplatf
 DeleteModel..google.cloud.aiplatform.v1.DeleteModelRequest.google.longrunning.Operation"lÇ”‰ì,**/v1/{name=projects/*/locations/*/models/*}⁄Aname A0
 google.protobuf.EmptyDeleteOperationMetadataÊ
 ExportModel..google.cloud.aiplatform.v1.ExportModelRequest.google.longrunning.Operation"áÇ”‰ì6"1/v1/{name=projects/*/locations/*/models/*}:export:*⁄Aname,output_config A3
-ExportModelResponseExportModelOperationMetadata¡
+ExportModelResponseExportModelOperationMetadata‰
+ImportModelEvaluation8.google.cloud.aiplatform.v1.ImportModelEvaluationRequest+.google.cloud.aiplatform.v1.ModelEvaluation"dÇ”‰ìD"?/v1/{parent=projects/*/locations/*/models/*}/evaluations:import:*⁄Aparent,model_evaluation¡
 GetModelEvaluation5.google.cloud.aiplatform.v1.GetModelEvaluationRequest+.google.cloud.aiplatform.v1.ModelEvaluation"GÇ”‰ì:8/v1/{name=projects/*/locations/*/models/*/evaluations/*}⁄Aname‘
 ListModelEvaluations7.google.cloud.aiplatform.v1.ListModelEvaluationsRequest8.google.cloud.aiplatform.v1.ListModelEvaluationsResponse"IÇ”‰ì:8/v1/{parent=projects/*/locations/*/models/*}/evaluations⁄AparentŸ
 GetModelEvaluationSlice:.google.cloud.aiplatform.v1.GetModelEvaluationSliceRequest0.google.cloud.aiplatform.v1.ModelEvaluationSlice"PÇ”‰ìCA/v1/{name=projects/*/locations/*/models/*/evaluations/*/slices/*}⁄AnameÏ

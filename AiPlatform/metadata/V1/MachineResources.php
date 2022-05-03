@@ -18,7 +18,7 @@ class MachineResources
         \GPBMetadata\Google\Cloud\Aiplatform\V1\AcceleratorType::initOnce();
         $pool->internalAddGeneratedFile(
             '
-•	
+Û	
 2google/cloud/aiplatform/v1/machine_resources.protogoogle.cloud.aiplatform.v11google/cloud/aiplatform/v1/accelerator_type.proto"è
 MachineSpec
 machine_type (	B‡AJ
@@ -40,7 +40,11 @@ class MachineResources
 replica_hours (B‡A"=
 DiskSpec
 boot_disk_type (	
-boot_disk_size_gb ("A
+boot_disk_size_gb ("L
+NfsMount
+server (	B‡A
+path (	B‡A
+mount_point (	B‡A"A
 AutoscalingMetricSpec
 metric_name (	B‡A
 target (BŸ
