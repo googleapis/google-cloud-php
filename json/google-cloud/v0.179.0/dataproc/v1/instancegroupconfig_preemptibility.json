@@ -1,0 +1,1 @@
+{"id":"dataproc\/v1\/instancegroupconfig_preemptibility","type":"","title":"Google\\Cloud\\Dataproc\\V1\\InstanceGroupConfig_Preemptibility","name":"InstanceGroupConfig_Preemptibility","description":"<p>This class is deprecated. Use Google\\Cloud\\Dataproc\\V1\\InstanceGroupConfig\\Preemptibility instead.<\/p>","examples":[],"resources":[],"methods":[]}

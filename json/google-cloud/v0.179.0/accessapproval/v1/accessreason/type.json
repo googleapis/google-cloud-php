@@ -1,0 +1,1 @@
+{"id":"accessapproval\/v1\/accessreason\/type","type":"","title":"Google\\Cloud\\AccessApproval\\V1\\AccessReason\\Type","name":"Type","description":"<p>Type of access justification.<\/p>\n<p>Protobuf type <code>google.cloud.accessapproval.v1.AccessReason.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

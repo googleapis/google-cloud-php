@@ -1,0 +1,1 @@
+{"id":"datastore\/v1\/queryresultbatch_moreresultstype","type":"","title":"Google\\Cloud\\Datastore\\V1\\QueryResultBatch_MoreResultsType","name":"QueryResultBatch_MoreResultsType","description":"<p>This class is deprecated. Use Google\\Cloud\\Datastore\\V1\\QueryResultBatch\\MoreResultsType instead.<\/p>","examples":[],"resources":[],"methods":[]}

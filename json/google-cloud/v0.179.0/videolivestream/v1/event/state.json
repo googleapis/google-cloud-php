@@ -1,0 +1,1 @@
+{"id":"videolivestream\/v1\/event\/state","type":"","title":"Google\\Cloud\\Video\\LiveStream\\V1\\Event\\State","name":"State","description":"<p>State of the event<\/p>\n<p>Protobuf type <code>google.cloud.video.livestream.v1.Event.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

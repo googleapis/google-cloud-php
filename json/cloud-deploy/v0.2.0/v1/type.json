@@ -1,0 +1,1 @@
+{"id":"deploy\/v1\/type","type":"","title":"Google\\Cloud\\Deploy\\V1\\Type","name":"Type","description":"<p>Type indicates the type of the log entry and can be used as a filter.<\/p>\n<p>Protobuf type <code>google.cloud.deploy.v1.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

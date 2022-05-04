@@ -1,0 +1,1 @@
+{"id":"aiplatform\/v1\/pipelinetaskdetail\/state","type":"","title":"Google\\Cloud\\AIPlatform\\V1\\PipelineTaskDetail\\State","name":"State","description":"<p>Specifies state of TaskExecution<\/p>\n<p>Protobuf type <code>google.cloud.aiplatform.v1.PipelineTaskDetail.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

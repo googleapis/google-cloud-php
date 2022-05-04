@@ -1,0 +1,1 @@
+{"id":"functions\/v1\/cloudfunctionstatus","type":"","title":"Google\\Cloud\\Functions\\V1\\CloudFunctionStatus","name":"CloudFunctionStatus","description":"<p>Describes the current stage of a deployment.<\/p>\n<p>Protobuf type <code>google.cloud.functions.v1.CloudFunctionStatus<\/code><\/p>","examples":[],"resources":[],"methods":[]}

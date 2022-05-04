@@ -1,0 +1,1 @@
+{"id":"build\/v1\/buildevent_invocationattemptfinished","type":"","title":"Google\\Cloud\\Build\\V1\\BuildEvent_InvocationAttemptFinished","name":"BuildEvent_InvocationAttemptFinished","description":"<p>This class is deprecated. Use Google\\Cloud\\Build\\V1\\BuildEvent\\InvocationAttemptFinished instead.<\/p>","examples":[],"resources":[],"methods":[]}

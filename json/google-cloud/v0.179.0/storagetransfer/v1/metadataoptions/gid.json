@@ -1,0 +1,1 @@
+{"id":"storagetransfer\/v1\/metadataoptions\/gid","type":"","title":"Google\\Cloud\\StorageTransfer\\V1\\MetadataOptions\\GID","name":"GID","description":"<p>Options for handling file GID attribute.<\/p>\n<p>Protobuf type <code>google.storagetransfer.v1.MetadataOptions.GID<\/code><\/p>","examples":[],"resources":[],"methods":[]}

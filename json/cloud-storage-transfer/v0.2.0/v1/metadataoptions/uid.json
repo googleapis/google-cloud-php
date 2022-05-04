@@ -1,0 +1,1 @@
+{"id":"storagetransfer\/v1\/metadataoptions\/uid","type":"","title":"Google\\Cloud\\StorageTransfer\\V1\\MetadataOptions\\UID","name":"UID","description":"<p>Options for handling file UID attribute.<\/p>\n<p>Protobuf type <code>google.storagetransfer.v1.MetadataOptions.UID<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"spanner\/v1\/plannode_kind","type":"","title":"Google\\Cloud\\Spanner\\V1\\PlanNode_Kind","name":"PlanNode_Kind","description":"<p>This class is deprecated. Use Google\\Cloud\\Spanner\\V1\\PlanNode\\Kind instead.<\/p>","examples":[],"resources":[],"methods":[]}

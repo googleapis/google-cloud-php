@@ -1,0 +1,1 @@
+{"id":"ids\/v1\/endpoint\/severity","type":"","title":"Google\\Cloud\\Ids\\V1\\Endpoint\\Severity","name":"Severity","description":"<p>Threat severity levels.<\/p>\n<p>Protobuf type <code>google.cloud.ids.v1.Endpoint.Severity<\/code><\/p>","examples":[],"resources":[],"methods":[]}

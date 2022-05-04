@@ -1,0 +1,1 @@
+{"id":"aiplatform\/v1\/jobstate","type":"","title":"Google\\Cloud\\AIPlatform\\V1\\JobState","name":"JobState","description":"<p>Describes the state of a job.<\/p>\n<p>Protobuf type <code>google.cloud.aiplatform.v1.JobState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

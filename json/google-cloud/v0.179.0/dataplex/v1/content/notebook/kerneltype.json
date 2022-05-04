@@ -1,0 +1,1 @@
+{"id":"dataplex\/v1\/content\/notebook\/kerneltype","type":"","title":"Google\\Cloud\\Dataplex\\V1\\Content\\Notebook\\KernelType","name":"KernelType","description":"<p>Kernel Type of the Jupyter notebook.<\/p>\n<p>Protobuf type <code>google.cloud.dataplex.v1.Content.Notebook.KernelType<\/code><\/p>","examples":[],"resources":[],"methods":[]}
