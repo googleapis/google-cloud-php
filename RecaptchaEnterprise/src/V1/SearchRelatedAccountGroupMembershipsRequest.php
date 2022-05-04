@@ -19,9 +19,9 @@ class SearchRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Inter
      * Required. The name of the project to search related account group memberships from,
      * in the format "projects/{project}".
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    private $project = '';
     /**
      * Optional. The unique stable hashed user identifier we should search connections to.
      * The identifier should correspond to a `hashed_account_id` provided in a
@@ -57,7 +57,7 @@ class SearchRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Inter
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $parent
+     *     @type string $project
      *           Required. The name of the project to search related account group memberships from,
      *           in the format "projects/{project}".
      *     @type string $hashed_account_id
@@ -87,26 +87,26 @@ class SearchRelatedAccountGroupMembershipsRequest extends \Google\Protobuf\Inter
      * Required. The name of the project to search related account group memberships from,
      * in the format "projects/{project}".
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
-    public function getParent()
+    public function getProject()
     {
-        return $this->parent;
+        return $this->project;
     }
 
     /**
      * Required. The name of the project to search related account group memberships from,
      * in the format "projects/{project}".
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string project = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
-    public function setParent($var)
+    public function setProject($var)
     {
         GPBUtil::checkString($var, True);
-        $this->parent = $var;
+        $this->project = $var;
 
         return $this;
     }

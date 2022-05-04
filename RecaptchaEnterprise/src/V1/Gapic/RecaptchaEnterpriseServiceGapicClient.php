@@ -1053,9 +1053,9 @@ class RecaptchaEnterpriseServiceGapicClient
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
-     *     $formattedParent = $recaptchaEnterpriseServiceClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
+     *     $formattedProject = $recaptchaEnterpriseServiceClient->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $recaptchaEnterpriseServiceClient->searchRelatedAccountGroupMemberships($formattedParent);
+     *     $pagedResponse = $recaptchaEnterpriseServiceClient->searchRelatedAccountGroupMemberships($formattedProject);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1063,7 +1063,7 @@ class RecaptchaEnterpriseServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $recaptchaEnterpriseServiceClient->searchRelatedAccountGroupMemberships($formattedParent);
+     *     $pagedResponse = $recaptchaEnterpriseServiceClient->searchRelatedAccountGroupMemberships($formattedProject);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1072,7 +1072,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the project to search related account group memberships from,
+     * @param string $project      Required. The name of the project to search related account group memberships from,
      *                             in the format "projects/{project}".
      * @param array  $optionalArgs {
      *     Optional.
@@ -1102,13 +1102,13 @@ class RecaptchaEnterpriseServiceGapicClient
      * @throws ApiException if the remote call fails
      */
     public function searchRelatedAccountGroupMemberships(
-        $parent,
+        $project,
         array $optionalArgs = []
     ) {
         $request = new SearchRelatedAccountGroupMembershipsRequest();
         $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
+        $request->setProject($project);
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['hashedAccountId'])) {
             $request->setHashedAccountId($optionalArgs['hashedAccountId']);
         }

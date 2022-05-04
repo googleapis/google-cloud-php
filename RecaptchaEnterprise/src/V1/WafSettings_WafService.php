@@ -12,5 +12,5 @@ if (false) {
     class WafSettings_WafService {}
 }
 class_exists(WafSettings\WafService::class);
-@trigger_error('Google\Cloud\RecaptchaEnterprise\V1\WafSettings_WafService is deprecated and will be removed in the next major release. Use Google\Cloud\RecaptchaEnterprise\V1\WafSettings\WafService instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\RecaptchaEnterprise\V1\WafSettings_WafService is deprecated and will be removed in a future release. Use Google\Cloud\RecaptchaEnterprise\V1\WafSettings\WafService instead', E_USER_DEPRECATED);
 

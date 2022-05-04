@@ -119,12 +119,12 @@ return [
             ],
             'SearchRelatedAccountGroupMemberships' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*}/relatedaccountgroupmemberships:search',
+                'uriTemplate' => '/v1/{project=projects/*}/relatedaccountgroupmemberships:search',
                 'body' => '*',
                 'placeholders' => [
-                    'parent' => [
+                    'project' => [
                         'getters' => [
-                            'getParent',
+                            'getProject',
                         ],
                     ],
                 ],

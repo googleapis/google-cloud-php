@@ -776,8 +776,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $expectedResponse->setRelatedAccountGroupMemberships($relatedAccountGroupMemberships);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
-        $response = $client->searchRelatedAccountGroupMemberships($formattedParent);
+        $formattedProject = $client->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
+        $response = $client->searchRelatedAccountGroupMemberships($formattedProject);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -787,8 +787,8 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/SearchRelatedAccountGroupMemberships', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($formattedProject, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -813,9 +813,9 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
+        $formattedProject = $client->relatedAccountGroupName('[PROJECT]', '[RELATEDACCOUNTGROUP]');
         try {
-            $client->searchRelatedAccountGroupMemberships($formattedParent);
+            $client->searchRelatedAccountGroupMemberships($formattedProject);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
