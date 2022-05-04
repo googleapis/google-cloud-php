@@ -1,0 +1,88 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.eventarc.v1",
+    "libraryPackage": "Google\\Cloud\\Eventarc\\V1",
+    "services": {
+        "Eventarc": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "EventarcGapicClient",
+                    "rpcs": {
+                        "CreateChannel": {
+                            "methods": [
+                                "createChannel"
+                            ]
+                        },
+                        "CreateChannelConnection": {
+                            "methods": [
+                                "createChannelConnection"
+                            ]
+                        },
+                        "CreateTrigger": {
+                            "methods": [
+                                "createTrigger"
+                            ]
+                        },
+                        "DeleteChannel": {
+                            "methods": [
+                                "deleteChannel"
+                            ]
+                        },
+                        "DeleteChannelConnection": {
+                            "methods": [
+                                "deleteChannelConnection"
+                            ]
+                        },
+                        "DeleteTrigger": {
+                            "methods": [
+                                "deleteTrigger"
+                            ]
+                        },
+                        "GetChannel": {
+                            "methods": [
+                                "getChannel"
+                            ]
+                        },
+                        "GetChannelConnection": {
+                            "methods": [
+                                "getChannelConnection"
+                            ]
+                        },
+                        "GetTrigger": {
+                            "methods": [
+                                "getTrigger"
+                            ]
+                        },
+                        "ListChannelConnections": {
+                            "methods": [
+                                "listChannelConnections"
+                            ]
+                        },
+                        "ListChannels": {
+                            "methods": [
+                                "listChannels"
+                            ]
+                        },
+                        "ListTriggers": {
+                            "methods": [
+                                "listTriggers"
+                            ]
+                        },
+                        "UpdateChannel": {
+                            "methods": [
+                                "updateChannel"
+                            ]
+                        },
+                        "UpdateTrigger": {
+                            "methods": [
+                                "updateTrigger"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
