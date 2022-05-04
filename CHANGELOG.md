@@ -1,5 +1,520 @@
 # Changelog
 
+## 0.179.0
+
+<details><summary>google/cloud-ai-platform 0.2.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* * feat: add reserved_ip_ranges to CustomJobSpec in aiplatform v1 custom_job.proto feat: add nfs_mounts to WorkPoolSpec in aiplatform v1 custom_job.proto feat: add JOB_STATE_UPDATING to JobState in aiplatform v1 job_state.proto feat: add MfsMount in aiplatform v1 machine_resources.proto feat: add ConvexAutomatedStoppingSpec to StudySpec in aiplatform v1 study.proto
+
+### Features
+
+* [AiPlatform] add reserved_ip_ranges to CustomJobSpec / move updateMask from required to optional ([#5221](https://github.com/googleapis/google-cloud-php/issues/5221)) ([d130ddf](https://github.com/googleapis/google-cloud-php/commit/d130ddf71e776119de3532c420c4da9e44d99096))
+
+
+### Miscellaneous Chores
+
+* Add Code of Conduct, Security, repo metadata ([#5242](https://github.com/googleapis/google-cloud-php/issues/5242)) ([1b326a1](https://github.com/googleapis/google-cloud-php/commit/1b326a182095fdd65e927d8e9692ea568a01524e))
+
+</details>
+
+<details><summary>google/analytics-admin 0.6.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [AnalyticsAdmin] remove `WebDataStream`, `IosAppDataStream`, `AndroidAppDataStream` resources (#5148)
+
+### Features
+
+* [AnalyticsAdmin] remove `WebDataStream`, `IosAppDataStream`, `AndroidAppDataStream` resources ([#5148](https://github.com/googleapis/google-cloud-php/issues/5148)) ([6ae7ecc](https://github.com/googleapis/google-cloud-php/commit/6ae7eccb56415bd7d9a1a0a3049543ec455a0343))
+
+</details>
+
+<details><summary>google/analytics-data 0.8.2</summary>
+
+
+
+### Documentation
+
+* update minute range verbiage ([#5254](https://github.com/googleapis/google-cloud-php/issues/5254)) ([2f7e63c](https://github.com/googleapis/google-cloud-php/commit/2f7e63c67f1d79cab46b12a06221c073a3320ad6))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 0.3.0</summary>
+
+
+
+### Features
+
+* AuditConfig for IAM v1 ([#5208](https://github.com/googleapis/google-cloud-php/issues/5208)) ([54887ce](https://github.com/googleapis/google-cloud-php/commit/54887ce54510327196c93e357e317bba8531f219))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.7.0</summary>
+
+
+
+### Features
+
+* AuditConfig for IAM v1 ([#5208](https://github.com/googleapis/google-cloud-php/issues/5208)) ([54887ce](https://github.com/googleapis/google-cloud-php/commit/54887ce54510327196c93e357e317bba8531f219))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* [BigQueryDataTransfer] remove unused imports ([#5202](https://github.com/googleapis/google-cloud-php/issues/5202)) ([9759c62](https://github.com/googleapis/google-cloud-php/commit/9759c6220b48c52760531128cbd57853c2a693c2))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 0.6.0</summary>
+
+
+
+### Features
+
+* [BigQueryReservation] introduce update assignment rpc ([#5218](https://github.com/googleapis/google-cloud-php/issues/5218)) ([9548180](https://github.com/googleapis/google-cloud-php/commit/95481801b158acce0e7b26cd30fa3158786cd474))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.14.0</summary>
+
+
+
+### Features
+
+* AuditConfig for IAM v1 ([#5208](https://github.com/googleapis/google-cloud-php/issues/5208)) ([54887ce](https://github.com/googleapis/google-cloud-php/commit/54887ce54510327196c93e357e317bba8531f219))
+
+</details>
+
+<details><summary>google/cloud-billing 1.4.0</summary>
+
+
+
+### Features
+
+* AuditConfig for IAM v1 ([#5208](https://github.com/googleapis/google-cloud-php/issues/5208)) ([54887ce](https://github.com/googleapis/google-cloud-php/commit/54887ce54510327196c93e357e317bba8531f219))
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add Code of Conduct, Security, repo metadata ([#5242](https://github.com/googleapis/google-cloud-php/issues/5242)) ([1b326a1](https://github.com/googleapis/google-cloud-php/commit/1b326a182095fdd65e927d8e9692ea568a01524e))
+
+</details>
+
+<details><summary>google/cloud-common-protos 0.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add Code of Conduct, Security, repo metadata ([#5242](https://github.com/googleapis/google-cloud-php/issues/5242)) ([1b326a1](https://github.com/googleapis/google-cloud-php/commit/1b326a182095fdd65e927d8e9692ea568a01524e))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.2.0</summary>
+
+
+
+### Features
+
+* add update mask to IAM RPCs  ([#5214](https://github.com/googleapis/google-cloud-php/issues/5214)) ([150f909](https://github.com/googleapis/google-cloud-php/commit/150f909511672dee374e66506a64c2bcae00181f))
+
+</details>
+
+<details><summary>google/cloud-core 1.44.4</summary>
+
+
+
+### Bug Fixes
+
+* add InsecureCredentials to address issue in Cloud Spanner emulator ([#5224](https://github.com/googleapis/google-cloud-php/issues/5224)) ([e4caaa7](https://github.com/googleapis/google-cloud-php/commit/e4caaa7c369c99a526668fe0e15e7698c6b7941c))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.3.0</summary>
+
+
+
+### Features
+
+* add update mask to IAM RPCs  ([#5216](https://github.com/googleapis/google-cloud-php/issues/5216)) ([007ebb4](https://github.com/googleapis/google-cloud-php/commit/007ebb40187b6ac693d3b83cb60e6f9695542011))
+
+
+### Miscellaneous Chores
+
+* Add Code of Conduct, Security, repo metadata ([#5242](https://github.com/googleapis/google-cloud-php/issues/5242)) ([1b326a1](https://github.com/googleapis/google-cloud-php/commit/1b326a182095fdd65e927d8e9692ea568a01524e))
+
+</details>
+
+<details><summary>google/cloud-dataplex 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Dataplex] remove unused imports ([#5246](https://github.com/googleapis/google-cloud-php/issues/5246)) ([63b62ec](https://github.com/googleapis/google-cloud-php/commit/63b62ec9e9699acf65419e2b8d8dc715fd3df9cc))
+* Add Code of Conduct, Security, repo metadata ([#5242](https://github.com/googleapis/google-cloud-php/issues/5242)) ([1b326a1](https://github.com/googleapis/google-cloud-php/commit/1b326a182095fdd65e927d8e9692ea568a01524e))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.14.0</summary>
+
+
+
+### Features
+
+* [Datastore] expose new read_time API fields, currently only available in private preview ([#5158](https://github.com/googleapis/google-cloud-php/issues/5158)) ([8984639](https://github.com/googleapis/google-cloud-php/commit/89846397ce82050a65d12305d5d64d05e626a48c))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.2.0</summary>
+
+
+
+### Features
+
+* add support for anthos worker pool ([#5212](https://github.com/googleapis/google-cloud-php/issues/5212)) ([9c86c10](https://github.com/googleapis/google-cloud-php/commit/9c86c104f1a715faedfd384d2a60ba918c9d7033))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.26.0</summary>
+
+
+
+### Features
+
+* added ConversationDataset resource and its APIs ([#5140](https://github.com/googleapis/google-cloud-php/issues/5140)) ([7a47b82](https://github.com/googleapis/google-cloud-php/commit/7a47b82eeeaa5ac7820848fcf8cb8706590cf460))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.5.0</summary>
+
+
+
+### Features
+
+* [Dlp] add DataProfilePubSubMessage supporting pub/sub integration ([#5203](https://github.com/googleapis/google-cloud-php/issues/5203)) ([f0bcc4e](https://github.com/googleapis/google-cloud-php/commit/f0bcc4e5c02b865a93d2cb06c5265396923502b4))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.19.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add Code of Conduct, Security, repo metadata ([#5242](https://github.com/googleapis/google-cloud-php/issues/5242)) ([1b326a1](https://github.com/googleapis/google-cloud-php/commit/1b326a182095fdd65e927d8e9692ea568a01524e))
+
+</details>
+
+<details><summary>google/cloud-eventarc-publishing 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add Code of Conduct, Security, repo metadata ([#5242](https://github.com/googleapis/google-cloud-php/issues/5242)) ([1b326a1](https://github.com/googleapis/google-cloud-php/commit/1b326a182095fdd65e927d8e9692ea568a01524e))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.22.0</summary>
+
+
+
+### Features
+
+* [Firestore] Enable RunQueryResponse.done ([#5150](https://github.com/googleapis/google-cloud-php/issues/5150)) ([e0108e3](https://github.com/googleapis/google-cloud-php/commit/e0108e3841d7c9083d9fa4761a187af62bdd3e72))
+* fix emulator config for datastore, firestore, and pubsub ([#5250](https://github.com/googleapis/google-cloud-php/issues/5250)) ([6c7650c](https://github.com/googleapis/google-cloud-php/commit/6c7650cc9594c0f69651b79fa2a1cb30e3863b47))
+
+</details>
+
+<details><summary>google/cloud-functions 0.3.0</summary>
+
+
+
+### Features
+
+* AuditConfig for IAM v1 ([#5208](https://github.com/googleapis/google-cloud-php/issues/5208)) ([54887ce](https://github.com/googleapis/google-cloud-php/commit/54887ce54510327196c93e357e317bba8531f219))
+
+</details>
+
+<details><summary>google/cloud-iap 0.2.0</summary>
+
+
+
+### Features
+
+* AuditConfig for IAM v1 ([#5208](https://github.com/googleapis/google-cloud-php/issues/5208)) ([54887ce](https://github.com/googleapis/google-cloud-php/commit/54887ce54510327196c93e357e317bba8531f219))
+
+</details>
+
+<details><summary>google/cloud-ids 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add Code of Conduct, Security, repo metadata ([#5242](https://github.com/googleapis/google-cloud-php/issues/5242)) ([1b326a1](https://github.com/googleapis/google-cloud-php/commit/1b326a182095fdd65e927d8e9692ea568a01524e))
+
+</details>
+
+<details><summary>google/cloud-iot 1.5.0</summary>
+
+
+
+### Features
+
+* AuditConfig for IAM v1 ([#5208](https://github.com/googleapis/google-cloud-php/issues/5208)) ([54887ce](https://github.com/googleapis/google-cloud-php/commit/54887ce54510327196c93e357e317bba8531f219))
+
+</details>
+
+<details><summary>google/cloud-kms 1.13.0</summary>
+
+
+
+### Features
+
+* [Kms] add a new EkmService API ([#5093](https://github.com/googleapis/google-cloud-php/issues/5093)) ([472f8ba](https://github.com/googleapis/google-cloud-php/commit/472f8ba04fa3eda52748131ed682445bc9d6c43b))
+* AuditConfig for IAM v1 ([#5208](https://github.com/googleapis/google-cloud-php/issues/5208)) ([54887ce](https://github.com/googleapis/google-cloud-php/commit/54887ce54510327196c93e357e317bba8531f219))
+
+
+### Miscellaneous Chores
+
+* add the rest of COC and Security ([#5248](https://github.com/googleapis/google-cloud-php/issues/5248)) ([e6c20eb](https://github.com/googleapis/google-cloud-php/commit/e6c20eb9c27858ccaffcaf50f37aefefbd9a93ea))
+
+</details>
+
+<details><summary>google/cloud-logging 1.24.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add Code of Conduct, Security, repo metadata ([#5242](https://github.com/googleapis/google-cloud-php/issues/5242)) ([1b326a1](https://github.com/googleapis/google-cloud-php/commit/1b326a182095fdd65e927d8e9692ea568a01524e))
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add Code of Conduct, Security, repo metadata ([#5242](https://github.com/googleapis/google-cloud-php/issues/5242)) ([1b326a1](https://github.com/googleapis/google-cloud-php/commit/1b326a182095fdd65e927d8e9692ea568a01524e))
+
+</details>
+
+<details><summary>google/cloud-network-management 0.1.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* [NetworkManagement] remove unused imports ([#5243](https://github.com/googleapis/google-cloud-php/issues/5243)) ([ae37d1b](https://github.com/googleapis/google-cloud-php/commit/ae37d1bef5eecbafe53016fe9a7183e436bfef9b))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.36.0</summary>
+
+
+
+### Features
+
+* AuditConfig for IAM v1 ([#5208](https://github.com/googleapis/google-cloud-php/issues/5208)) ([54887ce](https://github.com/googleapis/google-cloud-php/commit/54887ce54510327196c93e357e317bba8531f219))
+* fix emulator config for datastore, firestore, and pubsub ([#5250](https://github.com/googleapis/google-cloud-php/issues/5250)) ([6c7650c](https://github.com/googleapis/google-cloud-php/commit/6c7650cc9594c0f69651b79fa2a1cb30e3863b47))
+
+
+### Bug Fixes
+
+* PHP8.1 deprecation warning on preg_match() ([#4870](https://github.com/googleapis/google-cloud-php/issues/4870)) ([aac8a23](https://github.com/googleapis/google-cloud-php/commit/aac8a23a3ac7f0b1f3b1c698acc766906a8e6a6e))
+
+</details>
+
+<details><summary>google/cloud-resource-manager 0.3.0</summary>
+
+
+
+### Features
+
+* AuditConfig for IAM v1 ([#5208](https://github.com/googleapis/google-cloud-php/issues/5208)) ([54887ce](https://github.com/googleapis/google-cloud-php/commit/54887ce54510327196c93e357e317bba8531f219))
+
+</details>
+
+<details><summary>google/cloud-retail 0.4.0</summary>
+
+
+
+### Features
+
+* introduce add / remove local inventory RPCs ([#5173](https://github.com/googleapis/google-cloud-php/issues/5173)) ([88a7ef8](https://github.com/googleapis/google-cloud-php/commit/88a7ef8a3dc9f3908b35d6b1b01715fda5387395))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.6.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add the rest of COC and Security ([#5248](https://github.com/googleapis/google-cloud-php/issues/5248)) ([e6c20eb](https://github.com/googleapis/google-cloud-php/commit/e6c20eb9c27858ccaffcaf50f37aefefbd9a93ea))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.9.0</summary>
+
+
+
+### Features
+
+* AuditConfig for IAM v1 ([#5207](https://github.com/googleapis/google-cloud-php/issues/5207)) ([893699f](https://github.com/googleapis/google-cloud-php/commit/893699fc24f6eb0e8d02619070151b856c847d33))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.7.0</summary>
+
+
+
+### Features
+
+* add update mask to IAM RPCs ([#5217](https://github.com/googleapis/google-cloud-php/issues/5217)) ([74814ad](https://github.com/googleapis/google-cloud-php/commit/74814ad0fdcc092dd47725cf6cfe074cd56d555a))
+
+</details>
+
+<details><summary>google/cloud-service-management 0.3.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* * chore: cleanup unused imports in google/api/servicemanagement/v1
+
+### Features
+
+* remove enable / disable service RPCs ([#5117](https://github.com/googleapis/google-cloud-php/issues/5117)) ([98b4461](https://github.com/googleapis/google-cloud-php/commit/98b446141f8b875eef00cedfd13d9ab1d75c8627))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.49.0</summary>
+
+
+
+### Features
+
+* AuditConfig for IAM v1 ([#5208](https://github.com/googleapis/google-cloud-php/issues/5208)) ([54887ce](https://github.com/googleapis/google-cloud-php/commit/54887ce54510327196c93e357e317bba8531f219))
+* **Spanner:** Add Postgres Numeric support ([#5247](https://github.com/googleapis/google-cloud-php/issues/5247)) ([b3bf408](https://github.com/googleapis/google-cloud-php/commit/b3bf408817cbb2ab50f6024b41072313de6d3093))
+
+
+### Bug Fixes
+
+* add InsecureCredentials to address issue in Cloud Spanner emulator ([#5224](https://github.com/googleapis/google-cloud-php/issues/5224)) ([e4caaa7](https://github.com/googleapis/google-cloud-php/commit/e4caaa7c369c99a526668fe0e15e7698c6b7941c))
+
+</details>
+
+<details><summary>google/cloud-speech 1.5.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add the rest of COC and Security ([#5248](https://github.com/googleapis/google-cloud-php/issues/5248)) ([e6c20eb](https://github.com/googleapis/google-cloud-php/commit/e6c20eb9c27858ccaffcaf50f37aefefbd9a93ea))
+
+
+### Documentation
+
+* [Speech] Add documentation for latest models to RecognitionConfig ([#5253](https://github.com/googleapis/google-cloud-php/issues/5253)) ([69b943d](https://github.com/googleapis/google-cloud-php/commit/69b943d4c24707b5edaa8178a2653668995486ee))
+* update verbiage around regional endpoint ([#5213](https://github.com/googleapis/google-cloud-php/issues/5213)) ([95d7399](https://github.com/googleapis/google-cloud-php/commit/95d739922a001c94ef81b28502cab7e3388e6ea9))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.2.1</summary>
+
+
+
+### Documentation
+
+* correct typo ([#5249](https://github.com/googleapis/google-cloud-php/issues/5249)) ([cb245f3](https://github.com/googleapis/google-cloud-php/commit/cb245f3a14c9a384b17c845ba90cb81868eaf11a))
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 0.2.0</summary>
+
+
+
+### Features
+
+* [StorageTransfer] add support for Agent Pools ([#5209](https://github.com/googleapis/google-cloud-php/issues/5209)) ([32bc662](https://github.com/googleapis/google-cloud-php/commit/32bc662d8e86964cb9d3aa2f059608146296658a))
+
+</details>
+
+<details><summary>google/cloud-talent 0.16.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add Code of Conduct, Security, repo metadata ([#5242](https://github.com/googleapis/google-cloud-php/issues/5242)) ([1b326a1](https://github.com/googleapis/google-cloud-php/commit/1b326a182095fdd65e927d8e9692ea568a01524e))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.11.0</summary>
+
+
+
+### Features
+
+* add update mask to IAM RPCs  ([#5211](https://github.com/googleapis/google-cloud-php/issues/5211)) ([9f953c9](https://github.com/googleapis/google-cloud-php/commit/9f953c9cba1e8c932ef4d28a1f7be54824e777e5))
+
+
+### Miscellaneous Chores
+
+* add the rest of COC and Security ([#5248](https://github.com/googleapis/google-cloud-php/issues/5248)) ([e6c20eb](https://github.com/googleapis/google-cloud-php/commit/e6c20eb9c27858ccaffcaf50f37aefefbd9a93ea))
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add Code of Conduct, Security, repo metadata ([#5242](https://github.com/googleapis/google-cloud-php/issues/5242)) ([1b326a1](https://github.com/googleapis/google-cloud-php/commit/1b326a182095fdd65e927d8e9692ea568a01524e))
+
+</details>
+
+<details><summary>google/cloud-video-stitcher 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add Code of Conduct, Security, repo metadata ([#5242](https://github.com/googleapis/google-cloud-php/issues/5242)) ([1b326a1](https://github.com/googleapis/google-cloud-php/commit/1b326a182095fdd65e927d8e9692ea568a01524e))
+
+</details>
+
+<details><summary>google/cloud-vm-migration 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add Code of Conduct, Security, repo metadata ([#5242](https://github.com/googleapis/google-cloud-php/issues/5242)) ([1b326a1](https://github.com/googleapis/google-cloud-php/commit/1b326a182095fdd65e927d8e9692ea568a01524e))
+
+</details>
+
 ## 0.178.0
 
 <details><summary>google/cloud-asset 1.6.6</summary>
