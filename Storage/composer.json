@@ -12,7 +12,7 @@
         "squizlabs/php_codesniffer": "2.*",
         "phpdocumentor/reflection": "^3.0",
         "erusev/parsedown": "^1.6",
-        "phpseclib/phpseclib": "^2",
+        "phpseclib/phpseclib": "^2.0||^3.0",
         "google/cloud-pubsub": "^1.0"
     },
     "suggest": {
