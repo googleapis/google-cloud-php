@@ -68,6 +68,14 @@ class DatabaseTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $session = $this->prophesize(Session::class);
+        $session->info()
+            ->willReturn([
+                'databaseName' => 'database'
+            ]);
+        $session->name()
+            ->willReturn('database');
+        $session->setExpiration(Argument::any())
+            ->willReturn(100);
 
         $sessionPool = $this->prophesize(SessionPoolInterface::class);
         $sessionPool->acquire(Argument::any())

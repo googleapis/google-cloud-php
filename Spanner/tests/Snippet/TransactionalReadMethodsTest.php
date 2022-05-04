@@ -71,6 +71,10 @@ class TransactionalReadMethodsTest extends SnippetTestCase
 
         $this->connection = $this->getConnStub();
         $this->session = $this->prophesize(Session::class);
+        $this->session->info()
+            ->willReturn([
+                'databaseName' => 'database'
+            ]);
         $this->operation = $this->prophesize(Operation::class);
     }
 

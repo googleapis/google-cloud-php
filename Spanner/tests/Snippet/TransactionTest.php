@@ -57,6 +57,12 @@ class TransactionTest extends SnippetTestCase
         $this->connection = $this->getConnStub();
         $operation = $this->prophesize(Operation::class);
         $session = $this->prophesize(Session::class);
+        $session->info()
+            ->willReturn([
+                'databaseName' => 'database'
+            ]);
+        $session->name()
+            ->willReturn('database');
 
         $this->transaction = TestHelpers::stub(Transaction::class, [
             $operation->reveal(),

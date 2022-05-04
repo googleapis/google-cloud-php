@@ -63,6 +63,13 @@ class QueryResultsTest extends SnippetTestCase
             ]
         ];
 
+        $job = $this->prophesize(Job::class);
+        $job->identity()
+            ->willReturn([
+                'jobId' => 'job',
+                'projectId' => 'project',
+                'location' => 'us-west1'
+            ]);
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->qr = TestHelpers::stub(QueryResults::class, [
             $this->connection->reveal(),
@@ -70,7 +77,7 @@ class QueryResultsTest extends SnippetTestCase
             self::PROJECT,
             $this->info,
             new ValueMapper(false),
-            $this->prophesize(Job::class)->reveal()
+            $job->reveal()
         ]);
     }
 
