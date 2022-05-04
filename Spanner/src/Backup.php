@@ -192,17 +192,16 @@ class Backup
      *
      * Example:
      * ```
-     * $spanner = new SpannerClient();
      * $sourceInstance = $spanner->instance('source-instance-id');
      * $destInstance = $spanner->instance('destination-instance-id');
      * $sourceBackup = $sourceInstance->backup('source-backup-id');
-     * $destBackup = $instance->backup('new-backup-id');
+     * $destBackup = $destInstance->backup('new-backup-id');
      *
      * $operation = $sourceBackup->createCopy($destBackup, new \DateTime('+7 hours'));
      * ```
      *
      * @param Backup $newBackup The backup object that needs to be created as a copy.
-     * @param DateTimeInterface $expireTime ​The expiration time of the backup,
+     * @param DateTimeInterface $expireTime The expiration time of the backup,
      *        with microseconds granularity that must be at least 6 hours and
      *        at most 366 days. Once the expireTime has passed, the backup is
      *        eligible to be automatically deleted by Cloud Spanner.

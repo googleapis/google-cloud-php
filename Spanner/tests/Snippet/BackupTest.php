@@ -27,6 +27,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Instance;
+use Google\Cloud\Spanner\SpannerClient;
 use Prophecy\Argument;
 
  /**
@@ -44,6 +45,7 @@ class BackupTest extends SnippetTestCase
 
     private $connection;
     private $backup;
+    private $client;
     private $instance;
     private $expireTime;
 
@@ -52,6 +54,7 @@ class BackupTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->client = TestHelpers::stub(SpannerClient::class);
         $this->expireTime = new \DateTime("+ 7 hours");
         $this->instance = TestHelpers::stub(Instance::class, [
             $this->connection->reveal(),
@@ -103,7 +106,7 @@ class BackupTest extends SnippetTestCase
     public function testCreateCopy()
     {
         $snippet = $this->snippetFromMethod(Backup::class, 'createCopy');
-        $snippet->addLocal('backup', $this->backup);
+        $snippet->addLocal('spanner', $this->client);
 
         $this->connection->copyBackup(Argument::any())
             ->shouldBeCalled()
@@ -111,7 +114,7 @@ class BackupTest extends SnippetTestCase
                 'name' => 'my-operation'
             ]);
 
-        $this->backup->___setProperty('connection', $this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
