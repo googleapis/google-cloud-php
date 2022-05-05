@@ -104,6 +104,7 @@ class VersionsClientTest extends GeneratedTest
         $runtimeChannel = 'runtimeChannel-2088002660';
         $threadsafe = false;
         $vm = false;
+        $appEngineApis = true;
         $env = 'env100589';
         $createdBy = 'createdBy1369680142';
         $diskUsageBytes = 1139084459;
@@ -120,6 +121,7 @@ class VersionsClientTest extends GeneratedTest
         $expectedResponse->setRuntimeChannel($runtimeChannel);
         $expectedResponse->setThreadsafe($threadsafe);
         $expectedResponse->setVm($vm);
+        $expectedResponse->setAppEngineApis($appEngineApis);
         $expectedResponse->setEnv($env);
         $expectedResponse->setCreatedBy($createdBy);
         $expectedResponse->setDiskUsageBytes($diskUsageBytes);
@@ -352,6 +354,7 @@ class VersionsClientTest extends GeneratedTest
         $runtimeChannel = 'runtimeChannel-2088002660';
         $threadsafe = false;
         $vm = false;
+        $appEngineApis = true;
         $env = 'env100589';
         $createdBy = 'createdBy1369680142';
         $diskUsageBytes = 1139084459;
@@ -368,6 +371,7 @@ class VersionsClientTest extends GeneratedTest
         $expectedResponse->setRuntimeChannel($runtimeChannel);
         $expectedResponse->setThreadsafe($threadsafe);
         $expectedResponse->setVm($vm);
+        $expectedResponse->setAppEngineApis($appEngineApis);
         $expectedResponse->setEnv($env);
         $expectedResponse->setCreatedBy($createdBy);
         $expectedResponse->setDiskUsageBytes($diskUsageBytes);
@@ -516,6 +520,7 @@ class VersionsClientTest extends GeneratedTest
         $runtimeChannel = 'runtimeChannel-2088002660';
         $threadsafe = false;
         $vm = false;
+        $appEngineApis = true;
         $env = 'env100589';
         $createdBy = 'createdBy1369680142';
         $diskUsageBytes = 1139084459;
@@ -532,6 +537,7 @@ class VersionsClientTest extends GeneratedTest
         $expectedResponse->setRuntimeChannel($runtimeChannel);
         $expectedResponse->setThreadsafe($threadsafe);
         $expectedResponse->setVm($vm);
+        $expectedResponse->setAppEngineApis($appEngineApis);
         $expectedResponse->setEnv($env);
         $expectedResponse->setCreatedBy($createdBy);
         $expectedResponse->setDiskUsageBytes($diskUsageBytes);

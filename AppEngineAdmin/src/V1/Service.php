@@ -45,6 +45,21 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     private $split = null;
     /**
+     * A set of labels to apply to this service. Labels are key/value pairs that
+     * describe the service and all resources that belong to it (e.g.,
+     * versions). The labels can be used to search and group resources, and are
+     * propagated to the usage and billing reports, enabling fine-grain analysis
+     * of costs. An example of using labels is to tag resources belonging to
+     * different environments (e.g., "env=prod", "env=qa").
+     * <p>Label keys and values can be no longer than 63 characters and can only
+     * contain lowercase letters, numeric characters, underscores, dashes, and
+     * international characters. Label keys must start with a lowercase letter
+     * or an international character. Each service can have at most 32 labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     */
+    private $labels;
+    /**
      * Ingress settings for this service. Will apply to all versions.
      *
      * Generated from protobuf field <code>.google.appengine.v1.NetworkSettings network_settings = 6;</code>
@@ -68,6 +83,17 @@ class Service extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AppEngine\V1\TrafficSplit $split
      *           Mapping that defines fractional HTTP traffic diversion to
      *           different versions within the service.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           A set of labels to apply to this service. Labels are key/value pairs that
+     *           describe the service and all resources that belong to it (e.g.,
+     *           versions). The labels can be used to search and group resources, and are
+     *           propagated to the usage and billing reports, enabling fine-grain analysis
+     *           of costs. An example of using labels is to tag resources belonging to
+     *           different environments (e.g., "env=prod", "env=qa").
+     *           <p>Label keys and values can be no longer than 63 characters and can only
+     *           contain lowercase letters, numeric characters, underscores, dashes, and
+     *           international characters. Label keys must start with a lowercase letter
+     *           or an international character. Each service can have at most 32 labels.
      *     @type \Google\Cloud\AppEngine\V1\NetworkSettings $network_settings
      *           Ingress settings for this service. Will apply to all versions.
      * }
@@ -171,6 +197,50 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AppEngine\V1\TrafficSplit::class);
         $this->split = $var;
+
+        return $this;
+    }
+
+    /**
+     * A set of labels to apply to this service. Labels are key/value pairs that
+     * describe the service and all resources that belong to it (e.g.,
+     * versions). The labels can be used to search and group resources, and are
+     * propagated to the usage and billing reports, enabling fine-grain analysis
+     * of costs. An example of using labels is to tag resources belonging to
+     * different environments (e.g., "env=prod", "env=qa").
+     * <p>Label keys and values can be no longer than 63 characters and can only
+     * contain lowercase letters, numeric characters, underscores, dashes, and
+     * international characters. Label keys must start with a lowercase letter
+     * or an international character. Each service can have at most 32 labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * A set of labels to apply to this service. Labels are key/value pairs that
+     * describe the service and all resources that belong to it (e.g.,
+     * versions). The labels can be used to search and group resources, and are
+     * propagated to the usage and billing reports, enabling fine-grain analysis
+     * of costs. An example of using labels is to tag resources belonging to
+     * different environments (e.g., "env=prod", "env=qa").
+     * <p>Label keys and values can be no longer than 63 characters and can only
+     * contain lowercase letters, numeric characters, underscores, dashes, and
+     * international characters. Label keys must start with a lowercase letter
+     * or an international character. Each service can have at most 32 labels.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 4;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
 
         return $this;
     }

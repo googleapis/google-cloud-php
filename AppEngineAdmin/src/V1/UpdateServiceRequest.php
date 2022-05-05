@@ -29,7 +29,7 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      */
     private $service = null;
     /**
-     * Standard field mask for the set of fields to be updated.
+     * Required. Standard field mask for the set of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
@@ -64,7 +64,7 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      *           A Service resource containing the updated service. Only fields set in the
      *           field mask will be updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Standard field mask for the set of fields to be updated.
+     *           Required. Standard field mask for the set of fields to be updated.
      *     @type bool $migrate_traffic
      *           Set to `true` to gradually shift traffic to one or more versions that you
      *           specify. By default, traffic is shifted immediately.
@@ -150,7 +150,7 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Standard field mask for the set of fields to be updated.
+     * Required. Standard field mask for the set of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -171,7 +171,7 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Standard field mask for the set of fields to be updated.
+     * Required. Standard field mask for the set of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      * @param \Google\Protobuf\FieldMask $var
