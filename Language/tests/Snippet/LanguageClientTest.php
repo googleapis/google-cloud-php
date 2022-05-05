@@ -119,7 +119,7 @@ class LanguageClientTest extends SnippetTestCase
                 'sentences' => [
                     [
                         'text' => [
-                            'beginOffset' => 1.0
+                            'beginOffset' => '1.0'
                         ]
                     ]
                 ]
