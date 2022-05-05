@@ -108,7 +108,7 @@ namespace Foobar;
 
 class FoobarTestCase extends \Google\Cloud\Core\Testing\System\SystemTestCase
 {
-    public static function markTestSkipped($message = '')
+    public static function markTestSkipped($message = ''): void
     {
         throw new \RuntimeException($message);
     }

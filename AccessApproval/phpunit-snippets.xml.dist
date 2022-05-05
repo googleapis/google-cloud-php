@@ -2,7 +2,7 @@
 <phpunit
   bootstrap="./vendor/google/cloud-core/snippet-bootstrap.php"
   colors="true"
-  printerClass="Google\Cloud\Core\Testing\Snippet\Coverage\ResultPrinter">
+  >
   <testsuites>
     <testsuite>
       <directory>tests/Snippet</directory>
