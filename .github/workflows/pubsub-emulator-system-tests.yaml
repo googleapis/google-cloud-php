@@ -2,11 +2,7 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'PubSub/**'
   pull_request:
-    paths:
-      - 'PubSub/**'
 name: Run PubSub System Tests With Emulator
 jobs:
   test:
@@ -22,11 +18,13 @@ jobs:
         with:
           php-version: '7.4'
           tools: pecl
-          extensions: grpc-1.38.0
+          extensions: grpc
 
       - name: Install dependencies
         run: |
-          composer update --prefer-dist --no-interaction --no-suggest -d PubSub/
+          composer config minimum-stability dev -d PubSub/
+          composer config repositories.local path "../Core" -d PubSub
+          composer require "google/cloud-core:*" -d PubSub/
 
       - name: Run system tests
         run: |

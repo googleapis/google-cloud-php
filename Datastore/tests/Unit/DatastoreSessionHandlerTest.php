@@ -35,7 +35,6 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class DatastoreSessionHandlerTest extends TestCase
 {
-    use ExpectException;
     use AssertIsType;
     use ExpectException;
 

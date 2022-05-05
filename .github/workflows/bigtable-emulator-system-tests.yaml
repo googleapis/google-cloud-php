@@ -2,11 +2,7 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'Bigtable/**'
   pull_request:
-    paths:
-      - 'Bigtable/**'
 name: Run Bigtable System Tests With Emulator
 jobs:
   test:

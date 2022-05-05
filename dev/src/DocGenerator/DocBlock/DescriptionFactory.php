@@ -116,10 +116,10 @@ class DescriptionFactory extends BaseDescriptionFactory
                         (?:
                             # Because we did not catch the tag delimiters earlier, we must be explicit with them here.
                             # Notice that this also matches "{}", as a way to later introduce it as an escape sequence.
-                            {(?1)?\}
+                            \{(?1)?\}
                             |
                             # Make sure we match hanging "{".
-                            {
+                            \{
                         )
                         # Match content after the nested inline tag.
                         [^{}]*

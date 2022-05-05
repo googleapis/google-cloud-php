@@ -50,7 +50,6 @@ class GrpcTest extends TestCase
     use ExpectException;
     use GrpcTestTrait;
     use GrpcTrait;
-    use ExpectException;
 
     const PROJECT_ID = 'my-project';
 

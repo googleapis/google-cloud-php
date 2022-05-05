@@ -44,10 +44,9 @@ use Prophecy\Argument;
  */
 class DatastoreClientTest extends TestCase
 {
-    use ExpectException;
     use DatastoreOperationRefreshTrait;
-    use GrpcTestTrait;
     use ExpectException;
+    use GrpcTestTrait;
 
     const PROJECT = 'example-project';
     const TRANSACTION = 'transaction-id';
