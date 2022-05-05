@@ -2,7 +2,11 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'Firestore/**'
   pull_request:
+    paths:
+      - 'Firestore/**'
 name: Run Firestore System Tests With Emulator
 jobs:
   test:

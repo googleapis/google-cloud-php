@@ -2,7 +2,11 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'PubSub/**'
   pull_request:
+    paths:
+      - 'PubSub/**'
 name: Run PubSub System Tests With Emulator
 jobs:
   test:

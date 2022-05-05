@@ -2,7 +2,11 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'Spanner/**'
   pull_request:
+    paths:
+      - 'Spanner/**'
 name: Run Spanner System Tests With Emulator
 jobs:
   test:
