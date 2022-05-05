@@ -102,6 +102,7 @@ class ApplicationsClientTest extends GeneratedTest
         $codeBucket = 'codeBucket-1239055236';
         $defaultHostname = 'defaultHostname-402050959';
         $defaultBucket = 'defaultBucket1669731752';
+        $serviceAccount = 'serviceAccount-1948028253';
         $gcrDomain = 'gcrDomain883768845';
         $expectedResponse = new Application();
         $expectedResponse->setName($name);
@@ -111,6 +112,7 @@ class ApplicationsClientTest extends GeneratedTest
         $expectedResponse->setCodeBucket($codeBucket);
         $expectedResponse->setDefaultHostname($defaultHostname);
         $expectedResponse->setDefaultBucket($defaultBucket);
+        $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setGcrDomain($gcrDomain);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -221,6 +223,7 @@ class ApplicationsClientTest extends GeneratedTest
         $codeBucket = 'codeBucket-1239055236';
         $defaultHostname = 'defaultHostname-402050959';
         $defaultBucket = 'defaultBucket1669731752';
+        $serviceAccount = 'serviceAccount-1948028253';
         $gcrDomain = 'gcrDomain883768845';
         $expectedResponse = new Application();
         $expectedResponse->setName($name2);
@@ -230,6 +233,7 @@ class ApplicationsClientTest extends GeneratedTest
         $expectedResponse->setCodeBucket($codeBucket);
         $expectedResponse->setDefaultHostname($defaultHostname);
         $expectedResponse->setDefaultBucket($defaultBucket);
+        $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setGcrDomain($gcrDomain);
         $transport->addResponse($expectedResponse);
         $response = $client->getApplication();
@@ -305,6 +309,7 @@ class ApplicationsClientTest extends GeneratedTest
         $codeBucket = 'codeBucket-1239055236';
         $defaultHostname = 'defaultHostname-402050959';
         $defaultBucket = 'defaultBucket1669731752';
+        $serviceAccount = 'serviceAccount-1948028253';
         $gcrDomain = 'gcrDomain883768845';
         $expectedResponse = new Application();
         $expectedResponse->setName($name2);
@@ -314,6 +319,7 @@ class ApplicationsClientTest extends GeneratedTest
         $expectedResponse->setCodeBucket($codeBucket);
         $expectedResponse->setDefaultHostname($defaultHostname);
         $expectedResponse->setDefaultBucket($defaultBucket);
+        $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setGcrDomain($gcrDomain);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -436,6 +442,7 @@ class ApplicationsClientTest extends GeneratedTest
         $codeBucket = 'codeBucket-1239055236';
         $defaultHostname = 'defaultHostname-402050959';
         $defaultBucket = 'defaultBucket1669731752';
+        $serviceAccount = 'serviceAccount-1948028253';
         $gcrDomain = 'gcrDomain883768845';
         $expectedResponse = new Application();
         $expectedResponse->setName($name2);
@@ -445,6 +452,7 @@ class ApplicationsClientTest extends GeneratedTest
         $expectedResponse->setCodeBucket($codeBucket);
         $expectedResponse->setDefaultHostname($defaultHostname);
         $expectedResponse->setDefaultBucket($defaultBucket);
+        $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setGcrDomain($gcrDomain);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());

@@ -12,5 +12,5 @@ if (false) {
     class VpcAccessConnector_EgressSetting {}
 }
 class_exists(VpcAccessConnector\EgressSetting::class);
-@trigger_error('Google\Cloud\AppEngine\V1\VpcAccessConnector_EgressSetting is deprecated and will be removed in the next major release. Use Google\Cloud\AppEngine\V1\VpcAccessConnector\EgressSetting instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\AppEngine\V1\VpcAccessConnector_EgressSetting is deprecated and will be removed in a future release. Use Google\Cloud\AppEngine\V1\VpcAccessConnector\EgressSetting instead', E_USER_DEPRECATED);
 
