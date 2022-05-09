@@ -19,8 +19,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see
-     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      */
@@ -32,8 +31,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
      * This field is optional for FLAC and WAV audio files, but is
-     * required for all other audio formats. For details, see
-     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      */
@@ -267,6 +265,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *         For example, long-form audio. Ideally the audio is high-fidelity,
      *         recorded at a 16khz or greater sampling rate.</td>
      *   </tr>
+     *   <tr>
+     *     <td><code>medical_conversation</code></td>
+     *     <td>Best for audio that originated from a conversation between a
+     *         medical provider and patient.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_dictation</code></td>
+     *     <td>Best for audio that originated from dictation notes by a medical
+     *         provider.</td>
+     *   </tr>
      * </table>
      *
      * Generated from protobuf field <code>string model = 13;</code>
@@ -294,8 +302,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     @type int $encoding
      *           Encoding of audio data sent in all `RecognitionAudio` messages.
      *           This field is optional for `FLAC` and `WAV` audio files and required
-     *           for all other audio formats. For details, see
-     *           [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     *           for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *     @type int $sample_rate_hertz
      *           Sample rate in Hertz of the audio data sent in all
      *           `RecognitionAudio` messages. Valid values are: 8000-48000.
@@ -303,8 +310,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           source to 16000 Hz. If that's not possible, use the native sample rate of
      *           the audio source (instead of re-sampling).
      *           This field is optional for FLAC and WAV audio files, but is
-     *           required for all other audio formats. For details, see
-     *           [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     *           required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *     @type int $audio_channel_count
      *           The number of channels in the input audio data.
      *           ONLY set this for MULTI-CHANNEL recognition.
@@ -460,6 +466,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *                   For example, long-form audio. Ideally the audio is high-fidelity,
      *                   recorded at a 16khz or greater sampling rate.</td>
      *             </tr>
+     *             <tr>
+     *               <td><code>medical_conversation</code></td>
+     *               <td>Best for audio that originated from a conversation between a
+     *                   medical provider and patient.</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>medical_dictation</code></td>
+     *               <td>Best for audio that originated from dictation notes by a medical
+     *                   provider.</td>
+     *             </tr>
      *           </table>
      *     @type bool $use_enhanced
      *           Set to true to use an enhanced model for speech recognition.
@@ -479,8 +495,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see
-     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      * @return int
@@ -493,8 +508,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see
-     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      * @param int $var
@@ -515,8 +529,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
      * This field is optional for FLAC and WAV audio files, but is
-     * required for all other audio formats. For details, see
-     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      * @return int
@@ -533,8 +546,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
      * This field is optional for FLAC and WAV audio files, but is
-     * required for all other audio formats. For details, see
-     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      * @param int $var
@@ -1355,6 +1367,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *         For example, long-form audio. Ideally the audio is high-fidelity,
      *         recorded at a 16khz or greater sampling rate.</td>
      *   </tr>
+     *   <tr>
+     *     <td><code>medical_conversation</code></td>
+     *     <td>Best for audio that originated from a conversation between a
+     *         medical provider and patient.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_dictation</code></td>
+     *     <td>Best for audio that originated from dictation notes by a medical
+     *         provider.</td>
+     *   </tr>
      * </table>
      *
      * Generated from protobuf field <code>string model = 13;</code>
@@ -1405,6 +1427,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td>Best for audio that is not one of the specific audio models.
      *         For example, long-form audio. Ideally the audio is high-fidelity,
      *         recorded at a 16khz or greater sampling rate.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_conversation</code></td>
+     *     <td>Best for audio that originated from a conversation between a
+     *         medical provider and patient.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_dictation</code></td>
+     *     <td>Best for audio that originated from dictation notes by a medical
+     *         provider.</td>
      *   </tr>
      * </table>
      *
