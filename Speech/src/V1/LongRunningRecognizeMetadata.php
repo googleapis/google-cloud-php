@@ -37,8 +37,8 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      */
     private $last_update_time = null;
     /**
-     * Output only. The URI of the audio file being transcribed. Empty if the
-     * audio was sent as byte content.
+     * Output only. The URI of the audio file being transcribed. Empty if the audio was sent
+     * as byte content.
      *
      * Generated from protobuf field <code>string uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -58,8 +58,8 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $last_update_time
      *           Time of the most recent processing update.
      *     @type string $uri
-     *           Output only. The URI of the audio file being transcribed. Empty if the
-     *           audio was sent as byte content.
+     *           Output only. The URI of the audio file being transcribed. Empty if the audio was sent
+     *           as byte content.
      * }
      */
     public function __construct($data = NULL) {
@@ -168,8 +168,8 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The URI of the audio file being transcribed. Empty if the
-     * audio was sent as byte content.
+     * Output only. The URI of the audio file being transcribed. Empty if the audio was sent
+     * as byte content.
      *
      * Generated from protobuf field <code>string uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -180,8 +180,8 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The URI of the audio file being transcribed. Empty if the
-     * audio was sent as byte content.
+     * Output only. The URI of the audio file being transcribed. Empty if the audio was sent
+     * as byte content.
      *
      * Generated from protobuf field <code>string uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
