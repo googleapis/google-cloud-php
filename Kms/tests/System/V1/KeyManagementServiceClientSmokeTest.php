@@ -2,17 +2,17 @@
 
 namespace Google\Cloud\Kms\Tests\System\V1;
 
-use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Kms\V1\KeyManagementServiceClient;
 use Google\Cloud\Kms\V1\CryptoKey;
 use Google\Cloud\Kms\V1\CryptoKey_CryptoKeyPurpose;
 use Google\Cloud\Kms\V1\KeyRing;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group kms
  * @group gapic
  */
-class KeyManagementServiceClientSmokeTest extends SystemTestCase
+class KeyManagementServiceClientSmokeTest extends TestCase
 {
 
     /**
@@ -53,9 +53,9 @@ class KeyManagementServiceClientSmokeTest extends SystemTestCase
         $secret = 'My secret text';
         $response = $client->encrypt($keyName, $secret);
         $cipherText = $response->getCiphertext();
-        
+
         $response = $client->decrypt($keyName, $cipherText);
-        
+
         $plainText = $response->getPlaintext();
 
         $this->assertEquals($secret, $plainText);
