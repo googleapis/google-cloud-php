@@ -30,14 +30,14 @@ use Google\Cloud\Compute\V1\InstanceTemplatesClient;
 use Google\Cloud\Compute\V1\NetworkInterface;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use Google\Cloud\Compute\V1\ShieldedInstanceConfig;
-use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group compute
  * @group gapic
  */
-class SmokeTest extends SystemTestCase
+class SmokeTest extends TestCase
 {
     use ExpectException;
 

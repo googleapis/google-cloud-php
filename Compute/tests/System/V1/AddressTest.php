@@ -20,9 +20,9 @@ namespace Google\Cloud\Compute\Tests\System\V1;
 use Google\ApiCore\ApiException;
 use Google\Cloud\Compute\V1\Address;
 use Google\Cloud\Compute\V1\AddressesClient;
-use Google\Cloud\Core\Testing\System\SystemTestCase;
+use PHPUnit\Framework\TestCase;
 
-class AddressTest extends SystemTestCase
+class AddressTest extends TestCase
 {
     const REGION = 'us-central1';
     protected static $addressesClient;

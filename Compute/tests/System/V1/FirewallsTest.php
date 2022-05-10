@@ -22,9 +22,9 @@ use Google\Cloud\Compute\V1\Allowed;
 use Google\Cloud\Compute\V1\Firewall;
 use Google\Cloud\Compute\V1\FirewallsClient;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
-use Google\Cloud\Core\Testing\System\SystemTestCase;
+use PHPUnit\Framework\TestCase;
 
-class FirewallsTest extends SystemTestCase
+class FirewallsTest extends TestCase
 {
     protected static $client;
     protected static $projectId;
