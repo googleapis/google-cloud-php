@@ -20,12 +20,13 @@ use Google\Cloud\Asset\V1beta1\AssetServiceClient;
 use Google\Cloud\Asset\V1beta1\GcsDestination;
 use Google\Cloud\Asset\V1beta1\OutputConfig;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group asset
  * @group gapic
  */
-class AssetServiceSmokeTest extends SystemTestCase
+class AssetServiceSmokeTest extends TestCase
 {
     /**
      * @test
