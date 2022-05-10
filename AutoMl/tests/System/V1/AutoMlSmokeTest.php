@@ -20,13 +20,13 @@ namespace Google\Cloud\AutoMl\Tests\System\V1;
 use Google\Cloud\AutoMl\V1\AutoMlClient;
 use Google\Cloud\AutoMl\V1\Dataset;
 use Google\Cloud\AutoMl\V1\TranslationDatasetMetadata;
-use Google\Cloud\Core\Testing\System\SystemTestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group automl-v1
  * @group gapic
  */
-class AutoMlSmokeTest extends SystemTestCase
+class AutoMlSmokeTest extends TestCase
 {
     const TESTING_PREFIX = 'gcloud_testing_';
 
