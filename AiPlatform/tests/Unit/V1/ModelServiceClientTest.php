@@ -416,11 +416,13 @@ class ModelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
         $metricsSchemaUri = 'metricsSchemaUri981925578';
         $dataItemSchemaUri = 'dataItemSchemaUri2052678629';
         $annotationSchemaUri = 'annotationSchemaUri669210846';
         $expectedResponse = new ModelEvaluation();
         $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setMetricsSchemaUri($metricsSchemaUri);
         $expectedResponse->setDataItemSchemaUri($dataItemSchemaUri);
         $expectedResponse->setAnnotationSchemaUri($annotationSchemaUri);
@@ -552,11 +554,13 @@ class ModelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $displayName = 'displayName1615086568';
         $metricsSchemaUri = 'metricsSchemaUri981925578';
         $dataItemSchemaUri = 'dataItemSchemaUri2052678629';
         $annotationSchemaUri = 'annotationSchemaUri669210846';
         $expectedResponse = new ModelEvaluation();
         $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setMetricsSchemaUri($metricsSchemaUri);
         $expectedResponse->setDataItemSchemaUri($dataItemSchemaUri);
         $expectedResponse->setAnnotationSchemaUri($annotationSchemaUri);
