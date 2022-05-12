@@ -23,6 +23,12 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
+     * The display name of the ModelEvaluation.
+     *
+     * Generated from protobuf field <code>string display_name = 10;</code>
+     */
+    private $display_name = '';
+    /**
      * Points to a YAML file stored on Google Cloud Storage describing the
      * [metrics][google.cloud.aiplatform.v1.ModelEvaluation.metrics] of this ModelEvaluation. The schema is
      * defined as an OpenAPI 3.0.2 [Schema
@@ -94,6 +100,15 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelEvaluation.ModelEvaluationExplanationSpec explanation_specs = 9;</code>
      */
     private $explanation_specs;
+    /**
+     * The metadata of the ModelEvaluation.
+     * For the ModelEvaluation uploaded from Managed Pipeline, metadata contains a
+     * structured value with keys of "pipeline_job_id", "evaluation_dataset_type",
+     * "evaluation_dataset_path".
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value metadata = 11;</code>
+     */
+    private $metadata = null;
 
     /**
      * Constructor.
@@ -103,6 +118,8 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The resource name of the ModelEvaluation.
+     *     @type string $display_name
+     *           The display name of the ModelEvaluation.
      *     @type string $metrics_schema_uri
      *           Points to a YAML file stored on Google Cloud Storage describing the
      *           [metrics][google.cloud.aiplatform.v1.ModelEvaluation.metrics] of this ModelEvaluation. The schema is
@@ -143,6 +160,11 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\ModelEvaluation\ModelEvaluationExplanationSpec[]|\Google\Protobuf\Internal\RepeatedField $explanation_specs
      *           Describes the values of [ExplanationSpec][google.cloud.aiplatform.v1.ExplanationSpec] that are used for explaining
      *           the predicted values on the evaluated data.
+     *     @type \Google\Protobuf\Value $metadata
+     *           The metadata of the ModelEvaluation.
+     *           For the ModelEvaluation uploaded from Managed Pipeline, metadata contains a
+     *           structured value with keys of "pipeline_job_id", "evaluation_dataset_type",
+     *           "evaluation_dataset_path".
      * }
      */
     public function __construct($data = NULL) {
@@ -172,6 +194,32 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The display name of the ModelEvaluation.
+     *
+     * Generated from protobuf field <code>string display_name = 10;</code>
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->display_name;
+    }
+
+    /**
+     * The display name of the ModelEvaluation.
+     *
+     * Generated from protobuf field <code>string display_name = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_name = $var;
 
         return $this;
     }
@@ -458,6 +506,48 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\ModelEvaluation\ModelEvaluationExplanationSpec::class);
         $this->explanation_specs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The metadata of the ModelEvaluation.
+     * For the ModelEvaluation uploaded from Managed Pipeline, metadata contains a
+     * structured value with keys of "pipeline_job_id", "evaluation_dataset_type",
+     * "evaluation_dataset_path".
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value metadata = 11;</code>
+     * @return \Google\Protobuf\Value|null
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
+
+    public function hasMetadata()
+    {
+        return isset($this->metadata);
+    }
+
+    public function clearMetadata()
+    {
+        unset($this->metadata);
+    }
+
+    /**
+     * The metadata of the ModelEvaluation.
+     * For the ModelEvaluation uploaded from Managed Pipeline, metadata contains a
+     * structured value with keys of "pipeline_job_id", "evaluation_dataset_type",
+     * "evaluation_dataset_path".
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value metadata = 11;</code>
+     * @param \Google\Protobuf\Value $var
+     * @return $this
+     */
+    public function setMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
+        $this->metadata = $var;
 
         return $this;
     }

@@ -21,10 +21,12 @@ class ModelEvaluation
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ë
-1google/cloud/aiplatform/v1/model_evaluation.protogoogle.cloud.aiplatform.v1google/api/resource.proto,google/cloud/aiplatform/v1/explanation.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"´
+®	
+1google/cloud/aiplatform/v1/model_evaluation.protogoogle.cloud.aiplatform.v1google/api/resource.proto,google/cloud/aiplatform/v1/explanation.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"Î
 ModelEvaluation
-name (	B‡A
+name (	B‡A
+display_name
+ (	
 metrics_schema_uri (	\'
 metrics (2.google.protobuf.Value4
 create_time (2.google.protobuf.TimestampB‡A
@@ -32,7 +34,8 @@ class ModelEvaluation
 data_item_schema_uri (	
 annotation_schema_uri (	G
 model_explanation (2,.google.cloud.aiplatform.v1.ModelExplanatione
-explanation_specs	 (2J.google.cloud.aiplatform.v1.ModelEvaluation.ModelEvaluationExplanationSpecÅ
+explanation_specs	 (2J.google.cloud.aiplatform.v1.ModelEvaluation.ModelEvaluationExplanationSpec(
+metadata (2.google.protobuf.ValueÅ
 ModelEvaluationExplanationSpec
 explanation_type (	E
 explanation_spec (2+.google.cloud.aiplatform.v1.ExplanationSpec:ÍA|
