@@ -254,7 +254,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->customDimensionName('[PROPERTY]');
+        $formattedName = $client->customDimensionName('[PROPERTY]', '[CUSTOM_DIMENSION]');
         $client->archiveCustomDimension($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -287,7 +287,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->customDimensionName('[PROPERTY]');
+        $formattedName = $client->customDimensionName('[PROPERTY]', '[CUSTOM_DIMENSION]');
         try {
             $client->archiveCustomDimension($formattedName);
             // If the $client method call did not throw, fail the test
@@ -315,7 +315,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->customMetricName('[PROPERTY]');
+        $formattedName = $client->customMetricName('[PROPERTY]', '[CUSTOM_METRIC]');
         $client->archiveCustomMetric($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -348,7 +348,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->customMetricName('[PROPERTY]');
+        $formattedName = $client->customMetricName('[PROPERTY]', '[CUSTOM_METRIC]');
         try {
             $client->archiveCustomMetric($formattedName);
             // If the $client method call did not throw, fail the test
@@ -2402,7 +2402,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDisallowAdsPersonalization($disallowAdsPersonalization);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->customDimensionName('[PROPERTY]');
+        $formattedName = $client->customDimensionName('[PROPERTY]', '[CUSTOM_DIMENSION]');
         $response = $client->getCustomDimension($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2436,7 +2436,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->customDimensionName('[PROPERTY]');
+        $formattedName = $client->customDimensionName('[PROPERTY]', '[CUSTOM_DIMENSION]');
         try {
             $client->getCustomDimension($formattedName);
             // If the $client method call did not throw, fail the test
@@ -2472,7 +2472,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->customMetricName('[PROPERTY]');
+        $formattedName = $client->customMetricName('[PROPERTY]', '[CUSTOM_METRIC]');
         $response = $client->getCustomMetric($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2506,7 +2506,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->customMetricName('[PROPERTY]');
+        $formattedName = $client->customMetricName('[PROPERTY]', '[CUSTOM_METRIC]');
         try {
             $client->getCustomMetric($formattedName);
             // If the $client method call did not throw, fail the test
