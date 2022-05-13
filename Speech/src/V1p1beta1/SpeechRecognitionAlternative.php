@@ -17,6 +17,9 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
 {
     /**
      * Transcript text representing the words that the user spoke.
+     * In languages that use spaces to separate words, the transcript might have a
+     * leading space if it isn't the first result. You can concatenate each result
+     * to obtain the full transcript without using a separator.
      *
      * Generated from protobuf field <code>string transcript = 1;</code>
      */
@@ -50,6 +53,9 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      *
      *     @type string $transcript
      *           Transcript text representing the words that the user spoke.
+     *           In languages that use spaces to separate words, the transcript might have a
+     *           leading space if it isn't the first result. You can concatenate each result
+     *           to obtain the full transcript without using a separator.
      *     @type float $confidence
      *           The confidence estimate between 0.0 and 1.0. A higher number
      *           indicates an estimated greater likelihood that the recognized words are
@@ -71,6 +77,9 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
 
     /**
      * Transcript text representing the words that the user spoke.
+     * In languages that use spaces to separate words, the transcript might have a
+     * leading space if it isn't the first result. You can concatenate each result
+     * to obtain the full transcript without using a separator.
      *
      * Generated from protobuf field <code>string transcript = 1;</code>
      * @return string
@@ -82,6 +91,9 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
 
     /**
      * Transcript text representing the words that the user spoke.
+     * In languages that use spaces to separate words, the transcript might have a
+     * leading space if it isn't the first result. You can concatenate each result
+     * to obtain the full transcript without using a separator.
      *
      * Generated from protobuf field <code>string transcript = 1;</code>
      * @param string $var
