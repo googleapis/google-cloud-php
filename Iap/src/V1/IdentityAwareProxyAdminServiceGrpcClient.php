@@ -117,4 +117,81 @@ class IdentityAwareProxyAdminServiceGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Lists the existing TunnelDestGroups. To group across all locations, use a
+     * `-` as the location ID. For example:
+     * `/v1/projects/123/iap_tunnel/locations/-/destGroups`
+     * @param \Google\Cloud\Iap\V1\ListTunnelDestGroupsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListTunnelDestGroups(\Google\Cloud\Iap\V1\ListTunnelDestGroupsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.iap.v1.IdentityAwareProxyAdminService/ListTunnelDestGroups',
+        $argument,
+        ['\Google\Cloud\Iap\V1\ListTunnelDestGroupsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a new TunnelDestGroup.
+     * @param \Google\Cloud\Iap\V1\CreateTunnelDestGroupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateTunnelDestGroup(\Google\Cloud\Iap\V1\CreateTunnelDestGroupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.iap.v1.IdentityAwareProxyAdminService/CreateTunnelDestGroup',
+        $argument,
+        ['\Google\Cloud\Iap\V1\TunnelDestGroup', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Retrieves an existing TunnelDestGroup.
+     * @param \Google\Cloud\Iap\V1\GetTunnelDestGroupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetTunnelDestGroup(\Google\Cloud\Iap\V1\GetTunnelDestGroupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.iap.v1.IdentityAwareProxyAdminService/GetTunnelDestGroup',
+        $argument,
+        ['\Google\Cloud\Iap\V1\TunnelDestGroup', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a TunnelDestGroup.
+     * @param \Google\Cloud\Iap\V1\DeleteTunnelDestGroupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteTunnelDestGroup(\Google\Cloud\Iap\V1\DeleteTunnelDestGroupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.iap.v1.IdentityAwareProxyAdminService/DeleteTunnelDestGroup',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a TunnelDestGroup.
+     * @param \Google\Cloud\Iap\V1\UpdateTunnelDestGroupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateTunnelDestGroup(\Google\Cloud\Iap\V1\UpdateTunnelDestGroupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.iap.v1.IdentityAwareProxyAdminService/UpdateTunnelDestGroup',
+        $argument,
+        ['\Google\Cloud\Iap\V1\TunnelDestGroup', 'decode'],
+        $metadata, $options);
+    }
+
 }

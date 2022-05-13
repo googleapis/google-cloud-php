@@ -26,8 +26,9 @@ namespace Google\Cloud\Iap\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
+
+use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -39,10 +40,18 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Iap\V1\CreateTunnelDestGroupRequest;
+use Google\Cloud\Iap\V1\DeleteTunnelDestGroupRequest;
 use Google\Cloud\Iap\V1\GetIapSettingsRequest;
+use Google\Cloud\Iap\V1\GetTunnelDestGroupRequest;
 use Google\Cloud\Iap\V1\IapSettings;
+use Google\Cloud\Iap\V1\ListTunnelDestGroupsRequest;
+use Google\Cloud\Iap\V1\ListTunnelDestGroupsResponse;
+use Google\Cloud\Iap\V1\TunnelDestGroup;
 use Google\Cloud\Iap\V1\UpdateIapSettingsRequest;
+use Google\Cloud\Iap\V1\UpdateTunnelDestGroupRequest;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description: APIs for Identity-Aware Proxy Admin configurations.
@@ -53,12 +62,19 @@ use Google\Protobuf\FieldMask;
  * ```
  * $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
  * try {
- *     $resource = 'resource';
- *     $response = $identityAwareProxyAdminServiceClient->getIamPolicy($resource);
+ *     $formattedParent = $identityAwareProxyAdminServiceClient->tunnelLocationName('[PROJECT]', '[LOCATION]');
+ *     $tunnelDestGroup = new TunnelDestGroup();
+ *     $tunnelDestGroupId = 'tunnel_dest_group_id';
+ *     $response = $identityAwareProxyAdminServiceClient->createTunnelDestGroup($formattedParent, $tunnelDestGroup, $tunnelDestGroupId);
  * } finally {
  *     $identityAwareProxyAdminServiceClient->close();
  * }
  * ```
+ *
+ * Many parameters require resource names to be formatted in a particular way. To
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
  */
 class IdentityAwareProxyAdminServiceGapicClient
 {
@@ -91,6 +107,12 @@ class IdentityAwareProxyAdminServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $tunnelDestGroupNameTemplate;
+
+    private static $tunnelLocationNameTemplate;
+
+    private static $pathTemplateMap;
+
     private static function getClientDefaults()
     {
         return [
@@ -117,6 +139,122 @@ class IdentityAwareProxyAdminServiceGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getTunnelDestGroupNameTemplate()
+    {
+        if (self::$tunnelDestGroupNameTemplate == null) {
+            self::$tunnelDestGroupNameTemplate = new PathTemplate(
+                'projects/{project}/iap_tunnel/locations/{location}/destGroups/{dest_group}'
+            );
+        }
+
+        return self::$tunnelDestGroupNameTemplate;
+    }
+
+    private static function getTunnelLocationNameTemplate()
+    {
+        if (self::$tunnelLocationNameTemplate == null) {
+            self::$tunnelLocationNameTemplate = new PathTemplate(
+                'projects/{project}/iap_tunnel/locations/{location}'
+            );
+        }
+
+        return self::$tunnelLocationNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'tunnelDestGroup' => self::getTunnelDestGroupNameTemplate(),
+                'tunnelLocation' => self::getTunnelLocationNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * tunnel_dest_group resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $destGroup
+     *
+     * @return string The formatted tunnel_dest_group resource.
+     */
+    public static function tunnelDestGroupName($project, $location, $destGroup)
+    {
+        return self::getTunnelDestGroupNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'dest_group' => $destGroup,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * tunnel_location resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted tunnel_location resource.
+     */
+    public static function tunnelLocationName($project, $location)
+    {
+        return self::getTunnelLocationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - tunnelDestGroup: projects/{project}/iap_tunnel/locations/{location}/destGroups/{dest_group}
+     * - tunnelLocation: projects/{project}/iap_tunnel/locations/{location}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern,
+     * and must match one of the templates listed above. If no $template argument is
+     * provided, or if the $template argument does not match one of the templates
+     * listed, then parseName will check each of the supported templates, and return
+     * the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -180,6 +318,120 @@ class IdentityAwareProxyAdminServiceGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+    }
+
+    /**
+     * Creates a new TunnelDestGroup.
+     *
+     * Sample code:
+     * ```
+     * $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
+     * try {
+     *     $formattedParent = $identityAwareProxyAdminServiceClient->tunnelLocationName('[PROJECT]', '[LOCATION]');
+     *     $tunnelDestGroup = new TunnelDestGroup();
+     *     $tunnelDestGroupId = 'tunnel_dest_group_id';
+     *     $response = $identityAwareProxyAdminServiceClient->createTunnelDestGroup($formattedParent, $tunnelDestGroup, $tunnelDestGroupId);
+     * } finally {
+     *     $identityAwareProxyAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string          $parent            Required. Google Cloud Project ID and location.
+     *                                           In the following format:
+     *                                           `projects/{project_number/id}/iap_tunnel/locations/{location}`.
+     * @param TunnelDestGroup $tunnelDestGroup   Required. The TunnelDestGroup to create.
+     * @param string          $tunnelDestGroupId Required. The ID to use for the TunnelDestGroup, which becomes the final component of
+     *                                           the resource name.
+     *
+     *                                           This value must be 4-63 characters, and valid characters
+     *                                           are `[a-z][0-9]-`.
+     * @param array           $optionalArgs      {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iap\V1\TunnelDestGroup
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createTunnelDestGroup(
+        $parent,
+        $tunnelDestGroup,
+        $tunnelDestGroupId,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateTunnelDestGroupRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setTunnelDestGroup($tunnelDestGroup);
+        $request->setTunnelDestGroupId($tunnelDestGroupId);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateTunnelDestGroup',
+            TunnelDestGroup::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes a TunnelDestGroup.
+     *
+     * Sample code:
+     * ```
+     * $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
+     * try {
+     *     $formattedName = $identityAwareProxyAdminServiceClient->tunnelDestGroupName('[PROJECT]', '[LOCATION]', '[DEST_GROUP]');
+     *     $identityAwareProxyAdminServiceClient->deleteTunnelDestGroup($formattedName);
+     * } finally {
+     *     $identityAwareProxyAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the TunnelDestGroup to delete.
+     *                             In the following format:
+     *                             `projects/{project_number/id}/iap_tunnel/locations/{location}/destGroups/{dest_group}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteTunnelDestGroup($name, array $optionalArgs = [])
+    {
+        $request = new DeleteTunnelDestGroupRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteTunnelDestGroup',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -291,6 +543,140 @@ class IdentityAwareProxyAdminServiceGapicClient
             $optionalArgs,
             $request
         )->wait();
+    }
+
+    /**
+     * Retrieves an existing TunnelDestGroup.
+     *
+     * Sample code:
+     * ```
+     * $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
+     * try {
+     *     $formattedName = $identityAwareProxyAdminServiceClient->tunnelDestGroupName('[PROJECT]', '[LOCATION]', '[DEST_GROUP]');
+     *     $response = $identityAwareProxyAdminServiceClient->getTunnelDestGroup($formattedName);
+     * } finally {
+     *     $identityAwareProxyAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the TunnelDestGroup to be fetched.
+     *                             In the following format:
+     *                             `projects/{project_number/id}/iap_tunnel/locations/{location}/destGroups/{dest_group}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iap\V1\TunnelDestGroup
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getTunnelDestGroup($name, array $optionalArgs = [])
+    {
+        $request = new GetTunnelDestGroupRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetTunnelDestGroup',
+            TunnelDestGroup::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Lists the existing TunnelDestGroups. To group across all locations, use a
+     * `-` as the location ID. For example:
+     * `/v1/projects/123/iap_tunnel/locations/-/destGroups`
+     *
+     * Sample code:
+     * ```
+     * $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
+     * try {
+     *     $formattedParent = $identityAwareProxyAdminServiceClient->tunnelLocationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $identityAwareProxyAdminServiceClient->listTunnelDestGroups($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $identityAwareProxyAdminServiceClient->listTunnelDestGroups($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $identityAwareProxyAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Google Cloud Project ID and location.
+     *                             In the following format:
+     *                             `projects/{project_number/id}/iap_tunnel/locations/{location}`.
+     *                             A `-` can be used for the location to group across all locations.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listTunnelDestGroups($parent, array $optionalArgs = [])
+    {
+        $request = new ListTunnelDestGroupsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListTunnelDestGroups',
+            $optionalArgs,
+            ListTunnelDestGroupsResponse::class,
+            $request
+        );
     }
 
     /**
@@ -479,6 +865,67 @@ class IdentityAwareProxyAdminServiceGapicClient
         return $this->startCall(
             'UpdateIapSettings',
             IapSettings::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates a TunnelDestGroup.
+     *
+     * Sample code:
+     * ```
+     * $identityAwareProxyAdminServiceClient = new IdentityAwareProxyAdminServiceClient();
+     * try {
+     *     $tunnelDestGroup = new TunnelDestGroup();
+     *     $response = $identityAwareProxyAdminServiceClient->updateTunnelDestGroup($tunnelDestGroup);
+     * } finally {
+     *     $identityAwareProxyAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param TunnelDestGroup $tunnelDestGroup Required. The new values for the TunnelDestGroup.
+     * @param array           $optionalArgs    {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           A field mask that specifies which IAP settings to update.
+     *           If omitted, then all of the settings are updated. See
+     *           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iap\V1\TunnelDestGroup
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateTunnelDestGroup(
+        $tunnelDestGroup,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateTunnelDestGroupRequest();
+        $requestParamHeaders = [];
+        $request->setTunnelDestGroup($tunnelDestGroup);
+        $requestParamHeaders[
+            'tunnel_dest_group.name'
+        ] = $tunnelDestGroup->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateTunnelDestGroup',
+            TunnelDestGroup::class,
             $optionalArgs,
             $request
         )->wait();
