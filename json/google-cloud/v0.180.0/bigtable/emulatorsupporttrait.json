@@ -1,0 +1,1 @@
+{"id":"bigtable\/emulatorsupporttrait","type":"","title":"Google\\Cloud\\Bigtable\\EmulatorSupportTrait","name":"EmulatorSupportTrait","description":"<p>Common method to configure emulator support based on configuration options\nand <code>BIGTABLE_EMULATOR_HOST<\/code> environment variable.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"dataplex\/v1\/zone\/resourcespec\/locationtype","type":"","title":"Google\\Cloud\\Dataplex\\V1\\Zone\\ResourceSpec\\LocationType","name":"LocationType","description":"<p>Location type of the resources attached to a zone.<\/p>\n<p>Protobuf type <code>google.cloud.dataplex.v1.Zone.ResourceSpec.LocationType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"videostitcher\/v1\/event\/eventtype","type":"","title":"Google\\Cloud\\Video\\Stitcher\\V1\\Event\\EventType","name":"EventType","description":"<p>Describes the event that occurred.<\/p>\n<p>Protobuf type <code>google.cloud.video.stitcher.v1.Event.EventType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

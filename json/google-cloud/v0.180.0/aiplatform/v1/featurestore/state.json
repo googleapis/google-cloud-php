@@ -1,0 +1,1 @@
+{"id":"aiplatform\/v1\/featurestore\/state","type":"","title":"Google\\Cloud\\AIPlatform\\V1\\Featurestore\\State","name":"State","description":"<p>Possible states a featurestore can have.<\/p>\n<p>Protobuf type <code>google.cloud.aiplatform.v1.Featurestore.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

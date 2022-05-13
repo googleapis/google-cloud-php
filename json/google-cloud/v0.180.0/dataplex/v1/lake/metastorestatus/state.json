@@ -1,0 +1,1 @@
+{"id":"dataplex\/v1\/lake\/metastorestatus\/state","type":"","title":"Google\\Cloud\\Dataplex\\V1\\Lake\\MetastoreStatus\\State","name":"State","description":"<p>Current state of association.<\/p>\n<p>Protobuf type <code>google.cloud.dataplex.v1.Lake.MetastoreStatus.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

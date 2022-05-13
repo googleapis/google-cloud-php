@@ -1,0 +1,1 @@
+{"id":"oslogin\/common\/operatingsystemtype","type":"","title":"Google\\Cloud\\OsLogin\\Common\\OperatingSystemType","name":"OperatingSystemType","description":"<p>The operating system options for account entries.<\/p>\n<p>Protobuf type <code>google.cloud.oslogin.common.OperatingSystemType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

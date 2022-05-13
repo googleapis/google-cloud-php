@@ -1,0 +1,1 @@
+{"id":"datastoreadmin\/v1\/commonmetadata\/state","type":"","title":"Google\\Cloud\\Datastore\\Admin\\V1\\CommonMetadata\\State","name":"State","description":"<p>The various possible states for an ongoing Operation.<\/p>\n<p>Protobuf type <code>google.datastore.admin.v1.CommonMetadata.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

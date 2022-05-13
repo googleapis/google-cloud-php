@@ -1,0 +1,1 @@
+{"id":"artifactregistry\/v1beta2\/yumartifact_packagetype","type":"","title":"Google\\Cloud\\ArtifactRegistry\\V1beta2\\YumArtifact_PackageType","name":"YumArtifact_PackageType","description":"<p>This class is deprecated. Use Google\\Cloud\\ArtifactRegistry\\V1beta2\\YumArtifact\\PackageType instead.<\/p>","examples":[],"resources":[],"methods":[]}

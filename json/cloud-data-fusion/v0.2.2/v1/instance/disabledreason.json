@@ -1,0 +1,1 @@
+{"id":"datafusion\/v1\/instance\/disabledreason","type":"","title":"Google\\Cloud\\DataFusion\\V1\\Instance\\DisabledReason","name":"DisabledReason","description":"<p>The reason for disabling the instance if the state is DISABLED.<\/p>\n<p>Protobuf type <code>google.cloud.datafusion.v1.Instance.DisabledReason<\/code><\/p>","examples":[],"resources":[],"methods":[]}

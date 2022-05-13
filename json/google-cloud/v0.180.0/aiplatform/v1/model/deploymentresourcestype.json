@@ -1,0 +1,1 @@
+{"id":"aiplatform\/v1\/model\/deploymentresourcestype","type":"","title":"Google\\Cloud\\AIPlatform\\V1\\Model\\DeploymentResourcesType","name":"DeploymentResourcesType","description":"<p>Identifies a type of Model's prediction resources.<\/p>\n<p>Protobuf type <code>google.cloud.aiplatform.v1.Model.DeploymentResourcesType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

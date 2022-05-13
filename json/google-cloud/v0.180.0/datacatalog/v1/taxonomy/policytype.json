@@ -1,0 +1,1 @@
+{"id":"datacatalog\/v1\/taxonomy\/policytype","type":"","title":"Google\\Cloud\\DataCatalog\\V1\\Taxonomy\\PolicyType","name":"PolicyType","description":"<p>Defines policy types where the policy tags can be used for.<\/p>\n<p>Protobuf type <code>google.cloud.datacatalog.v1.Taxonomy.PolicyType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

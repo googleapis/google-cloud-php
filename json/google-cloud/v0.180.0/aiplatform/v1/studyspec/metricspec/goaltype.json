@@ -1,0 +1,1 @@
+{"id":"aiplatform\/v1\/studyspec\/metricspec\/goaltype","type":"","title":"Google\\Cloud\\AIPlatform\\V1\\StudySpec\\MetricSpec\\GoalType","name":"GoalType","description":"<p>The available types of optimization goals.<\/p>\n<p>Protobuf type <code>google.cloud.aiplatform.v1.StudySpec.MetricSpec.GoalType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

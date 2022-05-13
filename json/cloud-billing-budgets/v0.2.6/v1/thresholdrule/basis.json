@@ -1,0 +1,1 @@
+{"id":"billingbudgets\/v1\/thresholdrule\/basis","type":"","title":"Google\\Cloud\\Billing\\Budgets\\V1\\ThresholdRule\\Basis","name":"Basis","description":"<p>The type of basis used to determine if spend has passed the threshold.<\/p>\n<p>Protobuf type <code>google.cloud.billing.budgets.v1.ThresholdRule.Basis<\/code><\/p>","examples":[],"resources":[],"methods":[]}

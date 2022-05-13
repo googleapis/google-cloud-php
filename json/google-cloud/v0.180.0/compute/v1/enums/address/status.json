@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/address\/status","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\Address\\Status","name":"Status","description":"<p>Status contains string constants that represent the names of each value in the\ngoogle.cloud.compute.v1.Address.Status descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

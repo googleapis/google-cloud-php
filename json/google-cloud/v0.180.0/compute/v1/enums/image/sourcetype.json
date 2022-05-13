@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/image\/sourcetype","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\Image\\SourceType","name":"SourceType","description":"<p>SourceType contains string constants that represent the names of each value in\nthe google.cloud.compute.v1.Image.SourceType descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

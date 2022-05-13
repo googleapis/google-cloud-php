@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/bfdstatus\/localdiagnostic","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\BfdStatus\\LocalDiagnostic","name":"LocalDiagnostic","description":"<p>LocalDiagnostic contains string constants that represent the names of each value\nin the google.cloud.compute.v1.BfdStatus.LocalDiagnostic descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

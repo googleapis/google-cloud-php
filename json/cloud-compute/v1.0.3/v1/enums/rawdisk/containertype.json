@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/rawdisk\/containertype","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\RawDisk\\ContainerType","name":"ContainerType","description":"<p>ContainerType contains string constants that represent the names of each value\nin the google.cloud.compute.v1.RawDisk.ContainerType descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

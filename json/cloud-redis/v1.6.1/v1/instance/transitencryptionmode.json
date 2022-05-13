@@ -1,0 +1,1 @@
+{"id":"redis\/v1\/instance\/transitencryptionmode","type":"","title":"Google\\Cloud\\Redis\\V1\\Instance\\TransitEncryptionMode","name":"TransitEncryptionMode","description":"<p>Available TLS modes.<\/p>\n<p>Protobuf type <code>google.cloud.redis.v1.Instance.TransitEncryptionMode<\/code><\/p>","examples":[],"resources":[],"methods":[]}

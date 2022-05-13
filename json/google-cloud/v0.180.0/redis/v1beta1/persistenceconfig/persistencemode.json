@@ -1,0 +1,1 @@
+{"id":"redis\/v1beta1\/persistenceconfig\/persistencemode","type":"","title":"Google\\Cloud\\Redis\\V1beta1\\PersistenceConfig\\PersistenceMode","name":"PersistenceMode","description":"<p>Available Persistence modes.<\/p>\n<p>Protobuf type <code>google.cloud.redis.v1beta1.PersistenceConfig.PersistenceMode<\/code><\/p>","examples":[],"resources":[],"methods":[]}
