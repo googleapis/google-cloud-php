@@ -883,6 +883,8 @@ class PgWriteTest extends SpannerPgTestCase
     /**
      * Run batchUpdate with no statement, expect an error to be returned, with
      * an empty result list.
+     *
+     * @group spanner-write-batch-dml
      */
     public function testExecuteUpdateBatchNoStatementsThrowsException()
     {

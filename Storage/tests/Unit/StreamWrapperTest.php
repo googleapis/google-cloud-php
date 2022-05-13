@@ -209,7 +209,7 @@ class StreamWrapperTest extends TestCase
      */
     public function testStatOnNonExistentFile()
     {
-        $this->expectError();
+        $this->expectWarning();
 
         $object = $this->prophesize(StorageObject::class);
         $object->info()->willThrow(NotFoundException::class);
