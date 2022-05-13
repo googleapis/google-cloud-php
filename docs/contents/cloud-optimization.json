@@ -1,0 +1,15 @@
+{
+    "title": "Optimization",
+    "defaultService": "optimization\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "optimization\/readme"
+        },
+        {
+            "title": "FleetRoutingClient (v1)",
+            "type": "optimization\/v1\/fleetroutingclient"
+        }
+    ],
+    "pattern": "optimization\/\\w{1,}"
+}
