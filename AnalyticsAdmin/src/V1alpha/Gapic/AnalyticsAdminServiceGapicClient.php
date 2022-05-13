@@ -294,7 +294,7 @@ class AnalyticsAdminServiceGapicClient
     private static function getCustomDimensionNameTemplate()
     {
         if (self::$customDimensionNameTemplate == null) {
-            self::$customDimensionNameTemplate = new PathTemplate('properties/{property}/customDimensions');
+            self::$customDimensionNameTemplate = new PathTemplate('properties/{property}/customDimensions/{custom_dimension}');
         }
 
         return self::$customDimensionNameTemplate;
@@ -303,7 +303,7 @@ class AnalyticsAdminServiceGapicClient
     private static function getCustomMetricNameTemplate()
     {
         if (self::$customMetricNameTemplate == null) {
-            self::$customMetricNameTemplate = new PathTemplate('properties/{property}/customMetrics');
+            self::$customMetricNameTemplate = new PathTemplate('properties/{property}/customMetrics/{custom_metric}');
         }
 
         return self::$customMetricNameTemplate;
@@ -514,15 +514,17 @@ class AnalyticsAdminServiceGapicClient
      * custom_dimension resource.
      *
      * @param string $property
+     * @param string $customDimension
      *
      * @return string The formatted custom_dimension resource.
      *
      * @experimental
      */
-    public static function customDimensionName($property)
+    public static function customDimensionName($property, $customDimension)
     {
         return self::getCustomDimensionNameTemplate()->render([
             'property' => $property,
+            'custom_dimension' => $customDimension,
         ]);
     }
 
@@ -531,15 +533,17 @@ class AnalyticsAdminServiceGapicClient
      * custom_metric resource.
      *
      * @param string $property
+     * @param string $customMetric
      *
      * @return string The formatted custom_metric resource.
      *
      * @experimental
      */
-    public static function customMetricName($property)
+    public static function customMetricName($property, $customMetric)
     {
         return self::getCustomMetricNameTemplate()->render([
             'property' => $property,
+            'custom_metric' => $customMetric,
         ]);
     }
 
@@ -791,8 +795,8 @@ class AnalyticsAdminServiceGapicClient
      * - account: accounts/{account}
      * - accountUserLink: accounts/{account}/userLinks/{user_link}
      * - conversionEvent: properties/{property}/conversionEvents/{conversion_event}
-     * - customDimension: properties/{property}/customDimensions
-     * - customMetric: properties/{property}/customMetrics
+     * - customDimension: properties/{property}/customDimensions/{custom_dimension}
+     * - customMetric: properties/{property}/customMetrics/{custom_metric}
      * - dataRetentionSettings: properties/{property}/dataRetentionSettings
      * - dataSharingSettings: accounts/{account}/dataSharingSettings
      * - dataStream: properties/{property}/dataStreams/{data_stream}
@@ -1016,7 +1020,7 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->customDimensionName('[PROPERTY]');
+     *     $formattedName = $analyticsAdminServiceClient->customDimensionName('[PROPERTY]', '[CUSTOM_DIMENSION]');
      *     $analyticsAdminServiceClient->archiveCustomDimension($formattedName);
      * } finally {
      *     $analyticsAdminServiceClient->close();
@@ -1057,7 +1061,7 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->customMetricName('[PROPERTY]');
+     *     $formattedName = $analyticsAdminServiceClient->customMetricName('[PROPERTY]', '[CUSTOM_METRIC]');
      *     $analyticsAdminServiceClient->archiveCustomMetric($formattedName);
      * } finally {
      *     $analyticsAdminServiceClient->close();
@@ -2464,7 +2468,7 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->customDimensionName('[PROPERTY]');
+     *     $formattedName = $analyticsAdminServiceClient->customDimensionName('[PROPERTY]', '[CUSTOM_DIMENSION]');
      *     $response = $analyticsAdminServiceClient->getCustomDimension($formattedName);
      * } finally {
      *     $analyticsAdminServiceClient->close();
@@ -2507,7 +2511,7 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $formattedName = $analyticsAdminServiceClient->customMetricName('[PROPERTY]');
+     *     $formattedName = $analyticsAdminServiceClient->customMetricName('[PROPERTY]', '[CUSTOM_METRIC]');
      *     $response = $analyticsAdminServiceClient->getCustomMetric($formattedName);
      * } finally {
      *     $analyticsAdminServiceClient->close();
