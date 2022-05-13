@@ -142,16 +142,22 @@ class FleetRoutingGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/fleet_routing_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/fleet_routing_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/fleet_routing_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ . '/../resources/fleet_routing_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/fleet_routing_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/fleet_routing_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/fleet_routing_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/fleet_routing_rest_client_config.php',
                 ],
             ],
         ];
@@ -180,8 +186,14 @@ class FleetRoutingGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse(
+            $operationName,
+            $this->getOperationsClient(),
+            $options
+        );
         $operation->reload();
         return $operation;
     }
@@ -320,16 +332,28 @@ class FleetRoutingGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchOptimizeTours($parent, $modelConfigs, array $optionalArgs = [])
-    {
+    public function batchOptimizeTours(
+        $parent,
+        $modelConfigs,
+        array $optionalArgs = []
+    ) {
         $request = new BatchOptimizeToursRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setModelConfigs($modelConfigs);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('BatchOptimizeTours', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'BatchOptimizeTours',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -561,7 +585,9 @@ class FleetRoutingGapicClient
         }
 
         if (isset($optionalArgs['maxValidationErrors'])) {
-            $request->setMaxValidationErrors($optionalArgs['maxValidationErrors']);
+            $request->setMaxValidationErrors(
+                $optionalArgs['maxValidationErrors']
+            );
         }
 
         if (isset($optionalArgs['searchMode'])) {
@@ -569,23 +595,33 @@ class FleetRoutingGapicClient
         }
 
         if (isset($optionalArgs['injectedFirstSolutionRoutes'])) {
-            $request->setInjectedFirstSolutionRoutes($optionalArgs['injectedFirstSolutionRoutes']);
+            $request->setInjectedFirstSolutionRoutes(
+                $optionalArgs['injectedFirstSolutionRoutes']
+            );
         }
 
         if (isset($optionalArgs['injectedSolutionConstraint'])) {
-            $request->setInjectedSolutionConstraint($optionalArgs['injectedSolutionConstraint']);
+            $request->setInjectedSolutionConstraint(
+                $optionalArgs['injectedSolutionConstraint']
+            );
         }
 
         if (isset($optionalArgs['refreshDetailsRoutes'])) {
-            $request->setRefreshDetailsRoutes($optionalArgs['refreshDetailsRoutes']);
+            $request->setRefreshDetailsRoutes(
+                $optionalArgs['refreshDetailsRoutes']
+            );
         }
 
         if (isset($optionalArgs['interpretInjectedSolutionsUsingLabels'])) {
-            $request->setInterpretInjectedSolutionsUsingLabels($optionalArgs['interpretInjectedSolutionsUsingLabels']);
+            $request->setInterpretInjectedSolutionsUsingLabels(
+                $optionalArgs['interpretInjectedSolutionsUsingLabels']
+            );
         }
 
         if (isset($optionalArgs['considerRoadTraffic'])) {
-            $request->setConsiderRoadTraffic($optionalArgs['considerRoadTraffic']);
+            $request->setConsiderRoadTraffic(
+                $optionalArgs['considerRoadTraffic']
+            );
         }
 
         if (isset($optionalArgs['populatePolylines'])) {
@@ -593,19 +629,27 @@ class FleetRoutingGapicClient
         }
 
         if (isset($optionalArgs['populateTransitionPolylines'])) {
-            $request->setPopulateTransitionPolylines($optionalArgs['populateTransitionPolylines']);
+            $request->setPopulateTransitionPolylines(
+                $optionalArgs['populateTransitionPolylines']
+            );
         }
 
         if (isset($optionalArgs['allowLargeDeadlineDespiteInterruptionRisk'])) {
-            $request->setAllowLargeDeadlineDespiteInterruptionRisk($optionalArgs['allowLargeDeadlineDespiteInterruptionRisk']);
+            $request->setAllowLargeDeadlineDespiteInterruptionRisk(
+                $optionalArgs['allowLargeDeadlineDespiteInterruptionRisk']
+            );
         }
 
         if (isset($optionalArgs['useGeodesicDistances'])) {
-            $request->setUseGeodesicDistances($optionalArgs['useGeodesicDistances']);
+            $request->setUseGeodesicDistances(
+                $optionalArgs['useGeodesicDistances']
+            );
         }
 
         if (isset($optionalArgs['geodesicMetersPerSecond'])) {
-            $request->setGeodesicMetersPerSecond($optionalArgs['geodesicMetersPerSecond']);
+            $request->setGeodesicMetersPerSecond(
+                $optionalArgs['geodesicMetersPerSecond']
+            );
         }
 
         if (isset($optionalArgs['label'])) {
@@ -613,11 +657,22 @@ class FleetRoutingGapicClient
         }
 
         if (isset($optionalArgs['populateTravelStepPolylines'])) {
-            $request->setPopulateTravelStepPolylines($optionalArgs['populateTravelStepPolylines']);
+            $request->setPopulateTravelStepPolylines(
+                $optionalArgs['populateTravelStepPolylines']
+            );
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('OptimizeTours', OptimizeToursResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'OptimizeTours',
+            OptimizeToursResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }
