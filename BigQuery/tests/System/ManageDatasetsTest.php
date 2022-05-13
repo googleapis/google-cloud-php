@@ -18,6 +18,7 @@
 namespace Google\Cloud\BigQuery\Tests\System;
 
 use Google\Cloud\Core\Testing\System\KeyManager;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group bigquery
@@ -25,6 +26,8 @@ use Google\Cloud\Core\Testing\System\KeyManager;
  */
 class ManageDatasetsTest extends BigQueryTestCase
 {
+    use ExpectException;
+
     const KEY_RING_ID = 'bq-kms-kr';
     const CRYPTO_KEY_ID = 'bq-dataset-key1';
 
@@ -142,11 +145,10 @@ class ManageDatasetsTest extends BigQueryTestCase
         $this->assertEquals($keyName, $info['defaultEncryptionConfiguration']['kmsKeyName']);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\FailedPreconditionException
-     */
     public function testUpdateDatasetConcurrentUpdateFails()
     {
+        $this->expectException('Google\Cloud\Core\Exception\FailedPreconditionException');
+
         $data = [
             'friendlyName' => 'foo',
             'etag' => 'blah'

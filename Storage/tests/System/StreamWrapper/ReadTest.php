@@ -26,7 +26,7 @@ class ReadTest extends StreamWrapperTestCase
 {
     private $file;
 
-    public function setUp()
+    public function set_up()
     {
         $this->file = self::generateUrl(self::$object->name());
     }

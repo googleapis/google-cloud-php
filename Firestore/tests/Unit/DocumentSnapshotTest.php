@@ -24,7 +24,9 @@ use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\ValueMapper;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
 
 /**
  * @group firestore
@@ -32,12 +34,15 @@ use PHPUnit\Framework\TestCase;
  */
 class DocumentSnapshotTest extends TestCase
 {
+    use ExpectException;
+    use ExpectPHPException;
+
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';
     const ID = 'b';
 
     private $snapshot;
 
-    public function setUp()
+    public function set_up()
     {
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::NAME);
@@ -166,19 +171,17 @@ class DocumentSnapshotTest extends TestCase
         $this->assertNull($this->snapshot->get(new FieldPath(['null'])));
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testGetInvalid()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->snapshot->get('foo');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testGetInvalidArgumentType()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->snapshot->get(1234);
     }
 
@@ -190,27 +193,24 @@ class DocumentSnapshotTest extends TestCase
         $this->assertArrayNotHasKey('baz', $this->snapshot);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testArrayAccessSetDisabled()
     {
+        $this->expectException('BadMethodCallException');
+
         $this->snapshot['name'] = 'bob';
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testArrayAccessUnsetDisabled()
     {
+        $this->expectException('BadMethodCallException');
+
         unset($this->snapshot['name']);
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error_Notice
-     */
     public function testArrayAccessNonExistentIndex()
     {
+        $this->expectError();
+
         $this->snapshot['name'];
     }
 }

@@ -21,7 +21,7 @@ use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\QueryJobConfiguration;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group bigquery
@@ -45,7 +45,7 @@ class QueryJobConfigurationTest extends TestCase
     ];
     private $expectedConfig;
 
-    public function setUp()
+    public function set_up()
     {
         $this->expectedConfig = [
             'projectId' => self::PROJECT_ID,

@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\Testing\System\KeyManager;
 use Google\Cloud\Storage\StorageObject;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * @group storage
@@ -26,6 +27,8 @@ use Google\Cloud\Storage\StorageObject;
  */
 class KmsTest extends StorageTestCase
 {
+    use AssertStringContains;
+
     const DATA = 'data';
     const KEY_RING_ID = 'kms-kr';
     const CRYPTO_KEY_ID_1 = 'key1';
@@ -34,9 +37,9 @@ class KmsTest extends StorageTestCase
     private static $keyName1;
     private static $keyName2;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $encryption = new KeyManager(
@@ -55,7 +58,7 @@ class KmsTest extends StorageTestCase
     {
         $object = $this->upload();
 
-        $this->assertContains(self::$keyName1, $object->info()['kmsKeyName']);
+        $this->assertStringContainsString(self::$keyName1, $object->info()['kmsKeyName']);
         $this->assertEquals(self::DATA, $object->downloadAsString());
     }
 
@@ -69,7 +72,7 @@ class KmsTest extends StorageTestCase
 
         $object = $this->upload(['metadata' => null]);
 
-        $this->assertContains(self::$keyName1, $object->info()['kmsKeyName']);
+        $this->assertStringContainsString(self::$keyName1, $object->info()['kmsKeyName']);
         $this->assertEquals(self::DATA, $object->downloadAsString());
 
         // Reset default to none
@@ -94,7 +97,7 @@ class KmsTest extends StorageTestCase
             ]
         ]);
 
-        $this->assertContains(self::$keyName2, $object->info()['kmsKeyName']);
+        $this->assertStringContainsString(self::$keyName2, $object->info()['kmsKeyName']);
         $this->assertEquals(self::DATA, $object->downloadAsString());
 
         // Reset default to none
@@ -114,7 +117,7 @@ class KmsTest extends StorageTestCase
         ];
         $rewrittenObject = $object->rewrite(self::$bucket, $rewriteOptions);
 
-        $this->assertContains(self::$keyName2, $rewrittenObject->info()['kmsKeyName']);
+        $this->assertStringContainsString(self::$keyName2, $rewrittenObject->info()['kmsKeyName']);
         $this->assertEquals(self::DATA, $rewrittenObject->downloadAsString());
     }
 
@@ -129,7 +132,7 @@ class KmsTest extends StorageTestCase
         ];
         $rewrittenObject = $object->rewrite(self::$bucket, $rewriteOptions);
 
-        $this->assertContains(self::$keyName1, $rewrittenObject->info()['kmsKeyName']);
+        $this->assertStringContainsString(self::$keyName1, $rewrittenObject->info()['kmsKeyName']);
         $this->assertEquals(self::DATA, $rewrittenObject->downloadAsString());
     }
 

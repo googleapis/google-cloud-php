@@ -19,16 +19,19 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\JsonTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
  */
 class JsonTraitTest extends TestCase
 {
+    use ExpectException;
+
     private $implementation;
 
-    public function setUp()
+    public function set_up()
     {
         $this->implementation = TestHelpers::impl(JsonTrait::class);
     }
@@ -38,11 +41,10 @@ class JsonTraitTest extends TestCase
         $this->assertEquals('10', $this->implementation->call('jsonEncode', [10]));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testJsonEncodeThrowsException()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $this->implementation->call('jsonEncode', [fopen('php://temp', 'r')]);
     }
 
@@ -51,11 +53,10 @@ class JsonTraitTest extends TestCase
         $this->assertEquals(10, $this->implementation->call('jsonDecode', ['10']));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testJsonDecodeThrowsException()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $this->implementation->call('jsonDecode', ['.|.']);
     }
 }

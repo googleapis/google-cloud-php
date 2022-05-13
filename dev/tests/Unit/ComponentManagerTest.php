@@ -19,7 +19,7 @@ namespace Google\Cloud\Dev\Tests\Unit;
 
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Dev\ComponentManager;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group dev
@@ -30,7 +30,7 @@ class ComponentManagerTest extends TestCase
 
     private $cm;
 
-    public function setUp()
+    public function set_up()
     {
         $this->cm = TestHelpers::stub(ComponentManager::class, [
             self::ROOT_PATH

@@ -29,8 +29,7 @@ use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Logging\Metric;
 use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Sink;
-use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_Assert;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -48,7 +47,7 @@ class LoggingClientTest extends TestCase
     public $textPayload = 'aPayload';
     public $client;
 
-    public function setUp()
+    public function set_up()
     {
         $this->formattedProjectId = "projects/$this->projectId";
         $this->connection = $this->prophesize(ConnectionInterface::class);
@@ -331,11 +330,13 @@ class LoggingClientTest extends TestCase
 
         $this->client->___setProperty('connection', $this->connection->reveal());
         $psrLogger = $this->client->psrLogger('myLogger', $options);
-
+        $reflection = new \ReflectionClass($psrLogger);
         foreach ($options as $name => $value) {
+            $attr = $reflection->getProperty($name);
+            $attr->setAccessible(true);
             $this->assertEquals(
                 $value,
-                PHPUnit_Framework_Assert::readAttribute($psrLogger, $name),
+                $attr->getValue($psrLogger),
                 "$name assertion failed."
             );
         }

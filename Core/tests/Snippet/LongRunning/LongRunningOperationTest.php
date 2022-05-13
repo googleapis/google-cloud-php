@@ -36,7 +36,7 @@ class LongRunningOperationTest extends SnippetTestCase
     const NAME = 'operations/foo';
     const TYPE = 'test-type';
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(LongRunningConnectionInterface::class);
         $this->callables = [

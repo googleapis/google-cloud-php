@@ -23,10 +23,10 @@
       </exclude>
     </whitelist>
   </filter>
+  <listeners>
+    <listener class="GcTestListener" file="Core/src/Testing/GcTestListener.php"/>
+  </listeners>
   <php>
     <ini name="memory_limit" value="2048M"/>
   </php>
-  <listeners>
-    <listener class="GcTestListener" file="Core/src/Testing/GcTestListener.php" />
-  </listeners>
 </phpunit>

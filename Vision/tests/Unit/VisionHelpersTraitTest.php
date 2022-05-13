@@ -28,19 +28,21 @@ use Google\Cloud\Vision\V1\ImageContext;
 use Google\Cloud\Vision\V1\ImageSource;
 use Google\Cloud\Vision\VisionHelpersTrait;
 use InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group vision
  */
 class VisionHelpersTraitTest extends TestCase
 {
+    use ExpectException;
     use VisionHelpersTrait;
 
     private $implementation;
 
-    public function setUp()
+    public function set_up()
     {
         $this->implementation = TestHelpers::impl(VisionHelpersTrait::class);
     }
@@ -125,10 +127,11 @@ class VisionHelpersTraitTest extends TestCase
 
     /**
      * @dataProvider invalidCreateImageHelperDataProvider
-     * @expectedException InvalidArgumentException
      */
     public function testInvalidCreateImageHelper($imageInput)
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->implementation->call('createImageHelper', [
             Image::class,
             ImageSource::class,

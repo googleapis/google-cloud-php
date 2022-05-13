@@ -23,19 +23,21 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
  */
 class SnapshotTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
 
     private $timestamp;
     private $snapshot;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -73,11 +75,10 @@ class SnapshotTest extends TestCase
         $this->assertEquals($this->timestamp, $this->snapshot->readTimestamp());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testWithInvalidTimestamp()
     {
+        $this->expectException('InvalidArgumentException');
+
         $args = [
             'readTimestamp' => 'foo'
         ];
@@ -89,11 +90,10 @@ class SnapshotTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testSingleUseFailsOnSecondUse()
     {
+        $this->expectException('BadMethodCallException');
+
         $operation = $this->prophesize(Operation::class);
         $operation->execute(Argument::any(), Argument::any(), Argument::any())
             ->shouldBeCalled();

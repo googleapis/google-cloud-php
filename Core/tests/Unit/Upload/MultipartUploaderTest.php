@@ -91,7 +91,8 @@ class MultipartUploaderTest extends TestCase
         $requestWrapper->send(
             Argument::that(
                 function (RequestInterface $request) use ($shouldContentLengthExist) {
-                    return $request->hasHeader('Content-Length') === $shouldContentLengthExist;
+                    $this->assertEquals($request->hasHeader('Content-Length'), $shouldContentLengthExist);
+                    return true;
                 }
             ),
             Argument::type('array')
@@ -116,12 +117,14 @@ class MultipartUploaderTest extends TestCase
 
     private function createStreamWithSizeOf($size)
     {
-        $stream = $this->getMockBuilder(Psr7\Stream::class)
-                       ->setConstructorArgs([fopen('php://temp', 'r+')])
-                       ->setMethods(['getSize'])
-                       ->getMock();
-        $stream->method('getSize')->willReturn($size);
+        $stream = $this->prophesize(Psr7\Stream::class);
+        $stream->getSize()
+            ->willReturn($size);
+        $stream->isReadable()
+            ->willReturn(true);
+        $stream->isSeekable()
+            ->willReturn(true);
 
-        return $stream;
+        return $stream->reveal();
     }
 }

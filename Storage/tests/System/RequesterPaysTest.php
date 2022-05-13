@@ -23,6 +23,7 @@ use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Exception\ClientException;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
@@ -30,6 +31,8 @@ use GuzzleHttp\Exception\ClientException;
  */
 class RequesterPaysTest extends StorageTestCase
 {
+    use ExpectException;
+
     private static $requesterKeyFile;
     private static $requesterProject;
     private static $requesterEmail;
@@ -46,9 +49,9 @@ class RequesterPaysTest extends StorageTestCase
     private static $topic;
     private static $notificationId;
 
-    public static function setupBeforeClass()
+    public static function set_up_before_class()
     {
-        parent::setupBeforeClass();
+        parent::set_up_before_class();
 
         $requesterKeyFilePath = getenv('GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH');
         $ownerKeyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
@@ -146,10 +149,11 @@ class RequesterPaysTest extends StorageTestCase
 
     /**
      * @dataProvider requesterPaysMethods
-     * @expectedException Google\Cloud\Core\Exception\BadRequestException
      */
     public function testRequesterPaysMethodsWithoutUserProject(callable $call)
     {
+        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+
         $bucket = self::$requesterClient->bucket(self::$bucketName);
         $object = $bucket->object(self::$object1->name());
 
@@ -356,10 +360,11 @@ class RequesterPaysTest extends StorageTestCase
 
     /**
      * @dataProvider uploadMethods
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
      */
     public function testUploadMethodsWithoutUserProject(callable $call)
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $bucket = self::$requesterClient->bucket(self::$bucketName);
         $call($bucket);
     }
@@ -403,11 +408,10 @@ class RequesterPaysTest extends StorageTestCase
         $this->assertEquals(self::$requesterProject, $object->identity()['userProject']);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\BadRequestException
-     */
     public function testDeleteNotificationFails()
     {
+        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+
         $bucket = self::$requesterClient->bucket(self::$bucketName);
         $bucket->notification(self::$notificationId)->delete();
     }

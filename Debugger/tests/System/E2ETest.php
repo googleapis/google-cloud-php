@@ -22,7 +22,8 @@ use Google\Cloud\Debugger\Breakpoint;
 use Google\Cloud\TestUtils\EventuallyConsistentTestTrait;
 use Google\Cloud\TestUtils\AppEngineDeploymentTrait;
 use GuzzleHttp\Client;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * The test deploys the sample app contained in the app folder to Google App
@@ -41,6 +42,7 @@ class E2ETest extends TestCase
     protected $debuggeeId;
     protected $httpClient;
 
+    use AssertStringContains;
     use AppEngineDeploymentTrait;
     use EventuallyConsistentTestTrait;
 
@@ -50,7 +52,7 @@ class E2ETest extends TestCase
         self::$gcloudWrapper->setDir(implode(DIRECTORY_SEPARATOR, [__DIR__, 'app']));
     }
 
-    public function setUp()
+    public function set_up()
     {
         $url = self::$gcloudWrapper->getBaseUrl();
         $this->httpClient = new Client(['base_uri' => $url]);
@@ -64,7 +66,7 @@ class E2ETest extends TestCase
         }, 5, true);
     }
 
-    public static function tearDownAfterClass()
+    public static function tear_down_after_class()
     {
         self::deleteApp();
     }
@@ -117,7 +119,7 @@ class E2ETest extends TestCase
 
         $resp = $this->httpClient->get('hello/full');
         $this->assertEquals('200', $resp->getStatusCode(), 'hello/full status code');
-        $this->assertContains('Hello, full', $resp->getBody()->getContents());
+        $this->assertStringContainsString('Hello, full', $resp->getBody()->getContents());
 
         $this->runEventuallyConsistentTest(function () {
             $this->assertBreakpointCount(0);
@@ -141,7 +143,7 @@ class E2ETest extends TestCase
 
         $resp = $this->httpClient->get('hello/extra');
         $this->assertEquals('200', $resp->getStatusCode(), 'hello/extra status code');
-        $this->assertContains('Hello, extra', $resp->getBody()->getContents());
+        $this->assertStringContainsString('Hello, extra', $resp->getBody()->getContents());
 
         $this->runEventuallyConsistentTest(function () {
             $this->assertBreakpointCount(0);
@@ -158,7 +160,7 @@ class E2ETest extends TestCase
 
         $resp = $this->httpClient->get('hello/missing');
         $this->assertEquals('200', $resp->getStatusCode(), 'hello/missing status code');
-        $this->assertContains('Hello, missing', $resp->getBody()->getContents());
+        $this->assertStringContainsString('Hello, missing', $resp->getBody()->getContents());
 
         $this->runEventuallyConsistentTest(function () {
             $this->assertBreakpointCount(0);

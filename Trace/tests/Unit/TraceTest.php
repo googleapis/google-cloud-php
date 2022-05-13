@@ -20,17 +20,20 @@ namespace Google\Cloud\Trace\Tests\Unit;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Trace;
 use Google\Cloud\Trace\Span;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 
 /**
  * @group trace
  */
 class TraceTest extends TestCase
 {
+    use AssertionRenames;
+
     /** @var ConnectionInterface|ObjectProphecy */
     public $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
@@ -59,7 +62,7 @@ class TraceTest extends TestCase
     public function testGeneratesDefaultTraceId()
     {
         $trace = new Trace('myproject');
-        $this->assertRegExp('/^[0-9a-f]{32}$/', $trace->traceId());
+        $this->assertMatchesRegularExpression('/^[0-9a-f]{32}$/', $trace->traceId());
     }
 
     public function testBuildsSpan()

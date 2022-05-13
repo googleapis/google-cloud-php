@@ -28,7 +28,8 @@ use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StreamWrapper;
 use GuzzleHttp\Psr7\Utils;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Prophecy\Argument;
 
 /**
@@ -37,10 +38,12 @@ use Prophecy\Argument;
  */
 class StorageClientTest extends TestCase
 {
+    use ExpectException;
+
     const PROJECT = 'my-project';
     public $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->client = TestHelpers::stub(StorageClient::class, [['projectId' => self::PROJECT]]);
@@ -238,11 +241,12 @@ class StorageClientTest extends TestCase
     }
 
     /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
      * @dataProvider requiresProjectIdMethods
      */
     public function testMethodsFailWithoutProjectId($method, array $args = [])
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $client = TestHelpers::stub(StorageClientStub::class, [], ['projectId']);
         $client->___setProperty('projectId', null);
 

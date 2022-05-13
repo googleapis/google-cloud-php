@@ -24,8 +24,10 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\SigningHelper;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * @group storage
@@ -34,6 +36,9 @@ use Prophecy\Argument;
  */
 class SigningHelperTest extends TestCase
 {
+    use AssertStringContains;
+    use ExpectException;
+
     const CLIENT_EMAIL = 'test@test.iam.gserviceaccount.com';
     const BUCKET = 'test-bucket';
     const OBJECT = 'test-object';
@@ -41,7 +46,7 @@ class SigningHelperTest extends TestCase
 
     private $helper;
 
-    public function setUp()
+    public function set_up()
     {
         $this->helper = TestHelpers::stub(SigningHelperStub::class);
     }
@@ -259,9 +264,9 @@ class SigningHelperTest extends TestCase
             $this->assertEquals($expectedHeaders, $query['X-Goog-SignedHeaders']);
 
             $headers = explode("\n", $request[3]);
-            $this->assertContains('content-md5:' . $contentMd5, $headers);
-            $this->assertContains('content-type:' . $contentType, $headers);
-            $this->assertContains('host:' . $bucketBoundHostname, $headers);
+            $this->assertStringContainsString('content-md5:' . $contentMd5, $headers);
+            $this->assertStringContainsString('content-type:' . $contentType, $headers);
+            $this->assertStringContainsString('host:' . $bucketBoundHostname, $headers);
 
             $this->assertEquals($expectedHeaders, $request[4]);
             $this->assertEquals('UNSIGNED-PAYLOAD', $request[5]);
@@ -410,11 +415,10 @@ class SigningHelperTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testV4SignInvalidExpiration()
     {
+        $this->expectException('InvalidArgumentException');
+
         $expires = (new \DateTime)->modify('+20 days');
         $this->helper->v4Sign(
             $this->mockConnection($this->createCredentialsMock()->reveal()),
@@ -468,11 +472,12 @@ class SigningHelperTest extends TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
      * @dataProvider urlMethods
      */
     public function testInvalidExpiration($method)
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->helper->$method(
             $this->mockConnection($this->createCredentialsMock()->reveal()),
             'foobar',
@@ -496,13 +501,7 @@ class SigningHelperTest extends TestCase
     public function testNormalizeOptions(array $options, array $expected = null, $exception = null)
     {
         if ($exception) {
-            if (method_exists($this, 'setExpectedException')) {
-                $expectation = 'setExpectedException';
-            } else {
-                $expectation = 'expectException';
-            }
-
-            $this->$expectation($exception);
+            $this->expectException($exception);
         }
 
         $res = $this->helper->proxyPrivateMethodCall('normalizeOptions', [$options]);
@@ -542,11 +541,12 @@ class SigningHelperTest extends TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
      * @dataProvider invalidTimestamps
      */
     public function testNormalizeOptionsInvalidTimestamps($timestamp)
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->helper->proxyPrivateMethodCall('normalizeOptions', [
             ['timestamp' => $timestamp]
         ]);
@@ -600,10 +600,11 @@ class SigningHelperTest extends TestCase
 
     /**
      * @dataProvider v2InvalidHeaders
-     * @expectedException InvalidArgumentException
      */
     public function testV2InvalidHeaders($header)
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->helper->v2Sign(
             $this->mockConnection($this->prophesize(SignBlobInterface::class)->reveal()),
             time() + 10,
@@ -748,11 +749,10 @@ class SigningHelperTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testGetSigningCredentialsInvalidKeyfilePath()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $conn = $this->mockConnection();
 
         $res = $this->helper->proxyPrivateMethodCall('getSigningCredentials', [

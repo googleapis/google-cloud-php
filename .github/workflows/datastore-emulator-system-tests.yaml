@@ -1,3 +1,4 @@
+name: Run Datastore System Tests With Emulator
 on:
   push:
     branches:
@@ -7,7 +8,6 @@ on:
   pull_request:
     paths:
       - 'Datastore/**'
-name: Run Datastore System Tests With Emulator
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -26,7 +26,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer update --prefer-dist --no-interaction --no-suggest -d Datastore/
+          composer config minimum-stability dev -d Datastore/
+          composer config repositories.local path "../Core" -d Datastore
+          composer require "google/cloud-core:*" -d Datastore/
 
       - name: Run system tests
         run: |

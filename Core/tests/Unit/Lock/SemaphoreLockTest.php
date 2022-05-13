@@ -20,7 +20,7 @@ namespace Google\Cloud\Core\Tests\Unit\Lock;
 use Google\Cloud\Core\Lock\SemaphoreLock;
 use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Core\Testing\Lock\MockValues;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -33,7 +33,7 @@ class SemaphoreLockTest extends TestCase
 
     const LOCK_NAME = 'test';
 
-    public function setUp()
+    public function set_up()
     {
         if (!$this->isSysvIPCLoaded()) {
             $this->markTestSkipped(
@@ -45,41 +45,37 @@ class SemaphoreLockTest extends TestCase
         MockValues::initialize();
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testThrowsExceptionWithInvalidKey()
     {
+        $this->expectException('\InvalidArgumentException');
+
         new SemaphoreLock('abc');
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage Failed to acquire lock.
-     */
     public function testThrowsExceptionWhenSemAcquireFailsOnAcquire()
     {
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage('Failed to acquire lock.');
+
         MockValues::$sem_acquireReturnValue = false;
         $this->lock->acquire();
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage Failed to release lock.
-     */
     public function testThrowsExceptionWhenSemReleaseFailsOnRelease()
     {
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage('Failed to release lock.');
+
         $this->lock->acquire();
         MockValues::$sem_releaseReturnValue = false;
         $this->lock->release();
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage Failed to generate semaphore ID.
-     */
     public function testThrowsExceptionWhenSemGetFails()
     {
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage('Failed to generate semaphore ID.');
+
         MockValues::$sem_getReturnValue = false;
         $this->lock->acquire();
     }

@@ -21,7 +21,8 @@ use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iam\IamConnectionInterface;
 use Google\Cloud\Core\Iam\PolicyBuilder;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
@@ -29,11 +30,13 @@ use PHPUnit\Framework\TestCase;
  */
 class IamTest extends TestCase
 {
+    use ExpectException;
+
     const RESOURCE = 'projects/my-project/topics/my-topic';
 
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(IamConnectionInterface::class);
     }
@@ -101,11 +104,10 @@ class IamTest extends TestCase
         $this->assertEquals($policies[1], $res);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testSetPolicyWithInvalidPolicy()
     {
+        $this->expectException('InvalidArgumentException');
+
         $iam = new Iam($this->connection->reveal(), self::RESOURCE);
         $res = $iam->setPolicy('foo');
     }

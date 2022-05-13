@@ -27,9 +27,9 @@ class ImageTest extends StreamWrapperTestCase
     const TEST_IMAGE_WITH_EXIF = 'https://storage.googleapis.com/cloud-php-testdata/fujifilm-dx10.jpg';
     const TEST_IMAGE = 'https://storage.googleapis.com/cloud-php-testdata/screenshot.png';
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
 
         // must get contents because we can't pass an fopen stream from the https stream wrapper
         // because it's not seekable

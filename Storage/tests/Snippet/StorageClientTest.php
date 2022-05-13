@@ -40,7 +40,7 @@ class StorageClientTest extends SnippetTestCase
     private $connection;
     private $client;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->connection->projectId()

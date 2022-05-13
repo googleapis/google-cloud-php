@@ -38,7 +38,7 @@ class NotificationTest extends SnippetTestCase
     private $connection;
     private $notification;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->notification = TestHelpers::stub(Notification::class, [

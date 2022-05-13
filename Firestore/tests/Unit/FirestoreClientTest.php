@@ -32,8 +32,9 @@ use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Firestore\FirestoreSessionHandler;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\WriteBatch;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group firestore
@@ -41,6 +42,7 @@ use Prophecy\Argument;
  */
 class FirestoreClientTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
 
     const PROJECT = 'example_project';
@@ -49,7 +51,7 @@ class FirestoreClientTest extends TestCase
     private $connection;
     private $client;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -175,10 +177,11 @@ class FirestoreClientTest extends TestCase
 
     /**
      * @dataProvider paths
-     * @expectedException InvalidArgumentException
      */
     public function testInvalidPath($method, $name)
     {
+        $this->expectException('InvalidArgumentException');
+
         call_user_func([$this->client, $method], $name);
     }
 
@@ -228,11 +231,10 @@ class FirestoreClientTest extends TestCase
         $this->assertEquals('world', $res[0]['hello']);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testDocumentsInvalidInputType()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->client->documents([
             10
         ]);
@@ -352,11 +354,10 @@ class FirestoreClientTest extends TestCase
         $query->documents();
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testCollectionGroupInvalidId()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->client->collectionGroup('foo/bar');
     }
 
@@ -430,12 +431,11 @@ class FirestoreClientTest extends TestCase
         $this->assertEquals('foo', $res);
     }
 
-    /**
-     * @expectedException RangeException
-     * @expectedExceptionMessage foo
-     */
     public function testRunTransactionNotRetryable()
     {
+        $this->expectException('RangeException');
+        $this->expectExceptionMessage('foo');
+
         $transactionId = 'foobar';
         $timestamp = new Timestamp(new \DateTimeImmutable);
 
@@ -459,11 +459,10 @@ class FirestoreClientTest extends TestCase
         });
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\AbortedException
-     */
     public function testRunTransactionExceedsMaxRetries()
     {
+        $this->expectException('Google\Cloud\Core\Exception\AbortedException');
+
         $transactionId = 'foobar';
         $timestamp = new Timestamp(new \DateTimeImmutable);
 
@@ -486,11 +485,10 @@ class FirestoreClientTest extends TestCase
         });
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\AbortedException
-     */
     public function testRunTransactionExceedsMaxRetriesLowerLimit()
     {
+        $this->expectException('Google\Cloud\Core\Exception\AbortedException');
+
         $transactionId = 'foobar';
         $timestamp = new Timestamp(new \DateTimeImmutable);
 

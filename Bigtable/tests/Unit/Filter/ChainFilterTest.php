@@ -21,7 +21,7 @@ use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Filter\ChainFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\RowFilter\Chain;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group bigtable
@@ -31,7 +31,7 @@ class ChainFilterTest extends TestCase
 {
     private $chainFilter;
 
-    public function setUp()
+    public function set_up()
     {
         $this->chainFilter = new ChainFilter;
     }

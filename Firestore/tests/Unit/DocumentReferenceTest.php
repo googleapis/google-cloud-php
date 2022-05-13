@@ -26,7 +26,8 @@ use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\ValueMapper;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertEqualsSpecializations;
 use Prophecy\Argument;
 
 /**
@@ -35,6 +36,7 @@ use Prophecy\Argument;
  */
 class DocumentReferenceTest extends TestCase
 {
+    use AssertEqualsSpecializations;
     use TimeTrait;
 
     const PROJECT = 'example_project';
@@ -45,7 +47,7 @@ class DocumentReferenceTest extends TestCase
     private $connection;
     private $document;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
@@ -274,6 +276,6 @@ class DocumentReferenceTest extends TestCase
 
         $res = $this->document->set(['foo' => 'bar']);
         $this->assertInstanceOf(Timestamp::class, $res['updateTime']);
-        $this->assertEquals($time + 100, $res['updateTime']->get()->format('U'), '', 3);
+        $this->assertEqualsWithDelta($time + 100, $res['updateTime']->get()->format('U'), 3);
     }
 }

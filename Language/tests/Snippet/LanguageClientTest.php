@@ -31,7 +31,7 @@ class LanguageClientTest extends SnippetTestCase
     private $client;
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(LanguageClient::class);
@@ -119,7 +119,7 @@ class LanguageClientTest extends SnippetTestCase
                 'sentences' => [
                     [
                         'text' => [
-                            'beginOffset' => 1.0
+                            'beginOffset' => '1.0'
                         ]
                     ]
                 ]

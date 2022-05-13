@@ -21,7 +21,7 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\WhitelistTrait;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -30,7 +30,7 @@ class WhitelistTraitTest extends TestCase
 {
     private $trait;
 
-    public function setUp()
+    public function set_up()
     {
         $this->trait = TestHelpers::impl(WhitelistTrait::class);
     }

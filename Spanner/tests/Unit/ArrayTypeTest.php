@@ -21,6 +21,7 @@ use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\StructType;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -28,6 +29,8 @@ use PHPUnit\Framework\TestCase;
  */
 class ArrayTypeTest extends TestCase
 {
+    use ExpectException;
+
     public function typesProvider()
     {
         return [
@@ -78,10 +81,11 @@ class ArrayTypeTest extends TestCase
 
     /**
      * @dataProvider invalidTypeProvider
-     * @expectedException \InvalidArgumentException
      */
     public function testFailsOnInvalidType($type)
     {
+        $this->expectException('\InvalidArgumentException');
+
         new ArrayType($type);
     }
 }

@@ -29,7 +29,7 @@ use Google\Cloud\Speech\V1\StreamingRecognitionConfig;
 use Google\Cloud\Speech\V1\StreamingRecognizeRequest;
 use Google\Cloud\Speech\V1\StreamingRecognizeResponse;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group speech
@@ -41,7 +41,7 @@ class SpeechClientExtensionTest extends TestCase
     /** @var TransportInterface */
     private $transport;
 
-    public function setUp()
+    public function set_up()
     {
         $this->transport = $this->prophesize(TransportInterface::class);
         $this->client = new SpeechClient([

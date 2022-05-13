@@ -19,16 +19,19 @@ namespace Google\Cloud\Core\Tests\Snippet\Iam;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Iam\PolicyBuilder;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group iam
  */
 class PolicyBuilderTest extends SnippetTestCase
 {
+    use AssertIsType;
+
     private $pb;
     private $policy;
 
-    public function setUp()
+    public function set_up()
     {
         $this->pb = new PolicyBuilder;
         $this->policy = ['etag' => 'foo'];
@@ -39,7 +42,7 @@ class PolicyBuilderTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(PolicyBuilder::class);
         $res = $snippet->invoke('result');
 
-        $this->assertInternalType('array', $res->returnVal());
+        $this->assertIsArray($res->returnVal());
     }
 
     public function testSetBindings()
@@ -97,6 +100,6 @@ class PolicyBuilderTest extends SnippetTestCase
         $snippet->addLocal('builder', $this->pb);
 
         $res = $snippet->invoke('policy');
-        $this->assertInternalType('array', $res->returnVal());
+        $this->assertIsArray($res->returnVal());
     }
 }

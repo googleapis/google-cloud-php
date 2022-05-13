@@ -32,8 +32,9 @@ use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
 use Google\Cloud\Firestore\ValueMapper;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group firestore
@@ -41,6 +42,8 @@ use Prophecy\Argument;
  */
 class QueryTest extends TestCase
 {
+    use ExpectException;
+
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
     const QUERY_PARENT = 'projects/example_project/databases/(default)/documents';
@@ -55,7 +58,7 @@ class QueryTest extends TestCase
     private $query;
     private $collectionGroupQuery;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->query = TestHelpers::stub(Query::class, [
@@ -75,11 +78,10 @@ class QueryTest extends TestCase
         ], ['connection', 'query', 'transaction']);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testConstructMissingFrom()
     {
+        $this->expectException('InvalidArgumentException');
+
         new Query(
             $this->connection->reveal(),
             new ValueMapper($this->connection->reveal(), false),
@@ -278,10 +280,11 @@ class QueryTest extends TestCase
 
     /**
      * @dataProvider invalidUnaryComparisonOperators
-     * @expectedException InvalidArgumentException
      */
     public function testWhereUnaryInvalidComparisonOperator($operator)
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->query->where('foo', $operator, null);
     }
 
@@ -331,19 +334,19 @@ class QueryTest extends TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
      * @dataProvider sentinels
      */
     public function testWhereInvalidSentinelValue($sentinel)
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->query->where('foo', '=', $sentinel);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testWhereInvalidOperator()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->query->where('foo', 'hello', 'bar');
     }
 
@@ -430,10 +433,11 @@ class QueryTest extends TestCase
 
     /**
      * @dataProvider whereInvalidDocument
-     * @expectedException InvalidArgumentException
      */
     public function testWhereInvalidDocument($document)
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->query->where(FieldPath::documentId(), '=', $document);
     }
 
@@ -472,11 +476,12 @@ class QueryTest extends TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
      * @dataProvider cursors
      */
     public function testOrderByAfterCursor($cursor)
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->query->orderBy('foo')->$cursor(['bar'])->orderBy('world');
     }
 
@@ -511,11 +516,10 @@ class QueryTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testOrderByInvalidOperator()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->query->orderBy('foo', 'hello');
     }
 
@@ -714,11 +718,10 @@ class QueryTest extends TestCase
         $this->assertEquals($name1, $rows[1]->name());
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testLimitToLastWithoutOrderBy()
     {
+        $this->expectException('\RuntimeException');
+
         $this->query->limitToLast(1)->documents()->current();
     }
 
@@ -949,20 +952,18 @@ class QueryTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testSnapshotInFieldValue()
     {
+        $this->expectException('InvalidArgumentException');
+
         $snapshot = $this->prophesize(DocumentSnapshot::class);
         $this->query->startAt([$snapshot->reveal()]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testInvalidFieldValues()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->query->startAt('foo');
     }
 
@@ -1079,19 +1080,17 @@ class QueryTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testBuildPositionTooManyCursorValues()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->query->orderBy('foo')->endAt(['a','b']);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testBuildPositionOutOfBounds()
     {
+        $this->expectException('InvalidArgumentException');
+
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn(self::QUERY_PARENT .'/whatev/john');
 
@@ -1102,36 +1101,34 @@ class QueryTest extends TestCase
         $this->query->orderBy(Query::DOCUMENT_ID)->startAt([$ref->reveal()]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testBuildPositionInvalidCursorType()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->query->orderBy(Query::DOCUMENT_ID)->startAt([10]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testBuildPositionInvalidDocumentName()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->query->orderBy(Query::DOCUMENT_ID)->startAt(['a/b']);
     }
 
     /**
-     * @expectedException InvalidArgumentException
      * @dataProvider sentinels
      */
     public function testBuildPositionInvalidSentinelValue($sentinel)
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->query->orderBy(Query::DOCUMENT_ID)->startAt([$sentinel]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testBuildPositionNestedChild()
     {
+        $this->expectException('InvalidArgumentException');
+
         $c = $this->prophesize(CollectionReference::class);
         $c->name()->willReturn(self::QUERY_PARENT .'/'. $this->queryFrom()[0]['collectionId'] .'/john');
 

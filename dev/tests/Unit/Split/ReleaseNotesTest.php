@@ -18,7 +18,8 @@
 namespace Google\Cloud\Dev\Tests\Unit;
 
 use Google\Cloud\Dev\Split\ReleaseNotes;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * @group dev
@@ -26,9 +27,11 @@ use PHPUnit\Framework\TestCase;
  */
 class ReleaseNotesTest extends TestCase
 {
+    use AssertStringContains;
+
     private $releaseNotes;
 
-    public function setUp()
+    public function set_up()
     {
         $this->releaseNotes = new ReleaseNotes(
             file_get_contents(__DIR__ . '/../../fixtures/split/release-notes.md')
@@ -39,7 +42,7 @@ class ReleaseNotesTest extends TestCase
     {
         $note = $this->releaseNotes->get('cloud-automl');
         $this->assertNotNull($note);
-        $this->assertContains("Miscellaneous Chores", $note);
+        $this->assertStringContainsString("Miscellaneous Chores", $note);
 
         $this->assertNull($this->releaseNotes->get('cloud-foobar'));
     }

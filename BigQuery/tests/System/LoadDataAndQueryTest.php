@@ -35,7 +35,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
     private $row;
     private $geographyPattern;
 
-    public function setUp()
+    public function set_up()
     {
         $this->row = [
             'Name' => 'Dave',
@@ -89,7 +89,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
         $this->assertEquals($expectedRow, $actualRow);
         $this->assertEquals((string) $expectedBytes, (string) $actualBytes);
-        $this->assertRegExp($this->geographyPattern, (string) $actualGeography);
+        $this->assertMatchesRegularExpression($this->geographyPattern, (string) $actualGeography);
     }
 
     /**
@@ -136,7 +136,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             $this->assertEquals($spells['Properties'][0]['Name'], $actualRow['Spells_Properties_Name']);
             $this->assertEquals($spells['Properties'][0]['Power'], $actualRow['Spells_Properties_Power']);
             $this->assertEquals((string) $spells['Icon'], (string) $actualRow['Spells_Icon']);
-            $this->assertRegExp($this->geographyPattern, (string) $actualRow['Location']);
+            $this->assertMatchesRegularExpression($this->geographyPattern, (string) $actualRow['Location']);
         } else {
             $expectedRow = $this->row;
             $expectedBytes = $expectedRow['Spells'][0]['Icon'];
@@ -151,7 +151,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
             $this->assertEquals($expectedRow, $actualRow);
             $this->assertEquals((string) $expectedBytes, (string) $actualBytes);
-            $this->assertRegExp($this->geographyPattern, (string) $actualGeography);
+            $this->assertMatchesRegularExpression($this->geographyPattern, (string) $actualGeography);
         }
     }
 
@@ -294,7 +294,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
         $this->assertEquals($params, $actualRow);
         $this->assertEquals((string) $bytes, (string) $actualBytes);
-        $this->assertRegExp($geographyPattern, (string) $actualGeography);
+        $this->assertMatchesRegularExpression($geographyPattern, (string) $actualGeography);
     }
 
     public function testRunQueryWithPositionalParameters()

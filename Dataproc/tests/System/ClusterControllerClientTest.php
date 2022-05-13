@@ -21,7 +21,7 @@ use Google\Auth\CredentialsLoader;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Dataproc\V1\ClusterControllerClient;
 use Google\Cloud\Dataproc\V1\ListClustersResponse;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 class ClusterControllerClientTest extends TestCase
 {
@@ -34,7 +34,7 @@ class ClusterControllerClientTest extends TestCase
 
     public function clientProvider()
     {
-        self::setUpBeforeClass();
+        self::set_up_before_class();
 
         return [
             [self::$restClient],
@@ -42,7 +42,7 @@ class ClusterControllerClientTest extends TestCase
         ];
     }
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         if (self::$hasSetUp) {
             return;

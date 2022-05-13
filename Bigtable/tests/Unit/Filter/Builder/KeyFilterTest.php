@@ -20,7 +20,8 @@ namespace Google\Cloud\Bigtable\Tests\Unit\Filter\Builder;
 use Google\Cloud\Bigtable\Filter\Builder\KeyFilter;
 use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group bigtable
@@ -28,9 +29,11 @@ use PHPUnit\Framework\TestCase;
  */
 class KeyFilterTest extends TestCase
 {
+    use ExpectException;
+
     private $keyFilter;
 
-    public function setUp()
+    public function set_up()
     {
         $this->keyFilter = new KeyFilter;
     }
@@ -53,21 +56,19 @@ class KeyFilterTest extends TestCase
         $this->assertEquals($rowFilter, $filter->toProto());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Probability must be positive
-     */
     public function testSampleShouldThrowOnLessThanZero()
     {
+        $this->expectException('\InvalidArgumentException');
+        $this->expectExceptionMessage('Probability must be positive');
+
         $this->keyFilter->sample(-1);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Probability must be less than 1.0
-     */
     public function testSampleShouldThrowOnGreaterThanOne()
     {
+        $this->expectException('\InvalidArgumentException');
+        $this->expectExceptionMessage('Probability must be less than 1.0');
+
         $this->keyFilter->sample(1.1);
     }
 

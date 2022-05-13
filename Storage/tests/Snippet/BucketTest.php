@@ -39,12 +39,14 @@ use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * @group storage
  */
 class BucketTest extends SnippetTestCase
 {
+    use AssertStringContains;
     use KeyPairGenerateTrait;
 
     const BUCKET = 'my-bucket';
@@ -71,7 +73,7 @@ class BucketTest extends SnippetTestCase
         ]
     ];
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->connection->projectId()
@@ -735,9 +737,9 @@ class BucketTest extends SnippetTestCase
         $this->bucket->___setProperty('connection', $conn->reveal());
 
         $res = $snippet->invoke('url');
-        $this->assertContains('https://storage.googleapis.com/my-bucket', $res->returnVal());
-        $this->assertContains('Expires=', $res->returnVal());
-        $this->assertContains('Signature=', $res->returnVal());
+        $this->assertStringContainsString('https://storage.googleapis.com/my-bucket', $res->returnVal());
+        $this->assertStringContainsString('Expires=', $res->returnVal());
+        $this->assertStringContainsString('Signature=', $res->returnVal());
     }
 
     public function testSignedUrlV4()
@@ -765,8 +767,8 @@ class BucketTest extends SnippetTestCase
         $this->bucket->___setProperty('connection', $conn->reveal());
 
         $res = $snippet->invoke('url');
-        $this->assertContains('https://storage.googleapis.com/my-bucket', $res->returnVal());
-        $this->assertContains('X-Goog-Signature=', $res->returnVal());
+        $this->assertStringContainsString('https://storage.googleapis.com/my-bucket', $res->returnVal());
+        $this->assertStringContainsString('X-Goog-Signature=', $res->returnVal());
     }
 
     public function testGenerateSignedPostPolicyV4()
@@ -798,7 +800,7 @@ class BucketTest extends SnippetTestCase
 
         $res = $snippet->invoke('policy');
 
-        $this->assertContains('https://storage.googleapis.com/my-bucket', $res->returnVal()['url']);
+        $this->assertStringContainsString('https://storage.googleapis.com/my-bucket', $res->returnVal()['url']);
         $this->assertEquals($objectName, $res->returnVal()['fields']['key']);
     }
 

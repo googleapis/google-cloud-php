@@ -50,7 +50,7 @@ class TableTest extends SnippetTestCase
     private $table;
     private $mapper;
 
-    public function setUp()
+    public function set_up()
     {
         $this->info = [
             'rows' => [

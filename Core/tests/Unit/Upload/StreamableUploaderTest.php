@@ -25,7 +25,8 @@ use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
@@ -33,11 +34,13 @@ use PHPUnit\Framework\TestCase;
  */
 class StreamableUploaderTest extends TestCase
 {
+    use ExpectException;
+
     private $requestWrapper;
     private $stream;
     private $successBody;
 
-    public function setUp()
+    public function set_up()
     {
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);
         $this->stream = new BufferStream(16);
@@ -120,11 +123,10 @@ class StreamableUploaderTest extends TestCase
         $this->assertEquals($resumeUri, $uploader->getResumeUri());
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
-     */
     public function testThrowsExceptionWithFailedUpload()
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $resumeUriResponse = new Response(200, ['Location' => 'theResumeUri']);
 
         $this->requestWrapper->send(
@@ -172,11 +174,10 @@ class StreamableUploaderTest extends TestCase
         $uploader->upload();
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
-     */
     public function testThrowsExceptionWhenAttemptsAsyncUpload()
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $stream = $this->prophesize(StreamInterface::class);
         $uploader = new StreamableUploader(
             $this->requestWrapper->reveal(),

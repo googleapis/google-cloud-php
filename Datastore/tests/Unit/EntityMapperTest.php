@@ -25,7 +25,9 @@ use Google\Cloud\Datastore\EntityInterface;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group datastore
@@ -33,12 +35,15 @@ use PHPUnit\Framework\TestCase;
  */
 class EntityMapperTest extends TestCase
 {
+    use AssertIsType;
+    use ExpectException;
+
     const DATE_FORMAT = 'Y-m-d\TH:i:s.uP';
     const DATE_FORMAT_NO_MS = 'Y-m-d\TH:i:sP';
 
     private $mapper;
 
-    public function setUp()
+    public function set_up()
     {
         $this->mapper = new EntityMapper('foo', true, false);
     }
@@ -250,7 +255,7 @@ class EntityMapperTest extends TestCase
         $res = $this->mapper->responseToEntityProperties($data, SampleEntity::class)['properties'];
 
         $this->assertInstanceOf(SampleEntity::class, $res['foo']);
-        $this->assertInternalType('array', $res['foo']['bar']);
+        $this->assertIsArray($res['foo']['bar']);
     }
 
     public function testResponseToPropertiesEntityNestedValueCustomType()
@@ -287,11 +292,10 @@ class EntityMapperTest extends TestCase
         $this->assertEquals('bar', $res['foo']['nest']['nest']['foo']);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testResponseToPropertiesEntityValueInvalidType()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $data = [
             'foo' => [
                 'entityValue' => [
@@ -307,11 +311,10 @@ class EntityMapperTest extends TestCase
         $this->mapper->responseToEntityProperties($data, static::class);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testResponseToPropertiesEntityValueInvalidMappingType()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $data = [
             'invalid' => [
                 'entityValue' => [
@@ -349,11 +352,10 @@ class EntityMapperTest extends TestCase
         $this->assertEquals(['a','b','c'], $res['foo']);
     }
 
-    /**
-     * @expectedException RuntimeException
-     */
     public function testResponseToPropertiesNoValuePresent()
     {
+        $this->expectException('RuntimeException');
+
         $data = [
             'foo' => [
                 'meaning' => 1
@@ -542,7 +544,7 @@ class EntityMapperTest extends TestCase
         ];
 
         $res = $this->mapper->convertValue($type, $val);
-        $this->assertInternalType('array', $res);
+        $this->assertIsArray($res);
         $this->assertEquals('test', $res['prop']);
     }
 
@@ -559,7 +561,7 @@ class EntityMapperTest extends TestCase
         ];
 
         $res = $this->mapper->convertValue($type, $val);
-        $this->assertInternalType('array', $res);
+        $this->assertIsArray($res);
         $this->assertEquals('test', $res['prop']);
         $this->assertEquals(['prop'], $res[Entity::EXCLUDE_FROM_INDEXES]);
     }
@@ -570,7 +572,7 @@ class EntityMapperTest extends TestCase
         $val = 1.1;
 
         $res = $this->mapper->convertValue($type, $val);
-        $this->assertInternalType('float', $res);
+        $this->assertIsFloat($res);
         $this->assertEquals(1.1, $res);
     }
 
@@ -580,7 +582,7 @@ class EntityMapperTest extends TestCase
         $val = 1;
 
         $res = $this->mapper->convertValue($type, $val);
-        $this->assertInternalType('float', $res);
+        $this->assertIsFloat($res);
         $this->assertEquals((float)1, $res);
     }
 
@@ -623,11 +625,10 @@ class EntityMapperTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException RuntimeException
-     */
     public function testConvertValueInvalidType()
     {
+        $this->expectException('RuntimeException');
+
         $type = 'fooBarValue';
         $val = 'nothanks';
         $this->mapper->convertValue($type, $val);
@@ -644,7 +645,7 @@ class EntityMapperTest extends TestCase
         ];
 
         $res = $this->mapper->convertValue($type, $val);
-        $this->assertInternalType('array', $res);
+        $this->assertIsArray($res);
         $this->assertEquals(['foo', 'bar'], $res);
     }
 
@@ -654,7 +655,7 @@ class EntityMapperTest extends TestCase
         $val = [];
 
         $res = $this->mapper->convertValue($type, $val);
-        $this->assertInternalType('array', $res);
+        $this->assertIsArray($res);
         $this->assertEquals([], $res);
     }
 
@@ -840,11 +841,10 @@ class EntityMapperTest extends TestCase
         $this->assertEquals('val', $res['entityValue']['properties']['key']['stringValue']);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testObjectPropertyInvalidType()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->mapper->valueObject($this);
     }
 

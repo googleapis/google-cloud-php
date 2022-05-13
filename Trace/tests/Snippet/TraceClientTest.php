@@ -23,16 +23,19 @@ use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Trace;
 use Google\Cloud\Trace\TraceClient;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 
 /**
  * @group trace
  */
 class TraceClientTest extends SnippetTestCase
 {
+    use AssertionRenames;
+
     private $connection;
     private $client;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(TraceClient::class);
@@ -69,7 +72,7 @@ class TraceClientTest extends SnippetTestCase
         $res = $snippet->invoke('trace');
         $trace = $res->returnVal();
         $this->assertInstanceOf(Trace::class, $trace);
-        $this->assertRegExp('/[0-9a-f]{32}/', $trace->traceId());
+        $this->assertMatchesRegularExpression('/[0-9a-f]{32}/', $trace->traceId());
     }
 
     public function testTraceWithTraceId()

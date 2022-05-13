@@ -18,7 +18,6 @@
 namespace Google\Cloud\Core\Tests\Unit\LongRunning;
 
 use Google\ApiCore\OperationResponse;
-use PHPUnit\Framework\TestCase;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
@@ -26,6 +25,7 @@ use Google\ApiCore\Serializer;
 use Prophecy\Argument;
 use Google\Cloud\Audit\RequestMetadata;
 use Google\Cloud\Audit\AuthorizationInfo;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -51,7 +51,7 @@ class OperationResponseTraitTest extends TestCase
         ],
     ];
 
-    public function setUp()
+    public function set_up()
     {
         $serializer = $this->prophesize(Serializer::class);
         $serializer->encodeMessage(Argument::any())->will(function ($arg) {

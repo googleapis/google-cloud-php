@@ -24,14 +24,16 @@ use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_Assert;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group logging
  */
 class PsrLoggerTest extends TestCase
 {
+    use ExpectException;
+
     public $connection;
     public $formattedName;
     public $logName = 'myLog';
@@ -40,7 +42,7 @@ class PsrLoggerTest extends TestCase
     public $resource = ['type' => 'global'];
     public $severity = 'ALERT';
 
-    public function setUp()
+    public function set_up()
     {
         $this->formattedName = "projects/$this->projectId/logs/$this->logName";
         $this->connection = $this->prophesize(ConnectionInterface::class);
@@ -176,11 +178,10 @@ class PsrLoggerTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException Psr\Log\InvalidArgumentException
-     */
     public function testLogThrowsExceptionWithInvalidLevel()
     {
+        $this->expectException('Psr\Log\InvalidArgumentException');
+
         $psrLogger = $this->getPsrLogger($this->connection);
         $psrLogger->log('INVALID-LEVEL', $this->textPayload);
     }
@@ -244,41 +245,33 @@ class PsrLoggerTest extends TestCase
         $options['batchMethod'] = 'writeBatch';
         $options['logName'] = $this->logName;
         $psrLogger = unserialize(serialize($psrLogger));
+        $reflection = new \ReflectionClass($psrLogger);
+        $debugOutpoutResourceAttr = $reflection->getProperty('debugOutputResource');
+        $debugOutpoutResourceAttr->setAccessible(true);
         $debugResourceMetadata = stream_get_meta_data(
-            PHPUnit_Framework_Assert::readAttribute($psrLogger, 'debugOutputResource')
+            $debugOutpoutResourceAttr->getValue($psrLogger)
         );
         $expectedDebugResourceMetadata = stream_get_meta_data($expectedDebugResource);
 
         $this->assertEquals($debugResourceMetadata['uri'], $expectedDebugResourceMetadata['uri']);
         $this->assertEquals($debugResourceMetadata['mode'], $expectedDebugResourceMetadata['mode']);
-        $this->assertEquals(
-            PHPUnit_Framework_Assert::readAttribute($psrLogger, 'metadataProvider'),
-            $options['metadataProvider']
-        );
-        $this->assertEquals(
-            PHPUnit_Framework_Assert::readAttribute($psrLogger, 'batchEnabled'),
-            $options['batchEnabled']
-        );
-        $this->assertEquals(
-            PHPUnit_Framework_Assert::readAttribute($psrLogger, 'debugOutput'),
-            $options['debugOutput']
-        );
-        $this->assertEquals(
-            PHPUnit_Framework_Assert::readAttribute($psrLogger, 'clientConfig'),
-            $options['clientConfig']
-        );
-        $this->assertEquals(
-            PHPUnit_Framework_Assert::readAttribute($psrLogger, 'messageKey'),
-            $options['messageKey']
-        );
-        $this->assertEquals(
-            PHPUnit_Framework_Assert::readAttribute($psrLogger, 'batchMethod'),
-            $options['batchMethod']
-        );
-        $this->assertEquals(
-            PHPUnit_Framework_Assert::readAttribute($psrLogger, 'logName'),
-            $options['logName']
-        );
+        $attributes = [
+            'metadataProvider',
+            'batchEnabled',
+            'debugOutput',
+            'clientConfig',
+            'messageKey' ,
+            'batchMethod',
+            'logName'
+        ];
+        foreach ($attributes as $attributeName) {
+            $attr = $reflection->getProperty($attributeName);
+            $attr->setAccessible(true);
+            $this->assertEquals(
+                $attr->getValue($psrLogger),
+                $options[$attributeName]
+            );
+        }
     }
 
     private function expectLogWithExceptionInContext($throwable)

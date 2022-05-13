@@ -33,7 +33,7 @@ class DaemonTest extends SnippetTestCase
     private $debuggee;
     private $storage;
 
-    public function setUp()
+    public function set_up()
     {
         $this->client = $this->prophesize(DebuggerClient::class);
         $this->debuggee = $this->prophesize(Debuggee::class);

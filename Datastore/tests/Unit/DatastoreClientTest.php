@@ -34,7 +34,8 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\ReadOnlyTransaction;
 use Google\Cloud\Datastore\Transaction;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Prophecy\Argument;
 
 /**
@@ -44,6 +45,7 @@ use Prophecy\Argument;
 class DatastoreClientTest extends TestCase
 {
     use DatastoreOperationRefreshTrait;
+    use ExpectException;
     use GrpcTestTrait;
 
     const PROJECT = 'example-project';
@@ -52,7 +54,7 @@ class DatastoreClientTest extends TestCase
     private $connection;
     private $client;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = TestHelpers::stub(DatastoreClient::class, [
@@ -398,11 +400,10 @@ class DatastoreClientTest extends TestCase
         });
     }
 
-    /**
-     * @expectedException \DomainException
-     */
     public function testSingleMutationConflict()
     {
+        $this->expectException('DomainException');
+
         $this->connection->commit(Argument::any())
             ->shouldBeCalled()
             ->willReturn([

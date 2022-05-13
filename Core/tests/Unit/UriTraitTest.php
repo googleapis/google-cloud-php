@@ -18,7 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\UriTrait;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -27,7 +27,7 @@ class UriTraitTest extends TestCase
 {
     private $implementation;
 
-    public function setUp()
+    public function set_up()
     {
         $this->implementation = $this->getObjectForTrait(UriTrait::class);
     }

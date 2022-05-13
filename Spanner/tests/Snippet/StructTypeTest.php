@@ -50,7 +50,7 @@ class StructTypeTest extends SnippetTestCase
     private $database;
     private $type;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 

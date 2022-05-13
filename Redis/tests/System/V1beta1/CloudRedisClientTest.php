@@ -23,7 +23,7 @@ use Google\Cloud\Redis\V1beta1\Instance;
 use Google\Cloud\Redis\V1beta1\Instance\Tier;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group redis
@@ -37,14 +37,14 @@ class CloudRedisClientTest extends TestCase
 
     public function clientProvider()
     {
-        self::setUpBeforeClass();
+        self::set_up_before_class();
 
         return [
             [self::$grpcClient]
         ];
     }
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         # This system test fails now with the following error:
         # Exception: Expect utf-8 encoding.

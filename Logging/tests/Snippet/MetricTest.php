@@ -34,7 +34,7 @@ class MetricTest extends SnippetTestCase
     private $connection;
     private $metric;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->metric = TestHelpers::stub(Metric::class, [

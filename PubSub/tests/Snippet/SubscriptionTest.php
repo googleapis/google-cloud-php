@@ -26,12 +26,15 @@ use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Subscription;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group pubsub
  */
 class SubscriptionTest extends SnippetTestCase
 {
+    use ExpectException;
+
     const TOPIC = 'projects/my-awesome-project/topics/my-new-topic';
     const SUBSCRIPTION = 'projects/my-awesome-project/subscriptions/my-new-subscription';
 
@@ -39,7 +42,7 @@ class SubscriptionTest extends SnippetTestCase
     private $subscription;
     private $pubsub;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->subscription = TestHelpers::stub(Subscription::class, [
@@ -92,11 +95,10 @@ class SubscriptionTest extends SnippetTestCase
         $this->assertEquals('Authenticated using ' . $email, $res->output());
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testAuthenticatedPushFails()
     {
+        $this->expectException('\RuntimeException');
+
         $authToken = 'foobar';
         $token = $this->prophesize(AccessToken::class);
         $token->verify($authToken)

@@ -21,7 +21,8 @@ use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Filter\ConditionFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\RowFilter\Condition;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group bigtable
@@ -29,10 +30,12 @@ use PHPUnit\Framework\TestCase;
  */
 class ConditionFilterTest extends TestCase
 {
+    use ExpectException;
+
     private $conditionFilter;
     private $condition;
 
-    public function setUp()
+    public function set_up()
     {
         $this->conditionFilter = new ConditionFilter(Filter::pass());
         $this->condition = new Condition();
@@ -40,14 +43,15 @@ class ConditionFilterTest extends TestCase
     }
 
     /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage In order to utilize a condition filter you must
      * supply a filter through either
      * Google\Cloud\Bigtable\Filter\ConditionFilter:then()
      * or Google\Cloud\Bigtable\Filter\ConditionFilter:otherwise().
      */
     public function testPredicate()
     {
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage('In order to utilize a condition filter you must');
+
         $this->conditionFilter->toProto();
     }
 

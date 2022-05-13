@@ -35,7 +35,7 @@ class WebTest extends SnippetTestCase
     private $info;
     private $web;
 
-    public function setUp()
+    public function set_up()
     {
         $this->info = [
             'webEntities' => [

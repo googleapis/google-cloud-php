@@ -32,11 +32,11 @@ use Prophecy\Argument;
  */
 class ImageAnnotatorClientTest extends SnippetTestCase
 {
-    /** @var  ImageAnnotatorClient */
+    /** @var ImageAnnotatorClient */
     private $client;
     private $transport;
 
-    public function setUp()
+    public function set_up()
     {
         $this->transport = $this->prophesize(TransportInterface::class);
         $this->client = new ImageAnnotatorClient([

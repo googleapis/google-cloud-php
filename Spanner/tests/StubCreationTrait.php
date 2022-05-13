@@ -32,6 +32,4 @@ trait StubCreationTrait
 
         return $c;
     }
-
-    abstract protected function prophesize($classOrInterface = null);
 }

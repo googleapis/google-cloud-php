@@ -19,19 +19,21 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group spanner
  */
 class TimestampTest extends TestCase
 {
+    use AssertIsType;
     use GrpcTestTrait;
 
     private $dt;
     private $ts;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -62,6 +64,6 @@ class TimestampTest extends TestCase
 
     public function testType()
     {
-        $this->assertInternalType('int', $this->ts->type());
+        $this->assertIsInt($this->ts->type());
     }
 }

@@ -18,7 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit\Report;
 
 use Google\Cloud\Core\Report\SimpleMetadataProvider;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -37,7 +37,7 @@ class SimpleMetadataProviderTest extends TestCase
 
     private $labels = ['key' => 'value'];
 
-    public function setup()
+    public function set_up()
     {
         $this->metadataProvider = new SimpleMetadataProvider(
             $this->monitoredResource,

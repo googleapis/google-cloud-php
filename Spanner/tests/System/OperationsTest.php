@@ -30,14 +30,14 @@ class OperationsTest extends SpannerTestCase
     private static $name1;
     private static $name2;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         self::$id1 = rand(1000, 9999);
         self::$id2 = rand(1, 999);
         self::$name1 = uniqid(self::TESTING_PREFIX);
         self::$name2 = uniqid(self::TESTING_PREFIX);
 
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
 
         self::$database->insert(self::TEST_TABLE_NAME, [
             'id' => self::$id1,

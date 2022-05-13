@@ -4,6 +4,8 @@
   <rule ref="PSR1.Methods.CamelCapsMethodName">
     <exclude-pattern>Storage/src/StreamWrapper.php</exclude-pattern>
     <exclude-pattern>Speech/tests/Unit/HttpStreamWrapper.php</exclude-pattern>
+    <exclude-pattern>*/tests/*/*Test.php</exclude-pattern>
+    <exclude-pattern>*/tests/*/*TestCase.php</exclude-pattern>
   </rule>
   <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
     <exclude-pattern>Core/src/Testing/Lock/MockValues.php</exclude-pattern>

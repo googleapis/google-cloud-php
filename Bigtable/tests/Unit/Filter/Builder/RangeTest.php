@@ -19,7 +19,8 @@ namespace Google\Cloud\Bigtable\Tests\Unit\Filter\Builder;
 
 use Google\Cloud\Bigtable\Filter\Builder\Range;
 use Google\Cloud\Core\Testing\TestHelpers;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group bigtable
@@ -27,9 +28,11 @@ use PHPUnit\Framework\TestCase;
  */
 class RangeTest extends TestCase
 {
+    use ExpectException;
+
     private $range;
 
-    public function setUp()
+    public function set_up()
     {
         $this->range = TestHelpers::stub(Range::class);
     }
@@ -41,21 +44,19 @@ class RangeTest extends TestCase
         $this->assertEquals(Range::BOUND_TYPE_UNBOUNDED, $this->range->getEndBound());
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage Start is unbounded
-     */
     public function testGetStartShouldThrow()
     {
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage('Start is unbounded');
+
         $this->range->getStart();
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage End is unbounded
-     */
     public function testGetEndShouldThrow()
     {
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage('End is unbounded');
+
         $this->range->getEnd();
     }
 
@@ -66,21 +67,19 @@ class RangeTest extends TestCase
         $this->assertEquals(Range::BOUND_TYPE_UNBOUNDED, $this->range->getStartBound());
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage Start is unbounded
-     */
     public function testStartUnboundedShouldThrowOnGetStart()
     {
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage('Start is unbounded');
+
         $this->range->startUnbounded()->getStart();
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage startOpen accepts only string or numeric types.
-     */
     public function testStartOpenShouldThrow()
     {
+        $this->expectException('\InvalidArgumentException');
+        $this->expectExceptionMessage('startOpen accepts only string or numeric types.');
+
         $this->range->startOpen(null);
     }
 
@@ -92,12 +91,11 @@ class RangeTest extends TestCase
         $this->assertEquals('so1', $range->getStart());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage startClosed accepts only string or numeric types.
-     */
     public function testStartClosedShouldThrow()
     {
+        $this->expectException('\InvalidArgumentException');
+        $this->expectExceptionMessage('startClosed accepts only string or numeric types.');
+
         $this->range->startClosed(null);
     }
 
@@ -116,21 +114,19 @@ class RangeTest extends TestCase
         $this->assertEquals(Range::BOUND_TYPE_UNBOUNDED, $range->getEndBound());
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage End is unbounded
-     */
     public function testEndUnboundedShouldThrow()
     {
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage('End is unbounded');
+
         $this->range->endUnbounded()->getEnd();
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage endOpen accepts only string or numeric types.
-     */
     public function testEndOpenShouldThrow()
     {
+        $this->expectException('\InvalidArgumentException');
+        $this->expectExceptionMessage('endOpen accepts only string or numeric types.');
+
         $this->range->endOpen(null);
     }
 
@@ -142,12 +138,11 @@ class RangeTest extends TestCase
         $this->assertEquals('eo1', $range->getEnd());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage endClosed accepts only string or numeric types.
-     */
     public function testEndClosedShouldThrow()
     {
+        $this->expectException('\InvalidArgumentException');
+        $this->expectExceptionMessage('endClosed accepts only string or numeric types.');
+
         $this->range->endClosed(null);
     }
 

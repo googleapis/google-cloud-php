@@ -24,7 +24,7 @@ use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Trace\V2\Span;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group trace
@@ -37,7 +37,7 @@ class GrpcTest extends TestCase
     private $requestWrapper;
     private $successMessage;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 

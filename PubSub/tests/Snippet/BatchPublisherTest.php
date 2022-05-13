@@ -30,7 +30,7 @@ class BatchPublisherTest extends SnippetTestCase
 {
     private $batchPublisher;
 
-    public function setUp()
+    public function set_up()
     {
         $this->batchPublisher = $this->prophesize(BatchPublisher::class);
         $this->batchPublisher->publish([

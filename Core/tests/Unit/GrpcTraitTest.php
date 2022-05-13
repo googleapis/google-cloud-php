@@ -25,7 +25,8 @@ use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 use Prophecy\Argument;
 
 /**
@@ -33,12 +34,13 @@ use Prophecy\Argument;
  */
 class GrpcTraitTest extends TestCase
 {
+    use AssertStringContains;
     use GrpcTestTrait;
 
     private $implementation;
     private $requestWrapper;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -114,7 +116,7 @@ class GrpcTraitTest extends TestCase
             $msg = $e->getMessage();
         }
 
-        $this->assertContains('NOTE: Error may be due to Whitelist Restriction.', $msg);
+        $this->assertStringContainsString('NOTE: Error may be due to Whitelist Restriction.', $msg);
     }
 
     public function testSendsRequestNotFoundNotWhitelisted()
@@ -137,7 +139,7 @@ class GrpcTraitTest extends TestCase
             $msg = $e->getMessage();
         }
 
-        $this->assertNotContains('NOTE: Error may be due to Whitelist Restriction.', $msg);
+        $this->assertStringNotContainsString('NOTE: Error may be due to Whitelist Restriction.', $msg);
     }
 
     public function testGetsGaxConfig()

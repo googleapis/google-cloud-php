@@ -23,7 +23,7 @@ use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group bigquery
@@ -36,7 +36,7 @@ class JobTest extends TestCase
     public $jobId = 'myJobId';
     public $jobInfo = ['status' => ['state' => 'DONE']];
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }

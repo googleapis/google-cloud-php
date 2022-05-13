@@ -30,7 +30,7 @@ class DebuggeeTest extends SnippetTestCase
 {
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }

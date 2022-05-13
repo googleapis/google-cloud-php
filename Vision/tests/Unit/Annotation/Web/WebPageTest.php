@@ -18,7 +18,7 @@
 namespace Google\Cloud\Vision\Tests\Unit\Annotation\Web;
 
 use Google\Cloud\Vision\Annotation\Web\WebPage;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group vision
@@ -28,7 +28,7 @@ class WebPageTest extends TestCase
     private $info;
     private $image;
 
-    public function setUp()
+    public function set_up()
     {
         $this->info = [
             'url' => 'http://foo.bar/bat',

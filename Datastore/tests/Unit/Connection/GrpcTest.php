@@ -37,7 +37,8 @@ use Google\Cloud\Datastore\V1\ReadOptions;
 use Google\Cloud\Datastore\V1\ReadOptions\ReadConsistency;
 use Google\Cloud\Datastore\V1\TransactionOptions;
 use Google\Protobuf\NullValue;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Prophecy\Argument;
 
 /**
@@ -46,6 +47,7 @@ use Prophecy\Argument;
  */
 class GrpcTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
     use GrpcTrait;
 
@@ -55,7 +57,7 @@ class GrpcTest extends TestCase
 
     private $serializer;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -507,10 +509,11 @@ class GrpcTest extends TestCase
 
     /**
      * @dataProvider invalidFilters
-     * @expectedException \InvalidArgumentException
      */
     public function testInvalidFilter($filter)
     {
+        $this->expectException('InvalidArgumentException');
+
         return $this->testQueryPropertyFilters($filter);
     }
 

@@ -22,19 +22,22 @@ use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\IncomingMessageTrait;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Subscription;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group pubsub
  */
 class IncomingMessageTraitTest extends TestCase
 {
+    use ExpectException;
+
     const PROJECT = 'my-project';
 
     private $connection;
     private $stub;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->stub = TestHelpers::impl(IncomingMessageTrait::class);
@@ -59,11 +62,10 @@ class IncomingMessageTraitTest extends TestCase
         $this->assertEquals('hello world', $message->data());
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
-     */
     public function testInvalidMessage()
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $this->stub->call(
             'messageFactory',
             [

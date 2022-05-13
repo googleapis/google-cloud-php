@@ -19,18 +19,20 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
  */
 class KeyRangeTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
 
     private $range;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -85,11 +87,10 @@ class KeyRangeTest extends TestCase
         $this->assertEquals('startOpen', $this->range->types()['start']);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testSetStartInvalidType()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->range->setStart('foo', ['foo']);
     }
 
@@ -100,11 +101,10 @@ class KeyRangeTest extends TestCase
         $this->assertEquals('endOpen', $this->range->types()['end']);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testSetEndInvalidType()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->range->setEnd('foo', ['foo']);
     }
 
@@ -118,11 +118,10 @@ class KeyRangeTest extends TestCase
         $this->assertEquals(['startOpen' => ['foo'], 'endClosed' => ['bar']], $res);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testKeyRangeObjectBadRange()
     {
+        $this->expectException('BadMethodCallException');
+
         $this->range->keyRangeObject();
     }
 

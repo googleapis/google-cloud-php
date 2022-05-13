@@ -33,7 +33,7 @@ class LandmarksTest extends SnippetTestCase
     private $landmarksData;
     private $landmarks;
 
-    public function setUp()
+    public function set_up()
     {
         $this->pos = [
             'x' => 1,

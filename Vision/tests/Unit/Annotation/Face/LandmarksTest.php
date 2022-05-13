@@ -19,7 +19,7 @@ namespace Google\Cloud\Vision\Tests\Unit\Annotation\Face;
 
 use Google\Cloud\Vision\Tests\Unit\Fixtures;
 use Google\Cloud\Vision\Annotation\Face\Landmarks;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group vision
@@ -29,7 +29,7 @@ class LandmarksTest extends TestCase
     private $data;
     private $landmarks;
 
-    public function setUp()
+    public function set_up()
     {
         $this->data = json_decode(file_get_contents(Fixtures::FACE_LANDMARKS_FIXTURE()), true);
         $this->landmarks = new Landmarks($this->data);

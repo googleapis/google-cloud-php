@@ -36,7 +36,7 @@ class ChunkFormatterTest extends SnippetTestCase
     private $table;
     private $serverStream;
 
-    public function setUp()
+    public function set_up()
     {
         $this->bigtableClient = $this->prophesize(TableClient::class);
         $this->serverStream = $this->prophesize(ServerStream::class);

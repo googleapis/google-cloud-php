@@ -9,7 +9,7 @@ on:
       - 'Spanner/**'
 name: Run Spanner System Tests With Emulator
 jobs:
-  php-test:
+  test:
     runs-on: ubuntu-latest
 
     services:
@@ -39,10 +39,12 @@ jobs:
         with:
           php-version: '7.4'
           tools: pecl
-          extensions: bcmath, grpc-1.37.1
+          extensions: bcmath, grpc
 
       - name: Install dependencies
         run: |
+          composer config minimum-stability dev -d Spanner/
+          composer config repositories.local  --json '{"type":"path", "url": "../Core", "options": {"versions": {"google/cloud-core": "1.45"}}}' -d Spanner
           composer update --prefer-dist --no-interaction --no-suggest -d Spanner/
 
       - name: Run system tests

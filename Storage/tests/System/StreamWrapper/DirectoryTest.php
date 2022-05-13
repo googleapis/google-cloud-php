@@ -36,9 +36,9 @@ class DirectoryTest extends StreamWrapperTestCase
         'bar/',
     ];
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
 
         // create file in folder
         foreach (self::$createObjects as $name) {
@@ -46,13 +46,13 @@ class DirectoryTest extends StreamWrapperTestCase
         }
     }
 
-    public static function tearDownAfterClass()
+    public static function tear_down_after_class()
     {
         foreach (self::$createObjects as $name) {
             self::$bucket->object($name)->delete();
         }
 
-        parent::tearDownAfterClass();
+        parent::tear_down_after_class();
     }
 
     public function testMkDir()

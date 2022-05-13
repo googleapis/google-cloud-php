@@ -21,15 +21,18 @@ use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group datastore
  */
 class KeyTest extends SnippetTestCase
 {
+    use ExpectException;
+
     private $key;
 
-    public function setUp()
+    public function set_up()
     {
         $this->key = new Key('my-awesome-project');
     }
@@ -62,11 +65,10 @@ class KeyTest extends SnippetTestCase
         $this->assertCount(3, $res->returnVal()->path());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testClassErrorOnAppend()
     {
+        $this->expectException('InvalidArgumentException');
+
         $ds = $this->prophesize(DatastoreClient::class);
         $ds->key(Argument::any(), Argument::any())
             ->will(function ($args) {

@@ -37,7 +37,7 @@ class CommitTimestampTest extends SnippetTestCase
 
     const SESSION = 'projects/my-awesome-project/instances/my-instance/databases/my-database/sessions/session-id';
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
     }

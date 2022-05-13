@@ -26,8 +26,10 @@ use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\WriteBatch;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 
 /**
  * @group firestore
@@ -35,6 +37,9 @@ use Prophecy\Argument;
  */
 class WriteBatchTest extends TestCase
 {
+    use ExpectException;
+    use ExpectExceptionMessageMatches;
+
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
     const DOCUMENT = 'projects/example_project/databases/(default)/documents/a/b';
@@ -43,7 +48,7 @@ class WriteBatchTest extends TestCase
     private $connection;
     private $batch;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->batch = TestHelpers::stub(WriteBatch::class, [
@@ -126,10 +131,11 @@ class WriteBatchTest extends TestCase
 
     /**
      * @dataProvider updateBadInput
-     * @expectedException InvalidArgumentException
      */
     public function testUpdateBadInput($data)
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->batch->update(self::DOCUMENT, $data);
     }
 
@@ -329,11 +335,10 @@ class WriteBatchTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testSentinelsInArray()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->batch->set('name', [
             'foo' => [
                 FieldValue::serverTimestamp()
@@ -363,12 +368,10 @@ class WriteBatchTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessageRegExp /Document transforms cannot contain/
-     */
     public function testSentinelCannotContainSentinel()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessageMatches('/Document transforms cannot contain/');
         $this->batch->set('name', [
             'foo' => FieldValue::arrayRemove([FieldValue::arrayUnion([])])
         ]);
@@ -376,11 +379,12 @@ class WriteBatchTest extends TestCase
 
     /**
      * @dataProvider documents
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Delete cannot appear in data unless `$options['merge']` is set.
      */
     public function testSetSentinelsDeleteRequiresMerge($name, $ref)
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Delete cannot appear in data unless `$options[\'merge\']` is set.');
+
         $this->batch->set($ref, [
             'hello' => FieldValue::deleteField(),
         ]);
@@ -447,11 +451,10 @@ class WriteBatchTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testWriteUpdateTimePreconditionInvalidType()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->batch->delete(self::DOCUMENT, [
             'precondition' => [
                 'updateTime' => 'foobar'
@@ -459,11 +462,10 @@ class WriteBatchTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testWritePreconditionMissingStuff()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->batch->delete(self::DOCUMENT, [
             'precondition' => ['foo' => 'bar']
         ]);
@@ -522,19 +524,17 @@ class WriteBatchTest extends TestCase
         $this->batch->rollback();
     }
 
-    /**
-     * @expectedException RuntimeException
-     */
     public function testRollbackFailsWithoutTransaction()
     {
+        $this->expectException('RuntimeException');
+
         $this->batch->rollback();
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testUpdateEmptyFails()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->batch->update(self::DOCUMENT, []);
     }
 

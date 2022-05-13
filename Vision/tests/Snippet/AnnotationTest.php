@@ -30,12 +30,15 @@ use Google\Cloud\Vision\Annotation\Web;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Google\Cloud\Vision\VisionClient;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group vision
  */
 class AnnotationTest extends SnippetTestCase
 {
+    use AssertIsType;
+
     public function testClass()
     {
         $snippet = $this->snippetFromClass(Annotation::class);
@@ -202,6 +205,6 @@ class AnnotationTest extends SnippetTestCase
         ]));
 
         $res = $snippet->invoke('error');
-        $this->assertInternalType('array', $res->returnVal());
+        $this->assertIsArray($res->returnVal());
     }
 }

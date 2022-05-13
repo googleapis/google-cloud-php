@@ -18,7 +18,8 @@
 namespace Google\Cloud\Bigtable\Tests\Unit;
 
 use Google\Cloud\Bigtable\DataUtil;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group bigtable
@@ -26,19 +27,20 @@ use PHPUnit\Framework\TestCase;
  */
 class DataUtilTest extends TestCase
 {
-    public function setUp()
+    use ExpectException;
+
+    public function set_up()
     {
         if (!DataUtil::isSupported()) {
             $this->markTestSkipped('Tested functionality is not supported in the current version of PHP.');
         }
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Expected argument to be of type int, instead got
-     */
     public function testIntToByteStringThrowsExceptionWithoutInteger()
     {
+        $this->expectException('\InvalidArgumentException');
+        $this->expectExceptionMessage('Expected argument to be of type int, instead got');
+
         DataUtil::intToByteString('abc');
     }
 

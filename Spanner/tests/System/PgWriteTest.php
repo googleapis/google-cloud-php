@@ -25,6 +25,7 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\PgNumeric;
 use Google\Rpc\Code;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -33,14 +34,15 @@ use Google\Rpc\Code;
  */
 class PgWriteTest extends SpannerPgTestCase
 {
+    use ExpectException;
     use TimeTrait;
 
     const TABLE_NAME = 'Writes';
     const COMMIT_TIMESTAMP_TABLE_NAME = 'CommitTimestamps';
 
-    public static function setupBeforeClass()
+    public static function set_up_before_class()
     {
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
 
         self::$database->updateDdlBatch([
             'CREATE TABLE ' . self::TABLE_NAME . ' (
@@ -329,31 +331,28 @@ class PgWriteTest extends SpannerPgTestCase
         }
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\NotFoundException
-     */
     public function testWriteToNonExistentTableFails()
     {
+        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+
         $db = self::$database;
 
         $db->insert(uniqid(self::TESTING_PREFIX), ['foo' => 'bar']);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\NotFoundException
-     */
     public function testWriteToNonExistentColumnFails()
     {
+        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+
         $db = self::$database;
 
         $db->insert(self::TABLE_NAME, [uniqid(self::TESTING_PREFIX) => 'bar']);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\FailedPreconditionException
-     */
     public function testWriteIncorrectTypeToColumn()
     {
+        $this->expectException('Google\Cloud\Core\Exception\FailedPreconditionException');
+
         $db = self::$database;
 
         $db->insert(self::TABLE_NAME, [
@@ -886,10 +885,11 @@ class PgWriteTest extends SpannerPgTestCase
      * an empty result list.
      *
      * @group spanner-write-batch-dml
-     * @expectedException Google\Cloud\Core\Exception\BadRequestException
      */
     public function testExecuteUpdateBatchNoStatementsThrowsException()
     {
+        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+
         $db = self::$database;
         $res = $db->runTransaction(function ($t) {
             $res = $t->executeUpdateBatch([]);

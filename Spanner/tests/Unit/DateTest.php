@@ -19,19 +19,21 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group spanner
  */
 class DateTest extends TestCase
 {
+    use AssertIsType;
     use GrpcTestTrait;
 
     private $dt;
     private $date;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -62,6 +64,6 @@ class DateTest extends TestCase
 
     public function testType()
     {
-        $this->assertInternalType('int', $this->date->type());
+        $this->assertIsInt($this->date->type());
     }
 }

@@ -20,7 +20,7 @@ namespace Google\Cloud\Dev\Tests\Unit\Split;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Dev\Split\RunShell;
 use Google\Cloud\Dev\Split\Split;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -32,7 +32,7 @@ class SplitTest extends TestCase
     private $shell;
     private $split;
 
-    public function setUp()
+    public function set_up()
     {
         $this->shell = $this->prophesize(RunShell::class);
         $this->split = TestHelpers::stub(Split::class, [

@@ -50,7 +50,7 @@ class TransactionTest extends SnippetTestCase
     private $connection;
     private $transaction;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 

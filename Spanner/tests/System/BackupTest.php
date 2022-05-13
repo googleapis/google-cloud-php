@@ -28,12 +28,15 @@ use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo\Type;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Date;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
  */
 class BackupTest extends SpannerTestCase
 {
+    use ExpectException;
+
     const BACKUP_PREFIX = 'spanner_backup_';
 
     protected static $backupId1;
@@ -52,11 +55,11 @@ class BackupTest extends SpannerTestCase
 
     private static $hasSetUp = false;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         self::skipEmulatorTests();
 
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
         if (self::$hasSetUp) {
             return;
         }

@@ -19,7 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\ConcurrencyControlTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -30,7 +30,7 @@ class ConcurrencyControlTraitTest extends TestCase
 
     private $trait;
 
-    public function setUp()
+    public function set_up()
     {
         $this->trait = TestHelpers::impl(ConcurrencyControlTrait::class);
     }

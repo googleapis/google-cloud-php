@@ -21,7 +21,7 @@ use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Filter\QualifierRangeFilter;
 use Google\Cloud\Bigtable\V2\ColumnRange;
 use Google\Cloud\Bigtable\V2\RowFilter;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group bigtable
@@ -33,7 +33,7 @@ class QualifierRangeFilterTest extends TestCase
 
     private $qualifierRangeFilter;
 
-    public function setUp()
+    public function set_up()
     {
         $this->qualifierRangeFilter = Filter::qualifier()->rangeWithInFamily(self::FAMILY_NAME);
     }

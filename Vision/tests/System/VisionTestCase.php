@@ -18,7 +18,7 @@
 namespace Google\Cloud\Vision\Tests\System;
 
 use Google\Cloud\Vision\VisionClient;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group vision
@@ -28,7 +28,7 @@ class VisionTestCase extends TestCase
     protected static $vision;
     private static $hasSetUp = false;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         if (self::$hasSetUp) {
             return;

@@ -19,6 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit\Iam;
 
 use Google\Cloud\Core\Iam\PolicyBuilder;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
@@ -26,6 +27,8 @@ use PHPUnit\Framework\TestCase;
  */
 class PolicyBuilderTest extends TestCase
 {
+    use ExpectException;
+
     public function testBuilder()
     {
         $role = 'test';
@@ -61,11 +64,10 @@ class PolicyBuilderTest extends TestCase
         $this->assertEquals($policy, $result);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testInvalidPolicy()
     {
+        $this->expectException('InvalidArgumentException');
+
         $policy = ['foo' => 'bar'];
         $builder = new PolicyBuilder($policy);
     }
@@ -139,24 +141,22 @@ class PolicyBuilderTest extends TestCase
         $this->assertEquals($policy, $result);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     * @expectedExceptionMessage Helper methods cannot be invoked on policies with version 3.
-     */
     public function testAddBindingVersionThrowsException()
     {
+        $this->expectException('BadMethodCallException');
+        $this->expectExceptionMessage('Helper methods cannot be invoked on policies with version 3.');
+
         $builder = new PolicyBuilder();
         $builder->setVersion(3);
 
         $builder->addBinding('test', ['user:test@test.com']);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     * @expectedExceptionMessage Helper methods cannot be invoked on policies containing conditions.
-     */
     public function testAddBindingWithConditionsThrowsException()
     {
+        $this->expectException('BadMethodCallException');
+        $this->expectExceptionMessage('Helper methods cannot be invoked on policies containing conditions.');
+
         $policy = [
             'bindings' => [
                 [
@@ -221,12 +221,11 @@ class PolicyBuilderTest extends TestCase
         $this->assertEquals('user2:test@test.com', $builder->result()['bindings'][0]['members'][0]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage One or more role-members were not found.
-     */
     public function testRemoveBindingInvalidMemberThrowsException()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('One or more role-members were not found.');
+
         $policy = [
             'bindings' => [
                 [
@@ -242,12 +241,11 @@ class PolicyBuilderTest extends TestCase
         $builder->removeBinding('test', ['user2:test@test.com']);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage The role was not found.
-     */
     public function testRemoveBindingInvalidRoleThrowsException()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('The role was not found.');
+
         $policy = [
             'bindings' => [
                 [
@@ -263,12 +261,11 @@ class PolicyBuilderTest extends TestCase
         $builder->removeBinding('test2', ['user:test@test.com']);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     * @expectedExceptionMessage Helper methods cannot be invoked on policies with version 3.
-     */
     public function testRemoveBindingVersionThrowsException()
     {
+        $this->expectException('BadMethodCallException');
+        $this->expectExceptionMessage('Helper methods cannot be invoked on policies with version 3.');
+
         $policy = [
             'version' => 3,
             'bindings' => [
@@ -285,12 +282,11 @@ class PolicyBuilderTest extends TestCase
         $builder->removeBinding('test', ['user:test@test.com']);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     * @expectedExceptionMessage Helper methods cannot be invoked on policies containing conditions.
-     */
     public function testRemoveBindingWithConditionsThrowsException()
     {
+        $this->expectException('BadMethodCallException');
+        $this->expectExceptionMessage('Helper methods cannot be invoked on policies containing conditions.');
+
         $policy = [
             'bindings' => [
                 [

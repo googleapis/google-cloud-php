@@ -19,16 +19,19 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\ValidateTrait;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
  */
 class ValidateTraitTest extends TestCase
 {
+    use ExpectException;
+
     private $stub;
 
-    public function setUp()
+    public function set_up()
     {
         $this->stub = TestHelpers::impl(ValidateTrait::class);
     }
@@ -44,11 +47,10 @@ class ValidateTraitTest extends TestCase
         $this->stub->call('validateBatch', [$input, \stdClass::class]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testValidateBatchInvalidInput()
     {
+        $this->expectException('InvalidArgumentException');
+
         $input = [
             (object)[],
             (object)[],

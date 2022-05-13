@@ -30,7 +30,7 @@ class DurationTest extends SnippetTestCase
 
     private $duration;
 
-    public function setUp()
+    public function set_up()
     {
         $this->duration = new Duration(self::SECONDS, self::NANOS);
     }

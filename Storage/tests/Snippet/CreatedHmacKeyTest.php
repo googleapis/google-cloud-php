@@ -37,7 +37,7 @@ class CreatedHmacKeyTest extends SnippetTestCase
     private $connection;
     private $createdKey;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
