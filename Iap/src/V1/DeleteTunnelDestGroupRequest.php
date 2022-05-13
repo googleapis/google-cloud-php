@@ -9,20 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request to GetTunnelDestGroup.
+ * The request to DeleteTunnelDestGroup.
  *
- * Generated from protobuf message <code>google.cloud.iap.v1.GetTunnelDestGroupRequest</code>
+ * Generated from protobuf message <code>google.cloud.iap.v1.DeleteTunnelDestGroupRequest</code>
  */
-class GetTunnelDestGroupRequest extends \Google\Protobuf\Internal\Message
+class DeleteTunnelDestGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the TunnelDestGroup to be fetched.
+     * Required. Name of the TunnelDestGroup to delete.
      * In the following format:
      * `projects/{project_number/id}/iap_tunnel/locations/{location}/destGroups/{dest_group}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $name = '';
+    private $name = '';
 
     /**
      * Constructor.
@@ -31,7 +31,7 @@ class GetTunnelDestGroupRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Name of the TunnelDestGroup to be fetched.
+     *           Required. Name of the TunnelDestGroup to delete.
      *           In the following format:
      *           `projects/{project_number/id}/iap_tunnel/locations/{location}/destGroups/{dest_group}`.
      * }
@@ -42,7 +42,7 @@ class GetTunnelDestGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the TunnelDestGroup to be fetched.
+     * Required. Name of the TunnelDestGroup to delete.
      * In the following format:
      * `projects/{project_number/id}/iap_tunnel/locations/{location}/destGroups/{dest_group}`.
      *
@@ -55,7 +55,7 @@ class GetTunnelDestGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the TunnelDestGroup to be fetched.
+     * Required. Name of the TunnelDestGroup to delete.
      * In the following format:
      * `projects/{project_number/id}/iap_tunnel/locations/{location}/destGroups/{dest_group}`.
      *

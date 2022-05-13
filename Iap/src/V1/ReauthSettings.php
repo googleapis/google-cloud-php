@@ -20,21 +20,21 @@ class ReauthSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings.Method method = 1;</code>
      */
-    protected $method = 0;
+    private $method = 0;
     /**
      * Reauth session lifetime, how long before a user has to reauthenticate
      * again.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_age = 2;</code>
      */
-    protected $max_age = null;
+    private $max_age = null;
     /**
      * How IAP determines the effective policy in cases of hierarchial policies.
      * Policies are merged from higher in the hierarchy to lower in the hierarchy.
      *
      * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings.PolicyType policy_type = 3;</code>
      */
-    protected $policy_type = 0;
+    private $policy_type = 0;
 
     /**
      * Constructor.

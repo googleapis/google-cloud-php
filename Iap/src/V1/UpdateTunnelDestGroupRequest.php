@@ -20,7 +20,7 @@ class UpdateTunnelDestGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.iap.v1.TunnelDestGroup tunnel_dest_group = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $tunnel_dest_group = null;
+    private $tunnel_dest_group = null;
     /**
      * A field mask that specifies which IAP settings to update.
      * If omitted, then all of the settings are updated. See
@@ -28,7 +28,7 @@ class UpdateTunnelDestGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    protected $update_mask = null;
+    private $update_mask = null;
 
     /**
      * Constructor.

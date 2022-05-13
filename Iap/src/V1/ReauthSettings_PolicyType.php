@@ -12,5 +12,5 @@ if (false) {
     class ReauthSettings_PolicyType {}
 }
 class_exists(ReauthSettings\PolicyType::class);
-@trigger_error('Google\Cloud\Iap\V1\ReauthSettings_PolicyType is deprecated and will be removed in the next major release. Use Google\Cloud\Iap\V1\ReauthSettings\PolicyType instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Iap\V1\ReauthSettings_PolicyType is deprecated and will be removed in a future release. Use Google\Cloud\Iap\V1\ReauthSettings\PolicyType instead', E_USER_DEPRECATED);
 

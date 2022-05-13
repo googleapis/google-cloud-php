@@ -33,6 +33,12 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.iap.v1.OAuthSettings oauth_settings = 3;</code>
      */
     private $oauth_settings = null;
+    /**
+     * Settings to configure reauthentication policies in IAP.
+     *
+     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings reauth_settings = 6;</code>
+     */
+    private $reauth_settings = null;
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      *           Configuration to allow cross-origin requests via IAP.
      *     @type \Google\Cloud\Iap\V1\OAuthSettings $oauth_settings
      *           Settings to configure IAP's OAuth behavior.
+     *     @type \Google\Cloud\Iap\V1\ReauthSettings $reauth_settings
+     *           Settings to configure reauthentication policies in IAP.
      * }
      */
     public function __construct($data = NULL) {
@@ -157,6 +165,42 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Iap\V1\OAuthSettings::class);
         $this->oauth_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Settings to configure reauthentication policies in IAP.
+     *
+     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings reauth_settings = 6;</code>
+     * @return \Google\Cloud\Iap\V1\ReauthSettings|null
+     */
+    public function getReauthSettings()
+    {
+        return $this->reauth_settings;
+    }
+
+    public function hasReauthSettings()
+    {
+        return isset($this->reauth_settings);
+    }
+
+    public function clearReauthSettings()
+    {
+        unset($this->reauth_settings);
+    }
+
+    /**
+     * Settings to configure reauthentication policies in IAP.
+     *
+     * Generated from protobuf field <code>.google.cloud.iap.v1.ReauthSettings reauth_settings = 6;</code>
+     * @param \Google\Cloud\Iap\V1\ReauthSettings $var
+     * @return $this
+     */
+    public function setReauthSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Iap\V1\ReauthSettings::class);
+        $this->reauth_settings = $var;
 
         return $this;
     }

@@ -21,7 +21,7 @@ class TunnelDestGroup extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * null List of CIDRs that this group applies to.
      *
