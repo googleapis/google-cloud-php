@@ -18,6 +18,10 @@ import logging
 from pathlib import Path
 import subprocess
 
+import synthtool as s
+from synthtool.languages import php
+from synthtool import _tracked_paths
+
 logging.basicConfig(level=logging.DEBUG)
 
 src = Path(f"../{php.STAGING_DIR}/Optimization").resolve()
