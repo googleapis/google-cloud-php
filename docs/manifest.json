@@ -2294,6 +2294,14 @@
             ]
         },
         {
+            "id": "cloud-optimization",
+            "name": "google/cloud-optimization",
+            "defaultService": "optimization/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-orchestration-airflow",
             "name": "google/cloud-orchestration-airflow",
             "defaultService": "orchestrationairflow/readme",

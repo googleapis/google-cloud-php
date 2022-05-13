@@ -143,6 +143,7 @@
         "google/cloud-network-management": "0.1.4",
         "google/cloud-network-security": "0.2.0",
         "google/cloud-notebooks": "0.2.3",
+        "google/cloud-optimization": "master",
         "google/cloud-orchestration-airflow": "0.1.3",
         "google/cloud-org-policy": "0.3.0",
         "google/cloud-osconfig": "0.5.0",
@@ -254,6 +255,7 @@
             "GPBMetadata\\Google\\Cloud\\Networkmanagement\\": "NetworkManagement/metadata",
             "GPBMetadata\\Google\\Cloud\\Networksecurity\\": "NetworkSecurity/metadata",
             "GPBMetadata\\Google\\Cloud\\Notebooks\\": "Notebooks/metadata",
+            "GPBMetadata\\Google\\Cloud\\Optimization\\": "Optimization/metadata",
             "GPBMetadata\\Google\\Cloud\\Orchestration\\Airflow\\Service\\": "OrchestrationAirflow/metadata",
             "GPBMetadata\\Google\\Cloud\\Orgpolicy\\": [
                 "OrgPolicy/metadata",
@@ -390,6 +392,7 @@
             "Google\\Cloud\\NetworkManagement\\": "NetworkManagement/src",
             "Google\\Cloud\\NetworkSecurity\\": "NetworkSecurity/src",
             "Google\\Cloud\\Notebooks\\": "Notebooks/src",
+            "Google\\Cloud\\Optimization\\": "Optimization/src",
             "Google\\Cloud\\Orchestration\\Airflow\\Service\\": "OrchestrationAirflow/src",
             "Google\\Cloud\\OrgPolicy\\": [
                 "OrgPolicy/src",
@@ -516,6 +519,7 @@
             "Google\\Cloud\\NetworkManagement\\Tests\\": "NetworkManagement/tests",
             "Google\\Cloud\\NetworkSecurity\\Tests\\": "NetworkSecurity/tests",
             "Google\\Cloud\\Notebooks\\Tests\\": "Notebooks/tests",
+            "Google\\Cloud\\Optimization\\Tests\\": "Optimization/tests",
             "Google\\Cloud\\Orchestration\\Airflow\\Service\\Tests\\": "OrchestrationAirflow/tests",
             "Google\\Cloud\\OrgPolicy\\Tests\\": "OrgPolicy/tests",
             "Google\\Cloud\\OsConfig\\Tests\\": "OsConfig/tests",
