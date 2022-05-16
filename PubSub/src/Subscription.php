@@ -324,7 +324,7 @@ class Subscription
      *           between consecutive deliveries of a given message. Value should
      *           be between 0 and 600 seconds. Defaults to 600 seconds.
      *     @type bool $enableExactlyOnceDelivery Indicates whether to enable
-     *           'Exactly Once Delivery' on the subscription
+     *           'Exactly Once Delivery' on the subscription.
      * }
      * @return array An array of subscription info
      * @throws \InvalidArgumentException
@@ -472,7 +472,7 @@ class Subscription
      *           between consecutive deliveries of a given message. Value should
      *           be between 0 and 600 seconds. Defaults to 600 seconds.
      *     @type bool $enableExactlyOnceDelivery Indicates whether to enable
-     *           'Exactly Once Delivery' on the subscription
+     *           'Exactly Once Delivery' on the subscription.
      * }
      * @param array $options [optional] {
      *     Configuration options.
