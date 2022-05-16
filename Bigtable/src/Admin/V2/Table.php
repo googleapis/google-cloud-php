@@ -31,11 +31,10 @@ class Table extends \Google\Protobuf\Internal\Message
      * there will be an entry for the cluster with UNKNOWN `replication_status`.
      * Views: `REPLICATION_VIEW`, `ENCRYPTION_VIEW`, `FULL`
      *
-     * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Table.ClusterState> cluster_states = 2;</code>
+     * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Table.ClusterState> cluster_states = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $cluster_states;
     /**
-     * (`CreationOnly`)
      * The column families configured for this table, mapped by column family ID.
      * Views: `SCHEMA_VIEW`, `FULL`
      *
@@ -43,20 +42,19 @@ class Table extends \Google\Protobuf\Internal\Message
      */
     private $column_families;
     /**
-     * (`CreationOnly`)
-     * The granularity (i.e. `MILLIS`) at which timestamps are stored in
-     * this table. Timestamps not matching the granularity will be rejected.
+     * Immutable. The granularity (i.e. `MILLIS`) at which timestamps are stored in this
+     * table. Timestamps not matching the granularity will be rejected.
      * If unspecified at creation time, the value will be set to `MILLIS`.
      * Views: `SCHEMA_VIEW`, `FULL`.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $granularity = 0;
     /**
-     * Output only. If this table was restored from another data source (e.g. a
-     * backup), this field will be populated with information about the restore.
+     * Output only. If this table was restored from another data source (e.g. a backup), this
+     * field will be populated with information about the restore.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.RestoreInfo restore_info = 6;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.RestoreInfo restore_info = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $restore_info = null;
 
@@ -77,18 +75,16 @@ class Table extends \Google\Protobuf\Internal\Message
      *           there will be an entry for the cluster with UNKNOWN `replication_status`.
      *           Views: `REPLICATION_VIEW`, `ENCRYPTION_VIEW`, `FULL`
      *     @type array|\Google\Protobuf\Internal\MapField $column_families
-     *           (`CreationOnly`)
      *           The column families configured for this table, mapped by column family ID.
      *           Views: `SCHEMA_VIEW`, `FULL`
      *     @type int $granularity
-     *           (`CreationOnly`)
-     *           The granularity (i.e. `MILLIS`) at which timestamps are stored in
-     *           this table. Timestamps not matching the granularity will be rejected.
+     *           Immutable. The granularity (i.e. `MILLIS`) at which timestamps are stored in this
+     *           table. Timestamps not matching the granularity will be rejected.
      *           If unspecified at creation time, the value will be set to `MILLIS`.
      *           Views: `SCHEMA_VIEW`, `FULL`.
      *     @type \Google\Cloud\Bigtable\Admin\V2\RestoreInfo $restore_info
-     *           Output only. If this table was restored from another data source (e.g. a
-     *           backup), this field will be populated with information about the restore.
+     *           Output only. If this table was restored from another data source (e.g. a backup), this
+     *           field will be populated with information about the restore.
      * }
      */
     public function __construct($data = NULL) {
@@ -133,7 +129,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * there will be an entry for the cluster with UNKNOWN `replication_status`.
      * Views: `REPLICATION_VIEW`, `ENCRYPTION_VIEW`, `FULL`
      *
-     * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Table.ClusterState> cluster_states = 2;</code>
+     * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Table.ClusterState> cluster_states = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getClusterStates()
@@ -148,7 +144,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * there will be an entry for the cluster with UNKNOWN `replication_status`.
      * Views: `REPLICATION_VIEW`, `ENCRYPTION_VIEW`, `FULL`
      *
-     * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Table.ClusterState> cluster_states = 2;</code>
+     * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Table.ClusterState> cluster_states = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -161,7 +157,6 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`CreationOnly`)
      * The column families configured for this table, mapped by column family ID.
      * Views: `SCHEMA_VIEW`, `FULL`
      *
@@ -174,7 +169,6 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`CreationOnly`)
      * The column families configured for this table, mapped by column family ID.
      * Views: `SCHEMA_VIEW`, `FULL`
      *
@@ -191,13 +185,12 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`CreationOnly`)
-     * The granularity (i.e. `MILLIS`) at which timestamps are stored in
-     * this table. Timestamps not matching the granularity will be rejected.
+     * Immutable. The granularity (i.e. `MILLIS`) at which timestamps are stored in this
+     * table. Timestamps not matching the granularity will be rejected.
      * If unspecified at creation time, the value will be set to `MILLIS`.
      * Views: `SCHEMA_VIEW`, `FULL`.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
      */
     public function getGranularity()
@@ -206,13 +199,12 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`CreationOnly`)
-     * The granularity (i.e. `MILLIS`) at which timestamps are stored in
-     * this table. Timestamps not matching the granularity will be rejected.
+     * Immutable. The granularity (i.e. `MILLIS`) at which timestamps are stored in this
+     * table. Timestamps not matching the granularity will be rejected.
      * If unspecified at creation time, the value will be set to `MILLIS`.
      * Views: `SCHEMA_VIEW`, `FULL`.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.TimestampGranularity granularity = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
      * @return $this
      */
@@ -225,10 +217,10 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If this table was restored from another data source (e.g. a
-     * backup), this field will be populated with information about the restore.
+     * Output only. If this table was restored from another data source (e.g. a backup), this
+     * field will be populated with information about the restore.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.RestoreInfo restore_info = 6;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.RestoreInfo restore_info = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Bigtable\Admin\V2\RestoreInfo|null
      */
     public function getRestoreInfo()
@@ -247,10 +239,10 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If this table was restored from another data source (e.g. a
-     * backup), this field will be populated with information about the restore.
+     * Output only. If this table was restored from another data source (e.g. a backup), this
+     * field will be populated with information about the restore.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.RestoreInfo restore_info = 6;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.RestoreInfo restore_info = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\RestoreInfo $var
      * @return $this
      */

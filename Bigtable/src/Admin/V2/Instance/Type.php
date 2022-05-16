@@ -29,13 +29,8 @@ class Type
      */
     const PRODUCTION = 1;
     /**
-     * The instance is meant for development and testing purposes only; it has
-     * no performance or uptime guarantees and is not covered by SLA.
-     * After a development instance is created, it can be upgraded by
-     * updating the instance to type `PRODUCTION`. An instance created
-     * as a production instance cannot be changed to a development instance.
-     * When creating a development instance, `serve_nodes` on the cluster must
-     * not be set.
+     * DEPRECATED: Prefer PRODUCTION for all use cases, as it no longer enforces
+     * a higher minimum node count than DEVELOPMENT.
      *
      * Generated from protobuf enum <code>DEVELOPMENT = 2;</code>
      */

@@ -22,7 +22,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * The unique name of the instance. Values are of the form
      * `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
@@ -114,7 +114,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * The unique name of the instance. Values are of the form
      * `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -126,7 +126,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * The unique name of the instance. Values are of the form
      * `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      * @return $this
      */
