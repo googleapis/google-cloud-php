@@ -43,7 +43,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer config minimum-stability dev -d Spanner/
           composer config repositories.local  --json '{"type":"path", "url": "../Core", "options": {"versions": {"google/cloud-core": "1.45"}}}' -d Spanner
           composer update --prefer-dist --no-interaction --no-suggest -d Spanner/
 

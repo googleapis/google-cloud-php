@@ -26,8 +26,7 @@ use UnexpectedValueException;
  * an `AudioEncoding` when you send  send `FLAC` or `WAV` audio, the
  * encoding configuration must match the encoding described in the audio
  * header; otherwise the request returns an
- * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error
- * code.
+ * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error code.
  *
  * Protobuf type <code>google.cloud.speech.v1.RecognitionConfig.AudioEncoding</code>
  */
