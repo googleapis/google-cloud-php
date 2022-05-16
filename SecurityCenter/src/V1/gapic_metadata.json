@@ -15,6 +15,11 @@
                                 "bulkMuteFindings"
                             ]
                         },
+                        "CreateBigQueryExport": {
+                            "methods": [
+                                "createBigQueryExport"
+                            ]
+                        },
                         "CreateFinding": {
                             "methods": [
                                 "createFinding"
@@ -35,6 +40,11 @@
                                 "createSource"
                             ]
                         },
+                        "DeleteBigQueryExport": {
+                            "methods": [
+                                "deleteBigQueryExport"
+                            ]
+                        },
                         "DeleteMuteConfig": {
                             "methods": [
                                 "deleteMuteConfig"
@@ -43,6 +53,11 @@
                         "DeleteNotificationConfig": {
                             "methods": [
                                 "deleteNotificationConfig"
+                            ]
+                        },
+                        "GetBigQueryExport": {
+                            "methods": [
+                                "getBigQueryExport"
                             ]
                         },
                         "GetIamPolicy": {
@@ -83,6 +98,11 @@
                         "ListAssets": {
                             "methods": [
                                 "listAssets"
+                            ]
+                        },
+                        "ListBigQueryExports": {
+                            "methods": [
+                                "listBigQueryExports"
                             ]
                         },
                         "ListFindings": {
@@ -128,6 +148,11 @@
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
+                            ]
+                        },
+                        "UpdateBigQueryExport": {
+                            "methods": [
+                                "updateBigQueryExport"
                             ]
                         },
                         "UpdateExternalSystem": {

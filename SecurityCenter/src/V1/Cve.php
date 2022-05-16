@@ -36,6 +36,12 @@ class Cve extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Cvssv3 cvssv3 = 3;</code>
      */
     private $cvssv3 = null;
+    /**
+     * Whether upstream fix is available for the CVE.
+     *
+     * Generated from protobuf field <code>bool upstream_fix_available = 4;</code>
+     */
+    private $upstream_fix_available = false;
 
     /**
      * Constructor.
@@ -51,6 +57,8 @@ class Cve extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\SecurityCenter\V1\Cvssv3 $cvssv3
      *           Describe Common Vulnerability Scoring System specified at
      *           https://www.first.org/cvss/v3.1/specification-document
+     *     @type bool $upstream_fix_available
+     *           Whether upstream fix is available for the CVE.
      * }
      */
     public function __construct($data = NULL) {
@@ -146,6 +154,32 @@ class Cve extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Cvssv3::class);
         $this->cvssv3 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether upstream fix is available for the CVE.
+     *
+     * Generated from protobuf field <code>bool upstream_fix_available = 4;</code>
+     * @return bool
+     */
+    public function getUpstreamFixAvailable()
+    {
+        return $this->upstream_fix_available;
+    }
+
+    /**
+     * Whether upstream fix is available for the CVE.
+     *
+     * Generated from protobuf field <code>bool upstream_fix_available = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUpstreamFixAvailable($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->upstream_fix_available = $var;
 
         return $this;
     }
