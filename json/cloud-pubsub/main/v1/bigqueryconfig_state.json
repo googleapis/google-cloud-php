@@ -1,0 +1,1 @@
+{"id":"pubsub\/v1\/bigqueryconfig_state","type":"","title":"Google\\Cloud\\PubSub\\V1\\BigQueryConfig_State","name":"BigQueryConfig_State","description":"<p>This class is deprecated. Use Google\\Cloud\\PubSub\\V1\\BigQueryConfig\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}
