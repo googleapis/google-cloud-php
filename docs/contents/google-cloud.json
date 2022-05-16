@@ -45,6 +45,7 @@
         "cloud-dataproc-metastore",
         "cloud-datastore",
         "cloud-datastore-admin",
+        "cloud-datastream",
         "cloud-debugger",
         "cloud-deploy",
         "cloud-dialogflow",
