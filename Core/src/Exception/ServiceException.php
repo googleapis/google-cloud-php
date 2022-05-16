@@ -86,23 +86,23 @@ class ServiceException extends GoogleException
 
     /**
      * Returns the ErrorInfo part of the exception
-     * 
+     *
      * @return array
      */
-    public function getErrorInfo(){
-        try{
+    public function getErrorInfo()
+    {
+        try {
             $arr = json_decode($this->getMessage(), true);
             $details = $arr['error']['details'];
 
-            foreach($details as $row){
-                if($row['@type'] === ERRORINFO_TYPE){
+            foreach ($details as $row) {
+                if ($row['@type'] === ERRORINFO_TYPE) {
                     return $row;
                 }
             }
 
             return [];
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             return [];
         }
     }

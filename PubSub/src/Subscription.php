@@ -323,7 +323,7 @@ class Subscription
      *     @type Duration|string $retryPolicy.maximumBackoff The maximum delay
      *           between consecutive deliveries of a given message. Value should
      *           be between 0 and 600 seconds. Defaults to 600 seconds.
-     *     @type bool $enableExactlyOnceDelivery Indicates whether to enable 
+     *     @type bool $enableExactlyOnceDelivery Indicates whether to enable
      *           'Exactly Once Delivery' on the subscription
      * }
      * @return array An array of subscription info
@@ -471,7 +471,7 @@ class Subscription
      *     @type Duration|string $retryPolicy.maximumBackoff The maximum delay
      *           between consecutive deliveries of a given message. Value should
      *           be between 0 and 600 seconds. Defaults to 600 seconds.
-     *     @type bool $enableExactlyOnceDelivery Indicates whether to enable 
+     *     @type bool $enableExactlyOnceDelivery Indicates whether to enable
      *           'Exactly Once Delivery' on the subscription
      * }
      * @param array $options [optional] {
@@ -739,7 +739,7 @@ class Subscription
             ]);
         } catch (BadRequestException $e) {
             // bubble up the error if the exception isn't an EOD exception
-            if(!$this->isExceptionExactlyOnce($e)){
+            if (!$this->isExceptionExactlyOnce($e)) {
                 throw $e;
             }
         }
@@ -833,7 +833,7 @@ class Subscription
             ]);
         } catch (BadRequestException $e) {
             // bubble up the error if the exception isn't an EOD exception
-            if(!$this->isExceptionExactlyOnce($e)){
+            if (!$this->isExceptionExactlyOnce($e)) {
                 throw $e;
             }
         }
@@ -1064,11 +1064,12 @@ class Subscription
     /**
      * Checks if a given exception failure is because of
      * a EOD failure reason
-     * 
+     *
      * @param ServiceException $e
      * @return boolean
      */
-    private function isExceptionExactlyOnce(ServiceException $e) {
+    private function isExceptionExactlyOnce(ServiceException $e)
+    {
         $errorInfo = $e->getErrorInfo();
 
         return $errorInfo['reason'] === EXACTLY_ONCE_FAILURE_REASON;
