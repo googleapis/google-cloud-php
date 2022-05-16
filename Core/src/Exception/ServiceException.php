@@ -19,6 +19,8 @@ namespace Google\Cloud\Core\Exception;
 
 use Exception;
 
+const ERRORINFO_TYPE = 'type.googleapis.com/google.rpc.ErrorInfo';
+
 /**
  * Exception thrown when a request fails.
  */
@@ -80,5 +82,28 @@ class ServiceException extends GoogleException
     public function getMetadata()
     {
         return $this->metadata;
+    }
+
+    /**
+     * Returns the ErrorInfo part of the exception
+     * 
+     * @return array
+     */
+    public function getErrorInfo(){
+        try{
+            $arr = json_decode($this->getMessage(), true);
+            $details = $arr['error']['details'];
+
+            foreach($details as $row){
+                if($row['@type'] === ERRORINFO_TYPE){
+                    return $row;
+                }
+            }
+
+            return [];
+        }
+        catch(\Exception $e){
+            return [];
+        }
     }
 }

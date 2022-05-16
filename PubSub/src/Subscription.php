@@ -21,6 +21,7 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
@@ -29,6 +30,8 @@ use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\IamSubscription;
 use Google\Cloud\PubSub\IncomingMessageTrait;
 use InvalidArgumentException;
+
+const EXACTLY_ONCE_FAILURE_REASON = 'EXACTLY_ONCE_ACKID_FAILURE';
 
 /**
  * A named resource representing the stream of messages from a single, specific
@@ -320,6 +323,8 @@ class Subscription
      *     @type Duration|string $retryPolicy.maximumBackoff The maximum delay
      *           between consecutive deliveries of a given message. Value should
      *           be between 0 and 600 seconds. Defaults to 600 seconds.
+     *     @type bool $enableExactlyOnceDelivery Indicates whether to enable 
+     *           'Exactly Once Delivery' on the subscription
      * }
      * @return array An array of subscription info
      * @throws \InvalidArgumentException
@@ -466,6 +471,8 @@ class Subscription
      *     @type Duration|string $retryPolicy.maximumBackoff The maximum delay
      *           between consecutive deliveries of a given message. Value should
      *           be between 0 and 600 seconds. Defaults to 600 seconds.
+     *     @type bool $enableExactlyOnceDelivery Indicates whether to enable 
+     *           'Exactly Once Delivery' on the subscription
      * }
      * @param array $options [optional] {
      *     Configuration options.
@@ -731,6 +738,10 @@ class Subscription
                 'ackIds' => $this->getMessageAckIds($messages)
             ]);
         } catch (BadRequestException $e) {
+            // bubble up the error if the exception isn't an EOD exception
+            if(!$this->isExceptionExactlyOnce($e)){
+                throw $e;
+            }
         }
     }
 
@@ -821,6 +832,10 @@ class Subscription
                 'ackDeadlineSeconds' => $seconds
             ]);
         } catch (BadRequestException $e) {
+            // bubble up the error if the exception isn't an EOD exception
+            if(!$this->isExceptionExactlyOnce($e)){
+                throw $e;
+            }
         }
     }
 
@@ -1044,6 +1059,19 @@ class Subscription
         }
 
         return $subscription;
+    }
+
+    /**
+     * Checks if a given exception failure is because of
+     * a EOD failure reason
+     * 
+     * @param ServiceException $e
+     * @return boolean
+     */
+    private function isExceptionExactlyOnce(ServiceException $e) {
+        $errorInfo = $e->getErrorInfo();
+
+        return $errorInfo['reason'] === EXACTLY_ONCE_FAILURE_REASON;
     }
 
     /**
