@@ -38,6 +38,18 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $config = null;
     /**
+     * Optional. The virtual cluster config, used when creating a Dataproc cluster that
+     * does not directly control the underlying compute resources, for example,
+     * when creating a [Dataproc-on-GKE
+     * cluster](https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).
+     * Note that Dataproc may set default values, and values may change when
+     * clusters are updated. Exactly one of config or virtualClusterConfig must be
+     * specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.VirtualClusterConfig virtual_cluster_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $virtual_cluster_config = null;
+    /**
      * Optional. The labels to associate with this cluster.
      * Label **keys** must contain 1 to 63 characters, and must conform to
      * [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt).
@@ -92,6 +104,14 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Optional. The cluster config for a cluster of Compute Engine Instances.
      *           Note that Dataproc may set default values, and values may change
      *           when clusters are updated.
+     *     @type \Google\Cloud\Dataproc\V1\VirtualClusterConfig $virtual_cluster_config
+     *           Optional. The virtual cluster config, used when creating a Dataproc cluster that
+     *           does not directly control the underlying compute resources, for example,
+     *           when creating a [Dataproc-on-GKE
+     *           cluster](https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).
+     *           Note that Dataproc may set default values, and values may change when
+     *           clusters are updated. Exactly one of config or virtualClusterConfig must be
+     *           specified.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels to associate with this cluster.
      *           Label **keys** must contain 1 to 63 characters, and must conform to
@@ -208,6 +228,54 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\ClusterConfig::class);
         $this->config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The virtual cluster config, used when creating a Dataproc cluster that
+     * does not directly control the underlying compute resources, for example,
+     * when creating a [Dataproc-on-GKE
+     * cluster](https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).
+     * Note that Dataproc may set default values, and values may change when
+     * clusters are updated. Exactly one of config or virtualClusterConfig must be
+     * specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.VirtualClusterConfig virtual_cluster_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\VirtualClusterConfig|null
+     */
+    public function getVirtualClusterConfig()
+    {
+        return $this->virtual_cluster_config;
+    }
+
+    public function hasVirtualClusterConfig()
+    {
+        return isset($this->virtual_cluster_config);
+    }
+
+    public function clearVirtualClusterConfig()
+    {
+        unset($this->virtual_cluster_config);
+    }
+
+    /**
+     * Optional. The virtual cluster config, used when creating a Dataproc cluster that
+     * does not directly control the underlying compute resources, for example,
+     * when creating a [Dataproc-on-GKE
+     * cluster](https://cloud.google.com/dataproc/docs/concepts/jobs/dataproc-gke#create-a-dataproc-on-gke-cluster).
+     * Note that Dataproc may set default values, and values may change when
+     * clusters are updated. Exactly one of config or virtualClusterConfig must be
+     * specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.VirtualClusterConfig virtual_cluster_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\VirtualClusterConfig $var
+     * @return $this
+     */
+    public function setVirtualClusterConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\VirtualClusterConfig::class);
+        $this->virtual_cluster_config = $var;
 
         return $this;
     }
