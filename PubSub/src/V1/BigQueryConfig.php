@@ -21,14 +21,14 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string table = 1;</code>
      */
-    protected $table = '';
+    private $table = '';
     /**
      * When true, use the topic's schema as the columns to write to in BigQuery,
      * if it exists.
      *
      * Generated from protobuf field <code>bool use_topic_schema = 2;</code>
      */
-    protected $use_topic_schema = false;
+    private $use_topic_schema = false;
     /**
      * When true, write the subscription name, message_id, publish_time,
      * attributes, and ordering_key to additional columns in the table. The
@@ -38,7 +38,7 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool write_metadata = 3;</code>
      */
-    protected $write_metadata = false;
+    private $write_metadata = false;
     /**
      * When true and use_topic_schema is true, any fields that are a part of the
      * topic schema that are not part of the BigQuery table schema are dropped
@@ -48,14 +48,14 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool drop_unknown_fields = 4;</code>
      */
-    protected $drop_unknown_fields = false;
+    private $drop_unknown_fields = false;
     /**
      * Output only. An output-only field that indicates whether or not the subscription can
      * receive messages.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig.State state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $state = 0;
+    private $state = 0;
 
     /**
      * Constructor.

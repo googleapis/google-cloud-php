@@ -36,12 +36,22 @@ class Subscription extends \Google\Protobuf\Internal\Message
     private $topic = '';
     /**
      * If push delivery is used with this subscription, this field is
-     * used to configure it. An empty `pushConfig` signifies that the subscriber
-     * will pull and ack messages using API methods.
+     * used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
+     * but not both. If both are empty, then the subscriber will pull and ack
+     * messages using API methods.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      */
     private $push_config = null;
+    /**
+     * If delivery to BigQuery is used with this subscription, this field is
+     * used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
+     * but not both. If both are empty, then the subscriber will pull and ack
+     * messages using API methods.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig bigquery_config = 18;</code>
+     */
+    private $bigquery_config = null;
     /**
      * The approximate amount of time (on a best-effort basis) Pub/Sub waits for
      * the subscriber to acknowledge receipt before resending the message. In the
@@ -181,6 +191,13 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration topic_message_retention_duration = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $topic_message_retention_duration = null;
+    /**
+     * Output only. An output-only field indicating whether or not the subscription can receive
+     * messages.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.Subscription.State state = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $state = 0;
 
     /**
      * Constructor.
@@ -201,8 +218,14 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           field will be `_deleted-topic_` if the topic has been deleted.
      *     @type \Google\Cloud\PubSub\V1\PushConfig $push_config
      *           If push delivery is used with this subscription, this field is
-     *           used to configure it. An empty `pushConfig` signifies that the subscriber
-     *           will pull and ack messages using API methods.
+     *           used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
+     *           but not both. If both are empty, then the subscriber will pull and ack
+     *           messages using API methods.
+     *     @type \Google\Cloud\PubSub\V1\BigQueryConfig $bigquery_config
+     *           If delivery to BigQuery is used with this subscription, this field is
+     *           used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
+     *           but not both. If both are empty, then the subscriber will pull and ack
+     *           messages using API methods.
      *     @type int $ack_deadline_seconds
      *           The approximate amount of time (on a best-effort basis) Pub/Sub waits for
      *           the subscriber to acknowledge receipt before resending the message. In the
@@ -294,6 +317,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           `topic_message_retention_duration` are always available to subscribers. See
      *           the `message_retention_duration` field in `Topic`. This field is set only
      *           in responses from the server; it is ignored if it is set in any requests.
+     *     @type int $state
+     *           Output only. An output-only field indicating whether or not the subscription can receive
+     *           messages.
      * }
      */
     public function __construct($data = NULL) {
@@ -369,8 +395,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * If push delivery is used with this subscription, this field is
-     * used to configure it. An empty `pushConfig` signifies that the subscriber
-     * will pull and ack messages using API methods.
+     * used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
+     * but not both. If both are empty, then the subscriber will pull and ack
+     * messages using API methods.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      * @return \Google\Cloud\PubSub\V1\PushConfig|null
@@ -392,8 +419,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
 
     /**
      * If push delivery is used with this subscription, this field is
-     * used to configure it. An empty `pushConfig` signifies that the subscriber
-     * will pull and ack messages using API methods.
+     * used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
+     * but not both. If both are empty, then the subscriber will pull and ack
+     * messages using API methods.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      * @param \Google\Cloud\PubSub\V1\PushConfig $var
@@ -403,6 +431,48 @@ class Subscription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\PushConfig::class);
         $this->push_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * If delivery to BigQuery is used with this subscription, this field is
+     * used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
+     * but not both. If both are empty, then the subscriber will pull and ack
+     * messages using API methods.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig bigquery_config = 18;</code>
+     * @return \Google\Cloud\PubSub\V1\BigQueryConfig|null
+     */
+    public function getBigqueryConfig()
+    {
+        return $this->bigquery_config;
+    }
+
+    public function hasBigqueryConfig()
+    {
+        return isset($this->bigquery_config);
+    }
+
+    public function clearBigqueryConfig()
+    {
+        unset($this->bigquery_config);
+    }
+
+    /**
+     * If delivery to BigQuery is used with this subscription, this field is
+     * used to configure it. Either `pushConfig` or `bigQueryConfig` can be set,
+     * but not both. If both are empty, then the subscriber will pull and ack
+     * messages using API methods.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.BigQueryConfig bigquery_config = 18;</code>
+     * @param \Google\Cloud\PubSub\V1\BigQueryConfig $var
+     * @return $this
+     */
+    public function setBigqueryConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\BigQueryConfig::class);
+        $this->bigquery_config = $var;
 
         return $this;
     }
@@ -899,6 +969,34 @@ class Subscription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->topic_message_retention_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. An output-only field indicating whether or not the subscription can receive
+     * messages.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.Subscription.State state = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Output only. An output-only field indicating whether or not the subscription can receive
+     * messages.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.Subscription.State state = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\PubSub\V1\Subscription\State::class);
+        $this->state = $var;
 
         return $this;
     }
