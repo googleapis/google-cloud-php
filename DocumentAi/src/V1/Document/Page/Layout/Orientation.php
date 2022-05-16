@@ -76,6 +76,4 @@ class Orientation
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Orientation::class, \Google\Cloud\DocumentAI\V1\Document_Page_Layout_Orientation::class);
 

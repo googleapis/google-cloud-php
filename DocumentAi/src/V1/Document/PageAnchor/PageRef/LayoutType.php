@@ -20,43 +20,56 @@ class LayoutType
      */
     const LAYOUT_TYPE_UNSPECIFIED = 0;
     /**
-     * References a [Page.blocks][google.cloud.documentai.v1.Document.Page.blocks] element.
+     * References a
+     * [Page.blocks][google.cloud.documentai.v1.Document.Page.blocks]
+     * element.
      *
      * Generated from protobuf enum <code>BLOCK = 1;</code>
      */
     const BLOCK = 1;
     /**
-     * References a [Page.paragraphs][google.cloud.documentai.v1.Document.Page.paragraphs] element.
+     * References a
+     * [Page.paragraphs][google.cloud.documentai.v1.Document.Page.paragraphs]
+     * element.
      *
      * Generated from protobuf enum <code>PARAGRAPH = 2;</code>
      */
     const PARAGRAPH = 2;
     /**
-     * References a [Page.lines][google.cloud.documentai.v1.Document.Page.lines] element.
+     * References a
+     * [Page.lines][google.cloud.documentai.v1.Document.Page.lines] element.
      *
      * Generated from protobuf enum <code>LINE = 3;</code>
      */
     const LINE = 3;
     /**
-     * References a [Page.tokens][google.cloud.documentai.v1.Document.Page.tokens] element.
+     * References a
+     * [Page.tokens][google.cloud.documentai.v1.Document.Page.tokens]
+     * element.
      *
      * Generated from protobuf enum <code>TOKEN = 4;</code>
      */
     const TOKEN = 4;
     /**
-     * References a [Page.visual_elements][google.cloud.documentai.v1.Document.Page.visual_elements] element.
+     * References a
+     * [Page.visual_elements][google.cloud.documentai.v1.Document.Page.visual_elements]
+     * element.
      *
      * Generated from protobuf enum <code>VISUAL_ELEMENT = 5;</code>
      */
     const VISUAL_ELEMENT = 5;
     /**
-     * Refrrences a [Page.tables][google.cloud.documentai.v1.Document.Page.tables] element.
+     * Refrrences a
+     * [Page.tables][google.cloud.documentai.v1.Document.Page.tables]
+     * element.
      *
      * Generated from protobuf enum <code>TABLE = 6;</code>
      */
     const TABLE = 6;
     /**
-     * References a [Page.form_fields][google.cloud.documentai.v1.Document.Page.form_fields] element.
+     * References a
+     * [Page.form_fields][google.cloud.documentai.v1.Document.Page.form_fields]
+     * element.
      *
      * Generated from protobuf enum <code>FORM_FIELD = 7;</code>
      */
@@ -94,6 +107,4 @@ class LayoutType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LayoutType::class, \Google\Cloud\DocumentAI\V1\Document_PageAnchor_PageRef_LayoutType::class);
 

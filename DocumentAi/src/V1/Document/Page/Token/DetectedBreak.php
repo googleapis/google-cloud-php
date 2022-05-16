@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Detected break at the end of a [Token][google.cloud.documentai.v1.Document.Page.Token].
+ * Detected break at the end of a
+ * [Token][google.cloud.documentai.v1.Document.Page.Token].
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.Document.Page.Token.DetectedBreak</code>
  */
@@ -65,6 +66,4 @@ class DetectedBreak extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DetectedBreak::class, \Google\Cloud\DocumentAI\V1\Document_Page_Token_DetectedBreak::class);
 

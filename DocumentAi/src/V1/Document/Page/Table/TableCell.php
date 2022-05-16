@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class TableCell extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [TableCell][google.cloud.documentai.v1.Document.Page.Table.TableCell].
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
+     * [TableCell][google.cloud.documentai.v1.Document.Page.Table.TableCell].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      */
@@ -47,7 +48,8 @@ class TableCell extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Layout $layout
-     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [TableCell][google.cloud.documentai.v1.Document.Page.Table.TableCell].
+     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
+     *           [TableCell][google.cloud.documentai.v1.Document.Page.Table.TableCell].
      *     @type int $row_span
      *           How many rows this cell spans.
      *     @type int $col_span
@@ -62,7 +64,8 @@ class TableCell extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [TableCell][google.cloud.documentai.v1.Document.Page.Table.TableCell].
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
+     * [TableCell][google.cloud.documentai.v1.Document.Page.Table.TableCell].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\Page\Layout|null
@@ -83,7 +86,8 @@ class TableCell extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [TableCell][google.cloud.documentai.v1.Document.Page.Table.TableCell].
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
+     * [TableCell][google.cloud.documentai.v1.Document.Page.Table.TableCell].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\Page\Layout $var
@@ -177,6 +181,4 @@ class TableCell extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TableCell::class, \Google\Cloud\DocumentAI\V1\Document_Page_Table_TableCell::class);
 

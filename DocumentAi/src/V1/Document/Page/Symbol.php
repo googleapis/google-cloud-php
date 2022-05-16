@@ -9,16 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A collection of tokens that a human would perceive as a line.
- * Does not cross column boundaries, can be horizontal, vertical, etc.
+ * A detected symbol.
  *
- * Generated from protobuf message <code>google.cloud.documentai.v1.Document.Page.Line</code>
+ * Generated from protobuf message <code>google.cloud.documentai.v1.Document.Page.Symbol</code>
  */
-class Line extends \Google\Protobuf\Internal\Message
+class Symbol extends \Google\Protobuf\Internal\Message
 {
     /**
      * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     * [Line][google.cloud.documentai.v1.Document.Page.Line].
+     * [Symbol][google.cloud.documentai.v1.Document.Page.Symbol].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      */
@@ -29,12 +28,6 @@ class Line extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.DetectedLanguage detected_languages = 2;</code>
      */
     private $detected_languages;
-    /**
-     * The  history of this annotation.
-     *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 3;</code>
-     */
-    private $provenance = null;
 
     /**
      * Constructor.
@@ -44,11 +37,9 @@ class Line extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Layout $layout
      *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     *           [Line][google.cloud.documentai.v1.Document.Page.Line].
+     *           [Symbol][google.cloud.documentai.v1.Document.Page.Symbol].
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage[]|\Google\Protobuf\Internal\RepeatedField $detected_languages
      *           A list of detected languages together with confidence.
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance $provenance
-     *           The  history of this annotation.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,7 +49,7 @@ class Line extends \Google\Protobuf\Internal\Message
 
     /**
      * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     * [Line][google.cloud.documentai.v1.Document.Page.Line].
+     * [Symbol][google.cloud.documentai.v1.Document.Page.Symbol].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\Page\Layout|null
@@ -80,7 +71,7 @@ class Line extends \Google\Protobuf\Internal\Message
 
     /**
      * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     * [Line][google.cloud.documentai.v1.Document.Page.Line].
+     * [Symbol][google.cloud.documentai.v1.Document.Page.Symbol].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\Page\Layout $var
@@ -116,42 +107,6 @@ class Line extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage::class);
         $this->detected_languages = $arr;
-
-        return $this;
-    }
-
-    /**
-     * The  history of this annotation.
-     *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 3;</code>
-     * @return \Google\Cloud\DocumentAI\V1\Document\Provenance|null
-     */
-    public function getProvenance()
-    {
-        return $this->provenance;
-    }
-
-    public function hasProvenance()
-    {
-        return isset($this->provenance);
-    }
-
-    public function clearProvenance()
-    {
-        unset($this->provenance);
-    }
-
-    /**
-     * The  history of this annotation.
-     *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 3;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Provenance $var
-     * @return $this
-     */
-    public function setProvenance($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\Document\Provenance::class);
-        $this->provenance = $var;
 
         return $this;
     }
