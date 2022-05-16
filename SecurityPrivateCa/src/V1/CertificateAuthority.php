@@ -36,11 +36,11 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     private $config = null;
     /**
-     * Required. The desired lifetime of the CA certificate. Used to create the
+     * Required. Immutable. The desired lifetime of the CA certificate. Used to create the
      * "not_before_time" and "not_after_time" fields inside an X.509
      * certificate.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $lifetime = null;
     /**
@@ -154,7 +154,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateConfig $config
      *           Required. Immutable. The config used to create a self-signed X.509 certificate or CSR.
      *     @type \Google\Protobuf\Duration $lifetime
-     *           Required. The desired lifetime of the CA certificate. Used to create the
+     *           Required. Immutable. The desired lifetime of the CA certificate. Used to create the
      *           "not_before_time" and "not_after_time" fields inside an X.509
      *           certificate.
      *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateAuthority\KeyVersionSpec $key_spec
@@ -270,7 +270,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getConfig()
     {
-        return isset($this->config) ? $this->config : null;
+        return $this->config;
     }
 
     public function hasConfig()
@@ -299,16 +299,16 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The desired lifetime of the CA certificate. Used to create the
+     * Required. Immutable. The desired lifetime of the CA certificate. Used to create the
      * "not_before_time" and "not_after_time" fields inside an X.509
      * certificate.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Protobuf\Duration|null
      */
     public function getLifetime()
     {
-        return isset($this->lifetime) ? $this->lifetime : null;
+        return $this->lifetime;
     }
 
     public function hasLifetime()
@@ -322,11 +322,11 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The desired lifetime of the CA certificate. Used to create the
+     * Required. Immutable. The desired lifetime of the CA certificate. Used to create the
      * "not_before_time" and "not_after_time" fields inside an X.509
      * certificate.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */
@@ -349,7 +349,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getKeySpec()
     {
-        return isset($this->key_spec) ? $this->key_spec : null;
+        return $this->key_spec;
     }
 
     public function hasKeySpec()
@@ -390,7 +390,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getSubordinateConfig()
     {
-        return isset($this->subordinate_config) ? $this->subordinate_config : null;
+        return $this->subordinate_config;
     }
 
     public function hasSubordinateConfig()
@@ -579,7 +579,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getAccessUrls()
     {
-        return isset($this->access_urls) ? $this->access_urls : null;
+        return $this->access_urls;
     }
 
     public function hasAccessUrls()
@@ -616,7 +616,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -652,7 +652,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -689,7 +689,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getDeleteTime()
     {
-        return isset($this->delete_time) ? $this->delete_time : null;
+        return $this->delete_time;
     }
 
     public function hasDeleteTime()
@@ -727,7 +727,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      */
     public function getExpireTime()
     {
-        return isset($this->expire_time) ? $this->expire_time : null;
+        return $this->expire_time;
     }
 
     public function hasExpireTime()

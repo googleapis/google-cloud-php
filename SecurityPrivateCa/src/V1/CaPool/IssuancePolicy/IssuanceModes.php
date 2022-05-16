@@ -18,17 +18,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class IssuanceModes extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. When true, allows callers to create [Certificates][google.cloud.security.privateca.v1.Certificate] by
+     * Optional. When true, allows callers to create [Certificates][google.cloud.security.privateca.v1.Certificate] by
      * specifying a CSR.
      *
-     * Generated from protobuf field <code>bool allow_csr_based_issuance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool allow_csr_based_issuance = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $allow_csr_based_issuance = false;
     /**
-     * Required. When true, allows callers to create [Certificates][google.cloud.security.privateca.v1.Certificate] by
+     * Optional. When true, allows callers to create [Certificates][google.cloud.security.privateca.v1.Certificate] by
      * specifying a [CertificateConfig][google.cloud.security.privateca.v1.CertificateConfig].
      *
-     * Generated from protobuf field <code>bool allow_config_based_issuance = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool allow_config_based_issuance = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $allow_config_based_issuance = false;
 
@@ -39,10 +39,10 @@ class IssuanceModes extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $allow_csr_based_issuance
-     *           Required. When true, allows callers to create [Certificates][google.cloud.security.privateca.v1.Certificate] by
+     *           Optional. When true, allows callers to create [Certificates][google.cloud.security.privateca.v1.Certificate] by
      *           specifying a CSR.
      *     @type bool $allow_config_based_issuance
-     *           Required. When true, allows callers to create [Certificates][google.cloud.security.privateca.v1.Certificate] by
+     *           Optional. When true, allows callers to create [Certificates][google.cloud.security.privateca.v1.Certificate] by
      *           specifying a [CertificateConfig][google.cloud.security.privateca.v1.CertificateConfig].
      * }
      */
@@ -52,10 +52,10 @@ class IssuanceModes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. When true, allows callers to create [Certificates][google.cloud.security.privateca.v1.Certificate] by
+     * Optional. When true, allows callers to create [Certificates][google.cloud.security.privateca.v1.Certificate] by
      * specifying a CSR.
      *
-     * Generated from protobuf field <code>bool allow_csr_based_issuance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool allow_csr_based_issuance = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getAllowCsrBasedIssuance()
@@ -64,10 +64,10 @@ class IssuanceModes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. When true, allows callers to create [Certificates][google.cloud.security.privateca.v1.Certificate] by
+     * Optional. When true, allows callers to create [Certificates][google.cloud.security.privateca.v1.Certificate] by
      * specifying a CSR.
      *
-     * Generated from protobuf field <code>bool allow_csr_based_issuance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool allow_csr_based_issuance = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -80,10 +80,10 @@ class IssuanceModes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. When true, allows callers to create [Certificates][google.cloud.security.privateca.v1.Certificate] by
+     * Optional. When true, allows callers to create [Certificates][google.cloud.security.privateca.v1.Certificate] by
      * specifying a [CertificateConfig][google.cloud.security.privateca.v1.CertificateConfig].
      *
-     * Generated from protobuf field <code>bool allow_config_based_issuance = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool allow_config_based_issuance = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getAllowConfigBasedIssuance()
@@ -92,10 +92,10 @@ class IssuanceModes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. When true, allows callers to create [Certificates][google.cloud.security.privateca.v1.Certificate] by
+     * Optional. When true, allows callers to create [Certificates][google.cloud.security.privateca.v1.Certificate] by
      * specifying a [CertificateConfig][google.cloud.security.privateca.v1.CertificateConfig].
      *
-     * Generated from protobuf field <code>bool allow_config_based_issuance = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool allow_config_based_issuance = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -109,6 +109,4 @@ class IssuanceModes extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IssuanceModes::class, \Google\Cloud\Security\PrivateCA\V1\CaPool_IssuancePolicy_IssuanceModes::class);
 

@@ -43,6 +43,8 @@ class SubjectAltNames extends \Google\Protobuf\Internal\Message
     private $ip_addresses;
     /**
      * Contains additional subject alternative name values.
+     * For each custom_san, the `value` field must contain an ASN.1 encoded
+     * UTF8String.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.X509Extension custom_sans = 5;</code>
      */
@@ -64,6 +66,8 @@ class SubjectAltNames extends \Google\Protobuf\Internal\Message
      *           Contains only valid 32-bit IPv4 addresses or RFC 4291 IPv6 addresses.
      *     @type \Google\Cloud\Security\PrivateCA\V1\X509Extension[]|\Google\Protobuf\Internal\RepeatedField $custom_sans
      *           Contains additional subject alternative name values.
+     *           For each custom_san, the `value` field must contain an ASN.1 encoded
+     *           UTF8String.
      * }
      */
     public function __construct($data = NULL) {
@@ -177,6 +181,8 @@ class SubjectAltNames extends \Google\Protobuf\Internal\Message
 
     /**
      * Contains additional subject alternative name values.
+     * For each custom_san, the `value` field must contain an ASN.1 encoded
+     * UTF8String.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.X509Extension custom_sans = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -188,6 +194,8 @@ class SubjectAltNames extends \Google\Protobuf\Internal\Message
 
     /**
      * Contains additional subject alternative name values.
+     * For each custom_san, the `value` field must contain an ASN.1 encoded
+     * UTF8String.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.X509Extension custom_sans = 5;</code>
      * @param \Google\Cloud\Security\PrivateCA\V1\X509Extension[]|\Google\Protobuf\Internal\RepeatedField $var
