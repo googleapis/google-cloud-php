@@ -21,6 +21,12 @@ class ReviewDocumentOperationMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.documentai.v1.CommonOperationMetadata common_metadata = 5;</code>
      */
     private $common_metadata = null;
+    /**
+     * The question ID.
+     *
+     * Generated from protobuf field <code>string question_id = 6;</code>
+     */
+    private $question_id = '';
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class ReviewDocumentOperationMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\DocumentAI\V1\CommonOperationMetadata $common_metadata
      *           The basic metadata of the long running operation.
+     *     @type string $question_id
+     *           The question ID.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +53,7 @@ class ReviewDocumentOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCommonMetadata()
     {
-        return isset($this->common_metadata) ? $this->common_metadata : null;
+        return $this->common_metadata;
     }
 
     public function hasCommonMetadata()
@@ -69,6 +77,32 @@ class ReviewDocumentOperationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\CommonOperationMetadata::class);
         $this->common_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * The question ID.
+     *
+     * Generated from protobuf field <code>string question_id = 6;</code>
+     * @return string
+     */
+    public function getQuestionId()
+    {
+        return $this->question_id;
+    }
+
+    /**
+     * The question ID.
+     *
+     * Generated from protobuf field <code>string question_id = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setQuestionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->question_id = $var;
 
         return $this;
     }

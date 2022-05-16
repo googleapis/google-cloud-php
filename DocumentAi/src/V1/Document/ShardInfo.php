@@ -30,7 +30,8 @@ class ShardInfo extends \Google\Protobuf\Internal\Message
      */
     private $shard_count = 0;
     /**
-     * The index of the first character in [Document.text][google.cloud.documentai.v1.Document.text] in the overall
+     * The index of the first character in
+     * [Document.text][google.cloud.documentai.v1.Document.text] in the overall
      * document global text.
      *
      * Generated from protobuf field <code>int64 text_offset = 3;</code>
@@ -48,7 +49,8 @@ class ShardInfo extends \Google\Protobuf\Internal\Message
      *     @type int|string $shard_count
      *           Total number of shards.
      *     @type int|string $text_offset
-     *           The index of the first character in [Document.text][google.cloud.documentai.v1.Document.text] in the overall
+     *           The index of the first character in
+     *           [Document.text][google.cloud.documentai.v1.Document.text] in the overall
      *           document global text.
      * }
      */
@@ -110,7 +112,8 @@ class ShardInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The index of the first character in [Document.text][google.cloud.documentai.v1.Document.text] in the overall
+     * The index of the first character in
+     * [Document.text][google.cloud.documentai.v1.Document.text] in the overall
      * document global text.
      *
      * Generated from protobuf field <code>int64 text_offset = 3;</code>
@@ -122,7 +125,8 @@ class ShardInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The index of the first character in [Document.text][google.cloud.documentai.v1.Document.text] in the overall
+     * The index of the first character in
+     * [Document.text][google.cloud.documentai.v1.Document.text] in the overall
      * document global text.
      *
      * Generated from protobuf field <code>int64 text_offset = 3;</code>
@@ -139,6 +143,4 @@ class ShardInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ShardInfo::class, \Google\Cloud\DocumentAI\V1\Document_ShardInfo::class);
 

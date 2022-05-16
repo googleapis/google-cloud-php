@@ -21,7 +21,7 @@ class Symbol extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      */
-    protected $layout = null;
+    private $layout = null;
     /**
      * A list of detected languages together with confidence.
      *
@@ -113,6 +113,4 @@ class Symbol extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Symbol::class, \Google\Cloud\DocumentAI\V1\Document_Page_Symbol::class);
 

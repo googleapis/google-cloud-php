@@ -14,31 +14,32 @@ use UnexpectedValueException;
 class OperationType
 {
     /**
-     * Operation type unspecified.
+     * Operation type unspecified. If no operation is specified a provenance
+     * entry is simply used to match against a `parent`.
      *
      * Generated from protobuf enum <code>OPERATION_TYPE_UNSPECIFIED = 0;</code>
      */
     const OPERATION_TYPE_UNSPECIFIED = 0;
     /**
-     * Add an element.  Implicit if no `parents` are set for the provenance.
+     * Add an element.
      *
      * Generated from protobuf enum <code>ADD = 1;</code>
      */
     const ADD = 1;
     /**
-     * The element is removed.  No `parents` should be set.
+     * Remove an element identified by `parent`.
      *
      * Generated from protobuf enum <code>REMOVE = 2;</code>
      */
     const REMOVE = 2;
     /**
-     * Explicitly replaces the element(s) identified by `parents`.
+     * Replace an element identified by `parent`.
      *
      * Generated from protobuf enum <code>REPLACE = 3;</code>
      */
     const REPLACE = 3;
     /**
-     * Element is requested for human review.
+     * Request human review for the element identified by `parent`.
      *
      * Generated from protobuf enum <code>EVAL_REQUESTED = 4;</code>
      */
@@ -88,6 +89,4 @@ class OperationType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OperationType::class, \Google\Cloud\DocumentAI\V1\Document_Provenance_OperationType::class);
 
