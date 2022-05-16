@@ -18,7 +18,7 @@ class ClusterState extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The state of replication for the table in this cluster.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $replication_state = 0;
     /**
@@ -56,7 +56,7 @@ class ClusterState extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The state of replication for the table in this cluster.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getReplicationState()
@@ -67,7 +67,7 @@ class ClusterState extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The state of replication for the table in this cluster.
      *
-     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1;</code>
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.ClusterState.ReplicationState replication_state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */

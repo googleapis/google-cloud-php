@@ -1619,19 +1619,17 @@ class BigtableInstanceAdminGapicClient
      *     Optional.
      *
      *     @type string $location
-     *           (`CreationOnly`)
-     *           The location where this cluster's nodes and storage reside. For best
+     *           Immutable. The location where this cluster's nodes and storage reside. For best
      *           performance, clients should be located as close as possible to this
      *           cluster. Currently only zones are supported, so values should be of the
      *           form `projects/{project}/locations/{zone}`.
      *     @type int $state
-     *           The current state of the cluster.
+     *           Output only. The current state of the cluster.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Cluster\State}
      *     @type ClusterConfig $clusterConfig
      *           Configuration for this cluster.
      *     @type int $defaultStorageType
-     *           (`CreationOnly`)
-     *           The type of storage used by this cluster to serve its
+     *           Immutable. The type of storage used by this cluster to serve its
      *           parent instance's tables, unless explicitly overridden.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\StorageType}
      *     @type EncryptionConfig $encryptionConfig
