@@ -1337,6 +1337,14 @@
             ]
         },
         {
+            "id": "cloud-datastream",
+            "name": "google/cloud-datastream",
+            "defaultService": "datastream/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-debugger",
             "name": "google/cloud-debugger",
             "defaultService": "debugger/debuggerclient",

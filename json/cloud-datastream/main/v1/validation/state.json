@@ -1,0 +1,1 @@
+{"id":"datastream\/v1\/validation\/state","type":"","title":"Google\\Cloud\\Datastream\\V1\\Validation\\State","name":"State","description":"<p>Validation execution state.<\/p>\n<p>Protobuf type <code>google.cloud.datastream.v1.Validation.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

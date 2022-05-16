@@ -1,0 +1,1 @@
+{"id":"datastream\/v1\/jsonfileformat\/schemafileformat","type":"","title":"Google\\Cloud\\Datastream\\V1\\JsonFileFormat\\SchemaFileFormat","name":"SchemaFileFormat","description":"<p>Schema file format.<\/p>\n<p>Protobuf type <code>google.cloud.datastream.v1.JsonFileFormat.SchemaFileFormat<\/code><\/p>","examples":[],"resources":[],"methods":[]}
