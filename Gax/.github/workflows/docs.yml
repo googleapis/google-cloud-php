@@ -9,7 +9,7 @@ jobs:
         runs-on: ubuntu-16.04
         steps:
         - name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
         - id: getTag
           name: Get Tag
           run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
