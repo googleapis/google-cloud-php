@@ -29,7 +29,7 @@ jobs:
                 tools: ${{ matrix.tools }}
                 extensions: bcmath,${{ matrix.extensions }}
             - name: Install composer dependencies
-              uses: nick-invision/retry@v1
+              uses: nick-invision/retry@v2
               with:
                 timeout_minutes: 10
                 max_attempts: 3
@@ -62,7 +62,7 @@ jobs:
               with:
                 php-version: 7.4
             - name: Install Dependencies
-              uses: nick-invision/retry@v1
+              uses: nick-invision/retry@v2
               with:
                 timeout_minutes: 10
                 max_attempts: 3

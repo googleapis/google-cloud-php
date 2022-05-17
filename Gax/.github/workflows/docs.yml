@@ -14,7 +14,7 @@ jobs:
           name: Get Tag
           run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
         - name: Install composer dependencies
-          uses: nick-invision/retry@v1
+          uses: nick-invision/retry@v2
           with:
             timeout_minutes: 10
             max_attempts: 3
