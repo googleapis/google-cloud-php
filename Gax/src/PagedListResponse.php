@@ -121,6 +121,7 @@ class PagedListResponse implements IteratorAggregate
      * @return Generator
      * @throws ValidationException
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         foreach ($this->iteratePages() as $page) {

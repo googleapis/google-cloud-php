@@ -127,6 +127,7 @@ class FixedSizeCollection implements IteratorAggregate
      *
      * @return Generator
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         foreach ($this->pageList as $page) {
