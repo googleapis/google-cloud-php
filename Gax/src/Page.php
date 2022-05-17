@@ -170,6 +170,7 @@ class Page implements IteratorAggregate
      *
      * @return Generator
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         $resourcesGetMethod = $this->pageStreamingDescriptor->getResourcesGetMethod();
