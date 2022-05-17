@@ -23,22 +23,23 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. The annotation that will be assigned to the Event. This field can be left
-     * empty to provide reasons that apply to an event without concluding whether
-     * the event is legitimate or fraudulent.
+     * Optional. The annotation that will be assigned to the Event. This field can
+     * be left empty to provide reasons that apply to an event without concluding
+     * whether the event is legitimate or fraudulent.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Annotation annotation = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $annotation = 0;
     /**
-     * Optional. Optional reasons for the annotation that will be assigned to the Event.
+     * Optional. Optional reasons for the annotation that will be assigned to the
+     * Event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Reason reasons = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $reasons;
     /**
-     * Optional. Optional unique stable hashed user identifier to apply to the assessment.
-     * This is an alternative to setting the hashed_account_id in
+     * Optional. Optional unique stable hashed user identifier to apply to the
+     * assessment. This is an alternative to setting the hashed_account_id in
      * CreateAssessment, for example when the account identifier is not yet known
      * in the initial request. It is recommended that the identifier is hashed
      * using hmac-sha256 with stable secret.
@@ -57,14 +58,15 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the Assessment, in the format
      *           "projects/{project}/assessments/{assessment}".
      *     @type int $annotation
-     *           Optional. The annotation that will be assigned to the Event. This field can be left
-     *           empty to provide reasons that apply to an event without concluding whether
-     *           the event is legitimate or fraudulent.
+     *           Optional. The annotation that will be assigned to the Event. This field can
+     *           be left empty to provide reasons that apply to an event without concluding
+     *           whether the event is legitimate or fraudulent.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $reasons
-     *           Optional. Optional reasons for the annotation that will be assigned to the Event.
+     *           Optional. Optional reasons for the annotation that will be assigned to the
+     *           Event.
      *     @type string $hashed_account_id
-     *           Optional. Optional unique stable hashed user identifier to apply to the assessment.
-     *           This is an alternative to setting the hashed_account_id in
+     *           Optional. Optional unique stable hashed user identifier to apply to the
+     *           assessment. This is an alternative to setting the hashed_account_id in
      *           CreateAssessment, for example when the account identifier is not yet known
      *           in the initial request. It is recommended that the identifier is hashed
      *           using hmac-sha256 with stable secret.
@@ -104,9 +106,9 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The annotation that will be assigned to the Event. This field can be left
-     * empty to provide reasons that apply to an event without concluding whether
-     * the event is legitimate or fraudulent.
+     * Optional. The annotation that will be assigned to the Event. This field can
+     * be left empty to provide reasons that apply to an event without concluding
+     * whether the event is legitimate or fraudulent.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Annotation annotation = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -117,9 +119,9 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The annotation that will be assigned to the Event. This field can be left
-     * empty to provide reasons that apply to an event without concluding whether
-     * the event is legitimate or fraudulent.
+     * Optional. The annotation that will be assigned to the Event. This field can
+     * be left empty to provide reasons that apply to an event without concluding
+     * whether the event is legitimate or fraudulent.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Annotation annotation = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -134,7 +136,8 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional reasons for the annotation that will be assigned to the Event.
+     * Optional. Optional reasons for the annotation that will be assigned to the
+     * Event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Reason reasons = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -145,7 +148,8 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional reasons for the annotation that will be assigned to the Event.
+     * Optional. Optional reasons for the annotation that will be assigned to the
+     * Event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Reason reasons = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -160,8 +164,8 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional unique stable hashed user identifier to apply to the assessment.
-     * This is an alternative to setting the hashed_account_id in
+     * Optional. Optional unique stable hashed user identifier to apply to the
+     * assessment. This is an alternative to setting the hashed_account_id in
      * CreateAssessment, for example when the account identifier is not yet known
      * in the initial request. It is recommended that the identifier is hashed
      * using hmac-sha256 with stable secret.
@@ -175,8 +179,8 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional unique stable hashed user identifier to apply to the assessment.
-     * This is an alternative to setting the hashed_account_id in
+     * Optional. Optional unique stable hashed user identifier to apply to the
+     * assessment. This is an alternative to setting the hashed_account_id in
      * CreateAssessment, for example when the account identifier is not yet known
      * in the initial request. It is recommended that the identifier is hashed
      * using hmac-sha256 with stable secret.

@@ -47,6 +47,12 @@ class Assessment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6;</code>
      */
     private $account_defender_assessment = null;
+    /**
+     * Password leak verification info.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 7;</code>
+     */
+    private $private_password_leak_verification = null;
 
     /**
      * Constructor.
@@ -66,6 +72,8 @@ class Assessment extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment $account_defender_assessment
      *           Assessment returned by Account Defender when a hashed_account_id is
      *           provided.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\PrivatePasswordLeakVerification $private_password_leak_verification
+     *           Password leak verification info.
      * }
      */
     public function __construct($data = NULL) {
@@ -243,6 +251,42 @@ class Assessment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment::class);
         $this->account_defender_assessment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Password leak verification info.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 7;</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\PrivatePasswordLeakVerification|null
+     */
+    public function getPrivatePasswordLeakVerification()
+    {
+        return $this->private_password_leak_verification;
+    }
+
+    public function hasPrivatePasswordLeakVerification()
+    {
+        return isset($this->private_password_leak_verification);
+    }
+
+    public function clearPrivatePasswordLeakVerification()
+    {
+        unset($this->private_password_leak_verification);
+    }
+
+    /**
+     * Password leak verification info.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 7;</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\PrivatePasswordLeakVerification $var
+     * @return $this
+     */
+    public function setPrivatePasswordLeakVerification($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\PrivatePasswordLeakVerification::class);
+        $this->private_password_leak_verification = $var;
 
         return $this;
     }

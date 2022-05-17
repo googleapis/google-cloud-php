@@ -22,8 +22,8 @@ class UpdateKeyRequest extends \Google\Protobuf\Internal\Message
      */
     private $key = null;
     /**
-     * Optional. The mask to control which fields of the key get updated. If the mask is not
-     * present, all fields will be updated.
+     * Optional. The mask to control which fields of the key get updated. If the
+     * mask is not present, all fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -38,8 +38,8 @@ class UpdateKeyRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\Key $key
      *           Required. The key to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Optional. The mask to control which fields of the key get updated. If the mask is not
-     *           present, all fields will be updated.
+     *           Optional. The mask to control which fields of the key get updated. If the
+     *           mask is not present, all fields will be updated.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,8 +84,8 @@ class UpdateKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The mask to control which fields of the key get updated. If the mask is not
-     * present, all fields will be updated.
+     * Optional. The mask to control which fields of the key get updated. If the
+     * mask is not present, all fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -106,8 +106,8 @@ class UpdateKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The mask to control which fields of the key get updated. If the mask is not
-     * present, all fields will be updated.
+     * Optional. The mask to control which fields of the key get updated. If the
+     * mask is not present, all fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var

@@ -21,7 +21,7 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes lookup_hash_prefix = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $lookup_hash_prefix = '';
+    private $lookup_hash_prefix = '';
     /**
      * Encrypted Scrypt hash of the canonicalized username+password. It is
      * re-encrypted by the server and returned through
@@ -29,7 +29,7 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes encrypted_user_credentials_hash = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $encrypted_user_credentials_hash = '';
+    private $encrypted_user_credentials_hash = '';
     /**
      * List of prefixes of the encrypted potential password leaks that matched the
      * given parameters. They should be compared with the client-side decryption
@@ -45,7 +45,7 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes reencrypted_user_credentials_hash = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $reencrypted_user_credentials_hash = '';
+    private $reencrypted_user_credentials_hash = '';
 
     /**
      * Constructor.
