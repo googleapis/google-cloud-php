@@ -16,29 +16,17 @@
  */
 namespace Google\Cloud\Tasks\Tests\System\V2;
 
-use Google\Cloud\Core\ExponentialBackoff;
-use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Tasks\V2\CloudTasksClient;
 use Google\Cloud\Tasks\V2\Queue;
 use Google\Cloud\Tasks\V2\Task;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @group tasks
  * @group gapic
  */
-class TasksServiceSmokeTest extends SystemTestCase
+class TasksServiceSmokeTest extends TestCase
 {
-    private function createQueue($client, $locationName, $queue)
-    {
-        $backoff = new ExponentialBackoff(8);
-        $backoff->execute(function () use ($client, $locationName, $queue) {
-            $client->createQueue($locationName, $queue);
-        });
-        self::$deletionQueue->add(function () use ($client, $queue) {
-            $client->deleteQueue($queue->getName());
-        });
-    }
-
     /**
      * @test
      */
@@ -56,7 +44,7 @@ class TasksServiceSmokeTest extends SystemTestCase
         $queue = new Queue([
             'name' => $queueName
         ]);
-        $this->createQueue($client, $locationName, $queue);
+        $client->createQueue($locationName, $queue);
 
         $resp = $client->listQueues($locationName);
         $found = false;
@@ -65,6 +53,10 @@ class TasksServiceSmokeTest extends SystemTestCase
                 $found = true;
             }
         }
+
+        // delete queue before assertion incase it fails
+        $client->deleteQueue($queue->getName());
+
         $this->assertTrue($found, "Queue $queueName should be found in the listQueues respons");
     }
 }
