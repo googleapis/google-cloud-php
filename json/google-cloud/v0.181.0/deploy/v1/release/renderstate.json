@@ -1,0 +1,1 @@
+{"id":"deploy\/v1\/release\/renderstate","type":"","title":"Google\\Cloud\\Deploy\\V1\\Release\\RenderState","name":"RenderState","description":"<p>Valid states of the render operation.<\/p>\n<p>Protobuf type <code>google.cloud.deploy.v1.Release.RenderState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

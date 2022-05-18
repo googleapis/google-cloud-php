@@ -1,0 +1,1 @@
+{"id":"monitoring\/v3\/timeseriesdata_pointdata","type":"","title":"Google\\Cloud\\Monitoring\\V3\\TimeSeriesData_PointData","name":"TimeSeriesData_PointData","description":"<p>This class is deprecated. Use Google\\Cloud\\Monitoring\\V3\\TimeSeriesData\\PointData instead.<\/p>","examples":[],"resources":[],"methods":[]}

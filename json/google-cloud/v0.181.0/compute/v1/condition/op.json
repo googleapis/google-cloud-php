@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/condition\/op","type":"","title":"Google\\Cloud\\Compute\\V1\\Condition\\Op","name":"Op","description":"<p>This is deprecated and has no effect. Do not use.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.Condition.Op<\/code><\/p>","examples":[],"resources":[],"methods":[]}

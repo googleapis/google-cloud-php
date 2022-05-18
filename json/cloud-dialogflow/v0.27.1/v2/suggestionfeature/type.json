@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/suggestionfeature\/type","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\SuggestionFeature\\Type","name":"Type","description":"<p>Defines the type of Human Agent Assistant feature.<\/p>\n<p>Protobuf type <code>google.cloud.dialogflow.v2.SuggestionFeature.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

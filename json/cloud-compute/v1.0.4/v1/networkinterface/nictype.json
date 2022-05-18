@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/networkinterface\/nictype","type":"","title":"Google\\Cloud\\Compute\\V1\\NetworkInterface\\NicType","name":"NicType","description":"<p>The type of vNIC to be used on this interface. This may be gVNIC or VirtioNet.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.NetworkInterface.NicType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

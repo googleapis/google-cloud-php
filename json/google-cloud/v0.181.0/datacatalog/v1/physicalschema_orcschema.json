@@ -1,0 +1,1 @@
+{"id":"datacatalog\/v1\/physicalschema_orcschema","type":"","title":"Google\\Cloud\\DataCatalog\\V1\\PhysicalSchema_OrcSchema","name":"PhysicalSchema_OrcSchema","description":"<p>This class is deprecated. Use Google\\Cloud\\DataCatalog\\V1\\PhysicalSchema\\OrcSchema instead.<\/p>","examples":[],"resources":[],"methods":[]}

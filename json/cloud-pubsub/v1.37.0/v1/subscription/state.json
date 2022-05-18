@@ -1,0 +1,1 @@
+{"id":"pubsub\/v1\/subscription\/state","type":"","title":"Google\\Cloud\\PubSub\\V1\\Subscription\\State","name":"State","description":"<p>Possible states for a subscription.<\/p>\n<p>Protobuf type <code>google.pubsub.v1.Subscription.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

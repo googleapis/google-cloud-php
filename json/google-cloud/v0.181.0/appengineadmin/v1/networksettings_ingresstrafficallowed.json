@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/networksettings_ingresstrafficallowed","type":"","title":"Google\\Cloud\\AppEngine\\V1\\NetworkSettings_IngressTrafficAllowed","name":"NetworkSettings_IngressTrafficAllowed","description":"<p>This class is deprecated. Use Google\\Cloud\\AppEngine\\V1\\NetworkSettings\\IngressTrafficAllowed instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"orchestrationairflow\/v1\/operationmetadata\/type","type":"","title":"Google\\Cloud\\Orchestration\\Airflow\\Service\\V1\\OperationMetadata\\Type","name":"Type","description":"<p>Type of longrunning operation.<\/p>\n<p>Protobuf type <code>google.cloud.orchestration.airflow.service.v1.OperationMetadata.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

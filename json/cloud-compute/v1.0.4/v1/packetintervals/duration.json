@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/packetintervals\/duration","type":"","title":"Google\\Cloud\\Compute\\V1\\PacketIntervals\\Duration","name":"Duration","description":"<p>From how long ago in the past these intervals were observed.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.PacketIntervals.Duration<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"domains\/v1beta1\/dnssettings\/dsstate","type":"","title":"Google\\Cloud\\Domains\\V1beta1\\DnsSettings\\DsState","name":"DsState","description":"<p>The publication state of DS records for a <code>Registration<\/code>.<\/p>\n<p>Protobuf type <code>google.cloud.domains.v1beta1.DnsSettings.DsState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

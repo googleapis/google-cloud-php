@@ -1,0 +1,1 @@
+{"id":"iap\/v1\/reauthsettings\/method","type":"","title":"Google\\Cloud\\Iap\\V1\\ReauthSettings\\Method","name":"Method","description":"<p>Types of reauthentication methods supported by IAP.<\/p>\n<p>Protobuf type <code>google.cloud.iap.v1.ReauthSettings.Method<\/code><\/p>","examples":[],"resources":[],"methods":[]}

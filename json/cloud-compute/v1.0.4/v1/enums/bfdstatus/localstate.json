@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/bfdstatus\/localstate","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\BfdStatus\\LocalState","name":"LocalState","description":"<p>LocalState contains string constants that represent the names of each value in\nthe google.cloud.compute.v1.BfdStatus.LocalState descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

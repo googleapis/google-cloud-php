@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/warning\/code","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\Warning\\Code","name":"Code","description":"<p>Code contains string constants that represent the names of each value in the\ngoogle.cloud.compute.v1.Warning.Code descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

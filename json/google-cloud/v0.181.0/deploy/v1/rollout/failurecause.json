@@ -1,0 +1,1 @@
+{"id":"deploy\/v1\/rollout\/failurecause","type":"","title":"Google\\Cloud\\Deploy\\V1\\Rollout\\FailureCause","name":"FailureCause","description":"<p>Well-known deployment failures.<\/p>\n<p>Protobuf type <code>google.cloud.deploy.v1.Rollout.FailureCause<\/code><\/p>","examples":[],"resources":[],"methods":[]}

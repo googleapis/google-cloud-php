@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/sharesettings\/sharetype","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\ShareSettings\\ShareType","name":"ShareType","description":"<p>ShareType contains string constants that represent the names of each value in\nthe google.cloud.compute.v1.ShareSettings.ShareType descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

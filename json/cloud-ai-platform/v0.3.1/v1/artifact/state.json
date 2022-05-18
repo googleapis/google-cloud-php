@@ -1,0 +1,1 @@
+{"id":"aiplatform\/v1\/artifact\/state","type":"","title":"Google\\Cloud\\AIPlatform\\V1\\Artifact\\State","name":"State","description":"<p>Describes the state of the Artifact.<\/p>\n<p>Protobuf type <code>google.cloud.aiplatform.v1.Artifact.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

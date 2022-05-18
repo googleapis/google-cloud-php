@@ -1,0 +1,1 @@
+{"id":"vmmigration\/v1\/vmwarevmdetails\/powerstate","type":"","title":"Google\\Cloud\\VMMigration\\V1\\VmwareVmDetails\\PowerState","name":"PowerState","description":"<p>Possible values for the power state of the VM.<\/p>\n<p>Protobuf type <code>google.cloud.vmmigration.v1.VmwareVmDetails.PowerState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

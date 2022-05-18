@@ -1,0 +1,1 @@
+{"id":"storagetransfer\/v1\/metadataoptions\/kmskey","type":"","title":"Google\\Cloud\\StorageTransfer\\V1\\MetadataOptions\\KmsKey","name":"KmsKey","description":"<p>Options for handling the KmsKey setting for Google Cloud Storage objects.<\/p>\n<p>Protobuf type <code>google.storagetransfer.v1.MetadataOptions.KmsKey<\/code><\/p>","examples":[],"resources":[],"methods":[]}

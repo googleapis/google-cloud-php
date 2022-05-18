@@ -1,0 +1,1 @@
+{"id":"vmmigration\/v1\/computeenginelicensetype","type":"","title":"Google\\Cloud\\VMMigration\\V1\\ComputeEngineLicenseType","name":"ComputeEngineLicenseType","description":"<p>Types of licenses used in OS adaptation.<\/p>\n<p>Protobuf type <code>google.cloud.vmmigration.v1.ComputeEngineLicenseType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

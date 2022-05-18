@@ -1,0 +1,1 @@
+{"id":"dataplex\/v1\/getentityrequest\/entityview","type":"","title":"Google\\Cloud\\Dataplex\\V1\\GetEntityRequest\\EntityView","name":"EntityView","description":"<p>Entity views for get entity partial result.<\/p>\n<p>Protobuf type <code>google.cloud.dataplex.v1.GetEntityRequest.EntityView<\/code><\/p>","examples":[],"resources":[],"methods":[]}

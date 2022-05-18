@@ -1,0 +1,1 @@
+{"id":"storagetransfer\/v1\/loggingconfig\/loggableaction","type":"","title":"Google\\Cloud\\StorageTransfer\\V1\\LoggingConfig\\LoggableAction","name":"LoggableAction","description":"<p>Loggable actions.<\/p>\n<p>Protobuf type <code>google.storagetransfer.v1.LoggingConfig.LoggableAction<\/code><\/p>","examples":[],"resources":[],"methods":[]}

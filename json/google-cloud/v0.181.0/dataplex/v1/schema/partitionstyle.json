@@ -1,0 +1,1 @@
+{"id":"dataplex\/v1\/schema\/partitionstyle","type":"","title":"Google\\Cloud\\Dataplex\\V1\\Schema\\PartitionStyle","name":"PartitionStyle","description":"<p>The structure of paths within the entity, which represent partitions.<\/p>\n<p>Protobuf type <code>google.cloud.dataplex.v1.Schema.PartitionStyle<\/code><\/p>","examples":[],"resources":[],"methods":[]}

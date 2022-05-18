@@ -1,0 +1,1 @@
+{"id":"asset\/v1\/iampolicyanalysisquery_accessselector","type":"","title":"Google\\Cloud\\Asset\\V1\\IamPolicyAnalysisQuery_AccessSelector","name":"IamPolicyAnalysisQuery_AccessSelector","description":"<p>This class is deprecated. Use Google\\Cloud\\Asset\\V1\\IamPolicyAnalysisQuery\\AccessSelector instead.<\/p>","examples":[],"resources":[],"methods":[]}

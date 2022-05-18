@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/preservedstatepreserveddisk\/mode","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\PreservedStatePreservedDisk\\Mode","name":"Mode","description":"<p>Mode contains string constants that represent the names of each value in the\ngoogle.cloud.compute.v1.PreservedStatePreservedDisk.Mode descriptor.<\/p>","examples":[],"resources":[],"methods":[]}
