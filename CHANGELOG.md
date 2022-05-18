@@ -1,5 +1,1112 @@
 # Changelog
 
+## 0.181.0
+
+<details><summary>google/cloud-access-approval 0.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/access-context-manager 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 0.3.1</summary>
+
+
+
+### Documentation
+
+* update feature value docs ([#5278](https://github.com/googleapis/google-cloud-php/issues/5278)) ([2030ded](https://github.com/googleapis/google-cloud-php/commit/2030ded7d8d7dfc82a20dd0e2505646c5b2eb997))
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/analytics-admin 0.6.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/analytics-data 0.8.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-api-gateway 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 0.2.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-asset 1.6.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 0.5.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-automl 1.4.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.7.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.3.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 0.6.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.15.0</summary>
+
+
+
+### Features
+
+* [Bigtable] refreshes Bigtable Admin API(s) protos ([#5276](https://github.com/googleapis/google-cloud-php/issues/5276)) ([2ab95d8](https://github.com/googleapis/google-cloud-php/commit/2ab95d8108642a01dfcf362a1ff320c6667af2bd))
+
+</details>
+
+<details><summary>google/cloud-billing 1.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 0.2.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 0.4.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-build 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 0.1.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-channel 0.6.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-compute 1.0.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 0.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-container 1.6.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-data-fusion 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-datalabeling 0.1.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-dataflow 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-dataplex 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-dataproc 3.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [Dataproc] Move `yarn_config` into a `oneof` (#5127)
+
+### Bug Fixes
+
+* [Dataproc] Move `yarn_config` into a `oneof` ([#5127](https://github.com/googleapis/google-cloud-php/issues/5127)) ([9b1a2e1](https://github.com/googleapis/google-cloud-php/commit/9b1a2e148edd531eeea2ea8d611f0d847ff49885))
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-datastream 0.1.0</summary>
+
+
+
+### Features
+
+* introduce datastream ([#5274](https://github.com/googleapis/google-cloud-php/issues/5274)) ([51f4589](https://github.com/googleapis/google-cloud-php/commit/51f4589ec26341ee9f303e433bd602d4054c6336))
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.27.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.5.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-dms 0.2.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-document-ai 0.2.0</summary>
+
+
+
+### Features
+
+* [DocumentAi] add question_id field in ReviewDocumentOperationMetadata ([#5073](https://github.com/googleapis/google-cloud-php/issues/5073)) ([79afed2](https://github.com/googleapis/google-cloud-php/commit/79afed209526dc62c752aeac5699d28e28e7c1ac))
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-domains 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.19.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-essential-contacts 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-eventarc 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-eventarc-publishing 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-filestore 0.1.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-functions 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-game-servers 0.4.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-gke-connect-gateway 0.1.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/grafeas 0.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-iam-credentials 0.1.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-iap 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-ids 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-iot 1.5.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-kms 1.13.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-life-sciences 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-logging 1.24.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* return type warnings in PsrLogger ([#5269](https://github.com/googleapis/google-cloud-php/issues/5269)) ([ab426cc](https://github.com/googleapis/google-cloud-php/commit/ab426cc78b8ae828221b700e5b50e129917c83bd))
+
+</details>
+
+<details><summary>google/cloud-managed-identities 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-media-translation 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.5.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.1.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-network-management 0.1.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-network-security 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-notebooks 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-optimization 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 0.1.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-org-policy 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-osconfig 0.5.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.3.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-private-catalog 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-profiler 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.37.0</summary>
+
+
+
+### Features
+
+* [PubSub] add BigQuery configuration for subscriptions ([#5277](https://github.com/googleapis/google-cloud-php/issues/5277)) ([ee5612c](https://github.com/googleapis/google-cloud-php/commit/ee5612c53ac03cd02008357278c99b78f039c9b9))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.6.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-redis 1.6.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-resource-manager 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-resource-settings 0.1.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-retail 0.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.6.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.9.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.6.0</summary>
+
+
+
+### Features
+
+* Add connection and description field to finding's list of attributes ([#5144](https://github.com/googleapis/google-cloud-php/issues/5144)) ([72f02e4](https://github.com/googleapis/google-cloud-php/commit/72f02e47dea7102e8d1b535f665b04f84fce5bf3))
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 0.4.0</summary>
+
+
+
+### Features
+
+* add iam/location rpcs ([#5092](https://github.com/googleapis/google-cloud-php/issues/5092)) ([2a31925](https://github.com/googleapis/google-cloud-php/commit/2a31925b805db9caf4e82c09dd5638aacd6004d6))
+* Add skip_grace_period flag to DeleteCertificateAuthority API ([#5153](https://github.com/googleapis/google-cloud-php/issues/5153)) ([d62e976](https://github.com/googleapis/google-cloud-php/commit/d62e976f8b34e8cc67c8cf4afa58a0a6b3c0368a))
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-service-control 0.3.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.7.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-service-management 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-service-usage 0.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-shell 0.1.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-talent 0.16.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.11.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-tpu 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.12.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-video-stitcher 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 0.3.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-vm-migration 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-vpc-access 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.1.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.7.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
+<details><summary>google/cloud-workflows 0.2.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* remove phpdocumentor/reflection when no snippets exist ([#5279](https://github.com/googleapis/google-cloud-php/issues/5279)) ([eda847a](https://github.com/googleapis/google-cloud-php/commit/eda847a2972098aa95e926fda0ca27020ac203be))
+
+</details>
+
 ## 0.180.0
 
 <details><summary>google/cloud-access-approval 0.4.1</summary>
