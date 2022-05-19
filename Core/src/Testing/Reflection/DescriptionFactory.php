@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @link      http://phpdoc.org
  */
 
-namespace Google\Cloud\Dev\DocGenerator\DocBlock;
+namespace Google\Cloud\Core\Testing\Reflection;
 
 use phpDocumentor\Reflection\DocBlock\DescriptionFactory as BaseDescriptionFactory;
 use phpDocumentor\Reflection\Types\Context as TypeContext;
@@ -57,6 +57,11 @@ class DescriptionFactory extends BaseDescriptionFactory
     public function __construct(TagFactory $tagFactory)
     {
         $this->tagFactory = $tagFactory;
+    }
+
+    public function getTagFactory()
+    {
+        return $this->tagFactory;
     }
 
     /**

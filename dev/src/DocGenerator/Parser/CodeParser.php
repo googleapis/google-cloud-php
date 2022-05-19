@@ -21,6 +21,7 @@ use Google\Cloud\Dev\DocGenerator\ReflectorRegister;
 use Google\Cloud\Dev\GetComponentsTrait;
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
+use phpDocumentor\Reflection\DocBlock\DescriptionFactory;
 use phpDocumentor\Reflection\Element;
 use phpDocumentor\Reflection\Fqsen;
 use phpDocumentor\Reflection\Type;
@@ -66,7 +67,7 @@ class CodeParser implements ParserInterface
     public function __construct(
         File $file,
         ReflectorRegister $register,
-        DocBlock\DescriptionFactory $descriptionFactory,
+        DescriptionFactory $descriptionFactory,
         $projectRoot,
         $componentId,
         $manifestPath,

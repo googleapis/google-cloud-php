@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Dev\DocGenerator;
 
+use Google\Cloud\Core\Testing\Reflection\ReflectionHandlerV4;
 use Google\Cloud\Dev\DocGenerator\Parser\CodeParser;
 use Google\Cloud\Dev\DocGenerator\Parser\MarkdownParser;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -95,7 +96,9 @@ class DocGenerator
         foreach ($this->files as $fileName) {
             $localFiles[] = new LocalFile($fileName);
         }
-        list($projectFactory, $descriptionFactory) = $this->createFactories();
+        $reflection = new ReflectionHandlerV4();
+        $projectFactory = $reflection->createProjectFactory();
+        $descriptionFactory = $reflection->createDescriptionFactory();
         $project = $projectFactory->create($this->componentId, $localFiles);
         $fileRegister = new ReflectorRegister($project);
 
@@ -153,46 +156,5 @@ class DocGenerator
                 ]);
             }
         }
-    }
-
-    private function createFactories()
-    {
-        $fqsenResolver      = new FqsenResolver();
-        $tagFactory         = new StandardTagFactory($fqsenResolver);
-
-        $descriptionFactory = new DocBlock\DescriptionFactory($tagFactory);
-
-        $tagFactory->addService($descriptionFactory, DescriptionFactory::class);
-        $tagFactory->addService(new TypeResolver($fqsenResolver));
-
-        $docBlockFactory = new DocBlockFactory($descriptionFactory, $tagFactory);
-
-        $parser = (new ParserFactory())->create(
-            ParserFactory::ONLY_PHP7,
-            new Lexer\Emulative(['phpVersion' => Lexer\Emulative::PHP_8_0])
-        );
-        $nodeTraverser = new NodeTraverser();
-        $nodeTraverser->addVisitor(new NameResolver());
-        $nodeTraverser->addVisitor(new ElementNameResolver());
-        $nodesFactory = new NodesFactory($parser, $nodeTraverser);
-
-        $projectFactory = new ProjectFactory(
-            [
-                new Factory\Argument(new PrettyPrinter()),
-                new Factory\Class_(),
-                new Factory\Define(new PrettyPrinter()),
-                new Factory\GlobalConstant(new PrettyPrinter()),
-                new Factory\ClassConstant(new PrettyPrinter()),
-                new Factory\DocBlock($docBlockFactory),
-                new Factory\File($nodesFactory),
-                new Factory\Function_(),
-                new Factory\Interface_(),
-                new Factory\Method(),
-                new Factory\Property(new PrettyPrinter()),
-                new Factory\Trait_(),
-            ]
-        );
-
-        return [$projectFactory, $descriptionFactory];
     }
 }
