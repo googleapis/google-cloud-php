@@ -1063,12 +1063,12 @@ class Subscription
 
     /**
      * Checks if a given exception failure is because of
-     * a EOD failure reason
+     * an EOD failure.
      *
-     * @param ServiceException $e
+     * @param BadRequestException $e
      * @return boolean
      */
-    private function isExceptionExactlyOnce(ServiceException $e)
+    private function isExceptionExactlyOnce(BadRequestException $e)
     {
         $errorInfo = $e->getErrorInfo();
 
