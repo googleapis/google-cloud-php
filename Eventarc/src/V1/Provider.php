@@ -21,13 +21,13 @@ class Provider extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * Output only. Human friendly name for the Provider. For example "Cloud Storage".
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $display_name = '';
+    private $display_name = '';
     /**
      * Output only. Event types for this provider.
      *

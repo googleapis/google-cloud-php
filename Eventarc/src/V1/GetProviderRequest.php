@@ -9,18 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for the DeleteChannelConnection method.
+ * The request message for the GetProvider method.
  *
- * Generated from protobuf message <code>google.cloud.eventarc.v1.DeleteChannelConnectionRequest</code>
+ * Generated from protobuf message <code>google.cloud.eventarc.v1.GetProviderRequest</code>
  */
-class DeleteChannelConnectionRequest extends \Google\Protobuf\Internal\Message
+class GetProviderRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the channel connection to delete.
+     * Required. The name of the provider to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $name = '';
+    private $name = '';
 
     /**
      * Constructor.
@@ -29,7 +29,7 @@ class DeleteChannelConnectionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the channel connection to delete.
+     *           Required. The name of the provider to get.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class DeleteChannelConnectionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the channel connection to delete.
+     * Required. The name of the provider to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -49,7 +49,7 @@ class DeleteChannelConnectionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the channel connection to delete.
+     * Required. The name of the provider to get.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

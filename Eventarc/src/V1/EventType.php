@@ -25,14 +25,14 @@ class EventType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $type = '';
+    private $type = '';
     /**
      * Output only. Human friendly description of what the event type is about.
      * For example "Bucket created in Cloud Storage".
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $description = '';
+    private $description = '';
     /**
      * Output only. Filtering attributes for the event type.
      *
@@ -46,7 +46,7 @@ class EventType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string event_schema_uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $event_schema_uri = '';
+    private $event_schema_uri = '';
 
     /**
      * Constructor.
