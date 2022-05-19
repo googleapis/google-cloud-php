@@ -9,18 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request to dismiss an approval request.
+ * Request to get an Access Approval service account.
  *
- * Generated from protobuf message <code>google.cloud.accessapproval.v1.DismissApprovalRequestMessage</code>
+ * Generated from protobuf message <code>google.cloud.accessapproval.v1.GetAccessApprovalServiceAccountMessage</code>
  */
-class DismissApprovalRequestMessage extends \Google\Protobuf\Internal\Message
+class GetAccessApprovalServiceAccountMessage extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the ApprovalRequest to dismiss.
+     * Name of the AccessApprovalServiceAccount to retrieve.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
-    protected $name = '';
+    private $name = '';
 
     /**
      * Constructor.
@@ -29,7 +29,7 @@ class DismissApprovalRequestMessage extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of the ApprovalRequest to dismiss.
+     *           Name of the AccessApprovalServiceAccount to retrieve.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +38,9 @@ class DismissApprovalRequestMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the ApprovalRequest to dismiss.
+     * Name of the AccessApprovalServiceAccount to retrieve.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -49,9 +49,9 @@ class DismissApprovalRequestMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the ApprovalRequest to dismiss.
+     * Name of the AccessApprovalServiceAccount to retrieve.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      * @return $this
      */

@@ -23,13 +23,13 @@ class AccessApprovalServiceAccount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * Email address of the service account.
      *
      * Generated from protobuf field <code>string account_email = 2;</code>
      */
-    protected $account_email = '';
+    private $account_email = '';
 
     /**
      * Constructor.
