@@ -5,21 +5,24 @@ namespace Google\Cloud\Core\Testing\Reflection;
 use Google\Cloud\Core\Testing\Reflection\DescriptionFactory as CoreDescriptionFactory;
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlockFactory;
-use phpDocumentor\Reflection\FqsenResolver;
 use phpDocumentor\Reflection\DocBlock\StandardTagFactory;
 use phpDocumentor\Reflection\DocBlock\DescriptionFactory;
-use phpDocumentor\Reflection\TypeResolver;
 use phpDocumentor\Reflection\File\LocalFile;
+use phpDocumentor\Reflection\FqsenResolver;
+use phpDocumentor\Reflection\NodeVisitor\ElementNameResolver;
 use phpDocumentor\Reflection\Php\ProjectFactory;
 use phpDocumentor\Reflection\Php\Factory;
 use phpDocumentor\Reflection\Php\NodesFactory;
-use phpDocumentor\Reflection\NodeVisitor\ElementNameResolver;
+use phpDocumentor\Reflection\TypeResolver;
 use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
 use PhpParser\ParserFactory;
 use PhpParser\NodeTraverser;
 use PhpParser\NodeVisitor\NameResolver;
 use PhpParser\Lexer;
 
+/**
+ * Class for running snippets using phpdocumentor/reflection:v4.
+ */
 class ReflectionHandlerV4
 {
     private $descriptionFactory;
@@ -31,12 +34,17 @@ class ReflectionHandlerV4
         $this->docBlockFactory = $this->createDocBlockFactory($this->descriptionFactory);
     }
 
+    /**
+     * @param string $class
+     * @return DocBlock
+     */
     public function createDocBlock($classOrMethod)
     {
         return $this->docBlockFactory->create($classOrMethod);
     }
 
     /**
+     * @param DocBlock $docBlock
      * @return string
      */
     public function getDocBlockText(DocBlock $docBlock)
@@ -48,6 +56,10 @@ class ReflectionHandlerV4
         return $description->render();
     }
 
+    /**
+     * @param array $files
+     * @return string[]
+     */
     public function classes(array $files)
     {
         $projectFactory = $this->createProjectFactory();
@@ -66,6 +78,9 @@ class ReflectionHandlerV4
         return $classes;
     }
 
+    /**
+     * @return ProjectFactory
+     */
     public function createProjectFactory()
     {
         $parser = (new ParserFactory())->create(
@@ -99,6 +114,9 @@ class ReflectionHandlerV4
         return $projectFactory;
     }
 
+    /**
+     * @return DescriptionFactory
+     */
     public function createDescriptionFactory()
     {
         $fqsenResolver      = new FqsenResolver();
@@ -111,6 +129,9 @@ class ReflectionHandlerV4
         return $descriptionFactory;
     }
 
+    /**
+     * @return DocBlockFactory
+     */
     private function createDocBlockFactory($descriptionFactory)
     {
         $tagFactory = $descriptionFactory->getTagFactory();
