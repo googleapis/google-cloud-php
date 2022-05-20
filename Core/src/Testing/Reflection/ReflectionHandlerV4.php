@@ -4,21 +4,21 @@ namespace Google\Cloud\Core\Testing\Reflection;
 
 use Google\Cloud\Core\Testing\Reflection\DescriptionFactory as CoreDescriptionFactory;
 use phpDocumentor\Reflection\DocBlock;
-use phpDocumentor\Reflection\DocBlockFactory;
-use phpDocumentor\Reflection\DocBlock\StandardTagFactory;
 use phpDocumentor\Reflection\DocBlock\DescriptionFactory;
+use phpDocumentor\Reflection\DocBlock\StandardTagFactory;
+use phpDocumentor\Reflection\DocBlockFactory;
 use phpDocumentor\Reflection\File\LocalFile;
 use phpDocumentor\Reflection\FqsenResolver;
 use phpDocumentor\Reflection\NodeVisitor\ElementNameResolver;
-use phpDocumentor\Reflection\Php\ProjectFactory;
 use phpDocumentor\Reflection\Php\Factory;
 use phpDocumentor\Reflection\Php\NodesFactory;
+use phpDocumentor\Reflection\Php\ProjectFactory;
 use phpDocumentor\Reflection\TypeResolver;
-use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
-use PhpParser\ParserFactory;
+use PhpParser\Lexer;
 use PhpParser\NodeTraverser;
 use PhpParser\NodeVisitor\NameResolver;
-use PhpParser\Lexer;
+use PhpParser\ParserFactory;
+use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
 
 /**
  * Class for running snippets using phpdocumentor/reflection:v4.

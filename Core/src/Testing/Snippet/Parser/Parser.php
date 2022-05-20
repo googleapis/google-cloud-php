@@ -39,6 +39,8 @@ class Parser
 {
     const SNIPPET_NAME_REGEX = '/\/\/\s?\[snippet\=(\w{0,})\]/';
 
+    private $reflection;
+
     public function __construct()
     {
         $this->reflection = ReflectionHandlerFactory::create();

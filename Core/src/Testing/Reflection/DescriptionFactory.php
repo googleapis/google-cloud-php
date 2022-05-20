@@ -12,22 +12,22 @@ declare(strict_types=1);
 
 namespace Google\Cloud\Core\Testing\Reflection;
 
-use phpDocumentor\Reflection\DocBlock\DescriptionFactory as BaseDescriptionFactory;
-use phpDocumentor\Reflection\Types\Context as TypeContext;
-use phpDocumentor\Reflection\Utils;
-use phpDocumentor\Reflection\DocBlock\Description;
-use phpDocumentor\Reflection\DocBlock\TagFactory;
 use function count;
 use function explode;
 use function implode;
 use function ltrim;
 use function min;
+use phpDocumentor\Reflection\DocBlock\Description;
+use phpDocumentor\Reflection\DocBlock\DescriptionFactory as BaseDescriptionFactory;
+use phpDocumentor\Reflection\DocBlock\TagFactory;
+use phpDocumentor\Reflection\Types\Context as TypeContext;
+use phpDocumentor\Reflection\Utils;
+use const PREG_SPLIT_DELIM_CAPTURE;
 use function str_replace;
 use function strlen;
 use function strpos;
 use function substr;
 use function trim;
-use const PREG_SPLIT_DELIM_CAPTURE;
 
 /**
  * Creates a new Description object given a body of text.
@@ -67,7 +67,7 @@ class DescriptionFactory extends BaseDescriptionFactory
     /**
      * Returns the parsed text of this description.
      */
-    public function create(string $contents, ?TypeContext $context = null) : Description
+    public function create(string $contents, ?TypeContext $context = null): Description
     {
         $tokens   = $this->lex($contents);
         $count    = count($tokens);
@@ -98,7 +98,7 @@ class DescriptionFactory extends BaseDescriptionFactory
      *
      * @return string[] A series of tokens of which the description text is composed.
      */
-    private function lex(string $contents) : array
+    private function lex(string $contents): array
     {
         $contents = $this->removeSuperfluousStartingWhitespace($contents);
 
@@ -152,7 +152,7 @@ class DescriptionFactory extends BaseDescriptionFactory
      * If we do not normalize the indentation then we have superfluous whitespace on the second and subsequent
      * lines and this may cause rendering issues when, for example, using a Markdown converter.
      */
-    private function removeSuperfluousStartingWhitespace(string $contents) : string
+    private function removeSuperfluousStartingWhitespace(string $contents): string
     {
         $lines = explode("\n", $contents);
 

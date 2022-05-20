@@ -20,22 +20,8 @@ namespace Google\Cloud\Dev\DocGenerator;
 use Google\Cloud\Core\Testing\Reflection\ReflectionHandlerV4;
 use Google\Cloud\Dev\DocGenerator\Parser\CodeParser;
 use Google\Cloud\Dev\DocGenerator\Parser\MarkdownParser;
-use Symfony\Component\Console\Output\OutputInterface;
 use phpDocumentor\Reflection\File\LocalFile;
-use phpDocumentor\Reflection\Php\ProjectFactory;
-use phpDocumentor\Reflection\Php\Factory;
-use phpDocumentor\Reflection\Php\NodesFactory;
-use phpDocumentor\Reflection\DocBlock\DescriptionFactory;
-use phpDocumentor\Reflection\DocBlock\StandardTagFactory;
-use phpDocumentor\Reflection\NodeVisitor\ElementNameResolver;
-use phpDocumentor\Reflection\FqsenResolver;
-use phpDocumentor\Reflection\DocBlockFactory;
-use phpDocumentor\Reflection\TypeResolver;
-use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
-use PhpParser\ParserFactory;
-use PhpParser\NodeTraverser;
-use PhpParser\NodeVisitor\NameResolver;
-use PhpParser\Lexer;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Parses given files and builds documentation for our common docs site.
