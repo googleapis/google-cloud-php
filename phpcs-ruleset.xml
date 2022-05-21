@@ -19,6 +19,7 @@
   <exclude-pattern>*/tests/*/*/V[0-9]+</exclude-pattern>
   <exclude-pattern>AccessContextManager/src/Type</exclude-pattern>
   <exclude-pattern>Asset/external</exclude-pattern>
+  <exclude-pattern>BigQueryDataExchange/src/Common</exclude-pattern>
   <exclude-pattern>Core/src/Testing</exclude-pattern>
   <exclude-pattern>OsLogin/src/Common</exclude-pattern>
   <exclude-pattern>vendor</exclude-pattern>

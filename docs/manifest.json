@@ -578,6 +578,14 @@
             ]
         },
         {
+            "id": "cloud-bigquery-data-exchange",
+            "name": "google/cloud-bigquery-data-exchange",
+            "defaultService": "bigquerydataexchange/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-bigquery-reservation",
             "name": "google/cloud-bigquery-reservation",
             "defaultService": "bigqueryreservation/readme",
