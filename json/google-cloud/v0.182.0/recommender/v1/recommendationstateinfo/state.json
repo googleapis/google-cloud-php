@@ -1,0 +1,1 @@
+{"id":"recommender\/v1\/recommendationstateinfo\/state","type":"","title":"Google\\Cloud\\Recommender\\V1\\RecommendationStateInfo\\State","name":"State","description":"<p>Represents Recommendation State.<\/p>\n<p>Protobuf type <code>google.cloud.recommender.v1.RecommendationStateInfo.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

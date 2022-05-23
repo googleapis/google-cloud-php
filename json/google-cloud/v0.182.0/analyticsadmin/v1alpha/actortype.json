@@ -1,0 +1,1 @@
+{"id":"analyticsadmin\/v1alpha\/actortype","type":"","title":"Google\\Analytics\\Admin\\V1alpha\\ActorType","name":"ActorType","description":"<p>Different kinds of actors that can make changes to Google Analytics\nresources.<\/p>\n<p>Protobuf type <code>google.analytics.admin.v1alpha.ActorType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

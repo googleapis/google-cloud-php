@@ -1,0 +1,1 @@
+{"id":"analyticsdata\/v1beta\/compatibility","type":"","title":"Google\\Analytics\\Data\\V1beta\\Compatibility","name":"Compatibility","description":"<p>The compatibility types for a single dimension or metric.<\/p>\n<p>Protobuf type <code>google.analytics.data.v1beta.Compatibility<\/code><\/p>","examples":[],"resources":[],"methods":[]}

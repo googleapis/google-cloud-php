@@ -1,0 +1,1 @@
+{"id":"datacatalog\/v1\/datasource\/service","type":"","title":"Google\\Cloud\\DataCatalog\\V1\\DataSource\\Service","name":"Service","description":"<p>Name of a service that stores the data.<\/p>\n<p>Protobuf type <code>google.cloud.datacatalog.v1.DataSource.Service<\/code><\/p>","examples":[],"resources":[],"methods":[]}

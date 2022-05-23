@@ -1,0 +1,1 @@
+{"id":"talent\/v4beta1\/company\/datalearningtype","type":"","title":"Google\\Cloud\\Talent\\V4beta1\\Company\\DataLearningType","name":"DataLearningType","description":"<p>Enum that represents how user data owned by the company is used.<\/p>\n<p>Protobuf type <code>google.cloud.talent.v4beta1.Company.DataLearningType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

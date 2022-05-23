@@ -1,0 +1,1 @@
+{"id":"bigquery\/jobwaittrait","type":"","title":"Google\\Cloud\\BigQuery\\JobWaitTrait","name":"JobWaitTrait","description":"<p>A utility trait which utilizes exponential backoff to wait until an operation\nis complete.<\/p>","examples":[],"resources":[],"methods":[]}

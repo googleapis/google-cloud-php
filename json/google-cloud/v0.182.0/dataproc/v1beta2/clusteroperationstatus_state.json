@@ -1,0 +1,1 @@
+{"id":"dataproc\/v1beta2\/clusteroperationstatus_state","type":"","title":"Google\\Cloud\\Dataproc\\V1beta2\\ClusterOperationStatus_State","name":"ClusterOperationStatus_State","description":"<p>This class is deprecated. Use Google\\Cloud\\Dataproc\\V1beta2\\ClusterOperationStatus\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"vmmigration\/v1\/appliedlicense\/type","type":"","title":"Google\\Cloud\\VMMigration\\V1\\AppliedLicense\\Type","name":"Type","description":"<p>License types used in OS adaptation.<\/p>\n<p>Protobuf type <code>google.cloud.vmmigration.v1.AppliedLicense.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

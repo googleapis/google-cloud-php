@@ -1,0 +1,1 @@
+{"id":"talent\/v4\/visibility","type":"","title":"Google\\Cloud\\Talent\\V4\\Visibility","name":"Visibility","description":"<p>Deprecated. All resources are only visible to the owner.<\/p>\n<p>An enum that represents who has view access to the resource.<\/p>\n<p>Protobuf type <code>google.cloud.talent.v4.Visibility<\/code><\/p>","examples":[],"resources":[],"methods":[]}

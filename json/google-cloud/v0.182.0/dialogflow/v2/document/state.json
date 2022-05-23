@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/document\/state","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Document\\State","name":"State","description":"<p>Possible states of the document<\/p>\n<p>Protobuf type <code>google.cloud.dialogflow.v2.Document.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

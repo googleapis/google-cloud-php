@@ -1,0 +1,1 @@
+{"id":"tasks\/v2beta2\/queue\/state","type":"","title":"Google\\Cloud\\Tasks\\V2beta2\\Queue\\State","name":"State","description":"<p>State of the queue.<\/p>\n<p>Protobuf type <code>google.cloud.tasks.v2beta2.Queue.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

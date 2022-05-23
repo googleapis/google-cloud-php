@@ -1,0 +1,1 @@
+{"id":"securitycenter\/v1p1beta1\/finding_severity","type":"","title":"Google\\Cloud\\SecurityCenter\\V1p1beta1\\Finding_Severity","name":"Finding_Severity","description":"<p>This class is deprecated. Use Google\\Cloud\\SecurityCenter\\V1p1beta1\\Finding\\Severity instead.<\/p>","examples":[],"resources":[],"methods":[]}

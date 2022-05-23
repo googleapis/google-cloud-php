@@ -1,0 +1,1 @@
+{"id":"trace\/v2\/span\/link\/type","type":"","title":"Google\\Cloud\\Trace\\V2\\Span\\Link\\Type","name":"Type","description":"<p>The relationship of the current span relative to the linked span: child,\nparent, or unspecified.<\/p>\n<p>Protobuf type <code>google.devtools.cloudtrace.v2.Span.Link.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

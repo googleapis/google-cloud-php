@@ -1,0 +1,1 @@
+{"id":"bigquerydatatransfer\/v1\/transfertype","type":"","title":"Google\\Cloud\\BigQuery\\DataTransfer\\V1\\TransferType","name":"TransferType","description":"<p>DEPRECATED. Represents data transfer type.<\/p>\n<p>Protobuf type <code>google.cloud.bigquery.datatransfer.v1.TransferType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/intent\/webhookstate","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Intent\\WebhookState","name":"WebhookState","description":"<p>Represents the different states that webhooks can be in.<\/p>\n<p>Protobuf type <code>google.cloud.dialogflow.v2.Intent.WebhookState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

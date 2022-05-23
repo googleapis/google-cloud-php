@@ -1,0 +1,1 @@
+{"id":"datafusion\/v1\/version\/type","type":"","title":"Google\\Cloud\\DataFusion\\V1\\Version\\Type","name":"Type","description":"<p>Each type represents the release availability of a CDF version<\/p>\n<p>Protobuf type <code>google.cloud.datafusion.v1.Version.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

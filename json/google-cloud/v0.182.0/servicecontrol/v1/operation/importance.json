@@ -1,0 +1,1 @@
+{"id":"servicecontrol\/v1\/operation\/importance","type":"","title":"Google\\Cloud\\ServiceControl\\V1\\Operation\\Importance","name":"Importance","description":"<p>Defines the importance of the data contained in the operation.<\/p>\n<p>Protobuf type <code>google.api.servicecontrol.v1.Operation.Importance<\/code><\/p>","examples":[],"resources":[],"methods":[]}

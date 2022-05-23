@@ -1,0 +1,1 @@
+{"id":"dataproc\/v1beta2\/yarnapplication_state","type":"","title":"Google\\Cloud\\Dataproc\\V1beta2\\YarnApplication_State","name":"YarnApplication_State","description":"<p>This class is deprecated. Use Google\\Cloud\\Dataproc\\V1beta2\\YarnApplication\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}

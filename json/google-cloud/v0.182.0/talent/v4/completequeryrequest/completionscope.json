@@ -1,0 +1,1 @@
+{"id":"talent\/v4\/completequeryrequest\/completionscope","type":"","title":"Google\\Cloud\\Talent\\V4\\CompleteQueryRequest\\CompletionScope","name":"CompletionScope","description":"<p>Enum to specify the scope of completion.<\/p>\n<p>Protobuf type <code>google.cloud.talent.v4.CompleteQueryRequest.CompletionScope<\/code><\/p>","examples":[],"resources":[],"methods":[]}

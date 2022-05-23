@@ -1,0 +1,1 @@
+{"id":"bigtable\/v2\/readrowsresponse_cellchunk","type":"","title":"Google\\Cloud\\Bigtable\\V2\\ReadRowsResponse_CellChunk","name":"ReadRowsResponse_CellChunk","description":"<p>This class is deprecated. Use Google\\Cloud\\Bigtable\\V2\\ReadRowsResponse\\CellChunk instead.<\/p>","examples":[],"resources":[],"methods":[]}
