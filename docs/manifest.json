@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.182.0",
                 "v0.181.0",
                 "v0.180.0",
                 "v0.179.0",
@@ -289,6 +290,7 @@
             "name": "google/cloud-access-approval",
             "defaultService": "accessapproval/readme",
             "versions": [
+                "v0.5.0",
                 "v0.4.2",
                 "v0.4.1",
                 "v0.4.0",
@@ -582,6 +584,7 @@
             "name": "google/cloud-bigquery-data-exchange",
             "defaultService": "bigquerydataexchange/readme",
             "versions": [
+                "v0.1.0",
                 "main"
             ]
         },
@@ -702,6 +705,7 @@
             "name": "google/cloud-bigtable",
             "defaultService": "bigtable/readme",
             "versions": [
+                "v1.15.1",
                 "v1.15.0",
                 "v1.14.1",
                 "v1.14.0",
@@ -1749,6 +1753,7 @@
             "name": "google/cloud-eventarc",
             "defaultService": "eventarc/readme",
             "versions": [
+                "v0.3.0",
                 "v0.2.2",
                 "v0.2.1",
                 "v0.2.0",
@@ -3692,6 +3697,7 @@
             "name": "google/cloud-video-live-stream",
             "defaultService": "videolivestream/readme",
             "versions": [
+                "v0.2.0",
                 "v0.1.3",
                 "v0.1.2",
                 "v0.1.1",
