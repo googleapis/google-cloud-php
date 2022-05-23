@@ -25,7 +25,7 @@ class ReflectionHandlerV3
      */
     public function getDocBlockText(DocBlock $docBlock)
     {
-        return  $docBlock->getText();
+        return $docBlock->getText();
     }
 
     /**
