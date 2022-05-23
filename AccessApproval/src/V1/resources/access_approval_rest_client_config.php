@@ -72,6 +72,27 @@ return [
                     ],
                 ],
             ],
+            'GetAccessApprovalServiceAccount' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/serviceAccount}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=folders/*/serviceAccount}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=organizations/*/serviceAccount}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetAccessApprovalSettings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/accessApprovalSettings}',
@@ -104,6 +125,30 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=organizations/*/approvalRequests/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'InvalidateApprovalRequest' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/approvalRequests/*}:invalidate',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=folders/*/approvalRequests/*}:invalidate',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=organizations/*/approvalRequests/*}:invalidate',
+                        'body' => '*',
                     ],
                 ],
                 'placeholders' => [
