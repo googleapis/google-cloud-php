@@ -1,5 +1,57 @@
 # Changelog
 
+## 0.182.0
+
+<details><summary>google/cloud-access-approval 0.5.0</summary>
+
+
+
+### Features
+
+* [AccessApproval] update protos to include InvalidateApprovalRequest and GetAccessApprovalServiceAccount APIs ([#5288](https://github.com/googleapis/google-cloud-php/issues/5288)) ([80fae8d](https://github.com/googleapis/google-cloud-php/commit/80fae8d1d4dad283d10fdd2a13b116ca69991624))
+
+</details>
+
+<details><summary>google/cloud-bigquery-data-exchange 0.1.0</summary>
+
+
+
+### Features
+
+* introduce bigquery data exchange ([#5290](https://github.com/googleapis/google-cloud-php/issues/5290)) ([de03cde](https://github.com/googleapis/google-cloud-php/commit/de03cde9b2da66d3a649b2e46b1ee703b2b567cb))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.15.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Bigtable] remove unused imports ([#5291](https://github.com/googleapis/google-cloud-php/issues/5291)) ([2337766](https://github.com/googleapis/google-cloud-php/commit/23377663b7faa432589e0f6af3c21afcd90ae480))
+
+</details>
+
+<details><summary>google/cloud-eventarc 0.3.0</summary>
+
+
+
+### Features
+
+* [Eventarc] Add Provider resources ([#5285](https://github.com/googleapis/google-cloud-php/issues/5285)) ([d5629fc](https://github.com/googleapis/google-cloud-php/commit/d5629fcd4e0e1953a20055487b19a64bdcd65248))
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 0.2.0</summary>
+
+
+
+### Features
+
+* [VideoLiveStream] add STOPPED event state ([#5289](https://github.com/googleapis/google-cloud-php/issues/5289)) ([578e4cd](https://github.com/googleapis/google-cloud-php/commit/578e4cd15901392b796161f94e44b7f552588b5a))
+
+</details>
+
 ## 0.181.0
 
 <details><summary>google/cloud-access-approval 0.4.2</summary>
