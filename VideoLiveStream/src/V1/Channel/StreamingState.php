@@ -27,8 +27,7 @@ class StreamingState
      */
     const STREAMING = 1;
     /**
-     * Channel is waiting for the input stream through the input. Live streams
-     * do not start yet.
+     * Channel is waiting for the input stream through the input.
      *
      * Generated from protobuf enum <code>AWAITING_INPUT = 2;</code>
      */
@@ -44,6 +43,7 @@ class StreamingState
     /**
      * Channel is generating live streams with no input stream. Live streams are
      * filled out with black screen, while input stream is missing.
+     * Not supported yet.
      *
      * Generated from protobuf enum <code>STREAMING_NO_INPUT = 5;</code>
      */
