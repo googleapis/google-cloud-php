@@ -131,6 +131,20 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string network = 18 [(.google.api.resource_reference) = {</code>
      */
     private $network = '';
+    /**
+     * A template uri from where the [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec], if empty, will
+     * be downloaded.
+     *
+     * Generated from protobuf field <code>string template_uri = 19;</code>
+     */
+    private $template_uri = '';
+    /**
+     * Output only. Pipeline template metadata. Will fill up fields if
+     * [PipelineJob.template_uri][google.cloud.aiplatform.v1.PipelineJob.template_uri] is from supported template registry.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineTemplateMetadata template_metadata = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $template_metadata = null;
 
     /**
      * Constructor.
@@ -194,6 +208,12 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
      *           being launched, if applied, such as Vertex AI
      *           Training or Dataflow job. If left unspecified, the workload is not peered
      *           with any network.
+     *     @type string $template_uri
+     *           A template uri from where the [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec], if empty, will
+     *           be downloaded.
+     *     @type \Google\Cloud\AIPlatform\V1\PipelineTemplateMetadata $template_metadata
+     *           Output only. Pipeline template metadata. Will fill up fields if
+     *           [PipelineJob.template_uri][google.cloud.aiplatform.v1.PipelineJob.template_uri] is from supported template registry.
      * }
      */
     public function __construct($data = NULL) {
@@ -729,6 +749,72 @@ class PipelineJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->network = $var;
+
+        return $this;
+    }
+
+    /**
+     * A template uri from where the [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec], if empty, will
+     * be downloaded.
+     *
+     * Generated from protobuf field <code>string template_uri = 19;</code>
+     * @return string
+     */
+    public function getTemplateUri()
+    {
+        return $this->template_uri;
+    }
+
+    /**
+     * A template uri from where the [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec], if empty, will
+     * be downloaded.
+     *
+     * Generated from protobuf field <code>string template_uri = 19;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTemplateUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->template_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Pipeline template metadata. Will fill up fields if
+     * [PipelineJob.template_uri][google.cloud.aiplatform.v1.PipelineJob.template_uri] is from supported template registry.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineTemplateMetadata template_metadata = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\PipelineTemplateMetadata|null
+     */
+    public function getTemplateMetadata()
+    {
+        return $this->template_metadata;
+    }
+
+    public function hasTemplateMetadata()
+    {
+        return isset($this->template_metadata);
+    }
+
+    public function clearTemplateMetadata()
+    {
+        unset($this->template_metadata);
+    }
+
+    /**
+     * Output only. Pipeline template metadata. Will fill up fields if
+     * [PipelineJob.template_uri][google.cloud.aiplatform.v1.PipelineJob.template_uri] is from supported template registry.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineTemplateMetadata template_metadata = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\PipelineTemplateMetadata $var
+     * @return $this
+     */
+    public function setTemplateMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\PipelineTemplateMetadata::class);
+        $this->template_metadata = $var;
 
         return $this;
     }
