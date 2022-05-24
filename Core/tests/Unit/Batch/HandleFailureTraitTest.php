@@ -63,6 +63,9 @@ class HandleFailureTraitTest extends TestCase
 
     public function testInitFailureFileThrowsException()
     {
+        if (!function_exists('posix_getuid')) {
+            $this->markTestSkipped('Cannot test on Windows');
+        }
         if (0 === posix_getuid()) {
             $this->markTestSkipped('Cannot test init failure as root');
         }
