@@ -210,7 +210,7 @@ class GenerateAccessTokenRequest extends \Google\Protobuf\Internal\Message
      */
     public function getLifetime()
     {
-        return isset($this->lifetime) ? $this->lifetime : null;
+        return $this->lifetime;
     }
 
     public function hasLifetime()
