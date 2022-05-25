@@ -18,8 +18,11 @@
 namespace Google\Cloud\Core\Exception;
 
 use Exception;
+use Google\ApiCore\ApiException;
 
-const ERRORINFO_TYPE = 'type.googleapis.com/google.rpc.ErrorInfo';
+// This is the value of the '@type' key for an ErrorInfo object returned
+// in the exception response
+const ERRORINFO_TYPE_REST = 'type.googleapis.com/google.rpc.ErrorInfo';
 
 /**
  * Exception thrown when a request fails.
@@ -85,21 +88,60 @@ class ServiceException extends GoogleException
     }
 
     /**
-     * Returns the ErrorInfo part of the exception
+     * Returns the metadata from the ErrorInfo part of the exception
      *
      * @return array
      */
-    public function getErrorInfo()
+    public function getErrorInfoMetadata()
+    {
+        // For response originated from the GAPIC layer, the current exception would have
+        // an ApiException within itself
+        if ($this->getServiceException() instanceof ApiException) {
+            return $this->getServiceException()->getErrorInfoMetadata();
+        }
+
+        $errorInfo = $this->getErrorInfoFromRestException();
+
+        return isset($errorInfo['metadata']) ? $errorInfo['metadata'] : [];
+    }
+
+    /**
+     * Returns the reason from the ErrorInfo part of the exception
+     *
+     * @return string
+     */
+    public function getReason()
+    {
+        // For response originated from the GAPIC layer, the current exception would have
+        // an ApiException within itself
+        if ($this->getServiceException() instanceof ApiException) {
+            return $this->getServiceException()->getReason();
+        }
+
+        $errorInfo = $this->getErrorInfoFromRestException();
+
+        return isset($errorInfo['reason']) ? $errorInfo['reason'] : '';
+    }
+
+
+    /**
+     * Helper to return the error info from an exception
+     * which is not raised from the GAPIC layer
+     *
+     * @return array
+     */
+    private function getErrorInfoFromRestException()
     {
         $arr = json_decode($this->getMessage(), true);
-        $details = (!is_null($arr)
-                    && isset($arr['error'])
-                    && isset($arr['error']['details']))
-                    ? $arr['error']['details']
-                    : [];
+
+        if (!isset($arr['error']['details'])) {
+            return [];
+        }
+        
+        $details = $arr['error']['details'];
 
         foreach ($details as $row) {
-            if (isset($row['@type']) && $row['@type'] === ERRORINFO_TYPE) {
+            if (isset($row['@type']) && $row['@type'] === ERRORINFO_TYPE_REST) {
                 return $row;
             }
         }

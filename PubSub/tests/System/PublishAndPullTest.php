@@ -122,7 +122,9 @@ class PublishAndPullTest extends PubSubTestCase
         $subscription = self::subscription($client, $topic);
         $expiry = $subscription->info()['ackDeadlineSeconds'];
 
-        $eodSubscription = self::exactlyOnceSubscription($client, $topic);
+        // we keep a low ackDeadlineSeconds value
+        // as we need to `sleep` for more than this value to trigger an exception
+        $eodSubscription = self::exactlyOnceSubscription($client, $topic, ['ackDeadlineSeconds' => 10]);
         $eodExpiry = $eodSubscription->info()['ackDeadlineSeconds'];
 
         $topic->publish(['data'=>'test']);
@@ -130,10 +132,10 @@ class PublishAndPullTest extends PubSubTestCase
         $eodMessages = $eodSubscription->pull();
 
         // we sleep for more than the expiry
-        // so that the EOD enabled sub throws an exception
+        // so that the EOD enabled sub throws an exception when msgs are acknowledged
         sleep(max($expiry, $eodExpiry) + 1);
 
-        // the sub shouldn't throw an exception for the test to pass
+        // the acknowledgeBatch method shouldn't bubble up the exception for the test to pass
         try {
             $subscription->acknowledgeBatch($messages);
             $this->assertTrue(true);
@@ -141,7 +143,7 @@ class PublishAndPullTest extends PubSubTestCase
             $this->fail();
         }
 
-        // the sub shouldn't throw an exception for the test to pass
+        // the acknowledgeBatch method shouldn't bubble up the exception for the test to pass
         try {
             $eodSubscription->acknowledgeBatch($eodMessages);
             $this->assertTrue(true);
@@ -160,7 +162,9 @@ class PublishAndPullTest extends PubSubTestCase
         $subscription = self::subscription($client, $topic);
         $expiry = $subscription->info()['ackDeadlineSeconds'];
 
-        $eodSubscription = self::exactlyOnceSubscription($client, $topic);
+        // we keep a low ackDeadlineSeconds value
+        // as we need to `sleep` for more than this value to trigger an exception
+        $eodSubscription = self::exactlyOnceSubscription($client, $topic, ['ackDeadlineSeconds' => 10]);
         $eodExpiry = $eodSubscription->info()['ackDeadlineSeconds'];
 
         $topic->publish(['data'=>'test']);
@@ -169,9 +173,10 @@ class PublishAndPullTest extends PubSubTestCase
 
         // we sleep for more than the expiry
         // so that the EOD enabled sub throws an exception
+        // when the deadline is attempted to be modified
         sleep(max($expiry, $eodExpiry) + 1);
 
-        // the sub shouldn't throw an exception for the test to pass
+        // the modifyAckDeadlineBatch method shouldn't bubble up the exception for the test to pass
         try {
             $subscription->modifyAckDeadlineBatch($messages, 20);
             $this->assertTrue(true);
@@ -179,7 +184,7 @@ class PublishAndPullTest extends PubSubTestCase
             $this->fail();
         }
 
-        // the sub shouldn't throw an exception for the test to pass
+        // the modifyAckDeadlineBatch method shouldn't bubble up the exception for the test to pass
         try {
             $eodSubscription->modifyAckDeadlineBatch($eodMessages, 20);
             $this->assertTrue(true);
