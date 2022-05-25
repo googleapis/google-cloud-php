@@ -16,11 +16,11 @@ jobs:
           - platform: ubuntu-latest
             php: "5.5"
             phpunit-filename: phpunit-php5
-            grpc-version: [grpc-1.34.0]
+            grpc-version: grpc-1.34.0
           - platform: ubuntu-latest
             php: "5.6"
             phpunit-filename: phpunit-php5
-            grpc-version: [grpc]
+            grpc-version: grpc
     name: PHP ${{ matrix.php }} Unit Test (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
     steps:
