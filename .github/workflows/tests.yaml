@@ -13,6 +13,9 @@ jobs:
         phpunit-filename: [phpunit]
         include:
           - platform: ubuntu-latest
+            php: "5.5"
+            phpunit-filename: phpunit-php5
+          - platform: ubuntu-latest
             php: "5.6"
             phpunit-filename: phpunit-php5
     name: PHP ${{ matrix.php }} Unit Test (${{ matrix.platform }})
@@ -20,10 +23,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Setup PHP
-      uses: shivammathur/setup-php@v2
+      uses: shivammathur/setup-php@verbose
       with:
         php-version: ${{ matrix.php }}
-        tools: pecl
+        # tools: pecl
         extensions: grpc
     - name: Install Dependencies
       uses: nick-invision/retry@v2
@@ -39,23 +42,23 @@ jobs:
       run: |
         vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}-snippets.xml.dist --verbose
 
-  test_php55:
-    container: gcr.io/cloud-devrel-kokoro-resources/php55
-    name: PHP 5.5 Unit Test (ubuntu-latest)
-    runs-on: ubuntu-latest
-    steps:
-    - name: Install Dependencies
-      uses: nick-invision/retry@v2
-      with:
-        timeout_minutes: 10
-        max_attempts: 3
-        command: composer --no-interaction --no-ansi --no-progress update
-    - name: Run Unit Test Suite
-      run: |
-        vendor/bin/phpunit -c phpunit-php5.xml.dist
-    - name: Run Snippet Test Suite
-      run: |
-        vendor/bin/phpunit -c phpunit-php5-snippets.xml.dist --verbose
+  # test_php55:
+  #   container: gcr.io/cloud-devrel-kokoro-resources/php55
+  #   name: PHP 5.5 Unit Test (ubuntu-latest)
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Install Dependencies
+  #     uses: nick-invision/retry@v2
+  #     with:
+  #       timeout_minutes: 10
+  #       max_attempts: 3
+  #       command: composer --no-interaction --no-ansi --no-progress update
+  #   - name: Run Unit Test Suite
+  #     run: |
+  #       vendor/bin/phpunit -c phpunit-php5.xml.dist
+  #   - name: Run Snippet Test Suite
+  #     run: |
+  #       vendor/bin/phpunit -c phpunit-php5-snippets.xml.dist --verbose
 
   style:
     runs-on: ubuntu-latest
