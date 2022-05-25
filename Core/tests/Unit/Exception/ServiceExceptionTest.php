@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Core\Tests\Unit\Exception;
 
+use Google\ApiCore\ApiException;
 use Google\Cloud\Core\Exception\ServiceException;
 use PHPUnit\Framework\TestCase;
 
@@ -72,7 +73,11 @@ class ServiceExceptionTest extends TestCase
             ]
         ];
 
-        $ex = new ServiceException(json_encode($msg));
+        $apiEx = new ApiException(json_encode($msg), 400, 'INVALID_ARGUMENT', ['metadata' => [
+            $errorInfoRow, $debugRow
+        ]]);
+
+        $ex = new ServiceException(json_encode($msg), 400, $apiEx);
 
         $this->assertEquals($metadata, $ex->getErrorInfoMetadata());
     }
@@ -163,7 +168,11 @@ class ServiceExceptionTest extends TestCase
             ]
         ];
 
-        $ex = new ServiceException(json_encode($msg));
+        $apiEx = new ApiException(json_encode($msg), 400, 'INVALID_ARGUMENT', ['metadata' => [
+            $errorInfoRow, $debugRow
+        ]]);
+
+        $ex = new ServiceException(json_encode($msg), 400, $apiEx);
 
         $this->assertEquals($reason, $ex->getReason());
     }
