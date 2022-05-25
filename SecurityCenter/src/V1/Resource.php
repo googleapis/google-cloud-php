@@ -23,13 +23,25 @@ class Resource extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
+     * The human readable name of the resource.
+     *
+     * Generated from protobuf field <code>string display_name = 8;</code>
+     */
+    private $display_name = '';
+    /**
+     * The full resource type of the resource.
+     *
+     * Generated from protobuf field <code>string type = 6;</code>
+     */
+    private $type = '';
+    /**
      * The full resource name of project that the resource belongs to.
      *
      * Generated from protobuf field <code>string project = 2;</code>
      */
     private $project = '';
     /**
-     * The project id that the resource belongs to.
+     * The project ID that the resource belongs to.
      *
      * Generated from protobuf field <code>string project_display_name = 3;</code>
      */
@@ -47,12 +59,6 @@ class Resource extends \Google\Protobuf\Internal\Message
      */
     private $parent_display_name = '';
     /**
-     * The full resource type of the resource.
-     *
-     * Generated from protobuf field <code>string type = 6;</code>
-     */
-    private $type = '';
-    /**
      * Output only. Contains a Folder message for each folder in the assets ancestry.
      * The first folder is the deepest nested folder, and the last folder is the
      * folder directly under the Organization.
@@ -60,12 +66,6 @@ class Resource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Folder folders = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $folders;
-    /**
-     * The human readable name of the resource.
-     *
-     * Generated from protobuf field <code>string display_name = 8;</code>
-     */
-    private $display_name = '';
 
     /**
      * Constructor.
@@ -76,22 +76,22 @@ class Resource extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The full resource name of the resource. See:
      *           https://cloud.google.com/apis/design/resource_names#full_resource_name
+     *     @type string $display_name
+     *           The human readable name of the resource.
+     *     @type string $type
+     *           The full resource type of the resource.
      *     @type string $project
      *           The full resource name of project that the resource belongs to.
      *     @type string $project_display_name
-     *           The project id that the resource belongs to.
+     *           The project ID that the resource belongs to.
      *     @type string $parent
      *           The full resource name of resource's parent.
      *     @type string $parent_display_name
      *           The human readable name of resource's parent.
-     *     @type string $type
-     *           The full resource type of the resource.
      *     @type \Google\Cloud\SecurityCenter\V1\Folder[]|\Google\Protobuf\Internal\RepeatedField $folders
      *           Output only. Contains a Folder message for each folder in the assets ancestry.
      *           The first folder is the deepest nested folder, and the last folder is the
      *           folder directly under the Organization.
-     *     @type string $display_name
-     *           The human readable name of the resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -128,6 +128,58 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The human readable name of the resource.
+     *
+     * Generated from protobuf field <code>string display_name = 8;</code>
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->display_name;
+    }
+
+    /**
+     * The human readable name of the resource.
+     *
+     * Generated from protobuf field <code>string display_name = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The full resource type of the resource.
+     *
+     * Generated from protobuf field <code>string type = 6;</code>
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * The full resource type of the resource.
+     *
+     * Generated from protobuf field <code>string type = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->type = $var;
+
+        return $this;
+    }
+
+    /**
      * The full resource name of project that the resource belongs to.
      *
      * Generated from protobuf field <code>string project = 2;</code>
@@ -154,7 +206,7 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project id that the resource belongs to.
+     * The project ID that the resource belongs to.
      *
      * Generated from protobuf field <code>string project_display_name = 3;</code>
      * @return string
@@ -165,7 +217,7 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project id that the resource belongs to.
+     * The project ID that the resource belongs to.
      *
      * Generated from protobuf field <code>string project_display_name = 3;</code>
      * @param string $var
@@ -232,32 +284,6 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full resource type of the resource.
-     *
-     * Generated from protobuf field <code>string type = 6;</code>
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * The full resource type of the resource.
-     *
-     * Generated from protobuf field <code>string type = 6;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setType($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->type = $var;
-
-        return $this;
-    }
-
-    /**
      * Output only. Contains a Folder message for each folder in the assets ancestry.
      * The first folder is the deepest nested folder, and the last folder is the
      * folder directly under the Organization.
@@ -283,32 +309,6 @@ class Resource extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\Folder::class);
         $this->folders = $arr;
-
-        return $this;
-    }
-
-    /**
-     * The human readable name of the resource.
-     *
-     * Generated from protobuf field <code>string display_name = 8;</code>
-     * @return string
-     */
-    public function getDisplayName()
-    {
-        return $this->display_name;
-    }
-
-    /**
-     * The human readable name of the resource.
-     *
-     * Generated from protobuf field <code>string display_name = 8;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setDisplayName($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->display_name = $var;
 
         return $this;
     }

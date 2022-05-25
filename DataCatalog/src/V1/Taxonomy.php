@@ -46,6 +46,7 @@ class Taxonomy extends \Google\Protobuf\Internal\Message
      * The name can't start or end with spaces, must contain only Unicode letters,
      * numbers, underscores, dashes, and spaces, and be at most 200 bytes long
      * when encoded in UTF-8.
+     * The taxonomy display name must be unique within an organization.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -93,6 +94,7 @@ class Taxonomy extends \Google\Protobuf\Internal\Message
      *           The name can't start or end with spaces, must contain only Unicode letters,
      *           numbers, underscores, dashes, and spaces, and be at most 200 bytes long
      *           when encoded in UTF-8.
+     *           The taxonomy display name must be unique within an organization.
      *     @type string $description
      *           Optional. Description of this taxonomy. If not set, defaults to empty.
      *           The description must contain only Unicode characters, tabs, newlines,
@@ -145,6 +147,7 @@ class Taxonomy extends \Google\Protobuf\Internal\Message
      * The name can't start or end with spaces, must contain only Unicode letters,
      * numbers, underscores, dashes, and spaces, and be at most 200 bytes long
      * when encoded in UTF-8.
+     * The taxonomy display name must be unique within an organization.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -159,6 +162,7 @@ class Taxonomy extends \Google\Protobuf\Internal\Message
      * The name can't start or end with spaces, must contain only Unicode letters,
      * numbers, underscores, dashes, and spaces, and be at most 200 bytes long
      * when encoded in UTF-8.
+     * The taxonomy display name must be unique within an organization.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

@@ -19,7 +19,8 @@ namespace Google\Cloud\Core\Tests\Unit\Batch;
 
 use Google\Cloud\Core\Batch\HandleFailureTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
@@ -27,6 +28,7 @@ use PHPUnit\Framework\TestCase;
  */
 class HandleFailureTraitTest extends TestCase
 {
+    use ExpectException;
 
     private $impl;
     private $testDir;
@@ -41,7 +43,7 @@ class HandleFailureTraitTest extends TestCase
         return rmdir($dir);
     }
 
-    public function setUp()
+    public function set_up()
     {
         $this->impl = TestHelpers::impl(HandleFailureTrait::class);
         $this->testDir = sprintf(
@@ -53,18 +55,20 @@ class HandleFailureTraitTest extends TestCase
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
     }
 
-    public function tearDown()
+    public function tear_down()
     {
         $this->delTree($this->testDir);
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
     }
 
-    /**
-     * @ExpectedException \RuntimeException
-     */
     public function testInitFailureFileThrowsException()
     {
-        putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=/tmp/non-existent/subdir');
+        if (0 === posix_getuid()) {
+            $this->markTestSkipped('Cannot test init failure as root');
+        }
+        $this->expectException('\RuntimeException');
+
+        putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=/bad/write/dir');
         $this->impl->call('initFailureFile');
     }
 

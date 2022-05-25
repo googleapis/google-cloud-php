@@ -27,7 +27,7 @@ use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
 use Google\Cloud\Firestore\Transaction;
 use Google\Cloud\Firestore\ValueMapper;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -46,7 +46,7 @@ class TransactionTest extends TestCase
     private $transaction;
     private $reference;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->valueMapper = new ValueMapper($this->connection->reveal(), false);

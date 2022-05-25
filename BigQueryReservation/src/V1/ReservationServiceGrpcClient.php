@@ -214,7 +214,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      *
      * For example, in order to downgrade from 10000 slots to 8000, you might
      * split a 10000 capacity commitment into commitments of 2000 and 8000. Then,
-     * you would change the plan of the first one to `FLEX` and then delete it.
+     * you delete the first one after the commitment end time passes.
      * @param \Google\Cloud\BigQuery\Reservation\V1\SplitCapacityCommitmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -363,8 +363,8 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deprecated: Looks up assignments for a specified resource for a particular region.
-     * If the request is about a project:
+     * Deprecated: Looks up assignments for a specified resource for a particular
+     * region. If the request is about a project:
      *
      * 1. Assignments created on the project will be returned if they exist.
      * 2. Otherwise assignments created on the closest ancestor will be
@@ -447,6 +447,23 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
     public function MoveAssignment(\Google\Cloud\BigQuery\Reservation\V1\MoveAssignmentRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/MoveAssignment',
+        $argument,
+        ['\Google\Cloud\BigQuery\Reservation\V1\Assignment', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates an existing assignment.
+     *
+     * Only the `priority` field can be updated.
+     * @param \Google\Cloud\BigQuery\Reservation\V1\UpdateAssignmentRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateAssignment(\Google\Cloud\BigQuery\Reservation\V1\UpdateAssignmentRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.bigquery.reservation.v1.ReservationService/UpdateAssignment',
         $argument,
         ['\Google\Cloud\BigQuery\Reservation\V1\Assignment', 'decode'],
         $metadata, $options);

@@ -335,7 +335,10 @@ class CodeParser implements ParserInterface
                         }
                         $reference = substr($reference, strlen($namespace));
                         $tagContent[] = $this->buildReference($reference);
-                        printf('Manual fix applied (%s). Please fix the reference' . PHP_EOL, $reference);
+                        $this->output->writeln(
+                            sprintf('Manual fix applied (%s). Please fix the reference', $reference),
+                            OutputInterface::VERBOSITY_DEBUG
+                        );
                     }
                 } elseif (strtolower($tag->getName()) === 'inheritdoc') {
                     if ($element === null) {
@@ -700,7 +703,10 @@ class CodeParser implements ParserInterface
 
             // START proto nested arg missing description workaround
             if (count($nestedParam) < 3 && !$isProto) {
-                $this->output->writeln('nested param is in an invalid format: '. $param);
+                $this->output->writeln(
+                    'nested param is in an invalid format: '. $param,
+                    OutputInterface::VERBOSITY_DEBUG
+                );
             }
             // END proto nested arg missing description workaround
 

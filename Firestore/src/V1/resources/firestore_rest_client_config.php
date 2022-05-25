@@ -115,6 +115,12 @@ return [
             'ListDocuments' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents/*/**}/{collection_id}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents}/{collection_id}',
+                    ],
+                ],
                 'placeholders' => [
                     'collection_id' => [
                         'getters' => [

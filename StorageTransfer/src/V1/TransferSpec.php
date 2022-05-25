@@ -33,8 +33,31 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferOptions transfer_options = 6;</code>
      */
     private $transfer_options = null;
+    /**
+     * A manifest file provides a list of objects to be transferred from the data
+     * source. This field points to the location of the manifest file.
+     * Otherwise, the entire source bucket is used. ObjectConditions still apply.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.TransferManifest transfer_manifest = 15;</code>
+     */
+    private $transfer_manifest = null;
+    /**
+     * Specifies the agent pool name associated with the posix data source. When
+     * unspecified, the default name is used.
+     *
+     * Generated from protobuf field <code>string source_agent_pool_name = 17;</code>
+     */
+    private $source_agent_pool_name = '';
+    /**
+     * Specifies the agent pool name associated with the posix data sink. When
+     * unspecified, the default name is used.
+     *
+     * Generated from protobuf field <code>string sink_agent_pool_name = 18;</code>
+     */
+    private $sink_agent_pool_name = '';
     protected $data_sink;
     protected $data_source;
+    protected $intermediate_data_location;
 
     /**
      * Constructor.
@@ -44,14 +67,20 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\StorageTransfer\V1\GcsData $gcs_data_sink
      *           A Cloud Storage data sink.
+     *     @type \Google\Cloud\StorageTransfer\V1\PosixFilesystem $posix_data_sink
+     *           A POSIX Filesystem data sink.
      *     @type \Google\Cloud\StorageTransfer\V1\GcsData $gcs_data_source
      *           A Cloud Storage data source.
      *     @type \Google\Cloud\StorageTransfer\V1\AwsS3Data $aws_s3_data_source
      *           An AWS S3 data source.
      *     @type \Google\Cloud\StorageTransfer\V1\HttpData $http_data_source
      *           An HTTP URL data source.
+     *     @type \Google\Cloud\StorageTransfer\V1\PosixFilesystem $posix_data_source
+     *           A POSIX Filesystem data source.
      *     @type \Google\Cloud\StorageTransfer\V1\AzureBlobStorageData $azure_blob_storage_data_source
      *           An Azure Blob Storage data source.
+     *     @type \Google\Cloud\StorageTransfer\V1\GcsData $gcs_intermediate_data_location
+     *           Cloud Storage intermediate data location.
      *     @type \Google\Cloud\StorageTransfer\V1\ObjectConditions $object_conditions
      *           Only objects that satisfy these object conditions are included in the set
      *           of data source and data sink objects.  Object conditions based on
@@ -62,6 +91,16 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
      *           is `true` and time-based object conditions such as 'last modification time'
      *           are specified, the request fails with an
      *           [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error.
+     *     @type \Google\Cloud\StorageTransfer\V1\TransferManifest $transfer_manifest
+     *           A manifest file provides a list of objects to be transferred from the data
+     *           source. This field points to the location of the manifest file.
+     *           Otherwise, the entire source bucket is used. ObjectConditions still apply.
+     *     @type string $source_agent_pool_name
+     *           Specifies the agent pool name associated with the posix data source. When
+     *           unspecified, the default name is used.
+     *     @type string $sink_agent_pool_name
+     *           Specifies the agent pool name associated with the posix data sink. When
+     *           unspecified, the default name is used.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,6 +135,37 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\GcsData::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * A POSIX Filesystem data sink.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.PosixFilesystem posix_data_sink = 13;</code>
+     * @return \Google\Cloud\StorageTransfer\V1\PosixFilesystem|null
+     */
+    public function getPosixDataSink()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasPosixDataSink()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * A POSIX Filesystem data sink.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.PosixFilesystem posix_data_sink = 13;</code>
+     * @param \Google\Cloud\StorageTransfer\V1\PosixFilesystem $var
+     * @return $this
+     */
+    public function setPosixDataSink($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\PosixFilesystem::class);
+        $this->writeOneof(13, $var);
 
         return $this;
     }
@@ -194,6 +264,37 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A POSIX Filesystem data source.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.PosixFilesystem posix_data_source = 14;</code>
+     * @return \Google\Cloud\StorageTransfer\V1\PosixFilesystem|null
+     */
+    public function getPosixDataSource()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasPosixDataSource()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * A POSIX Filesystem data source.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.PosixFilesystem posix_data_source = 14;</code>
+     * @param \Google\Cloud\StorageTransfer\V1\PosixFilesystem $var
+     * @return $this
+     */
+    public function setPosixDataSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\PosixFilesystem::class);
+        $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
      * An Azure Blob Storage data source.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.AzureBlobStorageData azure_blob_storage_data_source = 8;</code>
@@ -220,6 +321,37 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\AzureBlobStorageData::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Cloud Storage intermediate data location.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.GcsData gcs_intermediate_data_location = 16;</code>
+     * @return \Google\Cloud\StorageTransfer\V1\GcsData|null
+     */
+    public function getGcsIntermediateDataLocation()
+    {
+        return $this->readOneof(16);
+    }
+
+    public function hasGcsIntermediateDataLocation()
+    {
+        return $this->hasOneof(16);
+    }
+
+    /**
+     * Cloud Storage intermediate data location.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.GcsData gcs_intermediate_data_location = 16;</code>
+     * @param \Google\Cloud\StorageTransfer\V1\GcsData $var
+     * @return $this
+     */
+    public function setGcsIntermediateDataLocation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\GcsData::class);
+        $this->writeOneof(16, $var);
 
         return $this;
     }
@@ -309,6 +441,102 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A manifest file provides a list of objects to be transferred from the data
+     * source. This field points to the location of the manifest file.
+     * Otherwise, the entire source bucket is used. ObjectConditions still apply.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.TransferManifest transfer_manifest = 15;</code>
+     * @return \Google\Cloud\StorageTransfer\V1\TransferManifest|null
+     */
+    public function getTransferManifest()
+    {
+        return $this->transfer_manifest;
+    }
+
+    public function hasTransferManifest()
+    {
+        return isset($this->transfer_manifest);
+    }
+
+    public function clearTransferManifest()
+    {
+        unset($this->transfer_manifest);
+    }
+
+    /**
+     * A manifest file provides a list of objects to be transferred from the data
+     * source. This field points to the location of the manifest file.
+     * Otherwise, the entire source bucket is used. ObjectConditions still apply.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.TransferManifest transfer_manifest = 15;</code>
+     * @param \Google\Cloud\StorageTransfer\V1\TransferManifest $var
+     * @return $this
+     */
+    public function setTransferManifest($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\TransferManifest::class);
+        $this->transfer_manifest = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the agent pool name associated with the posix data source. When
+     * unspecified, the default name is used.
+     *
+     * Generated from protobuf field <code>string source_agent_pool_name = 17;</code>
+     * @return string
+     */
+    public function getSourceAgentPoolName()
+    {
+        return $this->source_agent_pool_name;
+    }
+
+    /**
+     * Specifies the agent pool name associated with the posix data source. When
+     * unspecified, the default name is used.
+     *
+     * Generated from protobuf field <code>string source_agent_pool_name = 17;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceAgentPoolName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_agent_pool_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the agent pool name associated with the posix data sink. When
+     * unspecified, the default name is used.
+     *
+     * Generated from protobuf field <code>string sink_agent_pool_name = 18;</code>
+     * @return string
+     */
+    public function getSinkAgentPoolName()
+    {
+        return $this->sink_agent_pool_name;
+    }
+
+    /**
+     * Specifies the agent pool name associated with the posix data sink. When
+     * unspecified, the default name is used.
+     *
+     * Generated from protobuf field <code>string sink_agent_pool_name = 18;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSinkAgentPoolName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->sink_agent_pool_name = $var;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getDataSink()
@@ -322,6 +550,14 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
     public function getDataSource()
     {
         return $this->whichOneof("data_source");
+    }
+
+    /**
+     * @return string
+     */
+    public function getIntermediateDataLocation()
+    {
+        return $this->whichOneof("intermediate_data_location");
     }
 
 }

@@ -19,9 +19,9 @@ class Stage extends \Google\Protobuf\Internal\Message
      * The target_id to which this stage points. This field refers exclusively to
      * the last segment of a target name. For example, this field would just be
      * `my-target` (rather than
-     * `projects/project/deliveryPipelines/pipeline/targets/my-target`). The
-     * parent `DeliveryPipeline` of the `Target` is inferred to be the parent
-     * `DeliveryPipeline` of the `Release` in which this `Stage` lives.
+     * `projects/project/locations/location/targets/my-target`). The location of
+     * the `Target` is inferred to be the same as the location of the
+     * `DeliveryPipeline` that contains this `Stage`.
      *
      * Generated from protobuf field <code>string target_id = 1;</code>
      */
@@ -44,9 +44,9 @@ class Stage extends \Google\Protobuf\Internal\Message
      *           The target_id to which this stage points. This field refers exclusively to
      *           the last segment of a target name. For example, this field would just be
      *           `my-target` (rather than
-     *           `projects/project/deliveryPipelines/pipeline/targets/my-target`). The
-     *           parent `DeliveryPipeline` of the `Target` is inferred to be the parent
-     *           `DeliveryPipeline` of the `Release` in which this `Stage` lives.
+     *           `projects/project/locations/location/targets/my-target`). The location of
+     *           the `Target` is inferred to be the same as the location of the
+     *           `DeliveryPipeline` that contains this `Stage`.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $profiles
      *           Skaffold profiles to use when rendering the manifest for this stage's
      *           `Target`.
@@ -61,9 +61,9 @@ class Stage extends \Google\Protobuf\Internal\Message
      * The target_id to which this stage points. This field refers exclusively to
      * the last segment of a target name. For example, this field would just be
      * `my-target` (rather than
-     * `projects/project/deliveryPipelines/pipeline/targets/my-target`). The
-     * parent `DeliveryPipeline` of the `Target` is inferred to be the parent
-     * `DeliveryPipeline` of the `Release` in which this `Stage` lives.
+     * `projects/project/locations/location/targets/my-target`). The location of
+     * the `Target` is inferred to be the same as the location of the
+     * `DeliveryPipeline` that contains this `Stage`.
      *
      * Generated from protobuf field <code>string target_id = 1;</code>
      * @return string
@@ -77,9 +77,9 @@ class Stage extends \Google\Protobuf\Internal\Message
      * The target_id to which this stage points. This field refers exclusively to
      * the last segment of a target name. For example, this field would just be
      * `my-target` (rather than
-     * `projects/project/deliveryPipelines/pipeline/targets/my-target`). The
-     * parent `DeliveryPipeline` of the `Target` is inferred to be the parent
-     * `DeliveryPipeline` of the `Release` in which this `Stage` lives.
+     * `projects/project/locations/location/targets/my-target`). The location of
+     * the `Target` is inferred to be the same as the location of the
+     * `DeliveryPipeline` that contains this `Stage`.
      *
      * Generated from protobuf field <code>string target_id = 1;</code>
      * @param string $var

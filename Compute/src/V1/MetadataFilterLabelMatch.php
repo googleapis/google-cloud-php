@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * MetadataFilter label name value pairs that are expected to match corresponding labels presented as metadata to the loadbalancer.
+ * MetadataFilter label name value pairs that are expected to match corresponding labels presented as metadata to the load balancer.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.MetadataFilterLabelMatch</code>
  */

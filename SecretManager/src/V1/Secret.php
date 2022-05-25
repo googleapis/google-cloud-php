@@ -70,6 +70,20 @@ class Secret extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Rotation rotation = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $rotation = null;
+    /**
+     * Optional. Mapping from version alias to version name.
+     * A version alias is a string with a maximum length of 63 characters and can
+     * contain uppercase and lowercase letters, numerals, and the hyphen (`-`)
+     * and underscore ('_') characters. An alias string must start with a
+     * letter and cannot be the string 'latest' or 'NEW'.
+     * No more than 50 aliases can be assigned to a given secret.
+     * Version-Alias pairs will be viewable via GetSecret and modifiable via
+     * UpdateSecret. At launch access by alias will only be supported on
+     * GetSecretVersion and AccessSecretVersion.
+     *
+     * Generated from protobuf field <code>map<string, int64> version_aliases = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $version_aliases;
     protected $expiration;
 
     /**
@@ -107,6 +121,16 @@ class Secret extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\SecretManager\V1\Rotation $rotation
      *           Optional. Rotation policy attached to the [Secret][google.cloud.secretmanager.v1.Secret]. May be excluded if there is no
      *           rotation policy.
+     *     @type array|\Google\Protobuf\Internal\MapField $version_aliases
+     *           Optional. Mapping from version alias to version name.
+     *           A version alias is a string with a maximum length of 63 characters and can
+     *           contain uppercase and lowercase letters, numerals, and the hyphen (`-`)
+     *           and underscore ('_') characters. An alias string must start with a
+     *           letter and cannot be the string 'latest' or 'NEW'.
+     *           No more than 50 aliases can be assigned to a given secret.
+     *           Version-Alias pairs will be viewable via GetSecret and modifiable via
+     *           UpdateSecret. At launch access by alias will only be supported on
+     *           GetSecretVersion and AccessSecretVersion.
      * }
      */
     public function __construct($data = NULL) {
@@ -406,6 +430,48 @@ class Secret extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecretManager\V1\Rotation::class);
         $this->rotation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Mapping from version alias to version name.
+     * A version alias is a string with a maximum length of 63 characters and can
+     * contain uppercase and lowercase letters, numerals, and the hyphen (`-`)
+     * and underscore ('_') characters. An alias string must start with a
+     * letter and cannot be the string 'latest' or 'NEW'.
+     * No more than 50 aliases can be assigned to a given secret.
+     * Version-Alias pairs will be viewable via GetSecret and modifiable via
+     * UpdateSecret. At launch access by alias will only be supported on
+     * GetSecretVersion and AccessSecretVersion.
+     *
+     * Generated from protobuf field <code>map<string, int64> version_aliases = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getVersionAliases()
+    {
+        return $this->version_aliases;
+    }
+
+    /**
+     * Optional. Mapping from version alias to version name.
+     * A version alias is a string with a maximum length of 63 characters and can
+     * contain uppercase and lowercase letters, numerals, and the hyphen (`-`)
+     * and underscore ('_') characters. An alias string must start with a
+     * letter and cannot be the string 'latest' or 'NEW'.
+     * No more than 50 aliases can be assigned to a given secret.
+     * Version-Alias pairs will be viewable via GetSecret and modifiable via
+     * UpdateSecret. At launch access by alias will only be supported on
+     * GetSecretVersion and AccessSecretVersion.
+     *
+     * Generated from protobuf field <code>map<string, int64> version_aliases = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setVersionAliases($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::INT64);
+        $this->version_aliases = $arr;
 
         return $this;
     }

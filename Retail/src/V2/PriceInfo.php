@@ -34,7 +34,7 @@ class PriceInfo extends \Google\Protobuf\Internal\Message
      * Price of the product.
      * Google Merchant Center property
      * [price](https://support.google.com/merchants/answer/6324371). Schema.org
-     * property [Offer.priceSpecification](https://schema.org/priceSpecification).
+     * property [Offer.price](https://schema.org/price).
      *
      * Generated from protobuf field <code>float price = 2;</code>
      */
@@ -127,7 +127,7 @@ class PriceInfo extends \Google\Protobuf\Internal\Message
      *           Price of the product.
      *           Google Merchant Center property
      *           [price](https://support.google.com/merchants/answer/6324371). Schema.org
-     *           property [Offer.priceSpecification](https://schema.org/priceSpecification).
+     *           property [Offer.price](https://schema.org/price).
      *     @type float $original_price
      *           Price of the product without any discount. If zero, by default set to be
      *           the [price][google.cloud.retail.v2.PriceInfo.price].
@@ -229,7 +229,7 @@ class PriceInfo extends \Google\Protobuf\Internal\Message
      * Price of the product.
      * Google Merchant Center property
      * [price](https://support.google.com/merchants/answer/6324371). Schema.org
-     * property [Offer.priceSpecification](https://schema.org/priceSpecification).
+     * property [Offer.price](https://schema.org/price).
      *
      * Generated from protobuf field <code>float price = 2;</code>
      * @return float
@@ -243,7 +243,7 @@ class PriceInfo extends \Google\Protobuf\Internal\Message
      * Price of the product.
      * Google Merchant Center property
      * [price](https://support.google.com/merchants/answer/6324371). Schema.org
-     * property [Offer.priceSpecification](https://schema.org/priceSpecification).
+     * property [Offer.price](https://schema.org/price).
      *
      * Generated from protobuf field <code>float price = 2;</code>
      * @param float $var

@@ -34,6 +34,7 @@ use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
+use Google\Cloud\Compute\V1\SecurityPolicyReference;
 use Google\Cloud\Compute\V1\SignedUrlKey;
 use Google\Rpc\Code;
 use stdClass;
@@ -448,6 +449,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $bucketName = 'bucketName283610048';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
+        $edgeSecurityPolicy = 'edgeSecurityPolicy-1032704881';
         $enableCdn = false;
         $id = 3355;
         $kind = 'kind3292052';
@@ -457,6 +459,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $expectedResponse->setBucketName($bucketName);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setEdgeSecurityPolicy($edgeSecurityPolicy);
         $expectedResponse->setEnableCdn($enableCdn);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -815,6 +818,128 @@ class BackendBucketsClientTest extends GeneratedTest
         $backendBucketResource = new BackendBucket();
         $project = 'project-309310695';
         $response = $client->patch($backendBucket, $backendBucketResource, $project);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function setEdgeSecurityPolicyTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/setEdgeSecurityPolicyTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/setEdgeSecurityPolicyTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $backendBucket = 'backendBucket91714037';
+        $project = 'project-309310695';
+        $securityPolicyReferenceResource = new SecurityPolicyReference();
+        $response = $client->setEdgeSecurityPolicy($backendBucket, $project, $securityPolicyReferenceResource);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.BackendBuckets/SetEdgeSecurityPolicy', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getBackendBucket();
+        $this->assertProtobufEquals($backendBucket, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getSecurityPolicyReferenceResource();
+        $this->assertProtobufEquals($securityPolicyReferenceResource, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function setEdgeSecurityPolicyExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/setEdgeSecurityPolicyExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $backendBucket = 'backendBucket91714037';
+        $project = 'project-309310695';
+        $securityPolicyReferenceResource = new SecurityPolicyReference();
+        $response = $client->setEdgeSecurityPolicy($backendBucket, $project, $securityPolicyReferenceResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

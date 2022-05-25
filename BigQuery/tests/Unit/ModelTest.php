@@ -24,7 +24,7 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
 use Google\Cloud\Storage\StorageObject;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -43,7 +43,7 @@ class ModelTest extends TestCase
     const BUCKET_NAME = 'myBucket';
     const FILE_NAME = 'myfile';
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->storageConnection = $this->prophesize(StorageConnectionInterface::class);

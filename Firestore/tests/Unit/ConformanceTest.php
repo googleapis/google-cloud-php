@@ -36,7 +36,7 @@ use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
 use Google\Cloud\Firestore\V1\StructuredQuery\UnaryFilter\Operator as UnaryFilterOperator;
 use Google\Cloud\Firestore\ValueMapper;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 use Prophecy\Exception\Call\UnexpectedCallException;
 
@@ -75,7 +75,7 @@ class ConformanceTest extends TestCase
         'set-merge: One merge path cannot be the prefix of another',
     ];
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 

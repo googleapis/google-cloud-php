@@ -19,12 +19,15 @@ namespace Google\Cloud\Debugger\Tests\Unit;
 
 use Google\Cloud\Debugger\CliDaemon;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group debugger
  */
 class CliDaemonTest extends TestCase
 {
+    use ExpectException;
+
     public function testClientConfig()
     {
         new CliDaemon([
@@ -32,21 +35,19 @@ class CliDaemonTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException UnexpectedValueException
-     */
     public function testClientConfigMissing()
     {
+        $this->expectException('UnexpectedValueException');
+
         new CliDaemon([
             'config' => 'non-existent-file'
         ]);
     }
 
-    /**
-     * @expectedException UnexpectedValueException
-     */
     public function testClientConfigWrongReturn()
     {
+        $this->expectException('UnexpectedValueException');
+
         new CliDaemon([
             'config' => implode(DIRECTORY_SEPARATOR, [dirname(__FILE__), 'data', 'daemon_config_wrong_return.php'])
         ]);
@@ -59,31 +60,28 @@ class CliDaemonTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException UnexpectedValueException
-     */
     public function testSourceRootMissing()
     {
+        $this->expectException('UnexpectedValueException');
+
         new CliDaemon([
             'sourceRoot' => 'non-existent-directory'
         ]);
     }
 
-    /**
-     * @expectedException UnexpectedValueException
-     */
     public function testSourceRootInvalid()
     {
+        $this->expectException('UnexpectedValueException');
+
         new CliDaemon([
             'sourceRoot' => __FILE__
         ]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testDefaults()
     {
+        $this->expectException('InvalidArgumentException');
+
         new CliDaemon();
     }
 }

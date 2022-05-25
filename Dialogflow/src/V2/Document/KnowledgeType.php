@@ -44,12 +44,19 @@ class KnowledgeType
      * Generated from protobuf enum <code>ARTICLE_SUGGESTION = 3;</code>
      */
     const ARTICLE_SUGGESTION = 3;
+    /**
+     * The document contains agent-facing Smart Reply entries.
+     *
+     * Generated from protobuf enum <code>AGENT_FACING_SMART_REPLY = 4;</code>
+     */
+    const AGENT_FACING_SMART_REPLY = 4;
 
     private static $valueToName = [
         self::KNOWLEDGE_TYPE_UNSPECIFIED => 'KNOWLEDGE_TYPE_UNSPECIFIED',
         self::FAQ => 'FAQ',
         self::EXTRACTIVE_QA => 'EXTRACTIVE_QA',
         self::ARTICLE_SUGGESTION => 'ARTICLE_SUGGESTION',
+        self::AGENT_FACING_SMART_REPLY => 'AGENT_FACING_SMART_REPLY',
     ];
 
     public static function name($value)

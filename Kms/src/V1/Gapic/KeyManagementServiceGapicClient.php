@@ -457,8 +457,10 @@ class KeyManagementServiceGapicClient
 
     /**
      * Decrypts data that was encrypted with a public key retrieved from
-     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey] corresponding to a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
-     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] ASYMMETRIC_DECRYPT.
+     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
+     * corresponding to a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
+     * with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * ASYMMETRIC_DECRYPT.
      *
      * Sample code:
      * ```
@@ -472,27 +474,35 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     * @param string $name         Required. The resource name of the
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
      *                             decryption.
-     * @param string $ciphertext   Required. The data encrypted with the named [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s public
-     *                             key using OAEP.
+     * @param string $ciphertext   Required. The data encrypted with the named
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s public key using
+     *                             OAEP.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type Int64Value $ciphertextCrc32c
-     *           Optional. An optional CRC32C checksum of the [AsymmetricDecryptRequest.ciphertext][google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext].
-     *           If specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
-     *           received [AsymmetricDecryptRequest.ciphertext][google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext] using this checksum.
-     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
-     *           fails. If you receive a checksum error, your client should verify that
-     *           CRC32C([AsymmetricDecryptRequest.ciphertext][google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext]) is equal to
-     *           [AsymmetricDecryptRequest.ciphertext_crc32c][google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext_crc32c], and if so, perform a
-     *           limited number of retries. A persistent mismatch may indicate an issue in
-     *           your computation of the CRC32C checksum.
-     *           Note: This field is defined as int64 for reasons of compatibility across
-     *           different languages. However, it is a non-negative integer, which will
-     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     *           that support this type.
+     *           Optional. An optional CRC32C checksum of the
+     *           [AsymmetricDecryptRequest.ciphertext][google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext].
+     *           If specified,
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           verify the integrity of the received
+     *           [AsymmetricDecryptRequest.ciphertext][google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext]
+     *           using this checksum.
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           report an error if the checksum verification fails. If you receive a
+     *           checksum error, your client should verify that
+     *           CRC32C([AsymmetricDecryptRequest.ciphertext][google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext])
+     *           is equal to
+     *           [AsymmetricDecryptRequest.ciphertext_crc32c][google.cloud.kms.v1.AsymmetricDecryptRequest.ciphertext_crc32c],
+     *           and if so, perform a limited number of retries. A persistent mismatch may
+     *           indicate an issue in your computation of the CRC32C checksum. Note: This
+     *           field is defined as int64 for reasons of compatibility across different
+     *           languages. However, it is a non-negative integer, which will never exceed
+     *           2^32-1, and can be safely downconverted to uint32 in languages that support
+     *           this type.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -521,9 +531,11 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Signs data using a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * Signs data using a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
+     * with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
      * ASYMMETRIC_SIGN, producing a signature that can be verified with the public
-     * key retrieved from [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
+     * key retrieved from
+     * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
      *
      * Sample code:
      * ```
@@ -537,45 +549,64 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for signing.
+     * @param string $name         Required. The resource name of the
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     *                             signing.
      * @param Digest $digest       Optional. The digest of the data to sign. The digest must be produced with
      *                             the same digest algorithm as specified by the key version's
      *                             [algorithm][google.cloud.kms.v1.CryptoKeyVersion.algorithm].
+     *
+     *                             This field may not be supplied if
+     *                             [AsymmetricSignRequest.data][google.cloud.kms.v1.AsymmetricSignRequest.data]
+     *                             is supplied.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type Int64Value $digestCrc32c
-     *           Optional. An optional CRC32C checksum of the [AsymmetricSignRequest.digest][google.cloud.kms.v1.AsymmetricSignRequest.digest]. If
-     *           specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
-     *           received [AsymmetricSignRequest.digest][google.cloud.kms.v1.AsymmetricSignRequest.digest] using this checksum.
-     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
-     *           fails. If you receive a checksum error, your client should verify that
-     *           CRC32C([AsymmetricSignRequest.digest][google.cloud.kms.v1.AsymmetricSignRequest.digest]) is equal to
-     *           [AsymmetricSignRequest.digest_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.digest_crc32c], and if so, perform a limited
-     *           number of retries. A persistent mismatch may indicate an issue in your
-     *           computation of the CRC32C checksum.
-     *           Note: This field is defined as int64 for reasons of compatibility across
-     *           different languages. However, it is a non-negative integer, which will
-     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     *           that support this type.
+     *           Optional. An optional CRC32C checksum of the
+     *           [AsymmetricSignRequest.digest][google.cloud.kms.v1.AsymmetricSignRequest.digest].
+     *           If specified,
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           verify the integrity of the received
+     *           [AsymmetricSignRequest.digest][google.cloud.kms.v1.AsymmetricSignRequest.digest]
+     *           using this checksum.
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           report an error if the checksum verification fails. If you receive a
+     *           checksum error, your client should verify that
+     *           CRC32C([AsymmetricSignRequest.digest][google.cloud.kms.v1.AsymmetricSignRequest.digest])
+     *           is equal to
+     *           [AsymmetricSignRequest.digest_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.digest_crc32c],
+     *           and if so, perform a limited number of retries. A persistent mismatch may
+     *           indicate an issue in your computation of the CRC32C checksum. Note: This
+     *           field is defined as int64 for reasons of compatibility across different
+     *           languages. However, it is a non-negative integer, which will never exceed
+     *           2^32-1, and can be safely downconverted to uint32 in languages that support
+     *           this type.
      *     @type string $data
-     *           Optional. This field will only be honored for RAW_PKCS1 keys.
-     *           The data to sign. A digest is computed over the data that will be signed,
-     *           PKCS #1 padding is applied to the digest directly and then encrypted.
+     *           Optional. The data to sign.
+     *           It can't be supplied if
+     *           [AsymmetricSignRequest.digest][google.cloud.kms.v1.AsymmetricSignRequest.digest]
+     *           is supplied.
      *     @type Int64Value $dataCrc32c
-     *           Optional. An optional CRC32C checksum of the [AsymmetricSignRequest.data][google.cloud.kms.v1.AsymmetricSignRequest.data]. If
-     *           specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
-     *           received [AsymmetricSignRequest.data][google.cloud.kms.v1.AsymmetricSignRequest.data] using this checksum.
-     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
-     *           fails. If you receive a checksum error, your client should verify that
-     *           CRC32C([AsymmetricSignRequest.data][google.cloud.kms.v1.AsymmetricSignRequest.data]) is equal to
-     *           [AsymmetricSignRequest.data_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.data_crc32c], and if so, perform a limited
-     *           number of retries. A persistent mismatch may indicate an issue in your
-     *           computation of the CRC32C checksum.
-     *           Note: This field is defined as int64 for reasons of compatibility across
-     *           different languages. However, it is a non-negative integer, which will
-     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     *           that support this type.
+     *           Optional. An optional CRC32C checksum of the
+     *           [AsymmetricSignRequest.data][google.cloud.kms.v1.AsymmetricSignRequest.data].
+     *           If specified,
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           verify the integrity of the received
+     *           [AsymmetricSignRequest.data][google.cloud.kms.v1.AsymmetricSignRequest.data]
+     *           using this checksum.
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           report an error if the checksum verification fails. If you receive a
+     *           checksum error, your client should verify that
+     *           CRC32C([AsymmetricSignRequest.data][google.cloud.kms.v1.AsymmetricSignRequest.data])
+     *           is equal to
+     *           [AsymmetricSignRequest.data_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.data_crc32c],
+     *           and if so, perform a limited number of retries. A persistent mismatch may
+     *           indicate an issue in your computation of the CRC32C checksum. Note: This
+     *           field is defined as int64 for reasons of compatibility across different
+     *           languages. However, it is a non-negative integer, which will never exceed
+     *           2^32-1, and can be safely downconverted to uint32 in languages that support
+     *           this type.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -612,7 +643,8 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Create a new [CryptoKey][google.cloud.kms.v1.CryptoKey] within a [KeyRing][google.cloud.kms.v1.KeyRing].
+     * Create a new [CryptoKey][google.cloud.kms.v1.CryptoKey] within a
+     * [KeyRing][google.cloud.kms.v1.KeyRing].
      *
      * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] and
      * [CryptoKey.version_template.algorithm][google.cloud.kms.v1.CryptoKeyVersionTemplate.algorithm]
@@ -631,18 +663,22 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string    $parent       Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing associated with the
-     *                                [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+     * @param string    $parent       Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing
+     *                                associated with the [CryptoKeys][google.cloud.kms.v1.CryptoKey].
      * @param string    $cryptoKeyId  Required. It must be unique within a KeyRing and match the regular
      *                                expression `[a-zA-Z0-9_-]{1,63}`
-     * @param CryptoKey $cryptoKey    Required. A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field values.
+     * @param CryptoKey $cryptoKey    Required. A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field
+     *                                values.
      * @param array     $optionalArgs {
      *     Optional.
      *
      *     @type bool $skipInitialVersionCreation
-     *           If set to true, the request will create a [CryptoKey][google.cloud.kms.v1.CryptoKey] without any
-     *           [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]. You must manually call
-     *           [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion] or
+     *           If set to true, the request will create a
+     *           [CryptoKey][google.cloud.kms.v1.CryptoKey] without any
+     *           [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]. You must
+     *           manually call
+     *           [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]
+     *           or
      *           [ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]
      *           before you can use this [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *     @type RetrySettings|array $retrySettings
@@ -674,7 +710,8 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Create a new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in a [CryptoKey][google.cloud.kms.v1.CryptoKey].
+     * Create a new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in a
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
      * The server will assign the next sequential id. If unset,
      * [state][google.cloud.kms.v1.CryptoKeyVersion.state] will be set to
@@ -692,9 +729,11 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string           $parent           Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] associated with
-     *                                           the [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
-     * @param CryptoKeyVersion $cryptoKeyVersion Required. A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with initial field values.
+     * @param string           $parent           Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the
+     *                                           [CryptoKey][google.cloud.kms.v1.CryptoKey] associated with the
+     *                                           [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
+     * @param CryptoKeyVersion $cryptoKeyVersion Required. A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
+     *                                           initial field values.
      * @param array            $optionalArgs     {
      *     Optional.
      *
@@ -722,9 +761,11 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Create a new [ImportJob][google.cloud.kms.v1.ImportJob] within a [KeyRing][google.cloud.kms.v1.KeyRing].
+     * Create a new [ImportJob][google.cloud.kms.v1.ImportJob] within a
+     * [KeyRing][google.cloud.kms.v1.KeyRing].
      *
-     * [ImportJob.import_method][google.cloud.kms.v1.ImportJob.import_method] is required.
+     * [ImportJob.import_method][google.cloud.kms.v1.ImportJob.import_method] is
+     * required.
      *
      * Sample code:
      * ```
@@ -739,11 +780,13 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string    $parent       Required. The [name][google.cloud.kms.v1.KeyRing.name] of the [KeyRing][google.cloud.kms.v1.KeyRing] associated with the
+     * @param string    $parent       Required. The [name][google.cloud.kms.v1.KeyRing.name] of the
+     *                                [KeyRing][google.cloud.kms.v1.KeyRing] associated with the
      *                                [ImportJobs][google.cloud.kms.v1.ImportJob].
      * @param string    $importJobId  Required. It must be unique within a KeyRing and match the regular
      *                                expression `[a-zA-Z0-9_-]{1,63}`
-     * @param ImportJob $importJob    Required. An [ImportJob][google.cloud.kms.v1.ImportJob] with initial field values.
+     * @param ImportJob $importJob    Required. An [ImportJob][google.cloud.kms.v1.ImportJob] with initial field
+     *                                values.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -772,7 +815,8 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Create a new [KeyRing][google.cloud.kms.v1.KeyRing] in a given Project and Location.
+     * Create a new [KeyRing][google.cloud.kms.v1.KeyRing] in a given Project and
+     * Location.
      *
      * Sample code:
      * ```
@@ -788,10 +832,12 @@ class KeyManagementServiceGapicClient
      * ```
      *
      * @param string  $parent       Required. The resource name of the location associated with the
-     *                              [KeyRings][google.cloud.kms.v1.KeyRing], in the format `projects/&#42;/locations/*`.
+     *                              [KeyRings][google.cloud.kms.v1.KeyRing], in the format
+     *                              `projects/&#42;/locations/*`.
      * @param string  $keyRingId    Required. It must be unique within a location and match the regular
      *                              expression `[a-zA-Z0-9_-]{1,63}`
-     * @param KeyRing $keyRing      Required. A [KeyRing][google.cloud.kms.v1.KeyRing] with initial field values.
+     * @param KeyRing $keyRing      Required. A [KeyRing][google.cloud.kms.v1.KeyRing] with initial field
+     *                              values.
      * @param array   $optionalArgs {
      *     Optional.
      *
@@ -820,8 +866,10 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Decrypts data that was protected by [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt]. The [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
-     * must be [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
+     * Decrypts data that was protected by
+     * [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt]. The
+     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
      *
      * Sample code:
      * ```
@@ -835,8 +883,9 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption.
-     *                             The server will choose the appropriate version.
+     * @param string $name         Required. The resource name of the
+     *                             [CryptoKey][google.cloud.kms.v1.CryptoKey] to use for decryption. The
+     *                             server will choose the appropriate version.
      * @param string $ciphertext   Required. The encrypted data originally returned in
      *                             [EncryptResponse.ciphertext][google.cloud.kms.v1.EncryptResponse.ciphertext].
      * @param array  $optionalArgs {
@@ -846,34 +895,45 @@ class KeyManagementServiceGapicClient
      *           Optional. Optional data that must match the data originally supplied in
      *           [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data].
      *     @type Int64Value $ciphertextCrc32c
-     *           Optional. An optional CRC32C checksum of the [DecryptRequest.ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext]. If
-     *           specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
-     *           received [DecryptRequest.ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext] using this checksum.
-     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
-     *           fails. If you receive a checksum error, your client should verify that
-     *           CRC32C([DecryptRequest.ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext]) is equal to
-     *           [DecryptRequest.ciphertext_crc32c][google.cloud.kms.v1.DecryptRequest.ciphertext_crc32c], and if so, perform a limited number
-     *           of retries. A persistent mismatch may indicate an issue in your computation
-     *           of the CRC32C checksum.
-     *           Note: This field is defined as int64 for reasons of compatibility across
-     *           different languages. However, it is a non-negative integer, which will
-     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     *           that support this type.
+     *           Optional. An optional CRC32C checksum of the
+     *           [DecryptRequest.ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext].
+     *           If specified,
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           verify the integrity of the received
+     *           [DecryptRequest.ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext]
+     *           using this checksum.
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           report an error if the checksum verification fails. If you receive a
+     *           checksum error, your client should verify that
+     *           CRC32C([DecryptRequest.ciphertext][google.cloud.kms.v1.DecryptRequest.ciphertext])
+     *           is equal to
+     *           [DecryptRequest.ciphertext_crc32c][google.cloud.kms.v1.DecryptRequest.ciphertext_crc32c],
+     *           and if so, perform a limited number of retries. A persistent mismatch may
+     *           indicate an issue in your computation of the CRC32C checksum. Note: This
+     *           field is defined as int64 for reasons of compatibility across different
+     *           languages. However, it is a non-negative integer, which will never exceed
+     *           2^32-1, and can be safely downconverted to uint32 in languages that support
+     *           this type.
      *     @type Int64Value $additionalAuthenticatedDataCrc32c
      *           Optional. An optional CRC32C checksum of the
-     *           [DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data]. If specified,
-     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the received
-     *           [DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data] using this checksum.
-     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
-     *           fails. If you receive a checksum error, your client should verify that
-     *           CRC32C([DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data]) is equal to
-     *           [DecryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data_crc32c], and if so, perform
-     *           a limited number of retries. A persistent mismatch may indicate an issue in
-     *           your computation of the CRC32C checksum.
-     *           Note: This field is defined as int64 for reasons of compatibility across
-     *           different languages. However, it is a non-negative integer, which will
-     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     *           that support this type.
+     *           [DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data].
+     *           If specified,
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           verify the integrity of the received
+     *           [DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data]
+     *           using this checksum.
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           report an error if the checksum verification fails. If you receive a
+     *           checksum error, your client should verify that
+     *           CRC32C([DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data])
+     *           is equal to
+     *           [DecryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data_crc32c],
+     *           and if so, perform a limited number of retries. A persistent mismatch may
+     *           indicate an issue in your computation of the CRC32C checksum. Note: This
+     *           field is defined as int64 for reasons of compatibility across different
+     *           languages. However, it is a non-negative integer, which will never exceed
+     *           2^32-1, and can be safely downconverted to uint32 in languages that support
+     *           this type.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -910,19 +970,27 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Schedule a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] for destruction.
+     * Schedule a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] for
+     * destruction.
      *
-     * Upon calling this method, [CryptoKeyVersion.state][google.cloud.kms.v1.CryptoKeyVersion.state] will be set to
+     * Upon calling this method,
+     * [CryptoKeyVersion.state][google.cloud.kms.v1.CryptoKeyVersion.state] will
+     * be set to
      * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED],
-     * and [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] will be set to the time
-     * [destroy_scheduled_duration][google.cloud.kms.v1.CryptoKey.destroy_scheduled_duration] in the
-     * future. At that time, the [state][google.cloud.kms.v1.CryptoKeyVersion.state] will
-     * automatically change to
-     * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED], and the key
-     * material will be irrevocably destroyed.
+     * and [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] will
+     * be set to the time
+     * [destroy_scheduled_duration][google.cloud.kms.v1.CryptoKey.destroy_scheduled_duration]
+     * in the future. At that time, the
+     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] will automatically
+     * change to
+     * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED],
+     * and the key material will be irrevocably destroyed.
      *
-     * Before the [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] is reached,
-     * [RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion] may be called to reverse the process.
+     * Before the
+     * [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] is
+     * reached,
+     * [RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion]
+     * may be called to reverse the process.
      *
      * Sample code:
      * ```
@@ -935,7 +1003,8 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
+     * @param string $name         Required. The resource name of the
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -962,8 +1031,9 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Encrypts data, so that it can only be recovered by a call to [Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
-     * The [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
+     * Encrypts data, so that it can only be recovered by a call to
+     * [Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt]. The
+     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
      * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
      *
      * Sample code:
@@ -978,61 +1048,77 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] or [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
-     *                             to use for encryption.
+     * @param string $name         Required. The resource name of the
+     *                             [CryptoKey][google.cloud.kms.v1.CryptoKey] or
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     *                             encryption.
      *
-     *                             If a [CryptoKey][google.cloud.kms.v1.CryptoKey] is specified, the server will use its
-     *                             [primary version][google.cloud.kms.v1.CryptoKey.primary].
+     *                             If a [CryptoKey][google.cloud.kms.v1.CryptoKey] is specified, the server
+     *                             will use its [primary version][google.cloud.kms.v1.CryptoKey.primary].
      * @param string $plaintext    Required. The data to encrypt. Must be no larger than 64KiB.
      *
      *                             The maximum size depends on the key version's
-     *                             [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]. For
-     *                             [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the plaintext must be no larger
-     *                             than 64KiB. For [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of the
-     *                             plaintext and additional_authenticated_data fields must be no larger than
-     *                             8KiB.
+     *                             [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
+     *                             For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the
+     *                             plaintext must be no larger than 64KiB. For
+     *                             [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
+     *                             the plaintext and additional_authenticated_data fields must be no larger
+     *                             than 8KiB.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $additionalAuthenticatedData
-     *           Optional. Optional data that, if specified, must also be provided during decryption
-     *           through [DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data].
+     *           Optional. Optional data that, if specified, must also be provided during
+     *           decryption through
+     *           [DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data].
      *
      *           The maximum size depends on the key version's
-     *           [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]. For
-     *           [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the AAD must be no larger than
-     *           64KiB. For [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of the
-     *           plaintext and additional_authenticated_data fields must be no larger than
-     *           8KiB.
+     *           [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
+     *           For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the AAD
+     *           must be no larger than 64KiB. For
+     *           [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
+     *           the plaintext and additional_authenticated_data fields must be no larger
+     *           than 8KiB.
      *     @type Int64Value $plaintextCrc32c
-     *           Optional. An optional CRC32C checksum of the [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext]. If
-     *           specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
-     *           received [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext] using this checksum.
-     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
-     *           fails. If you receive a checksum error, your client should verify that
-     *           CRC32C([EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext]) is equal to
-     *           [EncryptRequest.plaintext_crc32c][google.cloud.kms.v1.EncryptRequest.plaintext_crc32c], and if so, perform a limited number of
-     *           retries. A persistent mismatch may indicate an issue in your computation of
-     *           the CRC32C checksum.
-     *           Note: This field is defined as int64 for reasons of compatibility across
-     *           different languages. However, it is a non-negative integer, which will
-     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     *           that support this type.
+     *           Optional. An optional CRC32C checksum of the
+     *           [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext].
+     *           If specified,
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           verify the integrity of the received
+     *           [EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext]
+     *           using this checksum.
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           report an error if the checksum verification fails. If you receive a
+     *           checksum error, your client should verify that
+     *           CRC32C([EncryptRequest.plaintext][google.cloud.kms.v1.EncryptRequest.plaintext])
+     *           is equal to
+     *           [EncryptRequest.plaintext_crc32c][google.cloud.kms.v1.EncryptRequest.plaintext_crc32c],
+     *           and if so, perform a limited number of retries. A persistent mismatch may
+     *           indicate an issue in your computation of the CRC32C checksum. Note: This
+     *           field is defined as int64 for reasons of compatibility across different
+     *           languages. However, it is a non-negative integer, which will never exceed
+     *           2^32-1, and can be safely downconverted to uint32 in languages that support
+     *           this type.
      *     @type Int64Value $additionalAuthenticatedDataCrc32c
      *           Optional. An optional CRC32C checksum of the
-     *           [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data]. If specified,
-     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the received
-     *           [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data] using this checksum.
-     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
-     *           fails. If you receive a checksum error, your client should verify that
-     *           CRC32C([EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data]) is equal to
-     *           [EncryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data_crc32c], and if so, perform
-     *           a limited number of retries. A persistent mismatch may indicate an issue in
-     *           your computation of the CRC32C checksum.
-     *           Note: This field is defined as int64 for reasons of compatibility across
-     *           different languages. However, it is a non-negative integer, which will
-     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     *           that support this type.
+     *           [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data].
+     *           If specified,
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           verify the integrity of the received
+     *           [EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data]
+     *           using this checksum.
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           report an error if the checksum verification fails. If you receive a
+     *           checksum error, your client should verify that
+     *           CRC32C([EncryptRequest.additional_authenticated_data][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data])
+     *           is equal to
+     *           [EncryptRequest.additional_authenticated_data_crc32c][google.cloud.kms.v1.EncryptRequest.additional_authenticated_data_crc32c],
+     *           and if so, perform a limited number of retries. A persistent mismatch may
+     *           indicate an issue in your computation of the CRC32C checksum. Note: This
+     *           field is defined as int64 for reasons of compatibility across different
+     *           languages. However, it is a non-negative integer, which will never exceed
+     *           2^32-1, and can be safely downconverted to uint32 in languages that support
+     *           this type.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1092,8 +1178,10 @@ class KeyManagementServiceGapicClient
      *           The length in bytes of the amount of randomness to retrieve.  Minimum 8
      *           bytes, maximum 1024 bytes.
      *     @type int $protectionLevel
-     *           The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when generating the random data. Defaults to
-     *           [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE].
+     *           The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when
+     *           generating the random data. Currently, only
+     *           [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] protection level is
+     *           supported.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Kms\V1\ProtectionLevel}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
@@ -1129,8 +1217,9 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Returns metadata for a given [CryptoKey][google.cloud.kms.v1.CryptoKey], as well as its
-     * [primary][google.cloud.kms.v1.CryptoKey.primary] [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     * Returns metadata for a given [CryptoKey][google.cloud.kms.v1.CryptoKey], as
+     * well as its [primary][google.cloud.kms.v1.CryptoKey.primary]
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
      * Sample code:
      * ```
@@ -1143,7 +1232,8 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to get.
+     * @param string $name         Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the
+     *                             [CryptoKey][google.cloud.kms.v1.CryptoKey] to get.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1170,7 +1260,8 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Returns metadata for a given [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     * Returns metadata for a given
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
      * Sample code:
      * ```
@@ -1183,7 +1274,8 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to get.
+     * @param string $name         Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to get.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1223,7 +1315,8 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [name][google.cloud.kms.v1.ImportJob.name] of the [ImportJob][google.cloud.kms.v1.ImportJob] to get.
+     * @param string $name         Required. The [name][google.cloud.kms.v1.ImportJob.name] of the
+     *                             [ImportJob][google.cloud.kms.v1.ImportJob] to get.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1263,7 +1356,8 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [name][google.cloud.kms.v1.KeyRing.name] of the [KeyRing][google.cloud.kms.v1.KeyRing] to get.
+     * @param string $name         Required. The [name][google.cloud.kms.v1.KeyRing.name] of the
+     *                             [KeyRing][google.cloud.kms.v1.KeyRing] to get.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1290,9 +1384,11 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Returns the public key for the given [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. The
+     * Returns the public key for the given
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. The
      * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
-     * [ASYMMETRIC_SIGN][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN] or
+     * [ASYMMETRIC_SIGN][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN]
+     * or
      * [ASYMMETRIC_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_DECRYPT].
      *
      * Sample code:
@@ -1306,8 +1402,8 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key to
-     *                             get.
+     * @param string $name         Required. The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key to get.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1334,12 +1430,14 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Import wrapped key material into a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     * Import wrapped key material into a
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
-     * All requests must specify a [CryptoKey][google.cloud.kms.v1.CryptoKey]. If a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] is
-     * additionally specified in the request, key material will be reimported into
-     * that version. Otherwise, a new version will be created, and will be
-     * assigned the next sequential id within the [CryptoKey][google.cloud.kms.v1.CryptoKey].
+     * All requests must specify a [CryptoKey][google.cloud.kms.v1.CryptoKey]. If
+     * a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] is additionally
+     * specified in the request, key material will be reimported into that
+     * version. Otherwise, a new version will be created, and will be assigned the
+     * next sequential id within the [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
      * Sample code:
      * ```
@@ -1354,35 +1452,43 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to be imported into.
+     * @param string $parent       Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the
+     *                             [CryptoKey][google.cloud.kms.v1.CryptoKey] to be imported into.
      *
      *                             The create permission is only required on this key when creating a new
      *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
-     * @param int    $algorithm    Required. The [algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] of
-     *                             the key being imported. This does not need to match the
-     *                             [version_template][google.cloud.kms.v1.CryptoKey.version_template] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] this
-     *                             version imports into.
+     * @param int    $algorithm    Required. The
+     *                             [algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
+     *                             of the key being imported. This does not need to match the
+     *                             [version_template][google.cloud.kms.v1.CryptoKey.version_template] of the
+     *                             [CryptoKey][google.cloud.kms.v1.CryptoKey] this version imports into.
      *                             For allowed values, use constants defined on {@see \Google\Cloud\Kms\V1\CryptoKeyVersion\CryptoKeyVersionAlgorithm}
-     * @param string $importJob    Required. The [name][google.cloud.kms.v1.ImportJob.name] of the [ImportJob][google.cloud.kms.v1.ImportJob] that was used to
-     *                             wrap this key material.
+     * @param string $importJob    Required. The [name][google.cloud.kms.v1.ImportJob.name] of the
+     *                             [ImportJob][google.cloud.kms.v1.ImportJob] that was used to wrap this key
+     *                             material.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $cryptoKeyVersion
-     *           Optional. The optional [name][google.cloud.kms.v1.CryptoKeyVersion.name] of an existing
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to target for an import operation.
-     *           If this field is not present, a new [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] containing the
+     *           Optional. The optional [name][google.cloud.kms.v1.CryptoKeyVersion.name] of
+     *           an existing [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to
+     *           target for an import operation. If this field is not present, a new
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] containing the
      *           supplied key material is created.
      *
      *           If this field is present, the supplied key material is imported into
-     *           the existing [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. To import into an existing
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] must be a child of
-     *           [ImportCryptoKeyVersionRequest.parent][google.cloud.kms.v1.ImportCryptoKeyVersionRequest.parent], have been previously created via
-     *           [ImportCryptoKeyVersion][], and be in
-     *           [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED] or
+     *           the existing [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. To
+     *           import into an existing
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], the
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] must be a child of
+     *           [ImportCryptoKeyVersionRequest.parent][google.cloud.kms.v1.ImportCryptoKeyVersionRequest.parent],
+     *           have been previously created via [ImportCryptoKeyVersion][], and be in
+     *           [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED]
+     *           or
      *           [IMPORT_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED]
      *           state. The key material and algorithm must match the previous
-     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] exactly if the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] has ever contained
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] exactly if the
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] has ever contained
      *           key material.
      *     @type string $rsaAesWrappedKey
      *           Wrapped key material produced with
@@ -1393,8 +1499,9 @@ class KeyManagementServiceGapicClient
      *           This field contains the concatenation of two wrapped keys:
      *           <ol>
      *           <li>An ephemeral AES-256 wrapping key wrapped with the
-     *           [public_key][google.cloud.kms.v1.ImportJob.public_key] using RSAES-OAEP with SHA-1,
-     *           MGF1 with SHA-1, and an empty label.
+     *           [public_key][google.cloud.kms.v1.ImportJob.public_key] using
+     *           RSAES-OAEP with SHA-1/SHA-256, MGF1 with SHA-1/SHA-256, and an
+     *           empty label.
      *           </li>
      *           <li>The key to be imported, wrapped with the ephemeral AES-256 key
      *           using AES-KWP (RFC 5649).
@@ -1466,7 +1573,8 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to list, in the format
+     * @param string $parent       Required. The resource name of the
+     *                             [CryptoKey][google.cloud.kms.v1.CryptoKey] to list, in the format
      *                             `projects/&#42;/locations/&#42;/keyRings/&#42;/cryptoKeys/*`.
      * @param array  $optionalArgs {
      *     Optional.
@@ -1561,8 +1669,8 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing] to list, in the format
-     *                             `projects/&#42;/locations/&#42;/keyRings/*`.
+     * @param string $parent       Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
+     *                             to list, in the format `projects/&#42;/locations/&#42;/keyRings/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1656,8 +1764,8 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing] to list, in the format
-     *                             `projects/&#42;/locations/&#42;/keyRings/*`.
+     * @param string $parent       Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
+     *                             to list, in the format `projects/&#42;/locations/&#42;/keyRings/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1745,7 +1853,8 @@ class KeyManagementServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The resource name of the location associated with the
-     *                             [KeyRings][google.cloud.kms.v1.KeyRing], in the format `projects/&#42;/locations/*`.
+     *                             [KeyRings][google.cloud.kms.v1.KeyRing], in the format
+     *                             `projects/&#42;/locations/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1807,9 +1916,9 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Signs data using a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
-     * MAC, producing a tag that can be verified by another source with the
-     * same key.
+     * Signs data using a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
+     * with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] MAC,
+     * producing a tag that can be verified by another source with the same key.
      *
      * Sample code:
      * ```
@@ -1823,26 +1932,32 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for signing.
-     * @param string $data         Required. The data to sign. The MAC tag is computed over this data field based on
-     *                             the specific algorithm.
+     * @param string $name         Required. The resource name of the
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     *                             signing.
+     * @param string $data         Required. The data to sign. The MAC tag is computed over this data field
+     *                             based on the specific algorithm.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type Int64Value $dataCrc32c
-     *           Optional. An optional CRC32C checksum of the [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]. If
-     *           specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
-     *           received [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] using this checksum.
-     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
-     *           fails. If you receive a checksum error, your client should verify that
-     *           CRC32C([MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]) is equal to
-     *           [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c], and if so, perform a limited
-     *           number of retries. A persistent mismatch may indicate an issue in your
-     *           computation of the CRC32C checksum.
-     *           Note: This field is defined as int64 for reasons of compatibility across
-     *           different languages. However, it is a non-negative integer, which will
-     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     *           that support this type.
+     *           Optional. An optional CRC32C checksum of the
+     *           [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]. If
+     *           specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     *           will verify the integrity of the received
+     *           [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] using this
+     *           checksum. [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     *           will report an error if the checksum verification fails. If you receive a
+     *           checksum error, your client should verify that
+     *           CRC32C([MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]) is
+     *           equal to
+     *           [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c],
+     *           and if so, perform a limited number of retries. A persistent mismatch may
+     *           indicate an issue in your computation of the CRC32C checksum. Note: This
+     *           field is defined as int64 for reasons of compatibility across different
+     *           languages. However, it is a non-negative integer, which will never exceed
+     *           2^32-1, and can be safely downconverted to uint32 in languages that support
+     *           this type.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1871,9 +1986,10 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Verifies MAC tag using a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
-     * MAC, and returns a response that indicates whether or not the verification
-     * was successful.
+     * Verifies MAC tag using a
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
+     * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] MAC, and returns
+     * a response that indicates whether or not the verification was successful.
      *
      * Sample code:
      * ```
@@ -1888,41 +2004,52 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for verification.
-     * @param string $data         Required. The data used previously as a [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] to generate the MAC
-     *                             tag.
+     * @param string $name         Required. The resource name of the
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     *                             verification.
+     * @param string $data         Required. The data used previously as a
+     *                             [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] to generate
+     *                             the MAC tag.
      * @param string $mac          Required. The signature to verify.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type Int64Value $dataCrc32c
-     *           Optional. An optional CRC32C checksum of the [MacVerifyRequest.data][google.cloud.kms.v1.MacVerifyRequest.data]. If
-     *           specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
-     *           received [MacVerifyRequest.data][google.cloud.kms.v1.MacVerifyRequest.data] using this checksum.
-     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
-     *           fails. If you receive a checksum error, your client should verify that
-     *           CRC32C([MacVerifyRequest.data][google.cloud.kms.v1.MacVerifyRequest.data]) is equal to
-     *           [MacVerifyRequest.data_crc32c][google.cloud.kms.v1.MacVerifyRequest.data_crc32c], and if so, perform a limited
-     *           number of retries. A persistent mismatch may indicate an issue in your
-     *           computation of the CRC32C checksum.
-     *           Note: This field is defined as int64 for reasons of compatibility across
-     *           different languages. However, it is a non-negative integer, which will
-     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     *           that support this type.
+     *           Optional. An optional CRC32C checksum of the
+     *           [MacVerifyRequest.data][google.cloud.kms.v1.MacVerifyRequest.data]. If
+     *           specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     *           will verify the integrity of the received
+     *           [MacVerifyRequest.data][google.cloud.kms.v1.MacVerifyRequest.data] using
+     *           this checksum.
+     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will
+     *           report an error if the checksum verification fails. If you receive a
+     *           checksum error, your client should verify that
+     *           CRC32C([MacVerifyRequest.data][google.cloud.kms.v1.MacVerifyRequest.data])
+     *           is equal to
+     *           [MacVerifyRequest.data_crc32c][google.cloud.kms.v1.MacVerifyRequest.data_crc32c],
+     *           and if so, perform a limited number of retries. A persistent mismatch may
+     *           indicate an issue in your computation of the CRC32C checksum. Note: This
+     *           field is defined as int64 for reasons of compatibility across different
+     *           languages. However, it is a non-negative integer, which will never exceed
+     *           2^32-1, and can be safely downconverted to uint32 in languages that support
+     *           this type.
      *     @type Int64Value $macCrc32c
-     *           Optional. An optional CRC32C checksum of the [MacVerifyRequest.mac][google.cloud.kms.v1.MacVerifyRequest.mac]. If
-     *           specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
-     *           received [MacVerifyRequest.mac][google.cloud.kms.v1.MacVerifyRequest.mac] using this checksum.
-     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
-     *           fails. If you receive a checksum error, your client should verify that
+     *           Optional. An optional CRC32C checksum of the
+     *           [MacVerifyRequest.mac][google.cloud.kms.v1.MacVerifyRequest.mac]. If
+     *           specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     *           will verify the integrity of the received
+     *           [MacVerifyRequest.mac][google.cloud.kms.v1.MacVerifyRequest.mac] using this
+     *           checksum. [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     *           will report an error if the checksum verification fails. If you receive a
+     *           checksum error, your client should verify that
      *           CRC32C([MacVerifyRequest.tag][]) is equal to
-     *           [MacVerifyRequest.mac_crc32c][google.cloud.kms.v1.MacVerifyRequest.mac_crc32c], and if so, perform a limited
-     *           number of retries. A persistent mismatch may indicate an issue in your
-     *           computation of the CRC32C checksum.
-     *           Note: This field is defined as int64 for reasons of compatibility across
-     *           different languages. However, it is a non-negative integer, which will
-     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     *           that support this type.
+     *           [MacVerifyRequest.mac_crc32c][google.cloud.kms.v1.MacVerifyRequest.mac_crc32c],
+     *           and if so, perform a limited number of retries. A persistent mismatch may
+     *           indicate an issue in your computation of the CRC32C checksum. Note: This
+     *           field is defined as int64 for reasons of compatibility across different
+     *           languages. However, it is a non-negative integer, which will never exceed
+     *           2^32-1, and can be safely downconverted to uint32 in languages that support
+     *           this type.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1960,9 +2087,11 @@ class KeyManagementServiceGapicClient
      * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
      * state.
      *
-     * Upon restoration of the CryptoKeyVersion, [state][google.cloud.kms.v1.CryptoKeyVersion.state]
-     * will be set to [DISABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED],
-     * and [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] will be cleared.
+     * Upon restoration of the CryptoKeyVersion,
+     * [state][google.cloud.kms.v1.CryptoKeyVersion.state] will be set to
+     * [DISABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED],
+     * and [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] will
+     * be cleared.
      *
      * Sample code:
      * ```
@@ -1975,7 +2104,8 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to restore.
+     * @param string $name         Required. The resource name of the
+     *                             [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to restore.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2045,7 +2175,9 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Update the version of a [CryptoKey][google.cloud.kms.v1.CryptoKey] that will be used in [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
+     * Update the version of a [CryptoKey][google.cloud.kms.v1.CryptoKey] that
+     * will be used in
+     * [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
      *
      * Returns an error if called on a key whose purpose is not
      * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
@@ -2062,8 +2194,10 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param string $name               Required. The resource name of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
-     * @param string $cryptoKeyVersionId Required. The id of the child [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
+     * @param string $name               Required. The resource name of the
+     *                                   [CryptoKey][google.cloud.kms.v1.CryptoKey] to update.
+     * @param string $cryptoKeyVersionId Required. The id of the child
+     *                                   [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use as primary.
      * @param array  $optionalArgs       {
      *     Optional.
      *
@@ -2091,13 +2225,18 @@ class KeyManagementServiceGapicClient
     }
 
     /**
-     * Update a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s metadata.
+     * Update a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s
+     * metadata.
      *
      * [state][google.cloud.kms.v1.CryptoKeyVersion.state] may be changed between
-     * [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED] and
-     * [DISABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED] using this
-     * method. See [DestroyCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion] and [RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion] to
-     * move between other states.
+     * [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
+     * and
+     * [DISABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED]
+     * using this method. See
+     * [DestroyCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion]
+     * and
+     * [RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion]
+     * to move between other states.
      *
      * Sample code:
      * ```
@@ -2111,7 +2250,8 @@ class KeyManagementServiceGapicClient
      * }
      * ```
      *
-     * @param CryptoKeyVersion $cryptoKeyVersion Required. [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with updated values.
+     * @param CryptoKeyVersion $cryptoKeyVersion Required. [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
+     *                                           updated values.
      * @param FieldMask        $updateMask       Required. List of fields to be updated in this request.
      * @param array            $optionalArgs     {
      *     Optional.
@@ -2161,7 +2301,7 @@ class KeyManagementServiceGapicClient
      *
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
-     *           `GetIamPolicy`. This field is only used by Cloud IAM.
+     *           `GetIamPolicy`.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -2216,6 +2356,12 @@ class KeyManagementServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -2234,6 +2380,10 @@ class KeyManagementServiceGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
         $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();

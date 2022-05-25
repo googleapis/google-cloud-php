@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike&#64;example.com", "group:admins&#64;example.com", "domain:google.com", "serviceAccount:my-project-id&#64;appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve&#64;example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", } } ], "etag": "BwWWja0YfJA=", "version": 3 } **YAML example:** bindings: - members: - user:mike&#64;example.com - group:admins&#64;example.com - domain:google.com - serviceAccount:my-project-id&#64;appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve&#64;example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+ * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike&#64;example.com", "group:admins&#64;example.com", "domain:google.com", "serviceAccount:my-project-id&#64;appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve&#64;example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", } } ], "etag": "BwWWja0YfJA=", "version": 3 } **YAML example:** bindings: - members: - user:mike&#64;example.com - group:admins&#64;example.com - domain:google.com - serviceAccount:my-project-id&#64;appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve&#64;example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Policy</code>
  */
@@ -22,7 +22,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      */
     private $audit_configs;
     /**
-     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
+     * Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice&#64;example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 403251854;</code>
      */
@@ -34,8 +34,6 @@ class Policy extends \Google\Protobuf\Internal\Message
      */
     private $etag = null;
     /**
-     * This is deprecated and has no effect. Do not use.
-     *
      * Generated from protobuf field <code>optional bool iam_owned = 450566203;</code>
      */
     private $iam_owned = null;
@@ -61,11 +59,10 @@ class Policy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\AuditConfig[]|\Google\Protobuf\Internal\RepeatedField $audit_configs
      *           Specifies cloud audit logging configuration for this policy.
      *     @type \Google\Cloud\Compute\V1\Binding[]|\Google\Protobuf\Internal\RepeatedField $bindings
-     *           Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
+     *           Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice&#64;example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`.
      *     @type string $etag
      *           `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      *     @type bool $iam_owned
-     *           This is deprecated and has no effect. Do not use.
      *     @type \Google\Cloud\Compute\V1\Rule[]|\Google\Protobuf\Internal\RepeatedField $rules
      *           This is deprecated and has no effect. Do not use.
      *     @type int $version
@@ -104,7 +101,7 @@ class Policy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
+     * Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice&#64;example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 403251854;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -115,7 +112,7 @@ class Policy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
+     * Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice&#64;example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 403251854;</code>
      * @param \Google\Cloud\Compute\V1\Binding[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -166,8 +163,6 @@ class Policy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is deprecated and has no effect. Do not use.
-     *
      * Generated from protobuf field <code>optional bool iam_owned = 450566203;</code>
      * @return bool
      */
@@ -187,8 +182,6 @@ class Policy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is deprecated and has no effect. Do not use.
-     *
      * Generated from protobuf field <code>optional bool iam_owned = 450566203;</code>
      * @param bool $var
      * @return $this

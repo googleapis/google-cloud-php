@@ -30,9 +30,7 @@ class FeaturestoreMonitoringConfig extends \Google\Protobuf\Internal\Message
     /**
      * Threshold for numerical features of anomaly detection.
      * This is shared by all objectives of Featurestore Monitoring for numerical
-     * features (i.e. Features with type
-     * ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) DOUBLE
-     * or INT64).
+     * features (i.e. Features with type ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) DOUBLE or INT64).
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ThresholdConfig numerical_threshold_config = 3;</code>
      */
@@ -40,9 +38,7 @@ class FeaturestoreMonitoringConfig extends \Google\Protobuf\Internal\Message
     /**
      * Threshold for categorical features of anomaly detection.
      * This is shared by all types of Featurestore Monitoring for categorical
-     * features (i.e. Features with type
-     * ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL or
-     * STRING).
+     * features (i.e. Features with type ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL or STRING).
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ThresholdConfig categorical_threshold_config = 4;</code>
      */
@@ -61,15 +57,11 @@ class FeaturestoreMonitoringConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\FeaturestoreMonitoringConfig\ThresholdConfig $numerical_threshold_config
      *           Threshold for numerical features of anomaly detection.
      *           This is shared by all objectives of Featurestore Monitoring for numerical
-     *           features (i.e. Features with type
-     *           ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) DOUBLE
-     *           or INT64).
+     *           features (i.e. Features with type ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) DOUBLE or INT64).
      *     @type \Google\Cloud\AIPlatform\V1\FeaturestoreMonitoringConfig\ThresholdConfig $categorical_threshold_config
      *           Threshold for categorical features of anomaly detection.
      *           This is shared by all types of Featurestore Monitoring for categorical
-     *           features (i.e. Features with type
-     *           ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL or
-     *           STRING).
+     *           features (i.e. Features with type ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL or STRING).
      * }
      */
     public function __construct($data = NULL) {
@@ -152,9 +144,7 @@ class FeaturestoreMonitoringConfig extends \Google\Protobuf\Internal\Message
     /**
      * Threshold for numerical features of anomaly detection.
      * This is shared by all objectives of Featurestore Monitoring for numerical
-     * features (i.e. Features with type
-     * ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) DOUBLE
-     * or INT64).
+     * features (i.e. Features with type ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) DOUBLE or INT64).
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ThresholdConfig numerical_threshold_config = 3;</code>
      * @return \Google\Cloud\AIPlatform\V1\FeaturestoreMonitoringConfig\ThresholdConfig|null
@@ -177,9 +167,7 @@ class FeaturestoreMonitoringConfig extends \Google\Protobuf\Internal\Message
     /**
      * Threshold for numerical features of anomaly detection.
      * This is shared by all objectives of Featurestore Monitoring for numerical
-     * features (i.e. Features with type
-     * ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) DOUBLE
-     * or INT64).
+     * features (i.e. Features with type ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) DOUBLE or INT64).
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ThresholdConfig numerical_threshold_config = 3;</code>
      * @param \Google\Cloud\AIPlatform\V1\FeaturestoreMonitoringConfig\ThresholdConfig $var
@@ -196,9 +184,7 @@ class FeaturestoreMonitoringConfig extends \Google\Protobuf\Internal\Message
     /**
      * Threshold for categorical features of anomaly detection.
      * This is shared by all types of Featurestore Monitoring for categorical
-     * features (i.e. Features with type
-     * ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL or
-     * STRING).
+     * features (i.e. Features with type ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL or STRING).
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ThresholdConfig categorical_threshold_config = 4;</code>
      * @return \Google\Cloud\AIPlatform\V1\FeaturestoreMonitoringConfig\ThresholdConfig|null
@@ -221,9 +207,7 @@ class FeaturestoreMonitoringConfig extends \Google\Protobuf\Internal\Message
     /**
      * Threshold for categorical features of anomaly detection.
      * This is shared by all types of Featurestore Monitoring for categorical
-     * features (i.e. Features with type
-     * ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL or
-     * STRING).
+     * features (i.e. Features with type ([Feature.ValueType][google.cloud.aiplatform.v1.Feature.ValueType]) BOOL or STRING).
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.FeaturestoreMonitoringConfig.ThresholdConfig categorical_threshold_config = 4;</code>
      * @param \Google\Cloud\AIPlatform\V1\FeaturestoreMonitoringConfig\ThresholdConfig $var

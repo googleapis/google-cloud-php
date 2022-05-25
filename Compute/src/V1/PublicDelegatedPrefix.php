@@ -88,7 +88,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
-     * [Output Only] The status of the public delegated prefix.
+     * [Output Only] The status of the public delegated prefix, which can be one of following values: - `INITIALIZING` The public delegated prefix is being initialized and addresses cannot be created yet. - `READY_TO_ANNOUNCE` The public delegated prefix is a live migration prefix and is active. - `ANNOUNCED` The public delegated prefix is active. - `DELETING` The public delegated prefix is being deprovsioned.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -126,7 +126,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $status
-     *           [Output Only] The status of the public delegated prefix.
+     *           [Output Only] The status of the public delegated prefix, which can be one of following values: - `INITIALIZING` The public delegated prefix is being initialized and addresses cannot be created yet. - `READY_TO_ANNOUNCE` The public delegated prefix is a live migration prefix and is active. - `ANNOUNCED` The public delegated prefix is active. - `DELETING` The public delegated prefix is being deprovsioned.
      *           Check the Status enum for the list of possible values.
      * }
      */
@@ -558,7 +558,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the public delegated prefix.
+     * [Output Only] The status of the public delegated prefix, which can be one of following values: - `INITIALIZING` The public delegated prefix is being initialized and addresses cannot be created yet. - `READY_TO_ANNOUNCE` The public delegated prefix is a live migration prefix and is active. - `ANNOUNCED` The public delegated prefix is active. - `DELETING` The public delegated prefix is being deprovsioned.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -580,7 +580,7 @@ class PublicDelegatedPrefix extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the public delegated prefix.
+     * [Output Only] The status of the public delegated prefix, which can be one of following values: - `INITIALIZING` The public delegated prefix is being initialized and addresses cannot be created yet. - `READY_TO_ANNOUNCE` The public delegated prefix is a live migration prefix and is active. - `ANNOUNCED` The public delegated prefix is active. - `DELETING` The public delegated prefix is being deprovsioned.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>

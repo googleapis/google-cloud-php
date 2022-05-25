@@ -43,6 +43,12 @@ class Purpose
      * Generated from protobuf enum <code>PRIVATE_SERVICE_CONNECT = 48134724;</code>
      */
     const PRIVATE_SERVICE_CONNECT = 48134724;
+    /**
+     * Subnetwork used for Regional Internal/External HTTP(S) Load Balancing.
+     *
+     * Generated from protobuf enum <code>REGIONAL_MANAGED_PROXY = 153049966;</code>
+     */
+    const REGIONAL_MANAGED_PROXY = 153049966;
 
     private static $valueToName = [
         self::UNDEFINED_PURPOSE => 'UNDEFINED_PURPOSE',
@@ -50,6 +56,7 @@ class Purpose
         self::PBPRIVATE => 'PBPRIVATE',
         self::PRIVATE_RFC_1918 => 'PRIVATE_RFC_1918',
         self::PRIVATE_SERVICE_CONNECT => 'PRIVATE_SERVICE_CONNECT',
+        self::REGIONAL_MANAGED_PROXY => 'REGIONAL_MANAGED_PROXY',
     ];
 
     public static function name($value)

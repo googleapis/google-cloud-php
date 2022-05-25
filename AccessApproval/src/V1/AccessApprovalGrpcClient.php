@@ -139,6 +139,28 @@ class AccessApprovalGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Invalidates an existing ApprovalRequest. Returns the updated
+     * ApprovalRequest.
+     *
+     * NOTE: This does not deny access to the resource if another request has been
+     * made and approved. It only invalidates a single approval.
+     *
+     * Returns FAILED_PRECONDITION if the request exists but is not in an approved
+     * state.
+     * @param \Google\Cloud\AccessApproval\V1\InvalidateApprovalRequestMessage $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function InvalidateApprovalRequest(\Google\Cloud\AccessApproval\V1\InvalidateApprovalRequestMessage $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.accessapproval.v1.AccessApproval/InvalidateApprovalRequest',
+        $argument,
+        ['\Google\Cloud\AccessApproval\V1\ApprovalRequest', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Gets the settings associated with a project, folder, or organization.
      * @param \Google\Cloud\AccessApproval\V1\GetAccessApprovalSettingsMessage $argument input argument
      * @param array $metadata metadata
@@ -186,6 +208,22 @@ class AccessApprovalGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.accessapproval.v1.AccessApproval/DeleteAccessApprovalSettings',
         $argument,
         ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Retrieves the service account that is used by Access Approval to access KMS
+     * keys for signing approved approval requests.
+     * @param \Google\Cloud\AccessApproval\V1\GetAccessApprovalServiceAccountMessage $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetAccessApprovalServiceAccount(\Google\Cloud\AccessApproval\V1\GetAccessApprovalServiceAccountMessage $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.accessapproval.v1.AccessApproval/GetAccessApprovalServiceAccount',
+        $argument,
+        ['\Google\Cloud\AccessApproval\V1\AccessApprovalServiceAccount', 'decode'],
         $metadata, $options);
     }
 

@@ -42,7 +42,7 @@ fi
 
 echo "Running Snippet Test Suite"
 
-vendor/bin/phpunit -c phpunit${PHPUNIT_SUFFIX}.xml.dist --verbose --log-junit \
+vendor/bin/phpunit -c phpunit${PHPUNIT_SUFFIX}-snippets.xml.dist --verbose --log-junit \
                    ${SNIPPETS_LOG_FILENAME}
 
 # Run docs gen on PHP 7.4 only

@@ -57,6 +57,12 @@ class Protocol
      * Generated from protobuf enum <code>UDP = 83873;</code>
      */
     const UDP = 83873;
+    /**
+     * If a Backend Service has UNSPECIFIED as its protocol, it can be used with any L3/L4 Forwarding Rules.
+     *
+     * Generated from protobuf enum <code>UNSPECIFIED = 526786327;</code>
+     */
+    const UNSPECIFIED = 526786327;
 
     private static $valueToName = [
         self::UNDEFINED_PROTOCOL => 'UNDEFINED_PROTOCOL',
@@ -67,6 +73,7 @@ class Protocol
         self::SSL => 'SSL',
         self::TCP => 'TCP',
         self::UDP => 'UDP',
+        self::UNSPECIFIED => 'UNSPECIFIED',
     ];
 
     public static function name($value)

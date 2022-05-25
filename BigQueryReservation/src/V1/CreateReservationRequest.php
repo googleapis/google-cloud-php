@@ -23,8 +23,9 @@ class CreateReservationRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * The reservation ID. This field must only contain lower case alphanumeric
-     * characters or dash. Max length is 64 characters.
+     * The reservation ID. It must only contain lower case alphanumeric
+     * characters or dashes. It must start with a letter and must not end
+     * with a dash. Its maximum length is 64 characters.
      *
      * Generated from protobuf field <code>string reservation_id = 2;</code>
      */
@@ -46,8 +47,9 @@ class CreateReservationRequest extends \Google\Protobuf\Internal\Message
      *           Required. Project, location. E.g.,
      *           `projects/myproject/locations/US`
      *     @type string $reservation_id
-     *           The reservation ID. This field must only contain lower case alphanumeric
-     *           characters or dash. Max length is 64 characters.
+     *           The reservation ID. It must only contain lower case alphanumeric
+     *           characters or dashes. It must start with a letter and must not end
+     *           with a dash. Its maximum length is 64 characters.
      *     @type \Google\Cloud\BigQuery\Reservation\V1\Reservation $reservation
      *           Definition of the new reservation to create.
      * }
@@ -86,8 +88,9 @@ class CreateReservationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The reservation ID. This field must only contain lower case alphanumeric
-     * characters or dash. Max length is 64 characters.
+     * The reservation ID. It must only contain lower case alphanumeric
+     * characters or dashes. It must start with a letter and must not end
+     * with a dash. Its maximum length is 64 characters.
      *
      * Generated from protobuf field <code>string reservation_id = 2;</code>
      * @return string
@@ -98,8 +101,9 @@ class CreateReservationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The reservation ID. This field must only contain lower case alphanumeric
-     * characters or dash. Max length is 64 characters.
+     * The reservation ID. It must only contain lower case alphanumeric
+     * characters or dashes. It must start with a letter and must not end
+     * with a dash. Its maximum length is 64 characters.
      *
      * Generated from protobuf field <code>string reservation_id = 2;</code>
      * @param string $var

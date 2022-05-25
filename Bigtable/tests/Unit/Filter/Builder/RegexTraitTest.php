@@ -19,7 +19,8 @@ namespace Google\Cloud\Bigtable\Tests\Unit\Filter\Builder;
 
 use Google\Cloud\Bigtable\Filter\Builder\RegexTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group bigtable
@@ -27,9 +28,11 @@ use PHPUnit\Framework\TestCase;
  */
 class RegexTraitTest extends TestCase
 {
+    use ExpectException;
+
     private $implementation;
 
-    public function setUp()
+    public function set_up()
     {
         $this->implementation = TestHelpers::impl(RegexTrait::class);
     }
@@ -42,12 +45,11 @@ class RegexTraitTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Expected byte array or string, instead got 'object'.
-     */
     public function testEscapeLiteralValueShouldThrowIfNotByteArrayOrString()
     {
+        $this->expectException('\Exception');
+        $this->expectExceptionMessage('Expected byte array or string, instead got \'object\'.');
+
         $this->implementation->call('escapeLiteralValue', [new \stdClass]);
     }
 

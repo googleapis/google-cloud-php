@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response message for [KeyManagementService.ListCryptoKeyVersions][google.cloud.kms.v1.KeyManagementService.ListCryptoKeyVersions].
+ * Response message for
+ * [KeyManagementService.ListCryptoKeyVersions][google.cloud.kms.v1.KeyManagementService.ListCryptoKeyVersions].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.ListCryptoKeyVersionsResponse</code>
  */
@@ -23,14 +24,15 @@ class ListCryptoKeyVersionsResponse extends \Google\Protobuf\Internal\Message
     private $crypto_key_versions;
     /**
      * A token to retrieve next page of results. Pass this value in
-     * [ListCryptoKeyVersionsRequest.page_token][google.cloud.kms.v1.ListCryptoKeyVersionsRequest.page_token] to retrieve the next page of
-     * results.
+     * [ListCryptoKeyVersionsRequest.page_token][google.cloud.kms.v1.ListCryptoKeyVersionsRequest.page_token]
+     * to retrieve the next page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
     /**
-     * The total number of [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] that matched the
+     * The total number of
+     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] that matched the
      * query.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
@@ -47,10 +49,11 @@ class ListCryptoKeyVersionsResponse extends \Google\Protobuf\Internal\Message
      *           The list of [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
      *     @type string $next_page_token
      *           A token to retrieve next page of results. Pass this value in
-     *           [ListCryptoKeyVersionsRequest.page_token][google.cloud.kms.v1.ListCryptoKeyVersionsRequest.page_token] to retrieve the next page of
-     *           results.
+     *           [ListCryptoKeyVersionsRequest.page_token][google.cloud.kms.v1.ListCryptoKeyVersionsRequest.page_token]
+     *           to retrieve the next page of results.
      *     @type int $total_size
-     *           The total number of [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] that matched the
+     *           The total number of
+     *           [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] that matched the
      *           query.
      * }
      */
@@ -87,8 +90,8 @@ class ListCryptoKeyVersionsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve next page of results. Pass this value in
-     * [ListCryptoKeyVersionsRequest.page_token][google.cloud.kms.v1.ListCryptoKeyVersionsRequest.page_token] to retrieve the next page of
-     * results.
+     * [ListCryptoKeyVersionsRequest.page_token][google.cloud.kms.v1.ListCryptoKeyVersionsRequest.page_token]
+     * to retrieve the next page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -100,8 +103,8 @@ class ListCryptoKeyVersionsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve next page of results. Pass this value in
-     * [ListCryptoKeyVersionsRequest.page_token][google.cloud.kms.v1.ListCryptoKeyVersionsRequest.page_token] to retrieve the next page of
-     * results.
+     * [ListCryptoKeyVersionsRequest.page_token][google.cloud.kms.v1.ListCryptoKeyVersionsRequest.page_token]
+     * to retrieve the next page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
@@ -116,7 +119,8 @@ class ListCryptoKeyVersionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The total number of [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] that matched the
+     * The total number of
+     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] that matched the
      * query.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
@@ -128,7 +132,8 @@ class ListCryptoKeyVersionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The total number of [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] that matched the
+     * The total number of
+     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] that matched the
      * query.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>

@@ -24,8 +24,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      */
     private $id = '';
     /**
-     * Required. The name of the Model that this is the deployment of. Note that the Model
-     * may be in a different location than the DeployedModel's Endpoint.
+     * Required. The resource name of the Model that this is the deployment of. Note that
+     * the Model may be in a different location than the DeployedModel's Endpoint.
      *
      * Generated from protobuf field <code>string model = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -115,8 +115,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *           will generate a value for this ID.
      *           This value should be 1-10 characters, and valid characters are /[0-9]/.
      *     @type string $model
-     *           Required. The name of the Model that this is the deployment of. Note that the Model
-     *           may be in a different location than the DeployedModel's Endpoint.
+     *           Required. The resource name of the Model that this is the deployment of. Note that
+     *           the Model may be in a different location than the DeployedModel's Endpoint.
      *     @type string $display_name
      *           The display name of the DeployedModel. If not provided upon creation,
      *           the Model's display_name is used.
@@ -259,8 +259,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Model that this is the deployment of. Note that the Model
-     * may be in a different location than the DeployedModel's Endpoint.
+     * Required. The resource name of the Model that this is the deployment of. Note that
+     * the Model may be in a different location than the DeployedModel's Endpoint.
      *
      * Generated from protobuf field <code>string model = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -271,8 +271,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Model that this is the deployment of. Note that the Model
-     * may be in a different location than the DeployedModel's Endpoint.
+     * Required. The resource name of the Model that this is the deployment of. Note that
+     * the Model may be in a different location than the DeployedModel's Endpoint.
      *
      * Generated from protobuf field <code>string model = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

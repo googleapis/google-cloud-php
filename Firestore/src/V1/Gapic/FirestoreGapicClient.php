@@ -1056,7 +1056,9 @@ class FirestoreGapicClient
      *     @type StructuredQuery $structuredQuery
      *           A structured query.
      *     @type string $transaction
-     *           Reads documents in a transaction.
+     *           Run the query within an already active transaction.
+     *
+     *           The value here is the opaque transaction ID to execute the query in.
      *     @type TransactionOptions $newTransaction
      *           Starts a new transaction and reads the documents.
      *           Defaults to a read-only transaction.

@@ -25,8 +25,7 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      */
     private $transaction = '';
     /**
-     * A query result.
-     * Not set when reporting partial progress.
+     * A query result, not set when reporting partial progress.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Document document = 1;</code>
      */
@@ -49,6 +48,7 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 skipped_results = 4;</code>
      */
     private $skipped_results = 0;
+    protected $continuation_selector;
 
     /**
      * Constructor.
@@ -62,8 +62,7 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      *           [RunQueryRequest.new_transaction][google.firestore.v1.RunQueryRequest.new_transaction] was set in the request.
      *           If set, no other fields will be set in this response.
      *     @type \Google\Cloud\Firestore\V1\Document $document
-     *           A query result.
-     *           Not set when reporting partial progress.
+     *           A query result, not set when reporting partial progress.
      *     @type \Google\Protobuf\Timestamp $read_time
      *           The time at which the document was read. This may be monotonically
      *           increasing; in this case, the previous documents in the result stream are
@@ -74,6 +73,9 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      *     @type int $skipped_results
      *           The number of results that have been skipped due to an offset between
      *           the last response and the current response.
+     *     @type bool $done
+     *           If present, Firestore has completely finished the request and no more
+     *           documents will be returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -114,8 +116,7 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A query result.
-     * Not set when reporting partial progress.
+     * A query result, not set when reporting partial progress.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Document document = 1;</code>
      * @return \Google\Cloud\Firestore\V1\Document|null
@@ -136,8 +137,7 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A query result.
-     * Not set when reporting partial progress.
+     * A query result, not set when reporting partial progress.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Document document = 1;</code>
      * @param \Google\Cloud\Firestore\V1\Document $var
@@ -223,6 +223,47 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
         $this->skipped_results = $var;
 
         return $this;
+    }
+
+    /**
+     * If present, Firestore has completely finished the request and no more
+     * documents will be returned.
+     *
+     * Generated from protobuf field <code>bool done = 6;</code>
+     * @return bool
+     */
+    public function getDone()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasDone()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * If present, Firestore has completely finished the request and no more
+     * documents will be returned.
+     *
+     * Generated from protobuf field <code>bool done = 6;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDone($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContinuationSelector()
+    {
+        return $this->whichOneof("continuation_selector");
     }
 
 }

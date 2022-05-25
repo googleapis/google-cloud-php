@@ -34,8 +34,9 @@ use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -43,6 +44,7 @@ use Prophecy\Argument;
  */
 class TransactionTypeTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
     use ResultTestTrait;
     use StubCreationTrait;
@@ -58,7 +60,7 @@ class TransactionTypeTest extends TestCase
 
     private $timestamp;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -218,11 +220,10 @@ class TransactionTypeTest extends TestCase
         $result = $snapshot->execute('SELECT * FROM Table')->rows()->current();
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testDatabasePreAllocatedSnapshotMinReadTimestamp()
     {
+        $this->expectException('BadMethodCallException');
+
         $time = $this->parseTimeString($this->timestamp);
         $timestamp = new Timestamp($time[0], $time[1]);
 
@@ -239,11 +240,10 @@ class TransactionTypeTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testDatabasePreAllocatedSnapshotMaxStaleness()
     {
+        $this->expectException('BadMethodCallException');
+
         $seconds = 1;
         $nanos = 2;
 
@@ -761,11 +761,10 @@ class TransactionTypeTest extends TestCase
         $t->rollback();
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testTransactionSingleUseRollback()
     {
+        $this->expectException('BadMethodCallException');
+
         $this->connection->beginTransaction(Argument::any())->shouldNotbeCalled();
         $this->connection->rollback(Argument::any())->shouldNotbeCalled();
 

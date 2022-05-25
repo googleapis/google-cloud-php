@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Storage\Bucket;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
@@ -26,6 +27,8 @@ use Google\Cloud\Storage\Bucket;
  */
 class ManageBucketsTest extends StorageTestCase
 {
+    use ExpectException;
+
     public function testListsBuckets()
     {
         $foundBuckets = [];
@@ -93,7 +96,7 @@ class ManageBucketsTest extends StorageTestCase
     public function testCreateBucketWithLifecycleDeleteRule(array $rule, $isError = false)
     {
         if ($isError) {
-            $this->setExpectedException(BadRequestException::class);
+            $this->expectException(BadRequestException::class);
         }
 
         $lifecycle = Bucket::lifecycle();
@@ -113,7 +116,7 @@ class ManageBucketsTest extends StorageTestCase
     public function testUpdateBucketWithLifecycleDeleteRule(array $rule, $isError = false)
     {
         if ($isError) {
-            $this->setExpectedException(BadRequestException::class);
+            $this->expectException(BadRequestException::class);
         }
 
         $lifecycle = Bucket::lifecycle();

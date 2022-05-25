@@ -20,9 +20,10 @@ class TelecommutePreference
      */
     const TELECOMMUTE_PREFERENCE_UNSPECIFIED = 0;
     /**
-     * Exclude telecommute jobs.
+     * Deprecated: Ignore telecommute status of jobs. Use
+     * TELECOMMUTE_JOBS_EXCLUDED if want to exclude telecommute jobs.
      *
-     * Generated from protobuf enum <code>TELECOMMUTE_EXCLUDED = 1;</code>
+     * Generated from protobuf enum <code>TELECOMMUTE_EXCLUDED = 1 [deprecated = true];</code>
      */
     const TELECOMMUTE_EXCLUDED = 1;
     /**
@@ -31,11 +32,18 @@ class TelecommutePreference
      * Generated from protobuf enum <code>TELECOMMUTE_ALLOWED = 2;</code>
      */
     const TELECOMMUTE_ALLOWED = 2;
+    /**
+     * Exclude telecommute jobs.
+     *
+     * Generated from protobuf enum <code>TELECOMMUTE_JOBS_EXCLUDED = 3;</code>
+     */
+    const TELECOMMUTE_JOBS_EXCLUDED = 3;
 
     private static $valueToName = [
         self::TELECOMMUTE_PREFERENCE_UNSPECIFIED => 'TELECOMMUTE_PREFERENCE_UNSPECIFIED',
         self::TELECOMMUTE_EXCLUDED => 'TELECOMMUTE_EXCLUDED',
         self::TELECOMMUTE_ALLOWED => 'TELECOMMUTE_ALLOWED',
+        self::TELECOMMUTE_JOBS_EXCLUDED => 'TELECOMMUTE_JOBS_EXCLUDED',
     ];
 
     public static function name($value)

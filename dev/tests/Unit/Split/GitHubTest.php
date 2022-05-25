@@ -23,7 +23,7 @@ use Google\Cloud\Dev\Split\RunShell;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -42,7 +42,7 @@ class GitHubTest extends TestCase
     private $github;
     private $exception;
 
-    public function setUp()
+    public function set_up()
     {
         if (PHP_VERSION_ID < 50600) {
             $this->markTestSkipped("This test only runs on PHP 5.6+");

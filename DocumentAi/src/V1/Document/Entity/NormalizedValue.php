@@ -16,14 +16,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class NormalizedValue extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Normalized entity value stored as a string. This field is populated for
-     * supported document type (e.g. Invoice). For some entity types, one of
-     * respective 'structured_value' fields may also be populated.
+     * Optional. An optional field to store a normalized string.
+     * For some entity types, one of respective `structured_value` fields may
+     * also be populated. Also not all the types of `structured_value` will be
+     * normalized. For example, some processors may not generate float
+     * or int normalized text by default.
+     * Below are sample formats mapped to structured values.
      * - Money/Currency type (`money_value`) is in the ISO 4217 text format.
      * - Date type (`date_value`) is in the ISO 8601 text format.
      * - Datetime type (`datetime_value`) is in the ISO 8601 text format.
      *
-     * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $text = '';
     protected $structured_value;
@@ -50,9 +53,12 @@ class NormalizedValue extends \Google\Protobuf\Internal\Message
      *           Boolean value. Can be used for entities with binary values, or for
      *           checkboxes.
      *     @type string $text
-     *           Required. Normalized entity value stored as a string. This field is populated for
-     *           supported document type (e.g. Invoice). For some entity types, one of
-     *           respective 'structured_value' fields may also be populated.
+     *           Optional. An optional field to store a normalized string.
+     *           For some entity types, one of respective `structured_value` fields may
+     *           also be populated. Also not all the types of `structured_value` will be
+     *           normalized. For example, some processors may not generate float
+     *           or int normalized text by default.
+     *           Below are sample formats mapped to structured values.
      *           - Money/Currency type (`money_value`) is in the ISO 4217 text format.
      *           - Date type (`date_value`) is in the ISO 8601 text format.
      *           - Datetime type (`datetime_value`) is in the ISO 8601 text format.
@@ -229,14 +235,17 @@ class NormalizedValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Normalized entity value stored as a string. This field is populated for
-     * supported document type (e.g. Invoice). For some entity types, one of
-     * respective 'structured_value' fields may also be populated.
+     * Optional. An optional field to store a normalized string.
+     * For some entity types, one of respective `structured_value` fields may
+     * also be populated. Also not all the types of `structured_value` will be
+     * normalized. For example, some processors may not generate float
+     * or int normalized text by default.
+     * Below are sample formats mapped to structured values.
      * - Money/Currency type (`money_value`) is in the ISO 4217 text format.
      * - Date type (`date_value`) is in the ISO 8601 text format.
      * - Datetime type (`datetime_value`) is in the ISO 8601 text format.
      *
-     * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getText()
@@ -245,14 +254,17 @@ class NormalizedValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Normalized entity value stored as a string. This field is populated for
-     * supported document type (e.g. Invoice). For some entity types, one of
-     * respective 'structured_value' fields may also be populated.
+     * Optional. An optional field to store a normalized string.
+     * For some entity types, one of respective `structured_value` fields may
+     * also be populated. Also not all the types of `structured_value` will be
+     * normalized. For example, some processors may not generate float
+     * or int normalized text by default.
+     * Below are sample formats mapped to structured values.
      * - Money/Currency type (`money_value`) is in the ISO 4217 text format.
      * - Date type (`date_value`) is in the ISO 8601 text format.
      * - Datetime type (`datetime_value`) is in the ISO 8601 text format.
      *
-     * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -274,6 +286,4 @@ class NormalizedValue extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NormalizedValue::class, \Google\Cloud\DocumentAI\V1\Document_Entity_NormalizedValue::class);
 

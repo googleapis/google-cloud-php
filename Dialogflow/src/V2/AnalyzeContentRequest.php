@@ -46,6 +46,16 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      */
     private $assist_query_params = null;
     /**
+     * Additional parameters to be put into Dialogflow CX session parameters. To
+     * remove a parameter from the session, clients should explicitly set the
+     * parameter value to null.
+     * Note: this field should only be used if you are connecting to a Dialogflow
+     * CX agent.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct cx_parameters = 18;</code>
+     */
+    private $cx_parameters = null;
+    /**
      * A unique identifier for this request. Restricted to 36 ASCII characters.
      * A random UUID is recommended.
      * This request is only idempotent if a `request_id` is provided.
@@ -79,6 +89,12 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *           Parameters for a Dialogflow virtual-agent query.
      *     @type \Google\Cloud\Dialogflow\V2\AssistQueryParameters $assist_query_params
      *           Parameters for a human assist query.
+     *     @type \Google\Protobuf\Struct $cx_parameters
+     *           Additional parameters to be put into Dialogflow CX session parameters. To
+     *           remove a parameter from the session, clients should explicitly set the
+     *           parameter value to null.
+     *           Note: this field should only be used if you are connecting to a Dialogflow
+     *           CX agent.
      *     @type string $request_id
      *           A unique identifier for this request. Restricted to 36 ASCII characters.
      *           A random UUID is recommended.
@@ -294,6 +310,50 @@ class AnalyzeContentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\AssistQueryParameters::class);
         $this->assist_query_params = $var;
+
+        return $this;
+    }
+
+    /**
+     * Additional parameters to be put into Dialogflow CX session parameters. To
+     * remove a parameter from the session, clients should explicitly set the
+     * parameter value to null.
+     * Note: this field should only be used if you are connecting to a Dialogflow
+     * CX agent.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct cx_parameters = 18;</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getCxParameters()
+    {
+        return $this->cx_parameters;
+    }
+
+    public function hasCxParameters()
+    {
+        return isset($this->cx_parameters);
+    }
+
+    public function clearCxParameters()
+    {
+        unset($this->cx_parameters);
+    }
+
+    /**
+     * Additional parameters to be put into Dialogflow CX session parameters. To
+     * remove a parameter from the session, clients should explicitly set the
+     * parameter value to null.
+     * Note: this field should only be used if you are connecting to a Dialogflow
+     * CX agent.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct cx_parameters = 18;</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setCxParameters($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->cx_parameters = $var;
 
         return $this;
     }

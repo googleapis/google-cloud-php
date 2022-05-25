@@ -77,7 +77,7 @@ class ManageSinksTest extends LoggingTestCase
 
     public function createSinkProvider()
     {
-        self::setUpBeforeClass();
+        self::set_up_before_class();
         $bucket = self::$bucket;
         $bucket->acl()->add('group-cloud-logs@google.com', 'OWNER');
         $bucketDest = sprintf('storage.googleapis.com/%s', $bucket->name());

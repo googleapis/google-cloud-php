@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\PublicAdvertisedPrefix;
 use UnexpectedValueException;
 
 /**
- * The status of the public advertised prefix.
+ * The status of the public advertised prefix. Possible values include: - `INITIAL`: RPKI validation is complete. - `PTR_CONFIGURED`: User has configured the PTR. - `VALIDATED`: Reverse DNS lookup is successful. - `REVERSE_DNS_LOOKUP_FAILED`: Reverse DNS lookup failed. - `PREFIX_CONFIGURATION_IN_PROGRESS`: The prefix is being configured. - `PREFIX_CONFIGURATION_COMPLETE`: The prefix is fully configured. - `PREFIX_REMOVAL_IN_PROGRESS`: The prefix is being removed. 
  *
  * Protobuf type <code>google.cloud.compute.v1.PublicAdvertisedPrefix.Status</code>
  */
@@ -20,30 +20,44 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
+     * RPKI validation is complete.
+     *
      * Generated from protobuf enum <code>INITIAL = 518841124;</code>
      */
     const INITIAL = 518841124;
     /**
+     * The prefix is fully configured.
+     *
      * Generated from protobuf enum <code>PREFIX_CONFIGURATION_COMPLETE = 480889551;</code>
      */
     const PREFIX_CONFIGURATION_COMPLETE = 480889551;
     /**
+     * The prefix is being configured.
+     *
      * Generated from protobuf enum <code>PREFIX_CONFIGURATION_IN_PROGRESS = 378550961;</code>
      */
     const PREFIX_CONFIGURATION_IN_PROGRESS = 378550961;
     /**
+     * The prefix is being removed.
+     *
      * Generated from protobuf enum <code>PREFIX_REMOVAL_IN_PROGRESS = 284375783;</code>
      */
     const PREFIX_REMOVAL_IN_PROGRESS = 284375783;
     /**
+     * User has configured the PTR.
+     *
      * Generated from protobuf enum <code>PTR_CONFIGURED = 513497167;</code>
      */
     const PTR_CONFIGURED = 513497167;
     /**
+     * Reverse DNS lookup failed.
+     *
      * Generated from protobuf enum <code>REVERSE_DNS_LOOKUP_FAILED = 295755183;</code>
      */
     const REVERSE_DNS_LOOKUP_FAILED = 295755183;
     /**
+     * Reverse DNS lookup is successful.
+     *
      * Generated from protobuf enum <code>VALIDATED = 66197998;</code>
      */
     const VALIDATED = 66197998;

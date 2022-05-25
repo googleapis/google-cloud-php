@@ -21,7 +21,9 @@ use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\Testing\TestHelpers;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
 
 /**
  * @group core
@@ -29,10 +31,13 @@ use PHPUnit\Framework\TestCase;
  */
 class ClientTraitTest extends TestCase
 {
+    use ExpectException;
+    use ExpectPHPException;
+
     private $impl;
     private $dependency;
 
-    public function setUp()
+    public function set_up()
     {
         $this->impl = TestHelpers::impl(ClientTrait::class);
 
@@ -42,11 +47,12 @@ class ClientTraitTest extends TestCase
     }
 
     /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
      * @dataProvider invalidDependencyStatusProvider
      */
     public function testGetConnectionTypeInvalidStatus($dependencyStatus, $config)
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $this->dependency->___setProperty('dependencyStatus', $dependencyStatus);
         $this->dependency->call('getConnectionType', [$config]);
     }
@@ -113,11 +119,10 @@ class ClientTraitTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
-     */
     public function testRequireGrpcThrowsExceptionWithoutGrpc()
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $this->dependency->___setProperty('dependencyStatus', false);
         $this->dependency->call('requireGrpc');
     }
@@ -160,11 +165,10 @@ class ClientTraitTest extends TestCase
         $this->assertEquals('example_project', $this->impl->___getProperty('projectId'));
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
-     */
     public function testConfigureAuthenticationWithInvalidKeyFilePath()
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $keyFilePath = __DIR__ . '/i/sure/hope/this/doesnt/exist';
 
         $conf = $this->impl->call('configureAuthentication', [[
@@ -172,11 +176,10 @@ class ClientTraitTest extends TestCase
         ]]);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
-     */
     public function testConfigureAuthenticationWithKeyFileThatCantBeDecoded()
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $keyFilePath = __DIR__ . '/ClientTraitTest.php';
 
         $conf = $this->impl->call('configureAuthentication', [[
@@ -184,11 +187,10 @@ class ClientTraitTest extends TestCase
         ]]);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
-     */
     public function testDetectProjectIdWithNoProjectIdAvailable()
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $conf = $this->impl->call('detectProjectId', [[
             'projectIdRequired' => true,
             'httpHandler' => function ($request, $options = []) {
@@ -285,11 +287,10 @@ class ClientTraitTest extends TestCase
         $this->assertEquals($res, $projectId);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
-     */
     public function testDetectProjectIdOnGceButOhNoThereStillIsntAProjectId()
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $projectId = null;
 
         $m = $this->prophesize(Metadata::class);
@@ -327,12 +328,11 @@ class ClientTraitTest extends TestCase
         $this->assertEquals($projectId, $res);
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error_Notice
-     * @expectedExceptionMessageRegExp /A keyfile was given/
-     */
     public function testDetectProjectIdWithKeyfileMissingProjectId()
     {
+        $this->expectNotice();
+        $this->expectNoticeMessage('A keyfile was given');
+
         $trait = TestHelpers::impl(ClientTrait::class);
 
         $res = $trait->call('detectProjectId', [[

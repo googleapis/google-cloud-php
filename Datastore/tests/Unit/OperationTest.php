@@ -27,7 +27,9 @@ use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -36,13 +38,16 @@ use Prophecy\Argument;
  */
 class OperationTest extends TestCase
 {
+    use AssertIsType;
+    use ExpectException;
+
     const PROJECT = 'example-project';
     const NAMESPACEID = 'namespace-id';
 
     private $operation;
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->operation = TestHelpers::stub(Operation::class, [
@@ -109,11 +114,10 @@ class OperationTest extends TestCase
         $this->assertNull($keys[1]->pathEndIdentifier());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testKeysNumberZero()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->operation->keys('Foo', [
             'number' => 0
         ]);
@@ -171,11 +175,10 @@ class OperationTest extends TestCase
         $this->assertEquals('Foo', $e->key()->pathEnd()['kind']);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testInvalidKeyType()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->operation->entity(1);
     }
 
@@ -188,11 +191,10 @@ class OperationTest extends TestCase
         $this->assertInstanceOf(SampleEntity::class, $e);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testEntityCustomClassInvalidType()
     {
+        $this->expectException('InvalidArgumentException');
+
         $e = $this->operation->entity('Foo', [], [
             'className' => Operation::class
         ]);
@@ -221,11 +223,10 @@ class OperationTest extends TestCase
         $this->assertEquals($res[0]->path()[0]['id'], $id);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testAllocateIdsNamedKey()
     {
+        $this->expectException('InvalidArgumentException');
+
         $key = $this->operation->key('foo', 'Bar');
 
         $this->operation->allocateIds([$key]);
@@ -243,7 +244,7 @@ class OperationTest extends TestCase
 
         $res = $this->operation->lookup([$key]);
 
-        $this->assertInternalType('array', $res);
+        $this->assertIsArray($res);
     }
 
     public function testLookupFound()
@@ -258,7 +259,7 @@ class OperationTest extends TestCase
         $key = $this->operation->key('Kind', 'ID');
         $res = $this->operation->lookup([$key]);
 
-        $this->assertInternalType('array', $res);
+        $this->assertIsArray($res);
         $this->assertTrue(isset($res['found']) && is_array($res['found']));
 
         $this->assertInstanceOf(Entity::class, $res['found'][0]);
@@ -281,7 +282,7 @@ class OperationTest extends TestCase
 
         $res = $this->operation->lookup([$key]);
 
-        $this->assertInternalType('array', $res);
+        $this->assertIsArray($res);
         $this->assertTrue(isset($res['missing']) && is_array($res['missing']));
 
         $this->assertInstanceOf(Key::class, $res['missing'][0]);
@@ -301,7 +302,7 @@ class OperationTest extends TestCase
 
         $res = $this->operation->lookup([$key]);
 
-        $this->assertInternalType('array', $res);
+        $this->assertIsArray($res);
         $this->assertTrue(isset($res['deferred']) && is_array($res['deferred']));
         $this->assertInstanceOf(Key::class, $res['deferred'][0]);
     }
@@ -442,11 +443,10 @@ class OperationTest extends TestCase
         $this->assertEquals($keys[10]->path()[0]['id'], $found[9]->key()->path()[0]['id']);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testLookupInvalidKey()
     {
+        $this->expectException('InvalidArgumentException');
+
         $key = $this->operation->key('Foo');
 
         $this->operation->lookup([$key]);
@@ -734,11 +734,10 @@ class OperationTest extends TestCase
         $this->operation->commit([$mutation]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testMutateInvalidType()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->operation->mutation('foo', (object)[], \stdClass::class);
     }
 
@@ -758,11 +757,10 @@ class OperationTest extends TestCase
         $this->operation->checkOverwrite([$e->reveal()], true);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testCheckOverwriteWithException()
     {
+        $this->expectException('InvalidArgumentException');
+
         $e = $this->prophesize(Entity::class);
         $e->populatedByService()->willReturn(false);
         $e->key()->willReturn('foo');
@@ -833,11 +831,10 @@ class OperationTest extends TestCase
         $this->assertInstanceOf(SampleEntity::class, $entity['found'][0]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testMapEntityResultArrayOfClassNamesMissingKindMapItem()
     {
+        $this->expectException('InvalidArgumentException');
+
         $res = json_decode(file_get_contents(Fixtures::ENTITY_RESULT_FIXTURE()), true);
 
         $this->connection->lookup(Argument::type('array'))
@@ -897,11 +894,10 @@ class OperationTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testInvalidBatchType()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->operation->lookup(['foo']);
     }
 }

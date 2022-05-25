@@ -1,0 +1,15 @@
+{
+    "title": "BigQueryDataExchange",
+    "defaultService": "bigquerydataexchange\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "bigquerydataexchange\/readme"
+        },
+        {
+            "title": "AnalyticsHubServiceClient (v1beta1)",
+            "type": "bigquerydataexchange\/v1beta1\/analyticshubserviceclient"
+        }
+    ],
+    "pattern": "bigquerydataexchange\/\\w{1,}"
+}

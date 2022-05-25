@@ -32,6 +32,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 
+use Google\Cloud\SecurityCenter\V1\BigQueryExport;
 use Google\Cloud\SecurityCenter\V1\BulkMuteFindingsResponse;
 use Google\Cloud\SecurityCenter\V1\ExternalSystem;
 use Google\Cloud\SecurityCenter\V1\Finding;
@@ -42,6 +43,7 @@ use Google\Cloud\SecurityCenter\V1\GroupFindingsResponse;
 use Google\Cloud\SecurityCenter\V1\GroupResult;
 use Google\Cloud\SecurityCenter\V1\ListAssetsResponse;
 use Google\Cloud\SecurityCenter\V1\ListAssetsResponse\ListAssetsResult;
+use Google\Cloud\SecurityCenter\V1\ListBigQueryExportsResponse;
 use Google\Cloud\SecurityCenter\V1\ListFindingsResponse;
 use Google\Cloud\SecurityCenter\V1\ListFindingsResponse\ListFindingsResult;
 use Google\Cloud\SecurityCenter\V1\ListMuteConfigsResponse;
@@ -220,6 +222,88 @@ class SecurityCenterClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function createBigQueryExportTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $filter = 'filter-1274492040';
+        $dataset = 'dataset1443214456';
+        $mostRecentEditor = 'mostRecentEditor-657770475';
+        $principal = 'principal-1812041682';
+        $expectedResponse = new BigQueryExport();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setFilter($filter);
+        $expectedResponse->setDataset($dataset);
+        $expectedResponse->setMostRecentEditor($mostRecentEditor);
+        $expectedResponse->setPrincipal($principal);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $client->projectName('[PROJECT]');
+        $bigQueryExport = new BigQueryExport();
+        $bigQueryExportId = 'bigQueryExportId269737360';
+        $response = $client->createBigQueryExport($formattedParent, $bigQueryExport, $bigQueryExportId);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/CreateBigQueryExport', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getBigQueryExport();
+        $this->assertProtobufEquals($bigQueryExport, $actualValue);
+        $actualValue = $actualRequestObject->getBigQueryExportId();
+        $this->assertProtobufEquals($bigQueryExportId, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function createBigQueryExportExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $client->projectName('[PROJECT]');
+        $bigQueryExport = new BigQueryExport();
+        $bigQueryExportId = 'bigQueryExportId269737360';
+        try {
+            $client->createBigQueryExport($formattedParent, $bigQueryExport, $bigQueryExportId);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function createFindingTest()
     {
         $transport = $this->createTransport();
@@ -235,6 +319,8 @@ class SecurityCenterClientTest extends GeneratedTest
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
         $muteInitiator = 'muteInitiator7603081';
+        $description = 'description-1724546052';
+        $nextSteps = 'nextSteps-921338149';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name);
         $expectedResponse->setParent($parent2);
@@ -243,6 +329,8 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
         $expectedResponse->setMuteInitiator($muteInitiator);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setNextSteps($nextSteps);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->sourceName('[ORGANIZATION]', '[SOURCE]');
@@ -540,6 +628,67 @@ class SecurityCenterClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function deleteBigQueryExportTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $client->bigQueryExportName('[ORGANIZATION]', '[EXPORT]');
+        $client->deleteBigQueryExport($formattedName);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/DeleteBigQueryExport', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteBigQueryExportExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $client->bigQueryExportName('[ORGANIZATION]', '[EXPORT]');
+        try {
+            $client->deleteBigQueryExport($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function deleteMuteConfigTest()
     {
         $transport = $this->createTransport();
@@ -648,6 +797,80 @@ class SecurityCenterClientTest extends GeneratedTest
         $formattedName = $client->notificationConfigName('[ORGANIZATION]', '[NOTIFICATION_CONFIG]');
         try {
             $client->deleteNotificationConfig($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getBigQueryExportTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $filter = 'filter-1274492040';
+        $dataset = 'dataset1443214456';
+        $mostRecentEditor = 'mostRecentEditor-657770475';
+        $principal = 'principal-1812041682';
+        $expectedResponse = new BigQueryExport();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setFilter($filter);
+        $expectedResponse->setDataset($dataset);
+        $expectedResponse->setMostRecentEditor($mostRecentEditor);
+        $expectedResponse->setPrincipal($principal);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $client->bigQueryExportName('[ORGANIZATION]', '[EXPORT]');
+        $response = $client->getBigQueryExport($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/GetBigQueryExport', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getBigQueryExportExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $client->bigQueryExportName('[ORGANIZATION]', '[EXPORT]');
+        try {
+            $client->getBigQueryExport($formattedName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1236,6 +1459,78 @@ class SecurityCenterClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function listBigQueryExportsTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $bigQueryExportsElement = new BigQueryExport();
+        $bigQueryExports = [
+            $bigQueryExportsElement,
+        ];
+        $expectedResponse = new ListBigQueryExportsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setBigQueryExports($bigQueryExports);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $client->projectName('[PROJECT]');
+        $response = $client->listBigQueryExports($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getBigQueryExports()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/ListBigQueryExports', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listBigQueryExportsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $client->projectName('[PROJECT]');
+        try {
+            $client->listBigQueryExports($formattedParent);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function listFindingsTest()
     {
         $transport = $this->createTransport();
@@ -1662,6 +1957,8 @@ class SecurityCenterClientTest extends GeneratedTest
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
         $muteInitiator = 'muteInitiator7603081';
+        $description = 'description-1724546052';
+        $nextSteps = 'nextSteps-921338149';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name2);
         $expectedResponse->setParent($parent);
@@ -1670,6 +1967,8 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
         $expectedResponse->setMuteInitiator($muteInitiator);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setNextSteps($nextSteps);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
@@ -1816,6 +2115,8 @@ class SecurityCenterClientTest extends GeneratedTest
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
         $muteInitiator = 'muteInitiator7603081';
+        $description = 'description-1724546052';
+        $nextSteps = 'nextSteps-921338149';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name2);
         $expectedResponse->setParent($parent);
@@ -1824,6 +2125,8 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
         $expectedResponse->setMuteInitiator($muteInitiator);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setNextSteps($nextSteps);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
@@ -1947,6 +2250,80 @@ class SecurityCenterClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function updateBigQueryExportTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $filter = 'filter-1274492040';
+        $dataset = 'dataset1443214456';
+        $mostRecentEditor = 'mostRecentEditor-657770475';
+        $principal = 'principal-1812041682';
+        $expectedResponse = new BigQueryExport();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setFilter($filter);
+        $expectedResponse->setDataset($dataset);
+        $expectedResponse->setMostRecentEditor($mostRecentEditor);
+        $expectedResponse->setPrincipal($principal);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $bigQueryExport = new BigQueryExport();
+        $response = $client->updateBigQueryExport($bigQueryExport);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securitycenter.v1.SecurityCenter/UpdateBigQueryExport', $actualFuncCall);
+        $actualValue = $actualRequestObject->getBigQueryExport();
+        $this->assertProtobufEquals($bigQueryExport, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateBigQueryExportExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $bigQueryExport = new BigQueryExport();
+        try {
+            $client->updateBigQueryExport($bigQueryExport);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function updateExternalSystemTest()
     {
         $transport = $this->createTransport();
@@ -2030,6 +2407,8 @@ class SecurityCenterClientTest extends GeneratedTest
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
         $muteInitiator = 'muteInitiator7603081';
+        $description = 'description-1724546052';
+        $nextSteps = 'nextSteps-921338149';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name);
         $expectedResponse->setParent($parent);
@@ -2038,6 +2417,8 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
         $expectedResponse->setMuteInitiator($muteInitiator);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setNextSteps($nextSteps);
         $transport->addResponse($expectedResponse);
         // Mock request
         $finding = new Finding();

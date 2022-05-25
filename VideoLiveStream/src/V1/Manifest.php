@@ -43,7 +43,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * Maximum number of segments that this manifest holds. Once the manifest
      * reaches this maximum number of segments, whenever a new segment is added to
      * the manifest, the oldest segment will be removed from the manifest.
-     * The minimum value is 1 and the default value is 5.
+     * The minimum value is 3 and the default value is 5.
      *
      * Generated from protobuf field <code>int32 max_segment_count = 4;</code>
      */
@@ -82,7 +82,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *           Maximum number of segments that this manifest holds. Once the manifest
      *           reaches this maximum number of segments, whenever a new segment is added to
      *           the manifest, the oldest segment will be removed from the manifest.
-     *           The minimum value is 1 and the default value is 5.
+     *           The minimum value is 3 and the default value is 5.
      *     @type \Google\Protobuf\Duration $segment_keep_duration
      *           How long to keep a segment on the output Google Cloud Storage bucket after
      *           it is removed from the manifest. This field should be large enough to cover
@@ -191,7 +191,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * Maximum number of segments that this manifest holds. Once the manifest
      * reaches this maximum number of segments, whenever a new segment is added to
      * the manifest, the oldest segment will be removed from the manifest.
-     * The minimum value is 1 and the default value is 5.
+     * The minimum value is 3 and the default value is 5.
      *
      * Generated from protobuf field <code>int32 max_segment_count = 4;</code>
      * @return int
@@ -205,7 +205,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * Maximum number of segments that this manifest holds. Once the manifest
      * reaches this maximum number of segments, whenever a new segment is added to
      * the manifest, the oldest segment will be removed from the manifest.
-     * The minimum value is 1 and the default value is 5.
+     * The minimum value is 3 and the default value is 5.
      *
      * Generated from protobuf field <code>int32 max_segment_count = 4;</code>
      * @param int $var

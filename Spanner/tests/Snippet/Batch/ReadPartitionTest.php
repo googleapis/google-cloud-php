@@ -50,7 +50,7 @@ class ReadPartitionTest extends SnippetTestCase
     private $keySet;
     private $columns;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 

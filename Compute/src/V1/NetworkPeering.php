@@ -28,7 +28,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     private $exchange_subnet_routes = null;
     /**
-     * Whether to export the custom routes to peer network.
+     * Whether to export the custom routes to peer network. The default value is false.
      *
      * Generated from protobuf field <code>optional bool export_custom_routes = 60281485;</code>
      */
@@ -40,7 +40,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     private $export_subnet_routes_with_public_ip = null;
     /**
-     * Whether to import the custom routes from peer network.
+     * Whether to import the custom routes from peer network. The default value is false.
      *
      * Generated from protobuf field <code>optional bool import_custom_routes = 197982398;</code>
      */
@@ -94,11 +94,11 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *     @type bool $exchange_subnet_routes
      *           Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
      *     @type bool $export_custom_routes
-     *           Whether to export the custom routes to peer network.
+     *           Whether to export the custom routes to peer network. The default value is false.
      *     @type bool $export_subnet_routes_with_public_ip
      *           Whether subnet routes with public IP range are exported. The default value is true, all subnet routes are exported. IPv4 special-use ranges are always exported to peers and are not controlled by this field.
      *     @type bool $import_custom_routes
-     *           Whether to import the custom routes from peer network.
+     *           Whether to import the custom routes from peer network. The default value is false.
      *     @type bool $import_subnet_routes_with_public_ip
      *           Whether subnet routes with public IP range are imported. The default value is false. IPv4 special-use ranges are always imported from peers and are not controlled by this field.
      *     @type string $name
@@ -192,7 +192,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to export the custom routes to peer network.
+     * Whether to export the custom routes to peer network. The default value is false.
      *
      * Generated from protobuf field <code>optional bool export_custom_routes = 60281485;</code>
      * @return bool
@@ -213,7 +213,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to export the custom routes to peer network.
+     * Whether to export the custom routes to peer network. The default value is false.
      *
      * Generated from protobuf field <code>optional bool export_custom_routes = 60281485;</code>
      * @param bool $var
@@ -264,7 +264,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to import the custom routes from peer network.
+     * Whether to import the custom routes from peer network. The default value is false.
      *
      * Generated from protobuf field <code>optional bool import_custom_routes = 197982398;</code>
      * @return bool
@@ -285,7 +285,7 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether to import the custom routes from peer network.
+     * Whether to import the custom routes from peer network. The default value is false.
      *
      * Generated from protobuf field <code>optional bool import_custom_routes = 197982398;</code>
      * @param bool $var

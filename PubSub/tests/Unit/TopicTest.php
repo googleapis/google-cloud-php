@@ -25,20 +25,23 @@ use Google\Cloud\PubSub\BatchPublisher;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group pubsub
  */
 class TopicTest extends TestCase
 {
+    use ExpectException;
+
     const TOPIC = 'projects/project-name/topics/topic-name';
 
     private $topic;
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->topic = TestHelpers::stub(Topic::class, [
@@ -245,11 +248,10 @@ class TopicTest extends TestCase
         $res = $this->topic->publishBatch([$message], ['foo' => 'bar', 'encode' => false]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testPublishMalformedMessage()
     {
+        $this->expectException('InvalidArgumentException');
+
         $message = [
             'key' => 'val'
         ];

@@ -23,11 +23,11 @@ class X509Extension extends \Google\Protobuf\Internal\Message
      */
     private $object_id = null;
     /**
-     * Required. Indicates whether or not this extension is critical (i.e., if the client
+     * Optional. Indicates whether or not this extension is critical (i.e., if the client
      * does not know how to handle this extension, the client should consider this
      * to be an error).
      *
-     * Generated from protobuf field <code>bool critical = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool critical = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $critical = false;
     /**
@@ -46,7 +46,7 @@ class X509Extension extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Security\PrivateCA\V1\ObjectId $object_id
      *           Required. The OID for this X.509 extension.
      *     @type bool $critical
-     *           Required. Indicates whether or not this extension is critical (i.e., if the client
+     *           Optional. Indicates whether or not this extension is critical (i.e., if the client
      *           does not know how to handle this extension, the client should consider this
      *           to be an error).
      *     @type string $value
@@ -66,7 +66,7 @@ class X509Extension extends \Google\Protobuf\Internal\Message
      */
     public function getObjectId()
     {
-        return isset($this->object_id) ? $this->object_id : null;
+        return $this->object_id;
     }
 
     public function hasObjectId()
@@ -95,11 +95,11 @@ class X509Extension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Indicates whether or not this extension is critical (i.e., if the client
+     * Optional. Indicates whether or not this extension is critical (i.e., if the client
      * does not know how to handle this extension, the client should consider this
      * to be an error).
      *
-     * Generated from protobuf field <code>bool critical = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool critical = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getCritical()
@@ -108,11 +108,11 @@ class X509Extension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Indicates whether or not this extension is critical (i.e., if the client
+     * Optional. Indicates whether or not this extension is critical (i.e., if the client
      * does not know how to handle this extension, the client should consider this
      * to be an error).
      *
-     * Generated from protobuf field <code>bool critical = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>bool critical = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

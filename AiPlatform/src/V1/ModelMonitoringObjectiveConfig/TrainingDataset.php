@@ -23,6 +23,8 @@ class TrainingDataset extends \Google\Protobuf\Internal\Message
      * The source file is a TFRecord file.
      * "csv"
      * The source file is a CSV file.
+     * "jsonl"
+     * The source file is a JSONL file.
      *
      * Generated from protobuf field <code>string data_format = 2;</code>
      */
@@ -66,6 +68,8 @@ class TrainingDataset extends \Google\Protobuf\Internal\Message
      *           The source file is a TFRecord file.
      *           "csv"
      *           The source file is a CSV file.
+     *           "jsonl"
+     *           The source file is a JSONL file.
      *     @type string $target_field
      *           The target field name the model is to predict.
      *           This field will be excluded when doing Predict and (or) Explain for the
@@ -185,6 +189,8 @@ class TrainingDataset extends \Google\Protobuf\Internal\Message
      * The source file is a TFRecord file.
      * "csv"
      * The source file is a CSV file.
+     * "jsonl"
+     * The source file is a JSONL file.
      *
      * Generated from protobuf field <code>string data_format = 2;</code>
      * @return string
@@ -202,6 +208,8 @@ class TrainingDataset extends \Google\Protobuf\Internal\Message
      * The source file is a TFRecord file.
      * "csv"
      * The source file is a CSV file.
+     * "jsonl"
+     * The source file is a JSONL file.
      *
      * Generated from protobuf field <code>string data_format = 2;</code>
      * @param string $var

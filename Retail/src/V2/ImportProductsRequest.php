@@ -25,18 +25,12 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Unique identifier provided by client, within the ancestor
-     * dataset scope. Ensures idempotency and used for request deduplication.
-     * Server-generated if unspecified. Up to 128 characters long and must match
-     * the pattern: `[a-zA-Z0-9_]+`. This is returned as [Operation.name][] in
-     * [ImportMetadata][google.cloud.retail.v2.ImportMetadata].
-     * Only supported when
-     * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
-     * is set to `FULL`.
+     * Deprecated. This field has no effect.
      *
-     * Generated from protobuf field <code>string request_id = 6;</code>
+     * Generated from protobuf field <code>string request_id = 6 [deprecated = true];</code>
+     * @deprecated
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Required. The desired input location of the data.
      *
@@ -90,14 +84,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      *           If no updateMask is specified, requires products.create permission.
      *           If updateMask is specified, requires products.update permission.
      *     @type string $request_id
-     *           Unique identifier provided by client, within the ancestor
-     *           dataset scope. Ensures idempotency and used for request deduplication.
-     *           Server-generated if unspecified. Up to 128 characters long and must match
-     *           the pattern: `[a-zA-Z0-9_]+`. This is returned as [Operation.name][] in
-     *           [ImportMetadata][google.cloud.retail.v2.ImportMetadata].
-     *           Only supported when
-     *           [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
-     *           is set to `FULL`.
+     *           Deprecated. This field has no effect.
      *     @type \Google\Cloud\Retail\V2\ProductInputConfig $input_config
      *           Required. The desired input location of the data.
      *     @type \Google\Cloud\Retail\V2\ImportErrorsConfig $errors_config
@@ -158,39 +145,29 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unique identifier provided by client, within the ancestor
-     * dataset scope. Ensures idempotency and used for request deduplication.
-     * Server-generated if unspecified. Up to 128 characters long and must match
-     * the pattern: `[a-zA-Z0-9_]+`. This is returned as [Operation.name][] in
-     * [ImportMetadata][google.cloud.retail.v2.ImportMetadata].
-     * Only supported when
-     * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
-     * is set to `FULL`.
+     * Deprecated. This field has no effect.
      *
-     * Generated from protobuf field <code>string request_id = 6;</code>
+     * Generated from protobuf field <code>string request_id = 6 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getRequestId()
     {
+        @trigger_error('request_id is deprecated.', E_USER_DEPRECATED);
         return $this->request_id;
     }
 
     /**
-     * Unique identifier provided by client, within the ancestor
-     * dataset scope. Ensures idempotency and used for request deduplication.
-     * Server-generated if unspecified. Up to 128 characters long and must match
-     * the pattern: `[a-zA-Z0-9_]+`. This is returned as [Operation.name][] in
-     * [ImportMetadata][google.cloud.retail.v2.ImportMetadata].
-     * Only supported when
-     * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
-     * is set to `FULL`.
+     * Deprecated. This field has no effect.
      *
-     * Generated from protobuf field <code>string request_id = 6;</code>
+     * Generated from protobuf field <code>string request_id = 6 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setRequestId($var)
     {
+        @trigger_error('request_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
 

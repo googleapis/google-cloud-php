@@ -289,8 +289,12 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $adminEnabled = false;
         $bandwidth = 'bandwidth-1965768527';
         $cloudRouterIpAddress = 'cloudRouterIpAddress1361134600';
+        $cloudRouterIpv6Address = 'cloudRouterIpv6Address-621819448';
+        $cloudRouterIpv6InterfaceId = 'cloudRouterIpv6InterfaceId1058153613';
         $creationTimestamp = 'creationTimestamp567396278';
         $customerRouterIpAddress = 'customerRouterIpAddress-741266063';
+        $customerRouterIpv6Address = 'customerRouterIpv6Address1900739825';
+        $customerRouterIpv6InterfaceId = 'customerRouterIpv6InterfaceId-1229618428';
         $dataplaneVersion = 1645532811;
         $description = 'description-1724546052';
         $edgeAvailabilityDomain = 'edgeAvailabilityDomain-1539323226';
@@ -308,6 +312,7 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $router = 'router-925132983';
         $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
+        $stackType = 'stackType2036521617';
         $state = 'state109757585';
         $type = 'type3575610';
         $vlanTag8021q = 1730540572;
@@ -315,8 +320,12 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $expectedResponse->setAdminEnabled($adminEnabled);
         $expectedResponse->setBandwidth($bandwidth);
         $expectedResponse->setCloudRouterIpAddress($cloudRouterIpAddress);
+        $expectedResponse->setCloudRouterIpv6Address($cloudRouterIpv6Address);
+        $expectedResponse->setCloudRouterIpv6InterfaceId($cloudRouterIpv6InterfaceId);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setCustomerRouterIpAddress($customerRouterIpAddress);
+        $expectedResponse->setCustomerRouterIpv6Address($customerRouterIpv6Address);
+        $expectedResponse->setCustomerRouterIpv6InterfaceId($customerRouterIpv6InterfaceId);
         $expectedResponse->setDataplaneVersion($dataplaneVersion);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEdgeAvailabilityDomain($edgeAvailabilityDomain);
@@ -334,6 +343,7 @@ class InterconnectAttachmentsClientTest extends GeneratedTest
         $expectedResponse->setRouter($router);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setStackType($stackType);
         $expectedResponse->setState($state);
         $expectedResponse->setType($type);
         $expectedResponse->setVlanTag8021q($vlanTag8021q);

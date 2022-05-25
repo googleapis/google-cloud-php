@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KeyManagementService.DestroyCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion].
+ * Request message for
+ * [KeyManagementService.DestroyCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.DestroyCryptoKeyVersionRequest</code>
  */
 class DestroyCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
+     * Required. The resource name of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -29,7 +31,8 @@ class DestroyCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
+     *           Required. The resource name of the
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +41,8 @@ class DestroyCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
+     * Required. The resource name of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -49,7 +53,8 @@ class DestroyCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
+     * Required. The resource name of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to destroy.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

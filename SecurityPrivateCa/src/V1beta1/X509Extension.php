@@ -66,7 +66,7 @@ class X509Extension extends \Google\Protobuf\Internal\Message
      */
     public function getObjectId()
     {
-        return isset($this->object_id) ? $this->object_id : null;
+        return $this->object_id;
     }
 
     public function hasObjectId()
