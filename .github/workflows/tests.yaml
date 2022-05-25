@@ -30,7 +30,7 @@ jobs:
       with:
         php-version: ${{ matrix.php }}
         # tools: pecl
-        extensions: ${{ grpc-version }}
+        extensions: ${{ matrix.grpc-version }}
     - name: Install Dependencies
       uses: nick-invision/retry@v2
       with:
