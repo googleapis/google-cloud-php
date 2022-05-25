@@ -297,6 +297,15 @@ class QueryTest extends TestCase
         $this->assertEquals('EQUAL', $filters[0]['propertyFilter']['op']);
     }
 
+    public function testShortOperatorNotEquals()
+    {
+        $this->query->filter('propName', '!=', 'val');
+        $res = $this->query->queryObject();
+
+        $filters = $res['filter']['compositeFilter']['filters'];
+        $this->assertEquals('NOT_EQUAL', $filters[0]['propertyFilter']['op']);
+    }
+
     public function testOrder()
     {
         $direction = 'DESCENDING';
