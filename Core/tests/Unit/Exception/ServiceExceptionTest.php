@@ -41,4 +41,186 @@ class ServiceExceptionTest extends TestCase
         $ex = new ServiceException('foo');
         $this->assertFalse($ex->hasServiceException());
     }
+
+    public function testGetErrorInfoMetadataWithGrpc()
+    {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+
+        $metadata = [
+            'ackId1' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'ackId2' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        $errorInfoRow = [
+            "@type" => "google.rpc.errorinfo-bin",
+            "reason" => "EXACTLY_ONCE_ACKID_FAILURE",
+            "domain" => "pubsub.googleapis.com",
+            "metadata" => $metadata
+        ];
+
+        $debugRow = [
+            "@type" => "google.rpc.debuginfo-bin",
+            "detail" => "EXACTLY_ONCE_ACKID_FAILURE"
+        ];
+
+        // Valid json containing error details
+        $msg = [
+            "details" => [
+                $errorInfoRow, $debugRow
+            ]
+        ];
+
+        $ex = new ServiceException(json_encode($msg));
+
+        $this->assertEquals($metadata, $ex->getErrorInfoMetadata());
+    }
+
+    public function testGetErrorInfoMetadataWithRest()
+    {
+        if (extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension disabled to run this test.');
+        }
+
+        $metadata = [
+            'ackId1' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'ackId2' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        $errorInfoRow = [
+            "@type" => "type.googleapis.com/google.rpc.ErrorInfo",
+            "reason" => "EXACTLY_ONCE_ACKID_FAILURE",
+            "domain" => "pubsub.googleapis.com",
+            "metadata" => $metadata
+        ];
+
+        $debugRow = [
+            "@type" => "type.googleapis.com/google.rpc.DebugInfo",
+            "detail" => ""
+        ];
+        
+        // Valid json containing error details
+        $msg = [
+            "error" => [
+                "details" => [
+                    $errorInfoRow, $debugRow
+                ]
+            ]
+        ];
+
+        $ex = new ServiceException(json_encode($msg));
+
+        $this->assertEquals($metadata, $ex->getErrorInfoMetadata());
+    }
+
+    public function testGetErrorInfoMetadataOnInvalidJson()
+    {
+        // Invalid json
+        $msg = "{";
+
+        $ex = new ServiceException($msg);
+
+        $this->assertEquals([], $ex->getErrorInfoMetadata());
+    }
+
+    public function testGetErrorInfoMetadataOnNoDetails()
+    {
+        // Valid json but not containing error details
+        $msg = [
+            "error" => []
+        ];
+
+        $ex = new ServiceException(json_encode($msg));
+
+        $this->assertEquals([], $ex->getErrorInfoMetadata());
+    }
+
+    public function testGetReasonWithGrpc()
+    {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+
+        $reason = "EXACTLY_ONCE_ACKID_FAILURE";
+
+        $errorInfoRow = [
+            "@type" => "google.rpc.errorinfo-bin",
+            "reason" => $reason,
+            "domain" => "pubsub.googleapis.com",
+            "metadata" => []
+        ];
+
+        $debugRow = [
+            "@type" => "google.rpc.debuginfo-bin",
+            "detail" => "EXACTLY_ONCE_ACKID_FAILURE"
+        ];
+
+        // Valid json containing error details
+        $msg = [
+            "details" => [
+                $errorInfoRow, $debugRow
+            ]
+        ];
+
+        $ex = new ServiceException(json_encode($msg));
+
+        $this->assertEquals($reason, $ex->getReason());
+    }
+
+    public function testGetReasonWithRest()
+    {
+        if (extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension disabled to run this test.');
+        }
+
+        $reason = "EXACTLY_ONCE_ACKID_FAILURE";
+
+        $errorInfoRow = [
+            "@type" => "type.googleapis.com/google.rpc.ErrorInfo",
+            "reason" => $reason,
+            "domain" => "pubsub.googleapis.com",
+            "metadata" => []
+        ];
+
+        $debugRow = [
+            "@type" => "type.googleapis.com/google.rpc.DebugInfo",
+            "detail" => ""
+        ];
+        
+        // Valid json containing error details
+        $msg = [
+            "error" => [
+                "details" => [
+                    $errorInfoRow, $debugRow
+                ]
+            ]
+        ];
+
+        $ex = new ServiceException(json_encode($msg));
+
+        $this->assertEquals($reason, $ex->getReason());
+    }
+
+    public function testGetReasonOnInvalidJson()
+    {
+        // Invalid json
+        $msg = "{";
+
+        $ex = new ServiceException($msg);
+
+        $this->assertEquals("", $ex->getReason());
+    }
+
+    public function testGetReasonOnNoDetails()
+    {
+        // Valid json but not containing error details
+        $msg = [
+            "error" => []
+        ];
+
+        $ex = new ServiceException(json_encode($msg));
+
+        $this->assertEquals("", $ex->getReason());
+    }
 }
