@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourceOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The Connect agent version to use for connect_resources. Defaults
-     * to the latest GKE Connect version. The version must be a currently
-     * supported version, obsolete versions will be rejected.
+     * Optional. The Connect agent version to use for connect_resources. Defaults to the
+     * latest GKE Connect version. The version must be a currently supported
+     * version, obsolete versions will be rejected.
      *
      * Generated from protobuf field <code>string connect_version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -33,8 +33,8 @@ class ResourceOptions extends \Google\Protobuf\Internal\Message
      */
     private $v1beta1_crd = false;
     /**
-     * Optional. Major version of the Kubernetes cluster. This is only used to
-     * determine which version to use for the CustomResourceDefinition resources,
+     * Optional. Major version of the Kubernetes cluster. This is only used to determine
+     * which version to use for the CustomResourceDefinition resources,
      * `apiextensions/v1beta1` or`apiextensions/v1`.
      *
      * Generated from protobuf field <code>string k8s_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -48,17 +48,17 @@ class ResourceOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $connect_version
-     *           Optional. The Connect agent version to use for connect_resources. Defaults
-     *           to the latest GKE Connect version. The version must be a currently
-     *           supported version, obsolete versions will be rejected.
+     *           Optional. The Connect agent version to use for connect_resources. Defaults to the
+     *           latest GKE Connect version. The version must be a currently supported
+     *           version, obsolete versions will be rejected.
      *     @type bool $v1beta1_crd
      *           Optional. Use `apiextensions/v1beta1` instead of `apiextensions/v1` for
      *           CustomResourceDefinition resources.
      *           This option should be set for clusters with Kubernetes apiserver versions
      *           <1.16.
      *     @type string $k8s_version
-     *           Optional. Major version of the Kubernetes cluster. This is only used to
-     *           determine which version to use for the CustomResourceDefinition resources,
+     *           Optional. Major version of the Kubernetes cluster. This is only used to determine
+     *           which version to use for the CustomResourceDefinition resources,
      *           `apiextensions/v1beta1` or`apiextensions/v1`.
      * }
      */
@@ -68,9 +68,9 @@ class ResourceOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Connect agent version to use for connect_resources. Defaults
-     * to the latest GKE Connect version. The version must be a currently
-     * supported version, obsolete versions will be rejected.
+     * Optional. The Connect agent version to use for connect_resources. Defaults to the
+     * latest GKE Connect version. The version must be a currently supported
+     * version, obsolete versions will be rejected.
      *
      * Generated from protobuf field <code>string connect_version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -81,9 +81,9 @@ class ResourceOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Connect agent version to use for connect_resources. Defaults
-     * to the latest GKE Connect version. The version must be a currently
-     * supported version, obsolete versions will be rejected.
+     * Optional. The Connect agent version to use for connect_resources. Defaults to the
+     * latest GKE Connect version. The version must be a currently supported
+     * version, obsolete versions will be rejected.
      *
      * Generated from protobuf field <code>string connect_version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -130,8 +130,8 @@ class ResourceOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Major version of the Kubernetes cluster. This is only used to
-     * determine which version to use for the CustomResourceDefinition resources,
+     * Optional. Major version of the Kubernetes cluster. This is only used to determine
+     * which version to use for the CustomResourceDefinition resources,
      * `apiextensions/v1beta1` or`apiextensions/v1`.
      *
      * Generated from protobuf field <code>string k8s_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -143,8 +143,8 @@ class ResourceOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Major version of the Kubernetes cluster. This is only used to
-     * determine which version to use for the CustomResourceDefinition resources,
+     * Optional. Major version of the Kubernetes cluster. This is only used to determine
+     * which version to use for the CustomResourceDefinition resources,
      * `apiextensions/v1beta1` or`apiextensions/v1`.
      *
      * Generated from protobuf field <code>string k8s_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>

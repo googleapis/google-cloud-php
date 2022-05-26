@@ -9,20 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * EdgeCluster contains information specific to Google Edge Clusters.
+ * ApplianceCluster contains information specific to GDC Edge Appliance
+ * Clusters.
  *
- * Generated from protobuf message <code>google.cloud.gkehub.v1beta1.EdgeCluster</code>
+ * Generated from protobuf message <code>google.cloud.gkehub.v1beta1.ApplianceCluster</code>
  */
-class EdgeCluster extends \Google\Protobuf\Internal\Message
+class ApplianceCluster extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Immutable. Self-link of the GCP resource for the Edge Cluster. For
+     * Immutable. Self-link of the GCP resource for the Appliance Cluster. For
      * example:
-     * //edgecontainer.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
+     * //transferappliance.googleapis.com/projects/my-project/locations/us-west1-a/appliances/my-appliance
      *
      * Generated from protobuf field <code>string resource_link = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
-    protected $resource_link = '';
+    private $resource_link = '';
 
     /**
      * Constructor.
@@ -31,9 +32,9 @@ class EdgeCluster extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $resource_link
-     *           Immutable. Self-link of the GCP resource for the Edge Cluster. For
+     *           Immutable. Self-link of the GCP resource for the Appliance Cluster. For
      *           example:
-     *           //edgecontainer.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
+     *           //transferappliance.googleapis.com/projects/my-project/locations/us-west1-a/appliances/my-appliance
      * }
      */
     public function __construct($data = NULL) {
@@ -42,9 +43,9 @@ class EdgeCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Self-link of the GCP resource for the Edge Cluster. For
+     * Immutable. Self-link of the GCP resource for the Appliance Cluster. For
      * example:
-     * //edgecontainer.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
+     * //transferappliance.googleapis.com/projects/my-project/locations/us-west1-a/appliances/my-appliance
      *
      * Generated from protobuf field <code>string resource_link = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -55,9 +56,9 @@ class EdgeCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Self-link of the GCP resource for the Edge Cluster. For
+     * Immutable. Self-link of the GCP resource for the Appliance Cluster. For
      * example:
-     * //edgecontainer.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
+     * //transferappliance.googleapis.com/projects/my-project/locations/us-west1-a/appliances/my-appliance
      *
      * Generated from protobuf field <code>string resource_link = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
