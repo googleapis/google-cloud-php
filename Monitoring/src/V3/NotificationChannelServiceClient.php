@@ -25,6 +25,7 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Cloud\Monitoring\V3\Gapic\NotificationChannelServiceGapicClient;
+use Google\ApiCore\PathTemplate;
 
 /** {@inheritdoc} */
 class NotificationChannelServiceClient extends NotificationChannelServiceGapicClient

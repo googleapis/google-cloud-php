@@ -25,6 +25,7 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Cloud\Monitoring\V3\Gapic\ServiceMonitoringServiceGapicClient;
+use Google\ApiCore\PathTemplate;
 
 /** {@inheritdoc} */
 class ServiceMonitoringServiceClient extends ServiceMonitoringServiceGapicClient
