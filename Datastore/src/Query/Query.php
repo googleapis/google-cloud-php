@@ -250,7 +250,7 @@ class Query implements QueryInterface
      *        [here](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#operator_1).
      *        Short comparison operators are provided for convenience and are
      *        mapped to their datastore-compatible equivalents. Available short
-     *        operators are `=`, `<`, `<=`, `>`, and `>=`.
+     *        operators are `=`, `!=`, `<`, `<=`, `>`, and `>=`.
      * @param mixed $value The value to check.
      * @return Query
      */
