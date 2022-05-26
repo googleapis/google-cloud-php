@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class MultiCloudCluster extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster.
-     * For example:
+     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster. For
+     * example:
      *  //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster
      *  //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster
      *
@@ -40,8 +40,8 @@ class MultiCloudCluster extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $resource_link
-     *           Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster.
-     *           For example:
+     *           Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster. For
+     *           example:
      *            //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster
      *            //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster
      *     @type bool $cluster_missing
@@ -56,8 +56,8 @@ class MultiCloudCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster.
-     * For example:
+     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster. For
+     * example:
      *  //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster
      *  //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster
      *
@@ -70,8 +70,8 @@ class MultiCloudCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster.
-     * For example:
+     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster. For
+     * example:
      *  //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster
      *  //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster
      *

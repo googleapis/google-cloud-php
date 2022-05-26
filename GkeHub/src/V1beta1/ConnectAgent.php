@@ -23,9 +23,9 @@ class ConnectAgent extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Optional. URI of a proxy if connectivity from the agent to
-     * gkeconnect.googleapis.com requires the use of a proxy. Format must be in
-     * the form `http(s)://{proxy_address}`, depending on the HTTP/HTTPS protocol
+     * Optional. URI of a proxy if connectivity from the agent to gkeconnect.googleapis.com
+     * requires the use of a proxy. Format must be in the form
+     * `http(s)://{proxy_address}`, depending on the HTTP/HTTPS protocol
      * supported by the proxy. This will direct the connect agent's outbound
      * traffic through a HTTP(S) proxy.
      *
@@ -33,8 +33,7 @@ class ConnectAgent extends \Google\Protobuf\Internal\Message
      */
     private $proxy = '';
     /**
-     * Optional. Namespace for GKE Connect agent resources. Defaults to
-     * `gke-connect`.
+     * Optional. Namespace for GKE Connect agent resources. Defaults to `gke-connect`.
      * The Connect Agent is authorized automatically when run in the default
      * namespace. Otherwise, explicit authorization must be granted with an
      * additional IAM binding.
@@ -52,14 +51,13 @@ class ConnectAgent extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Do not set.
      *     @type string $proxy
-     *           Optional. URI of a proxy if connectivity from the agent to
-     *           gkeconnect.googleapis.com requires the use of a proxy. Format must be in
-     *           the form `http(s)://{proxy_address}`, depending on the HTTP/HTTPS protocol
+     *           Optional. URI of a proxy if connectivity from the agent to gkeconnect.googleapis.com
+     *           requires the use of a proxy. Format must be in the form
+     *           `http(s)://{proxy_address}`, depending on the HTTP/HTTPS protocol
      *           supported by the proxy. This will direct the connect agent's outbound
      *           traffic through a HTTP(S) proxy.
      *     @type string $namespace
-     *           Optional. Namespace for GKE Connect agent resources. Defaults to
-     *           `gke-connect`.
+     *           Optional. Namespace for GKE Connect agent resources. Defaults to `gke-connect`.
      *           The Connect Agent is authorized automatically when run in the default
      *           namespace. Otherwise, explicit authorization must be granted with an
      *           additional IAM binding.
@@ -101,9 +99,9 @@ class ConnectAgent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. URI of a proxy if connectivity from the agent to
-     * gkeconnect.googleapis.com requires the use of a proxy. Format must be in
-     * the form `http(s)://{proxy_address}`, depending on the HTTP/HTTPS protocol
+     * Optional. URI of a proxy if connectivity from the agent to gkeconnect.googleapis.com
+     * requires the use of a proxy. Format must be in the form
+     * `http(s)://{proxy_address}`, depending on the HTTP/HTTPS protocol
      * supported by the proxy. This will direct the connect agent's outbound
      * traffic through a HTTP(S) proxy.
      *
@@ -116,9 +114,9 @@ class ConnectAgent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. URI of a proxy if connectivity from the agent to
-     * gkeconnect.googleapis.com requires the use of a proxy. Format must be in
-     * the form `http(s)://{proxy_address}`, depending on the HTTP/HTTPS protocol
+     * Optional. URI of a proxy if connectivity from the agent to gkeconnect.googleapis.com
+     * requires the use of a proxy. Format must be in the form
+     * `http(s)://{proxy_address}`, depending on the HTTP/HTTPS protocol
      * supported by the proxy. This will direct the connect agent's outbound
      * traffic through a HTTP(S) proxy.
      *
@@ -135,8 +133,7 @@ class ConnectAgent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Namespace for GKE Connect agent resources. Defaults to
-     * `gke-connect`.
+     * Optional. Namespace for GKE Connect agent resources. Defaults to `gke-connect`.
      * The Connect Agent is authorized automatically when run in the default
      * namespace. Otherwise, explicit authorization must be granted with an
      * additional IAM binding.
@@ -150,8 +147,7 @@ class ConnectAgent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Namespace for GKE Connect agent resources. Defaults to
-     * `gke-connect`.
+     * Optional. Namespace for GKE Connect agent resources. Defaults to `gke-connect`.
      * The Connect Agent is authorized automatically when run in the default
      * namespace. Otherwise, explicit authorization must be granted with an
      * additional IAM binding.
