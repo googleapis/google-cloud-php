@@ -11,7 +11,7 @@
         "phpunit/phpunit": "^4.8|^5.0|^8.0",
         "yoast/phpunit-polyfills": "^1.0",
         "squizlabs/php_codesniffer": "2.*",
-        "phpdocumentor/reflection": "^3.0",
+        "phpdocumentor/reflection": "^3.0||^4.0",
         "erusev/parsedown": "^1.6",
         "google/cloud-storage": "^1.3"
     },

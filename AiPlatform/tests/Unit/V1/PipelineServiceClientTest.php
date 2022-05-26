@@ -214,11 +214,13 @@ class PipelineServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $serviceAccount = 'serviceAccount-1948028253';
         $network = 'network1843485230';
+        $templateUri = 'templateUri-975637465';
         $expectedResponse = new PipelineJob();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setNetwork($network);
+        $expectedResponse->setTemplateUri($templateUri);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
@@ -614,11 +616,13 @@ class PipelineServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $serviceAccount = 'serviceAccount-1948028253';
         $network = 'network1843485230';
+        $templateUri = 'templateUri-975637465';
         $expectedResponse = new PipelineJob();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setNetwork($network);
+        $expectedResponse->setTemplateUri($templateUri);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]');

@@ -19,7 +19,7 @@ namespace Google\Cloud\Core\Testing\Snippet\Coverage;
 
 use Google\Cloud\Core\Testing\FileListFilterIterator;
 use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
-use phpDocumentor\Reflection\FileReflector;
+use Google\Cloud\Core\Testing\Reflection\ReflectionHandlerFactory;
 
 /**
  * Scan a directory for files, a set of files for classes, and a set of classes
@@ -118,16 +118,13 @@ class Scanner implements ScannerInterface
      */
     public function classes(array $files, array $exclude = [])
     {
+        $handler = ReflectionHandlerFactory::create();
         $classes = [];
-        foreach ($files as $file) {
-            $f = new FileReflector($file);
-            $f->process();
-            foreach ($f->getClasses() as $class) {
-                if ($this->checkExclude($class->getName(), $exclude)) {
-                    continue;
-                }
-                $classes[] = $class->getName();
+        foreach ($handler->classes($files) as $class) {
+            if ($this->checkExclude($class, $exclude)) {
+                continue;
             }
+            $classes[] = $class;
         }
         return $classes;
     }

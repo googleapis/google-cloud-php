@@ -1,4 +1,19 @@
 <?php
+/**
+ * Copyright 2022 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 declare(strict_types=1);
 
@@ -10,24 +25,24 @@ declare(strict_types=1);
  * @link      http://phpdoc.org
  */
 
-namespace Google\Cloud\Dev\DocGenerator\DocBlock;
+namespace Google\Cloud\Core\Testing\Reflection;
 
-use phpDocumentor\Reflection\DocBlock\DescriptionFactory as BaseDescriptionFactory;
-use phpDocumentor\Reflection\Types\Context as TypeContext;
-use phpDocumentor\Reflection\Utils;
-use phpDocumentor\Reflection\DocBlock\Description;
-use phpDocumentor\Reflection\DocBlock\TagFactory;
 use function count;
 use function explode;
 use function implode;
 use function ltrim;
 use function min;
+use phpDocumentor\Reflection\DocBlock\Description;
+use phpDocumentor\Reflection\DocBlock\DescriptionFactory as BaseDescriptionFactory;
+use phpDocumentor\Reflection\DocBlock\TagFactory;
+use phpDocumentor\Reflection\Types\Context as TypeContext;
+use phpDocumentor\Reflection\Utils;
+use const PREG_SPLIT_DELIM_CAPTURE;
 use function str_replace;
 use function strlen;
 use function strpos;
 use function substr;
 use function trim;
-use const PREG_SPLIT_DELIM_CAPTURE;
 
 /**
  * Creates a new Description object given a body of text.
@@ -59,10 +74,15 @@ class DescriptionFactory extends BaseDescriptionFactory
         $this->tagFactory = $tagFactory;
     }
 
+    public function getTagFactory()
+    {
+        return $this->tagFactory;
+    }
+
     /**
      * Returns the parsed text of this description.
      */
-    public function create(string $contents, ?TypeContext $context = null) : Description
+    public function create(string $contents, ?TypeContext $context = null): Description
     {
         $tokens   = $this->lex($contents);
         $count    = count($tokens);
@@ -93,7 +113,7 @@ class DescriptionFactory extends BaseDescriptionFactory
      *
      * @return string[] A series of tokens of which the description text is composed.
      */
-    private function lex(string $contents) : array
+    private function lex(string $contents): array
     {
         $contents = $this->removeSuperfluousStartingWhitespace($contents);
 
@@ -147,7 +167,7 @@ class DescriptionFactory extends BaseDescriptionFactory
      * If we do not normalize the indentation then we have superfluous whitespace on the second and subsequent
      * lines and this may cause rendering issues when, for example, using a Markdown converter.
      */
-    private function removeSuperfluousStartingWhitespace(string $contents) : string
+    private function removeSuperfluousStartingWhitespace(string $contents): string
     {
         $lines = explode("\n", $contents);
 

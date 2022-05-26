@@ -55,6 +55,12 @@ class ExplanationMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string feature_attributions_schema_uri = 3;</code>
      */
     private $feature_attributions_schema_uri = '';
+    /**
+     * Name of the source to generate embeddings for example based explanations.
+     *
+     * Generated from protobuf field <code>string latent_space_source = 5;</code>
+     */
+    private $latent_space_source = '';
 
     /**
      * Constructor.
@@ -90,6 +96,8 @@ class ExplanationMetadata extends \Google\Protobuf\Internal\Message
      *           Note: The URI given on output may be different, including the URI scheme,
      *           than the one given on input. The output URI will point to a location where
      *           the user only has a read access.
+     *     @type string $latent_space_source
+     *           Name of the source to generate embeddings for example based explanations.
      * }
      */
     public function __construct($data = NULL) {
@@ -215,6 +223,32 @@ class ExplanationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->feature_attributions_schema_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Name of the source to generate embeddings for example based explanations.
+     *
+     * Generated from protobuf field <code>string latent_space_source = 5;</code>
+     * @return string
+     */
+    public function getLatentSpaceSource()
+    {
+        return $this->latent_space_source;
+    }
+
+    /**
+     * Name of the source to generate embeddings for example based explanations.
+     *
+     * Generated from protobuf field <code>string latent_space_source = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLatentSpaceSource($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->latent_space_source = $var;
 
         return $this;
     }
