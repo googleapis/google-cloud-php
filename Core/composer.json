@@ -2,7 +2,7 @@
     "name": "google/cloud-core",
     "description": "Google Cloud PHP shared dependency, providing functionality useful to all components.",
     "license": "Apache-2.0",
-    "minimum-stability": "stable",
+    "version": "dev-eod-suppress-errs",
     "require": {
         "php": ">=5.5",
         "rize/uri-template": "~0.3",

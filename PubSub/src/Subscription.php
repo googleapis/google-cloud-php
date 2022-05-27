@@ -30,8 +30,6 @@ use Google\Cloud\PubSub\Connection\IamSubscription;
 use Google\Cloud\PubSub\IncomingMessageTrait;
 use InvalidArgumentException;
 
-const EXACTLY_ONCE_FAILURE_REASON = 'EXACTLY_ONCE_ACKID_FAILURE';
-
 /**
  * A named resource representing the stream of messages from a single, specific
  * topic, to be delivered to the subscribing application.
@@ -88,6 +86,10 @@ class Subscription
     use ValidateTrait;
 
     const MAX_MESSAGES = 1000;
+
+    // The Error Info reason that is used to identify a subscription
+    // with EOD enabled or not
+    const EXACTLY_ONCE_FAILURE_REASON = 'EXACTLY_ONCE_ACKID_FAILURE';
 
     /**
      * @var ConnectionInterface
@@ -1071,7 +1073,7 @@ class Subscription
     {
         $reason = $e->getReason();
 
-        return $reason === EXACTLY_ONCE_FAILURE_REASON;
+        return $reason === self::EXACTLY_ONCE_FAILURE_REASON;
     }
 
     /**
