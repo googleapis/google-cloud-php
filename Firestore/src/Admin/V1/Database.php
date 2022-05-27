@@ -46,6 +46,23 @@ class Database extends \Google\Protobuf\Internal\Message
      */
     private $concurrency_mode = 0;
     /**
+     * The App Engine integration mode to use for this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.AppEngineIntegrationMode app_engine_integration_mode = 19;</code>
+     */
+    private $app_engine_integration_mode = 0;
+    /**
+     * Output only. The key_prefix for this database. This key_prefix is used, in combination
+     * with the project id ("<key prefix>~<project id>") to construct the
+     * application id that is returned from the Cloud Datastore APIs in Google App
+     * Engine first generation runtimes.
+     * This value may be empty in which case the appid to use for URL-encoded keys
+     * is the project_id (eg: foo instead of v~foo).
+     *
+     * Generated from protobuf field <code>string key_prefix = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $key_prefix = '';
+    /**
      * This checksum is computed by the server based on the value of other
      * fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
@@ -72,6 +89,15 @@ class Database extends \Google\Protobuf\Internal\Message
      *           information about how to choose.
      *     @type int $concurrency_mode
      *           The concurrency control mode to use for this database.
+     *     @type int $app_engine_integration_mode
+     *           The App Engine integration mode to use for this database.
+     *     @type string $key_prefix
+     *           Output only. The key_prefix for this database. This key_prefix is used, in combination
+     *           with the project id ("<key prefix>~<project id>") to construct the
+     *           application id that is returned from the Cloud Datastore APIs in Google App
+     *           Engine first generation runtimes.
+     *           This value may be empty in which case the appid to use for URL-encoded keys
+     *           is the project_id (eg: foo instead of v~foo).
      *     @type string $etag
      *           This checksum is computed by the server based on the value of other
      *           fields, and may be sent on update and delete requests to ensure the
@@ -191,6 +217,68 @@ class Database extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Database\ConcurrencyMode::class);
         $this->concurrency_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * The App Engine integration mode to use for this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.AppEngineIntegrationMode app_engine_integration_mode = 19;</code>
+     * @return int
+     */
+    public function getAppEngineIntegrationMode()
+    {
+        return $this->app_engine_integration_mode;
+    }
+
+    /**
+     * The App Engine integration mode to use for this database.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Database.AppEngineIntegrationMode app_engine_integration_mode = 19;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAppEngineIntegrationMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Database\AppEngineIntegrationMode::class);
+        $this->app_engine_integration_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The key_prefix for this database. This key_prefix is used, in combination
+     * with the project id ("<key prefix>~<project id>") to construct the
+     * application id that is returned from the Cloud Datastore APIs in Google App
+     * Engine first generation runtimes.
+     * This value may be empty in which case the appid to use for URL-encoded keys
+     * is the project_id (eg: foo instead of v~foo).
+     *
+     * Generated from protobuf field <code>string key_prefix = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getKeyPrefix()
+    {
+        return $this->key_prefix;
+    }
+
+    /**
+     * Output only. The key_prefix for this database. This key_prefix is used, in combination
+     * with the project id ("<key prefix>~<project id>") to construct the
+     * application id that is returned from the Cloud Datastore APIs in Google App
+     * Engine first generation runtimes.
+     * This value may be empty in which case the appid to use for URL-encoded keys
+     * is the project_id (eg: foo instead of v~foo).
+     *
+     * Generated from protobuf field <code>string key_prefix = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKeyPrefix($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->key_prefix = $var;
 
         return $this;
     }
