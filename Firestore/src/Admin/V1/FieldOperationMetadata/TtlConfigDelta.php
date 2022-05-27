@@ -20,7 +20,7 @@ class TtlConfigDelta extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.FieldOperationMetadata.TtlConfigDelta.ChangeType change_type = 1;</code>
      */
-    protected $change_type = 0;
+    private $change_type = 0;
 
     /**
      * Constructor.

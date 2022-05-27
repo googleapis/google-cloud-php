@@ -403,10 +403,12 @@ class FirestoreAdminClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $locationId = 'locationId552319461';
+        $keyPrefix = 'keyPrefix438630514';
         $etag = 'etag3123477';
         $expectedResponse = new Database();
         $expectedResponse->setName($name2);
         $expectedResponse->setLocationId($locationId);
+        $expectedResponse->setKeyPrefix($keyPrefix);
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -938,10 +940,12 @@ class FirestoreAdminClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $locationId = 'locationId552319461';
+        $keyPrefix = 'keyPrefix438630514';
         $etag = 'etag3123477';
         $expectedResponse = new Database();
         $expectedResponse->setName($name);
         $expectedResponse->setLocationId($locationId);
+        $expectedResponse->setKeyPrefix($keyPrefix);
         $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());

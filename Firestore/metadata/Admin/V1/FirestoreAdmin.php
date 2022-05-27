@@ -21,15 +21,13 @@ class FirestoreAdmin
         \GPBMetadata\Google\Firestore\Admin\V1\Database::initOnce();
         \GPBMetadata\Google\Firestore\Admin\V1\Field::initOnce();
         \GPBMetadata\Google\Firestore\Admin\V1\Index::initOnce();
-        \GPBMetadata\Google\Firestore\Admin\V1\Operation::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
-        \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Å\'
-/google/firestore/admin/v1/firestore_admin.protogoogle.firestore.admin.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/firestore/admin/v1/database.proto%google/firestore/admin/v1/field.proto%google/firestore/admin/v1/index.proto)google/firestore/admin/v1/operation.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Q
+µ&
+/google/firestore/admin/v1/firestore_admin.protogoogle.firestore.admin.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto(google/firestore/admin/v1/database.proto%google/firestore/admin/v1/field.proto%google/firestore/admin/v1/index.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Q
 ListDatabasesRequest9
 parent (	B)‡A˙A#!firestore.googleapis.com/Database"O
 ListDatabasesResponse6

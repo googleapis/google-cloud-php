@@ -24,7 +24,7 @@ class TtlConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Field.TtlConfig.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $state = 0;
+    private $state = 0;
 
     /**
      * Constructor.

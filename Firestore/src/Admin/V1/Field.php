@@ -53,6 +53,14 @@ class Field extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.firestore.admin.v1.Field.IndexConfig index_config = 2;</code>
      */
     private $index_config = null;
+    /**
+     * The TTL configuration for this `Field`.
+     * Setting or unsetting this will enable or disable the TTL for
+     * documents that have this `Field`.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Field.TtlConfig ttl_config = 3;</code>
+     */
+    private $ttl_config = null;
 
     /**
      * Constructor.
@@ -88,6 +96,10 @@ class Field extends \Google\Protobuf\Internal\Message
      *           revert to the configuration defined by the `ancestor_field`. To
      *           explicitly remove all indexes for this field, specify an index config
      *           with an empty list of indexes.
+     *     @type \Google\Cloud\Firestore\Admin\V1\Field\TtlConfig $ttl_config
+     *           The TTL configuration for this `Field`.
+     *           Setting or unsetting this will enable or disable the TTL for
+     *           documents that have this `Field`.
      * }
      */
     public function __construct($data = NULL) {
@@ -201,6 +213,46 @@ class Field extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\Field\IndexConfig::class);
         $this->index_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The TTL configuration for this `Field`.
+     * Setting or unsetting this will enable or disable the TTL for
+     * documents that have this `Field`.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Field.TtlConfig ttl_config = 3;</code>
+     * @return \Google\Cloud\Firestore\Admin\V1\Field\TtlConfig|null
+     */
+    public function getTtlConfig()
+    {
+        return $this->ttl_config;
+    }
+
+    public function hasTtlConfig()
+    {
+        return isset($this->ttl_config);
+    }
+
+    public function clearTtlConfig()
+    {
+        unset($this->ttl_config);
+    }
+
+    /**
+     * The TTL configuration for this `Field`.
+     * Setting or unsetting this will enable or disable the TTL for
+     * documents that have this `Field`.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Field.TtlConfig ttl_config = 3;</code>
+     * @param \Google\Cloud\Firestore\Admin\V1\Field\TtlConfig $var
+     * @return $this
+     */
+    public function setTtlConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\Field\TtlConfig::class);
+        $this->ttl_config = $var;
 
         return $this;
     }
