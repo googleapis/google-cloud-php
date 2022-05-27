@@ -49,10 +49,14 @@ class Release extends \Google\Protobuf\Internal\Message
     /**
      * Labels are attributes that can be set and used by both the
      * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints: Each resource is limited to 64 labels. Keys must conform to
-     * the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     * regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     * constrained to be <= 128 bytes in size.
+     * constraints:
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     * underscores, and dashes.
+     * * All characters must use UTF-8 encoding, and international characters are
+     * allowed.
+     * * Keys must start with a lowercase letter or international character.
+     * * Each resource is limited to a maximum of 64 labels.
+     * Both keys and values are additionally constrained to be <= 128 bytes.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      */
@@ -100,7 +104,7 @@ class Release extends \Google\Protobuf\Internal\Message
      */
     private $delivery_pipeline_snapshot = null;
     /**
-     * Output only. Snapshot of the parent pipeline's targets taken at release creation time.
+     * Output only. Snapshot of the targets taken at release creation time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Target target_snapshots = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -164,10 +168,14 @@ class Release extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels are attributes that can be set and used by both the
      *           user and by Google Cloud Deploy. Labels must meet the following
-     *           constraints: Each resource is limited to 64 labels. Keys must conform to
-     *           the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     *           regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     *           constrained to be <= 128 bytes in size.
+     *           constraints:
+     *           * Keys and values can contain only lowercase letters, numeric characters,
+     *           underscores, and dashes.
+     *           * All characters must use UTF-8 encoding, and international characters are
+     *           allowed.
+     *           * Keys must start with a lowercase letter or international character.
+     *           * Each resource is limited to a maximum of 64 labels.
+     *           Both keys and values are additionally constrained to be <= 128 bytes.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time at which the `Release` was created.
      *     @type \Google\Protobuf\Timestamp $render_start_time
@@ -183,7 +191,7 @@ class Release extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Deploy\V1\DeliveryPipeline $delivery_pipeline_snapshot
      *           Output only. Snapshot of the parent pipeline taken at release creation time.
      *     @type \Google\Cloud\Deploy\V1\Target[]|\Google\Protobuf\Internal\RepeatedField $target_snapshots
-     *           Output only. Snapshot of the parent pipeline's targets taken at release creation time.
+     *           Output only. Snapshot of the targets taken at release creation time.
      *     @type int $render_state
      *           Output only. Current state of the render operation.
      *     @type string $etag
@@ -324,10 +332,14 @@ class Release extends \Google\Protobuf\Internal\Message
     /**
      * Labels are attributes that can be set and used by both the
      * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints: Each resource is limited to 64 labels. Keys must conform to
-     * the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     * regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     * constrained to be <= 128 bytes in size.
+     * constraints:
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     * underscores, and dashes.
+     * * All characters must use UTF-8 encoding, and international characters are
+     * allowed.
+     * * Keys must start with a lowercase letter or international character.
+     * * Each resource is limited to a maximum of 64 labels.
+     * Both keys and values are additionally constrained to be <= 128 bytes.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -340,10 +352,14 @@ class Release extends \Google\Protobuf\Internal\Message
     /**
      * Labels are attributes that can be set and used by both the
      * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints: Each resource is limited to 64 labels. Keys must conform to
-     * the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     * regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     * constrained to be <= 128 bytes in size.
+     * constraints:
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     * underscores, and dashes.
+     * * All characters must use UTF-8 encoding, and international characters are
+     * allowed.
+     * * Keys must start with a lowercase letter or international character.
+     * * Each resource is limited to a maximum of 64 labels.
+     * Both keys and values are additionally constrained to be <= 128 bytes.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -580,7 +596,7 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Snapshot of the parent pipeline's targets taken at release creation time.
+     * Output only. Snapshot of the targets taken at release creation time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Target target_snapshots = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -591,7 +607,7 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Snapshot of the parent pipeline's targets taken at release creation time.
+     * Output only. Snapshot of the targets taken at release creation time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Target target_snapshots = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Deploy\V1\Target[]|\Google\Protobuf\Internal\RepeatedField $var

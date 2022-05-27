@@ -22,8 +22,8 @@ class RunTransferJobRequest extends \Google\Protobuf\Internal\Message
      */
     private $job_name = '';
     /**
-     * Required. The ID of the Google Cloud Platform Console project that owns the
-     * transfer job.
+     * Required. The ID of the Google Cloud project that owns the transfer
+     * job.
      *
      * Generated from protobuf field <code>string project_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -38,8 +38,8 @@ class RunTransferJobRequest extends \Google\Protobuf\Internal\Message
      *     @type string $job_name
      *           Required. The name of the transfer job.
      *     @type string $project_id
-     *           Required. The ID of the Google Cloud Platform Console project that owns the
-     *           transfer job.
+     *           Required. The ID of the Google Cloud project that owns the transfer
+     *           job.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,8 +74,8 @@ class RunTransferJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the Google Cloud Platform Console project that owns the
-     * transfer job.
+     * Required. The ID of the Google Cloud project that owns the transfer
+     * job.
      *
      * Generated from protobuf field <code>string project_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -86,8 +86,8 @@ class RunTransferJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the Google Cloud Platform Console project that owns the
-     * transfer job.
+     * Required. The ID of the Google Cloud project that owns the transfer
+     * job.
      *
      * Generated from protobuf field <code>string project_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

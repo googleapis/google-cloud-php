@@ -19,18 +19,21 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\ServiceBuilder;
 use Composer\Autoload\ClassLoader;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
  */
 class ServicesNotFoundTest extends TestCase
 {
+    use ExpectException;
+
     private static $previousAutoloadFunc;
     private static $newAutoloadFunc;
     private static $cloud;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         self::$cloud = new ServiceBuilder;
         foreach (spl_autoload_functions() as $function) {
@@ -46,7 +49,7 @@ class ServicesNotFoundTest extends TestCase
         }
     }
 
-    public static function tearDownAfterClass()
+    public static function tear_down_after_class()
     {
         spl_autoload_register(self::$previousAutoloadFunc);
         spl_autoload_unregister(self::$newAutoloadFunc);
@@ -104,7 +107,8 @@ class ServicesNotFoundTest extends TestCase
      */
     public function testServicesNotFound($method)
     {
-        $this->setExpectedException(\Exception::class, sprintf(
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage(sprintf(
             'The google/cloud-%s package is missing and must be installed.',
             strtolower($method)
         ));

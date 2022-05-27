@@ -20,14 +20,15 @@ class Eventarc
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Eventarc\V1\Channel::initOnce();
         \GPBMetadata\Google\Cloud\Eventarc\V1\ChannelConnection::initOnce();
+        \GPBMetadata\Google\Cloud\Eventarc\V1\Discovery::initOnce();
         \GPBMetadata\Google\Cloud\Eventarc\V1\Trigger::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ù0
-\'google/cloud/eventarc/v1/eventarc.protogoogle.cloud.eventarc.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/eventarc/v1/channel.proto1google/cloud/eventarc/v1/channel_connection.proto&google/cloud/eventarc/v1/trigger.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"J
+Ç6
+\'google/cloud/eventarc/v1/eventarc.protogoogle.cloud.eventarc.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/eventarc/v1/channel.proto1google/cloud/eventarc/v1/channel_connection.proto(google/cloud/eventarc/v1/discovery.proto&google/cloud/eventarc/v1/trigger.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"J
 GetTriggerRequest5
 name (	B\'‡A˙A!
 eventarc.googleapis.com/Trigger"á
@@ -84,7 +85,21 @@ channel_id (	B‡A
 DeleteChannelRequest5
 name (	B\'‡A˙A!
 eventarc.googleapis.com/Channel
-validate_only (B‡A"^
+validate_only (B‡A"L
+GetProviderRequest6
+name (	B(‡A˙A"
+ eventarc.googleapis.com/Provider"ô
+ListProvidersRequest8
+parent (	B(‡A˙A" eventarc.googleapis.com/Provider
+	page_size (
+
+page_token (	
+order_by (	
+filter (	"|
+ListProvidersResponse5
+	providers (2".google.cloud.eventarc.v1.Provider
+next_page_token (	
+unreachable (	"^
 GetChannelConnectionRequest?
 name (	B1‡A˙A+
 )eventarc.googleapis.com/ChannelConnection"â
@@ -111,7 +126,7 @@ page_token (	"ò
 verb (	B‡A
 status_message (	B‡A#
 requested_cancellation (B‡A
-api_version (	B‡A2ô
+api_version (	B‡A2Ï
 Eventarcô
 
 GetTrigger+.google.cloud.eventarc.v1.GetTriggerRequest!.google.cloud.eventarc.v1.Trigger";Ç”‰ì.,/v1/{name=projects/*/locations/*/triggers/*}⁄Aname¨
@@ -130,7 +145,9 @@ GetChannel+.google.cloud.eventarc.v1.GetChannelRequest!.google.cloud.eventarc.
 UpdateChannel..google.cloud.eventarc.v1.UpdateChannelRequest.google.longrunning.Operation"zÇ”‰ì?24/v1/{channel.name=projects/*/locations/*/channels/*}:channel⁄Achannel,update_mask A
 ChannelOperationMetadata∫
 DeleteChannel..google.cloud.eventarc.v1.DeleteChannelRequest.google.longrunning.Operation"ZÇ”‰ì.*,/v1/{name=projects/*/locations/*/channels/*}⁄Aname A
-ChannelOperationMetadata¡
+ChannelOperationMetadataù
+GetProvider,.google.cloud.eventarc.v1.GetProviderRequest".google.cloud.eventarc.v1.Provider"<Ç”‰ì/-/v1/{name=projects/*/locations/*/providers/*}⁄Aname∞
+ListProviders..google.cloud.eventarc.v1.ListProvidersRequest/.google.cloud.eventarc.v1.ListProvidersResponse">Ç”‰ì/-/v1/{parent=projects/*/locations/*}/providers⁄Aparent¡
 GetChannelConnection5.google.cloud.eventarc.v1.GetChannelConnectionRequest+.google.cloud.eventarc.v1.ChannelConnection"EÇ”‰ì86/v1/{name=projects/*/locations/*/channelConnections/*}⁄Aname‘
 ListChannelConnections7.google.cloud.eventarc.v1.ListChannelConnectionsRequest8.google.cloud.eventarc.v1.ListChannelConnectionsResponse"GÇ”‰ì86/v1/{parent=projects/*/locations/*}/channelConnections⁄Aparent¢
 CreateChannelConnection8.google.cloud.eventarc.v1.CreateChannelConnectionRequest.google.longrunning.Operation"≠Ç”‰ìL"6/v1/{parent=projects/*/locations/*}/channelConnections:channel_connection⁄A/parent,channel_connection,channel_connection_id A&

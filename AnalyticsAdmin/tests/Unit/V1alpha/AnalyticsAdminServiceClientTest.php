@@ -28,7 +28,6 @@ use Google\Analytics\Admin\V1alpha\AccountSummary;
 use Google\Analytics\Admin\V1alpha\AcknowledgeUserDataCollectionResponse;
 use Google\Analytics\Admin\V1alpha\AnalyticsAdminServiceClient;
 
-use Google\Analytics\Admin\V1alpha\AndroidAppDataStream;
 use Google\Analytics\Admin\V1alpha\ApproveDisplayVideo360AdvertiserLinkProposalResponse;
 use Google\Analytics\Admin\V1alpha\AuditUserLink;
 use Google\Analytics\Admin\V1alpha\AuditUserLinksResponse;
@@ -52,10 +51,8 @@ use Google\Analytics\Admin\V1alpha\FirebaseLink;
 use Google\Analytics\Admin\V1alpha\GlobalSiteTag;
 use Google\Analytics\Admin\V1alpha\GoogleAdsLink;
 use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
-use Google\Analytics\Admin\V1alpha\IosAppDataStream;
 use Google\Analytics\Admin\V1alpha\ListAccountsResponse;
 use Google\Analytics\Admin\V1alpha\ListAccountSummariesResponse;
-use Google\Analytics\Admin\V1alpha\ListAndroidAppDataStreamsResponse;
 use Google\Analytics\Admin\V1alpha\ListConversionEventsResponse;
 use Google\Analytics\Admin\V1alpha\ListCustomDimensionsResponse;
 use Google\Analytics\Admin\V1alpha\ListCustomMetricsResponse;
@@ -64,17 +61,14 @@ use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinkProposalsRes
 use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListFirebaseLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListGoogleAdsLinksResponse;
-use Google\Analytics\Admin\V1alpha\ListIosAppDataStreamsResponse;
 use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsResponse;
 use Google\Analytics\Admin\V1alpha\ListPropertiesResponse;
 use Google\Analytics\Admin\V1alpha\ListUserLinksResponse;
-use Google\Analytics\Admin\V1alpha\ListWebDataStreamsResponse;
 use Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret;
 use Google\Analytics\Admin\V1alpha\Property;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketResponse;
 use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsResponse;
 use Google\Analytics\Admin\V1alpha\UserLink;
-use Google\Analytics\Admin\V1alpha\WebDataStream;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
@@ -260,7 +254,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->customDimensionName('[PROPERTY]');
+        $formattedName = $client->customDimensionName('[PROPERTY]', '[CUSTOM_DIMENSION]');
         $client->archiveCustomDimension($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -293,7 +287,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->customDimensionName('[PROPERTY]');
+        $formattedName = $client->customDimensionName('[PROPERTY]', '[CUSTOM_DIMENSION]');
         try {
             $client->archiveCustomDimension($formattedName);
             // If the $client method call did not throw, fail the test
@@ -321,7 +315,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->customMetricName('[PROPERTY]');
+        $formattedName = $client->customMetricName('[PROPERTY]', '[CUSTOM_METRIC]');
         $client->archiveCustomMetric($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -354,7 +348,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->customMetricName('[PROPERTY]');
+        $formattedName = $client->customMetricName('[PROPERTY]', '[CUSTOM_METRIC]');
         try {
             $client->archiveCustomMetric($formattedName);
             // If the $client method call did not throw, fail the test
@@ -1413,7 +1407,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setSecretValue($secretValue);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->webDataStreamName('[PROPERTY]', '[WEB_DATA_STREAM]');
+        $formattedParent = $client->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
         $measurementProtocolSecret = new MeasurementProtocolSecret();
         $measurementProtocolSecretDisplayName = 'measurementProtocolSecretDisplayName1279116681';
         $measurementProtocolSecret->setDisplayName($measurementProtocolSecretDisplayName);
@@ -1452,7 +1446,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->webDataStreamName('[PROPERTY]', '[WEB_DATA_STREAM]');
+        $formattedParent = $client->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
         $measurementProtocolSecret = new MeasurementProtocolSecret();
         $measurementProtocolSecretDisplayName = 'measurementProtocolSecretDisplayName1279116681';
         $measurementProtocolSecret->setDisplayName($measurementProtocolSecretDisplayName);
@@ -1624,86 +1618,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function createWebDataStreamTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $name = 'name3373707';
-        $measurementId = 'measurementId-223204226';
-        $firebaseAppId = 'firebaseAppId605863217';
-        $defaultUri = 'defaultUri-436616594';
-        $displayName = 'displayName1615086568';
-        $expectedResponse = new WebDataStream();
-        $expectedResponse->setName($name);
-        $expectedResponse->setMeasurementId($measurementId);
-        $expectedResponse->setFirebaseAppId($firebaseAppId);
-        $expectedResponse->setDefaultUri($defaultUri);
-        $expectedResponse->setDisplayName($displayName);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $webDataStream = new WebDataStream();
-        $webDataStreamDisplayName = 'webDataStreamDisplayName-1607829169';
-        $webDataStream->setDisplayName($webDataStreamDisplayName);
-        $formattedParent = $client->propertyName('[PROPERTY]');
-        $response = $client->createWebDataStream($webDataStream, $formattedParent);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateWebDataStream', $actualFuncCall);
-        $actualValue = $actualRequestObject->getWebDataStream();
-        $this->assertProtobufEquals($webDataStream, $actualValue);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function createWebDataStreamExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $webDataStream = new WebDataStream();
-        $webDataStreamDisplayName = 'webDataStreamDisplayName-1607829169';
-        $webDataStream->setDisplayName($webDataStreamDisplayName);
-        $formattedParent = $client->propertyName('[PROPERTY]');
-        try {
-            $client->createWebDataStream($webDataStream, $formattedParent);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
     public function deleteAccountTest()
     {
         $transport = $this->createTransport();
@@ -1751,67 +1665,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $formattedName = $client->accountName('[ACCOUNT]');
         try {
             $client->deleteAccount($formattedName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteAndroidAppDataStreamTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $expectedResponse = new GPBEmpty();
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $client->androidAppDataStreamName('[PROPERTY]', '[ANDROID_APP_DATA_STREAM]');
-        $client->deleteAndroidAppDataStream($formattedName);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteAndroidAppDataStream', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteAndroidAppDataStreamExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $client->androidAppDataStreamName('[PROPERTY]', '[ANDROID_APP_DATA_STREAM]');
-        try {
-            $client->deleteAndroidAppDataStream($formattedName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2192,67 +2045,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function deleteIosAppDataStreamTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $expectedResponse = new GPBEmpty();
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $client->iosAppDataStreamName('[PROPERTY]', '[IOS_APP_DATA_STREAM]');
-        $client->deleteIosAppDataStream($formattedName);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteIosAppDataStream', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteIosAppDataStreamExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $client->iosAppDataStreamName('[PROPERTY]', '[IOS_APP_DATA_STREAM]');
-        try {
-            $client->deleteIosAppDataStream($formattedName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
     public function deleteMeasurementProtocolSecretTest()
     {
         $transport = $this->createTransport();
@@ -2264,7 +2056,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->measurementProtocolSecretName('[PROPERTY]', '[WEB_DATA_STREAM]', '[MEASUREMENT_PROTOCOL_SECRET]');
+        $formattedName = $client->measurementProtocolSecretName('[PROPERTY]', '[DATA_STREAM]', '[MEASUREMENT_PROTOCOL_SECRET]');
         $client->deleteMeasurementProtocolSecret($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2297,7 +2089,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->measurementProtocolSecretName('[PROPERTY]', '[WEB_DATA_STREAM]', '[MEASUREMENT_PROTOCOL_SECRET]');
+        $formattedName = $client->measurementProtocolSecretName('[PROPERTY]', '[DATA_STREAM]', '[MEASUREMENT_PROTOCOL_SECRET]');
         try {
             $client->deleteMeasurementProtocolSecret($formattedName);
             // If the $client method call did not throw, fail the test
@@ -2449,67 +2241,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function deleteWebDataStreamTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $expectedResponse = new GPBEmpty();
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $client->webDataStreamName('[PROPERTY]', '[WEB_DATA_STREAM]');
-        $client->deleteWebDataStream($formattedName);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteWebDataStream', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteWebDataStreamExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $client->webDataStreamName('[PROPERTY]', '[WEB_DATA_STREAM]');
-        try {
-            $client->deleteWebDataStream($formattedName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
     public function getAccountTest()
     {
         $transport = $this->createTransport();
@@ -2566,76 +2297,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $formattedName = $client->accountName('[ACCOUNT]');
         try {
             $client->getAccount($formattedName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getAndroidAppDataStreamTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $name2 = 'name2-1052831874';
-        $firebaseAppId = 'firebaseAppId605863217';
-        $packageName = 'packageName-1877165340';
-        $displayName = 'displayName1615086568';
-        $expectedResponse = new AndroidAppDataStream();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setFirebaseAppId($firebaseAppId);
-        $expectedResponse->setPackageName($packageName);
-        $expectedResponse->setDisplayName($displayName);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $client->androidAppDataStreamName('[PROPERTY]', '[ANDROID_APP_DATA_STREAM]');
-        $response = $client->getAndroidAppDataStream($formattedName);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetAndroidAppDataStream', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getAndroidAppDataStreamExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $client->androidAppDataStreamName('[PROPERTY]', '[ANDROID_APP_DATA_STREAM]');
-        try {
-            $client->getAndroidAppDataStream($formattedName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2741,7 +2402,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDisallowAdsPersonalization($disallowAdsPersonalization);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->customDimensionName('[PROPERTY]');
+        $formattedName = $client->customDimensionName('[PROPERTY]', '[CUSTOM_DIMENSION]');
         $response = $client->getCustomDimension($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2775,7 +2436,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->customDimensionName('[PROPERTY]');
+        $formattedName = $client->customDimensionName('[PROPERTY]', '[CUSTOM_DIMENSION]');
         try {
             $client->getCustomDimension($formattedName);
             // If the $client method call did not throw, fail the test
@@ -2811,7 +2472,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->customMetricName('[PROPERTY]');
+        $formattedName = $client->customMetricName('[PROPERTY]', '[CUSTOM_METRIC]');
         $response = $client->getCustomMetric($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2845,7 +2506,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->customMetricName('[PROPERTY]');
+        $formattedName = $client->customMetricName('[PROPERTY]', '[CUSTOM_METRIC]');
         try {
             $client->getCustomMetric($formattedName);
             // If the $client method call did not throw, fail the test
@@ -3221,7 +2882,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setSnippet($snippet);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->globalSiteTagName('[PROPERTY]');
+        $formattedName = $client->globalSiteTagName('[PROPERTY]', '[DATA_STREAM]');
         $response = $client->getGlobalSiteTag($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3255,7 +2916,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->globalSiteTagName('[PROPERTY]');
+        $formattedName = $client->globalSiteTagName('[PROPERTY]', '[DATA_STREAM]');
         try {
             $client->getGlobalSiteTag($formattedName);
             // If the $client method call did not throw, fail the test
@@ -3336,76 +2997,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function getIosAppDataStreamTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $name2 = 'name2-1052831874';
-        $firebaseAppId = 'firebaseAppId605863217';
-        $bundleId = 'bundleId-1479583240';
-        $displayName = 'displayName1615086568';
-        $expectedResponse = new IosAppDataStream();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setFirebaseAppId($firebaseAppId);
-        $expectedResponse->setBundleId($bundleId);
-        $expectedResponse->setDisplayName($displayName);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $client->iosAppDataStreamName('[PROPERTY]', '[IOS_APP_DATA_STREAM]');
-        $response = $client->getIosAppDataStream($formattedName);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetIosAppDataStream', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getIosAppDataStreamExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $client->iosAppDataStreamName('[PROPERTY]', '[IOS_APP_DATA_STREAM]');
-        try {
-            $client->getIosAppDataStream($formattedName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
     public function getMeasurementProtocolSecretTest()
     {
         $transport = $this->createTransport();
@@ -3423,7 +3014,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setSecretValue($secretValue);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->measurementProtocolSecretName('[PROPERTY]', '[WEB_DATA_STREAM]', '[MEASUREMENT_PROTOCOL_SECRET]');
+        $formattedName = $client->measurementProtocolSecretName('[PROPERTY]', '[DATA_STREAM]', '[MEASUREMENT_PROTOCOL_SECRET]');
         $response = $client->getMeasurementProtocolSecret($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3457,7 +3048,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->measurementProtocolSecretName('[PROPERTY]', '[WEB_DATA_STREAM]', '[MEASUREMENT_PROTOCOL_SECRET]');
+        $formattedName = $client->measurementProtocolSecretName('[PROPERTY]', '[DATA_STREAM]', '[MEASUREMENT_PROTOCOL_SECRET]');
         try {
             $client->getMeasurementProtocolSecret($formattedName);
             // If the $client method call did not throw, fail the test
@@ -3614,78 +3205,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function getWebDataStreamTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $name2 = 'name2-1052831874';
-        $measurementId = 'measurementId-223204226';
-        $firebaseAppId = 'firebaseAppId605863217';
-        $defaultUri = 'defaultUri-436616594';
-        $displayName = 'displayName1615086568';
-        $expectedResponse = new WebDataStream();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setMeasurementId($measurementId);
-        $expectedResponse->setFirebaseAppId($firebaseAppId);
-        $expectedResponse->setDefaultUri($defaultUri);
-        $expectedResponse->setDisplayName($displayName);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $client->webDataStreamName('[PROPERTY]', '[WEB_DATA_STREAM]');
-        $response = $client->getWebDataStream($formattedName);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetWebDataStream', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getWebDataStreamExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $client->webDataStreamName('[PROPERTY]', '[WEB_DATA_STREAM]');
-        try {
-            $client->getWebDataStream($formattedName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
     public function listAccountSummariesTest()
     {
         $transport = $this->createTransport();
@@ -3804,78 +3323,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         try {
             $client->listAccounts();
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listAndroidAppDataStreamsTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $nextPageToken = '';
-        $androidAppDataStreamsElement = new AndroidAppDataStream();
-        $androidAppDataStreams = [
-            $androidAppDataStreamsElement,
-        ];
-        $expectedResponse = new ListAndroidAppDataStreamsResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setAndroidAppDataStreams($androidAppDataStreams);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $client->propertyName('[PROPERTY]');
-        $response = $client->listAndroidAppDataStreams($formattedParent);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getAndroidAppDataStreams()[0], $resources[0]);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListAndroidAppDataStreams', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listAndroidAppDataStreamsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $client->propertyName('[PROPERTY]');
-        try {
-            $client->listAndroidAppDataStreams($formattedParent);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4466,78 +3913,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function listIosAppDataStreamsTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $nextPageToken = '';
-        $iosAppDataStreamsElement = new IosAppDataStream();
-        $iosAppDataStreams = [
-            $iosAppDataStreamsElement,
-        ];
-        $expectedResponse = new ListIosAppDataStreamsResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setIosAppDataStreams($iosAppDataStreams);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $client->propertyName('[PROPERTY]');
-        $response = $client->listIosAppDataStreams($formattedParent);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getIosAppDataStreams()[0], $resources[0]);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListIosAppDataStreams', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listIosAppDataStreamsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $client->propertyName('[PROPERTY]');
-        try {
-            $client->listIosAppDataStreams($formattedParent);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
     public function listMeasurementProtocolSecretsTest()
     {
         $transport = $this->createTransport();
@@ -4556,7 +3931,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $expectedResponse->setMeasurementProtocolSecrets($measurementProtocolSecrets);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->webDataStreamName('[PROPERTY]', '[WEB_DATA_STREAM]');
+        $formattedParent = $client->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
         $response = $client->listMeasurementProtocolSecrets($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -4593,7 +3968,7 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->webDataStreamName('[PROPERTY]', '[WEB_DATA_STREAM]');
+        $formattedParent = $client->dataStreamName('[PROPERTY]', '[DATA_STREAM]');
         try {
             $client->listMeasurementProtocolSecrets($formattedParent);
             // If the $client method call did not throw, fail the test
@@ -4740,78 +4115,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $formattedParent = $client->accountName('[ACCOUNT]');
         try {
             $client->listUserLinks($formattedParent);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listWebDataStreamsTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $nextPageToken = '';
-        $webDataStreamsElement = new WebDataStream();
-        $webDataStreams = [
-            $webDataStreamsElement,
-        ];
-        $expectedResponse = new ListWebDataStreamsResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setWebDataStreams($webDataStreams);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $client->propertyName('[PROPERTY]');
-        $response = $client->listWebDataStreams($formattedParent);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getWebDataStreams()[0], $resources[0]);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListWebDataStreams', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listWebDataStreamsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $client->propertyName('[PROPERTY]');
-        try {
-            $client->listWebDataStreams($formattedParent);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5020,80 +4323,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $updateMask = new FieldMask();
         try {
             $client->updateAccount($account, $updateMask);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateAndroidAppDataStreamTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $name = 'name3373707';
-        $firebaseAppId = 'firebaseAppId605863217';
-        $packageName = 'packageName-1877165340';
-        $displayName = 'displayName1615086568';
-        $expectedResponse = new AndroidAppDataStream();
-        $expectedResponse->setName($name);
-        $expectedResponse->setFirebaseAppId($firebaseAppId);
-        $expectedResponse->setPackageName($packageName);
-        $expectedResponse->setDisplayName($displayName);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $androidAppDataStream = new AndroidAppDataStream();
-        $updateMask = new FieldMask();
-        $response = $client->updateAndroidAppDataStream($androidAppDataStream, $updateMask);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAndroidAppDataStream', $actualFuncCall);
-        $actualValue = $actualRequestObject->getAndroidAppDataStream();
-        $this->assertProtobufEquals($androidAppDataStream, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateAndroidAppDataStreamExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $androidAppDataStream = new AndroidAppDataStream();
-        $updateMask = new FieldMask();
-        try {
-            $client->updateAndroidAppDataStream($androidAppDataStream, $updateMask);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5592,84 +4821,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function updateIosAppDataStreamTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $name = 'name3373707';
-        $firebaseAppId = 'firebaseAppId605863217';
-        $bundleId = 'bundleId-1479583240';
-        $displayName = 'displayName1615086568';
-        $expectedResponse = new IosAppDataStream();
-        $expectedResponse->setName($name);
-        $expectedResponse->setFirebaseAppId($firebaseAppId);
-        $expectedResponse->setBundleId($bundleId);
-        $expectedResponse->setDisplayName($displayName);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $iosAppDataStream = new IosAppDataStream();
-        $iosAppDataStreamBundleId = 'iosAppDataStreamBundleId1694753051';
-        $iosAppDataStream->setBundleId($iosAppDataStreamBundleId);
-        $updateMask = new FieldMask();
-        $response = $client->updateIosAppDataStream($iosAppDataStream, $updateMask);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateIosAppDataStream', $actualFuncCall);
-        $actualValue = $actualRequestObject->getIosAppDataStream();
-        $this->assertProtobufEquals($iosAppDataStream, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateIosAppDataStreamExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $iosAppDataStream = new IosAppDataStream();
-        $iosAppDataStreamBundleId = 'iosAppDataStreamBundleId1694753051';
-        $iosAppDataStream->setBundleId($iosAppDataStreamBundleId);
-        $updateMask = new FieldMask();
-        try {
-            $client->updateIosAppDataStream($iosAppDataStream, $updateMask);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
     public function updateMeasurementProtocolSecretTest()
     {
         $transport = $this->createTransport();
@@ -5880,86 +5031,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $userLink = new UserLink();
         try {
             $client->updateUserLink($userLink);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateWebDataStreamTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $name = 'name3373707';
-        $measurementId = 'measurementId-223204226';
-        $firebaseAppId = 'firebaseAppId605863217';
-        $defaultUri = 'defaultUri-436616594';
-        $displayName = 'displayName1615086568';
-        $expectedResponse = new WebDataStream();
-        $expectedResponse->setName($name);
-        $expectedResponse->setMeasurementId($measurementId);
-        $expectedResponse->setFirebaseAppId($firebaseAppId);
-        $expectedResponse->setDefaultUri($defaultUri);
-        $expectedResponse->setDisplayName($displayName);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $webDataStream = new WebDataStream();
-        $webDataStreamDisplayName = 'webDataStreamDisplayName-1607829169';
-        $webDataStream->setDisplayName($webDataStreamDisplayName);
-        $updateMask = new FieldMask();
-        $response = $client->updateWebDataStream($webDataStream, $updateMask);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateWebDataStream', $actualFuncCall);
-        $actualValue = $actualRequestObject->getWebDataStream();
-        $this->assertProtobufEquals($webDataStream, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateWebDataStreamExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $webDataStream = new WebDataStream();
-        $webDataStreamDisplayName = 'webDataStreamDisplayName-1607829169';
-        $webDataStream->setDisplayName($webDataStreamDisplayName);
-        $updateMask = new FieldMask();
-        try {
-            $client->updateWebDataStream($webDataStream, $updateMask);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

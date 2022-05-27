@@ -172,7 +172,7 @@ class CertificateTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getPredefinedValues()
     {
-        return isset($this->predefined_values) ? $this->predefined_values : null;
+        return $this->predefined_values;
     }
 
     public function hasPredefinedValues()
@@ -216,7 +216,7 @@ class CertificateTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getIdentityConstraints()
     {
-        return isset($this->identity_constraints) ? $this->identity_constraints : null;
+        return $this->identity_constraints;
     }
 
     public function hasIdentityConstraints()
@@ -263,7 +263,7 @@ class CertificateTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getPassthroughExtensions()
     {
-        return isset($this->passthrough_extensions) ? $this->passthrough_extensions : null;
+        return $this->passthrough_extensions;
     }
 
     public function hasPassthroughExtensions()
@@ -334,7 +334,7 @@ class CertificateTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -370,7 +370,7 @@ class CertificateTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

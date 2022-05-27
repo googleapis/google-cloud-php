@@ -59,6 +59,8 @@ class StudySpec extends \Google\Protobuf\Internal\Message
      *           The automated early stopping spec using decay curve rule.
      *     @type \Google\Cloud\AIPlatform\V1\StudySpec\MedianAutomatedStoppingSpec $median_automated_stopping_spec
      *           The automated early stopping spec using median rule.
+     *     @type \Google\Cloud\AIPlatform\V1\StudySpec\ConvexAutomatedStoppingSpec $convex_automated_stopping_spec
+     *           The automated early stopping spec using convex stopping rule.
      *     @type \Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec[]|\Google\Protobuf\Internal\RepeatedField $metrics
      *           Required. Metric specs for the Study.
      *     @type \Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec[]|\Google\Protobuf\Internal\RepeatedField $parameters
@@ -136,6 +138,37 @@ class StudySpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\StudySpec\MedianAutomatedStoppingSpec::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * The automated early stopping spec using convex stopping rule.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StudySpec.ConvexAutomatedStoppingSpec convex_automated_stopping_spec = 9;</code>
+     * @return \Google\Cloud\AIPlatform\V1\StudySpec\ConvexAutomatedStoppingSpec|null
+     */
+    public function getConvexAutomatedStoppingSpec()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasConvexAutomatedStoppingSpec()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * The automated early stopping spec using convex stopping rule.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StudySpec.ConvexAutomatedStoppingSpec convex_automated_stopping_spec = 9;</code>
+     * @param \Google\Cloud\AIPlatform\V1\StudySpec\ConvexAutomatedStoppingSpec $var
+     * @return $this
+     */
+    public function setConvexAutomatedStoppingSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\StudySpec\ConvexAutomatedStoppingSpec::class);
+        $this->writeOneof(9, $var);
 
         return $this;
     }

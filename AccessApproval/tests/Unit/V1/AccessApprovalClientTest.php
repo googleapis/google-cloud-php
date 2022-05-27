@@ -29,6 +29,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 
 use Google\Cloud\AccessApproval\V1\AccessApprovalClient;
+use Google\Cloud\AccessApproval\V1\AccessApprovalServiceAccount;
 use Google\Cloud\AccessApproval\V1\AccessApprovalSettings;
 use Google\Cloud\AccessApproval\V1\ApprovalRequest;
 use Google\Cloud\AccessApproval\V1\ListApprovalRequestsResponse;
@@ -248,6 +249,66 @@ class AccessApprovalClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function getAccessApprovalServiceAccountTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $accountEmail = 'accountEmail-539286774';
+        $expectedResponse = new AccessApprovalServiceAccount();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setAccountEmail($accountEmail);
+        $transport->addResponse($expectedResponse);
+        $response = $client->getAccessApprovalServiceAccount();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.accessapproval.v1.AccessApproval/GetAccessApprovalServiceAccount', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getAccessApprovalServiceAccountExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $client->getAccessApprovalServiceAccount();
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function getAccessApprovalSettingsTest()
     {
         $transport = $this->createTransport();
@@ -258,9 +319,15 @@ class AccessApprovalClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $enrolledAncestor = false;
+        $activeKeyVersion = 'activeKeyVersion559224639';
+        $ancestorHasActiveKeyVersion = true;
+        $invalidKeyVersion = true;
         $expectedResponse = new AccessApprovalSettings();
         $expectedResponse->setName($name2);
         $expectedResponse->setEnrolledAncestor($enrolledAncestor);
+        $expectedResponse->setActiveKeyVersion($activeKeyVersion);
+        $expectedResponse->setAncestorHasActiveKeyVersion($ancestorHasActiveKeyVersion);
+        $expectedResponse->setInvalidKeyVersion($invalidKeyVersion);
         $transport->addResponse($expectedResponse);
         $response = $client->getAccessApprovalSettings();
         $this->assertEquals($expectedResponse, $response);
@@ -368,6 +435,66 @@ class AccessApprovalClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function invalidateApprovalRequestTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $requestedResourceName = 'requestedResourceName-1409378037';
+        $expectedResponse = new ApprovalRequest();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setRequestedResourceName($requestedResourceName);
+        $transport->addResponse($expectedResponse);
+        $response = $client->invalidateApprovalRequest();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.accessapproval.v1.AccessApproval/InvalidateApprovalRequest', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function invalidateApprovalRequestExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $client->invalidateApprovalRequest();
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function listApprovalRequestsTest()
     {
         $transport = $this->createTransport();
@@ -444,9 +571,15 @@ class AccessApprovalClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $enrolledAncestor = false;
+        $activeKeyVersion = 'activeKeyVersion559224639';
+        $ancestorHasActiveKeyVersion = true;
+        $invalidKeyVersion = true;
         $expectedResponse = new AccessApprovalSettings();
         $expectedResponse->setName($name);
         $expectedResponse->setEnrolledAncestor($enrolledAncestor);
+        $expectedResponse->setActiveKeyVersion($activeKeyVersion);
+        $expectedResponse->setAncestorHasActiveKeyVersion($ancestorHasActiveKeyVersion);
+        $expectedResponse->setInvalidKeyVersion($invalidKeyVersion);
         $transport->addResponse($expectedResponse);
         $response = $client->updateAccessApprovalSettings();
         $this->assertEquals($expectedResponse, $response);

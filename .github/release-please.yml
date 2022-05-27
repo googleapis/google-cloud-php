@@ -1,5 +1,4 @@
 releaseType: php-yoshi
-packageName: Google Cloud PHP
 bumpMinorPreMajor: true
 handleGHRelease: true
 primaryBranch: main

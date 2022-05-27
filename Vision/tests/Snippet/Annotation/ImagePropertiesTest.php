@@ -32,7 +32,7 @@ class ImagePropertiesTest extends SnippetTestCase
     private $propsData;
     private $props;
 
-    public function setUp()
+    public function set_up()
     {
         $this->propsData = ['dominantColors' => ['colors' => 'colorsTest']];
         $this->props = new ImageProperties($this->propsData);

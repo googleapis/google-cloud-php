@@ -120,7 +120,7 @@ class ReusableConfig extends \Google\Protobuf\Internal\Message
      */
     public function getValues()
     {
-        return isset($this->values) ? $this->values : null;
+        return $this->values;
     }
 
     public function hasValues()
@@ -184,7 +184,7 @@ class ReusableConfig extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -220,7 +220,7 @@ class ReusableConfig extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

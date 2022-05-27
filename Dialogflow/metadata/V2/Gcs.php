@@ -14,12 +14,11 @@ class Gcs
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
             '
-≈
-$google/cloud/dialogflow/v2/gcs.protogoogle.cloud.dialogflow.v2google/api/field_behavior.proto"
+§
+$google/cloud/dialogflow/v2/gcs.protogoogle.cloud.dialogflow.v2"
 
 GcsSources
 uris (	B‡A"

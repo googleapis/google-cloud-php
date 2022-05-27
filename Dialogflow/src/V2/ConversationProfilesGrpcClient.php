@@ -115,4 +115,57 @@ class ConversationProfilesGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Adds or updates a suggestion feature in a conversation profile.
+     * If the conversation profile contains the type of suggestion feature for
+     * the participant role, it will update it. Otherwise it will insert the
+     * suggestion feature.
+     *
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: [SetSuggestionFeatureConfigOperationMetadata][google.cloud.dialogflow.v2.SetSuggestionFeatureConfigOperationMetadata]
+     * - `response`: [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
+     *
+     * If a long running operation to add or update suggestion feature
+     * config for the same conversation profile, participant role and suggestion
+     * feature type exists, please cancel the existing long running operation
+     * before sending such request, otherwise the request will be rejected.
+     * @param \Google\Cloud\Dialogflow\V2\SetSuggestionFeatureConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function SetSuggestionFeatureConfig(\Google\Cloud\Dialogflow\V2\SetSuggestionFeatureConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dialogflow.v2.ConversationProfiles/SetSuggestionFeatureConfig',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Clears a suggestion feature from a conversation profile for the given
+     * participant role.
+     *
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: [ClearSuggestionFeatureConfigOperationMetadata][google.cloud.dialogflow.v2.ClearSuggestionFeatureConfigOperationMetadata]
+     * - `response`: [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
+     * @param \Google\Cloud\Dialogflow\V2\ClearSuggestionFeatureConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ClearSuggestionFeatureConfig(\Google\Cloud\Dialogflow\V2\ClearSuggestionFeatureConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dialogflow.v2.ConversationProfiles/ClearSuggestionFeatureConfig',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
 }

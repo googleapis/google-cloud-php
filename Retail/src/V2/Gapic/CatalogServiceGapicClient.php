@@ -346,10 +346,6 @@ class CatalogServiceGapicClient
      * [CatalogService.SetDefaultBranch][google.cloud.retail.v2.CatalogService.SetDefaultBranch]
      * method under a specified parent catalog.
      *
-     * This feature is only available for users who have Retail Search enabled.
-     * Please submit a form [here](https://cloud.google.com/contact) to contact
-     * cloud sales if you are interested in using Retail Search.
-     *
      * Sample code:
      * ```
      * $catalogServiceClient = new CatalogServiceClient();
@@ -519,10 +515,6 @@ class CatalogServiceGapicClient
      * * UserEventService will only join events with products from branch
      * {newBranch}.
      *
-     * This feature is only available for users who have Retail Search enabled.
-     * Please submit a form [here](https://cloud.google.com/contact) to contact
-     * cloud sales if you are interested in using Retail Search.
-     *
      * Sample code:
      * ```
      * $catalogServiceClient = new CatalogServiceClient();
@@ -544,6 +536,10 @@ class CatalogServiceGapicClient
      *
      *           This field must be one of "0", "1" or "2". Otherwise, an INVALID_ARGUMENT
      *           error is returned.
+     *
+     *           If there are no sufficient active products in the targeted branch and
+     *           [force][google.cloud.retail.v2.SetDefaultBranchRequest.force] is not set, a
+     *           FAILED_PRECONDITION error is returned.
      *     @type string $note
      *           Some note on this request, this can be retrieved by
      *           [CatalogService.GetDefaultBranch][google.cloud.retail.v2.CatalogService.GetDefaultBranch]
@@ -551,6 +547,10 @@ class CatalogServiceGapicClient
      *
      *           This field must be a UTF-8 encoded string with a length limit of 1,000
      *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *     @type bool $force
+     *           If set to true, it permits switching to a branch with
+     *           [branch_id][google.cloud.retail.v2.SetDefaultBranchRequest.branch_id] even
+     *           if it has no sufficient active products.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -575,6 +575,10 @@ class CatalogServiceGapicClient
 
         if (isset($optionalArgs['note'])) {
             $request->setNote($optionalArgs['note']);
+        }
+
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

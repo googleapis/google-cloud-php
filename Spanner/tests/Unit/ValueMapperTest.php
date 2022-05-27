@@ -24,12 +24,15 @@ use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Numeric;
+use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\ValueMapper;
-use PHPUnit\Framework\TestCase;
+use Google\Cloud\Spanner\V1\TypeAnnotationCode;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -37,13 +40,14 @@ use PHPUnit\Framework\TestCase;
  */
 class ValueMapperTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
 
     const FORMAT_TEST_VALUE = 'abc';
 
     private $mapper;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
         $this->mapper = new ValueMapper(false);
@@ -102,11 +106,10 @@ class ValueMapperTest extends TestCase
         $this->assertEquals(Database::TYPE_STRING, $res['paramTypes']['array']['arrayElementType']['code']);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testFormatParamsForExecuteSqlInvalidTypes()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->mapper->formatParamsForExecuteSql(['array' => ['foo', 3.1515]]);
     }
 
@@ -151,11 +154,10 @@ class ValueMapperTest extends TestCase
         $this->assertEquals(Database::TYPE_BYTES, $res['paramTypes']['bytes']['code']);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testFormatParamsForExecuteSqlInvalidObjectType()
     {
+        $this->expectException('InvalidArgumentException');
+
         $params = [
             'bad' => $this
         ];
@@ -163,11 +165,10 @@ class ValueMapperTest extends TestCase
         $this->mapper->formatParamsForExecuteSql($params);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testFormatParamsForExecuteSqlNullValueMissingType()
     {
+        $this->expectException('BadMethodCallException');
+
         $params = [
             'null' => null
         ];
@@ -274,12 +275,11 @@ class ValueMapperTest extends TestCase
         ], $res['paramTypes']);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Array data does not match given array parameter type.
-     */
     public function testFormatParamsForExecuteSqlArrayMismatchedDefinition()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Array data does not match given array parameter type.');
+
         $params = [
             'foo' => [1,2,3]
         ];
@@ -291,12 +291,37 @@ class ValueMapperTest extends TestCase
         $this->mapper->formatParamsForExecuteSql($params, $types);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Array parameter types must be an instance of Google\Cloud\Spanner\ArrayType.
-     */
+    public function testFormatParamsForExecuteSqlArrayForCustomTypes()
+    {
+        $params = [
+            'foo' => [1,2,3]
+        ];
+
+        $types = [
+            'foo' => new ArrayType(Database::TYPE_PG_NUMERIC)
+        ];
+
+        // no exception should be thrown as for a pgNumeric value
+        // we wrap the value in numeric strings, so,
+        // 1, 1.0, '1' are all supported
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+
+        $this->assertEquals([
+            'foo' => [
+                'code' => Database::TYPE_ARRAY,
+                'arrayElementType' => [
+                    'code' => Database::TYPE_NUMERIC,
+                    'typeAnnotation' => TypeAnnotationCode::PG_NUMERIC
+                ]
+            ]
+        ], $res['paramTypes']);
+    }
+
     public function testFormatParamsForExecuteSqlArrayInvalidDefinition()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Array parameter types must be an instance of Google\Cloud\Spanner\ArrayType.');
+
         $params = [
             'foo' => ['bar']
         ];
@@ -308,12 +333,11 @@ class ValueMapperTest extends TestCase
         $this->mapper->formatParamsForExecuteSql($params, $types);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Array value must be an array or null.
-     */
     public function testFormatParamsForExecuteSqlArrayInvalidValue()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Array value must be an array or null.');
+
         $params = [
             'foo' => 'hello'
         ];
@@ -389,12 +413,15 @@ class ValueMapperTest extends TestCase
 
     /**
      * @codingStandardsIgnoreStart
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Struct parameter types must be declared explicitly, and must be an instance of Google\Cloud\Spanner\StructType.
      * @codingStandardsIgnoreEnd
      */
     public function testFormatParamsForExecuteSqlStructInvalidDefinition()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage(
+            'Struct parameter types must be declared explicitly, and must be an '
+            . 'instance of Google\Cloud\Spanner\StructType.'
+        );
         $params = [
             'foo' => [
                 'hello' => 'world'
@@ -410,12 +437,15 @@ class ValueMapperTest extends TestCase
 
     /**
      * @codingStandardsIgnoreStart
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Struct value must be an array an instance of `Google\Cloud\Spanner\StructValue` or null.
      * @codingStandardsIgnoreEnd
      */
     public function testFormatParamsForExecuteSqlInvalidStructValue()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage(
+            'Struct value must be an array an instance of `Google\Cloud\Spanner\StructValue` or null.'
+        );
+
         $params = [
             'foo' => 'bar'
         ];
@@ -647,12 +677,13 @@ class ValueMapperTest extends TestCase
         ], $res['paramTypes']);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Values of type `\stdClass` are interpreted as structs and must define their types.
-     */
     public function testFormatParamsForExecuteSqlStdClassMissingDefinition()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage(
+            'Values of type `\stdClass` are interpreted as structs and must define their types.'
+        );
+
         $this->mapper->formatParamsForExecuteSql([
             'foo' => (object) ['foo' => 'bar']
         ]);
@@ -693,11 +724,10 @@ class ValueMapperTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testDecodeValuesThrowsExceptionWithInvalidFormat()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $res = $this->mapper->decodeValues(
             $this->createField(Database::TYPE_STRING),
             $this->createRow(self::FORMAT_TEST_VALUE),
@@ -820,11 +850,10 @@ class ValueMapperTest extends TestCase
         $this->assertLessThan(0, $res['rowName']);
     }
 
-    /**
-     * @expectedException RuntimeException
-     */
     public function testDecodeValuesFloatError()
     {
+        $this->expectException('RuntimeException');
+
         $res = $this->mapper->decodeValues(
             $this->createField(Database::TYPE_FLOAT64),
             $this->createRow('foo'),
@@ -885,7 +914,7 @@ class ValueMapperTest extends TestCase
     public function testDecodeValuesArray()
     {
         $res = $this->mapper->decodeValues(
-            $this->createField(Database::TYPE_ARRAY, 'arrayElementType', [
+            $this->createField(Database::TYPE_ARRAY, null, 'arrayElementType', [
                 'code' => Database::TYPE_STRING
             ]),
             $this->createRow(['foo', 'bar']),
@@ -944,6 +973,17 @@ class ValueMapperTest extends TestCase
         $this->assertEquals('99999999999999999999999999999.999999999', $res['rowName']->formatAsString());
     }
 
+    public function testDecodeValuesPgNumeric()
+    {
+        $res = $this->mapper->decodeValues(
+            $this->createField(Database::TYPE_NUMERIC, TypeAnnotationCode::PG_NUMERIC),
+            $this->createRow('99999999999999999999999999999.0000999999999'),
+            Result::RETURN_ASSOCIATIVE
+        );
+        $this->assertInstanceOf(PgNumeric::class, $res['rowName']);
+        $this->assertEquals('99999999999999999999999999999.0000999999999', $res['rowName']->formatAsString());
+    }
+
     public function testDecodeValuesJson()
     {
         $res = $this->mapper->decodeValues(
@@ -977,12 +1017,13 @@ class ValueMapperTest extends TestCase
         $this->assertEquals('John', $res[1]);
     }
 
-    private function createField($code, $type = null, array $typeObj = [])
+    private function createField($code, $typeAnnotationCode = null, $type = null, array $typeObj = [])
     {
         return [[
             'name' => 'rowName',
             'type' => array_filter([
                 'code' => $code,
+                'typeAnnotation' => $typeAnnotationCode,
                 $type => $typeObj
             ])
         ]];

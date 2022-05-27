@@ -428,6 +428,7 @@ class SubnetworksClientTest extends GeneratedTest
         $fingerprint = 'fingerprint-1375934236';
         $gatewayAddress = 'gatewayAddress-77003527';
         $id = 3355;
+        $internalIpv6Prefix = 'internalIpv6Prefix-30600856';
         $ipCidrRange = 'ipCidrRange-2049366326';
         $ipv6AccessType = 'ipv6AccessType-569083171';
         $ipv6CidrRange = 'ipv6CidrRange-1874342390';
@@ -450,6 +451,7 @@ class SubnetworksClientTest extends GeneratedTest
         $expectedResponse->setFingerprint($fingerprint);
         $expectedResponse->setGatewayAddress($gatewayAddress);
         $expectedResponse->setId($id);
+        $expectedResponse->setInternalIpv6Prefix($internalIpv6Prefix);
         $expectedResponse->setIpCidrRange($ipCidrRange);
         $expectedResponse->setIpv6AccessType($ipv6AccessType);
         $expectedResponse->setIpv6CidrRange($ipv6CidrRange);

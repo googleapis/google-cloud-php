@@ -9,25 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Specification to configure notifications published to Cloud Pub/Sub.
- * Notifications will be published to the customer-provided topic using the
+ * Specification to configure notifications published to Pub/Sub.
+ * Notifications are published to the customer-provided topic using the
  * following `PubsubMessage.attributes`:
- * * `"eventType"`: one of the
- * [EventType][google.storagetransfer.v1.NotificationConfig.EventType] values
- * * `"payloadFormat"`: one of the
- * [PayloadFormat][google.storagetransfer.v1.NotificationConfig.PayloadFormat]
- * values
- * * `"projectId"`: the
- * [project_id][google.storagetransfer.v1.TransferOperation.project_id] of the
+ * * `"eventType"`: one of the [EventType][google.storagetransfer.v1.NotificationConfig.EventType] values
+ * * `"payloadFormat"`: one of the [PayloadFormat][google.storagetransfer.v1.NotificationConfig.PayloadFormat] values
+ * * `"projectId"`: the [project_id][google.storagetransfer.v1.TransferOperation.project_id] of the
  * `TransferOperation`
  * * `"transferJobName"`: the
- * [transfer_job_name][google.storagetransfer.v1.TransferOperation.transfer_job_name]
- * of the `TransferOperation`
- * * `"transferOperationName"`: the
- * [name][google.storagetransfer.v1.TransferOperation.name] of the
+ * [transfer_job_name][google.storagetransfer.v1.TransferOperation.transfer_job_name] of the
  * `TransferOperation`
- * The `PubsubMessage.data` will contain a
- * [TransferOperation][google.storagetransfer.v1.TransferOperation] resource
+ * * `"transferOperationName"`: the [name][google.storagetransfer.v1.TransferOperation.name] of the
+ * `TransferOperation`
+ * The `PubsubMessage.data` contains a [TransferOperation][google.storagetransfer.v1.TransferOperation] resource
  * formatted according to the specified `PayloadFormat`.
  *
  * Generated from protobuf message <code>google.storagetransfer.v1.NotificationConfig</code>
@@ -35,9 +29,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class NotificationConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The `Topic.name` of the Cloud Pub/Sub topic to which to publish
+     * Required. The `Topic.name` of the Pub/Sub topic to which to publish
      * notifications. Must be of the format: `projects/{project}/topics/{topic}`.
-     * Not matching this format will result in an
+     * Not matching this format results in an
      * [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error.
      *
      * Generated from protobuf field <code>string pubsub_topic = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -64,9 +58,9 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $pubsub_topic
-     *           Required. The `Topic.name` of the Cloud Pub/Sub topic to which to publish
+     *           Required. The `Topic.name` of the Pub/Sub topic to which to publish
      *           notifications. Must be of the format: `projects/{project}/topics/{topic}`.
-     *           Not matching this format will result in an
+     *           Not matching this format results in an
      *           [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $event_types
      *           Event types for which a notification is desired. If empty, send
@@ -81,9 +75,9 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The `Topic.name` of the Cloud Pub/Sub topic to which to publish
+     * Required. The `Topic.name` of the Pub/Sub topic to which to publish
      * notifications. Must be of the format: `projects/{project}/topics/{topic}`.
-     * Not matching this format will result in an
+     * Not matching this format results in an
      * [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error.
      *
      * Generated from protobuf field <code>string pubsub_topic = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -95,9 +89,9 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The `Topic.name` of the Cloud Pub/Sub topic to which to publish
+     * Required. The `Topic.name` of the Pub/Sub topic to which to publish
      * notifications. Must be of the format: `projects/{project}/topics/{topic}`.
-     * Not matching this format will result in an
+     * Not matching this format results in an
      * [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error.
      *
      * Generated from protobuf field <code>string pubsub_topic = 1 [(.google.api.field_behavior) = REQUIRED];</code>

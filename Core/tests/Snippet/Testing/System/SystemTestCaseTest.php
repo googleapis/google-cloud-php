@@ -24,6 +24,7 @@ use Foobar\Tests\System\Admin\AdminTestCase;
 use Foobar\Tests\System\Admin\Sub\AdminSubTestCase;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
+use PHPUnit\Framework\SkippedTestError;
 
 /**
  * @group core
@@ -90,14 +91,21 @@ class SystemTestCaseTest extends SnippetTestCase
         $customSnippet->invoke();
 
         FoobarTestCase::setUsingEmulator(true);
+
+        // For backwards compatibility with PHPUnit 4.8 and 5.0
+        // This can be removed once support for PHP 5.5, 5.6, 7.0, and 7.1 is dropped
+        if (!class_exists('PHPUnit\Framework\SkippedTestError')) {
+            class_alias('PHPUnit_Framework_SkippedTestError', 'PHPUnit\Framework\SkippedTestError');
+        }
+
         try {
             $defaultSnippet->invoke();
-        } catch (\RuntimeException $e) {
+        } catch (SkippedTestError $e) {
             $this->assertStringStartsWith('This test is not supported', $e->getMessage());
         }
         try {
             $customSnippet->invoke();
-        } catch (\RuntimeException $e) {
+        } catch (SkippedTestError $e) {
             $this->assertStringStartsWith('Administration functions are not supported', $e->getMessage());
         }
     }
@@ -108,10 +116,6 @@ namespace Foobar;
 
 class FoobarTestCase extends \Google\Cloud\Core\Testing\System\SystemTestCase
 {
-    public static function markTestSkipped($message = '')
-    {
-        throw new \RuntimeException($message);
-    }
 }
 
 namespace Foobar\Sub;

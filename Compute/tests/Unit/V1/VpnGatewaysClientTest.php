@@ -299,6 +299,7 @@ class VpnGatewaysClientTest extends GeneratedTest
         $network = 'network1843485230';
         $region2 = 'region2-690338393';
         $selfLink = 'selfLink-1691268851';
+        $stackType = 'stackType2036521617';
         $expectedResponse = new VpnGateway();
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
@@ -309,6 +310,7 @@ class VpnGatewaysClientTest extends GeneratedTest
         $expectedResponse->setNetwork($network);
         $expectedResponse->setRegion($region2);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setStackType($stackType);
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';

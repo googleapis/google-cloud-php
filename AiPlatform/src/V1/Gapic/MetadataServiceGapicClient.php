@@ -2695,23 +2695,23 @@ class MetadataServiceGapicClient
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
      *     $artifact = new Artifact();
-     *     $updateMask = new FieldMask();
-     *     $response = $metadataServiceClient->updateArtifact($artifact, $updateMask);
+     *     $response = $metadataServiceClient->updateArtifact($artifact);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param Artifact  $artifact     Required. The Artifact containing updates.
-     *                                The Artifact's [Artifact.name][google.cloud.aiplatform.v1.Artifact.name] field is used to identify the Artifact to
-     *                                be updated.
-     *                                Format:
-     *                                `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
-     * @param FieldMask $updateMask   Required. A FieldMask indicating which fields should be updated.
-     *                                Functionality of this field is not yet supported.
-     * @param array     $optionalArgs {
+     * @param Artifact $artifact     Required. The Artifact containing updates.
+     *                               The Artifact's [Artifact.name][google.cloud.aiplatform.v1.Artifact.name] field is used to identify the Artifact to
+     *                               be updated.
+     *                               Format:
+     *                               `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
+     * @param array    $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Optional. A FieldMask indicating which fields should be updated.
+     *           Functionality of this field is not yet supported.
      *     @type bool $allowMissing
      *           If set to true, and the [Artifact][google.cloud.aiplatform.v1.Artifact] is not found, a new [Artifact][google.cloud.aiplatform.v1.Artifact] is
      *           created.
@@ -2726,16 +2726,16 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateArtifact(
-        $artifact,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateArtifact($artifact, array $optionalArgs = [])
+    {
         $request = new UpdateArtifactRequest();
         $requestParamHeaders = [];
         $request->setArtifact($artifact);
-        $request->setUpdateMask($updateMask);
         $requestParamHeaders['artifact.name'] = $artifact->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         if (isset($optionalArgs['allowMissing'])) {
             $request->setAllowMissing($optionalArgs['allowMissing']);
         }
@@ -2762,23 +2762,23 @@ class MetadataServiceGapicClient
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
      *     $context = new Context();
-     *     $updateMask = new FieldMask();
-     *     $response = $metadataServiceClient->updateContext($context, $updateMask);
+     *     $response = $metadataServiceClient->updateContext($context);
      * } finally {
      *     $metadataServiceClient->close();
      * }
      * ```
      *
-     * @param Context   $context      Required. The Context containing updates.
-     *                                The Context's [Context.name][google.cloud.aiplatform.v1.Context.name] field is used to identify the Context to be
-     *                                updated.
-     *                                Format:
-     *                                `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
-     * @param FieldMask $updateMask   Required. A FieldMask indicating which fields should be updated.
-     *                                Functionality of this field is not yet supported.
-     * @param array     $optionalArgs {
+     * @param Context $context      Required. The Context containing updates.
+     *                              The Context's [Context.name][google.cloud.aiplatform.v1.Context.name] field is used to identify the Context to be
+     *                              updated.
+     *                              Format:
+     *                              `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     * @param array   $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Optional. A FieldMask indicating which fields should be updated.
+     *           Functionality of this field is not yet supported.
      *     @type bool $allowMissing
      *           If set to true, and the [Context][google.cloud.aiplatform.v1.Context] is not found, a new [Context][google.cloud.aiplatform.v1.Context] is
      *           created.
@@ -2793,16 +2793,16 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateContext(
-        $context,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateContext($context, array $optionalArgs = [])
+    {
         $request = new UpdateContextRequest();
         $requestParamHeaders = [];
         $request->setContext($context);
-        $request->setUpdateMask($updateMask);
         $requestParamHeaders['context.name'] = $context->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         if (isset($optionalArgs['allowMissing'])) {
             $request->setAllowMissing($optionalArgs['allowMissing']);
         }
@@ -2829,8 +2829,7 @@ class MetadataServiceGapicClient
      * $metadataServiceClient = new MetadataServiceClient();
      * try {
      *     $execution = new Execution();
-     *     $updateMask = new FieldMask();
-     *     $response = $metadataServiceClient->updateExecution($execution, $updateMask);
+     *     $response = $metadataServiceClient->updateExecution($execution);
      * } finally {
      *     $metadataServiceClient->close();
      * }
@@ -2841,11 +2840,12 @@ class MetadataServiceGapicClient
      *                                to be updated.
      *                                Format:
      *                                `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
-     * @param FieldMask $updateMask   Required. A FieldMask indicating which fields should be updated.
-     *                                Functionality of this field is not yet supported.
      * @param array     $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           Optional. A FieldMask indicating which fields should be updated.
+     *           Functionality of this field is not yet supported.
      *     @type bool $allowMissing
      *           If set to true, and the [Execution][google.cloud.aiplatform.v1.Execution] is not found, a new [Execution][google.cloud.aiplatform.v1.Execution]
      *           is created.
@@ -2860,16 +2860,16 @@ class MetadataServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateExecution(
-        $execution,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateExecution($execution, array $optionalArgs = [])
+    {
         $request = new UpdateExecutionRequest();
         $requestParamHeaders = [];
         $request->setExecution($execution);
-        $request->setUpdateMask($updateMask);
         $requestParamHeaders['execution.name'] = $execution->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         if (isset($optionalArgs['allowMissing'])) {
             $request->setAllowMissing($optionalArgs['allowMissing']);
         }

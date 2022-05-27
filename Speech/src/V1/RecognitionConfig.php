@@ -207,6 +207,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td><b>Description</b></td>
      *   </tr>
      *   <tr>
+     *     <td><code>latest_long</code></td>
+     *     <td>Best for long form content like media or conversation.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>latest_short</code></td>
+     *     <td>Best for short form content like commands or single shot directed
+     *     speech.</td>
+     *   </tr>
+     *   <tr>
      *     <td><code>command_and_search</code></td>
      *     <td>Best for short queries such as voice commands or voice search.</td>
      *   </tr>
@@ -227,6 +236,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td>Best for audio that is not one of the specific audio models.
      *         For example, long-form audio. Ideally the audio is high-fidelity,
      *         recorded at a 16khz or greater sampling rate.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_conversation</code></td>
+     *     <td>Best for audio that originated from a conversation between a
+     *         medical provider and patient.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_dictation</code></td>
+     *     <td>Best for audio that originated from dictation notes by a medical
+     *         provider.</td>
      *   </tr>
      * </table>
      *
@@ -375,6 +394,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *               <td><b>Description</b></td>
      *             </tr>
      *             <tr>
+     *               <td><code>latest_long</code></td>
+     *               <td>Best for long form content like media or conversation.</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>latest_short</code></td>
+     *               <td>Best for short form content like commands or single shot directed
+     *               speech.</td>
+     *             </tr>
+     *             <tr>
      *               <td><code>command_and_search</code></td>
      *               <td>Best for short queries such as voice commands or voice search.</td>
      *             </tr>
@@ -395,6 +423,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *               <td>Best for audio that is not one of the specific audio models.
      *                   For example, long-form audio. Ideally the audio is high-fidelity,
      *                   recorded at a 16khz or greater sampling rate.</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>medical_conversation</code></td>
+     *               <td>Best for audio that originated from a conversation between a
+     *                   medical provider and patient.</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>medical_dictation</code></td>
+     *               <td>Best for audio that originated from dictation notes by a medical
+     *                   provider.</td>
      *             </tr>
      *           </table>
      *     @type bool $use_enhanced
@@ -1145,6 +1183,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td><b>Description</b></td>
      *   </tr>
      *   <tr>
+     *     <td><code>latest_long</code></td>
+     *     <td>Best for long form content like media or conversation.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>latest_short</code></td>
+     *     <td>Best for short form content like commands or single shot directed
+     *     speech.</td>
+     *   </tr>
+     *   <tr>
      *     <td><code>command_and_search</code></td>
      *     <td>Best for short queries such as voice commands or voice search.</td>
      *   </tr>
@@ -1165,6 +1212,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td>Best for audio that is not one of the specific audio models.
      *         For example, long-form audio. Ideally the audio is high-fidelity,
      *         recorded at a 16khz or greater sampling rate.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_conversation</code></td>
+     *     <td>Best for audio that originated from a conversation between a
+     *         medical provider and patient.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_dictation</code></td>
+     *     <td>Best for audio that originated from dictation notes by a medical
+     *         provider.</td>
      *   </tr>
      * </table>
      *
@@ -1187,6 +1244,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td><b>Description</b></td>
      *   </tr>
      *   <tr>
+     *     <td><code>latest_long</code></td>
+     *     <td>Best for long form content like media or conversation.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>latest_short</code></td>
+     *     <td>Best for short form content like commands or single shot directed
+     *     speech.</td>
+     *   </tr>
+     *   <tr>
      *     <td><code>command_and_search</code></td>
      *     <td>Best for short queries such as voice commands or voice search.</td>
      *   </tr>
@@ -1207,6 +1273,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td>Best for audio that is not one of the specific audio models.
      *         For example, long-form audio. Ideally the audio is high-fidelity,
      *         recorded at a 16khz or greater sampling rate.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_conversation</code></td>
+     *     <td>Best for audio that originated from a conversation between a
+     *         medical provider and patient.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_dictation</code></td>
+     *     <td>Best for audio that originated from dictation notes by a medical
+     *         provider.</td>
      *   </tr>
      * </table>
      *

@@ -37,7 +37,6 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
     private $hex_serial_number = '';
     /**
      * For convenience, the actual lifetime of an issued certificate.
-     * Corresponds to 'not_after_time' - 'not_before_time'.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 4;</code>
      */
@@ -49,7 +48,10 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
      */
     private $not_before_time = null;
     /**
-     * The time at which the certificate expires.
+     * The time after which the certificate is expired.
+     * Per RFC 5280, the validity period for a certificate is the period of time
+     * from not_before_time through not_after_time, inclusive.
+     * Corresponds to 'not_before_time' + 'lifetime' - 1 second.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp not_after_time = 6;</code>
      */
@@ -70,11 +72,13 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
      *           The serial number encoded in lowercase hexadecimal.
      *     @type \Google\Protobuf\Duration $lifetime
      *           For convenience, the actual lifetime of an issued certificate.
-     *           Corresponds to 'not_after_time' - 'not_before_time'.
      *     @type \Google\Protobuf\Timestamp $not_before_time
      *           The time at which the certificate becomes valid.
      *     @type \Google\Protobuf\Timestamp $not_after_time
-     *           The time at which the certificate expires.
+     *           The time after which the certificate is expired.
+     *           Per RFC 5280, the validity period for a certificate is the period of time
+     *           from not_before_time through not_after_time, inclusive.
+     *           Corresponds to 'not_before_time' + 'lifetime' - 1 second.
      * }
      */
     public function __construct($data = NULL) {
@@ -91,7 +95,7 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
      */
     public function getSubject()
     {
-        return isset($this->subject) ? $this->subject : null;
+        return $this->subject;
     }
 
     public function hasSubject()
@@ -128,7 +132,7 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
      */
     public function getSubjectAltName()
     {
-        return isset($this->subject_alt_name) ? $this->subject_alt_name : null;
+        return $this->subject_alt_name;
     }
 
     public function hasSubjectAltName()
@@ -184,14 +188,13 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
 
     /**
      * For convenience, the actual lifetime of an issued certificate.
-     * Corresponds to 'not_after_time' - 'not_before_time'.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 4;</code>
      * @return \Google\Protobuf\Duration|null
      */
     public function getLifetime()
     {
-        return isset($this->lifetime) ? $this->lifetime : null;
+        return $this->lifetime;
     }
 
     public function hasLifetime()
@@ -206,7 +209,6 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
 
     /**
      * For convenience, the actual lifetime of an issued certificate.
-     * Corresponds to 'not_after_time' - 'not_before_time'.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 4;</code>
      * @param \Google\Protobuf\Duration $var
@@ -228,7 +230,7 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
      */
     public function getNotBeforeTime()
     {
-        return isset($this->not_before_time) ? $this->not_before_time : null;
+        return $this->not_before_time;
     }
 
     public function hasNotBeforeTime()
@@ -257,14 +259,17 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the certificate expires.
+     * The time after which the certificate is expired.
+     * Per RFC 5280, the validity period for a certificate is the period of time
+     * from not_before_time through not_after_time, inclusive.
+     * Corresponds to 'not_before_time' + 'lifetime' - 1 second.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp not_after_time = 6;</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getNotAfterTime()
     {
-        return isset($this->not_after_time) ? $this->not_after_time : null;
+        return $this->not_after_time;
     }
 
     public function hasNotAfterTime()
@@ -278,7 +283,10 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the certificate expires.
+     * The time after which the certificate is expired.
+     * Per RFC 5280, the validity period for a certificate is the period of time
+     * from not_before_time through not_after_time, inclusive.
+     * Corresponds to 'not_before_time' + 'lifetime' - 1 second.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp not_after_time = 6;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -294,6 +302,4 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SubjectDescription::class, \Google\Cloud\Security\PrivateCA\V1\CertificateDescription_SubjectDescription::class);
 

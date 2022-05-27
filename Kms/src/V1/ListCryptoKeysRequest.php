@@ -9,24 +9,28 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KeyManagementService.ListCryptoKeys][google.cloud.kms.v1.KeyManagementService.ListCryptoKeys].
+ * Request message for
+ * [KeyManagementService.ListCryptoKeys][google.cloud.kms.v1.KeyManagementService.ListCryptoKeys].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.ListCryptoKeysRequest</code>
  */
 class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing] to list, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
+     * Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
+     * to list, in the format `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional. Optional limit on the number of [CryptoKeys][google.cloud.kms.v1.CryptoKey] to include in the
-     * response.  Further [CryptoKeys][google.cloud.kms.v1.CryptoKey] can subsequently be obtained by
-     * including the [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token] in a subsequent
-     * request.  If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of
+     * [CryptoKeys][google.cloud.kms.v1.CryptoKey] to include in the response.
+     * Further [CryptoKeys][google.cloud.kms.v1.CryptoKey] can subsequently be
+     * obtained by including the
+     * [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token]
+     * in a subsequent request.  If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -70,13 +74,16 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing] to list, in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
+     *           Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
+     *           to list, in the format `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
      *     @type int $page_size
-     *           Optional. Optional limit on the number of [CryptoKeys][google.cloud.kms.v1.CryptoKey] to include in the
-     *           response.  Further [CryptoKeys][google.cloud.kms.v1.CryptoKey] can subsequently be obtained by
-     *           including the [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token] in a subsequent
-     *           request.  If unspecified, the server will pick an appropriate default.
+     *           Optional. Optional limit on the number of
+     *           [CryptoKeys][google.cloud.kms.v1.CryptoKey] to include in the response.
+     *           Further [CryptoKeys][google.cloud.kms.v1.CryptoKey] can subsequently be
+     *           obtained by including the
+     *           [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token]
+     *           in a subsequent request.  If unspecified, the server will pick an
+     *           appropriate default.
      *     @type string $page_token
      *           Optional. Optional pagination token, returned earlier via
      *           [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token].
@@ -100,8 +107,8 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing] to list, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
+     * Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
+     * to list, in the format `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -112,8 +119,8 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing] to list, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
+     * Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
+     * to list, in the format `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -128,10 +135,13 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional limit on the number of [CryptoKeys][google.cloud.kms.v1.CryptoKey] to include in the
-     * response.  Further [CryptoKeys][google.cloud.kms.v1.CryptoKey] can subsequently be obtained by
-     * including the [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token] in a subsequent
-     * request.  If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of
+     * [CryptoKeys][google.cloud.kms.v1.CryptoKey] to include in the response.
+     * Further [CryptoKeys][google.cloud.kms.v1.CryptoKey] can subsequently be
+     * obtained by including the
+     * [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token]
+     * in a subsequent request.  If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -142,10 +152,13 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional limit on the number of [CryptoKeys][google.cloud.kms.v1.CryptoKey] to include in the
-     * response.  Further [CryptoKeys][google.cloud.kms.v1.CryptoKey] can subsequently be obtained by
-     * including the [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token] in a subsequent
-     * request.  If unspecified, the server will pick an appropriate default.
+     * Optional. Optional limit on the number of
+     * [CryptoKeys][google.cloud.kms.v1.CryptoKey] to include in the response.
+     * Further [CryptoKeys][google.cloud.kms.v1.CryptoKey] can subsequently be
+     * obtained by including the
+     * [ListCryptoKeysResponse.next_page_token][google.cloud.kms.v1.ListCryptoKeysResponse.next_page_token]
+     * in a subsequent request.  If unspecified, the server will pick an
+     * appropriate default.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

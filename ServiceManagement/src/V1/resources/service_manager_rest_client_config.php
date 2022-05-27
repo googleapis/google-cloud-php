@@ -43,30 +43,6 @@ return [
                     ],
                 ],
             ],
-            'DisableService' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/services/{service_name}:disable',
-                'body' => '*',
-                'placeholders' => [
-                    'service_name' => [
-                        'getters' => [
-                            'getServiceName',
-                        ],
-                    ],
-                ],
-            ],
-            'EnableService' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/services/{service_name}:enable',
-                'body' => '*',
-                'placeholders' => [
-                    'service_name' => [
-                        'getters' => [
-                            'getServiceName',
-                        ],
-                    ],
-                ],
-            ],
             'GenerateConfigReport' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/services:generateConfigReport',

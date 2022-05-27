@@ -9,15 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KeyManagementService.CreateCryptoKey][google.cloud.kms.v1.KeyManagementService.CreateCryptoKey].
+ * Request message for
+ * [KeyManagementService.CreateCryptoKey][google.cloud.kms.v1.KeyManagementService.CreateCryptoKey].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.CreateCryptoKeyRequest</code>
  */
 class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing associated with the
-     * [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+     * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing
+     * associated with the [CryptoKeys][google.cloud.kms.v1.CryptoKey].
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,15 +31,19 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
      */
     private $crypto_key_id = '';
     /**
-     * Required. A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field values.
+     * Required. A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field
+     * values.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey crypto_key = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $crypto_key = null;
     /**
-     * If set to true, the request will create a [CryptoKey][google.cloud.kms.v1.CryptoKey] without any
-     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]. You must manually call
-     * [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion] or
+     * If set to true, the request will create a
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey] without any
+     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]. You must
+     * manually call
+     * [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]
+     * or
      * [ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]
      * before you can use this [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
@@ -53,17 +58,21 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing associated with the
-     *           [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+     *           Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing
+     *           associated with the [CryptoKeys][google.cloud.kms.v1.CryptoKey].
      *     @type string $crypto_key_id
      *           Required. It must be unique within a KeyRing and match the regular
      *           expression `[a-zA-Z0-9_-]{1,63}`
      *     @type \Google\Cloud\Kms\V1\CryptoKey $crypto_key
-     *           Required. A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field values.
+     *           Required. A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field
+     *           values.
      *     @type bool $skip_initial_version_creation
-     *           If set to true, the request will create a [CryptoKey][google.cloud.kms.v1.CryptoKey] without any
-     *           [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]. You must manually call
-     *           [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion] or
+     *           If set to true, the request will create a
+     *           [CryptoKey][google.cloud.kms.v1.CryptoKey] without any
+     *           [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]. You must
+     *           manually call
+     *           [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]
+     *           or
      *           [ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]
      *           before you can use this [CryptoKey][google.cloud.kms.v1.CryptoKey].
      * }
@@ -74,8 +83,8 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing associated with the
-     * [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+     * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing
+     * associated with the [CryptoKeys][google.cloud.kms.v1.CryptoKey].
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -86,8 +95,8 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing associated with the
-     * [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+     * Required. The [name][google.cloud.kms.v1.KeyRing.name] of the KeyRing
+     * associated with the [CryptoKeys][google.cloud.kms.v1.CryptoKey].
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -130,7 +139,8 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field values.
+     * Required. A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field
+     * values.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey crypto_key = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Kms\V1\CryptoKey|null
@@ -151,7 +161,8 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field values.
+     * Required. A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field
+     * values.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey crypto_key = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Kms\V1\CryptoKey $var
@@ -166,9 +177,12 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, the request will create a [CryptoKey][google.cloud.kms.v1.CryptoKey] without any
-     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]. You must manually call
-     * [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion] or
+     * If set to true, the request will create a
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey] without any
+     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]. You must
+     * manually call
+     * [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]
+     * or
      * [ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]
      * before you can use this [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *
@@ -181,9 +195,12 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true, the request will create a [CryptoKey][google.cloud.kms.v1.CryptoKey] without any
-     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]. You must manually call
-     * [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion] or
+     * If set to true, the request will create a
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey] without any
+     * [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]. You must
+     * manually call
+     * [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]
+     * or
      * [ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion]
      * before you can use this [CryptoKey][google.cloud.kms.v1.CryptoKey].
      *

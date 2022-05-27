@@ -20,7 +20,8 @@ namespace Google\Cloud\Core\Tests\Unit\Batch;
 use Google\Cloud\Core\Batch\BatchDaemonTrait;
 use Google\Cloud\Core\Batch\SysvProcessor;
 use Google\Cloud\Core\SysvTrait;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
@@ -28,6 +29,7 @@ use PHPUnit\Framework\TestCase;
  */
 class SysvProcessorTest extends TestCase
 {
+    use ExpectException;
     use BatchDaemonTrait;
     use SysvTrait;
 
@@ -35,7 +37,7 @@ class SysvProcessorTest extends TestCase
     private $processor;
     private $queue;
 
-    public function setUp()
+    public function set_up()
     {
         putenv('GOOGLE_CLOUD_SYSV_ID=U');
         if (! $this->isSysvIPCLoaded()) {
@@ -48,7 +50,7 @@ class SysvProcessorTest extends TestCase
         $this->clearQueue();
     }
 
-    public function tearDown()
+    public function tear_down()
     {
         if ($this->isSysvIPCLoaded()) {
             $this->clearQueue();
@@ -135,10 +137,11 @@ class SysvProcessorTest extends TestCase
      * Test that submit() method does not stall.
      *
      * @depends testQueueOverflowDirect
-     * @expectedException \Google\Cloud\Core\Batch\QueueOverflowException
      */
     public function testQueueOverflowFile()
     {
+        $this->expectException('\Google\Cloud\Core\Batch\QueueOverflowException');
+
         $queueSize = $this->queueSize();
         $item = str_repeat('a', 8160);
         while ($queueSize >= 8192) {

@@ -9,21 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A [KeyRing][google.cloud.kms.v1.KeyRing] is a toplevel logical grouping of [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+ * A [KeyRing][google.cloud.kms.v1.KeyRing] is a toplevel logical grouping of
+ * [CryptoKeys][google.cloud.kms.v1.CryptoKey].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.KeyRing</code>
  */
 class KeyRing extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name for the [KeyRing][google.cloud.kms.v1.KeyRing] in the format
+     * Output only. The resource name for the
+     * [KeyRing][google.cloud.kms.v1.KeyRing] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
-     * Output only. The time at which this [KeyRing][google.cloud.kms.v1.KeyRing] was created.
+     * Output only. The time at which this [KeyRing][google.cloud.kms.v1.KeyRing]
+     * was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -36,10 +39,12 @@ class KeyRing extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name for the [KeyRing][google.cloud.kms.v1.KeyRing] in the format
+     *           Output only. The resource name for the
+     *           [KeyRing][google.cloud.kms.v1.KeyRing] in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The time at which this [KeyRing][google.cloud.kms.v1.KeyRing] was created.
+     *           Output only. The time at which this [KeyRing][google.cloud.kms.v1.KeyRing]
+     *           was created.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,7 +53,8 @@ class KeyRing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for the [KeyRing][google.cloud.kms.v1.KeyRing] in the format
+     * Output only. The resource name for the
+     * [KeyRing][google.cloud.kms.v1.KeyRing] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -60,7 +66,8 @@ class KeyRing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for the [KeyRing][google.cloud.kms.v1.KeyRing] in the format
+     * Output only. The resource name for the
+     * [KeyRing][google.cloud.kms.v1.KeyRing] in the format
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -76,7 +83,8 @@ class KeyRing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which this [KeyRing][google.cloud.kms.v1.KeyRing] was created.
+     * Output only. The time at which this [KeyRing][google.cloud.kms.v1.KeyRing]
+     * was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -97,7 +105,8 @@ class KeyRing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which this [KeyRing][google.cloud.kms.v1.KeyRing] was created.
+     * Output only. The time at which this [KeyRing][google.cloud.kms.v1.KeyRing]
+     * was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

@@ -28,19 +28,29 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 
+use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Dialogflow\V2\ClearSuggestionFeatureConfigOperationMetadata;
+use Google\Cloud\Dialogflow\V2\ClearSuggestionFeatureConfigRequest;
 use Google\Cloud\Dialogflow\V2\ConversationProfile;
 use Google\Cloud\Dialogflow\V2\CreateConversationProfileRequest;
 use Google\Cloud\Dialogflow\V2\DeleteConversationProfileRequest;
 use Google\Cloud\Dialogflow\V2\GetConversationProfileRequest;
+use Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionFeatureConfig;
 use Google\Cloud\Dialogflow\V2\ListConversationProfilesRequest;
 use Google\Cloud\Dialogflow\V2\ListConversationProfilesResponse;
+use Google\Cloud\Dialogflow\V2\Participant\Role;
+use Google\Cloud\Dialogflow\V2\SetSuggestionFeatureConfigOperationMetadata;
+use Google\Cloud\Dialogflow\V2\SetSuggestionFeatureConfigRequest;
+use Google\Cloud\Dialogflow\V2\SuggestionFeature\Type;
 use Google\Cloud\Dialogflow\V2\UpdateConversationProfileRequest;
+use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
@@ -53,9 +63,35 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $conversationProfilesClient = new ConversationProfilesClient();
  * try {
- *     $formattedParent = $conversationProfilesClient->projectName('[PROJECT]');
- *     $conversationProfile = new ConversationProfile();
- *     $response = $conversationProfilesClient->createConversationProfile($formattedParent, $conversationProfile);
+ *     $conversationProfile = 'conversation_profile';
+ *     $participantRole = Role::ROLE_UNSPECIFIED;
+ *     $suggestionFeatureType = Type::TYPE_UNSPECIFIED;
+ *     $operationResponse = $conversationProfilesClient->clearSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureType);
+ *     $operationResponse->pollUntilComplete();
+ *     if ($operationResponse->operationSucceeded()) {
+ *         $result = $operationResponse->getResult();
+ *     // doSomethingWith($result)
+ *     } else {
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
+ *     }
+ *     // Alternatively:
+ *     // start the operation, keep the operation name, and resume later
+ *     $operationResponse = $conversationProfilesClient->clearSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureType);
+ *     $operationName = $operationResponse->getName();
+ *     // ... do other work
+ *     $newOperationResponse = $conversationProfilesClient->resumeOperation($operationName, 'clearSuggestionFeatureConfig');
+ *     while (!$newOperationResponse->isDone()) {
+ *         // ... do other work
+ *         $newOperationResponse->reload();
+ *     }
+ *     if ($newOperationResponse->operationSucceeded()) {
+ *         $result = $newOperationResponse->getResult();
+ *     // doSomethingWith($result)
+ *     } else {
+ *         $error = $newOperationResponse->getError();
+ *         // handleError($error)
+ *     }
  * } finally {
  *     $conversationProfilesClient->close();
  * }
@@ -111,6 +147,8 @@ class ConversationProfilesGapicClient
     private static $projectLocationConversationProfileNameTemplate;
 
     private static $pathTemplateMap;
+
+    private $operationsClient;
 
     private static function getClientDefaults()
     {
@@ -352,6 +390,35 @@ class ConversationProfilesGapicClient
     }
 
     /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started by a long
+     * running API method. If $methodName is not provided, or does not match a long
+     * running API method, then the operation can still be resumed, but the
+     * OperationResponse object will not deserialize the final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+        return $operation;
+    }
+
+    /**
      * Constructor.
      *
      * @param array $options {
@@ -412,6 +479,91 @@ class ConversationProfilesGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
+    }
+
+    /**
+     * Clears a suggestion feature from a conversation profile for the given
+     * participant role.
+     *
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: [ClearSuggestionFeatureConfigOperationMetadata][google.cloud.dialogflow.v2.ClearSuggestionFeatureConfigOperationMetadata]
+     * - `response`: [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
+     *
+     * Sample code:
+     * ```
+     * $conversationProfilesClient = new ConversationProfilesClient();
+     * try {
+     *     $conversationProfile = 'conversation_profile';
+     *     $participantRole = Role::ROLE_UNSPECIFIED;
+     *     $suggestionFeatureType = Type::TYPE_UNSPECIFIED;
+     *     $operationResponse = $conversationProfilesClient->clearSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureType);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $conversationProfilesClient->clearSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureType);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $conversationProfilesClient->resumeOperation($operationName, 'clearSuggestionFeatureConfig');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $conversationProfilesClient->close();
+     * }
+     * ```
+     *
+     * @param string $conversationProfile   Required. The Conversation Profile to add or update the suggestion feature
+     *                                      config. Format: `projects/<Project ID>/locations/<Location
+     *                                      ID>/conversationProfiles/<Conversation Profile ID>`.
+     * @param int    $participantRole       Required. The participant role to remove the suggestion feature
+     *                                      config. Only HUMAN_AGENT or END_USER can be used.
+     *                                      For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\Participant\Role}
+     * @param int    $suggestionFeatureType Required. The type of the suggestion feature to remove.
+     *                                      For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\SuggestionFeature\Type}
+     * @param array  $optionalArgs          {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function clearSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureType, array $optionalArgs = [])
+    {
+        $request = new ClearSuggestionFeatureConfigRequest();
+        $requestParamHeaders = [];
+        $request->setConversationProfile($conversationProfile);
+        $request->setParticipantRole($participantRole);
+        $request->setSuggestionFeatureType($suggestionFeatureType);
+        $requestParamHeaders['conversation_profile'] = $conversationProfile;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ClearSuggestionFeatureConfig', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -612,6 +764,96 @@ class ConversationProfilesGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListConversationProfiles', $optionalArgs, ListConversationProfilesResponse::class, $request);
+    }
+
+    /**
+     * Adds or updates a suggestion feature in a conversation profile.
+     * If the conversation profile contains the type of suggestion feature for
+     * the participant role, it will update it. Otherwise it will insert the
+     * suggestion feature.
+     *
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: [SetSuggestionFeatureConfigOperationMetadata][google.cloud.dialogflow.v2.SetSuggestionFeatureConfigOperationMetadata]
+     * - `response`: [ConversationProfile][google.cloud.dialogflow.v2.ConversationProfile]
+     *
+     * If a long running operation to add or update suggestion feature
+     * config for the same conversation profile, participant role and suggestion
+     * feature type exists, please cancel the existing long running operation
+     * before sending such request, otherwise the request will be rejected.
+     *
+     * Sample code:
+     * ```
+     * $conversationProfilesClient = new ConversationProfilesClient();
+     * try {
+     *     $conversationProfile = 'conversation_profile';
+     *     $participantRole = Role::ROLE_UNSPECIFIED;
+     *     $suggestionFeatureConfig = new SuggestionFeatureConfig();
+     *     $operationResponse = $conversationProfilesClient->setSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $conversationProfilesClient->setSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $conversationProfilesClient->resumeOperation($operationName, 'setSuggestionFeatureConfig');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $conversationProfilesClient->close();
+     * }
+     * ```
+     *
+     * @param string                  $conversationProfile     Required. The Conversation Profile to add or update the suggestion feature
+     *                                                         config. Format: `projects/<Project ID>/locations/<Location
+     *                                                         ID>/conversationProfiles/<Conversation Profile ID>`.
+     * @param int                     $participantRole         Required. The participant role to add or update the suggestion feature
+     *                                                         config. Only HUMAN_AGENT or END_USER can be used.
+     *                                                         For allowed values, use constants defined on {@see \Google\Cloud\Dialogflow\V2\Participant\Role}
+     * @param SuggestionFeatureConfig $suggestionFeatureConfig Required. The suggestion feature config to add or update.
+     * @param array                   $optionalArgs            {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setSuggestionFeatureConfig($conversationProfile, $participantRole, $suggestionFeatureConfig, array $optionalArgs = [])
+    {
+        $request = new SetSuggestionFeatureConfigRequest();
+        $requestParamHeaders = [];
+        $request->setConversationProfile($conversationProfile);
+        $request->setParticipantRole($participantRole);
+        $request->setSuggestionFeatureConfig($suggestionFeatureConfig);
+        $requestParamHeaders['conversation_profile'] = $conversationProfile;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('SetSuggestionFeatureConfig', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**

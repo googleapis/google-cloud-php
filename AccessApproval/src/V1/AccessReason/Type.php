@@ -34,9 +34,9 @@ class Type
     const CUSTOMER_INITIATED_SUPPORT = 1;
     /**
      * The principal accessed customer data in order to diagnose or resolve a
-     * suspected issue in services or a known outage. Often this access is used
-     * to confirm that customers are not affected by a suspected service issue
-     * or to remediate a reversible system issue.
+     * suspected issue in services. Often this access is used to confirm that
+     * customers are not affected by a suspected service issue or to remediate a
+     * reversible system issue.
      *
      * Generated from protobuf enum <code>GOOGLE_INITIATED_SERVICE = 2;</code>
      */
@@ -48,12 +48,29 @@ class Type
      * Generated from protobuf enum <code>GOOGLE_INITIATED_REVIEW = 3;</code>
      */
     const GOOGLE_INITIATED_REVIEW = 3;
+    /**
+     * The principal was compelled to access customer data in order to respond
+     * to a legal third party data request or process, including legal processes
+     * from customers themselves.
+     *
+     * Generated from protobuf enum <code>THIRD_PARTY_DATA_REQUEST = 4;</code>
+     */
+    const THIRD_PARTY_DATA_REQUEST = 4;
+    /**
+     * The principal accessed customer data in order to diagnose or resolve a
+     * suspected issue in services or a known outage.
+     *
+     * Generated from protobuf enum <code>GOOGLE_RESPONSE_TO_PRODUCTION_ALERT = 5;</code>
+     */
+    const GOOGLE_RESPONSE_TO_PRODUCTION_ALERT = 5;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
         self::CUSTOMER_INITIATED_SUPPORT => 'CUSTOMER_INITIATED_SUPPORT',
         self::GOOGLE_INITIATED_SERVICE => 'GOOGLE_INITIATED_SERVICE',
         self::GOOGLE_INITIATED_REVIEW => 'GOOGLE_INITIATED_REVIEW',
+        self::THIRD_PARTY_DATA_REQUEST => 'THIRD_PARTY_DATA_REQUEST',
+        self::GOOGLE_RESPONSE_TO_PRODUCTION_ALERT => 'GOOGLE_RESPONSE_TO_PRODUCTION_ALERT',
     ];
 
     public static function name($value)

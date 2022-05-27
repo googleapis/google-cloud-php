@@ -49,6 +49,12 @@ class State
      * Generated from protobuf enum <code>PENDING = 5;</code>
      */
     const PENDING = 5;
+    /**
+     * Event was stopped before running for its full duration.
+     *
+     * Generated from protobuf enum <code>STOPPED = 6;</code>
+     */
+    const STOPPED = 6;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -57,6 +63,7 @@ class State
         self::SUCCEEDED => 'SUCCEEDED',
         self::FAILED => 'FAILED',
         self::PENDING => 'PENDING',
+        self::STOPPED => 'STOPPED',
     ];
 
     public static function name($value)

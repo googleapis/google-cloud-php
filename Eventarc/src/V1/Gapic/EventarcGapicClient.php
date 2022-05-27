@@ -47,13 +47,17 @@ use Google\Cloud\Eventarc\V1\DeleteChannelRequest;
 use Google\Cloud\Eventarc\V1\DeleteTriggerRequest;
 use Google\Cloud\Eventarc\V1\GetChannelConnectionRequest;
 use Google\Cloud\Eventarc\V1\GetChannelRequest;
+use Google\Cloud\Eventarc\V1\GetProviderRequest;
 use Google\Cloud\Eventarc\V1\GetTriggerRequest;
 use Google\Cloud\Eventarc\V1\ListChannelConnectionsRequest;
 use Google\Cloud\Eventarc\V1\ListChannelConnectionsResponse;
 use Google\Cloud\Eventarc\V1\ListChannelsRequest;
 use Google\Cloud\Eventarc\V1\ListChannelsResponse;
+use Google\Cloud\Eventarc\V1\ListProvidersRequest;
+use Google\Cloud\Eventarc\V1\ListProvidersResponse;
 use Google\Cloud\Eventarc\V1\ListTriggersRequest;
 use Google\Cloud\Eventarc\V1\ListTriggersResponse;
+use Google\Cloud\Eventarc\V1\Provider;
 use Google\Cloud\Eventarc\V1\Trigger;
 use Google\Cloud\Eventarc\V1\UpdateChannelRequest;
 use Google\Cloud\Eventarc\V1\UpdateTriggerRequest;
@@ -147,6 +151,8 @@ class EventarcGapicClient
 
     private static $locationNameTemplate;
 
+    private static $providerNameTemplate;
+
     private static $serviceAccountNameTemplate;
 
     private static $triggerNameTemplate;
@@ -213,6 +219,17 @@ class EventarcGapicClient
         return self::$locationNameTemplate;
     }
 
+    private static function getProviderNameTemplate()
+    {
+        if (self::$providerNameTemplate == null) {
+            self::$providerNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/providers/{provider}'
+            );
+        }
+
+        return self::$providerNameTemplate;
+    }
+
     private static function getServiceAccountNameTemplate()
     {
         if (self::$serviceAccountNameTemplate == null) {
@@ -242,6 +259,7 @@ class EventarcGapicClient
                 'channel' => self::getChannelNameTemplate(),
                 'channelConnection' => self::getChannelConnectionNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
+                'provider' => self::getProviderNameTemplate(),
                 'serviceAccount' => self::getServiceAccountNameTemplate(),
                 'trigger' => self::getTriggerNameTemplate(),
             ];
@@ -309,6 +327,25 @@ class EventarcGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a provider
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $provider
+     *
+     * @return string The formatted provider resource.
+     */
+    public static function providerName($project, $location, $provider)
+    {
+        return self::getProviderNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'provider' => $provider,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * service_account resource.
      *
@@ -351,6 +388,7 @@ class EventarcGapicClient
      * - channel: projects/{project}/locations/{location}/channels/{channel}
      * - channelConnection: projects/{project}/locations/{location}/channelConnections/{channel_connection}
      * - location: projects/{project}/locations/{location}
+     * - provider: projects/{project}/locations/{location}/providers/{provider}
      * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
      * - trigger: projects/{project}/locations/{location}/triggers/{trigger}
      *
@@ -1103,6 +1141,55 @@ class EventarcGapicClient
     }
 
     /**
+     * Get a single Provider.
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $formattedName = $eventarcClient->providerName('[PROJECT]', '[LOCATION]', '[PROVIDER]');
+     *     $response = $eventarcClient->getProvider($formattedName);
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the provider to get.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Eventarc\V1\Provider
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getProvider($name, array $optionalArgs = [])
+    {
+        $request = new GetProviderRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetProvider',
+            Provider::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Get a single trigger.
      *
      * Sample code:
@@ -1312,6 +1399,99 @@ class EventarcGapicClient
             'ListChannels',
             $optionalArgs,
             ListChannelsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * List providers.
+     *
+     * Sample code:
+     * ```
+     * $eventarcClient = new EventarcClient();
+     * try {
+     *     $formattedParent = $eventarcClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $eventarcClient->listProviders($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $eventarcClient->listProviders($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $eventarcClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent of the provider to get.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $orderBy
+     *           The sorting order of the resources returned. Value should be a
+     *           comma-separated list of fields. The default sorting oder is ascending. To
+     *           specify descending order for a field, append a `desc` suffix; for example:
+     *           `name desc, _id`.
+     *     @type string $filter
+     *           The filter field that the list request will filter on.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listProviders($parent, array $optionalArgs = [])
+    {
+        $request = new ListProvidersRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListProviders',
+            $optionalArgs,
+            ListProvidersResponse::class,
             $request
         );
     }

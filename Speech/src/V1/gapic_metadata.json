@@ -28,6 +28,65 @@
                     }
                 }
             }
+        },
+        "Adaptation": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AdaptationGapicClient",
+                    "rpcs": {
+                        "CreateCustomClass": {
+                            "methods": [
+                                "createCustomClass"
+                            ]
+                        },
+                        "CreatePhraseSet": {
+                            "methods": [
+                                "createPhraseSet"
+                            ]
+                        },
+                        "DeleteCustomClass": {
+                            "methods": [
+                                "deleteCustomClass"
+                            ]
+                        },
+                        "DeletePhraseSet": {
+                            "methods": [
+                                "deletePhraseSet"
+                            ]
+                        },
+                        "GetCustomClass": {
+                            "methods": [
+                                "getCustomClass"
+                            ]
+                        },
+                        "GetPhraseSet": {
+                            "methods": [
+                                "getPhraseSet"
+                            ]
+                        },
+                        "ListCustomClasses": {
+                            "methods": [
+                                "listCustomClasses"
+                            ]
+                        },
+                        "ListPhraseSet": {
+                            "methods": [
+                                "listPhraseSet"
+                            ]
+                        },
+                        "UpdateCustomClass": {
+                            "methods": [
+                                "updateCustomClass"
+                            ]
+                        },
+                        "UpdatePhraseSet": {
+                            "methods": [
+                                "updatePhraseSet"
+                            ]
+                        }
+                    }
+                }
+            }
         }
     }
 }

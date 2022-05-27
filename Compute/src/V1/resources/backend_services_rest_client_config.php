@@ -139,6 +139,23 @@ return [
                     ],
                 ],
             ],
+            'SetEdgeSecurityPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/backendServices/{backend_service}/setEdgeSecurityPolicy',
+                'body' => 'security_policy_reference_resource',
+                'placeholders' => [
+                    'backend_service' => [
+                        'getters' => [
+                            'getBackendService',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'SetSecurityPolicy' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/backendServices/{backend_service}/setSecurityPolicy',

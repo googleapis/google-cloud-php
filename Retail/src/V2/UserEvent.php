@@ -21,7 +21,6 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `add-to-cart`: Products being added to cart.
      * * `category-page-view`: Special pages such as sale or promotion pages
      *   viewed.
-     * * `completion`: Completion query result showed/clicked.
      * * `detail-page-view`: Products detail page viewed.
      * * `home-page-view`: Homepage viewed.
      * * `promotion-offered`: Promotion is offered to a user.
@@ -109,6 +108,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `add-to-cart`
      * * `detail-page-view`
      * * `purchase-complete`
+     * * `search`
      * In a `search` event, this field represents the products returned to the end
      * user on the current page (the end user may have not finished browsing the
      * whole page yet). When a new page is returned to the end user, after
@@ -121,22 +121,33 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      */
     private $product_details;
     /**
-     * The main completion details related to the event.
-     * In a `completion` event, this field represents the completions returned to
-     * the end user and the clicked completion by the end user. In a `search`
-     * event, it represents the search event happens after clicking completion.
+     * The main auto-completion details related to the event.
+     * This field should be set for `search` event when autocomplete function is
+     * enabled and the user clicks a suggestion for search.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CompletionDetail completion_detail = 22;</code>
      */
     private $completion_detail = null;
     /**
      * Extra user event features to include in the recommendation model.
-     * The key must be a UTF-8 encoded string with a length limit of 5,000
-     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * For product recommendation, an example of extra user information is
-     * traffic_channel, i.e. how user arrives at the site. Users can arrive
-     * at the site by coming to the site directly, or coming through Google
-     * search, and etc.
+     * If you provide custom attributes for ingested user events, also include
+     * them in the user events that you associate with prediction requests. Custom
+     * attribute formatting must be consistent between imported events and events
+     * provided with prediction requests. This lets the Retail API use
+     * those custom attributes when training models and serving predictions, which
+     * helps improve recommendation quality.
+     * This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT
+     * error is returned:
+     * * The key must be a UTF-8 encoded string with a length limit of 5,000
+     *   characters.
+     * * For text attributes, at most 400 values are allowed. Empty values are not
+     *   allowed. Each value must be a UTF-8 encoded string with a length limit of
+     *   256 characters.
+     * * For number attributes, at most 400 values are allowed.
+     * For product recommendations, an example of extra user information is
+     * traffic_channel, which is how a user arrives at the site. Users can arrive
+     * at the site by coming to the site directly, coming through Google
+     * search, or in other ways.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.CustomAttribute> attributes = 7;</code>
      */
@@ -273,7 +284,6 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           * `add-to-cart`: Products being added to cart.
      *           * `category-page-view`: Special pages such as sale or promotion pages
      *             viewed.
-     *           * `completion`: Completion query result showed/clicked.
      *           * `detail-page-view`: Products detail page viewed.
      *           * `home-page-view`: Homepage viewed.
      *           * `promotion-offered`: Promotion is offered to a user.
@@ -337,6 +347,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           * `add-to-cart`
      *           * `detail-page-view`
      *           * `purchase-complete`
+     *           * `search`
      *           In a `search` event, this field represents the products returned to the end
      *           user on the current page (the end user may have not finished browsing the
      *           whole page yet). When a new page is returned to the end user, after
@@ -345,18 +356,29 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           [product_details][google.cloud.retail.v2.UserEvent.product_details] is
      *           desired. The end user may have not finished browsing the whole page yet.
      *     @type \Google\Cloud\Retail\V2\CompletionDetail $completion_detail
-     *           The main completion details related to the event.
-     *           In a `completion` event, this field represents the completions returned to
-     *           the end user and the clicked completion by the end user. In a `search`
-     *           event, it represents the search event happens after clicking completion.
+     *           The main auto-completion details related to the event.
+     *           This field should be set for `search` event when autocomplete function is
+     *           enabled and the user clicks a suggestion for search.
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
      *           Extra user event features to include in the recommendation model.
-     *           The key must be a UTF-8 encoded string with a length limit of 5,000
-     *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     *           For product recommendation, an example of extra user information is
-     *           traffic_channel, i.e. how user arrives at the site. Users can arrive
-     *           at the site by coming to the site directly, or coming through Google
-     *           search, and etc.
+     *           If you provide custom attributes for ingested user events, also include
+     *           them in the user events that you associate with prediction requests. Custom
+     *           attribute formatting must be consistent between imported events and events
+     *           provided with prediction requests. This lets the Retail API use
+     *           those custom attributes when training models and serving predictions, which
+     *           helps improve recommendation quality.
+     *           This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT
+     *           error is returned:
+     *           * The key must be a UTF-8 encoded string with a length limit of 5,000
+     *             characters.
+     *           * For text attributes, at most 400 values are allowed. Empty values are not
+     *             allowed. Each value must be a UTF-8 encoded string with a length limit of
+     *             256 characters.
+     *           * For number attributes, at most 400 values are allowed.
+     *           For product recommendations, an example of extra user information is
+     *           traffic_channel, which is how a user arrives at the site. Users can arrive
+     *           at the site by coming to the site directly, coming through Google
+     *           search, or in other ways.
      *     @type string $cart_id
      *           The ID or name of the associated shopping cart. This ID is used
      *           to associate multiple items added or present in the cart before purchase.
@@ -445,7 +467,6 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `add-to-cart`: Products being added to cart.
      * * `category-page-view`: Special pages such as sale or promotion pages
      *   viewed.
-     * * `completion`: Completion query result showed/clicked.
      * * `detail-page-view`: Products detail page viewed.
      * * `home-page-view`: Homepage viewed.
      * * `promotion-offered`: Promotion is offered to a user.
@@ -467,7 +488,6 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `add-to-cart`: Products being added to cart.
      * * `category-page-view`: Special pages such as sale or promotion pages
      *   viewed.
-     * * `completion`: Completion query result showed/clicked.
      * * `detail-page-view`: Products detail page viewed.
      * * `home-page-view`: Homepage viewed.
      * * `promotion-offered`: Promotion is offered to a user.
@@ -714,6 +734,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `add-to-cart`
      * * `detail-page-view`
      * * `purchase-complete`
+     * * `search`
      * In a `search` event, this field represents the products returned to the end
      * user on the current page (the end user may have not finished browsing the
      * whole page yet). When a new page is returned to the end user, after
@@ -736,6 +757,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `add-to-cart`
      * * `detail-page-view`
      * * `purchase-complete`
+     * * `search`
      * In a `search` event, this field represents the products returned to the end
      * user on the current page (the end user may have not finished browsing the
      * whole page yet). When a new page is returned to the end user, after
@@ -757,10 +779,9 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The main completion details related to the event.
-     * In a `completion` event, this field represents the completions returned to
-     * the end user and the clicked completion by the end user. In a `search`
-     * event, it represents the search event happens after clicking completion.
+     * The main auto-completion details related to the event.
+     * This field should be set for `search` event when autocomplete function is
+     * enabled and the user clicks a suggestion for search.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CompletionDetail completion_detail = 22;</code>
      * @return \Google\Cloud\Retail\V2\CompletionDetail|null
@@ -781,10 +802,9 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The main completion details related to the event.
-     * In a `completion` event, this field represents the completions returned to
-     * the end user and the clicked completion by the end user. In a `search`
-     * event, it represents the search event happens after clicking completion.
+     * The main auto-completion details related to the event.
+     * This field should be set for `search` event when autocomplete function is
+     * enabled and the user clicks a suggestion for search.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.CompletionDetail completion_detail = 22;</code>
      * @param \Google\Cloud\Retail\V2\CompletionDetail $var
@@ -800,12 +820,24 @@ class UserEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * Extra user event features to include in the recommendation model.
-     * The key must be a UTF-8 encoded string with a length limit of 5,000
-     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * For product recommendation, an example of extra user information is
-     * traffic_channel, i.e. how user arrives at the site. Users can arrive
-     * at the site by coming to the site directly, or coming through Google
-     * search, and etc.
+     * If you provide custom attributes for ingested user events, also include
+     * them in the user events that you associate with prediction requests. Custom
+     * attribute formatting must be consistent between imported events and events
+     * provided with prediction requests. This lets the Retail API use
+     * those custom attributes when training models and serving predictions, which
+     * helps improve recommendation quality.
+     * This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT
+     * error is returned:
+     * * The key must be a UTF-8 encoded string with a length limit of 5,000
+     *   characters.
+     * * For text attributes, at most 400 values are allowed. Empty values are not
+     *   allowed. Each value must be a UTF-8 encoded string with a length limit of
+     *   256 characters.
+     * * For number attributes, at most 400 values are allowed.
+     * For product recommendations, an example of extra user information is
+     * traffic_channel, which is how a user arrives at the site. Users can arrive
+     * at the site by coming to the site directly, coming through Google
+     * search, or in other ways.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.CustomAttribute> attributes = 7;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -817,12 +849,24 @@ class UserEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * Extra user event features to include in the recommendation model.
-     * The key must be a UTF-8 encoded string with a length limit of 5,000
-     * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * For product recommendation, an example of extra user information is
-     * traffic_channel, i.e. how user arrives at the site. Users can arrive
-     * at the site by coming to the site directly, or coming through Google
-     * search, and etc.
+     * If you provide custom attributes for ingested user events, also include
+     * them in the user events that you associate with prediction requests. Custom
+     * attribute formatting must be consistent between imported events and events
+     * provided with prediction requests. This lets the Retail API use
+     * those custom attributes when training models and serving predictions, which
+     * helps improve recommendation quality.
+     * This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT
+     * error is returned:
+     * * The key must be a UTF-8 encoded string with a length limit of 5,000
+     *   characters.
+     * * For text attributes, at most 400 values are allowed. Empty values are not
+     *   allowed. Each value must be a UTF-8 encoded string with a length limit of
+     *   256 characters.
+     * * For number attributes, at most 400 values are allowed.
+     * For product recommendations, an example of extra user information is
+     * traffic_channel, which is how a user arrives at the site. Users can arrive
+     * at the site by coming to the site directly, coming through Google
+     * search, or in other ways.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.CustomAttribute> attributes = 7;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

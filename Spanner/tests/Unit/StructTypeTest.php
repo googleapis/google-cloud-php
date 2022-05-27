@@ -20,7 +20,8 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\StructType;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -28,9 +29,11 @@ use PHPUnit\Framework\TestCase;
  */
 class StructTypeTest extends TestCase
 {
+    use ExpectException;
+
     private $definition;
 
-    public function setUp()
+    public function set_up()
     {
         $this->definition = [
             [
@@ -74,21 +77,21 @@ class StructTypeTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Field type `foo` is not valid.
-     */
     public function testAddInvalidType()
     {
+        $this->expectException('\InvalidArgumentException');
+        $this->expectExceptionMessage('Field type `foo` is not valid.');
+
         (new StructType)->add('name', 'foo');
     }
 
     /**
-     * @expectedException \InvalidArgumentException
      * @dataProvider definitionTypes
      */
     public function testInvalidTypeDefinition($type)
     {
+        $this->expectException('\InvalidArgumentException');
+
         (new StructType)->add('foo', $type);
     }
 

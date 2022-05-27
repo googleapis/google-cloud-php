@@ -34,13 +34,16 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AccessApproval\V1\AccessApprovalServiceAccount;
 use Google\Cloud\AccessApproval\V1\AccessApprovalSettings;
 use Google\Cloud\AccessApproval\V1\ApprovalRequest;
 use Google\Cloud\AccessApproval\V1\ApproveApprovalRequestMessage;
 use Google\Cloud\AccessApproval\V1\DeleteAccessApprovalSettingsMessage;
 use Google\Cloud\AccessApproval\V1\DismissApprovalRequestMessage;
+use Google\Cloud\AccessApproval\V1\GetAccessApprovalServiceAccountMessage;
 use Google\Cloud\AccessApproval\V1\GetAccessApprovalSettingsMessage;
 use Google\Cloud\AccessApproval\V1\GetApprovalRequestMessage;
+use Google\Cloud\AccessApproval\V1\InvalidateApprovalRequestMessage;
 use Google\Cloud\AccessApproval\V1\ListApprovalRequestsMessage;
 use Google\Cloud\AccessApproval\V1\ListApprovalRequestsResponse;
 use Google\Cloud\AccessApproval\V1\UpdateAccessApprovalSettingsMessage;
@@ -732,6 +735,50 @@ class AccessApprovalGapicClient
     }
 
     /**
+     * Retrieves the service account that is used by Access Approval to access KMS
+     * keys for signing approved approval requests.
+     *
+     * Sample code:
+     * ```
+     * $accessApprovalClient = new AccessApprovalClient();
+     * try {
+     *     $response = $accessApprovalClient->getAccessApprovalServiceAccount();
+     * } finally {
+     *     $accessApprovalClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Name of the AccessApprovalServiceAccount to retrieve.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AccessApproval\V1\AccessApprovalServiceAccount
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getAccessApprovalServiceAccount(array $optionalArgs = [])
+    {
+        $request = new GetAccessApprovalServiceAccountMessage();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetAccessApprovalServiceAccount', AccessApprovalServiceAccount::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Gets the settings associated with a project, folder, or organization.
      *
      * Sample code:
@@ -818,6 +865,56 @@ class AccessApprovalGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetApprovalRequest', ApprovalRequest::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Invalidates an existing ApprovalRequest. Returns the updated
+     * ApprovalRequest.
+     *
+     * NOTE: This does not deny access to the resource if another request has been
+     * made and approved. It only invalidates a single approval.
+     *
+     * Returns FAILED_PRECONDITION if the request exists but is not in an approved
+     * state.
+     *
+     * Sample code:
+     * ```
+     * $accessApprovalClient = new AccessApprovalClient();
+     * try {
+     *     $response = $accessApprovalClient->invalidateApprovalRequest();
+     * } finally {
+     *     $accessApprovalClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Name of the ApprovalRequest to invalidate.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AccessApproval\V1\ApprovalRequest
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function invalidateApprovalRequest(array $optionalArgs = [])
+    {
+        $request = new InvalidateApprovalRequestMessage();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('InvalidateApprovalRequest', ApprovalRequest::class, $optionalArgs, $request)->wait();
     }
 
     /**

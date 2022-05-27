@@ -111,6 +111,17 @@ return [
                     ],
                 ],
             ],
+            'GetProvider' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/providers/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetTrigger' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/triggers/*}',
@@ -136,6 +147,17 @@ return [
             'ListChannels' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/channels',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListProviders' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/providers',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

@@ -370,13 +370,13 @@ class AdaptationGapicClient
      *                                   Speech-to-Text supports three locations: `global`, `us` (US North America),
      *                                   and `eu` (Europe). If you are calling the `speech.googleapis.com`
      *                                   endpoint, use the `global` location. To specify a region, use a
-     *                                   [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     *                                   `eu` location value.
+     *                                   [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *                                   with matching `us` or `eu` location value.
      * @param string      $customClassId Required. The ID to use for the custom class, which will become the final
      *                                   component of the custom class' resource name.
      *
-     *                                   This value should be 4-63 characters, and valid characters
-     *                                   are /[a-z][0-9]-/.
+     *                                   This value should restrict to letters, numbers, and hyphens, with the first
+     *                                   character a letter, the last a letter or a number, and be 4-63 characters.
      * @param CustomClass $customClass   Required. The custom class to create.
      * @param array       $optionalArgs  {
      *     Optional.
@@ -432,13 +432,13 @@ class AdaptationGapicClient
      *                                Speech-to-Text supports three locations: `global`, `us` (US North America),
      *                                and `eu` (Europe). If you are calling the `speech.googleapis.com`
      *                                endpoint, use the `global` location. To specify a region, use a
-     *                                [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     *                                `eu` location value.
+     *                                [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *                                with matching `us` or `eu` location value.
      * @param string    $phraseSetId  Required. The ID to use for the phrase set, which will become the final
      *                                component of the phrase set's resource name.
      *
-     *                                This value should be 4-63 characters, and valid characters
-     *                                are /[a-z][0-9]-/.
+     *                                This value should restrict to letters, numbers, and hyphens, with the first
+     *                                character a letter, the last a letter or a number, and be 4-63 characters.
      * @param PhraseSet $phraseSet    Required. The phrase set to create.
      * @param array     $optionalArgs {
      *     Optional.
@@ -490,8 +490,8 @@ class AdaptationGapicClient
      *                             Speech-to-Text supports three locations: `global`, `us` (US North America),
      *                             and `eu` (Europe). If you are calling the `speech.googleapis.com`
      *                             endpoint, use the `global` location. To specify a region, use a
-     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     *                             `eu` location value.
+     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *                             with matching `us` or `eu` location value.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -624,8 +624,8 @@ class AdaptationGapicClient
      *                             Speech-to-Text supports three locations: `global`, `us` (US North America),
      *                             and `eu` (Europe). If you are calling the `speech.googleapis.com`
      *                             endpoint, use the `global` location. To specify a region, use a
-     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     *                             `eu` location value.
+     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *                             with matching `us` or `eu` location value.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -686,8 +686,8 @@ class AdaptationGapicClient
      *                             Speech-to-Text supports three locations: `global`, `us` (US North America),
      *                             and `eu` (Europe). If you are calling the `speech.googleapis.com`
      *                             endpoint, use the `global` location. To specify a region, use a
-     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     *                             `eu` location value.
+     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *                             with matching `us` or `eu` location value.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -765,8 +765,8 @@ class AdaptationGapicClient
      *                             Speech-to-Text supports three locations: `global`, `us` (US North America),
      *                             and `eu` (Europe). If you are calling the `speech.googleapis.com`
      *                             endpoint, use the `global` location. To specify a region, use a
-     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     *                             `eu` location value.
+     *                             [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *                             with matching `us` or `eu` location value.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -835,8 +835,8 @@ class AdaptationGapicClient
      *                                  Speech-to-Text supports three locations: `global`, `us` (US North America),
      *                                  and `eu` (Europe). If you are calling the `speech.googleapis.com`
      *                                  endpoint, use the `global` location. To specify a region, use a
-     *                                  [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     *                                  `eu` location value.
+     *                                  [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *                                  with matching `us` or `eu` location value.
      * @param array       $optionalArgs {
      *     Optional.
      *
@@ -894,8 +894,8 @@ class AdaptationGapicClient
      *                                Speech-to-Text supports three locations: `global`, `us` (US North America),
      *                                and `eu` (Europe). If you are calling the `speech.googleapis.com`
      *                                endpoint, use the `global` location. To specify a region, use a
-     *                                [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or
-     *                                `eu` location value.
+     *                                [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints)
+     *                                with matching `us` or `eu` location value.
      * @param array     $optionalArgs {
      *     Optional.
      *

@@ -21,7 +21,7 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Schema;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group pubsub
@@ -34,7 +34,7 @@ class SchemaTest extends TestCase
     private $connection;
     private $schema;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->schema = TestHelpers::stub(Schema::class, [

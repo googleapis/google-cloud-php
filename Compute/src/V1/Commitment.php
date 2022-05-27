@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class Commitment extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Specifies whether to enable automatic renewal for the commitment. The default value is false if not specified. The field can be updated until the day of the commitment expiration at 12:00am PST. If the field is set to true, the commitment will be automatically renewed for either one or three years according to the terms of the existing commitment.
+     *
+     * Generated from protobuf field <code>optional bool auto_renew = 495520765;</code>
+     */
+    private $auto_renew = null;
+    /**
      * The category of the commitment. Category MACHINE specifies commitments composed of machine resources such as VCPU or MEMORY, listed in resources. Category LICENSE specifies commitments composed of software licenses, listed in licenseResources. Note that only MACHINE commitments should have a Type specified.
      * Check the Category enum for the list of possible values.
      *
@@ -128,6 +134,8 @@ class Commitment extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $auto_renew
+     *           Specifies whether to enable automatic renewal for the commitment. The default value is false if not specified. The field can be updated until the day of the commitment expiration at 12:00am PST. If the field is set to true, the commitment will be automatically renewed for either one or three years according to the terms of the existing commitment.
      *     @type string $category
      *           The category of the commitment. Category MACHINE specifies commitments composed of machine resources such as VCPU or MEMORY, listed in resources. Category LICENSE specifies commitments composed of software licenses, listed in licenseResources. Note that only MACHINE commitments should have a Type specified.
      *           Check the Category enum for the list of possible values.
@@ -171,6 +179,42 @@ class Commitment extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Specifies whether to enable automatic renewal for the commitment. The default value is false if not specified. The field can be updated until the day of the commitment expiration at 12:00am PST. If the field is set to true, the commitment will be automatically renewed for either one or three years according to the terms of the existing commitment.
+     *
+     * Generated from protobuf field <code>optional bool auto_renew = 495520765;</code>
+     * @return bool
+     */
+    public function getAutoRenew()
+    {
+        return isset($this->auto_renew) ? $this->auto_renew : false;
+    }
+
+    public function hasAutoRenew()
+    {
+        return isset($this->auto_renew);
+    }
+
+    public function clearAutoRenew()
+    {
+        unset($this->auto_renew);
+    }
+
+    /**
+     * Specifies whether to enable automatic renewal for the commitment. The default value is false if not specified. The field can be updated until the day of the commitment expiration at 12:00am PST. If the field is set to true, the commitment will be automatically renewed for either one or three years according to the terms of the existing commitment.
+     *
+     * Generated from protobuf field <code>optional bool auto_renew = 495520765;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAutoRenew($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->auto_renew = $var;
+
+        return $this;
     }
 
     /**

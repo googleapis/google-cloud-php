@@ -38,6 +38,7 @@ use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Numeric;
+use Google\Cloud\Spanner\PgNumeric;
 use Prophecy\Argument;
 
 /**
@@ -55,7 +56,7 @@ class SpannerClientTest extends SnippetTestCase
     private $client;
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -257,6 +258,7 @@ class SpannerClientTest extends SnippetTestCase
             [Duration::class, 'duration'],
             [CommitTimestamp::class, 'commitTimestamp'],
             [Numeric::class, 'numeric'],
+            [PgNumeric::class, 'pgNumeric'],
         ];
     }
 

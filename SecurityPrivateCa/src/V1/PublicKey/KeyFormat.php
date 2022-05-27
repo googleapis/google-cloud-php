@@ -65,6 +65,4 @@ class KeyFormat
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KeyFormat::class, \Google\Cloud\Security\PrivateCA\V1\PublicKey_KeyFormat::class);
 

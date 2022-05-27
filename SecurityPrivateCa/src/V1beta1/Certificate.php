@@ -223,7 +223,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      */
     public function getLifetime()
     {
-        return isset($this->lifetime) ? $this->lifetime : null;
+        return $this->lifetime;
     }
 
     public function hasLifetime()
@@ -263,7 +263,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      */
     public function getRevocationDetails()
     {
-        return isset($this->revocation_details) ? $this->revocation_details : null;
+        return $this->revocation_details;
     }
 
     public function hasRevocationDetails()
@@ -326,7 +326,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      */
     public function getCertificateDescription()
     {
-        return isset($this->certificate_description) ? $this->certificate_description : null;
+        return $this->certificate_description;
     }
 
     public function hasCertificateDescription()
@@ -390,7 +390,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -426,7 +426,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

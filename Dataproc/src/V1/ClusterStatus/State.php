@@ -27,6 +27,9 @@ class State
     const CREATING = 1;
     /**
      * The cluster is currently running and healthy. It is ready for use.
+     * **Note:** The cluster state changes from "creating" to "running" status
+     * after the master node(s), first two primary worker nodes (and the last
+     * primary worker node if primary workers > 2) are running.
      *
      * Generated from protobuf enum <code>RUNNING = 2;</code>
      */

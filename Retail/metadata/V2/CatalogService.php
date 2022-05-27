@@ -24,7 +24,7 @@ class CatalogService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Š
+™
 ,google/cloud/retail/v2/catalog_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto$google/cloud/retail/v2/catalog.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"w
 ListCatalogsRequest9
 parent (	B)àAúA#
@@ -37,13 +37,14 @@ page_token (	"b
 next_page_token (	"~
 UpdateCatalogRequest5
 catalog (2.google.cloud.retail.v2.CatalogBàA/
-update_mask (2.google.protobuf.FieldMask"’
+update_mask (2.google.protobuf.FieldMask"¡
 SetDefaultBranchRequest3
 catalog (	B"úA
 retail.googleapis.com/Catalog4
 	branch_id (	B!úA
 retail.googleapis.com/Branch
-note (	"N
+note (	
+force ("N
 GetDefaultBranchRequest3
 catalog (	B"úA
 retail.googleapis.com/Catalog"‰

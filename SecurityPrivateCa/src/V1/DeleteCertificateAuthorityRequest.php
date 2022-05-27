@@ -46,6 +46,14 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      * Generated from protobuf field <code>bool ignore_active_certificates = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $ignore_active_certificates = false;
+    /**
+     * Optional. If this flag is set, the Certificate Authority will be deleted as soon as
+     * possible without a 30-day grace period where undeletion would have been
+     * allowed. If you proceed, there will be no way to recover this CA.
+     *
+     * Generated from protobuf field <code>bool skip_grace_period = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $skip_grace_period = false;
 
     /**
      * Constructor.
@@ -71,6 +79,10 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      *     @type bool $ignore_active_certificates
      *           Optional. This field allows the CA to be deleted even if the CA has
      *           active certs. Active certs include both unrevoked and unexpired certs.
+     *     @type bool $skip_grace_period
+     *           Optional. If this flag is set, the Certificate Authority will be deleted as soon as
+     *           possible without a 30-day grace period where undeletion would have been
+     *           allowed. If you proceed, there will be no way to recover this CA.
      * }
      */
     public function __construct($data = NULL) {
@@ -176,6 +188,36 @@ class DeleteCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkBool($var);
         $this->ignore_active_certificates = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If this flag is set, the Certificate Authority will be deleted as soon as
+     * possible without a 30-day grace period where undeletion would have been
+     * allowed. If you proceed, there will be no way to recover this CA.
+     *
+     * Generated from protobuf field <code>bool skip_grace_period = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSkipGracePeriod()
+    {
+        return $this->skip_grace_period;
+    }
+
+    /**
+     * Optional. If this flag is set, the Certificate Authority will be deleted as soon as
+     * possible without a 30-day grace period where undeletion would have been
+     * allowed. If you proceed, there will be no way to recover this CA.
+     *
+     * Generated from protobuf field <code>bool skip_grace_period = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSkipGracePeriod($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->skip_grace_period = $var;
 
         return $this;
     }

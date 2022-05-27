@@ -24,7 +24,7 @@ class AnalyticsAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-—ñ
+∏Á
 4google/analytics/admin/v1alpha/analytics_admin.protogoogle.analytics.admin.v1alphagoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"P
 GetAccountRequest;
 name (	B-‡A˙A\'
@@ -121,61 +121,7 @@ user_links (2(.google.analytics.admin.v1alpha.UserLink"U
 &analyticsadmin.googleapis.com/UserLink"´
 BatchDeleteUserLinksRequest>
 parent (	B.‡A˙A(&analyticsadmin.googleapis.com/UserLinkL
-requests (25.google.analytics.admin.v1alpha.DeleteUserLinkRequestB‡A"\\
-GetWebDataStreamRequestA
-name (	B3‡A˙A-
-+analyticsadmin.googleapis.com/WebDataStream"_
-DeleteWebDataStreamRequestA
-name (	B3‡A˙A-
-+analyticsadmin.googleapis.com/WebDataStream"ü
-UpdateWebDataStreamRequestK
-web_data_stream (2-.google.analytics.admin.v1alpha.WebDataStreamB‡A4
-update_mask (2.google.protobuf.FieldMaskB‡A"Æ
-CreateWebDataStreamRequestK
-web_data_stream (2-.google.analytics.admin.v1alpha.WebDataStreamB‡AC
-parent (	B3‡A˙A-+analyticsadmin.googleapis.com/WebDataStream"á
-ListWebDataStreamsRequestC
-parent (	B3‡A˙A-+analyticsadmin.googleapis.com/WebDataStream
-	page_size (
-
-page_token (	"~
-ListWebDataStreamsResponseG
-web_data_streams (2-.google.analytics.admin.v1alpha.WebDataStream
-next_page_token (	"b
-GetIosAppDataStreamRequestD
-name (	B6‡A˙A0
-.analyticsadmin.googleapis.com/IosAppDataStream"e
-DeleteIosAppDataStreamRequestD
-name (	B6‡A˙A0
-.analyticsadmin.googleapis.com/IosAppDataStream"©
-UpdateIosAppDataStreamRequestR
-ios_app_data_stream (20.google.analytics.admin.v1alpha.IosAppDataStreamB‡A4
-update_mask (2.google.protobuf.FieldMaskB‡A"ç
-ListIosAppDataStreamsRequestF
-parent (	B6‡A˙A0.analyticsadmin.googleapis.com/IosAppDataStream
-	page_size (
-
-page_token (	"à
-ListIosAppDataStreamsResponseN
-ios_app_data_streams (20.google.analytics.admin.v1alpha.IosAppDataStream
-next_page_token (	"j
-GetAndroidAppDataStreamRequestH
-name (	B:‡A˙A4
-2analyticsadmin.googleapis.com/AndroidAppDataStream"m
-!DeleteAndroidAppDataStreamRequestH
-name (	B:‡A˙A4
-2analyticsadmin.googleapis.com/AndroidAppDataStream"µ
-!UpdateAndroidAppDataStreamRequestZ
-android_app_data_stream (24.google.analytics.admin.v1alpha.AndroidAppDataStreamB‡A4
-update_mask (2.google.protobuf.FieldMaskB‡A"ï
- ListAndroidAppDataStreamsRequestJ
-parent (	B:‡A˙A42analyticsadmin.googleapis.com/AndroidAppDataStream
-	page_size (
-
-page_token (	"î
-!ListAndroidAppDataStreamsResponseV
-android_app_data_streams (24.google.analytics.admin.v1alpha.AndroidAppDataStream
-next_page_token (	"©
+requests (25.google.analytics.admin.v1alpha.DeleteUserLinkRequestB‡A"©
 CreateFirebaseLinkRequestB
 parent (	B2‡A˙A,*analyticsadmin.googleapis.com/FirebaseLinkH
 firebase_link (2,.google.analytics.admin.v1alpha.FirebaseLinkB‡A"]
@@ -394,7 +340,7 @@ page_token (	"t
 next_page_token (	"V
 GetDataStreamRequest>
 name (	B0‡A˙A*
-(analyticsadmin.googleapis.com/DataStream2Ûû
+(analyticsadmin.googleapis.com/DataStream2 Ä
 AnalyticsAdminServiceì
 
 GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytics.admin.v1alpha.Account")Ç”‰ì/v1alpha/{name=accounts/*}⁄Anameî
@@ -417,34 +363,21 @@ GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytic
 UpdateUserLink5.google.analytics.admin.v1alpha.UpdateUserLinkRequest(.google.analytics.admin.v1alpha.UserLink"êÇ”‰ì~20/v1alpha/{user_link.name=accounts/*/userLinks/*}:	user_linkZ?22/v1alpha/{user_link.name=properties/*/userLinks/*}:	user_link⁄A	user_linkã
 BatchUpdateUserLinks;.google.analytics.admin.v1alpha.BatchUpdateUserLinksRequest<.google.analytics.admin.v1alpha.BatchUpdateUserLinksResponse"xÇ”‰ìr"2/v1alpha/{parent=accounts/*}/userLinks:batchUpdate:*Z9"4/v1alpha/{parent=properties/*}/userLinks:batchUpdate:*¬
 DeleteUserLink5.google.analytics.admin.v1alpha.DeleteUserLinkRequest.google.protobuf.Empty"aÇ”‰ìT*&/v1alpha/{name=accounts/*/userLinks/*}Z**(/v1alpha/{name=properties/*/userLinks/*}⁄AnameÂ
-BatchDeleteUserLinks;.google.analytics.admin.v1alpha.BatchDeleteUserLinksRequest.google.protobuf.Empty"xÇ”‰ìr"2/v1alpha/{parent=accounts/*}/userLinks:batchDelete:*Z9"4/v1alpha/{parent=properties/*}/userLinks:batchDelete:*∏
-GetWebDataStream7.google.analytics.admin.v1alpha.GetWebDataStreamRequest-.google.analytics.admin.v1alpha.WebDataStream"<Ç”‰ì/-/v1alpha/{name=properties/*/webDataStreams/*}⁄Anameß
-DeleteWebDataStream:.google.analytics.admin.v1alpha.DeleteWebDataStreamRequest.google.protobuf.Empty"<Ç”‰ì/*-/v1alpha/{name=properties/*/webDataStreams/*}⁄Anameˆ
-UpdateWebDataStream:.google.analytics.admin.v1alpha.UpdateWebDataStreamRequest-.google.analytics.admin.v1alpha.WebDataStream"tÇ”‰ìP2=/v1alpha/{web_data_stream.name=properties/*/webDataStreams/*}:web_data_stream⁄Aweb_data_stream,update_mask·
-CreateWebDataStream:.google.analytics.admin.v1alpha.CreateWebDataStreamRequest-.google.analytics.admin.v1alpha.WebDataStream"_Ç”‰ì@"-/v1alpha/{parent=properties/*}/webDataStreams:web_data_stream⁄Aparent,web_data_streamÀ
-ListWebDataStreams9.google.analytics.admin.v1alpha.ListWebDataStreamsRequest:.google.analytics.admin.v1alpha.ListWebDataStreamsResponse">Ç”‰ì/-/v1alpha/{parent=properties/*}/webDataStreams⁄Aparentƒ
-GetIosAppDataStream:.google.analytics.admin.v1alpha.GetIosAppDataStreamRequest0.google.analytics.admin.v1alpha.IosAppDataStream"?Ç”‰ì20/v1alpha/{name=properties/*/iosAppDataStreams/*}⁄Aname∞
-DeleteIosAppDataStream=.google.analytics.admin.v1alpha.DeleteIosAppDataStreamRequest.google.protobuf.Empty"?Ç”‰ì2*0/v1alpha/{name=properties/*/iosAppDataStreams/*}⁄Anameè
-UpdateIosAppDataStream=.google.analytics.admin.v1alpha.UpdateIosAppDataStreamRequest0.google.analytics.admin.v1alpha.IosAppDataStream"ÉÇ”‰ì[2D/v1alpha/{ios_app_data_stream.name=properties/*/iosAppDataStreams/*}:ios_app_data_stream⁄Aios_app_data_stream,update_mask◊
-ListIosAppDataStreams<.google.analytics.admin.v1alpha.ListIosAppDataStreamsRequest=.google.analytics.admin.v1alpha.ListIosAppDataStreamsResponse"AÇ”‰ì20/v1alpha/{parent=properties/*}/iosAppDataStreams⁄Aparent‘
-GetAndroidAppDataStream>.google.analytics.admin.v1alpha.GetAndroidAppDataStreamRequest4.google.analytics.admin.v1alpha.AndroidAppDataStream"CÇ”‰ì64/v1alpha/{name=properties/*/androidAppDataStreams/*}⁄Anameº
-DeleteAndroidAppDataStreamA.google.analytics.admin.v1alpha.DeleteAndroidAppDataStreamRequest.google.protobuf.Empty"CÇ”‰ì6*4/v1alpha/{name=properties/*/androidAppDataStreams/*}⁄Aname´
-UpdateAndroidAppDataStreamA.google.analytics.admin.v1alpha.UpdateAndroidAppDataStreamRequest4.google.analytics.admin.v1alpha.AndroidAppDataStream"ìÇ”‰ìg2L/v1alpha/{android_app_data_stream.name=properties/*/androidAppDataStreams/*}:android_app_data_stream⁄A#android_app_data_stream,update_maskÁ
-ListAndroidAppDataStreams@.google.analytics.admin.v1alpha.ListAndroidAppDataStreamsRequestA.google.analytics.admin.v1alpha.ListAndroidAppDataStreamsResponse"EÇ”‰ì64/v1alpha/{parent=properties/*}/androidAppDataStreams⁄AparentŸ
+BatchDeleteUserLinks;.google.analytics.admin.v1alpha.BatchDeleteUserLinksRequest.google.protobuf.Empty"xÇ”‰ìr"2/v1alpha/{parent=accounts/*}/userLinks:batchDelete:*Z9"4/v1alpha/{parent=properties/*}/userLinks:batchDelete:*Ÿ
 CreateFirebaseLink9.google.analytics.admin.v1alpha.CreateFirebaseLinkRequest,.google.analytics.admin.v1alpha.FirebaseLink"ZÇ”‰ì=",/v1alpha/{parent=properties/*}/firebaseLinks:firebase_link⁄Aparent,firebase_link§
 DeleteFirebaseLink9.google.analytics.admin.v1alpha.DeleteFirebaseLinkRequest.google.protobuf.Empty";Ç”‰ì.*,/v1alpha/{name=properties/*/firebaseLinks/*}⁄Aname«
-ListFirebaseLinks8.google.analytics.admin.v1alpha.ListFirebaseLinksRequest9.google.analytics.admin.v1alpha.ListFirebaseLinksResponse"=Ç”‰ì.,/v1alpha/{parent=properties/*}/firebaseLinks⁄Aparent∆
-GetGlobalSiteTag7.google.analytics.admin.v1alpha.GetGlobalSiteTagRequest-.google.analytics.admin.v1alpha.GlobalSiteTag"JÇ”‰ì=;/v1alpha/{name=properties/*/webDataStreams/*/globalSiteTag}⁄Aname·
+ListFirebaseLinks8.google.analytics.admin.v1alpha.ListFirebaseLinksRequest9.google.analytics.admin.v1alpha.ListFirebaseLinksResponse"=Ç”‰ì.,/v1alpha/{parent=properties/*}/firebaseLinks⁄Aparent√
+GetGlobalSiteTag7.google.analytics.admin.v1alpha.GetGlobalSiteTagRequest-.google.analytics.admin.v1alpha.GlobalSiteTag"GÇ”‰ì:8/v1alpha/{name=properties/*/dataStreams/*/globalSiteTag}⁄Aname·
 CreateGoogleAdsLink:.google.analytics.admin.v1alpha.CreateGoogleAdsLinkRequest-.google.analytics.admin.v1alpha.GoogleAdsLink"_Ç”‰ì@"-/v1alpha/{parent=properties/*}/googleAdsLinks:google_ads_link⁄Aparent,google_ads_linkˆ
 UpdateGoogleAdsLink:.google.analytics.admin.v1alpha.UpdateGoogleAdsLinkRequest-.google.analytics.admin.v1alpha.GoogleAdsLink"tÇ”‰ìP2=/v1alpha/{google_ads_link.name=properties/*/googleAdsLinks/*}:google_ads_link⁄Agoogle_ads_link,update_maskß
 DeleteGoogleAdsLink:.google.analytics.admin.v1alpha.DeleteGoogleAdsLinkRequest.google.protobuf.Empty"<Ç”‰ì/*-/v1alpha/{name=properties/*/googleAdsLinks/*}⁄AnameÀ
 ListGoogleAdsLinks9.google.analytics.admin.v1alpha.ListGoogleAdsLinksRequest:.google.analytics.admin.v1alpha.ListGoogleAdsLinksResponse">Ç”‰ì/-/v1alpha/{parent=properties/*}/googleAdsLinks⁄AparentÀ
-GetDataSharingSettings=.google.analytics.admin.v1alpha.GetDataSharingSettingsRequest3.google.analytics.admin.v1alpha.DataSharingSettings"=Ç”‰ì0./v1alpha/{name=accounts/*/dataSharingSettings}⁄Aname°
-GetMeasurementProtocolSecretC.google.analytics.admin.v1alpha.GetMeasurementProtocolSecretRequest9.google.analytics.admin.v1alpha.MeasurementProtocolSecret"ÄÇ”‰ìÚJ/v1alpha/{name=properties/*/webDataStreams/*/measurementProtocolSecrets/*}ZOM/v1alpha/{name=properties/*/iosAppDataStreams/*/measurementProtocolSecrets/*}ZSQ/v1alpha/{name=properties/*/androidAppDataStreams/*/measurementProtocolSecrets/*}⁄Aname¥
-ListMeasurementProtocolSecretsE.google.analytics.admin.v1alpha.ListMeasurementProtocolSecretsRequestF.google.analytics.admin.v1alpha.ListMeasurementProtocolSecretsResponse"ÇÇ”‰ìÚJ/v1alpha/{parent=properties/*/webDataStreams/*}/measurementProtocolSecretsZOM/v1alpha/{parent=properties/*/iosAppDataStreams/*}/measurementProtocolSecretsZSQ/v1alpha/{parent=properties/*/androidAppDataStreams/*}/measurementProtocolSecrets⁄Aparentú
-CreateMeasurementProtocolSecretF.google.analytics.admin.v1alpha.CreateMeasurementProtocolSecretRequest9.google.analytics.admin.v1alpha.MeasurementProtocolSecret"ıÇ”‰ì…"J/v1alpha/{parent=properties/*/webDataStreams/*}/measurementProtocolSecrets:measurement_protocol_secretZl"M/v1alpha/{parent=properties/*/iosAppDataStreams/*}/measurementProtocolSecrets:measurement_protocol_secretZp"Q/v1alpha/{parent=properties/*/androidAppDataStreams/*}/measurementProtocolSecrets:measurement_protocol_secret⁄A"parent,measurement_protocol_secretÑ
-DeleteMeasurementProtocolSecretF.google.analytics.admin.v1alpha.DeleteMeasurementProtocolSecretRequest.google.protobuf.Empty"ÄÇ”‰ìÚ*J/v1alpha/{name=properties/*/webDataStreams/*/measurementProtocolSecrets/*}ZO*M/v1alpha/{name=properties/*/iosAppDataStreams/*/measurementProtocolSecrets/*}ZS*Q/v1alpha/{name=properties/*/androidAppDataStreams/*/measurementProtocolSecrets/*}⁄Aname˜
-UpdateMeasurementProtocolSecretF.google.analytics.admin.v1alpha.UpdateMeasurementProtocolSecretRequest9.google.analytics.admin.v1alpha.MeasurementProtocolSecret"–Ç”‰ìü2f/v1alpha/{measurement_protocol_secret.name=properties/*/webDataStreams/*/measurementProtocolSecrets/*}:measurement_protocol_secretZà2i/v1alpha/{measurement_protocol_secret.name=properties/*/iosAppDataStreams/*/measurementProtocolSecrets/*}:measurement_protocol_secretZå2m/v1alpha/{measurement_protocol_secret.name=properties/*/androidAppDataStreams/*/measurementProtocolSecrets/*}:measurement_protocol_secret⁄A\'measurement_protocol_secret,update_mask˜
+GetDataSharingSettings=.google.analytics.admin.v1alpha.GetDataSharingSettingsRequest3.google.analytics.admin.v1alpha.DataSharingSettings"=Ç”‰ì0./v1alpha/{name=accounts/*/dataSharingSettings}⁄Anameˆ
+GetMeasurementProtocolSecretC.google.analytics.admin.v1alpha.GetMeasurementProtocolSecretRequest9.google.analytics.admin.v1alpha.MeasurementProtocolSecret"VÇ”‰ìIG/v1alpha/{name=properties/*/dataStreams/*/measurementProtocolSecrets/*}⁄Anameâ
+ListMeasurementProtocolSecretsE.google.analytics.admin.v1alpha.ListMeasurementProtocolSecretsRequestF.google.analytics.admin.v1alpha.ListMeasurementProtocolSecretsResponse"XÇ”‰ìIG/v1alpha/{parent=properties/*/dataStreams/*}/measurementProtocolSecrets⁄Aparent∏
+CreateMeasurementProtocolSecretF.google.analytics.admin.v1alpha.CreateMeasurementProtocolSecretRequest9.google.analytics.admin.v1alpha.MeasurementProtocolSecret"ëÇ”‰ìf"G/v1alpha/{parent=properties/*/dataStreams/*}/measurementProtocolSecrets:measurement_protocol_secret⁄A"parent,measurement_protocol_secretŸ
+DeleteMeasurementProtocolSecretF.google.analytics.admin.v1alpha.DeleteMeasurementProtocolSecretRequest.google.protobuf.Empty"VÇ”‰ìI*G/v1alpha/{name=properties/*/dataStreams/*/measurementProtocolSecrets/*}⁄Aname⁄
+UpdateMeasurementProtocolSecretF.google.analytics.admin.v1alpha.UpdateMeasurementProtocolSecretRequest9.google.analytics.admin.v1alpha.MeasurementProtocolSecret"≥Ç”‰ìÇ2c/v1alpha/{measurement_protocol_secret.name=properties/*/dataStreams/*/measurementProtocolSecrets/*}:measurement_protocol_secret⁄A\'measurement_protocol_secret,update_mask˜
 AcknowledgeUserDataCollectionD.google.analytics.admin.v1alpha.AcknowledgeUserDataCollectionRequestE.google.analytics.admin.v1alpha.AcknowledgeUserDataCollectionResponse"IÇ”‰ìC">/v1alpha/{property=properties/*}:acknowledgeUserDataCollection:*‰
 SearchChangeHistoryEvents@.google.analytics.admin.v1alpha.SearchChangeHistoryEventsRequestA.google.analytics.admin.v1alpha.SearchChangeHistoryEventsResponse"BÇ”‰ì<"7/v1alpha/{account=accounts/*}:searchChangeHistoryEvents:*’
 GetGoogleSignalsSettings?.google.analytics.admin.v1alpha.GetGoogleSignalsSettingsRequest5.google.analytics.admin.v1alpha.GoogleSignalsSettings"AÇ”‰ì42/v1alpha/{name=properties/*/googleSignalsSettings}⁄Aname¨

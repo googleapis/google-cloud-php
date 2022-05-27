@@ -29,12 +29,14 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     private $instance_resource = null;
     /**
      * Specifies the action to take when updating an instance even if the updated properties do not require it. If not specified, then Compute Engine acts based on the minimum action that the updated properties require.
+     * Check the MinimalAction enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string minimal_action = 270567060;</code>
      */
     private $minimal_action = null;
     /**
      * Specifies the most disruptive action that can be taken on the instance as part of the update. Compute Engine returns an error if the instance properties require a more disruptive action as part of the instance update. Valid options from lowest to highest are NO_EFFECT, REFRESH, and RESTART.
+     * Check the MostDisruptiveAllowedAction enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string most_disruptive_allowed_action = 66103053;</code>
      */
@@ -70,8 +72,10 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *           The body resource for this request
      *     @type string $minimal_action
      *           Specifies the action to take when updating an instance even if the updated properties do not require it. If not specified, then Compute Engine acts based on the minimum action that the updated properties require.
+     *           Check the MinimalAction enum for the list of possible values.
      *     @type string $most_disruptive_allowed_action
      *           Specifies the most disruptive action that can be taken on the instance as part of the update. Compute Engine returns an error if the instance properties require a more disruptive action as part of the instance update. Valid options from lowest to highest are NO_EFFECT, REFRESH, and RESTART.
+     *           Check the MostDisruptiveAllowedAction enum for the list of possible values.
      *     @type string $project
      *           Project ID for this request.
      *     @type string $request_id
@@ -149,6 +153,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the action to take when updating an instance even if the updated properties do not require it. If not specified, then Compute Engine acts based on the minimum action that the updated properties require.
+     * Check the MinimalAction enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string minimal_action = 270567060;</code>
      * @return string
@@ -170,6 +175,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the action to take when updating an instance even if the updated properties do not require it. If not specified, then Compute Engine acts based on the minimum action that the updated properties require.
+     * Check the MinimalAction enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string minimal_action = 270567060;</code>
      * @param string $var
@@ -185,6 +191,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the most disruptive action that can be taken on the instance as part of the update. Compute Engine returns an error if the instance properties require a more disruptive action as part of the instance update. Valid options from lowest to highest are NO_EFFECT, REFRESH, and RESTART.
+     * Check the MostDisruptiveAllowedAction enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string most_disruptive_allowed_action = 66103053;</code>
      * @return string
@@ -206,6 +213,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the most disruptive action that can be taken on the instance as part of the update. Compute Engine returns an error if the instance properties require a more disruptive action as part of the instance update. Valid options from lowest to highest are NO_EFFECT, REFRESH, and RESTART.
+     * Check the MostDisruptiveAllowedAction enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string most_disruptive_allowed_action = 66103053;</code>
      * @param string $var

@@ -103,6 +103,16 @@ return [
                     'resourcesGetMethod' => 'getChannels',
                 ],
             ],
+            'ListProviders' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getProviders',
+                ],
+            ],
             'ListTriggers' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

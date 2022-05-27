@@ -25,7 +25,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -37,7 +37,7 @@ class SignedUrlUploaderTest extends TestCase
     private $stream;
     private $successBody;
 
-    public function setUp()
+    public function set_up()
     {
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);
         $this->stream = Utils::streamFor('abcd');

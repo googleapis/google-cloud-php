@@ -70,9 +70,12 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *  * tag=("Red" OR "Blue") tag="New-Arrival" tag=(NOT "promotional")
      *  * filterOutOfStockItems  tag=(-"promotional")
      *  * filterOutOfStockItems
-     * If your filter blocks all prediction results, nothing will be returned. If
-     * you want generic (unfiltered) popular products to be returned instead, set
-     * `strictFiltering` to false in `PredictRequest.params`.
+     * If your filter blocks all prediction results, the API will return generic
+     * (unfiltered) popular products. If you only want results strictly matching
+     * the filters, set `strictFiltering` to True in `PredictRequest.params` to
+     * receive empty results instead.
+     * Note that the API will never return items with storageStatus of "EXPIRED"
+     * or "DELETED" regardless of filter choices.
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      */
@@ -180,9 +183,12 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *            * tag=("Red" OR "Blue") tag="New-Arrival" tag=(NOT "promotional")
      *            * filterOutOfStockItems  tag=(-"promotional")
      *            * filterOutOfStockItems
-     *           If your filter blocks all prediction results, nothing will be returned. If
-     *           you want generic (unfiltered) popular products to be returned instead, set
-     *           `strictFiltering` to false in `PredictRequest.params`.
+     *           If your filter blocks all prediction results, the API will return generic
+     *           (unfiltered) popular products. If you only want results strictly matching
+     *           the filters, set `strictFiltering` to True in `PredictRequest.params` to
+     *           receive empty results instead.
+     *           Note that the API will never return items with storageStatus of "EXPIRED"
+     *           or "DELETED" regardless of filter choices.
      *     @type bool $validate_only
      *           Use validate only mode for this prediction query. If set to true, a
      *           dummy model will be used that returns arbitrary products.
@@ -393,9 +399,12 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *  * tag=("Red" OR "Blue") tag="New-Arrival" tag=(NOT "promotional")
      *  * filterOutOfStockItems  tag=(-"promotional")
      *  * filterOutOfStockItems
-     * If your filter blocks all prediction results, nothing will be returned. If
-     * you want generic (unfiltered) popular products to be returned instead, set
-     * `strictFiltering` to false in `PredictRequest.params`.
+     * If your filter blocks all prediction results, the API will return generic
+     * (unfiltered) popular products. If you only want results strictly matching
+     * the filters, set `strictFiltering` to True in `PredictRequest.params` to
+     * receive empty results instead.
+     * Note that the API will never return items with storageStatus of "EXPIRED"
+     * or "DELETED" regardless of filter choices.
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      * @return string
@@ -423,9 +432,12 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *  * tag=("Red" OR "Blue") tag="New-Arrival" tag=(NOT "promotional")
      *  * filterOutOfStockItems  tag=(-"promotional")
      *  * filterOutOfStockItems
-     * If your filter blocks all prediction results, nothing will be returned. If
-     * you want generic (unfiltered) popular products to be returned instead, set
-     * `strictFiltering` to false in `PredictRequest.params`.
+     * If your filter blocks all prediction results, the API will return generic
+     * (unfiltered) popular products. If you only want results strictly matching
+     * the filters, set `strictFiltering` to True in `PredictRequest.params` to
+     * receive empty results instead.
+     * Note that the API will never return items with storageStatus of "EXPIRED"
+     * or "DELETED" regardless of filter choices.
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      * @param string $var

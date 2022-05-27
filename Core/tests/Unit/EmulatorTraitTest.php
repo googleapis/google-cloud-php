@@ -20,7 +20,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -31,7 +31,7 @@ class EmulatorTraitTest extends TestCase
 
     private $impl;
 
-    public function setUp()
+    public function set_up()
     {
         $this->impl = TestHelpers::impl(EmulatorTrait::class);
     }

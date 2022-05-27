@@ -39,6 +39,12 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.datastore.v1.Key deferred = 3;</code>
      */
     private $deferred;
+    /**
+     * The time at which these entities were read or found missing.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7;</code>
+     */
+    private $read_time = null;
 
     /**
      * Constructor.
@@ -58,6 +64,8 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      *           A list of keys that were not looked up due to resource constraints. The
      *           order of results in this field is undefined and has no relation to the
      *           order of the keys in the input.
+     *     @type \Google\Protobuf\Timestamp $read_time
+     *           The time at which these entities were read or found missing.
      * }
      */
     public function __construct($data = NULL) {
@@ -151,6 +159,42 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Datastore\V1\Key::class);
         $this->deferred = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The time at which these entities were read or found missing.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getReadTime()
+    {
+        return $this->read_time;
+    }
+
+    public function hasReadTime()
+    {
+        return isset($this->read_time);
+    }
+
+    public function clearReadTime()
+    {
+        unset($this->read_time);
+    }
+
+    /**
+     * The time at which these entities were read or found missing.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setReadTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->read_time = $var;
 
         return $this;
     }
