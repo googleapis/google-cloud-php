@@ -28,6 +28,12 @@ class WorkerPoolSpec extends \Google\Protobuf\Internal\Message
      */
     private $replica_count = 0;
     /**
+     * Optional. List of NFS mount spec.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NfsMount nfs_mounts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $nfs_mounts;
+    /**
      * Disk spec.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.DiskSpec disk_spec = 5;</code>
@@ -49,6 +55,8 @@ class WorkerPoolSpec extends \Google\Protobuf\Internal\Message
      *           Optional. Immutable. The specification of a single machine.
      *     @type int|string $replica_count
      *           Optional. The number of worker replicas to use for this worker pool.
+     *     @type \Google\Cloud\AIPlatform\V1\NfsMount[]|\Google\Protobuf\Internal\RepeatedField $nfs_mounts
+     *           Optional. List of NFS mount spec.
      *     @type \Google\Cloud\AIPlatform\V1\DiskSpec $disk_spec
      *           Disk spec.
      * }
@@ -178,6 +186,32 @@ class WorkerPoolSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->replica_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of NFS mount spec.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NfsMount nfs_mounts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getNfsMounts()
+    {
+        return $this->nfs_mounts;
+    }
+
+    /**
+     * Optional. List of NFS mount spec.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NfsMount nfs_mounts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\NfsMount[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setNfsMounts($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\NfsMount::class);
+        $this->nfs_mounts = $arr;
 
         return $this;
     }

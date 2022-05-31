@@ -53,6 +53,4 @@ class Priority
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Priority::class, \Google\Cloud\DocumentAI\V1\ReviewDocumentRequest_Priority::class);
 

@@ -64,6 +64,12 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
+     * Share-settings for shared-reservation
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShareSettings share_settings = 266668163;</code>
+     */
+    private $share_settings = null;
+    /**
      * Reservation for instances with specific machine shapes.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.AllocationSpecificSKUReservation specific_reservation = 404901951;</code>
@@ -111,6 +117,8 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           [Output Only] Reserved for future use.
      *     @type string $self_link
      *           [Output Only] Server-defined fully-qualified URL for this resource.
+     *     @type \Google\Cloud\Compute\V1\ShareSettings $share_settings
+     *           Share-settings for shared-reservation
      *     @type \Google\Cloud\Compute\V1\AllocationSpecificSKUReservation $specific_reservation
      *           Reservation for instances with specific machine shapes.
      *     @type bool $specific_reservation_required
@@ -411,6 +419,42 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * Share-settings for shared-reservation
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShareSettings share_settings = 266668163;</code>
+     * @return \Google\Cloud\Compute\V1\ShareSettings|null
+     */
+    public function getShareSettings()
+    {
+        return $this->share_settings;
+    }
+
+    public function hasShareSettings()
+    {
+        return isset($this->share_settings);
+    }
+
+    public function clearShareSettings()
+    {
+        unset($this->share_settings);
+    }
+
+    /**
+     * Share-settings for shared-reservation
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShareSettings share_settings = 266668163;</code>
+     * @param \Google\Cloud\Compute\V1\ShareSettings $var
+     * @return $this
+     */
+    public function setShareSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ShareSettings::class);
+        $this->share_settings = $var;
 
         return $this;
     }

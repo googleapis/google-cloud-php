@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class AccessConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The first IPv6 address of the external IPv6 range associated with this instance, prefix length is stored in externalIpv6PrefixLength in ipv6AccessConfig. The field is output only, an IPv6 address from a subnetwork associated with the instance will be allocated dynamically.
+     * The first IPv6 address of the external IPv6 range associated with this instance, prefix length is stored in externalIpv6PrefixLength in ipv6AccessConfig. The field is output only, an IPv6 address from a subnetwork associated with the instance will be allocated dynamically.
      *
      * Generated from protobuf field <code>optional string external_ipv6 = 532703707;</code>
      */
     private $external_ipv6 = null;
     /**
-     * [Output Only] The prefix length of the external IPv6 range.
+     * The prefix length of the external IPv6 range.
      *
      * Generated from protobuf field <code>optional int32 external_ipv6_prefix_length = 425672143;</code>
      */
@@ -53,13 +53,13 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      */
     private $network_tier = null;
     /**
-     * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled.
+     * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be createc for first IP in associated external IPv6 range.
      *
      * Generated from protobuf field <code>optional string public_ptr_domain_name = 316599167;</code>
      */
     private $public_ptr_domain_name = null;
     /**
-     * Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name.
+     * Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name. This field is not used in ipv6AccessConfig. A default PTR record will be created if the VM has external IPv6 range associated.
      *
      * Generated from protobuf field <code>optional bool set_public_ptr = 523870229;</code>
      */
@@ -79,9 +79,9 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $external_ipv6
-     *           [Output Only] The first IPv6 address of the external IPv6 range associated with this instance, prefix length is stored in externalIpv6PrefixLength in ipv6AccessConfig. The field is output only, an IPv6 address from a subnetwork associated with the instance will be allocated dynamically.
+     *           The first IPv6 address of the external IPv6 range associated with this instance, prefix length is stored in externalIpv6PrefixLength in ipv6AccessConfig. The field is output only, an IPv6 address from a subnetwork associated with the instance will be allocated dynamically.
      *     @type int $external_ipv6_prefix_length
-     *           [Output Only] The prefix length of the external IPv6 range.
+     *           The prefix length of the external IPv6 range.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#accessConfig for access configs.
      *     @type string $name
@@ -92,9 +92,9 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      *           This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD. If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier. If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
      *           Check the NetworkTier enum for the list of possible values.
      *     @type string $public_ptr_domain_name
-     *           The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled.
+     *           The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be createc for first IP in associated external IPv6 range.
      *     @type bool $set_public_ptr
-     *           Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name.
+     *           Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name. This field is not used in ipv6AccessConfig. A default PTR record will be created if the VM has external IPv6 range associated.
      *     @type string $type
      *           The type of configuration. The default and only option is ONE_TO_ONE_NAT.
      *           Check the Type enum for the list of possible values.
@@ -106,7 +106,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The first IPv6 address of the external IPv6 range associated with this instance, prefix length is stored in externalIpv6PrefixLength in ipv6AccessConfig. The field is output only, an IPv6 address from a subnetwork associated with the instance will be allocated dynamically.
+     * The first IPv6 address of the external IPv6 range associated with this instance, prefix length is stored in externalIpv6PrefixLength in ipv6AccessConfig. The field is output only, an IPv6 address from a subnetwork associated with the instance will be allocated dynamically.
      *
      * Generated from protobuf field <code>optional string external_ipv6 = 532703707;</code>
      * @return string
@@ -127,7 +127,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The first IPv6 address of the external IPv6 range associated with this instance, prefix length is stored in externalIpv6PrefixLength in ipv6AccessConfig. The field is output only, an IPv6 address from a subnetwork associated with the instance will be allocated dynamically.
+     * The first IPv6 address of the external IPv6 range associated with this instance, prefix length is stored in externalIpv6PrefixLength in ipv6AccessConfig. The field is output only, an IPv6 address from a subnetwork associated with the instance will be allocated dynamically.
      *
      * Generated from protobuf field <code>optional string external_ipv6 = 532703707;</code>
      * @param string $var
@@ -142,7 +142,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The prefix length of the external IPv6 range.
+     * The prefix length of the external IPv6 range.
      *
      * Generated from protobuf field <code>optional int32 external_ipv6_prefix_length = 425672143;</code>
      * @return int
@@ -163,7 +163,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The prefix length of the external IPv6 range.
+     * The prefix length of the external IPv6 range.
      *
      * Generated from protobuf field <code>optional int32 external_ipv6_prefix_length = 425672143;</code>
      * @param int $var
@@ -324,7 +324,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled.
+     * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be createc for first IP in associated external IPv6 range.
      *
      * Generated from protobuf field <code>optional string public_ptr_domain_name = 316599167;</code>
      * @return string
@@ -345,7 +345,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled.
+     * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be createc for first IP in associated external IPv6 range.
      *
      * Generated from protobuf field <code>optional string public_ptr_domain_name = 316599167;</code>
      * @param string $var
@@ -360,7 +360,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name.
+     * Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name. This field is not used in ipv6AccessConfig. A default PTR record will be created if the VM has external IPv6 range associated.
      *
      * Generated from protobuf field <code>optional bool set_public_ptr = 523870229;</code>
      * @return bool
@@ -381,7 +381,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name.
+     * Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name. This field is not used in ipv6AccessConfig. A default PTR record will be created if the VM has external IPv6 range associated.
      *
      * Generated from protobuf field <code>optional bool set_public_ptr = 523870229;</code>
      * @param bool $var

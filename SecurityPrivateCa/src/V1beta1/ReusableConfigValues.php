@@ -87,7 +87,7 @@ class ReusableConfigValues extends \Google\Protobuf\Internal\Message
      */
     public function getKeyUsage()
     {
-        return isset($this->key_usage) ? $this->key_usage : null;
+        return $this->key_usage;
     }
 
     public function hasKeyUsage()
@@ -124,7 +124,7 @@ class ReusableConfigValues extends \Google\Protobuf\Internal\Message
      */
     public function getCaOptions()
     {
-        return isset($this->ca_options) ? $this->ca_options : null;
+        return $this->ca_options;
     }
 
     public function hasCaOptions()

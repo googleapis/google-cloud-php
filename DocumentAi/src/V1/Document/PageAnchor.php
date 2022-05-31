@@ -9,9 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Referencing the visual context of the entity in the [Document.pages][google.cloud.documentai.v1.Document.pages].
- * Page anchors can be cross-page, consist of multiple bounding polygons and
- * optionally reference specific layout element types.
+ * Referencing the visual context of the entity in the
+ * [Document.pages][google.cloud.documentai.v1.Document.pages]. Page anchors
+ * can be cross-page, consist of multiple bounding polygons and optionally
+ * reference specific layout element types.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.Document.PageAnchor</code>
  */
@@ -67,6 +68,4 @@ class PageAnchor extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PageAnchor::class, \Google\Cloud\DocumentAI\V1\Document_PageAnchor::class);
 

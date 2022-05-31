@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Next ID: 7
+ * Next ID: 8
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ModelMonitoringObjectiveConfig</code>
  */

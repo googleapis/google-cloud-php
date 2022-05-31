@@ -46,6 +46,12 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
+     * A list of publicly visible licenses. Reserved for Google's use.
+     *
+     * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
+     */
+    private $licenses;
+    /**
      * Specifies which action to take on instance update with this disk. Default is to use the existing disk.
      * Check the OnUpdateAction enum for the list of possible values.
      *
@@ -105,6 +111,8 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *           Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone /diskTypes/pd-standard For a full list of acceptable values, see Persistent disk types. If you define this field, you can provide either the full or partial URL. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /diskTypes/diskType - projects/project/zones/zone/diskTypes/diskType - zones/zone/diskTypes/diskType Note that for InstanceTemplate, this is the name of the disk type, not URL.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $licenses
+     *           A list of publicly visible licenses. Reserved for Google's use.
      *     @type string $on_update_action
      *           Specifies which action to take on instance update with this disk. Default is to use the existing disk.
      *           Check the OnUpdateAction enum for the list of possible values.
@@ -293,6 +301,32 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A list of publicly visible licenses. Reserved for Google's use.
+     *
+     * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getLicenses()
+    {
+        return $this->licenses;
+    }
+
+    /**
+     * A list of publicly visible licenses. Reserved for Google's use.
+     *
+     * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setLicenses($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->licenses = $arr;
 
         return $this;
     }

@@ -34,7 +34,7 @@ class BytesTest extends SnippetTestCase
 
     private $bytes;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
         $this->bytes = new Bytes(self::BYTES);

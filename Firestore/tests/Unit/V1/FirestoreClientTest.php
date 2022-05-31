@@ -955,21 +955,27 @@ class FirestoreClientTest extends GeneratedTest
         // Mock response
         $transaction2 = '17';
         $skippedResults = 880286183;
+        $done = true;
         $expectedResponse = new RunQueryResponse();
         $expectedResponse->setTransaction($transaction2);
         $expectedResponse->setSkippedResults($skippedResults);
+        $expectedResponse->setDone($done);
         $transport->addResponse($expectedResponse);
         $transaction3 = '18';
         $skippedResults2 = 153532454;
+        $done2 = false;
         $expectedResponse2 = new RunQueryResponse();
         $expectedResponse2->setTransaction($transaction3);
         $expectedResponse2->setSkippedResults($skippedResults2);
+        $expectedResponse2->setDone($done2);
         $transport->addResponse($expectedResponse2);
         $transaction4 = '19';
         $skippedResults3 = 153532453;
+        $done3 = true;
         $expectedResponse3 = new RunQueryResponse();
         $expectedResponse3->setTransaction($transaction4);
         $expectedResponse3->setSkippedResults($skippedResults3);
+        $expectedResponse3->setDone($done3);
         $transport->addResponse($expectedResponse3);
         // Mock request
         $parent = 'parent-995424086';

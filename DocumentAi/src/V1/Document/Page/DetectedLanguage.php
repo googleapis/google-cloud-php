@@ -18,7 +18,7 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
     /**
      * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
      * information, see
-     * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      *
      * Generated from protobuf field <code>string language_code = 1;</code>
      */
@@ -39,7 +39,7 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
      *     @type string $language_code
      *           The BCP-47 language code, such as "en-US" or "sr-Latn". For more
      *           information, see
-     *           http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     *           https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      *     @type float $confidence
      *           Confidence of detected language. Range [0, 1].
      * }
@@ -52,7 +52,7 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
     /**
      * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
      * information, see
-     * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      *
      * Generated from protobuf field <code>string language_code = 1;</code>
      * @return string
@@ -65,7 +65,7 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
     /**
      * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
      * information, see
-     * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      *
      * Generated from protobuf field <code>string language_code = 1;</code>
      * @param string $var
@@ -107,6 +107,4 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DetectedLanguage::class, \Google\Cloud\DocumentAI\V1\Document_Page_DetectedLanguage::class);
 

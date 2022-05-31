@@ -20,7 +20,7 @@ namespace Google\Cloud\Datastore\Tests\System;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Core\Testing\System\DeletionQueue;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * Datastore does not use the default deletion queue. Because of the way
@@ -37,7 +37,7 @@ class DatastoreTestCase extends TestCase
     protected static $localDeletionQueue;
     private static $hasSetUp = false;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         if (self::$hasSetUp) {
             return;
@@ -80,7 +80,7 @@ class DatastoreTestCase extends TestCase
 
     public function clientProvider()
     {
-        self::setupBeforeClass();
+        self::set_up_before_class();
 
         return [
             'restClient' => [self::$restClient],

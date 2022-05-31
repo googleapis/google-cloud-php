@@ -29,6 +29,12 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 index_updates = 4;</code>
      */
     private $index_updates = 0;
+    /**
+     * The transaction commit timestamp. Not set for non-transactional commits.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp commit_time = 8;</code>
+     */
+    private $commit_time = null;
 
     /**
      * Constructor.
@@ -42,6 +48,8 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      *     @type int $index_updates
      *           The number of index entries updated during the commit, or zero if none were
      *           updated.
+     *     @type \Google\Protobuf\Timestamp $commit_time
+     *           The transaction commit timestamp. Not set for non-transactional commits.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,6 +109,42 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->index_updates = $var;
+
+        return $this;
+    }
+
+    /**
+     * The transaction commit timestamp. Not set for non-transactional commits.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp commit_time = 8;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCommitTime()
+    {
+        return $this->commit_time;
+    }
+
+    public function hasCommitTime()
+    {
+        return isset($this->commit_time);
+    }
+
+    public function clearCommitTime()
+    {
+        unset($this->commit_time);
+    }
+
+    /**
+     * The transaction commit timestamp. Not set for non-transactional commits.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp commit_time = 8;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCommitTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->commit_time = $var;
 
         return $this;
     }

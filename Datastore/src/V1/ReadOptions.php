@@ -30,6 +30,10 @@ class ReadOptions extends \Google\Protobuf\Internal\Message
      *           The identifier of the transaction in which to read. A
      *           transaction identifier is returned by a call to
      *           [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
+     *     @type \Google\Protobuf\Timestamp $read_time
+     *           Reads entities as they were at the given time. This may not be older
+     *           than 270 seconds.  This value is only supported for Cloud Firestore in
+     *           Datastore mode.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,6 +105,41 @@ class ReadOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Reads entities as they were at the given time. This may not be older
+     * than 270 seconds.  This value is only supported for Cloud Firestore in
+     * Datastore mode.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 4;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getReadTime()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasReadTime()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Reads entities as they were at the given time. This may not be older
+     * than 270 seconds.  This value is only supported for Cloud Firestore in
+     * Datastore mode.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 4;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setReadTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->writeOneof(4, $var);
 
         return $this;
     }

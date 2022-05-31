@@ -17,17 +17,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class RsaKeyType extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The minimum allowed RSA modulus size, in bits. If this is not set,
-     * or if set to zero, the service-level min RSA modulus size will
-     * continue to apply.
+     * Optional. The minimum allowed RSA modulus size (inclusive), in bits. If this is
+     * not set, or if set to zero, the service-level min RSA modulus size
+     * will continue to apply.
      *
      * Generated from protobuf field <code>int64 min_modulus_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $min_modulus_size = 0;
     /**
-     * Optional. The maximum allowed RSA modulus size, in bits. If this is not set,
-     * or if set to zero, the service will not enforce an explicit upper
-     * bound on RSA modulus sizes.
+     * Optional. The maximum allowed RSA modulus size (inclusive), in bits. If this is
+     * not set, or if set to zero, the service will not enforce an explicit
+     * upper bound on RSA modulus sizes.
      *
      * Generated from protobuf field <code>int64 max_modulus_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -40,13 +40,13 @@ class RsaKeyType extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $min_modulus_size
-     *           Optional. The minimum allowed RSA modulus size, in bits. If this is not set,
-     *           or if set to zero, the service-level min RSA modulus size will
-     *           continue to apply.
+     *           Optional. The minimum allowed RSA modulus size (inclusive), in bits. If this is
+     *           not set, or if set to zero, the service-level min RSA modulus size
+     *           will continue to apply.
      *     @type int|string $max_modulus_size
-     *           Optional. The maximum allowed RSA modulus size, in bits. If this is not set,
-     *           or if set to zero, the service will not enforce an explicit upper
-     *           bound on RSA modulus sizes.
+     *           Optional. The maximum allowed RSA modulus size (inclusive), in bits. If this is
+     *           not set, or if set to zero, the service will not enforce an explicit
+     *           upper bound on RSA modulus sizes.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,9 +55,9 @@ class RsaKeyType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The minimum allowed RSA modulus size, in bits. If this is not set,
-     * or if set to zero, the service-level min RSA modulus size will
-     * continue to apply.
+     * Optional. The minimum allowed RSA modulus size (inclusive), in bits. If this is
+     * not set, or if set to zero, the service-level min RSA modulus size
+     * will continue to apply.
      *
      * Generated from protobuf field <code>int64 min_modulus_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
@@ -68,9 +68,9 @@ class RsaKeyType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The minimum allowed RSA modulus size, in bits. If this is not set,
-     * or if set to zero, the service-level min RSA modulus size will
-     * continue to apply.
+     * Optional. The minimum allowed RSA modulus size (inclusive), in bits. If this is
+     * not set, or if set to zero, the service-level min RSA modulus size
+     * will continue to apply.
      *
      * Generated from protobuf field <code>int64 min_modulus_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
@@ -85,9 +85,9 @@ class RsaKeyType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum allowed RSA modulus size, in bits. If this is not set,
-     * or if set to zero, the service will not enforce an explicit upper
-     * bound on RSA modulus sizes.
+     * Optional. The maximum allowed RSA modulus size (inclusive), in bits. If this is
+     * not set, or if set to zero, the service will not enforce an explicit
+     * upper bound on RSA modulus sizes.
      *
      * Generated from protobuf field <code>int64 max_modulus_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
@@ -98,9 +98,9 @@ class RsaKeyType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum allowed RSA modulus size, in bits. If this is not set,
-     * or if set to zero, the service will not enforce an explicit upper
-     * bound on RSA modulus sizes.
+     * Optional. The maximum allowed RSA modulus size (inclusive), in bits. If this is
+     * not set, or if set to zero, the service will not enforce an explicit
+     * upper bound on RSA modulus sizes.
      *
      * Generated from protobuf field <code>int64 max_modulus_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
@@ -116,6 +116,4 @@ class RsaKeyType extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RsaKeyType::class, \Google\Cloud\Security\PrivateCA\V1\CaPool_IssuancePolicy_AllowedKeyType_RsaKeyType::class);
 

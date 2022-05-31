@@ -19,7 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit\Batch;
 
 use Google\Cloud\Core\Batch\JobConfig;
 use Google\Cloud\Core\Batch\BatchJob;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -32,7 +32,7 @@ class JobConfigTest extends TestCase
     private $func;
     private $idNum;
 
-    public function setUp()
+    public function set_up()
     {
         $this->config = new JobConfig();
         $this->identifier = 'job1';

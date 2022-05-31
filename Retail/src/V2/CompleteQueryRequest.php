@@ -31,10 +31,10 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      */
     private $query = '';
     /**
-     * A unique identifier for tracking visitors. For example, this could be
-     * implemented with an HTTP cookie, which should be able to uniquely identify
-     * a visitor on a single device. This unique identifier should not change if
-     * the visitor logs in or out of the website.
+     * Required field. A unique identifier for tracking visitors. For example,
+     * this could be implemented with an HTTP cookie, which should be able to
+     * uniquely identify a visitor on a single device. This unique identifier
+     * should not change if the visitor logs in or out of the website.
      * The field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
      *
@@ -42,12 +42,12 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      */
     private $visitor_id = '';
     /**
-     * The list of languages of the query. This is
-     * the BCP-47 language code, such as "en-US" or "sr-Latn".
-     * For more information, see
-     * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
-     * The maximum number of allowed characters is 255.
-     * Only "en-US" is currently supported.
+     * The language filters applied to the output suggestions. If set, it should
+     * contain the language of the query. If not set, suggestions are returned
+     * without considering language restrictions. This is the BCP-47 language
+     * code, such as "en-US" or "sr-Latn". For more information, see [Tags for
+     * Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum
+     * number of language codes is 3.
      *
      * Generated from protobuf field <code>repeated string language_codes = 3;</code>
      */
@@ -105,19 +105,19 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           Required. The query used to generate suggestions.
      *           The maximum number of allowed characters is 255.
      *     @type string $visitor_id
-     *           A unique identifier for tracking visitors. For example, this could be
-     *           implemented with an HTTP cookie, which should be able to uniquely identify
-     *           a visitor on a single device. This unique identifier should not change if
-     *           the visitor logs in or out of the website.
+     *           Required field. A unique identifier for tracking visitors. For example,
+     *           this could be implemented with an HTTP cookie, which should be able to
+     *           uniquely identify a visitor on a single device. This unique identifier
+     *           should not change if the visitor logs in or out of the website.
      *           The field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $language_codes
-     *           The list of languages of the query. This is
-     *           the BCP-47 language code, such as "en-US" or "sr-Latn".
-     *           For more information, see
-     *           [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
-     *           The maximum number of allowed characters is 255.
-     *           Only "en-US" is currently supported.
+     *           The language filters applied to the output suggestions. If set, it should
+     *           contain the language of the query. If not set, suggestions are returned
+     *           without considering language restrictions. This is the BCP-47 language
+     *           code, such as "en-US" or "sr-Latn". For more information, see [Tags for
+     *           Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum
+     *           number of language codes is 3.
      *     @type string $device_type
      *           The device type context for completion suggestions.
      *           It is useful to apply different suggestions on different device types, e.g.
@@ -210,10 +210,10 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique identifier for tracking visitors. For example, this could be
-     * implemented with an HTTP cookie, which should be able to uniquely identify
-     * a visitor on a single device. This unique identifier should not change if
-     * the visitor logs in or out of the website.
+     * Required field. A unique identifier for tracking visitors. For example,
+     * this could be implemented with an HTTP cookie, which should be able to
+     * uniquely identify a visitor on a single device. This unique identifier
+     * should not change if the visitor logs in or out of the website.
      * The field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
      *
@@ -226,10 +226,10 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique identifier for tracking visitors. For example, this could be
-     * implemented with an HTTP cookie, which should be able to uniquely identify
-     * a visitor on a single device. This unique identifier should not change if
-     * the visitor logs in or out of the website.
+     * Required field. A unique identifier for tracking visitors. For example,
+     * this could be implemented with an HTTP cookie, which should be able to
+     * uniquely identify a visitor on a single device. This unique identifier
+     * should not change if the visitor logs in or out of the website.
      * The field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
      *
@@ -246,12 +246,12 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of languages of the query. This is
-     * the BCP-47 language code, such as "en-US" or "sr-Latn".
-     * For more information, see
-     * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
-     * The maximum number of allowed characters is 255.
-     * Only "en-US" is currently supported.
+     * The language filters applied to the output suggestions. If set, it should
+     * contain the language of the query. If not set, suggestions are returned
+     * without considering language restrictions. This is the BCP-47 language
+     * code, such as "en-US" or "sr-Latn". For more information, see [Tags for
+     * Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum
+     * number of language codes is 3.
      *
      * Generated from protobuf field <code>repeated string language_codes = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -262,12 +262,12 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of languages of the query. This is
-     * the BCP-47 language code, such as "en-US" or "sr-Latn".
-     * For more information, see
-     * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
-     * The maximum number of allowed characters is 255.
-     * Only "en-US" is currently supported.
+     * The language filters applied to the output suggestions. If set, it should
+     * contain the language of the query. If not set, suggestions are returned
+     * without considering language restrictions. This is the BCP-47 language
+     * code, such as "en-US" or "sr-Latn". For more information, see [Tags for
+     * Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum
+     * number of language codes is 3.
      *
      * Generated from protobuf field <code>repeated string language_codes = 3;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

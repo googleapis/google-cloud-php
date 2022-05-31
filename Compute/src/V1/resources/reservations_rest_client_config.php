@@ -176,6 +176,28 @@ return [
                     ],
                 ],
             ],
+            'Update' => [
+                'method' => 'patch',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}',
+                'body' => 'reservation_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'reservation' => [
+                        'getters' => [
+                            'getReservation',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.compute.v1.ZoneOperations' => [
             'Delete' => [

@@ -17,7 +17,8 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
 {
     /**
      * External System Name e.g. jira, demisto, etc.
-     *  e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira`
+     *  e.g.:
+     *  `organizations/1234/sources/5678/findings/123456/externalSystems/jira`
      * `folders/1234/sources/5678/findings/123456/externalSystems/jira`
      * `projects/1234/sources/5678/findings/123456/externalSystems/jira`
      *
@@ -59,7 +60,8 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           External System Name e.g. jira, demisto, etc.
-     *            e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira`
+     *            e.g.:
+     *            `organizations/1234/sources/5678/findings/123456/externalSystems/jira`
      *           `folders/1234/sources/5678/findings/123456/externalSystems/jira`
      *           `projects/1234/sources/5678/findings/123456/externalSystems/jira`
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $assignees
@@ -81,7 +83,8 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
 
     /**
      * External System Name e.g. jira, demisto, etc.
-     *  e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira`
+     *  e.g.:
+     *  `organizations/1234/sources/5678/findings/123456/externalSystems/jira`
      * `folders/1234/sources/5678/findings/123456/externalSystems/jira`
      * `projects/1234/sources/5678/findings/123456/externalSystems/jira`
      *
@@ -95,7 +98,8 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
 
     /**
      * External System Name e.g. jira, demisto, etc.
-     *  e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira`
+     *  e.g.:
+     *  `organizations/1234/sources/5678/findings/123456/externalSystems/jira`
      * `folders/1234/sources/5678/findings/123456/externalSystems/jira`
      * `projects/1234/sources/5678/findings/123456/externalSystems/jira`
      *

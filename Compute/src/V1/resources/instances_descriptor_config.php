@@ -163,6 +163,22 @@ return [
                     'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
             ],
+            'Resume' => [
+                'longRunning' => [
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getZone',
+                    ],
+                    'getOperationMethod' => 'get',
+                    'cancelOperationMethod' => null,
+                    'deleteOperationMethod' => 'delete',
+                    'operationErrorCodeMethod' => 'getHttpErrorStatusCode',
+                    'operationErrorMessageMethod' => 'getHttpErrorMessage',
+                    'operationNameMethod' => 'getName',
+                    'operationStatusMethod' => 'getStatus',
+                    'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                ],
+            ],
             'SetDeletionProtection' => [
                 'longRunning' => [
                     'additionalArgumentMethods' => [
@@ -388,6 +404,22 @@ return [
                 ],
             ],
             'Stop' => [
+                'longRunning' => [
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getZone',
+                    ],
+                    'getOperationMethod' => 'get',
+                    'cancelOperationMethod' => null,
+                    'deleteOperationMethod' => 'delete',
+                    'operationErrorCodeMethod' => 'getHttpErrorStatusCode',
+                    'operationErrorMessageMethod' => 'getHttpErrorMessage',
+                    'operationNameMethod' => 'getName',
+                    'operationStatusMethod' => 'getStatus',
+                    'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                ],
+            ],
+            'Suspend' => [
                 'longRunning' => [
                     'additionalArgumentMethods' => [
                         'getProject',

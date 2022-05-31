@@ -38,17 +38,17 @@ use Google\Cloud\Retail\V2\SearchRequest;
 use Google\Cloud\Retail\V2\SearchRequest\BoostSpec;
 use Google\Cloud\Retail\V2\SearchRequest\DynamicFacetSpec;
 use Google\Cloud\Retail\V2\SearchRequest\FacetSpec;
+use Google\Cloud\Retail\V2\SearchRequest\PersonalizationSpec;
 use Google\Cloud\Retail\V2\SearchRequest\QueryExpansionSpec;
-use Google\Cloud\Retail\V2\SearchResponse;
 
+use Google\Cloud\Retail\V2\SearchResponse;
 use Google\Cloud\Retail\V2\UserInfo;
 
 /**
  * Service Description: Service for search.
  *
  * This feature is only available for users who have Retail Search enabled.
- * Please submit a form [here](https://cloud.google.com/contact) to contact
- * cloud sales if you are interested in using Retail Search.
+ * Please enable Retail Search on Cloud Console before using this feature.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -296,8 +296,7 @@ class SearchServiceGapicClient
      * Performs a search.
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Please submit a form [here](https://cloud.google.com/contact) to contact
-     * cloud sales if you are interested in using Retail Search.
+     * Please enable Retail Search on Cloud Console before using this feature.
      *
      * Sample code:
      * ```
@@ -324,13 +323,16 @@ class SearchServiceGapicClient
      * ```
      *
      * @param string $placement    Required. The resource name of the search engine placement, such as
-     *                             `projects/&#42;/locations/global/catalogs/default_catalog/placements/default_search`.
+     *                             `projects/&#42;/locations/global/catalogs/default_catalog/placements/default_search`
      *                             This field is used to identify the serving configuration name and the set
      *                             of models that will be used to make the search.
      * @param string $visitorId    Required. A unique identifier for tracking visitors. For example, this
      *                             could be implemented with an HTTP cookie, which should be able to uniquely
      *                             identify a visitor on a single device. This unique identifier should not
      *                             change if the visitor logs in or out of the website.
+     *
+     *                             This should be the same identifier as
+     *                             [UserEvent.visitor_id][google.cloud.retail.v2.UserEvent.visitor_id].
      *
      *                             The field must be a UTF-8 encoded string with a length limit of 128
      *                             characters. Otherwise, an INVALID_ARGUMENT error is returned.
@@ -372,6 +374,9 @@ class SearchServiceGapicClient
      *
      *           If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *     @type string $canonicalFilter
+     *           The default filter that is applied when a user performs a search without
+     *           checking any filters on the search page.
+     *
      *           The filter applied to every search request when quality improvement such as
      *           query expansion is needed. For example, if a query does not have enough
      *           results, an expanded query with
@@ -395,11 +400,11 @@ class SearchServiceGapicClient
      *           A maximum of 100 values are allowed. Otherwise, an INVALID_ARGUMENT error
      *           is returned.
      *     @type DynamicFacetSpec $dynamicFacetSpec
+     *           Deprecated. Refer to https://cloud.google.com/retail/docs/configs#dynamic
+     *           to enable dynamic facets. Do not set this field.
+     *
      *           The specification for dynamically generated facets. Notice that only
      *           textual facets can be dynamically generated.
-     *
-     *           This feature requires additional allowlisting. Contact Retail Search
-     *           support team if you are interested in using dynamic facet feature.
      *     @type BoostSpec $boostSpec
      *           Boost specification to boost certain products. See more details at this
      *           [user guide](https://cloud.google.com/retail/docs/boosting).
@@ -416,12 +421,15 @@ class SearchServiceGapicClient
      *     @type string[] $variantRollupKeys
      *           The keys to fetch and rollup the matching
      *           [variant][google.cloud.retail.v2.Product.Type.VARIANT]
-     *           [Product][google.cloud.retail.v2.Product]s attributes. The attributes from
-     *           all the matching [variant][google.cloud.retail.v2.Product.Type.VARIANT]
-     *           [Product][google.cloud.retail.v2.Product]s are merged and de-duplicated.
-     *           Notice that rollup [variant][google.cloud.retail.v2.Product.Type.VARIANT]
-     *           [Product][google.cloud.retail.v2.Product]s attributes will lead to extra
-     *           query latency. Maximum number of keys is 10.
+     *           [Product][google.cloud.retail.v2.Product]s attributes,
+     *           [FulfillmentInfo][google.cloud.retail.v2.FulfillmentInfo] or
+     *           [LocalInventory][google.cloud.retail.v2.LocalInventory]s attributes. The
+     *           attributes from all the matching
+     *           [variant][google.cloud.retail.v2.Product.Type.VARIANT]
+     *           [Product][google.cloud.retail.v2.Product]s or
+     *           [LocalInventory][google.cloud.retail.v2.LocalInventory]s are merged and
+     *           de-duplicated. Notice that rollup attributes will lead to extra query
+     *           latency. Maximum number of keys is 30.
      *
      *           For [FulfillmentInfo][google.cloud.retail.v2.FulfillmentInfo], a
      *           fulfillment type and a fulfillment ID must be provided in the format of
@@ -436,6 +444,7 @@ class SearchServiceGapicClient
      *           * discount
      *           * variantId
      *           * inventory(place_id,price)
+     *           * inventory(place_id,original_price)
      *           * inventory(place_id,attributes.key), where key is any key in the
      *           [Product.inventories.attributes][] map.
      *           * attributes.key, where key is any key in the
@@ -496,6 +505,8 @@ class SearchServiceGapicClient
      *           The search mode of the search request. If not specified, a single search
      *           request triggers both product search and faceted search.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Retail\V2\SearchRequest\SearchMode}
+     *     @type PersonalizationSpec $personalizationSpec
+     *           The specification for personalization.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -578,6 +589,12 @@ class SearchServiceGapicClient
 
         if (isset($optionalArgs['searchMode'])) {
             $request->setSearchMode($optionalArgs['searchMode']);
+        }
+
+        if (isset($optionalArgs['personalizationSpec'])) {
+            $request->setPersonalizationSpec(
+                $optionalArgs['personalizationSpec']
+            );
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

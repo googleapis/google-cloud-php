@@ -50,7 +50,7 @@ class StructTypeTest extends SnippetTestCase
     private $database;
     private $type;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -58,6 +58,14 @@ class StructTypeTest extends SnippetTestCase
         $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
 
         $session = $this->prophesize(Session::class);
+        $session->info()
+            ->willReturn([
+                'databaseName' => 'database'
+            ]);
+        $session->name()
+            ->willReturn('database');
+        $session->setExpiration(Argument::any())
+            ->willReturn(100);
 
         $sessionPool = $this->prophesize(SessionPoolInterface::class);
         $sessionPool->acquire(Argument::any())

@@ -9,39 +9,46 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KeyManagementService.MacSign][google.cloud.kms.v1.KeyManagementService.MacSign].
+ * Request message for
+ * [KeyManagementService.MacSign][google.cloud.kms.v1.KeyManagementService.MacSign].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.MacSignRequest</code>
  */
 class MacSignRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for signing.
+     * Required. The resource name of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     * signing.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
-     * Required. The data to sign. The MAC tag is computed over this data field based on
-     * the specific algorithm.
+     * Required. The data to sign. The MAC tag is computed over this data field
+     * based on the specific algorithm.
      *
      * Generated from protobuf field <code>bytes data = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $data = '';
     /**
-     * Optional. An optional CRC32C checksum of the [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]. If
-     * specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
-     * received [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] using this checksum.
-     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
-     * fails. If you receive a checksum error, your client should verify that
-     * CRC32C([MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]) is equal to
-     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c], and if so, perform a limited
-     * number of retries. A persistent mismatch may indicate an issue in your
-     * computation of the CRC32C checksum.
-     * Note: This field is defined as int64 for reasons of compatibility across
-     * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * Optional. An optional CRC32C checksum of the
+     * [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]. If
+     * specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     * will verify the integrity of the received
+     * [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] using this
+     * checksum. [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     * will report an error if the checksum verification fails. If you receive a
+     * checksum error, your client should verify that
+     * CRC32C([MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]) is
+     * equal to
+     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c],
+     * and if so, perform a limited number of retries. A persistent mismatch may
+     * indicate an issue in your computation of the CRC32C checksum. Note: This
+     * field is defined as int64 for reasons of compatibility across different
+     * languages. However, it is a non-negative integer, which will never exceed
+     * 2^32-1, and can be safely downconverted to uint32 in languages that support
+     * this type.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value data_crc32c = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -54,24 +61,30 @@ class MacSignRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for signing.
+     *           Required. The resource name of the
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     *           signing.
      *     @type string $data
-     *           Required. The data to sign. The MAC tag is computed over this data field based on
-     *           the specific algorithm.
+     *           Required. The data to sign. The MAC tag is computed over this data field
+     *           based on the specific algorithm.
      *     @type \Google\Protobuf\Int64Value $data_crc32c
-     *           Optional. An optional CRC32C checksum of the [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]. If
-     *           specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
-     *           received [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] using this checksum.
-     *           [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
-     *           fails. If you receive a checksum error, your client should verify that
-     *           CRC32C([MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]) is equal to
-     *           [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c], and if so, perform a limited
-     *           number of retries. A persistent mismatch may indicate an issue in your
-     *           computation of the CRC32C checksum.
-     *           Note: This field is defined as int64 for reasons of compatibility across
-     *           different languages. However, it is a non-negative integer, which will
-     *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     *           that support this type.
+     *           Optional. An optional CRC32C checksum of the
+     *           [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]. If
+     *           specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     *           will verify the integrity of the received
+     *           [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] using this
+     *           checksum. [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     *           will report an error if the checksum verification fails. If you receive a
+     *           checksum error, your client should verify that
+     *           CRC32C([MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]) is
+     *           equal to
+     *           [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c],
+     *           and if so, perform a limited number of retries. A persistent mismatch may
+     *           indicate an issue in your computation of the CRC32C checksum. Note: This
+     *           field is defined as int64 for reasons of compatibility across different
+     *           languages. However, it is a non-negative integer, which will never exceed
+     *           2^32-1, and can be safely downconverted to uint32 in languages that support
+     *           this type.
      * }
      */
     public function __construct($data = NULL) {
@@ -80,7 +93,9 @@ class MacSignRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for signing.
+     * Required. The resource name of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     * signing.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -91,7 +106,9 @@ class MacSignRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for signing.
+     * Required. The resource name of the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to use for
+     * signing.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -106,8 +123,8 @@ class MacSignRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The data to sign. The MAC tag is computed over this data field based on
-     * the specific algorithm.
+     * Required. The data to sign. The MAC tag is computed over this data field
+     * based on the specific algorithm.
      *
      * Generated from protobuf field <code>bytes data = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -118,8 +135,8 @@ class MacSignRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The data to sign. The MAC tag is computed over this data field based on
-     * the specific algorithm.
+     * Required. The data to sign. The MAC tag is computed over this data field
+     * based on the specific algorithm.
      *
      * Generated from protobuf field <code>bytes data = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -134,19 +151,23 @@ class MacSignRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional CRC32C checksum of the [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]. If
-     * specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
-     * received [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] using this checksum.
-     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
-     * fails. If you receive a checksum error, your client should verify that
-     * CRC32C([MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]) is equal to
-     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c], and if so, perform a limited
-     * number of retries. A persistent mismatch may indicate an issue in your
-     * computation of the CRC32C checksum.
-     * Note: This field is defined as int64 for reasons of compatibility across
-     * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * Optional. An optional CRC32C checksum of the
+     * [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]. If
+     * specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     * will verify the integrity of the received
+     * [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] using this
+     * checksum. [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     * will report an error if the checksum verification fails. If you receive a
+     * checksum error, your client should verify that
+     * CRC32C([MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]) is
+     * equal to
+     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c],
+     * and if so, perform a limited number of retries. A persistent mismatch may
+     * indicate an issue in your computation of the CRC32C checksum. Note: This
+     * field is defined as int64 for reasons of compatibility across different
+     * languages. However, it is a non-negative integer, which will never exceed
+     * 2^32-1, and can be safely downconverted to uint32 in languages that support
+     * this type.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value data_crc32c = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Int64Value|null
@@ -169,19 +190,23 @@ class MacSignRequest extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getDataCrc32C()</code>
 
-     * Optional. An optional CRC32C checksum of the [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]. If
-     * specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
-     * received [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] using this checksum.
-     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
-     * fails. If you receive a checksum error, your client should verify that
-     * CRC32C([MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]) is equal to
-     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c], and if so, perform a limited
-     * number of retries. A persistent mismatch may indicate an issue in your
-     * computation of the CRC32C checksum.
-     * Note: This field is defined as int64 for reasons of compatibility across
-     * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * Optional. An optional CRC32C checksum of the
+     * [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]. If
+     * specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     * will verify the integrity of the received
+     * [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] using this
+     * checksum. [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     * will report an error if the checksum verification fails. If you receive a
+     * checksum error, your client should verify that
+     * CRC32C([MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]) is
+     * equal to
+     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c],
+     * and if so, perform a limited number of retries. A persistent mismatch may
+     * indicate an issue in your computation of the CRC32C checksum. Note: This
+     * field is defined as int64 for reasons of compatibility across different
+     * languages. However, it is a non-negative integer, which will never exceed
+     * 2^32-1, and can be safely downconverted to uint32 in languages that support
+     * this type.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value data_crc32c = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
@@ -192,19 +217,23 @@ class MacSignRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional CRC32C checksum of the [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]. If
-     * specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
-     * received [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] using this checksum.
-     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
-     * fails. If you receive a checksum error, your client should verify that
-     * CRC32C([MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]) is equal to
-     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c], and if so, perform a limited
-     * number of retries. A persistent mismatch may indicate an issue in your
-     * computation of the CRC32C checksum.
-     * Note: This field is defined as int64 for reasons of compatibility across
-     * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * Optional. An optional CRC32C checksum of the
+     * [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]. If
+     * specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     * will verify the integrity of the received
+     * [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] using this
+     * checksum. [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     * will report an error if the checksum verification fails. If you receive a
+     * checksum error, your client should verify that
+     * CRC32C([MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]) is
+     * equal to
+     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c],
+     * and if so, perform a limited number of retries. A persistent mismatch may
+     * indicate an issue in your computation of the CRC32C checksum. Note: This
+     * field is defined as int64 for reasons of compatibility across different
+     * languages. However, it is a non-negative integer, which will never exceed
+     * 2^32-1, and can be safely downconverted to uint32 in languages that support
+     * this type.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value data_crc32c = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Int64Value $var
@@ -221,19 +250,23 @@ class MacSignRequest extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\Int64Value object.
 
-     * Optional. An optional CRC32C checksum of the [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]. If
-     * specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will verify the integrity of the
-     * received [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] using this checksum.
-     * [KeyManagementService][google.cloud.kms.v1.KeyManagementService] will report an error if the checksum verification
-     * fails. If you receive a checksum error, your client should verify that
-     * CRC32C([MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]) is equal to
-     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c], and if so, perform a limited
-     * number of retries. A persistent mismatch may indicate an issue in your
-     * computation of the CRC32C checksum.
-     * Note: This field is defined as int64 for reasons of compatibility across
-     * different languages. However, it is a non-negative integer, which will
-     * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
-     * that support this type.
+     * Optional. An optional CRC32C checksum of the
+     * [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]. If
+     * specified, [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     * will verify the integrity of the received
+     * [MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data] using this
+     * checksum. [KeyManagementService][google.cloud.kms.v1.KeyManagementService]
+     * will report an error if the checksum verification fails. If you receive a
+     * checksum error, your client should verify that
+     * CRC32C([MacSignRequest.data][google.cloud.kms.v1.MacSignRequest.data]) is
+     * equal to
+     * [MacSignRequest.data_crc32c][google.cloud.kms.v1.MacSignRequest.data_crc32c],
+     * and if so, perform a limited number of retries. A persistent mismatch may
+     * indicate an issue in your computation of the CRC32C checksum. Note: This
+     * field is defined as int64 for reasons of compatibility across different
+     * languages. However, it is a non-negative integer, which will never exceed
+     * 2^32-1, and can be safely downconverted to uint32 in languages that support
+     * this type.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value data_crc32c = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string|null $var

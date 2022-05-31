@@ -52,6 +52,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *     * "ratingCount"
      *     * "attributes.key"
      *     * "inventory(place_id,price)"
+     *     * "inventory(place_id,original_price)"
      *     * "inventory(place_id,attributes.key)"
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -191,6 +192,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *               * "ratingCount"
      *               * "attributes.key"
      *               * "inventory(place_id,price)"
+     *               * "inventory(place_id,original_price)"
      *               * "inventory(place_id,attributes.key)"
      *     @type \Google\Cloud\Retail\V2\Interval[]|\Google\Protobuf\Internal\RepeatedField $intervals
      *           Set only if values should be bucketized into intervals. Must be set
@@ -302,6 +304,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *     * "ratingCount"
      *     * "attributes.key"
      *     * "inventory(place_id,price)"
+     *     * "inventory(place_id,original_price)"
      *     * "inventory(place_id,attributes.key)"
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -349,6 +352,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *     * "ratingCount"
      *     * "attributes.key"
      *     * "inventory(place_id,price)"
+     *     * "inventory(place_id,original_price)"
      *     * "inventory(place_id,attributes.key)"
      *
      * Generated from protobuf field <code>string key = 1 [(.google.api.field_behavior) = REQUIRED];</code>

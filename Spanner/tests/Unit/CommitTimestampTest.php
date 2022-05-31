@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\Database;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group spanner
@@ -28,7 +28,7 @@ class CommitTimestampTest extends TestCase
 {
     private $t;
 
-    public function setUp()
+    public function set_up()
     {
         $this->t = new CommitTimestamp;
     }

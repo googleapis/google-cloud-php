@@ -8,5 +8,3 @@ date_default_timezone_set('UTC');
 \SebastianBergmann\Comparator\Factory::getInstance()->register(new MessageAwareArrayComparator());
 \SebastianBergmann\Comparator\Factory::getInstance()->register(new ProtobufMessageComparator());
 \SebastianBergmann\Comparator\Factory::getInstance()->register(new ProtobufGPBEmptyComparator());
-
-PHPUnit_Framework_Error_Deprecated::$enabled = false;

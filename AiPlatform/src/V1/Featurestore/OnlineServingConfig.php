@@ -17,15 +17,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class OnlineServingConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The number of nodes for each cluster. The number of nodes will not
-     * scale automatically but can be scaled manually by providing different
-     * values when updating.
-     * Only one of `fixed_node_count` and `scaling` can be set. Setting one will
-     * reset the other.
+     * The number of nodes for the online store. The number of nodes doesn't
+     * scale automatically, but you can manually update the number of
+     * nodes. If set to 0, the featurestore will not have an
+     * online store and cannot be used for online serving.
      *
      * Generated from protobuf field <code>int32 fixed_node_count = 2;</code>
      */
     private $fixed_node_count = 0;
+    /**
+     * Online serving scaling configuration.
+     * Only one of `fixed_node_count` and `scaling` can be set. Setting one will
+     * reset the other.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Featurestore.OnlineServingConfig.Scaling scaling = 4;</code>
+     */
+    private $scaling = null;
 
     /**
      * Constructor.
@@ -34,9 +41,12 @@ class OnlineServingConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $fixed_node_count
-     *           The number of nodes for each cluster. The number of nodes will not
-     *           scale automatically but can be scaled manually by providing different
-     *           values when updating.
+     *           The number of nodes for the online store. The number of nodes doesn't
+     *           scale automatically, but you can manually update the number of
+     *           nodes. If set to 0, the featurestore will not have an
+     *           online store and cannot be used for online serving.
+     *     @type \Google\Cloud\AIPlatform\V1\Featurestore\OnlineServingConfig\Scaling $scaling
+     *           Online serving scaling configuration.
      *           Only one of `fixed_node_count` and `scaling` can be set. Setting one will
      *           reset the other.
      * }
@@ -47,11 +57,10 @@ class OnlineServingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of nodes for each cluster. The number of nodes will not
-     * scale automatically but can be scaled manually by providing different
-     * values when updating.
-     * Only one of `fixed_node_count` and `scaling` can be set. Setting one will
-     * reset the other.
+     * The number of nodes for the online store. The number of nodes doesn't
+     * scale automatically, but you can manually update the number of
+     * nodes. If set to 0, the featurestore will not have an
+     * online store and cannot be used for online serving.
      *
      * Generated from protobuf field <code>int32 fixed_node_count = 2;</code>
      * @return int
@@ -62,11 +71,10 @@ class OnlineServingConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number of nodes for each cluster. The number of nodes will not
-     * scale automatically but can be scaled manually by providing different
-     * values when updating.
-     * Only one of `fixed_node_count` and `scaling` can be set. Setting one will
-     * reset the other.
+     * The number of nodes for the online store. The number of nodes doesn't
+     * scale automatically, but you can manually update the number of
+     * nodes. If set to 0, the featurestore will not have an
+     * online store and cannot be used for online serving.
      *
      * Generated from protobuf field <code>int32 fixed_node_count = 2;</code>
      * @param int $var
@@ -76,6 +84,46 @@ class OnlineServingConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->fixed_node_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Online serving scaling configuration.
+     * Only one of `fixed_node_count` and `scaling` can be set. Setting one will
+     * reset the other.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Featurestore.OnlineServingConfig.Scaling scaling = 4;</code>
+     * @return \Google\Cloud\AIPlatform\V1\Featurestore\OnlineServingConfig\Scaling|null
+     */
+    public function getScaling()
+    {
+        return $this->scaling;
+    }
+
+    public function hasScaling()
+    {
+        return isset($this->scaling);
+    }
+
+    public function clearScaling()
+    {
+        unset($this->scaling);
+    }
+
+    /**
+     * Online serving scaling configuration.
+     * Only one of `fixed_node_count` and `scaling` can be set. Setting one will
+     * reset the other.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Featurestore.OnlineServingConfig.Scaling scaling = 4;</code>
+     * @param \Google\Cloud\AIPlatform\V1\Featurestore\OnlineServingConfig\Scaling $var
+     * @return $this
+     */
+    public function setScaling($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Featurestore\OnlineServingConfig\Scaling::class);
+        $this->scaling = $var;
 
         return $this;
     }

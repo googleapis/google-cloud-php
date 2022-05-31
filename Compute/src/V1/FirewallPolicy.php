@@ -70,6 +70,12 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      */
     private $parent = null;
     /**
+     * [Output Only] URL of the region where the regional firewall policy resides. This field is not applicable to global firewall policies. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     */
+    private $region = null;
+    /**
      * [Output Only] Total count of all firewall policy rule tuples. A firewall policy can not exceed a set number of tuples.
      *
      * Generated from protobuf field <code>optional int32 rule_tuple_count = 388342037;</code>
@@ -124,6 +130,8 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *           [Output Only] Name of the resource. It is a numeric ID allocated by GCP which uniquely identifies the Firewall Policy.
      *     @type string $parent
      *           [Output Only] The parent of the firewall policy.
+     *     @type string $region
+     *           [Output Only] URL of the region where the regional firewall policy resides. This field is not applicable to global firewall policies. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *     @type int $rule_tuple_count
      *           [Output Only] Total count of all firewall policy rule tuples. A firewall policy can not exceed a set number of tuples.
      *     @type \Google\Cloud\Compute\V1\FirewallPolicyRule[]|\Google\Protobuf\Internal\RepeatedField $rules
@@ -451,6 +459,42 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] URL of the region where the regional firewall policy resides. This field is not applicable to global firewall policies. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * @return string
+     */
+    public function getRegion()
+    {
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
+    }
+
+    /**
+     * [Output Only] URL of the region where the regional firewall policy resides. This field is not applicable to global firewall policies. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->region = $var;
 
         return $this;
     }

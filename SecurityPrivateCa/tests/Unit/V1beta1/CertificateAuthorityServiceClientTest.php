@@ -33,7 +33,6 @@ use Google\Cloud\Security\PrivateCA\V1beta1\Certificate;
 
 use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority;
 use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\KeyVersionSpec;
-use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\SignHashAlgorithm;
 use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\Tier;
 use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\Type;
 use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthorityServiceClient;
@@ -46,12 +45,10 @@ use Google\Cloud\Security\PrivateCA\V1beta1\ListCertificateRevocationListsRespon
 use Google\Cloud\Security\PrivateCA\V1beta1\ListCertificatesResponse;
 use Google\Cloud\Security\PrivateCA\V1beta1\ListReusableConfigsResponse;
 use Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfig;
-use Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigValues;
 use Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigWrapper;
 use Google\Cloud\Security\PrivateCA\V1beta1\RevocationReason;
 use Google\Cloud\Security\PrivateCA\V1beta1\Subject;
 use Google\Cloud\Security\PrivateCA\V1beta1\SubordinateConfig;
-use Google\Cloud\Security\PrivateCA\V1beta1\SubordinateConfig\SubordinateConfigChain;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -135,10 +132,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $subordinateConfig = new SubordinateConfig();
         $subordinateConfigCertificateAuthority = 'subordinateConfigCertificateAuthority-722261446';
         $subordinateConfig->setCertificateAuthority($subordinateConfigCertificateAuthority);
-        $subordinateConfigPemIssuerChain = new SubordinateConfigChain();
-        $pemIssuerChainPemCertificates = [];
-        $subordinateConfigPemIssuerChain->setPemCertificates($pemIssuerChainPemCertificates);
-        $subordinateConfig->setPemIssuerChain($subordinateConfigPemIssuerChain);
         $response = $client->activateCertificateAuthority($formattedName, $pemCaCertificate, $subordinateConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -213,10 +206,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $subordinateConfig = new SubordinateConfig();
         $subordinateConfigCertificateAuthority = 'subordinateConfigCertificateAuthority-722261446';
         $subordinateConfig->setCertificateAuthority($subordinateConfigCertificateAuthority);
-        $subordinateConfigPemIssuerChain = new SubordinateConfigChain();
-        $pemIssuerChainPemCertificates = [];
-        $subordinateConfigPemIssuerChain->setPemCertificates($pemIssuerChainPemCertificates);
-        $subordinateConfig->setPemIssuerChain($subordinateConfigPemIssuerChain);
         $response = $client->activateCertificateAuthority($formattedName, $pemCaCertificate, $subordinateConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -366,8 +355,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $configReusableConfig = new ReusableConfigWrapper();
         $reusableConfigReusableConfig = 'reusableConfigReusableConfig424335738';
         $configReusableConfig->setReusableConfig($reusableConfigReusableConfig);
-        $reusableConfigReusableConfigValues = new ReusableConfigValues();
-        $configReusableConfig->setReusableConfigValues($reusableConfigReusableConfigValues);
         $certificateAuthorityConfig->setReusableConfig($configReusableConfig);
         $certificateAuthority->setConfig($certificateAuthorityConfig);
         $certificateAuthorityLifetime = new Duration();
@@ -375,8 +362,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $certificateAuthorityKeySpec = new KeyVersionSpec();
         $keySpecCloudKmsKeyVersion = 'keySpecCloudKmsKeyVersion170335183';
         $certificateAuthorityKeySpec->setCloudKmsKeyVersion($keySpecCloudKmsKeyVersion);
-        $keySpecAlgorithm = SignHashAlgorithm::SIGN_HASH_ALGORITHM_UNSPECIFIED;
-        $certificateAuthorityKeySpec->setAlgorithm($keySpecAlgorithm);
         $certificateAuthority->setKeySpec($certificateAuthorityKeySpec);
         $response = $client->createCertificateAuthority($formattedParent, $certificateAuthorityId, $certificateAuthority);
         $this->assertFalse($response->isDone());
@@ -462,8 +447,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $configReusableConfig = new ReusableConfigWrapper();
         $reusableConfigReusableConfig = 'reusableConfigReusableConfig424335738';
         $configReusableConfig->setReusableConfig($reusableConfigReusableConfig);
-        $reusableConfigReusableConfigValues = new ReusableConfigValues();
-        $configReusableConfig->setReusableConfigValues($reusableConfigReusableConfigValues);
         $certificateAuthorityConfig->setReusableConfig($configReusableConfig);
         $certificateAuthority->setConfig($certificateAuthorityConfig);
         $certificateAuthorityLifetime = new Duration();
@@ -471,8 +454,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $certificateAuthorityKeySpec = new KeyVersionSpec();
         $keySpecCloudKmsKeyVersion = 'keySpecCloudKmsKeyVersion170335183';
         $certificateAuthorityKeySpec->setCloudKmsKeyVersion($keySpecCloudKmsKeyVersion);
-        $keySpecAlgorithm = SignHashAlgorithm::SIGN_HASH_ALGORITHM_UNSPECIFIED;
-        $certificateAuthorityKeySpec->setAlgorithm($keySpecAlgorithm);
         $certificateAuthority->setKeySpec($certificateAuthorityKeySpec);
         $response = $client->createCertificateAuthority($formattedParent, $certificateAuthorityId, $certificateAuthority);
         $this->assertFalse($response->isDone());
@@ -1815,8 +1796,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $configReusableConfig = new ReusableConfigWrapper();
         $reusableConfigReusableConfig = 'reusableConfigReusableConfig424335738';
         $configReusableConfig->setReusableConfig($reusableConfigReusableConfig);
-        $reusableConfigReusableConfigValues = new ReusableConfigValues();
-        $configReusableConfig->setReusableConfigValues($reusableConfigReusableConfigValues);
         $certificateAuthorityConfig->setReusableConfig($configReusableConfig);
         $certificateAuthority->setConfig($certificateAuthorityConfig);
         $certificateAuthorityLifetime = new Duration();
@@ -1824,8 +1803,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $certificateAuthorityKeySpec = new KeyVersionSpec();
         $keySpecCloudKmsKeyVersion = 'keySpecCloudKmsKeyVersion170335183';
         $certificateAuthorityKeySpec->setCloudKmsKeyVersion($keySpecCloudKmsKeyVersion);
-        $keySpecAlgorithm = SignHashAlgorithm::SIGN_HASH_ALGORITHM_UNSPECIFIED;
-        $certificateAuthorityKeySpec->setAlgorithm($keySpecAlgorithm);
         $certificateAuthority->setKeySpec($certificateAuthorityKeySpec);
         $updateMask = new FieldMask();
         $response = $client->updateCertificateAuthority($certificateAuthority, $updateMask);
@@ -1908,8 +1885,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $configReusableConfig = new ReusableConfigWrapper();
         $reusableConfigReusableConfig = 'reusableConfigReusableConfig424335738';
         $configReusableConfig->setReusableConfig($reusableConfigReusableConfig);
-        $reusableConfigReusableConfigValues = new ReusableConfigValues();
-        $configReusableConfig->setReusableConfigValues($reusableConfigReusableConfigValues);
         $certificateAuthorityConfig->setReusableConfig($configReusableConfig);
         $certificateAuthority->setConfig($certificateAuthorityConfig);
         $certificateAuthorityLifetime = new Duration();
@@ -1917,8 +1892,6 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $certificateAuthorityKeySpec = new KeyVersionSpec();
         $keySpecCloudKmsKeyVersion = 'keySpecCloudKmsKeyVersion170335183';
         $certificateAuthorityKeySpec->setCloudKmsKeyVersion($keySpecCloudKmsKeyVersion);
-        $keySpecAlgorithm = SignHashAlgorithm::SIGN_HASH_ALGORITHM_UNSPECIFIED;
-        $certificateAuthorityKeySpec->setAlgorithm($keySpecAlgorithm);
         $certificateAuthority->setKeySpec($certificateAuthorityKeySpec);
         $updateMask = new FieldMask();
         $response = $client->updateCertificateAuthority($certificateAuthority, $updateMask);

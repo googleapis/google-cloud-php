@@ -20,7 +20,7 @@ namespace Google\Cloud\Bigtable\Tests\Unit\Filter\Builder;
 use Google\Cloud\Bigtable\Filter\Builder\FamilyFilter;
 use Google\Cloud\Bigtable\Filter\SimpleFilter;
 use Google\Cloud\Bigtable\V2\RowFilter;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group bigtable
@@ -30,7 +30,7 @@ class FamilyFilterTest extends TestCase
 {
     private $familyFilter;
 
-    public function setUp()
+    public function set_up()
     {
         $this->familyFilter = new FamilyFilter;
     }

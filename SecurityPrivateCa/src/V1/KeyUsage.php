@@ -64,7 +64,7 @@ class KeyUsage extends \Google\Protobuf\Internal\Message
      */
     public function getBaseKeyUsage()
     {
-        return isset($this->base_key_usage) ? $this->base_key_usage : null;
+        return $this->base_key_usage;
     }
 
     public function hasBaseKeyUsage()
@@ -100,7 +100,7 @@ class KeyUsage extends \Google\Protobuf\Internal\Message
      */
     public function getExtendedKeyUsage()
     {
-        return isset($this->extended_key_usage) ? $this->extended_key_usage : null;
+        return $this->extended_key_usage;
     }
 
     public function hasExtendedKeyUsage()

@@ -14,14 +14,13 @@ class ChannelConnection
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-≠
-1google/cloud/eventarc/v1/channel_connection.protogoogle.cloud.eventarc.v1google/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/timestamp.proto"ß
+å
+1google/cloud/eventarc/v1/channel_connection.protogoogle.cloud.eventarc.v1google/api/resource.protogoogle/protobuf/timestamp.proto"ß
 ChannelConnection
 name (	B‡A
 uid (	B‡A8

@@ -32,9 +32,9 @@ class ValueMapperTest extends FirestoreTestCase
 
     const FIELD = 'testedField';
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
-        parent::setupBeforeClass();
+        parent::set_up_before_class();
 
         if (!self::$isSetup) {
             self::$document = self::$collection->add([]);
@@ -63,7 +63,7 @@ class ValueMapperTest extends FirestoreTestCase
 
     public function values()
     {
-        self::setupBeforeClass();
+        self::set_up_before_class();
 
         return [
             [null],

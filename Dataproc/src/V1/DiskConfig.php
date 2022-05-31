@@ -46,8 +46,8 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      * Optional. Interface type of local SSDs (default is "scsi").
      * Valid values: "scsi" (Small Computer System Interface),
      * "nvme" (Non-Volatile Memory Express).
-     * See [SSD Interface
-     * types](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
+     * See [local SSD
+     * performance](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
      *
      * Generated from protobuf field <code>string local_ssd_interface = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -78,8 +78,8 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Interface type of local SSDs (default is "scsi").
      *           Valid values: "scsi" (Small Computer System Interface),
      *           "nvme" (Non-Volatile Memory Express).
-     *           See [SSD Interface
-     *           types](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
+     *           See [local SSD
+     *           performance](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
      * }
      */
     public function __construct($data = NULL) {
@@ -187,8 +187,8 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      * Optional. Interface type of local SSDs (default is "scsi").
      * Valid values: "scsi" (Small Computer System Interface),
      * "nvme" (Non-Volatile Memory Express).
-     * See [SSD Interface
-     * types](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
+     * See [local SSD
+     * performance](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
      *
      * Generated from protobuf field <code>string local_ssd_interface = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -202,8 +202,8 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      * Optional. Interface type of local SSDs (default is "scsi").
      * Valid values: "scsi" (Small Computer System Interface),
      * "nvme" (Non-Volatile Memory Express).
-     * See [SSD Interface
-     * types](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
+     * See [local SSD
+     * performance](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
      *
      * Generated from protobuf field <code>string local_ssd_interface = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

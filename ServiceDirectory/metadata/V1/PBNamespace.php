@@ -14,13 +14,12 @@ class PBNamespace
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¢
-0google/cloud/servicedirectory/v1/namespace.proto google.cloud.servicedirectory.v1google/api/field_behavior.protogoogle/api/resource.proto"ã
+Å
+0google/cloud/servicedirectory/v1/namespace.proto google.cloud.servicedirectory.v1google/api/resource.proto"ã
 	Namespace
 name (	B‡AL
 labels (27.google.cloud.servicedirectory.v1.Namespace.LabelsEntryB‡A-

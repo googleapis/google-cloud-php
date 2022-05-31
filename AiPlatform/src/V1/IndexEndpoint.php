@@ -80,9 +80,9 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      * to which the IndexEndpoint should be peered.
      * Private services access must already be configured for the network. If left
      * unspecified, the Endpoint is not peered with any network.
-     * Only one of the fields, [network][google.cloud.aiplatform.v1.IndexEndpoint.network] or
-     * [enable_private_service_connect][google.cloud.aiplatform.v1.IndexEndpoint.enable_private_service_connect],
-     * can be set.
+     * [network][google.cloud.aiplatform.v1.IndexEndpoint.network] and
+     * [private_service_connect_config][google.cloud.aiplatform.v1.IndexEndpoint.private_service_connect_config]
+     * are mutually exclusive.
      * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert):
      * projects/{project}/global/networks/{network}.
      * Where {project} is a project number, as in '12345', and {network} is
@@ -92,14 +92,15 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      */
     private $network = '';
     /**
-     * Optional. If true, expose the IndexEndpoint via private service connect.
+     * Optional. Deprecated: If true, expose the IndexEndpoint via private service connect.
      * Only one of the fields, [network][google.cloud.aiplatform.v1.IndexEndpoint.network] or
      * [enable_private_service_connect][google.cloud.aiplatform.v1.IndexEndpoint.enable_private_service_connect],
      * can be set.
      *
-     * Generated from protobuf field <code>bool enable_private_service_connect = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enable_private_service_connect = 10 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
-    private $enable_private_service_connect = false;
+    protected $enable_private_service_connect = false;
 
     /**
      * Constructor.
@@ -139,15 +140,15 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      *           to which the IndexEndpoint should be peered.
      *           Private services access must already be configured for the network. If left
      *           unspecified, the Endpoint is not peered with any network.
-     *           Only one of the fields, [network][google.cloud.aiplatform.v1.IndexEndpoint.network] or
-     *           [enable_private_service_connect][google.cloud.aiplatform.v1.IndexEndpoint.enable_private_service_connect],
-     *           can be set.
+     *           [network][google.cloud.aiplatform.v1.IndexEndpoint.network] and
+     *           [private_service_connect_config][google.cloud.aiplatform.v1.IndexEndpoint.private_service_connect_config]
+     *           are mutually exclusive.
      *           [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert):
      *           projects/{project}/global/networks/{network}.
      *           Where {project} is a project number, as in '12345', and {network} is
      *           network name.
      *     @type bool $enable_private_service_connect
-     *           Optional. If true, expose the IndexEndpoint via private service connect.
+     *           Optional. Deprecated: If true, expose the IndexEndpoint via private service connect.
      *           Only one of the fields, [network][google.cloud.aiplatform.v1.IndexEndpoint.network] or
      *           [enable_private_service_connect][google.cloud.aiplatform.v1.IndexEndpoint.enable_private_service_connect],
      *           can be set.
@@ -412,9 +413,9 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      * to which the IndexEndpoint should be peered.
      * Private services access must already be configured for the network. If left
      * unspecified, the Endpoint is not peered with any network.
-     * Only one of the fields, [network][google.cloud.aiplatform.v1.IndexEndpoint.network] or
-     * [enable_private_service_connect][google.cloud.aiplatform.v1.IndexEndpoint.enable_private_service_connect],
-     * can be set.
+     * [network][google.cloud.aiplatform.v1.IndexEndpoint.network] and
+     * [private_service_connect_config][google.cloud.aiplatform.v1.IndexEndpoint.private_service_connect_config]
+     * are mutually exclusive.
      * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert):
      * projects/{project}/global/networks/{network}.
      * Where {project} is a project number, as in '12345', and {network} is
@@ -434,9 +435,9 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      * to which the IndexEndpoint should be peered.
      * Private services access must already be configured for the network. If left
      * unspecified, the Endpoint is not peered with any network.
-     * Only one of the fields, [network][google.cloud.aiplatform.v1.IndexEndpoint.network] or
-     * [enable_private_service_connect][google.cloud.aiplatform.v1.IndexEndpoint.enable_private_service_connect],
-     * can be set.
+     * [network][google.cloud.aiplatform.v1.IndexEndpoint.network] and
+     * [private_service_connect_config][google.cloud.aiplatform.v1.IndexEndpoint.private_service_connect_config]
+     * are mutually exclusive.
      * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert):
      * projects/{project}/global/networks/{network}.
      * Where {project} is a project number, as in '12345', and {network} is
@@ -455,31 +456,35 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If true, expose the IndexEndpoint via private service connect.
+     * Optional. Deprecated: If true, expose the IndexEndpoint via private service connect.
      * Only one of the fields, [network][google.cloud.aiplatform.v1.IndexEndpoint.network] or
      * [enable_private_service_connect][google.cloud.aiplatform.v1.IndexEndpoint.enable_private_service_connect],
      * can be set.
      *
-     * Generated from protobuf field <code>bool enable_private_service_connect = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enable_private_service_connect = 10 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
+     * @deprecated
      */
     public function getEnablePrivateServiceConnect()
     {
+        @trigger_error('enable_private_service_connect is deprecated.', E_USER_DEPRECATED);
         return $this->enable_private_service_connect;
     }
 
     /**
-     * Optional. If true, expose the IndexEndpoint via private service connect.
+     * Optional. Deprecated: If true, expose the IndexEndpoint via private service connect.
      * Only one of the fields, [network][google.cloud.aiplatform.v1.IndexEndpoint.network] or
      * [enable_private_service_connect][google.cloud.aiplatform.v1.IndexEndpoint.enable_private_service_connect],
      * can be set.
      *
-     * Generated from protobuf field <code>bool enable_private_service_connect = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool enable_private_service_connect = 10 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setEnablePrivateServiceConnect($var)
     {
+        @trigger_error('enable_private_service_connect is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->enable_private_service_connect = $var;
 

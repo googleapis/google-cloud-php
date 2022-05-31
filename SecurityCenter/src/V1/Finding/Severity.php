@@ -69,7 +69,7 @@ class Severity
     const MEDIUM = 3;
     /**
      * Vulnerability:
-     * A low risk vulnerability hampers a security organization’s ability to
+     * A low risk vulnerability hampers a security organization's ability to
      * detect vulnerabilities or active threats in their deployment, or prevents
      * the root cause investigation of security issues. An example is monitoring
      * and logs being disabled for resource configurations and access.

@@ -16,9 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class Page extends \Google\Protobuf\Internal\Message
 {
     /**
-     * 1-based index for current [Page][google.cloud.documentai.v1.Document.Page] in a parent [Document][google.cloud.documentai.v1.Document].
-     * Useful when a page is taken out of a [Document][google.cloud.documentai.v1.Document] for individual
-     * processing.
+     * 1-based index for current
+     * [Page][google.cloud.documentai.v1.Document.Page] in a parent
+     * [Document][google.cloud.documentai.v1.Document]. Useful when a page is
+     * taken out of a [Document][google.cloud.documentai.v1.Document] for
+     * individual processing.
      *
      * Generated from protobuf field <code>int32 page_number = 1;</code>
      */
@@ -104,6 +106,12 @@ class Page extends \Google\Protobuf\Internal\Message
      */
     private $form_fields;
     /**
+     * A list of visually detected symbols on the page.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.Symbol symbols = 12;</code>
+     */
+    private $symbols;
+    /**
      * The history of this page.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 16;</code>
@@ -117,9 +125,11 @@ class Page extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $page_number
-     *           1-based index for current [Page][google.cloud.documentai.v1.Document.Page] in a parent [Document][google.cloud.documentai.v1.Document].
-     *           Useful when a page is taken out of a [Document][google.cloud.documentai.v1.Document] for individual
-     *           processing.
+     *           1-based index for current
+     *           [Page][google.cloud.documentai.v1.Document.Page] in a parent
+     *           [Document][google.cloud.documentai.v1.Document]. Useful when a page is
+     *           taken out of a [Document][google.cloud.documentai.v1.Document] for
+     *           individual processing.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Image $image
      *           Rendered image for this page. This image is preprocessed to remove any
      *           skew, rotation, and distortions such that the annotation bounding boxes
@@ -152,6 +162,8 @@ class Page extends \Google\Protobuf\Internal\Message
      *           A list of visually detected tables on the page.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\FormField[]|\Google\Protobuf\Internal\RepeatedField $form_fields
      *           A list of visually detected form fields on the page.
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Symbol[]|\Google\Protobuf\Internal\RepeatedField $symbols
+     *           A list of visually detected symbols on the page.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance $provenance
      *           The history of this page.
      * }
@@ -162,9 +174,11 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * 1-based index for current [Page][google.cloud.documentai.v1.Document.Page] in a parent [Document][google.cloud.documentai.v1.Document].
-     * Useful when a page is taken out of a [Document][google.cloud.documentai.v1.Document] for individual
-     * processing.
+     * 1-based index for current
+     * [Page][google.cloud.documentai.v1.Document.Page] in a parent
+     * [Document][google.cloud.documentai.v1.Document]. Useful when a page is
+     * taken out of a [Document][google.cloud.documentai.v1.Document] for
+     * individual processing.
      *
      * Generated from protobuf field <code>int32 page_number = 1;</code>
      * @return int
@@ -175,9 +189,11 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * 1-based index for current [Page][google.cloud.documentai.v1.Document.Page] in a parent [Document][google.cloud.documentai.v1.Document].
-     * Useful when a page is taken out of a [Document][google.cloud.documentai.v1.Document] for individual
-     * processing.
+     * 1-based index for current
+     * [Page][google.cloud.documentai.v1.Document.Page] in a parent
+     * [Document][google.cloud.documentai.v1.Document]. Useful when a page is
+     * taken out of a [Document][google.cloud.documentai.v1.Document] for
+     * individual processing.
      *
      * Generated from protobuf field <code>int32 page_number = 1;</code>
      * @param int $var
@@ -550,6 +566,32 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A list of visually detected symbols on the page.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.Symbol symbols = 12;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSymbols()
+    {
+        return $this->symbols;
+    }
+
+    /**
+     * A list of visually detected symbols on the page.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.Symbol symbols = 12;</code>
+     * @param \Google\Cloud\DocumentAI\V1\Document\Page\Symbol[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSymbols($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DocumentAI\V1\Document\Page\Symbol::class);
+        $this->symbols = $arr;
+
+        return $this;
+    }
+
+    /**
      * The history of this page.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 16;</code>
@@ -587,6 +629,4 @@ class Page extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Page::class, \Google\Cloud\DocumentAI\V1\Document_Page::class);
 

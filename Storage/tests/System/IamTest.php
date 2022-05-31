@@ -17,15 +17,19 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
+use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
+
 /**
  * @group storage
  * @group storage-iam
  */
 class IamTest extends StorageTestCase
 {
+    use AssertStringContains;
+
     private $b;
 
-    public function setUp()
+    public function set_up()
     {
         $this->b = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
         $this->b->update($this->bucketConfig());
@@ -75,7 +79,7 @@ class IamTest extends StorageTestCase
 
         $iam->setPolicy($policy);
         $policy = $iam->reload();
-        $this->assertContains(
+        $this->assertStringContainsString(
             [
                 'role' => 'roles/storage.legacyBucketReader',
                 'members' => ['allUsers', 'projectViewer:' . $projectId]
@@ -106,7 +110,7 @@ class IamTest extends StorageTestCase
         $policy['bindings'][] = $conditionalBinding;
         $iam->setPolicy($policy);
         $policy = $iam->reload(['requestedPolicyVersion' => 3]);
-        $this->assertContains(
+        $this->assertStringContainsString(
             $conditionalBinding,
             $policy['bindings']
         );

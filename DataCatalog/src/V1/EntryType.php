@@ -74,6 +74,18 @@ class EntryType
      */
     const ROUTINE = 9;
     /**
+     * A Dataplex lake.
+     *
+     * Generated from protobuf enum <code>LAKE = 10;</code>
+     */
+    const LAKE = 10;
+    /**
+     * A Dataplex zone.
+     *
+     * Generated from protobuf enum <code>ZONE = 11;</code>
+     */
+    const ZONE = 11;
+    /**
      * A service, for example, a Dataproc Metastore service.
      *
      * Generated from protobuf enum <code>SERVICE = 14;</code>
@@ -90,6 +102,8 @@ class EntryType
         self::DATABASE => 'DATABASE',
         self::DATA_SOURCE_CONNECTION => 'DATA_SOURCE_CONNECTION',
         self::ROUTINE => 'ROUTINE',
+        self::LAKE => 'LAKE',
+        self::ZONE => 'ZONE',
         self::SERVICE => 'SERVICE',
     ];
 

@@ -20,10 +20,13 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * events like
      * [CONVERSATION_STARTED][google.cloud.dialogflow.v2.ConversationEvent.Type.CONVERSATION_STARTED] as
      * serialized [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent] protos.
-     * Notification works for phone calls, if this topic either is in the same
-     * project as the conversation or you grant `service-<Conversation Project
+     * For telephony integration to receive notification, make sure either this
+     * topic is in the same project as the conversation or you grant
+     * `service-<Conversation Project
      * Number>&#64;gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow Service
      * Agent` role in the topic project.
+     * For chat integration to receive notification, make sure API caller has been
+     * granted the `Dialogflow Service Agent` role for the topic.
      * Format: `projects/<Project ID>/locations/<Location ID>/topics/<Topic ID>`.
      *
      * Generated from protobuf field <code>string topic = 1;</code>
@@ -47,10 +50,13 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      *           events like
      *           [CONVERSATION_STARTED][google.cloud.dialogflow.v2.ConversationEvent.Type.CONVERSATION_STARTED] as
      *           serialized [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent] protos.
-     *           Notification works for phone calls, if this topic either is in the same
-     *           project as the conversation or you grant `service-<Conversation Project
+     *           For telephony integration to receive notification, make sure either this
+     *           topic is in the same project as the conversation or you grant
+     *           `service-<Conversation Project
      *           Number>&#64;gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow Service
      *           Agent` role in the topic project.
+     *           For chat integration to receive notification, make sure API caller has been
+     *           granted the `Dialogflow Service Agent` role for the topic.
      *           Format: `projects/<Project ID>/locations/<Location ID>/topics/<Topic ID>`.
      *     @type int $message_format
      *           Format of message.
@@ -66,10 +72,13 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * events like
      * [CONVERSATION_STARTED][google.cloud.dialogflow.v2.ConversationEvent.Type.CONVERSATION_STARTED] as
      * serialized [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent] protos.
-     * Notification works for phone calls, if this topic either is in the same
-     * project as the conversation or you grant `service-<Conversation Project
+     * For telephony integration to receive notification, make sure either this
+     * topic is in the same project as the conversation or you grant
+     * `service-<Conversation Project
      * Number>&#64;gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow Service
      * Agent` role in the topic project.
+     * For chat integration to receive notification, make sure API caller has been
+     * granted the `Dialogflow Service Agent` role for the topic.
      * Format: `projects/<Project ID>/locations/<Location ID>/topics/<Topic ID>`.
      *
      * Generated from protobuf field <code>string topic = 1;</code>
@@ -85,10 +94,13 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * events like
      * [CONVERSATION_STARTED][google.cloud.dialogflow.v2.ConversationEvent.Type.CONVERSATION_STARTED] as
      * serialized [ConversationEvent][google.cloud.dialogflow.v2.ConversationEvent] protos.
-     * Notification works for phone calls, if this topic either is in the same
-     * project as the conversation or you grant `service-<Conversation Project
+     * For telephony integration to receive notification, make sure either this
+     * topic is in the same project as the conversation or you grant
+     * `service-<Conversation Project
      * Number>&#64;gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow Service
      * Agent` role in the topic project.
+     * For chat integration to receive notification, make sure API caller has been
+     * granted the `Dialogflow Service Agent` role for the topic.
      * Format: `projects/<Project ID>/locations/<Location ID>/topics/<Topic ID>`.
      *
      * Generated from protobuf field <code>string topic = 1;</code>

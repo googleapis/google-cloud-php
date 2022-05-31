@@ -31,7 +31,7 @@ class ChainFilterTest extends SnippetTestCase
 {
     private $chainFilter;
 
-    public function setUp()
+    public function set_up()
     {
         $this->chainFilter = Filter::chain();
     }

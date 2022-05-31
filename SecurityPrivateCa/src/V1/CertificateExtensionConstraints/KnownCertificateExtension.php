@@ -96,6 +96,4 @@ class KnownCertificateExtension
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(KnownCertificateExtension::class, \Google\Cloud\Security\PrivateCA\V1\CertificateExtensionConstraints_KnownCertificateExtension::class);
 

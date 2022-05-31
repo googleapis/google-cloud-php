@@ -7,10 +7,11 @@ namespace Google\Cloud\Kms\V1\CryptoKey;
 use UnexpectedValueException;
 
 /**
- * [CryptoKeyPurpose][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose] describes the cryptographic capabilities of a
- * [CryptoKey][google.cloud.kms.v1.CryptoKey]. A given key can only be used for the operations allowed by
- * its purpose. For more information, see
- * [Key purposes](https://cloud.google.com/kms/docs/algorithms#key_purposes).
+ * [CryptoKeyPurpose][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose]
+ * describes the cryptographic capabilities of a
+ * [CryptoKey][google.cloud.kms.v1.CryptoKey]. A given key can only be used
+ * for the operations allowed by its purpose. For more information, see [Key
+ * purposes](https://cloud.google.com/kms/docs/algorithms#key_purposes).
  *
  * Protobuf type <code>google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose</code>
  */
@@ -23,32 +24,36 @@ class CryptoKeyPurpose
      */
     const CRYPTO_KEY_PURPOSE_UNSPECIFIED = 0;
     /**
-     * [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used with
-     * [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt] and
+     * [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used
+     * with [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt] and
      * [Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
      *
      * Generated from protobuf enum <code>ENCRYPT_DECRYPT = 1;</code>
      */
     const ENCRYPT_DECRYPT = 1;
     /**
-     * [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used with
-     * [AsymmetricSign][google.cloud.kms.v1.KeyManagementService.AsymmetricSign] and
+     * [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used
+     * with
+     * [AsymmetricSign][google.cloud.kms.v1.KeyManagementService.AsymmetricSign]
+     * and
      * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
      *
      * Generated from protobuf enum <code>ASYMMETRIC_SIGN = 5;</code>
      */
     const ASYMMETRIC_SIGN = 5;
     /**
-     * [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used with
-     * [AsymmetricDecrypt][google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt] and
+     * [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used
+     * with
+     * [AsymmetricDecrypt][google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt]
+     * and
      * [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
      *
      * Generated from protobuf enum <code>ASYMMETRIC_DECRYPT = 6;</code>
      */
     const ASYMMETRIC_DECRYPT = 6;
     /**
-     * [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used with
-     * [MacSign][google.cloud.kms.v1.KeyManagementService.MacSign].
+     * [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used
+     * with [MacSign][google.cloud.kms.v1.KeyManagementService.MacSign].
      *
      * Generated from protobuf enum <code>MAC = 9;</code>
      */

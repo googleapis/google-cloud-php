@@ -22,8 +22,8 @@ class Person extends \Google\Protobuf\Internal\Message
      */
     private $designation = '';
     /**
-     * Email of the person in the format of `john.doe&#64;example.com`,
-     * `<john.doe&#64;example.com>`, or `John Doe<john.doe&#64;example.com>`.
+     * Email of the person in the format of `john.doe&#64;xyz`,
+     * `<john.doe&#64;xyz>`, or `John Doe<john.doe&#64;xyz>`.
      *
      * Generated from protobuf field <code>string email = 2;</code>
      */
@@ -38,8 +38,8 @@ class Person extends \Google\Protobuf\Internal\Message
      *     @type string $designation
      *           Designation of the person, for example, Data Steward.
      *     @type string $email
-     *           Email of the person in the format of `john.doe&#64;example.com`,
-     *           `<john.doe&#64;example.com>`, or `John Doe<john.doe&#64;example.com>`.
+     *           Email of the person in the format of `john.doe&#64;xyz`,
+     *           `<john.doe&#64;xyz>`, or `John Doe<john.doe&#64;xyz>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,8 +74,8 @@ class Person extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Email of the person in the format of `john.doe&#64;example.com`,
-     * `<john.doe&#64;example.com>`, or `John Doe<john.doe&#64;example.com>`.
+     * Email of the person in the format of `john.doe&#64;xyz`,
+     * `<john.doe&#64;xyz>`, or `John Doe<john.doe&#64;xyz>`.
      *
      * Generated from protobuf field <code>string email = 2;</code>
      * @return string
@@ -86,8 +86,8 @@ class Person extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Email of the person in the format of `john.doe&#64;example.com`,
-     * `<john.doe&#64;example.com>`, or `John Doe<john.doe&#64;example.com>`.
+     * Email of the person in the format of `john.doe&#64;xyz`,
+     * `<john.doe&#64;xyz>`, or `John Doe<john.doe&#64;xyz>`.
      *
      * Generated from protobuf field <code>string email = 2;</code>
      * @param string $var

@@ -1,0 +1,81 @@
+name: Test Suite
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, windows-latest]
+        php: [ "7.0", "7.1", "7.2", "7.3", "7.4", "8.0" ]
+        phpunit-filename: [phpunit]
+        grpc-version: [grpc]
+        include:
+          - platform: ubuntu-latest
+            php: "5.5"
+            phpunit-filename: phpunit-php5
+            grpc-version: grpc-1.33.1
+          - platform: ubuntu-latest
+            php: "5.6"
+            phpunit-filename: phpunit-php5
+            grpc-version: grpc
+    name: PHP ${{ matrix.php }} Unit Test (${{ matrix.platform }})
+    runs-on: ${{ matrix.platform }}
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup PHP
+      uses: shivammathur/setup-php@verbose
+      with:
+        php-version: ${{ matrix.php }}
+        extensions: ${{ matrix.grpc-version }}
+    - name: Install Dependencies
+      uses: nick-invision/retry@v2
+      with:
+        timeout_minutes: 10
+        max_attempts: 3
+        command: composer --no-interaction --no-ansi --no-progress update
+    - name: Run Unit Test Suite
+      run: |
+        vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}.xml.dist
+    - if: ${{ matrix.platform != 'windows-latest' }}
+      name: Run Snippet Test Suite
+      run: |
+        vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}-snippets.xml.dist --verbose
+
+  style:
+    runs-on: ubuntu-latest
+    name: PHP Style Check
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+    - name: Install Dependencies
+      uses: nick-invision/retry@v2
+      with:
+        timeout_minutes: 10
+        max_attempts: 3
+        command: composer --no-interaction --no-ansi --no-progress update
+    - name: Run PHPCS Code Style Checker
+      run: dev/sh/style
+
+  docs:
+    runs-on: ubuntu-latest
+    name: Generate Documentation (Dry Run)
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+    - name: Install Dependencies
+      uses: nick-invision/retry@v2
+      with:
+        timeout_minutes: 10
+        max_attempts: 3
+        command: composer --no-interaction --no-ansi --no-progress update
+    - name: Run Docs Generator
+      run: php -d 'memory_limit=-1' dev/google-cloud doc

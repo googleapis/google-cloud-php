@@ -54,6 +54,7 @@ use Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse;
 use Google\Cloud\Dialogflow\V2\TextInput;
 use Google\Cloud\Dialogflow\V2\UpdateParticipantRequest;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\Struct;
 
 /**
  * Service Description: Service for managing [Participants][google.cloud.dialogflow.v2.Participant].
@@ -569,6 +570,13 @@ class ParticipantsGapicClient
      *           Parameters for a Dialogflow virtual-agent query.
      *     @type AssistQueryParameters $assistQueryParams
      *           Parameters for a human assist query.
+     *     @type Struct $cxParameters
+     *           Additional parameters to be put into Dialogflow CX session parameters. To
+     *           remove a parameter from the session, clients should explicitly set the
+     *           parameter value to null.
+     *
+     *           Note: this field should only be used if you are connecting to a Dialogflow
+     *           CX agent.
      *     @type string $requestId
      *           A unique identifier for this request. Restricted to 36 ASCII characters.
      *           A random UUID is recommended.
@@ -608,6 +616,10 @@ class ParticipantsGapicClient
 
         if (isset($optionalArgs['assistQueryParams'])) {
             $request->setAssistQueryParams($optionalArgs['assistQueryParams']);
+        }
+
+        if (isset($optionalArgs['cxParameters'])) {
+            $request->setCxParameters($optionalArgs['cxParameters']);
         }
 
         if (isset($optionalArgs['requestId'])) {

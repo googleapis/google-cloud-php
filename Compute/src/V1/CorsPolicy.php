@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The specification for allowing client side cross-origin requests. Please see W3C Recommendation for Cross Origin Resource Sharing
+ * The specification for allowing client-side cross-origin requests. For more information about the W3C recommendation for cross-origin resource sharing (CORS), see Fetch API Living Standard.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.CorsPolicy</code>
  */
 class CorsPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access-Control-Allow-Credentials header. Default is false.
+     * In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This field translates to the Access-Control-Allow-Credentials header. Default is false.
      *
      * Generated from protobuf field <code>optional bool allow_credentials = 481263366;</code>
      */
@@ -34,19 +34,19 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      */
     private $allow_methods;
     /**
-     * Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see github.com/google/re2/wiki/Syntax An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
+     * Specifies a regular expression that matches allowed origins. For more information about the regular expression syntax, see Syntax. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *
      * Generated from protobuf field <code>repeated string allow_origin_regexes = 215385810;</code>
      */
     private $allow_origin_regexes;
     /**
-     * Specifies the list of origins that will be allowed to do CORS requests. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
+     * Specifies the list of origins that is allowed to do CORS requests. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *
      * Generated from protobuf field <code>repeated string allow_origins = 194914071;</code>
      */
     private $allow_origins;
     /**
-     * If true, specifies the CORS policy is disabled. The default value of false, which indicates that the CORS policy is in effect.
+     * If true, the setting specifies the CORS policy is disabled. The default value of false, which indicates that the CORS policy is in effect.
      *
      * Generated from protobuf field <code>optional bool disabled = 270940796;</code>
      */
@@ -58,7 +58,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      */
     private $expose_headers;
     /**
-     * Specifies how long results of a preflight request can be cached in seconds. This translates to the Access-Control-Max-Age header.
+     * Specifies how long results of a preflight request can be cached in seconds. This field translates to the Access-Control-Max-Age header.
      *
      * Generated from protobuf field <code>optional int32 max_age = 307559332;</code>
      */
@@ -71,21 +71,21 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $allow_credentials
-     *           In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access-Control-Allow-Credentials header. Default is false.
+     *           In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This field translates to the Access-Control-Allow-Credentials header. Default is false.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allow_headers
      *           Specifies the content for the Access-Control-Allow-Headers header.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allow_methods
      *           Specifies the content for the Access-Control-Allow-Methods header.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allow_origin_regexes
-     *           Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see github.com/google/re2/wiki/Syntax An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
+     *           Specifies a regular expression that matches allowed origins. For more information about the regular expression syntax, see Syntax. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allow_origins
-     *           Specifies the list of origins that will be allowed to do CORS requests. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
+     *           Specifies the list of origins that is allowed to do CORS requests. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *     @type bool $disabled
-     *           If true, specifies the CORS policy is disabled. The default value of false, which indicates that the CORS policy is in effect.
+     *           If true, the setting specifies the CORS policy is disabled. The default value of false, which indicates that the CORS policy is in effect.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $expose_headers
      *           Specifies the content for the Access-Control-Expose-Headers header.
      *     @type int $max_age
-     *           Specifies how long results of a preflight request can be cached in seconds. This translates to the Access-Control-Max-Age header.
+     *           Specifies how long results of a preflight request can be cached in seconds. This field translates to the Access-Control-Max-Age header.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,7 +94,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access-Control-Allow-Credentials header. Default is false.
+     * In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This field translates to the Access-Control-Allow-Credentials header. Default is false.
      *
      * Generated from protobuf field <code>optional bool allow_credentials = 481263366;</code>
      * @return bool
@@ -115,7 +115,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access-Control-Allow-Credentials header. Default is false.
+     * In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This field translates to the Access-Control-Allow-Credentials header. Default is false.
      *
      * Generated from protobuf field <code>optional bool allow_credentials = 481263366;</code>
      * @param bool $var
@@ -182,7 +182,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see github.com/google/re2/wiki/Syntax An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
+     * Specifies a regular expression that matches allowed origins. For more information about the regular expression syntax, see Syntax. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *
      * Generated from protobuf field <code>repeated string allow_origin_regexes = 215385810;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -193,7 +193,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see github.com/google/re2/wiki/Syntax An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
+     * Specifies a regular expression that matches allowed origins. For more information about the regular expression syntax, see Syntax. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *
      * Generated from protobuf field <code>repeated string allow_origin_regexes = 215385810;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -208,7 +208,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the list of origins that will be allowed to do CORS requests. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
+     * Specifies the list of origins that is allowed to do CORS requests. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *
      * Generated from protobuf field <code>repeated string allow_origins = 194914071;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -219,7 +219,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the list of origins that will be allowed to do CORS requests. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
+     * Specifies the list of origins that is allowed to do CORS requests. An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *
      * Generated from protobuf field <code>repeated string allow_origins = 194914071;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -234,7 +234,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, specifies the CORS policy is disabled. The default value of false, which indicates that the CORS policy is in effect.
+     * If true, the setting specifies the CORS policy is disabled. The default value of false, which indicates that the CORS policy is in effect.
      *
      * Generated from protobuf field <code>optional bool disabled = 270940796;</code>
      * @return bool
@@ -255,7 +255,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, specifies the CORS policy is disabled. The default value of false, which indicates that the CORS policy is in effect.
+     * If true, the setting specifies the CORS policy is disabled. The default value of false, which indicates that the CORS policy is in effect.
      *
      * Generated from protobuf field <code>optional bool disabled = 270940796;</code>
      * @param bool $var
@@ -296,7 +296,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how long results of a preflight request can be cached in seconds. This translates to the Access-Control-Max-Age header.
+     * Specifies how long results of a preflight request can be cached in seconds. This field translates to the Access-Control-Max-Age header.
      *
      * Generated from protobuf field <code>optional int32 max_age = 307559332;</code>
      * @return int
@@ -317,7 +317,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how long results of a preflight request can be cached in seconds. This translates to the Access-Control-Max-Age header.
+     * Specifies how long results of a preflight request can be cached in seconds. This field translates to the Access-Control-Max-Age header.
      *
      * Generated from protobuf field <code>optional int32 max_age = 307559332;</code>
      * @param int $var

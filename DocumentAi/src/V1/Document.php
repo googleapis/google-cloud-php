@@ -46,14 +46,16 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     private $pages;
     /**
-     * A list of entities detected on [Document.text][google.cloud.documentai.v1.Document.text]. For document shards,
-     * entities in this list may cross shard boundaries.
+     * A list of entities detected on
+     * [Document.text][google.cloud.documentai.v1.Document.text]. For document
+     * shards, entities in this list may cross shard boundaries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity entities = 7;</code>
      */
     private $entities;
     /**
-     * Relationship among [Document.entities][google.cloud.documentai.v1.Document.entities].
+     * Relationship among
+     * [Document.entities][google.cloud.documentai.v1.Document.entities].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.EntityRelation entity_relations = 8;</code>
      */
@@ -114,10 +116,12 @@ class Document extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page[]|\Google\Protobuf\Internal\RepeatedField $pages
      *           Visual page layout for the [Document][google.cloud.documentai.v1.Document].
      *     @type \Google\Cloud\DocumentAI\V1\Document\Entity[]|\Google\Protobuf\Internal\RepeatedField $entities
-     *           A list of entities detected on [Document.text][google.cloud.documentai.v1.Document.text]. For document shards,
-     *           entities in this list may cross shard boundaries.
+     *           A list of entities detected on
+     *           [Document.text][google.cloud.documentai.v1.Document.text]. For document
+     *           shards, entities in this list may cross shard boundaries.
      *     @type \Google\Cloud\DocumentAI\V1\Document\EntityRelation[]|\Google\Protobuf\Internal\RepeatedField $entity_relations
-     *           Relationship among [Document.entities][google.cloud.documentai.v1.Document.entities].
+     *           Relationship among
+     *           [Document.entities][google.cloud.documentai.v1.Document.entities].
      *     @type \Google\Cloud\DocumentAI\V1\Document\TextChange[]|\Google\Protobuf\Internal\RepeatedField $text_changes
      *           A list of text corrections made to [Document.text].  This is usually
      *           used for annotating corrections to OCR mistakes.  Text changes for a given
@@ -319,8 +323,9 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of entities detected on [Document.text][google.cloud.documentai.v1.Document.text]. For document shards,
-     * entities in this list may cross shard boundaries.
+     * A list of entities detected on
+     * [Document.text][google.cloud.documentai.v1.Document.text]. For document
+     * shards, entities in this list may cross shard boundaries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity entities = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -331,8 +336,9 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of entities detected on [Document.text][google.cloud.documentai.v1.Document.text]. For document shards,
-     * entities in this list may cross shard boundaries.
+     * A list of entities detected on
+     * [Document.text][google.cloud.documentai.v1.Document.text]. For document
+     * shards, entities in this list may cross shard boundaries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity entities = 7;</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\Entity[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -347,7 +353,8 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Relationship among [Document.entities][google.cloud.documentai.v1.Document.entities].
+     * Relationship among
+     * [Document.entities][google.cloud.documentai.v1.Document.entities].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.EntityRelation entity_relations = 8;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -358,7 +365,8 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Relationship among [Document.entities][google.cloud.documentai.v1.Document.entities].
+     * Relationship among
+     * [Document.entities][google.cloud.documentai.v1.Document.entities].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.EntityRelation entity_relations = 8;</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\EntityRelation[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -411,7 +419,7 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     public function getShardInfo()
     {
-        return isset($this->shard_info) ? $this->shard_info : null;
+        return $this->shard_info;
     }
 
     public function hasShardInfo()
@@ -448,7 +456,7 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     public function getError()
     {
-        return isset($this->error) ? $this->error : null;
+        return $this->error;
     }
 
     public function hasError()

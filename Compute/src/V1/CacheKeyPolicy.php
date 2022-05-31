@@ -22,6 +22,18 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
      */
     private $include_host = null;
     /**
+     * Allows HTTP request headers (by name) to be used in the cache key.
+     *
+     * Generated from protobuf field <code>repeated string include_http_headers = 2489606;</code>
+     */
+    private $include_http_headers;
+    /**
+     * Allows HTTP cookies (by name) to be used in the cache key. The name=value pair will be used in the cache key Cloud CDN generates.
+     *
+     * Generated from protobuf field <code>repeated string include_named_cookies = 87316530;</code>
+     */
+    private $include_named_cookies;
+    /**
      * If true, http and https requests will be cached separately.
      *
      * Generated from protobuf field <code>optional bool include_protocol = 303507535;</code>
@@ -54,6 +66,10 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $include_host
      *           If true, requests to different hosts will be cached separately.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $include_http_headers
+     *           Allows HTTP request headers (by name) to be used in the cache key.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $include_named_cookies
+     *           Allows HTTP cookies (by name) to be used in the cache key. The name=value pair will be used in the cache key Cloud CDN generates.
      *     @type bool $include_protocol
      *           If true, http and https requests will be cached separately.
      *     @type bool $include_query_string
@@ -101,6 +117,58 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->include_host = $var;
+
+        return $this;
+    }
+
+    /**
+     * Allows HTTP request headers (by name) to be used in the cache key.
+     *
+     * Generated from protobuf field <code>repeated string include_http_headers = 2489606;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getIncludeHttpHeaders()
+    {
+        return $this->include_http_headers;
+    }
+
+    /**
+     * Allows HTTP request headers (by name) to be used in the cache key.
+     *
+     * Generated from protobuf field <code>repeated string include_http_headers = 2489606;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setIncludeHttpHeaders($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->include_http_headers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Allows HTTP cookies (by name) to be used in the cache key. The name=value pair will be used in the cache key Cloud CDN generates.
+     *
+     * Generated from protobuf field <code>repeated string include_named_cookies = 87316530;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getIncludeNamedCookies()
+    {
+        return $this->include_named_cookies;
+    }
+
+    /**
+     * Allows HTTP cookies (by name) to be used in the cache key. The name=value pair will be used in the cache key Cloud CDN generates.
+     *
+     * Generated from protobuf field <code>repeated string include_named_cookies = 87316530;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setIncludeNamedCookies($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->include_named_cookies = $arr;
 
         return $this;
     }

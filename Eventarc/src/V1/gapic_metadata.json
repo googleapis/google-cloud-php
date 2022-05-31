@@ -50,6 +50,11 @@
                                 "getChannelConnection"
                             ]
                         },
+                        "GetProvider": {
+                            "methods": [
+                                "getProvider"
+                            ]
+                        },
                         "GetTrigger": {
                             "methods": [
                                 "getTrigger"
@@ -63,6 +68,11 @@
                         "ListChannels": {
                             "methods": [
                                 "listChannels"
+                            ]
+                        },
+                        "ListProviders": {
+                            "methods": [
+                                "listProviders"
                             ]
                         },
                         "ListTriggers": {

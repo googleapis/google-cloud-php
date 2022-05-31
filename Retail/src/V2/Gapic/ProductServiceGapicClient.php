@@ -31,7 +31,6 @@ use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -39,18 +38,20 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Retail\V2\AddFulfillmentPlacesRequest;
+use Google\Cloud\Retail\V2\AddLocalInventoriesRequest;
 use Google\Cloud\Retail\V2\CreateProductRequest;
 use Google\Cloud\Retail\V2\DeleteProductRequest;
 use Google\Cloud\Retail\V2\GetProductRequest;
 use Google\Cloud\Retail\V2\ImportErrorsConfig;
-use Google\Cloud\Retail\V2\ImportMetadata;
 use Google\Cloud\Retail\V2\ImportProductsRequest;
 use Google\Cloud\Retail\V2\ImportProductsRequest\ReconciliationMode;
 use Google\Cloud\Retail\V2\ListProductsRequest;
 use Google\Cloud\Retail\V2\ListProductsResponse;
+use Google\Cloud\Retail\V2\LocalInventory;
 use Google\Cloud\Retail\V2\Product;
 use Google\Cloud\Retail\V2\ProductInputConfig;
 use Google\Cloud\Retail\V2\RemoveFulfillmentPlacesRequest;
+use Google\Cloud\Retail\V2\RemoveLocalInventoriesRequest;
 use Google\Cloud\Retail\V2\SetInventoryRequest;
 use Google\Cloud\Retail\V2\UpdateProductRequest;
 use Google\LongRunning\Operation;
@@ -413,8 +414,7 @@ class ProductServiceGapicClient
      * [ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Please submit a form [here](https://cloud.google.com/contact) to contact
-     * cloud sales if you are interested in using Retail Search.
+     * Please enable Retail Search on Cloud Console before using this feature.
      *
      * Sample code:
      * ```
@@ -548,6 +548,151 @@ class ProductServiceGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'AddFulfillmentPlaces',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates local inventory information for a
+     * [Product][google.cloud.retail.v2.Product] at a list of places, while
+     * respecting the last update timestamps of each inventory field.
+     *
+     * This process is asynchronous and does not require the
+     * [Product][google.cloud.retail.v2.Product] to exist before updating
+     * inventory information. If the request is valid, the update will be enqueued
+     * and processed downstream. As a consequence, when a response is returned,
+     * updates are not immediately manifested in the
+     * [Product][google.cloud.retail.v2.Product] queried by
+     * [GetProduct][google.cloud.retail.v2.ProductService.GetProduct] or
+     * [ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     *
+     * Local inventory information can only be modified using this method.
+     * [CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct] and
+     * [UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct] has no
+     * effect on local inventories.
+     *
+     * This feature is only available for users who have Retail Search enabled.
+     * Please enable Retail Search on Cloud Console before using this feature.
+     *
+     * Sample code:
+     * ```
+     * $productServiceClient = new ProductServiceClient();
+     * try {
+     *     $formattedProduct = $productServiceClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
+     *     $localInventories = [];
+     *     $operationResponse = $productServiceClient->addLocalInventories($formattedProduct, $localInventories);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $productServiceClient->addLocalInventories($formattedProduct, $localInventories);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $productServiceClient->resumeOperation($operationName, 'addLocalInventories');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $productServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string           $product          Required. Full resource name of [Product][google.cloud.retail.v2.Product],
+     *                                           such as
+     *                                           `projects/&#42;/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     *
+     *                                           If the caller does not have permission to access the
+     *                                           [Product][google.cloud.retail.v2.Product], regardless of whether or not it
+     *                                           exists, a PERMISSION_DENIED error is returned.
+     * @param LocalInventory[] $localInventories Required. A list of inventory information at difference places. Each place
+     *                                           is identified by its place ID. At most 3000 inventories are allowed per
+     *                                           request.
+     * @param array            $optionalArgs     {
+     *     Optional.
+     *
+     *     @type FieldMask $addMask
+     *           Indicates which inventory fields in the provided list of
+     *           [LocalInventory][google.cloud.retail.v2.LocalInventory] to update. The
+     *           field is updated to the provided value.
+     *
+     *           If a field is set while the place does not have a previous local inventory,
+     *           the local inventory at that store is created.
+     *
+     *           If a field is set while the value of that field is not provided, the
+     *           original field value, if it exists, is deleted.
+     *
+     *           If the mask is not set or set with empty paths, all inventory fields will
+     *           be updated.
+     *
+     *           If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
+     *           is returned and the entire update will be ignored.
+     *     @type Timestamp $addTime
+     *           The time when the inventory updates are issued. Used to prevent
+     *           out-of-order updates on local inventory fields. If not provided, the
+     *           internal system time will be used.
+     *     @type bool $allowMissing
+     *           If set to true, and the [Product][google.cloud.retail.v2.Product] is not
+     *           found, the local inventory will still be processed and retained for at most
+     *           1 day and processed once the [Product][google.cloud.retail.v2.Product] is
+     *           created. If set to false, a NOT_FOUND error is returned if the
+     *           [Product][google.cloud.retail.v2.Product] is not found.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function addLocalInventories(
+        $product,
+        $localInventories,
+        array $optionalArgs = []
+    ) {
+        $request = new AddLocalInventoriesRequest();
+        $requestParamHeaders = [];
+        $request->setProduct($product);
+        $request->setLocalInventories($localInventories);
+        $requestParamHeaders['product'] = $product;
+        if (isset($optionalArgs['addMask'])) {
+            $request->setAddMask($optionalArgs['addMask']);
+        }
+
+        if (isset($optionalArgs['addTime'])) {
+            $request->setAddTime($optionalArgs['addTime']);
+        }
+
+        if (isset($optionalArgs['allowMissing'])) {
+            $request->setAllowMissing($optionalArgs['allowMissing']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'AddLocalInventories',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
@@ -809,15 +954,7 @@ class ProductServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Unique identifier provided by client, within the ancestor
-     *           dataset scope. Ensures idempotency and used for request deduplication.
-     *           Server-generated if unspecified. Up to 128 characters long and must match
-     *           the pattern: `[a-zA-Z0-9_]+`. This is returned as [Operation.name][] in
-     *           [ImportMetadata][google.cloud.retail.v2.ImportMetadata].
-     *
-     *           Only supported when
-     *           [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
-     *           is set to `FULL`.
+     *           Deprecated. This field has no effect.
      *     @type ImportErrorsConfig $errorsConfig
      *           The desired location of errors incurred during the Import.
      *     @type FieldMask $updateMask
@@ -1051,8 +1188,7 @@ class ProductServiceGapicClient
      * [ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Please submit a form [here](https://cloud.google.com/contact) to contact
-     * cloud sales if you are interested in using Retail Search.
+     * Please enable Retail Search on Cloud Console before using this feature.
      *
      * Sample code:
      * ```
@@ -1188,6 +1324,129 @@ class ProductServiceGapicClient
     }
 
     /**
+     * Remove local inventory information for a
+     * [Product][google.cloud.retail.v2.Product] at a list of places at a removal
+     * timestamp.
+     *
+     * This process is asynchronous. If the request is valid, the removal will be
+     * enqueued and processed downstream. As a consequence, when a response is
+     * returned, removals are not immediately manifested in the
+     * [Product][google.cloud.retail.v2.Product] queried by
+     * [GetProduct][google.cloud.retail.v2.ProductService.GetProduct] or
+     * [ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     *
+     * Local inventory information can only be removed using this method.
+     * [CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct] and
+     * [UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct] has no
+     * effect on local inventories.
+     *
+     * This feature is only available for users who have Retail Search enabled.
+     * Please enable Retail Search on Cloud Console before using this feature.
+     *
+     * Sample code:
+     * ```
+     * $productServiceClient = new ProductServiceClient();
+     * try {
+     *     $formattedProduct = $productServiceClient->productName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]', '[PRODUCT]');
+     *     $placeIds = [];
+     *     $operationResponse = $productServiceClient->removeLocalInventories($formattedProduct, $placeIds);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $productServiceClient->removeLocalInventories($formattedProduct, $placeIds);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $productServiceClient->resumeOperation($operationName, 'removeLocalInventories');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $productServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string   $product      Required. Full resource name of [Product][google.cloud.retail.v2.Product],
+     *                               such as
+     *                               `projects/&#42;/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     *
+     *                               If the caller does not have permission to access the
+     *                               [Product][google.cloud.retail.v2.Product], regardless of whether or not it
+     *                               exists, a PERMISSION_DENIED error is returned.
+     * @param string[] $placeIds     Required. A list of place IDs to have their inventory deleted.
+     *                               At most 3000 place IDs are allowed per request.
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type Timestamp $removeTime
+     *           The time when the inventory deletions are issued. Used to prevent
+     *           out-of-order updates and deletions on local inventory fields. If not
+     *           provided, the internal system time will be used.
+     *     @type bool $allowMissing
+     *           If set to true, and the [Product][google.cloud.retail.v2.Product] is not
+     *           found, the local inventory removal request will still be processed and
+     *           retained for at most 1 day and processed once the
+     *           [Product][google.cloud.retail.v2.Product] is created. If set to false, a
+     *           NOT_FOUND error is returned if the
+     *           [Product][google.cloud.retail.v2.Product] is not found.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function removeLocalInventories(
+        $product,
+        $placeIds,
+        array $optionalArgs = []
+    ) {
+        $request = new RemoveLocalInventoriesRequest();
+        $requestParamHeaders = [];
+        $request->setProduct($product);
+        $request->setPlaceIds($placeIds);
+        $requestParamHeaders['product'] = $product;
+        if (isset($optionalArgs['removeTime'])) {
+            $request->setRemoveTime($optionalArgs['removeTime']);
+        }
+
+        if (isset($optionalArgs['allowMissing'])) {
+            $request->setAllowMissing($optionalArgs['allowMissing']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'RemoveLocalInventories',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Updates inventory information for a
      * [Product][google.cloud.retail.v2.Product] while respecting the last update
      * timestamps of each inventory field.
@@ -1216,7 +1475,8 @@ class ProductServiceGapicClient
      * [CreateProductRequest.product][google.cloud.retail.v2.CreateProductRequest.product],
      * then any pre-existing inventory information for this product will be used.
      *
-     * If no inventory fields are set in [UpdateProductRequest.set_mask][],
+     * If no inventory fields are set in
+     * [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask],
      * then any existing inventory information will be preserved.
      *
      * Pre-existing inventory information can only be updated with
@@ -1226,8 +1486,7 @@ class ProductServiceGapicClient
      * [RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces].
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Please submit a form [here](https://cloud.google.com/contact) to contact
-     * cloud sales if you are interested in using Retail Search.
+     * Please enable Retail Search on Cloud Console before using this feature.
      *
      * Sample code:
      * ```
@@ -1292,6 +1551,24 @@ class ProductServiceGapicClient
      *                              provided or default value for
      *                              [SetInventoryRequest.set_time][google.cloud.retail.v2.SetInventoryRequest.set_time].
      *
+     *                              The caller can replace place IDs for a subset of fulfillment types in the
+     *                              following ways:
+     *
+     *                              * Adds "fulfillment_info" in
+     *                              [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask]
+     *                              * Specifies only the desired fulfillment types and corresponding place IDs
+     *                              to update in [SetInventoryRequest.inventory.fulfillment_info][]
+     *
+     *                              The caller can clear all place IDs from a subset of fulfillment types in
+     *                              the following ways:
+     *
+     *                              * Adds "fulfillment_info" in
+     *                              [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask]
+     *                              * Specifies only the desired fulfillment types to clear in
+     *                              [SetInventoryRequest.inventory.fulfillment_info][]
+     *                              * Checks that only the desired fulfillment info types have empty
+     *                              [SetInventoryRequest.inventory.fulfillment_info.place_ids][]
+     *
      *                              The last update time is recorded for the following inventory fields:
      *                              * [Product.price_info][google.cloud.retail.v2.Product.price_info]
      *                              * [Product.availability][google.cloud.retail.v2.Product.availability]
@@ -1305,8 +1582,9 @@ class ProductServiceGapicClient
      *
      *     @type FieldMask $setMask
      *           Indicates which inventory fields in the provided
-     *           [Product][google.cloud.retail.v2.Product] to update. If not set or set with
-     *           empty paths, all inventory fields will be updated.
+     *           [Product][google.cloud.retail.v2.Product] to update.
+     *
+     *           At least one field must be provided.
      *
      *           If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
      *           is returned and the entire update will be ignored.

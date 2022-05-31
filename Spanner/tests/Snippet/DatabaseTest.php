@@ -63,11 +63,19 @@ class DatabaseTest extends SnippetTestCase
     private $database;
     private $instance;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
         $session = $this->prophesize(Session::class);
+        $session->info()
+            ->willReturn([
+                'databaseName' => 'database'
+            ]);
+        $session->name()
+            ->willReturn('database');
+        $session->setExpiration(Argument::any())
+            ->willReturn(100);
 
         $sessionPool = $this->prophesize(SessionPoolInterface::class);
         $sessionPool->acquire(Argument::any())
@@ -130,7 +138,7 @@ class DatabaseTest extends SnippetTestCase
             ->WillReturn(['state' => Database::STATE_READY]);
 
         $this->database->___setProperty('connection', $this->connection->reveal());
-        
+
         $res = $snippet->invoke();
         $this->assertEquals('Database is ready!', $res->output());
     }
@@ -275,7 +283,7 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'restore');
         $snippet->addLocal('database', $this->database);
         $snippet->addLocal('backup', $backup);
-        
+
         $this->connection->restoreDatabase(Argument::any())
             ->shouldBeCalled()
             ->willReturn([

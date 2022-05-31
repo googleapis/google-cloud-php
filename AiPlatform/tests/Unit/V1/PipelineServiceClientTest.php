@@ -39,7 +39,6 @@ use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
-use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
 use Google\Rpc\Code;
 use stdClass;
@@ -215,17 +214,17 @@ class PipelineServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $serviceAccount = 'serviceAccount-1948028253';
         $network = 'network1843485230';
+        $templateUri = 'templateUri-975637465';
         $expectedResponse = new PipelineJob();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setNetwork($network);
+        $expectedResponse->setTemplateUri($templateUri);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $pipelineJob = new PipelineJob();
-        $pipelineJobPipelineSpec = new Struct();
-        $pipelineJob->setPipelineSpec($pipelineJobPipelineSpec);
         $response = $client->createPipelineJob($formattedParent, $pipelineJob);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -263,8 +262,6 @@ class PipelineServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $pipelineJob = new PipelineJob();
-        $pipelineJobPipelineSpec = new Struct();
-        $pipelineJob->setPipelineSpec($pipelineJobPipelineSpec);
         try {
             $client->createPipelineJob($formattedParent, $pipelineJob);
             // If the $client method call did not throw, fail the test
@@ -619,11 +616,13 @@ class PipelineServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $serviceAccount = 'serviceAccount-1948028253';
         $network = 'network1843485230';
+        $templateUri = 'templateUri-975637465';
         $expectedResponse = new PipelineJob();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setNetwork($network);
+        $expectedResponse->setTemplateUri($templateUri);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->pipelineJobName('[PROJECT]', '[LOCATION]', '[PIPELINE_JOB]');

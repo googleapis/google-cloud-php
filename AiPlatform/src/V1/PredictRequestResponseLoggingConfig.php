@@ -30,7 +30,7 @@ class PredictRequestResponseLoggingConfig extends \Google\Protobuf\Internal\Mess
     private $sampling_rate = 0.0;
     /**
      * BigQuery table for logging.
-     * If only given project, a new dataset will be created with name
+     * If only given a project, a new dataset will be created with name
      * `logging_<endpoint-display-name>_<endpoint-id>` where
      * <endpoint-display-name> will be made BigQuery-dataset-name compatible (e.g.
      * most special characters will become underscores). If no table name is
@@ -53,7 +53,7 @@ class PredictRequestResponseLoggingConfig extends \Google\Protobuf\Internal\Mess
      *           range(0,1].
      *     @type \Google\Cloud\AIPlatform\V1\BigQueryDestination $bigquery_destination
      *           BigQuery table for logging.
-     *           If only given project, a new dataset will be created with name
+     *           If only given a project, a new dataset will be created with name
      *           `logging_<endpoint-display-name>_<endpoint-id>` where
      *           <endpoint-display-name> will be made BigQuery-dataset-name compatible (e.g.
      *           most special characters will become underscores). If no table name is
@@ -121,7 +121,7 @@ class PredictRequestResponseLoggingConfig extends \Google\Protobuf\Internal\Mess
 
     /**
      * BigQuery table for logging.
-     * If only given project, a new dataset will be created with name
+     * If only given a project, a new dataset will be created with name
      * `logging_<endpoint-display-name>_<endpoint-id>` where
      * <endpoint-display-name> will be made BigQuery-dataset-name compatible (e.g.
      * most special characters will become underscores). If no table name is
@@ -147,7 +147,7 @@ class PredictRequestResponseLoggingConfig extends \Google\Protobuf\Internal\Mess
 
     /**
      * BigQuery table for logging.
-     * If only given project, a new dataset will be created with name
+     * If only given a project, a new dataset will be created with name
      * `logging_<endpoint-display-name>_<endpoint-id>` where
      * <endpoint-display-name> will be made BigQuery-dataset-name compatible (e.g.
      * most special characters will become underscores). If no table name is

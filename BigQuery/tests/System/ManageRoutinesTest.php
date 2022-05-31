@@ -27,9 +27,9 @@ class ManageRoutinesTest extends BigQueryTestCase
 {
     private static $routines = [];
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
 
         for ($i = 0; $i < 2; $i++) {
             $routineId = uniqid(self::TESTING_PREFIX);

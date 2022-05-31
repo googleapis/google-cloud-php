@@ -21,7 +21,7 @@ use Google\Cloud\Bigtable\Filter;
 use Google\Cloud\Bigtable\Filter\ValueRangeFilter;
 use Google\Cloud\Bigtable\V2\ValueRange;
 use Google\Cloud\Bigtable\V2\RowFilter;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group bigtable
@@ -31,7 +31,7 @@ class ValueRangeFilterTest extends TestCase
 {
     private $valueRangeFilter;
 
-    public function setUp()
+    public function set_up()
     {
         $this->valueRangeFilter = new ValueRangeFilter();
     }

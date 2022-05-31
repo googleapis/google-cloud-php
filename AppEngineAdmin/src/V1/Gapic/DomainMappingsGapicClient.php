@@ -554,7 +554,7 @@ class DomainMappingsGapicClient
      *           A domain mapping containing the updated resource. Only fields set
      *           in the field mask will be updated.
      *     @type FieldMask $updateMask
-     *           Standard field mask for the set of fields to be updated.
+     *           Required. Standard field mask for the set of fields to be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry

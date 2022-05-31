@@ -33,7 +33,7 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Timestamp;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -61,7 +61,7 @@ class BackupTest extends TestCase
     private $backup;
     private $copiedBackup;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -91,7 +91,7 @@ class BackupTest extends TestCase
             'instance', 'connection'
         ];
         $this->backup = TestHelpers::stub(Backup::class, $args, $props);
-        
+
         // copiedBackup will contain a mock of the backup object where
         // $backup will be copied into
         $copyArgs = $args;

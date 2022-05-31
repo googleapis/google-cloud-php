@@ -34,7 +34,8 @@ use Google\Protobuf\StringValue;
 use Google\Protobuf\BytesValue;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group bigtable
@@ -43,6 +44,8 @@ use PHPUnit\Framework\TestCase;
  */
 class SmartRetriesTest extends TestCase
 {
+    use ExpectException;
+
     const HEADER = 'my-header';
     const HEADER_VALUE = 'my-header-value';
     const APP_PROFILE = 'my-app-profile';
@@ -56,7 +59,7 @@ class SmartRetriesTest extends TestCase
     private $retryingApiException;
     private $nonRetryingApiException;
 
-    public function setUp()
+    public function set_up()
     {
         $this->retryingApiException = new ApiException(
             'DEADLINE_EXCEEDED',
@@ -81,12 +84,11 @@ class SmartRetriesTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException Google\ApiCore\ApiException
-     * @expectedExceptionMessage DEADLINE_EXCEEDED
-     */
     public function testReadRowsShouldRetryDefaultTimes()
     {
+        $this->expectException('Google\ApiCore\ApiException');
+        $this->expectExceptionMessage('DEADLINE_EXCEEDED');
+
         $expectedArgs = $this->options;
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(4)
@@ -103,12 +105,11 @@ class SmartRetriesTest extends TestCase
         $iterator->getIterator()->current();
     }
 
-    /**
-     * @expectedException Google\ApiCore\ApiException
-     * @expectedExceptionMessage DEADLINE_EXCEEDED
-     */
     public function testReadRowsShouldRetryForProvidedAttempts()
     {
+        $this->expectException('Google\ApiCore\ApiException');
+        $this->expectExceptionMessage('DEADLINE_EXCEEDED');
+
         $expectedArgs = $this->options;
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(6)
@@ -450,12 +451,11 @@ class SmartRetriesTest extends TestCase
         $this->assertEquals($expectedRows, $rows);
     }
 
-    /**
-     * @expectedException Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage DEADLINE_EXCEEDED
-     */
     public function testMutateRowsShouldRetryDefaultNumberOfTimes()
     {
+        $this->expectException('Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectExceptionMessage('DEADLINE_EXCEEDED');
+
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(4)
             ->willThrow(
@@ -471,12 +471,11 @@ class SmartRetriesTest extends TestCase
         $this->table->mutateRows($mutations);
     }
 
-    /**
-     * @expectedException Google\Cloud\Bigtable\Exception\BigtableDataOperationException
-     * @expectedExceptionMessage DEADLINE_EXCEEDED
-     */
     public function testMutateRowsRespectRetriesAttempt()
     {
+        $this->expectException('Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
+        $this->expectExceptionMessage('DEADLINE_EXCEEDED');
+
         $this->serverStream->readAll()
             ->shouldBeCalledTimes(6)
             ->willThrow(

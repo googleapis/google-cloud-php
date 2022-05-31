@@ -20,7 +20,7 @@ namespace Google\Cloud\Datastore\Tests\Unit\Query;
 use Google\Cloud\Datastore\Cursor;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Query\GqlQuery;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group datastore
@@ -29,7 +29,7 @@ class GqlQueryTest extends TestCase
 {
     private $mapper;
 
-    public function setUp()
+    public function set_up()
     {
         $this->mapper = new EntityMapper('foo', true, false);
     }
