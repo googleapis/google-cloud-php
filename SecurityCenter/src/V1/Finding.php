@@ -164,8 +164,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $mute_update_time = null;
     /**
-     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
-     * information and external system finding fields.
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external
+     * system information and external system finding fields.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -200,11 +200,30 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $mute_initiator = '';
     /**
+     * Represents operating system processes associated with the Finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Process processes = 30;</code>
+     */
+    private $processes;
+    /**
+     * Contains compliance information for security standards associated to the
+     * finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Compliance compliances = 34;</code>
+     */
+    private $compliances;
+    /**
      * Contains more detail about the finding.
      *
      * Generated from protobuf field <code>string description = 37;</code>
      */
     private $description = '';
+    /**
+     * Represents exfiltration associated with the Finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Exfiltration exfiltration = 38;</code>
+     */
+    private $exfiltration = null;
     /**
      * Represents IAM bindings associated with the Finding.
      *
@@ -300,8 +319,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $mute_update_time
      *           Output only. The most recent time this finding was muted or unmuted.
      *     @type array|\Google\Protobuf\Internal\MapField $external_systems
-     *           Output only. Third party SIEM/SOAR fields within SCC, contains external system
-     *           information and external system finding fields.
+     *           Output only. Third party SIEM/SOAR fields within SCC, contains external
+     *           system information and external system finding fields.
      *     @type \Google\Cloud\SecurityCenter\V1\MitreAttack $mitre_attack
      *           MITRE ATT&CK tactics and techniques related to this finding.
      *           See: https://attack.mitre.org
@@ -315,8 +334,15 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           mute operation e.g. mute config that muted the finding, user who muted the
      *           finding, etc. Unlike other attributes of a finding, a finding provider
      *           shouldn't set the value of mute.
+     *     @type \Google\Cloud\SecurityCenter\V1\Process[]|\Google\Protobuf\Internal\RepeatedField $processes
+     *           Represents operating system processes associated with the Finding.
+     *     @type \Google\Cloud\SecurityCenter\V1\Compliance[]|\Google\Protobuf\Internal\RepeatedField $compliances
+     *           Contains compliance information for security standards associated to the
+     *           finding.
      *     @type string $description
      *           Contains more detail about the finding.
+     *     @type \Google\Cloud\SecurityCenter\V1\Exfiltration $exfiltration
+     *           Represents exfiltration associated with the Finding.
      *     @type \Google\Cloud\SecurityCenter\V1\IamBinding[]|\Google\Protobuf\Internal\RepeatedField $iam_bindings
      *           Represents IAM bindings associated with the Finding.
      *     @type string $next_steps
@@ -913,8 +939,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
-     * information and external system finding fields.
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external
+     * system information and external system finding fields.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -925,8 +951,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
-     * information and external system finding fields.
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external
+     * system information and external system finding fields.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -1075,6 +1101,60 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Represents operating system processes associated with the Finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Process processes = 30;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getProcesses()
+    {
+        return $this->processes;
+    }
+
+    /**
+     * Represents operating system processes associated with the Finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Process processes = 30;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\Process[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setProcesses($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\Process::class);
+        $this->processes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Contains compliance information for security standards associated to the
+     * finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Compliance compliances = 34;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCompliances()
+    {
+        return $this->compliances;
+    }
+
+    /**
+     * Contains compliance information for security standards associated to the
+     * finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Compliance compliances = 34;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\Compliance[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCompliances($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\Compliance::class);
+        $this->compliances = $arr;
+
+        return $this;
+    }
+
+    /**
      * Contains more detail about the finding.
      *
      * Generated from protobuf field <code>string description = 37;</code>
@@ -1096,6 +1176,42 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Represents exfiltration associated with the Finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Exfiltration exfiltration = 38;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\Exfiltration|null
+     */
+    public function getExfiltration()
+    {
+        return $this->exfiltration;
+    }
+
+    public function hasExfiltration()
+    {
+        return isset($this->exfiltration);
+    }
+
+    public function clearExfiltration()
+    {
+        unset($this->exfiltration);
+    }
+
+    /**
+     * Represents exfiltration associated with the Finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Exfiltration exfiltration = 38;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\Exfiltration $var
+     * @return $this
+     */
+    public function setExfiltration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Exfiltration::class);
+        $this->exfiltration = $var;
 
         return $this;
     }
