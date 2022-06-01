@@ -41,7 +41,8 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      * * "custom-type-5"
      * If this field is set to an invalid value other than these, an
      * INVALID_ARGUMENT error is returned.
-     * This field directly corresponds to [Product.fulfillment_info.type][].
+     * This field directly corresponds to
+     * [Product.fulfillment_info.type][google.cloud.retail.v2.FulfillmentInfo.type].
      *
      * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -108,7 +109,8 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      *           * "custom-type-5"
      *           If this field is set to an invalid value other than these, an
      *           INVALID_ARGUMENT error is returned.
-     *           This field directly corresponds to [Product.fulfillment_info.type][].
+     *           This field directly corresponds to
+     *           [Product.fulfillment_info.type][google.cloud.retail.v2.FulfillmentInfo.type].
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $place_ids
      *           Required. The IDs for this
      *           [type][google.cloud.retail.v2.RemoveFulfillmentPlacesRequest.type], such as
@@ -188,7 +190,8 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      * * "custom-type-5"
      * If this field is set to an invalid value other than these, an
      * INVALID_ARGUMENT error is returned.
-     * This field directly corresponds to [Product.fulfillment_info.type][].
+     * This field directly corresponds to
+     * [Product.fulfillment_info.type][google.cloud.retail.v2.FulfillmentInfo.type].
      *
      * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -213,7 +216,8 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      * * "custom-type-5"
      * If this field is set to an invalid value other than these, an
      * INVALID_ARGUMENT error is returned.
-     * This field directly corresponds to [Product.fulfillment_info.type][].
+     * This field directly corresponds to
+     * [Product.fulfillment_info.type][google.cloud.retail.v2.FulfillmentInfo.type].
      *
      * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

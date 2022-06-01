@@ -20,7 +20,7 @@ class PurgeUserEventsRequest extends \Google\Protobuf\Internal\Message
      * created. The format is
      * `projects/${projectId}/locations/global/catalogs/${catalogId}`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -102,7 +102,7 @@ class PurgeUserEventsRequest extends \Google\Protobuf\Internal\Message
      * created. The format is
      * `projects/${projectId}/locations/global/catalogs/${catalogId}`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -115,7 +115,7 @@ class PurgeUserEventsRequest extends \Google\Protobuf\Internal\Message
      * created. The format is
      * `projects/${projectId}/locations/global/catalogs/${catalogId}`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

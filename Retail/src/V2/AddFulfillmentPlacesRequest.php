@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [AddFulfillmentPlaces][] method.
+ * Request message for
+ * [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.AddFulfillmentPlacesRequest</code>
  */
