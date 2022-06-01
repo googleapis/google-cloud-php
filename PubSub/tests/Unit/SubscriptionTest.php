@@ -46,6 +46,8 @@ class SubscriptionTest extends TestCase
 
     private $subscription;
     private $connection;
+    private $ackIds;
+    private $messages;
 
     public function set_up()
     {
@@ -57,6 +59,15 @@ class SubscriptionTest extends TestCase
             'topic-name',
             true
         ], ['connection', 'info']);
+        $this->ackIds = [
+            'foobar',
+            'otherAckId'
+        ];
+
+        $this->messages = [];
+        foreach ($this->ackIds as $id) {
+            $this->messages[] = new Message([], ['ackId' => $id]);
+        }
     }
 
     public function testName()
@@ -424,24 +435,14 @@ class SubscriptionTest extends TestCase
 
     public function testAcknowledgeBatch()
     {
-        $ackIds = [
-            'foobar',
-            'otherAckId'
-        ];
-
-        $messages = [];
-        foreach ($ackIds as $id) {
-            $messages[] = new Message([], ['ackId' => $id]);
-        }
-
         $this->connection->acknowledge(Argument::allOf(
             Argument::withEntry('foo', 'bar'),
-            Argument::withEntry('ackIds', $ackIds)
+            Argument::withEntry('ackIds', $this->ackIds)
         ))->shouldBeCalledTimes(1);
 
         $this->subscription->___setProperty('connection', $this->connection->reveal());
 
-        $this->subscription->acknowledgeBatch($messages, ['foo' => 'bar']);
+        $this->subscription->acknowledgeBatch($this->messages, ['foo' => 'bar']);
     }
 
     /**
@@ -450,27 +451,20 @@ class SubscriptionTest extends TestCase
      */
     public function testAcknowledgeBatchSuppressExceptionsForEod()
     {
-        $ackIds = [
-            'foobar',
-            'otherAckId'
+        $metadata = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
         ];
-
-        $messages = [];
-        foreach ($ackIds as $id) {
-            $messages[] = new Message([], ['ackId' => $id]);
-        }
-        
-        // The JSON exception msg for a failure in a sub with EOD enabled
-        $exMsg = '{"error":{"code":400,"message":"...","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"EXACTLY_ONCE_ACKID_FAILURE","domain":"pubsub.googleapis.com","metadata":{"foobar":"PERMANENT_FAILURE_INVALID_ACK_ID","otherAckId":"PERMANENT_FAILURE_INVALID_ACK_ID"}},{"@type":"type.googleapis.com/google.rpc.DebugInfo","detail":"..."}]}}';//phpcs:ignore
+        $ex = $this->generateEodException($metadata);
 
         $this->connection->acknowledge(Argument::allOf(
-            Argument::withEntry('ackIds', $ackIds)
-        ))->willThrow(new BadRequestException($exMsg));
+            Argument::withEntry('ackIds', $this->ackIds)
+        ))->willThrow($ex);
 
         $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         try {
-            $this->subscription->acknowledgeBatch($messages);
+            $this->subscription->acknowledgeBatch($this->messages);
             $this->assertTrue(true);
         } catch (BadRequestException $e) {
             // if there was an exception, then our test failed
@@ -484,28 +478,23 @@ class SubscriptionTest extends TestCase
      */
     public function testAcknowledgeBatchThrowsForNonEod()
     {
-        $ackIds = [
-            'foobar',
-            'otherAckId'
+        $metadata = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
         ];
 
-        $messages = [];
-        foreach ($ackIds as $id) {
-            $messages[] = new Message([], ['ackId' => $id]);
-        }
-        
         // If an exception has a reason different than 'EXACTLY_ONCE_ACKID_FAILURE'
         // in it's exception msg, then it should bubble up
-        $exMsg = '{"error":{"code":400,"message":"...","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"FAILURE_REASON","domain":"pubsub.googleapis.com","metadata":{"foobar":"PERMANENT_FAILURE_INVALID_ACK_ID","otherAckId":"PERMANENT_FAILURE_INVALID_ACK_ID"}},{"@type":"type.googleapis.com/google.rpc.DebugInfo","detail":"..."}]}}';//phpcs:ignore
+        $ex = $this->generateEodException($metadata, 'FAILURE_REASON');
 
         $this->connection->acknowledge(Argument::allOf(
-            Argument::withEntry('ackIds', $ackIds)
-        ))->willThrow(new BadRequestException($exMsg));
+            Argument::withEntry('ackIds', $this->ackIds)
+        ))->willThrow($ex);
 
         $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         try {
-            $this->subscription->acknowledgeBatch($messages);
+            $this->subscription->acknowledgeBatch($this->messages);
             $this->fail();
         } catch (BadRequestException $e) {
             // we expect the exception so, our test passes
@@ -542,27 +531,17 @@ class SubscriptionTest extends TestCase
 
     public function testModifyAckDeadlineBatch()
     {
-        $ackIds = [
-            'foobar',
-            'otherAckId'
-        ];
-
-        $messages = [];
-        foreach ($ackIds as $id) {
-            $messages[] = new Message([], ['ackId' => $id]);
-        }
-
         $seconds = 100;
 
         $this->connection->modifyAckDeadline(Argument::allOf(
             Argument::withEntry('foo', 'bar'),
-            Argument::withEntry('ackIds', $ackIds),
+            Argument::withEntry('ackIds', $this->ackIds),
             Argument::withEntry('ackDeadlineSeconds', $seconds)
         ))->shouldBeCalledTimes(1);
 
         $this->subscription->___setProperty('connection', $this->connection->reveal());
 
-        $this->subscription->modifyAckDeadlineBatch($messages, $seconds, ['foo' => 'bar']);
+        $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds, ['foo' => 'bar']);
     }
 
     /**
@@ -571,30 +550,22 @@ class SubscriptionTest extends TestCase
      */
     public function testmodifyAckDeadlineBatchSuppressesExceptionsForEod()
     {
-        $ackIds = [
-            'foobar',
-            'otherAckId'
-        ];
         $seconds = 10;
-        $messages = [];
-
-        foreach ($ackIds as $id) {
-            $messages[] = new Message([], ['ackId' => $id]);
-        }
-        
-        // The JSON exception msg for a failure in a sub with EOD enabled
-        $exMsg = '{"error":{"code":400,"message":"...","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"EXACTLY_ONCE_ACKID_FAILURE","domain":"pubsub.googleapis.com","metadata":{"foobar":"PERMANENT_FAILURE_INVALID_ACK_ID","otherAckId":"PERMANENT_FAILURE_INVALID_ACK_ID"}},{"@type":"type.googleapis.com/google.rpc.DebugInfo","detail":"..."}]}}';//phpcs:ignore
-
+        $metadata = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+        $ex = $this->generateEodException($metadata);
 
         $this->connection->modifyAckDeadline(Argument::allOf(
-            Argument::withEntry('ackIds', $ackIds),
+            Argument::withEntry('ackIds', $this->ackIds),
             Argument::withEntry('ackDeadlineSeconds', $seconds)
-        ))->willThrow(new BadRequestException($exMsg));
+        ))->willThrow($ex);
 
         $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         try {
-            $this->subscription->modifyAckDeadlineBatch($messages, $seconds);
+            $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds);
             $this->assertTrue(true);
         } catch (BadRequestException $e) {
             // if there was an exception, then our test failed
@@ -608,30 +579,24 @@ class SubscriptionTest extends TestCase
      */
     public function testmodifyAckDeadlineBatchThrowsForNonEod()
     {
-        $ackIds = [
-            'foobar',
-            'otherAckId'
+        $metadata = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
         ];
         $seconds = 10;
-        $messages = [];
-        
-        foreach ($ackIds as $id) {
-            $messages[] = new Message([], ['ackId' => $id]);
-        }
-        
         // If an exception has a reason different than 'EXACTLY_ONCE_ACKID_FAILURE'
         // in it's exception msg, then it should bubble up
-        $exMsg = '{"error":{"code":400,"message":"...","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"FAILURE_REASON","domain":"pubsub.googleapis.com","metadata":{"foobar":"PERMANENT_FAILURE_INVALID_ACK_ID","otherAckId":"PERMANENT_FAILURE_INVALID_ACK_ID"}},{"@type":"type.googleapis.com/google.rpc.DebugInfo","detail":"..."}]}}';//phpcs:ignore
+        $ex = $this->generateEodException($metadata, 'FAILURE_REASON');
 
         $this->connection->modifyAckDeadline(Argument::allOf(
-            Argument::withEntry('ackIds', $ackIds),
+            Argument::withEntry('ackIds', $this->ackIds),
             Argument::withEntry('ackDeadlineSeconds', $seconds)
-        ))->willThrow(new BadRequestException($exMsg));
+        ))->willThrow($ex);
 
         $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         try {
-            $this->subscription->modifyAckDeadlineBatch($messages, $seconds);
+            $this->subscription->modifyAckDeadlineBatch($this->messages, $seconds);
             $this->fail();
         } catch (BadRequestException $e) {
             // we expect the exception so, our test passes
@@ -714,5 +679,32 @@ class SubscriptionTest extends TestCase
         $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $this->assertEquals([], $this->subscription->detach());
+    }
+
+    // Helper method to generate the exception sent during an invalid EOD operation
+    // like acknowledge or modifyAckDeadline
+    private function generateEodException($metadata, $failureReason = 'EXACTLY_ONCE_ACKID_FAILURE')
+    {
+        $arr = [
+            'error' => [
+                'code' => 400,
+                'message' => '',
+                'status' => 'INVALID_ARGUMENT',
+                'details' => [
+                    [
+                        '@type' => 'type.googleapis.com/google.rpc.ErrorInfo',
+                        'reason' => $failureReason,
+                        'domain' => 'pubsub.googleapis.com',
+                        'metadata' => $metadata
+                    ],
+                    [
+                        '@type' => 'type.googleapis.com/google.rpc.DebugInfo',
+                        'detail' => ''
+                    ]
+                ]
+            ]
+        ];
+
+        return new BadRequestException(json_encode($arr));
     }
 }

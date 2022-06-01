@@ -92,7 +92,7 @@ class Subscription
     // with EOD enabled or not
     const EXACTLY_ONCE_FAILURE_REASON = 'EXACTLY_ONCE_ACKID_FAILURE';
     const EXACTLY_ONCE_TRANSIENT_FAILURE_PREFIX = 'TRANSIENT_FAILURE';
-    // The max time an exponential retry should delay for in microseconds
+    // The max time an exponential retry should delay for(in microseconds)
     // set to 10 mins.
     const EXACTLY_ONCE_MAX_RETRY_TIME = 600000000;
 
@@ -757,10 +757,10 @@ class Subscription
 
     /**
      * Helper that sends an acknowledge request but with retries.
-     * 
+     *
      * @param Message[] $messages An array of messages
      * @param array $options Configuration Options
-     * 
+     *
      * @return array|void Array of messages which failed permanently
      */
     private function acknowledgeBatchWithRetries(array $messages, array $options = [])
@@ -773,7 +773,7 @@ class Subscription
         
         // min delay of 1 sec, max delay of 10 minutes
         // doubles on every attempt
-        $delayFunc = function($attempt){
+        $delayFunc = function ($attempt) {
             $delay = min(
                 (pow(2, $attempt) * 1000000),
                 self::EXACTLY_ONCE_MAX_RETRY_TIME
@@ -782,7 +782,7 @@ class Subscription
         };
 
         // Func that decides if we need to retry again or not
-        $retryFunc = function(BadRequestException $e, $attempt) use(&$messages, &$failed, &$eodEnabled){
+        $retryFunc = function (BadRequestException $e, $attempt) use (&$messages, &$failed, &$eodEnabled) {
             // If the subscription isn't EOD enabled, the method behaves as the acknowledge method.
             // Info from the exception is used instead of $subscription->info() to avoid
             // the need of `pubsub.subscriptions.get` permission.
@@ -794,8 +794,8 @@ class Subscription
             $retryAckIds = $this->getRetryableAckIds($e);
 
             // Find the messages which can be retried
-            $messages = array_filter($messages, function($message) use($retryAckIds, &$failed){
-                if( in_array($message->ackId(), $retryAckIds) ){
+            $messages = array_filter($messages, function ($message) use ($retryAckIds, &$failed) {
+                if (in_array($message->ackId(), $retryAckIds)) {
                     return true;
                 }
 
@@ -817,14 +817,14 @@ class Subscription
 
         // Try to ack the messages with an ExponentialBackoff
         try {
-            $backoff->execute(function() use($options, &$messages){
+            $backoff->execute(function () use ($options, &$messages) {
                 $this->connection->acknowledge($options + [
                     'subscription' => $this->name,
                     'ackIds' => $this->getMessageAckIds($messages)
                 ]);
             });
+        } catch (BadRequestException $e) {
         }
-        catch (BadRequestException $e) {}
 
         // We don't return anything if EOD is disabled
         // to make it behave like if the flag `returnFailures` wasn't set.
