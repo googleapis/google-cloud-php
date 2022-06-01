@@ -41,7 +41,10 @@ class PriceInfo extends \Google\Protobuf\Internal\Message
     private $price = 0.0;
     /**
      * Price of the product without any discount. If zero, by default set to be
-     * the [price][google.cloud.retail.v2.PriceInfo.price].
+     * the [price][google.cloud.retail.v2.PriceInfo.price]. If set,
+     * [original_price][google.cloud.retail.v2.PriceInfo.original_price] should be
+     * greater than or equal to [price][google.cloud.retail.v2.PriceInfo.price],
+     * otherwise an INVALID_ARGUMENT error is thrown.
      *
      * Generated from protobuf field <code>float original_price = 3;</code>
      */
@@ -130,7 +133,10 @@ class PriceInfo extends \Google\Protobuf\Internal\Message
      *           property [Offer.price](https://schema.org/price).
      *     @type float $original_price
      *           Price of the product without any discount. If zero, by default set to be
-     *           the [price][google.cloud.retail.v2.PriceInfo.price].
+     *           the [price][google.cloud.retail.v2.PriceInfo.price]. If set,
+     *           [original_price][google.cloud.retail.v2.PriceInfo.original_price] should be
+     *           greater than or equal to [price][google.cloud.retail.v2.PriceInfo.price],
+     *           otherwise an INVALID_ARGUMENT error is thrown.
      *     @type float $cost
      *           The costs associated with the sale of a particular product. Used for gross
      *           profit reporting.
@@ -259,7 +265,10 @@ class PriceInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Price of the product without any discount. If zero, by default set to be
-     * the [price][google.cloud.retail.v2.PriceInfo.price].
+     * the [price][google.cloud.retail.v2.PriceInfo.price]. If set,
+     * [original_price][google.cloud.retail.v2.PriceInfo.original_price] should be
+     * greater than or equal to [price][google.cloud.retail.v2.PriceInfo.price],
+     * otherwise an INVALID_ARGUMENT error is thrown.
      *
      * Generated from protobuf field <code>float original_price = 3;</code>
      * @return float
@@ -271,7 +280,10 @@ class PriceInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * Price of the product without any discount. If zero, by default set to be
-     * the [price][google.cloud.retail.v2.PriceInfo.price].
+     * the [price][google.cloud.retail.v2.PriceInfo.price]. If set,
+     * [original_price][google.cloud.retail.v2.PriceInfo.original_price] should be
+     * greater than or equal to [price][google.cloud.retail.v2.PriceInfo.price],
+     * otherwise an INVALID_ARGUMENT error is thrown.
      *
      * Generated from protobuf field <code>float original_price = 3;</code>
      * @param float $var

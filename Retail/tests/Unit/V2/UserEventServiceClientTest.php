@@ -315,9 +315,9 @@ class UserEventServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $client->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         $filter = 'filter-1274492040';
-        $response = $client->purgeUserEvents($parent, $filter);
+        $response = $client->purgeUserEvents($formattedParent, $filter);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -328,7 +328,7 @@ class UserEventServiceClientTest extends GeneratedTest
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.retail.v2.UserEventService/PurgeUserEvents', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualApiRequestObject->getFilter();
         $this->assertProtobufEquals($filter, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -384,9 +384,9 @@ class UserEventServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $client->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         $filter = 'filter-1274492040';
-        $response = $client->purgeUserEvents($parent, $filter);
+        $response = $client->purgeUserEvents($formattedParent, $filter);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

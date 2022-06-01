@@ -22,7 +22,7 @@ class SpellCorrectionSpec extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.SpellCorrectionSpec.Mode mode = 1;</code>
      */
-    protected $mode = 0;
+    private $mode = 0;
 
     /**
      * Constructor.
@@ -73,6 +73,4 @@ class SpellCorrectionSpec extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SpellCorrectionSpec::class, \Google\Cloud\Retail\V2\SearchRequest_SpellCorrectionSpec::class);
 

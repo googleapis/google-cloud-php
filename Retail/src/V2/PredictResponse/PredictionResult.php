@@ -24,9 +24,9 @@ class PredictionResult extends \Google\Protobuf\Internal\Message
     /**
      * Additional product metadata / annotations.
      * Possible values:
-     * * `product`: JSON representation of the product. Will be set if
+     * * `product`: JSON representation of the product. Is set if
      *   `returnProduct` is set to true in `PredictRequest.params`.
-     * * `score`: Prediction score in double value. Will be set if
+     * * `score`: Prediction score in double value. Is set if
      *   `returnScore` is set to true in `PredictRequest.params`.
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> metadata = 2;</code>
@@ -44,9 +44,9 @@ class PredictionResult extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           Additional product metadata / annotations.
      *           Possible values:
-     *           * `product`: JSON representation of the product. Will be set if
+     *           * `product`: JSON representation of the product. Is set if
      *             `returnProduct` is set to true in `PredictRequest.params`.
-     *           * `score`: Prediction score in double value. Will be set if
+     *           * `score`: Prediction score in double value. Is set if
      *             `returnScore` is set to true in `PredictRequest.params`.
      * }
      */
@@ -84,9 +84,9 @@ class PredictionResult extends \Google\Protobuf\Internal\Message
     /**
      * Additional product metadata / annotations.
      * Possible values:
-     * * `product`: JSON representation of the product. Will be set if
+     * * `product`: JSON representation of the product. Is set if
      *   `returnProduct` is set to true in `PredictRequest.params`.
-     * * `score`: Prediction score in double value. Will be set if
+     * * `score`: Prediction score in double value. Is set if
      *   `returnScore` is set to true in `PredictRequest.params`.
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> metadata = 2;</code>
@@ -100,9 +100,9 @@ class PredictionResult extends \Google\Protobuf\Internal\Message
     /**
      * Additional product metadata / annotations.
      * Possible values:
-     * * `product`: JSON representation of the product. Will be set if
+     * * `product`: JSON representation of the product. Is set if
      *   `returnProduct` is set to true in `PredictRequest.params`.
-     * * `score`: Prediction score in double value. Will be set if
+     * * `score`: Prediction score in double value. Is set if
      *   `returnScore` is set to true in `PredictRequest.params`.
      *
      * Generated from protobuf field <code>map<string, .google.protobuf.Value> metadata = 2;</code>

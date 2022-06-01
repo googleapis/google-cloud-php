@@ -11,7 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Metadata related to the progress of the AddLocalInventories operation.
  * Currently empty because there is no meaningful metadata populated from the
- * [AddLocalInventories][] method.
+ * [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.AddLocalInventoriesMetadata</code>
  */

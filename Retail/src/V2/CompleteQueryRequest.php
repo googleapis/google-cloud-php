@@ -74,9 +74,9 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * events. If leave empty, it will use the "user-data".
      * Current supported values:
      * * user-data
-     * * cloud-retail
-     *   This option requires additional allowlisting. Before using cloud-retail,
-     *   contact Cloud Retail support team first.
+     * * cloud-retail:
+     *   This option requires enabling auto-learning function first. See
+     *   [guidelines](https://cloud.google.com/retail/docs/completion-overview#generated-completion-dataset).
      *
      * Generated from protobuf field <code>string dataset = 6;</code>
      */
@@ -136,9 +136,9 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           events. If leave empty, it will use the "user-data".
      *           Current supported values:
      *           * user-data
-     *           * cloud-retail
-     *             This option requires additional allowlisting. Before using cloud-retail,
-     *             contact Cloud Retail support team first.
+     *           * cloud-retail:
+     *             This option requires enabling auto-learning function first. See
+     *             [guidelines](https://cloud.google.com/retail/docs/completion-overview#generated-completion-dataset).
      *     @type int $max_suggestions
      *           Completion max suggestions. If left unset or set to 0, then will fallback
      *           to the configured value [CompletionConfig.max_suggestions][].
@@ -331,9 +331,9 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * events. If leave empty, it will use the "user-data".
      * Current supported values:
      * * user-data
-     * * cloud-retail
-     *   This option requires additional allowlisting. Before using cloud-retail,
-     *   contact Cloud Retail support team first.
+     * * cloud-retail:
+     *   This option requires enabling auto-learning function first. See
+     *   [guidelines](https://cloud.google.com/retail/docs/completion-overview#generated-completion-dataset).
      *
      * Generated from protobuf field <code>string dataset = 6;</code>
      * @return string
@@ -351,9 +351,9 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * events. If leave empty, it will use the "user-data".
      * Current supported values:
      * * user-data
-     * * cloud-retail
-     *   This option requires additional allowlisting. Before using cloud-retail,
-     *   contact Cloud Retail support team first.
+     * * cloud-retail:
+     *   This option requires enabling auto-learning function first. See
+     *   [guidelines](https://cloud.google.com/retail/docs/completion-overview#generated-completion-dataset).
      *
      * Generated from protobuf field <code>string dataset = 6;</code>
      * @param string $var
