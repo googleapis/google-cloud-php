@@ -502,6 +502,102 @@ class SubscriptionTest extends TestCase
         }
     }
 
+    public function testAcknowledgeBatchWithReturn()
+    {
+        $metadata = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        $ex = $this->generateEodException($metadata);
+        
+        $this->connection->acknowledge(Argument::allOf(
+            Argument::withEntry('ackIds', $this->ackIds),
+            Argument::withKey('subscription')
+        ))->willThrow($ex);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+
+        // Check if the acknowledgeBatch method returned an array of failedMsgs
+        $this->assertIsArray($failedMsgs);
+        $this->assertEquals(count($failedMsgs), count($this->ackIds));
+    }
+
+    public function testAcknowledgeBatchRetryNever()
+    {
+        // Since all sent msgs are permananently failed,
+        // the retry will never take place
+        $metadata = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        $ex = $this->generateEodException($metadata);
+
+        $this->connection->acknowledge(Argument::any(
+            Argument::withKey('ackIds'),
+            Argument::withKey('subscription')
+        ))->shouldBeCalledTimes(1)->willThrow($ex);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+    }
+
+    public function testAcknowledgeBatchRetryMax()
+    {
+        // We simulate the first msg sent to be failed temporarily
+        $metadata = [
+            'foobar' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        $ex = $this->generateEodException($metadata);
+        
+        // num of retries + 1 original call
+        $numCalls = Subscription::EXACTLY_ONCE_MAX_RETRIES + 1;
+
+        // An exception containing at least one transient failure
+        // should be called a maximum of $numCalls times
+        $this->connection->acknowledge(Argument::allOf(
+            Argument::withKey('ackIds'),
+            Argument::withKey('subscription')
+        ))->shouldBeCalledTimes($numCalls)->willThrow($ex);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+    }
+
+    public function testAcknowledgeBatchRetryPartial()
+    {
+        // Exception with first msg as a temporary failure
+        $metadata1 = [
+            'foobar' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        // Exception with both msgs as a permanent failure
+        $metadata2 = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        $ex1 = $this->generateEodException($metadata1);
+        $ex2 = $this->generateEodException($metadata2);
+
+        $allEx = [$ex1, $ex1, $ex2];
+
+        $this->connection->acknowledge(Argument::any(
+            Argument::withKey('ackIds'),
+            Argument::withKey('subscription')
+        ))->shouldBeCalledTimes(3)->will(function() use(&$allEx){
+            throw array_shift($allEx);
+        });
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+    }
+
     /**
      * @expectedException InvalidArgumentException
      */

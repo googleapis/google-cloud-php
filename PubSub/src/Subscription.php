@@ -94,7 +94,8 @@ class Subscription
     const EXACTLY_ONCE_TRANSIENT_FAILURE_PREFIX = 'TRANSIENT_FAILURE';
     // The max time an exponential retry should delay for(in microseconds)
     // set to 10 mins.
-    const EXACTLY_ONCE_MAX_RETRY_TIME = 600000000;
+    const EXACTLY_ONCE_MAX_RETRY_TIME = 600000;
+    const EXACTLY_ONCE_MAX_RETRIES = 10;
 
     /**
      * @var ConnectionInterface
@@ -812,7 +813,7 @@ class Subscription
         
         // We use 10 retries as the 11th retry will cross 10 minutes
         // and that is our intended break point.
-        $backoff = new ExponentialBackoff(10, $retryFunc);
+        $backoff = new ExponentialBackoff(self::EXACTLY_ONCE_MAX_RETRIES, $retryFunc);
         $backoff->setCalcDelayFunction($delayFunc);
 
         // Try to ack the messages with an ExponentialBackoff
