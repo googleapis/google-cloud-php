@@ -21,6 +21,7 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
@@ -91,6 +92,9 @@ class Subscription
     // with EOD enabled or not
     const EXACTLY_ONCE_FAILURE_REASON = 'EXACTLY_ONCE_ACKID_FAILURE';
     const EXACTLY_ONCE_TRANSIENT_FAILURE_PREFIX = 'TRANSIENT_FAILURE';
+    // The max time an exponential retry should delay for in microseconds
+    // set to 10 mins.
+    const EXACTLY_ONCE_MAX_RETRY_TIME = 600000000;
 
     /**
      * @var ConnectionInterface
@@ -732,6 +736,10 @@ class Subscription
     {
         $this->validateBatch($messages, Message::class);
 
+        if (isset($options['returnFailures'])) {
+            return $this->acknowledgeBatchWithRetries($messages, $options);
+        }
+
         // the rpc may throw errors for a sub with EOD enabled
         // but we don't act on the exception to maintain compatibility
         try {
@@ -744,6 +752,84 @@ class Subscription
             if (!$this->isExceptionExactlyOnce($e)) {
                 throw $e;
             }
+        }
+    }
+
+    /**
+     * Helper that sends an acknowledge request but with retries.
+     * 
+     * @param Message[] $messages An array of messages
+     * @param array $options Configuration Options
+     * 
+     * @return array|void Array of messages which failed permanently
+     */
+    private function acknowledgeBatchWithRetries(array $messages, array $options = [])
+    {
+        $failed = [];
+        $eodEnabled = true;
+
+        // we don't need to forward the `returnFailures` flag to the pubsub service.
+        unset($options['returnFailures']);
+        
+        // min delay of 1 sec, max delay of 10 minutes
+        // doubles on every attempt
+        $delayFunc = function($attempt){
+            $delay = min(
+                (pow(2, $attempt) * 1000000),
+                self::EXACTLY_ONCE_MAX_RETRY_TIME
+            );
+            return $delay;
+        };
+
+        // Func that decides if we need to retry again or not
+        $retryFunc = function(BadRequestException $e, $attempt) use(&$messages, &$failed, &$eodEnabled){
+            // If the subscription isn't EOD enabled, the method behaves as the acknowledge method.
+            // Info from the exception is used instead of $subscription->info() to avoid
+            // the need of `pubsub.subscriptions.get` permission.
+            if (!$this->isExceptionExactlyOnce($e)) {
+                $eodEnabled = false;
+                return false;
+            }
+
+            $retryAckIds = $this->getRetryableAckIds($e);
+
+            // Find the messages which can be retried
+            $messages = array_filter($messages, function($message) use($retryAckIds, &$failed){
+                if( in_array($message->ackId(), $retryAckIds) ){
+                    return true;
+                }
+
+                // If a message ack fails permanently, we remove it from the $messages array
+                // and add it to the list of failed messages
+                $failed[] = $message;
+
+                return false;
+            });
+
+            // Retry only if there are retryable messages left
+            return count($messages) > 0;
+        };
+        
+        // We use 10 retries as the 11th retry will cross 10 minutes
+        // and that is our intended break point.
+        $backoff = new ExponentialBackoff(10, $retryFunc);
+        $backoff->setCalcDelayFunction($delayFunc);
+
+        // Try to ack the messages with an ExponentialBackoff
+        try {
+            $backoff->execute(function() use($options, &$messages){
+                $this->connection->acknowledge($options + [
+                    'subscription' => $this->name,
+                    'ackIds' => $this->getMessageAckIds($messages)
+                ]);
+            });
+        }
+        catch (BadRequestException $e) {}
+
+        // We don't return anything if EOD is disabled
+        // to make it behave like if the flag `returnFailures` wasn't set.
+        if ($eodEnabled) {
+            return $failed;
         }
     }
 
