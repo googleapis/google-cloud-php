@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub\Tests\System;
 
+use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\MessageBuilder;
 
 /**
@@ -190,6 +191,33 @@ class PublishAndPullTest extends PubSubTestCase
             $this->assertTrue(true);
         } catch (\Exception $e) {
             $this->fail();
+        }
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testAcknowledgeBatchContainsFailedMsgs($client)
+    {
+        $topic = self::topic($client);
+
+        // we keep a low ackDeadlineSeconds value
+        // as we need to `sleep` for more than this value to trigger an exception
+        $eodSubscription = self::exactlyOnceSubscription($client, $topic, ['ackDeadlineSeconds' => 10]);
+        $eodExpiry = $eodSubscription->info()['ackDeadlineSeconds'];
+
+        sleep($eodExpiry + 1);
+
+        $topic->publish(['data'=>'test']);
+        $messages = $eodSubscription->pull();
+
+        $failedMsgs = $eodSubscription->acknowledgeBatch($messages, ['returnFailures' => true]);
+        // Since acknowledgeBatch was called after the expiry and with the `returnFailures` flag,
+        // all the msgs should be returned
+        $this->assertIsArray($failedMsgs);
+
+        foreach ($failedMsgs as $msg) {
+            $this->assertInstanceOf(Message::class, $msg);
         }
     }
 }
