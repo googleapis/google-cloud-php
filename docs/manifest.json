@@ -485,6 +485,14 @@
             ]
         },
         {
+            "id": "cloud-bare-metal-solution",
+            "name": "google/cloud-bare-metal-solution",
+            "defaultService": "baremetalsolution/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-bigquery",
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",

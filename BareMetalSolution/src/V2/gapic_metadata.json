@@ -1,0 +1,118 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.baremetalsolution.v2",
+    "libraryPackage": "Google\\Cloud\\BaremetalSolution\\V2",
+    "services": {
+        "BareMetalSolution": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BareMetalSolutionGapicClient",
+                    "rpcs": {
+                        "CreateSnapshotSchedulePolicy": {
+                            "methods": [
+                                "createSnapshotSchedulePolicy"
+                            ]
+                        },
+                        "CreateVolumeSnapshot": {
+                            "methods": [
+                                "createVolumeSnapshot"
+                            ]
+                        },
+                        "DeleteSnapshotSchedulePolicy": {
+                            "methods": [
+                                "deleteSnapshotSchedulePolicy"
+                            ]
+                        },
+                        "DeleteVolumeSnapshot": {
+                            "methods": [
+                                "deleteVolumeSnapshot"
+                            ]
+                        },
+                        "GetInstance": {
+                            "methods": [
+                                "getInstance"
+                            ]
+                        },
+                        "GetLun": {
+                            "methods": [
+                                "getLun"
+                            ]
+                        },
+                        "GetNetwork": {
+                            "methods": [
+                                "getNetwork"
+                            ]
+                        },
+                        "GetSnapshotSchedulePolicy": {
+                            "methods": [
+                                "getSnapshotSchedulePolicy"
+                            ]
+                        },
+                        "GetVolume": {
+                            "methods": [
+                                "getVolume"
+                            ]
+                        },
+                        "GetVolumeSnapshot": {
+                            "methods": [
+                                "getVolumeSnapshot"
+                            ]
+                        },
+                        "ListInstances": {
+                            "methods": [
+                                "listInstances"
+                            ]
+                        },
+                        "ListLuns": {
+                            "methods": [
+                                "listLuns"
+                            ]
+                        },
+                        "ListNetworks": {
+                            "methods": [
+                                "listNetworks"
+                            ]
+                        },
+                        "ListSnapshotSchedulePolicies": {
+                            "methods": [
+                                "listSnapshotSchedulePolicies"
+                            ]
+                        },
+                        "ListVolumeSnapshots": {
+                            "methods": [
+                                "listVolumeSnapshots"
+                            ]
+                        },
+                        "ListVolumes": {
+                            "methods": [
+                                "listVolumes"
+                            ]
+                        },
+                        "ResetInstance": {
+                            "methods": [
+                                "resetInstance"
+                            ]
+                        },
+                        "RestoreVolumeSnapshot": {
+                            "methods": [
+                                "restoreVolumeSnapshot"
+                            ]
+                        },
+                        "UpdateSnapshotSchedulePolicy": {
+                            "methods": [
+                                "updateSnapshotSchedulePolicy"
+                            ]
+                        },
+                        "UpdateVolume": {
+                            "methods": [
+                                "updateVolume"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
