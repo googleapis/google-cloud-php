@@ -56,6 +56,10 @@ class Type
      */
     const MEMORY_OPTIMIZED = 281753417;
     /**
+     * Generated from protobuf enum <code>MEMORY_OPTIMIZED_M3 = 276301372;</code>
+     */
+    const MEMORY_OPTIMIZED_M3 = 276301372;
+    /**
      * Generated from protobuf enum <code>TYPE_UNSPECIFIED = 437714322;</code>
      */
     const TYPE_UNSPECIFIED = 437714322;
@@ -71,6 +75,7 @@ class Type
         self::GENERAL_PURPOSE_N2D => 'GENERAL_PURPOSE_N2D',
         self::GENERAL_PURPOSE_T2D => 'GENERAL_PURPOSE_T2D',
         self::MEMORY_OPTIMIZED => 'MEMORY_OPTIMIZED',
+        self::MEMORY_OPTIMIZED_M3 => 'MEMORY_OPTIMIZED_M3',
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
     ];
 

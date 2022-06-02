@@ -92,6 +92,12 @@ class Code
      */
     const NEXT_HOP_CANNOT_IP_FORWARD = 383382887;
     /**
+     * The route's nextHopInstance URL refers to an instance that does not have an ipv6 interface on the same network as the route.
+     *
+     * Generated from protobuf enum <code>NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE = 146748434;</code>
+     */
+    const NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE = 146748434;
+    /**
      * The route's nextHopInstance URL refers to an instance that does not exist.
      *
      * Generated from protobuf enum <code>NEXT_HOP_INSTANCE_NOT_FOUND = 464250446;</code>
@@ -184,6 +190,7 @@ class Code
         self::MISSING_TYPE_DEPENDENCY => 'MISSING_TYPE_DEPENDENCY',
         self::NEXT_HOP_ADDRESS_NOT_ASSIGNED => 'NEXT_HOP_ADDRESS_NOT_ASSIGNED',
         self::NEXT_HOP_CANNOT_IP_FORWARD => 'NEXT_HOP_CANNOT_IP_FORWARD',
+        self::NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE => 'NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE',
         self::NEXT_HOP_INSTANCE_NOT_FOUND => 'NEXT_HOP_INSTANCE_NOT_FOUND',
         self::NEXT_HOP_INSTANCE_NOT_ON_NETWORK => 'NEXT_HOP_INSTANCE_NOT_ON_NETWORK',
         self::NEXT_HOP_NOT_RUNNING => 'NEXT_HOP_NOT_RUNNING',

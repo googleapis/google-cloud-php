@@ -21,6 +21,13 @@ class LocationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.LocationPolicyLocation> locations = 413423454;</code>
      */
     private $locations;
+    /**
+     * Strategy for distributing VMs across zones in a region.
+     * Check the TargetShape enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string target_shape = 338621299;</code>
+     */
+    private $target_shape = null;
 
     /**
      * Constructor.
@@ -30,6 +37,9 @@ class LocationPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $locations
      *           Location configurations mapped by location name. Currently only zone names are supported and must be represented as valid internal URLs, such as zones/us-central1-a.
+     *     @type string $target_shape
+     *           Strategy for distributing VMs across zones in a region.
+     *           Check the TargetShape enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +69,44 @@ class LocationPolicy extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\LocationPolicyLocation::class);
         $this->locations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Strategy for distributing VMs across zones in a region.
+     * Check the TargetShape enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string target_shape = 338621299;</code>
+     * @return string
+     */
+    public function getTargetShape()
+    {
+        return isset($this->target_shape) ? $this->target_shape : '';
+    }
+
+    public function hasTargetShape()
+    {
+        return isset($this->target_shape);
+    }
+
+    public function clearTargetShape()
+    {
+        unset($this->target_shape);
+    }
+
+    /**
+     * Strategy for distributing VMs across zones in a region.
+     * Check the TargetShape enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string target_shape = 338621299;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTargetShape($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->target_shape = $var;
 
         return $this;
     }

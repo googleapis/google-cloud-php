@@ -108,6 +108,10 @@ class Metric
      */
     const COMMITTED_N2_CPUS = 322589603;
     /**
+     * Generated from protobuf enum <code>COMMITTED_NVIDIA_A100_80GB_GPUS = 464326565;</code>
+     */
+    const COMMITTED_NVIDIA_A100_80GB_GPUS = 464326565;
+    /**
      * Generated from protobuf enum <code>COMMITTED_NVIDIA_A100_GPUS = 375799445;</code>
      */
     const COMMITTED_NVIDIA_A100_GPUS = 375799445;
@@ -310,6 +314,10 @@ class Metric
      */
     const NODE_TEMPLATES = 474896668;
     /**
+     * Generated from protobuf enum <code>NVIDIA_A100_80GB_GPUS = 286389320;</code>
+     */
+    const NVIDIA_A100_80GB_GPUS = 286389320;
+    /**
      * Generated from protobuf enum <code>NVIDIA_A100_GPUS = 504872978;</code>
      */
     const NVIDIA_A100_GPUS = 504872978;
@@ -361,6 +369,10 @@ class Metric
      * Generated from protobuf enum <code>PREEMPTIBLE_LOCAL_SSD_GB = 260819336;</code>
      */
     const PREEMPTIBLE_LOCAL_SSD_GB = 260819336;
+    /**
+     * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_A100_80GB_GPUS = 151942410;</code>
+     */
+    const PREEMPTIBLE_NVIDIA_A100_80GB_GPUS = 151942410;
     /**
      * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_A100_GPUS = 68832784;</code>
      */
@@ -564,6 +576,7 @@ class Metric
         self::COMMITTED_N2A_CPUS => 'COMMITTED_N2A_CPUS',
         self::COMMITTED_N2D_CPUS => 'COMMITTED_N2D_CPUS',
         self::COMMITTED_N2_CPUS => 'COMMITTED_N2_CPUS',
+        self::COMMITTED_NVIDIA_A100_80GB_GPUS => 'COMMITTED_NVIDIA_A100_80GB_GPUS',
         self::COMMITTED_NVIDIA_A100_GPUS => 'COMMITTED_NVIDIA_A100_GPUS',
         self::COMMITTED_NVIDIA_K80_GPUS => 'COMMITTED_NVIDIA_K80_GPUS',
         self::COMMITTED_NVIDIA_P100_GPUS => 'COMMITTED_NVIDIA_P100_GPUS',
@@ -614,6 +627,7 @@ class Metric
         self::NETWORK_FIREWALL_POLICIES => 'NETWORK_FIREWALL_POLICIES',
         self::NODE_GROUPS => 'NODE_GROUPS',
         self::NODE_TEMPLATES => 'NODE_TEMPLATES',
+        self::NVIDIA_A100_80GB_GPUS => 'NVIDIA_A100_80GB_GPUS',
         self::NVIDIA_A100_GPUS => 'NVIDIA_A100_GPUS',
         self::NVIDIA_K80_GPUS => 'NVIDIA_K80_GPUS',
         self::NVIDIA_P100_GPUS => 'NVIDIA_P100_GPUS',
@@ -627,6 +641,7 @@ class Metric
         self::PD_EXTREME_TOTAL_PROVISIONED_IOPS => 'PD_EXTREME_TOTAL_PROVISIONED_IOPS',
         self::PREEMPTIBLE_CPUS => 'PREEMPTIBLE_CPUS',
         self::PREEMPTIBLE_LOCAL_SSD_GB => 'PREEMPTIBLE_LOCAL_SSD_GB',
+        self::PREEMPTIBLE_NVIDIA_A100_80GB_GPUS => 'PREEMPTIBLE_NVIDIA_A100_80GB_GPUS',
         self::PREEMPTIBLE_NVIDIA_A100_GPUS => 'PREEMPTIBLE_NVIDIA_A100_GPUS',
         self::PREEMPTIBLE_NVIDIA_K80_GPUS => 'PREEMPTIBLE_NVIDIA_K80_GPUS',
         self::PREEMPTIBLE_NVIDIA_P100_GPUS => 'PREEMPTIBLE_NVIDIA_P100_GPUS',
