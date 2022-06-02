@@ -94,7 +94,8 @@ class Subscription
     const EXACTLY_ONCE_TRANSIENT_FAILURE_PREFIX = 'TRANSIENT_FAILURE';
     // The max time an exponential retry should delay for(in microseconds)
     // set to 10 mins.
-    const EXACTLY_ONCE_MAX_RETRY_TIME = 600000;
+    const EXACTLY_ONCE_MAX_RETRY_TIME = 600000000;
+    // Max num of retries for an EOD enabled sub's ack operation.
     const EXACTLY_ONCE_MAX_RETRIES = 10;
 
     /**
@@ -133,6 +134,11 @@ class Subscription
     private $iam;
 
     /**
+     * @var int
+     */
+    private $eodMaxRetryTime;
+
+    /**
      * Create a Subscription.
      *
      * The idiomatic way to use this class is through the PubSubClient or Topic,
@@ -157,6 +163,7 @@ class Subscription
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;
+        $this->eodMaxRetryTime = self::EXACTLY_ONCE_MAX_RETRY_TIME;
 
         // Accept either a simple name or a fully-qualified name.
         if ($this->isFullyQualifiedName('subscription', $name)) {
@@ -777,7 +784,7 @@ class Subscription
         $delayFunc = function ($attempt) {
             $delay = min(
                 (pow(2, $attempt) * 1000000),
-                self::EXACTLY_ONCE_MAX_RETRY_TIME
+                $this->eodMaxRetryTime
             );
             return $delay;
         };
@@ -1205,5 +1212,16 @@ class Subscription
         }
 
         return $ackIds;
+    }
+
+    /**
+     * Func to change the maximum delay time for an EOD enabled subscription's
+     * retry attempt.
+     *
+     * @internal
+     */
+    public function setMaxEodRetryTime($maxTime)
+    {
+        $this->eodMaxRetryTime = $maxTime;
     }
 }

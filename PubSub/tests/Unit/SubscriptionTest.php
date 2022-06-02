@@ -59,6 +59,9 @@ class SubscriptionTest extends TestCase
             'topic-name',
             true
         ], ['connection', 'info']);
+        // make sure the ExponentialBackOff retries don't delay for our test.
+        $this->subscription->setMaxEodRetryTime(0);
+
         $this->ackIds = [
             'foobar',
             'otherAckId'
