@@ -291,8 +291,10 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $creatorRole = 'creatorRole-1605962583';
         $expectedResponse = new Session();
         $expectedResponse->setName($name);
+        $expectedResponse->setCreatorRole($creatorRole);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedDatabase = $client->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
@@ -646,8 +648,10 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $creatorRole = 'creatorRole-1605962583';
         $expectedResponse = new Session();
         $expectedResponse->setName($name2);
+        $expectedResponse->setCreatorRole($creatorRole);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');

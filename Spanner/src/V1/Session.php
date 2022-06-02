@@ -46,6 +46,12 @@ class Session extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp approximate_last_use_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $approximate_last_use_time = null;
+    /**
+     * The database role which created this session.
+     *
+     * Generated from protobuf field <code>string creator_role = 5;</code>
+     */
+    private $creator_role = '';
 
     /**
      * Constructor.
@@ -68,6 +74,8 @@ class Session extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $approximate_last_use_time
      *           Output only. The approximate timestamp when the session is last used. It is
      *           typically earlier than the actual last use time.
+     *     @type string $creator_role
+     *           The database role which created this session.
      * }
      */
     public function __construct($data = NULL) {
@@ -209,6 +217,32 @@ class Session extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->approximate_last_use_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The database role which created this session.
+     *
+     * Generated from protobuf field <code>string creator_role = 5;</code>
+     * @return string
+     */
+    public function getCreatorRole()
+    {
+        return $this->creator_role;
+    }
+
+    /**
+     * The database role which created this session.
+     *
+     * Generated from protobuf field <code>string creator_role = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCreatorRole($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->creator_role = $var;
 
         return $this;
     }
