@@ -596,7 +596,7 @@ class SubscriptionTest extends TestCase
         $this->connection->acknowledge(Argument::any(
             Argument::withKey('ackIds'),
             Argument::withKey('subscription')
-        ))->shouldBeCalledTimes(3)->will(function() use(&$allEx){
+        ))->shouldBeCalledTimes(3)->will(function () use (&$allEx) {
             throw array_shift($allEx);
         });
 
@@ -620,7 +620,7 @@ class SubscriptionTest extends TestCase
         $this->connection->acknowledge(Argument::any(
             Argument::withKey('ackIds'),
             Argument::withKey('subscription')
-        ))->shouldBeCalledTimes(3)->will(function() use(&$allEx){
+        ))->shouldBeCalledTimes(3)->will(function () use (&$allEx) {
             // An exception is thrown until we have in our list,
             // then we simply return implying a success
             if (count($allEx) > 0) {

@@ -705,7 +705,7 @@ class Subscription
      *     $subscription->acknowledge($message);
      * }
      * ```
-     * 
+     *
      * When the option `returnFailures` is set, and if a message is failed with a
      * temporary failure code, it will be retried with an exponential delay. This will also make sure
      * that the permanently failed message is returned to the caller. This is only true for a
@@ -745,7 +745,7 @@ class Subscription
      *
      * $subscription->acknowledgeBatch($messages);
      * ```
-     * 
+     *
      * When the option `returnFailures` is set, and if a message(or messages) is failed with a
      * temporary failure code, they will be retried with an exponential delay. This will also make sure
      * that the permanently failed messages are returned to the caller. This is only true for a
