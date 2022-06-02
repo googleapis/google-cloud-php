@@ -652,6 +652,32 @@ class SubscriptionTest extends TestCase
     }
 
     /**
+     * We test if a sub with EOD disabled, behaves the same even if it is called
+     * with the `returnFailures` flag.
+     */
+    public function testAcknowledgeBatchReturnsVoidForNonEod()
+    {
+        $metadata = [
+            'foobar' => 'PERMANENT_FAILURE_INVALID_ACK_ID',
+            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
+        ];
+
+        // Any reason other than `EXACTLY_ONCE_ACKID_FAILURE` will work
+        $ex = $this->generateEodException($metadata, 'FAILURE_REASON');
+
+        $this->connection->acknowledge(Argument::any(
+            Argument::withKey('ackIds'),
+            Argument::withKey('subscription')
+        ))->shouldBeCalledTimes(1)->willThrow($ex);
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+
+        // Both msgs were acked, so our $failedMsgs should be empty
+        $this->assertIsNotArray($failedMsgs);
+    }
+
+    /**
      * @expectedException InvalidArgumentException
      */
     public function testAcknowledgeBatchInvalidArgument()

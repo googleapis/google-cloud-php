@@ -705,6 +705,20 @@ class Subscription
      *     $subscription->acknowledge($message);
      * }
      * ```
+     * 
+     * When the option `returnFailures` is set, and if a message is failed with a
+     * temporary failure code, it will be retried with an exponential delay. This will also make sure
+     * that the permanently failed message is returned to the caller. This is only true for a
+     * subscription with 'Exactly Once Delivery' enabled.
+     * Read more about EOD: https://cloud.google.com/pubsub/docs/exactly-once-delivery
+     * Example:
+     * ```
+     * $messages = $subscription->pull();
+     *
+     * foreach ($messages as $message) {
+     *     $subscription->acknowledge($message, ['returnFailures' => true]);
+     * }
+     * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/acknowledge Acknowledge Message
@@ -712,11 +726,11 @@ class Subscription
      *
      * @param Message $message A message object.
      * @param array $options [optional] Configuration Options
-     * @return void
+     * @return void|array
      */
     public function acknowledge(Message $message, array $options = [])
     {
-        $this->acknowledgeBatch([$message], $options);
+        return $this->acknowledgeBatch([$message], $options);
     }
 
     /**
@@ -731,6 +745,18 @@ class Subscription
      *
      * $subscription->acknowledgeBatch($messages);
      * ```
+     * 
+     * When the option `returnFailures` is set, and if a message(or messages) is failed with a
+     * temporary failure code, they will be retried with an exponential delay. This will also make sure
+     * that the permanently failed messages are returned to the caller. This is only true for a
+     * subscription with 'Exactly Once Delivery' enabled.
+     * Read more about EOD: https://cloud.google.com/pubsub/docs/exactly-once-delivery
+     * Example:
+     * ```
+     * $messages = $subscription->pull();
+     *
+     * $failedMsgs = $subscription->acknowledgeBatch($messages, ['returnFailures' => true]);
+     * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/acknowledge Acknowledge Message
@@ -738,7 +764,7 @@ class Subscription
      *
      * @param Message[] $messages An array of messages
      * @param array $options Configuration Options
-     * @return void
+     * @return void|array
      */
     public function acknowledgeBatch(array $messages, array $options = [])
     {
@@ -761,6 +787,8 @@ class Subscription
                 throw $e;
             }
         }
+
+        return;
     }
 
     /**
