@@ -1,5 +1,291 @@
 # Changelog
 
+## 0.183.0
+
+<details><summary>google/cloud-ai-platform 0.4.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add failure_policy to PipelineJob in aiplatform v1 & v1beta1 pipeline_job.proto ([#5298](https://github.com/googleapis/google-cloud-php/issues/5298)) ([cc94e5e](https://github.com/googleapis/google-cloud-php/commit/cc94e5e55955d865cf728fcde769dc4bd60bf300))
+* [AiPlatform] add latent_space_source to ExplanationMetadata in aiplatform v1 explanation_metadata.proto ([#5295](https://github.com/googleapis/google-cloud-php/issues/5295)) ([0714180](https://github.com/googleapis/google-cloud-php/commit/07141802d2d7782edd5df41efd70d964cb996b9b))
+
+</details>
+
+<details><summary>google/cloud-bare-metal-solution 0.1.0</summary>
+
+
+
+### Features
+
+* introduce bare metal solution ([#5316](https://github.com/googleapis/google-cloud-php/issues/5316)) ([651123c](https://github.com/googleapis/google-cloud-php/commit/651123c700feb022367f5e8593a741dca66f825b))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.23.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* support for phpdocumentor/reflection 4 in snippets ([#5287](https://github.com/googleapis/google-cloud-php/issues/5287)) ([3095675](https://github.com/googleapis/google-cloud-php/commit/3095675fc315bc75ba1daf7b1dc805c233fb083a))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.15.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* support for phpdocumentor/reflection 4 in snippets ([#5287](https://github.com/googleapis/google-cloud-php/issues/5287)) ([3095675](https://github.com/googleapis/google-cloud-php/commit/3095675fc315bc75ba1daf7b1dc805c233fb083a))
+
+</details>
+
+<details><summary>google/cloud-compute 1.1.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine API to revision 20220526 ([#722](https://github.com/googleapis/google-cloud-php/issues/722)) ([#5314](https://github.com/googleapis/google-cloud-php/issues/5314)) ([a39d095](https://github.com/googleapis/google-cloud-php/commit/a39d09580d2ce44b3b1ded915ae690138b1fc3f3))
+
+</details>
+
+<details><summary>google/cloud-core 1.46.0</summary>
+
+
+
+### Features
+
+* **Pubsub:** Suppress errors for ack and modAck methods ([#5240](https://github.com/googleapis/google-cloud-php/issues/5240)) ([b9b2ae8](https://github.com/googleapis/google-cloud-php/commit/b9b2ae8c9830740ff8bcca8a17a784e714c77350))
+
+
+### Miscellaneous Chores
+
+* move presubmit testing to github actions ([#5294](https://github.com/googleapis/google-cloud-php/issues/5294)) ([e693892](https://github.com/googleapis/google-cloud-php/commit/e69389215ce2ee07086dd5feb7900e4dadadbfa4))
+* raise minimum versions of Guzzle in core ([#5304](https://github.com/googleapis/google-cloud-php/issues/5304)) ([48a345c](https://github.com/googleapis/google-cloud-php/commit/48a345ca2e722d70e7869c97005a54078c5f5520)), closes [#5303](https://github.com/googleapis/google-cloud-php/issues/5303)
+* support for phpdocumentor/reflection 4 in snippets ([#5287](https://github.com/googleapis/google-cloud-php/issues/5287)) ([3095675](https://github.com/googleapis/google-cloud-php/commit/3095675fc315bc75ba1daf7b1dc805c233fb083a))
+
+</details>
+
+<details><summary>google/cloud-dataproc 3.1.0</summary>
+
+
+
+### Features
+
+* remove deprecated v1beta2 client ([#5307](https://github.com/googleapis/google-cloud-php/issues/5307)) ([770255c](https://github.com/googleapis/google-cloud-php/commit/770255c3c6aa6011605b93bbf34ad916f833b53f))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.14.2</summary>
+
+
+
+### Documentation
+
+* [Datastore] Document encoding of non-UTF-8 key strings in the Cloud Datastore API ([#5293](https://github.com/googleapis/google-cloud-php/issues/5293)) ([a5d856f](https://github.com/googleapis/google-cloud-php/commit/a5d856f0bccfc27df81c9b6a5cf94aa2b7ed55f2))
+
+
+### Miscellaneous Chores
+
+* support for phpdocumentor/reflection 4 in snippets ([#5287](https://github.com/googleapis/google-cloud-php/issues/5287)) ([3095675](https://github.com/googleapis/google-cloud-php/commit/3095675fc315bc75ba1daf7b1dc805c233fb083a))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.5.0</summary>
+
+
+
+### Features
+
+* [DatastoreAdmin] new enum value OPTIMISTIC_WITH_ENTITY_GROUPS for ConcurrencyMode ([#5312](https://github.com/googleapis/google-cloud-php/issues/5312)) ([429593c](https://github.com/googleapis/google-cloud-php/commit/429593cc0aadb111b26afd585702bf03536649f9))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.4.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* support for phpdocumentor/reflection 4 in snippets ([#5287](https://github.com/googleapis/google-cloud-php/issues/5287)) ([3095675](https://github.com/googleapis/google-cloud-php/commit/3095675fc315bc75ba1daf7b1dc805c233fb083a))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.23.0</summary>
+
+
+
+### Features
+
+* [Firestore] expose new TTL / Database Admin experimental API ([#5306](https://github.com/googleapis/google-cloud-php/issues/5306)) ([ed57330](https://github.com/googleapis/google-cloud-php/commit/ed57330c83dd568882cc8dd1f9304ea82f82ef4c))
+
+
+### Miscellaneous Chores
+
+* support for phpdocumentor/reflection 4 in snippets ([#5287](https://github.com/googleapis/google-cloud-php/issues/5287)) ([3095675](https://github.com/googleapis/google-cloud-php/commit/3095675fc315bc75ba1daf7b1dc805c233fb083a))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 0.4.0</summary>
+
+
+
+### Features
+
+* [GkeHub] add EdgeCluster as a new membershipEndpoint type ([#5301](https://github.com/googleapis/google-cloud-php/issues/5301)) ([90ee247](https://github.com/googleapis/google-cloud-php/commit/90ee2471086e64029f20731f5760bdf8a43c0359))
+
+</details>
+
+<details><summary>google/cloud-iam-credentials 0.2.0</summary>
+
+
+
+### Features
+
+* [IamCredentials] expose clientCertSource ([#4927](https://github.com/googleapis/google-cloud-php/issues/4927)) ([1138ccc](https://github.com/googleapis/google-cloud-php/commit/1138ccc98b09446d91c4d0d303dc1894377dd126))
+
+</details>
+
+<details><summary>google/cloud-language 0.26.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* support for phpdocumentor/reflection 4 in snippets ([#5287](https://github.com/googleapis/google-cloud-php/issues/5287)) ([3095675](https://github.com/googleapis/google-cloud-php/commit/3095675fc315bc75ba1daf7b1dc805c233fb083a))
+
+</details>
+
+<details><summary>google/cloud-logging 1.24.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* support for phpdocumentor/reflection 4 in snippets ([#5287](https://github.com/googleapis/google-cloud-php/issues/5287)) ([3095675](https://github.com/googleapis/google-cloud-php/commit/3095675fc315bc75ba1daf7b1dc805c233fb083a))
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.1.6</summary>
+
+
+
+### Bug Fixes
+
+* missing monitor client imports ([#5302](https://github.com/googleapis/google-cloud-php/issues/5302)) ([e7aa8ad](https://github.com/googleapis/google-cloud-php/commit/e7aa8addd4e048d544938eb6b467be4b75795ec8))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.38.0</summary>
+
+
+
+### Features
+
+* **Pubsub:** Suppress errors for ack and modAck methods ([#5240](https://github.com/googleapis/google-cloud-php/issues/5240)) ([b9b2ae8](https://github.com/googleapis/google-cloud-php/commit/b9b2ae8c9830740ff8bcca8a17a784e714c77350))
+
+
+### Miscellaneous Chores
+
+* require latest version of core ([#5317](https://github.com/googleapis/google-cloud-php/issues/5317)) ([8cd1f53](https://github.com/googleapis/google-cloud-php/commit/8cd1f5376d48d031429502c76268ce813ffd0086))
+* support for phpdocumentor/reflection 4 in snippets ([#5287](https://github.com/googleapis/google-cloud-php/issues/5287)) ([3095675](https://github.com/googleapis/google-cloud-php/commit/3095675fc315bc75ba1daf7b1dc805c233fb083a))
+
+</details>
+
+<details><summary>google/cloud-retail 0.5.0</summary>
+
+
+
+### Features
+
+* [Retail] allow users to disable spell check in search requests ([#5311](https://github.com/googleapis/google-cloud-php/issues/5311)) ([693744e](https://github.com/googleapis/google-cloud-php/commit/693744ed4f04c6c3bcd3779c5d4cdeff0416e992))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.7.0</summary>
+
+
+
+### Features
+
+* [SecurityCenter] Add compliances, processes and exfiltration fields to findings attributes. They contain compliance information about a security standard indicating unmet recommendations, represents operating system processes, and data exfiltrati... ([#5310](https://github.com/googleapis/google-cloud-php/issues/5310)) ([d133389](https://github.com/googleapis/google-cloud-php/commit/d13338987aec1f60e05dff598af4a8e91dcee9af))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.49.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* support for phpdocumentor/reflection 4 in snippets ([#5287](https://github.com/googleapis/google-cloud-php/issues/5287)) ([3095675](https://github.com/googleapis/google-cloud-php/commit/3095675fc315bc75ba1daf7b1dc805c233fb083a))
+
+</details>
+
+<details><summary>google/cloud-speech 1.6.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* support for phpdocumentor/reflection 4 in snippets ([#5287](https://github.com/googleapis/google-cloud-php/issues/5287)) ([3095675](https://github.com/googleapis/google-cloud-php/commit/3095675fc315bc75ba1daf7b1dc805c233fb083a))
+
+</details>
+
+<details><summary>google/cloud-storage 1.27.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* support for phpdocumentor/reflection 4 in snippets ([#5287](https://github.com/googleapis/google-cloud-php/issues/5287)) ([3095675](https://github.com/googleapis/google-cloud-php/commit/3095675fc315bc75ba1daf7b1dc805c233fb083a))
+
+</details>
+
+<details><summary>google/cloud-talent 0.17.0</summary>
+
+
+
+### Features
+
+* [Talent] Add a new operator on companyDisplayNames filter to further support fuzzy match by treating input value as a multi word token ([#5297](https://github.com/googleapis/google-cloud-php/issues/5297)) ([d5a30d1](https://github.com/googleapis/google-cloud-php/commit/d5a30d10c88464fc929be243e1f1dba5941bdf80))
+
+</details>
+
+<details><summary>google/cloud-trace 1.4.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* support for phpdocumentor/reflection 4 in snippets ([#5287](https://github.com/googleapis/google-cloud-php/issues/5287)) ([3095675](https://github.com/googleapis/google-cloud-php/commit/3095675fc315bc75ba1daf7b1dc805c233fb083a))
+
+</details>
+
+<details><summary>google/cloud-translate 1.12.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* support for phpdocumentor/reflection 4 in snippets ([#5287](https://github.com/googleapis/google-cloud-php/issues/5287)) ([3095675](https://github.com/googleapis/google-cloud-php/commit/3095675fc315bc75ba1daf7b1dc805c233fb083a))
+
+</details>
+
+<details><summary>google/cloud-vision 1.5.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* support for phpdocumentor/reflection 4 in snippets ([#5287](https://github.com/googleapis/google-cloud-php/issues/5287)) ([3095675](https://github.com/googleapis/google-cloud-php/commit/3095675fc315bc75ba1daf7b1dc805c233fb083a))
+
+</details>
+
 ## 0.182.0
 
 <details><summary>google/cloud-access-approval 0.5.0</summary>
