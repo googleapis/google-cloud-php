@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Image;
 use UnexpectedValueException;
 
 /**
- * The type of the image used to create this disk. The default and only value is RAW
+ * The type of the image used to create this disk. The default and only valid value is RAW.
  *
  * Protobuf type <code>google.cloud.compute.v1.Image.SourceType</code>
  */

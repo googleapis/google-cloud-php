@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupManagerStatusStatefulPerInstanceConfigs extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A bit indicating if all of the group's per-instance configs (listed in the output of a listPerInstanceConfigs API call) have status EFFECTIVE or there are no per-instance-configs.
+     * A bit indicating if all of the group's per-instance configurations (listed in the output of a listPerInstanceConfigs API call) have status EFFECTIVE or there are no per-instance-configs.
      *
      * Generated from protobuf field <code>optional bool all_effective = 516540553;</code>
      */
@@ -28,7 +28,7 @@ class InstanceGroupManagerStatusStatefulPerInstanceConfigs extends \Google\Proto
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $all_effective
-     *           A bit indicating if all of the group's per-instance configs (listed in the output of a listPerInstanceConfigs API call) have status EFFECTIVE or there are no per-instance-configs.
+     *           A bit indicating if all of the group's per-instance configurations (listed in the output of a listPerInstanceConfigs API call) have status EFFECTIVE or there are no per-instance-configs.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +37,7 @@ class InstanceGroupManagerStatusStatefulPerInstanceConfigs extends \Google\Proto
     }
 
     /**
-     * A bit indicating if all of the group's per-instance configs (listed in the output of a listPerInstanceConfigs API call) have status EFFECTIVE or there are no per-instance-configs.
+     * A bit indicating if all of the group's per-instance configurations (listed in the output of a listPerInstanceConfigs API call) have status EFFECTIVE or there are no per-instance-configs.
      *
      * Generated from protobuf field <code>optional bool all_effective = 516540553;</code>
      * @return bool
@@ -58,7 +58,7 @@ class InstanceGroupManagerStatusStatefulPerInstanceConfigs extends \Google\Proto
     }
 
     /**
-     * A bit indicating if all of the group's per-instance configs (listed in the output of a listPerInstanceConfigs API call) have status EFFECTIVE or there are no per-instance-configs.
+     * A bit indicating if all of the group's per-instance configurations (listed in the output of a listPerInstanceConfigs API call) have status EFFECTIVE or there are no per-instance-configs.
      *
      * Generated from protobuf field <code>optional bool all_effective = 516540553;</code>
      * @param bool $var

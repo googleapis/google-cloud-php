@@ -47,7 +47,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      */
     private $node_affinities;
     /**
-     * Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Set VM availability policies.
+     * Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Set VM host maintenance policy.
      * Check the OnHostMaintenance enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string on_host_maintenance = 64616796;</code>
@@ -85,7 +85,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\SchedulingNodeAffinity[]|\Google\Protobuf\Internal\RepeatedField $node_affinities
      *           A set of node affinity and anti-affinity configurations. Refer to Configuring node affinity for more information. Overrides reservationAffinity.
      *     @type string $on_host_maintenance
-     *           Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Set VM availability policies.
+     *           Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Set VM host maintenance policy.
      *           Check the OnHostMaintenance enum for the list of possible values.
      *     @type bool $preemptible
      *           Defines whether the instance is preemptible. This can only be set during instance creation or while the instance is stopped and therefore, in a `TERMINATED` state. See Instance Life Cycle for more information on the possible instance states.
@@ -272,7 +272,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Set VM availability policies.
+     * Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Set VM host maintenance policy.
      * Check the OnHostMaintenance enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string on_host_maintenance = 64616796;</code>
@@ -294,7 +294,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Set VM availability policies.
+     * Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Set VM host maintenance policy.
      * Check the OnHostMaintenance enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string on_host_maintenance = 64616796;</code>

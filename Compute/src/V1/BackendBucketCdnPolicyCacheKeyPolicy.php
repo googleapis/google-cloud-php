@@ -22,7 +22,7 @@ class BackendBucketCdnPolicyCacheKeyPolicy extends \Google\Protobuf\Internal\Mes
      */
     private $include_http_headers;
     /**
-     * Names of query string parameters to include in cache keys. All other parameters will be excluded. '&' and '=' will be percent encoded and not treated as delimiters.
+     * Names of query string parameters to include in cache keys. Default parameters are always included. '&' and '=' will be percent encoded and not treated as delimiters.
      *
      * Generated from protobuf field <code>repeated string query_string_whitelist = 52456496;</code>
      */
@@ -37,7 +37,7 @@ class BackendBucketCdnPolicyCacheKeyPolicy extends \Google\Protobuf\Internal\Mes
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $include_http_headers
      *           Allows HTTP request headers (by name) to be used in the cache key.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $query_string_whitelist
-     *           Names of query string parameters to include in cache keys. All other parameters will be excluded. '&' and '=' will be percent encoded and not treated as delimiters.
+     *           Names of query string parameters to include in cache keys. Default parameters are always included. '&' and '=' will be percent encoded and not treated as delimiters.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,7 +72,7 @@ class BackendBucketCdnPolicyCacheKeyPolicy extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Names of query string parameters to include in cache keys. All other parameters will be excluded. '&' and '=' will be percent encoded and not treated as delimiters.
+     * Names of query string parameters to include in cache keys. Default parameters are always included. '&' and '=' will be percent encoded and not treated as delimiters.
      *
      * Generated from protobuf field <code>repeated string query_string_whitelist = 52456496;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -83,7 +83,7 @@ class BackendBucketCdnPolicyCacheKeyPolicy extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Names of query string parameters to include in cache keys. All other parameters will be excluded. '&' and '=' will be percent encoded and not treated as delimiters.
+     * Names of query string parameters to include in cache keys. Default parameters are always included. '&' and '=' will be percent encoded and not treated as delimiters.
      *
      * Generated from protobuf field <code>repeated string query_string_whitelist = 52456496;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

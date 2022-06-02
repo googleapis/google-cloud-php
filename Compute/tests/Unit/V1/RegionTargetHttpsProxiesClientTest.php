@@ -208,6 +208,7 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $authorizationPolicy = 'authorizationPolicy-1576667208';
+        $certificateMap = 'certificateMap-917278028';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $fingerprint = 'fingerprint-1375934236';
@@ -223,6 +224,7 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $urlMap = 'urlMap-169850228';
         $expectedResponse = new TargetHttpsProxy();
         $expectedResponse->setAuthorizationPolicy($authorizationPolicy);
+        $expectedResponse->setCertificateMap($certificateMap);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setFingerprint($fingerprint);
