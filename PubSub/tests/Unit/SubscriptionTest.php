@@ -568,7 +568,10 @@ class SubscriptionTest extends TestCase
         ))->shouldBeCalledTimes($numCalls)->willThrow($ex);
 
         $this->subscription->___setProperty('connection', $this->connection->reveal());
-        $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+        $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+
+        // since both msgs never returned a success, both msgs should be returned as a failure.
+        $this->assertEquals(count($failedMsgs), count($this->ackIds));
     }
 
     public function testAcknowledgeBatchRetryPartial()
@@ -598,7 +601,54 @@ class SubscriptionTest extends TestCase
         });
 
         $this->subscription->___setProperty('connection', $this->connection->reveal());
-        $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+        $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+
+        // eventually both msgs failed, so they should be present in our response
+        $this->assertEquals(count($failedMsgs), count($this->ackIds));
+    }
+
+    public function testAcknowledgeBatchRetryWithSuccess()
+    {
+        $metadata = [
+            'foobar' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE',
+            'otherAckId' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE'
+        ];
+
+        $ex = $this->generateEodException($metadata);
+        $allEx = [$ex, $ex];
+
+        $this->connection->acknowledge(Argument::any(
+            Argument::withKey('ackIds'),
+            Argument::withKey('subscription')
+        ))->shouldBeCalledTimes(3)->will(function() use(&$allEx){
+            // An exception is thrown until we have in our list,
+            // then we simply return implying a success
+            if (count($allEx) > 0) {
+                throw array_shift($allEx);
+            } else {
+                return;
+            }
+        });
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+
+        // eventually both msgs were acked, so our $failedMsgs should be empty
+        $this->assertEquals(count($failedMsgs), 0);
+    }
+
+    public function testAcknowledgeBatchNeverRetries()
+    {
+        $this->connection->acknowledge(Argument::any(
+            Argument::withKey('ackIds'),
+            Argument::withKey('subscription')
+        ))->shouldBeCalledTimes(1)->willReturn();
+
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
+        $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
+
+        // Both msgs were acked, so our $failedMsgs should be empty
+        $this->assertEquals(count($failedMsgs), 0);
     }
 
     /**

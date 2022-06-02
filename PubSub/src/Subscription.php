@@ -802,8 +802,10 @@ class Subscription
             $retryAckIds = $this->getRetryableAckIds($e);
 
             // Find the messages which can be retried
-            $messages = array_filter($messages, function ($message) use ($retryAckIds, &$failed) {
-                if (in_array($message->ackId(), $retryAckIds)) {
+            $messages = array_filter($messages, function ($message) use ($retryAckIds, &$failed, $attempt) {
+                // A message will only be retried if it's ackId is in the list of retryable ackIds
+                // and the retry attempt isn't the last allowed attempt.
+                if ($attempt < self::EXACTLY_ONCE_MAX_RETRIES && in_array($message->ackId(), $retryAckIds)) {
                     return true;
                 }
 
