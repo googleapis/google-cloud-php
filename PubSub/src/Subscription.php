@@ -801,7 +801,7 @@ class Subscription
      */
     private function acknowledgeBatchWithRetries(array $messages, array $options = [])
     {
-        $actionFunc = function () use ($options, &$messages) {
+        $actionFunc = function (&$messages, $options) {
             $this->connection->acknowledge($options + [
                 'subscription' => $this->name,
                 'ackIds' => $this->getMessageAckIds($messages)
@@ -923,7 +923,7 @@ class Subscription
      */
     private function modifyAckDeadlineBatchWithRetries(array $messages, int $seconds, array $options)
     {
-        $actionFunc = function () use ($options, &$messages, $seconds) {
+        $actionFunc = function (&$messages, $options) use ($seconds) {
             $this->connection->modifyAckDeadline($options + [
                 'subscription' => $this->name,
                 'ackIds' => $this->getMessageAckIds($messages),
@@ -998,7 +998,7 @@ class Subscription
 
         // Try to ack the messages with an ExponentialBackoff
         try {
-            $backoff->execute($actionFunc);
+            $backoff->execute($actionFunc, [&$messages, $options]);
         } catch (BadRequestException $e) {
         }
 
