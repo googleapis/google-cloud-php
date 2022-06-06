@@ -64,6 +64,4 @@ class DockerRegistry
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DockerRegistry::class, \Google\Cloud\Functions\V1\CloudFunction_DockerRegistry::class);
 
