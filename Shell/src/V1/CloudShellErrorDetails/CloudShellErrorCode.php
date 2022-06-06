@@ -77,6 +77,4 @@ class CloudShellErrorCode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CloudShellErrorCode::class, \Google\Cloud\Shell\V1\CloudShellErrorDetails_CloudShellErrorCode::class);
 
