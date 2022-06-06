@@ -56,6 +56,7 @@ use Google\Cloud\Talent\V4beta1\RequestMetadata;
 use Google\Cloud\Talent\V4beta1\SearchJobsRequest;
 use Google\Cloud\Talent\V4beta1\SearchJobsRequest\CustomRankingInfo;
 use Google\Cloud\Talent\V4beta1\SearchJobsRequest\DiversificationLevel;
+use Google\Cloud\Talent\V4beta1\SearchJobsRequest\KeywordMatchMode;
 use Google\Cloud\Talent\V4beta1\SearchJobsRequest\SearchMode;
 use Google\Cloud\Talent\V4beta1\SearchJobsResponse;
 use Google\Cloud\Talent\V4beta1\UpdateJobRequest;
@@ -994,10 +995,13 @@ class JobServiceGapicClient
      *
      *                             The fields eligible for filtering are:
      *
-     *                             * `companyName` (Required)
+     *                             * `companyName`
      *                             * `requisitionId`
      *                             * `status` Available values: OPEN, EXPIRED, ALL. Defaults to
      *                             OPEN if no value is specified.
+     *
+     *                             At least one of `companyName` and `requisitionId` must present or an
+     *                             INVALID_ARGUMENT error is thrown.
      *
      *                             Sample Query:
      *
@@ -1006,6 +1010,8 @@ class JobServiceGapicClient
      *                             requisitionId = "req-1"
      *                             * companyName = "projects/foo/tenants/bar/companies/baz" AND
      *                             status = "EXPIRED"
+     *                             * requisitionId = "req-1"
+     *                             * requisitionId = "req-1" AND status = "EXPIRED"
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1116,15 +1122,7 @@ class JobServiceGapicClient
      *
      *           Defaults to false.
      *     @type bool $requirePreciseResultSize
-     *           Controls if the search job request requires the return of a precise
-     *           count of the first 300 results. Setting this to `true` ensures
-     *           consistency in the number of results per page. Best practice is to set this
-     *           value to true if a client allows users to jump directly to a
-     *           non-sequential search results page.
-     *
-     *           Enabling this flag may adversely impact performance.
-     *
-     *           Defaults to false.
+     *           This field is deprecated.
      *     @type HistogramQuery[] $histogramQueries
      *           An expression specifies a histogram request against matching jobs.
      *
@@ -1136,6 +1134,8 @@ class JobServiceGapicClient
      *           for each distinct attribute value.
      *           * `count(numeric_histogram_facet, list of buckets)`: Count the number of
      *           matching entities within each bucket.
+     *
+     *           A maximum of 200 histogram buckets are supported.
      *
      *           Data types:
      *
@@ -1163,6 +1163,9 @@ class JobServiceGapicClient
      *           "FULL_TIME", "PART_TIME".
      *           * company_size: histogram by [CompanySize][google.cloud.talent.v4beta1.CompanySize], for example, "SMALL",
      *           "MEDIUM", "BIG".
+     *           * publish_time_in_day: histogram by the [Job.posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
+     *           in days.
+     *           Must specify list of numeric buckets in spec.
      *           * publish_time_in_month: histogram by the [Job.posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
      *           in months.
      *           Must specify list of numeric buckets in spec.
@@ -1216,7 +1219,7 @@ class JobServiceGapicClient
      *           bucket(100000, MAX)])`
      *           * `count(string_custom_attribute["some-string-custom-attribute"])`
      *           * `count(numeric_custom_attribute["some-numeric-custom-attribute"],
-     *           [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative"])`
+     *           [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative")])`
      *     @type int $jobView
      *           The desired job attributes returned for jobs in the search response.
      *           Defaults to [JobView.JOB_VIEW_SMALL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_SMALL] if no value is specified.
@@ -1307,6 +1310,14 @@ class JobServiceGapicClient
      *           Controls over how job documents get ranked on top of existing relevance
      *           score (determined by API algorithm).
      *     @type bool $disableKeywordMatch
+     *           This field is deprecated. Please use
+     *           [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4beta1.SearchJobsRequest.keyword_match_mode] going forward.
+     *
+     *           To migrate, disable_keyword_match set to false maps to
+     *           [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL], and disable_keyword_match set to
+     *           true maps to [KeywordMatchMode.KEYWORD_MATCH_DISABLED][google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_DISABLED]. If
+     *           [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4beta1.SearchJobsRequest.keyword_match_mode] is set, this field is ignored.
+     *
      *           Controls whether to disable exact keyword match on [Job.title][google.cloud.talent.v4beta1.Job.title],
      *           [Job.description][google.cloud.talent.v4beta1.Job.description], [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name], [Job.addresses][google.cloud.talent.v4beta1.Job.addresses],
      *           [Job.qualifications][google.cloud.talent.v4beta1.Job.qualifications]. When disable keyword match is turned off, a
@@ -1326,6 +1337,12 @@ class JobServiceGapicClient
      *           requests.
      *
      *           Defaults to false.
+     *     @type int $keywordMatchMode
+     *           Controls what keyword match options to use.
+     *
+     *           Defaults to [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL] if no value
+     *           is specified.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\SearchJobsRequest\KeywordMatchMode}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1398,6 +1415,10 @@ class JobServiceGapicClient
             $request->setDisableKeywordMatch($optionalArgs['disableKeywordMatch']);
         }
 
+        if (isset($optionalArgs['keywordMatchMode'])) {
+            $request->setKeywordMatchMode($optionalArgs['keywordMatchMode']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('SearchJobs', $optionalArgs, SearchJobsResponse::class, $request);
@@ -1464,15 +1485,7 @@ class JobServiceGapicClient
      *
      *           Defaults to false.
      *     @type bool $requirePreciseResultSize
-     *           Controls if the search job request requires the return of a precise
-     *           count of the first 300 results. Setting this to `true` ensures
-     *           consistency in the number of results per page. Best practice is to set this
-     *           value to true if a client allows users to jump directly to a
-     *           non-sequential search results page.
-     *
-     *           Enabling this flag may adversely impact performance.
-     *
-     *           Defaults to false.
+     *           This field is deprecated.
      *     @type HistogramQuery[] $histogramQueries
      *           An expression specifies a histogram request against matching jobs.
      *
@@ -1484,6 +1497,8 @@ class JobServiceGapicClient
      *           for each distinct attribute value.
      *           * `count(numeric_histogram_facet, list of buckets)`: Count the number of
      *           matching entities within each bucket.
+     *
+     *           A maximum of 200 histogram buckets are supported.
      *
      *           Data types:
      *
@@ -1511,6 +1526,9 @@ class JobServiceGapicClient
      *           "FULL_TIME", "PART_TIME".
      *           * company_size: histogram by [CompanySize][google.cloud.talent.v4beta1.CompanySize], for example, "SMALL",
      *           "MEDIUM", "BIG".
+     *           * publish_time_in_day: histogram by the [Job.posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
+     *           in days.
+     *           Must specify list of numeric buckets in spec.
      *           * publish_time_in_month: histogram by the [Job.posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
      *           in months.
      *           Must specify list of numeric buckets in spec.
@@ -1564,7 +1582,7 @@ class JobServiceGapicClient
      *           bucket(100000, MAX)])`
      *           * `count(string_custom_attribute["some-string-custom-attribute"])`
      *           * `count(numeric_custom_attribute["some-numeric-custom-attribute"],
-     *           [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative"])`
+     *           [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative")])`
      *     @type int $jobView
      *           The desired job attributes returned for jobs in the search response.
      *           Defaults to [JobView.JOB_VIEW_SMALL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_SMALL] if no value is specified.
@@ -1655,6 +1673,14 @@ class JobServiceGapicClient
      *           Controls over how job documents get ranked on top of existing relevance
      *           score (determined by API algorithm).
      *     @type bool $disableKeywordMatch
+     *           This field is deprecated. Please use
+     *           [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4beta1.SearchJobsRequest.keyword_match_mode] going forward.
+     *
+     *           To migrate, disable_keyword_match set to false maps to
+     *           [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL], and disable_keyword_match set to
+     *           true maps to [KeywordMatchMode.KEYWORD_MATCH_DISABLED][google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_DISABLED]. If
+     *           [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4beta1.SearchJobsRequest.keyword_match_mode] is set, this field is ignored.
+     *
      *           Controls whether to disable exact keyword match on [Job.title][google.cloud.talent.v4beta1.Job.title],
      *           [Job.description][google.cloud.talent.v4beta1.Job.description], [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name], [Job.addresses][google.cloud.talent.v4beta1.Job.addresses],
      *           [Job.qualifications][google.cloud.talent.v4beta1.Job.qualifications]. When disable keyword match is turned off, a
@@ -1674,6 +1700,12 @@ class JobServiceGapicClient
      *           requests.
      *
      *           Defaults to false.
+     *     @type int $keywordMatchMode
+     *           Controls what keyword match options to use.
+     *
+     *           Defaults to [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL] if no value
+     *           is specified.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4beta1\SearchJobsRequest\KeywordMatchMode}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1744,6 +1776,10 @@ class JobServiceGapicClient
 
         if (isset($optionalArgs['disableKeywordMatch'])) {
             $request->setDisableKeywordMatch($optionalArgs['disableKeywordMatch']);
+        }
+
+        if (isset($optionalArgs['keywordMatchMode'])) {
+            $request->setKeywordMatchMode($optionalArgs['keywordMatchMode']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

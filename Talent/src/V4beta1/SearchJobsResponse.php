@@ -46,15 +46,13 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
     /**
      * An estimation of the number of jobs that match the specified query.
      * This number isn't guaranteed to be accurate. For accurate results,
-     * see [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size].
+     * see [SearchJobsResponse.total_size][google.cloud.talent.v4beta1.SearchJobsResponse.total_size].
      *
      * Generated from protobuf field <code>int32 estimated_total_size = 5;</code>
      */
     private $estimated_total_size = 0;
     /**
-     * The precise result count, which is available only if the client set
-     * [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size] to `true`, or if the
-     * response is the last page of results. Otherwise, the value is `-1`.
+     * The precise result count with limit 100,000.
      *
      * Generated from protobuf field <code>int32 total_size = 6;</code>
      */
@@ -106,11 +104,9 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
      *     @type int $estimated_total_size
      *           An estimation of the number of jobs that match the specified query.
      *           This number isn't guaranteed to be accurate. For accurate results,
-     *           see [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size].
+     *           see [SearchJobsResponse.total_size][google.cloud.talent.v4beta1.SearchJobsResponse.total_size].
      *     @type int $total_size
-     *           The precise result count, which is available only if the client set
-     *           [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size] to `true`, or if the
-     *           response is the last page of results. Otherwise, the value is `-1`.
+     *           The precise result count with limit 100,000.
      *     @type \Google\Cloud\Talent\V4beta1\ResponseMetadata $metadata
      *           Additional information for the API invocation, such as the request
      *           tracking id.
@@ -246,7 +242,7 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
     /**
      * An estimation of the number of jobs that match the specified query.
      * This number isn't guaranteed to be accurate. For accurate results,
-     * see [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size].
+     * see [SearchJobsResponse.total_size][google.cloud.talent.v4beta1.SearchJobsResponse.total_size].
      *
      * Generated from protobuf field <code>int32 estimated_total_size = 5;</code>
      * @return int
@@ -259,7 +255,7 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
     /**
      * An estimation of the number of jobs that match the specified query.
      * This number isn't guaranteed to be accurate. For accurate results,
-     * see [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size].
+     * see [SearchJobsResponse.total_size][google.cloud.talent.v4beta1.SearchJobsResponse.total_size].
      *
      * Generated from protobuf field <code>int32 estimated_total_size = 5;</code>
      * @param int $var
@@ -274,9 +270,7 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The precise result count, which is available only if the client set
-     * [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size] to `true`, or if the
-     * response is the last page of results. Otherwise, the value is `-1`.
+     * The precise result count with limit 100,000.
      *
      * Generated from protobuf field <code>int32 total_size = 6;</code>
      * @return int
@@ -287,9 +281,7 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The precise result count, which is available only if the client set
-     * [SearchJobsRequest.require_precise_result_size][google.cloud.talent.v4beta1.SearchJobsRequest.require_precise_result_size] to `true`, or if the
-     * response is the last page of results. Otherwise, the value is `-1`.
+     * The precise result count with limit 100,000.
      *
      * Generated from protobuf field <code>int32 total_size = 6;</code>
      * @param int $var
