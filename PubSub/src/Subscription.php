@@ -801,74 +801,14 @@ class Subscription
      */
     private function acknowledgeBatchWithRetries(array $messages, array $options = [])
     {
-        $failed = [];
-        $eodEnabled = true;
-
-        // we don't need to forward the `returnFailures` flag to the pubsub service.
-        unset($options['returnFailures']);
-        
-        // min delay of 1 sec, max delay of 10 minutes
-        // doubles on every attempt
-        $delayFunc = function ($attempt) {
-            $delay = min(
-                (pow(2, $attempt) * 1000000),
-                $this->eodMaxRetryTime
-            );
-            return $delay;
+        $actionFunc = function () use ($options, &$messages) {
+            $this->connection->acknowledge($options + [
+                'subscription' => $this->name,
+                'ackIds' => $this->getMessageAckIds($messages)
+            ]);
         };
 
-        // Func that decides if we need to retry again or not
-        $retryFunc = function (BadRequestException $e, $attempt) use (&$messages, &$failed, &$eodEnabled) {
-            // If the subscription isn't EOD enabled, the method behaves as the acknowledge method.
-            // Info from the exception is used instead of $subscription->info() to avoid
-            // the need of `pubsub.subscriptions.get` permission.
-            if (!$this->isExceptionExactlyOnce($e)) {
-                $eodEnabled = false;
-                return false;
-            }
-
-            $retryAckIds = $this->getRetryableAckIds($e);
-
-            // Find the messages which can be retried
-            $messages = array_filter($messages, function ($message) use ($retryAckIds, &$failed, $attempt) {
-                // A message will only be retried if it's ackId is in the list of retryable ackIds
-                // and the retry attempt isn't the last allowed attempt.
-                if ($attempt < self::EXACTLY_ONCE_MAX_RETRIES && in_array($message->ackId(), $retryAckIds)) {
-                    return true;
-                }
-
-                // If a message ack fails permanently, we remove it from the $messages array
-                // and add it to the list of failed messages
-                $failed[] = $message;
-
-                return false;
-            });
-
-            // Retry only if there are retryable messages left
-            return count($messages) > 0;
-        };
-        
-        // We use 10 retries as the 11th retry will cross 10 minutes
-        // and that is our intended break point.
-        $backoff = new ExponentialBackoff(self::EXACTLY_ONCE_MAX_RETRIES, $retryFunc);
-        $backoff->setCalcDelayFunction($delayFunc);
-
-        // Try to ack the messages with an ExponentialBackoff
-        try {
-            $backoff->execute(function () use ($options, &$messages) {
-                $this->connection->acknowledge($options + [
-                    'subscription' => $this->name,
-                    'ackIds' => $this->getMessageAckIds($messages)
-                ]);
-            });
-        } catch (BadRequestException $e) {
-        }
-
-        // We don't return anything if EOD is disabled
-        // to make it behave like if the flag `returnFailures` wasn't set.
-        if ($eodEnabled) {
-            return $failed;
-        }
+        return $this->retryEodAction($actionFunc, $messages, $options);
     }
 
     /**
@@ -983,6 +923,27 @@ class Subscription
      */
     private function modifyAckDeadlineBatchWithRetries(array $messages, int $seconds, array $options)
     {
+        $actionFunc = function () use ($options, &$messages, $seconds) {
+            $this->connection->modifyAckDeadline($options + [
+                'subscription' => $this->name,
+                'ackIds' => $this->getMessageAckIds($messages),
+                'ackDeadlineSeconds' => $seconds
+            ]);
+        };
+
+        return $this->retryEodAction($actionFunc, $messages, $options);
+    }
+
+    /**
+     * Helper function to retry an action for an EOD enabled subscription
+     * with an ExponentionBackOff.
+     * 
+     * @param callable $actionFunc The function to be retried
+     * @param Messages[] $messages The messages to be passed on to the pubsub service
+     * @param array $options The configuration options
+     */
+    private function retryEodAction(callable $actionFunc, array $messages, array $options)
+    {
         $failed = [];
         $eodEnabled = true;
 
@@ -1037,13 +998,7 @@ class Subscription
 
         // Try to ack the messages with an ExponentialBackoff
         try {
-            $backoff->execute(function () use ($options, &$messages, $seconds) {
-                $this->connection->modifyAckDeadline($options + [
-                    'subscription' => $this->name,
-                    'ackIds' => $this->getMessageAckIds($messages),
-                    'ackDeadlineSeconds' => $seconds
-                ]);
-            });
+            $backoff->execute($actionFunc);
         } catch (BadRequestException $e) {
         }
 
