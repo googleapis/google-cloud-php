@@ -18,11 +18,12 @@ class PurgeConfig
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
- 
+Ï
 )google/cloud/retail/v2/purge_config.protogoogle.cloud.retail.v2google/api/resource.proto"
-PurgeMetadata"Q
-PurgeUserEventsRequest
-parent (	B‡A
+PurgeMetadata"s
+PurgeUserEventsRequest5
+parent (	B%‡A˙A
+retail.googleapis.com/Catalog
 filter (	B‡A
 force ("6
 PurgeUserEventsResponse

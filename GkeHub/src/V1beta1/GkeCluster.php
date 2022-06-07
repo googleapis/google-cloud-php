@@ -24,8 +24,8 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
      */
     private $resource_link = '';
     /**
-     * Output only. If cluster_missing is set then it denotes that the GKE cluster
-     * no longer exists in the GKE Control Plane.
+     * Output only. If cluster_missing is set then it denotes that the GKE cluster no longer
+     * exists in the GKE Control Plane.
      *
      * Generated from protobuf field <code>bool cluster_missing = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -42,8 +42,8 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
      *               //container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
      *           Zonal clusters are also supported.
      *     @type bool $cluster_missing
-     *           Output only. If cluster_missing is set then it denotes that the GKE cluster
-     *           no longer exists in the GKE Control Plane.
+     *           Output only. If cluster_missing is set then it denotes that the GKE cluster no longer
+     *           exists in the GKE Control Plane.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,8 +82,8 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If cluster_missing is set then it denotes that the GKE cluster
-     * no longer exists in the GKE Control Plane.
+     * Output only. If cluster_missing is set then it denotes that the GKE cluster no longer
+     * exists in the GKE Control Plane.
      *
      * Generated from protobuf field <code>bool cluster_missing = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -94,8 +94,8 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If cluster_missing is set then it denotes that the GKE cluster
-     * no longer exists in the GKE Control Plane.
+     * Output only. If cluster_missing is set then it denotes that the GKE cluster no longer
+     * exists in the GKE Control Plane.
      *
      * Generated from protobuf field <code>bool cluster_missing = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var

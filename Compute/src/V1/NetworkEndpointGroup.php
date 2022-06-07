@@ -89,7 +89,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      */
     private $network_endpoint_type = null;
     /**
-     * The target service url used to set up private service connection to a Google API. An example value is: "asia-northeast3-cloudkms.googleapis.com"
+     * The target service url used to set up private service connection to a Google API or a PSC Producer Service Attachment. An example value is: "asia-northeast3-cloudkms.googleapis.com"
      *
      * Generated from protobuf field <code>optional string psc_target_service = 269132134;</code>
      */
@@ -157,7 +157,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      *           Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
      *           Check the NetworkEndpointType enum for the list of possible values.
      *     @type string $psc_target_service
-     *           The target service url used to set up private service connection to a Google API. An example value is: "asia-northeast3-cloudkms.googleapis.com"
+     *           The target service url used to set up private service connection to a Google API or a PSC Producer Service Attachment. An example value is: "asia-northeast3-cloudkms.googleapis.com"
      *     @type string $region
      *           [Output Only] The URL of the region where the network endpoint group is located.
      *     @type string $self_link
@@ -600,7 +600,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target service url used to set up private service connection to a Google API. An example value is: "asia-northeast3-cloudkms.googleapis.com"
+     * The target service url used to set up private service connection to a Google API or a PSC Producer Service Attachment. An example value is: "asia-northeast3-cloudkms.googleapis.com"
      *
      * Generated from protobuf field <code>optional string psc_target_service = 269132134;</code>
      * @return string
@@ -621,7 +621,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The target service url used to set up private service connection to a Google API. An example value is: "asia-northeast3-cloudkms.googleapis.com"
+     * The target service url used to set up private service connection to a Google API or a PSC Producer Service Attachment. An example value is: "asia-northeast3-cloudkms.googleapis.com"
      *
      * Generated from protobuf field <code>optional string psc_target_service = 269132134;</code>
      * @param string $var

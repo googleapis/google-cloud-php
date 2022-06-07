@@ -81,6 +81,17 @@ class PubSubTestCase extends SystemTestCase
         return $sub;
     }
 
+    public static function exactlyOnceSubscription(PubSubClient $client, Topic $topic, array $config = [])
+    {
+        $subName = uniqid(self::TESTING_PREFIX);
+        $config['enableExactlyOnceDelivery'] = true;
+        $sub = $client->subscribe($subName, $topic, $config);
+
+        self::$deletionQueue->add($sub);
+
+        return $sub;
+    }
+
     public static function topicAndSubscription(PubSubClient $client, array $topicConfig = [], array $subConfig = [])
     {
         $topic = self::topic($client, $topicConfig);

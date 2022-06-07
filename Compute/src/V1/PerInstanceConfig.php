@@ -15,13 +15,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class PerInstanceConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Fingerprint of this per-instance config. This field can be used in optimistic locking. It is ignored when inserting a per-instance config. An up-to-date fingerprint must be provided in order to update an existing per-instance config or the field needs to be unset.
+     * Fingerprint of this per-instance config. This field can be used in optimistic locking. It is ignored when inserting a per-instance config. An up-to-date fingerprint must be provided in order to update an existing per-instance configuration or the field needs to be unset.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
     private $fingerprint = null;
     /**
-     * The name of a per-instance config and its corresponding instance. Serves as a merge key during UpdatePerInstanceConfigs operations, that is, if a per-instance config with the same name exists then it will be updated, otherwise a new one will be created for the VM instance with the same name. An attempt to create a per-instance config for a VM instance that either doesn't exist or is not part of the group will result in an error.
+     * The name of a per-instance configuration and its corresponding instance. Serves as a merge key during UpdatePerInstanceConfigs operations, that is, if a per-instance configuration with the same name exists then it will be updated, otherwise a new one will be created for the VM instance with the same name. An attempt to create a per-instance configconfiguration for a VM instance that either doesn't exist or is not part of the group will result in an error.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
@@ -33,7 +33,7 @@ class PerInstanceConfig extends \Google\Protobuf\Internal\Message
      */
     private $preserved_state = null;
     /**
-     * The status of applying this per-instance config on the corresponding managed instance.
+     * The status of applying this per-instance configuration on the corresponding managed instance.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -47,13 +47,13 @@ class PerInstanceConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $fingerprint
-     *           Fingerprint of this per-instance config. This field can be used in optimistic locking. It is ignored when inserting a per-instance config. An up-to-date fingerprint must be provided in order to update an existing per-instance config or the field needs to be unset.
+     *           Fingerprint of this per-instance config. This field can be used in optimistic locking. It is ignored when inserting a per-instance config. An up-to-date fingerprint must be provided in order to update an existing per-instance configuration or the field needs to be unset.
      *     @type string $name
-     *           The name of a per-instance config and its corresponding instance. Serves as a merge key during UpdatePerInstanceConfigs operations, that is, if a per-instance config with the same name exists then it will be updated, otherwise a new one will be created for the VM instance with the same name. An attempt to create a per-instance config for a VM instance that either doesn't exist or is not part of the group will result in an error.
+     *           The name of a per-instance configuration and its corresponding instance. Serves as a merge key during UpdatePerInstanceConfigs operations, that is, if a per-instance configuration with the same name exists then it will be updated, otherwise a new one will be created for the VM instance with the same name. An attempt to create a per-instance configconfiguration for a VM instance that either doesn't exist or is not part of the group will result in an error.
      *     @type \Google\Cloud\Compute\V1\PreservedState $preserved_state
      *           The intended preserved state for the given instance. Does not contain preserved state generated from a stateful policy.
      *     @type string $status
-     *           The status of applying this per-instance config on the corresponding managed instance.
+     *           The status of applying this per-instance configuration on the corresponding managed instance.
      *           Check the Status enum for the list of possible values.
      * }
      */
@@ -63,7 +63,7 @@ class PerInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint of this per-instance config. This field can be used in optimistic locking. It is ignored when inserting a per-instance config. An up-to-date fingerprint must be provided in order to update an existing per-instance config or the field needs to be unset.
+     * Fingerprint of this per-instance config. This field can be used in optimistic locking. It is ignored when inserting a per-instance config. An up-to-date fingerprint must be provided in order to update an existing per-instance configuration or the field needs to be unset.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @return string
@@ -84,7 +84,7 @@ class PerInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint of this per-instance config. This field can be used in optimistic locking. It is ignored when inserting a per-instance config. An up-to-date fingerprint must be provided in order to update an existing per-instance config or the field needs to be unset.
+     * Fingerprint of this per-instance config. This field can be used in optimistic locking. It is ignored when inserting a per-instance config. An up-to-date fingerprint must be provided in order to update an existing per-instance configuration or the field needs to be unset.
      *
      * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @param string $var
@@ -99,7 +99,7 @@ class PerInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of a per-instance config and its corresponding instance. Serves as a merge key during UpdatePerInstanceConfigs operations, that is, if a per-instance config with the same name exists then it will be updated, otherwise a new one will be created for the VM instance with the same name. An attempt to create a per-instance config for a VM instance that either doesn't exist or is not part of the group will result in an error.
+     * The name of a per-instance configuration and its corresponding instance. Serves as a merge key during UpdatePerInstanceConfigs operations, that is, if a per-instance configuration with the same name exists then it will be updated, otherwise a new one will be created for the VM instance with the same name. An attempt to create a per-instance configconfiguration for a VM instance that either doesn't exist or is not part of the group will result in an error.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -120,7 +120,7 @@ class PerInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of a per-instance config and its corresponding instance. Serves as a merge key during UpdatePerInstanceConfigs operations, that is, if a per-instance config with the same name exists then it will be updated, otherwise a new one will be created for the VM instance with the same name. An attempt to create a per-instance config for a VM instance that either doesn't exist or is not part of the group will result in an error.
+     * The name of a per-instance configuration and its corresponding instance. Serves as a merge key during UpdatePerInstanceConfigs operations, that is, if a per-instance configuration with the same name exists then it will be updated, otherwise a new one will be created for the VM instance with the same name. An attempt to create a per-instance configconfiguration for a VM instance that either doesn't exist or is not part of the group will result in an error.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -171,7 +171,7 @@ class PerInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The status of applying this per-instance config on the corresponding managed instance.
+     * The status of applying this per-instance configuration on the corresponding managed instance.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>
@@ -193,7 +193,7 @@ class PerInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The status of applying this per-instance config on the corresponding managed instance.
+     * The status of applying this per-instance configuration on the corresponding managed instance.
      * Check the Status enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string status = 181260274;</code>

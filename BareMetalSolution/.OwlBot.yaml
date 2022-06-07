@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/baremetalsolution/v2/.*-php/(.*)
+      dest: /owl-bot-staging/BareMetalSolution/v2/$1
+api-name: BareMetalSolution

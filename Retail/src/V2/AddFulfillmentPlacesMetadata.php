@@ -11,7 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Metadata related to the progress of the AddFulfillmentPlaces operation.
  * Currently empty because there is no meaningful metadata populated from the
- * [AddFulfillmentPlaces][] method.
+ * [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.AddFulfillmentPlacesMetadata</code>
  */

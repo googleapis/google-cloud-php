@@ -10,6 +10,7 @@ use UnexpectedValueException;
  * The type of the database.
  * See https://cloud.google.com/datastore/docs/firestore-or-datastore for
  * information about how to choose.
+ * Mode changes are only allowed if the database is empty.
  *
  * Protobuf type <code>google.firestore.admin.v1.Database.DatabaseType</code>
  */

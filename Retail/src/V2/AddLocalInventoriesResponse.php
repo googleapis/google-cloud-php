@@ -9,8 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response of the [AddLocalInventories][] API.  Currently empty because
- * there is no meaningful response populated from the [AddLocalInventories][]
+ * Response of the
+ * [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
+ * API.  Currently empty because there is no meaningful response populated from
+ * the
+ * [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
  * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.AddLocalInventoriesResponse</code>

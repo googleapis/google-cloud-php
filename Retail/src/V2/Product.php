@@ -432,10 +432,10 @@ class Product extends \Google\Protobuf\Internal\Message
      * following fields are always returned in by default:
      * * [name][google.cloud.retail.v2.Product.name]
      * * [color_info][google.cloud.retail.v2.Product.color_info]
-     * Maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is
+     * The maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is
      * returned.
      * Note: Returning more fields in
-     * [SearchResponse][google.cloud.retail.v2.SearchResponse] may increase
+     * [SearchResponse][google.cloud.retail.v2.SearchResponse] can increase
      * response payload size and serving latency.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask retrievable_fields = 30;</code>
@@ -795,10 +795,10 @@ class Product extends \Google\Protobuf\Internal\Message
      *           following fields are always returned in by default:
      *           * [name][google.cloud.retail.v2.Product.name]
      *           * [color_info][google.cloud.retail.v2.Product.color_info]
-     *           Maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is
+     *           The maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is
      *           returned.
      *           Note: Returning more fields in
-     *           [SearchResponse][google.cloud.retail.v2.SearchResponse] may increase
+     *           [SearchResponse][google.cloud.retail.v2.SearchResponse] can increase
      *           response payload size and serving latency.
      *     @type \Google\Cloud\Retail\V2\Product[]|\Google\Protobuf\Internal\RepeatedField $variants
      *           Output only. Product variants grouped together on primary product which
@@ -2230,10 +2230,10 @@ class Product extends \Google\Protobuf\Internal\Message
      * following fields are always returned in by default:
      * * [name][google.cloud.retail.v2.Product.name]
      * * [color_info][google.cloud.retail.v2.Product.color_info]
-     * Maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is
+     * The maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is
      * returned.
      * Note: Returning more fields in
-     * [SearchResponse][google.cloud.retail.v2.SearchResponse] may increase
+     * [SearchResponse][google.cloud.retail.v2.SearchResponse] can increase
      * response payload size and serving latency.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask retrievable_fields = 30;</code>
@@ -2294,10 +2294,10 @@ class Product extends \Google\Protobuf\Internal\Message
      * following fields are always returned in by default:
      * * [name][google.cloud.retail.v2.Product.name]
      * * [color_info][google.cloud.retail.v2.Product.color_info]
-     * Maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is
+     * The maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is
      * returned.
      * Note: Returning more fields in
-     * [SearchResponse][google.cloud.retail.v2.SearchResponse] may increase
+     * [SearchResponse][google.cloud.retail.v2.SearchResponse] can increase
      * response payload size and serving latency.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask retrievable_fields = 30;</code>

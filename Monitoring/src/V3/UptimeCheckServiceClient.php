@@ -25,6 +25,7 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Cloud\Monitoring\V3\Gapic\UptimeCheckServiceGapicClient;
+use Google\ApiCore\PathTemplate;
 
 /** {@inheritdoc} */
 class UptimeCheckServiceClient extends UptimeCheckServiceGapicClient

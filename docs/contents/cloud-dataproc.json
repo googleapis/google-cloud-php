@@ -30,31 +30,6 @@
             "patterns": [
                 "dataproc\/v1\/\\w{1,}"
             ]
-        },
-        {
-            "title": "v1beta2",
-            "type": "dataproc\/v1beta2\/readme",
-            "nav": [
-                {
-                    "title": "AutoscalingPolicyServiceClient",
-                    "type": "dataproc\/v1beta2\/autoscalingpolicyserviceclient"
-                },
-                {
-                    "title": "ClusterControllerClient",
-                    "type": "dataproc\/v1beta2\/clustercontrollerclient"
-                },
-                {
-                    "title": "JobControllerClient",
-                    "type": "dataproc\/v1beta2\/jobcontrollerclient"
-                },
-                {
-                    "title": "WorkflowTemplateServiceClient",
-                    "type": "dataproc\/v1beta2\/workflowtemplateserviceclient"
-                }
-            ],
-            "patterns": [
-                "dataproc\/v1beta2\/\\w{1,}"
-            ]
         }
     ],
     "pattern": "dataproc\/\\w{1,}"

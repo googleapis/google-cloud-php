@@ -184,7 +184,7 @@ class Image extends \Google\Protobuf\Internal\Message
      */
     private $source_snapshot_id = null;
     /**
-     * The type of the image used to create this disk. The default and only value is RAW
+     * The type of the image used to create this disk. The default and only valid value is RAW.
      * Check the SourceType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string source_type = 452245726;</code>
@@ -267,7 +267,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *     @type string $source_snapshot_id
      *           [Output Only] The ID value of the snapshot used to create this image. This value may be used to determine whether the snapshot was taken from the current or a previous instance of a given snapshot name.
      *     @type string $source_type
-     *           The type of the image used to create this disk. The default and only value is RAW
+     *           The type of the image used to create this disk. The default and only valid value is RAW.
      *           Check the SourceType enum for the list of possible values.
      *     @type string $status
      *           [Output Only] The status of the image. An image can be used to create other resources, such as instances, only after the image has been successfully created and the status is set to READY. Possible values are FAILED, PENDING, or READY.
@@ -1250,7 +1250,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the image used to create this disk. The default and only value is RAW
+     * The type of the image used to create this disk. The default and only valid value is RAW.
      * Check the SourceType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string source_type = 452245726;</code>
@@ -1272,7 +1272,7 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the image used to create this disk. The default and only value is RAW
+     * The type of the image used to create this disk. The default and only valid value is RAW.
      * Check the SourceType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string source_type = 452245726;</code>

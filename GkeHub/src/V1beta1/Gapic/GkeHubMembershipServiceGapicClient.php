@@ -27,12 +27,13 @@
 namespace Google\Cloud\GkeHub\V1beta1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
+
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
-use Google\ApiCore\OperationResponse;
 
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -53,13 +54,22 @@ use Google\Cloud\GkeHub\V1beta1\Membership;
 use Google\Cloud\GkeHub\V1beta1\UpdateMembershipRequest;
 use Google\Cloud\GkeHub\V1beta1\ValidateExclusivityRequest;
 use Google\Cloud\GkeHub\V1beta1\ValidateExclusivityResponse;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
  * Service Description: The GKE Hub MembershipService handles the registration of many Kubernetes
- * clusters to Google Cloud, represented with the
- * [Membership][google.cloud.gkehub.v1beta1.Membership] resource.
+ * clusters to Google Cloud, represented with the [Membership][google.cloud.gkehub.v1beta1.Membership] resource.
  *
  * GKE Hub is currently only available in the global region.
  *
@@ -73,10 +83,10 @@ use Google\Protobuf\FieldMask;
  * ```
  * $gkeHubMembershipServiceClient = new GkeHubMembershipServiceClient();
  * try {
- *     $parent = 'parent';
+ *     $formattedParent = $gkeHubMembershipServiceClient->locationName('[PROJECT]', '[LOCATION]');
  *     $membershipId = 'membership_id';
  *     $resource = new Membership();
- *     $operationResponse = $gkeHubMembershipServiceClient->createMembership($parent, $membershipId, $resource);
+ *     $operationResponse = $gkeHubMembershipServiceClient->createMembership($formattedParent, $membershipId, $resource);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -87,7 +97,7 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $gkeHubMembershipServiceClient->createMembership($parent, $membershipId, $resource);
+ *     $operationResponse = $gkeHubMembershipServiceClient->createMembership($formattedParent, $membershipId, $resource);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $gkeHubMembershipServiceClient->resumeOperation($operationName, 'createMembership');
@@ -145,6 +155,8 @@ class GkeHubMembershipServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $locationNameTemplate;
+
     private static $membershipNameTemplate;
 
     private static $pathTemplateMap;
@@ -170,6 +182,15 @@ class GkeHubMembershipServiceGapicClient
         ];
     }
 
+    private static function getLocationNameTemplate()
+    {
+        if (self::$locationNameTemplate == null) {
+            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+        }
+
+        return self::$locationNameTemplate;
+    }
+
     private static function getMembershipNameTemplate()
     {
         if (self::$membershipNameTemplate == null) {
@@ -183,11 +204,31 @@ class GkeHubMembershipServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'location' => self::getLocationNameTemplate(),
                 'membership' => self::getMembershipNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a location
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     *
+     * @experimental
+     */
+    public static function locationName($project, $location)
+    {
+        return self::getLocationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
     }
 
     /**
@@ -215,6 +256,7 @@ class GkeHubMembershipServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - location: projects/{project}/locations/{location}
      * - membership: projects/{project}/locations/{location}/memberships/{membership}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -364,10 +406,10 @@ class GkeHubMembershipServiceGapicClient
      * ```
      * $gkeHubMembershipServiceClient = new GkeHubMembershipServiceClient();
      * try {
-     *     $parent = 'parent';
+     *     $formattedParent = $gkeHubMembershipServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     $membershipId = 'membership_id';
      *     $resource = new Membership();
-     *     $operationResponse = $gkeHubMembershipServiceClient->createMembership($parent, $membershipId, $resource);
+     *     $operationResponse = $gkeHubMembershipServiceClient->createMembership($formattedParent, $membershipId, $resource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -378,7 +420,7 @@ class GkeHubMembershipServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $gkeHubMembershipServiceClient->createMembership($parent, $membershipId, $resource);
+     *     $operationResponse = $gkeHubMembershipServiceClient->createMembership($formattedParent, $membershipId, $resource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $gkeHubMembershipServiceClient->resumeOperation($operationName, 'createMembership');
@@ -398,10 +440,10 @@ class GkeHubMembershipServiceGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The parent (project and location) where the Memberships will be
-     *                                 created. Specified in the format `projects/&#42;/locations/*`.
-     * @param string     $membershipId Required. Client chosen ID for the membership. `membership_id` must be a
-     *                                 valid RFC 1123 compliant DNS label:
+     * @param string     $parent       Required. The parent (project and location) where the Memberships will be created.
+     *                                 Specified in the format `projects/&#42;/locations/*`.
+     * @param string     $membershipId Required. Client chosen ID for the membership. `membership_id` must be a valid RFC
+     *                                 1123 compliant DNS label:
      *
      *                                 1. At most 63 characters in length
      *                                 2. It must consist of lower case alphanumeric characters or `-`
@@ -468,8 +510,8 @@ class GkeHubMembershipServiceGapicClient
      * ```
      * $gkeHubMembershipServiceClient = new GkeHubMembershipServiceClient();
      * try {
-     *     $name = 'name';
-     *     $operationResponse = $gkeHubMembershipServiceClient->deleteMembership($name);
+     *     $formattedName = $gkeHubMembershipServiceClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
+     *     $operationResponse = $gkeHubMembershipServiceClient->deleteMembership($formattedName);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         // operation succeeded and returns no value
@@ -479,7 +521,7 @@ class GkeHubMembershipServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $gkeHubMembershipServiceClient->deleteMembership($name);
+     *     $operationResponse = $gkeHubMembershipServiceClient->deleteMembership($formattedName);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $gkeHubMembershipServiceClient->resumeOperation($operationName, 'deleteMembership');
@@ -555,23 +597,22 @@ class GkeHubMembershipServiceGapicClient
      * ```
      * $gkeHubMembershipServiceClient = new GkeHubMembershipServiceClient();
      * try {
-     *     $name = 'name';
-     *     $response = $gkeHubMembershipServiceClient->generateConnectManifest($name);
+     *     $formattedName = $gkeHubMembershipServiceClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
+     *     $response = $gkeHubMembershipServiceClient->generateConnectManifest($formattedName);
      * } finally {
      *     $gkeHubMembershipServiceClient->close();
      * }
      * ```
      *
-     * @param string $name         Required. The Membership resource name the Agent will associate with, in
-     *                             the format `projects/&#42;/locations/&#42;/memberships/*`.
+     * @param string $name         Required. The Membership resource name the Agent will associate with, in the format
+     *                             `projects/&#42;/locations/&#42;/memberships/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type ConnectAgent $connectAgent
      *           Optional. The connect agent to generate manifest for.
      *     @type string $version
-     *           Optional. The Connect agent version to use. Defaults to the most current
-     *           version.
+     *           Optional. The Connect agent version to use. Defaults to the most current version.
      *     @type bool $isUpgrade
      *           Optional. If true, generate the resources for upgrade only. Some resources
      *           generated only for installation (e.g. secrets) will be excluded.
@@ -642,8 +683,8 @@ class GkeHubMembershipServiceGapicClient
      * ```
      * $gkeHubMembershipServiceClient = new GkeHubMembershipServiceClient();
      * try {
-     *     $name = 'name';
-     *     $response = $gkeHubMembershipServiceClient->generateExclusivityManifest($name);
+     *     $formattedName = $gkeHubMembershipServiceClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
+     *     $response = $gkeHubMembershipServiceClient->generateExclusivityManifest($formattedName);
      * } finally {
      *     $gkeHubMembershipServiceClient->close();
      * }
@@ -701,8 +742,8 @@ class GkeHubMembershipServiceGapicClient
      * ```
      * $gkeHubMembershipServiceClient = new GkeHubMembershipServiceClient();
      * try {
-     *     $name = 'name';
-     *     $response = $gkeHubMembershipServiceClient->getMembership($name);
+     *     $formattedName = $gkeHubMembershipServiceClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
+     *     $response = $gkeHubMembershipServiceClient->getMembership($formattedName);
      * } finally {
      *     $gkeHubMembershipServiceClient->close();
      * }
@@ -744,9 +785,9 @@ class GkeHubMembershipServiceGapicClient
      * ```
      * $gkeHubMembershipServiceClient = new GkeHubMembershipServiceClient();
      * try {
-     *     $parent = 'parent';
+     *     $formattedParent = $gkeHubMembershipServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $gkeHubMembershipServiceClient->listMemberships($parent);
+     *     $pagedResponse = $gkeHubMembershipServiceClient->listMemberships($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -754,7 +795,7 @@ class GkeHubMembershipServiceGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $gkeHubMembershipServiceClient->listMemberships($parent);
+     *     $pagedResponse = $gkeHubMembershipServiceClient->listMemberships($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -763,8 +804,8 @@ class GkeHubMembershipServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent (project and location) where the Memberships will be
-     *                             listed. Specified in the format `projects/&#42;/locations/*`.
+     * @param string $parent       Required. The parent (project and location) where the Memberships will be listed.
+     *                             Specified in the format `projects/&#42;/locations/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -778,8 +819,8 @@ class GkeHubMembershipServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $filter
-     *           Optional. Lists Memberships that match the filter expression, following the
-     *           syntax outlined in https://google.aip.dev/160.
+     *           Optional. Lists Memberships that match the filter expression, following the syntax
+     *           outlined in https://google.aip.dev/160.
      *
      *           Examples:
      *
@@ -848,10 +889,10 @@ class GkeHubMembershipServiceGapicClient
      * ```
      * $gkeHubMembershipServiceClient = new GkeHubMembershipServiceClient();
      * try {
-     *     $name = 'name';
+     *     $formattedName = $gkeHubMembershipServiceClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
      *     $updateMask = new FieldMask();
      *     $resource = new Membership();
-     *     $operationResponse = $gkeHubMembershipServiceClient->updateMembership($name, $updateMask, $resource);
+     *     $operationResponse = $gkeHubMembershipServiceClient->updateMembership($formattedName, $updateMask, $resource);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -862,7 +903,7 @@ class GkeHubMembershipServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $gkeHubMembershipServiceClient->updateMembership($name, $updateMask, $resource);
+     *     $operationResponse = $gkeHubMembershipServiceClient->updateMembership($formattedName, $updateMask, $resource);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $gkeHubMembershipServiceClient->resumeOperation($operationName, 'updateMembership');
@@ -884,8 +925,8 @@ class GkeHubMembershipServiceGapicClient
      *
      * @param string     $name         Required. The membership resource name in the format:
      *                                 `projects/[project_id]/locations/global/memberships/[membership_id]`
-     * @param FieldMask  $updateMask   Required. Mask of fields to update. At least one field path must be
-     *                                 specified in this mask.
+     * @param FieldMask  $updateMask   Required. Mask of fields to update. At least one field path must be specified in this
+     *                                 mask.
      * @param Membership $resource     Required. Only fields specified in update_mask are updated.
      *                                 If you specify a field in the update_mask but don't specify its value here
      *                                 that field will be deleted.
@@ -949,25 +990,24 @@ class GkeHubMembershipServiceGapicClient
      * ```
      * $gkeHubMembershipServiceClient = new GkeHubMembershipServiceClient();
      * try {
-     *     $parent = 'parent';
+     *     $formattedParent = $gkeHubMembershipServiceClient->locationName('[PROJECT]', '[LOCATION]');
      *     $intendedMembership = 'intended_membership';
-     *     $response = $gkeHubMembershipServiceClient->validateExclusivity($parent, $intendedMembership);
+     *     $response = $gkeHubMembershipServiceClient->validateExclusivity($formattedParent, $intendedMembership);
      * } finally {
      *     $gkeHubMembershipServiceClient->close();
      * }
      * ```
      *
-     * @param string $parent             Required. The parent (project and location) where the Memberships will be
-     *                                   created. Specified in the format `projects/&#42;/locations/*`.
-     * @param string $intendedMembership Required. The intended membership name under the `parent`. This method only
-     *                                   does validation in anticipation of a CreateMembership call with the same
-     *                                   name.
+     * @param string $parent             Required. The parent (project and location) where the Memberships will be created.
+     *                                   Specified in the format `projects/&#42;/locations/*`.
+     * @param string $intendedMembership Required. The intended membership name under the `parent`. This method only does
+     *                                   validation in anticipation of a CreateMembership call with the same name.
      * @param array  $optionalArgs       {
      *     Optional.
      *
      *     @type string $crManifest
-     *           Optional. The YAML of the membership CR in the cluster. Empty if the
-     *           membership CR does not exist.
+     *           Optional. The YAML of the membership CR in the cluster. Empty if the membership
+     *           CR does not exist.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -995,5 +1035,299 @@ class GkeHubMembershipServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ValidateExclusivity', ValidateExclusivityResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $gkeHubMembershipServiceClient = new GkeHubMembershipServiceClient();
+     * try {
+     *     $response = $gkeHubMembershipServiceClient->getLocation();
+     * } finally {
+     *     $gkeHubMembershipServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetLocation', Location::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.cloud.location.Locations')->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $gkeHubMembershipServiceClient = new GkeHubMembershipServiceClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $gkeHubMembershipServiceClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $gkeHubMembershipServiceClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $gkeHubMembershipServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListLocations', $optionalArgs, ListLocationsResponse::class, $request, 'google.cloud.location.Locations');
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+    if the resource exists and does not have a policy set.
+     *
+     * Sample code:
+     * ```
+     * $gkeHubMembershipServiceClient = new GkeHubMembershipServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $response = $gkeHubMembershipServiceClient->getIamPolicy($resource);
+     * } finally {
+     *     $gkeHubMembershipServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type GetPolicyOptions $options
+     *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
+     *           `GetIamPolicy`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getIamPolicy($resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetIamPolicy', Policy::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+    any existing policy.
+
+    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    errors.
+     *
+     * Sample code:
+     * ```
+     * $gkeHubMembershipServiceClient = new GkeHubMembershipServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $gkeHubMembershipServiceClient->setIamPolicy($resource, $policy);
+     * } finally {
+     *     $gkeHubMembershipServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
+
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
+     *
+     * Sample code:
+     * ```
+     * $gkeHubMembershipServiceClient = new GkeHubMembershipServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $gkeHubMembershipServiceClient->testIamPermissions($resource, $permissions);
+     * } finally {
+     *     $gkeHubMembershipServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    {
+        $request = new TestIamPermissionsRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();
     }
 }

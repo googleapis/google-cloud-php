@@ -219,6 +219,7 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $name = 'name3373707';
         $network = 'network1843485230';
         $networkTier = 'networkTier-19473069';
+        $noAutomateDnsZone = false;
         $portRange = 'portRange217518079';
         $pscConnectionId = 292082397;
         $pscConnectionStatus = 'pscConnectionStatus-889592652';
@@ -246,6 +247,7 @@ class GlobalForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setNetworkTier($networkTier);
+        $expectedResponse->setNoAutomateDnsZone($noAutomateDnsZone);
         $expectedResponse->setPortRange($portRange);
         $expectedResponse->setPscConnectionId($pscConnectionId);
         $expectedResponse->setPscConnectionStatus($pscConnectionStatus);

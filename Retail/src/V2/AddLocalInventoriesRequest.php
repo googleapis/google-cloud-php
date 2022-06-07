@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [AddLocalInventories][] method.
+ * Request message for
+ * [ProductService.AddLocalInventories][google.cloud.retail.v2.ProductService.AddLocalInventories]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.AddLocalInventoriesRequest</code>
  */
