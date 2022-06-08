@@ -844,11 +844,11 @@ class Subscription
      *        zero may immediately make the message available for another pull
      *        request.
      * @param array $options [optional] Configuration Options
-     * @return void
+     * @return void|array
      */
     public function modifyAckDeadline(Message $message, $seconds, array $options = [])
     {
-        $this->modifyAckDeadlineBatch([$message], $seconds, $options);
+        return $this->modifyAckDeadlineBatch([$message], $seconds, $options);
     }
 
     /**
