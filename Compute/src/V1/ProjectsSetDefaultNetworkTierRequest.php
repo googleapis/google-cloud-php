@@ -16,8 +16,9 @@ class ProjectsSetDefaultNetworkTierRequest extends \Google\Protobuf\Internal\Mes
 {
     /**
      * Default network tier to be set.
+     * Check the NetworkTier enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ProjectsSetDefaultNetworkTierRequest.NetworkTier network_tier = 517397843;</code>
+     * Generated from protobuf field <code>optional string network_tier = 517397843;</code>
      */
     private $network_tier = null;
 
@@ -27,8 +28,9 @@ class ProjectsSetDefaultNetworkTierRequest extends \Google\Protobuf\Internal\Mes
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $network_tier
+     *     @type string $network_tier
      *           Default network tier to be set.
+     *           Check the NetworkTier enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,13 +40,14 @@ class ProjectsSetDefaultNetworkTierRequest extends \Google\Protobuf\Internal\Mes
 
     /**
      * Default network tier to be set.
+     * Check the NetworkTier enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ProjectsSetDefaultNetworkTierRequest.NetworkTier network_tier = 517397843;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string network_tier = 517397843;</code>
+     * @return string
      */
     public function getNetworkTier()
     {
-        return isset($this->network_tier) ? $this->network_tier : 0;
+        return isset($this->network_tier) ? $this->network_tier : '';
     }
 
     public function hasNetworkTier()
@@ -59,14 +62,15 @@ class ProjectsSetDefaultNetworkTierRequest extends \Google\Protobuf\Internal\Mes
 
     /**
      * Default network tier to be set.
+     * Check the NetworkTier enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ProjectsSetDefaultNetworkTierRequest.NetworkTier network_tier = 517397843;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string network_tier = 517397843;</code>
+     * @param string $var
      * @return $this
      */
     public function setNetworkTier($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\ProjectsSetDefaultNetworkTierRequest\NetworkTier::class);
+        GPBUtil::checkString($var, True);
         $this->network_tier = $var;
 
         return $this;

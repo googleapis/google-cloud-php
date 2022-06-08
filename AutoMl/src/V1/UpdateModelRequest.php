@@ -53,7 +53,7 @@ class UpdateModelRequest extends \Google\Protobuf\Internal\Message
      */
     public function getModel()
     {
-        return isset($this->model) ? $this->model : null;
+        return $this->model;
     }
 
     public function hasModel()
@@ -89,7 +89,7 @@ class UpdateModelRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

@@ -51,6 +51,4 @@ class CommuteMethod
     const TRANSIT_ACCESSIBLE = 5;
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CommuteMethod::class, \Google\Cloud\Talent\V4beta1\CommuteFilter_CommuteMethod::class);
 

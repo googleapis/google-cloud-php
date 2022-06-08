@@ -37,6 +37,7 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
      * Generated from protobuf field <code>bool skip_verification = 4;</code>
      */
     private $skip_verification = false;
+    protected $sync_config;
 
     /**
      * Constructor.
@@ -52,6 +53,8 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
      *           External sync mode.
      *     @type bool $skip_verification
      *           Whether to skip the verification step (VESS).
+     *     @type \Google\Cloud\Sql\V1beta4\MySqlSyncConfig $mysql_sync_config
+     *           MySQL-specific settings for start external sync.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,6 +164,45 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
         $this->skip_verification = $var;
 
         return $this;
+    }
+
+    /**
+     * MySQL-specific settings for start external sync.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.MySqlSyncConfig mysql_sync_config = 6;</code>
+     * @return \Google\Cloud\Sql\V1beta4\MySqlSyncConfig|null
+     */
+    public function getMysqlSyncConfig()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasMysqlSyncConfig()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * MySQL-specific settings for start external sync.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.MySqlSyncConfig mysql_sync_config = 6;</code>
+     * @param \Google\Cloud\Sql\V1beta4\MySqlSyncConfig $var
+     * @return $this
+     */
+    public function setMysqlSyncConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1beta4\MySqlSyncConfig::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSyncConfig()
+    {
+        return $this->whichOneof("sync_config");
     }
 
 }

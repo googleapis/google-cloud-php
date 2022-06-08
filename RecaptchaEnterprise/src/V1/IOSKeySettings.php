@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class IOSKeySettings extends \Google\Protobuf\Internal\Message
 {
     /**
+     * If set to true, allowed_bundle_ids are not enforced.
+     *
+     * Generated from protobuf field <code>bool allow_all_bundle_ids = 2;</code>
+     */
+    private $allow_all_bundle_ids = false;
+    /**
      * iOS bundle ids of apps allowed to use the key.
      * Example: 'com.companyname.productname.appname'
      *
@@ -29,6 +35,8 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $allow_all_bundle_ids
+     *           If set to true, allowed_bundle_ids are not enforced.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allowed_bundle_ids
      *           iOS bundle ids of apps allowed to use the key.
      *           Example: 'com.companyname.productname.appname'
@@ -37,6 +45,32 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Recaptchaenterprise\V1\Recaptchaenterprise::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * If set to true, allowed_bundle_ids are not enforced.
+     *
+     * Generated from protobuf field <code>bool allow_all_bundle_ids = 2;</code>
+     * @return bool
+     */
+    public function getAllowAllBundleIds()
+    {
+        return $this->allow_all_bundle_ids;
+    }
+
+    /**
+     * If set to true, allowed_bundle_ids are not enforced.
+     *
+     * Generated from protobuf field <code>bool allow_all_bundle_ids = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllowAllBundleIds($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->allow_all_bundle_ids = $var;
+
+        return $this;
     }
 
     /**

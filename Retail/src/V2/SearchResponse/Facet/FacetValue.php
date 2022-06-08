@@ -140,6 +140,4 @@ class FacetValue extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FacetValue::class, \Google\Cloud\Retail\V2\SearchResponse_Facet_FacetValue::class);
 

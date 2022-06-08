@@ -137,6 +137,4 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CompletionResult::class, \Google\Cloud\Talent\V4beta1\CompleteQueryResponse_CompletionResult::class);
 

@@ -19,14 +19,15 @@ class CreateTagTemplateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the project and the template location
      * [region](https://cloud.google.com/data-catalog/docs/concepts/regions).
-     * Example:
-     * * projects/{project_id}/locations/us-central1
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Required. The id of the tag template to create.
+     * Required. The ID of the tag template to create.
+     * The ID must contain only lowercase letters (a-z), numbers (0-9),
+     * or underscores (_), and must start with a letter or underscore.
+     * The maximum size is 64 bytes when encoded in UTF-8.
      *
      * Generated from protobuf field <code>string tag_template_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -47,10 +48,11 @@ class CreateTagTemplateRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The name of the project and the template location
      *           [region](https://cloud.google.com/data-catalog/docs/concepts/regions).
-     *           Example:
-     *           * projects/{project_id}/locations/us-central1
      *     @type string $tag_template_id
-     *           Required. The id of the tag template to create.
+     *           Required. The ID of the tag template to create.
+     *           The ID must contain only lowercase letters (a-z), numbers (0-9),
+     *           or underscores (_), and must start with a letter or underscore.
+     *           The maximum size is 64 bytes when encoded in UTF-8.
      *     @type \Google\Cloud\DataCatalog\V1\TagTemplate $tag_template
      *           Required. The tag template to create.
      * }
@@ -63,8 +65,6 @@ class CreateTagTemplateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the project and the template location
      * [region](https://cloud.google.com/data-catalog/docs/concepts/regions).
-     * Example:
-     * * projects/{project_id}/locations/us-central1
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -77,8 +77,6 @@ class CreateTagTemplateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the project and the template location
      * [region](https://cloud.google.com/data-catalog/docs/concepts/regions).
-     * Example:
-     * * projects/{project_id}/locations/us-central1
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -93,7 +91,10 @@ class CreateTagTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The id of the tag template to create.
+     * Required. The ID of the tag template to create.
+     * The ID must contain only lowercase letters (a-z), numbers (0-9),
+     * or underscores (_), and must start with a letter or underscore.
+     * The maximum size is 64 bytes when encoded in UTF-8.
      *
      * Generated from protobuf field <code>string tag_template_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -104,7 +105,10 @@ class CreateTagTemplateRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The id of the tag template to create.
+     * Required. The ID of the tag template to create.
+     * The ID must contain only lowercase letters (a-z), numbers (0-9),
+     * or underscores (_), and must start with a letter or underscore.
+     * The maximum size is 64 bytes when encoded in UTF-8.
      *
      * Generated from protobuf field <code>string tag_template_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -126,7 +130,7 @@ class CreateTagTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTagTemplate()
     {
-        return isset($this->tag_template) ? $this->tag_template : null;
+        return $this->tag_template;
     }
 
     public function hasTagTemplate()

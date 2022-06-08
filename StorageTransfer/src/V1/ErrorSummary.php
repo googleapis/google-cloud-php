@@ -30,7 +30,7 @@ class ErrorSummary extends \Google\Protobuf\Internal\Message
     private $error_count = 0;
     /**
      * Error samples.
-     * At most 5 error log entries will be recorded for a given
+     * At most 5 error log entries are recorded for a given
      * error code for a single transfer operation.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.ErrorLogEntry error_log_entries = 3;</code>
@@ -49,7 +49,7 @@ class ErrorSummary extends \Google\Protobuf\Internal\Message
      *           Required. Count of this type of error.
      *     @type \Google\Cloud\StorageTransfer\V1\ErrorLogEntry[]|\Google\Protobuf\Internal\RepeatedField $error_log_entries
      *           Error samples.
-     *           At most 5 error log entries will be recorded for a given
+     *           At most 5 error log entries are recorded for a given
      *           error code for a single transfer operation.
      * }
      */
@@ -112,7 +112,7 @@ class ErrorSummary extends \Google\Protobuf\Internal\Message
 
     /**
      * Error samples.
-     * At most 5 error log entries will be recorded for a given
+     * At most 5 error log entries are recorded for a given
      * error code for a single transfer operation.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.ErrorLogEntry error_log_entries = 3;</code>
@@ -125,7 +125,7 @@ class ErrorSummary extends \Google\Protobuf\Internal\Message
 
     /**
      * Error samples.
-     * At most 5 error log entries will be recorded for a given
+     * At most 5 error log entries are recorded for a given
      * error code for a single transfer operation.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.ErrorLogEntry error_log_entries = 3;</code>

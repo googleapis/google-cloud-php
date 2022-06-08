@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * SetNodePoolSizeRequest sets the size a node
- * pool.
+ * SetNodePoolSizeRequest sets the size of a node pool.
  *
  * Generated from protobuf message <code>google.container.v1.SetNodePoolSizeRequest</code>
  */

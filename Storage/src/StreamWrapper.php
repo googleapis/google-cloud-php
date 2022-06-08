@@ -120,6 +120,16 @@ class StreamWrapper
     }
 
     /**
+     * Starting PHP 7.4, this is called when include/require is used on a stream.
+     * Absence of this method presents a warning.
+     * https://www.php.net/manual/en/migration74.incompatible.php
+     */
+    public function stream_set_option()
+    {
+        return false;
+    }
+
+    /**
      * Register a StreamWrapper for reading and writing to Google Storage
      *
      * @param StorageClient $client The StorageClient configuration to use.

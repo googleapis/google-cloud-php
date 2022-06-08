@@ -113,7 +113,7 @@ class CreateTagRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTag()
     {
-        return isset($this->tag) ? $this->tag : null;
+        return $this->tag;
     }
 
     public function hasTag()

@@ -62,7 +62,7 @@ class SegmentSettings extends \Google\Protobuf\Internal\Message
      */
     public function getSegmentDuration()
     {
-        return isset($this->segment_duration) ? $this->segment_duration : null;
+        return $this->segment_duration;
     }
 
     public function hasSegmentDuration()

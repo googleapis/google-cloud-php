@@ -20,15 +20,14 @@ class Containeranalysis
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Iam\V1\IamPolicy::initOnce();
         \GPBMetadata\Google\Iam\V1\Policy::initOnce();
-        \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Grafeas\V1\Vulnerability::initOnce();
+        \GPBMetadata\Grafeas\V1\Severity::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ô
-<google/devtools/containeranalysis/v1/containeranalysis.proto$google.devtools.containeranalysis.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/timestamp.protografeas/v1/vulnerability.proto"€
+Î
+<google/devtools/containeranalysis/v1/containeranalysis.proto$google.devtools.containeranalysis.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protografeas/v1/severity.proto"€
 )GetVulnerabilityOccurrencesSummaryRequestC
-parent (	B3úA-
-+cloudresourcemanager.googleapis.com/ProjectàA
+parent (	B3àAúA-
++cloudresourcemanager.googleapis.com/Project
 filter (	"
 VulnerabilityOccurrencesSummaryj
 counts (2Z.google.devtools.containeranalysis.v1.VulnerabilityOccurrencesSummary.FixableTotalByDigest€

@@ -18,7 +18,7 @@ class BackendServiceCdnPolicyBypassCacheOnRequestHeader extends \Google\Protobuf
     /**
      * The header field name to match on when bypassing cache. Values are case-insensitive.
      *
-     * Generated from protobuf field <code>string header_name = 110223613;</code>
+     * Generated from protobuf field <code>optional string header_name = 110223613;</code>
      */
     private $header_name = null;
 
@@ -40,7 +40,7 @@ class BackendServiceCdnPolicyBypassCacheOnRequestHeader extends \Google\Protobuf
     /**
      * The header field name to match on when bypassing cache. Values are case-insensitive.
      *
-     * Generated from protobuf field <code>string header_name = 110223613;</code>
+     * Generated from protobuf field <code>optional string header_name = 110223613;</code>
      * @return string
      */
     public function getHeaderName()
@@ -61,7 +61,7 @@ class BackendServiceCdnPolicyBypassCacheOnRequestHeader extends \Google\Protobuf
     /**
      * The header field name to match on when bypassing cache. Values are case-insensitive.
      *
-     * Generated from protobuf field <code>string header_name = 110223613;</code>
+     * Generated from protobuf field <code>optional string header_name = 110223613;</code>
      * @param string $var
      * @return $this
      */

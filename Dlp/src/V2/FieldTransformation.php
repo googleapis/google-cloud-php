@@ -17,6 +17,9 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Input field(s) to apply the transformation to.
+     * When you have columns that reference their position within a list,
+     * omit the index from the FieldId. FieldId name matching ignores the index.
+     * For example, instead of "contact.nums[0].type", use "contact.nums.type".
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId fields = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -43,6 +46,9 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $fields
      *           Required. Input field(s) to apply the transformation to.
+     *           When you have columns that reference their position within a list,
+     *           omit the index from the FieldId. FieldId name matching ignores the index.
+     *           For example, instead of "contact.nums[0].type", use "contact.nums.type".
      *     @type \Google\Cloud\Dlp\V2\RecordCondition $condition
      *           Only apply the transformation if the condition evaluates to true for the
      *           given `RecordCondition`. The conditions are allowed to reference fields
@@ -65,6 +71,9 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Input field(s) to apply the transformation to.
+     * When you have columns that reference their position within a list,
+     * omit the index from the FieldId. FieldId name matching ignores the index.
+     * For example, instead of "contact.nums[0].type", use "contact.nums.type".
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId fields = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -76,6 +85,9 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Input field(s) to apply the transformation to.
+     * When you have columns that reference their position within a list,
+     * omit the index from the FieldId. FieldId name matching ignores the index.
+     * For example, instead of "contact.nums[0].type", use "contact.nums.type".
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId fields = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $var

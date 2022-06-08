@@ -104,6 +104,12 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      */
     private $environment_variables;
     /**
+     * Build environment variables that shall be available during build time.
+     *
+     * Generated from protobuf field <code>map<string, string> build_environment_variables = 28;</code>
+     */
+    private $build_environment_variables;
+    /**
      * The VPC Network that this cloud function can connect to. It can be
      * either the fully-qualified URI, or the short name of the network resource.
      * If the short network name is used, the network must belong to the same
@@ -123,10 +129,25 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     /**
      * The limit on the maximum number of function instances that may coexist at a
      * given time.
+     * In some cases, such as rapid traffic surges, Cloud Functions may, for a
+     * short period of time, create more instances than the specified max
+     * instances limit. If your function cannot tolerate this temporary behavior,
+     * you may want to factor in a safety margin and set a lower max instances
+     * value than your function can tolerate.
+     * See the [Max
+     * Instances](https://cloud.google.com/functions/docs/max-instances) Guide for
+     * more details.
      *
      * Generated from protobuf field <code>int32 max_instances = 20;</code>
      */
     private $max_instances = 0;
+    /**
+     * A lower bound for the number function instances that may coexist at a
+     * given time.
+     *
+     * Generated from protobuf field <code>int32 min_instances = 32;</code>
+     */
+    private $min_instances = 0;
     /**
      * The VPC Network Connector that this cloud function can connect to. It can
      * be either the fully-qualified URI, or the short name of the network
@@ -155,12 +176,109 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      */
     private $ingress_settings = 0;
     /**
+     * Resource name of a KMS crypto key (managed by the user) used to
+     * encrypt/decrypt function resources.
+     * It must match the pattern
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
+     * If specified, you must also provide an artifact registry repository using
+     * the `docker_repository` field that was created with the same KMS crypto
+     * key.
+     * The following service accounts need to be granted the role 'Cloud KMS
+     * CryptoKey Encrypter/Decrypter (roles/cloudkms.cryptoKeyEncrypterDecrypter)'
+     * on the Key/KeyRing/Project/Organization (least access preferred).
+     * 1. Google Cloud Functions service account
+     *    (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) -
+     *    Required to protect the function's image.
+     * 2. Google Storage service account
+     *    (service-{project_number}&#64;gs-project-accounts.iam.gserviceaccount.com) -
+     *    Required to protect the function's source code.
+     *    If this service account does not exist, deploying a function without a
+     *    KMS key or retrieving the service agent name provisions it. For more
+     *    information, see
+     *    https://cloud.google.com/storage/docs/projects#service-agents and
+     *    https://cloud.google.com/storage/docs/getting-service-agent#gsutil.
+     * Google Cloud Functions delegates access to service agents to protect
+     * function resources in internal projects that are not accessible by the
+     * end user.
+     *
+     * Generated from protobuf field <code>string kms_key_name = 25 [(.google.api.resource_reference) = {</code>
+     */
+    private $kms_key_name = '';
+    /**
+     * Name of the Cloud Build Custom Worker Pool that should be used to build the
+     * function. The format of this field is
+     * `projects/{project}/locations/{region}/workerPools/{workerPool}` where
+     * `{project}` and `{region}` are the project id and region respectively where
+     * the worker pool is defined and `{workerPool}` is the short name of the
+     * worker pool.
+     * If the project id is not the same as the function, then the Cloud
+     * Functions Service Agent
+     * (`service-<project_number>&#64;gcf-admin-robot.iam.gserviceaccount.com`) must
+     * be granted the role Cloud Build Custom Workers Builder
+     * (`roles/cloudbuild.customworkers.builder`) in the project.
+     *
+     * Generated from protobuf field <code>string build_worker_pool = 26;</code>
+     */
+    private $build_worker_pool = '';
+    /**
      * Output only. The Cloud Build ID of the latest successful deployment of the
      * function.
      *
      * Generated from protobuf field <code>string build_id = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $build_id = '';
+    /**
+     * Output only. The Cloud Build Name of the function deployment.
+     * `projects/<project-number>/locations/<region>/builds/<build-id>`.
+     *
+     * Generated from protobuf field <code>string build_name = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $build_name = '';
+    /**
+     * Secret environment variables configuration.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.functions.v1.SecretEnvVar secret_environment_variables = 29;</code>
+     */
+    private $secret_environment_variables;
+    /**
+     * Secret volumes configuration.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.functions.v1.SecretVolume secret_volumes = 30;</code>
+     */
+    private $secret_volumes;
+    /**
+     * Input only. An identifier for Firebase function sources. Disclaimer: This field is only
+     * supported for Firebase function deployments.
+     *
+     * Generated from protobuf field <code>string source_token = 31 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    private $source_token = '';
+    /**
+     * User managed repository created in Artifact Registry optionally with a
+     * customer managed encryption key. If specified, deployments will use
+     * Artifact Registry. If unspecified and the deployment is eligible to use
+     * Artifact Registry, GCF will create and use a repository named
+     * 'gcf-artifacts' for every deployed region. This is the repository to which
+     * the function docker image will be pushed after it is built by Cloud Build.
+     * It must match the pattern
+     * `projects/{project}/locations/{location}/repositories/{repository}`.
+     * Cross-project repositories are not supported.
+     * Cross-location repositories are not supported.
+     * Repository format must be 'DOCKER'.
+     *
+     * Generated from protobuf field <code>string docker_repository = 34 [(.google.api.resource_reference) = {</code>
+     */
+    private $docker_repository = '';
+    /**
+     * Docker Registry to use for this deployment.
+     * If `docker_repository` field is specified, this field will be automatically
+     * set as `ARTIFACT_REGISTRY`.
+     * If unspecified, it currently defaults to `CONTAINER_REGISTRY`.
+     * This field may be overridden by the backend for eligible deployments.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v1.CloudFunction.DockerRegistry docker_registry = 35;</code>
+     */
+    private $docker_registry = 0;
     protected $source_code;
     protected $trigger;
 
@@ -225,6 +343,8 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      *           Labels associated with this Cloud Function.
      *     @type array|\Google\Protobuf\Internal\MapField $environment_variables
      *           Environment variables that shall be available during function execution.
+     *     @type array|\Google\Protobuf\Internal\MapField $build_environment_variables
+     *           Build environment variables that shall be available during build time.
      *     @type string $network
      *           The VPC Network that this cloud function can connect to. It can be
      *           either the fully-qualified URI, or the short name of the network resource.
@@ -241,6 +361,17 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      *     @type int $max_instances
      *           The limit on the maximum number of function instances that may coexist at a
      *           given time.
+     *           In some cases, such as rapid traffic surges, Cloud Functions may, for a
+     *           short period of time, create more instances than the specified max
+     *           instances limit. If your function cannot tolerate this temporary behavior,
+     *           you may want to factor in a safety margin and set a lower max instances
+     *           value than your function can tolerate.
+     *           See the [Max
+     *           Instances](https://cloud.google.com/functions/docs/max-instances) Guide for
+     *           more details.
+     *     @type int $min_instances
+     *           A lower bound for the number function instances that may coexist at a
+     *           given time.
      *     @type string $vpc_connector
      *           The VPC Network Connector that this cloud function can connect to. It can
      *           be either the fully-qualified URI, or the short name of the network
@@ -256,9 +387,74 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      *     @type int $ingress_settings
      *           The ingress settings for the function, controlling what traffic can reach
      *           it.
+     *     @type string $kms_key_name
+     *           Resource name of a KMS crypto key (managed by the user) used to
+     *           encrypt/decrypt function resources.
+     *           It must match the pattern
+     *           `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
+     *           If specified, you must also provide an artifact registry repository using
+     *           the `docker_repository` field that was created with the same KMS crypto
+     *           key.
+     *           The following service accounts need to be granted the role 'Cloud KMS
+     *           CryptoKey Encrypter/Decrypter (roles/cloudkms.cryptoKeyEncrypterDecrypter)'
+     *           on the Key/KeyRing/Project/Organization (least access preferred).
+     *           1. Google Cloud Functions service account
+     *              (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) -
+     *              Required to protect the function's image.
+     *           2. Google Storage service account
+     *              (service-{project_number}&#64;gs-project-accounts.iam.gserviceaccount.com) -
+     *              Required to protect the function's source code.
+     *              If this service account does not exist, deploying a function without a
+     *              KMS key or retrieving the service agent name provisions it. For more
+     *              information, see
+     *              https://cloud.google.com/storage/docs/projects#service-agents and
+     *              https://cloud.google.com/storage/docs/getting-service-agent#gsutil.
+     *           Google Cloud Functions delegates access to service agents to protect
+     *           function resources in internal projects that are not accessible by the
+     *           end user.
+     *     @type string $build_worker_pool
+     *           Name of the Cloud Build Custom Worker Pool that should be used to build the
+     *           function. The format of this field is
+     *           `projects/{project}/locations/{region}/workerPools/{workerPool}` where
+     *           `{project}` and `{region}` are the project id and region respectively where
+     *           the worker pool is defined and `{workerPool}` is the short name of the
+     *           worker pool.
+     *           If the project id is not the same as the function, then the Cloud
+     *           Functions Service Agent
+     *           (`service-<project_number>&#64;gcf-admin-robot.iam.gserviceaccount.com`) must
+     *           be granted the role Cloud Build Custom Workers Builder
+     *           (`roles/cloudbuild.customworkers.builder`) in the project.
      *     @type string $build_id
      *           Output only. The Cloud Build ID of the latest successful deployment of the
      *           function.
+     *     @type string $build_name
+     *           Output only. The Cloud Build Name of the function deployment.
+     *           `projects/<project-number>/locations/<region>/builds/<build-id>`.
+     *     @type \Google\Cloud\Functions\V1\SecretEnvVar[]|\Google\Protobuf\Internal\RepeatedField $secret_environment_variables
+     *           Secret environment variables configuration.
+     *     @type \Google\Cloud\Functions\V1\SecretVolume[]|\Google\Protobuf\Internal\RepeatedField $secret_volumes
+     *           Secret volumes configuration.
+     *     @type string $source_token
+     *           Input only. An identifier for Firebase function sources. Disclaimer: This field is only
+     *           supported for Firebase function deployments.
+     *     @type string $docker_repository
+     *           User managed repository created in Artifact Registry optionally with a
+     *           customer managed encryption key. If specified, deployments will use
+     *           Artifact Registry. If unspecified and the deployment is eligible to use
+     *           Artifact Registry, GCF will create and use a repository named
+     *           'gcf-artifacts' for every deployed region. This is the repository to which
+     *           the function docker image will be pushed after it is built by Cloud Build.
+     *           It must match the pattern
+     *           `projects/{project}/locations/{location}/repositories/{repository}`.
+     *           Cross-project repositories are not supported.
+     *           Cross-location repositories are not supported.
+     *           Repository format must be 'DOCKER'.
+     *     @type int $docker_registry
+     *           Docker Registry to use for this deployment.
+     *           If `docker_repository` field is specified, this field will be automatically
+     *           set as `ARTIFACT_REGISTRY`.
+     *           If unspecified, it currently defaults to `CONTAINER_REGISTRY`.
+     *           This field may be overridden by the backend for eligible deployments.
      * }
      */
     public function __construct($data = NULL) {
@@ -593,7 +789,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      */
     public function getTimeout()
     {
-        return isset($this->timeout) ? $this->timeout : null;
+        return $this->timeout;
     }
 
     public function hasTimeout()
@@ -687,7 +883,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -796,6 +992,32 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Build environment variables that shall be available during build time.
+     *
+     * Generated from protobuf field <code>map<string, string> build_environment_variables = 28;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getBuildEnvironmentVariables()
+    {
+        return $this->build_environment_variables;
+    }
+
+    /**
+     * Build environment variables that shall be available during build time.
+     *
+     * Generated from protobuf field <code>map<string, string> build_environment_variables = 28;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setBuildEnvironmentVariables($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->build_environment_variables = $arr;
+
+        return $this;
+    }
+
+    /**
      * The VPC Network that this cloud function can connect to. It can be
      * either the fully-qualified URI, or the short name of the network resource.
      * If the short network name is used, the network must belong to the same
@@ -846,6 +1068,14 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     /**
      * The limit on the maximum number of function instances that may coexist at a
      * given time.
+     * In some cases, such as rapid traffic surges, Cloud Functions may, for a
+     * short period of time, create more instances than the specified max
+     * instances limit. If your function cannot tolerate this temporary behavior,
+     * you may want to factor in a safety margin and set a lower max instances
+     * value than your function can tolerate.
+     * See the [Max
+     * Instances](https://cloud.google.com/functions/docs/max-instances) Guide for
+     * more details.
      *
      * Generated from protobuf field <code>int32 max_instances = 20;</code>
      * @return int
@@ -858,6 +1088,14 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     /**
      * The limit on the maximum number of function instances that may coexist at a
      * given time.
+     * In some cases, such as rapid traffic surges, Cloud Functions may, for a
+     * short period of time, create more instances than the specified max
+     * instances limit. If your function cannot tolerate this temporary behavior,
+     * you may want to factor in a safety margin and set a lower max instances
+     * value than your function can tolerate.
+     * See the [Max
+     * Instances](https://cloud.google.com/functions/docs/max-instances) Guide for
+     * more details.
      *
      * Generated from protobuf field <code>int32 max_instances = 20;</code>
      * @param int $var
@@ -867,6 +1105,34 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_instances = $var;
+
+        return $this;
+    }
+
+    /**
+     * A lower bound for the number function instances that may coexist at a
+     * given time.
+     *
+     * Generated from protobuf field <code>int32 min_instances = 32;</code>
+     * @return int
+     */
+    public function getMinInstances()
+    {
+        return $this->min_instances;
+    }
+
+    /**
+     * A lower bound for the number function instances that may coexist at a
+     * given time.
+     *
+     * Generated from protobuf field <code>int32 min_instances = 32;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMinInstances($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->min_instances = $var;
 
         return $this;
     }
@@ -968,6 +1234,124 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Resource name of a KMS crypto key (managed by the user) used to
+     * encrypt/decrypt function resources.
+     * It must match the pattern
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
+     * If specified, you must also provide an artifact registry repository using
+     * the `docker_repository` field that was created with the same KMS crypto
+     * key.
+     * The following service accounts need to be granted the role 'Cloud KMS
+     * CryptoKey Encrypter/Decrypter (roles/cloudkms.cryptoKeyEncrypterDecrypter)'
+     * on the Key/KeyRing/Project/Organization (least access preferred).
+     * 1. Google Cloud Functions service account
+     *    (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) -
+     *    Required to protect the function's image.
+     * 2. Google Storage service account
+     *    (service-{project_number}&#64;gs-project-accounts.iam.gserviceaccount.com) -
+     *    Required to protect the function's source code.
+     *    If this service account does not exist, deploying a function without a
+     *    KMS key or retrieving the service agent name provisions it. For more
+     *    information, see
+     *    https://cloud.google.com/storage/docs/projects#service-agents and
+     *    https://cloud.google.com/storage/docs/getting-service-agent#gsutil.
+     * Google Cloud Functions delegates access to service agents to protect
+     * function resources in internal projects that are not accessible by the
+     * end user.
+     *
+     * Generated from protobuf field <code>string kms_key_name = 25 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getKmsKeyName()
+    {
+        return $this->kms_key_name;
+    }
+
+    /**
+     * Resource name of a KMS crypto key (managed by the user) used to
+     * encrypt/decrypt function resources.
+     * It must match the pattern
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
+     * If specified, you must also provide an artifact registry repository using
+     * the `docker_repository` field that was created with the same KMS crypto
+     * key.
+     * The following service accounts need to be granted the role 'Cloud KMS
+     * CryptoKey Encrypter/Decrypter (roles/cloudkms.cryptoKeyEncrypterDecrypter)'
+     * on the Key/KeyRing/Project/Organization (least access preferred).
+     * 1. Google Cloud Functions service account
+     *    (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) -
+     *    Required to protect the function's image.
+     * 2. Google Storage service account
+     *    (service-{project_number}&#64;gs-project-accounts.iam.gserviceaccount.com) -
+     *    Required to protect the function's source code.
+     *    If this service account does not exist, deploying a function without a
+     *    KMS key or retrieving the service agent name provisions it. For more
+     *    information, see
+     *    https://cloud.google.com/storage/docs/projects#service-agents and
+     *    https://cloud.google.com/storage/docs/getting-service-agent#gsutil.
+     * Google Cloud Functions delegates access to service agents to protect
+     * function resources in internal projects that are not accessible by the
+     * end user.
+     *
+     * Generated from protobuf field <code>string kms_key_name = 25 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKmsKeyName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kms_key_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Name of the Cloud Build Custom Worker Pool that should be used to build the
+     * function. The format of this field is
+     * `projects/{project}/locations/{region}/workerPools/{workerPool}` where
+     * `{project}` and `{region}` are the project id and region respectively where
+     * the worker pool is defined and `{workerPool}` is the short name of the
+     * worker pool.
+     * If the project id is not the same as the function, then the Cloud
+     * Functions Service Agent
+     * (`service-<project_number>&#64;gcf-admin-robot.iam.gserviceaccount.com`) must
+     * be granted the role Cloud Build Custom Workers Builder
+     * (`roles/cloudbuild.customworkers.builder`) in the project.
+     *
+     * Generated from protobuf field <code>string build_worker_pool = 26;</code>
+     * @return string
+     */
+    public function getBuildWorkerPool()
+    {
+        return $this->build_worker_pool;
+    }
+
+    /**
+     * Name of the Cloud Build Custom Worker Pool that should be used to build the
+     * function. The format of this field is
+     * `projects/{project}/locations/{region}/workerPools/{workerPool}` where
+     * `{project}` and `{region}` are the project id and region respectively where
+     * the worker pool is defined and `{workerPool}` is the short name of the
+     * worker pool.
+     * If the project id is not the same as the function, then the Cloud
+     * Functions Service Agent
+     * (`service-<project_number>&#64;gcf-admin-robot.iam.gserviceaccount.com`) must
+     * be granted the role Cloud Build Custom Workers Builder
+     * (`roles/cloudbuild.customworkers.builder`) in the project.
+     *
+     * Generated from protobuf field <code>string build_worker_pool = 26;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBuildWorkerPool($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->build_worker_pool = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. The Cloud Build ID of the latest successful deployment of the
      * function.
      *
@@ -991,6 +1375,194 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->build_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The Cloud Build Name of the function deployment.
+     * `projects/<project-number>/locations/<region>/builds/<build-id>`.
+     *
+     * Generated from protobuf field <code>string build_name = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getBuildName()
+    {
+        return $this->build_name;
+    }
+
+    /**
+     * Output only. The Cloud Build Name of the function deployment.
+     * `projects/<project-number>/locations/<region>/builds/<build-id>`.
+     *
+     * Generated from protobuf field <code>string build_name = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBuildName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->build_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Secret environment variables configuration.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.functions.v1.SecretEnvVar secret_environment_variables = 29;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSecretEnvironmentVariables()
+    {
+        return $this->secret_environment_variables;
+    }
+
+    /**
+     * Secret environment variables configuration.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.functions.v1.SecretEnvVar secret_environment_variables = 29;</code>
+     * @param \Google\Cloud\Functions\V1\SecretEnvVar[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSecretEnvironmentVariables($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Functions\V1\SecretEnvVar::class);
+        $this->secret_environment_variables = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Secret volumes configuration.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.functions.v1.SecretVolume secret_volumes = 30;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSecretVolumes()
+    {
+        return $this->secret_volumes;
+    }
+
+    /**
+     * Secret volumes configuration.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.functions.v1.SecretVolume secret_volumes = 30;</code>
+     * @param \Google\Cloud\Functions\V1\SecretVolume[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSecretVolumes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Functions\V1\SecretVolume::class);
+        $this->secret_volumes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Input only. An identifier for Firebase function sources. Disclaimer: This field is only
+     * supported for Firebase function deployments.
+     *
+     * Generated from protobuf field <code>string source_token = 31 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return string
+     */
+    public function getSourceToken()
+    {
+        return $this->source_token;
+    }
+
+    /**
+     * Input only. An identifier for Firebase function sources. Disclaimer: This field is only
+     * supported for Firebase function deployments.
+     *
+     * Generated from protobuf field <code>string source_token = 31 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSourceToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->source_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * User managed repository created in Artifact Registry optionally with a
+     * customer managed encryption key. If specified, deployments will use
+     * Artifact Registry. If unspecified and the deployment is eligible to use
+     * Artifact Registry, GCF will create and use a repository named
+     * 'gcf-artifacts' for every deployed region. This is the repository to which
+     * the function docker image will be pushed after it is built by Cloud Build.
+     * It must match the pattern
+     * `projects/{project}/locations/{location}/repositories/{repository}`.
+     * Cross-project repositories are not supported.
+     * Cross-location repositories are not supported.
+     * Repository format must be 'DOCKER'.
+     *
+     * Generated from protobuf field <code>string docker_repository = 34 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getDockerRepository()
+    {
+        return $this->docker_repository;
+    }
+
+    /**
+     * User managed repository created in Artifact Registry optionally with a
+     * customer managed encryption key. If specified, deployments will use
+     * Artifact Registry. If unspecified and the deployment is eligible to use
+     * Artifact Registry, GCF will create and use a repository named
+     * 'gcf-artifacts' for every deployed region. This is the repository to which
+     * the function docker image will be pushed after it is built by Cloud Build.
+     * It must match the pattern
+     * `projects/{project}/locations/{location}/repositories/{repository}`.
+     * Cross-project repositories are not supported.
+     * Cross-location repositories are not supported.
+     * Repository format must be 'DOCKER'.
+     *
+     * Generated from protobuf field <code>string docker_repository = 34 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDockerRepository($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->docker_repository = $var;
+
+        return $this;
+    }
+
+    /**
+     * Docker Registry to use for this deployment.
+     * If `docker_repository` field is specified, this field will be automatically
+     * set as `ARTIFACT_REGISTRY`.
+     * If unspecified, it currently defaults to `CONTAINER_REGISTRY`.
+     * This field may be overridden by the backend for eligible deployments.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v1.CloudFunction.DockerRegistry docker_registry = 35;</code>
+     * @return int
+     */
+    public function getDockerRegistry()
+    {
+        return $this->docker_registry;
+    }
+
+    /**
+     * Docker Registry to use for this deployment.
+     * If `docker_repository` field is specified, this field will be automatically
+     * set as `ARTIFACT_REGISTRY`.
+     * If unspecified, it currently defaults to `CONTAINER_REGISTRY`.
+     * This field may be overridden by the backend for eligible deployments.
+     *
+     * Generated from protobuf field <code>.google.cloud.functions.v1.CloudFunction.DockerRegistry docker_registry = 35;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDockerRegistry($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Functions\V1\CloudFunction\DockerRegistry::class);
+        $this->docker_registry = $var;
 
         return $this;
     }

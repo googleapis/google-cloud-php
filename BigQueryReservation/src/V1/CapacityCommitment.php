@@ -25,6 +25,9 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the capacity commitment, e.g.,
      * `projects/myproject/locations/US/capacityCommitments/123`
+     * The commitment_id must only contain lower case alphanumeric characters or
+     * dashes. It must start with a letter and must not end
+     * with a dash. Its maximum length is 64 characters.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -75,6 +78,16 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment.CommitmentPlan renewal_plan = 8;</code>
      */
     private $renewal_plan = 0;
+    /**
+     * Applicable only for commitments located within one of the BigQuery
+     * multi-regions (US or EU).
+     * If set to true, this commitment is placed in the organization's
+     * secondary region which is designated for disaster recovery purposes.
+     * If false, this commitment is placed in the organization's default region.
+     *
+     * Generated from protobuf field <code>bool multi_region_auxiliary = 10;</code>
+     */
+    private $multi_region_auxiliary = false;
 
     /**
      * Constructor.
@@ -85,6 +98,9 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The resource name of the capacity commitment, e.g.,
      *           `projects/myproject/locations/US/capacityCommitments/123`
+     *           The commitment_id must only contain lower case alphanumeric characters or
+     *           dashes. It must start with a letter and must not end
+     *           with a dash. Its maximum length is 64 characters.
      *     @type int|string $slot_count
      *           Number of slots in this commitment.
      *     @type int $plan
@@ -103,6 +119,12 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      *           The plan this capacity commitment is converted to after commitment_end_time
      *           passes. Once the plan is changed, committed period is extended according to
      *           commitment plan. Only applicable for ANNUAL and TRIAL commitments.
+     *     @type bool $multi_region_auxiliary
+     *           Applicable only for commitments located within one of the BigQuery
+     *           multi-regions (US or EU).
+     *           If set to true, this commitment is placed in the organization's
+     *           secondary region which is designated for disaster recovery purposes.
+     *           If false, this commitment is placed in the organization's default region.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +135,9 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the capacity commitment, e.g.,
      * `projects/myproject/locations/US/capacityCommitments/123`
+     * The commitment_id must only contain lower case alphanumeric characters or
+     * dashes. It must start with a letter and must not end
+     * with a dash. Its maximum length is 64 characters.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -125,6 +150,9 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the capacity commitment, e.g.,
      * `projects/myproject/locations/US/capacityCommitments/123`
+     * The commitment_id must only contain lower case alphanumeric characters or
+     * dashes. It must start with a letter and must not end
+     * with a dash. Its maximum length is 64 characters.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -354,6 +382,40 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment\CommitmentPlan::class);
         $this->renewal_plan = $var;
+
+        return $this;
+    }
+
+    /**
+     * Applicable only for commitments located within one of the BigQuery
+     * multi-regions (US or EU).
+     * If set to true, this commitment is placed in the organization's
+     * secondary region which is designated for disaster recovery purposes.
+     * If false, this commitment is placed in the organization's default region.
+     *
+     * Generated from protobuf field <code>bool multi_region_auxiliary = 10;</code>
+     * @return bool
+     */
+    public function getMultiRegionAuxiliary()
+    {
+        return $this->multi_region_auxiliary;
+    }
+
+    /**
+     * Applicable only for commitments located within one of the BigQuery
+     * multi-regions (US or EU).
+     * If set to true, this commitment is placed in the organization's
+     * secondary region which is designated for disaster recovery purposes.
+     * If false, this commitment is placed in the organization's default region.
+     *
+     * Generated from protobuf field <code>bool multi_region_auxiliary = 10;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setMultiRegionAuxiliary($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->multi_region_auxiliary = $var;
 
         return $this;
     }

@@ -7,9 +7,7 @@ namespace Google\Cloud\Compute\V1\RouterInterface;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The resource that configures and manages this interface.
- * - MANAGED_BY_USER is the default value and can be managed directly by users.
- * - MANAGED_BY_ATTACHMENT is an interface that is configured and managed by Cloud Interconnect, specifically, by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of interface when the PARTNER InterconnectAttachment is created, updated, or deleted.
+ * [Output Only] The resource that configures and manages this interface. - MANAGED_BY_USER is the default value and can be managed directly by users. - MANAGED_BY_ATTACHMENT is an interface that is configured and managed by Cloud Interconnect, specifically, by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of interface when the PARTNER InterconnectAttachment is created, updated, or deleted. 
  *
  * Protobuf type <code>google.cloud.compute.v1.RouterInterface.ManagementType</code>
  */
@@ -22,10 +20,14 @@ class ManagementType
      */
     const UNDEFINED_MANAGEMENT_TYPE = 0;
     /**
+     * The interface is automatically created for PARTNER type InterconnectAttachment, Google will automatically create/update/delete this interface when the PARTNER InterconnectAttachment is created/provisioned/deleted. This type of interface cannot be manually managed by user.
+     *
      * Generated from protobuf enum <code>MANAGED_BY_ATTACHMENT = 458926411;</code>
      */
     const MANAGED_BY_ATTACHMENT = 458926411;
     /**
+     * Default value, the interface is manually created and managed by user.
+     *
      * Generated from protobuf enum <code>MANAGED_BY_USER = 317294067;</code>
      */
     const MANAGED_BY_USER = 317294067;

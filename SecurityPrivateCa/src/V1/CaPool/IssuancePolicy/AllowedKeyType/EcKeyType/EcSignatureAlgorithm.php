@@ -70,6 +70,4 @@ class EcSignatureAlgorithm
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EcSignatureAlgorithm::class, \Google\Cloud\Security\PrivateCA\V1\CaPool_IssuancePolicy_AllowedKeyType_EcKeyType_EcSignatureAlgorithm::class);
 

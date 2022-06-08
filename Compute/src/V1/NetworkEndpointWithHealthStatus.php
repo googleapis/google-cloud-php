@@ -23,7 +23,7 @@ class NetworkEndpointWithHealthStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] The network endpoint;
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpoint network_endpoint = 56789126;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpoint network_endpoint = 56789126;</code>
      */
     private $network_endpoint = null;
 
@@ -73,12 +73,12 @@ class NetworkEndpointWithHealthStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] The network endpoint;
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpoint network_endpoint = 56789126;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpoint network_endpoint = 56789126;</code>
      * @return \Google\Cloud\Compute\V1\NetworkEndpoint|null
      */
     public function getNetworkEndpoint()
     {
-        return isset($this->network_endpoint) ? $this->network_endpoint : null;
+        return $this->network_endpoint;
     }
 
     public function hasNetworkEndpoint()
@@ -94,7 +94,7 @@ class NetworkEndpointWithHealthStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] The network endpoint;
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpoint network_endpoint = 56789126;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpoint network_endpoint = 56789126;</code>
      * @param \Google\Cloud\Compute\V1\NetworkEndpoint $var
      * @return $this
      */

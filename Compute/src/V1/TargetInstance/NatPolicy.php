@@ -20,6 +20,8 @@ class NatPolicy
      */
     const UNDEFINED_NAT_POLICY = 0;
     /**
+     * No NAT performed.
+     *
      * Generated from protobuf enum <code>NO_NAT = 161455491;</code>
      */
     const NO_NAT = 161455491;

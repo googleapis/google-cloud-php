@@ -71,6 +71,4 @@ class OrderType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OrderType::class, \Google\Analytics\Data\V1alpha\OrderBy_DimensionOrderBy_OrderType::class);
 

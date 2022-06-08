@@ -17,7 +17,7 @@ class InstancesSetLabelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Fingerprint of the previous set of labels for this resource, used to prevent conflicts. Provide the latest fingerprint value when making a request to add or change labels.
      *
-     * Generated from protobuf field <code>string label_fingerprint = 178124825;</code>
+     * Generated from protobuf field <code>optional string label_fingerprint = 178124825;</code>
      */
     private $label_fingerprint = null;
     /**
@@ -44,7 +44,7 @@ class InstancesSetLabelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Fingerprint of the previous set of labels for this resource, used to prevent conflicts. Provide the latest fingerprint value when making a request to add or change labels.
      *
-     * Generated from protobuf field <code>string label_fingerprint = 178124825;</code>
+     * Generated from protobuf field <code>optional string label_fingerprint = 178124825;</code>
      * @return string
      */
     public function getLabelFingerprint()
@@ -65,7 +65,7 @@ class InstancesSetLabelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Fingerprint of the previous set of labels for this resource, used to prevent conflicts. Provide the latest fingerprint value when making a request to add or change labels.
      *
-     * Generated from protobuf field <code>string label_fingerprint = 178124825;</code>
+     * Generated from protobuf field <code>optional string label_fingerprint = 178124825;</code>
      * @param string $var
      * @return $this
      */

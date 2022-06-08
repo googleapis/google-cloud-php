@@ -37,14 +37,17 @@ use Google\Cloud\Storage\SigningHelper;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
  */
 class BucketTest extends TestCase
 {
+    use ExpectException;
+
     const TOPIC_NAME = 'my-topic';
     const BUCKET_NAME = 'my-bucket';
     const PROJECT_ID = 'my-project';
@@ -53,7 +56,7 @@ class BucketTest extends TestCase
     private $connection;
     private $resumableUploader;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->resumableUploader = $this->prophesize(ResumableUploader::class);
@@ -148,11 +151,10 @@ class BucketTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testUploadDataAsStringWithNoName()
     {
+        $this->expectException('InvalidArgumentException');
+
         $bucket = $this->getBucket();
 
         $bucket->upload('some more data');
@@ -169,11 +171,10 @@ class BucketTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testGetResumableUploaderWithStringWithNoName()
     {
+        $this->expectException('InvalidArgumentException');
+
         $bucket = $this->getBucket();
 
         $bucket->getResumableUploader('some more data');
@@ -249,21 +250,19 @@ class BucketTest extends TestCase
         $this->assertNull($bucket->delete());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testComposeThrowsExceptionWithLessThanTwoSources()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $bucket = $this->getBucket();
 
         $bucket->compose(['file1.txt'], 'combined-files.txt');
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testComposeThrowsExceptionWithUnknownContentType()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $bucket = $this->getBucket();
 
         $bucket->compose(['file1.txt', 'file2.txt'], 'combined-files.abc');
@@ -455,11 +454,10 @@ class BucketTest extends TestCase
         $this->assertFalse($bucket->isWritable());
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\ServerException
-     */
     public function testIsWritableServerException()
     {
+        $this->expectException('Google\Cloud\Core\Exception\ServerException');
+
         $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
         $this->resumableUploader->getResumeUri()->willThrow(new ServerException('maintainence'));
         $bucket = $this->getBucket();
@@ -508,21 +506,19 @@ class BucketTest extends TestCase
         $this->assertEquals(self::NOTIFICATION_ID, $notification->id());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage $topic may only be a string or instance of Google\Cloud\PubSub\Topic
-     */
     public function testCreatesNotificationThrowsExceptionWithInvalidTopicType()
     {
+        $this->expectException('\InvalidArgumentException');
+        $this->expectExceptionMessage('$topic may only be a string or instance of Google\Cloud\PubSub\Topic');
+
         $bucket = $this->getBucket();
         $bucket->createNotification(9124);
     }
 
-    /**
-     * @expectedException \Google\Cloud\Core\Exception\GoogleException
-     */
     public function testCreatesNotificationThrowsExceptionWithoutProjectId()
     {
+        $this->expectException('\Google\Cloud\Core\Exception\GoogleException');
+
         $bucket = $this->getBucket([], true, null);
         $bucket->createNotification(self::TOPIC_NAME);
     }
@@ -567,11 +563,10 @@ class BucketTest extends TestCase
         $this->assertEquals($notificationID, $notifications[0]->id());
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testLockRetentionPolicyThrowsExceptionWithoutMetageneration()
     {
+        $this->expectException('BadMethodCallException');
+
         $this->getBucket()->lockRetentionPolicy();
     }
 

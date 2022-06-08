@@ -19,7 +19,7 @@ namespace Google\Cloud\Storage\Tests\Unit;
 
 use Google\Cloud\Storage\CreatedHmacKey;
 use Google\Cloud\Storage\HmacKey;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group storage
@@ -32,7 +32,7 @@ class CreatedHmacKeyTest extends TestCase
 
     private $createdKey;
 
-    public function setUp()
+    public function set_up()
     {
         $this->createdKey = new CreatedHmacKey(
             $this->prophesize(HmacKey::class)->reveal(),

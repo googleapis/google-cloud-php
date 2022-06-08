@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project and location for which to retrieve instance information,
-     * in the format `projects/{project_id}/locations/{location}`. In Cloud
-     * Filestore, locations map to GCP zones, for example **us-west1-b**. To
+     * Required. The project and location for which to retrieve instance
+     * information, in the format `projects/{project_id}/locations/{location}`. In
+     * Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To
      * retrieve instance information for all locations, use "-" for the
      * `{location}` value.
      *
@@ -58,9 +58,9 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The project and location for which to retrieve instance information,
-     *           in the format `projects/{project_id}/locations/{location}`. In Cloud
-     *           Filestore, locations map to GCP zones, for example **us-west1-b**. To
+     *           Required. The project and location for which to retrieve instance
+     *           information, in the format `projects/{project_id}/locations/{location}`. In
+     *           Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To
      *           retrieve instance information for all locations, use "-" for the
      *           `{location}` value.
      *     @type int $page_size
@@ -80,9 +80,9 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location for which to retrieve instance information,
-     * in the format `projects/{project_id}/locations/{location}`. In Cloud
-     * Filestore, locations map to GCP zones, for example **us-west1-b**. To
+     * Required. The project and location for which to retrieve instance
+     * information, in the format `projects/{project_id}/locations/{location}`. In
+     * Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To
      * retrieve instance information for all locations, use "-" for the
      * `{location}` value.
      *
@@ -95,9 +95,9 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project and location for which to retrieve instance information,
-     * in the format `projects/{project_id}/locations/{location}`. In Cloud
-     * Filestore, locations map to GCP zones, for example **us-west1-b**. To
+     * Required. The project and location for which to retrieve instance
+     * information, in the format `projects/{project_id}/locations/{location}`. In
+     * Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To
      * retrieve instance information for all locations, use "-" for the
      * `{location}` value.
      *

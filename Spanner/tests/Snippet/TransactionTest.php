@@ -50,13 +50,19 @@ class TransactionTest extends SnippetTestCase
     private $connection;
     private $transaction;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->getConnStub();
         $operation = $this->prophesize(Operation::class);
         $session = $this->prophesize(Session::class);
+        $session->info()
+            ->willReturn([
+                'databaseName' => 'database'
+            ]);
+        $session->name()
+            ->willReturn('database');
 
         $this->transaction = TestHelpers::stub(Transaction::class, [
             $operation->reveal(),

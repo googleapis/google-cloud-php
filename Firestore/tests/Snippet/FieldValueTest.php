@@ -36,7 +36,7 @@ class FieldValueTest extends SnippetTestCase
     private $connection;
     private $firestore;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 

@@ -59,6 +59,4 @@ class MentionType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MentionType::class, \Google\Cloud\ContactCenterInsights\V1\EntityMentionData_MentionType::class);
 

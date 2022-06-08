@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\LocationPolicyLocation;
 use UnexpectedValueException;
 
 /**
- * Preference for a given locaction: ALLOW or DENY.
+ * Preference for a given location.
  *
  * Protobuf type <code>google.cloud.compute.v1.LocationPolicyLocation.Preference</code>
  */
@@ -20,14 +20,20 @@ class Preference
      */
     const UNDEFINED_PREFERENCE = 0;
     /**
+     * Location is allowed for use.
+     *
      * Generated from protobuf enum <code>ALLOW = 62368553;</code>
      */
     const ALLOW = 62368553;
     /**
+     * Location is prohibited.
+     *
      * Generated from protobuf enum <code>DENY = 2094604;</code>
      */
     const DENY = 2094604;
     /**
+     * Default value, unused.
+     *
      * Generated from protobuf enum <code>PREFERENCE_UNSPECIFIED = 496219571;</code>
      */
     const PREFERENCE_UNSPECIFIED = 496219571;

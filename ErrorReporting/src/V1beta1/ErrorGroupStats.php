@@ -160,11 +160,11 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * Group data that is independent of the filter criteria.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup|null
      */
     public function getGroup()
     {
-        return isset($this->group) ? $this->group : null;
+        return $this->group;
     }
 
     public function hasGroup()
@@ -308,11 +308,11 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * time_range that was specified in the request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getFirstSeenTime()
     {
-        return isset($this->first_seen_time) ? $this->first_seen_time : null;
+        return $this->first_seen_time;
     }
 
     public function hasFirstSeenTime()
@@ -348,11 +348,11 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * that was specified in the request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastSeenTime()
     {
-        return isset($this->last_seen_time) ? $this->last_seen_time : null;
+        return $this->last_seen_time;
     }
 
     public function hasLastSeenTime()
@@ -448,11 +448,11 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * insight into the characteristics of the group as a whole.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorEvent
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorEvent|null
      */
     public function getRepresentative()
     {
-        return isset($this->representative) ? $this->representative : null;
+        return $this->representative;
     }
 
     public function hasRepresentative()

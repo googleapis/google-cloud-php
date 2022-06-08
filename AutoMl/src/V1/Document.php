@@ -79,7 +79,7 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return isset($this->input_config) ? $this->input_config : null;
+        return $this->input_config;
     }
 
     public function hasInputConfig()
@@ -115,7 +115,7 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     public function getDocumentText()
     {
-        return isset($this->document_text) ? $this->document_text : null;
+        return $this->document_text;
     }
 
     public function hasDocumentText()
@@ -179,7 +179,7 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     public function getDocumentDimensions()
     {
-        return isset($this->document_dimensions) ? $this->document_dimensions : null;
+        return $this->document_dimensions;
     }
 
     public function hasDocumentDimensions()

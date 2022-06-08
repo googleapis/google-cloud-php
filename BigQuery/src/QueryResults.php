@@ -352,6 +352,7 @@ class QueryResults implements \IteratorAggregate
      *         query completion has been exceeded.
      * @throws GoogleException Thrown in the case of a malformed response.
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return $this->rows();

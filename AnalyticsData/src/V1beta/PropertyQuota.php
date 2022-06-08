@@ -103,7 +103,7 @@ class PropertyQuota extends \Google\Protobuf\Internal\Message
      */
     public function getTokensPerDay()
     {
-        return isset($this->tokens_per_day) ? $this->tokens_per_day : null;
+        return $this->tokens_per_day;
     }
 
     public function hasTokensPerDay()
@@ -144,7 +144,7 @@ class PropertyQuota extends \Google\Protobuf\Internal\Message
      */
     public function getTokensPerHour()
     {
-        return isset($this->tokens_per_hour) ? $this->tokens_per_hour : null;
+        return $this->tokens_per_hour;
     }
 
     public function hasTokensPerHour()
@@ -184,7 +184,7 @@ class PropertyQuota extends \Google\Protobuf\Internal\Message
      */
     public function getConcurrentRequests()
     {
-        return isset($this->concurrent_requests) ? $this->concurrent_requests : null;
+        return $this->concurrent_requests;
     }
 
     public function hasConcurrentRequests()
@@ -223,7 +223,7 @@ class PropertyQuota extends \Google\Protobuf\Internal\Message
      */
     public function getServerErrorsPerProjectPerHour()
     {
-        return isset($this->server_errors_per_project_per_hour) ? $this->server_errors_per_project_per_hour : null;
+        return $this->server_errors_per_project_per_hour;
     }
 
     public function hasServerErrorsPerProjectPerHour()
@@ -264,7 +264,7 @@ class PropertyQuota extends \Google\Protobuf\Internal\Message
      */
     public function getPotentiallyThresholdedRequestsPerHour()
     {
-        return isset($this->potentially_thresholded_requests_per_hour) ? $this->potentially_thresholded_requests_per_hour : null;
+        return $this->potentially_thresholded_requests_per_hour;
     }
 
     public function hasPotentiallyThresholdedRequestsPerHour()

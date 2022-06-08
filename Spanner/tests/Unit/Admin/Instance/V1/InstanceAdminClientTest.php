@@ -124,6 +124,12 @@ class InstanceAdminClientTest extends GeneratedTest
         $formattedParent = $client->projectName('[PROJECT]');
         $instanceId = 'instanceId-2101995259';
         $instance = new Instance();
+        $instanceName = 'instanceName-737857344';
+        $instance->setName($instanceName);
+        $instanceConfig = $client->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $instance->setConfig($instanceConfig);
+        $instanceDisplayName = 'instanceDisplayName1824500376';
+        $instance->setDisplayName($instanceDisplayName);
         $response = $client->createInstance($formattedParent, $instanceId, $instance);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -196,6 +202,12 @@ class InstanceAdminClientTest extends GeneratedTest
         $formattedParent = $client->projectName('[PROJECT]');
         $instanceId = 'instanceId-2101995259';
         $instance = new Instance();
+        $instanceName = 'instanceName-737857344';
+        $instance->setName($instanceName);
+        $instanceConfig = $client->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $instance->setConfig($instanceConfig);
+        $instanceDisplayName = 'instanceDisplayName1824500376';
+        $instance->setDisplayName($instanceDisplayName);
         $response = $client->createInstance($formattedParent, $instanceId, $instance);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -806,6 +818,12 @@ class InstanceAdminClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $instance = new Instance();
+        $instanceName = 'instanceName-737857344';
+        $instance->setName($instanceName);
+        $instanceConfig = $client->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $instance->setConfig($instanceConfig);
+        $instanceDisplayName = 'instanceDisplayName1824500376';
+        $instance->setDisplayName($instanceDisplayName);
         $fieldMask = new FieldMask();
         $response = $client->updateInstance($instance, $fieldMask);
         $this->assertFalse($response->isDone());
@@ -875,6 +893,12 @@ class InstanceAdminClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $instance = new Instance();
+        $instanceName = 'instanceName-737857344';
+        $instance->setName($instanceName);
+        $instanceConfig = $client->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+        $instance->setConfig($instanceConfig);
+        $instanceDisplayName = 'instanceDisplayName1824500376';
+        $instance->setDisplayName($instanceDisplayName);
         $fieldMask = new FieldMask();
         $response = $client->updateInstance($instance, $fieldMask);
         $this->assertFalse($response->isDone());

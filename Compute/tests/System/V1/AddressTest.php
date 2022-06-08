@@ -20,7 +20,6 @@ namespace Google\Cloud\Compute\Tests\System\V1;
 use Google\ApiCore\ApiException;
 use Google\Cloud\Compute\V1\Address;
 use Google\Cloud\Compute\V1\AddressesClient;
-use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 class AddressTest extends SystemTestCase
@@ -29,7 +28,6 @@ class AddressTest extends SystemTestCase
     protected static $addressesClient;
     protected static $projectId;
     protected static $name;
-    protected static $regionOperationsClient;
 
     public static function setUpBeforeClass(): void
     {
@@ -38,7 +36,6 @@ class AddressTest extends SystemTestCase
             self::fail('Environment variable PROJECT_ID must be set for smoke test');
         }
         self::$addressesClient = new AddressesClient();
-        self::$regionOperationsClient = new RegionOperationsClient();
         self::$name = "gapicphp" . strval(rand(100000, 999999));
     }
 
@@ -52,7 +49,9 @@ class AddressTest extends SystemTestCase
         $addressResource = new Address();
         $addressResource->setName(self::$name);
         $op = self::$addressesClient->insert($addressResource, self::$projectId, self::REGION);
-        self::$regionOperationsClient->wait($op->getName(), self::$projectId, self::REGION);
+        $op->pollUntilComplete();
+        $this->assertTrue($op->operationSucceeded(),
+            sprintf("Operation %s failed. Error: %s", $op->getName(), $op->getError()->getMessage()));
         $address = self::$addressesClient->get(self::$name, self::$projectId, self::REGION);
         $this->assertEquals($address->getName(), self::$name);
     }
@@ -79,7 +78,9 @@ class AddressTest extends SystemTestCase
     public function testDelete(): void
     {
         $op = self::$addressesClient->delete(self::$name, self::$projectId, self::REGION);
-        self::$regionOperationsClient->wait($op->getName(), self::$projectId, self::REGION);
+        $op->pollUntilComplete();
+        $this->assertTrue($op->operationSucceeded(),
+            sprintf("Operation %s failed. Error: %s", $op->getName(), $op->getError()->getMessage()));
         try {
             self::$addressesClient->get(self::$name, self::$projectId, self::REGION);
             $this->fail('The deleted instance still exists');

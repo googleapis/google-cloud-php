@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetOpenIDConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The cluster (project, location, cluster id) to get the discovery document
+     * The cluster (project, location, cluster name) to get the discovery document
      * for. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
@@ -31,7 +31,7 @@ class GetOpenIDConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The cluster (project, location, cluster id) to get the discovery document
+     *           The cluster (project, location, cluster name) to get the discovery document
      *           for. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      * }
      */
@@ -41,7 +41,7 @@ class GetOpenIDConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The cluster (project, location, cluster id) to get the discovery document
+     * The cluster (project, location, cluster name) to get the discovery document
      * for. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
@@ -53,7 +53,7 @@ class GetOpenIDConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The cluster (project, location, cluster id) to get the discovery document
+     * The cluster (project, location, cluster name) to get the discovery document
      * for. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>

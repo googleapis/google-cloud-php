@@ -18,7 +18,7 @@ class AutoscalingPolicyLoadBalancingUtilization extends \Google\Protobuf\Interna
     /**
      * Fraction of backend capacity utilization (set in HTTP(S) load balancing configuration) that the autoscaler maintains. Must be a positive float value. If not defined, the default is 0.8.
      *
-     * Generated from protobuf field <code>double utilization_target = 215905870;</code>
+     * Generated from protobuf field <code>optional double utilization_target = 215905870;</code>
      */
     private $utilization_target = null;
 
@@ -40,7 +40,7 @@ class AutoscalingPolicyLoadBalancingUtilization extends \Google\Protobuf\Interna
     /**
      * Fraction of backend capacity utilization (set in HTTP(S) load balancing configuration) that the autoscaler maintains. Must be a positive float value. If not defined, the default is 0.8.
      *
-     * Generated from protobuf field <code>double utilization_target = 215905870;</code>
+     * Generated from protobuf field <code>optional double utilization_target = 215905870;</code>
      * @return float
      */
     public function getUtilizationTarget()
@@ -61,7 +61,7 @@ class AutoscalingPolicyLoadBalancingUtilization extends \Google\Protobuf\Interna
     /**
      * Fraction of backend capacity utilization (set in HTTP(S) load balancing configuration) that the autoscaler maintains. Must be a positive float value. If not defined, the default is 0.8.
      *
-     * Generated from protobuf field <code>double utilization_target = 215905870;</code>
+     * Generated from protobuf field <code>optional double utilization_target = 215905870;</code>
      * @param float $var
      * @return $this
      */

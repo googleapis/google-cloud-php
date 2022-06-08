@@ -102,6 +102,4 @@ class QuotaMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(QuotaMode::class, \Google\Cloud\ServiceControl\V1\QuotaOperation_QuotaMode::class);
 

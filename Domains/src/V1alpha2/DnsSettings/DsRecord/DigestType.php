@@ -74,6 +74,4 @@ class DigestType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DigestType::class, \Google\Cloud\Domains\V1alpha2\DnsSettings_DsRecord_DigestType::class);
 

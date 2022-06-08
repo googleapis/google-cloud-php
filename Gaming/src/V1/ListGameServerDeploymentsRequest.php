@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListGameServerDeploymentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -60,7 +60,7 @@ class ListGameServerDeploymentsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource name. Uses the form:
+     *           Required. The parent resource name, in the following form:
      *           `projects/{project}/locations/{location}`.
      *     @type int $page_size
      *           Optional. The maximum number of items to return.  If unspecified, the server
@@ -84,7 +84,7 @@ class ListGameServerDeploymentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -96,7 +96,7 @@ class ListGameServerDeploymentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * `projects/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

@@ -2,7 +2,7 @@ name: Generate Documentation
 on:
     push:
         branches:
-            - master
+            - main
         tags:
             - "*"
 
@@ -15,23 +15,23 @@ jobs:
           name: Get Tag
           run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
         - name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
           with:
             persist-credentials: false
         - name: Setup PHP
           uses: shivammathur/setup-php@v2
           with:
-            php-version: '7.3'
+            php-version: '7.4'
             ini-values: memory_limit=2048M
         - name: Install Dependencies
-          uses: nick-invision/retry@v1
+          uses: nick-fields/retry@v2
           with:
             timeout_minutes: 10
             max_attempts: 3
             command: composer require --dev phpdocumentor/reflection:^4.0
         - name: Build Documentation
           run: |
-            if [ -z "$tagName" ]; then
+            if [ "$tagName" = "main" ]; then
               ./dev/google-cloud docs
             else
               ./dev/google-cloud docs -r

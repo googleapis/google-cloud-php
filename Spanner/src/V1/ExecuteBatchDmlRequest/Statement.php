@@ -18,7 +18,7 @@ class Statement extends \Google\Protobuf\Internal\Message
     /**
      * Required. The DML string.
      *
-     * Generated from protobuf field <code>string sql = 1;</code>
+     * Generated from protobuf field <code>string sql = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $sql = '';
     /**
@@ -82,7 +82,7 @@ class Statement extends \Google\Protobuf\Internal\Message
     /**
      * Required. The DML string.
      *
-     * Generated from protobuf field <code>string sql = 1;</code>
+     * Generated from protobuf field <code>string sql = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getSql()
@@ -93,7 +93,7 @@ class Statement extends \Google\Protobuf\Internal\Message
     /**
      * Required. The DML string.
      *
-     * Generated from protobuf field <code>string sql = 1;</code>
+     * Generated from protobuf field <code>string sql = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

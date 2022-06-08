@@ -17,13 +17,13 @@ class InstanceManagedByIgmErrorManagedInstanceError extends \Google\Protobuf\Int
     /**
      * [Output Only] Error code.
      *
-     * Generated from protobuf field <code>string code = 3059181;</code>
+     * Generated from protobuf field <code>optional string code = 3059181;</code>
      */
     private $code = null;
     /**
      * [Output Only] Error message.
      *
-     * Generated from protobuf field <code>string message = 418054151;</code>
+     * Generated from protobuf field <code>optional string message = 418054151;</code>
      */
     private $message = null;
 
@@ -47,7 +47,7 @@ class InstanceManagedByIgmErrorManagedInstanceError extends \Google\Protobuf\Int
     /**
      * [Output Only] Error code.
      *
-     * Generated from protobuf field <code>string code = 3059181;</code>
+     * Generated from protobuf field <code>optional string code = 3059181;</code>
      * @return string
      */
     public function getCode()
@@ -68,7 +68,7 @@ class InstanceManagedByIgmErrorManagedInstanceError extends \Google\Protobuf\Int
     /**
      * [Output Only] Error code.
      *
-     * Generated from protobuf field <code>string code = 3059181;</code>
+     * Generated from protobuf field <code>optional string code = 3059181;</code>
      * @param string $var
      * @return $this
      */
@@ -83,7 +83,7 @@ class InstanceManagedByIgmErrorManagedInstanceError extends \Google\Protobuf\Int
     /**
      * [Output Only] Error message.
      *
-     * Generated from protobuf field <code>string message = 418054151;</code>
+     * Generated from protobuf field <code>optional string message = 418054151;</code>
      * @return string
      */
     public function getMessage()
@@ -104,7 +104,7 @@ class InstanceManagedByIgmErrorManagedInstanceError extends \Google\Protobuf\Int
     /**
      * [Output Only] Error message.
      *
-     * Generated from protobuf field <code>string message = 418054151;</code>
+     * Generated from protobuf field <code>optional string message = 418054151;</code>
      * @param string $var
      * @return $this
      */

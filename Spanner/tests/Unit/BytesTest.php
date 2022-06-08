@@ -19,18 +19,20 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group spanner
  */
 class BytesTest extends TestCase
 {
+    use AssertIsType;
     use GrpcTestTrait;
 
     private $content = 'hello';
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
     }
@@ -56,6 +58,6 @@ class BytesTest extends TestCase
     public function testType()
     {
         $bytes = new Bytes($this->content);
-        $this->assertInternalType('int', $bytes->type());
+        $this->assertIsInt($bytes->type());
     }
 }

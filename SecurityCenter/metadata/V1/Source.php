@@ -15,11 +15,10 @@ class Source
           return;
         }
         \GPBMetadata\Google\Api\Resource::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ð
-+google/cloud/securitycenter/v1/source.protogoogle.cloud.securitycenter.v1google/api/annotations.proto"ý
+²
++google/cloud/securitycenter/v1/source.protogoogle.cloud.securitycenter.v1"ý
 Source
 name (	
 display_name (	

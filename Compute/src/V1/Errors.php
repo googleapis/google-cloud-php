@@ -17,19 +17,19 @@ class Errors extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The error type identifier for this error.
      *
-     * Generated from protobuf field <code>string code = 3059181;</code>
+     * Generated from protobuf field <code>optional string code = 3059181;</code>
      */
     private $code = null;
     /**
      * [Output Only] Indicates the field in the request that caused the error. This property is optional.
      *
-     * Generated from protobuf field <code>string location = 290430901;</code>
+     * Generated from protobuf field <code>optional string location = 290430901;</code>
      */
     private $location = null;
     /**
      * [Output Only] An optional, human-readable error message.
      *
-     * Generated from protobuf field <code>string message = 418054151;</code>
+     * Generated from protobuf field <code>optional string message = 418054151;</code>
      */
     private $message = null;
 
@@ -55,7 +55,7 @@ class Errors extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The error type identifier for this error.
      *
-     * Generated from protobuf field <code>string code = 3059181;</code>
+     * Generated from protobuf field <code>optional string code = 3059181;</code>
      * @return string
      */
     public function getCode()
@@ -76,7 +76,7 @@ class Errors extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The error type identifier for this error.
      *
-     * Generated from protobuf field <code>string code = 3059181;</code>
+     * Generated from protobuf field <code>optional string code = 3059181;</code>
      * @param string $var
      * @return $this
      */
@@ -91,7 +91,7 @@ class Errors extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Indicates the field in the request that caused the error. This property is optional.
      *
-     * Generated from protobuf field <code>string location = 290430901;</code>
+     * Generated from protobuf field <code>optional string location = 290430901;</code>
      * @return string
      */
     public function getLocation()
@@ -112,7 +112,7 @@ class Errors extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Indicates the field in the request that caused the error. This property is optional.
      *
-     * Generated from protobuf field <code>string location = 290430901;</code>
+     * Generated from protobuf field <code>optional string location = 290430901;</code>
      * @param string $var
      * @return $this
      */
@@ -127,7 +127,7 @@ class Errors extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional, human-readable error message.
      *
-     * Generated from protobuf field <code>string message = 418054151;</code>
+     * Generated from protobuf field <code>optional string message = 418054151;</code>
      * @return string
      */
     public function getMessage()
@@ -148,7 +148,7 @@ class Errors extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional, human-readable error message.
      *
-     * Generated from protobuf field <code>string message = 418054151;</code>
+     * Generated from protobuf field <code>optional string message = 418054151;</code>
      * @param string $var
      * @return $this
      */

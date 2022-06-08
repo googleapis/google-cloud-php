@@ -140,7 +140,7 @@ class Annotation extends \Google\Protobuf\Internal\Message
      */
     public function getAnnotationValue()
     {
-        return isset($this->annotation_value) ? $this->annotation_value : null;
+        return $this->annotation_value;
     }
 
     public function hasAnnotationValue()
@@ -178,7 +178,7 @@ class Annotation extends \Google\Protobuf\Internal\Message
      */
     public function getAnnotationMetadata()
     {
-        return isset($this->annotation_metadata) ? $this->annotation_metadata : null;
+        return $this->annotation_metadata;
     }
 
     public function hasAnnotationMetadata()

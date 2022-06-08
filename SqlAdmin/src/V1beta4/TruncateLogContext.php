@@ -16,14 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class TruncateLogContext extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always <b>sql#truncateLogContext</b>.
+     * This is always `sql#truncateLogContext`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
     private $kind = '';
     /**
-     * The type of log to truncate. Valid values are
-     * <b>MYSQL_GENERAL_TABLE</b> and <b>MYSQL_SLOW_TABLE</b>.
+     * The type of log to truncate. Valid values are `MYSQL_GENERAL_TABLE` and
+     * `MYSQL_SLOW_TABLE`.
      *
      * Generated from protobuf field <code>string log_type = 2;</code>
      */
@@ -36,10 +36,10 @@ class TruncateLogContext extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always <b>sql#truncateLogContext</b>.
+     *           This is always `sql#truncateLogContext`.
      *     @type string $log_type
-     *           The type of log to truncate. Valid values are
-     *           <b>MYSQL_GENERAL_TABLE</b> and <b>MYSQL_SLOW_TABLE</b>.
+     *           The type of log to truncate. Valid values are `MYSQL_GENERAL_TABLE` and
+     *           `MYSQL_SLOW_TABLE`.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,7 +48,7 @@ class TruncateLogContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#truncateLogContext</b>.
+     * This is always `sql#truncateLogContext`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -59,7 +59,7 @@ class TruncateLogContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#truncateLogContext</b>.
+     * This is always `sql#truncateLogContext`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
@@ -74,8 +74,8 @@ class TruncateLogContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of log to truncate. Valid values are
-     * <b>MYSQL_GENERAL_TABLE</b> and <b>MYSQL_SLOW_TABLE</b>.
+     * The type of log to truncate. Valid values are `MYSQL_GENERAL_TABLE` and
+     * `MYSQL_SLOW_TABLE`.
      *
      * Generated from protobuf field <code>string log_type = 2;</code>
      * @return string
@@ -86,8 +86,8 @@ class TruncateLogContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of log to truncate. Valid values are
-     * <b>MYSQL_GENERAL_TABLE</b> and <b>MYSQL_SLOW_TABLE</b>.
+     * The type of log to truncate. Valid values are `MYSQL_GENERAL_TABLE` and
+     * `MYSQL_SLOW_TABLE`.
      *
      * Generated from protobuf field <code>string log_type = 2;</code>
      * @param string $var

@@ -29,15 +29,18 @@ use Google\Cloud\Vision\Annotation\Web;
 use Google\Cloud\Vision\Annotation\Web\WebEntity;
 use Google\Cloud\Vision\Annotation\Web\WebImage;
 use Google\Cloud\Vision\Annotation\Web\WebPage;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group vision
  */
 class AnnotationsTest extends VisionTestCase
 {
+    use AssertIsType;
+
     private $client;
 
-    public function setUp()
+    public function set_up()
     {
         $this->client = parent::$vision;
     }
@@ -74,12 +77,12 @@ class AnnotationsTest extends VisionTestCase
 
         // Image Properties
         $this->assertInstanceOf(ImageProperties::class, $res->imageProperties());
-        $this->assertInternalType('array', $res->imageProperties()->colors());
+        $this->assertIsArray($res->imageProperties()->colors());
 
         // Crop Hints
         $this->assertInstanceOf(CropHint::class, $res->cropHints()[0]);
         $this->assertArrayHasKey('vertices', $res->cropHints()[0]->boundingPoly());
-        $this->assertInternalType('float', $res->cropHints()[0]->confidence());
+        $this->assertIsFloat($res->cropHints()[0]->confidence());
         $this->assertNotNull($res->cropHints()[0]->importanceFraction());
 
         // Web Annotation

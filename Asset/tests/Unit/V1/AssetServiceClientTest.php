@@ -381,6 +381,10 @@ class AssetServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.asset.v1.AssetService/BatchGetAssetsHistory', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($parent, $actualValue);
+        $actualValue = $actualRequestObject->getContentType();
+        $this->assertProtobufEquals($contentType, $actualValue);
+        $actualValue = $actualRequestObject->getReadTimeWindow();
+        $this->assertProtobufEquals($readTimeWindow, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 

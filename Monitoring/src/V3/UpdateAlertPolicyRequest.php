@@ -106,11 +106,21 @@ class UpdateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      *     then a new `[CONDITION_ID]` is created.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
         return $this->update_mask;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
@@ -152,11 +162,21 @@ class UpdateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      * not in `update_mask` are ignored.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy alert_policy = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Monitoring\V3\AlertPolicy
+     * @return \Google\Cloud\Monitoring\V3\AlertPolicy|null
      */
     public function getAlertPolicy()
     {
         return $this->alert_policy;
+    }
+
+    public function hasAlertPolicy()
+    {
+        return isset($this->alert_policy);
+    }
+
+    public function clearAlertPolicy()
+    {
+        unset($this->alert_policy);
     }
 
     /**

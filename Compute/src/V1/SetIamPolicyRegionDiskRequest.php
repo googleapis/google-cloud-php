@@ -121,7 +121,7 @@ class SetIamPolicyRegionDiskRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRegionSetPolicyRequestResource()
     {
-        return isset($this->region_set_policy_request_resource) ? $this->region_set_policy_request_resource : null;
+        return $this->region_set_policy_request_resource;
     }
 
     public function hasRegionSetPolicyRequestResource()

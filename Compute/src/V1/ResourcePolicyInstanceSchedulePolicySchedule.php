@@ -18,7 +18,7 @@ class ResourcePolicyInstanceSchedulePolicySchedule extends \Google\Protobuf\Inte
     /**
      * Specifies the frequency for the operation, using the unix-cron format.
      *
-     * Generated from protobuf field <code>string schedule = 375820951;</code>
+     * Generated from protobuf field <code>optional string schedule = 375820951;</code>
      */
     private $schedule = null;
 
@@ -40,7 +40,7 @@ class ResourcePolicyInstanceSchedulePolicySchedule extends \Google\Protobuf\Inte
     /**
      * Specifies the frequency for the operation, using the unix-cron format.
      *
-     * Generated from protobuf field <code>string schedule = 375820951;</code>
+     * Generated from protobuf field <code>optional string schedule = 375820951;</code>
      * @return string
      */
     public function getSchedule()
@@ -61,7 +61,7 @@ class ResourcePolicyInstanceSchedulePolicySchedule extends \Google\Protobuf\Inte
     /**
      * Specifies the frequency for the operation, using the unix-cron format.
      *
-     * Generated from protobuf field <code>string schedule = 375820951;</code>
+     * Generated from protobuf field <code>optional string schedule = 375820951;</code>
      * @param string $var
      * @return $this
      */

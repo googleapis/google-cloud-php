@@ -1,0 +1,15 @@
+{
+    "title": "eventarcpublishing",
+    "defaultService": "eventarcpublishing\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "eventarcpublishing\/readme"
+        },
+        {
+            "title": "PublisherClient (v1)",
+            "type": "eventarcpublishing\/v1\/publisherclient"
+        }
+    ],
+    "pattern": "eventarcpublishing\/\\w{1,}"
+}

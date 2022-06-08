@@ -17,7 +17,7 @@ class ManagedInstanceLastAttempt extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Encountered errors during the last attempt to create or delete the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Errors errors = 315977579;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Errors errors = 315977579;</code>
      */
     private $errors = null;
 
@@ -39,12 +39,12 @@ class ManagedInstanceLastAttempt extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Encountered errors during the last attempt to create or delete the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Errors errors = 315977579;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Errors errors = 315977579;</code>
      * @return \Google\Cloud\Compute\V1\Errors|null
      */
     public function getErrors()
     {
-        return isset($this->errors) ? $this->errors : null;
+        return $this->errors;
     }
 
     public function hasErrors()
@@ -60,7 +60,7 @@ class ManagedInstanceLastAttempt extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Encountered errors during the last attempt to create or delete the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Errors errors = 315977579;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Errors errors = 315977579;</code>
      * @param \Google\Cloud\Compute\V1\Errors $var
      * @return $this
      */

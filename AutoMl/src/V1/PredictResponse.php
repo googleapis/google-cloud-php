@@ -139,7 +139,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      */
     public function getPreprocessedInput()
     {
-        return isset($this->preprocessed_input) ? $this->preprocessed_input : null;
+        return $this->preprocessed_input;
     }
 
     public function hasPreprocessedInput()

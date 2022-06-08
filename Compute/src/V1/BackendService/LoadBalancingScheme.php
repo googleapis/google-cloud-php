@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\BackendService;
 use UnexpectedValueException;
 
 /**
- * Specifies the load balancer type. Choose EXTERNAL for external HTTP(S), SSL Proxy, TCP Proxy and Network Load Balancing. Choose  INTERNAL for Internal TCP/UDP Load Balancing. Choose  INTERNAL_MANAGED for Internal HTTP(S) Load Balancing.  INTERNAL_SELF_MANAGED for Traffic Director. A backend service created for one type of load balancer cannot be used with another. For more information, refer to Choosing a load balancer.
+ * Specifies the load balancer type. A backend service created for one type of load balancer cannot be used with another. For more information, refer to Choosing a load balancer.
  *
  * Protobuf type <code>google.cloud.compute.v1.BackendService.LoadBalancingScheme</code>
  */
@@ -20,18 +20,32 @@ class LoadBalancingScheme
      */
     const UNDEFINED_LOAD_BALANCING_SCHEME = 0;
     /**
+     * Signifies that this will be used for external HTTP(S), SSL Proxy, TCP Proxy, or Network Load Balancing
+     *
      * Generated from protobuf enum <code>EXTERNAL = 35607499;</code>
      */
     const EXTERNAL = 35607499;
     /**
+     * Signifies that this will be used for External Managed HTTP(S) Load Balancing.
+     *
+     * Generated from protobuf enum <code>EXTERNAL_MANAGED = 512006923;</code>
+     */
+    const EXTERNAL_MANAGED = 512006923;
+    /**
+     * Signifies that this will be used for Internal TCP/UDP Load Balancing.
+     *
      * Generated from protobuf enum <code>INTERNAL = 279295677;</code>
      */
     const INTERNAL = 279295677;
     /**
+     * Signifies that this will be used for Internal HTTP(S) Load Balancing.
+     *
      * Generated from protobuf enum <code>INTERNAL_MANAGED = 37350397;</code>
      */
     const INTERNAL_MANAGED = 37350397;
     /**
+     * Signifies that this will be used by Traffic Director.
+     *
      * Generated from protobuf enum <code>INTERNAL_SELF_MANAGED = 236211150;</code>
      */
     const INTERNAL_SELF_MANAGED = 236211150;
@@ -43,6 +57,7 @@ class LoadBalancingScheme
     private static $valueToName = [
         self::UNDEFINED_LOAD_BALANCING_SCHEME => 'UNDEFINED_LOAD_BALANCING_SCHEME',
         self::EXTERNAL => 'EXTERNAL',
+        self::EXTERNAL_MANAGED => 'EXTERNAL_MANAGED',
         self::INTERNAL => 'INTERNAL',
         self::INTERNAL_MANAGED => 'INTERNAL_MANAGED',
         self::INTERNAL_SELF_MANAGED => 'INTERNAL_SELF_MANAGED',

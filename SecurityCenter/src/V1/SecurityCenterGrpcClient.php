@@ -33,6 +33,23 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Kicks off an LRO to bulk mute findings for a parent based on a filter. The
+     * parent can be either an organization, folder or project. The findings
+     * matched by the filter will be muted after the LRO is done.
+     * @param \Google\Cloud\SecurityCenter\V1\BulkMuteFindingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function BulkMuteFindings(\Google\Cloud\SecurityCenter\V1\BulkMuteFindingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/BulkMuteFindings',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates a source.
      * @param \Google\Cloud\SecurityCenter\V1\CreateSourceRequest $argument input argument
      * @param array $metadata metadata
@@ -64,6 +81,21 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Creates a mute config.
+     * @param \Google\Cloud\SecurityCenter\V1\CreateMuteConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateMuteConfig(\Google\Cloud\SecurityCenter\V1\CreateMuteConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/CreateMuteConfig',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\MuteConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates a notification config.
      * @param \Google\Cloud\SecurityCenter\V1\CreateNotificationConfigRequest $argument input argument
      * @param array $metadata metadata
@@ -75,6 +107,21 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/CreateNotificationConfig',
         $argument,
         ['\Google\Cloud\SecurityCenter\V1\NotificationConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes an existing mute config.
+     * @param \Google\Cloud\SecurityCenter\V1\DeleteMuteConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteMuteConfig(\Google\Cloud\SecurityCenter\V1\DeleteMuteConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/DeleteMuteConfig',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
         $metadata, $options);
     }
 
@@ -94,6 +141,21 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Gets a big query export.
+     * @param \Google\Cloud\SecurityCenter\V1\GetBigQueryExportRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetBigQueryExport(\Google\Cloud\SecurityCenter\V1\GetBigQueryExportRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/GetBigQueryExport',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\BigQueryExport', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Gets the access control policy on the specified Source.
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
@@ -105,6 +167,21 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/GetIamPolicy',
         $argument,
         ['\Google\Cloud\Iam\V1\Policy', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets a mute config.
+     * @param \Google\Cloud\SecurityCenter\V1\GetMuteConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetMuteConfig(\Google\Cloud\SecurityCenter\V1\GetMuteConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/GetMuteConfig',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\MuteConfig', 'decode'],
         $metadata, $options);
     }
 
@@ -224,6 +301,21 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Lists mute configs.
+     * @param \Google\Cloud\SecurityCenter\V1\ListMuteConfigsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListMuteConfigs(\Google\Cloud\SecurityCenter\V1\ListMuteConfigsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/ListMuteConfigs',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\ListMuteConfigsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Lists notification configs.
      * @param \Google\Cloud\SecurityCenter\V1\ListNotificationConfigsRequest $argument input argument
      * @param array $metadata metadata
@@ -289,6 +381,21 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Updates the mute state of a finding.
+     * @param \Google\Cloud\SecurityCenter\V1\SetMuteRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function SetMute(\Google\Cloud\SecurityCenter\V1\SetMuteRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/SetMute',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\Finding', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Sets the access control policy on the specified Source.
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
@@ -319,6 +426,21 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Updates external system. This is for a given finding.
+     * @param \Google\Cloud\SecurityCenter\V1\UpdateExternalSystemRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateExternalSystem(\Google\Cloud\SecurityCenter\V1\UpdateExternalSystemRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/UpdateExternalSystem',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\ExternalSystem', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates or updates a finding. The corresponding source must exist for a
      * finding creation to succeed.
      * @param \Google\Cloud\SecurityCenter\V1\UpdateFindingRequest $argument input argument
@@ -331,6 +453,21 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/UpdateFinding',
         $argument,
         ['\Google\Cloud\SecurityCenter\V1\Finding', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a mute config.
+     * @param \Google\Cloud\SecurityCenter\V1\UpdateMuteConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateMuteConfig(\Google\Cloud\SecurityCenter\V1\UpdateMuteConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/UpdateMuteConfig',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\MuteConfig', 'decode'],
         $metadata, $options);
     }
 
@@ -393,6 +530,70 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/UpdateSecurityMarks',
         $argument,
         ['\Google\Cloud\SecurityCenter\V1\SecurityMarks', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a big query export.
+     * @param \Google\Cloud\SecurityCenter\V1\CreateBigQueryExportRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateBigQueryExport(\Google\Cloud\SecurityCenter\V1\CreateBigQueryExportRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/CreateBigQueryExport',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\BigQueryExport', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes an existing big query export.
+     * @param \Google\Cloud\SecurityCenter\V1\DeleteBigQueryExportRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteBigQueryExport(\Google\Cloud\SecurityCenter\V1\DeleteBigQueryExportRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/DeleteBigQueryExport',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a BigQuery export.
+     * @param \Google\Cloud\SecurityCenter\V1\UpdateBigQueryExportRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateBigQueryExport(\Google\Cloud\SecurityCenter\V1\UpdateBigQueryExportRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/UpdateBigQueryExport',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\BigQueryExport', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists BigQuery exports. Note that when requesting BigQuery exports at a
+     * given level all exports under that level are also returned e.g. if
+     * requesting BigQuery exports under a folder, then all BigQuery exports
+     * immediately under the folder plus the ones created under the projects
+     * within the folder are returned.
+     * @param \Google\Cloud\SecurityCenter\V1\ListBigQueryExportsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListBigQueryExports(\Google\Cloud\SecurityCenter\V1\ListBigQueryExportsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.securitycenter.v1.SecurityCenter/ListBigQueryExports',
+        $argument,
+        ['\Google\Cloud\SecurityCenter\V1\ListBigQueryExportsResponse', 'decode'],
         $metadata, $options);
     }
 

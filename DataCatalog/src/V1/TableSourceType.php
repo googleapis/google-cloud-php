@@ -31,11 +31,18 @@ class TableSourceType
      * Generated from protobuf enum <code>BIGQUERY_TABLE = 5;</code>
      */
     const BIGQUERY_TABLE = 5;
+    /**
+     * BigQuery materialized view.
+     *
+     * Generated from protobuf enum <code>BIGQUERY_MATERIALIZED_VIEW = 7;</code>
+     */
+    const BIGQUERY_MATERIALIZED_VIEW = 7;
 
     private static $valueToName = [
         self::TABLE_SOURCE_TYPE_UNSPECIFIED => 'TABLE_SOURCE_TYPE_UNSPECIFIED',
         self::BIGQUERY_VIEW => 'BIGQUERY_VIEW',
         self::BIGQUERY_TABLE => 'BIGQUERY_TABLE',
+        self::BIGQUERY_MATERIALIZED_VIEW => 'BIGQUERY_MATERIALIZED_VIEW',
     ];
 
     public static function name($value)

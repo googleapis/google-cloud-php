@@ -17,50 +17,68 @@ class AuditLog extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the API service performing the operation. For example,
-     * `"datastore.googleapis.com"`.
+     * `"compute.googleapis.com"`.
      *
      * Generated from protobuf field <code>string service_name = 7;</code>
      */
-    private $service_name = '';
+    protected $service_name = '';
     /**
      * The name of the service method or operation.
      * For API calls, this should be the name of the API method.
      * For example,
-     *     "google.datastore.v1.Datastore.RunQuery"
-     *     "google.logging.v1.LoggingService.DeleteLog"
+     *     "google.cloud.bigquery.v2.TableService.InsertTable"
+     *     "google.logging.v2.ConfigServiceV2.CreateSink"
      *
      * Generated from protobuf field <code>string method_name = 8;</code>
      */
-    private $method_name = '';
+    protected $method_name = '';
     /**
      * The resource or collection that is the target of the operation.
      * The name is a scheme-less URI, not including the API service name.
      * For example:
-     *     "shelves/SHELF_ID/books"
-     *     "shelves/SHELF_ID/books/BOOK_ID"
+     *     "projects/PROJECT_ID/zones/us-central1-a/instances"
+     *     "projects/PROJECT_ID/datasets/DATASET_ID"
      *
      * Generated from protobuf field <code>string resource_name = 11;</code>
      */
-    private $resource_name = '';
+    protected $resource_name = '';
+    /**
+     * The resource location information.
+     *
+     * Generated from protobuf field <code>.google.cloud.audit.ResourceLocation resource_location = 20;</code>
+     */
+    protected $resource_location = null;
+    /**
+     * The resource's original state before mutation. Present only for
+     * operations which have successfully modified the targeted resource(s).
+     * In general, this field should contain all changed fields, except those
+     * that are already been included in `request`, `response`, `metadata` or
+     * `service_data` fields.
+     * When the JSON object represented here has a proto equivalent,
+     * the proto name will be indicated in the `&#64;type` property.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct resource_original_state = 19;</code>
+     */
+    protected $resource_original_state = null;
     /**
      * The number of items returned from a List or Query API method,
      * if applicable.
      *
      * Generated from protobuf field <code>int64 num_response_items = 12;</code>
      */
-    private $num_response_items = 0;
+    protected $num_response_items = 0;
     /**
      * The status of the overall operation.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * Authentication information.
      *
      * Generated from protobuf field <code>.google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
      */
-    private $authentication_info = null;
+    protected $authentication_info = null;
     /**
      * Authorization information. If there are multiple
      * resources or permissions involved, then there is
@@ -74,7 +92,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.audit.RequestMetadata request_metadata = 4;</code>
      */
-    private $request_metadata = null;
+    protected $request_metadata = null;
     /**
      * The operation request. This may not include all request parameters,
      * such as those that are too large, privacy-sensitive, or duplicated
@@ -85,7 +103,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct request = 16;</code>
      */
-    private $request = null;
+    protected $request = null;
     /**
      * The operation response. This may not include all response elements,
      * such as those that are too large, privacy-sensitive, or duplicated
@@ -96,14 +114,23 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Struct response = 17;</code>
      */
-    private $response = null;
+    protected $response = null;
     /**
+     * Other service-specific data about the request, response, and other
+     * information associated with the current audited event.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 18;</code>
+     */
+    protected $metadata = null;
+    /**
+     * Deprecated. Use the `metadata` field instead.
      * Other service-specific data about the request, response, and other
      * activities.
      *
-     * Generated from protobuf field <code>.google.protobuf.Any service_data = 15;</code>
+     * Generated from protobuf field <code>.google.protobuf.Any service_data = 15 [deprecated = true];</code>
+     * @deprecated
      */
-    private $service_data = null;
+    protected $service_data = null;
 
     /**
      * Constructor.
@@ -113,19 +140,29 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      *
      *     @type string $service_name
      *           The name of the API service performing the operation. For example,
-     *           `"datastore.googleapis.com"`.
+     *           `"compute.googleapis.com"`.
      *     @type string $method_name
      *           The name of the service method or operation.
      *           For API calls, this should be the name of the API method.
      *           For example,
-     *               "google.datastore.v1.Datastore.RunQuery"
-     *               "google.logging.v1.LoggingService.DeleteLog"
+     *               "google.cloud.bigquery.v2.TableService.InsertTable"
+     *               "google.logging.v2.ConfigServiceV2.CreateSink"
      *     @type string $resource_name
      *           The resource or collection that is the target of the operation.
      *           The name is a scheme-less URI, not including the API service name.
      *           For example:
-     *               "shelves/SHELF_ID/books"
-     *               "shelves/SHELF_ID/books/BOOK_ID"
+     *               "projects/PROJECT_ID/zones/us-central1-a/instances"
+     *               "projects/PROJECT_ID/datasets/DATASET_ID"
+     *     @type \Google\Cloud\Audit\ResourceLocation $resource_location
+     *           The resource location information.
+     *     @type \Google\Protobuf\Struct $resource_original_state
+     *           The resource's original state before mutation. Present only for
+     *           operations which have successfully modified the targeted resource(s).
+     *           In general, this field should contain all changed fields, except those
+     *           that are already been included in `request`, `response`, `metadata` or
+     *           `service_data` fields.
+     *           When the JSON object represented here has a proto equivalent,
+     *           the proto name will be indicated in the `&#64;type` property.
      *     @type int|string $num_response_items
      *           The number of items returned from a List or Query API method,
      *           if applicable.
@@ -153,7 +190,11 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      *           It should never include user-generated data, such as file contents.
      *           When the JSON object represented here has a proto equivalent, the proto
      *           name will be indicated in the `&#64;type` property.
+     *     @type \Google\Protobuf\Struct $metadata
+     *           Other service-specific data about the request, response, and other
+     *           information associated with the current audited event.
      *     @type \Google\Protobuf\Any $service_data
+     *           Deprecated. Use the `metadata` field instead.
      *           Other service-specific data about the request, response, and other
      *           activities.
      * }
@@ -165,7 +206,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the API service performing the operation. For example,
-     * `"datastore.googleapis.com"`.
+     * `"compute.googleapis.com"`.
      *
      * Generated from protobuf field <code>string service_name = 7;</code>
      * @return string
@@ -177,7 +218,7 @@ class AuditLog extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the API service performing the operation. For example,
-     * `"datastore.googleapis.com"`.
+     * `"compute.googleapis.com"`.
      *
      * Generated from protobuf field <code>string service_name = 7;</code>
      * @param string $var
@@ -195,8 +236,8 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * The name of the service method or operation.
      * For API calls, this should be the name of the API method.
      * For example,
-     *     "google.datastore.v1.Datastore.RunQuery"
-     *     "google.logging.v1.LoggingService.DeleteLog"
+     *     "google.cloud.bigquery.v2.TableService.InsertTable"
+     *     "google.logging.v2.ConfigServiceV2.CreateSink"
      *
      * Generated from protobuf field <code>string method_name = 8;</code>
      * @return string
@@ -210,8 +251,8 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * The name of the service method or operation.
      * For API calls, this should be the name of the API method.
      * For example,
-     *     "google.datastore.v1.Datastore.RunQuery"
-     *     "google.logging.v1.LoggingService.DeleteLog"
+     *     "google.cloud.bigquery.v2.TableService.InsertTable"
+     *     "google.logging.v2.ConfigServiceV2.CreateSink"
      *
      * Generated from protobuf field <code>string method_name = 8;</code>
      * @param string $var
@@ -229,8 +270,8 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * The resource or collection that is the target of the operation.
      * The name is a scheme-less URI, not including the API service name.
      * For example:
-     *     "shelves/SHELF_ID/books"
-     *     "shelves/SHELF_ID/books/BOOK_ID"
+     *     "projects/PROJECT_ID/zones/us-central1-a/instances"
+     *     "projects/PROJECT_ID/datasets/DATASET_ID"
      *
      * Generated from protobuf field <code>string resource_name = 11;</code>
      * @return string
@@ -244,8 +285,8 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * The resource or collection that is the target of the operation.
      * The name is a scheme-less URI, not including the API service name.
      * For example:
-     *     "shelves/SHELF_ID/books"
-     *     "shelves/SHELF_ID/books/BOOK_ID"
+     *     "projects/PROJECT_ID/zones/us-central1-a/instances"
+     *     "projects/PROJECT_ID/datasets/DATASET_ID"
      *
      * Generated from protobuf field <code>string resource_name = 11;</code>
      * @param string $var
@@ -255,6 +296,90 @@ class AuditLog extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->resource_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The resource location information.
+     *
+     * Generated from protobuf field <code>.google.cloud.audit.ResourceLocation resource_location = 20;</code>
+     * @return \Google\Cloud\Audit\ResourceLocation|null
+     */
+    public function getResourceLocation()
+    {
+        return isset($this->resource_location) ? $this->resource_location : null;
+    }
+
+    public function hasResourceLocation()
+    {
+        return isset($this->resource_location);
+    }
+
+    public function clearResourceLocation()
+    {
+        unset($this->resource_location);
+    }
+
+    /**
+     * The resource location information.
+     *
+     * Generated from protobuf field <code>.google.cloud.audit.ResourceLocation resource_location = 20;</code>
+     * @param \Google\Cloud\Audit\ResourceLocation $var
+     * @return $this
+     */
+    public function setResourceLocation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Audit\ResourceLocation::class);
+        $this->resource_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * The resource's original state before mutation. Present only for
+     * operations which have successfully modified the targeted resource(s).
+     * In general, this field should contain all changed fields, except those
+     * that are already been included in `request`, `response`, `metadata` or
+     * `service_data` fields.
+     * When the JSON object represented here has a proto equivalent,
+     * the proto name will be indicated in the `&#64;type` property.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct resource_original_state = 19;</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getResourceOriginalState()
+    {
+        return isset($this->resource_original_state) ? $this->resource_original_state : null;
+    }
+
+    public function hasResourceOriginalState()
+    {
+        return isset($this->resource_original_state);
+    }
+
+    public function clearResourceOriginalState()
+    {
+        unset($this->resource_original_state);
+    }
+
+    /**
+     * The resource's original state before mutation. Present only for
+     * operations which have successfully modified the targeted resource(s).
+     * In general, this field should contain all changed fields, except those
+     * that are already been included in `request`, `response`, `metadata` or
+     * `service_data` fields.
+     * When the JSON object represented here has a proto equivalent,
+     * the proto name will be indicated in the `&#64;type` property.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct resource_original_state = 19;</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setResourceOriginalState($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->resource_original_state = $var;
 
         return $this;
     }
@@ -291,11 +416,21 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * The status of the overall operation.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : null;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
@@ -317,11 +452,21 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * Authentication information.
      *
      * Generated from protobuf field <code>.google.cloud.audit.AuthenticationInfo authentication_info = 3;</code>
-     * @return \Google\Cloud\Audit\AuthenticationInfo
+     * @return \Google\Cloud\Audit\AuthenticationInfo|null
      */
     public function getAuthenticationInfo()
     {
-        return $this->authentication_info;
+        return isset($this->authentication_info) ? $this->authentication_info : null;
+    }
+
+    public function hasAuthenticationInfo()
+    {
+        return isset($this->authentication_info);
+    }
+
+    public function clearAuthenticationInfo()
+    {
+        unset($this->authentication_info);
     }
 
     /**
@@ -373,11 +518,21 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * Metadata about the operation.
      *
      * Generated from protobuf field <code>.google.cloud.audit.RequestMetadata request_metadata = 4;</code>
-     * @return \Google\Cloud\Audit\RequestMetadata
+     * @return \Google\Cloud\Audit\RequestMetadata|null
      */
     public function getRequestMetadata()
     {
-        return $this->request_metadata;
+        return isset($this->request_metadata) ? $this->request_metadata : null;
+    }
+
+    public function hasRequestMetadata()
+    {
+        return isset($this->request_metadata);
+    }
+
+    public function clearRequestMetadata()
+    {
+        unset($this->request_metadata);
     }
 
     /**
@@ -404,11 +559,21 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * name will be indicated in the `&#64;type` property.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct request = 16;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getRequest()
     {
-        return $this->request;
+        return isset($this->request) ? $this->request : null;
+    }
+
+    public function hasRequest()
+    {
+        return isset($this->request);
+    }
+
+    public function clearRequest()
+    {
+        unset($this->request);
     }
 
     /**
@@ -440,11 +605,21 @@ class AuditLog extends \Google\Protobuf\Internal\Message
      * name will be indicated in the `&#64;type` property.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct response = 17;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getResponse()
     {
-        return $this->response;
+        return isset($this->response) ? $this->response : null;
+    }
+
+    public function hasResponse()
+    {
+        return isset($this->response);
+    }
+
+    public function clearResponse()
+    {
+        unset($this->response);
     }
 
     /**
@@ -469,26 +644,82 @@ class AuditLog extends \Google\Protobuf\Internal\Message
 
     /**
      * Other service-specific data about the request, response, and other
-     * activities.
+     * information associated with the current audited event.
      *
-     * Generated from protobuf field <code>.google.protobuf.Any service_data = 15;</code>
-     * @return \Google\Protobuf\Any
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 18;</code>
+     * @return \Google\Protobuf\Struct|null
      */
-    public function getServiceData()
+    public function getMetadata()
     {
-        return $this->service_data;
+        return isset($this->metadata) ? $this->metadata : null;
+    }
+
+    public function hasMetadata()
+    {
+        return isset($this->metadata);
+    }
+
+    public function clearMetadata()
+    {
+        unset($this->metadata);
     }
 
     /**
      * Other service-specific data about the request, response, and other
+     * information associated with the current audited event.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 18;</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Deprecated. Use the `metadata` field instead.
+     * Other service-specific data about the request, response, and other
      * activities.
      *
-     * Generated from protobuf field <code>.google.protobuf.Any service_data = 15;</code>
+     * Generated from protobuf field <code>.google.protobuf.Any service_data = 15 [deprecated = true];</code>
+     * @return \Google\Protobuf\Any|null
+     * @deprecated
+     */
+    public function getServiceData()
+    {
+        @trigger_error('service_data is deprecated.', E_USER_DEPRECATED);
+        return isset($this->service_data) ? $this->service_data : null;
+    }
+
+    public function hasServiceData()
+    {
+        @trigger_error('service_data is deprecated.', E_USER_DEPRECATED);
+        return isset($this->service_data);
+    }
+
+    public function clearServiceData()
+    {
+        @trigger_error('service_data is deprecated.', E_USER_DEPRECATED);
+        unset($this->service_data);
+    }
+
+    /**
+     * Deprecated. Use the `metadata` field instead.
+     * Other service-specific data about the request, response, and other
+     * activities.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Any service_data = 15 [deprecated = true];</code>
      * @param \Google\Protobuf\Any $var
      * @return $this
+     * @deprecated
      */
     public function setServiceData($var)
     {
+        @trigger_error('service_data is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Protobuf\Any::class);
         $this->service_data = $var;
 

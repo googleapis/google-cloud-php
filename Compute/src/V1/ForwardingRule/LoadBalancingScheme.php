@@ -7,19 +7,7 @@ namespace Google\Cloud\Compute\V1\ForwardingRule;
 use UnexpectedValueException;
 
 /**
- * Specifies the forwarding rule type.
- * - EXTERNAL is used for:
- * - Classic Cloud VPN gateways
- * - Protocol forwarding to VMs from an external IP address
- * - HTTP(S), SSL Proxy, TCP Proxy, and Network Load Balancing
- * - INTERNAL is used for:
- * - Protocol forwarding to VMs from an internal IP address
- * - Internal TCP/UDP Load Balancing
- * - INTERNAL_MANAGED is used for:
- * - Internal HTTP(S) Load Balancing
- * - INTERNAL_SELF_MANAGED is used for:
- * - Traffic Director
- * For more information about forwarding rules, refer to Forwarding rule concepts.
+ * Specifies the forwarding rule type. For more information about forwarding rules, refer to Forwarding rule concepts.
  *
  * Protobuf type <code>google.cloud.compute.v1.ForwardingRule.LoadBalancingScheme</code>
  */
@@ -35,6 +23,10 @@ class LoadBalancingScheme
      * Generated from protobuf enum <code>EXTERNAL = 35607499;</code>
      */
     const EXTERNAL = 35607499;
+    /**
+     * Generated from protobuf enum <code>EXTERNAL_MANAGED = 512006923;</code>
+     */
+    const EXTERNAL_MANAGED = 512006923;
     /**
      * Generated from protobuf enum <code>INTERNAL = 279295677;</code>
      */
@@ -55,6 +47,7 @@ class LoadBalancingScheme
     private static $valueToName = [
         self::UNDEFINED_LOAD_BALANCING_SCHEME => 'UNDEFINED_LOAD_BALANCING_SCHEME',
         self::EXTERNAL => 'EXTERNAL',
+        self::EXTERNAL_MANAGED => 'EXTERNAL_MANAGED',
         self::INTERNAL => 'INTERNAL',
         self::INTERNAL_MANAGED => 'INTERNAL_MANAGED',
         self::INTERNAL_SELF_MANAGED => 'INTERNAL_SELF_MANAGED',

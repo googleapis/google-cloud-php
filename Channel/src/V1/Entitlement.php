@@ -89,8 +89,12 @@ class Entitlement extends \Google\Protobuf\Internal\Message
     private $association_info = null;
     /**
      * Extended entitlement parameters. When creating an entitlement, valid
-     * parameters' names and values are defined in the offer's parameter
-     * definitions.
+     * parameter names and values are defined in the
+     * [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions].
+     * The response may include the following output-only Parameters:
+     * - assigned_units: The number of licenses assigned to users.
+     * - max_units: The maximum assignable units for a flexible offer.
+     * - num_units: The total commitment for commitment-based offers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 26;</code>
      */
@@ -132,8 +136,12 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      *           Association information to other entitlements.
      *     @type \Google\Cloud\Channel\V1\Parameter[]|\Google\Protobuf\Internal\RepeatedField $parameters
      *           Extended entitlement parameters. When creating an entitlement, valid
-     *           parameters' names and values are defined in the offer's parameter
-     *           definitions.
+     *           parameter names and values are defined in the
+     *           [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions].
+     *           The response may include the following output-only Parameters:
+     *           - assigned_units: The number of licenses assigned to users.
+     *           - max_units: The maximum assignable units for a flexible offer.
+     *           - num_units: The total commitment for commitment-based offers.
      * }
      */
     public function __construct($data = NULL) {
@@ -501,8 +509,12 @@ class Entitlement extends \Google\Protobuf\Internal\Message
 
     /**
      * Extended entitlement parameters. When creating an entitlement, valid
-     * parameters' names and values are defined in the offer's parameter
-     * definitions.
+     * parameter names and values are defined in the
+     * [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions].
+     * The response may include the following output-only Parameters:
+     * - assigned_units: The number of licenses assigned to users.
+     * - max_units: The maximum assignable units for a flexible offer.
+     * - num_units: The total commitment for commitment-based offers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 26;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -514,8 +526,12 @@ class Entitlement extends \Google\Protobuf\Internal\Message
 
     /**
      * Extended entitlement parameters. When creating an entitlement, valid
-     * parameters' names and values are defined in the offer's parameter
-     * definitions.
+     * parameter names and values are defined in the
+     * [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions].
+     * The response may include the following output-only Parameters:
+     * - assigned_units: The number of licenses assigned to users.
+     * - max_units: The maximum assignable units for a flexible offer.
+     * - num_units: The total commitment for commitment-based offers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 26;</code>
      * @param \Google\Cloud\Channel\V1\Parameter[]|\Google\Protobuf\Internal\RepeatedField $var

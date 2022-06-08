@@ -17,7 +17,7 @@ class Job extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the job.
-     * Format: `projects/{project}/locations/{location}/jobs/{job}`
+     * Format: `projects/{project_number}/locations/{location}/jobs/{job}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -88,7 +88,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the job.
-     *           Format: `projects/{project}/locations/{location}/jobs/{job}`
+     *           Format: `projects/{project_number}/locations/{location}/jobs/{job}`
      *     @type string $input_uri
      *           Input only. Specify the `input_uri` to populate empty `uri` fields in each element of
      *           `Job.config.inputs` or `JobTemplate.config.inputs` when using template.
@@ -131,7 +131,7 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the job.
-     * Format: `projects/{project}/locations/{location}/jobs/{job}`
+     * Format: `projects/{project_number}/locations/{location}/jobs/{job}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -143,7 +143,7 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the job.
-     * Format: `projects/{project}/locations/{location}/jobs/{job}`
+     * Format: `projects/{project_number}/locations/{location}/jobs/{job}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -325,7 +325,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -361,7 +361,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -397,7 +397,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -464,7 +464,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getError()
     {
-        return isset($this->error) ? $this->error : null;
+        return $this->error;
     }
 
     public function hasError()

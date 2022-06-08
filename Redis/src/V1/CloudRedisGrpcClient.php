@@ -85,6 +85,23 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Gets the AUTH string for a Redis instance. If AUTH is not enabled for the
+     * instance the response will be empty. This information is not included in
+     * the details returned to GetInstance.
+     * @param \Google\Cloud\Redis\V1\GetInstanceAuthStringRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetInstanceAuthString(\Google\Cloud\Redis\V1\GetInstanceAuthStringRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.redis.v1.CloudRedis/GetInstanceAuthString',
+        $argument,
+        ['\Google\Cloud\Redis\V1\InstanceAuthString', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates a Redis instance based on the specified tier and memory size.
      *
      * By default, the instance is accessible from the project's
@@ -214,6 +231,22 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
     public function DeleteInstance(\Google\Cloud\Redis\V1\DeleteInstanceRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.redis.v1.CloudRedis/DeleteInstance',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Reschedule maintenance for a given instance in a given project and
+     * location.
+     * @param \Google\Cloud\Redis\V1\RescheduleMaintenanceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RescheduleMaintenance(\Google\Cloud\Redis\V1\RescheduleMaintenanceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.redis.v1.CloudRedis/RescheduleMaintenance',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);

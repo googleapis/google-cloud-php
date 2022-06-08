@@ -23,7 +23,7 @@ class NetworkEndpointGroupsScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An informational warning that replaces the list of network endpoint groups when the list is empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
     private $warning = null;
 
@@ -73,12 +73,12 @@ class NetworkEndpointGroupsScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An informational warning that replaces the list of network endpoint groups when the list is empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @return \Google\Cloud\Compute\V1\Warning|null
      */
     public function getWarning()
     {
-        return isset($this->warning) ? $this->warning : null;
+        return $this->warning;
     }
 
     public function hasWarning()
@@ -94,7 +94,7 @@ class NetworkEndpointGroupsScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An informational warning that replaces the list of network endpoint groups when the list is empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var
      * @return $this
      */

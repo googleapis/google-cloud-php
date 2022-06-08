@@ -18,7 +18,7 @@ class Delete extends \Google\Protobuf\Internal\Message
     /**
      * Required. The table whose rows will be deleted.
      *
-     * Generated from protobuf field <code>string table = 1;</code>
+     * Generated from protobuf field <code>string table = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $table = '';
     /**
@@ -29,7 +29,7 @@ class Delete extends \Google\Protobuf\Internal\Message
      * Delete is idempotent. The transaction will succeed even if some or all
      * rows do not exist.
      *
-     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $key_set = null;
 
@@ -58,7 +58,7 @@ class Delete extends \Google\Protobuf\Internal\Message
     /**
      * Required. The table whose rows will be deleted.
      *
-     * Generated from protobuf field <code>string table = 1;</code>
+     * Generated from protobuf field <code>string table = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTable()
@@ -69,7 +69,7 @@ class Delete extends \Google\Protobuf\Internal\Message
     /**
      * Required. The table whose rows will be deleted.
      *
-     * Generated from protobuf field <code>string table = 1;</code>
+     * Generated from protobuf field <code>string table = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -89,7 +89,7 @@ class Delete extends \Google\Protobuf\Internal\Message
      * Delete is idempotent. The transaction will succeed even if some or all
      * rows do not exist.
      *
-     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Spanner\V1\KeySet|null
      */
     public function getKeySet()
@@ -115,7 +115,7 @@ class Delete extends \Google\Protobuf\Internal\Message
      * Delete is idempotent. The transaction will succeed even if some or all
      * rows do not exist.
      *
-     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Spanner\V1\KeySet $var
      * @return $this
      */

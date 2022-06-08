@@ -65,6 +65,4 @@ class StringList extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StringList::class, \Google\Cloud\RecommendationEngine\V1beta1\FeatureMap_StringList::class);
 

@@ -20,10 +20,14 @@ class Direction
      */
     const UNDEFINED_DIRECTION = 0;
     /**
+     * Indicates that firewall should apply to outgoing traffic.
+     *
      * Generated from protobuf enum <code>EGRESS = 432880501;</code>
      */
     const EGRESS = 432880501;
     /**
+     * Indicates that firewall should apply to incoming traffic.
+     *
      * Generated from protobuf enum <code>INGRESS = 516931221;</code>
      */
     const INGRESS = 516931221;

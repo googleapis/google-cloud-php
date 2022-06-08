@@ -28,8 +28,7 @@ class AzureBlobStorageData extends \Google\Protobuf\Internal\Message
      */
     private $storage_account = '';
     /**
-     * Required. Input only. Credentials used to authenticate API requests to
-     * Azure.
+     * Required. Input only. Credentials used to authenticate API requests to Azure.
      * For information on our data retention policy for user credentials, see
      * [User credentials](https://cloud.google.com/storage-transfer/docs/data-retention#user-credentials).
      *
@@ -61,8 +60,7 @@ class AzureBlobStorageData extends \Google\Protobuf\Internal\Message
      *     @type string $storage_account
      *           Required. The name of the Azure Storage account.
      *     @type \Google\Cloud\StorageTransfer\V1\AzureCredentials $azure_credentials
-     *           Required. Input only. Credentials used to authenticate API requests to
-     *           Azure.
+     *           Required. Input only. Credentials used to authenticate API requests to Azure.
      *           For information on our data retention policy for user credentials, see
      *           [User credentials](https://cloud.google.com/storage-transfer/docs/data-retention#user-credentials).
      *     @type string $container
@@ -106,8 +104,7 @@ class AzureBlobStorageData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. Credentials used to authenticate API requests to
-     * Azure.
+     * Required. Input only. Credentials used to authenticate API requests to Azure.
      * For information on our data retention policy for user credentials, see
      * [User credentials](https://cloud.google.com/storage-transfer/docs/data-retention#user-credentials).
      *
@@ -130,8 +127,7 @@ class AzureBlobStorageData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. Credentials used to authenticate API requests to
-     * Azure.
+     * Required. Input only. Credentials used to authenticate API requests to Azure.
      * For information on our data retention policy for user credentials, see
      * [User credentials](https://cloud.google.com/storage-transfer/docs/data-retention#user-credentials).
      *

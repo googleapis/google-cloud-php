@@ -9,12 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The inventory details of a VM.
+ * This API resource represents the available inventory data for a
+ * Compute Engine virtual machine (VM) instance at a given point in time.
+ * You can use this API resource to determine the inventory data of your VM.
+ * For more information, see [Information provided by OS inventory
+ * management](https://cloud.google.com/compute/docs/instances/os-inventory-management#data-collected).
  *
  * Generated from protobuf message <code>google.cloud.osconfig.v1.Inventory</code>
  */
 class Inventory extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Output only. The `Inventory` API resource name.
+     * Format:
+     * `projects/{project_number}/locations/{location}/instances/{instance_id}/inventory`
+     *
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $name = '';
     /**
      * Base level operating system information for the VM.
      *
@@ -30,6 +42,12 @@ class Inventory extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.osconfig.v1.Inventory.Item> items = 2;</code>
      */
     private $items;
+    /**
+     * Output only. Timestamp of the last reported inventory for the VM.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $update_time = null;
 
     /**
      * Constructor.
@@ -37,6 +55,10 @@ class Inventory extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $name
+     *           Output only. The `Inventory` API resource name.
+     *           Format:
+     *           `projects/{project_number}/locations/{location}/instances/{instance_id}/inventory`
      *     @type \Google\Cloud\OsConfig\V1\Inventory\OsInfo $os_info
      *           Base level operating system information for the VM.
      *     @type array|\Google\Protobuf\Internal\MapField $items
@@ -44,11 +66,43 @@ class Inventory extends \Google\Protobuf\Internal\Message
      *           each inventory item.  The identifier is unique to each distinct and
      *           addressable inventory item and will change, when there is a new package
      *           version.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. Timestamp of the last reported inventory for the VM.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Osconfig\V1\Inventory::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Output only. The `Inventory` API resource name.
+     * Format:
+     * `projects/{project_number}/locations/{location}/instances/{instance_id}/inventory`
+     *
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Output only. The `Inventory` API resource name.
+     * Format:
+     * `projects/{project_number}/locations/{location}/instances/{instance_id}/inventory`
+     *
+     * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
+
+        return $this;
     }
 
     /**
@@ -59,7 +113,7 @@ class Inventory extends \Google\Protobuf\Internal\Message
      */
     public function getOsInfo()
     {
-        return isset($this->os_info) ? $this->os_info : null;
+        return $this->os_info;
     }
 
     public function hasOsInfo()
@@ -115,6 +169,42 @@ class Inventory extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\OsConfig\V1\Inventory\Item::class);
         $this->items = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Timestamp of the last reported inventory for the VM.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * Output only. Timestamp of the last reported inventory for the VM.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
 
         return $this;
     }

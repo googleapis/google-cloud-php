@@ -30,7 +30,7 @@ use Utilities\StateProto;
  */
 class SchemaTest extends PubSubTestCase
 {
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         self::skipIfEmulatorUsed(
             "schema tests are not supported when using service emulation"

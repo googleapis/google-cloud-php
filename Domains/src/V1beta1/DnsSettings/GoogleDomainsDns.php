@@ -160,6 +160,4 @@ class GoogleDomainsDns extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GoogleDomainsDns::class, \Google\Cloud\Domains\V1beta1\DnsSettings_GoogleDomainsDns::class);
 

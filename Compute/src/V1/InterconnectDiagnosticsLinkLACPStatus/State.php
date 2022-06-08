@@ -7,9 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkLACPStatus;
 use UnexpectedValueException;
 
 /**
- * The state of a LACP link, which can take one of the following values:
- * - ACTIVE: The link is configured and active within the bundle.
- * - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty.
+ * The state of a LACP link, which can take one of the following values: - ACTIVE: The link is configured and active within the bundle. - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty. 
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus.State</code>
  */
@@ -22,10 +20,14 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
+     * The link is configured and active within the bundle.
+     *
      * Generated from protobuf enum <code>ACTIVE = 314733318;</code>
      */
     const ACTIVE = 314733318;
     /**
+     * The link is not configured within the bundle, this means the rest of the object should be empty.
+     *
      * Generated from protobuf enum <code>DETACHED = 216562546;</code>
      */
     const DETACHED = 216562546;

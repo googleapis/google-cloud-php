@@ -32,7 +32,7 @@ class SqlFlagsServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * List all available database flags for Cloud SQL instances.
+     * Lists all available database flags for Cloud SQL instances.
      * @param \Google\Cloud\Sql\V1beta4\SqlFlagsListRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

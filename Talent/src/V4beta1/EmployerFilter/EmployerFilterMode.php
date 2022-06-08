@@ -68,6 +68,4 @@ class EmployerFilterMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EmployerFilterMode::class, \Google\Cloud\Talent\V4beta1\EmployerFilter_EmployerFilterMode::class);
 

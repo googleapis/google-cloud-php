@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetRepositoryRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the repository to retrieve.
+     * Required. The name of the repository to retrieve.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -29,7 +29,7 @@ class GetRepositoryRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of the repository to retrieve.
+     *           Required. The name of the repository to retrieve.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +38,9 @@ class GetRepositoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the repository to retrieve.
+     * Required. The name of the repository to retrieve.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -49,9 +49,9 @@ class GetRepositoryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the repository to retrieve.
+     * Required. The name of the repository to retrieve.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

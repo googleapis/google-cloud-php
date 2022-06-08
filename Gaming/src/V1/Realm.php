@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Realm extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the realm. Uses the form:
+     * The resource name of the realm, in the following form:
      * `projects/{project}/locations/{location}/realms/{realm}`. For
      * example, `projects/my-project/locations/{location}/realms/my-realm`.
      *
@@ -69,7 +69,7 @@ class Realm extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the realm. Uses the form:
+     *           The resource name of the realm, in the following form:
      *           `projects/{project}/locations/{location}/realms/{realm}`. For
      *           example, `projects/my-project/locations/{location}/realms/my-realm`.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -94,7 +94,7 @@ class Realm extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the realm. Uses the form:
+     * The resource name of the realm, in the following form:
      * `projects/{project}/locations/{location}/realms/{realm}`. For
      * example, `projects/my-project/locations/{location}/realms/my-realm`.
      *
@@ -107,7 +107,7 @@ class Realm extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the realm. Uses the form:
+     * The resource name of the realm, in the following form:
      * `projects/{project}/locations/{location}/realms/{realm}`. For
      * example, `projects/my-project/locations/{location}/realms/my-realm`.
      *
@@ -131,7 +131,7 @@ class Realm extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -167,7 +167,7 @@ class Realm extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

@@ -21,9 +21,9 @@ class Reschedule extends \Google\Protobuf\Internal\Message
     private $reschedule_type = 0;
     /**
      * Optional. Timestamp when the maintenance shall be rescheduled to if
-     * reschedule_type=SPECIFIC_TIME, in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for
-     * example <b>2012-11-15T16:19:00.094Z</b>.
+     * reschedule_type=SPECIFIC_TIME, in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,9 +39,9 @@ class Reschedule extends \Google\Protobuf\Internal\Message
      *           Required. The type of the reschedule.
      *     @type \Google\Protobuf\Timestamp $schedule_time
      *           Optional. Timestamp when the maintenance shall be rescheduled to if
-     *           reschedule_type=SPECIFIC_TIME, in <a
-     *           href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for
-     *           example <b>2012-11-15T16:19:00.094Z</b>.
+     *           reschedule_type=SPECIFIC_TIME, in
+     *           [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     *           `2012-11-15T16:19:00.094Z`.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,9 +77,9 @@ class Reschedule extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Timestamp when the maintenance shall be rescheduled to if
-     * reschedule_type=SPECIFIC_TIME, in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for
-     * example <b>2012-11-15T16:19:00.094Z</b>.
+     * reschedule_type=SPECIFIC_TIME, in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -101,9 +101,9 @@ class Reschedule extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Timestamp when the maintenance shall be rescheduled to if
-     * reschedule_type=SPECIFIC_TIME, in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for
-     * example <b>2012-11-15T16:19:00.094Z</b>.
+     * reschedule_type=SPECIFIC_TIME, in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -119,6 +119,4 @@ class Reschedule extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Reschedule::class, \Google\Cloud\Sql\V1beta4\SqlInstancesRescheduleMaintenanceRequestBody_Reschedule::class);
 

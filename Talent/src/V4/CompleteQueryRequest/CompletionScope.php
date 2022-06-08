@@ -60,6 +60,4 @@ class CompletionScope
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CompletionScope::class, \Google\Cloud\Talent\V4\CompleteQueryRequest_CompletionScope::class);
 

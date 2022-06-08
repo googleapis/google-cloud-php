@@ -48,6 +48,14 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.SsmlVoiceGender ssml_gender = 3;</code>
      */
     private $ssml_gender = 0;
+    /**
+     * The configuration for a custom voice. If [CustomVoiceParams.model] is set,
+     * the service will choose the custom voice matching the specified
+     * configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomVoiceParams custom_voice = 4;</code>
+     */
+    private $custom_voice = null;
 
     /**
      * Constructor.
@@ -76,6 +84,10 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
      *           name. Note that this is only a preference, not requirement; if a
      *           voice of the appropriate gender is not available, the synthesizer should
      *           substitute a voice with a different gender rather than failing the request.
+     *     @type \Google\Cloud\TextToSpeech\V1\CustomVoiceParams $custom_voice
+     *           The configuration for a custom voice. If [CustomVoiceParams.model] is set,
+     *           the service will choose the custom voice matching the specified
+     *           configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -187,6 +199,46 @@ class VoiceSelectionParams extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\TextToSpeech\V1\SsmlVoiceGender::class);
         $this->ssml_gender = $var;
+
+        return $this;
+    }
+
+    /**
+     * The configuration for a custom voice. If [CustomVoiceParams.model] is set,
+     * the service will choose the custom voice matching the specified
+     * configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomVoiceParams custom_voice = 4;</code>
+     * @return \Google\Cloud\TextToSpeech\V1\CustomVoiceParams|null
+     */
+    public function getCustomVoice()
+    {
+        return $this->custom_voice;
+    }
+
+    public function hasCustomVoice()
+    {
+        return isset($this->custom_voice);
+    }
+
+    public function clearCustomVoice()
+    {
+        unset($this->custom_voice);
+    }
+
+    /**
+     * The configuration for a custom voice. If [CustomVoiceParams.model] is set,
+     * the service will choose the custom voice matching the specified
+     * configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomVoiceParams custom_voice = 4;</code>
+     * @param \Google\Cloud\TextToSpeech\V1\CustomVoiceParams $var
+     * @return $this
+     */
+    public function setCustomVoice($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\TextToSpeech\V1\CustomVoiceParams::class);
+        $this->custom_voice = $var;
 
         return $this;
     }

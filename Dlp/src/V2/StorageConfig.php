@@ -35,9 +35,6 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      *           BigQuery options.
      *     @type \Google\Cloud\Dlp\V2\HybridOptions $hybrid_options
      *           Hybrid inspection options.
-     *           Early access feature is in a pre-release state and might change or have
-     *           limited support. For more information, see
-     *           https://cloud.google.com/products#product-launch-stages.
      *     @type \Google\Cloud\Dlp\V2\StorageConfig\TimespanConfig $timespan_config
      * }
      */
@@ -141,9 +138,6 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Hybrid inspection options.
-     * Early access feature is in a pre-release state and might change or have
-     * limited support. For more information, see
-     * https://cloud.google.com/products#product-launch-stages.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.HybridOptions hybrid_options = 9;</code>
      * @return \Google\Cloud\Dlp\V2\HybridOptions|null
@@ -160,9 +154,6 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Hybrid inspection options.
-     * Early access feature is in a pre-release state and might change or have
-     * limited support. For more information, see
-     * https://cloud.google.com/products#product-launch-stages.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.HybridOptions hybrid_options = 9;</code>
      * @param \Google\Cloud\Dlp\V2\HybridOptions $var

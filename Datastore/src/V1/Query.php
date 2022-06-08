@@ -189,7 +189,7 @@ class Query extends \Google\Protobuf\Internal\Message
      */
     public function getFilter()
     {
-        return isset($this->filter) ? $this->filter : null;
+        return $this->filter;
     }
 
     public function hasFilter()
@@ -376,7 +376,7 @@ class Query extends \Google\Protobuf\Internal\Message
      */
     public function getLimit()
     {
-        return isset($this->limit) ? $this->limit : null;
+        return $this->limit;
     }
 
     public function hasLimit()

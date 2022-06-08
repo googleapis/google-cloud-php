@@ -36,7 +36,7 @@ class SuggestionQueryConfig extends \Google\Protobuf\Internal\Message
      * desired results.
      * If this field is not set, it defaults to 0.0, which means that all
      * suggestions are returned.
-     * Supported features: ARTICLE_SUGGESTION.
+     * Supported features: ARTICLE_SUGGESTION, FAQ, SMART_REPLY, SMART_COMPOSE.
      *
      * Generated from protobuf field <code>float confidence_threshold = 5;</code>
      */
@@ -81,7 +81,7 @@ class SuggestionQueryConfig extends \Google\Protobuf\Internal\Message
      *           desired results.
      *           If this field is not set, it defaults to 0.0, which means that all
      *           suggestions are returned.
-     *           Supported features: ARTICLE_SUGGESTION.
+     *           Supported features: ARTICLE_SUGGESTION, FAQ, SMART_REPLY, SMART_COMPOSE.
      *     @type \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionQueryConfig\ContextFilterSettings $context_filter_settings
      *           Determines how recent conversation context is filtered when generating
      *           suggestions. If unspecified, no messages will be dropped.
@@ -231,7 +231,7 @@ class SuggestionQueryConfig extends \Google\Protobuf\Internal\Message
      * desired results.
      * If this field is not set, it defaults to 0.0, which means that all
      * suggestions are returned.
-     * Supported features: ARTICLE_SUGGESTION.
+     * Supported features: ARTICLE_SUGGESTION, FAQ, SMART_REPLY, SMART_COMPOSE.
      *
      * Generated from protobuf field <code>float confidence_threshold = 5;</code>
      * @return float
@@ -255,7 +255,7 @@ class SuggestionQueryConfig extends \Google\Protobuf\Internal\Message
      * desired results.
      * If this field is not set, it defaults to 0.0, which means that all
      * suggestions are returned.
-     * Supported features: ARTICLE_SUGGESTION.
+     * Supported features: ARTICLE_SUGGESTION, FAQ, SMART_REPLY, SMART_COMPOSE.
      *
      * Generated from protobuf field <code>float confidence_threshold = 5;</code>
      * @param float $var

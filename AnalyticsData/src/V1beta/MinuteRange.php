@@ -22,10 +22,10 @@ class MinuteRange extends \Google\Protobuf\Internal\Message
      * event data from 29 minutes ago and after. Cannot be after `endMinutesAgo`.
      * If unspecified, `startMinutesAgo` is defaulted to 29. Standard Analytics
      * properties can request up to the last 30 minutes of event data
-     * (`startMinutesAgo <= 29`), and 360 Analytics properties can request up to
-     * the last 60 minutes of event data (`startMinutesAgo <= 59`).
+     * (`startMinutesAgo <= 29`), and Google Analytics 360 properties can request
+     * up to the last 60 minutes of event data (`startMinutesAgo <= 59`).
      *
-     * Generated from protobuf field <code>int32 start_minutes_ago = 1;</code>
+     * Generated from protobuf field <code>optional int32 start_minutes_ago = 1;</code>
      */
     private $start_minutes_ago = null;
     /**
@@ -35,10 +35,10 @@ class MinuteRange extends \Google\Protobuf\Internal\Message
      * ago.
      * If unspecified, `endMinutesAgo` is defaulted to 0. Standard Analytics
      * properties can request any minute in the last 30 minutes of event data
-     * (`endMinutesAgo <= 29`), and 360 Analytics properties can request any
-     * minute in the last 60 minutes of event data (`endMinutesAgo <= 59`).
+     * (`endMinutesAgo <= 29`), and Google Analytics 360 properties can request
+     * any minute in the last 60 minutes of event data (`endMinutesAgo <= 59`).
      *
-     * Generated from protobuf field <code>int32 end_minutes_ago = 2;</code>
+     * Generated from protobuf field <code>optional int32 end_minutes_ago = 2;</code>
      */
     private $end_minutes_ago = null;
     /**
@@ -63,8 +63,8 @@ class MinuteRange extends \Google\Protobuf\Internal\Message
      *           event data from 29 minutes ago and after. Cannot be after `endMinutesAgo`.
      *           If unspecified, `startMinutesAgo` is defaulted to 29. Standard Analytics
      *           properties can request up to the last 30 minutes of event data
-     *           (`startMinutesAgo <= 29`), and 360 Analytics properties can request up to
-     *           the last 60 minutes of event data (`startMinutesAgo <= 59`).
+     *           (`startMinutesAgo <= 29`), and Google Analytics 360 properties can request
+     *           up to the last 60 minutes of event data (`startMinutesAgo <= 59`).
      *     @type int $end_minutes_ago
      *           The inclusive end minute for the query as a number of minutes before now.
      *           Cannot be before `startMinutesAgo`. For example, `"endMinutesAgo": 15`
@@ -72,8 +72,8 @@ class MinuteRange extends \Google\Protobuf\Internal\Message
      *           ago.
      *           If unspecified, `endMinutesAgo` is defaulted to 0. Standard Analytics
      *           properties can request any minute in the last 30 minutes of event data
-     *           (`endMinutesAgo <= 29`), and 360 Analytics properties can request any
-     *           minute in the last 60 minutes of event data (`endMinutesAgo <= 59`).
+     *           (`endMinutesAgo <= 29`), and Google Analytics 360 properties can request
+     *           any minute in the last 60 minutes of event data (`endMinutesAgo <= 59`).
      *     @type string $name
      *           Assigns a name to this minute range. The dimension `dateRange` is valued to
      *           this name in a report response. If set, cannot begin with `date_range_` or
@@ -92,10 +92,10 @@ class MinuteRange extends \Google\Protobuf\Internal\Message
      * event data from 29 minutes ago and after. Cannot be after `endMinutesAgo`.
      * If unspecified, `startMinutesAgo` is defaulted to 29. Standard Analytics
      * properties can request up to the last 30 minutes of event data
-     * (`startMinutesAgo <= 29`), and 360 Analytics properties can request up to
-     * the last 60 minutes of event data (`startMinutesAgo <= 59`).
+     * (`startMinutesAgo <= 29`), and Google Analytics 360 properties can request
+     * up to the last 60 minutes of event data (`startMinutesAgo <= 59`).
      *
-     * Generated from protobuf field <code>int32 start_minutes_ago = 1;</code>
+     * Generated from protobuf field <code>optional int32 start_minutes_ago = 1;</code>
      * @return int
      */
     public function getStartMinutesAgo()
@@ -119,10 +119,10 @@ class MinuteRange extends \Google\Protobuf\Internal\Message
      * event data from 29 minutes ago and after. Cannot be after `endMinutesAgo`.
      * If unspecified, `startMinutesAgo` is defaulted to 29. Standard Analytics
      * properties can request up to the last 30 minutes of event data
-     * (`startMinutesAgo <= 29`), and 360 Analytics properties can request up to
-     * the last 60 minutes of event data (`startMinutesAgo <= 59`).
+     * (`startMinutesAgo <= 29`), and Google Analytics 360 properties can request
+     * up to the last 60 minutes of event data (`startMinutesAgo <= 59`).
      *
-     * Generated from protobuf field <code>int32 start_minutes_ago = 1;</code>
+     * Generated from protobuf field <code>optional int32 start_minutes_ago = 1;</code>
      * @param int $var
      * @return $this
      */
@@ -141,10 +141,10 @@ class MinuteRange extends \Google\Protobuf\Internal\Message
      * ago.
      * If unspecified, `endMinutesAgo` is defaulted to 0. Standard Analytics
      * properties can request any minute in the last 30 minutes of event data
-     * (`endMinutesAgo <= 29`), and 360 Analytics properties can request any
-     * minute in the last 60 minutes of event data (`endMinutesAgo <= 59`).
+     * (`endMinutesAgo <= 29`), and Google Analytics 360 properties can request
+     * any minute in the last 60 minutes of event data (`endMinutesAgo <= 59`).
      *
-     * Generated from protobuf field <code>int32 end_minutes_ago = 2;</code>
+     * Generated from protobuf field <code>optional int32 end_minutes_ago = 2;</code>
      * @return int
      */
     public function getEndMinutesAgo()
@@ -169,10 +169,10 @@ class MinuteRange extends \Google\Protobuf\Internal\Message
      * ago.
      * If unspecified, `endMinutesAgo` is defaulted to 0. Standard Analytics
      * properties can request any minute in the last 30 minutes of event data
-     * (`endMinutesAgo <= 29`), and 360 Analytics properties can request any
-     * minute in the last 60 minutes of event data (`endMinutesAgo <= 59`).
+     * (`endMinutesAgo <= 29`), and Google Analytics 360 properties can request
+     * any minute in the last 60 minutes of event data (`endMinutesAgo <= 59`).
      *
-     * Generated from protobuf field <code>int32 end_minutes_ago = 2;</code>
+     * Generated from protobuf field <code>optional int32 end_minutes_ago = 2;</code>
      * @param int $var
      * @return $this
      */

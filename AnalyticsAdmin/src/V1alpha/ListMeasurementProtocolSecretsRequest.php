@@ -17,10 +17,8 @@ class ListMeasurementProtocolSecretsRequest extends \Google\Protobuf\Internal\Me
 {
     /**
      * Required. The resource name of the parent stream.
-     * Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream)
-     * may be a parent.
      * Format:
-     * properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets
+     * properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -51,10 +49,8 @@ class ListMeasurementProtocolSecretsRequest extends \Google\Protobuf\Internal\Me
      *
      *     @type string $parent
      *           Required. The resource name of the parent stream.
-     *           Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream)
-     *           may be a parent.
      *           Format:
-     *           properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets
+     *           properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets
      *     @type int $page_size
      *           The maximum number of resources to return.
      *           If unspecified, at most 10 resources will be returned.
@@ -73,10 +69,8 @@ class ListMeasurementProtocolSecretsRequest extends \Google\Protobuf\Internal\Me
 
     /**
      * Required. The resource name of the parent stream.
-     * Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream)
-     * may be a parent.
      * Format:
-     * properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets
+     * properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -88,10 +82,8 @@ class ListMeasurementProtocolSecretsRequest extends \Google\Protobuf\Internal\Me
 
     /**
      * Required. The resource name of the parent stream.
-     * Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream)
-     * may be a parent.
      * Format:
-     * properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets
+     * properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

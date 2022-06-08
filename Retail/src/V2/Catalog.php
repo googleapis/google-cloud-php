@@ -121,7 +121,7 @@ class Catalog extends \Google\Protobuf\Internal\Message
      */
     public function getProductLevelConfig()
     {
-        return isset($this->product_level_config) ? $this->product_level_config : null;
+        return $this->product_level_config;
     }
 
     public function hasProductLevelConfig()

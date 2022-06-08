@@ -50,8 +50,7 @@ class AutoscalingEvent extends \Google\Protobuf\Internal\Message
      */
     private $time = null;
     /**
-     * A short and friendly name for the worker pool this event refers to,
-     * populated from the value of PoolStageRelation::user_pool_name.
+     * A short and friendly name for the worker pool this event refers to.
      *
      * Generated from protobuf field <code>string worker_pool = 7;</code>
      */
@@ -77,8 +76,7 @@ class AutoscalingEvent extends \Google\Protobuf\Internal\Message
      *           The time this event was emitted to indicate a new target or current
      *           num_workers value.
      *     @type string $worker_pool
-     *           A short and friendly name for the worker pool this event refers to,
-     *           populated from the value of PoolStageRelation::user_pool_name.
+     *           A short and friendly name for the worker pool this event refers to.
      * }
      */
     public function __construct($data = NULL) {
@@ -243,8 +241,7 @@ class AutoscalingEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A short and friendly name for the worker pool this event refers to,
-     * populated from the value of PoolStageRelation::user_pool_name.
+     * A short and friendly name for the worker pool this event refers to.
      *
      * Generated from protobuf field <code>string worker_pool = 7;</code>
      * @return string
@@ -255,8 +252,7 @@ class AutoscalingEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A short and friendly name for the worker pool this event refers to,
-     * populated from the value of PoolStageRelation::user_pool_name.
+     * A short and friendly name for the worker pool this event refers to.
      *
      * Generated from protobuf field <code>string worker_pool = 7;</code>
      * @param string $var

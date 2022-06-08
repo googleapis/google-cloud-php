@@ -16,9 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetAttestorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the
-     * [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] to retrieve,
-     * in the format `projects/&#42;&#47;attestors/&#42;`.
+     * Required. The name of the [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] to retrieve, in the format
+     * `projects/&#42;&#47;attestors/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,9 +30,8 @@ class GetAttestorRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the
-     *           [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] to retrieve,
-     *           in the format `projects/&#42;&#47;attestors/&#42;`.
+     *           Required. The name of the [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] to retrieve, in the format
+     *           `projects/&#42;&#47;attestors/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -42,9 +40,8 @@ class GetAttestorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the
-     * [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] to retrieve,
-     * in the format `projects/&#42;&#47;attestors/&#42;`.
+     * Required. The name of the [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] to retrieve, in the format
+     * `projects/&#42;&#47;attestors/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -55,9 +52,8 @@ class GetAttestorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the
-     * [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] to retrieve,
-     * in the format `projects/&#42;&#47;attestors/&#42;`.
+     * Required. The name of the [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] to retrieve, in the format
+     * `projects/&#42;&#47;attestors/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

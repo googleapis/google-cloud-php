@@ -59,6 +59,4 @@ class TelecommutePreference
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TelecommutePreference::class, \Google\Cloud\Talent\V4beta1\LocationFilter_TelecommutePreference::class);
 

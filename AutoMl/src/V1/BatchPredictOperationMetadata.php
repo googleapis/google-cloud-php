@@ -56,7 +56,7 @@ class BatchPredictOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return isset($this->input_config) ? $this->input_config : null;
+        return $this->input_config;
     }
 
     public function hasInputConfig()
@@ -93,7 +93,7 @@ class BatchPredictOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getOutputInfo()
     {
-        return isset($this->output_info) ? $this->output_info : null;
+        return $this->output_info;
     }
 
     public function hasOutputInfo()

@@ -33,7 +33,8 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
     /**
      * The time at which the updated SecurityMarks take effect.
      * If not set uses current server time.  Updates will be applied to the
-     * SecurityMarks that are active immediately preceding this time.
+     * SecurityMarks that are active immediately preceding this time. Must be
+     * earlier or equal to the server time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
      */
@@ -55,7 +56,8 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $start_time
      *           The time at which the updated SecurityMarks take effect.
      *           If not set uses current server time.  Updates will be applied to the
-     *           SecurityMarks that are active immediately preceding this time.
+     *           SecurityMarks that are active immediately preceding this time. Must be
+     *           earlier or equal to the server time.
      * }
      */
     public function __construct($data = NULL) {
@@ -144,7 +146,8 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
     /**
      * The time at which the updated SecurityMarks take effect.
      * If not set uses current server time.  Updates will be applied to the
-     * SecurityMarks that are active immediately preceding this time.
+     * SecurityMarks that are active immediately preceding this time. Must be
+     * earlier or equal to the server time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -167,7 +170,8 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
     /**
      * The time at which the updated SecurityMarks take effect.
      * If not set uses current server time.  Updates will be applied to the
-     * SecurityMarks that are active immediately preceding this time.
+     * SecurityMarks that are active immediately preceding this time. Must be
+     * earlier or equal to the server time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
      * @param \Google\Protobuf\Timestamp $var

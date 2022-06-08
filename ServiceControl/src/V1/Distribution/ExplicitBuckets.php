@@ -113,6 +113,4 @@ class ExplicitBuckets extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ExplicitBuckets::class, \Google\Cloud\ServiceControl\V1\Distribution_ExplicitBuckets::class);
 

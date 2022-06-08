@@ -289,6 +289,11 @@
                                 "suggestFaqAnswers"
                             ]
                         },
+                        "SuggestSmartReplies": {
+                            "methods": [
+                                "suggestSmartReplies"
+                            ]
+                        },
                         "UpdateParticipant": {
                             "methods": [
                                 "updateParticipant"
@@ -351,11 +356,104 @@
                 }
             }
         },
+        "ConversationDatasets": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ConversationDatasetsGapicClient",
+                    "rpcs": {
+                        "CreateConversationDataset": {
+                            "methods": [
+                                "createConversationDataset"
+                            ]
+                        },
+                        "DeleteConversationDataset": {
+                            "methods": [
+                                "deleteConversationDataset"
+                            ]
+                        },
+                        "GetConversationDataset": {
+                            "methods": [
+                                "getConversationDataset"
+                            ]
+                        },
+                        "ImportConversationData": {
+                            "methods": [
+                                "importConversationData"
+                            ]
+                        },
+                        "ListConversationDatasets": {
+                            "methods": [
+                                "listConversationDatasets"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ConversationModels": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ConversationModelsGapicClient",
+                    "rpcs": {
+                        "CreateConversationModel": {
+                            "methods": [
+                                "createConversationModel"
+                            ]
+                        },
+                        "CreateConversationModelEvaluation": {
+                            "methods": [
+                                "createConversationModelEvaluation"
+                            ]
+                        },
+                        "DeleteConversationModel": {
+                            "methods": [
+                                "deleteConversationModel"
+                            ]
+                        },
+                        "DeployConversationModel": {
+                            "methods": [
+                                "deployConversationModel"
+                            ]
+                        },
+                        "GetConversationModel": {
+                            "methods": [
+                                "getConversationModel"
+                            ]
+                        },
+                        "GetConversationModelEvaluation": {
+                            "methods": [
+                                "getConversationModelEvaluation"
+                            ]
+                        },
+                        "ListConversationModelEvaluations": {
+                            "methods": [
+                                "listConversationModelEvaluations"
+                            ]
+                        },
+                        "ListConversationModels": {
+                            "methods": [
+                                "listConversationModels"
+                            ]
+                        },
+                        "UndeployConversationModel": {
+                            "methods": [
+                                "undeployConversationModel"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "ConversationProfiles": {
             "clients": {
                 "grpc": {
                     "libraryClient": "ConversationProfilesGapicClient",
                     "rpcs": {
+                        "ClearSuggestionFeatureConfig": {
+                            "methods": [
+                                "clearSuggestionFeatureConfig"
+                            ]
+                        },
                         "CreateConversationProfile": {
                             "methods": [
                                 "createConversationProfile"
@@ -374,6 +472,11 @@
                         "ListConversationProfiles": {
                             "methods": [
                                 "listConversationProfiles"
+                            ]
+                        },
+                        "SetSuggestionFeatureConfig": {
+                            "methods": [
+                                "setSuggestionFeatureConfig"
                             ]
                         },
                         "UpdateConversationProfile": {
@@ -400,9 +503,19 @@
                                 "deleteDocument"
                             ]
                         },
+                        "ExportDocument": {
+                            "methods": [
+                                "exportDocument"
+                            ]
+                        },
                         "GetDocument": {
                             "methods": [
                                 "getDocument"
+                            ]
+                        },
+                        "ImportDocuments": {
+                            "methods": [
+                                "importDocuments"
                             ]
                         },
                         "ListDocuments": {

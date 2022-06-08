@@ -9,64 +9,58 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an Autoscaler resource.
- * Google Compute Engine has two Autoscaler resources:
- * * [Zonal](/compute/docs/reference/rest/{$api_version}/autoscalers) * [Regional](https://cloud.google.com/compute/docs/reference/rest/{$api_version}/regionAutoscalers)
- * Use autoscalers to automatically add or delete instances from a managed instance group according to your defined autoscaling policy. For more information, read Autoscaling Groups of Instances.
- * For zonal managed instance groups resource, use the autoscaler resource.
- * For regional managed instance groups, use the regionAutoscalers resource. (== resource_for {$api_version}.autoscalers ==) (== resource_for {$api_version}.regionAutoscalers ==)
+ * Represents an Autoscaler resource. Google Compute Engine has two Autoscaler resources: * [Zonal](/compute/docs/reference/rest/v1/autoscalers) * [Regional](https://cloud.google.com/compute/docs/reference/rest/v1/regionAutoscalers) Use autoscalers to automatically add or delete instances from a managed instance group according to your defined autoscaling policy. For more information, read Autoscaling Groups of Instances. For zonal managed instance groups resource, use the autoscaler resource. For regional managed instance groups, use the regionAutoscalers resource.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Autoscaler</code>
  */
 class Autoscaler extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
-     * If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
+     * The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization. If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicy autoscaling_policy = 221950041;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AutoscalingPolicy autoscaling_policy = 221950041;</code>
      */
     private $autoscaling_policy = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#autoscaler for autoscalers.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
      * [Output Only] Target recommended MIG size (number of instances) computed by autoscaler. Autoscaler calculates the recommended MIG size even when the autoscaling policy mode is different from ON. This field is empty when autoscaler is not connected to an existing managed instance group or autoscaler did not generate its prediction.
      *
-     * Generated from protobuf field <code>int32 recommended_size = 257915749;</code>
+     * Generated from protobuf field <code>optional int32 recommended_size = 257915749;</code>
      */
     private $recommended_size = null;
     /**
      * [Output Only] URL of the region where the instance group resides (for autoscalers living in regional scope).
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
     private $region = null;
     /**
@@ -78,17 +72,14 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
-     * [Output Only] The status of the autoscaler configuration. Current set of possible values:
-     * - PENDING: Autoscaler backend hasn't read new/updated configuration.
-     * - DELETING: Configuration is being deleted.
-     * - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field.
-     * - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field.  New values might be added in the future.
+     * [Output Only] The status of the autoscaler configuration. Current set of possible values: - PENDING: Autoscaler backend hasn't read new/updated configuration. - DELETING: Configuration is being deleted. - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field. - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field. New values might be added in the future.
+     * Check the Status enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Autoscaler.Status status = 181260274;</code>
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
     private $status = null;
     /**
@@ -100,13 +91,13 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * URL of the managed instance group that this autoscaler will scale. This field is required when creating an autoscaler.
      *
-     * Generated from protobuf field <code>string target = 192835985;</code>
+     * Generated from protobuf field <code>optional string target = 192835985;</code>
      */
     private $target = null;
     /**
      * [Output Only] URL of the zone where the instance group resides (for autoscalers living in zonal scope).
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
     private $zone = null;
 
@@ -117,8 +108,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\AutoscalingPolicy $autoscaling_policy
-     *           The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
-     *           If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
+     *           The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization. If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
@@ -137,12 +127,9 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      *           [Output Only] Status information of existing scaling schedules.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
-     *     @type int $status
-     *           [Output Only] The status of the autoscaler configuration. Current set of possible values:
-     *           - PENDING: Autoscaler backend hasn't read new/updated configuration.
-     *           - DELETING: Configuration is being deleted.
-     *           - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field.
-     *           - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field.  New values might be added in the future.
+     *     @type string $status
+     *           [Output Only] The status of the autoscaler configuration. Current set of possible values: - PENDING: Autoscaler backend hasn't read new/updated configuration. - DELETING: Configuration is being deleted. - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field. - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field. New values might be added in the future.
+     *           Check the Status enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\AutoscalerStatusDetails[]|\Google\Protobuf\Internal\RepeatedField $status_details
      *           [Output Only] Human-readable details about the current state of the autoscaler. Read the documentation for Commonly returned status messages for examples of status messages you might encounter.
      *     @type string $target
@@ -157,15 +144,14 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
-     * If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
+     * The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization. If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicy autoscaling_policy = 221950041;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AutoscalingPolicy autoscaling_policy = 221950041;</code>
      * @return \Google\Cloud\Compute\V1\AutoscalingPolicy|null
      */
     public function getAutoscalingPolicy()
     {
-        return isset($this->autoscaling_policy) ? $this->autoscaling_policy : null;
+        return $this->autoscaling_policy;
     }
 
     public function hasAutoscalingPolicy()
@@ -179,10 +165,9 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
-     * If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
+     * The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization. If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicy autoscaling_policy = 221950041;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AutoscalingPolicy autoscaling_policy = 221950041;</code>
      * @param \Google\Cloud\Compute\V1\AutoscalingPolicy $var
      * @return $this
      */
@@ -197,7 +182,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -218,7 +203,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -233,7 +218,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -254,7 +239,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -269,7 +254,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -290,7 +275,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -305,7 +290,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#autoscaler for autoscalers.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -326,7 +311,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#autoscaler for autoscalers.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -341,7 +326,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -362,7 +347,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -377,7 +362,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Target recommended MIG size (number of instances) computed by autoscaler. Autoscaler calculates the recommended MIG size even when the autoscaling policy mode is different from ON. This field is empty when autoscaler is not connected to an existing managed instance group or autoscaler did not generate its prediction.
      *
-     * Generated from protobuf field <code>int32 recommended_size = 257915749;</code>
+     * Generated from protobuf field <code>optional int32 recommended_size = 257915749;</code>
      * @return int
      */
     public function getRecommendedSize()
@@ -398,7 +383,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Target recommended MIG size (number of instances) computed by autoscaler. Autoscaler calculates the recommended MIG size even when the autoscaling policy mode is different from ON. This field is empty when autoscaler is not connected to an existing managed instance group or autoscaler did not generate its prediction.
      *
-     * Generated from protobuf field <code>int32 recommended_size = 257915749;</code>
+     * Generated from protobuf field <code>optional int32 recommended_size = 257915749;</code>
      * @param int $var
      * @return $this
      */
@@ -413,7 +398,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the region where the instance group resides (for autoscalers living in regional scope).
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
      */
     public function getRegion()
@@ -434,7 +419,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the region where the instance group resides (for autoscalers living in regional scope).
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var
      * @return $this
      */
@@ -475,7 +460,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -496,7 +481,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -509,18 +494,15 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the autoscaler configuration. Current set of possible values:
-     * - PENDING: Autoscaler backend hasn't read new/updated configuration.
-     * - DELETING: Configuration is being deleted.
-     * - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field.
-     * - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field.  New values might be added in the future.
+     * [Output Only] The status of the autoscaler configuration. Current set of possible values: - PENDING: Autoscaler backend hasn't read new/updated configuration. - DELETING: Configuration is being deleted. - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field. - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field. New values might be added in the future.
+     * Check the Status enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Autoscaler.Status status = 181260274;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
+     * @return string
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : 0;
+        return isset($this->status) ? $this->status : '';
     }
 
     public function hasStatus()
@@ -534,19 +516,16 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the autoscaler configuration. Current set of possible values:
-     * - PENDING: Autoscaler backend hasn't read new/updated configuration.
-     * - DELETING: Configuration is being deleted.
-     * - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field.
-     * - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field.  New values might be added in the future.
+     * [Output Only] The status of the autoscaler configuration. Current set of possible values: - PENDING: Autoscaler backend hasn't read new/updated configuration. - DELETING: Configuration is being deleted. - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field. - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field. New values might be added in the future.
+     * Check the Status enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Autoscaler.Status status = 181260274;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
+     * @param string $var
      * @return $this
      */
     public function setStatus($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\Autoscaler\Status::class);
+        GPBUtil::checkString($var, True);
         $this->status = $var;
 
         return $this;
@@ -581,7 +560,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * URL of the managed instance group that this autoscaler will scale. This field is required when creating an autoscaler.
      *
-     * Generated from protobuf field <code>string target = 192835985;</code>
+     * Generated from protobuf field <code>optional string target = 192835985;</code>
      * @return string
      */
     public function getTarget()
@@ -602,7 +581,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * URL of the managed instance group that this autoscaler will scale. This field is required when creating an autoscaler.
      *
-     * Generated from protobuf field <code>string target = 192835985;</code>
+     * Generated from protobuf field <code>optional string target = 192835985;</code>
      * @param string $var
      * @return $this
      */
@@ -617,7 +596,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the zone where the instance group resides (for autoscalers living in zonal scope).
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @return string
      */
     public function getZone()
@@ -638,7 +617,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the zone where the instance group resides (for autoscalers living in zonal scope).
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @param string $var
      * @return $this
      */

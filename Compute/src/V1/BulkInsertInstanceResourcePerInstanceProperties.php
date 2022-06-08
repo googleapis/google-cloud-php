@@ -18,7 +18,7 @@ class BulkInsertInstanceResourcePerInstanceProperties extends \Google\Protobuf\I
     /**
      * This field is only temporary. It will be removed. Do not use it.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
 
@@ -40,7 +40,7 @@ class BulkInsertInstanceResourcePerInstanceProperties extends \Google\Protobuf\I
     /**
      * This field is only temporary. It will be removed. Do not use it.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -61,7 +61,7 @@ class BulkInsertInstanceResourcePerInstanceProperties extends \Google\Protobuf\I
     /**
      * This field is only temporary. It will be removed. Do not use it.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */

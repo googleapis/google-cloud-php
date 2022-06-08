@@ -17,17 +17,17 @@ class DatabaseFlags extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the flag. These flags are passed at instance startup, so
-     * include both server options and system variables for MySQL. Flags are
-     * specified with underscores, not hyphens. For more information, see <a
-     * href="/sql/docs/mysql/flags">Configuring Database Flags</a> in the Cloud
-     * SQL documentation.
+     * include both server options and system variables. Flags are
+     * specified with underscores, not hyphens. For more information, see
+     * [Configuring Database Flags](https://cloud.google.com/sql/docs/mysql/flags)
+     * in the Cloud SQL documentation.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * The value of the flag. Booleans are set to <b>on</b> for true
-     * and <b>off</b> for false. This field must be omitted if the flag
+     * The value of the flag. Boolean flags are set to `on` for true
+     * and `off` for false. This field must be omitted if the flag
      * doesn't take a value.
      *
      * Generated from protobuf field <code>string value = 2;</code>
@@ -42,13 +42,13 @@ class DatabaseFlags extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the flag. These flags are passed at instance startup, so
-     *           include both server options and system variables for MySQL. Flags are
-     *           specified with underscores, not hyphens. For more information, see <a
-     *           href="/sql/docs/mysql/flags">Configuring Database Flags</a> in the Cloud
-     *           SQL documentation.
+     *           include both server options and system variables. Flags are
+     *           specified with underscores, not hyphens. For more information, see
+     *           [Configuring Database Flags](https://cloud.google.com/sql/docs/mysql/flags)
+     *           in the Cloud SQL documentation.
      *     @type string $value
-     *           The value of the flag. Booleans are set to <b>on</b> for true
-     *           and <b>off</b> for false. This field must be omitted if the flag
+     *           The value of the flag. Boolean flags are set to `on` for true
+     *           and `off` for false. This field must be omitted if the flag
      *           doesn't take a value.
      * }
      */
@@ -59,10 +59,10 @@ class DatabaseFlags extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the flag. These flags are passed at instance startup, so
-     * include both server options and system variables for MySQL. Flags are
-     * specified with underscores, not hyphens. For more information, see <a
-     * href="/sql/docs/mysql/flags">Configuring Database Flags</a> in the Cloud
-     * SQL documentation.
+     * include both server options and system variables. Flags are
+     * specified with underscores, not hyphens. For more information, see
+     * [Configuring Database Flags](https://cloud.google.com/sql/docs/mysql/flags)
+     * in the Cloud SQL documentation.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -74,10 +74,10 @@ class DatabaseFlags extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the flag. These flags are passed at instance startup, so
-     * include both server options and system variables for MySQL. Flags are
-     * specified with underscores, not hyphens. For more information, see <a
-     * href="/sql/docs/mysql/flags">Configuring Database Flags</a> in the Cloud
-     * SQL documentation.
+     * include both server options and system variables. Flags are
+     * specified with underscores, not hyphens. For more information, see
+     * [Configuring Database Flags](https://cloud.google.com/sql/docs/mysql/flags)
+     * in the Cloud SQL documentation.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -92,8 +92,8 @@ class DatabaseFlags extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of the flag. Booleans are set to <b>on</b> for true
-     * and <b>off</b> for false. This field must be omitted if the flag
+     * The value of the flag. Boolean flags are set to `on` for true
+     * and `off` for false. This field must be omitted if the flag
      * doesn't take a value.
      *
      * Generated from protobuf field <code>string value = 2;</code>
@@ -105,8 +105,8 @@ class DatabaseFlags extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of the flag. Booleans are set to <b>on</b> for true
-     * and <b>off</b> for false. This field must be omitted if the flag
+     * The value of the flag. Boolean flags are set to `on` for true
+     * and `off` for false. This field must be omitted if the flag
      * doesn't take a value.
      *
      * Generated from protobuf field <code>string value = 2;</code>

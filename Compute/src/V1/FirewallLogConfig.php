@@ -18,13 +18,14 @@ class FirewallLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * This field denotes whether to enable logging for a particular firewall rule.
      *
-     * Generated from protobuf field <code>bool enable = 311764355;</code>
+     * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      */
     private $enable = null;
     /**
      * This field can only be specified for a particular firewall rule if logging is enabled for that rule. This field denotes whether to include or exclude metadata for firewall logs.
+     * Check the Metadata enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FirewallLogConfig.Metadata metadata = 86866735;</code>
+     * Generated from protobuf field <code>optional string metadata = 86866735;</code>
      */
     private $metadata = null;
 
@@ -36,8 +37,9 @@ class FirewallLogConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $enable
      *           This field denotes whether to enable logging for a particular firewall rule.
-     *     @type int $metadata
+     *     @type string $metadata
      *           This field can only be specified for a particular firewall rule if logging is enabled for that rule. This field denotes whether to include or exclude metadata for firewall logs.
+     *           Check the Metadata enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,7 +50,7 @@ class FirewallLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * This field denotes whether to enable logging for a particular firewall rule.
      *
-     * Generated from protobuf field <code>bool enable = 311764355;</code>
+     * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      * @return bool
      */
     public function getEnable()
@@ -69,7 +71,7 @@ class FirewallLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * This field denotes whether to enable logging for a particular firewall rule.
      *
-     * Generated from protobuf field <code>bool enable = 311764355;</code>
+     * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      * @param bool $var
      * @return $this
      */
@@ -83,13 +85,14 @@ class FirewallLogConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * This field can only be specified for a particular firewall rule if logging is enabled for that rule. This field denotes whether to include or exclude metadata for firewall logs.
+     * Check the Metadata enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FirewallLogConfig.Metadata metadata = 86866735;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string metadata = 86866735;</code>
+     * @return string
      */
     public function getMetadata()
     {
-        return isset($this->metadata) ? $this->metadata : 0;
+        return isset($this->metadata) ? $this->metadata : '';
     }
 
     public function hasMetadata()
@@ -104,14 +107,15 @@ class FirewallLogConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * This field can only be specified for a particular firewall rule if logging is enabled for that rule. This field denotes whether to include or exclude metadata for firewall logs.
+     * Check the Metadata enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FirewallLogConfig.Metadata metadata = 86866735;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string metadata = 86866735;</code>
+     * @param string $var
      * @return $this
      */
     public function setMetadata($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\FirewallLogConfig\Metadata::class);
+        GPBUtil::checkString($var, True);
         $this->metadata = $var;
 
         return $this;

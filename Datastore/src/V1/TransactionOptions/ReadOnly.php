@@ -15,6 +15,13 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class ReadOnly extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Reads entities at the given time.
+     * This may not be older than 60 seconds.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 1;</code>
+     */
+    private $read_time = null;
 
     /**
      * Constructor.
@@ -22,11 +29,52 @@ class ReadOnly extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Protobuf\Timestamp $read_time
+     *           Reads entities at the given time.
+     *           This may not be older than 60 seconds.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Datastore\V1\Datastore::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Reads entities at the given time.
+     * This may not be older than 60 seconds.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 1;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getReadTime()
+    {
+        return $this->read_time;
+    }
+
+    public function hasReadTime()
+    {
+        return isset($this->read_time);
+    }
+
+    public function clearReadTime()
+    {
+        unset($this->read_time);
+    }
+
+    /**
+     * Reads entities at the given time.
+     * This may not be older than 60 seconds.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 1;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setReadTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->read_time = $var;
+
+        return $this;
     }
 
 }

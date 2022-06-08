@@ -18,31 +18,31 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix extends \Google\Protobuf\Inter
     /**
      * The IP address range of the public delegated prefix
      *
-     * Generated from protobuf field <code>string ip_range = 145092645;</code>
+     * Generated from protobuf field <code>optional string ip_range = 145092645;</code>
      */
     private $ip_range = null;
     /**
      * The name of the public delegated prefix
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
      * The project number of the public delegated prefix
      *
-     * Generated from protobuf field <code>string project = 227560217;</code>
+     * Generated from protobuf field <code>optional string project = 227560217;</code>
      */
     private $project = null;
     /**
      * The region of the public delegated prefix if it is regional. If absent, the prefix is global.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
     private $region = null;
     /**
      * The status of the public delegated prefix. Possible values are: INITIALIZING: The public delegated prefix is being initialized and addresses cannot be created yet. ANNOUNCED: The public delegated prefix is active.
      *
-     * Generated from protobuf field <code>string status = 181260274;</code>
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
     private $status = null;
 
@@ -72,7 +72,7 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix extends \Google\Protobuf\Inter
     /**
      * The IP address range of the public delegated prefix
      *
-     * Generated from protobuf field <code>string ip_range = 145092645;</code>
+     * Generated from protobuf field <code>optional string ip_range = 145092645;</code>
      * @return string
      */
     public function getIpRange()
@@ -93,7 +93,7 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix extends \Google\Protobuf\Inter
     /**
      * The IP address range of the public delegated prefix
      *
-     * Generated from protobuf field <code>string ip_range = 145092645;</code>
+     * Generated from protobuf field <code>optional string ip_range = 145092645;</code>
      * @param string $var
      * @return $this
      */
@@ -108,7 +108,7 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix extends \Google\Protobuf\Inter
     /**
      * The name of the public delegated prefix
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -129,7 +129,7 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix extends \Google\Protobuf\Inter
     /**
      * The name of the public delegated prefix
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -144,7 +144,7 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix extends \Google\Protobuf\Inter
     /**
      * The project number of the public delegated prefix
      *
-     * Generated from protobuf field <code>string project = 227560217;</code>
+     * Generated from protobuf field <code>optional string project = 227560217;</code>
      * @return string
      */
     public function getProject()
@@ -165,7 +165,7 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix extends \Google\Protobuf\Inter
     /**
      * The project number of the public delegated prefix
      *
-     * Generated from protobuf field <code>string project = 227560217;</code>
+     * Generated from protobuf field <code>optional string project = 227560217;</code>
      * @param string $var
      * @return $this
      */
@@ -180,7 +180,7 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix extends \Google\Protobuf\Inter
     /**
      * The region of the public delegated prefix if it is regional. If absent, the prefix is global.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
      */
     public function getRegion()
@@ -201,7 +201,7 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix extends \Google\Protobuf\Inter
     /**
      * The region of the public delegated prefix if it is regional. If absent, the prefix is global.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var
      * @return $this
      */
@@ -216,7 +216,7 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix extends \Google\Protobuf\Inter
     /**
      * The status of the public delegated prefix. Possible values are: INITIALIZING: The public delegated prefix is being initialized and addresses cannot be created yet. ANNOUNCED: The public delegated prefix is active.
      *
-     * Generated from protobuf field <code>string status = 181260274;</code>
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
      * @return string
      */
     public function getStatus()
@@ -237,7 +237,7 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix extends \Google\Protobuf\Inter
     /**
      * The status of the public delegated prefix. Possible values are: INITIALIZING: The public delegated prefix is being initialized and addresses cannot be created yet. ANNOUNCED: The public delegated prefix is active.
      *
-     * Generated from protobuf field <code>string status = 181260274;</code>
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
      * @param string $var
      * @return $this
      */

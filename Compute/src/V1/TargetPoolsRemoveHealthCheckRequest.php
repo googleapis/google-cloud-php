@@ -15,10 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TargetPoolsRemoveHealthCheckRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Health check URL to be removed. This can be a full or valid partial URL. For example, the following are valid URLs:
-     * - https://www.googleapis.com/compute/beta/projects/project/global/httpHealthChecks/health-check
-     * - projects/project/global/httpHealthChecks/health-check
-     * - global/httpHealthChecks/health-check
+     * Health check URL to be removed. This can be a full or valid partial URL. For example, the following are valid URLs: - https://www.googleapis.com/compute/beta/projects/project /global/httpHealthChecks/health-check - projects/project/global/httpHealthChecks/health-check - global/httpHealthChecks/health-check 
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheckReference health_checks = 448370606;</code>
      */
@@ -31,10 +28,7 @@ class TargetPoolsRemoveHealthCheckRequest extends \Google\Protobuf\Internal\Mess
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\HealthCheckReference[]|\Google\Protobuf\Internal\RepeatedField $health_checks
-     *           Health check URL to be removed. This can be a full or valid partial URL. For example, the following are valid URLs:
-     *           - https://www.googleapis.com/compute/beta/projects/project/global/httpHealthChecks/health-check
-     *           - projects/project/global/httpHealthChecks/health-check
-     *           - global/httpHealthChecks/health-check
+     *           Health check URL to be removed. This can be a full or valid partial URL. For example, the following are valid URLs: - https://www.googleapis.com/compute/beta/projects/project /global/httpHealthChecks/health-check - projects/project/global/httpHealthChecks/health-check - global/httpHealthChecks/health-check 
      * }
      */
     public function __construct($data = NULL) {
@@ -43,10 +37,7 @@ class TargetPoolsRemoveHealthCheckRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Health check URL to be removed. This can be a full or valid partial URL. For example, the following are valid URLs:
-     * - https://www.googleapis.com/compute/beta/projects/project/global/httpHealthChecks/health-check
-     * - projects/project/global/httpHealthChecks/health-check
-     * - global/httpHealthChecks/health-check
+     * Health check URL to be removed. This can be a full or valid partial URL. For example, the following are valid URLs: - https://www.googleapis.com/compute/beta/projects/project /global/httpHealthChecks/health-check - projects/project/global/httpHealthChecks/health-check - global/httpHealthChecks/health-check 
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheckReference health_checks = 448370606;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -57,10 +48,7 @@ class TargetPoolsRemoveHealthCheckRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Health check URL to be removed. This can be a full or valid partial URL. For example, the following are valid URLs:
-     * - https://www.googleapis.com/compute/beta/projects/project/global/httpHealthChecks/health-check
-     * - projects/project/global/httpHealthChecks/health-check
-     * - global/httpHealthChecks/health-check
+     * Health check URL to be removed. This can be a full or valid partial URL. For example, the following are valid URLs: - https://www.googleapis.com/compute/beta/projects/project /global/httpHealthChecks/health-check - projects/project/global/httpHealthChecks/health-check - global/httpHealthChecks/health-check 
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheckReference health_checks = 448370606;</code>
      * @param \Google\Cloud\Compute\V1\HealthCheckReference[]|\Google\Protobuf\Internal\RepeatedField $var

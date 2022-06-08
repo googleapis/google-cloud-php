@@ -56,7 +56,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Immutable. The URI of the hub that this spoke is attached to.
+     * Immutable. The name of the hub that this spoke is attached to.
      *
      * Generated from protobuf field <code>string hub = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
@@ -115,7 +115,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of the spoke.
      *     @type string $hub
-     *           Immutable. The URI of the hub that this spoke is attached to.
+     *           Immutable. The name of the hub that this spoke is attached to.
      *     @type \Google\Cloud\NetworkConnectivity\V1\LinkedVpnTunnels $linked_vpn_tunnels
      *           VPN tunnels that are associated with the spoke.
      *     @type \Google\Cloud\NetworkConnectivity\V1\LinkedInterconnectAttachments $linked_interconnect_attachments
@@ -294,7 +294,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The URI of the hub that this spoke is attached to.
+     * Immutable. The name of the hub that this spoke is attached to.
      *
      * Generated from protobuf field <code>string hub = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -305,7 +305,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The URI of the hub that this spoke is attached to.
+     * Immutable. The name of the hub that this spoke is attached to.
      *
      * Generated from protobuf field <code>string hub = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var

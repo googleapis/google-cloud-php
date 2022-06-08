@@ -52,11 +52,21 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      * The given `name` specifies the resource to update.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Service service = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Monitoring\V3\Service
+     * @return \Google\Cloud\Monitoring\V3\Service|null
      */
     public function getService()
     {
         return $this->service;
+    }
+
+    public function hasService()
+    {
+        return isset($this->service);
+    }
+
+    public function clearService()
+    {
+        unset($this->service);
     }
 
     /**
@@ -79,11 +89,21 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      * A set of field paths defining which fields to use for the update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
         return $this->update_mask;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

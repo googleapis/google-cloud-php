@@ -69,6 +69,4 @@ class MTLSPolicy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MTLSPolicy::class, \Google\Cloud\NetworkSecurity\V1beta1\ServerTlsPolicy_MTLSPolicy::class);
 

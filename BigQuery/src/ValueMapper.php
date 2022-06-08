@@ -194,7 +194,7 @@ class ValueMapper
 
                 break;
             case 'array':
-                list($pType, $pValue) = $this->isAssoc($value)
+                list($pType, $pValue) = $this->isAssoc($value, false)
                     ? $this->assocArrayToParameter($value)
                     : $this->arrayToParameter($value);
 

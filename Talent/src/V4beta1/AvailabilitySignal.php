@@ -95,7 +95,7 @@ class AvailabilitySignal extends \Google\Protobuf\Internal\Message
      */
     public function getLastUpdateTime()
     {
-        return isset($this->last_update_time) ? $this->last_update_time : null;
+        return $this->last_update_time;
     }
 
     public function hasLastUpdateTime()
@@ -135,7 +135,7 @@ class AvailabilitySignal extends \Google\Protobuf\Internal\Message
      */
     public function getFilterSatisfied()
     {
-        return isset($this->filter_satisfied) ? $this->filter_satisfied : null;
+        return $this->filter_satisfied;
     }
 
     public function hasFilterSatisfied()

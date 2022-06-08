@@ -18,13 +18,13 @@ class BackendBucketCdnPolicyNegativeCachingPolicy extends \Google\Protobuf\Inter
     /**
      * The HTTP status code to define a TTL against. Only HTTP status codes 300, 301, 302, 307, 308, 404, 405, 410, 421, 451 and 501 are can be specified as values, and you cannot specify a status code more than once.
      *
-     * Generated from protobuf field <code>int32 code = 3059181;</code>
+     * Generated from protobuf field <code>optional int32 code = 3059181;</code>
      */
     private $code = null;
     /**
      * The TTL (in seconds) for which to cache responses with the corresponding status code. The maximum allowed value is 1800s (30 minutes), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.
      *
-     * Generated from protobuf field <code>int32 ttl = 115180;</code>
+     * Generated from protobuf field <code>optional int32 ttl = 115180;</code>
      */
     private $ttl = null;
 
@@ -48,7 +48,7 @@ class BackendBucketCdnPolicyNegativeCachingPolicy extends \Google\Protobuf\Inter
     /**
      * The HTTP status code to define a TTL against. Only HTTP status codes 300, 301, 302, 307, 308, 404, 405, 410, 421, 451 and 501 are can be specified as values, and you cannot specify a status code more than once.
      *
-     * Generated from protobuf field <code>int32 code = 3059181;</code>
+     * Generated from protobuf field <code>optional int32 code = 3059181;</code>
      * @return int
      */
     public function getCode()
@@ -69,7 +69,7 @@ class BackendBucketCdnPolicyNegativeCachingPolicy extends \Google\Protobuf\Inter
     /**
      * The HTTP status code to define a TTL against. Only HTTP status codes 300, 301, 302, 307, 308, 404, 405, 410, 421, 451 and 501 are can be specified as values, and you cannot specify a status code more than once.
      *
-     * Generated from protobuf field <code>int32 code = 3059181;</code>
+     * Generated from protobuf field <code>optional int32 code = 3059181;</code>
      * @param int $var
      * @return $this
      */
@@ -84,7 +84,7 @@ class BackendBucketCdnPolicyNegativeCachingPolicy extends \Google\Protobuf\Inter
     /**
      * The TTL (in seconds) for which to cache responses with the corresponding status code. The maximum allowed value is 1800s (30 minutes), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.
      *
-     * Generated from protobuf field <code>int32 ttl = 115180;</code>
+     * Generated from protobuf field <code>optional int32 ttl = 115180;</code>
      * @return int
      */
     public function getTtl()
@@ -105,7 +105,7 @@ class BackendBucketCdnPolicyNegativeCachingPolicy extends \Google\Protobuf\Inter
     /**
      * The TTL (in seconds) for which to cache responses with the corresponding status code. The maximum allowed value is 1800s (30 minutes), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.
      *
-     * Generated from protobuf field <code>int32 ttl = 115180;</code>
+     * Generated from protobuf field <code>optional int32 ttl = 115180;</code>
      * @param int $var
      * @return $this
      */

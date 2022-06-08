@@ -15,11 +15,10 @@ class Location
           return;
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-©
-"google/appengine/v1/location.protogoogle.appengine.v1google/api/annotations.proto"…
+‹
+"google/appengine/v1/location.protogoogle.appengine.v1"…
 LocationMetadata&
 standard_environment_available (&
 flexible_environment_available (!

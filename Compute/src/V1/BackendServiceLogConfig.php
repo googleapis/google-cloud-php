@@ -18,13 +18,13 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * This field denotes whether to enable logging for the load balancer traffic served by this backend service.
      *
-     * Generated from protobuf field <code>bool enable = 311764355;</code>
+     * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      */
     private $enable = null;
     /**
-     * This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported. The default value is 1.0.
+     * This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported. The default value is 0.0.
      *
-     * Generated from protobuf field <code>float sample_rate = 153193045;</code>
+     * Generated from protobuf field <code>optional float sample_rate = 153193045;</code>
      */
     private $sample_rate = null;
 
@@ -37,7 +37,7 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $enable
      *           This field denotes whether to enable logging for the load balancer traffic served by this backend service.
      *     @type float $sample_rate
-     *           This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported. The default value is 1.0.
+     *           This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported. The default value is 0.0.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,7 +48,7 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * This field denotes whether to enable logging for the load balancer traffic served by this backend service.
      *
-     * Generated from protobuf field <code>bool enable = 311764355;</code>
+     * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      * @return bool
      */
     public function getEnable()
@@ -69,7 +69,7 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * This field denotes whether to enable logging for the load balancer traffic served by this backend service.
      *
-     * Generated from protobuf field <code>bool enable = 311764355;</code>
+     * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      * @param bool $var
      * @return $this
      */
@@ -82,9 +82,9 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported. The default value is 1.0.
+     * This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported. The default value is 0.0.
      *
-     * Generated from protobuf field <code>float sample_rate = 153193045;</code>
+     * Generated from protobuf field <code>optional float sample_rate = 153193045;</code>
      * @return float
      */
     public function getSampleRate()
@@ -103,9 +103,9 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported. The default value is 1.0.
+     * This field can only be specified if logging is enabled for this backend service. The value of the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported. The default value is 0.0.
      *
-     * Generated from protobuf field <code>float sample_rate = 153193045;</code>
+     * Generated from protobuf field <code>optional float sample_rate = 153193045;</code>
      * @param float $var
      * @return $this
      */

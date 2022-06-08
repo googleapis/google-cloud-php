@@ -21,6 +21,7 @@ use Google\Cloud\Dev\DocGenerator\ReflectorRegister;
 use Google\Cloud\Dev\GetComponentsTrait;
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
+use phpDocumentor\Reflection\DocBlock\DescriptionFactory;
 use phpDocumentor\Reflection\Element;
 use phpDocumentor\Reflection\Fqsen;
 use phpDocumentor\Reflection\Type;
@@ -66,7 +67,7 @@ class CodeParser implements ParserInterface
     public function __construct(
         File $file,
         ReflectorRegister $register,
-        DocBlock\DescriptionFactory $descriptionFactory,
+        DescriptionFactory $descriptionFactory,
         $projectRoot,
         $componentId,
         $manifestPath,
@@ -335,7 +336,10 @@ class CodeParser implements ParserInterface
                         }
                         $reference = substr($reference, strlen($namespace));
                         $tagContent[] = $this->buildReference($reference);
-                        printf('Manual fix applied (%s). Please fix the reference' . PHP_EOL, $reference);
+                        $this->output->writeln(
+                            sprintf('Manual fix applied (%s). Please fix the reference', $reference),
+                            OutputInterface::VERBOSITY_DEBUG
+                        );
                     }
                 } elseif (strtolower($tag->getName()) === 'inheritdoc') {
                     if ($element === null) {
@@ -700,7 +704,10 @@ class CodeParser implements ParserInterface
 
             // START proto nested arg missing description workaround
             if (count($nestedParam) < 3 && !$isProto) {
-                $this->output->writeln('nested param is in an invalid format: '. $param);
+                $this->output->writeln(
+                    'nested param is in an invalid format: '. $param,
+                    OutputInterface::VERBOSITY_DEBUG
+                );
             }
             // END proto nested arg missing description workaround
 
@@ -851,7 +858,7 @@ class CodeParser implements ParserInterface
         if ($componentId) {
             $version = ($this->release)
                 ? $this->getComponentVersion($this->manifestPath, $componentId)
-                : 'master';
+                : 'main';
 
             $type = $componentId .'/'. $version .'/'. $type;
         }

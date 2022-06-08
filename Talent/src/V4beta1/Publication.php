@@ -293,7 +293,7 @@ class Publication extends \Google\Protobuf\Internal\Message
      */
     public function getPublicationDate()
     {
-        return isset($this->publication_date) ? $this->publication_date : null;
+        return $this->publication_date;
     }
 
     public function hasPublicationDate()

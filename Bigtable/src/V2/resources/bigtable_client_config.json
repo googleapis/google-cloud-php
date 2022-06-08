@@ -33,6 +33,11 @@
                 "MutateRows": {
                     "timeout_millis": 60000
                 },
+                "PingAndWarm": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
                 "ReadModifyWriteRow": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "non_idempotent",

@@ -196,6 +196,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateAssignment' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{assignment.name=projects/*/locations/*/reservations/*/assignments/*}',
+                'body' => 'assignment',
+                'placeholders' => [
+                    'assignment.name' => [
+                        'getters' => [
+                            'getAssignment',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateBiReservation' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{bi_reservation.name=projects/*/locations/*/biReservation}',

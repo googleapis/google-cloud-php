@@ -14,7 +14,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SqlBackupRunsListRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Cloud SQL instance ID. This does not include the project ID.
+     * Cloud SQL instance ID, or "-" for all instances. This does not include
+     * the project ID.
      *
      * Generated from protobuf field <code>string instance = 1;</code>
      */
@@ -46,7 +47,8 @@ class SqlBackupRunsListRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $instance
-     *           Cloud SQL instance ID. This does not include the project ID.
+     *           Cloud SQL instance ID, or "-" for all instances. This does not include
+     *           the project ID.
      *     @type int $max_results
      *           Maximum number of backup runs per response.
      *     @type string $page_token
@@ -62,7 +64,8 @@ class SqlBackupRunsListRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud SQL instance ID. This does not include the project ID.
+     * Cloud SQL instance ID, or "-" for all instances. This does not include
+     * the project ID.
      *
      * Generated from protobuf field <code>string instance = 1;</code>
      * @return string
@@ -73,7 +76,8 @@ class SqlBackupRunsListRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud SQL instance ID. This does not include the project ID.
+     * Cloud SQL instance ID, or "-" for all instances. This does not include
+     * the project ID.
      *
      * Generated from protobuf field <code>string instance = 1;</code>
      * @param string $var

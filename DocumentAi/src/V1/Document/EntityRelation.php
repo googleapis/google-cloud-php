@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Relationship between [Entities][google.cloud.documentai.v1.Document.Entity].
+ * Relationship between
+ * [Entities][google.cloud.documentai.v1.Document.Entity].
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.Document.EntityRelation</code>
  */
@@ -133,6 +134,4 @@ class EntityRelation extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EntityRelation::class, \Google\Cloud\DocumentAI\V1\Document_EntityRelation::class);
 

@@ -49,6 +49,12 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.EncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $encryption_config = null;
+    /**
+     * Optional. The dialect of the Cloud Spanner Database.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.DatabaseDialect database_dialect = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $database_dialect = 0;
 
     /**
      * Constructor.
@@ -74,6 +80,8 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The encryption configuration for the database. If this field is not
      *           specified, Cloud Spanner will encrypt/decrypt all data at rest using
      *           Google default encryption.
+     *     @type int $database_dialect
+     *           Optional. The dialect of the Cloud Spanner Database.
      * }
      */
     public function __construct($data = NULL) {
@@ -211,6 +219,32 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig::class);
         $this->encryption_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The dialect of the Cloud Spanner Database.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.DatabaseDialect database_dialect = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDatabaseDialect()
+    {
+        return $this->database_dialect;
+    }
+
+    /**
+     * Optional. The dialect of the Cloud Spanner Database.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.DatabaseDialect database_dialect = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDatabaseDialect($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect::class);
+        $this->database_dialect = $var;
 
         return $this;
     }

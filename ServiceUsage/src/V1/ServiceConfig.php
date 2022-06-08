@@ -216,7 +216,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getDocumentation()
     {
-        return isset($this->documentation) ? $this->documentation : null;
+        return $this->documentation;
     }
 
     public function hasDocumentation()
@@ -253,7 +253,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getQuota()
     {
-        return isset($this->quota) ? $this->quota : null;
+        return $this->quota;
     }
 
     public function hasQuota()
@@ -289,7 +289,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getAuthentication()
     {
-        return isset($this->authentication) ? $this->authentication : null;
+        return $this->authentication;
     }
 
     public function hasAuthentication()
@@ -325,7 +325,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getUsage()
     {
-        return isset($this->usage) ? $this->usage : null;
+        return $this->usage;
     }
 
     public function hasUsage()
@@ -418,7 +418,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getMonitoring()
     {
-        return isset($this->monitoring) ? $this->monitoring : null;
+        return $this->monitoring;
     }
 
     public function hasMonitoring()

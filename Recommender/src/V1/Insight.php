@@ -75,6 +75,12 @@ class Insight extends \Google\Protobuf\Internal\Message
      */
     private $category = 0;
     /**
+     * Insight's severity.
+     *
+     * Generated from protobuf field <code>.google.cloud.recommender.v1.Insight.Severity severity = 15;</code>
+     */
+    private $severity = 0;
+    /**
      * Fingerprint of the Insight. Provides optimistic locking when updating
      * states.
      *
@@ -116,6 +122,8 @@ class Insight extends \Google\Protobuf\Internal\Message
      *           Information state and metadata.
      *     @type int $category
      *           Category being targeted by the insight.
+     *     @type int $severity
+     *           Insight's severity.
      *     @type string $etag
      *           Fingerprint of the Insight. Provides optimistic locking when updating
      *           states.
@@ -406,6 +414,32 @@ class Insight extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Recommender\V1\Insight\Category::class);
         $this->category = $var;
+
+        return $this;
+    }
+
+    /**
+     * Insight's severity.
+     *
+     * Generated from protobuf field <code>.google.cloud.recommender.v1.Insight.Severity severity = 15;</code>
+     * @return int
+     */
+    public function getSeverity()
+    {
+        return $this->severity;
+    }
+
+    /**
+     * Insight's severity.
+     *
+     * Generated from protobuf field <code>.google.cloud.recommender.v1.Insight.Severity severity = 15;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSeverity($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Recommender\V1\Insight\Severity::class);
+        $this->severity = $var;
 
         return $this;
     }

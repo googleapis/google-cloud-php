@@ -20,14 +20,20 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
+     * Machines are not allowed to attach boot disks with this License Code. Requests to create new resources with this license will be rejected.
+     *
      * Generated from protobuf enum <code>DISABLED = 516696700;</code>
      */
     const DISABLED = 516696700;
     /**
+     * Use is allowed for anyone with USE_READ_ONLY access to this License Code.
+     *
      * Generated from protobuf enum <code>ENABLED = 182130465;</code>
      */
     const ENABLED = 182130465;
     /**
+     * Use of this license is limited to a project whitelist.
+     *
      * Generated from protobuf enum <code>RESTRICTED = 261551195;</code>
      */
     const RESTRICTED = 261551195;
@@ -36,6 +42,8 @@ class State
      */
     const STATE_UNSPECIFIED = 470755401;
     /**
+     * Reserved state.
+     *
      * Generated from protobuf enum <code>TERMINATED = 250018339;</code>
      */
     const TERMINATED = 250018339;

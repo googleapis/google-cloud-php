@@ -7,9 +7,7 @@ namespace Google\Cloud\Compute\V1\HealthCheckService;
 use UnexpectedValueException;
 
 /**
- * Optional. Policy for how the results from multiple health checks for the same endpoint are aggregated. Defaults to NO_AGGREGATION if unspecified.
- * - NO_AGGREGATION. An EndpointHealth message is returned for each backend in the health check service.
- * - AND. If any backend's health check reports UNHEALTHY, then UNHEALTHY is the HealthState of the entire health check service. If all backend's are healthy, the HealthState of the health check service is HEALTHY. .
+ * Optional. Policy for how the results from multiple health checks for the same endpoint are aggregated. Defaults to NO_AGGREGATION if unspecified. - NO_AGGREGATION. An EndpointHealth message is returned for each pair in the health check service. - AND. If any health check of an endpoint reports UNHEALTHY, then UNHEALTHY is the HealthState of the endpoint. If all health checks report HEALTHY, the HealthState of the endpoint is HEALTHY. .
  *
  * Protobuf type <code>google.cloud.compute.v1.HealthCheckService.HealthStatusAggregationPolicy</code>
  */
@@ -22,10 +20,14 @@ class HealthStatusAggregationPolicy
      */
     const UNDEFINED_HEALTH_STATUS_AGGREGATION_POLICY = 0;
     /**
+     * If any backend's health check reports UNHEALTHY, then UNHEALTHY is the HealthState of the entire health check service. If all backend's are healthy, the HealthState of the health check service is HEALTHY.
+     *
      * Generated from protobuf enum <code>AND = 64951;</code>
      */
     const PBAND = 64951;
     /**
+     * An EndpointHealth message is returned for each backend in the health check service.
+     *
      * Generated from protobuf enum <code>NO_AGGREGATION = 426445124;</code>
      */
     const NO_AGGREGATION = 426445124;

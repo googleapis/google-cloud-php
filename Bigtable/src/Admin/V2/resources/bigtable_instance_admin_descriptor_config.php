@@ -23,6 +23,16 @@ return [
                     'totalPollTimeoutMillis' => '600000',
                 ],
             ],
+            'PartialUpdateCluster' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Cluster',
+                    'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\PartialUpdateClusterMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '600000',
+                ],
+            ],
             'PartialUpdateInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Instance',
@@ -61,6 +71,16 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getAppProfiles',
+                ],
+            ],
+            'ListHotTablets' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getHotTablets',
                 ],
             ],
         ],

@@ -17,17 +17,20 @@ class Attestation
         \GPBMetadata\Grafeas\V1\Common::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Í
+ˆ
 grafeas/v1/attestation.proto
 grafeas.v1"f
 AttestationNote.
 hint (2 .grafeas.v1.AttestationNote.Hint#
 Hint
-human_readable_name (	"^
+human_readable_name (	"
+Jwt
+compact_jwt (	"}
 AttestationOccurrence
 serialized_payload ()
 
-signatures (2.grafeas.v1.SignatureBQ
+signatures (2.grafeas.v1.Signature
+jwts (2.grafeas.v1.JwtBQ
 io.grafeas.v1PZ8google.golang.org/genproto/googleapis/grafeas/v1;grafeas¢GRAbproto3'
         , true);
 

@@ -379,7 +379,7 @@ class AnnotatedDatasetMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getHumanAnnotationConfig()
     {
-        return isset($this->human_annotation_config) ? $this->human_annotation_config : null;
+        return $this->human_annotation_config;
     }
 
     public function hasHumanAnnotationConfig()

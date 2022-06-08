@@ -17,7 +17,7 @@ class NodeGroupsAddNodesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Count of additional nodes to be added to the node group.
      *
-     * Generated from protobuf field <code>int32 additional_node_count = 134997930;</code>
+     * Generated from protobuf field <code>optional int32 additional_node_count = 134997930;</code>
      */
     private $additional_node_count = null;
 
@@ -39,7 +39,7 @@ class NodeGroupsAddNodesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Count of additional nodes to be added to the node group.
      *
-     * Generated from protobuf field <code>int32 additional_node_count = 134997930;</code>
+     * Generated from protobuf field <code>optional int32 additional_node_count = 134997930;</code>
      * @return int
      */
     public function getAdditionalNodeCount()
@@ -60,7 +60,7 @@ class NodeGroupsAddNodesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Count of additional nodes to be added to the node group.
      *
-     * Generated from protobuf field <code>int32 additional_node_count = 134997930;</code>
+     * Generated from protobuf field <code>optional int32 additional_node_count = 134997930;</code>
      * @param int $var
      * @return $this
      */

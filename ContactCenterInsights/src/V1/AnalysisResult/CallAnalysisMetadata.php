@@ -245,6 +245,4 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CallAnalysisMetadata::class, \Google\Cloud\ContactCenterInsights\V1\AnalysisResult_CallAnalysisMetadata::class);
 

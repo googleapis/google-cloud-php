@@ -35,6 +35,30 @@ class ListKnowledgeBasesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
+    /**
+     * The filter expression used to filter knowledge bases returned by the list
+     * method. The expression has the following syntax:
+     *   <field> <operator> <value> [AND <field> <operator> <value>] ...
+     * The following fields and operators are supported:
+     * * display_name with has(:) operator
+     * * language_code with equals(=) operator
+     * Examples:
+     * * 'language_code=en-us' matches knowledge bases with en-us language code.
+     * * 'display_name:articles' matches knowledge bases whose display name
+     *   contains "articles".
+     * * 'display_name:"Best Articles"' matches knowledge bases whose display
+     *   name contains "Best Articles".
+     * * 'language_code=en-gb AND display_name=articles' matches all knowledge
+     *   bases whose display name contains "articles" and whose language code is
+     *   "en-gb".
+     * Note: An empty filter string (i.e. "") is a no-op and will result in no
+     * filtering.
+     * For more information about filtering, see
+     * [API Filtering](https://aip.dev/160).
+     *
+     * Generated from protobuf field <code>string filter = 4;</code>
+     */
+    private $filter = '';
 
     /**
      * Constructor.
@@ -50,6 +74,26 @@ class ListKnowledgeBasesRequest extends \Google\Protobuf\Internal\Message
      *           default 10 and at most 100.
      *     @type string $page_token
      *           The next_page_token value returned from a previous list request.
+     *     @type string $filter
+     *           The filter expression used to filter knowledge bases returned by the list
+     *           method. The expression has the following syntax:
+     *             <field> <operator> <value> [AND <field> <operator> <value>] ...
+     *           The following fields and operators are supported:
+     *           * display_name with has(:) operator
+     *           * language_code with equals(=) operator
+     *           Examples:
+     *           * 'language_code=en-us' matches knowledge bases with en-us language code.
+     *           * 'display_name:articles' matches knowledge bases whose display name
+     *             contains "articles".
+     *           * 'display_name:"Best Articles"' matches knowledge bases whose display
+     *             name contains "Best Articles".
+     *           * 'language_code=en-gb AND display_name=articles' matches all knowledge
+     *             bases whose display name contains "articles" and whose language code is
+     *             "en-gb".
+     *           Note: An empty filter string (i.e. "") is a no-op and will result in no
+     *           filtering.
+     *           For more information about filtering, see
+     *           [API Filtering](https://aip.dev/160).
      * }
      */
     public function __construct($data = NULL) {
@@ -135,6 +179,68 @@ class ListKnowledgeBasesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * The filter expression used to filter knowledge bases returned by the list
+     * method. The expression has the following syntax:
+     *   <field> <operator> <value> [AND <field> <operator> <value>] ...
+     * The following fields and operators are supported:
+     * * display_name with has(:) operator
+     * * language_code with equals(=) operator
+     * Examples:
+     * * 'language_code=en-us' matches knowledge bases with en-us language code.
+     * * 'display_name:articles' matches knowledge bases whose display name
+     *   contains "articles".
+     * * 'display_name:"Best Articles"' matches knowledge bases whose display
+     *   name contains "Best Articles".
+     * * 'language_code=en-gb AND display_name=articles' matches all knowledge
+     *   bases whose display name contains "articles" and whose language code is
+     *   "en-gb".
+     * Note: An empty filter string (i.e. "") is a no-op and will result in no
+     * filtering.
+     * For more information about filtering, see
+     * [API Filtering](https://aip.dev/160).
+     *
+     * Generated from protobuf field <code>string filter = 4;</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * The filter expression used to filter knowledge bases returned by the list
+     * method. The expression has the following syntax:
+     *   <field> <operator> <value> [AND <field> <operator> <value>] ...
+     * The following fields and operators are supported:
+     * * display_name with has(:) operator
+     * * language_code with equals(=) operator
+     * Examples:
+     * * 'language_code=en-us' matches knowledge bases with en-us language code.
+     * * 'display_name:articles' matches knowledge bases whose display name
+     *   contains "articles".
+     * * 'display_name:"Best Articles"' matches knowledge bases whose display
+     *   name contains "Best Articles".
+     * * 'language_code=en-gb AND display_name=articles' matches all knowledge
+     *   bases whose display name contains "articles" and whose language code is
+     *   "en-gb".
+     * Note: An empty filter string (i.e. "") is a no-op and will result in no
+     * filtering.
+     * For more information about filtering, see
+     * [API Filtering](https://aip.dev/160).
+     *
+     * Generated from protobuf field <code>string filter = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }

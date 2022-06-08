@@ -18,16 +18,14 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Indicates whether or not to export logs. This is false by default.
      *
-     * Generated from protobuf field <code>bool enable = 311764355;</code>
+     * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      */
     private $enable = null;
     /**
-     * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values:
-     * - ERRORS_ONLY: Export logs only for connection failures.
-     * - TRANSLATIONS_ONLY: Export logs only for successful connections.
-     * - ALL: Export logs for all connections, successful and unsuccessful.
+     * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values: - ERRORS_ONLY: Export logs only for connection failures. - TRANSLATIONS_ONLY: Export logs only for successful connections. - ALL: Export logs for all connections, successful and unsuccessful.
+     * Check the Filter enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig.Filter filter = 336120696;</code>
+     * Generated from protobuf field <code>optional string filter = 336120696;</code>
      */
     private $filter = null;
 
@@ -39,11 +37,9 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $enable
      *           Indicates whether or not to export logs. This is false by default.
-     *     @type int $filter
-     *           Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values:
-     *           - ERRORS_ONLY: Export logs only for connection failures.
-     *           - TRANSLATIONS_ONLY: Export logs only for successful connections.
-     *           - ALL: Export logs for all connections, successful and unsuccessful.
+     *     @type string $filter
+     *           Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values: - ERRORS_ONLY: Export logs only for connection failures. - TRANSLATIONS_ONLY: Export logs only for successful connections. - ALL: Export logs for all connections, successful and unsuccessful.
+     *           Check the Filter enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,7 +50,7 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Indicates whether or not to export logs. This is false by default.
      *
-     * Generated from protobuf field <code>bool enable = 311764355;</code>
+     * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      * @return bool
      */
     public function getEnable()
@@ -75,7 +71,7 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Indicates whether or not to export logs. This is false by default.
      *
-     * Generated from protobuf field <code>bool enable = 311764355;</code>
+     * Generated from protobuf field <code>optional bool enable = 311764355;</code>
      * @param bool $var
      * @return $this
      */
@@ -88,17 +84,15 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values:
-     * - ERRORS_ONLY: Export logs only for connection failures.
-     * - TRANSLATIONS_ONLY: Export logs only for successful connections.
-     * - ALL: Export logs for all connections, successful and unsuccessful.
+     * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values: - ERRORS_ONLY: Export logs only for connection failures. - TRANSLATIONS_ONLY: Export logs only for successful connections. - ALL: Export logs for all connections, successful and unsuccessful.
+     * Check the Filter enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig.Filter filter = 336120696;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string filter = 336120696;</code>
+     * @return string
      */
     public function getFilter()
     {
-        return isset($this->filter) ? $this->filter : 0;
+        return isset($this->filter) ? $this->filter : '';
     }
 
     public function hasFilter()
@@ -112,18 +106,16 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values:
-     * - ERRORS_ONLY: Export logs only for connection failures.
-     * - TRANSLATIONS_ONLY: Export logs only for successful connections.
-     * - ALL: Export logs for all connections, successful and unsuccessful.
+     * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values: - ERRORS_ONLY: Export logs only for connection failures. - TRANSLATIONS_ONLY: Export logs only for successful connections. - ALL: Export logs for all connections, successful and unsuccessful.
+     * Check the Filter enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig.Filter filter = 336120696;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string filter = 336120696;</code>
+     * @param string $var
      * @return $this
      */
     public function setFilter($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\RouterNatLogConfig\Filter::class);
+        GPBUtil::checkString($var, True);
         $this->filter = $var;
 
         return $this;

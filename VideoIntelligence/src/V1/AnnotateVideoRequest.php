@@ -229,7 +229,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      */
     public function getVideoContext()
     {
-        return isset($this->video_context) ? $this->video_context : null;
+        return $this->video_context;
     }
 
     public function hasVideoContext()

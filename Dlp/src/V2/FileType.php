@@ -32,11 +32,12 @@ class FileType
     const BINARY_FILE = 1;
     /**
      * Included file extensions:
-     *   asc, brf, c, cc, cpp, csv, cxx, c++, cs, css, dart, eml, go, h, hh, hpp,
-     *   hxx, h++, hs, html, htm, shtml, shtm, xhtml, lhs, ini, java, js, json,
-     *   ocaml, md, mkd, markdown, m, ml, mli, pl, pm, php, phtml, pht, py, pyw,
-     *   rb, rbw, rs, rc, scala, sh, sql, tex, txt, text, tsv, vcard, vcs, wml,
-     *   xml, xsl, xsd, yml, yaml.
+     *   asc,asp, aspx, brf, c, cc,cfm, cgi, cpp, csv, cxx, c++, cs, css, dart,
+     *   dat, dot, eml,, epbub, ged, go, h, hh, hpp, hxx, h++, hs, html, htm,
+     *   mkd, markdown, m, ml, mli, perl, pl, plist, pm, php, phtml, pht,
+     *   properties, py, pyw, rb, rbw, rs, rss,  rc, scala, sh, sql, swift, tex,
+     *   shtml, shtm, xhtml, lhs, ics, ini, java, js, json, kix, kml, ocaml, md,
+     *   txt, text, tsv, vb, vcard, vcs, wml, xcodeproj, xml, xsl, xsd, yml, yaml.
      *
      * Generated from protobuf enum <code>TEXT_FILE = 2;</code>
      */
@@ -87,6 +88,22 @@ class FileType
      * Generated from protobuf enum <code>TSV = 9;</code>
      */
     const TSV = 9;
+    /**
+     * Powerpoint files >30 MB will be scanned as binary files.
+     * Included file extensions:
+     *   pptx, pptm, potx, potm, pot
+     *
+     * Generated from protobuf enum <code>POWERPOINT = 11;</code>
+     */
+    const POWERPOINT = 11;
+    /**
+     * Excel files >30 MB will be scanned as binary files.
+     * Included file extensions:
+     *   xlsx, xlsm, xltx, xltm
+     *
+     * Generated from protobuf enum <code>EXCEL = 12;</code>
+     */
+    const EXCEL = 12;
 
     private static $valueToName = [
         self::FILE_TYPE_UNSPECIFIED => 'FILE_TYPE_UNSPECIFIED',
@@ -98,6 +115,8 @@ class FileType
         self::AVRO => 'AVRO',
         self::CSV => 'CSV',
         self::TSV => 'TSV',
+        self::POWERPOINT => 'POWERPOINT',
+        self::EXCEL => 'EXCEL',
     ];
 
     public static function name($value)

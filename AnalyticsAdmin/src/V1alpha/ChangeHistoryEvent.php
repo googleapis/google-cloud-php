@@ -122,7 +122,7 @@ class ChangeHistoryEvent extends \Google\Protobuf\Internal\Message
      */
     public function getChangeTime()
     {
-        return isset($this->change_time) ? $this->change_time : null;
+        return $this->change_time;
     }
 
     public function hasChangeTime()

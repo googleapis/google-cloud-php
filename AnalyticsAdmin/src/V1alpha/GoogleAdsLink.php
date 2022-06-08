@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A link between an GA4 property and a Google Ads account.
+ * A link between a GA4 property and a Google Ads account.
  *
  * Generated from protobuf message <code>google.analytics.admin.v1alpha.GoogleAdsLink</code>
  */
@@ -44,13 +44,6 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      */
     private $ads_personalization_enabled = null;
     /**
-     * Output only. Email address of the user that created the link.
-     * An empty string will be returned if the email address can't be retrieved.
-     *
-     * Generated from protobuf field <code>string email_address = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     */
-    private $email_address = '';
-    /**
      * Output only. Time when this link was originally created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -62,6 +55,13 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
+    /**
+     * Output only. Email address of the user that created the link.
+     * An empty string will be returned if the email address can't be retrieved.
+     *
+     * Generated from protobuf field <code>string creator_email_address = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $creator_email_address = '';
 
     /**
      * Constructor.
@@ -81,13 +81,13 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      *           Automatically publish my Google Analytics audience lists and Google
      *           Analytics remarketing events/parameters to the linked Google Ads account.
      *           If this field is not set on create/update, it will be defaulted to true.
-     *     @type string $email_address
-     *           Output only. Email address of the user that created the link.
-     *           An empty string will be returned if the email address can't be retrieved.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time when this link was originally created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Time when this link was last updated.
+     *     @type string $creator_email_address
+     *           Output only. Email address of the user that created the link.
+     *           An empty string will be returned if the email address can't be retrieved.
      * }
      */
     public function __construct($data = NULL) {
@@ -186,7 +186,7 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      */
     public function getAdsPersonalizationEnabled()
     {
-        return isset($this->ads_personalization_enabled) ? $this->ads_personalization_enabled : null;
+        return $this->ads_personalization_enabled;
     }
 
     public function hasAdsPersonalizationEnabled()
@@ -251,34 +251,6 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * Output only. Email address of the user that created the link.
-     * An empty string will be returned if the email address can't be retrieved.
-     *
-     * Generated from protobuf field <code>string email_address = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return string
-     */
-    public function getEmailAddress()
-    {
-        return $this->email_address;
-    }
-
-    /**
-     * Output only. Email address of the user that created the link.
-     * An empty string will be returned if the email address can't be retrieved.
-     *
-     * Generated from protobuf field <code>string email_address = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setEmailAddress($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->email_address = $var;
-
-        return $this;
-    }
-
-    /**
      * Output only. Time when this link was originally created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -286,7 +258,7 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -322,7 +294,7 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -346,6 +318,34 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Email address of the user that created the link.
+     * An empty string will be returned if the email address can't be retrieved.
+     *
+     * Generated from protobuf field <code>string creator_email_address = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getCreatorEmailAddress()
+    {
+        return $this->creator_email_address;
+    }
+
+    /**
+     * Output only. Email address of the user that created the link.
+     * An empty string will be returned if the email address can't be retrieved.
+     *
+     * Generated from protobuf field <code>string creator_email_address = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCreatorEmailAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->creator_email_address = $var;
 
         return $this;
     }

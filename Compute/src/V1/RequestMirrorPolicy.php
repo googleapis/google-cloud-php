@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A policy that specifies how requests intended for the route's backends are shadowed to a separate mirrored backend service. Loadbalancer does not wait for responses from the shadow service. Prior to sending traffic to the shadow service, the host / authority header is suffixed with -shadow.
+ * A policy that specifies how requests intended for the route's backends are shadowed to a separate mirrored backend service. The load balancer doesn't wait for responses from the shadow service. Before sending traffic to the shadow service, the host or authority header is suffixed with -shadow.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.RequestMirrorPolicy</code>
  */
@@ -18,7 +18,7 @@ class RequestMirrorPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The full or partial URL to the BackendService resource being mirrored to.
      *
-     * Generated from protobuf field <code>string backend_service = 306946058;</code>
+     * Generated from protobuf field <code>optional string backend_service = 306946058;</code>
      */
     private $backend_service = null;
 
@@ -40,7 +40,7 @@ class RequestMirrorPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The full or partial URL to the BackendService resource being mirrored to.
      *
-     * Generated from protobuf field <code>string backend_service = 306946058;</code>
+     * Generated from protobuf field <code>optional string backend_service = 306946058;</code>
      * @return string
      */
     public function getBackendService()
@@ -61,7 +61,7 @@ class RequestMirrorPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The full or partial URL to the BackendService resource being mirrored to.
      *
-     * Generated from protobuf field <code>string backend_service = 306946058;</code>
+     * Generated from protobuf field <code>optional string backend_service = 306946058;</code>
      * @param string $var
      * @return $this
      */

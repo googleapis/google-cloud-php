@@ -55,7 +55,7 @@ class ProvisionAccountTicketRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAccount()
     {
-        return isset($this->account) ? $this->account : null;
+        return $this->account;
     }
 
     public function hasAccount()

@@ -9,9 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Range of numerical values, inclusive of `min` and exclusive of `max`. If the
- * open range "< range.max" is desired, set `range.min = -infinity`. If the open
- * range ">= range.min" is desired, set `range.max = infinity`.
+ * Range of numerical values within `min` and `max`.
  *
  * Generated from protobuf message <code>google.monitoring.v3.Range</code>
  */

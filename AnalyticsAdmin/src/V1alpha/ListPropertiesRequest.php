@@ -18,13 +18,16 @@ class ListPropertiesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. An expression for filtering the results of the request.
      * Fields eligible for filtering are:
-     * `parent:`(The resource name of the parent account) or
+     * `parent:`(The resource name of the parent account/property) or
+     * `ancestor:`(The resource name of the parent account) or
      * `firebase_project:`(The id or number of the linked firebase project).
      * Some examples of filters:
      * ```
      * | Filter                      | Description                               |
      * |-----------------------------|-------------------------------------------|
-     * | parent:accounts/123         | The account with account id: 123.         |
+     * | parent:accounts/123         | The account with account id: 123.       |
+     * | parent:properties/123       | The property with property id: 123.       |
+     * | ancestor:accounts/123       | The account with account id: 123.         |
      * | firebase_project:project-id | The firebase project with id: project-id. |
      * | firebase_project:123        | The firebase project with number: 123.    |
      * ```
@@ -68,13 +71,16 @@ class ListPropertiesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $filter
      *           Required. An expression for filtering the results of the request.
      *           Fields eligible for filtering are:
-     *           `parent:`(The resource name of the parent account) or
+     *           `parent:`(The resource name of the parent account/property) or
+     *           `ancestor:`(The resource name of the parent account) or
      *           `firebase_project:`(The id or number of the linked firebase project).
      *           Some examples of filters:
      *           ```
      *           | Filter                      | Description                               |
      *           |-----------------------------|-------------------------------------------|
-     *           | parent:accounts/123         | The account with account id: 123.         |
+     *           | parent:accounts/123         | The account with account id: 123.       |
+     *           | parent:properties/123       | The property with property id: 123.       |
+     *           | ancestor:accounts/123       | The account with account id: 123.         |
      *           | firebase_project:project-id | The firebase project with id: project-id. |
      *           | firebase_project:123        | The firebase project with number: 123.    |
      *           ```
@@ -102,13 +108,16 @@ class ListPropertiesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. An expression for filtering the results of the request.
      * Fields eligible for filtering are:
-     * `parent:`(The resource name of the parent account) or
+     * `parent:`(The resource name of the parent account/property) or
+     * `ancestor:`(The resource name of the parent account) or
      * `firebase_project:`(The id or number of the linked firebase project).
      * Some examples of filters:
      * ```
      * | Filter                      | Description                               |
      * |-----------------------------|-------------------------------------------|
-     * | parent:accounts/123         | The account with account id: 123.         |
+     * | parent:accounts/123         | The account with account id: 123.       |
+     * | parent:properties/123       | The property with property id: 123.       |
+     * | ancestor:accounts/123       | The account with account id: 123.         |
      * | firebase_project:project-id | The firebase project with id: project-id. |
      * | firebase_project:123        | The firebase project with number: 123.    |
      * ```
@@ -124,13 +133,16 @@ class ListPropertiesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. An expression for filtering the results of the request.
      * Fields eligible for filtering are:
-     * `parent:`(The resource name of the parent account) or
+     * `parent:`(The resource name of the parent account/property) or
+     * `ancestor:`(The resource name of the parent account) or
      * `firebase_project:`(The id or number of the linked firebase project).
      * Some examples of filters:
      * ```
      * | Filter                      | Description                               |
      * |-----------------------------|-------------------------------------------|
-     * | parent:accounts/123         | The account with account id: 123.         |
+     * | parent:accounts/123         | The account with account id: 123.       |
+     * | parent:properties/123       | The property with property id: 123.       |
+     * | ancestor:accounts/123       | The account with account id: 123.         |
      * | firebase_project:project-id | The firebase project with id: project-id. |
      * | firebase_project:123        | The firebase project with number: 123.    |
      * ```

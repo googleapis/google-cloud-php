@@ -7,9 +7,7 @@ namespace Google\Cloud\Compute\V1\Interconnect;
 use UnexpectedValueException;
 
 /**
- * Type of link requested, which can take one of the following values:
- * - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics
- * - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
+ * Type of link requested, which can take one of the following values: - LINK_TYPE_ETHERNET_10G_LR: A 10G Ethernet with LR optics - LINK_TYPE_ETHERNET_100G_LR: A 100G Ethernet with LR optics. Note that this field indicates the speed of each of the links in the bundle, not the speed of the entire bundle.
  *
  * Protobuf type <code>google.cloud.compute.v1.Interconnect.LinkType</code>
  */
@@ -22,10 +20,14 @@ class LinkType
      */
     const UNDEFINED_LINK_TYPE = 0;
     /**
+     * 100G Ethernet, LR Optics.
+     *
      * Generated from protobuf enum <code>LINK_TYPE_ETHERNET_100G_LR = 337672551;</code>
      */
     const LINK_TYPE_ETHERNET_100G_LR = 337672551;
     /**
+     * 10G Ethernet, LR Optics. [(rate_bps) = 10000000000];
+     *
      * Generated from protobuf enum <code>LINK_TYPE_ETHERNET_10G_LR = 236739749;</code>
      */
     const LINK_TYPE_ETHERNET_10G_LR = 236739749;

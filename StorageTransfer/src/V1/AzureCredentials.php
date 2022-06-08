@@ -19,12 +19,6 @@ class AzureCredentials extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Azure shared access signature (SAS).
-     * <aside class="note">
-     * <strong>Note:</strong>Copying data from Azure Data Lake
-     * Storage (ADLS) Gen 2 is in [Preview](https://cloud.google.com/products/#product-launch-stages).
-     * During Preview, if you are copying data from ADLS Gen 2, you must use an
-     * account SAS.
-     * </aside>
      * For more information about SAS, see
      * [Grant limited access to Azure Storage resources using shared access
      * signatures
@@ -42,12 +36,6 @@ class AzureCredentials extends \Google\Protobuf\Internal\Message
      *
      *     @type string $sas_token
      *           Required. Azure shared access signature (SAS).
-     *           <aside class="note">
-     *           <strong>Note:</strong>Copying data from Azure Data Lake
-     *           Storage (ADLS) Gen 2 is in [Preview](https://cloud.google.com/products/#product-launch-stages).
-     *           During Preview, if you are copying data from ADLS Gen 2, you must use an
-     *           account SAS.
-     *           </aside>
      *           For more information about SAS, see
      *           [Grant limited access to Azure Storage resources using shared access
      *           signatures
@@ -61,12 +49,6 @@ class AzureCredentials extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Azure shared access signature (SAS).
-     * <aside class="note">
-     * <strong>Note:</strong>Copying data from Azure Data Lake
-     * Storage (ADLS) Gen 2 is in [Preview](https://cloud.google.com/products/#product-launch-stages).
-     * During Preview, if you are copying data from ADLS Gen 2, you must use an
-     * account SAS.
-     * </aside>
      * For more information about SAS, see
      * [Grant limited access to Azure Storage resources using shared access
      * signatures
@@ -82,12 +64,6 @@ class AzureCredentials extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Azure shared access signature (SAS).
-     * <aside class="note">
-     * <strong>Note:</strong>Copying data from Azure Data Lake
-     * Storage (ADLS) Gen 2 is in [Preview](https://cloud.google.com/products/#product-launch-stages).
-     * During Preview, if you are copying data from ADLS Gen 2, you must use an
-     * account SAS.
-     * </aside>
      * For more information about SAS, see
      * [Grant limited access to Azure Storage resources using shared access
      * signatures

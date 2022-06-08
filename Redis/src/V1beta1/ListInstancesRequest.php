@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for
- * [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances].
+ * Request for [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances].
  *
  * Generated from protobuf message <code>google.cloud.redis.v1beta1.ListInstancesRequest</code>
  */
@@ -37,8 +36,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * The `next_page_token` value returned from a previous
-     * [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances]
-     * request, if any.
+     * [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances] request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
@@ -63,8 +61,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *           to determine if there are more instances left to be queried.
      *     @type string $page_token
      *           The `next_page_token` value returned from a previous
-     *           [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances]
-     *           request, if any.
+     *           [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances] request, if any.
      * }
      */
     public function __construct($data = NULL) {
@@ -140,8 +137,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The `next_page_token` value returned from a previous
-     * [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances]
-     * request, if any.
+     * [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances] request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -153,8 +149,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The `next_page_token` value returned from a previous
-     * [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances]
-     * request, if any.
+     * [ListInstances][google.cloud.redis.v1beta1.CloudRedis.ListInstances] request, if any.
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var

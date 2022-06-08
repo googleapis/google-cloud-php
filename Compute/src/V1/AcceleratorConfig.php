@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Messages
  * A specification of the type and number of accelerator cards attached to the instance.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AcceleratorConfig</code>
@@ -19,13 +18,13 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
     /**
      * The number of the guest accelerator cards exposed to this instance.
      *
-     * Generated from protobuf field <code>int32 accelerator_count = 504879675;</code>
+     * Generated from protobuf field <code>optional int32 accelerator_count = 504879675;</code>
      */
     private $accelerator_count = null;
     /**
      * Full or partial URL of the accelerator type resource to attach to this instance. For example: projects/my-project/zones/us-central1-c/acceleratorTypes/nvidia-tesla-p100 If you are creating an instance template, specify only the accelerator name. See GPUs on Compute Engine for a full list of accelerator types.
      *
-     * Generated from protobuf field <code>string accelerator_type = 138031246;</code>
+     * Generated from protobuf field <code>optional string accelerator_type = 138031246;</code>
      */
     private $accelerator_type = null;
 
@@ -49,7 +48,7 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
     /**
      * The number of the guest accelerator cards exposed to this instance.
      *
-     * Generated from protobuf field <code>int32 accelerator_count = 504879675;</code>
+     * Generated from protobuf field <code>optional int32 accelerator_count = 504879675;</code>
      * @return int
      */
     public function getAcceleratorCount()
@@ -70,7 +69,7 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
     /**
      * The number of the guest accelerator cards exposed to this instance.
      *
-     * Generated from protobuf field <code>int32 accelerator_count = 504879675;</code>
+     * Generated from protobuf field <code>optional int32 accelerator_count = 504879675;</code>
      * @param int $var
      * @return $this
      */
@@ -85,7 +84,7 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
     /**
      * Full or partial URL of the accelerator type resource to attach to this instance. For example: projects/my-project/zones/us-central1-c/acceleratorTypes/nvidia-tesla-p100 If you are creating an instance template, specify only the accelerator name. See GPUs on Compute Engine for a full list of accelerator types.
      *
-     * Generated from protobuf field <code>string accelerator_type = 138031246;</code>
+     * Generated from protobuf field <code>optional string accelerator_type = 138031246;</code>
      * @return string
      */
     public function getAcceleratorType()
@@ -106,7 +105,7 @@ class AcceleratorConfig extends \Google\Protobuf\Internal\Message
     /**
      * Full or partial URL of the accelerator type resource to attach to this instance. For example: projects/my-project/zones/us-central1-c/acceleratorTypes/nvidia-tesla-p100 If you are creating an instance template, specify only the accelerator name. See GPUs on Compute Engine for a full list of accelerator types.
      *
-     * Generated from protobuf field <code>string accelerator_type = 138031246;</code>
+     * Generated from protobuf field <code>optional string accelerator_type = 138031246;</code>
      * @param string $var
      * @return $this
      */

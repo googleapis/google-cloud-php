@@ -25,6 +25,11 @@
                                 "dismissApprovalRequest"
                             ]
                         },
+                        "GetAccessApprovalServiceAccount": {
+                            "methods": [
+                                "getAccessApprovalServiceAccount"
+                            ]
+                        },
                         "GetAccessApprovalSettings": {
                             "methods": [
                                 "getAccessApprovalSettings"
@@ -33,6 +38,11 @@
                         "GetApprovalRequest": {
                             "methods": [
                                 "getApprovalRequest"
+                            ]
+                        },
+                        "InvalidateApprovalRequest": {
+                            "methods": [
+                                "invalidateApprovalRequest"
                             ]
                         },
                         "ListApprovalRequests": {

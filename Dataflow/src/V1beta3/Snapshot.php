@@ -52,7 +52,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * PubSub snapshot metadata.
+     * Pub/Sub snapshot metadata.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.PubsubSnapshotMetadata pubsub_metadata = 7;</code>
      */
@@ -96,7 +96,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           State of the snapshot.
      *     @type \Google\Cloud\Dataflow\V1beta3\PubsubSnapshotMetadata[]|\Google\Protobuf\Internal\RepeatedField $pubsub_metadata
-     *           PubSub snapshot metadata.
+     *           Pub/Sub snapshot metadata.
      *     @type string $description
      *           User specified description of the snapshot. Maybe empty.
      *     @type int|string $disk_size_bytes
@@ -288,7 +288,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * PubSub snapshot metadata.
+     * Pub/Sub snapshot metadata.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.PubsubSnapshotMetadata pubsub_metadata = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -299,7 +299,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * PubSub snapshot metadata.
+     * Pub/Sub snapshot metadata.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.PubsubSnapshotMetadata pubsub_metadata = 7;</code>
      * @param \Google\Cloud\Dataflow\V1beta3\PubsubSnapshotMetadata[]|\Google\Protobuf\Internal\RepeatedField $var

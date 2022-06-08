@@ -20,17 +20,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class MetricAbsence extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     * Required. A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
      * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list)
      * (that call is useful to verify the time series that will be retrieved /
-     * processed) and must specify the metric type and optionally may contain
-     * restrictions on resource type, resource labels, and metric labels.
-     * This field may not exceed 2048 Unicode characters in length.
+     * processed). The filter must specify the metric type and the resource
+     * type. Optionally, it can specify resource labels and metric labels.
+     * This field must not exceed 2048 Unicode characters in length.
      *
-     * Generated from protobuf field <code>string filter = 1;</code>
+     * Generated from protobuf field <code>string filter = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $filter = '';
     /**
@@ -38,7 +38,7 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      * well as how to combine the retrieved time series together (such as
      * when aggregating multiple streams on each resource to a single
      * stream for each resource or when aggregating streams across all
-     * members of a group of resrouces). Multiple aggregations
+     * members of a group of resources). Multiple aggregations
      * are applied in the order specified.
      * This field is similar to the one in the [`ListTimeSeries`
      * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
@@ -50,9 +50,10 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
     private $aggregations;
     /**
      * The amount of time that a time series must fail to report new
-     * data to be considered failing. Currently, only values that
-     * are a multiple of a minute--e.g.  60, 120, or 300
-     * seconds--are supported. If an invalid value is given, an
+     * data to be considered failing. The minimum value of this field
+     * is 120 seconds. Larger values that are a multiple of a
+     * minute--for example, 240 or 300 seconds--are supported.
+     * If an invalid value is given, an
      * error will be returned. The `Duration.nanos` field is
      * ignored.
      *
@@ -76,21 +77,21 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $filter
-     *           A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     *           Required. A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      *           identifies which time series should be compared with the threshold.
      *           The filter is similar to the one that is specified in the
      *           [`ListTimeSeries`
      *           request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list)
      *           (that call is useful to verify the time series that will be retrieved /
-     *           processed) and must specify the metric type and optionally may contain
-     *           restrictions on resource type, resource labels, and metric labels.
-     *           This field may not exceed 2048 Unicode characters in length.
+     *           processed). The filter must specify the metric type and the resource
+     *           type. Optionally, it can specify resource labels and metric labels.
+     *           This field must not exceed 2048 Unicode characters in length.
      *     @type \Google\Cloud\Monitoring\V3\Aggregation[]|\Google\Protobuf\Internal\RepeatedField $aggregations
      *           Specifies the alignment of data points in individual time series as
      *           well as how to combine the retrieved time series together (such as
      *           when aggregating multiple streams on each resource to a single
      *           stream for each resource or when aggregating streams across all
-     *           members of a group of resrouces). Multiple aggregations
+     *           members of a group of resources). Multiple aggregations
      *           are applied in the order specified.
      *           This field is similar to the one in the [`ListTimeSeries`
      *           request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
@@ -98,9 +99,10 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      *           field.
      *     @type \Google\Protobuf\Duration $duration
      *           The amount of time that a time series must fail to report new
-     *           data to be considered failing. Currently, only values that
-     *           are a multiple of a minute--e.g.  60, 120, or 300
-     *           seconds--are supported. If an invalid value is given, an
+     *           data to be considered failing. The minimum value of this field
+     *           is 120 seconds. Larger values that are a multiple of a
+     *           minute--for example, 240 or 300 seconds--are supported.
+     *           If an invalid value is given, an
      *           error will be returned. The `Duration.nanos` field is
      *           ignored.
      *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\Trigger $trigger
@@ -116,17 +118,17 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     * Required. A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
      * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list)
      * (that call is useful to verify the time series that will be retrieved /
-     * processed) and must specify the metric type and optionally may contain
-     * restrictions on resource type, resource labels, and metric labels.
-     * This field may not exceed 2048 Unicode characters in length.
+     * processed). The filter must specify the metric type and the resource
+     * type. Optionally, it can specify resource labels and metric labels.
+     * This field must not exceed 2048 Unicode characters in length.
      *
-     * Generated from protobuf field <code>string filter = 1;</code>
+     * Generated from protobuf field <code>string filter = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getFilter()
@@ -135,17 +137,17 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     * Required. A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
      * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list)
      * (that call is useful to verify the time series that will be retrieved /
-     * processed) and must specify the metric type and optionally may contain
-     * restrictions on resource type, resource labels, and metric labels.
-     * This field may not exceed 2048 Unicode characters in length.
+     * processed). The filter must specify the metric type and the resource
+     * type. Optionally, it can specify resource labels and metric labels.
+     * This field must not exceed 2048 Unicode characters in length.
      *
-     * Generated from protobuf field <code>string filter = 1;</code>
+     * Generated from protobuf field <code>string filter = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -162,7 +164,7 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      * well as how to combine the retrieved time series together (such as
      * when aggregating multiple streams on each resource to a single
      * stream for each resource or when aggregating streams across all
-     * members of a group of resrouces). Multiple aggregations
+     * members of a group of resources). Multiple aggregations
      * are applied in the order specified.
      * This field is similar to the one in the [`ListTimeSeries`
      * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
@@ -182,7 +184,7 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      * well as how to combine the retrieved time series together (such as
      * when aggregating multiple streams on each resource to a single
      * stream for each resource or when aggregating streams across all
-     * members of a group of resrouces). Multiple aggregations
+     * members of a group of resources). Multiple aggregations
      * are applied in the order specified.
      * This field is similar to the one in the [`ListTimeSeries`
      * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
@@ -203,25 +205,37 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
 
     /**
      * The amount of time that a time series must fail to report new
-     * data to be considered failing. Currently, only values that
-     * are a multiple of a minute--e.g.  60, 120, or 300
-     * seconds--are supported. If an invalid value is given, an
+     * data to be considered failing. The minimum value of this field
+     * is 120 seconds. Larger values that are a multiple of a
+     * minute--for example, 240 or 300 seconds--are supported.
+     * If an invalid value is given, an
      * error will be returned. The `Duration.nanos` field is
      * ignored.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 2;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getDuration()
     {
         return $this->duration;
     }
 
+    public function hasDuration()
+    {
+        return isset($this->duration);
+    }
+
+    public function clearDuration()
+    {
+        unset($this->duration);
+    }
+
     /**
      * The amount of time that a time series must fail to report new
-     * data to be considered failing. Currently, only values that
-     * are a multiple of a minute--e.g.  60, 120, or 300
-     * seconds--are supported. If an invalid value is given, an
+     * data to be considered failing. The minimum value of this field
+     * is 120 seconds. Larger values that are a multiple of a
+     * minute--for example, 240 or 300 seconds--are supported.
+     * If an invalid value is given, an
      * error will be returned. The `Duration.nanos` field is
      * ignored.
      *
@@ -244,11 +258,21 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      * time series that have been identified by `filter` and `aggregations`.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.Trigger trigger = 3;</code>
-     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\Trigger
+     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\Trigger|null
      */
     public function getTrigger()
     {
         return $this->trigger;
+    }
+
+    public function hasTrigger()
+    {
+        return isset($this->trigger);
+    }
+
+    public function clearTrigger()
+    {
+        unset($this->trigger);
     }
 
     /**
@@ -263,7 +287,7 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      */
     public function setTrigger($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_Trigger::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\Trigger::class);
         $this->trigger = $var;
 
         return $this;

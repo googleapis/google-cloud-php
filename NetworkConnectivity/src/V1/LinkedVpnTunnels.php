@@ -26,8 +26,8 @@ class LinkedVpnTunnels extends \Google\Protobuf\Internal\Message
     private $uris;
     /**
      * A value that controls whether site-to-site data transfer is enabled for
-     * these resources. This field is set to false by default, but you must set it
-     * to true. Note that data transfer is available only in supported locations.
+     * these resources. Data transfer is available only in [supported
+     * locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      *
      * Generated from protobuf field <code>bool site_to_site_data_transfer = 2;</code>
      */
@@ -43,8 +43,8 @@ class LinkedVpnTunnels extends \Google\Protobuf\Internal\Message
      *           The URIs of linked VPN tunnel resources.
      *     @type bool $site_to_site_data_transfer
      *           A value that controls whether site-to-site data transfer is enabled for
-     *           these resources. This field is set to false by default, but you must set it
-     *           to true. Note that data transfer is available only in supported locations.
+     *           these resources. Data transfer is available only in [supported
+     *           locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      * }
      */
     public function __construct($data = NULL) {
@@ -80,8 +80,8 @@ class LinkedVpnTunnels extends \Google\Protobuf\Internal\Message
 
     /**
      * A value that controls whether site-to-site data transfer is enabled for
-     * these resources. This field is set to false by default, but you must set it
-     * to true. Note that data transfer is available only in supported locations.
+     * these resources. Data transfer is available only in [supported
+     * locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      *
      * Generated from protobuf field <code>bool site_to_site_data_transfer = 2;</code>
      * @return bool
@@ -93,8 +93,8 @@ class LinkedVpnTunnels extends \Google\Protobuf\Internal\Message
 
     /**
      * A value that controls whether site-to-site data transfer is enabled for
-     * these resources. This field is set to false by default, but you must set it
-     * to true. Note that data transfer is available only in supported locations.
+     * these resources. Data transfer is available only in [supported
+     * locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      *
      * Generated from protobuf field <code>bool site_to_site_data_transfer = 2;</code>
      * @param bool $var

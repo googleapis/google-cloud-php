@@ -66,7 +66,7 @@ class AppEngineHttpTarget extends \Google\Protobuf\Internal\Message
      */
     public function getAppEngineRoutingOverride()
     {
-        return isset($this->app_engine_routing_override) ? $this->app_engine_routing_override : null;
+        return $this->app_engine_routing_override;
     }
 
     public function hasAppEngineRoutingOverride()

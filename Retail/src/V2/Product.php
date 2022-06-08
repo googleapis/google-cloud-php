@@ -19,7 +19,6 @@ class Product extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. Full resource name of the product, such as
      * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`.
-     * The branch ID must be "default_branch".
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -32,9 +31,9 @@ class Product extends \Google\Protobuf\Internal\Message
      * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/id_1`.
      * This field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [id](https://support.google.com/merchants/answer/6324405). Schema.org
-     * Property [Product.sku](https://schema.org/sku).
+     * property [Product.sku](https://schema.org/sku).
      *
      * Generated from protobuf field <code>string id = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -59,12 +58,10 @@ class Product extends \Google\Protobuf\Internal\Message
      * [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]
      * [Product][google.cloud.retail.v2.Product]. Otherwise, an INVALID_ARGUMENT
      * error is returned.
-     * Google Merchant Center Property
+     * Corresponding properties: Google Merchant Center property
      * [item_group_id](https://support.google.com/merchants/answer/6324507).
-     * Schema.org Property
+     * Schema.org property
      * [Product.inProductGroupWithID](https://schema.org/inProductGroupWithID).
-     * This field must be enabled before it can be used. [Learn
-     * more](https://cloud.google.com/recommendations-ai/docs/catalog#item-group-id).
      *
      * Generated from protobuf field <code>string primary_product_id = 4;</code>
      */
@@ -73,8 +70,13 @@ class Product extends \Google\Protobuf\Internal\Message
      * The [id][google.cloud.retail.v2.Product.id] of the collection members when
      * [type][google.cloud.retail.v2.Product.type] is
      * [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION].
-     * Should not set it for other types. A maximum of 1000 values are allowed.
-     * Otherwise, an INVALID_ARGUMENT error is return.
+     * Non-existent product ids are allowed.
+     * The [type][google.cloud.retail.v2.Product.type] of the members must be
+     * either [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] or
+     * [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT] otherwise and
+     * INVALID_ARGUMENT error is thrown. Should not set it for other types. A
+     * maximum of 1000 values are allowed. Otherwise, an INVALID_ARGUMENT error is
+     * return.
      *
      * Generated from protobuf field <code>repeated string collection_member_ids = 5;</code>
      */
@@ -83,13 +85,15 @@ class Product extends \Google\Protobuf\Internal\Message
      * The Global Trade Item Number (GTIN) of the product.
      * This field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * This field must be a Unigram. Otherwise, an INVALID_ARGUMENT error is
+     * returned.
+     * Corresponding properties: Google Merchant Center property
      * [gtin](https://support.google.com/merchants/answer/6324461).
      * Schema.org property
-     * [Product.isbn](https://schema.org/isbn) or
-     * [Product.gtin8](https://schema.org/gtin8) or
-     * [Product.gtin12](https://schema.org/gtin12) or
-     * [Product.gtin13](https://schema.org/gtin13) or
+     * [Product.isbn](https://schema.org/isbn),
+     * [Product.gtin8](https://schema.org/gtin8),
+     * [Product.gtin12](https://schema.org/gtin12),
+     * [Product.gtin13](https://schema.org/gtin13), or
      * [Product.gtin14](https://schema.org/gtin14).
      * If the value is not a valid GTIN, an INVALID_ARGUMENT error is returned.
      *
@@ -118,7 +122,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * [Product][google.cloud.retail.v2.Product]. Empty values are not allowed.
      * Each value must be a UTF-8 encoded string with a length limit of 5,000
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [google_product_category][mc_google_product_category]. Schema.org property
      * [Product.category] (https://schema.org/category).
      * [mc_google_product_category]:
@@ -131,7 +135,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * Required. Product title.
      * This field must be a UTF-8 encoded string with a length limit of 1,000
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [title](https://support.google.com/merchants/answer/6324415). Schema.org
      * property [Product.name](https://schema.org/name).
      *
@@ -143,7 +147,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * A maximum of 30 brands are allowed. Each brand must be a UTF-8 encoded
      * string with a length limit of 1,000 characters. Otherwise, an
      * INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [brand](https://support.google.com/merchants/answer/6324351). Schema.org
      * property [Product.brand](https://schema.org/brand).
      *
@@ -154,16 +158,16 @@ class Product extends \Google\Protobuf\Internal\Message
      * Product description.
      * This field must be a UTF-8 encoded string with a length limit of 5,000
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [description](https://support.google.com/merchants/answer/6324468).
-     * schema.org property [Product.description](https://schema.org/description).
+     * Schema.org property [Product.description](https://schema.org/description).
      *
      * Generated from protobuf field <code>string description = 10;</code>
      */
     private $description = '';
     /**
      * Language of the title/description and other string attributes. Use language
-     * tags defined by [BCP 47][https://www.rfc-editor.org/rfc/bcp/bcp47.txt].
+     * tags defined by [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt).
      * For product prediction, this field is ignored and the model automatically
      * detects the text language. The [Product][google.cloud.retail.v2.Product]
      * can include text in different languages, but duplicating
@@ -189,15 +193,16 @@ class Product extends \Google\Protobuf\Internal\Message
      * }`.
      * This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT
      * error is returned:
-     * * Max entries count: 200 by default; 100 for
-     * [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT].
+     * * Max entries count: 200.
      * * The key must be a UTF-8 encoded string with a length limit of 128
      *   characters.
-     * * Max indexable entries count: 200 by default; 40 for
-     * [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT].
-     * * Max searchable entries count: 30.
      * * For indexable attribute, the key must match the pattern:
-     *   [a-zA-Z0-9][a-zA-Z0-9_]*. For example, key0LikeThis or KEY_1_LIKE_THIS.
+     *   `[a-zA-Z0-9][a-zA-Z0-9_]*`. For example, `key0LikeThis` or
+     *   `KEY_1_LIKE_THIS`.
+     * * For text attributes, at most 400 values are allowed. Empty values are not
+     *   allowed. Each value must be a non-empty UTF-8 encoded string with a
+     *   length limit of 256 characters.
+     * * For number attributes, at most 400 values are allowed.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.CustomAttribute> attributes = 12;</code>
      */
@@ -211,7 +216,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * This tag can be used for filtering recommendation results by passing the
      * tag as part of the
      * [PredictRequest.filter][google.cloud.retail.v2.PredictRequest.filter].
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [custom_label_0–4](https://support.google.com/merchants/answer/6324473).
      *
      * Generated from protobuf field <code>repeated string tags = 13;</code>
@@ -219,7 +224,7 @@ class Product extends \Google\Protobuf\Internal\Message
     private $tags;
     /**
      * Product price and cost information.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [price](https://support.google.com/merchants/answer/6324371).
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.PriceInfo price_info = 14;</code>
@@ -243,9 +248,9 @@ class Product extends \Google\Protobuf\Internal\Message
      * The online availability of the [Product][google.cloud.retail.v2.Product].
      * Default to
      * [Availability.IN_STOCK][google.cloud.retail.v2.Product.Availability.IN_STOCK].
-     * Google Merchant Center Property
+     * Corresponding properties: Google Merchant Center property
      * [availability](https://support.google.com/merchants/answer/6324448).
-     * Schema.org Property [Offer.availability](https://schema.org/availability).
+     * Schema.org property [Offer.availability](https://schema.org/availability).
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product.Availability availability = 19;</code>
      */
@@ -272,7 +277,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * otherwise the service performance could be significantly degraded.
      * This field must be a UTF-8 encoded string with a length limit of 5,000
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [link](https://support.google.com/merchants/answer/6324416). Schema.org
      * property [Offer.url](https://schema.org/url).
      *
@@ -280,10 +285,10 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     private $uri = '';
     /**
-     * Product images for the product.Highly recommended to put the main image
-     * to the first.
+     * Product images for the product. We highly recommend putting the main
+     * image first.
      * A maximum of 300 images are allowed.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [image_link](https://support.google.com/merchants/answer/6324350).
      * Schema.org property [Product.image](https://schema.org/image).
      *
@@ -299,7 +304,7 @@ class Product extends \Google\Protobuf\Internal\Message
     private $audience = null;
     /**
      * The color of the product.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [color](https://support.google.com/merchants/answer/6324487). Schema.org
      * property [Product.color](https://schema.org/color).
      *
@@ -317,9 +322,9 @@ class Product extends \Google\Protobuf\Internal\Message
      * [Product][google.cloud.retail.v2.Product]. Each value must be a UTF-8
      * encoded string with a length limit of 128 characters. Otherwise, an
      * INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [size](https://support.google.com/merchants/answer/6324492),
-     * [size_type](https://support.google.com/merchants/answer/6324497) and
+     * [size_type](https://support.google.com/merchants/answer/6324497), and
      * [size_system](https://support.google.com/merchants/answer/6324502).
      * Schema.org property [Product.size](https://schema.org/size).
      *
@@ -328,10 +333,10 @@ class Product extends \Google\Protobuf\Internal\Message
     private $sizes;
     /**
      * The material of the product. For example, "leather", "wooden".
-     * A maximum of 5 values are allowed. Each value must be a UTF-8 encoded
-     * string with a length limit of 128 characters. Otherwise, an
+     * A maximum of 20 values are allowed. Each value must be a UTF-8 encoded
+     * string with a length limit of 200 characters. Otherwise, an
      * INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [material](https://support.google.com/merchants/answer/6324410). Schema.org
      * property [Product.material](https://schema.org/material).
      *
@@ -341,11 +346,11 @@ class Product extends \Google\Protobuf\Internal\Message
     /**
      * The pattern or graphic print of the product. For example, "striped", "polka
      * dot", "paisley".
-     * A maximum of 5 values are allowed per
+     * A maximum of 20 values are allowed per
      * [Product][google.cloud.retail.v2.Product]. Each value must be a UTF-8
      * encoded string with a length limit of 128 characters. Otherwise, an
      * INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [pattern](https://support.google.com/merchants/answer/6324483). Schema.org
      * property [Product.pattern](https://schema.org/pattern).
      *
@@ -355,11 +360,11 @@ class Product extends \Google\Protobuf\Internal\Message
     /**
      * The condition of the product. Strongly encouraged to use the standard
      * values: "new", "refurbished", "used".
-     * A maximum of 5 values are allowed per
+     * A maximum of 1 value is allowed per
      * [Product][google.cloud.retail.v2.Product]. Each value must be a UTF-8
      * encoded string with a length limit of 128 characters. Otherwise, an
      * INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [condition](https://support.google.com/merchants/answer/6324469).
      * Schema.org property
      * [Offer.itemCondition](https://schema.org/itemCondition).
@@ -369,7 +374,9 @@ class Product extends \Google\Protobuf\Internal\Message
     private $conditions;
     /**
      * The promotions applied to the product. A maximum of 10 values are allowed
-     * per [Product][google.cloud.retail.v2.Product].
+     * per [Product][google.cloud.retail.v2.Product]. Only
+     * [Promotion.promotion_id][google.cloud.retail.v2.Promotion.promotion_id]
+     * will be used, other fields will be ignored if set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Promotion promotions = 34;</code>
      */
@@ -425,8 +432,11 @@ class Product extends \Google\Protobuf\Internal\Message
      * following fields are always returned in by default:
      * * [name][google.cloud.retail.v2.Product.name]
      * * [color_info][google.cloud.retail.v2.Product.color_info]
-     * Maximum number of paths is 20. Otherwise, an INVALID_ARGUMENT error is
+     * The maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is
      * returned.
+     * Note: Returning more fields in
+     * [SearchResponse][google.cloud.retail.v2.SearchResponse] can increase
+     * response payload size and serving latency.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask retrievable_fields = 30;</code>
      */
@@ -464,16 +474,20 @@ class Product extends \Google\Protobuf\Internal\Message
      *           [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
      *           and
      *           [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
-     *           Google Merchant Center property
+     *           [expire_time][google.cloud.retail.v2.Product.expire_time] must be later
+     *           than [available_time][google.cloud.retail.v2.Product.available_time] and
+     *           [publish_time][google.cloud.retail.v2.Product.publish_time], otherwise an
+     *           INVALID_ARGUMENT error is thrown.
+     *           Corresponding properties: Google Merchant Center property
      *           [expiration_date](https://support.google.com/merchants/answer/6324499).
      *     @type \Google\Protobuf\Duration $ttl
      *           Input only. The TTL (time to live) of the product.
-     *           If it is set, [expire_time][google.cloud.retail.v2.Product.expire_time]
-     *           is set as current timestamp plus
-     *           [ttl][google.cloud.retail.v2.Product.ttl]. The derived
-     *           [expire_time][google.cloud.retail.v2.Product.expire_time] is returned in
-     *           the output and [ttl][google.cloud.retail.v2.Product.ttl] is left blank
-     *           when retrieving the [Product][google.cloud.retail.v2.Product].
+     *           If it is set, it must be a non-negative value, and
+     *           [expire_time][google.cloud.retail.v2.Product.expire_time] is set as
+     *           current timestamp plus [ttl][google.cloud.retail.v2.Product.ttl]. The
+     *           derived [expire_time][google.cloud.retail.v2.Product.expire_time] is
+     *           returned in the output and [ttl][google.cloud.retail.v2.Product.ttl] is
+     *           left blank when retrieving the [Product][google.cloud.retail.v2.Product].
      *           If it is set, the product is not available for
      *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search] after
      *           current timestamp plus [ttl][google.cloud.retail.v2.Product.ttl].
@@ -484,7 +498,6 @@ class Product extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Immutable. Full resource name of the product, such as
      *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`.
-     *           The branch ID must be "default_branch".
      *     @type string $id
      *           Immutable. [Product][google.cloud.retail.v2.Product] identifier, which is
      *           the final component of [name][google.cloud.retail.v2.Product.name]. For
@@ -493,9 +506,9 @@ class Product extends \Google\Protobuf\Internal\Message
      *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/id_1`.
      *           This field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     *           Google Merchant Center property
+     *           Corresponding properties: Google Merchant Center property
      *           [id](https://support.google.com/merchants/answer/6324405). Schema.org
-     *           Property [Product.sku](https://schema.org/sku).
+     *           property [Product.sku](https://schema.org/sku).
      *     @type int $type
      *           Immutable. The type of the product. Default to
      *           [Catalog.product_level_config.ingestion_product_type][google.cloud.retail.v2.ProductLevelConfig.ingestion_product_type]
@@ -512,29 +525,34 @@ class Product extends \Google\Protobuf\Internal\Message
      *           [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]
      *           [Product][google.cloud.retail.v2.Product]. Otherwise, an INVALID_ARGUMENT
      *           error is returned.
-     *           Google Merchant Center Property
+     *           Corresponding properties: Google Merchant Center property
      *           [item_group_id](https://support.google.com/merchants/answer/6324507).
-     *           Schema.org Property
+     *           Schema.org property
      *           [Product.inProductGroupWithID](https://schema.org/inProductGroupWithID).
-     *           This field must be enabled before it can be used. [Learn
-     *           more](https://cloud.google.com/recommendations-ai/docs/catalog#item-group-id).
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $collection_member_ids
      *           The [id][google.cloud.retail.v2.Product.id] of the collection members when
      *           [type][google.cloud.retail.v2.Product.type] is
      *           [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION].
-     *           Should not set it for other types. A maximum of 1000 values are allowed.
-     *           Otherwise, an INVALID_ARGUMENT error is return.
+     *           Non-existent product ids are allowed.
+     *           The [type][google.cloud.retail.v2.Product.type] of the members must be
+     *           either [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] or
+     *           [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT] otherwise and
+     *           INVALID_ARGUMENT error is thrown. Should not set it for other types. A
+     *           maximum of 1000 values are allowed. Otherwise, an INVALID_ARGUMENT error is
+     *           return.
      *     @type string $gtin
      *           The Global Trade Item Number (GTIN) of the product.
      *           This field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     *           Google Merchant Center property
+     *           This field must be a Unigram. Otherwise, an INVALID_ARGUMENT error is
+     *           returned.
+     *           Corresponding properties: Google Merchant Center property
      *           [gtin](https://support.google.com/merchants/answer/6324461).
      *           Schema.org property
-     *           [Product.isbn](https://schema.org/isbn) or
-     *           [Product.gtin8](https://schema.org/gtin8) or
-     *           [Product.gtin12](https://schema.org/gtin12) or
-     *           [Product.gtin13](https://schema.org/gtin13) or
+     *           [Product.isbn](https://schema.org/isbn),
+     *           [Product.gtin8](https://schema.org/gtin8),
+     *           [Product.gtin12](https://schema.org/gtin12),
+     *           [Product.gtin13](https://schema.org/gtin13), or
      *           [Product.gtin14](https://schema.org/gtin14).
      *           If the value is not a valid GTIN, an INVALID_ARGUMENT error is returned.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $categories
@@ -559,7 +577,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           [Product][google.cloud.retail.v2.Product]. Empty values are not allowed.
      *           Each value must be a UTF-8 encoded string with a length limit of 5,000
      *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     *           Google Merchant Center property
+     *           Corresponding properties: Google Merchant Center property
      *           [google_product_category][mc_google_product_category]. Schema.org property
      *           [Product.category] (https://schema.org/category).
      *           [mc_google_product_category]:
@@ -568,7 +586,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           Required. Product title.
      *           This field must be a UTF-8 encoded string with a length limit of 1,000
      *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     *           Google Merchant Center property
+     *           Corresponding properties: Google Merchant Center property
      *           [title](https://support.google.com/merchants/answer/6324415). Schema.org
      *           property [Product.name](https://schema.org/name).
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $brands
@@ -576,19 +594,19 @@ class Product extends \Google\Protobuf\Internal\Message
      *           A maximum of 30 brands are allowed. Each brand must be a UTF-8 encoded
      *           string with a length limit of 1,000 characters. Otherwise, an
      *           INVALID_ARGUMENT error is returned.
-     *           Google Merchant Center property
+     *           Corresponding properties: Google Merchant Center property
      *           [brand](https://support.google.com/merchants/answer/6324351). Schema.org
      *           property [Product.brand](https://schema.org/brand).
      *     @type string $description
      *           Product description.
      *           This field must be a UTF-8 encoded string with a length limit of 5,000
      *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     *           Google Merchant Center property
+     *           Corresponding properties: Google Merchant Center property
      *           [description](https://support.google.com/merchants/answer/6324468).
-     *           schema.org property [Product.description](https://schema.org/description).
+     *           Schema.org property [Product.description](https://schema.org/description).
      *     @type string $language_code
      *           Language of the title/description and other string attributes. Use language
-     *           tags defined by [BCP 47][https://www.rfc-editor.org/rfc/bcp/bcp47.txt].
+     *           tags defined by [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt).
      *           For product prediction, this field is ignored and the model automatically
      *           detects the text language. The [Product][google.cloud.retail.v2.Product]
      *           can include text in different languages, but duplicating
@@ -610,15 +628,16 @@ class Product extends \Google\Protobuf\Internal\Message
      *           }`.
      *           This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT
      *           error is returned:
-     *           * Max entries count: 200 by default; 100 for
-     *           [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT].
+     *           * Max entries count: 200.
      *           * The key must be a UTF-8 encoded string with a length limit of 128
      *             characters.
-     *           * Max indexable entries count: 200 by default; 40 for
-     *           [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT].
-     *           * Max searchable entries count: 30.
      *           * For indexable attribute, the key must match the pattern:
-     *             [a-zA-Z0-9][a-zA-Z0-9_]*. For example, key0LikeThis or KEY_1_LIKE_THIS.
+     *             `[a-zA-Z0-9][a-zA-Z0-9_]*`. For example, `key0LikeThis` or
+     *             `KEY_1_LIKE_THIS`.
+     *           * For text attributes, at most 400 values are allowed. Empty values are not
+     *             allowed. Each value must be a non-empty UTF-8 encoded string with a
+     *             length limit of 256 characters.
+     *           * For number attributes, at most 400 values are allowed.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tags
      *           Custom tags associated with the product.
      *           At most 250 values are allowed per
@@ -628,11 +647,11 @@ class Product extends \Google\Protobuf\Internal\Message
      *           This tag can be used for filtering recommendation results by passing the
      *           tag as part of the
      *           [PredictRequest.filter][google.cloud.retail.v2.PredictRequest.filter].
-     *           Google Merchant Center property
+     *           Corresponding properties: Google Merchant Center property
      *           [custom_label_0–4](https://support.google.com/merchants/answer/6324473).
      *     @type \Google\Cloud\Retail\V2\PriceInfo $price_info
      *           Product price and cost information.
-     *           Google Merchant Center property
+     *           Corresponding properties: Google Merchant Center property
      *           [price](https://support.google.com/merchants/answer/6324371).
      *     @type \Google\Cloud\Retail\V2\Rating $rating
      *           The rating of this product.
@@ -644,9 +663,9 @@ class Product extends \Google\Protobuf\Internal\Message
      *           The online availability of the [Product][google.cloud.retail.v2.Product].
      *           Default to
      *           [Availability.IN_STOCK][google.cloud.retail.v2.Product.Availability.IN_STOCK].
-     *           Google Merchant Center Property
+     *           Corresponding properties: Google Merchant Center property
      *           [availability](https://support.google.com/merchants/answer/6324448).
-     *           Schema.org Property [Offer.availability](https://schema.org/availability).
+     *           Schema.org property [Offer.availability](https://schema.org/availability).
      *     @type \Google\Protobuf\Int32Value $available_quantity
      *           The available quantity of the item.
      *     @type \Google\Cloud\Retail\V2\FulfillmentInfo[]|\Google\Protobuf\Internal\RepeatedField $fulfillment_info
@@ -661,14 +680,14 @@ class Product extends \Google\Protobuf\Internal\Message
      *           otherwise the service performance could be significantly degraded.
      *           This field must be a UTF-8 encoded string with a length limit of 5,000
      *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     *           Google Merchant Center property
+     *           Corresponding properties: Google Merchant Center property
      *           [link](https://support.google.com/merchants/answer/6324416). Schema.org
      *           property [Offer.url](https://schema.org/url).
      *     @type \Google\Cloud\Retail\V2\Image[]|\Google\Protobuf\Internal\RepeatedField $images
-     *           Product images for the product.Highly recommended to put the main image
-     *           to the first.
+     *           Product images for the product. We highly recommend putting the main
+     *           image first.
      *           A maximum of 300 images are allowed.
-     *           Google Merchant Center property
+     *           Corresponding properties: Google Merchant Center property
      *           [image_link](https://support.google.com/merchants/answer/6324350).
      *           Schema.org property [Product.image](https://schema.org/image).
      *     @type \Google\Cloud\Retail\V2\Audience $audience
@@ -676,7 +695,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           car owners, musicians, etc.) of the product.
      *     @type \Google\Cloud\Retail\V2\ColorInfo $color_info
      *           The color of the product.
-     *           Google Merchant Center property
+     *           Corresponding properties: Google Merchant Center property
      *           [color](https://support.google.com/merchants/answer/6324487). Schema.org
      *           property [Product.color](https://schema.org/color).
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $sizes
@@ -690,43 +709,45 @@ class Product extends \Google\Protobuf\Internal\Message
      *           [Product][google.cloud.retail.v2.Product]. Each value must be a UTF-8
      *           encoded string with a length limit of 128 characters. Otherwise, an
      *           INVALID_ARGUMENT error is returned.
-     *           Google Merchant Center property
+     *           Corresponding properties: Google Merchant Center property
      *           [size](https://support.google.com/merchants/answer/6324492),
-     *           [size_type](https://support.google.com/merchants/answer/6324497) and
+     *           [size_type](https://support.google.com/merchants/answer/6324497), and
      *           [size_system](https://support.google.com/merchants/answer/6324502).
      *           Schema.org property [Product.size](https://schema.org/size).
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $materials
      *           The material of the product. For example, "leather", "wooden".
-     *           A maximum of 5 values are allowed. Each value must be a UTF-8 encoded
-     *           string with a length limit of 128 characters. Otherwise, an
+     *           A maximum of 20 values are allowed. Each value must be a UTF-8 encoded
+     *           string with a length limit of 200 characters. Otherwise, an
      *           INVALID_ARGUMENT error is returned.
-     *           Google Merchant Center property
+     *           Corresponding properties: Google Merchant Center property
      *           [material](https://support.google.com/merchants/answer/6324410). Schema.org
      *           property [Product.material](https://schema.org/material).
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $patterns
      *           The pattern or graphic print of the product. For example, "striped", "polka
      *           dot", "paisley".
-     *           A maximum of 5 values are allowed per
+     *           A maximum of 20 values are allowed per
      *           [Product][google.cloud.retail.v2.Product]. Each value must be a UTF-8
      *           encoded string with a length limit of 128 characters. Otherwise, an
      *           INVALID_ARGUMENT error is returned.
-     *           Google Merchant Center property
+     *           Corresponding properties: Google Merchant Center property
      *           [pattern](https://support.google.com/merchants/answer/6324483). Schema.org
      *           property [Product.pattern](https://schema.org/pattern).
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $conditions
      *           The condition of the product. Strongly encouraged to use the standard
      *           values: "new", "refurbished", "used".
-     *           A maximum of 5 values are allowed per
+     *           A maximum of 1 value is allowed per
      *           [Product][google.cloud.retail.v2.Product]. Each value must be a UTF-8
      *           encoded string with a length limit of 128 characters. Otherwise, an
      *           INVALID_ARGUMENT error is returned.
-     *           Google Merchant Center property
+     *           Corresponding properties: Google Merchant Center property
      *           [condition](https://support.google.com/merchants/answer/6324469).
      *           Schema.org property
      *           [Offer.itemCondition](https://schema.org/itemCondition).
      *     @type \Google\Cloud\Retail\V2\Promotion[]|\Google\Protobuf\Internal\RepeatedField $promotions
      *           The promotions applied to the product. A maximum of 10 values are allowed
-     *           per [Product][google.cloud.retail.v2.Product].
+     *           per [Product][google.cloud.retail.v2.Product]. Only
+     *           [Promotion.promotion_id][google.cloud.retail.v2.Promotion.promotion_id]
+     *           will be used, other fields will be ignored if set.
      *     @type \Google\Protobuf\Timestamp $publish_time
      *           The timestamp when the product is published by the retailer for the first
      *           time, which indicates the freshness of the products. Note that this field
@@ -774,8 +795,11 @@ class Product extends \Google\Protobuf\Internal\Message
      *           following fields are always returned in by default:
      *           * [name][google.cloud.retail.v2.Product.name]
      *           * [color_info][google.cloud.retail.v2.Product.color_info]
-     *           Maximum number of paths is 20. Otherwise, an INVALID_ARGUMENT error is
+     *           The maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is
      *           returned.
+     *           Note: Returning more fields in
+     *           [SearchResponse][google.cloud.retail.v2.SearchResponse] can increase
+     *           response payload size and serving latency.
      *     @type \Google\Cloud\Retail\V2\Product[]|\Google\Protobuf\Internal\RepeatedField $variants
      *           Output only. Product variants grouped together on primary product which
      *           share similar product attributes. It's automatically grouped by
@@ -804,7 +828,11 @@ class Product extends \Google\Protobuf\Internal\Message
      * [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
      * and
      * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
-     * Google Merchant Center property
+     * [expire_time][google.cloud.retail.v2.Product.expire_time] must be later
+     * than [available_time][google.cloud.retail.v2.Product.available_time] and
+     * [publish_time][google.cloud.retail.v2.Product.publish_time], otherwise an
+     * INVALID_ARGUMENT error is thrown.
+     * Corresponding properties: Google Merchant Center property
      * [expiration_date](https://support.google.com/merchants/answer/6324499).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 16;</code>
@@ -831,7 +859,11 @@ class Product extends \Google\Protobuf\Internal\Message
      * [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
      * and
      * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
-     * Google Merchant Center property
+     * [expire_time][google.cloud.retail.v2.Product.expire_time] must be later
+     * than [available_time][google.cloud.retail.v2.Product.available_time] and
+     * [publish_time][google.cloud.retail.v2.Product.publish_time], otherwise an
+     * INVALID_ARGUMENT error is thrown.
+     * Corresponding properties: Google Merchant Center property
      * [expiration_date](https://support.google.com/merchants/answer/6324499).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 16;</code>
@@ -848,12 +880,12 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * Input only. The TTL (time to live) of the product.
-     * If it is set, [expire_time][google.cloud.retail.v2.Product.expire_time]
-     * is set as current timestamp plus
-     * [ttl][google.cloud.retail.v2.Product.ttl]. The derived
-     * [expire_time][google.cloud.retail.v2.Product.expire_time] is returned in
-     * the output and [ttl][google.cloud.retail.v2.Product.ttl] is left blank
-     * when retrieving the [Product][google.cloud.retail.v2.Product].
+     * If it is set, it must be a non-negative value, and
+     * [expire_time][google.cloud.retail.v2.Product.expire_time] is set as
+     * current timestamp plus [ttl][google.cloud.retail.v2.Product.ttl]. The
+     * derived [expire_time][google.cloud.retail.v2.Product.expire_time] is
+     * returned in the output and [ttl][google.cloud.retail.v2.Product.ttl] is
+     * left blank when retrieving the [Product][google.cloud.retail.v2.Product].
      * If it is set, the product is not available for
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search] after
      * current timestamp plus [ttl][google.cloud.retail.v2.Product.ttl].
@@ -877,12 +909,12 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * Input only. The TTL (time to live) of the product.
-     * If it is set, [expire_time][google.cloud.retail.v2.Product.expire_time]
-     * is set as current timestamp plus
-     * [ttl][google.cloud.retail.v2.Product.ttl]. The derived
-     * [expire_time][google.cloud.retail.v2.Product.expire_time] is returned in
-     * the output and [ttl][google.cloud.retail.v2.Product.ttl] is left blank
-     * when retrieving the [Product][google.cloud.retail.v2.Product].
+     * If it is set, it must be a non-negative value, and
+     * [expire_time][google.cloud.retail.v2.Product.expire_time] is set as
+     * current timestamp plus [ttl][google.cloud.retail.v2.Product.ttl]. The
+     * derived [expire_time][google.cloud.retail.v2.Product.expire_time] is
+     * returned in the output and [ttl][google.cloud.retail.v2.Product.ttl] is
+     * left blank when retrieving the [Product][google.cloud.retail.v2.Product].
      * If it is set, the product is not available for
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search] after
      * current timestamp plus [ttl][google.cloud.retail.v2.Product.ttl].
@@ -906,7 +938,6 @@ class Product extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. Full resource name of the product, such as
      * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`.
-     * The branch ID must be "default_branch".
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -919,7 +950,6 @@ class Product extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. Full resource name of the product, such as
      * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`.
-     * The branch ID must be "default_branch".
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -941,9 +971,9 @@ class Product extends \Google\Protobuf\Internal\Message
      * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/id_1`.
      * This field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [id](https://support.google.com/merchants/answer/6324405). Schema.org
-     * Property [Product.sku](https://schema.org/sku).
+     * property [Product.sku](https://schema.org/sku).
      *
      * Generated from protobuf field <code>string id = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -961,9 +991,9 @@ class Product extends \Google\Protobuf\Internal\Message
      * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/id_1`.
      * This field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [id](https://support.google.com/merchants/answer/6324405). Schema.org
-     * Property [Product.sku](https://schema.org/sku).
+     * property [Product.sku](https://schema.org/sku).
      *
      * Generated from protobuf field <code>string id = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -1019,12 +1049,10 @@ class Product extends \Google\Protobuf\Internal\Message
      * [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]
      * [Product][google.cloud.retail.v2.Product]. Otherwise, an INVALID_ARGUMENT
      * error is returned.
-     * Google Merchant Center Property
+     * Corresponding properties: Google Merchant Center property
      * [item_group_id](https://support.google.com/merchants/answer/6324507).
-     * Schema.org Property
+     * Schema.org property
      * [Product.inProductGroupWithID](https://schema.org/inProductGroupWithID).
-     * This field must be enabled before it can be used. [Learn
-     * more](https://cloud.google.com/recommendations-ai/docs/catalog#item-group-id).
      *
      * Generated from protobuf field <code>string primary_product_id = 4;</code>
      * @return string
@@ -1046,12 +1074,10 @@ class Product extends \Google\Protobuf\Internal\Message
      * [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY]
      * [Product][google.cloud.retail.v2.Product]. Otherwise, an INVALID_ARGUMENT
      * error is returned.
-     * Google Merchant Center Property
+     * Corresponding properties: Google Merchant Center property
      * [item_group_id](https://support.google.com/merchants/answer/6324507).
-     * Schema.org Property
+     * Schema.org property
      * [Product.inProductGroupWithID](https://schema.org/inProductGroupWithID).
-     * This field must be enabled before it can be used. [Learn
-     * more](https://cloud.google.com/recommendations-ai/docs/catalog#item-group-id).
      *
      * Generated from protobuf field <code>string primary_product_id = 4;</code>
      * @param string $var
@@ -1069,8 +1095,13 @@ class Product extends \Google\Protobuf\Internal\Message
      * The [id][google.cloud.retail.v2.Product.id] of the collection members when
      * [type][google.cloud.retail.v2.Product.type] is
      * [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION].
-     * Should not set it for other types. A maximum of 1000 values are allowed.
-     * Otherwise, an INVALID_ARGUMENT error is return.
+     * Non-existent product ids are allowed.
+     * The [type][google.cloud.retail.v2.Product.type] of the members must be
+     * either [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] or
+     * [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT] otherwise and
+     * INVALID_ARGUMENT error is thrown. Should not set it for other types. A
+     * maximum of 1000 values are allowed. Otherwise, an INVALID_ARGUMENT error is
+     * return.
      *
      * Generated from protobuf field <code>repeated string collection_member_ids = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1084,8 +1115,13 @@ class Product extends \Google\Protobuf\Internal\Message
      * The [id][google.cloud.retail.v2.Product.id] of the collection members when
      * [type][google.cloud.retail.v2.Product.type] is
      * [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION].
-     * Should not set it for other types. A maximum of 1000 values are allowed.
-     * Otherwise, an INVALID_ARGUMENT error is return.
+     * Non-existent product ids are allowed.
+     * The [type][google.cloud.retail.v2.Product.type] of the members must be
+     * either [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] or
+     * [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT] otherwise and
+     * INVALID_ARGUMENT error is thrown. Should not set it for other types. A
+     * maximum of 1000 values are allowed. Otherwise, an INVALID_ARGUMENT error is
+     * return.
      *
      * Generated from protobuf field <code>repeated string collection_member_ids = 5;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -1103,13 +1139,15 @@ class Product extends \Google\Protobuf\Internal\Message
      * The Global Trade Item Number (GTIN) of the product.
      * This field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * This field must be a Unigram. Otherwise, an INVALID_ARGUMENT error is
+     * returned.
+     * Corresponding properties: Google Merchant Center property
      * [gtin](https://support.google.com/merchants/answer/6324461).
      * Schema.org property
-     * [Product.isbn](https://schema.org/isbn) or
-     * [Product.gtin8](https://schema.org/gtin8) or
-     * [Product.gtin12](https://schema.org/gtin12) or
-     * [Product.gtin13](https://schema.org/gtin13) or
+     * [Product.isbn](https://schema.org/isbn),
+     * [Product.gtin8](https://schema.org/gtin8),
+     * [Product.gtin12](https://schema.org/gtin12),
+     * [Product.gtin13](https://schema.org/gtin13), or
      * [Product.gtin14](https://schema.org/gtin14).
      * If the value is not a valid GTIN, an INVALID_ARGUMENT error is returned.
      *
@@ -1125,13 +1163,15 @@ class Product extends \Google\Protobuf\Internal\Message
      * The Global Trade Item Number (GTIN) of the product.
      * This field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * This field must be a Unigram. Otherwise, an INVALID_ARGUMENT error is
+     * returned.
+     * Corresponding properties: Google Merchant Center property
      * [gtin](https://support.google.com/merchants/answer/6324461).
      * Schema.org property
-     * [Product.isbn](https://schema.org/isbn) or
-     * [Product.gtin8](https://schema.org/gtin8) or
-     * [Product.gtin12](https://schema.org/gtin12) or
-     * [Product.gtin13](https://schema.org/gtin13) or
+     * [Product.isbn](https://schema.org/isbn),
+     * [Product.gtin8](https://schema.org/gtin8),
+     * [Product.gtin12](https://schema.org/gtin12),
+     * [Product.gtin13](https://schema.org/gtin13), or
      * [Product.gtin14](https://schema.org/gtin14).
      * If the value is not a valid GTIN, an INVALID_ARGUMENT error is returned.
      *
@@ -1169,7 +1209,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * [Product][google.cloud.retail.v2.Product]. Empty values are not allowed.
      * Each value must be a UTF-8 encoded string with a length limit of 5,000
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [google_product_category][mc_google_product_category]. Schema.org property
      * [Product.category] (https://schema.org/category).
      * [mc_google_product_category]:
@@ -1205,7 +1245,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * [Product][google.cloud.retail.v2.Product]. Empty values are not allowed.
      * Each value must be a UTF-8 encoded string with a length limit of 5,000
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [google_product_category][mc_google_product_category]. Schema.org property
      * [Product.category] (https://schema.org/category).
      * [mc_google_product_category]:
@@ -1227,7 +1267,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * Required. Product title.
      * This field must be a UTF-8 encoded string with a length limit of 1,000
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [title](https://support.google.com/merchants/answer/6324415). Schema.org
      * property [Product.name](https://schema.org/name).
      *
@@ -1243,7 +1283,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * Required. Product title.
      * This field must be a UTF-8 encoded string with a length limit of 1,000
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [title](https://support.google.com/merchants/answer/6324415). Schema.org
      * property [Product.name](https://schema.org/name).
      *
@@ -1264,7 +1304,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * A maximum of 30 brands are allowed. Each brand must be a UTF-8 encoded
      * string with a length limit of 1,000 characters. Otherwise, an
      * INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [brand](https://support.google.com/merchants/answer/6324351). Schema.org
      * property [Product.brand](https://schema.org/brand).
      *
@@ -1281,7 +1321,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * A maximum of 30 brands are allowed. Each brand must be a UTF-8 encoded
      * string with a length limit of 1,000 characters. Otherwise, an
      * INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [brand](https://support.google.com/merchants/answer/6324351). Schema.org
      * property [Product.brand](https://schema.org/brand).
      *
@@ -1301,9 +1341,9 @@ class Product extends \Google\Protobuf\Internal\Message
      * Product description.
      * This field must be a UTF-8 encoded string with a length limit of 5,000
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [description](https://support.google.com/merchants/answer/6324468).
-     * schema.org property [Product.description](https://schema.org/description).
+     * Schema.org property [Product.description](https://schema.org/description).
      *
      * Generated from protobuf field <code>string description = 10;</code>
      * @return string
@@ -1317,9 +1357,9 @@ class Product extends \Google\Protobuf\Internal\Message
      * Product description.
      * This field must be a UTF-8 encoded string with a length limit of 5,000
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [description](https://support.google.com/merchants/answer/6324468).
-     * schema.org property [Product.description](https://schema.org/description).
+     * Schema.org property [Product.description](https://schema.org/description).
      *
      * Generated from protobuf field <code>string description = 10;</code>
      * @param string $var
@@ -1335,7 +1375,7 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * Language of the title/description and other string attributes. Use language
-     * tags defined by [BCP 47][https://www.rfc-editor.org/rfc/bcp/bcp47.txt].
+     * tags defined by [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt).
      * For product prediction, this field is ignored and the model automatically
      * detects the text language. The [Product][google.cloud.retail.v2.Product]
      * can include text in different languages, but duplicating
@@ -1353,7 +1393,7 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * Language of the title/description and other string attributes. Use language
-     * tags defined by [BCP 47][https://www.rfc-editor.org/rfc/bcp/bcp47.txt].
+     * tags defined by [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt).
      * For product prediction, this field is ignored and the model automatically
      * detects the text language. The [Product][google.cloud.retail.v2.Product]
      * can include text in different languages, but duplicating
@@ -1388,15 +1428,16 @@ class Product extends \Google\Protobuf\Internal\Message
      * }`.
      * This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT
      * error is returned:
-     * * Max entries count: 200 by default; 100 for
-     * [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT].
+     * * Max entries count: 200.
      * * The key must be a UTF-8 encoded string with a length limit of 128
      *   characters.
-     * * Max indexable entries count: 200 by default; 40 for
-     * [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT].
-     * * Max searchable entries count: 30.
      * * For indexable attribute, the key must match the pattern:
-     *   [a-zA-Z0-9][a-zA-Z0-9_]*. For example, key0LikeThis or KEY_1_LIKE_THIS.
+     *   `[a-zA-Z0-9][a-zA-Z0-9_]*`. For example, `key0LikeThis` or
+     *   `KEY_1_LIKE_THIS`.
+     * * For text attributes, at most 400 values are allowed. Empty values are not
+     *   allowed. Each value must be a non-empty UTF-8 encoded string with a
+     *   length limit of 256 characters.
+     * * For number attributes, at most 400 values are allowed.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.CustomAttribute> attributes = 12;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -1421,15 +1462,16 @@ class Product extends \Google\Protobuf\Internal\Message
      * }`.
      * This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT
      * error is returned:
-     * * Max entries count: 200 by default; 100 for
-     * [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT].
+     * * Max entries count: 200.
      * * The key must be a UTF-8 encoded string with a length limit of 128
      *   characters.
-     * * Max indexable entries count: 200 by default; 40 for
-     * [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT].
-     * * Max searchable entries count: 30.
      * * For indexable attribute, the key must match the pattern:
-     *   [a-zA-Z0-9][a-zA-Z0-9_]*. For example, key0LikeThis or KEY_1_LIKE_THIS.
+     *   `[a-zA-Z0-9][a-zA-Z0-9_]*`. For example, `key0LikeThis` or
+     *   `KEY_1_LIKE_THIS`.
+     * * For text attributes, at most 400 values are allowed. Empty values are not
+     *   allowed. Each value must be a non-empty UTF-8 encoded string with a
+     *   length limit of 256 characters.
+     * * For number attributes, at most 400 values are allowed.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.CustomAttribute> attributes = 12;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -1452,7 +1494,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * This tag can be used for filtering recommendation results by passing the
      * tag as part of the
      * [PredictRequest.filter][google.cloud.retail.v2.PredictRequest.filter].
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [custom_label_0–4](https://support.google.com/merchants/answer/6324473).
      *
      * Generated from protobuf field <code>repeated string tags = 13;</code>
@@ -1472,7 +1514,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * This tag can be used for filtering recommendation results by passing the
      * tag as part of the
      * [PredictRequest.filter][google.cloud.retail.v2.PredictRequest.filter].
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [custom_label_0–4](https://support.google.com/merchants/answer/6324473).
      *
      * Generated from protobuf field <code>repeated string tags = 13;</code>
@@ -1489,7 +1531,7 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * Product price and cost information.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [price](https://support.google.com/merchants/answer/6324371).
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.PriceInfo price_info = 14;</code>
@@ -1497,7 +1539,7 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     public function getPriceInfo()
     {
-        return isset($this->price_info) ? $this->price_info : null;
+        return $this->price_info;
     }
 
     public function hasPriceInfo()
@@ -1512,7 +1554,7 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * Product price and cost information.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [price](https://support.google.com/merchants/answer/6324371).
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.PriceInfo price_info = 14;</code>
@@ -1535,7 +1577,7 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     public function getRating()
     {
-        return isset($this->rating) ? $this->rating : null;
+        return $this->rating;
     }
 
     public function hasRating()
@@ -1573,7 +1615,7 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     public function getAvailableTime()
     {
-        return isset($this->available_time) ? $this->available_time : null;
+        return $this->available_time;
     }
 
     public function hasAvailableTime()
@@ -1607,9 +1649,9 @@ class Product extends \Google\Protobuf\Internal\Message
      * The online availability of the [Product][google.cloud.retail.v2.Product].
      * Default to
      * [Availability.IN_STOCK][google.cloud.retail.v2.Product.Availability.IN_STOCK].
-     * Google Merchant Center Property
+     * Corresponding properties: Google Merchant Center property
      * [availability](https://support.google.com/merchants/answer/6324448).
-     * Schema.org Property [Offer.availability](https://schema.org/availability).
+     * Schema.org property [Offer.availability](https://schema.org/availability).
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product.Availability availability = 19;</code>
      * @return int
@@ -1623,9 +1665,9 @@ class Product extends \Google\Protobuf\Internal\Message
      * The online availability of the [Product][google.cloud.retail.v2.Product].
      * Default to
      * [Availability.IN_STOCK][google.cloud.retail.v2.Product.Availability.IN_STOCK].
-     * Google Merchant Center Property
+     * Corresponding properties: Google Merchant Center property
      * [availability](https://support.google.com/merchants/answer/6324448).
-     * Schema.org Property [Offer.availability](https://schema.org/availability).
+     * Schema.org property [Offer.availability](https://schema.org/availability).
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product.Availability availability = 19;</code>
      * @param int $var
@@ -1647,7 +1689,7 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     public function getAvailableQuantity()
     {
-        return isset($this->available_quantity) ? $this->available_quantity : null;
+        return $this->available_quantity;
     }
 
     public function hasAvailableQuantity()
@@ -1742,7 +1784,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * otherwise the service performance could be significantly degraded.
      * This field must be a UTF-8 encoded string with a length limit of 5,000
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [link](https://support.google.com/merchants/answer/6324416). Schema.org
      * property [Offer.url](https://schema.org/url).
      *
@@ -1760,7 +1802,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * otherwise the service performance could be significantly degraded.
      * This field must be a UTF-8 encoded string with a length limit of 5,000
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [link](https://support.google.com/merchants/answer/6324416). Schema.org
      * property [Offer.url](https://schema.org/url).
      *
@@ -1777,10 +1819,10 @@ class Product extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Product images for the product.Highly recommended to put the main image
-     * to the first.
+     * Product images for the product. We highly recommend putting the main
+     * image first.
      * A maximum of 300 images are allowed.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [image_link](https://support.google.com/merchants/answer/6324350).
      * Schema.org property [Product.image](https://schema.org/image).
      *
@@ -1793,10 +1835,10 @@ class Product extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Product images for the product.Highly recommended to put the main image
-     * to the first.
+     * Product images for the product. We highly recommend putting the main
+     * image first.
      * A maximum of 300 images are allowed.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [image_link](https://support.google.com/merchants/answer/6324350).
      * Schema.org property [Product.image](https://schema.org/image).
      *
@@ -1821,7 +1863,7 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     public function getAudience()
     {
-        return isset($this->audience) ? $this->audience : null;
+        return $this->audience;
     }
 
     public function hasAudience()
@@ -1852,7 +1894,7 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * The color of the product.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [color](https://support.google.com/merchants/answer/6324487). Schema.org
      * property [Product.color](https://schema.org/color).
      *
@@ -1861,7 +1903,7 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     public function getColorInfo()
     {
-        return isset($this->color_info) ? $this->color_info : null;
+        return $this->color_info;
     }
 
     public function hasColorInfo()
@@ -1876,7 +1918,7 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * The color of the product.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [color](https://support.google.com/merchants/answer/6324487). Schema.org
      * property [Product.color](https://schema.org/color).
      *
@@ -1903,9 +1945,9 @@ class Product extends \Google\Protobuf\Internal\Message
      * [Product][google.cloud.retail.v2.Product]. Each value must be a UTF-8
      * encoded string with a length limit of 128 characters. Otherwise, an
      * INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [size](https://support.google.com/merchants/answer/6324492),
-     * [size_type](https://support.google.com/merchants/answer/6324497) and
+     * [size_type](https://support.google.com/merchants/answer/6324497), and
      * [size_system](https://support.google.com/merchants/answer/6324502).
      * Schema.org property [Product.size](https://schema.org/size).
      *
@@ -1928,9 +1970,9 @@ class Product extends \Google\Protobuf\Internal\Message
      * [Product][google.cloud.retail.v2.Product]. Each value must be a UTF-8
      * encoded string with a length limit of 128 characters. Otherwise, an
      * INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [size](https://support.google.com/merchants/answer/6324492),
-     * [size_type](https://support.google.com/merchants/answer/6324497) and
+     * [size_type](https://support.google.com/merchants/answer/6324497), and
      * [size_system](https://support.google.com/merchants/answer/6324502).
      * Schema.org property [Product.size](https://schema.org/size).
      *
@@ -1948,10 +1990,10 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * The material of the product. For example, "leather", "wooden".
-     * A maximum of 5 values are allowed. Each value must be a UTF-8 encoded
-     * string with a length limit of 128 characters. Otherwise, an
+     * A maximum of 20 values are allowed. Each value must be a UTF-8 encoded
+     * string with a length limit of 200 characters. Otherwise, an
      * INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [material](https://support.google.com/merchants/answer/6324410). Schema.org
      * property [Product.material](https://schema.org/material).
      *
@@ -1965,10 +2007,10 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * The material of the product. For example, "leather", "wooden".
-     * A maximum of 5 values are allowed. Each value must be a UTF-8 encoded
-     * string with a length limit of 128 characters. Otherwise, an
+     * A maximum of 20 values are allowed. Each value must be a UTF-8 encoded
+     * string with a length limit of 200 characters. Otherwise, an
      * INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [material](https://support.google.com/merchants/answer/6324410). Schema.org
      * property [Product.material](https://schema.org/material).
      *
@@ -1987,11 +2029,11 @@ class Product extends \Google\Protobuf\Internal\Message
     /**
      * The pattern or graphic print of the product. For example, "striped", "polka
      * dot", "paisley".
-     * A maximum of 5 values are allowed per
+     * A maximum of 20 values are allowed per
      * [Product][google.cloud.retail.v2.Product]. Each value must be a UTF-8
      * encoded string with a length limit of 128 characters. Otherwise, an
      * INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [pattern](https://support.google.com/merchants/answer/6324483). Schema.org
      * property [Product.pattern](https://schema.org/pattern).
      *
@@ -2006,11 +2048,11 @@ class Product extends \Google\Protobuf\Internal\Message
     /**
      * The pattern or graphic print of the product. For example, "striped", "polka
      * dot", "paisley".
-     * A maximum of 5 values are allowed per
+     * A maximum of 20 values are allowed per
      * [Product][google.cloud.retail.v2.Product]. Each value must be a UTF-8
      * encoded string with a length limit of 128 characters. Otherwise, an
      * INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [pattern](https://support.google.com/merchants/answer/6324483). Schema.org
      * property [Product.pattern](https://schema.org/pattern).
      *
@@ -2029,11 +2071,11 @@ class Product extends \Google\Protobuf\Internal\Message
     /**
      * The condition of the product. Strongly encouraged to use the standard
      * values: "new", "refurbished", "used".
-     * A maximum of 5 values are allowed per
+     * A maximum of 1 value is allowed per
      * [Product][google.cloud.retail.v2.Product]. Each value must be a UTF-8
      * encoded string with a length limit of 128 characters. Otherwise, an
      * INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [condition](https://support.google.com/merchants/answer/6324469).
      * Schema.org property
      * [Offer.itemCondition](https://schema.org/itemCondition).
@@ -2049,11 +2091,11 @@ class Product extends \Google\Protobuf\Internal\Message
     /**
      * The condition of the product. Strongly encouraged to use the standard
      * values: "new", "refurbished", "used".
-     * A maximum of 5 values are allowed per
+     * A maximum of 1 value is allowed per
      * [Product][google.cloud.retail.v2.Product]. Each value must be a UTF-8
      * encoded string with a length limit of 128 characters. Otherwise, an
      * INVALID_ARGUMENT error is returned.
-     * Google Merchant Center property
+     * Corresponding properties: Google Merchant Center property
      * [condition](https://support.google.com/merchants/answer/6324469).
      * Schema.org property
      * [Offer.itemCondition](https://schema.org/itemCondition).
@@ -2072,7 +2114,9 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * The promotions applied to the product. A maximum of 10 values are allowed
-     * per [Product][google.cloud.retail.v2.Product].
+     * per [Product][google.cloud.retail.v2.Product]. Only
+     * [Promotion.promotion_id][google.cloud.retail.v2.Promotion.promotion_id]
+     * will be used, other fields will be ignored if set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Promotion promotions = 34;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -2084,7 +2128,9 @@ class Product extends \Google\Protobuf\Internal\Message
 
     /**
      * The promotions applied to the product. A maximum of 10 values are allowed
-     * per [Product][google.cloud.retail.v2.Product].
+     * per [Product][google.cloud.retail.v2.Product]. Only
+     * [Promotion.promotion_id][google.cloud.retail.v2.Promotion.promotion_id]
+     * will be used, other fields will be ignored if set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Promotion promotions = 34;</code>
      * @param \Google\Cloud\Retail\V2\Promotion[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -2111,7 +2157,7 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     public function getPublishTime()
     {
-        return isset($this->publish_time) ? $this->publish_time : null;
+        return $this->publish_time;
     }
 
     public function hasPublishTime()
@@ -2184,15 +2230,18 @@ class Product extends \Google\Protobuf\Internal\Message
      * following fields are always returned in by default:
      * * [name][google.cloud.retail.v2.Product.name]
      * * [color_info][google.cloud.retail.v2.Product.color_info]
-     * Maximum number of paths is 20. Otherwise, an INVALID_ARGUMENT error is
+     * The maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is
      * returned.
+     * Note: Returning more fields in
+     * [SearchResponse][google.cloud.retail.v2.SearchResponse] can increase
+     * response payload size and serving latency.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask retrievable_fields = 30;</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getRetrievableFields()
     {
-        return isset($this->retrievable_fields) ? $this->retrievable_fields : null;
+        return $this->retrievable_fields;
     }
 
     public function hasRetrievableFields()
@@ -2245,8 +2294,11 @@ class Product extends \Google\Protobuf\Internal\Message
      * following fields are always returned in by default:
      * * [name][google.cloud.retail.v2.Product.name]
      * * [color_info][google.cloud.retail.v2.Product.color_info]
-     * Maximum number of paths is 20. Otherwise, an INVALID_ARGUMENT error is
+     * The maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is
      * returned.
+     * Note: Returning more fields in
+     * [SearchResponse][google.cloud.retail.v2.SearchResponse] can increase
+     * response payload size and serving latency.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask retrievable_fields = 30;</code>
      * @param \Google\Protobuf\FieldMask $var

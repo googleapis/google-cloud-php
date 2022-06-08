@@ -117,6 +117,4 @@ class CheckInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CheckInfo::class, \Google\Cloud\ServiceControl\V1\CheckResponse_CheckInfo::class);
 

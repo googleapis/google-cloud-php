@@ -169,6 +169,4 @@ class DsRecord extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DsRecord::class, \Google\Cloud\Domains\V1alpha2\DnsSettings_DsRecord::class);
 

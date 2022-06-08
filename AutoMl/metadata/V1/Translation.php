@@ -16,11 +16,10 @@ class Translation
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1\DataItems::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-«
-(google/cloud/automl/v1/translation.protogoogle.cloud.automl.v1\'google/cloud/automl/v1/data_items.protogoogle/api/annotations.proto"b
+©
+(google/cloud/automl/v1/translation.protogoogle.cloud.automl.v1\'google/cloud/automl/v1/data_items.proto"b
 TranslationDatasetMetadata!
 source_language_code (	B‡A!
 target_language_code (	B‡A"K

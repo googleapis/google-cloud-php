@@ -7,8 +7,6 @@ namespace Google\Cloud\Sql\V1beta4;
 use UnexpectedValueException;
 
 /**
- * LINT.IfChange(sql_flag_type)
- *
  * Protobuf type <code>google.cloud.sql.v1beta4.SqlFlagType</code>
  */
 class SqlFlagType

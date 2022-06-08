@@ -393,20 +393,9 @@ return [
             ],
         ],
         'google.longrunning.Operations' => [
-            'ListOperations' => [
+            'CancelOperation' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*}/operations',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}',
+                'uriTemplate' => '/v1beta1/{name=projects/*/operations/*}:cancel',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -417,7 +406,7 @@ return [
             ],
             'DeleteOperation' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}',
+                'uriTemplate' => '/v1beta1/{name=projects/*/operations/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -426,9 +415,20 @@ return [
                     ],
                 ],
             ],
-            'CancelOperation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}:cancel',
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*}/operations',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

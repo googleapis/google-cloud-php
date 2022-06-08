@@ -61,6 +61,4 @@ class AttackVector
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AttackVector::class, \Grafeas\V1\CVSSv3_AttackVector::class);
 

@@ -20,14 +20,20 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
+     * Address is being used by another resource and is not available.
+     *
      * Generated from protobuf enum <code>IN_USE = 17393485;</code>
      */
     const IN_USE = 17393485;
     /**
+     * Address is reserved and available to use.
+     *
      * Generated from protobuf enum <code>RESERVED = 432241448;</code>
      */
     const RESERVED = 432241448;
     /**
+     * Address is being reserved.
+     *
      * Generated from protobuf enum <code>RESERVING = 514587225;</code>
      */
     const RESERVING = 514587225;

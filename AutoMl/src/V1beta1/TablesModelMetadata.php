@@ -286,7 +286,7 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getTargetColumnSpec()
     {
-        return isset($this->target_column_spec) ? $this->target_column_spec : null;
+        return $this->target_column_spec;
     }
 
     public function hasTargetColumnSpec()

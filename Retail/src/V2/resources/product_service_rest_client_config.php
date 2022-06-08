@@ -15,6 +15,18 @@ return [
                     ],
                 ],
             ],
+            'AddLocalInventories' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{product=projects/*/locations/*/catalogs/*/branches/*/products/**}:addLocalInventories',
+                'body' => '*',
+                'placeholders' => [
+                    'product' => [
+                        'getters' => [
+                            'getProduct',
+                        ],
+                    ],
+                ],
+            ],
             'CreateProduct' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*/branches/*}/products',
@@ -25,6 +37,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'product_id',
                 ],
             ],
             'DeleteProduct' => [
@@ -84,6 +99,18 @@ return [
                     ],
                 ],
             ],
+            'RemoveLocalInventories' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{product=projects/*/locations/*/catalogs/*/branches/*/products/**}:removeLocalInventories',
+                'body' => '*',
+                'placeholders' => [
+                    'product' => [
+                        'getters' => [
+                            'getProduct',
+                        ],
+                    ],
+                ],
+            ],
             'SetInventory' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{inventory.name=projects/*/locations/*/catalogs/*/branches/*/products/**}:setInventory',
@@ -118,11 +145,15 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/branches/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/operations/*}',
                     ],
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*/branches/*/operations/*}',
+                        'uriTemplate' => '/v2/{name=projects/*/operations/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -140,6 +171,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/catalogs/*}/operations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*}/operations',
                     ],
                 ],
                 'placeholders' => [

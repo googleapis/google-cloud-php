@@ -21,6 +21,14 @@ class DismissDecision extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp dismiss_time = 1;</code>
      */
     private $dismiss_time = null;
+    /**
+     * This field will be true if the ApprovalRequest was implicitly dismissed due
+     * to inaction by the access approval approvers (the request is not acted
+     * on by the approvers before the exiration time).
+     *
+     * Generated from protobuf field <code>bool implicit = 2;</code>
+     */
+    private $implicit = false;
 
     /**
      * Constructor.
@@ -30,6 +38,10 @@ class DismissDecision extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Protobuf\Timestamp $dismiss_time
      *           The time at which the approval request was dismissed.
+     *     @type bool $implicit
+     *           This field will be true if the ApprovalRequest was implicitly dismissed due
+     *           to inaction by the access approval approvers (the request is not acted
+     *           on by the approvers before the exiration time).
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +81,36 @@ class DismissDecision extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->dismiss_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * This field will be true if the ApprovalRequest was implicitly dismissed due
+     * to inaction by the access approval approvers (the request is not acted
+     * on by the approvers before the exiration time).
+     *
+     * Generated from protobuf field <code>bool implicit = 2;</code>
+     * @return bool
+     */
+    public function getImplicit()
+    {
+        return $this->implicit;
+    }
+
+    /**
+     * This field will be true if the ApprovalRequest was implicitly dismissed due
+     * to inaction by the access approval approvers (the request is not acted
+     * on by the approvers before the exiration time).
+     *
+     * Generated from protobuf field <code>bool implicit = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setImplicit($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->implicit = $var;
 
         return $this;
     }

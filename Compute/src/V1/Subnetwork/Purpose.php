@@ -20,23 +20,43 @@ class Purpose
      */
     const UNDEFINED_PURPOSE = 0;
     /**
+     * Subnet reserved for Internal HTTP(S) Load Balancing.
+     *
      * Generated from protobuf enum <code>INTERNAL_HTTPS_LOAD_BALANCER = 248748889;</code>
      */
     const INTERNAL_HTTPS_LOAD_BALANCER = 248748889;
     /**
+     * Regular user created or automatically created subnet.
+     *
      * Generated from protobuf enum <code>PRIVATE = 403485027;</code>
      */
     const PBPRIVATE = 403485027;
     /**
+     * Regular user created or automatically created subnet.
+     *
      * Generated from protobuf enum <code>PRIVATE_RFC_1918 = 254902107;</code>
      */
     const PRIVATE_RFC_1918 = 254902107;
+    /**
+     * Subnetworks created for Private Service Connect in the producer network.
+     *
+     * Generated from protobuf enum <code>PRIVATE_SERVICE_CONNECT = 48134724;</code>
+     */
+    const PRIVATE_SERVICE_CONNECT = 48134724;
+    /**
+     * Subnetwork used for Regional Internal/External HTTP(S) Load Balancing.
+     *
+     * Generated from protobuf enum <code>REGIONAL_MANAGED_PROXY = 153049966;</code>
+     */
+    const REGIONAL_MANAGED_PROXY = 153049966;
 
     private static $valueToName = [
         self::UNDEFINED_PURPOSE => 'UNDEFINED_PURPOSE',
         self::INTERNAL_HTTPS_LOAD_BALANCER => 'INTERNAL_HTTPS_LOAD_BALANCER',
         self::PBPRIVATE => 'PBPRIVATE',
         self::PRIVATE_RFC_1918 => 'PRIVATE_RFC_1918',
+        self::PRIVATE_SERVICE_CONNECT => 'PRIVATE_SERVICE_CONNECT',
+        self::REGIONAL_MANAGED_PROXY => 'REGIONAL_MANAGED_PROXY',
     ];
 
     public static function name($value)

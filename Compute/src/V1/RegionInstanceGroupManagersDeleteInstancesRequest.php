@@ -20,6 +20,12 @@ class RegionInstanceGroupManagersDeleteInstancesRequest extends \Google\Protobuf
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
      */
     private $instances;
+    /**
+     * Specifies whether the request should proceed despite the inclusion of instances that are not members of the group or that are already in the process of being deleted or abandoned. If this field is set to `false` and such an instance is specified in the request, the operation fails. The operation always fails if the request contains a malformed instance URL or a reference to an instance that exists in a zone or region other than the group's zone or region.
+     *
+     * Generated from protobuf field <code>optional bool skip_instances_on_validation_error = 40631073;</code>
+     */
+    private $skip_instances_on_validation_error = null;
 
     /**
      * Constructor.
@@ -29,6 +35,8 @@ class RegionInstanceGroupManagersDeleteInstancesRequest extends \Google\Protobuf
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instances
      *           The URLs of one or more instances to delete. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
+     *     @type bool $skip_instances_on_validation_error
+     *           Specifies whether the request should proceed despite the inclusion of instances that are not members of the group or that are already in the process of being deleted or abandoned. If this field is set to `false` and such an instance is specified in the request, the operation fails. The operation always fails if the request contains a malformed instance URL or a reference to an instance that exists in a zone or region other than the group's zone or region.
      * }
      */
     public function __construct($data = NULL) {
@@ -58,6 +66,42 @@ class RegionInstanceGroupManagersDeleteInstancesRequest extends \Google\Protobuf
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->instances = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Specifies whether the request should proceed despite the inclusion of instances that are not members of the group or that are already in the process of being deleted or abandoned. If this field is set to `false` and such an instance is specified in the request, the operation fails. The operation always fails if the request contains a malformed instance URL or a reference to an instance that exists in a zone or region other than the group's zone or region.
+     *
+     * Generated from protobuf field <code>optional bool skip_instances_on_validation_error = 40631073;</code>
+     * @return bool
+     */
+    public function getSkipInstancesOnValidationError()
+    {
+        return isset($this->skip_instances_on_validation_error) ? $this->skip_instances_on_validation_error : false;
+    }
+
+    public function hasSkipInstancesOnValidationError()
+    {
+        return isset($this->skip_instances_on_validation_error);
+    }
+
+    public function clearSkipInstancesOnValidationError()
+    {
+        unset($this->skip_instances_on_validation_error);
+    }
+
+    /**
+     * Specifies whether the request should proceed despite the inclusion of instances that are not members of the group or that are already in the process of being deleted or abandoned. If this field is set to `false` and such an instance is specified in the request, the operation fails. The operation always fails if the request contains a malformed instance URL or a reference to an instance that exists in a zone or region other than the group's zone or region.
+     *
+     * Generated from protobuf field <code>optional bool skip_instances_on_validation_error = 40631073;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSkipInstancesOnValidationError($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->skip_instances_on_validation_error = $var;
 
         return $this;
     }

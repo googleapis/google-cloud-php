@@ -16,14 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetTransferJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required.
-     * The job to get.
+     * Required. The job to get.
      *
      * Generated from protobuf field <code>string job_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $job_name = '';
     /**
-     * Required. The ID of the Google Cloud Platform Console project that owns the
+     * Required. The ID of the Google Cloud project that owns the
      * job.
      *
      * Generated from protobuf field <code>string project_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -37,10 +36,9 @@ class GetTransferJobRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $job_name
-     *           Required.
-     *           The job to get.
+     *           Required. The job to get.
      *     @type string $project_id
-     *           Required. The ID of the Google Cloud Platform Console project that owns the
+     *           Required. The ID of the Google Cloud project that owns the
      *           job.
      * }
      */
@@ -50,8 +48,7 @@ class GetTransferJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The job to get.
+     * Required. The job to get.
      *
      * Generated from protobuf field <code>string job_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -62,8 +59,7 @@ class GetTransferJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * The job to get.
+     * Required. The job to get.
      *
      * Generated from protobuf field <code>string job_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -78,7 +74,7 @@ class GetTransferJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the Google Cloud Platform Console project that owns the
+     * Required. The ID of the Google Cloud project that owns the
      * job.
      *
      * Generated from protobuf field <code>string project_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -90,7 +86,7 @@ class GetTransferJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the Google Cloud Platform Console project that owns the
+     * Required. The ID of the Google Cloud project that owns the
      * job.
      *
      * Generated from protobuf field <code>string project_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>

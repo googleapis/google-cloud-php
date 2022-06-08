@@ -62,8 +62,9 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * for each distinct attribute value.
      * * `count(numeric_histogram_facet, list of buckets)`: Count the number of
      * matching entities within each bucket.
+     * A maximum of 200 histogram buckets are supported.
      * Data types:
-     * * Histogram facet: facet names with format [a-zA-Z][a-zA-Z0-9_]+.
+     * * Histogram facet: facet names with format `[a-zA-Z][a-zA-Z0-9_]+`.
      * * String: string like "any string with backslash escape for quote(\")."
      * * Number: whole number and floating point number like 10, -1 and -0.01.
      * * List: list of elements with comma(,) separator surrounded by square
@@ -250,6 +251,12 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $custom_ranking_info = null;
     /**
+     * This field is deprecated. Please use
+     * [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4.SearchJobsRequest.keyword_match_mode] going forward.
+     * To migrate, disable_keyword_match set to false maps to
+     * [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL], and disable_keyword_match set to
+     * true maps to [KeywordMatchMode.KEYWORD_MATCH_DISABLED][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_DISABLED]. If
+     * [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4.SearchJobsRequest.keyword_match_mode] is set, this field is ignored.
      * Controls whether to disable exact keyword match on [Job.title][google.cloud.talent.v4.Job.title],
      * [Job.description][google.cloud.talent.v4.Job.description], [Job.company_display_name][google.cloud.talent.v4.Job.company_display_name], [Job.addresses][google.cloud.talent.v4.Job.addresses],
      * [Job.qualifications][google.cloud.talent.v4.Job.qualifications]. When disable keyword match is turned off, a
@@ -267,9 +274,19 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * requests.
      * Defaults to false.
      *
-     * Generated from protobuf field <code>bool disable_keyword_match = 16;</code>
+     * Generated from protobuf field <code>bool disable_keyword_match = 16 [deprecated = true];</code>
+     * @deprecated
      */
-    private $disable_keyword_match = false;
+    protected $disable_keyword_match = false;
+    /**
+     * Controls what keyword match options to use. If both keyword_match_mode and
+     * disable_keyword_match are set, keyword_match_mode will take precedence.
+     * Defaults to [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL] if no value
+     * is specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode keyword_match_mode = 18;</code>
+     */
+    private $keyword_match_mode = 0;
 
     /**
      * Constructor.
@@ -304,8 +321,9 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *           for each distinct attribute value.
      *           * `count(numeric_histogram_facet, list of buckets)`: Count the number of
      *           matching entities within each bucket.
+     *           A maximum of 200 histogram buckets are supported.
      *           Data types:
-     *           * Histogram facet: facet names with format [a-zA-Z][a-zA-Z0-9_]+.
+     *           * Histogram facet: facet names with format `[a-zA-Z][a-zA-Z0-9_]+`.
      *           * String: string like "any string with backslash escape for quote(\")."
      *           * Number: whole number and floating point number like 10, -1 and -0.01.
      *           * List: list of elements with comma(,) separator surrounded by square
@@ -460,6 +478,12 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *           Controls over how job documents get ranked on top of existing relevance
      *           score (determined by API algorithm).
      *     @type bool $disable_keyword_match
+     *           This field is deprecated. Please use
+     *           [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4.SearchJobsRequest.keyword_match_mode] going forward.
+     *           To migrate, disable_keyword_match set to false maps to
+     *           [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL], and disable_keyword_match set to
+     *           true maps to [KeywordMatchMode.KEYWORD_MATCH_DISABLED][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_DISABLED]. If
+     *           [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4.SearchJobsRequest.keyword_match_mode] is set, this field is ignored.
      *           Controls whether to disable exact keyword match on [Job.title][google.cloud.talent.v4.Job.title],
      *           [Job.description][google.cloud.talent.v4.Job.description], [Job.company_display_name][google.cloud.talent.v4.Job.company_display_name], [Job.addresses][google.cloud.talent.v4.Job.addresses],
      *           [Job.qualifications][google.cloud.talent.v4.Job.qualifications]. When disable keyword match is turned off, a
@@ -476,6 +500,11 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *           needed. Enabling keyword match improves recall of subsequent search
      *           requests.
      *           Defaults to false.
+     *     @type int $keyword_match_mode
+     *           Controls what keyword match options to use. If both keyword_match_mode and
+     *           disable_keyword_match are set, keyword_match_mode will take precedence.
+     *           Defaults to [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL] if no value
+     *           is specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -551,7 +580,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestMetadata()
     {
-        return isset($this->request_metadata) ? $this->request_metadata : null;
+        return $this->request_metadata;
     }
 
     public function hasRequestMetadata()
@@ -589,7 +618,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getJobQuery()
     {
-        return isset($this->job_query) ? $this->job_query : null;
+        return $this->job_query;
     }
 
     public function hasJobQuery()
@@ -658,8 +687,9 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * for each distinct attribute value.
      * * `count(numeric_histogram_facet, list of buckets)`: Count the number of
      * matching entities within each bucket.
+     * A maximum of 200 histogram buckets are supported.
      * Data types:
-     * * Histogram facet: facet names with format [a-zA-Z][a-zA-Z0-9_]+.
+     * * Histogram facet: facet names with format `[a-zA-Z][a-zA-Z0-9_]+`.
      * * String: string like "any string with backslash escape for quote(\")."
      * * Number: whole number and floating point number like 10, -1 and -0.01.
      * * List: list of elements with comma(,) separator surrounded by square
@@ -750,8 +780,9 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * for each distinct attribute value.
      * * `count(numeric_histogram_facet, list of buckets)`: Count the number of
      * matching entities within each bucket.
+     * A maximum of 200 histogram buckets are supported.
      * Data types:
-     * * Histogram facet: facet names with format [a-zA-Z][a-zA-Z0-9_]+.
+     * * Histogram facet: facet names with format `[a-zA-Z][a-zA-Z0-9_]+`.
      * * String: string like "any string with backslash escape for quote(\")."
      * * Number: whole number and floating point number like 10, -1 and -0.01.
      * * List: list of elements with comma(,) separator surrounded by square
@@ -1134,7 +1165,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCustomRankingInfo()
     {
-        return isset($this->custom_ranking_info) ? $this->custom_ranking_info : null;
+        return $this->custom_ranking_info;
     }
 
     public function hasCustomRankingInfo()
@@ -1164,6 +1195,12 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * This field is deprecated. Please use
+     * [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4.SearchJobsRequest.keyword_match_mode] going forward.
+     * To migrate, disable_keyword_match set to false maps to
+     * [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL], and disable_keyword_match set to
+     * true maps to [KeywordMatchMode.KEYWORD_MATCH_DISABLED][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_DISABLED]. If
+     * [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4.SearchJobsRequest.keyword_match_mode] is set, this field is ignored.
      * Controls whether to disable exact keyword match on [Job.title][google.cloud.talent.v4.Job.title],
      * [Job.description][google.cloud.talent.v4.Job.description], [Job.company_display_name][google.cloud.talent.v4.Job.company_display_name], [Job.addresses][google.cloud.talent.v4.Job.addresses],
      * [Job.qualifications][google.cloud.talent.v4.Job.qualifications]. When disable keyword match is turned off, a
@@ -1181,15 +1218,23 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * requests.
      * Defaults to false.
      *
-     * Generated from protobuf field <code>bool disable_keyword_match = 16;</code>
+     * Generated from protobuf field <code>bool disable_keyword_match = 16 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getDisableKeywordMatch()
     {
+        @trigger_error('disable_keyword_match is deprecated.', E_USER_DEPRECATED);
         return $this->disable_keyword_match;
     }
 
     /**
+     * This field is deprecated. Please use
+     * [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4.SearchJobsRequest.keyword_match_mode] going forward.
+     * To migrate, disable_keyword_match set to false maps to
+     * [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL], and disable_keyword_match set to
+     * true maps to [KeywordMatchMode.KEYWORD_MATCH_DISABLED][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_DISABLED]. If
+     * [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4.SearchJobsRequest.keyword_match_mode] is set, this field is ignored.
      * Controls whether to disable exact keyword match on [Job.title][google.cloud.talent.v4.Job.title],
      * [Job.description][google.cloud.talent.v4.Job.description], [Job.company_display_name][google.cloud.talent.v4.Job.company_display_name], [Job.addresses][google.cloud.talent.v4.Job.addresses],
      * [Job.qualifications][google.cloud.talent.v4.Job.qualifications]. When disable keyword match is turned off, a
@@ -1207,14 +1252,48 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * requests.
      * Defaults to false.
      *
-     * Generated from protobuf field <code>bool disable_keyword_match = 16;</code>
+     * Generated from protobuf field <code>bool disable_keyword_match = 16 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setDisableKeywordMatch($var)
     {
+        @trigger_error('disable_keyword_match is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->disable_keyword_match = $var;
+
+        return $this;
+    }
+
+    /**
+     * Controls what keyword match options to use. If both keyword_match_mode and
+     * disable_keyword_match are set, keyword_match_mode will take precedence.
+     * Defaults to [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL] if no value
+     * is specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode keyword_match_mode = 18;</code>
+     * @return int
+     */
+    public function getKeywordMatchMode()
+    {
+        return $this->keyword_match_mode;
+    }
+
+    /**
+     * Controls what keyword match options to use. If both keyword_match_mode and
+     * disable_keyword_match are set, keyword_match_mode will take precedence.
+     * Defaults to [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL] if no value
+     * is specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode keyword_match_mode = 18;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setKeywordMatchMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4\SearchJobsRequest\KeywordMatchMode::class);
+        $this->keyword_match_mode = $var;
 
         return $this;
     }

@@ -260,7 +260,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      */
     public function getFailurePolicy()
     {
-        return isset($this->failure_policy) ? $this->failure_policy : null;
+        return $this->failure_policy;
     }
 
     public function hasFailurePolicy()

@@ -28,8 +28,9 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
     private $cidr_ranges;
     /**
      * Direction of traffic to mirror, either INGRESS, EGRESS, or BOTH. The default is BOTH.
+     * Check the Direction enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringFilter.Direction direction = 111150975;</code>
+     * Generated from protobuf field <code>optional string direction = 111150975;</code>
      */
     private $direction = null;
 
@@ -43,8 +44,9 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
      *           Protocols that apply as filter on mirrored traffic. If no protocols are specified, all traffic that matches the specified CIDR ranges is mirrored. If neither cidrRanges nor IPProtocols is specified, all traffic is mirrored.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $cidr_ranges
      *           IP CIDR ranges that apply as filter on the source (ingress) or destination (egress) IP in the IP header. Only IPv4 is supported. If no ranges are specified, all traffic that matches the specified IPProtocols is mirrored. If neither cidrRanges nor IPProtocols is specified, all traffic is mirrored.
-     *     @type int $direction
+     *     @type string $direction
      *           Direction of traffic to mirror, either INGRESS, EGRESS, or BOTH. The default is BOTH.
+     *           Check the Direction enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -106,13 +108,14 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
 
     /**
      * Direction of traffic to mirror, either INGRESS, EGRESS, or BOTH. The default is BOTH.
+     * Check the Direction enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringFilter.Direction direction = 111150975;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string direction = 111150975;</code>
+     * @return string
      */
     public function getDirection()
     {
-        return isset($this->direction) ? $this->direction : 0;
+        return isset($this->direction) ? $this->direction : '';
     }
 
     public function hasDirection()
@@ -127,14 +130,15 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
 
     /**
      * Direction of traffic to mirror, either INGRESS, EGRESS, or BOTH. The default is BOTH.
+     * Check the Direction enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringFilter.Direction direction = 111150975;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string direction = 111150975;</code>
+     * @param string $var
      * @return $this
      */
     public function setDirection($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\PacketMirroringFilter\Direction::class);
+        GPBUtil::checkString($var, True);
         $this->direction = $var;
 
         return $this;

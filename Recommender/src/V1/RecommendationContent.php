@@ -23,6 +23,12 @@ class RecommendationContent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.OperationGroup operation_groups = 2;</code>
      */
     private $operation_groups;
+    /**
+     * Condensed overview information about the recommendation.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct overview = 3;</code>
+     */
+    private $overview = null;
 
     /**
      * Constructor.
@@ -34,6 +40,8 @@ class RecommendationContent extends \Google\Protobuf\Internal\Message
      *           Operations to one or more Google Cloud resources grouped in such a way
      *           that, all operations within one group are expected to be performed
      *           atomically and in an order.
+     *     @type \Google\Protobuf\Struct $overview
+     *           Condensed overview information about the recommendation.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,6 +75,42 @@ class RecommendationContent extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Recommender\V1\OperationGroup::class);
         $this->operation_groups = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Condensed overview information about the recommendation.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct overview = 3;</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getOverview()
+    {
+        return $this->overview;
+    }
+
+    public function hasOverview()
+    {
+        return isset($this->overview);
+    }
+
+    public function clearOverview()
+    {
+        unset($this->overview);
+    }
+
+    /**
+     * Condensed overview information about the recommendation.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct overview = 3;</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setOverview($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->overview = $var;
 
         return $this;
     }

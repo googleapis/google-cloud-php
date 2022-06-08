@@ -99,6 +99,4 @@ class ImportanceLevel
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ImportanceLevel::class, \Google\Cloud\Talent\V4beta1\SearchJobsRequest_CustomRankingInfo_ImportanceLevel::class);
 

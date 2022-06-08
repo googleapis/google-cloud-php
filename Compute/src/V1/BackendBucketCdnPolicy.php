@@ -22,36 +22,40 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
      */
     private $bypass_cache_on_request_headers;
     /**
-     * Specifies the cache setting for all responses from this backend. The possible values are:
-     * USE_ORIGIN_HEADERS Requires the origin to set valid caching headers to cache content. Responses without these headers will not be cached at Google's edge, and will require a full trip to the origin on every request, potentially impacting performance and increasing load on the origin server.
-     * FORCE_CACHE_ALL Cache all content, ignoring any "private", "no-store" or "no-cache" directives in Cache-Control response headers. Warning: this may result in Cloud CDN caching private, per-user (user identifiable) content.
-     * CACHE_ALL_STATIC Automatically cache static content, including common image formats, media (video and audio), and web assets (JavaScript and CSS). Requests and responses that are marked as uncacheable, as well as dynamic content (including HTML), will not be cached.
+     * The CacheKeyPolicy for this CdnPolicy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.BackendBucketCdnPolicy.CacheMode cache_mode = 28877888;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendBucketCdnPolicyCacheKeyPolicy cache_key_policy = 159263727;</code>
+     */
+    private $cache_key_policy = null;
+    /**
+     * Specifies the cache setting for all responses from this backend. The possible values are: USE_ORIGIN_HEADERS Requires the origin to set valid caching headers to cache content. Responses without these headers will not be cached at Google's edge, and will require a full trip to the origin on every request, potentially impacting performance and increasing load on the origin server. FORCE_CACHE_ALL Cache all content, ignoring any "private", "no-store" or "no-cache" directives in Cache-Control response headers. Warning: this may result in Cloud CDN caching private, per-user (user identifiable) content. CACHE_ALL_STATIC Automatically cache static content, including common image formats, media (video and audio), and web assets (JavaScript and CSS). Requests and responses that are marked as uncacheable, as well as dynamic content (including HTML), will not be cached.
+     * Check the CacheMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string cache_mode = 28877888;</code>
      */
     private $cache_mode = null;
     /**
-     * Specifies a separate client (e.g. browser client) maximum TTL. This is used to clamp the max-age (or Expires) value sent to the client. With FORCE_CACHE_ALL, the lesser of client_ttl and default_ttl is used for the response max-age directive, along with a "public" directive. For cacheable content in CACHE_ALL_STATIC mode, client_ttl clamps the max-age from the origin (if specified), or else sets the response max-age directive to the lesser of the client_ttl and default_ttl, and also ensures a "public" cache-control directive is present. If a client TTL is not specified, a default value (1 hour) will be used. The maximum allowed value is 86400s (1 day).
+     * Specifies a separate client (e.g. browser client) maximum TTL. This is used to clamp the max-age (or Expires) value sent to the client. With FORCE_CACHE_ALL, the lesser of client_ttl and default_ttl is used for the response max-age directive, along with a "public" directive. For cacheable content in CACHE_ALL_STATIC mode, client_ttl clamps the max-age from the origin (if specified), or else sets the response max-age directive to the lesser of the client_ttl and default_ttl, and also ensures a "public" cache-control directive is present. If a client TTL is not specified, a default value (1 hour) will be used. The maximum allowed value is 31,622,400s (1 year).
      *
-     * Generated from protobuf field <code>int32 client_ttl = 29034360;</code>
+     * Generated from protobuf field <code>optional int32 client_ttl = 29034360;</code>
      */
     private $client_ttl = null;
     /**
      * Specifies the default TTL for cached content served by this origin for responses that do not have an existing valid TTL (max-age or s-max-age). Setting a TTL of "0" means "always revalidate". The value of defaultTTL cannot be set to a value greater than that of maxTTL, but can be equal. When the cacheMode is set to FORCE_CACHE_ALL, the defaultTTL will overwrite the TTL set in all responses. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.
      *
-     * Generated from protobuf field <code>int32 default_ttl = 100253422;</code>
+     * Generated from protobuf field <code>optional int32 default_ttl = 100253422;</code>
      */
     private $default_ttl = null;
     /**
      * Specifies the maximum allowed TTL for cached content served by this origin. Cache directives that attempt to set a max-age or s-maxage higher than this, or an Expires header more than maxTTL seconds in the future will be capped at the value of maxTTL, as if it were the value of an s-maxage Cache-Control directive. Headers sent to the client will not be modified. Setting a TTL of "0" means "always revalidate". The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.
      *
-     * Generated from protobuf field <code>int32 max_ttl = 307578001;</code>
+     * Generated from protobuf field <code>optional int32 max_ttl = 307578001;</code>
      */
     private $max_ttl = null;
     /**
      * Negative caching allows per-status code TTLs to be set, in order to apply fine-grained caching for common errors or redirects. This can reduce the load on your origin and improve end-user experience by reducing response latency. When the cache mode is set to CACHE_ALL_STATIC or USE_ORIGIN_HEADERS, negative caching applies to responses with the specified response code that lack any Cache-Control, Expires, or Pragma: no-cache directives. When the cache mode is set to FORCE_CACHE_ALL, negative caching applies to all responses with the specified response code, and override any caching headers. By default, Cloud CDN will apply the following default TTLs to these status codes: HTTP 300 (Multiple Choice), 301, 308 (Permanent Redirects): 10m HTTP 404 (Not Found), 410 (Gone), 451 (Unavailable For Legal Reasons): 120s HTTP 405 (Method Not Found), 421 (Misdirected Request), 501 (Not Implemented): 60s. These defaults can be overridden in negative_caching_policy.
      *
-     * Generated from protobuf field <code>bool negative_caching = 336110005;</code>
+     * Generated from protobuf field <code>optional bool negative_caching = 336110005;</code>
      */
     private $negative_caching = null;
     /**
@@ -63,19 +67,19 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * If true then Cloud CDN will combine multiple concurrent cache fill requests into a small number of requests to the origin.
      *
-     * Generated from protobuf field <code>bool request_coalescing = 532808276;</code>
+     * Generated from protobuf field <code>optional bool request_coalescing = 532808276;</code>
      */
     private $request_coalescing = null;
     /**
      * Serve existing content from the cache (if available) when revalidating content with the origin, or when an error is encountered when refreshing the cache. This setting defines the default "max-stale" duration for any cached responses that do not specify a max-stale directive. Stale responses that exceed the TTL configured here will not be served. The default limit (max-stale) is 86400s (1 day), which will allow stale content to be served up to this limit beyond the max-age (or s-max-age) of a cached response. The maximum allowed value is 604800 (1 week). Set this to zero (0) to disable serve-while-stale.
      *
-     * Generated from protobuf field <code>int32 serve_while_stale = 236682203;</code>
+     * Generated from protobuf field <code>optional int32 serve_while_stale = 236682203;</code>
      */
     private $serve_while_stale = null;
     /**
      * Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. Defaults to 1hr (3600s). When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
      *
-     * Generated from protobuf field <code>int64 signed_url_cache_max_age_sec = 269374534;</code>
+     * Generated from protobuf field <code>optional int64 signed_url_cache_max_age_sec = 269374534;</code>
      */
     private $signed_url_cache_max_age_sec = null;
     /**
@@ -93,13 +97,13 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Compute\V1\BackendBucketCdnPolicyBypassCacheOnRequestHeader[]|\Google\Protobuf\Internal\RepeatedField $bypass_cache_on_request_headers
      *           Bypass the cache when the specified request headers are matched - e.g. Pragma or Authorization headers. Up to 5 headers can be specified. The cache is bypassed for all cdnPolicy.cacheMode settings.
-     *     @type int $cache_mode
-     *           Specifies the cache setting for all responses from this backend. The possible values are:
-     *           USE_ORIGIN_HEADERS Requires the origin to set valid caching headers to cache content. Responses without these headers will not be cached at Google's edge, and will require a full trip to the origin on every request, potentially impacting performance and increasing load on the origin server.
-     *           FORCE_CACHE_ALL Cache all content, ignoring any "private", "no-store" or "no-cache" directives in Cache-Control response headers. Warning: this may result in Cloud CDN caching private, per-user (user identifiable) content.
-     *           CACHE_ALL_STATIC Automatically cache static content, including common image formats, media (video and audio), and web assets (JavaScript and CSS). Requests and responses that are marked as uncacheable, as well as dynamic content (including HTML), will not be cached.
+     *     @type \Google\Cloud\Compute\V1\BackendBucketCdnPolicyCacheKeyPolicy $cache_key_policy
+     *           The CacheKeyPolicy for this CdnPolicy.
+     *     @type string $cache_mode
+     *           Specifies the cache setting for all responses from this backend. The possible values are: USE_ORIGIN_HEADERS Requires the origin to set valid caching headers to cache content. Responses without these headers will not be cached at Google's edge, and will require a full trip to the origin on every request, potentially impacting performance and increasing load on the origin server. FORCE_CACHE_ALL Cache all content, ignoring any "private", "no-store" or "no-cache" directives in Cache-Control response headers. Warning: this may result in Cloud CDN caching private, per-user (user identifiable) content. CACHE_ALL_STATIC Automatically cache static content, including common image formats, media (video and audio), and web assets (JavaScript and CSS). Requests and responses that are marked as uncacheable, as well as dynamic content (including HTML), will not be cached.
+     *           Check the CacheMode enum for the list of possible values.
      *     @type int $client_ttl
-     *           Specifies a separate client (e.g. browser client) maximum TTL. This is used to clamp the max-age (or Expires) value sent to the client. With FORCE_CACHE_ALL, the lesser of client_ttl and default_ttl is used for the response max-age directive, along with a "public" directive. For cacheable content in CACHE_ALL_STATIC mode, client_ttl clamps the max-age from the origin (if specified), or else sets the response max-age directive to the lesser of the client_ttl and default_ttl, and also ensures a "public" cache-control directive is present. If a client TTL is not specified, a default value (1 hour) will be used. The maximum allowed value is 86400s (1 day).
+     *           Specifies a separate client (e.g. browser client) maximum TTL. This is used to clamp the max-age (or Expires) value sent to the client. With FORCE_CACHE_ALL, the lesser of client_ttl and default_ttl is used for the response max-age directive, along with a "public" directive. For cacheable content in CACHE_ALL_STATIC mode, client_ttl clamps the max-age from the origin (if specified), or else sets the response max-age directive to the lesser of the client_ttl and default_ttl, and also ensures a "public" cache-control directive is present. If a client TTL is not specified, a default value (1 hour) will be used. The maximum allowed value is 31,622,400s (1 year).
      *     @type int $default_ttl
      *           Specifies the default TTL for cached content served by this origin for responses that do not have an existing valid TTL (max-age or s-max-age). Setting a TTL of "0" means "always revalidate". The value of defaultTTL cannot be set to a value greater than that of maxTTL, but can be equal. When the cacheMode is set to FORCE_CACHE_ALL, the defaultTTL will overwrite the TTL set in all responses. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.
      *     @type int $max_ttl
@@ -150,17 +154,51 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the cache setting for all responses from this backend. The possible values are:
-     * USE_ORIGIN_HEADERS Requires the origin to set valid caching headers to cache content. Responses without these headers will not be cached at Google's edge, and will require a full trip to the origin on every request, potentially impacting performance and increasing load on the origin server.
-     * FORCE_CACHE_ALL Cache all content, ignoring any "private", "no-store" or "no-cache" directives in Cache-Control response headers. Warning: this may result in Cloud CDN caching private, per-user (user identifiable) content.
-     * CACHE_ALL_STATIC Automatically cache static content, including common image formats, media (video and audio), and web assets (JavaScript and CSS). Requests and responses that are marked as uncacheable, as well as dynamic content (including HTML), will not be cached.
+     * The CacheKeyPolicy for this CdnPolicy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.BackendBucketCdnPolicy.CacheMode cache_mode = 28877888;</code>
-     * @return int
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendBucketCdnPolicyCacheKeyPolicy cache_key_policy = 159263727;</code>
+     * @return \Google\Cloud\Compute\V1\BackendBucketCdnPolicyCacheKeyPolicy|null
+     */
+    public function getCacheKeyPolicy()
+    {
+        return $this->cache_key_policy;
+    }
+
+    public function hasCacheKeyPolicy()
+    {
+        return isset($this->cache_key_policy);
+    }
+
+    public function clearCacheKeyPolicy()
+    {
+        unset($this->cache_key_policy);
+    }
+
+    /**
+     * The CacheKeyPolicy for this CdnPolicy.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.BackendBucketCdnPolicyCacheKeyPolicy cache_key_policy = 159263727;</code>
+     * @param \Google\Cloud\Compute\V1\BackendBucketCdnPolicyCacheKeyPolicy $var
+     * @return $this
+     */
+    public function setCacheKeyPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\BackendBucketCdnPolicyCacheKeyPolicy::class);
+        $this->cache_key_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the cache setting for all responses from this backend. The possible values are: USE_ORIGIN_HEADERS Requires the origin to set valid caching headers to cache content. Responses without these headers will not be cached at Google's edge, and will require a full trip to the origin on every request, potentially impacting performance and increasing load on the origin server. FORCE_CACHE_ALL Cache all content, ignoring any "private", "no-store" or "no-cache" directives in Cache-Control response headers. Warning: this may result in Cloud CDN caching private, per-user (user identifiable) content. CACHE_ALL_STATIC Automatically cache static content, including common image formats, media (video and audio), and web assets (JavaScript and CSS). Requests and responses that are marked as uncacheable, as well as dynamic content (including HTML), will not be cached.
+     * Check the CacheMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string cache_mode = 28877888;</code>
+     * @return string
      */
     public function getCacheMode()
     {
-        return isset($this->cache_mode) ? $this->cache_mode : 0;
+        return isset($this->cache_mode) ? $this->cache_mode : '';
     }
 
     public function hasCacheMode()
@@ -174,27 +212,25 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the cache setting for all responses from this backend. The possible values are:
-     * USE_ORIGIN_HEADERS Requires the origin to set valid caching headers to cache content. Responses without these headers will not be cached at Google's edge, and will require a full trip to the origin on every request, potentially impacting performance and increasing load on the origin server.
-     * FORCE_CACHE_ALL Cache all content, ignoring any "private", "no-store" or "no-cache" directives in Cache-Control response headers. Warning: this may result in Cloud CDN caching private, per-user (user identifiable) content.
-     * CACHE_ALL_STATIC Automatically cache static content, including common image formats, media (video and audio), and web assets (JavaScript and CSS). Requests and responses that are marked as uncacheable, as well as dynamic content (including HTML), will not be cached.
+     * Specifies the cache setting for all responses from this backend. The possible values are: USE_ORIGIN_HEADERS Requires the origin to set valid caching headers to cache content. Responses without these headers will not be cached at Google's edge, and will require a full trip to the origin on every request, potentially impacting performance and increasing load on the origin server. FORCE_CACHE_ALL Cache all content, ignoring any "private", "no-store" or "no-cache" directives in Cache-Control response headers. Warning: this may result in Cloud CDN caching private, per-user (user identifiable) content. CACHE_ALL_STATIC Automatically cache static content, including common image formats, media (video and audio), and web assets (JavaScript and CSS). Requests and responses that are marked as uncacheable, as well as dynamic content (including HTML), will not be cached.
+     * Check the CacheMode enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.BackendBucketCdnPolicy.CacheMode cache_mode = 28877888;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string cache_mode = 28877888;</code>
+     * @param string $var
      * @return $this
      */
     public function setCacheMode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\BackendBucketCdnPolicy\CacheMode::class);
+        GPBUtil::checkString($var, True);
         $this->cache_mode = $var;
 
         return $this;
     }
 
     /**
-     * Specifies a separate client (e.g. browser client) maximum TTL. This is used to clamp the max-age (or Expires) value sent to the client. With FORCE_CACHE_ALL, the lesser of client_ttl and default_ttl is used for the response max-age directive, along with a "public" directive. For cacheable content in CACHE_ALL_STATIC mode, client_ttl clamps the max-age from the origin (if specified), or else sets the response max-age directive to the lesser of the client_ttl and default_ttl, and also ensures a "public" cache-control directive is present. If a client TTL is not specified, a default value (1 hour) will be used. The maximum allowed value is 86400s (1 day).
+     * Specifies a separate client (e.g. browser client) maximum TTL. This is used to clamp the max-age (or Expires) value sent to the client. With FORCE_CACHE_ALL, the lesser of client_ttl and default_ttl is used for the response max-age directive, along with a "public" directive. For cacheable content in CACHE_ALL_STATIC mode, client_ttl clamps the max-age from the origin (if specified), or else sets the response max-age directive to the lesser of the client_ttl and default_ttl, and also ensures a "public" cache-control directive is present. If a client TTL is not specified, a default value (1 hour) will be used. The maximum allowed value is 31,622,400s (1 year).
      *
-     * Generated from protobuf field <code>int32 client_ttl = 29034360;</code>
+     * Generated from protobuf field <code>optional int32 client_ttl = 29034360;</code>
      * @return int
      */
     public function getClientTtl()
@@ -213,9 +249,9 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies a separate client (e.g. browser client) maximum TTL. This is used to clamp the max-age (or Expires) value sent to the client. With FORCE_CACHE_ALL, the lesser of client_ttl and default_ttl is used for the response max-age directive, along with a "public" directive. For cacheable content in CACHE_ALL_STATIC mode, client_ttl clamps the max-age from the origin (if specified), or else sets the response max-age directive to the lesser of the client_ttl and default_ttl, and also ensures a "public" cache-control directive is present. If a client TTL is not specified, a default value (1 hour) will be used. The maximum allowed value is 86400s (1 day).
+     * Specifies a separate client (e.g. browser client) maximum TTL. This is used to clamp the max-age (or Expires) value sent to the client. With FORCE_CACHE_ALL, the lesser of client_ttl and default_ttl is used for the response max-age directive, along with a "public" directive. For cacheable content in CACHE_ALL_STATIC mode, client_ttl clamps the max-age from the origin (if specified), or else sets the response max-age directive to the lesser of the client_ttl and default_ttl, and also ensures a "public" cache-control directive is present. If a client TTL is not specified, a default value (1 hour) will be used. The maximum allowed value is 31,622,400s (1 year).
      *
-     * Generated from protobuf field <code>int32 client_ttl = 29034360;</code>
+     * Generated from protobuf field <code>optional int32 client_ttl = 29034360;</code>
      * @param int $var
      * @return $this
      */
@@ -230,7 +266,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the default TTL for cached content served by this origin for responses that do not have an existing valid TTL (max-age or s-max-age). Setting a TTL of "0" means "always revalidate". The value of defaultTTL cannot be set to a value greater than that of maxTTL, but can be equal. When the cacheMode is set to FORCE_CACHE_ALL, the defaultTTL will overwrite the TTL set in all responses. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.
      *
-     * Generated from protobuf field <code>int32 default_ttl = 100253422;</code>
+     * Generated from protobuf field <code>optional int32 default_ttl = 100253422;</code>
      * @return int
      */
     public function getDefaultTtl()
@@ -251,7 +287,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the default TTL for cached content served by this origin for responses that do not have an existing valid TTL (max-age or s-max-age). Setting a TTL of "0" means "always revalidate". The value of defaultTTL cannot be set to a value greater than that of maxTTL, but can be equal. When the cacheMode is set to FORCE_CACHE_ALL, the defaultTTL will overwrite the TTL set in all responses. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.
      *
-     * Generated from protobuf field <code>int32 default_ttl = 100253422;</code>
+     * Generated from protobuf field <code>optional int32 default_ttl = 100253422;</code>
      * @param int $var
      * @return $this
      */
@@ -266,7 +302,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the maximum allowed TTL for cached content served by this origin. Cache directives that attempt to set a max-age or s-maxage higher than this, or an Expires header more than maxTTL seconds in the future will be capped at the value of maxTTL, as if it were the value of an s-maxage Cache-Control directive. Headers sent to the client will not be modified. Setting a TTL of "0" means "always revalidate". The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.
      *
-     * Generated from protobuf field <code>int32 max_ttl = 307578001;</code>
+     * Generated from protobuf field <code>optional int32 max_ttl = 307578001;</code>
      * @return int
      */
     public function getMaxTtl()
@@ -287,7 +323,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the maximum allowed TTL for cached content served by this origin. Cache directives that attempt to set a max-age or s-maxage higher than this, or an Expires header more than maxTTL seconds in the future will be capped at the value of maxTTL, as if it were the value of an s-maxage Cache-Control directive. Headers sent to the client will not be modified. Setting a TTL of "0" means "always revalidate". The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.
      *
-     * Generated from protobuf field <code>int32 max_ttl = 307578001;</code>
+     * Generated from protobuf field <code>optional int32 max_ttl = 307578001;</code>
      * @param int $var
      * @return $this
      */
@@ -302,7 +338,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Negative caching allows per-status code TTLs to be set, in order to apply fine-grained caching for common errors or redirects. This can reduce the load on your origin and improve end-user experience by reducing response latency. When the cache mode is set to CACHE_ALL_STATIC or USE_ORIGIN_HEADERS, negative caching applies to responses with the specified response code that lack any Cache-Control, Expires, or Pragma: no-cache directives. When the cache mode is set to FORCE_CACHE_ALL, negative caching applies to all responses with the specified response code, and override any caching headers. By default, Cloud CDN will apply the following default TTLs to these status codes: HTTP 300 (Multiple Choice), 301, 308 (Permanent Redirects): 10m HTTP 404 (Not Found), 410 (Gone), 451 (Unavailable For Legal Reasons): 120s HTTP 405 (Method Not Found), 421 (Misdirected Request), 501 (Not Implemented): 60s. These defaults can be overridden in negative_caching_policy.
      *
-     * Generated from protobuf field <code>bool negative_caching = 336110005;</code>
+     * Generated from protobuf field <code>optional bool negative_caching = 336110005;</code>
      * @return bool
      */
     public function getNegativeCaching()
@@ -323,7 +359,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Negative caching allows per-status code TTLs to be set, in order to apply fine-grained caching for common errors or redirects. This can reduce the load on your origin and improve end-user experience by reducing response latency. When the cache mode is set to CACHE_ALL_STATIC or USE_ORIGIN_HEADERS, negative caching applies to responses with the specified response code that lack any Cache-Control, Expires, or Pragma: no-cache directives. When the cache mode is set to FORCE_CACHE_ALL, negative caching applies to all responses with the specified response code, and override any caching headers. By default, Cloud CDN will apply the following default TTLs to these status codes: HTTP 300 (Multiple Choice), 301, 308 (Permanent Redirects): 10m HTTP 404 (Not Found), 410 (Gone), 451 (Unavailable For Legal Reasons): 120s HTTP 405 (Method Not Found), 421 (Misdirected Request), 501 (Not Implemented): 60s. These defaults can be overridden in negative_caching_policy.
      *
-     * Generated from protobuf field <code>bool negative_caching = 336110005;</code>
+     * Generated from protobuf field <code>optional bool negative_caching = 336110005;</code>
      * @param bool $var
      * @return $this
      */
@@ -364,7 +400,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * If true then Cloud CDN will combine multiple concurrent cache fill requests into a small number of requests to the origin.
      *
-     * Generated from protobuf field <code>bool request_coalescing = 532808276;</code>
+     * Generated from protobuf field <code>optional bool request_coalescing = 532808276;</code>
      * @return bool
      */
     public function getRequestCoalescing()
@@ -385,7 +421,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * If true then Cloud CDN will combine multiple concurrent cache fill requests into a small number of requests to the origin.
      *
-     * Generated from protobuf field <code>bool request_coalescing = 532808276;</code>
+     * Generated from protobuf field <code>optional bool request_coalescing = 532808276;</code>
      * @param bool $var
      * @return $this
      */
@@ -400,7 +436,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Serve existing content from the cache (if available) when revalidating content with the origin, or when an error is encountered when refreshing the cache. This setting defines the default "max-stale" duration for any cached responses that do not specify a max-stale directive. Stale responses that exceed the TTL configured here will not be served. The default limit (max-stale) is 86400s (1 day), which will allow stale content to be served up to this limit beyond the max-age (or s-max-age) of a cached response. The maximum allowed value is 604800 (1 week). Set this to zero (0) to disable serve-while-stale.
      *
-     * Generated from protobuf field <code>int32 serve_while_stale = 236682203;</code>
+     * Generated from protobuf field <code>optional int32 serve_while_stale = 236682203;</code>
      * @return int
      */
     public function getServeWhileStale()
@@ -421,7 +457,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Serve existing content from the cache (if available) when revalidating content with the origin, or when an error is encountered when refreshing the cache. This setting defines the default "max-stale" duration for any cached responses that do not specify a max-stale directive. Stale responses that exceed the TTL configured here will not be served. The default limit (max-stale) is 86400s (1 day), which will allow stale content to be served up to this limit beyond the max-age (or s-max-age) of a cached response. The maximum allowed value is 604800 (1 week). Set this to zero (0) to disable serve-while-stale.
      *
-     * Generated from protobuf field <code>int32 serve_while_stale = 236682203;</code>
+     * Generated from protobuf field <code>optional int32 serve_while_stale = 236682203;</code>
      * @param int $var
      * @return $this
      */
@@ -436,7 +472,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. Defaults to 1hr (3600s). When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
      *
-     * Generated from protobuf field <code>int64 signed_url_cache_max_age_sec = 269374534;</code>
+     * Generated from protobuf field <code>optional int64 signed_url_cache_max_age_sec = 269374534;</code>
      * @return int|string
      */
     public function getSignedUrlCacheMaxAgeSec()
@@ -457,7 +493,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. Defaults to 1hr (3600s). When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
      *
-     * Generated from protobuf field <code>int64 signed_url_cache_max_age_sec = 269374534;</code>
+     * Generated from protobuf field <code>optional int64 signed_url_cache_max_age_sec = 269374534;</code>
      * @param int|string $var
      * @return $this
      */

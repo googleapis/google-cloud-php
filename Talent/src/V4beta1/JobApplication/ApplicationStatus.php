@@ -61,6 +61,4 @@ class ApplicationStatus
     const PROSPECTED = 7;
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ApplicationStatus::class, \Google\Cloud\Talent\V4beta1\JobApplication_ApplicationStatus::class);
 

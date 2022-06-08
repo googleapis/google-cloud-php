@@ -28,16 +28,20 @@ use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo\Type;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Date;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
  */
 class BackupTest extends SpannerTestCase
 {
+    use ExpectException;
+
     const BACKUP_PREFIX = 'spanner_backup_';
 
     protected static $backupId1;
     protected static $backupId2;
+    protected static $copyBackupId;
     protected static $backupOperationName;
     protected static $restoreOperationName;
     protected static $createDbOperationName;
@@ -51,11 +55,11 @@ class BackupTest extends SpannerTestCase
 
     private static $hasSetUp = false;
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         self::skipEmulatorTests();
 
-        parent::setUpBeforeClass();
+        parent::set_up_before_class();
         if (self::$hasSetUp) {
             return;
         }
@@ -104,6 +108,7 @@ class BackupTest extends SpannerTestCase
 
         self::$backupId1 = uniqid(self::BACKUP_PREFIX);
         self::$backupId2 = uniqid("users-");
+        self::$copyBackupId = uniqid("copy-");
         self::$hasSetUp = true;
     }
 
@@ -229,6 +234,43 @@ class BackupTest extends SpannerTestCase
         $op->cancel();
 
         $this->assertTrue($backup->exists());
+    }
+
+    public function testCreateBackupCopy()
+    {
+        $backup = self::$instance->backup(self::$backupId1);
+        $newBackup = self::$instance->backup(self::$copyBackupId);
+        $expireTime = new \DateTime('+7 hours');
+        $op = $backup->createCopy($newBackup, $expireTime);
+
+        $metadata = null;
+        foreach (self::$instance->backupOperations() as $listItem) {
+            if ($listItem->name() == $op->name()) {
+                $metadata = $listItem->info()['metadata'];
+                break;
+            }
+        }
+
+        $op->pollUntilComplete();
+
+        self::$deletionQueue->add(function () use ($newBackup) {
+            $newBackup->delete();
+        });
+
+        $this->assertTrue($newBackup->exists());
+        $this->assertInstanceOf(Backup::class, $newBackup);
+        $this->assertEquals(self::$copyBackupId, DatabaseAdminClient::parseName($newBackup->info()['name'])['backup']);
+        $this->assertEquals(self::$dbName1, DatabaseAdminClient::parseName($newBackup->info()['database'])['database']);
+        $this->assertEquals($expireTime->format('Y-m-d\TH:i:s.u\Z'), $newBackup->info()['expireTime']);
+        $this->assertTrue(is_string($newBackup->info()['createTime']));
+        $this->assertEquals(Backup::STATE_READY, $newBackup->state());
+        $this->assertTrue($newBackup->info()['sizeBytes'] > 0);
+        $this->assertEquals(Type::GOOGLE_DEFAULT_ENCRYPTION, $newBackup->info()['encryptionInfo']['encryptionType']);
+
+        $this->assertNotNull($metadata);
+        $this->assertArrayHasKey('progress', $metadata);
+        $this->assertArrayHasKey('progressPercent', $metadata['progress']);
+        $this->assertArrayHasKey('startTime', $metadata['progress']);
     }
 
     public function testReloadBackup()

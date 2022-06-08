@@ -22,7 +22,7 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
     /**
      * Whether the given UrlMap can be successfully loaded. If false, 'loadErrors' indicates the reasons.
      *
-     * Generated from protobuf field <code>bool load_succeeded = 128326216;</code>
+     * Generated from protobuf field <code>optional bool load_succeeded = 128326216;</code>
      */
     private $load_succeeded = null;
     /**
@@ -32,7 +32,7 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
     /**
      * If successfully loaded, this field indicates whether the test passed. If false, 'testFailures's indicate the reason of failure.
      *
-     * Generated from protobuf field <code>bool test_passed = 192708797;</code>
+     * Generated from protobuf field <code>optional bool test_passed = 192708797;</code>
      */
     private $test_passed = null;
 
@@ -80,7 +80,7 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
     /**
      * Whether the given UrlMap can be successfully loaded. If false, 'loadErrors' indicates the reasons.
      *
-     * Generated from protobuf field <code>bool load_succeeded = 128326216;</code>
+     * Generated from protobuf field <code>optional bool load_succeeded = 128326216;</code>
      * @return bool
      */
     public function getLoadSucceeded()
@@ -101,7 +101,7 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
     /**
      * Whether the given UrlMap can be successfully loaded. If false, 'loadErrors' indicates the reasons.
      *
-     * Generated from protobuf field <code>bool load_succeeded = 128326216;</code>
+     * Generated from protobuf field <code>optional bool load_succeeded = 128326216;</code>
      * @param bool $var
      * @return $this
      */
@@ -138,7 +138,7 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
     /**
      * If successfully loaded, this field indicates whether the test passed. If false, 'testFailures's indicate the reason of failure.
      *
-     * Generated from protobuf field <code>bool test_passed = 192708797;</code>
+     * Generated from protobuf field <code>optional bool test_passed = 192708797;</code>
      * @return bool
      */
     public function getTestPassed()
@@ -159,7 +159,7 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
     /**
      * If successfully loaded, this field indicates whether the test passed. If false, 'testFailures's indicate the reason of failure.
      *
-     * Generated from protobuf field <code>bool test_passed = 192708797;</code>
+     * Generated from protobuf field <code>optional bool test_passed = 192708797;</code>
      * @param bool $var
      * @return $this
      */

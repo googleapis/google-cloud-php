@@ -48,7 +48,7 @@ class Attempt extends \Google\Protobuf\Internal\Message
      */
     public function getAttemptTime()
     {
-        return isset($this->attempt_time) ? $this->attempt_time : null;
+        return $this->attempt_time;
     }
 
     public function hasAttemptTime()

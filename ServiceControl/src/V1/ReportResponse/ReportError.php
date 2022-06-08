@@ -122,6 +122,4 @@ class ReportError extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReportError::class, \Google\Cloud\ServiceControl\V1\ReportResponse_ReportError::class);
 

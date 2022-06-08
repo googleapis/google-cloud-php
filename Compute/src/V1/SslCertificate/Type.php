@@ -20,10 +20,14 @@ class Type
      */
     const UNDEFINED_TYPE = 0;
     /**
+     * Google-managed SSLCertificate.
+     *
      * Generated from protobuf enum <code>MANAGED = 479501183;</code>
      */
     const MANAGED = 479501183;
     /**
+     * Certificate uploaded by user.
+     *
      * Generated from protobuf enum <code>SELF_MANAGED = 434437516;</code>
      */
     const SELF_MANAGED = 434437516;

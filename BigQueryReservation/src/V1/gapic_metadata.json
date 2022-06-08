@@ -95,6 +95,11 @@
                                 "splitCapacityCommitment"
                             ]
                         },
+                        "UpdateAssignment": {
+                            "methods": [
+                                "updateAssignment"
+                            ]
+                        },
                         "UpdateBiReservation": {
                             "methods": [
                                 "updateBiReservation"

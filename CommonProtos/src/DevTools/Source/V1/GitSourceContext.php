@@ -21,14 +21,14 @@ class GitSourceContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string url = 1;</code>
      */
-    private $url = '';
+    protected $url = '';
     /**
      * Git commit hash.
      * required.
      *
      * Generated from protobuf field <code>string revision_id = 2;</code>
      */
-    private $revision_id = '';
+    protected $revision_id = '';
 
     /**
      * Constructor.

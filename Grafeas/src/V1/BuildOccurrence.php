@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class BuildOccurrence extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The actual provenance for the build.
+     * The actual provenance for the build.
      *
      * Generated from protobuf field <code>.grafeas.v1.BuildProvenance provenance = 1;</code>
      */
@@ -36,6 +36,22 @@ class BuildOccurrence extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string provenance_bytes = 2;</code>
      */
     private $provenance_bytes = '';
+    /**
+     * Deprecated. See InTotoStatement for the replacement.
+     * In-toto Provenance representation as defined in spec.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.InTotoProvenance intoto_provenance = 3;</code>
+     */
+    private $intoto_provenance = null;
+    /**
+     * In-toto Statement representation as defined in spec.
+     * The intoto_statement can contain any type of provenance. The serialized
+     * payload of the statement can be stored and signed in the Occurrence's
+     * envelope.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.InTotoStatement intoto_statement = 4;</code>
+     */
+    private $intoto_statement = null;
 
     /**
      * Constructor.
@@ -44,7 +60,7 @@ class BuildOccurrence extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Grafeas\V1\BuildProvenance $provenance
-     *           Required. The actual provenance for the build.
+     *           The actual provenance for the build.
      *     @type string $provenance_bytes
      *           Serialized JSON representation of the provenance, used in generating the
      *           build signature in the corresponding build note. After verifying the
@@ -56,6 +72,14 @@ class BuildOccurrence extends \Google\Protobuf\Internal\Message
      *           The serialized form is captured both to avoid ambiguity in how the
      *           provenance is marshalled to json as well to prevent incompatibilities with
      *           future changes.
+     *     @type \Grafeas\V1\InTotoProvenance $intoto_provenance
+     *           Deprecated. See InTotoStatement for the replacement.
+     *           In-toto Provenance representation as defined in spec.
+     *     @type \Grafeas\V1\InTotoStatement $intoto_statement
+     *           In-toto Statement representation as defined in spec.
+     *           The intoto_statement can contain any type of provenance. The serialized
+     *           payload of the statement can be stored and signed in the Occurrence's
+     *           envelope.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,7 +88,7 @@ class BuildOccurrence extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The actual provenance for the build.
+     * The actual provenance for the build.
      *
      * Generated from protobuf field <code>.grafeas.v1.BuildProvenance provenance = 1;</code>
      * @return \Grafeas\V1\BuildProvenance|null
@@ -85,7 +109,7 @@ class BuildOccurrence extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The actual provenance for the build.
+     * The actual provenance for the build.
      *
      * Generated from protobuf field <code>.grafeas.v1.BuildProvenance provenance = 1;</code>
      * @param \Grafeas\V1\BuildProvenance $var
@@ -139,6 +163,86 @@ class BuildOccurrence extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->provenance_bytes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Deprecated. See InTotoStatement for the replacement.
+     * In-toto Provenance representation as defined in spec.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.InTotoProvenance intoto_provenance = 3;</code>
+     * @return \Grafeas\V1\InTotoProvenance|null
+     */
+    public function getIntotoProvenance()
+    {
+        return $this->intoto_provenance;
+    }
+
+    public function hasIntotoProvenance()
+    {
+        return isset($this->intoto_provenance);
+    }
+
+    public function clearIntotoProvenance()
+    {
+        unset($this->intoto_provenance);
+    }
+
+    /**
+     * Deprecated. See InTotoStatement for the replacement.
+     * In-toto Provenance representation as defined in spec.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.InTotoProvenance intoto_provenance = 3;</code>
+     * @param \Grafeas\V1\InTotoProvenance $var
+     * @return $this
+     */
+    public function setIntotoProvenance($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\InTotoProvenance::class);
+        $this->intoto_provenance = $var;
+
+        return $this;
+    }
+
+    /**
+     * In-toto Statement representation as defined in spec.
+     * The intoto_statement can contain any type of provenance. The serialized
+     * payload of the statement can be stored and signed in the Occurrence's
+     * envelope.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.InTotoStatement intoto_statement = 4;</code>
+     * @return \Grafeas\V1\InTotoStatement|null
+     */
+    public function getIntotoStatement()
+    {
+        return $this->intoto_statement;
+    }
+
+    public function hasIntotoStatement()
+    {
+        return isset($this->intoto_statement);
+    }
+
+    public function clearIntotoStatement()
+    {
+        unset($this->intoto_statement);
+    }
+
+    /**
+     * In-toto Statement representation as defined in spec.
+     * The intoto_statement can contain any type of provenance. The serialized
+     * payload of the statement can be stored and signed in the Occurrence's
+     * envelope.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.InTotoStatement intoto_statement = 4;</code>
+     * @param \Grafeas\V1\InTotoStatement $var
+     * @return $this
+     */
+    public function setIntotoStatement($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\InTotoStatement::class);
+        $this->intoto_statement = $var;
 
         return $this;
     }

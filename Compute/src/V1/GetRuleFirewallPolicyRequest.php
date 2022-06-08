@@ -24,7 +24,7 @@ class GetRuleFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The priority of the rule to get from the firewall policy.
      *
-     * Generated from protobuf field <code>int32 priority = 445151652;</code>
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      */
     private $priority = null;
 
@@ -74,7 +74,7 @@ class GetRuleFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The priority of the rule to get from the firewall policy.
      *
-     * Generated from protobuf field <code>int32 priority = 445151652;</code>
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      * @return int
      */
     public function getPriority()
@@ -95,7 +95,7 @@ class GetRuleFirewallPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The priority of the rule to get from the firewall policy.
      *
-     * Generated from protobuf field <code>int32 priority = 445151652;</code>
+     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
      * @param int $var
      * @return $this
      */

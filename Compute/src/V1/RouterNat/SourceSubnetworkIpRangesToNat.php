@@ -7,10 +7,7 @@ namespace Google\Cloud\Compute\V1\RouterNat;
 use UnexpectedValueException;
 
 /**
- * Specify the Nat option, which can take one of the following values:
- * - ALL_SUBNETWORKS_ALL_IP_RANGES: All of the IP ranges in every Subnetwork are allowed to Nat.
- * - ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES: All of the primary IP ranges in every Subnetwork are allowed to Nat.
- * - LIST_OF_SUBNETWORKS: A list of Subnetworks are allowed to Nat (specified in the field subnetwork below) The default is SUBNETWORK_IP_RANGE_TO_NAT_OPTION_UNSPECIFIED. Note that if this field contains ALL_SUBNETWORKS_ALL_IP_RANGES or ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES, then there should not be any other Router.Nat section in any Router for this network in this region.
+ * Specify the Nat option, which can take one of the following values: - ALL_SUBNETWORKS_ALL_IP_RANGES: All of the IP ranges in every Subnetwork are allowed to Nat. - ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES: All of the primary IP ranges in every Subnetwork are allowed to Nat. - LIST_OF_SUBNETWORKS: A list of Subnetworks are allowed to Nat (specified in the field subnetwork below) The default is SUBNETWORK_IP_RANGE_TO_NAT_OPTION_UNSPECIFIED. Note that if this field contains ALL_SUBNETWORKS_ALL_IP_RANGES or ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES, then there should not be any other Router.Nat section in any Router for this network in this region.
  *
  * Protobuf type <code>google.cloud.compute.v1.RouterNat.SourceSubnetworkIpRangesToNat</code>
  */
@@ -23,14 +20,20 @@ class SourceSubnetworkIpRangesToNat
      */
     const UNDEFINED_SOURCE_SUBNETWORK_IP_RANGES_TO_NAT = 0;
     /**
+     * All the IP ranges in every Subnetwork are allowed to Nat.
+     *
      * Generated from protobuf enum <code>ALL_SUBNETWORKS_ALL_IP_RANGES = 179964376;</code>
      */
     const ALL_SUBNETWORKS_ALL_IP_RANGES = 179964376;
     /**
+     * All the primary IP ranges in every Subnetwork are allowed to Nat.
+     *
      * Generated from protobuf enum <code>ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES = 185573819;</code>
      */
     const ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES = 185573819;
     /**
+     * A list of Subnetworks are allowed to Nat (specified in the field subnetwork below)
+     *
      * Generated from protobuf enum <code>LIST_OF_SUBNETWORKS = 517542270;</code>
      */
     const LIST_OF_SUBNETWORKS = 517542270;

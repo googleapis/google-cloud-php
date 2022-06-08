@@ -140,7 +140,7 @@ class GetHealthRegionBackendServiceRequest extends \Google\Protobuf\Internal\Mes
      */
     public function getResourceGroupReferenceResource()
     {
-        return isset($this->resource_group_reference_resource) ? $this->resource_group_reference_resource : null;
+        return $this->resource_group_reference_resource;
     }
 
     public function hasResourceGroupReferenceResource()

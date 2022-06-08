@@ -830,7 +830,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      */
     public function getHirableFilter()
     {
-        return isset($this->hirable_filter) ? $this->hirable_filter : null;
+        return $this->hirable_filter;
     }
 
     public function hasHirableFilter()
@@ -1048,7 +1048,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
     public function getCandidateAvailabilityFilter()
     {
         @trigger_error('candidate_availability_filter is deprecated.', E_USER_DEPRECATED);
-        return isset($this->candidate_availability_filter) ? $this->candidate_availability_filter : null;
+        return $this->candidate_availability_filter;
     }
 
     public function hasCandidateAvailabilityFilter()

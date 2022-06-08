@@ -383,7 +383,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      */
     public function getMetadata()
     {
-        return isset($this->metadata) ? $this->metadata : null;
+        return $this->metadata;
     }
 
     public function hasMetadata()
@@ -419,7 +419,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      */
     public function getPropertyQuota()
     {
-        return isset($this->property_quota) ? $this->property_quota : null;
+        return $this->property_quota;
     }
 
     public function hasPropertyQuota()

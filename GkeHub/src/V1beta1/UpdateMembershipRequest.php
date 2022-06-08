@@ -19,7 +19,7 @@ class UpdateMembershipRequest extends \Google\Protobuf\Internal\Message
      * Required. The membership resource name in the format:
      * `projects/[project_id]/locations/global/memberships/[membership_id]`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -103,7 +103,7 @@ class UpdateMembershipRequest extends \Google\Protobuf\Internal\Message
      * Required. The membership resource name in the format:
      * `projects/[project_id]/locations/global/memberships/[membership_id]`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -115,7 +115,7 @@ class UpdateMembershipRequest extends \Google\Protobuf\Internal\Message
      * Required. The membership resource name in the format:
      * `projects/[project_id]/locations/global/memberships/[membership_id]`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

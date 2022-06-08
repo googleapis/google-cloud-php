@@ -24,17 +24,17 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
     private $completion_results;
     /**
      * A unique complete token. This should be included in the
-     * [SearchRequest][google.cloud.retail.v2.SearchRequest] resulting from this
-     * completion, which enables accurate attribution of complete model
-     * performance.
+     * [UserEvent.completion_detail][google.cloud.retail.v2.UserEvent.completion_detail]
+     * for search events resulting from this completion, which enables accurate
+     * attribution of complete model performance.
      *
      * Generated from protobuf field <code>string attribution_token = 2;</code>
      */
     private $attribution_token = '';
     /**
-     * Matched recent searches of this user. This field is a restricted feature.
-     * Contact Retail Support (retail-search-support&#64;google.com) if you are
-     * interested in enabling it.
+     * Matched recent searches of this user. The maximum number of recent searches
+     * is 10. This field is a restricted feature. Contact Retail Search support
+     * team if you are interested in enabling it.
      * This feature is only available when
      * [CompleteQueryRequest.visitor_id][google.cloud.retail.v2.CompleteQueryRequest.visitor_id]
      * field is set and [UserEvent][google.cloud.retail.v2.UserEvent] is imported.
@@ -63,13 +63,13 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      *           first result is top suggestion.
      *     @type string $attribution_token
      *           A unique complete token. This should be included in the
-     *           [SearchRequest][google.cloud.retail.v2.SearchRequest] resulting from this
-     *           completion, which enables accurate attribution of complete model
-     *           performance.
+     *           [UserEvent.completion_detail][google.cloud.retail.v2.UserEvent.completion_detail]
+     *           for search events resulting from this completion, which enables accurate
+     *           attribution of complete model performance.
      *     @type \Google\Cloud\Retail\V2\CompleteQueryResponse\RecentSearchResult[]|\Google\Protobuf\Internal\RepeatedField $recent_search_results
-     *           Matched recent searches of this user. This field is a restricted feature.
-     *           Contact Retail Support (retail-search-support&#64;google.com) if you are
-     *           interested in enabling it.
+     *           Matched recent searches of this user. The maximum number of recent searches
+     *           is 10. This field is a restricted feature. Contact Retail Search support
+     *           team if you are interested in enabling it.
      *           This feature is only available when
      *           [CompleteQueryRequest.visitor_id][google.cloud.retail.v2.CompleteQueryRequest.visitor_id]
      *           field is set and [UserEvent][google.cloud.retail.v2.UserEvent] is imported.
@@ -119,9 +119,9 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A unique complete token. This should be included in the
-     * [SearchRequest][google.cloud.retail.v2.SearchRequest] resulting from this
-     * completion, which enables accurate attribution of complete model
-     * performance.
+     * [UserEvent.completion_detail][google.cloud.retail.v2.UserEvent.completion_detail]
+     * for search events resulting from this completion, which enables accurate
+     * attribution of complete model performance.
      *
      * Generated from protobuf field <code>string attribution_token = 2;</code>
      * @return string
@@ -133,9 +133,9 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A unique complete token. This should be included in the
-     * [SearchRequest][google.cloud.retail.v2.SearchRequest] resulting from this
-     * completion, which enables accurate attribution of complete model
-     * performance.
+     * [UserEvent.completion_detail][google.cloud.retail.v2.UserEvent.completion_detail]
+     * for search events resulting from this completion, which enables accurate
+     * attribution of complete model performance.
      *
      * Generated from protobuf field <code>string attribution_token = 2;</code>
      * @param string $var
@@ -150,9 +150,9 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Matched recent searches of this user. This field is a restricted feature.
-     * Contact Retail Support (retail-search-support&#64;google.com) if you are
-     * interested in enabling it.
+     * Matched recent searches of this user. The maximum number of recent searches
+     * is 10. This field is a restricted feature. Contact Retail Search support
+     * team if you are interested in enabling it.
      * This feature is only available when
      * [CompleteQueryRequest.visitor_id][google.cloud.retail.v2.CompleteQueryRequest.visitor_id]
      * field is set and [UserEvent][google.cloud.retail.v2.UserEvent] is imported.
@@ -175,9 +175,9 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Matched recent searches of this user. This field is a restricted feature.
-     * Contact Retail Support (retail-search-support&#64;google.com) if you are
-     * interested in enabling it.
+     * Matched recent searches of this user. The maximum number of recent searches
+     * is 10. This field is a restricted feature. Contact Retail Search support
+     * team if you are interested in enabling it.
      * This feature is only available when
      * [CompleteQueryRequest.visitor_id][google.cloud.retail.v2.CompleteQueryRequest.visitor_id]
      * field is set and [UserEvent][google.cloud.retail.v2.UserEvent] is imported.

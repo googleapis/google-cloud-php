@@ -73,7 +73,7 @@ class TimestampedObject extends \Google\Protobuf\Internal\Message
      */
     public function getNormalizedBoundingBox()
     {
-        return isset($this->normalized_bounding_box) ? $this->normalized_bounding_box : null;
+        return $this->normalized_bounding_box;
     }
 
     public function hasNormalizedBoundingBox()
@@ -110,7 +110,7 @@ class TimestampedObject extends \Google\Protobuf\Internal\Message
      */
     public function getTimeOffset()
     {
-        return isset($this->time_offset) ? $this->time_offset : null;
+        return $this->time_offset;
     }
 
     public function hasTimeOffset()

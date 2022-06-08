@@ -136,7 +136,7 @@ class ColumnSpec extends \Google\Protobuf\Internal\Message
      */
     public function getDataType()
     {
-        return isset($this->data_type) ? $this->data_type : null;
+        return $this->data_type;
     }
 
     public function hasDataType()
@@ -207,7 +207,7 @@ class ColumnSpec extends \Google\Protobuf\Internal\Message
      */
     public function getDataStats()
     {
-        return isset($this->data_stats) ? $this->data_stats : null;
+        return $this->data_stats;
     }
 
     public function hasDataStats()

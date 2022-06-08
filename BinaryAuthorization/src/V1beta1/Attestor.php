@@ -9,9 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] that attests
- * to container image artifacts. An existing attestor cannot be modified except
- * where indicated.
+ * An [attestor][google.cloud.binaryauthorization.v1beta1.Attestor] that attests to container image
+ * artifacts. An existing attestor cannot be modified except where
+ * indicated.
  *
  * Generated from protobuf message <code>google.cloud.binaryauthorization.v1beta1.Attestor</code>
  */

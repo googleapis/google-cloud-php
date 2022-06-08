@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/devtools/clouderrorreporting/(v1beta1)/.*-php/(.*)
+      dest: /owl-bot-staging/ErrorReporting/$1/$2
+api-name: ErrorReporting

@@ -17,7 +17,7 @@ class DistributionPolicyZoneConfiguration extends \Google\Protobuf\Internal\Mess
     /**
      * The URL of the zone. The zone must exist in the region where the managed instance group is located.
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
     private $zone = null;
 
@@ -39,7 +39,7 @@ class DistributionPolicyZoneConfiguration extends \Google\Protobuf\Internal\Mess
     /**
      * The URL of the zone. The zone must exist in the region where the managed instance group is located.
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @return string
      */
     public function getZone()
@@ -60,7 +60,7 @@ class DistributionPolicyZoneConfiguration extends \Google\Protobuf\Internal\Mess
     /**
      * The URL of the zone. The zone must exist in the region where the managed instance group is located.
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @param string $var
      * @return $this
      */

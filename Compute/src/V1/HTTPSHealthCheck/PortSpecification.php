@@ -7,11 +7,7 @@ namespace Google\Cloud\Compute\V1\HTTPSHealthCheck;
 use UnexpectedValueException;
 
 /**
- * Specifies how port is selected for health checking, can be one of following values:
- * USE_FIXED_PORT: The port number in port is used for health checking.
- * USE_NAMED_PORT: The portName is used for health checking.
- * USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
- * If not specified, HTTPS health check follows behavior specified in port and portName fields.
+ * Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking. If not specified, HTTPS health check follows behavior specified in port and portName fields.
  *
  * Protobuf type <code>google.cloud.compute.v1.HTTPSHealthCheck.PortSpecification</code>
  */
@@ -24,14 +20,20 @@ class PortSpecification
      */
     const UNDEFINED_PORT_SPECIFICATION = 0;
     /**
+     * The port number in port is used for health checking.
+     *
      * Generated from protobuf enum <code>USE_FIXED_PORT = 190235748;</code>
      */
     const USE_FIXED_PORT = 190235748;
     /**
+     * The portName is used for health checking.
+     *
      * Generated from protobuf enum <code>USE_NAMED_PORT = 349300671;</code>
      */
     const USE_NAMED_PORT = 349300671;
     /**
+     * For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
+     *
      * Generated from protobuf enum <code>USE_SERVING_PORT = 362637516;</code>
      */
     const USE_SERVING_PORT = 362637516;

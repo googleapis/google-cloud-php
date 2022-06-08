@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KeyManagementService.UpdateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyVersion].
+ * Request message for
+ * [KeyManagementService.UpdateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyVersion].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.UpdateCryptoKeyVersionRequest</code>
  */
 class UpdateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with updated values.
+     * Required. [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
+     * updated values.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion crypto_key_version = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -35,7 +37,8 @@ class UpdateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Kms\V1\CryptoKeyVersion $crypto_key_version
-     *           Required. [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with updated values.
+     *           Required. [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
+     *           updated values.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. List of fields to be updated in this request.
      * }
@@ -46,14 +49,15 @@ class UpdateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with updated values.
+     * Required. [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
+     * updated values.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion crypto_key_version = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Kms\V1\CryptoKeyVersion|null
      */
     public function getCryptoKeyVersion()
     {
-        return isset($this->crypto_key_version) ? $this->crypto_key_version : null;
+        return $this->crypto_key_version;
     }
 
     public function hasCryptoKeyVersion()
@@ -67,7 +71,8 @@ class UpdateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with updated values.
+     * Required. [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
+     * updated values.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion crypto_key_version = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Kms\V1\CryptoKeyVersion $var
@@ -89,7 +94,7 @@ class UpdateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

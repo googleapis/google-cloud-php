@@ -286,6 +286,25 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $workload_identity_config = null;
     /**
+     * Configuration for issuance of mTLS keys and certificates to Kubernetes
+     * pods.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MeshCertificates mesh_certificates = 67;</code>
+     */
+    private $mesh_certificates = null;
+    /**
+     * Notification configuration of the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NotificationConfig notification_config = 49;</code>
+     */
+    private $notification_config = null;
+    /**
+     * Configuration of Confidential Nodes
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 50;</code>
+     */
+    private $confidential_nodes = null;
+    /**
      * [Output only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 100;</code>
@@ -436,6 +455,37 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition conditions = 118;</code>
      */
     private $conditions;
+    /**
+     * Autopilot configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.Autopilot autopilot = 128;</code>
+     */
+    private $autopilot = null;
+    /**
+     * Output only. Unique id for the cluster.
+     *
+     * Generated from protobuf field <code>string id = 129 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $id = '';
+    /**
+     * Default NodePool settings for the entire cluster. These settings are
+     * overridden if specified on the specific NodePool object.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.NodePoolDefaults node_pool_defaults = 131;</code>
+     */
+    private $node_pool_defaults = null;
+    /**
+     * Logging configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LoggingConfig logging_config = 132;</code>
+     */
+    private $logging_config = null;
+    /**
+     * Monitoring configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MonitoringConfig monitoring_config = 133;</code>
+     */
+    private $monitoring_config = null;
 
     /**
      * Constructor.
@@ -579,6 +629,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\WorkloadIdentityConfig $workload_identity_config
      *           Configuration for the use of Kubernetes Service Accounts in GCP IAM
      *           policies.
+     *     @type \Google\Cloud\Container\V1\MeshCertificates $mesh_certificates
+     *           Configuration for issuance of mTLS keys and certificates to Kubernetes
+     *           pods.
+     *     @type \Google\Cloud\Container\V1\NotificationConfig $notification_config
+     *           Notification configuration of the cluster.
+     *     @type \Google\Cloud\Container\V1\ConfidentialNodes $confidential_nodes
+     *           Configuration of Confidential Nodes
      *     @type string $self_link
      *           [Output only] Server-defined URL for the resource.
      *     @type string $zone
@@ -653,6 +710,17 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           notation (e.g. `1.2.3.4/29`).
      *     @type \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $conditions
      *           Which conditions caused the current cluster state.
+     *     @type \Google\Cloud\Container\V1\Autopilot $autopilot
+     *           Autopilot configuration for the cluster.
+     *     @type string $id
+     *           Output only. Unique id for the cluster.
+     *     @type \Google\Cloud\Container\V1\NodePoolDefaults $node_pool_defaults
+     *           Default NodePool settings for the entire cluster. These settings are
+     *           overridden if specified on the specific NodePool object.
+     *     @type \Google\Cloud\Container\V1\LoggingConfig $logging_config
+     *           Logging configuration for the cluster.
+     *     @type \Google\Cloud\Container\V1\MonitoringConfig $monitoring_config
+     *           Monitoring configuration for the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -1869,6 +1937,116 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Configuration for issuance of mTLS keys and certificates to Kubernetes
+     * pods.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MeshCertificates mesh_certificates = 67;</code>
+     * @return \Google\Cloud\Container\V1\MeshCertificates|null
+     */
+    public function getMeshCertificates()
+    {
+        return $this->mesh_certificates;
+    }
+
+    public function hasMeshCertificates()
+    {
+        return isset($this->mesh_certificates);
+    }
+
+    public function clearMeshCertificates()
+    {
+        unset($this->mesh_certificates);
+    }
+
+    /**
+     * Configuration for issuance of mTLS keys and certificates to Kubernetes
+     * pods.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MeshCertificates mesh_certificates = 67;</code>
+     * @param \Google\Cloud\Container\V1\MeshCertificates $var
+     * @return $this
+     */
+    public function setMeshCertificates($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\MeshCertificates::class);
+        $this->mesh_certificates = $var;
+
+        return $this;
+    }
+
+    /**
+     * Notification configuration of the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NotificationConfig notification_config = 49;</code>
+     * @return \Google\Cloud\Container\V1\NotificationConfig|null
+     */
+    public function getNotificationConfig()
+    {
+        return $this->notification_config;
+    }
+
+    public function hasNotificationConfig()
+    {
+        return isset($this->notification_config);
+    }
+
+    public function clearNotificationConfig()
+    {
+        unset($this->notification_config);
+    }
+
+    /**
+     * Notification configuration of the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NotificationConfig notification_config = 49;</code>
+     * @param \Google\Cloud\Container\V1\NotificationConfig $var
+     * @return $this
+     */
+    public function setNotificationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NotificationConfig::class);
+        $this->notification_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration of Confidential Nodes
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 50;</code>
+     * @return \Google\Cloud\Container\V1\ConfidentialNodes|null
+     */
+    public function getConfidentialNodes()
+    {
+        return $this->confidential_nodes;
+    }
+
+    public function hasConfidentialNodes()
+    {
+        return isset($this->confidential_nodes);
+    }
+
+    public function clearConfidentialNodes()
+    {
+        unset($this->confidential_nodes);
+    }
+
+    /**
+     * Configuration of Confidential Nodes
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 50;</code>
+     * @param \Google\Cloud\Container\V1\ConfidentialNodes $var
+     * @return $this
+     */
+    public function setConfidentialNodes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ConfidentialNodes::class);
+        $this->confidential_nodes = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 100;</code>
@@ -2428,6 +2606,178 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\StatusCondition::class);
         $this->conditions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Autopilot configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.Autopilot autopilot = 128;</code>
+     * @return \Google\Cloud\Container\V1\Autopilot|null
+     */
+    public function getAutopilot()
+    {
+        return $this->autopilot;
+    }
+
+    public function hasAutopilot()
+    {
+        return isset($this->autopilot);
+    }
+
+    public function clearAutopilot()
+    {
+        unset($this->autopilot);
+    }
+
+    /**
+     * Autopilot configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.Autopilot autopilot = 128;</code>
+     * @param \Google\Cloud\Container\V1\Autopilot $var
+     * @return $this
+     */
+    public function setAutopilot($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\Autopilot::class);
+        $this->autopilot = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Unique id for the cluster.
+     *
+     * Generated from protobuf field <code>string id = 129 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Output only. Unique id for the cluster.
+     *
+     * Generated from protobuf field <code>string id = 129 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Default NodePool settings for the entire cluster. These settings are
+     * overridden if specified on the specific NodePool object.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.NodePoolDefaults node_pool_defaults = 131;</code>
+     * @return \Google\Cloud\Container\V1\NodePoolDefaults|null
+     */
+    public function getNodePoolDefaults()
+    {
+        return $this->node_pool_defaults;
+    }
+
+    public function hasNodePoolDefaults()
+    {
+        return isset($this->node_pool_defaults);
+    }
+
+    public function clearNodePoolDefaults()
+    {
+        unset($this->node_pool_defaults);
+    }
+
+    /**
+     * Default NodePool settings for the entire cluster. These settings are
+     * overridden if specified on the specific NodePool object.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.NodePoolDefaults node_pool_defaults = 131;</code>
+     * @param \Google\Cloud\Container\V1\NodePoolDefaults $var
+     * @return $this
+     */
+    public function setNodePoolDefaults($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePoolDefaults::class);
+        $this->node_pool_defaults = $var;
+
+        return $this;
+    }
+
+    /**
+     * Logging configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LoggingConfig logging_config = 132;</code>
+     * @return \Google\Cloud\Container\V1\LoggingConfig|null
+     */
+    public function getLoggingConfig()
+    {
+        return $this->logging_config;
+    }
+
+    public function hasLoggingConfig()
+    {
+        return isset($this->logging_config);
+    }
+
+    public function clearLoggingConfig()
+    {
+        unset($this->logging_config);
+    }
+
+    /**
+     * Logging configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LoggingConfig logging_config = 132;</code>
+     * @param \Google\Cloud\Container\V1\LoggingConfig $var
+     * @return $this
+     */
+    public function setLoggingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LoggingConfig::class);
+        $this->logging_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Monitoring configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MonitoringConfig monitoring_config = 133;</code>
+     * @return \Google\Cloud\Container\V1\MonitoringConfig|null
+     */
+    public function getMonitoringConfig()
+    {
+        return $this->monitoring_config;
+    }
+
+    public function hasMonitoringConfig()
+    {
+        return isset($this->monitoring_config);
+    }
+
+    public function clearMonitoringConfig()
+    {
+        unset($this->monitoring_config);
+    }
+
+    /**
+     * Monitoring configuration for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.MonitoringConfig monitoring_config = 133;</code>
+     * @param \Google\Cloud\Container\V1\MonitoringConfig $var
+     * @return $this
+     */
+    public function setMonitoringConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\MonitoringConfig::class);
+        $this->monitoring_config = $var;
 
         return $this;
     }

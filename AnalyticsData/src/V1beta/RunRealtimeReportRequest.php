@@ -244,7 +244,7 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDimensionFilter()
     {
-        return isset($this->dimension_filter) ? $this->dimension_filter : null;
+        return $this->dimension_filter;
     }
 
     public function hasDimensionFilter()
@@ -283,7 +283,7 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
      */
     public function getMetricFilter()
     {
-        return isset($this->metric_filter) ? $this->metric_filter : null;
+        return $this->metric_filter;
     }
 
     public function hasMetricFilter()

@@ -17,11 +17,11 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the settings. Format is one of:
-     * - "projects/{project_id}/accessApprovalSettings"
-     * - "folders/{folder_id}/accessApprovalSettings"
-     * - "organizations/{organization_id}/accessApprovalSettings"
+     *   * "projects/{project}/accessApprovalSettings"
+     *   * "folders/{folder}/accessApprovalSettings"
+     *   * "organizations/{organization}/accessApprovalSettings"
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -50,7 +50,7 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
     private $enrolled_services;
     /**
      * Output only. This field is read only (not settable via
-     * UpdateAccessAccessApprovalSettings method). If the field is true, that
+     * UpdateAccessApprovalSettings method). If the field is true, that
      * indicates that at least one service is enrolled for Access Approval in one
      * or more ancestors of the Project or Folder (this field will always be
      * unset for the organization since organizations do not have ancestors).
@@ -58,6 +58,36 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enrolled_ancestor = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $enrolled_ancestor = false;
+    /**
+     * The asymmetric crypto key version to use for signing approval requests.
+     * Empty active_key_version indicates that a Google-managed key should be used
+     * for signing. This property will be ignored if set by an ancestor of this
+     * resource, and new non-empty values may not be set.
+     *
+     * Generated from protobuf field <code>string active_key_version = 6;</code>
+     */
+    private $active_key_version = '';
+    /**
+     * Output only. This field is read only (not settable via UpdateAccessApprovalSettings
+     * method). If the field is true, that indicates that an ancestor of this
+     * Project or Folder has set active_key_version (this field will always be
+     * unset for the organization since organizations do not have ancestors).
+     *
+     * Generated from protobuf field <code>bool ancestor_has_active_key_version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $ancestor_has_active_key_version = false;
+    /**
+     * Output only. This field is read only (not settable via UpdateAccessApprovalSettings
+     * method). If the field is true, that indicates that there is some
+     * configuration issue with the active_key_version configured at this level in
+     * the resource hierarchy (e.g. it doesn't exist or the Access Approval
+     * service account doesn't have the correct permissions on it, etc.) This key
+     * version is not necessarily the effective key version at this level, as key
+     * versions are inherited top-down.
+     *
+     * Generated from protobuf field <code>bool invalid_key_version = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $invalid_key_version = false;
 
     /**
      * Constructor.
@@ -67,9 +97,9 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the settings. Format is one of:
-     *           - "projects/{project_id}/accessApprovalSettings"
-     *           - "folders/{folder_id}/accessApprovalSettings"
-     *           - "organizations/{organization_id}/accessApprovalSettings"
+     *             * "projects/{project}/accessApprovalSettings"
+     *             * "folders/{folder}/accessApprovalSettings"
+     *             * "organizations/{organization}/accessApprovalSettings"
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $notification_emails
      *           A list of email addresses to which notifications relating to approval
      *           requests should be sent. Notifications relating to a resource will be sent
@@ -88,10 +118,28 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
      *           services is expanded.
      *     @type bool $enrolled_ancestor
      *           Output only. This field is read only (not settable via
-     *           UpdateAccessAccessApprovalSettings method). If the field is true, that
+     *           UpdateAccessApprovalSettings method). If the field is true, that
      *           indicates that at least one service is enrolled for Access Approval in one
      *           or more ancestors of the Project or Folder (this field will always be
      *           unset for the organization since organizations do not have ancestors).
+     *     @type string $active_key_version
+     *           The asymmetric crypto key version to use for signing approval requests.
+     *           Empty active_key_version indicates that a Google-managed key should be used
+     *           for signing. This property will be ignored if set by an ancestor of this
+     *           resource, and new non-empty values may not be set.
+     *     @type bool $ancestor_has_active_key_version
+     *           Output only. This field is read only (not settable via UpdateAccessApprovalSettings
+     *           method). If the field is true, that indicates that an ancestor of this
+     *           Project or Folder has set active_key_version (this field will always be
+     *           unset for the organization since organizations do not have ancestors).
+     *     @type bool $invalid_key_version
+     *           Output only. This field is read only (not settable via UpdateAccessApprovalSettings
+     *           method). If the field is true, that indicates that there is some
+     *           configuration issue with the active_key_version configured at this level in
+     *           the resource hierarchy (e.g. it doesn't exist or the Access Approval
+     *           service account doesn't have the correct permissions on it, etc.) This key
+     *           version is not necessarily the effective key version at this level, as key
+     *           versions are inherited top-down.
      * }
      */
     public function __construct($data = NULL) {
@@ -101,11 +149,11 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the settings. Format is one of:
-     * - "projects/{project_id}/accessApprovalSettings"
-     * - "folders/{folder_id}/accessApprovalSettings"
-     * - "organizations/{organization_id}/accessApprovalSettings"
+     *   * "projects/{project}/accessApprovalSettings"
+     *   * "folders/{folder}/accessApprovalSettings"
+     *   * "organizations/{organization}/accessApprovalSettings"
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -115,11 +163,11 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the settings. Format is one of:
-     * - "projects/{project_id}/accessApprovalSettings"
-     * - "folders/{folder_id}/accessApprovalSettings"
-     * - "organizations/{organization_id}/accessApprovalSettings"
+     *   * "projects/{project}/accessApprovalSettings"
+     *   * "folders/{folder}/accessApprovalSettings"
+     *   * "organizations/{organization}/accessApprovalSettings"
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -209,7 +257,7 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. This field is read only (not settable via
-     * UpdateAccessAccessApprovalSettings method). If the field is true, that
+     * UpdateAccessApprovalSettings method). If the field is true, that
      * indicates that at least one service is enrolled for Access Approval in one
      * or more ancestors of the Project or Folder (this field will always be
      * unset for the organization since organizations do not have ancestors).
@@ -224,7 +272,7 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. This field is read only (not settable via
-     * UpdateAccessAccessApprovalSettings method). If the field is true, that
+     * UpdateAccessApprovalSettings method). If the field is true, that
      * indicates that at least one service is enrolled for Access Approval in one
      * or more ancestors of the Project or Folder (this field will always be
      * unset for the organization since organizations do not have ancestors).
@@ -237,6 +285,108 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enrolled_ancestor = $var;
+
+        return $this;
+    }
+
+    /**
+     * The asymmetric crypto key version to use for signing approval requests.
+     * Empty active_key_version indicates that a Google-managed key should be used
+     * for signing. This property will be ignored if set by an ancestor of this
+     * resource, and new non-empty values may not be set.
+     *
+     * Generated from protobuf field <code>string active_key_version = 6;</code>
+     * @return string
+     */
+    public function getActiveKeyVersion()
+    {
+        return $this->active_key_version;
+    }
+
+    /**
+     * The asymmetric crypto key version to use for signing approval requests.
+     * Empty active_key_version indicates that a Google-managed key should be used
+     * for signing. This property will be ignored if set by an ancestor of this
+     * resource, and new non-empty values may not be set.
+     *
+     * Generated from protobuf field <code>string active_key_version = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setActiveKeyVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->active_key_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. This field is read only (not settable via UpdateAccessApprovalSettings
+     * method). If the field is true, that indicates that an ancestor of this
+     * Project or Folder has set active_key_version (this field will always be
+     * unset for the organization since organizations do not have ancestors).
+     *
+     * Generated from protobuf field <code>bool ancestor_has_active_key_version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getAncestorHasActiveKeyVersion()
+    {
+        return $this->ancestor_has_active_key_version;
+    }
+
+    /**
+     * Output only. This field is read only (not settable via UpdateAccessApprovalSettings
+     * method). If the field is true, that indicates that an ancestor of this
+     * Project or Folder has set active_key_version (this field will always be
+     * unset for the organization since organizations do not have ancestors).
+     *
+     * Generated from protobuf field <code>bool ancestor_has_active_key_version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAncestorHasActiveKeyVersion($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ancestor_has_active_key_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. This field is read only (not settable via UpdateAccessApprovalSettings
+     * method). If the field is true, that indicates that there is some
+     * configuration issue with the active_key_version configured at this level in
+     * the resource hierarchy (e.g. it doesn't exist or the Access Approval
+     * service account doesn't have the correct permissions on it, etc.) This key
+     * version is not necessarily the effective key version at this level, as key
+     * versions are inherited top-down.
+     *
+     * Generated from protobuf field <code>bool invalid_key_version = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getInvalidKeyVersion()
+    {
+        return $this->invalid_key_version;
+    }
+
+    /**
+     * Output only. This field is read only (not settable via UpdateAccessApprovalSettings
+     * method). If the field is true, that indicates that there is some
+     * configuration issue with the active_key_version configured at this level in
+     * the resource hierarchy (e.g. it doesn't exist or the Access Approval
+     * service account doesn't have the correct permissions on it, etc.) This key
+     * version is not necessarily the effective key version at this level, as key
+     * versions are inherited top-down.
+     *
+     * Generated from protobuf field <code>bool invalid_key_version = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setInvalidKeyVersion($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->invalid_key_version = $var;
 
         return $this;
     }

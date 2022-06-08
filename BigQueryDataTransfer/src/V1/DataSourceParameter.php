@@ -9,12 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a data source parameter with validation rules, so that
- * parameters can be rendered in the UI. These parameters are given to us by
- * supported data sources, and include all needed information for rendering
- * and validation.
- * Thus, whoever uses this api can decide to generate either generic ui,
- * or custom data source specific forms.
+ * A parameter used to define custom fields in a data source definition.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.datatransfer.v1.DataSourceParameter</code>
  */
@@ -382,7 +377,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      */
     public function getMinValue()
     {
-        return isset($this->min_value) ? $this->min_value : null;
+        return $this->min_value;
     }
 
     public function hasMinValue()
@@ -445,7 +440,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      */
     public function getMaxValue()
     {
-        return isset($this->max_value) ? $this->max_value : null;
+        return $this->max_value;
     }
 
     public function hasMaxValue()

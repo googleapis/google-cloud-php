@@ -7,8 +7,7 @@ namespace Google\Cloud\Compute\V1\Address;
 use UnexpectedValueException;
 
 /**
- * This signifies the networking tier used for configuring this address and can only take the following values: PREMIUM or STANDARD. Global forwarding rules can only be Premium Tier. Regional forwarding rules can be either Premium or Standard Tier. Standard Tier addresses applied to regional forwarding rules can be used with any external load balancer. Regional forwarding rules in Premium Tier can only be used with a network load balancer.
- * If this field is not specified, it is assumed to be PREMIUM.
+ * This signifies the networking tier used for configuring this address and can only take the following values: PREMIUM or STANDARD. Internal IP addresses are always Premium Tier; global external IP addresses are always Premium Tier; regional external IP addresses can be either Standard or Premium Tier. If this field is not specified, it is assumed to be PREMIUM.
  *
  * Protobuf type <code>google.cloud.compute.v1.Address.NetworkTier</code>
  */
@@ -21,18 +20,36 @@ class NetworkTier
      */
     const UNDEFINED_NETWORK_TIER = 0;
     /**
+     * Public internet quality with fixed bandwidth.
+     *
+     * Generated from protobuf enum <code>FIXED_STANDARD = 310464328;</code>
+     */
+    const FIXED_STANDARD = 310464328;
+    /**
+     * High quality, Google-grade network tier, support for all networking products.
+     *
      * Generated from protobuf enum <code>PREMIUM = 399530551;</code>
      */
     const PREMIUM = 399530551;
     /**
+     * Public internet quality, only limited support for other networking products.
+     *
      * Generated from protobuf enum <code>STANDARD = 484642493;</code>
      */
     const STANDARD = 484642493;
+    /**
+     * (Output only) Temporary tier for FIXED_STANDARD when fixed standard tier is expired or not configured.
+     *
+     * Generated from protobuf enum <code>STANDARD_OVERRIDES_FIXED_STANDARD = 465847234;</code>
+     */
+    const STANDARD_OVERRIDES_FIXED_STANDARD = 465847234;
 
     private static $valueToName = [
         self::UNDEFINED_NETWORK_TIER => 'UNDEFINED_NETWORK_TIER',
+        self::FIXED_STANDARD => 'FIXED_STANDARD',
         self::PREMIUM => 'PREMIUM',
         self::STANDARD => 'STANDARD',
+        self::STANDARD_OVERRIDES_FIXED_STANDARD => 'STANDARD_OVERRIDES_FIXED_STANDARD',
     ];
 
     public static function name($value)

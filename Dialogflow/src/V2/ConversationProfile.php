@@ -87,13 +87,31 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      */
     private $stt_config = null;
     /**
-     * Language which represents the conversationProfile.
-     * If unspecified, the default language code en-us applies. Users need to
-     * create a ConversationProfile for each language they want to support.
+     * Language code for the conversation profile. If not specified, the language
+     * is en-US. Language at ConversationProfile should be set for all non en-US
+     * languages.
+     * This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
+     * language tag. Example: "en-US".
      *
      * Generated from protobuf field <code>string language_code = 10;</code>
      */
     private $language_code = '';
+    /**
+     * The time zone of this conversational profile from the
+     * [time zone database](https://www.iana.org/time-zones), e.g.,
+     * America/New_York, Europe/Paris. Defaults to America/New_York.
+     *
+     * Generated from protobuf field <code>string time_zone = 14;</code>
+     */
+    private $time_zone = '';
+    /**
+     * Name of the CX SecuritySettings reference for the agent.
+     * Format: `projects/<Project ID>/locations/<Location
+     * ID>/securitySettings/<Security Settings ID>`.
+     *
+     * Generated from protobuf field <code>string security_settings = 13 [(.google.api.resource_reference) = {</code>
+     */
+    private $security_settings = '';
 
     /**
      * Constructor.
@@ -129,9 +147,19 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\SpeechToTextConfig $stt_config
      *           Settings for speech transcription.
      *     @type string $language_code
-     *           Language which represents the conversationProfile.
-     *           If unspecified, the default language code en-us applies. Users need to
-     *           create a ConversationProfile for each language they want to support.
+     *           Language code for the conversation profile. If not specified, the language
+     *           is en-US. Language at ConversationProfile should be set for all non en-US
+     *           languages.
+     *           This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
+     *           language tag. Example: "en-US".
+     *     @type string $time_zone
+     *           The time zone of this conversational profile from the
+     *           [time zone database](https://www.iana.org/time-zones), e.g.,
+     *           America/New_York, Europe/Paris. Defaults to America/New_York.
+     *     @type string $security_settings
+     *           Name of the CX SecuritySettings reference for the agent.
+     *           Format: `projects/<Project ID>/locations/<Location
+     *           ID>/securitySettings/<Security Settings ID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -526,9 +554,11 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Language which represents the conversationProfile.
-     * If unspecified, the default language code en-us applies. Users need to
-     * create a ConversationProfile for each language they want to support.
+     * Language code for the conversation profile. If not specified, the language
+     * is en-US. Language at ConversationProfile should be set for all non en-US
+     * languages.
+     * This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
+     * language tag. Example: "en-US".
      *
      * Generated from protobuf field <code>string language_code = 10;</code>
      * @return string
@@ -539,9 +569,11 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Language which represents the conversationProfile.
-     * If unspecified, the default language code en-us applies. Users need to
-     * create a ConversationProfile for each language they want to support.
+     * Language code for the conversation profile. If not specified, the language
+     * is en-US. Language at ConversationProfile should be set for all non en-US
+     * languages.
+     * This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
+     * language tag. Example: "en-US".
      *
      * Generated from protobuf field <code>string language_code = 10;</code>
      * @param string $var
@@ -551,6 +583,66 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->language_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * The time zone of this conversational profile from the
+     * [time zone database](https://www.iana.org/time-zones), e.g.,
+     * America/New_York, Europe/Paris. Defaults to America/New_York.
+     *
+     * Generated from protobuf field <code>string time_zone = 14;</code>
+     * @return string
+     */
+    public function getTimeZone()
+    {
+        return $this->time_zone;
+    }
+
+    /**
+     * The time zone of this conversational profile from the
+     * [time zone database](https://www.iana.org/time-zones), e.g.,
+     * America/New_York, Europe/Paris. Defaults to America/New_York.
+     *
+     * Generated from protobuf field <code>string time_zone = 14;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTimeZone($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->time_zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Name of the CX SecuritySettings reference for the agent.
+     * Format: `projects/<Project ID>/locations/<Location
+     * ID>/securitySettings/<Security Settings ID>`.
+     *
+     * Generated from protobuf field <code>string security_settings = 13 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getSecuritySettings()
+    {
+        return $this->security_settings;
+    }
+
+    /**
+     * Name of the CX SecuritySettings reference for the agent.
+     * Format: `projects/<Project ID>/locations/<Location
+     * ID>/securitySettings/<Security Settings ID>`.
+     *
+     * Generated from protobuf field <code>string security_settings = 13 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSecuritySettings($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->security_settings = $var;
 
         return $this;
     }

@@ -84,7 +84,7 @@ class AttachTrustRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTrust()
     {
-        return isset($this->trust) ? $this->trust : null;
+        return $this->trust;
     }
 
     public function hasTrust()

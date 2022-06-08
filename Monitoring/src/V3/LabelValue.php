@@ -47,6 +47,11 @@ class LabelValue extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasBoolValue()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * A bool label value.
      *
@@ -73,6 +78,11 @@ class LabelValue extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasInt64Value()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * An int64 label value.
      *
@@ -97,6 +107,11 @@ class LabelValue extends \Google\Protobuf\Internal\Message
     public function getStringValue()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasStringValue()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

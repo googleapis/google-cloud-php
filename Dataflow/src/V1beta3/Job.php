@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Defines a job to be run by the Cloud Dataflow service.
- * nextID: 26
  *
  * Generated from protobuf message <code>google.dataflow.v1beta3.Job</code>
  */

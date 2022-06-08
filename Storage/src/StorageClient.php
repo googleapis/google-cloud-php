@@ -47,7 +47,7 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.25.2';
+    const VERSION = '1.27.1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
@@ -263,8 +263,11 @@ class StorageClient
      *     @type array $defaultObjectAcl Default access controls to apply to new
      *           objects when no ACL is provided.
      *     @type array|Lifecycle $lifecycle The bucket's lifecycle configuration.
-     *     @type string $location The location of the bucket. **Defaults to**
-     *           `"US"`.
+     *     @type string $location The location of the bucket. A dual-region can
+     *           be specified as a string (e.g. "US-CENTRAL1+US-WEST1"). For
+     *           more information, see
+     *           [Bucket Locations](https://cloud.google.com/storage/docs/locations).
+     *           **Defaults to** `"US"`.
      *     @type array $logging The bucket's logging configuration, which
      *           defines the destination bucket and optional name prefix for the
      *           current bucket's logs.
@@ -323,6 +326,9 @@ class StorageClient
      *           [feature documentation](https://cloud.google.com/storage/docs/uniform-bucket-level-access),
      *           as well as
      *           [Should You Use uniform bucket-level access](https://cloud.google.com/storage/docs/uniform-bucket-level-access#should-you-use)
+     *     @type string $rpo Specifies the Turbo Replication setting for a dual-region bucket.
+     *           The possible values are DEFAULT and ASYNC_TURBO. Trying to set the rpo for a non dual-region
+     *           bucket will throw an exception. Non existence of this parameter is equivalent to it being DEFAULT.
      * }
      * @codingStandardsIgnoreEnd
      * @return Bucket

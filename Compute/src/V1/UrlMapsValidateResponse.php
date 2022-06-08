@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class UrlMapsValidateResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.UrlMapValidationResult result = 139315229;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UrlMapValidationResult result = 139315229;</code>
      */
     private $result = null;
 
@@ -34,12 +34,12 @@ class UrlMapsValidateResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.UrlMapValidationResult result = 139315229;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UrlMapValidationResult result = 139315229;</code>
      * @return \Google\Cloud\Compute\V1\UrlMapValidationResult|null
      */
     public function getResult()
     {
-        return isset($this->result) ? $this->result : null;
+        return $this->result;
     }
 
     public function hasResult()
@@ -53,7 +53,7 @@ class UrlMapsValidateResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.UrlMapValidationResult result = 139315229;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UrlMapValidationResult result = 139315229;</code>
      * @param \Google\Cloud\Compute\V1\UrlMapValidationResult $var
      * @return $this
      */

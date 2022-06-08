@@ -22,6 +22,26 @@ class GenerateUploadUrlRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string parent = 1;</code>
      */
     private $parent = '';
+    /**
+     * Resource name of a KMS crypto key (managed by the user) used to
+     * encrypt/decrypt function source code objects in staging Cloud Storage
+     * buckets. When you generate an upload url and upload your source code, it
+     * gets copied to a staging Cloud Storage bucket in an internal regional
+     * project. The source code is then copied to a versioned directory in the
+     * sources bucket in the consumer project during the function deployment.
+     * It must match the pattern
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
+     * The Google Cloud Functions service account
+     * (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) must be
+     * granted the role 'Cloud KMS CryptoKey Encrypter/Decrypter
+     * (roles/cloudkms.cryptoKeyEncrypterDecrypter)' on the
+     * Key/KeyRing/Project/Organization (least access preferred). GCF will
+     * delegate access to the Google Storage service account in the internal
+     * project.
+     *
+     * Generated from protobuf field <code>string kms_key_name = 2 [(.google.api.resource_reference) = {</code>
+     */
+    private $kms_key_name = '';
 
     /**
      * Constructor.
@@ -32,6 +52,22 @@ class GenerateUploadUrlRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           The project and location in which the Google Cloud Storage signed URL
      *           should be generated, specified in the format `projects/&#42;&#47;locations/&#42;`.
+     *     @type string $kms_key_name
+     *           Resource name of a KMS crypto key (managed by the user) used to
+     *           encrypt/decrypt function source code objects in staging Cloud Storage
+     *           buckets. When you generate an upload url and upload your source code, it
+     *           gets copied to a staging Cloud Storage bucket in an internal regional
+     *           project. The source code is then copied to a versioned directory in the
+     *           sources bucket in the consumer project during the function deployment.
+     *           It must match the pattern
+     *           `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
+     *           The Google Cloud Functions service account
+     *           (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) must be
+     *           granted the role 'Cloud KMS CryptoKey Encrypter/Decrypter
+     *           (roles/cloudkms.cryptoKeyEncrypterDecrypter)' on the
+     *           Key/KeyRing/Project/Organization (least access preferred). GCF will
+     *           delegate access to the Google Storage service account in the internal
+     *           project.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +99,60 @@ class GenerateUploadUrlRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Resource name of a KMS crypto key (managed by the user) used to
+     * encrypt/decrypt function source code objects in staging Cloud Storage
+     * buckets. When you generate an upload url and upload your source code, it
+     * gets copied to a staging Cloud Storage bucket in an internal regional
+     * project. The source code is then copied to a versioned directory in the
+     * sources bucket in the consumer project during the function deployment.
+     * It must match the pattern
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
+     * The Google Cloud Functions service account
+     * (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) must be
+     * granted the role 'Cloud KMS CryptoKey Encrypter/Decrypter
+     * (roles/cloudkms.cryptoKeyEncrypterDecrypter)' on the
+     * Key/KeyRing/Project/Organization (least access preferred). GCF will
+     * delegate access to the Google Storage service account in the internal
+     * project.
+     *
+     * Generated from protobuf field <code>string kms_key_name = 2 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getKmsKeyName()
+    {
+        return $this->kms_key_name;
+    }
+
+    /**
+     * Resource name of a KMS crypto key (managed by the user) used to
+     * encrypt/decrypt function source code objects in staging Cloud Storage
+     * buckets. When you generate an upload url and upload your source code, it
+     * gets copied to a staging Cloud Storage bucket in an internal regional
+     * project. The source code is then copied to a versioned directory in the
+     * sources bucket in the consumer project during the function deployment.
+     * It must match the pattern
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
+     * The Google Cloud Functions service account
+     * (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) must be
+     * granted the role 'Cloud KMS CryptoKey Encrypter/Decrypter
+     * (roles/cloudkms.cryptoKeyEncrypterDecrypter)' on the
+     * Key/KeyRing/Project/Organization (least access preferred). GCF will
+     * delegate access to the Google Storage service account in the internal
+     * project.
+     *
+     * Generated from protobuf field <code>string kms_key_name = 2 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKmsKeyName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kms_key_name = $var;
 
         return $this;
     }

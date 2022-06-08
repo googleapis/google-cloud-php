@@ -21,7 +21,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * `projects/<project>/instances/[a-z][-a-z0-9]*[a-z0-9]`. The final
      * segment of the name must be between 2 and 64 characters in length.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
@@ -30,14 +30,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      * also [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig] and
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
      *
-     * Generated from protobuf field <code>string config = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string config = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $config = '';
     /**
      * Required. The descriptive name for this instance as it appears in UIs.
      * Must be unique per project and between 4 and 30 characters in length.
      *
-     * Generated from protobuf field <code>string display_name = 3;</code>
+     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $display_name = '';
     /**
@@ -167,7 +167,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * `projects/<project>/instances/[a-z][-a-z0-9]*[a-z0-9]`. The final
      * segment of the name must be between 2 and 64 characters in length.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -181,7 +181,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * `projects/<project>/instances/[a-z][-a-z0-9]*[a-z0-9]`. The final
      * segment of the name must be between 2 and 64 characters in length.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -199,7 +199,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * also [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig] and
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
      *
-     * Generated from protobuf field <code>string config = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string config = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getConfig()
@@ -213,7 +213,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * also [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig] and
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
      *
-     * Generated from protobuf field <code>string config = 2 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string config = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -229,7 +229,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Required. The descriptive name for this instance as it appears in UIs.
      * Must be unique per project and between 4 and 30 characters in length.
      *
-     * Generated from protobuf field <code>string display_name = 3;</code>
+     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getDisplayName()
@@ -241,7 +241,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Required. The descriptive name for this instance as it appears in UIs.
      * Must be unique per project and between 4 and 30 characters in length.
      *
-     * Generated from protobuf field <code>string display_name = 3;</code>
+     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

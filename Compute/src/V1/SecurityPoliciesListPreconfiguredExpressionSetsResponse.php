@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SecurityPoliciesListPreconfiguredExpressionSetsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPoliciesWafConfig preconfigured_expression_sets = 536200826;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPoliciesWafConfig preconfigured_expression_sets = 536200826;</code>
      */
     private $preconfigured_expression_sets = null;
 
@@ -34,12 +34,12 @@ class SecurityPoliciesListPreconfiguredExpressionSetsResponse extends \Google\Pr
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPoliciesWafConfig preconfigured_expression_sets = 536200826;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPoliciesWafConfig preconfigured_expression_sets = 536200826;</code>
      * @return \Google\Cloud\Compute\V1\SecurityPoliciesWafConfig|null
      */
     public function getPreconfiguredExpressionSets()
     {
-        return isset($this->preconfigured_expression_sets) ? $this->preconfigured_expression_sets : null;
+        return $this->preconfigured_expression_sets;
     }
 
     public function hasPreconfiguredExpressionSets()
@@ -53,7 +53,7 @@ class SecurityPoliciesListPreconfiguredExpressionSetsResponse extends \Google\Pr
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPoliciesWafConfig preconfigured_expression_sets = 536200826;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPoliciesWafConfig preconfigured_expression_sets = 536200826;</code>
      * @param \Google\Cloud\Compute\V1\SecurityPoliciesWafConfig $var
      * @return $this
      */

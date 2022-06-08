@@ -48,6 +48,25 @@ return [
                     ],
                 ],
             ],
+            'ExportDocument' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/knowledgeBases/*/documents/*}:export',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/knowledgeBases/*/documents/*}:export',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetDocument' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/knowledgeBases/*/documents/*}',
@@ -65,6 +84,25 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportDocuments' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/knowledgeBases/*}/documents:import',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/knowledgeBases/*}/documents:import',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],

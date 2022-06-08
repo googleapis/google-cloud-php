@@ -35,9 +35,9 @@ class Budget extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Optional. Filters that define which resources are used to compute the
-     * actual spend against the budget amount, such as projects, services, and the
-     * budget's time period, as well as other filters.
+     * Optional. Filters that define which resources are used to compute the actual spend
+     * against the budget amount, such as projects, services, and the budget's
+     * time period, as well as other filters.
      *
      * Generated from protobuf field <code>.google.cloud.billing.budgets.v1beta1.Filter budget_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -51,13 +51,14 @@ class Budget extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Rules that trigger alerts (notifications of thresholds
      * being crossed) when spend exceeds the specified percentages of the budget.
+     * Optional for `pubsubTopic` notifications.
+     * Required if using email notifications.
      *
      * Generated from protobuf field <code>repeated .google.cloud.billing.budgets.v1beta1.ThresholdRule threshold_rules = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $threshold_rules;
     /**
-     * Optional. Rules to apply to notifications sent based on budget spend and
-     * thresholds.
+     * Optional. Rules to apply to notifications sent based on budget spend and thresholds.
      *
      * Generated from protobuf field <code>.google.cloud.billing.budgets.v1beta1.AllUpdatesRule all_updates_rule = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -85,17 +86,18 @@ class Budget extends \Google\Protobuf\Internal\Message
      *           User data for display name in UI.
      *           Validation: <= 60 chars.
      *     @type \Google\Cloud\Billing\Budgets\V1beta1\Filter $budget_filter
-     *           Optional. Filters that define which resources are used to compute the
-     *           actual spend against the budget amount, such as projects, services, and the
-     *           budget's time period, as well as other filters.
+     *           Optional. Filters that define which resources are used to compute the actual spend
+     *           against the budget amount, such as projects, services, and the budget's
+     *           time period, as well as other filters.
      *     @type \Google\Cloud\Billing\Budgets\V1beta1\BudgetAmount $amount
      *           Required. Budgeted amount.
      *     @type \Google\Cloud\Billing\Budgets\V1beta1\ThresholdRule[]|\Google\Protobuf\Internal\RepeatedField $threshold_rules
      *           Optional. Rules that trigger alerts (notifications of thresholds
      *           being crossed) when spend exceeds the specified percentages of the budget.
+     *           Optional for `pubsubTopic` notifications.
+     *           Required if using email notifications.
      *     @type \Google\Cloud\Billing\Budgets\V1beta1\AllUpdatesRule $all_updates_rule
-     *           Optional. Rules to apply to notifications sent based on budget spend and
-     *           thresholds.
+     *           Optional. Rules to apply to notifications sent based on budget spend and thresholds.
      *     @type string $etag
      *           Optional. Etag to validate that the object is unchanged for a
      *           read-modify-write operation.
@@ -166,9 +168,9 @@ class Budget extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Filters that define which resources are used to compute the
-     * actual spend against the budget amount, such as projects, services, and the
-     * budget's time period, as well as other filters.
+     * Optional. Filters that define which resources are used to compute the actual spend
+     * against the budget amount, such as projects, services, and the budget's
+     * time period, as well as other filters.
      *
      * Generated from protobuf field <code>.google.cloud.billing.budgets.v1beta1.Filter budget_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Billing\Budgets\V1beta1\Filter|null
@@ -189,9 +191,9 @@ class Budget extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Filters that define which resources are used to compute the
-     * actual spend against the budget amount, such as projects, services, and the
-     * budget's time period, as well as other filters.
+     * Optional. Filters that define which resources are used to compute the actual spend
+     * against the budget amount, such as projects, services, and the budget's
+     * time period, as well as other filters.
      *
      * Generated from protobuf field <code>.google.cloud.billing.budgets.v1beta1.Filter budget_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Billing\Budgets\V1beta1\Filter $var
@@ -244,6 +246,8 @@ class Budget extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Rules that trigger alerts (notifications of thresholds
      * being crossed) when spend exceeds the specified percentages of the budget.
+     * Optional for `pubsubTopic` notifications.
+     * Required if using email notifications.
      *
      * Generated from protobuf field <code>repeated .google.cloud.billing.budgets.v1beta1.ThresholdRule threshold_rules = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -256,6 +260,8 @@ class Budget extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Rules that trigger alerts (notifications of thresholds
      * being crossed) when spend exceeds the specified percentages of the budget.
+     * Optional for `pubsubTopic` notifications.
+     * Required if using email notifications.
      *
      * Generated from protobuf field <code>repeated .google.cloud.billing.budgets.v1beta1.ThresholdRule threshold_rules = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Billing\Budgets\V1beta1\ThresholdRule[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -270,8 +276,7 @@ class Budget extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Rules to apply to notifications sent based on budget spend and
-     * thresholds.
+     * Optional. Rules to apply to notifications sent based on budget spend and thresholds.
      *
      * Generated from protobuf field <code>.google.cloud.billing.budgets.v1beta1.AllUpdatesRule all_updates_rule = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Billing\Budgets\V1beta1\AllUpdatesRule|null
@@ -292,8 +297,7 @@ class Budget extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Rules to apply to notifications sent based on budget spend and
-     * thresholds.
+     * Optional. Rules to apply to notifications sent based on budget spend and thresholds.
      *
      * Generated from protobuf field <code>.google.cloud.billing.budgets.v1beta1.AllUpdatesRule all_updates_rule = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Billing\Budgets\V1beta1\AllUpdatesRule $var

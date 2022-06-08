@@ -82,6 +82,4 @@ class AnalysisStatus
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AnalysisStatus::class, \Grafeas\V1\DiscoveryOccurrence_AnalysisStatus::class);
 

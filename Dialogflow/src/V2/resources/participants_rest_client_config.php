@@ -113,6 +113,25 @@ return [
                     ],
                 ],
             ],
+            'SuggestSmartReplies' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/conversations/*/participants/*}/suggestions:suggestSmartReplies',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/conversations/*/participants/*}/suggestions:suggestSmartReplies',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateParticipant' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v2/{participant.name=projects/*/conversations/*/participants/*}',

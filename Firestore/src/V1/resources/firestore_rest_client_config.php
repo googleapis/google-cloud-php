@@ -3,6 +3,18 @@
 return [
     'interfaces' => [
         'google.firestore.v1.Firestore' => [
+            'BatchGetDocuments' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{database=projects/*/databases/*}/documents:batchGet',
+                'body' => '*',
+                'placeholders' => [
+                    'database' => [
+                        'getters' => [
+                            'getDatabase',
+                        ],
+                    ],
+                ],
+            ],
             'BatchWrite' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{database=projects/*/databases/*}/documents:batchWrite',
@@ -55,6 +67,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'document_id',
+                ],
             ],
             'DeleteDocument' => [
                 'method' => 'delete',
@@ -100,6 +115,12 @@ return [
             'ListDocuments' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents/*/**}/{collection_id}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents}/{collection_id}',
+                    ],
+                ],
                 'placeholders' => [
                     'collection_id' => [
                         'getters' => [
@@ -144,6 +165,25 @@ return [
                     ],
                 ],
             ],
+            'RunQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents}:runQuery',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents/*/**}:runQuery',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateDocument' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{document.name=projects/*/databases/*/documents/*/**}',
@@ -155,6 +195,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

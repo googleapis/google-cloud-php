@@ -38,14 +38,12 @@ class Policy extends \Google\Protobuf\Internal\Message
      */
     private $spec = null;
     /**
-     * An alternate policy configuration that will be used instead of the baseline
-     * policy configurations as determined by the launch.
-     * Currently the only way the launch can trigger the alternate configuration
-     * is via dry-run/darklaunch.
+     * Deprecated.
      *
-     * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.AlternatePolicySpec alternate = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.AlternatePolicySpec alternate = 3 [deprecated = true];</code>
+     * @deprecated
      */
-    private $alternate = null;
+    protected $alternate = null;
 
     /**
      * Constructor.
@@ -67,10 +65,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\OrgPolicy\V2\PolicySpec $spec
      *           Basic information about the Organization Policy.
      *     @type \Google\Cloud\OrgPolicy\V2\AlternatePolicySpec $alternate
-     *           An alternate policy configuration that will be used instead of the baseline
-     *           policy configurations as determined by the launch.
-     *           Currently the only way the launch can trigger the alternate configuration
-     *           is via dry-run/darklaunch.
+     *           Deprecated.
      * }
      */
     public function __construct($data = NULL) {
@@ -159,41 +154,41 @@ class Policy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An alternate policy configuration that will be used instead of the baseline
-     * policy configurations as determined by the launch.
-     * Currently the only way the launch can trigger the alternate configuration
-     * is via dry-run/darklaunch.
+     * Deprecated.
      *
-     * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.AlternatePolicySpec alternate = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.AlternatePolicySpec alternate = 3 [deprecated = true];</code>
      * @return \Google\Cloud\OrgPolicy\V2\AlternatePolicySpec|null
+     * @deprecated
      */
     public function getAlternate()
     {
+        @trigger_error('alternate is deprecated.', E_USER_DEPRECATED);
         return $this->alternate;
     }
 
     public function hasAlternate()
     {
+        @trigger_error('alternate is deprecated.', E_USER_DEPRECATED);
         return isset($this->alternate);
     }
 
     public function clearAlternate()
     {
+        @trigger_error('alternate is deprecated.', E_USER_DEPRECATED);
         unset($this->alternate);
     }
 
     /**
-     * An alternate policy configuration that will be used instead of the baseline
-     * policy configurations as determined by the launch.
-     * Currently the only way the launch can trigger the alternate configuration
-     * is via dry-run/darklaunch.
+     * Deprecated.
      *
-     * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.AlternatePolicySpec alternate = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.orgpolicy.v2.AlternatePolicySpec alternate = 3 [deprecated = true];</code>
      * @param \Google\Cloud\OrgPolicy\V2\AlternatePolicySpec $var
      * @return $this
+     * @deprecated
      */
     public function setAlternate($var)
     {
+        @trigger_error('alternate is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\OrgPolicy\V2\AlternatePolicySpec::class);
         $this->alternate = $var;
 

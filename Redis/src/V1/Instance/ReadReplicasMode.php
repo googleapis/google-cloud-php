@@ -14,8 +14,8 @@ use UnexpectedValueException;
 class ReadReplicasMode
 {
     /**
-     * If not set, Memorystore Redis backend will pick the mode based on other fields in
-     * the request.
+     * If not set, Memorystore Redis backend will default to
+     * READ_REPLICAS_DISABLED.
      *
      * Generated from protobuf enum <code>READ_REPLICAS_MODE_UNSPECIFIED = 0;</code>
      */
@@ -29,7 +29,7 @@ class ReadReplicasMode
     const READ_REPLICAS_DISABLED = 1;
     /**
      * If enabled, read endpoint will be provided and the instance can scale
-     * up and down the number of replicas.
+     * up and down the number of replicas. Not valid for basic tier.
      *
      * Generated from protobuf enum <code>READ_REPLICAS_ENABLED = 2;</code>
      */

@@ -96,6 +96,13 @@ class Version extends \Google\Protobuf\Internal\Message
      */
     private $vm = false;
     /**
+     * Allows App Engine second generation runtimes to access the legacy bundled
+     * services.
+     *
+     * Generated from protobuf field <code>bool app_engine_apis = 128;</code>
+     */
+    private $app_engine_apis = false;
+    /**
      * Metadata settings that are supplied to this version to enable
      * beta runtime features.
      *
@@ -341,6 +348,9 @@ class Version extends \Google\Protobuf\Internal\Message
      *           Whether multiple requests can be dispatched to this version at once.
      *     @type bool $vm
      *           Whether to deploy this version in a container on a virtual machine.
+     *     @type bool $app_engine_apis
+     *           Allows App Engine second generation runtimes to access the legacy bundled
+     *           services.
      *     @type array|\Google\Protobuf\Internal\MapField $beta_settings
      *           Metadata settings that are supplied to this version to enable
      *           beta runtime features.
@@ -873,6 +883,34 @@ class Version extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->vm = $var;
+
+        return $this;
+    }
+
+    /**
+     * Allows App Engine second generation runtimes to access the legacy bundled
+     * services.
+     *
+     * Generated from protobuf field <code>bool app_engine_apis = 128;</code>
+     * @return bool
+     */
+    public function getAppEngineApis()
+    {
+        return $this->app_engine_apis;
+    }
+
+    /**
+     * Allows App Engine second generation runtimes to access the legacy bundled
+     * services.
+     *
+     * Generated from protobuf field <code>bool app_engine_apis = 128;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAppEngineApis($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->app_engine_apis = $var;
 
         return $this;
     }

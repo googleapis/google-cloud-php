@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/container/v1/.*-php/(.*)
+      dest: /owl-bot-staging/Container/v1/$1
+api-name: Container

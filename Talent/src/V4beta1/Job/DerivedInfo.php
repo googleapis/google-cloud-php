@@ -107,6 +107,4 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DerivedInfo::class, \Google\Cloud\Talent\V4beta1\Job_DerivedInfo::class);
 

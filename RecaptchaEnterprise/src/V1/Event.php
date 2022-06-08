@@ -48,6 +48,13 @@ class Event extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string expected_action = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $expected_action = '';
+    /**
+     * Optional. Optional unique stable hashed user identifier for the request. The
+     * identifier should ideally be hashed using sha256 with stable secret.
+     *
+     * Generated from protobuf field <code>bytes hashed_account_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $hashed_account_id = '';
 
     /**
      * Constructor.
@@ -70,6 +77,9 @@ class Event extends \Google\Protobuf\Internal\Message
      *           Optional. The expected action for this type of event. This should be the same action
      *           provided at token generation time on client-side platforms already
      *           integrated with recaptcha enterprise.
+     *     @type string $hashed_account_id
+     *           Optional. Optional unique stable hashed user identifier for the request. The
+     *           identifier should ideally be hashed using sha256 with stable secret.
      * }
      */
     public function __construct($data = NULL) {
@@ -213,6 +223,34 @@ class Event extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->expected_action = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Optional unique stable hashed user identifier for the request. The
+     * identifier should ideally be hashed using sha256 with stable secret.
+     *
+     * Generated from protobuf field <code>bytes hashed_account_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getHashedAccountId()
+    {
+        return $this->hashed_account_id;
+    }
+
+    /**
+     * Optional. Optional unique stable hashed user identifier for the request. The
+     * identifier should ideally be hashed using sha256 with stable secret.
+     *
+     * Generated from protobuf field <code>bytes hashed_account_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setHashedAccountId($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->hashed_account_id = $var;
 
         return $this;
     }

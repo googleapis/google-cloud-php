@@ -49,6 +49,11 @@ class Trigger extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasCount()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The absolute number of time series that must fail
      * the predicate for the condition to be triggered.
@@ -75,6 +80,11 @@ class Trigger extends \Google\Protobuf\Internal\Message
     public function getPercent()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasPercent()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

@@ -275,7 +275,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      */
     public function getExplicitAnnotation()
     {
-        return isset($this->explicit_annotation) ? $this->explicit_annotation : null;
+        return $this->explicit_annotation;
     }
 
     public function hasExplicitAnnotation()
@@ -312,7 +312,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      */
     public function getError()
     {
-        return isset($this->error) ? $this->error : null;
+        return $this->error;
     }
 
     public function hasError()

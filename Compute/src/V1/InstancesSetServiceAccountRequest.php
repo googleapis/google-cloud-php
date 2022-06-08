@@ -17,7 +17,7 @@ class InstancesSetServiceAccountRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Email address of the service account.
      *
-     * Generated from protobuf field <code>string email = 96619420;</code>
+     * Generated from protobuf field <code>optional string email = 96619420;</code>
      */
     private $email = null;
     /**
@@ -47,7 +47,7 @@ class InstancesSetServiceAccountRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Email address of the service account.
      *
-     * Generated from protobuf field <code>string email = 96619420;</code>
+     * Generated from protobuf field <code>optional string email = 96619420;</code>
      * @return string
      */
     public function getEmail()
@@ -68,7 +68,7 @@ class InstancesSetServiceAccountRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Email address of the service account.
      *
-     * Generated from protobuf field <code>string email = 96619420;</code>
+     * Generated from protobuf field <code>optional string email = 96619420;</code>
      * @param string $var
      * @return $this
      */

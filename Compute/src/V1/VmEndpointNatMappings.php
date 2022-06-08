@@ -18,7 +18,7 @@ class VmEndpointNatMappings extends \Google\Protobuf\Internal\Message
     /**
      * Name of the VM instance which the endpoint belongs to
      *
-     * Generated from protobuf field <code>string instance_name = 227947509;</code>
+     * Generated from protobuf field <code>optional string instance_name = 227947509;</code>
      */
     private $instance_name = null;
     /**
@@ -45,7 +45,7 @@ class VmEndpointNatMappings extends \Google\Protobuf\Internal\Message
     /**
      * Name of the VM instance which the endpoint belongs to
      *
-     * Generated from protobuf field <code>string instance_name = 227947509;</code>
+     * Generated from protobuf field <code>optional string instance_name = 227947509;</code>
      * @return string
      */
     public function getInstanceName()
@@ -66,7 +66,7 @@ class VmEndpointNatMappings extends \Google\Protobuf\Internal\Message
     /**
      * Name of the VM instance which the endpoint belongs to
      *
-     * Generated from protobuf field <code>string instance_name = 227947509;</code>
+     * Generated from protobuf field <code>optional string instance_name = 227947509;</code>
      * @param string $var
      * @return $this
      */

@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Cloud VPN Tunnel resource.
- * For more information about VPN, read the  the Cloud VPN Overview. (== resource_for {$api_version}.vpnTunnels ==)
+ * Represents a Cloud VPN Tunnel resource. For more information about VPN, read the the Cloud VPN Overview.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.VpnTunnel</code>
  */
@@ -19,37 +18,37 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * [Output Only] Detailed status message for the VPN tunnel.
      *
-     * Generated from protobuf field <code>string detailed_status = 333501025;</code>
+     * Generated from protobuf field <code>optional string detailed_status = 333501025;</code>
      */
     private $detailed_status = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * IKE protocol version to use when establishing the VPN tunnel with the peer VPN gateway. Acceptable IKE versions are 1 or 2. The default version is 2.
      *
-     * Generated from protobuf field <code>int32 ike_version = 218376220;</code>
+     * Generated from protobuf field <code>optional int32 ike_version = 218376220;</code>
      */
     private $ike_version = null;
     /**
      * [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
@@ -61,37 +60,37 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
      * URL of the peer side external VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created. This field is exclusive with the field peerGcpGateway.
      *
-     * Generated from protobuf field <code>string peer_external_gateway = 384956173;</code>
+     * Generated from protobuf field <code>optional string peer_external_gateway = 384956173;</code>
      */
     private $peer_external_gateway = null;
     /**
      * The interface ID of the external VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created.
      *
-     * Generated from protobuf field <code>int32 peer_external_gateway_interface = 452768391;</code>
+     * Generated from protobuf field <code>optional int32 peer_external_gateway_interface = 452768391;</code>
      */
     private $peer_external_gateway_interface = null;
     /**
      * URL of the peer side HA GCP VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created. This field can be used when creating highly available VPN from VPC network to VPC network, the field is exclusive with the field peerExternalGateway. If provided, the VPN tunnel will automatically use the same vpnGatewayInterface ID in the peer GCP VPN gateway.
      *
-     * Generated from protobuf field <code>string peer_gcp_gateway = 281867452;</code>
+     * Generated from protobuf field <code>optional string peer_gcp_gateway = 281867452;</code>
      */
     private $peer_gcp_gateway = null;
     /**
      * IP address of the peer VPN gateway. Only IPv4 is supported.
      *
-     * Generated from protobuf field <code>string peer_ip = 383249700;</code>
+     * Generated from protobuf field <code>optional string peer_ip = 383249700;</code>
      */
     private $peer_ip = null;
     /**
      * [Output Only] URL of the region where the VPN tunnel resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
     private $region = null;
     /**
@@ -103,64 +102,50 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * URL of the router resource to be used for dynamic routing.
      *
-     * Generated from protobuf field <code>string router = 148608841;</code>
+     * Generated from protobuf field <code>optional string router = 148608841;</code>
      */
     private $router = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * Shared secret used to set the secure session between the Cloud VPN gateway and the peer VPN gateway.
      *
-     * Generated from protobuf field <code>string shared_secret = 381932490;</code>
+     * Generated from protobuf field <code>optional string shared_secret = 381932490;</code>
      */
     private $shared_secret = null;
     /**
      * Hash of the shared secret.
      *
-     * Generated from protobuf field <code>string shared_secret_hash = 398881891;</code>
+     * Generated from protobuf field <code>optional string shared_secret_hash = 398881891;</code>
      */
     private $shared_secret_hash = null;
     /**
-     * [Output Only] The status of the VPN tunnel, which can be one of the following:
-     * - PROVISIONING: Resource is being allocated for the VPN tunnel.
-     * - WAITING_FOR_FULL_CONFIG: Waiting to receive all VPN-related configs from the user. Network, TargetVpnGateway, VpnTunnel, ForwardingRule, and Route resources are needed to setup the VPN tunnel.
-     * - FIRST_HANDSHAKE: Successful first handshake with the peer VPN.
-     * - ESTABLISHED: Secure session is successfully established with the peer VPN.
-     * - NETWORK_ERROR: Deprecated, replaced by NO_INCOMING_PACKETS
-     * - AUTHORIZATION_ERROR: Auth error (for example, bad shared secret).
-     * - NEGOTIATION_FAILURE: Handshake failed.
-     * - DEPROVISIONING: Resources are being deallocated for the VPN tunnel.
-     * - FAILED: Tunnel creation has failed and the tunnel is not ready to be used.
-     * - NO_INCOMING_PACKETS: No incoming packets from peer.
-     * - REJECTED: Tunnel configuration was rejected, can be result of being denied access.
-     * - ALLOCATING_RESOURCES: Cloud VPN is in the process of allocating all required resources.
-     * - STOPPED: Tunnel is stopped due to its Forwarding Rules being deleted for Classic VPN tunnels or the project is in frozen state.
-     * - PEER_IDENTITY_MISMATCH: Peer identity does not match peer IP, probably behind NAT.
-     * - TS_NARROWING_NOT_ALLOWED: Traffic selector narrowing not allowed for an HA-VPN tunnel.
+     * [Output Only] The status of the VPN tunnel, which can be one of the following: - PROVISIONING: Resource is being allocated for the VPN tunnel. - WAITING_FOR_FULL_CONFIG: Waiting to receive all VPN-related configs from the user. Network, TargetVpnGateway, VpnTunnel, ForwardingRule, and Route resources are needed to setup the VPN tunnel. - FIRST_HANDSHAKE: Successful first handshake with the peer VPN. - ESTABLISHED: Secure session is successfully established with the peer VPN. - NETWORK_ERROR: Deprecated, replaced by NO_INCOMING_PACKETS - AUTHORIZATION_ERROR: Auth error (for example, bad shared secret). - NEGOTIATION_FAILURE: Handshake failed. - DEPROVISIONING: Resources are being deallocated for the VPN tunnel. - FAILED: Tunnel creation has failed and the tunnel is not ready to be used. - NO_INCOMING_PACKETS: No incoming packets from peer. - REJECTED: Tunnel configuration was rejected, can be result of being denied access. - ALLOCATING_RESOURCES: Cloud VPN is in the process of allocating all required resources. - STOPPED: Tunnel is stopped due to its Forwarding Rules being deleted for Classic VPN tunnels or the project is in frozen state. - PEER_IDENTITY_MISMATCH: Peer identity does not match peer IP, probably behind NAT. - TS_NARROWING_NOT_ALLOWED: Traffic selector narrowing not allowed for an HA-VPN tunnel.
+     * Check the Status enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.VpnTunnel.Status status = 181260274;</code>
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
     private $status = null;
     /**
      * URL of the Target VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.
      *
-     * Generated from protobuf field <code>string target_vpn_gateway = 532512843;</code>
+     * Generated from protobuf field <code>optional string target_vpn_gateway = 532512843;</code>
      */
     private $target_vpn_gateway = null;
     /**
      * URL of the VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created. This must be used (instead of target_vpn_gateway) if a High Availability VPN gateway resource is created.
      *
-     * Generated from protobuf field <code>string vpn_gateway = 406684153;</code>
+     * Generated from protobuf field <code>optional string vpn_gateway = 406684153;</code>
      */
     private $vpn_gateway = null;
     /**
      * The interface ID of the VPN gateway with which this VPN tunnel is associated.
      *
-     * Generated from protobuf field <code>int32 vpn_gateway_interface = 95979123;</code>
+     * Generated from protobuf field <code>optional int32 vpn_gateway_interface = 95979123;</code>
      */
     private $vpn_gateway_interface = null;
 
@@ -206,23 +191,9 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      *           Shared secret used to set the secure session between the Cloud VPN gateway and the peer VPN gateway.
      *     @type string $shared_secret_hash
      *           Hash of the shared secret.
-     *     @type int $status
-     *           [Output Only] The status of the VPN tunnel, which can be one of the following:
-     *           - PROVISIONING: Resource is being allocated for the VPN tunnel.
-     *           - WAITING_FOR_FULL_CONFIG: Waiting to receive all VPN-related configs from the user. Network, TargetVpnGateway, VpnTunnel, ForwardingRule, and Route resources are needed to setup the VPN tunnel.
-     *           - FIRST_HANDSHAKE: Successful first handshake with the peer VPN.
-     *           - ESTABLISHED: Secure session is successfully established with the peer VPN.
-     *           - NETWORK_ERROR: Deprecated, replaced by NO_INCOMING_PACKETS
-     *           - AUTHORIZATION_ERROR: Auth error (for example, bad shared secret).
-     *           - NEGOTIATION_FAILURE: Handshake failed.
-     *           - DEPROVISIONING: Resources are being deallocated for the VPN tunnel.
-     *           - FAILED: Tunnel creation has failed and the tunnel is not ready to be used.
-     *           - NO_INCOMING_PACKETS: No incoming packets from peer.
-     *           - REJECTED: Tunnel configuration was rejected, can be result of being denied access.
-     *           - ALLOCATING_RESOURCES: Cloud VPN is in the process of allocating all required resources.
-     *           - STOPPED: Tunnel is stopped due to its Forwarding Rules being deleted for Classic VPN tunnels or the project is in frozen state.
-     *           - PEER_IDENTITY_MISMATCH: Peer identity does not match peer IP, probably behind NAT.
-     *           - TS_NARROWING_NOT_ALLOWED: Traffic selector narrowing not allowed for an HA-VPN tunnel.
+     *     @type string $status
+     *           [Output Only] The status of the VPN tunnel, which can be one of the following: - PROVISIONING: Resource is being allocated for the VPN tunnel. - WAITING_FOR_FULL_CONFIG: Waiting to receive all VPN-related configs from the user. Network, TargetVpnGateway, VpnTunnel, ForwardingRule, and Route resources are needed to setup the VPN tunnel. - FIRST_HANDSHAKE: Successful first handshake with the peer VPN. - ESTABLISHED: Secure session is successfully established with the peer VPN. - NETWORK_ERROR: Deprecated, replaced by NO_INCOMING_PACKETS - AUTHORIZATION_ERROR: Auth error (for example, bad shared secret). - NEGOTIATION_FAILURE: Handshake failed. - DEPROVISIONING: Resources are being deallocated for the VPN tunnel. - FAILED: Tunnel creation has failed and the tunnel is not ready to be used. - NO_INCOMING_PACKETS: No incoming packets from peer. - REJECTED: Tunnel configuration was rejected, can be result of being denied access. - ALLOCATING_RESOURCES: Cloud VPN is in the process of allocating all required resources. - STOPPED: Tunnel is stopped due to its Forwarding Rules being deleted for Classic VPN tunnels or the project is in frozen state. - PEER_IDENTITY_MISMATCH: Peer identity does not match peer IP, probably behind NAT. - TS_NARROWING_NOT_ALLOWED: Traffic selector narrowing not allowed for an HA-VPN tunnel.
+     *           Check the Status enum for the list of possible values.
      *     @type string $target_vpn_gateway
      *           URL of the Target VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.
      *     @type string $vpn_gateway
@@ -239,7 +210,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -260,7 +231,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -275,7 +246,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -296,7 +267,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -311,7 +282,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Detailed status message for the VPN tunnel.
      *
-     * Generated from protobuf field <code>string detailed_status = 333501025;</code>
+     * Generated from protobuf field <code>optional string detailed_status = 333501025;</code>
      * @return string
      */
     public function getDetailedStatus()
@@ -332,7 +303,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Detailed status message for the VPN tunnel.
      *
-     * Generated from protobuf field <code>string detailed_status = 333501025;</code>
+     * Generated from protobuf field <code>optional string detailed_status = 333501025;</code>
      * @param string $var
      * @return $this
      */
@@ -347,7 +318,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -368,7 +339,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -383,7 +354,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * IKE protocol version to use when establishing the VPN tunnel with the peer VPN gateway. Acceptable IKE versions are 1 or 2. The default version is 2.
      *
-     * Generated from protobuf field <code>int32 ike_version = 218376220;</code>
+     * Generated from protobuf field <code>optional int32 ike_version = 218376220;</code>
      * @return int
      */
     public function getIkeVersion()
@@ -404,7 +375,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * IKE protocol version to use when establishing the VPN tunnel with the peer VPN gateway. Acceptable IKE versions are 1 or 2. The default version is 2.
      *
-     * Generated from protobuf field <code>int32 ike_version = 218376220;</code>
+     * Generated from protobuf field <code>optional int32 ike_version = 218376220;</code>
      * @param int $var
      * @return $this
      */
@@ -419,7 +390,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -440,7 +411,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -481,7 +452,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -502,7 +473,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -517,7 +488,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * URL of the peer side external VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created. This field is exclusive with the field peerGcpGateway.
      *
-     * Generated from protobuf field <code>string peer_external_gateway = 384956173;</code>
+     * Generated from protobuf field <code>optional string peer_external_gateway = 384956173;</code>
      * @return string
      */
     public function getPeerExternalGateway()
@@ -538,7 +509,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * URL of the peer side external VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created. This field is exclusive with the field peerGcpGateway.
      *
-     * Generated from protobuf field <code>string peer_external_gateway = 384956173;</code>
+     * Generated from protobuf field <code>optional string peer_external_gateway = 384956173;</code>
      * @param string $var
      * @return $this
      */
@@ -553,7 +524,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * The interface ID of the external VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created.
      *
-     * Generated from protobuf field <code>int32 peer_external_gateway_interface = 452768391;</code>
+     * Generated from protobuf field <code>optional int32 peer_external_gateway_interface = 452768391;</code>
      * @return int
      */
     public function getPeerExternalGatewayInterface()
@@ -574,7 +545,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * The interface ID of the external VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created.
      *
-     * Generated from protobuf field <code>int32 peer_external_gateway_interface = 452768391;</code>
+     * Generated from protobuf field <code>optional int32 peer_external_gateway_interface = 452768391;</code>
      * @param int $var
      * @return $this
      */
@@ -589,7 +560,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * URL of the peer side HA GCP VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created. This field can be used when creating highly available VPN from VPC network to VPC network, the field is exclusive with the field peerExternalGateway. If provided, the VPN tunnel will automatically use the same vpnGatewayInterface ID in the peer GCP VPN gateway.
      *
-     * Generated from protobuf field <code>string peer_gcp_gateway = 281867452;</code>
+     * Generated from protobuf field <code>optional string peer_gcp_gateway = 281867452;</code>
      * @return string
      */
     public function getPeerGcpGateway()
@@ -610,7 +581,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * URL of the peer side HA GCP VPN gateway to which this VPN tunnel is connected. Provided by the client when the VPN tunnel is created. This field can be used when creating highly available VPN from VPC network to VPC network, the field is exclusive with the field peerExternalGateway. If provided, the VPN tunnel will automatically use the same vpnGatewayInterface ID in the peer GCP VPN gateway.
      *
-     * Generated from protobuf field <code>string peer_gcp_gateway = 281867452;</code>
+     * Generated from protobuf field <code>optional string peer_gcp_gateway = 281867452;</code>
      * @param string $var
      * @return $this
      */
@@ -625,7 +596,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * IP address of the peer VPN gateway. Only IPv4 is supported.
      *
-     * Generated from protobuf field <code>string peer_ip = 383249700;</code>
+     * Generated from protobuf field <code>optional string peer_ip = 383249700;</code>
      * @return string
      */
     public function getPeerIp()
@@ -646,7 +617,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * IP address of the peer VPN gateway. Only IPv4 is supported.
      *
-     * Generated from protobuf field <code>string peer_ip = 383249700;</code>
+     * Generated from protobuf field <code>optional string peer_ip = 383249700;</code>
      * @param string $var
      * @return $this
      */
@@ -661,7 +632,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the region where the VPN tunnel resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
      */
     public function getRegion()
@@ -682,7 +653,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the region where the VPN tunnel resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var
      * @return $this
      */
@@ -723,7 +694,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * URL of the router resource to be used for dynamic routing.
      *
-     * Generated from protobuf field <code>string router = 148608841;</code>
+     * Generated from protobuf field <code>optional string router = 148608841;</code>
      * @return string
      */
     public function getRouter()
@@ -744,7 +715,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * URL of the router resource to be used for dynamic routing.
      *
-     * Generated from protobuf field <code>string router = 148608841;</code>
+     * Generated from protobuf field <code>optional string router = 148608841;</code>
      * @param string $var
      * @return $this
      */
@@ -759,7 +730,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -780,7 +751,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -795,7 +766,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * Shared secret used to set the secure session between the Cloud VPN gateway and the peer VPN gateway.
      *
-     * Generated from protobuf field <code>string shared_secret = 381932490;</code>
+     * Generated from protobuf field <code>optional string shared_secret = 381932490;</code>
      * @return string
      */
     public function getSharedSecret()
@@ -816,7 +787,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * Shared secret used to set the secure session between the Cloud VPN gateway and the peer VPN gateway.
      *
-     * Generated from protobuf field <code>string shared_secret = 381932490;</code>
+     * Generated from protobuf field <code>optional string shared_secret = 381932490;</code>
      * @param string $var
      * @return $this
      */
@@ -831,7 +802,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * Hash of the shared secret.
      *
-     * Generated from protobuf field <code>string shared_secret_hash = 398881891;</code>
+     * Generated from protobuf field <code>optional string shared_secret_hash = 398881891;</code>
      * @return string
      */
     public function getSharedSecretHash()
@@ -852,7 +823,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * Hash of the shared secret.
      *
-     * Generated from protobuf field <code>string shared_secret_hash = 398881891;</code>
+     * Generated from protobuf field <code>optional string shared_secret_hash = 398881891;</code>
      * @param string $var
      * @return $this
      */
@@ -865,29 +836,15 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the VPN tunnel, which can be one of the following:
-     * - PROVISIONING: Resource is being allocated for the VPN tunnel.
-     * - WAITING_FOR_FULL_CONFIG: Waiting to receive all VPN-related configs from the user. Network, TargetVpnGateway, VpnTunnel, ForwardingRule, and Route resources are needed to setup the VPN tunnel.
-     * - FIRST_HANDSHAKE: Successful first handshake with the peer VPN.
-     * - ESTABLISHED: Secure session is successfully established with the peer VPN.
-     * - NETWORK_ERROR: Deprecated, replaced by NO_INCOMING_PACKETS
-     * - AUTHORIZATION_ERROR: Auth error (for example, bad shared secret).
-     * - NEGOTIATION_FAILURE: Handshake failed.
-     * - DEPROVISIONING: Resources are being deallocated for the VPN tunnel.
-     * - FAILED: Tunnel creation has failed and the tunnel is not ready to be used.
-     * - NO_INCOMING_PACKETS: No incoming packets from peer.
-     * - REJECTED: Tunnel configuration was rejected, can be result of being denied access.
-     * - ALLOCATING_RESOURCES: Cloud VPN is in the process of allocating all required resources.
-     * - STOPPED: Tunnel is stopped due to its Forwarding Rules being deleted for Classic VPN tunnels or the project is in frozen state.
-     * - PEER_IDENTITY_MISMATCH: Peer identity does not match peer IP, probably behind NAT.
-     * - TS_NARROWING_NOT_ALLOWED: Traffic selector narrowing not allowed for an HA-VPN tunnel.
+     * [Output Only] The status of the VPN tunnel, which can be one of the following: - PROVISIONING: Resource is being allocated for the VPN tunnel. - WAITING_FOR_FULL_CONFIG: Waiting to receive all VPN-related configs from the user. Network, TargetVpnGateway, VpnTunnel, ForwardingRule, and Route resources are needed to setup the VPN tunnel. - FIRST_HANDSHAKE: Successful first handshake with the peer VPN. - ESTABLISHED: Secure session is successfully established with the peer VPN. - NETWORK_ERROR: Deprecated, replaced by NO_INCOMING_PACKETS - AUTHORIZATION_ERROR: Auth error (for example, bad shared secret). - NEGOTIATION_FAILURE: Handshake failed. - DEPROVISIONING: Resources are being deallocated for the VPN tunnel. - FAILED: Tunnel creation has failed and the tunnel is not ready to be used. - NO_INCOMING_PACKETS: No incoming packets from peer. - REJECTED: Tunnel configuration was rejected, can be result of being denied access. - ALLOCATING_RESOURCES: Cloud VPN is in the process of allocating all required resources. - STOPPED: Tunnel is stopped due to its Forwarding Rules being deleted for Classic VPN tunnels or the project is in frozen state. - PEER_IDENTITY_MISMATCH: Peer identity does not match peer IP, probably behind NAT. - TS_NARROWING_NOT_ALLOWED: Traffic selector narrowing not allowed for an HA-VPN tunnel.
+     * Check the Status enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.VpnTunnel.Status status = 181260274;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
+     * @return string
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : 0;
+        return isset($this->status) ? $this->status : '';
     }
 
     public function hasStatus()
@@ -901,30 +858,16 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The status of the VPN tunnel, which can be one of the following:
-     * - PROVISIONING: Resource is being allocated for the VPN tunnel.
-     * - WAITING_FOR_FULL_CONFIG: Waiting to receive all VPN-related configs from the user. Network, TargetVpnGateway, VpnTunnel, ForwardingRule, and Route resources are needed to setup the VPN tunnel.
-     * - FIRST_HANDSHAKE: Successful first handshake with the peer VPN.
-     * - ESTABLISHED: Secure session is successfully established with the peer VPN.
-     * - NETWORK_ERROR: Deprecated, replaced by NO_INCOMING_PACKETS
-     * - AUTHORIZATION_ERROR: Auth error (for example, bad shared secret).
-     * - NEGOTIATION_FAILURE: Handshake failed.
-     * - DEPROVISIONING: Resources are being deallocated for the VPN tunnel.
-     * - FAILED: Tunnel creation has failed and the tunnel is not ready to be used.
-     * - NO_INCOMING_PACKETS: No incoming packets from peer.
-     * - REJECTED: Tunnel configuration was rejected, can be result of being denied access.
-     * - ALLOCATING_RESOURCES: Cloud VPN is in the process of allocating all required resources.
-     * - STOPPED: Tunnel is stopped due to its Forwarding Rules being deleted for Classic VPN tunnels or the project is in frozen state.
-     * - PEER_IDENTITY_MISMATCH: Peer identity does not match peer IP, probably behind NAT.
-     * - TS_NARROWING_NOT_ALLOWED: Traffic selector narrowing not allowed for an HA-VPN tunnel.
+     * [Output Only] The status of the VPN tunnel, which can be one of the following: - PROVISIONING: Resource is being allocated for the VPN tunnel. - WAITING_FOR_FULL_CONFIG: Waiting to receive all VPN-related configs from the user. Network, TargetVpnGateway, VpnTunnel, ForwardingRule, and Route resources are needed to setup the VPN tunnel. - FIRST_HANDSHAKE: Successful first handshake with the peer VPN. - ESTABLISHED: Secure session is successfully established with the peer VPN. - NETWORK_ERROR: Deprecated, replaced by NO_INCOMING_PACKETS - AUTHORIZATION_ERROR: Auth error (for example, bad shared secret). - NEGOTIATION_FAILURE: Handshake failed. - DEPROVISIONING: Resources are being deallocated for the VPN tunnel. - FAILED: Tunnel creation has failed and the tunnel is not ready to be used. - NO_INCOMING_PACKETS: No incoming packets from peer. - REJECTED: Tunnel configuration was rejected, can be result of being denied access. - ALLOCATING_RESOURCES: Cloud VPN is in the process of allocating all required resources. - STOPPED: Tunnel is stopped due to its Forwarding Rules being deleted for Classic VPN tunnels or the project is in frozen state. - PEER_IDENTITY_MISMATCH: Peer identity does not match peer IP, probably behind NAT. - TS_NARROWING_NOT_ALLOWED: Traffic selector narrowing not allowed for an HA-VPN tunnel.
+     * Check the Status enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.VpnTunnel.Status status = 181260274;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
+     * @param string $var
      * @return $this
      */
     public function setStatus($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\VpnTunnel\Status::class);
+        GPBUtil::checkString($var, True);
         $this->status = $var;
 
         return $this;
@@ -933,7 +876,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * URL of the Target VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.
      *
-     * Generated from protobuf field <code>string target_vpn_gateway = 532512843;</code>
+     * Generated from protobuf field <code>optional string target_vpn_gateway = 532512843;</code>
      * @return string
      */
     public function getTargetVpnGateway()
@@ -954,7 +897,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * URL of the Target VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.
      *
-     * Generated from protobuf field <code>string target_vpn_gateway = 532512843;</code>
+     * Generated from protobuf field <code>optional string target_vpn_gateway = 532512843;</code>
      * @param string $var
      * @return $this
      */
@@ -969,7 +912,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * URL of the VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created. This must be used (instead of target_vpn_gateway) if a High Availability VPN gateway resource is created.
      *
-     * Generated from protobuf field <code>string vpn_gateway = 406684153;</code>
+     * Generated from protobuf field <code>optional string vpn_gateway = 406684153;</code>
      * @return string
      */
     public function getVpnGateway()
@@ -990,7 +933,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * URL of the VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created. This must be used (instead of target_vpn_gateway) if a High Availability VPN gateway resource is created.
      *
-     * Generated from protobuf field <code>string vpn_gateway = 406684153;</code>
+     * Generated from protobuf field <code>optional string vpn_gateway = 406684153;</code>
      * @param string $var
      * @return $this
      */
@@ -1005,7 +948,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * The interface ID of the VPN gateway with which this VPN tunnel is associated.
      *
-     * Generated from protobuf field <code>int32 vpn_gateway_interface = 95979123;</code>
+     * Generated from protobuf field <code>optional int32 vpn_gateway_interface = 95979123;</code>
      * @return int
      */
     public function getVpnGatewayInterface()
@@ -1026,7 +969,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * The interface ID of the VPN gateway with which this VPN tunnel is associated.
      *
-     * Generated from protobuf field <code>int32 vpn_gateway_interface = 95979123;</code>
+     * Generated from protobuf field <code>optional int32 vpn_gateway_interface = 95979123;</code>
      * @param int $var
      * @return $this
      */

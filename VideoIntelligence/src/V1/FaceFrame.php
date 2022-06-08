@@ -90,7 +90,7 @@ class FaceFrame extends \Google\Protobuf\Internal\Message
      */
     public function getTimeOffset()
     {
-        return isset($this->time_offset) ? $this->time_offset : null;
+        return $this->time_offset;
     }
 
     public function hasTimeOffset()

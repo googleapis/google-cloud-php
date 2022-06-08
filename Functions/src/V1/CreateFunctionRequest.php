@@ -83,7 +83,7 @@ class CreateFunctionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFunction()
     {
-        return isset($this->function) ? $this->function : null;
+        return $this->function;
     }
 
     public function hasFunction()

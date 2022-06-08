@@ -92,7 +92,7 @@ class ImportUserEventsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getErrorsConfig()
     {
-        return isset($this->errors_config) ? $this->errors_config : null;
+        return $this->errors_config;
     }
 
     public function hasErrorsConfig()
@@ -129,7 +129,7 @@ class ImportUserEventsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getImportSummary()
     {
-        return isset($this->import_summary) ? $this->import_summary : null;
+        return $this->import_summary;
     }
 
     public function hasImportSummary()

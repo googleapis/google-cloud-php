@@ -99,6 +99,4 @@ class EnableFailure extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EnableFailure::class, \Google\Cloud\ServiceUsage\V1\BatchEnableServicesResponse_EnableFailure::class);
 

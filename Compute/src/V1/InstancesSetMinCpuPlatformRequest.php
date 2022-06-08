@@ -17,7 +17,7 @@ class InstancesSetMinCpuPlatformRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Minimum cpu/platform this instance should be started at.
      *
-     * Generated from protobuf field <code>string min_cpu_platform = 242912759;</code>
+     * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
      */
     private $min_cpu_platform = null;
 
@@ -39,7 +39,7 @@ class InstancesSetMinCpuPlatformRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Minimum cpu/platform this instance should be started at.
      *
-     * Generated from protobuf field <code>string min_cpu_platform = 242912759;</code>
+     * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
      * @return string
      */
     public function getMinCpuPlatform()
@@ -60,7 +60,7 @@ class InstancesSetMinCpuPlatformRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Minimum cpu/platform this instance should be started at.
      *
-     * Generated from protobuf field <code>string min_cpu_platform = 242912759;</code>
+     * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
      * @param string $var
      * @return $this
      */

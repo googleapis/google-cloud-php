@@ -70,6 +70,18 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.ConfigConnectorConfig config_connector_config = 10;</code>
      */
     private $config_connector_config = null;
+    /**
+     * Configuration for the Compute Engine Persistent Disk CSI driver.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GcePersistentDiskCsiDriverConfig gce_persistent_disk_csi_driver_config = 11;</code>
+     */
+    private $gce_persistent_disk_csi_driver_config = null;
+    /**
+     * Configuration for the GCP Filestore CSI driver.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GcpFilestoreCsiDriverConfig gcp_filestore_csi_driver_config = 14;</code>
+     */
+    private $gcp_filestore_csi_driver_config = null;
 
     /**
      * Constructor.
@@ -102,6 +114,10 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\ConfigConnectorConfig $config_connector_config
      *           Configuration for the ConfigConnector add-on, a Kubernetes
      *           extension to manage hosted GCP services through the Kubernetes API
+     *     @type \Google\Cloud\Container\V1\GcePersistentDiskCsiDriverConfig $gce_persistent_disk_csi_driver_config
+     *           Configuration for the Compute Engine Persistent Disk CSI driver.
+     *     @type \Google\Cloud\Container\V1\GcpFilestoreCsiDriverConfig $gcp_filestore_csi_driver_config
+     *           Configuration for the GCP Filestore CSI driver.
      * }
      */
     public function __construct($data = NULL) {
@@ -385,6 +401,78 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ConfigConnectorConfig::class);
         $this->config_connector_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for the Compute Engine Persistent Disk CSI driver.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GcePersistentDiskCsiDriverConfig gce_persistent_disk_csi_driver_config = 11;</code>
+     * @return \Google\Cloud\Container\V1\GcePersistentDiskCsiDriverConfig|null
+     */
+    public function getGcePersistentDiskCsiDriverConfig()
+    {
+        return $this->gce_persistent_disk_csi_driver_config;
+    }
+
+    public function hasGcePersistentDiskCsiDriverConfig()
+    {
+        return isset($this->gce_persistent_disk_csi_driver_config);
+    }
+
+    public function clearGcePersistentDiskCsiDriverConfig()
+    {
+        unset($this->gce_persistent_disk_csi_driver_config);
+    }
+
+    /**
+     * Configuration for the Compute Engine Persistent Disk CSI driver.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GcePersistentDiskCsiDriverConfig gce_persistent_disk_csi_driver_config = 11;</code>
+     * @param \Google\Cloud\Container\V1\GcePersistentDiskCsiDriverConfig $var
+     * @return $this
+     */
+    public function setGcePersistentDiskCsiDriverConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GcePersistentDiskCsiDriverConfig::class);
+        $this->gce_persistent_disk_csi_driver_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for the GCP Filestore CSI driver.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GcpFilestoreCsiDriverConfig gcp_filestore_csi_driver_config = 14;</code>
+     * @return \Google\Cloud\Container\V1\GcpFilestoreCsiDriverConfig|null
+     */
+    public function getGcpFilestoreCsiDriverConfig()
+    {
+        return $this->gcp_filestore_csi_driver_config;
+    }
+
+    public function hasGcpFilestoreCsiDriverConfig()
+    {
+        return isset($this->gcp_filestore_csi_driver_config);
+    }
+
+    public function clearGcpFilestoreCsiDriverConfig()
+    {
+        unset($this->gcp_filestore_csi_driver_config);
+    }
+
+    /**
+     * Configuration for the GCP Filestore CSI driver.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GcpFilestoreCsiDriverConfig gcp_filestore_csi_driver_config = 14;</code>
+     * @param \Google\Cloud\Container\V1\GcpFilestoreCsiDriverConfig $var
+     * @return $this
+     */
+    public function setGcpFilestoreCsiDriverConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GcpFilestoreCsiDriverConfig::class);
+        $this->gcp_filestore_csi_driver_config = $var;
 
         return $this;
     }

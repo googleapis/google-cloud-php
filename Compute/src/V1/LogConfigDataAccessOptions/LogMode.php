@@ -7,6 +7,7 @@ namespace Google\Cloud\Compute\V1\LogConfigDataAccessOptions;
 use UnexpectedValueException;
 
 /**
+ * This is deprecated and has no effect. Do not use.
  *
  * Protobuf type <code>google.cloud.compute.v1.LogConfigDataAccessOptions.LogMode</code>
  */
@@ -19,10 +20,14 @@ class LogMode
      */
     const UNDEFINED_LOG_MODE = 0;
     /**
+     * This is deprecated and has no effect. Do not use.
+     *
      * Generated from protobuf enum <code>LOG_FAIL_CLOSED = 360469778;</code>
      */
     const LOG_FAIL_CLOSED = 360469778;
     /**
+     * This is deprecated and has no effect. Do not use.
+     *
      * Generated from protobuf enum <code>LOG_MODE_UNSPECIFIED = 88160822;</code>
      */
     const LOG_MODE_UNSPECIFIED = 88160822;

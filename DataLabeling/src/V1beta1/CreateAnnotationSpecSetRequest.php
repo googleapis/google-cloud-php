@@ -89,7 +89,7 @@ class CreateAnnotationSpecSetRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAnnotationSpecSet()
     {
-        return isset($this->annotation_spec_set) ? $this->annotation_spec_set : null;
+        return $this->annotation_spec_set;
     }
 
     public function hasAnnotationSpecSet()

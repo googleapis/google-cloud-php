@@ -16,14 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class Manifest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the generated file. The default is `"manifest"` with the
+     * The name of the generated file. The default is `manifest` with the
      * extension suffix corresponding to the `Manifest.type`.
      *
      * Generated from protobuf field <code>string file_name = 1;</code>
      */
     private $file_name = '';
     /**
-     * Required. Type of the manifest, can be "HLS" or "DASH".
+     * Required. Type of the manifest, can be `HLS` or `DASH`.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Manifest.ManifestType type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -45,10 +45,10 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $file_name
-     *           The name of the generated file. The default is `"manifest"` with the
+     *           The name of the generated file. The default is `manifest` with the
      *           extension suffix corresponding to the `Manifest.type`.
      *     @type int $type
-     *           Required. Type of the manifest, can be "HLS" or "DASH".
+     *           Required. Type of the manifest, can be `HLS` or `DASH`.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $mux_streams
      *           Required. List of user given `MuxStream.key`s that should appear in this manifest.
      *           When `Manifest.type` is `HLS`, a media manifest with name `MuxStream.key`
@@ -62,7 +62,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the generated file. The default is `"manifest"` with the
+     * The name of the generated file. The default is `manifest` with the
      * extension suffix corresponding to the `Manifest.type`.
      *
      * Generated from protobuf field <code>string file_name = 1;</code>
@@ -74,7 +74,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the generated file. The default is `"manifest"` with the
+     * The name of the generated file. The default is `manifest` with the
      * extension suffix corresponding to the `Manifest.type`.
      *
      * Generated from protobuf field <code>string file_name = 1;</code>
@@ -90,7 +90,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Type of the manifest, can be "HLS" or "DASH".
+     * Required. Type of the manifest, can be `HLS` or `DASH`.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Manifest.ManifestType type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -101,7 +101,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Type of the manifest, can be "HLS" or "DASH".
+     * Required. Type of the manifest, can be `HLS` or `DASH`.
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.Manifest.ManifestType type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

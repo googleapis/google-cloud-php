@@ -18,7 +18,7 @@ class ConnectionDraining extends \Google\Protobuf\Internal\Message
     /**
      * Configures a duration timeout for existing requests on a removed backend instance. For supported load balancers and protocols, as described in Enabling connection draining.
      *
-     * Generated from protobuf field <code>int32 draining_timeout_sec = 225127070;</code>
+     * Generated from protobuf field <code>optional int32 draining_timeout_sec = 225127070;</code>
      */
     private $draining_timeout_sec = null;
 
@@ -40,7 +40,7 @@ class ConnectionDraining extends \Google\Protobuf\Internal\Message
     /**
      * Configures a duration timeout for existing requests on a removed backend instance. For supported load balancers and protocols, as described in Enabling connection draining.
      *
-     * Generated from protobuf field <code>int32 draining_timeout_sec = 225127070;</code>
+     * Generated from protobuf field <code>optional int32 draining_timeout_sec = 225127070;</code>
      * @return int
      */
     public function getDrainingTimeoutSec()
@@ -61,7 +61,7 @@ class ConnectionDraining extends \Google\Protobuf\Internal\Message
     /**
      * Configures a duration timeout for existing requests on a removed backend instance. For supported load balancers and protocols, as described in Enabling connection draining.
      *
-     * Generated from protobuf field <code>int32 draining_timeout_sec = 225127070;</code>
+     * Generated from protobuf field <code>optional int32 draining_timeout_sec = 225127070;</code>
      * @param int $var
      * @return $this
      */

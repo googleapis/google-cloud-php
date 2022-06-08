@@ -23,7 +23,7 @@ use Google\Cloud\Dev\Split\RunShell;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -42,7 +42,7 @@ class GitHubTest extends TestCase
     private $github;
     private $exception;
 
-    public function setUp()
+    public function set_up()
     {
         if (PHP_VERSION_ID < 50600) {
             $this->markTestSkipped("This test only runs on PHP 5.6+");
@@ -66,7 +66,7 @@ class GitHubTest extends TestCase
             'auth' => [null, self::TOKEN]
         ])->shouldBeCalled()->shouldBeCalledOnce()->willReturn($resp);
 
-        $this->assertEquals('master', $this->github->getDefaultBranch(self::TARGET_CLEAN));
+        $this->assertEquals('main', $this->github->getDefaultBranch(self::TARGET_CLEAN));
 
         // call again to test the cache.
         $this->github->getDefaultBranch(self::TARGET_CLEAN);
@@ -208,7 +208,7 @@ class GitHubTest extends TestCase
             self::TOKEN,
             self::TARGET,
             'foo',
-            'master'
+            'main'
         );
 
         $this->shell->execute($cmd)->shouldBeCalled()->willReturn([true]);
@@ -242,13 +242,13 @@ class GitHubTest extends TestCase
             self::TOKEN,
             self::TARGET,
             'foo',
-            'refs/heads/master'
+            'refs/heads/main'
         );
 
         $this->shell->execute($cmd)->shouldBeCalled()->willReturn([true]);
 
         $this->github->___setProperty('shell', $this->shell->reveal());
 
-        $this->github->push(self::TARGET, 'foo', 'master', true);
+        $this->github->push(self::TARGET, 'foo', 'main', true);
     }
 }

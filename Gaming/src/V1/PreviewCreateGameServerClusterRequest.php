@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class PreviewCreateGameServerClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * `projects/{project}/locations/{location}/realms/{realm}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -40,6 +40,14 @@ class PreviewCreateGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      * Generated from protobuf field <code>.google.protobuf.Timestamp preview_time = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $preview_time = null;
+    /**
+     * Optional. This field is deprecated, preview will always return
+     * KubernetesClusterState.
+     *
+     * Generated from protobuf field <code>.google.cloud.gaming.v1.GameServerClusterView view = 6 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
+     */
+    protected $view = 0;
 
     /**
      * Constructor.
@@ -48,7 +56,7 @@ class PreviewCreateGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource name. Uses the form:
+     *           Required. The parent resource name, in the following form:
      *           `projects/{project}/locations/{location}/realms/{realm}`.
      *     @type string $game_server_cluster_id
      *           Required. The ID of the game server cluster resource to be created.
@@ -56,6 +64,9 @@ class PreviewCreateGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      *           Required. The game server cluster resource to be created.
      *     @type \Google\Protobuf\Timestamp $preview_time
      *           Optional. The target timestamp to compute the preview.
+     *     @type int $view
+     *           Optional. This field is deprecated, preview will always return
+     *           KubernetesClusterState.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,7 +75,7 @@ class PreviewCreateGameServerClusterRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * `projects/{project}/locations/{location}/realms/{realm}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -76,7 +87,7 @@ class PreviewCreateGameServerClusterRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * `projects/{project}/locations/{location}/realms/{realm}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -125,7 +136,7 @@ class PreviewCreateGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      */
     public function getGameServerCluster()
     {
-        return isset($this->game_server_cluster) ? $this->game_server_cluster : null;
+        return $this->game_server_cluster;
     }
 
     public function hasGameServerCluster()
@@ -161,7 +172,7 @@ class PreviewCreateGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      */
     public function getPreviewTime()
     {
-        return isset($this->preview_time) ? $this->preview_time : null;
+        return $this->preview_time;
     }
 
     public function hasPreviewTime()
@@ -185,6 +196,38 @@ class PreviewCreateGameServerClusterRequest extends \Google\Protobuf\Internal\Me
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->preview_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This field is deprecated, preview will always return
+     * KubernetesClusterState.
+     *
+     * Generated from protobuf field <code>.google.cloud.gaming.v1.GameServerClusterView view = 6 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     * @deprecated
+     */
+    public function getView()
+    {
+        @trigger_error('view is deprecated.', E_USER_DEPRECATED);
+        return $this->view;
+    }
+
+    /**
+     * Optional. This field is deprecated, preview will always return
+     * KubernetesClusterState.
+     *
+     * Generated from protobuf field <code>.google.cloud.gaming.v1.GameServerClusterView view = 6 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     * @deprecated
+     */
+    public function setView($var)
+    {
+        @trigger_error('view is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkEnum($var, \Google\Cloud\Gaming\V1\GameServerClusterView::class);
+        $this->view = $var;
 
         return $this;
     }

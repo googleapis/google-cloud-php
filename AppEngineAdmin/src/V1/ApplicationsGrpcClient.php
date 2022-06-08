@@ -74,6 +74,7 @@ class ApplicationsGrpcClient extends \Grpc\BaseStub {
      *
      * * `auth_domain` - Google authentication domain for controlling user access to the application.
      * * `default_cookie_expiration` - Cookie expiration policy for the application.
+     * * `iap` - Identity-Aware Proxy properties for the application.
      * @param \Google\Cloud\AppEngine\V1\UpdateApplicationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

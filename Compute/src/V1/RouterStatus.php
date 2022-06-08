@@ -37,7 +37,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
     /**
      * URI of the network to which this router belongs.
      *
-     * Generated from protobuf field <code>string network = 232872494;</code>
+     * Generated from protobuf field <code>optional string network = 232872494;</code>
      */
     private $network = null;
 
@@ -161,7 +161,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
     /**
      * URI of the network to which this router belongs.
      *
-     * Generated from protobuf field <code>string network = 232872494;</code>
+     * Generated from protobuf field <code>optional string network = 232872494;</code>
      * @return string
      */
     public function getNetwork()
@@ -182,7 +182,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
     /**
      * URI of the network to which this router belongs.
      *
-     * Generated from protobuf field <code>string network = 232872494;</code>
+     * Generated from protobuf field <code>optional string network = 232872494;</code>
      * @param string $var
      * @return $this
      */

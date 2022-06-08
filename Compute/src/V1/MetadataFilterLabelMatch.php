@@ -9,24 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * MetadataFilter label name value pairs that are expected to match corresponding labels presented as metadata to the loadbalancer.
+ * MetadataFilter label name value pairs that are expected to match corresponding labels presented as metadata to the load balancer.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.MetadataFilterLabelMatch</code>
  */
 class MetadataFilterLabelMatch extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of metadata label.
-     * The name can have a maximum length of 1024 characters and must be at least 1 character long.
+     * Name of metadata label. The name can have a maximum length of 1024 characters and must be at least 1 character long.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
-     * The value of the label must match the specified value.
-     * value can have a maximum length of 1024 characters.
+     * The value of the label must match the specified value. value can have a maximum length of 1024 characters.
      *
-     * Generated from protobuf field <code>string value = 111972721;</code>
+     * Generated from protobuf field <code>optional string value = 111972721;</code>
      */
     private $value = null;
 
@@ -37,11 +35,9 @@ class MetadataFilterLabelMatch extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of metadata label.
-     *           The name can have a maximum length of 1024 characters and must be at least 1 character long.
+     *           Name of metadata label. The name can have a maximum length of 1024 characters and must be at least 1 character long.
      *     @type string $value
-     *           The value of the label must match the specified value.
-     *           value can have a maximum length of 1024 characters.
+     *           The value of the label must match the specified value. value can have a maximum length of 1024 characters.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,10 +46,9 @@ class MetadataFilterLabelMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of metadata label.
-     * The name can have a maximum length of 1024 characters and must be at least 1 character long.
+     * Name of metadata label. The name can have a maximum length of 1024 characters and must be at least 1 character long.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -72,10 +67,9 @@ class MetadataFilterLabelMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of metadata label.
-     * The name can have a maximum length of 1024 characters and must be at least 1 character long.
+     * Name of metadata label. The name can have a maximum length of 1024 characters and must be at least 1 character long.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -88,10 +82,9 @@ class MetadataFilterLabelMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of the label must match the specified value.
-     * value can have a maximum length of 1024 characters.
+     * The value of the label must match the specified value. value can have a maximum length of 1024 characters.
      *
-     * Generated from protobuf field <code>string value = 111972721;</code>
+     * Generated from protobuf field <code>optional string value = 111972721;</code>
      * @return string
      */
     public function getValue()
@@ -110,10 +103,9 @@ class MetadataFilterLabelMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The value of the label must match the specified value.
-     * value can have a maximum length of 1024 characters.
+     * The value of the label must match the specified value. value can have a maximum length of 1024 characters.
      *
-     * Generated from protobuf field <code>string value = 111972721;</code>
+     * Generated from protobuf field <code>optional string value = 111972721;</code>
      * @param string $var
      * @return $this
      */

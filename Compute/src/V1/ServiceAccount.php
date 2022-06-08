@@ -18,7 +18,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
     /**
      * Email address of the service account.
      *
-     * Generated from protobuf field <code>string email = 96619420;</code>
+     * Generated from protobuf field <code>optional string email = 96619420;</code>
      */
     private $email = null;
     /**
@@ -48,7 +48,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
     /**
      * Email address of the service account.
      *
-     * Generated from protobuf field <code>string email = 96619420;</code>
+     * Generated from protobuf field <code>optional string email = 96619420;</code>
      * @return string
      */
     public function getEmail()
@@ -69,7 +69,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
     /**
      * Email address of the service account.
      *
-     * Generated from protobuf field <code>string email = 96619420;</code>
+     * Generated from protobuf field <code>optional string email = 96619420;</code>
      * @param string $var
      * @return $this
      */

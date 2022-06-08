@@ -37,7 +37,7 @@ The handwritten client offered by this package differs from the others in `googl
 This means some of the idioms and configuration options you are used to may differ slightly. The most notable differences are outlined below:
 
 - A key file is now provided through the `credentials` configuration option as opposed to either `keyFile` or `keyFilePath`.
-- There is now more granular control over retry logic. Please see [the `bigtable_client_config.json` file](https://github.com/googleapis/google-cloud-php/blob/master/Bigtable/src/V2/resources/bigtable_client_config.json)
+- There is now more granular control over retry logic. Please see [the `bigtable_client_config.json` file](https://github.com/googleapis/google-cloud-php/blob/main/Bigtable/src/V2/resources/bigtable_client_config.json)
   for an example of the configuration which can be passed into the client at construction time.
 - Exceptions triggered at the network level utilize the base class `Google\ApiCore\ApiException` as opposed to `Google\Cloud\Core\ServiceException`.
 - The `authHttpHandler` and `httpHandler` client configuration options are now provided through `$credentialsConfig['authHttpHandler']`
@@ -45,7 +45,7 @@ This means some of the idioms and configuration options you are used to may diff
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 When going through the authentication guide, please take note that the handwritten client for this package will more closely follow the conventions

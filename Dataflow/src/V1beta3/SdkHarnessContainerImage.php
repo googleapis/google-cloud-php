@@ -38,6 +38,13 @@ class SdkHarnessContainerImage extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string environment_id = 3;</code>
      */
     private $environment_id = '';
+    /**
+     * The set of capabilities enumerated in the above Environment proto. See also
+     * https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/beam_runner_api.proto
+     *
+     * Generated from protobuf field <code>repeated string capabilities = 4;</code>
+     */
+    private $capabilities;
 
     /**
      * Constructor.
@@ -56,6 +63,9 @@ class SdkHarnessContainerImage extends \Google\Protobuf\Internal\Message
      *     @type string $environment_id
      *           Environment ID for the Beam runner API proto Environment that corresponds
      *           to the current SDK Harness.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $capabilities
+     *           The set of capabilities enumerated in the above Environment proto. See also
+     *           https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/beam_runner_api.proto
      * }
      */
     public function __construct($data = NULL) {
@@ -147,6 +157,34 @@ class SdkHarnessContainerImage extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->environment_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The set of capabilities enumerated in the above Environment proto. See also
+     * https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/beam_runner_api.proto
+     *
+     * Generated from protobuf field <code>repeated string capabilities = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCapabilities()
+    {
+        return $this->capabilities;
+    }
+
+    /**
+     * The set of capabilities enumerated in the above Environment proto. See also
+     * https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/beam_runner_api.proto
+     *
+     * Generated from protobuf field <code>repeated string capabilities = 4;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCapabilities($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->capabilities = $arr;
 
         return $this;
     }

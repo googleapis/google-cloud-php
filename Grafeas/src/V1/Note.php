@@ -119,6 +119,10 @@ class Note extends \Google\Protobuf\Internal\Message
      *           A note describing an attestation role.
      *     @type \Grafeas\V1\UpgradeNote $upgrade
      *           A note describing available package upgrades.
+     *     @type \Grafeas\V1\ComplianceNote $compliance
+     *           A note describing a compliance check.
+     *     @type \Grafeas\V1\DSSEAttestationNote $dsse_attestation
+     *           A note describing a dsse attestation note.
      * }
      */
     public function __construct($data = NULL) {
@@ -642,6 +646,68 @@ class Note extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Grafeas\V1\UpgradeNote::class);
         $this->writeOneof(17, $var);
+
+        return $this;
+    }
+
+    /**
+     * A note describing a compliance check.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.ComplianceNote compliance = 18;</code>
+     * @return \Grafeas\V1\ComplianceNote|null
+     */
+    public function getCompliance()
+    {
+        return $this->readOneof(18);
+    }
+
+    public function hasCompliance()
+    {
+        return $this->hasOneof(18);
+    }
+
+    /**
+     * A note describing a compliance check.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.ComplianceNote compliance = 18;</code>
+     * @param \Grafeas\V1\ComplianceNote $var
+     * @return $this
+     */
+    public function setCompliance($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\ComplianceNote::class);
+        $this->writeOneof(18, $var);
+
+        return $this;
+    }
+
+    /**
+     * A note describing a dsse attestation note.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.DSSEAttestationNote dsse_attestation = 19;</code>
+     * @return \Grafeas\V1\DSSEAttestationNote|null
+     */
+    public function getDsseAttestation()
+    {
+        return $this->readOneof(19);
+    }
+
+    public function hasDsseAttestation()
+    {
+        return $this->hasOneof(19);
+    }
+
+    /**
+     * A note describing a dsse attestation note.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.DSSEAttestationNote dsse_attestation = 19;</code>
+     * @param \Grafeas\V1\DSSEAttestationNote $var
+     * @return $this
+     */
+    public function setDsseAttestation($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\DSSEAttestationNote::class);
+        $this->writeOneof(19, $var);
 
         return $this;
     }

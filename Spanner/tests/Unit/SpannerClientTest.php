@@ -35,17 +35,20 @@ use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Numeric;
+use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
  */
 class SpannerClientTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
     use StubCreationTrait;
 
@@ -57,7 +60,7 @@ class SpannerClientTest extends TestCase
     private $client;
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -268,10 +271,11 @@ class SpannerClientTest extends TestCase
 
     /**
      * @group spanner-admin
-     * @expectedException \InvalidArgumentException
      */
     public function testCreateInstanceRaisesInvalidArgument()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $config = $this->prophesize(InstanceConfiguration::class);
 
         $this->client->createInstance($config->reveal(), self::INSTANCE, [
@@ -388,6 +392,15 @@ class SpannerClientTest extends TestCase
     {
         $n = $this->client->numeric('12345.123456789');
         $this->assertInstanceOf(Numeric::class, $n);
+    }
+
+    public function testPgNumeric()
+    {
+        $decimalVal = $this->client->pgNumeric('12345.123456789');
+        $this->assertInstanceOf(PgNumeric::class, $decimalVal);
+
+        $scientificVal = $this->client->pgNumeric('1.09E100');
+        $this->assertInstanceOf(PgNumeric::class, $scientificVal);
     }
 
     public function testInt64()

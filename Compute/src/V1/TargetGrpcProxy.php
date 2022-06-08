@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Target gRPC Proxy resource.
- * A target gRPC proxy is a component of load balancers intended for load balancing gRPC traffic. Only global forwarding rules with load balancing scheme INTERNAL_SELF_MANAGED can reference a target gRPC proxy. The target gRPC Proxy references a URL map that specifies how traffic is routed to gRPC backend services. (== resource_for {$api_version}.targetGrpcProxies ==)
+ * Represents a Target gRPC Proxy resource. A target gRPC proxy is a component of load balancers intended for load balancing gRPC traffic. Only global forwarding rules with load balancing scheme INTERNAL_SELF_MANAGED can reference a target gRPC proxy. The target gRPC Proxy references a URL map that specifies how traffic is routed to gRPC backend services.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.TargetGrpcProxy</code>
  */
@@ -19,61 +18,61 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a TargetGrpcProxy. An up-to-date fingerprint must be provided in order to patch/update the TargetGrpcProxy; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the TargetGrpcProxy.
      *
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
     private $fingerprint = null;
     /**
      * [Output Only] The unique identifier for the resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#targetGrpcProxy for target grpc proxies.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * [Output Only] Server-defined URL with id for the resource.
      *
-     * Generated from protobuf field <code>string self_link_with_id = 44520962;</code>
+     * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      */
     private $self_link_with_id = null;
     /**
      * URL to the UrlMap resource that defines the mapping from URL to the BackendService. The protocol field in the BackendService must be set to GRPC.
      *
-     * Generated from protobuf field <code>string url_map = 367020684;</code>
+     * Generated from protobuf field <code>optional string url_map = 367020684;</code>
      */
     private $url_map = null;
     /**
      * If true, indicates that the BackendServices referenced by the urlMap may be accessed by gRPC applications without using a sidecar proxy. This will enable configuration checks on urlMap and its referenced BackendServices to not allow unsupported features. A gRPC application must use "xds:///" scheme in the target URI of the service it is connecting to. If false, indicates that the BackendServices referenced by the urlMap will be accessed by gRPC applications via a sidecar proxy. In this case, a gRPC application must not use "xds:///" scheme in the target URI of the service it is connecting to
      *
-     * Generated from protobuf field <code>bool validate_for_proxyless = 101822888;</code>
+     * Generated from protobuf field <code>optional bool validate_for_proxyless = 101822888;</code>
      */
     private $validate_for_proxyless = null;
 
@@ -113,7 +112,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -134,7 +133,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -149,7 +148,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -170,7 +169,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -185,7 +184,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a TargetGrpcProxy. An up-to-date fingerprint must be provided in order to patch/update the TargetGrpcProxy; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the TargetGrpcProxy.
      *
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @return string
      */
     public function getFingerprint()
@@ -206,7 +205,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a TargetGrpcProxy. An up-to-date fingerprint must be provided in order to patch/update the TargetGrpcProxy; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the TargetGrpcProxy.
      *
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @param string $var
      * @return $this
      */
@@ -221,7 +220,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -242,7 +241,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -257,7 +256,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#targetGrpcProxy for target grpc proxies.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -278,7 +277,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#targetGrpcProxy for target grpc proxies.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -293,7 +292,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -314,7 +313,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -329,7 +328,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -350,7 +349,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -365,7 +364,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL with id for the resource.
      *
-     * Generated from protobuf field <code>string self_link_with_id = 44520962;</code>
+     * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @return string
      */
     public function getSelfLinkWithId()
@@ -386,7 +385,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL with id for the resource.
      *
-     * Generated from protobuf field <code>string self_link_with_id = 44520962;</code>
+     * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
      * @param string $var
      * @return $this
      */
@@ -401,7 +400,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * URL to the UrlMap resource that defines the mapping from URL to the BackendService. The protocol field in the BackendService must be set to GRPC.
      *
-     * Generated from protobuf field <code>string url_map = 367020684;</code>
+     * Generated from protobuf field <code>optional string url_map = 367020684;</code>
      * @return string
      */
     public function getUrlMap()
@@ -422,7 +421,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * URL to the UrlMap resource that defines the mapping from URL to the BackendService. The protocol field in the BackendService must be set to GRPC.
      *
-     * Generated from protobuf field <code>string url_map = 367020684;</code>
+     * Generated from protobuf field <code>optional string url_map = 367020684;</code>
      * @param string $var
      * @return $this
      */
@@ -437,7 +436,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * If true, indicates that the BackendServices referenced by the urlMap may be accessed by gRPC applications without using a sidecar proxy. This will enable configuration checks on urlMap and its referenced BackendServices to not allow unsupported features. A gRPC application must use "xds:///" scheme in the target URI of the service it is connecting to. If false, indicates that the BackendServices referenced by the urlMap will be accessed by gRPC applications via a sidecar proxy. In this case, a gRPC application must not use "xds:///" scheme in the target URI of the service it is connecting to
      *
-     * Generated from protobuf field <code>bool validate_for_proxyless = 101822888;</code>
+     * Generated from protobuf field <code>optional bool validate_for_proxyless = 101822888;</code>
      * @return bool
      */
     public function getValidateForProxyless()
@@ -458,7 +457,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * If true, indicates that the BackendServices referenced by the urlMap may be accessed by gRPC applications without using a sidecar proxy. This will enable configuration checks on urlMap and its referenced BackendServices to not allow unsupported features. A gRPC application must use "xds:///" scheme in the target URI of the service it is connecting to. If false, indicates that the BackendServices referenced by the urlMap will be accessed by gRPC applications via a sidecar proxy. In this case, a gRPC application must not use "xds:///" scheme in the target URI of the service it is connecting to
      *
-     * Generated from protobuf field <code>bool validate_for_proxyless = 101822888;</code>
+     * Generated from protobuf field <code>optional bool validate_for_proxyless = 101822888;</code>
      * @param bool $var
      * @return $this
      */

@@ -53,7 +53,7 @@ class VideoClassificationAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getTimeSegment()
     {
-        return isset($this->time_segment) ? $this->time_segment : null;
+        return $this->time_segment;
     }
 
     public function hasTimeSegment()
@@ -89,7 +89,7 @@ class VideoClassificationAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getAnnotationSpec()
     {
-        return isset($this->annotation_spec) ? $this->annotation_spec : null;
+        return $this->annotation_spec;
     }
 
     public function hasAnnotationSpec()

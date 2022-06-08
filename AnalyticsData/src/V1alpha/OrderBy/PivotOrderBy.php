@@ -115,6 +115,4 @@ class PivotOrderBy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PivotOrderBy::class, \Google\Analytics\Data\V1alpha\OrderBy_PivotOrderBy::class);
 

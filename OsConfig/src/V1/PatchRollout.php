@@ -134,7 +134,7 @@ class PatchRollout extends \Google\Protobuf\Internal\Message
      */
     public function getDisruptionBudget()
     {
-        return isset($this->disruption_budget) ? $this->disruption_budget : null;
+        return $this->disruption_budget;
     }
 
     public function hasDisruptionBudget()

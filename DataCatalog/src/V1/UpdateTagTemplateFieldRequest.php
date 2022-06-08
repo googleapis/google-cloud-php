@@ -17,8 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the tag template field. Example:
-     * * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
+     * Required. The name of the tag template field.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,17 +29,19 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
      */
     private $tag_template_field = null;
     /**
-     * Optional. The field mask specifies the parts of the template to be updated.
-     * Allowed fields:
-     *   * `display_name`
-     *   * `type.enum_type`
-     *   * `is_required`
-     * If `update_mask` is not set or empty, all of the allowed fields above will
-     * be updated.
-     * When updating an enum type, the provided values will be merged with the
-     * existing values. Therefore, enum values can only be added, existing enum
-     * values cannot be deleted nor renamed. Updating a template field from
-     * optional to required is NOT allowed.
+     * Optional. Names of fields whose values to overwrite on an individual field of a tag
+     * template. The following fields are modifiable:
+     * * `display_name`
+     * * `type.enum_type`
+     * * `is_required`
+     * If this parameter is absent or empty, all modifiable fields
+     * are overwritten. If such fields are non-required and omitted in the request
+     * body, their values are emptied with one exception: when updating an enum
+     * type, the provided values are merged with the existing values. Therefore,
+     * enum values can only be added, existing enum values cannot be deleted or
+     * renamed.
+     * Additionally, updating a template field from optional to required is
+     * *not* allowed.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -53,22 +54,23 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the tag template field. Example:
-     *           * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
+     *           Required. The name of the tag template field.
      *     @type \Google\Cloud\DataCatalog\V1\TagTemplateField $tag_template_field
      *           Required. The template to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Optional. The field mask specifies the parts of the template to be updated.
-     *           Allowed fields:
-     *             * `display_name`
-     *             * `type.enum_type`
-     *             * `is_required`
-     *           If `update_mask` is not set or empty, all of the allowed fields above will
-     *           be updated.
-     *           When updating an enum type, the provided values will be merged with the
-     *           existing values. Therefore, enum values can only be added, existing enum
-     *           values cannot be deleted nor renamed. Updating a template field from
-     *           optional to required is NOT allowed.
+     *           Optional. Names of fields whose values to overwrite on an individual field of a tag
+     *           template. The following fields are modifiable:
+     *           * `display_name`
+     *           * `type.enum_type`
+     *           * `is_required`
+     *           If this parameter is absent or empty, all modifiable fields
+     *           are overwritten. If such fields are non-required and omitted in the request
+     *           body, their values are emptied with one exception: when updating an enum
+     *           type, the provided values are merged with the existing values. Therefore,
+     *           enum values can only be added, existing enum values cannot be deleted or
+     *           renamed.
+     *           Additionally, updating a template field from optional to required is
+     *           *not* allowed.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,8 +79,7 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the tag template field. Example:
-     * * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
+     * Required. The name of the tag template field.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -89,8 +90,7 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the tag template field. Example:
-     * * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
+     * Required. The name of the tag template field.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -112,7 +112,7 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTagTemplateField()
     {
-        return isset($this->tag_template_field) ? $this->tag_template_field : null;
+        return $this->tag_template_field;
     }
 
     public function hasTagTemplateField()
@@ -141,24 +141,26 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The field mask specifies the parts of the template to be updated.
-     * Allowed fields:
-     *   * `display_name`
-     *   * `type.enum_type`
-     *   * `is_required`
-     * If `update_mask` is not set or empty, all of the allowed fields above will
-     * be updated.
-     * When updating an enum type, the provided values will be merged with the
-     * existing values. Therefore, enum values can only be added, existing enum
-     * values cannot be deleted nor renamed. Updating a template field from
-     * optional to required is NOT allowed.
+     * Optional. Names of fields whose values to overwrite on an individual field of a tag
+     * template. The following fields are modifiable:
+     * * `display_name`
+     * * `type.enum_type`
+     * * `is_required`
+     * If this parameter is absent or empty, all modifiable fields
+     * are overwritten. If such fields are non-required and omitted in the request
+     * body, their values are emptied with one exception: when updating an enum
+     * type, the provided values are merged with the existing values. Therefore,
+     * enum values can only be added, existing enum values cannot be deleted or
+     * renamed.
+     * Additionally, updating a template field from optional to required is
+     * *not* allowed.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -172,17 +174,19 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The field mask specifies the parts of the template to be updated.
-     * Allowed fields:
-     *   * `display_name`
-     *   * `type.enum_type`
-     *   * `is_required`
-     * If `update_mask` is not set or empty, all of the allowed fields above will
-     * be updated.
-     * When updating an enum type, the provided values will be merged with the
-     * existing values. Therefore, enum values can only be added, existing enum
-     * values cannot be deleted nor renamed. Updating a template field from
-     * optional to required is NOT allowed.
+     * Optional. Names of fields whose values to overwrite on an individual field of a tag
+     * template. The following fields are modifiable:
+     * * `display_name`
+     * * `type.enum_type`
+     * * `is_required`
+     * If this parameter is absent or empty, all modifiable fields
+     * are overwritten. If such fields are non-required and omitted in the request
+     * body, their values are emptied with one exception: when updating an enum
+     * type, the provided values are merged with the existing values. Therefore,
+     * enum values can only be added, existing enum values cannot be deleted or
+     * renamed.
+     * Additionally, updating a template field from optional to required is
+     * *not* allowed.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var

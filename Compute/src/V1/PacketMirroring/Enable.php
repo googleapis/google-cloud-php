@@ -7,8 +7,7 @@ namespace Google\Cloud\Compute\V1\PacketMirroring;
 use UnexpectedValueException;
 
 /**
- * Indicates whether or not this packet mirroring takes effect. If set to FALSE, this packet mirroring policy will not be enforced on the network.
- * The default is TRUE.
+ * Indicates whether or not this packet mirroring takes effect. If set to FALSE, this packet mirroring policy will not be enforced on the network. The default is TRUE.
  *
  * Protobuf type <code>google.cloud.compute.v1.PacketMirroring.Enable</code>
  */

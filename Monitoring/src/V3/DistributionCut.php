@@ -12,8 +12,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * A `DistributionCut` defines a `TimeSeries` and thresholds used for measuring
  * good service and total service. The `TimeSeries` must have `ValueType =
  * DISTRIBUTION` and `MetricKind = DELTA` or `MetricKind = CUMULATIVE`. The
- * computed `good_service` will be the count of values x in the `Distribution`
- * such that `range.min <= x < range.max`.
+ * computed `good_service` will be the estimated count of values in the
+ * `Distribution` that fall within the specified `min` and `max`.
  *
  * Generated from protobuf message <code>google.monitoring.v3.DistributionCut</code>
  */
@@ -90,11 +90,21 @@ class DistributionCut extends \Google\Protobuf\Internal\Message
      * an infinite value.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Range range = 5;</code>
-     * @return \Google\Cloud\Monitoring\V3\Range
+     * @return \Google\Cloud\Monitoring\V3\Range|null
      */
     public function getRange()
     {
         return $this->range;
+    }
+
+    public function hasRange()
+    {
+        return isset($this->range);
+    }
+
+    public function clearRange()
+    {
+        unset($this->range);
     }
 
     /**

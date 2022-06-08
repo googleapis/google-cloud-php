@@ -25,18 +25,12 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Unique identifier provided by client, within the ancestor
-     * dataset scope. Ensures idempotency and used for request deduplication.
-     * Server-generated if unspecified. Up to 128 characters long and must match
-     * the pattern: "[a-zA-Z0-9_]+". This is returned as [Operation.name][] in
-     * [ImportMetadata][google.cloud.retail.v2.ImportMetadata].
-     * Only supported when
-     * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
-     * is set to `FULL`.
+     * Deprecated. This field has no effect.
      *
-     * Generated from protobuf field <code>string request_id = 6;</code>
+     * Generated from protobuf field <code>string request_id = 6 [deprecated = true];</code>
+     * @deprecated
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Required. The desired input location of the data.
      *
@@ -65,11 +59,17 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      */
     private $reconciliation_mode = 0;
     /**
-     * Pub/Sub topic for receiving notification. If this field is set,
+     * Full Pub/Sub topic name for receiving notification. If this field is set,
      * when the import is finished, a notification will be sent to
      * specified Pub/Sub topic. The message data will be JSON string of a
      * [Operation][google.longrunning.Operation].
-     * Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
+     * Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`. It has
+     * to be within the same project as
+     * [ImportProductsRequest.parent][google.cloud.retail.v2.ImportProductsRequest.parent].
+     * Make sure that both
+     * `cloud-retail-customer-data-access&#64;system.gserviceaccount.com` and
+     * `service-<project number>&#64;gcp-sa-retail.iam.gserviceaccount.com`
+     * have the `pubsub.topics.publish` IAM permission on the topic.
      * Only supported when
      * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
      * is set to `FULL`.
@@ -90,14 +90,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      *           If no updateMask is specified, requires products.create permission.
      *           If updateMask is specified, requires products.update permission.
      *     @type string $request_id
-     *           Unique identifier provided by client, within the ancestor
-     *           dataset scope. Ensures idempotency and used for request deduplication.
-     *           Server-generated if unspecified. Up to 128 characters long and must match
-     *           the pattern: "[a-zA-Z0-9_]+". This is returned as [Operation.name][] in
-     *           [ImportMetadata][google.cloud.retail.v2.ImportMetadata].
-     *           Only supported when
-     *           [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
-     *           is set to `FULL`.
+     *           Deprecated. This field has no effect.
      *     @type \Google\Cloud\Retail\V2\ProductInputConfig $input_config
      *           Required. The desired input location of the data.
      *     @type \Google\Cloud\Retail\V2\ImportErrorsConfig $errors_config
@@ -110,11 +103,17 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      *           imported. Defaults to
      *           [ReconciliationMode.INCREMENTAL][google.cloud.retail.v2.ImportProductsRequest.ReconciliationMode.INCREMENTAL].
      *     @type string $notification_pubsub_topic
-     *           Pub/Sub topic for receiving notification. If this field is set,
+     *           Full Pub/Sub topic name for receiving notification. If this field is set,
      *           when the import is finished, a notification will be sent to
      *           specified Pub/Sub topic. The message data will be JSON string of a
      *           [Operation][google.longrunning.Operation].
-     *           Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
+     *           Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`. It has
+     *           to be within the same project as
+     *           [ImportProductsRequest.parent][google.cloud.retail.v2.ImportProductsRequest.parent].
+     *           Make sure that both
+     *           `cloud-retail-customer-data-access&#64;system.gserviceaccount.com` and
+     *           `service-<project number>&#64;gcp-sa-retail.iam.gserviceaccount.com`
+     *           have the `pubsub.topics.publish` IAM permission on the topic.
      *           Only supported when
      *           [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
      *           is set to `FULL`.
@@ -158,39 +157,29 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unique identifier provided by client, within the ancestor
-     * dataset scope. Ensures idempotency and used for request deduplication.
-     * Server-generated if unspecified. Up to 128 characters long and must match
-     * the pattern: "[a-zA-Z0-9_]+". This is returned as [Operation.name][] in
-     * [ImportMetadata][google.cloud.retail.v2.ImportMetadata].
-     * Only supported when
-     * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
-     * is set to `FULL`.
+     * Deprecated. This field has no effect.
      *
-     * Generated from protobuf field <code>string request_id = 6;</code>
+     * Generated from protobuf field <code>string request_id = 6 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getRequestId()
     {
+        @trigger_error('request_id is deprecated.', E_USER_DEPRECATED);
         return $this->request_id;
     }
 
     /**
-     * Unique identifier provided by client, within the ancestor
-     * dataset scope. Ensures idempotency and used for request deduplication.
-     * Server-generated if unspecified. Up to 128 characters long and must match
-     * the pattern: "[a-zA-Z0-9_]+". This is returned as [Operation.name][] in
-     * [ImportMetadata][google.cloud.retail.v2.ImportMetadata].
-     * Only supported when
-     * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
-     * is set to `FULL`.
+     * Deprecated. This field has no effect.
      *
-     * Generated from protobuf field <code>string request_id = 6;</code>
+     * Generated from protobuf field <code>string request_id = 6 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setRequestId($var)
     {
+        @trigger_error('request_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
 
@@ -205,7 +194,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return isset($this->input_config) ? $this->input_config : null;
+        return $this->input_config;
     }
 
     public function hasInputConfig()
@@ -241,7 +230,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getErrorsConfig()
     {
-        return isset($this->errors_config) ? $this->errors_config : null;
+        return $this->errors_config;
     }
 
     public function hasErrorsConfig()
@@ -278,7 +267,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -338,11 +327,17 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pub/Sub topic for receiving notification. If this field is set,
+     * Full Pub/Sub topic name for receiving notification. If this field is set,
      * when the import is finished, a notification will be sent to
      * specified Pub/Sub topic. The message data will be JSON string of a
      * [Operation][google.longrunning.Operation].
-     * Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
+     * Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`. It has
+     * to be within the same project as
+     * [ImportProductsRequest.parent][google.cloud.retail.v2.ImportProductsRequest.parent].
+     * Make sure that both
+     * `cloud-retail-customer-data-access&#64;system.gserviceaccount.com` and
+     * `service-<project number>&#64;gcp-sa-retail.iam.gserviceaccount.com`
+     * have the `pubsub.topics.publish` IAM permission on the topic.
      * Only supported when
      * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
      * is set to `FULL`.
@@ -356,11 +351,17 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Pub/Sub topic for receiving notification. If this field is set,
+     * Full Pub/Sub topic name for receiving notification. If this field is set,
      * when the import is finished, a notification will be sent to
      * specified Pub/Sub topic. The message data will be JSON string of a
      * [Operation][google.longrunning.Operation].
-     * Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
+     * Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`. It has
+     * to be within the same project as
+     * [ImportProductsRequest.parent][google.cloud.retail.v2.ImportProductsRequest.parent].
+     * Make sure that both
+     * `cloud-retail-customer-data-access&#64;system.gserviceaccount.com` and
+     * `service-<project number>&#64;gcp-sa-retail.iam.gserviceaccount.com`
+     * have the `pubsub.topics.publish` IAM permission on the topic.
      * Only supported when
      * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
      * is set to `FULL`.

@@ -17,23 +17,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListEntryGroupsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the location that contains the entry groups, which
-     * can be provided in URL format. Example:
-     * * projects/{project_id}/locations/{location}
+     * Required. The name of the location that contains the entry groups to list.
+     * Can be provided as a URL.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of items to return. Default is 10. Max limit
-     * is 1000. Throws an invalid argument for `page_size > 1000`.
+     * Optional. The maximum number of items to return.
+     * Default is 10. Maximum limit is 1000.
+     * Throws an invalid argument if `page_size` is greater than 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. Token that specifies which page is requested. If empty, the first
-     * page is returned.
+     * Optional. Pagination token that specifies the next page to return.
+     * If empty, returns the first page.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -46,15 +46,15 @@ class ListEntryGroupsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The name of the location that contains the entry groups, which
-     *           can be provided in URL format. Example:
-     *           * projects/{project_id}/locations/{location}
+     *           Required. The name of the location that contains the entry groups to list.
+     *           Can be provided as a URL.
      *     @type int $page_size
-     *           Optional. The maximum number of items to return. Default is 10. Max limit
-     *           is 1000. Throws an invalid argument for `page_size > 1000`.
+     *           Optional. The maximum number of items to return.
+     *           Default is 10. Maximum limit is 1000.
+     *           Throws an invalid argument if `page_size` is greater than 1000.
      *     @type string $page_token
-     *           Optional. Token that specifies which page is requested. If empty, the first
-     *           page is returned.
+     *           Optional. Pagination token that specifies the next page to return.
+     *           If empty, returns the first page.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,9 +63,8 @@ class ListEntryGroupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the location that contains the entry groups, which
-     * can be provided in URL format. Example:
-     * * projects/{project_id}/locations/{location}
+     * Required. The name of the location that contains the entry groups to list.
+     * Can be provided as a URL.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -76,9 +75,8 @@ class ListEntryGroupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the location that contains the entry groups, which
-     * can be provided in URL format. Example:
-     * * projects/{project_id}/locations/{location}
+     * Required. The name of the location that contains the entry groups to list.
+     * Can be provided as a URL.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -93,8 +91,9 @@ class ListEntryGroupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of items to return. Default is 10. Max limit
-     * is 1000. Throws an invalid argument for `page_size > 1000`.
+     * Optional. The maximum number of items to return.
+     * Default is 10. Maximum limit is 1000.
+     * Throws an invalid argument if `page_size` is greater than 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -105,8 +104,9 @@ class ListEntryGroupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of items to return. Default is 10. Max limit
-     * is 1000. Throws an invalid argument for `page_size > 1000`.
+     * Optional. The maximum number of items to return.
+     * Default is 10. Maximum limit is 1000.
+     * Throws an invalid argument if `page_size` is greater than 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -121,8 +121,8 @@ class ListEntryGroupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Token that specifies which page is requested. If empty, the first
-     * page is returned.
+     * Optional. Pagination token that specifies the next page to return.
+     * If empty, returns the first page.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -133,8 +133,8 @@ class ListEntryGroupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Token that specifies which page is requested. If empty, the first
-     * page is returned.
+     * Optional. Pagination token that specifies the next page to return.
+     * If empty, returns the first page.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

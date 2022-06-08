@@ -94,7 +94,7 @@ class CreateClientEventRequest extends \Google\Protobuf\Internal\Message
      */
     public function getClientEvent()
     {
-        return isset($this->client_event) ? $this->client_event : null;
+        return $this->client_event;
     }
 
     public function hasClientEvent()

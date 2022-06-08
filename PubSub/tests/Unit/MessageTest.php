@@ -19,18 +19,21 @@ namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Subscription;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group pubsub
  */
 class MessageTest extends TestCase
 {
+    use AssertIsType;
+
     private $message;
 
     private $time = '2016-09-27T13:21:30.242Z';
 
-    public function setUp()
+    public function set_up()
     {
         $this->message = new Message([
             'data' => 'hello world',
@@ -112,8 +115,8 @@ class MessageTest extends TestCase
 
     public function testInfo()
     {
-        $this->assertInternalType('array', $this->message->info());
-        $this->assertInternalType('array', $this->message->info()['message']);
+        $this->assertIsArray($this->message->info());
+        $this->assertIsArray($this->message->info()['message']);
         $this->assertInstanceOf(Subscription::class, $this->message->info()['subscription']);
         $this->assertEquals(1234, $this->message->info()['ackId']);
     }

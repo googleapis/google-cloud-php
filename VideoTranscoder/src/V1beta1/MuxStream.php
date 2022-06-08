@@ -225,7 +225,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      */
     public function getSegmentSettings()
     {
-        return isset($this->segment_settings) ? $this->segment_settings : null;
+        return $this->segment_settings;
     }
 
     public function hasSegmentSettings()
@@ -261,7 +261,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      */
     public function getEncryption()
     {
-        return isset($this->encryption) ? $this->encryption : null;
+        return $this->encryption;
     }
 
     public function hasEncryption()

@@ -21,6 +21,12 @@ class MetadataIntegration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.DataCatalogConfig data_catalog_config = 1;</code>
      */
     private $data_catalog_config = null;
+    /**
+     * The integration config for the Dataplex service.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.DataplexConfig dataplex_config = 2;</code>
+     */
+    private $dataplex_config = null;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class MetadataIntegration extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Metastore\V1alpha\DataCatalogConfig $data_catalog_config
      *           The integration config for the Data Catalog service.
+     *     @type \Google\Cloud\Metastore\V1alpha\DataplexConfig $dataplex_config
+     *           The integration config for the Dataplex service.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +77,42 @@ class MetadataIntegration extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Metastore\V1alpha\DataCatalogConfig::class);
         $this->data_catalog_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The integration config for the Dataplex service.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.DataplexConfig dataplex_config = 2;</code>
+     * @return \Google\Cloud\Metastore\V1alpha\DataplexConfig|null
+     */
+    public function getDataplexConfig()
+    {
+        return $this->dataplex_config;
+    }
+
+    public function hasDataplexConfig()
+    {
+        return isset($this->dataplex_config);
+    }
+
+    public function clearDataplexConfig()
+    {
+        unset($this->dataplex_config);
+    }
+
+    /**
+     * The integration config for the Dataplex service.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1alpha.DataplexConfig dataplex_config = 2;</code>
+     * @param \Google\Cloud\Metastore\V1alpha\DataplexConfig $var
+     * @return $this
+     */
+    public function setDataplexConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Metastore\V1alpha\DataplexConfig::class);
+        $this->dataplex_config = $var;
 
         return $this;
     }

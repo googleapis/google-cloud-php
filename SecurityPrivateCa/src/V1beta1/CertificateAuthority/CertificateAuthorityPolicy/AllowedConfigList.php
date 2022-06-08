@@ -75,6 +75,4 @@ class AllowedConfigList extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AllowedConfigList::class, \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority_CertificateAuthorityPolicy_AllowedConfigList::class);
 

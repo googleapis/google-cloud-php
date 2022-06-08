@@ -20,14 +20,20 @@ class NicType
      */
     const UNDEFINED_NIC_TYPE = 0;
     /**
+     * GVNIC
+     *
      * Generated from protobuf enum <code>GVNIC = 68209305;</code>
      */
     const GVNIC = 68209305;
     /**
+     * No type specified.
+     *
      * Generated from protobuf enum <code>UNSPECIFIED_NIC_TYPE = 67411801;</code>
      */
     const UNSPECIFIED_NIC_TYPE = 67411801;
     /**
+     * VIRTIO
+     *
      * Generated from protobuf enum <code>VIRTIO_NET = 452123481;</code>
      */
     const VIRTIO_NET = 452123481;

@@ -19,11 +19,22 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
      * Condition boost specifications. If a product matches multiple conditions
      * in the specifictions, boost scores from these specifications are all
      * applied and combined in a non-linear way. Maximum number of
-     * specifications is 10.
+     * specifications is 20.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchRequest.BoostSpec.ConditionBoostSpec condition_boost_specs = 1;</code>
      */
     private $condition_boost_specs;
+    /**
+     * Whether to skip boostspec validation. If this field is set to true,
+     * invalid
+     * [BoostSpec.condition_boost_specs][google.cloud.retail.v2.SearchRequest.BoostSpec.condition_boost_specs]
+     * will be ignored and valid
+     * [BoostSpec.condition_boost_specs][google.cloud.retail.v2.SearchRequest.BoostSpec.condition_boost_specs]
+     * will still be applied.
+     *
+     * Generated from protobuf field <code>optional bool skip_boost_spec_validation = 2;</code>
+     */
+    private $skip_boost_spec_validation = null;
 
     /**
      * Constructor.
@@ -35,7 +46,14 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
      *           Condition boost specifications. If a product matches multiple conditions
      *           in the specifictions, boost scores from these specifications are all
      *           applied and combined in a non-linear way. Maximum number of
-     *           specifications is 10.
+     *           specifications is 20.
+     *     @type bool $skip_boost_spec_validation
+     *           Whether to skip boostspec validation. If this field is set to true,
+     *           invalid
+     *           [BoostSpec.condition_boost_specs][google.cloud.retail.v2.SearchRequest.BoostSpec.condition_boost_specs]
+     *           will be ignored and valid
+     *           [BoostSpec.condition_boost_specs][google.cloud.retail.v2.SearchRequest.BoostSpec.condition_boost_specs]
+     *           will still be applied.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,7 +65,7 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
      * Condition boost specifications. If a product matches multiple conditions
      * in the specifictions, boost scores from these specifications are all
      * applied and combined in a non-linear way. Maximum number of
-     * specifications is 10.
+     * specifications is 20.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchRequest.BoostSpec.ConditionBoostSpec condition_boost_specs = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -61,7 +79,7 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
      * Condition boost specifications. If a product matches multiple conditions
      * in the specifictions, boost scores from these specifications are all
      * applied and combined in a non-linear way. Maximum number of
-     * specifications is 10.
+     * specifications is 20.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchRequest.BoostSpec.ConditionBoostSpec condition_boost_specs = 1;</code>
      * @param \Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -75,8 +93,52 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * Whether to skip boostspec validation. If this field is set to true,
+     * invalid
+     * [BoostSpec.condition_boost_specs][google.cloud.retail.v2.SearchRequest.BoostSpec.condition_boost_specs]
+     * will be ignored and valid
+     * [BoostSpec.condition_boost_specs][google.cloud.retail.v2.SearchRequest.BoostSpec.condition_boost_specs]
+     * will still be applied.
+     *
+     * Generated from protobuf field <code>optional bool skip_boost_spec_validation = 2;</code>
+     * @return bool
+     */
+    public function getSkipBoostSpecValidation()
+    {
+        return isset($this->skip_boost_spec_validation) ? $this->skip_boost_spec_validation : false;
+    }
+
+    public function hasSkipBoostSpecValidation()
+    {
+        return isset($this->skip_boost_spec_validation);
+    }
+
+    public function clearSkipBoostSpecValidation()
+    {
+        unset($this->skip_boost_spec_validation);
+    }
+
+    /**
+     * Whether to skip boostspec validation. If this field is set to true,
+     * invalid
+     * [BoostSpec.condition_boost_specs][google.cloud.retail.v2.SearchRequest.BoostSpec.condition_boost_specs]
+     * will be ignored and valid
+     * [BoostSpec.condition_boost_specs][google.cloud.retail.v2.SearchRequest.BoostSpec.condition_boost_specs]
+     * will still be applied.
+     *
+     * Generated from protobuf field <code>optional bool skip_boost_spec_validation = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSkipBoostSpecValidation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->skip_boost_spec_validation = $var;
+
+        return $this;
+    }
+
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BoostSpec::class, \Google\Cloud\Retail\V2\SearchRequest_BoostSpec::class);
 

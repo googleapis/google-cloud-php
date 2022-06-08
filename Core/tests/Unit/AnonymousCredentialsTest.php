@@ -18,7 +18,7 @@
 namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\AnonymousCredentials;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -30,7 +30,7 @@ class AnonymousCredentialsTest extends TestCase
         'access_token' => null
     ];
 
-    public function setUp()
+    public function set_up()
     {
         $this->credentials = new AnonymousCredentials();
     }

@@ -39,7 +39,7 @@ class View
      */
     const REPLICATION_VIEW = 3;
     /**
-     * Only populates 'name' and fields related to the table's encryption state.
+     * Only populates `name` and fields related to the table's encryption state.
      *
      * Generated from protobuf enum <code>ENCRYPTION_VIEW = 5;</code>
      */

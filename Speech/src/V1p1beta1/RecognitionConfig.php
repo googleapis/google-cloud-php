@@ -19,8 +19,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see
-     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      */
@@ -32,8 +31,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
      * This field is optional for FLAC and WAV audio files, but is
-     * required for all other audio formats. For details, see
-     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      */
@@ -113,20 +111,29 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     private $profanity_filter = false;
     /**
      * Speech adaptation configuration improves the accuracy of speech
-     * recognition. When speech adaptation is set it supersedes the
-     * `speech_contexts` field. For more information, see the [speech
-     * adaptation](https://cloud.google.com/speech-to-text/docs/context-strength)
+     * recognition. For more information, see the [speech
+     * adaptation](https://cloud.google.com/speech-to-text/docs/adaptation)
      * documentation.
+     * When speech adaptation is set it supersedes the `speech_contexts` field.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.SpeechAdaptation adaptation = 20;</code>
      */
     private $adaptation = null;
     /**
+     * Use transcription normalization to automatically replace parts of the
+     * transcript with phrases of your choosing. For StreamingRecognize, this
+     * normalization only applies to stable partial transcripts (stability > 0.8)
+     * and final transcripts.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.TranscriptNormalization transcript_normalization = 24;</code>
+     */
+    private $transcript_normalization = null;
+    /**
      * Array of [SpeechContext][google.cloud.speech.v1p1beta1.SpeechContext].
      * A means to provide context to assist the speech recognition. For more
      * information, see
      * [speech
-     * adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).
+     * adaptation](https://cloud.google.com/speech-to-text/docs/adaptation).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.SpeechContext speech_contexts = 6;</code>
      */
@@ -158,22 +165,46 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $enable_automatic_punctuation = false;
     /**
+     * The spoken punctuation behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * e.g. command_and_search will enable spoken punctuation by default
+     * If 'true', replaces spoken punctuation with the corresponding symbols in
+     * the request. For example, "how are you question mark" becomes "how are
+     * you?". See https://cloud.google.com/speech-to-text/docs/spoken-punctuation
+     * for support. If 'false', spoken punctuation is not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_punctuation = 22;</code>
+     */
+    private $enable_spoken_punctuation = null;
+    /**
+     * The spoken emoji behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * If 'true', adds spoken emoji formatting for the request. This will replace
+     * spoken emojis with the corresponding Unicode symbols in the final
+     * transcript. If 'false', spoken emojis are not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_emojis = 23;</code>
+     */
+    private $enable_spoken_emojis = null;
+    /**
      * If 'true', enables speaker detection for each recognized word in
      * the top alternative of the recognition result using a speaker_tag provided
      * in the WordInfo.
      * Note: Use diarization_config instead.
      *
      * Generated from protobuf field <code>bool enable_speaker_diarization = 16 [deprecated = true];</code>
+     * @deprecated
      */
-    private $enable_speaker_diarization = false;
+    protected $enable_speaker_diarization = false;
     /**
      * If set, specifies the estimated number of speakers in the conversation.
      * Defaults to '2'. Ignored unless enable_speaker_diarization is set to true.
      * Note: Use diarization_config instead.
      *
      * Generated from protobuf field <code>int32 diarization_speaker_count = 17 [deprecated = true];</code>
+     * @deprecated
      */
-    private $diarization_speaker_count = 0;
+    protected $diarization_speaker_count = 0;
     /**
      * Config to enable speaker diarization and set additional
      * parameters to make diarization better suited for your application.
@@ -204,6 +235,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td><b>Description</b></td>
      *   </tr>
      *   <tr>
+     *     <td><code>latest_long</code></td>
+     *     <td>Best for long form content like media or conversation.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>latest_short</code></td>
+     *     <td>Best for short form content like commands or single shot directed
+     *     speech.</td>
+     *   </tr>
+     *   <tr>
      *     <td><code>command_and_search</code></td>
      *     <td>Best for short queries such as voice commands or voice search.</td>
      *   </tr>
@@ -214,7 +254,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *   </tr>
      *   <tr>
      *     <td><code>video</code></td>
-     *     <td>Best for audio that originated from from video or includes multiple
+     *     <td>Best for audio that originated from video or includes multiple
      *         speakers. Ideally the audio is recorded at a 16khz or greater
      *         sampling rate. This is a premium model that costs more than the
      *         standard rate.</td>
@@ -224,6 +264,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td>Best for audio that is not one of the specific audio models.
      *         For example, long-form audio. Ideally the audio is high-fidelity,
      *         recorded at a 16khz or greater sampling rate.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_conversation</code></td>
+     *     <td>Best for audio that originated from a conversation between a
+     *         medical provider and patient.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_dictation</code></td>
+     *     <td>Best for audio that originated from dictation notes by a medical
+     *         provider.</td>
      *   </tr>
      * </table>
      *
@@ -252,8 +302,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     @type int $encoding
      *           Encoding of audio data sent in all `RecognitionAudio` messages.
      *           This field is optional for `FLAC` and `WAV` audio files and required
-     *           for all other audio formats. For details, see
-     *           [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     *           for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *     @type int $sample_rate_hertz
      *           Sample rate in Hertz of the audio data sent in all
      *           `RecognitionAudio` messages. Valid values are: 8000-48000.
@@ -261,8 +310,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           source to 16000 Hz. If that's not possible, use the native sample rate of
      *           the audio source (instead of re-sampling).
      *           This field is optional for FLAC and WAV audio files, but is
-     *           required for all other audio formats. For details, see
-     *           [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     *           required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *     @type int $audio_channel_count
      *           The number of channels in the input audio data.
      *           ONLY set this for MULTI-CHANNEL recognition.
@@ -314,16 +362,21 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           won't be filtered out.
      *     @type \Google\Cloud\Speech\V1p1beta1\SpeechAdaptation $adaptation
      *           Speech adaptation configuration improves the accuracy of speech
-     *           recognition. When speech adaptation is set it supersedes the
-     *           `speech_contexts` field. For more information, see the [speech
-     *           adaptation](https://cloud.google.com/speech-to-text/docs/context-strength)
+     *           recognition. For more information, see the [speech
+     *           adaptation](https://cloud.google.com/speech-to-text/docs/adaptation)
      *           documentation.
+     *           When speech adaptation is set it supersedes the `speech_contexts` field.
+     *     @type \Google\Cloud\Speech\V1p1beta1\TranscriptNormalization $transcript_normalization
+     *           Use transcription normalization to automatically replace parts of the
+     *           transcript with phrases of your choosing. For StreamingRecognize, this
+     *           normalization only applies to stable partial transcripts (stability > 0.8)
+     *           and final transcripts.
      *     @type \Google\Cloud\Speech\V1p1beta1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $speech_contexts
      *           Array of [SpeechContext][google.cloud.speech.v1p1beta1.SpeechContext].
      *           A means to provide context to assist the speech recognition. For more
      *           information, see
      *           [speech
-     *           adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).
+     *           adaptation](https://cloud.google.com/speech-to-text/docs/adaptation).
      *     @type bool $enable_word_time_offsets
      *           If `true`, the top result includes a list of words and
      *           the start and end time offsets (timestamps) for those words. If
@@ -338,6 +391,20 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           This feature is only available in select languages. Setting this for
      *           requests in other languages has no effect at all.
      *           The default 'false' value does not add punctuation to result hypotheses.
+     *     @type \Google\Protobuf\BoolValue $enable_spoken_punctuation
+     *           The spoken punctuation behavior for the call
+     *           If not set, uses default behavior based on model of choice
+     *           e.g. command_and_search will enable spoken punctuation by default
+     *           If 'true', replaces spoken punctuation with the corresponding symbols in
+     *           the request. For example, "how are you question mark" becomes "how are
+     *           you?". See https://cloud.google.com/speech-to-text/docs/spoken-punctuation
+     *           for support. If 'false', spoken punctuation is not replaced.
+     *     @type \Google\Protobuf\BoolValue $enable_spoken_emojis
+     *           The spoken emoji behavior for the call
+     *           If not set, uses default behavior based on model of choice
+     *           If 'true', adds spoken emoji formatting for the request. This will replace
+     *           spoken emojis with the corresponding Unicode symbols in the final
+     *           transcript. If 'false', spoken emojis are not replaced.
      *     @type bool $enable_speaker_diarization
      *           If 'true', enables speaker detection for each recognized word in
      *           the top alternative of the recognition result using a speaker_tag provided
@@ -369,6 +436,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *               <td><b>Description</b></td>
      *             </tr>
      *             <tr>
+     *               <td><code>latest_long</code></td>
+     *               <td>Best for long form content like media or conversation.</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>latest_short</code></td>
+     *               <td>Best for short form content like commands or single shot directed
+     *               speech.</td>
+     *             </tr>
+     *             <tr>
      *               <td><code>command_and_search</code></td>
      *               <td>Best for short queries such as voice commands or voice search.</td>
      *             </tr>
@@ -379,7 +455,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *             </tr>
      *             <tr>
      *               <td><code>video</code></td>
-     *               <td>Best for audio that originated from from video or includes multiple
+     *               <td>Best for audio that originated from video or includes multiple
      *                   speakers. Ideally the audio is recorded at a 16khz or greater
      *                   sampling rate. This is a premium model that costs more than the
      *                   standard rate.</td>
@@ -389,6 +465,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *               <td>Best for audio that is not one of the specific audio models.
      *                   For example, long-form audio. Ideally the audio is high-fidelity,
      *                   recorded at a 16khz or greater sampling rate.</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>medical_conversation</code></td>
+     *               <td>Best for audio that originated from a conversation between a
+     *                   medical provider and patient.</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>medical_dictation</code></td>
+     *               <td>Best for audio that originated from dictation notes by a medical
+     *                   provider.</td>
      *             </tr>
      *           </table>
      *     @type bool $use_enhanced
@@ -409,8 +495,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see
-     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      * @return int
@@ -423,8 +508,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Encoding of audio data sent in all `RecognitionAudio` messages.
      * This field is optional for `FLAC` and `WAV` audio files and required
-     * for all other audio formats. For details, see
-     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      * @param int $var
@@ -445,8 +529,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
      * This field is optional for FLAC and WAV audio files, but is
-     * required for all other audio formats. For details, see
-     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      * @return int
@@ -463,8 +546,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
      * This field is optional for FLAC and WAV audio files, but is
-     * required for all other audio formats. For details, see
-     * [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
+     * required for all other audio formats. For details, see [AudioEncoding][google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding].
      *
      * Generated from protobuf field <code>int32 sample_rate_hertz = 2;</code>
      * @param int $var
@@ -710,17 +792,17 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Speech adaptation configuration improves the accuracy of speech
-     * recognition. When speech adaptation is set it supersedes the
-     * `speech_contexts` field. For more information, see the [speech
-     * adaptation](https://cloud.google.com/speech-to-text/docs/context-strength)
+     * recognition. For more information, see the [speech
+     * adaptation](https://cloud.google.com/speech-to-text/docs/adaptation)
      * documentation.
+     * When speech adaptation is set it supersedes the `speech_contexts` field.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.SpeechAdaptation adaptation = 20;</code>
-     * @return \Google\Cloud\Speech\V1p1beta1\SpeechAdaptation
+     * @return \Google\Cloud\Speech\V1p1beta1\SpeechAdaptation|null
      */
     public function getAdaptation()
     {
-        return isset($this->adaptation) ? $this->adaptation : null;
+        return $this->adaptation;
     }
 
     public function hasAdaptation()
@@ -735,10 +817,10 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Speech adaptation configuration improves the accuracy of speech
-     * recognition. When speech adaptation is set it supersedes the
-     * `speech_contexts` field. For more information, see the [speech
-     * adaptation](https://cloud.google.com/speech-to-text/docs/context-strength)
+     * recognition. For more information, see the [speech
+     * adaptation](https://cloud.google.com/speech-to-text/docs/adaptation)
      * documentation.
+     * When speech adaptation is set it supersedes the `speech_contexts` field.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.SpeechAdaptation adaptation = 20;</code>
      * @param \Google\Cloud\Speech\V1p1beta1\SpeechAdaptation $var
@@ -753,11 +835,53 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Use transcription normalization to automatically replace parts of the
+     * transcript with phrases of your choosing. For StreamingRecognize, this
+     * normalization only applies to stable partial transcripts (stability > 0.8)
+     * and final transcripts.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.TranscriptNormalization transcript_normalization = 24;</code>
+     * @return \Google\Cloud\Speech\V1p1beta1\TranscriptNormalization|null
+     */
+    public function getTranscriptNormalization()
+    {
+        return $this->transcript_normalization;
+    }
+
+    public function hasTranscriptNormalization()
+    {
+        return isset($this->transcript_normalization);
+    }
+
+    public function clearTranscriptNormalization()
+    {
+        unset($this->transcript_normalization);
+    }
+
+    /**
+     * Use transcription normalization to automatically replace parts of the
+     * transcript with phrases of your choosing. For StreamingRecognize, this
+     * normalization only applies to stable partial transcripts (stability > 0.8)
+     * and final transcripts.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.TranscriptNormalization transcript_normalization = 24;</code>
+     * @param \Google\Cloud\Speech\V1p1beta1\TranscriptNormalization $var
+     * @return $this
+     */
+    public function setTranscriptNormalization($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V1p1beta1\TranscriptNormalization::class);
+        $this->transcript_normalization = $var;
+
+        return $this;
+    }
+
+    /**
      * Array of [SpeechContext][google.cloud.speech.v1p1beta1.SpeechContext].
      * A means to provide context to assist the speech recognition. For more
      * information, see
      * [speech
-     * adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).
+     * adaptation](https://cloud.google.com/speech-to-text/docs/adaptation).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.SpeechContext speech_contexts = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -772,7 +896,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * A means to provide context to assist the speech recognition. For more
      * information, see
      * [speech
-     * adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).
+     * adaptation](https://cloud.google.com/speech-to-text/docs/adaptation).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.SpeechContext speech_contexts = 6;</code>
      * @param \Google\Cloud\Speech\V1p1beta1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -881,6 +1005,172 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The spoken punctuation behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * e.g. command_and_search will enable spoken punctuation by default
+     * If 'true', replaces spoken punctuation with the corresponding symbols in
+     * the request. For example, "how are you question mark" becomes "how are
+     * you?". See https://cloud.google.com/speech-to-text/docs/spoken-punctuation
+     * for support. If 'false', spoken punctuation is not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_punctuation = 22;</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getEnableSpokenPunctuation()
+    {
+        return $this->enable_spoken_punctuation;
+    }
+
+    public function hasEnableSpokenPunctuation()
+    {
+        return isset($this->enable_spoken_punctuation);
+    }
+
+    public function clearEnableSpokenPunctuation()
+    {
+        unset($this->enable_spoken_punctuation);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getEnableSpokenPunctuation()</code>
+
+     * The spoken punctuation behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * e.g. command_and_search will enable spoken punctuation by default
+     * If 'true', replaces spoken punctuation with the corresponding symbols in
+     * the request. For example, "how are you question mark" becomes "how are
+     * you?". See https://cloud.google.com/speech-to-text/docs/spoken-punctuation
+     * for support. If 'false', spoken punctuation is not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_punctuation = 22;</code>
+     * @return bool|null
+     */
+    public function getEnableSpokenPunctuationValue()
+    {
+        return $this->readWrapperValue("enable_spoken_punctuation");
+    }
+
+    /**
+     * The spoken punctuation behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * e.g. command_and_search will enable spoken punctuation by default
+     * If 'true', replaces spoken punctuation with the corresponding symbols in
+     * the request. For example, "how are you question mark" becomes "how are
+     * you?". See https://cloud.google.com/speech-to-text/docs/spoken-punctuation
+     * for support. If 'false', spoken punctuation is not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_punctuation = 22;</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setEnableSpokenPunctuation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->enable_spoken_punctuation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * The spoken punctuation behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * e.g. command_and_search will enable spoken punctuation by default
+     * If 'true', replaces spoken punctuation with the corresponding symbols in
+     * the request. For example, "how are you question mark" becomes "how are
+     * you?". See https://cloud.google.com/speech-to-text/docs/spoken-punctuation
+     * for support. If 'false', spoken punctuation is not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_punctuation = 22;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setEnableSpokenPunctuationValue($var)
+    {
+        $this->writeWrapperValue("enable_spoken_punctuation", $var);
+        return $this;}
+
+    /**
+     * The spoken emoji behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * If 'true', adds spoken emoji formatting for the request. This will replace
+     * spoken emojis with the corresponding Unicode symbols in the final
+     * transcript. If 'false', spoken emojis are not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_emojis = 23;</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getEnableSpokenEmojis()
+    {
+        return $this->enable_spoken_emojis;
+    }
+
+    public function hasEnableSpokenEmojis()
+    {
+        return isset($this->enable_spoken_emojis);
+    }
+
+    public function clearEnableSpokenEmojis()
+    {
+        unset($this->enable_spoken_emojis);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getEnableSpokenEmojis()</code>
+
+     * The spoken emoji behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * If 'true', adds spoken emoji formatting for the request. This will replace
+     * spoken emojis with the corresponding Unicode symbols in the final
+     * transcript. If 'false', spoken emojis are not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_emojis = 23;</code>
+     * @return bool|null
+     */
+    public function getEnableSpokenEmojisValue()
+    {
+        return $this->readWrapperValue("enable_spoken_emojis");
+    }
+
+    /**
+     * The spoken emoji behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * If 'true', adds spoken emoji formatting for the request. This will replace
+     * spoken emojis with the corresponding Unicode symbols in the final
+     * transcript. If 'false', spoken emojis are not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_emojis = 23;</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setEnableSpokenEmojis($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->enable_spoken_emojis = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * The spoken emoji behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * If 'true', adds spoken emoji formatting for the request. This will replace
+     * spoken emojis with the corresponding Unicode symbols in the final
+     * transcript. If 'false', spoken emojis are not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_emojis = 23;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setEnableSpokenEmojisValue($var)
+    {
+        $this->writeWrapperValue("enable_spoken_emojis", $var);
+        return $this;}
+
+    /**
      * If 'true', enables speaker detection for each recognized word in
      * the top alternative of the recognition result using a speaker_tag provided
      * in the WordInfo.
@@ -888,9 +1178,11 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_speaker_diarization = 16 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getEnableSpeakerDiarization()
     {
+        @trigger_error('enable_speaker_diarization is deprecated.', E_USER_DEPRECATED);
         return $this->enable_speaker_diarization;
     }
 
@@ -903,9 +1195,11 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_speaker_diarization = 16 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setEnableSpeakerDiarization($var)
     {
+        @trigger_error('enable_speaker_diarization is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->enable_speaker_diarization = $var;
 
@@ -919,9 +1213,11 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 diarization_speaker_count = 17 [deprecated = true];</code>
      * @return int
+     * @deprecated
      */
     public function getDiarizationSpeakerCount()
     {
+        @trigger_error('diarization_speaker_count is deprecated.', E_USER_DEPRECATED);
         return $this->diarization_speaker_count;
     }
 
@@ -933,9 +1229,11 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 diarization_speaker_count = 17 [deprecated = true];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setDiarizationSpeakerCount($var)
     {
+        @trigger_error('diarization_speaker_count is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt32($var);
         $this->diarization_speaker_count = $var;
 
@@ -953,11 +1251,11 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * in the top alternative of the FINAL SpeechRecognitionResult.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.SpeakerDiarizationConfig diarization_config = 19;</code>
-     * @return \Google\Cloud\Speech\V1p1beta1\SpeakerDiarizationConfig
+     * @return \Google\Cloud\Speech\V1p1beta1\SpeakerDiarizationConfig|null
      */
     public function getDiarizationConfig()
     {
-        return isset($this->diarization_config) ? $this->diarization_config : null;
+        return $this->diarization_config;
     }
 
     public function hasDiarizationConfig()
@@ -996,11 +1294,11 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * Metadata regarding this request.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata = 9;</code>
-     * @return \Google\Cloud\Speech\V1p1beta1\RecognitionMetadata
+     * @return \Google\Cloud\Speech\V1p1beta1\RecognitionMetadata|null
      */
     public function getMetadata()
     {
-        return isset($this->metadata) ? $this->metadata : null;
+        return $this->metadata;
     }
 
     public function hasMetadata()
@@ -1039,6 +1337,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td><b>Description</b></td>
      *   </tr>
      *   <tr>
+     *     <td><code>latest_long</code></td>
+     *     <td>Best for long form content like media or conversation.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>latest_short</code></td>
+     *     <td>Best for short form content like commands or single shot directed
+     *     speech.</td>
+     *   </tr>
+     *   <tr>
      *     <td><code>command_and_search</code></td>
      *     <td>Best for short queries such as voice commands or voice search.</td>
      *   </tr>
@@ -1049,7 +1356,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *   </tr>
      *   <tr>
      *     <td><code>video</code></td>
-     *     <td>Best for audio that originated from from video or includes multiple
+     *     <td>Best for audio that originated from video or includes multiple
      *         speakers. Ideally the audio is recorded at a 16khz or greater
      *         sampling rate. This is a premium model that costs more than the
      *         standard rate.</td>
@@ -1059,6 +1366,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td>Best for audio that is not one of the specific audio models.
      *         For example, long-form audio. Ideally the audio is high-fidelity,
      *         recorded at a 16khz or greater sampling rate.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_conversation</code></td>
+     *     <td>Best for audio that originated from a conversation between a
+     *         medical provider and patient.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_dictation</code></td>
+     *     <td>Best for audio that originated from dictation notes by a medical
+     *         provider.</td>
      *   </tr>
      * </table>
      *
@@ -1081,6 +1398,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td><b>Description</b></td>
      *   </tr>
      *   <tr>
+     *     <td><code>latest_long</code></td>
+     *     <td>Best for long form content like media or conversation.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>latest_short</code></td>
+     *     <td>Best for short form content like commands or single shot directed
+     *     speech.</td>
+     *   </tr>
+     *   <tr>
      *     <td><code>command_and_search</code></td>
      *     <td>Best for short queries such as voice commands or voice search.</td>
      *   </tr>
@@ -1091,7 +1417,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *   </tr>
      *   <tr>
      *     <td><code>video</code></td>
-     *     <td>Best for audio that originated from from video or includes multiple
+     *     <td>Best for audio that originated from video or includes multiple
      *         speakers. Ideally the audio is recorded at a 16khz or greater
      *         sampling rate. This is a premium model that costs more than the
      *         standard rate.</td>
@@ -1101,6 +1427,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td>Best for audio that is not one of the specific audio models.
      *         For example, long-form audio. Ideally the audio is high-fidelity,
      *         recorded at a 16khz or greater sampling rate.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_conversation</code></td>
+     *     <td>Best for audio that originated from a conversation between a
+     *         medical provider and patient.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_dictation</code></td>
+     *     <td>Best for audio that originated from dictation notes by a medical
+     *         provider.</td>
      *   </tr>
      * </table>
      *

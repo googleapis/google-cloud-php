@@ -38,6 +38,8 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      *      for [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata] is
      *      `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`.
      *   * `metadata.<field_name>` - any field in metadata.value.
+     *      `metadata.&#64;type` must be specified first, if filtering on metadata
+     *      fields.
      *   * `error` - Error associated with the long-running operation.
      *   * `response.&#64;type` - the type of response.
      *   * `response.<field_name>` - any field in response.value.
@@ -103,6 +105,8 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      *                for [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata] is
      *                `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`.
      *             * `metadata.<field_name>` - any field in metadata.value.
+     *                `metadata.&#64;type` must be specified first, if filtering on metadata
+     *                fields.
      *             * `error` - Error associated with the long-running operation.
      *             * `response.&#64;type` - the type of response.
      *             * `response.<field_name>` - any field in response.value.
@@ -181,6 +185,8 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      *      for [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata] is
      *      `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`.
      *   * `metadata.<field_name>` - any field in metadata.value.
+     *      `metadata.&#64;type` must be specified first, if filtering on metadata
+     *      fields.
      *   * `error` - Error associated with the long-running operation.
      *   * `response.&#64;type` - the type of response.
      *   * `response.<field_name>` - any field in response.value.
@@ -225,6 +231,8 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      *      for [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata] is
      *      `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`.
      *   * `metadata.<field_name>` - any field in metadata.value.
+     *      `metadata.&#64;type` must be specified first, if filtering on metadata
+     *      fields.
      *   * `error` - Error associated with the long-running operation.
      *   * `response.&#64;type` - the type of response.
      *   * `response.<field_name>` - any field in response.value.

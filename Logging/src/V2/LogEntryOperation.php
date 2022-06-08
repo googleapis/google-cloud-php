@@ -20,7 +20,7 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
      * Optional. An arbitrary operation identifier. Log entries with the same
      * identifier are assumed to be part of the same operation.
      *
-     * Generated from protobuf field <code>string id = 1;</code>
+     * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $id = '';
     /**
@@ -28,19 +28,19 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
      * `producer` must be globally unique. Examples for `producer`:
      * `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
      *
-     * Generated from protobuf field <code>string producer = 2;</code>
+     * Generated from protobuf field <code>string producer = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $producer = '';
     /**
      * Optional. Set this to True if this is the first log entry in the operation.
      *
-     * Generated from protobuf field <code>bool first = 3;</code>
+     * Generated from protobuf field <code>bool first = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $first = false;
     /**
      * Optional. Set this to True if this is the last log entry in the operation.
      *
-     * Generated from protobuf field <code>bool last = 4;</code>
+     * Generated from protobuf field <code>bool last = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $last = false;
 
@@ -72,7 +72,7 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
      * Optional. An arbitrary operation identifier. Log entries with the same
      * identifier are assumed to be part of the same operation.
      *
-     * Generated from protobuf field <code>string id = 1;</code>
+     * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getId()
@@ -84,7 +84,7 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
      * Optional. An arbitrary operation identifier. Log entries with the same
      * identifier are assumed to be part of the same operation.
      *
-     * Generated from protobuf field <code>string id = 1;</code>
+     * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -101,7 +101,7 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
      * `producer` must be globally unique. Examples for `producer`:
      * `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
      *
-     * Generated from protobuf field <code>string producer = 2;</code>
+     * Generated from protobuf field <code>string producer = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getProducer()
@@ -114,7 +114,7 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
      * `producer` must be globally unique. Examples for `producer`:
      * `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
      *
-     * Generated from protobuf field <code>string producer = 2;</code>
+     * Generated from protobuf field <code>string producer = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -129,7 +129,7 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Set this to True if this is the first log entry in the operation.
      *
-     * Generated from protobuf field <code>bool first = 3;</code>
+     * Generated from protobuf field <code>bool first = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getFirst()
@@ -140,7 +140,7 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Set this to True if this is the first log entry in the operation.
      *
-     * Generated from protobuf field <code>bool first = 3;</code>
+     * Generated from protobuf field <code>bool first = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -155,7 +155,7 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Set this to True if this is the last log entry in the operation.
      *
-     * Generated from protobuf field <code>bool last = 4;</code>
+     * Generated from protobuf field <code>bool last = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getLast()
@@ -166,7 +166,7 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Set this to True if this is the last log entry in the operation.
      *
-     * Generated from protobuf field <code>bool last = 4;</code>
+     * Generated from protobuf field <code>bool last = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

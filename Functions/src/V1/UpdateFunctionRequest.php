@@ -22,7 +22,7 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
      */
     private $function = null;
     /**
-     * Required list of fields to be updated in this request.
+     * Required. The list of fields in `CloudFunction` that have to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -37,7 +37,7 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Functions\V1\CloudFunction $function
      *           Required. New version of the function.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required list of fields to be updated in this request.
+     *           Required. The list of fields in `CloudFunction` that have to be updated.
      * }
      */
     public function __construct($data = NULL) {
@@ -53,7 +53,7 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFunction()
     {
-        return isset($this->function) ? $this->function : null;
+        return $this->function;
     }
 
     public function hasFunction()
@@ -82,14 +82,14 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required list of fields to be updated in this request.
+     * Required. The list of fields in `CloudFunction` that have to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -103,7 +103,7 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required list of fields to be updated in this request.
+     * Required. The list of fields in `CloudFunction` that have to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

@@ -30,7 +30,7 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
     /**
      * The MAC address of the Interconnect's bundle interface.
      *
-     * Generated from protobuf field <code>string mac_address = 332540164;</code>
+     * Generated from protobuf field <code>optional string mac_address = 332540164;</code>
      */
     private $mac_address = null;
 
@@ -108,7 +108,7 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
     /**
      * The MAC address of the Interconnect's bundle interface.
      *
-     * Generated from protobuf field <code>string mac_address = 332540164;</code>
+     * Generated from protobuf field <code>optional string mac_address = 332540164;</code>
      * @return string
      */
     public function getMacAddress()
@@ -129,7 +129,7 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
     /**
      * The MAC address of the Interconnect's bundle interface.
      *
-     * Generated from protobuf field <code>string mac_address = 332540164;</code>
+     * Generated from protobuf field <code>optional string mac_address = 332540164;</code>
      * @param string $var
      * @return $this
      */

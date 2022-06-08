@@ -7,13 +7,16 @@ namespace Google\Cloud\Kms\V1\CryptoKeyVersion;
 use UnexpectedValueException;
 
 /**
- * The algorithm of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], indicating what
+ * The algorithm of the
+ * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], indicating what
  * parameters must be used for each cryptographic operation.
  * The
  * [GOOGLE_SYMMETRIC_ENCRYPTION][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm.GOOGLE_SYMMETRIC_ENCRYPTION]
- * algorithm is usable with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+ * algorithm is usable with
+ * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
- * Algorithms beginning with "RSA_SIGN_" are usable with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+ * Algorithms beginning with "RSA_SIGN_" are usable with
+ * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [ASYMMETRIC_SIGN][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN].
  * The fields in the name after "RSA_SIGN_" correspond to the following
  * parameters: padding algorithm, modulus bit length, and digest algorithm.
@@ -26,11 +29,13 @@ use UnexpectedValueException;
  * [ASYMMETRIC_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_DECRYPT].
  * The fields in the name after "RSA_DECRYPT_" correspond to the following
  * parameters: padding algorithm, modulus bit length, and digest algorithm.
- * Algorithms beginning with "EC_SIGN_" are usable with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+ * Algorithms beginning with "EC_SIGN_" are usable with
+ * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [ASYMMETRIC_SIGN][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN].
  * The fields in the name after "EC_SIGN_" correspond to the following
  * parameters: elliptic curve, digest algorithm.
- * Algorithms beginning with "HMAC_" are usable with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+ * Algorithms beginning with "HMAC_" are usable with
+ * [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
  * [MAC][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.MAC].
  * The suffix following "HMAC_" corresponds to the hash algorithm being used
  * (eg. SHA256).
@@ -102,6 +107,24 @@ class CryptoKeyVersionAlgorithm
      */
     const RSA_SIGN_PKCS1_4096_SHA512 = 16;
     /**
+     * RSASSA-PKCS1-v1_5 signing without encoding, with a 2048 bit key.
+     *
+     * Generated from protobuf enum <code>RSA_SIGN_RAW_PKCS1_2048 = 28;</code>
+     */
+    const RSA_SIGN_RAW_PKCS1_2048 = 28;
+    /**
+     * RSASSA-PKCS1-v1_5 signing without encoding, with a 3072 bit key.
+     *
+     * Generated from protobuf enum <code>RSA_SIGN_RAW_PKCS1_3072 = 29;</code>
+     */
+    const RSA_SIGN_RAW_PKCS1_3072 = 29;
+    /**
+     * RSASSA-PKCS1-v1_5 signing without encoding, with a 4096 bit key.
+     *
+     * Generated from protobuf enum <code>RSA_SIGN_RAW_PKCS1_4096 = 30;</code>
+     */
+    const RSA_SIGN_RAW_PKCS1_4096 = 30;
+    /**
      * RSAES-OAEP 2048 bit key with a SHA256 digest.
      *
      * Generated from protobuf enum <code>RSA_DECRYPT_OAEP_2048_SHA256 = 8;</code>
@@ -125,6 +148,24 @@ class CryptoKeyVersionAlgorithm
      * Generated from protobuf enum <code>RSA_DECRYPT_OAEP_4096_SHA512 = 17;</code>
      */
     const RSA_DECRYPT_OAEP_4096_SHA512 = 17;
+    /**
+     * RSAES-OAEP 2048 bit key with a SHA1 digest.
+     *
+     * Generated from protobuf enum <code>RSA_DECRYPT_OAEP_2048_SHA1 = 37;</code>
+     */
+    const RSA_DECRYPT_OAEP_2048_SHA1 = 37;
+    /**
+     * RSAES-OAEP 3072 bit key with a SHA1 digest.
+     *
+     * Generated from protobuf enum <code>RSA_DECRYPT_OAEP_3072_SHA1 = 38;</code>
+     */
+    const RSA_DECRYPT_OAEP_3072_SHA1 = 38;
+    /**
+     * RSAES-OAEP 4096 bit key with a SHA1 digest.
+     *
+     * Generated from protobuf enum <code>RSA_DECRYPT_OAEP_4096_SHA1 = 39;</code>
+     */
+    const RSA_DECRYPT_OAEP_4096_SHA1 = 39;
     /**
      * ECDSA on the NIST P-256 curve with a SHA256 digest.
      *
@@ -168,10 +209,16 @@ class CryptoKeyVersionAlgorithm
         self::RSA_SIGN_PKCS1_3072_SHA256 => 'RSA_SIGN_PKCS1_3072_SHA256',
         self::RSA_SIGN_PKCS1_4096_SHA256 => 'RSA_SIGN_PKCS1_4096_SHA256',
         self::RSA_SIGN_PKCS1_4096_SHA512 => 'RSA_SIGN_PKCS1_4096_SHA512',
+        self::RSA_SIGN_RAW_PKCS1_2048 => 'RSA_SIGN_RAW_PKCS1_2048',
+        self::RSA_SIGN_RAW_PKCS1_3072 => 'RSA_SIGN_RAW_PKCS1_3072',
+        self::RSA_SIGN_RAW_PKCS1_4096 => 'RSA_SIGN_RAW_PKCS1_4096',
         self::RSA_DECRYPT_OAEP_2048_SHA256 => 'RSA_DECRYPT_OAEP_2048_SHA256',
         self::RSA_DECRYPT_OAEP_3072_SHA256 => 'RSA_DECRYPT_OAEP_3072_SHA256',
         self::RSA_DECRYPT_OAEP_4096_SHA256 => 'RSA_DECRYPT_OAEP_4096_SHA256',
         self::RSA_DECRYPT_OAEP_4096_SHA512 => 'RSA_DECRYPT_OAEP_4096_SHA512',
+        self::RSA_DECRYPT_OAEP_2048_SHA1 => 'RSA_DECRYPT_OAEP_2048_SHA1',
+        self::RSA_DECRYPT_OAEP_3072_SHA1 => 'RSA_DECRYPT_OAEP_3072_SHA1',
+        self::RSA_DECRYPT_OAEP_4096_SHA1 => 'RSA_DECRYPT_OAEP_4096_SHA1',
         self::EC_SIGN_P256_SHA256 => 'EC_SIGN_P256_SHA256',
         self::EC_SIGN_P384_SHA384 => 'EC_SIGN_P384_SHA384',
         self::EC_SIGN_SECP256K1_SHA256 => 'EC_SIGN_SECP256K1_SHA256',

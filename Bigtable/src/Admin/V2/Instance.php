@@ -22,7 +22,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * The unique name of the instance. Values are of the form
      * `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
@@ -61,6 +61,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      */
     private $labels;
+    /**
+     * Output only. A server-assigned timestamp representing when this Instance was created.
+     * For instances created before this field was added (August 2021), this value
+     * is `seconds: 0, nanos: 1`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $create_time = null;
 
     /**
      * Constructor.
@@ -91,6 +99,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      *             the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`.
      *           * No more than 64 labels can be associated with a given resource.
      *           * Keys and values must both be under 128 bytes.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. A server-assigned timestamp representing when this Instance was created.
+     *           For instances created before this field was added (August 2021), this value
+     *           is `seconds: 0, nanos: 1`.
      * }
      */
     public function __construct($data = NULL) {
@@ -102,7 +114,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * The unique name of the instance. Values are of the form
      * `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -114,7 +126,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * The unique name of the instance. Values are of the form
      * `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      * @return $this
      */
@@ -250,6 +262,46 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A server-assigned timestamp representing when this Instance was created.
+     * For instances created before this field was added (August 2021), this value
+     * is `seconds: 0, nanos: 1`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * Output only. A server-assigned timestamp representing when this Instance was created.
+     * For instances created before this field was added (August 2021), this value
+     * is `seconds: 0, nanos: 1`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
 
         return $this;
     }

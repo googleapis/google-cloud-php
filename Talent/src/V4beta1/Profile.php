@@ -664,7 +664,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     public function getIsHirable()
     {
-        return isset($this->is_hirable) ? $this->is_hirable : null;
+        return $this->is_hirable;
     }
 
     public function hasIsHirable()
@@ -727,7 +727,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -763,7 +763,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -813,7 +813,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     public function getCandidateUpdateTime()
     {
-        return isset($this->candidate_update_time) ? $this->candidate_update_time : null;
+        return $this->candidate_update_time;
     }
 
     public function hasCandidateUpdateTime()
@@ -868,7 +868,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     public function getResumeUpdateTime()
     {
-        return isset($this->resume_update_time) ? $this->resume_update_time : null;
+        return $this->resume_update_time;
     }
 
     public function hasResumeUpdateTime()
@@ -909,7 +909,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     public function getResume()
     {
-        return isset($this->resume) ? $this->resume : null;
+        return $this->resume;
     }
 
     public function hasResume()

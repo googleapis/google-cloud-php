@@ -21,7 +21,7 @@ class GenerateConnectManifestRequest extends \Google\Protobuf\Internal\Message
      * Required. The Membership resource name the Agent will associate with, in the format
      * `projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -89,7 +89,7 @@ class GenerateConnectManifestRequest extends \Google\Protobuf\Internal\Message
      * Required. The Membership resource name the Agent will associate with, in the format
      * `projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -101,7 +101,7 @@ class GenerateConnectManifestRequest extends \Google\Protobuf\Internal\Message
      * Required. The Membership resource name the Agent will associate with, in the format
      * `projects/&#42;&#47;locations/&#42;&#47;memberships/&#42;`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -516,7 +516,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getUserUpdateTime()
     {
-        return isset($this->user_update_time) ? $this->user_update_time : null;
+        return $this->user_update_time;
     }
 
     public function hasUserUpdateTime()
@@ -578,7 +578,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : null;
+        return $this->status;
     }
 
     public function hasStatus()
@@ -616,7 +616,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getScheduleTime()
     {
-        return isset($this->schedule_time) ? $this->schedule_time : null;
+        return $this->schedule_time;
     }
 
     public function hasScheduleTime()
@@ -654,7 +654,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getLastAttemptTime()
     {
-        return isset($this->last_attempt_time) ? $this->last_attempt_time : null;
+        return $this->last_attempt_time;
     }
 
     public function hasLastAttemptTime()
@@ -690,7 +690,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getRetryConfig()
     {
-        return isset($this->retry_config) ? $this->retry_config : null;
+        return $this->retry_config;
     }
 
     public function hasRetryConfig()
@@ -735,7 +735,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getAttemptDeadline()
     {
-        return isset($this->attempt_deadline) ? $this->attempt_deadline : null;
+        return $this->attempt_deadline;
     }
 
     public function hasAttemptDeadline()

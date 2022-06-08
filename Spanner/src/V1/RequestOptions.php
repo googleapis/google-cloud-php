@@ -31,6 +31,7 @@ class RequestOptions extends \Google\Protobuf\Internal\Message
      * Legal characters for `request_tag` values are all printable characters
      * (ASCII 32 - 126) and the length of a request_tag is limited to 50
      * characters. Values that exceed this limit are truncated.
+     * Any leading underscore (_) characters will be removed from the string.
      *
      * Generated from protobuf field <code>string request_tag = 2;</code>
      */
@@ -41,11 +42,12 @@ class RequestOptions extends \Google\Protobuf\Internal\Message
      * that belongs to a transaction.
      * The value of transaction_tag should be the same for all requests belonging
      * to the same transaction.
-     * If this request doesn’t belong to any transaction, transaction_tag will be
+     * If this request doesn't belong to any transaction, transaction_tag will be
      * ignored.
      * Legal characters for `transaction_tag` values are all printable characters
      * (ASCII 32 - 126) and the length of a transaction_tag is limited to 50
      * characters. Values that exceed this limit are truncated.
+     * Any leading underscore (_) characters will be removed from the string.
      *
      * Generated from protobuf field <code>string transaction_tag = 3;</code>
      */
@@ -69,17 +71,19 @@ class RequestOptions extends \Google\Protobuf\Internal\Message
      *           Legal characters for `request_tag` values are all printable characters
      *           (ASCII 32 - 126) and the length of a request_tag is limited to 50
      *           characters. Values that exceed this limit are truncated.
+     *           Any leading underscore (_) characters will be removed from the string.
      *     @type string $transaction_tag
      *           A tag used for statistics collection about this transaction.
      *           Both request_tag and transaction_tag can be specified for a read or query
      *           that belongs to a transaction.
      *           The value of transaction_tag should be the same for all requests belonging
      *           to the same transaction.
-     *           If this request doesn’t belong to any transaction, transaction_tag will be
+     *           If this request doesn't belong to any transaction, transaction_tag will be
      *           ignored.
      *           Legal characters for `transaction_tag` values are all printable characters
      *           (ASCII 32 - 126) and the length of a transaction_tag is limited to 50
      *           characters. Values that exceed this limit are truncated.
+     *           Any leading underscore (_) characters will be removed from the string.
      * }
      */
     public function __construct($data = NULL) {
@@ -123,6 +127,7 @@ class RequestOptions extends \Google\Protobuf\Internal\Message
      * Legal characters for `request_tag` values are all printable characters
      * (ASCII 32 - 126) and the length of a request_tag is limited to 50
      * characters. Values that exceed this limit are truncated.
+     * Any leading underscore (_) characters will be removed from the string.
      *
      * Generated from protobuf field <code>string request_tag = 2;</code>
      * @return string
@@ -142,6 +147,7 @@ class RequestOptions extends \Google\Protobuf\Internal\Message
      * Legal characters for `request_tag` values are all printable characters
      * (ASCII 32 - 126) and the length of a request_tag is limited to 50
      * characters. Values that exceed this limit are truncated.
+     * Any leading underscore (_) characters will be removed from the string.
      *
      * Generated from protobuf field <code>string request_tag = 2;</code>
      * @param string $var
@@ -161,11 +167,12 @@ class RequestOptions extends \Google\Protobuf\Internal\Message
      * that belongs to a transaction.
      * The value of transaction_tag should be the same for all requests belonging
      * to the same transaction.
-     * If this request doesn’t belong to any transaction, transaction_tag will be
+     * If this request doesn't belong to any transaction, transaction_tag will be
      * ignored.
      * Legal characters for `transaction_tag` values are all printable characters
      * (ASCII 32 - 126) and the length of a transaction_tag is limited to 50
      * characters. Values that exceed this limit are truncated.
+     * Any leading underscore (_) characters will be removed from the string.
      *
      * Generated from protobuf field <code>string transaction_tag = 3;</code>
      * @return string
@@ -181,11 +188,12 @@ class RequestOptions extends \Google\Protobuf\Internal\Message
      * that belongs to a transaction.
      * The value of transaction_tag should be the same for all requests belonging
      * to the same transaction.
-     * If this request doesn’t belong to any transaction, transaction_tag will be
+     * If this request doesn't belong to any transaction, transaction_tag will be
      * ignored.
      * Legal characters for `transaction_tag` values are all printable characters
      * (ASCII 32 - 126) and the length of a transaction_tag is limited to 50
      * characters. Values that exceed this limit are truncated.
+     * Any leading underscore (_) characters will be removed from the string.
      *
      * Generated from protobuf field <code>string transaction_tag = 3;</code>
      * @param string $var

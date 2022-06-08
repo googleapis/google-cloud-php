@@ -18,13 +18,13 @@ class SslCertificateSelfManagedSslCertificate extends \Google\Protobuf\Internal\
     /**
      * A local certificate file. The certificate must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.
      *
-     * Generated from protobuf field <code>string certificate = 341787031;</code>
+     * Generated from protobuf field <code>optional string certificate = 341787031;</code>
      */
     private $certificate = null;
     /**
      * A write-only private key in PEM format. Only insert requests will include this field.
      *
-     * Generated from protobuf field <code>string private_key = 361331107;</code>
+     * Generated from protobuf field <code>optional string private_key = 361331107;</code>
      */
     private $private_key = null;
 
@@ -48,7 +48,7 @@ class SslCertificateSelfManagedSslCertificate extends \Google\Protobuf\Internal\
     /**
      * A local certificate file. The certificate must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.
      *
-     * Generated from protobuf field <code>string certificate = 341787031;</code>
+     * Generated from protobuf field <code>optional string certificate = 341787031;</code>
      * @return string
      */
     public function getCertificate()
@@ -69,7 +69,7 @@ class SslCertificateSelfManagedSslCertificate extends \Google\Protobuf\Internal\
     /**
      * A local certificate file. The certificate must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.
      *
-     * Generated from protobuf field <code>string certificate = 341787031;</code>
+     * Generated from protobuf field <code>optional string certificate = 341787031;</code>
      * @param string $var
      * @return $this
      */
@@ -84,7 +84,7 @@ class SslCertificateSelfManagedSslCertificate extends \Google\Protobuf\Internal\
     /**
      * A write-only private key in PEM format. Only insert requests will include this field.
      *
-     * Generated from protobuf field <code>string private_key = 361331107;</code>
+     * Generated from protobuf field <code>optional string private_key = 361331107;</code>
      * @return string
      */
     public function getPrivateKey()
@@ -105,7 +105,7 @@ class SslCertificateSelfManagedSslCertificate extends \Google\Protobuf\Internal\
     /**
      * A write-only private key in PEM format. Only insert requests will include this field.
      *
-     * Generated from protobuf field <code>string private_key = 361331107;</code>
+     * Generated from protobuf field <code>optional string private_key = 361331107;</code>
      * @param string $var
      * @return $this
      */

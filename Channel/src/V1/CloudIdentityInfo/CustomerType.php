@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class CustomerType
 {
     /**
-     * Default value. This state doesn't show unless an error occurs.
+     * Not used.
      *
      * Generated from protobuf enum <code>CUSTOMER_TYPE_UNSPECIFIED = 0;</code>
      */

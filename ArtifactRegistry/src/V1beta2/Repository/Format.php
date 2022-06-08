@@ -25,10 +25,45 @@ class Format
      * Generated from protobuf enum <code>DOCKER = 1;</code>
      */
     const DOCKER = 1;
+    /**
+     * Maven package format.
+     *
+     * Generated from protobuf enum <code>MAVEN = 2;</code>
+     */
+    const MAVEN = 2;
+    /**
+     * NPM package format.
+     *
+     * Generated from protobuf enum <code>NPM = 3;</code>
+     */
+    const NPM = 3;
+    /**
+     * APT package format.
+     *
+     * Generated from protobuf enum <code>APT = 5;</code>
+     */
+    const APT = 5;
+    /**
+     * YUM package format.
+     *
+     * Generated from protobuf enum <code>YUM = 6;</code>
+     */
+    const YUM = 6;
+    /**
+     * Python package format.
+     *
+     * Generated from protobuf enum <code>PYTHON = 8;</code>
+     */
+    const PYTHON = 8;
 
     private static $valueToName = [
         self::FORMAT_UNSPECIFIED => 'FORMAT_UNSPECIFIED',
         self::DOCKER => 'DOCKER',
+        self::MAVEN => 'MAVEN',
+        self::NPM => 'NPM',
+        self::APT => 'APT',
+        self::YUM => 'YUM',
+        self::PYTHON => 'PYTHON',
     ];
 
     public static function name($value)

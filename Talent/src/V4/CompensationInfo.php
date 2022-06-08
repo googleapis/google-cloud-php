@@ -114,7 +114,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      */
     public function getAnnualizedBaseCompensationRange()
     {
-        return isset($this->annualized_base_compensation_range) ? $this->annualized_base_compensation_range : null;
+        return $this->annualized_base_compensation_range;
     }
 
     public function hasAnnualizedBaseCompensationRange()
@@ -156,7 +156,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      */
     public function getAnnualizedTotalCompensationRange()
     {
-        return isset($this->annualized_total_compensation_range) ? $this->annualized_total_compensation_range : null;
+        return $this->annualized_total_compensation_range;
     }
 
     public function hasAnnualizedTotalCompensationRange()

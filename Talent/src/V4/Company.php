@@ -525,7 +525,7 @@ class Company extends \Google\Protobuf\Internal\Message
      */
     public function getDerivedInfo()
     {
-        return isset($this->derived_info) ? $this->derived_info : null;
+        return $this->derived_info;
     }
 
     public function hasDerivedInfo()

@@ -15,10 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TargetPoolsAddInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A full or partial URL to an instance to add to this target pool. This can be a full or partial URL. For example, the following are valid URLs:
-     * - https://www.googleapis.com/compute/v1/projects/project-id/zones/zone/instances/instance-name
-     * - projects/project-id/zones/zone/instances/instance-name
-     * - zones/zone/instances/instance-name
+     * A full or partial URL to an instance to add to this target pool. This can be a full or partial URL. For example, the following are valid URLs: - https://www.googleapis.com/compute/v1/projects/project-id/zones/zone /instances/instance-name - projects/project-id/zones/zone/instances/instance-name - zones/zone/instances/instance-name 
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceReference instances = 29097598;</code>
      */
@@ -31,10 +28,7 @@ class TargetPoolsAddInstanceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\InstanceReference[]|\Google\Protobuf\Internal\RepeatedField $instances
-     *           A full or partial URL to an instance to add to this target pool. This can be a full or partial URL. For example, the following are valid URLs:
-     *           - https://www.googleapis.com/compute/v1/projects/project-id/zones/zone/instances/instance-name
-     *           - projects/project-id/zones/zone/instances/instance-name
-     *           - zones/zone/instances/instance-name
+     *           A full or partial URL to an instance to add to this target pool. This can be a full or partial URL. For example, the following are valid URLs: - https://www.googleapis.com/compute/v1/projects/project-id/zones/zone /instances/instance-name - projects/project-id/zones/zone/instances/instance-name - zones/zone/instances/instance-name 
      * }
      */
     public function __construct($data = NULL) {
@@ -43,10 +37,7 @@ class TargetPoolsAddInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A full or partial URL to an instance to add to this target pool. This can be a full or partial URL. For example, the following are valid URLs:
-     * - https://www.googleapis.com/compute/v1/projects/project-id/zones/zone/instances/instance-name
-     * - projects/project-id/zones/zone/instances/instance-name
-     * - zones/zone/instances/instance-name
+     * A full or partial URL to an instance to add to this target pool. This can be a full or partial URL. For example, the following are valid URLs: - https://www.googleapis.com/compute/v1/projects/project-id/zones/zone /instances/instance-name - projects/project-id/zones/zone/instances/instance-name - zones/zone/instances/instance-name 
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceReference instances = 29097598;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -57,10 +48,7 @@ class TargetPoolsAddInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A full or partial URL to an instance to add to this target pool. This can be a full or partial URL. For example, the following are valid URLs:
-     * - https://www.googleapis.com/compute/v1/projects/project-id/zones/zone/instances/instance-name
-     * - projects/project-id/zones/zone/instances/instance-name
-     * - zones/zone/instances/instance-name
+     * A full or partial URL to an instance to add to this target pool. This can be a full or partial URL. For example, the following are valid URLs: - https://www.googleapis.com/compute/v1/projects/project-id/zones/zone /instances/instance-name - projects/project-id/zones/zone/instances/instance-name - zones/zone/instances/instance-name 
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceReference instances = 29097598;</code>
      * @param \Google\Cloud\Compute\V1\InstanceReference[]|\Google\Protobuf\Internal\RepeatedField $var

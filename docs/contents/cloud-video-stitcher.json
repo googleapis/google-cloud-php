@@ -1,0 +1,15 @@
+{
+    "title": "videostitcher",
+    "defaultService": "videostitcher\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "videostitcher\/readme"
+        },
+        {
+            "title": "VideoStitcherServiceClient (v1)",
+            "type": "videostitcher\/v1\/videostitcherserviceclient"
+        }
+    ],
+    "pattern": "videostitcher\/\\w{1,}"
+}

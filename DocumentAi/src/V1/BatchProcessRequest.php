@@ -97,7 +97,7 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInputDocuments()
     {
-        return isset($this->input_documents) ? $this->input_documents : null;
+        return $this->input_documents;
     }
 
     public function hasInputDocuments()
@@ -133,7 +133,7 @@ class BatchProcessRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDocumentOutputConfig()
     {
-        return isset($this->document_output_config) ? $this->document_output_config : null;
+        return $this->document_output_config;
     }
 
     public function hasDocumentOutputConfig()

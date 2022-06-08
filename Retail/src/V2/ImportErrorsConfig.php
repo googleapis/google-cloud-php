@@ -24,9 +24,9 @@ class ImportErrorsConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $gcs_prefix
-     *           Google Cloud Storage path for import errors. This must be an empty,
-     *           existing Cloud Storage bucket. Import errors will be written to a file in
-     *           this bucket, one per line, as a JSON-encoded
+     *           Google Cloud Storage prefix for import errors. This must be an empty,
+     *           existing Cloud Storage directory. Import errors will be written to
+     *           sharded files in this directory, one per line, as a JSON-encoded
      *           `google.rpc.Status` message.
      * }
      */
@@ -36,9 +36,9 @@ class ImportErrorsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage path for import errors. This must be an empty,
-     * existing Cloud Storage bucket. Import errors will be written to a file in
-     * this bucket, one per line, as a JSON-encoded
+     * Google Cloud Storage prefix for import errors. This must be an empty,
+     * existing Cloud Storage directory. Import errors will be written to
+     * sharded files in this directory, one per line, as a JSON-encoded
      * `google.rpc.Status` message.
      *
      * Generated from protobuf field <code>string gcs_prefix = 1;</code>
@@ -55,9 +55,9 @@ class ImportErrorsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage path for import errors. This must be an empty,
-     * existing Cloud Storage bucket. Import errors will be written to a file in
-     * this bucket, one per line, as a JSON-encoded
+     * Google Cloud Storage prefix for import errors. This must be an empty,
+     * existing Cloud Storage directory. Import errors will be written to
+     * sharded files in this directory, one per line, as a JSON-encoded
      * `google.rpc.Status` message.
      *
      * Generated from protobuf field <code>string gcs_prefix = 1;</code>

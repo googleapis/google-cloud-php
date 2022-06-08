@@ -23,7 +23,7 @@ use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Testing\TestHelpers;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -36,6 +36,7 @@ class QueryResultsTest extends TestCase
     public $jobId = 'myJobId';
     public $queryData = [
         'jobComplete' => true,
+        'jobReference' => ['location' => 123],
         'rows' => [
             ['f' => [['v' => 'Alton'], ['v' => 1]]]
         ],
@@ -53,7 +54,7 @@ class QueryResultsTest extends TestCase
         ]
     ];
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
@@ -203,7 +204,7 @@ class QueryResultsTest extends TestCase
 
     public function testGetsIdentity()
     {
-        $queryResults = $this->getQueryResults($this->connection);
+        $queryResults = $this->getQueryResults($this->connection, $this->queryData);
 
         $this->assertEquals($this->jobId, $queryResults->identity()['jobId']);
         $this->assertEquals($this->projectId, $queryResults->identity()['projectId']);

@@ -7,7 +7,9 @@ namespace Google\Cloud\Dlp\V2\ByteContentItem;
 use UnexpectedValueException;
 
 /**
- * The type of data being sent for inspection.
+ * The type of data being sent for inspection. To learn more, see
+ * [Supported file
+ * types](https://cloud.google.com/dlp/docs/supported-file-types).
  *
  * Protobuf type <code>google.privacy.dlp.v2.ByteContentItem.BytesType</code>
  */
@@ -68,6 +70,18 @@ class BytesType
      */
     const PDF = 8;
     /**
+     * pptx, pptm, potx, potm, pot
+     *
+     * Generated from protobuf enum <code>POWERPOINT_DOCUMENT = 9;</code>
+     */
+    const POWERPOINT_DOCUMENT = 9;
+    /**
+     * xlsx, xlsm, xltx, xltm
+     *
+     * Generated from protobuf enum <code>EXCEL_DOCUMENT = 10;</code>
+     */
+    const EXCEL_DOCUMENT = 10;
+    /**
      * avro
      *
      * Generated from protobuf enum <code>AVRO = 11;</code>
@@ -96,6 +110,8 @@ class BytesType
         self::TEXT_UTF8 => 'TEXT_UTF8',
         self::WORD_DOCUMENT => 'WORD_DOCUMENT',
         self::PDF => 'PDF',
+        self::POWERPOINT_DOCUMENT => 'POWERPOINT_DOCUMENT',
+        self::EXCEL_DOCUMENT => 'EXCEL_DOCUMENT',
         self::AVRO => 'AVRO',
         self::CSV => 'CSV',
         self::TSV => 'TSV',

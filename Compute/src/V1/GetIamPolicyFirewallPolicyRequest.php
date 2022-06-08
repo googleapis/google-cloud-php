@@ -18,7 +18,7 @@ class GetIamPolicyFirewallPolicyRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Requested IAM Policy version.
      *
-     * Generated from protobuf field <code>int32 options_requested_policy_version = 499220029;</code>
+     * Generated from protobuf field <code>optional int32 options_requested_policy_version = 499220029;</code>
      */
     private $options_requested_policy_version = null;
     /**
@@ -48,7 +48,7 @@ class GetIamPolicyFirewallPolicyRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Requested IAM Policy version.
      *
-     * Generated from protobuf field <code>int32 options_requested_policy_version = 499220029;</code>
+     * Generated from protobuf field <code>optional int32 options_requested_policy_version = 499220029;</code>
      * @return int
      */
     public function getOptionsRequestedPolicyVersion()
@@ -69,7 +69,7 @@ class GetIamPolicyFirewallPolicyRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Requested IAM Policy version.
      *
-     * Generated from protobuf field <code>int32 options_requested_policy_version = 499220029;</code>
+     * Generated from protobuf field <code>optional int32 options_requested_policy_version = 499220029;</code>
      * @param int $var
      * @return $this
      */

@@ -17,9 +17,9 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent eventStore resource name, such as
-     * "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     * `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -37,7 +37,7 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent eventStore resource name, such as
-     *           "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     *           `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      *     @type \Google\Cloud\RecommendationEngine\V1beta1\UserEvent $user_event
      *           Required. User event to write.
      * }
@@ -49,9 +49,9 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent eventStore resource name, such as
-     * "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     * `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -61,9 +61,9 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent eventStore resource name, such as
-     * "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     * `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -79,11 +79,21 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
      * Required. User event to write.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.UserEvent user_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\RecommendationEngine\V1beta1\UserEvent
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\UserEvent|null
      */
     public function getUserEvent()
     {
         return $this->user_event;
+    }
+
+    public function hasUserEvent()
+    {
+        return isset($this->user_event);
+    }
+
+    public function clearUserEvent()
+    {
+        unset($this->user_event);
     }
 
     /**

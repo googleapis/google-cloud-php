@@ -1,0 +1,6 @@
+deep-copy-regex:
+    - source: /google/firestore/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/Firestore/$1/$2
+    - source: /google/firestore/admin/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/Firestore/$1/Admin/$2
+api-name: Firestore

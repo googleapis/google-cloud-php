@@ -34,12 +34,14 @@ use GuzzleHttp\Psr7\Utils;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertStringContains;
 
 /**
  * @group storage
  */
 class StorageObjectTest extends SnippetTestCase
 {
+    use AssertStringContains;
     use KeyPairGenerateTrait;
 
     const OBJECT = 'my-object';
@@ -48,7 +50,7 @@ class StorageObjectTest extends SnippetTestCase
     private $connection;
     private $object;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->object = TestHelpers::stub(StorageObject::class, [
@@ -456,9 +458,9 @@ class StorageObjectTest extends SnippetTestCase
         $this->object->___setProperty('connection', $conn->reveal());
 
         $res = $snippet->invoke('url');
-        $this->assertContains('https://storage.googleapis.com/my-bucket/my-object', $res->returnVal());
-        $this->assertContains('Expires=', $res->returnVal());
-        $this->assertContains('Signature=', $res->returnVal());
+        $this->assertStringContainsString('https://storage.googleapis.com/my-bucket/my-object', $res->returnVal());
+        $this->assertStringContainsString('Expires=', $res->returnVal());
+        $this->assertStringContainsString('Signature=', $res->returnVal());
     }
 
     public function testSignedUrlUpdate()
@@ -486,9 +488,9 @@ class StorageObjectTest extends SnippetTestCase
         $this->object->___setProperty('connection', $conn->reveal());
 
         $res = $snippet->invoke('url');
-        $this->assertContains('https://storage.googleapis.com/my-bucket/my-object', $res->returnVal());
-        $this->assertContains('Expires=', $res->returnVal());
-        $this->assertContains('Signature=', $res->returnVal());
+        $this->assertStringContainsString('https://storage.googleapis.com/my-bucket/my-object', $res->returnVal());
+        $this->assertStringContainsString('Expires=', $res->returnVal());
+        $this->assertStringContainsString('Signature=', $res->returnVal());
     }
 
     public function testSignedUrlV4()
@@ -516,8 +518,8 @@ class StorageObjectTest extends SnippetTestCase
         $this->object->___setProperty('connection', $conn->reveal());
 
         $res = $snippet->invoke('url');
-        $this->assertContains('https://storage.googleapis.com/my-bucket/my-object', $res->returnVal());
-        $this->assertContains('X-Goog-Signature=', $res->returnVal());
+        $this->assertStringContainsString('https://storage.googleapis.com/my-bucket/my-object', $res->returnVal());
+        $this->assertStringContainsString('X-Goog-Signature=', $res->returnVal());
     }
 
     public function testSignedUrlBucketBoundHostname()
@@ -545,7 +547,7 @@ class StorageObjectTest extends SnippetTestCase
         $this->object->___setProperty('connection', $conn->reveal());
 
         $res = $snippet->invoke('url');
-        $this->assertContains('https://cdn.example.com/my-object', $res->returnVal());
+        $this->assertStringContainsString('https://cdn.example.com/my-object', $res->returnVal());
     }
 
     public function testSignedUrlVirtualHostedStyle()
@@ -573,7 +575,7 @@ class StorageObjectTest extends SnippetTestCase
         $this->object->___setProperty('connection', $conn->reveal());
 
         $res = $snippet->invoke('url');
-        $this->assertContains('https://my-bucket.storage.googleapis.com/my-object', $res->returnVal());
+        $this->assertStringContainsString('https://my-bucket.storage.googleapis.com/my-object', $res->returnVal());
     }
 
     public function testSignedUploadUrl()
@@ -602,9 +604,9 @@ class StorageObjectTest extends SnippetTestCase
         $this->object->___setProperty('connection', $conn->reveal());
 
         $res = $snippet->invoke('url');
-        $this->assertContains('https://storage.googleapis.com/my-bucket/my-object', $res->returnVal());
-        $this->assertContains('Expires=', $res->returnVal());
-        $this->assertContains('Signature=', $res->returnVal());
+        $this->assertStringContainsString('https://storage.googleapis.com/my-bucket/my-object', $res->returnVal());
+        $this->assertStringContainsString('Expires=', $res->returnVal());
+        $this->assertStringContainsString('Signature=', $res->returnVal());
     }
 
     public function testSignedUploadUrlV4()
@@ -633,8 +635,8 @@ class StorageObjectTest extends SnippetTestCase
         $this->object->___setProperty('connection', $conn->reveal());
 
         $res = $snippet->invoke('url');
-        $this->assertContains('https://storage.googleapis.com/my-bucket/my-object', $res->returnVal());
-        $this->assertContains('X-Goog-Signature=', $res->returnVal());
+        $this->assertStringContainsString('https://storage.googleapis.com/my-bucket/my-object', $res->returnVal());
+        $this->assertStringContainsString('X-Goog-Signature=', $res->returnVal());
     }
 
     /**
@@ -676,7 +678,7 @@ class StorageObjectTest extends SnippetTestCase
 
     public function signedUploadSessionSnippet()
     {
-        self::setUpBeforeClass();
+        self::set_up_before_class();
 
         return [
             [$this->snippetFromMethod(StorageObject::class, 'beginSignedUploadSession')],

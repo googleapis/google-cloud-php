@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateGameServerConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -42,7 +42,7 @@ class CreateGameServerConfigRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource name. Uses the form:
+     *           Required. The parent resource name, in the following form:
      *           `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
      *     @type string $config_id
      *           Required. The ID of the game server config resource to be created.
@@ -56,7 +56,7 @@ class CreateGameServerConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -68,7 +68,7 @@ class CreateGameServerConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name. Uses the form:
+     * Required. The parent resource name, in the following form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -117,7 +117,7 @@ class CreateGameServerConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getGameServerConfig()
     {
-        return isset($this->game_server_config) ? $this->game_server_config : null;
+        return $this->game_server_config;
     }
 
     public function hasGameServerConfig()

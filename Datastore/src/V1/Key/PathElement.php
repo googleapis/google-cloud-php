@@ -22,6 +22,9 @@ class PathElement extends \Google\Protobuf\Internal\Message
      * A kind matching regex `__.*__` is reserved/read-only.
      * A kind must not contain more than 1500 bytes when UTF-8 encoded.
      * Cannot be `""`.
+     * Must be valid UTF-8 bytes. Legacy values that are not valid UTF-8 are
+     * encoded as `__bytes<X>__` where `<X>` is the base-64 encoding of the
+     * bytes.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -39,6 +42,9 @@ class PathElement extends \Google\Protobuf\Internal\Message
      *           A kind matching regex `__.*__` is reserved/read-only.
      *           A kind must not contain more than 1500 bytes when UTF-8 encoded.
      *           Cannot be `""`.
+     *           Must be valid UTF-8 bytes. Legacy values that are not valid UTF-8 are
+     *           encoded as `__bytes<X>__` where `<X>` is the base-64 encoding of the
+     *           bytes.
      *     @type int|string $id
      *           The auto-allocated ID of the entity.
      *           Never equal to zero. Values less than zero are discouraged and may not
@@ -48,6 +54,9 @@ class PathElement extends \Google\Protobuf\Internal\Message
      *           A name matching regex `__.*__` is reserved/read-only.
      *           A name must not be more than 1500 bytes when UTF-8 encoded.
      *           Cannot be `""`.
+     *           Must be valid UTF-8 bytes. Legacy values that are not valid UTF-8 are
+     *           encoded as `__bytes<X>__` where `<X>` is the base-64 encoding of the
+     *           bytes.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +69,9 @@ class PathElement extends \Google\Protobuf\Internal\Message
      * A kind matching regex `__.*__` is reserved/read-only.
      * A kind must not contain more than 1500 bytes when UTF-8 encoded.
      * Cannot be `""`.
+     * Must be valid UTF-8 bytes. Legacy values that are not valid UTF-8 are
+     * encoded as `__bytes<X>__` where `<X>` is the base-64 encoding of the
+     * bytes.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -74,6 +86,9 @@ class PathElement extends \Google\Protobuf\Internal\Message
      * A kind matching regex `__.*__` is reserved/read-only.
      * A kind must not contain more than 1500 bytes when UTF-8 encoded.
      * Cannot be `""`.
+     * Must be valid UTF-8 bytes. Legacy values that are not valid UTF-8 are
+     * encoded as `__bytes<X>__` where `<X>` is the base-64 encoding of the
+     * bytes.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
@@ -127,6 +142,9 @@ class PathElement extends \Google\Protobuf\Internal\Message
      * A name matching regex `__.*__` is reserved/read-only.
      * A name must not be more than 1500 bytes when UTF-8 encoded.
      * Cannot be `""`.
+     * Must be valid UTF-8 bytes. Legacy values that are not valid UTF-8 are
+     * encoded as `__bytes<X>__` where `<X>` is the base-64 encoding of the
+     * bytes.
      *
      * Generated from protobuf field <code>string name = 3;</code>
      * @return string
@@ -146,6 +164,9 @@ class PathElement extends \Google\Protobuf\Internal\Message
      * A name matching regex `__.*__` is reserved/read-only.
      * A name must not be more than 1500 bytes when UTF-8 encoded.
      * Cannot be `""`.
+     * Must be valid UTF-8 bytes. Legacy values that are not valid UTF-8 are
+     * encoded as `__bytes<X>__` where `<X>` is the base-64 encoding of the
+     * bytes.
      *
      * Generated from protobuf field <code>string name = 3;</code>
      * @param string $var

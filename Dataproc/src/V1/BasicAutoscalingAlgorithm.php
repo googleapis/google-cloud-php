@@ -16,12 +16,6 @@ use Google\Protobuf\Internal\GPBUtil;
 class BasicAutoscalingAlgorithm extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. YARN autoscaling configuration.
-     *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.BasicYarnAutoscalingConfig yarn_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     */
-    private $yarn_config = null;
-    /**
      * Optional. Duration between scaling events. A scaling period starts after
      * the update operation from the previous event has completed.
      * Bounds: [2m, 1d]. Default: 2m.
@@ -29,6 +23,7 @@ class BasicAutoscalingAlgorithm extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration cooldown_period = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $cooldown_period = null;
+    protected $config;
 
     /**
      * Constructor.
@@ -57,17 +52,12 @@ class BasicAutoscalingAlgorithm extends \Google\Protobuf\Internal\Message
      */
     public function getYarnConfig()
     {
-        return $this->yarn_config;
+        return $this->readOneof(1);
     }
 
     public function hasYarnConfig()
     {
-        return isset($this->yarn_config);
-    }
-
-    public function clearYarnConfig()
-    {
-        unset($this->yarn_config);
+        return $this->hasOneof(1);
     }
 
     /**
@@ -80,7 +70,7 @@ class BasicAutoscalingAlgorithm extends \Google\Protobuf\Internal\Message
     public function setYarnConfig($var)
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\BasicYarnAutoscalingConfig::class);
-        $this->yarn_config = $var;
+        $this->writeOneof(1, $var);
 
         return $this;
     }
@@ -123,6 +113,14 @@ class BasicAutoscalingAlgorithm extends \Google\Protobuf\Internal\Message
         $this->cooldown_period = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfig()
+    {
+        return $this->whichOneof("config");
     }
 
 }

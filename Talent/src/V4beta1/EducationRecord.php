@@ -130,7 +130,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      */
     public function getStartDate()
     {
-        return isset($this->start_date) ? $this->start_date : null;
+        return $this->start_date;
     }
 
     public function hasStartDate()
@@ -166,7 +166,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      */
     public function getEndDate()
     {
-        return isset($this->end_date) ? $this->end_date : null;
+        return $this->end_date;
     }
 
     public function hasEndDate()
@@ -202,7 +202,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      */
     public function getExpectedGraduationDate()
     {
-        return isset($this->expected_graduation_date) ? $this->expected_graduation_date : null;
+        return $this->expected_graduation_date;
     }
 
     public function hasExpectedGraduationDate()
@@ -268,7 +268,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      */
     public function getAddress()
     {
-        return isset($this->address) ? $this->address : null;
+        return $this->address;
     }
 
     public function hasAddress()
@@ -398,7 +398,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      */
     public function getIsCurrent()
     {
-        return isset($this->is_current) ? $this->is_current : null;
+        return $this->is_current;
     }
 
     public function hasIsCurrent()

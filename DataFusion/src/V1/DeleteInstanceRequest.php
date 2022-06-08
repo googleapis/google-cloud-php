@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The instance resource name in the format
+     * Required. The instance resource name in the format
      * projects/{project}/locations/{location}/instances/{instance}
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
 
@@ -30,7 +30,7 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The instance resource name in the format
+     *           Required. The instance resource name in the format
      *           projects/{project}/locations/{location}/instances/{instance}
      * }
      */
@@ -40,10 +40,10 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The instance resource name in the format
+     * Required. The instance resource name in the format
      * projects/{project}/locations/{location}/instances/{instance}
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -52,10 +52,10 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The instance resource name in the format
+     * Required. The instance resource name in the format
      * projects/{project}/locations/{location}/instances/{instance}
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

@@ -20,10 +20,14 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
+     * Matching configuration exists on the peer.
+     *
      * Generated from protobuf enum <code>ACTIVE = 314733318;</code>
      */
     const ACTIVE = 314733318;
     /**
+     * There is no matching configuration on the peer, including the case when peer does not exist.
+     *
      * Generated from protobuf enum <code>INACTIVE = 270421099;</code>
      */
     const INACTIVE = 270421099;

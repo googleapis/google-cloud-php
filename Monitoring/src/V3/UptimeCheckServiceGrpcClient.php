@@ -45,6 +45,7 @@ class UptimeCheckServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\ListUptimeCheckConfigsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function ListUptimeCheckConfigs(\Google\Cloud\Monitoring\V3\ListUptimeCheckConfigsRequest $argument,
       $metadata = [], $options = []) {
@@ -59,6 +60,7 @@ class UptimeCheckServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\GetUptimeCheckConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function GetUptimeCheckConfig(\Google\Cloud\Monitoring\V3\GetUptimeCheckConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -73,6 +75,7 @@ class UptimeCheckServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\CreateUptimeCheckConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function CreateUptimeCheckConfig(\Google\Cloud\Monitoring\V3\CreateUptimeCheckConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -90,6 +93,7 @@ class UptimeCheckServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\UpdateUptimeCheckConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function UpdateUptimeCheckConfig(\Google\Cloud\Monitoring\V3\UpdateUptimeCheckConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -106,6 +110,7 @@ class UptimeCheckServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\DeleteUptimeCheckConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function DeleteUptimeCheckConfig(\Google\Cloud\Monitoring\V3\DeleteUptimeCheckConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -120,6 +125,7 @@ class UptimeCheckServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\ListUptimeCheckIpsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function ListUptimeCheckIps(\Google\Cloud\Monitoring\V3\ListUptimeCheckIpsRequest $argument,
       $metadata = [], $options = []) {

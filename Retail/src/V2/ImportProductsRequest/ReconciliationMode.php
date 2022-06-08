@@ -29,14 +29,13 @@ class ReconciliationMode
     /**
      * Calculates diff and replaces the entire product dataset. Existing
      * products may be deleted if they are not present in the source location.
-     * Can only be while using
-     * [BigQuerySource][google.cloud.retail.v2.BigQuerySource].
-     * Add the IAM permission “BigQuery Data Viewer” for
+     * Can only be set while using
+     * [BigQuerySource][google.cloud.retail.v2.BigQuerySource]. And the BigQuery
+     * dataset must be created in the data location "us (multiple regions in
+     * United States)", otherwise a PERMISSION_DENIED error is thrown.
+     * Add the IAM permission "BigQuery Data Viewer" for
      * cloud-retail-customer-data-access&#64;system.gserviceaccount.com before
      * using this feature otherwise an error is thrown.
-     * This feature is only available for users who have Retail Search enabled.
-     * Contact Retail Support (retail-search-support&#64;google.com) if you are
-     * interested in using Retail Search.
      *
      * Generated from protobuf enum <code>FULL = 2;</code>
      */
@@ -69,6 +68,4 @@ class ReconciliationMode
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReconciliationMode::class, \Google\Cloud\Retail\V2\ImportProductsRequest_ReconciliationMode::class);
 

@@ -73,6 +73,23 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $language_code = '';
     /**
+     * A list of up to 3 additional
+     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags,
+     * listing possible alternative languages of the supplied audio.
+     * See [Language
+     * Support](https://cloud.google.com/speech-to-text/docs/languages) for a list
+     * of the currently supported language codes. If alternative languages are
+     * listed, recognition result will contain recognition in the most likely
+     * language detected including the main language_code. The recognition result
+     * will include the language tag of the language detected in the audio. Note:
+     * This feature is only supported for Voice Command and Voice Search use cases
+     * and performance may vary for other use cases (e.g., phone call
+     * transcription).
+     *
+     * Generated from protobuf field <code>repeated string alternative_language_codes = 18;</code>
+     */
+    private $alternative_language_codes;
+    /**
      * Maximum number of recognition hypotheses to be returned.
      * Specifically, the maximum number of `SpeechRecognitionAlternative` messages
      * within each `SpeechRecognitionResult`.
@@ -93,11 +110,21 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $profanity_filter = false;
     /**
+     * Speech adaptation configuration improves the accuracy of speech
+     * recognition. For more information, see the [speech
+     * adaptation](https://cloud.google.com/speech-to-text/docs/adaptation)
+     * documentation.
+     * When speech adaptation is set it supersedes the `speech_contexts` field.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1.SpeechAdaptation adaptation = 20;</code>
+     */
+    private $adaptation = null;
+    /**
      * Array of [SpeechContext][google.cloud.speech.v1.SpeechContext].
      * A means to provide context to assist the speech recognition. For more
      * information, see
      * [speech
-     * adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).
+     * adaptation](https://cloud.google.com/speech-to-text/docs/adaptation).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechContext speech_contexts = 6;</code>
      */
@@ -112,17 +139,44 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      */
     private $enable_word_time_offsets = false;
     /**
+     * If `true`, the top result includes a list of words and the
+     * confidence for those words. If `false`, no word-level confidence
+     * information is returned. The default is `false`.
+     *
+     * Generated from protobuf field <code>bool enable_word_confidence = 15;</code>
+     */
+    private $enable_word_confidence = false;
+    /**
      * If 'true', adds punctuation to recognition result hypotheses.
      * This feature is only available in select languages. Setting this for
      * requests in other languages has no effect at all.
      * The default 'false' value does not add punctuation to result hypotheses.
-     * Note: This is currently offered as an experimental service, complimentary
-     * to all users. In the future this may be exclusively available as a
-     * premium feature.
      *
      * Generated from protobuf field <code>bool enable_automatic_punctuation = 11;</code>
      */
     private $enable_automatic_punctuation = false;
+    /**
+     * The spoken punctuation behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * e.g. command_and_search will enable spoken punctuation by default
+     * If 'true', replaces spoken punctuation with the corresponding symbols in
+     * the request. For example, "how are you question mark" becomes "how are
+     * you?". See https://cloud.google.com/speech-to-text/docs/spoken-punctuation
+     * for support. If 'false', spoken punctuation is not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_punctuation = 22;</code>
+     */
+    private $enable_spoken_punctuation = null;
+    /**
+     * The spoken emoji behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * If 'true', adds spoken emoji formatting for the request. This will replace
+     * spoken emojis with the corresponding Unicode symbols in the final
+     * transcript. If 'false', spoken emojis are not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_emojis = 23;</code>
+     */
+    private $enable_spoken_emojis = null;
     /**
      * Config to enable speaker diarization and set additional
      * parameters to make diarization better suited for your application.
@@ -153,6 +207,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td><b>Description</b></td>
      *   </tr>
      *   <tr>
+     *     <td><code>latest_long</code></td>
+     *     <td>Best for long form content like media or conversation.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>latest_short</code></td>
+     *     <td>Best for short form content like commands or single shot directed
+     *     speech.</td>
+     *   </tr>
+     *   <tr>
      *     <td><code>command_and_search</code></td>
      *     <td>Best for short queries such as voice commands or voice search.</td>
      *   </tr>
@@ -163,7 +226,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *   </tr>
      *   <tr>
      *     <td><code>video</code></td>
-     *     <td>Best for audio that originated from from video or includes multiple
+     *     <td>Best for audio that originated from video or includes multiple
      *         speakers. Ideally the audio is recorded at a 16khz or greater
      *         sampling rate. This is a premium model that costs more than the
      *         standard rate.</td>
@@ -173,6 +236,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td>Best for audio that is not one of the specific audio models.
      *         For example, long-form audio. Ideally the audio is high-fidelity,
      *         recorded at a 16khz or greater sampling rate.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_conversation</code></td>
+     *     <td>Best for audio that originated from a conversation between a
+     *         medical provider and patient.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_dictation</code></td>
+     *     <td>Best for audio that originated from dictation notes by a medical
+     *         provider.</td>
      *   </tr>
      * </table>
      *
@@ -234,6 +307,19 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           See [Language
      *           Support](https://cloud.google.com/speech-to-text/docs/languages) for a list
      *           of the currently supported language codes.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $alternative_language_codes
+     *           A list of up to 3 additional
+     *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags,
+     *           listing possible alternative languages of the supplied audio.
+     *           See [Language
+     *           Support](https://cloud.google.com/speech-to-text/docs/languages) for a list
+     *           of the currently supported language codes. If alternative languages are
+     *           listed, recognition result will contain recognition in the most likely
+     *           language detected including the main language_code. The recognition result
+     *           will include the language tag of the language detected in the audio. Note:
+     *           This feature is only supported for Voice Command and Voice Search use cases
+     *           and performance may vary for other use cases (e.g., phone call
+     *           transcription).
      *     @type int $max_alternatives
      *           Maximum number of recognition hypotheses to be returned.
      *           Specifically, the maximum number of `SpeechRecognitionAlternative` messages
@@ -246,25 +332,46 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           profanities, replacing all but the initial character in each filtered word
      *           with asterisks, e.g. "f***". If set to `false` or omitted, profanities
      *           won't be filtered out.
+     *     @type \Google\Cloud\Speech\V1\SpeechAdaptation $adaptation
+     *           Speech adaptation configuration improves the accuracy of speech
+     *           recognition. For more information, see the [speech
+     *           adaptation](https://cloud.google.com/speech-to-text/docs/adaptation)
+     *           documentation.
+     *           When speech adaptation is set it supersedes the `speech_contexts` field.
      *     @type \Google\Cloud\Speech\V1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $speech_contexts
      *           Array of [SpeechContext][google.cloud.speech.v1.SpeechContext].
      *           A means to provide context to assist the speech recognition. For more
      *           information, see
      *           [speech
-     *           adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).
+     *           adaptation](https://cloud.google.com/speech-to-text/docs/adaptation).
      *     @type bool $enable_word_time_offsets
      *           If `true`, the top result includes a list of words and
      *           the start and end time offsets (timestamps) for those words. If
      *           `false`, no word-level time offset information is returned. The default is
      *           `false`.
+     *     @type bool $enable_word_confidence
+     *           If `true`, the top result includes a list of words and the
+     *           confidence for those words. If `false`, no word-level confidence
+     *           information is returned. The default is `false`.
      *     @type bool $enable_automatic_punctuation
      *           If 'true', adds punctuation to recognition result hypotheses.
      *           This feature is only available in select languages. Setting this for
      *           requests in other languages has no effect at all.
      *           The default 'false' value does not add punctuation to result hypotheses.
-     *           Note: This is currently offered as an experimental service, complimentary
-     *           to all users. In the future this may be exclusively available as a
-     *           premium feature.
+     *     @type \Google\Protobuf\BoolValue $enable_spoken_punctuation
+     *           The spoken punctuation behavior for the call
+     *           If not set, uses default behavior based on model of choice
+     *           e.g. command_and_search will enable spoken punctuation by default
+     *           If 'true', replaces spoken punctuation with the corresponding symbols in
+     *           the request. For example, "how are you question mark" becomes "how are
+     *           you?". See https://cloud.google.com/speech-to-text/docs/spoken-punctuation
+     *           for support. If 'false', spoken punctuation is not replaced.
+     *     @type \Google\Protobuf\BoolValue $enable_spoken_emojis
+     *           The spoken emoji behavior for the call
+     *           If not set, uses default behavior based on model of choice
+     *           If 'true', adds spoken emoji formatting for the request. This will replace
+     *           spoken emojis with the corresponding Unicode symbols in the final
+     *           transcript. If 'false', spoken emojis are not replaced.
      *     @type \Google\Cloud\Speech\V1\SpeakerDiarizationConfig $diarization_config
      *           Config to enable speaker diarization and set additional
      *           parameters to make diarization better suited for your application.
@@ -287,6 +394,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *               <td><b>Description</b></td>
      *             </tr>
      *             <tr>
+     *               <td><code>latest_long</code></td>
+     *               <td>Best for long form content like media or conversation.</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>latest_short</code></td>
+     *               <td>Best for short form content like commands or single shot directed
+     *               speech.</td>
+     *             </tr>
+     *             <tr>
      *               <td><code>command_and_search</code></td>
      *               <td>Best for short queries such as voice commands or voice search.</td>
      *             </tr>
@@ -297,7 +413,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *             </tr>
      *             <tr>
      *               <td><code>video</code></td>
-     *               <td>Best for audio that originated from from video or includes multiple
+     *               <td>Best for audio that originated from video or includes multiple
      *                   speakers. Ideally the audio is recorded at a 16khz or greater
      *                   sampling rate. This is a premium model that costs more than the
      *                   standard rate.</td>
@@ -307,6 +423,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *               <td>Best for audio that is not one of the specific audio models.
      *                   For example, long-form audio. Ideally the audio is high-fidelity,
      *                   recorded at a 16khz or greater sampling rate.</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>medical_conversation</code></td>
+     *               <td>Best for audio that originated from a conversation between a
+     *                   medical provider and patient.</td>
+     *             </tr>
+     *             <tr>
+     *               <td><code>medical_dictation</code></td>
+     *               <td>Best for audio that originated from dictation notes by a medical
+     *                   provider.</td>
      *             </tr>
      *           </table>
      *     @type bool $use_enhanced
@@ -507,6 +633,54 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A list of up to 3 additional
+     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags,
+     * listing possible alternative languages of the supplied audio.
+     * See [Language
+     * Support](https://cloud.google.com/speech-to-text/docs/languages) for a list
+     * of the currently supported language codes. If alternative languages are
+     * listed, recognition result will contain recognition in the most likely
+     * language detected including the main language_code. The recognition result
+     * will include the language tag of the language detected in the audio. Note:
+     * This feature is only supported for Voice Command and Voice Search use cases
+     * and performance may vary for other use cases (e.g., phone call
+     * transcription).
+     *
+     * Generated from protobuf field <code>repeated string alternative_language_codes = 18;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAlternativeLanguageCodes()
+    {
+        return $this->alternative_language_codes;
+    }
+
+    /**
+     * A list of up to 3 additional
+     * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags,
+     * listing possible alternative languages of the supplied audio.
+     * See [Language
+     * Support](https://cloud.google.com/speech-to-text/docs/languages) for a list
+     * of the currently supported language codes. If alternative languages are
+     * listed, recognition result will contain recognition in the most likely
+     * language detected including the main language_code. The recognition result
+     * will include the language tag of the language detected in the audio. Note:
+     * This feature is only supported for Voice Command and Voice Search use cases
+     * and performance may vary for other use cases (e.g., phone call
+     * transcription).
+     *
+     * Generated from protobuf field <code>repeated string alternative_language_codes = 18;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAlternativeLanguageCodes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->alternative_language_codes = $arr;
+
+        return $this;
+    }
+
+    /**
      * Maximum number of recognition hypotheses to be returned.
      * Specifically, the maximum number of `SpeechRecognitionAlternative` messages
      * within each `SpeechRecognitionResult`.
@@ -575,11 +749,55 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Speech adaptation configuration improves the accuracy of speech
+     * recognition. For more information, see the [speech
+     * adaptation](https://cloud.google.com/speech-to-text/docs/adaptation)
+     * documentation.
+     * When speech adaptation is set it supersedes the `speech_contexts` field.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1.SpeechAdaptation adaptation = 20;</code>
+     * @return \Google\Cloud\Speech\V1\SpeechAdaptation|null
+     */
+    public function getAdaptation()
+    {
+        return $this->adaptation;
+    }
+
+    public function hasAdaptation()
+    {
+        return isset($this->adaptation);
+    }
+
+    public function clearAdaptation()
+    {
+        unset($this->adaptation);
+    }
+
+    /**
+     * Speech adaptation configuration improves the accuracy of speech
+     * recognition. For more information, see the [speech
+     * adaptation](https://cloud.google.com/speech-to-text/docs/adaptation)
+     * documentation.
+     * When speech adaptation is set it supersedes the `speech_contexts` field.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1.SpeechAdaptation adaptation = 20;</code>
+     * @param \Google\Cloud\Speech\V1\SpeechAdaptation $var
+     * @return $this
+     */
+    public function setAdaptation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V1\SpeechAdaptation::class);
+        $this->adaptation = $var;
+
+        return $this;
+    }
+
+    /**
      * Array of [SpeechContext][google.cloud.speech.v1.SpeechContext].
      * A means to provide context to assist the speech recognition. For more
      * information, see
      * [speech
-     * adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).
+     * adaptation](https://cloud.google.com/speech-to-text/docs/adaptation).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechContext speech_contexts = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -594,7 +812,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * A means to provide context to assist the speech recognition. For more
      * information, see
      * [speech
-     * adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).
+     * adaptation](https://cloud.google.com/speech-to-text/docs/adaptation).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechContext speech_contexts = 6;</code>
      * @param \Google\Cloud\Speech\V1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -641,13 +859,40 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * If `true`, the top result includes a list of words and the
+     * confidence for those words. If `false`, no word-level confidence
+     * information is returned. The default is `false`.
+     *
+     * Generated from protobuf field <code>bool enable_word_confidence = 15;</code>
+     * @return bool
+     */
+    public function getEnableWordConfidence()
+    {
+        return $this->enable_word_confidence;
+    }
+
+    /**
+     * If `true`, the top result includes a list of words and the
+     * confidence for those words. If `false`, no word-level confidence
+     * information is returned. The default is `false`.
+     *
+     * Generated from protobuf field <code>bool enable_word_confidence = 15;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableWordConfidence($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_word_confidence = $var;
+
+        return $this;
+    }
+
+    /**
      * If 'true', adds punctuation to recognition result hypotheses.
      * This feature is only available in select languages. Setting this for
      * requests in other languages has no effect at all.
      * The default 'false' value does not add punctuation to result hypotheses.
-     * Note: This is currently offered as an experimental service, complimentary
-     * to all users. In the future this may be exclusively available as a
-     * premium feature.
      *
      * Generated from protobuf field <code>bool enable_automatic_punctuation = 11;</code>
      * @return bool
@@ -662,9 +907,6 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * This feature is only available in select languages. Setting this for
      * requests in other languages has no effect at all.
      * The default 'false' value does not add punctuation to result hypotheses.
-     * Note: This is currently offered as an experimental service, complimentary
-     * to all users. In the future this may be exclusively available as a
-     * premium feature.
      *
      * Generated from protobuf field <code>bool enable_automatic_punctuation = 11;</code>
      * @param bool $var
@@ -679,6 +921,172 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The spoken punctuation behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * e.g. command_and_search will enable spoken punctuation by default
+     * If 'true', replaces spoken punctuation with the corresponding symbols in
+     * the request. For example, "how are you question mark" becomes "how are
+     * you?". See https://cloud.google.com/speech-to-text/docs/spoken-punctuation
+     * for support. If 'false', spoken punctuation is not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_punctuation = 22;</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getEnableSpokenPunctuation()
+    {
+        return $this->enable_spoken_punctuation;
+    }
+
+    public function hasEnableSpokenPunctuation()
+    {
+        return isset($this->enable_spoken_punctuation);
+    }
+
+    public function clearEnableSpokenPunctuation()
+    {
+        unset($this->enable_spoken_punctuation);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getEnableSpokenPunctuation()</code>
+
+     * The spoken punctuation behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * e.g. command_and_search will enable spoken punctuation by default
+     * If 'true', replaces spoken punctuation with the corresponding symbols in
+     * the request. For example, "how are you question mark" becomes "how are
+     * you?". See https://cloud.google.com/speech-to-text/docs/spoken-punctuation
+     * for support. If 'false', spoken punctuation is not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_punctuation = 22;</code>
+     * @return bool|null
+     */
+    public function getEnableSpokenPunctuationValue()
+    {
+        return $this->readWrapperValue("enable_spoken_punctuation");
+    }
+
+    /**
+     * The spoken punctuation behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * e.g. command_and_search will enable spoken punctuation by default
+     * If 'true', replaces spoken punctuation with the corresponding symbols in
+     * the request. For example, "how are you question mark" becomes "how are
+     * you?". See https://cloud.google.com/speech-to-text/docs/spoken-punctuation
+     * for support. If 'false', spoken punctuation is not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_punctuation = 22;</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setEnableSpokenPunctuation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->enable_spoken_punctuation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * The spoken punctuation behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * e.g. command_and_search will enable spoken punctuation by default
+     * If 'true', replaces spoken punctuation with the corresponding symbols in
+     * the request. For example, "how are you question mark" becomes "how are
+     * you?". See https://cloud.google.com/speech-to-text/docs/spoken-punctuation
+     * for support. If 'false', spoken punctuation is not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_punctuation = 22;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setEnableSpokenPunctuationValue($var)
+    {
+        $this->writeWrapperValue("enable_spoken_punctuation", $var);
+        return $this;}
+
+    /**
+     * The spoken emoji behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * If 'true', adds spoken emoji formatting for the request. This will replace
+     * spoken emojis with the corresponding Unicode symbols in the final
+     * transcript. If 'false', spoken emojis are not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_emojis = 23;</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getEnableSpokenEmojis()
+    {
+        return $this->enable_spoken_emojis;
+    }
+
+    public function hasEnableSpokenEmojis()
+    {
+        return isset($this->enable_spoken_emojis);
+    }
+
+    public function clearEnableSpokenEmojis()
+    {
+        unset($this->enable_spoken_emojis);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getEnableSpokenEmojis()</code>
+
+     * The spoken emoji behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * If 'true', adds spoken emoji formatting for the request. This will replace
+     * spoken emojis with the corresponding Unicode symbols in the final
+     * transcript. If 'false', spoken emojis are not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_emojis = 23;</code>
+     * @return bool|null
+     */
+    public function getEnableSpokenEmojisValue()
+    {
+        return $this->readWrapperValue("enable_spoken_emojis");
+    }
+
+    /**
+     * The spoken emoji behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * If 'true', adds spoken emoji formatting for the request. This will replace
+     * spoken emojis with the corresponding Unicode symbols in the final
+     * transcript. If 'false', spoken emojis are not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_emojis = 23;</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setEnableSpokenEmojis($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->enable_spoken_emojis = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * The spoken emoji behavior for the call
+     * If not set, uses default behavior based on model of choice
+     * If 'true', adds spoken emoji formatting for the request. This will replace
+     * spoken emojis with the corresponding Unicode symbols in the final
+     * transcript. If 'false', spoken emojis are not replaced.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue enable_spoken_emojis = 23;</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setEnableSpokenEmojisValue($var)
+    {
+        $this->writeWrapperValue("enable_spoken_emojis", $var);
+        return $this;}
+
+    /**
      * Config to enable speaker diarization and set additional
      * parameters to make diarization better suited for your application.
      * Note: When this is enabled, we send all the words from the beginning of the
@@ -689,11 +1097,11 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * in the top alternative of the FINAL SpeechRecognitionResult.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.SpeakerDiarizationConfig diarization_config = 19;</code>
-     * @return \Google\Cloud\Speech\V1\SpeakerDiarizationConfig
+     * @return \Google\Cloud\Speech\V1\SpeakerDiarizationConfig|null
      */
     public function getDiarizationConfig()
     {
-        return isset($this->diarization_config) ? $this->diarization_config : null;
+        return $this->diarization_config;
     }
 
     public function hasDiarizationConfig()
@@ -732,11 +1140,11 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * Metadata regarding this request.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionMetadata metadata = 9;</code>
-     * @return \Google\Cloud\Speech\V1\RecognitionMetadata
+     * @return \Google\Cloud\Speech\V1\RecognitionMetadata|null
      */
     public function getMetadata()
     {
-        return isset($this->metadata) ? $this->metadata : null;
+        return $this->metadata;
     }
 
     public function hasMetadata()
@@ -775,6 +1183,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td><b>Description</b></td>
      *   </tr>
      *   <tr>
+     *     <td><code>latest_long</code></td>
+     *     <td>Best for long form content like media or conversation.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>latest_short</code></td>
+     *     <td>Best for short form content like commands or single shot directed
+     *     speech.</td>
+     *   </tr>
+     *   <tr>
      *     <td><code>command_and_search</code></td>
      *     <td>Best for short queries such as voice commands or voice search.</td>
      *   </tr>
@@ -785,7 +1202,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *   </tr>
      *   <tr>
      *     <td><code>video</code></td>
-     *     <td>Best for audio that originated from from video or includes multiple
+     *     <td>Best for audio that originated from video or includes multiple
      *         speakers. Ideally the audio is recorded at a 16khz or greater
      *         sampling rate. This is a premium model that costs more than the
      *         standard rate.</td>
@@ -795,6 +1212,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td>Best for audio that is not one of the specific audio models.
      *         For example, long-form audio. Ideally the audio is high-fidelity,
      *         recorded at a 16khz or greater sampling rate.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_conversation</code></td>
+     *     <td>Best for audio that originated from a conversation between a
+     *         medical provider and patient.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_dictation</code></td>
+     *     <td>Best for audio that originated from dictation notes by a medical
+     *         provider.</td>
      *   </tr>
      * </table>
      *
@@ -817,6 +1244,15 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td><b>Description</b></td>
      *   </tr>
      *   <tr>
+     *     <td><code>latest_long</code></td>
+     *     <td>Best for long form content like media or conversation.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>latest_short</code></td>
+     *     <td>Best for short form content like commands or single shot directed
+     *     speech.</td>
+     *   </tr>
+     *   <tr>
      *     <td><code>command_and_search</code></td>
      *     <td>Best for short queries such as voice commands or voice search.</td>
      *   </tr>
@@ -827,7 +1263,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *   </tr>
      *   <tr>
      *     <td><code>video</code></td>
-     *     <td>Best for audio that originated from from video or includes multiple
+     *     <td>Best for audio that originated from video or includes multiple
      *         speakers. Ideally the audio is recorded at a 16khz or greater
      *         sampling rate. This is a premium model that costs more than the
      *         standard rate.</td>
@@ -837,6 +1273,16 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *     <td>Best for audio that is not one of the specific audio models.
      *         For example, long-form audio. Ideally the audio is high-fidelity,
      *         recorded at a 16khz or greater sampling rate.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_conversation</code></td>
+     *     <td>Best for audio that originated from a conversation between a
+     *         medical provider and patient.</td>
+     *   </tr>
+     *   <tr>
+     *     <td><code>medical_dictation</code></td>
+     *     <td>Best for audio that originated from dictation notes by a medical
+     *         provider.</td>
      *   </tr>
      * </table>
      *

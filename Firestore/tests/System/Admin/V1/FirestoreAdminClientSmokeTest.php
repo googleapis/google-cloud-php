@@ -36,7 +36,7 @@ class FirestoreAdminClientSmokeTest extends SystemTestCase
     private static $projectId;
     private static $hasSetup = false;
 
-    public static function setupBeforeClass()
+    public static function set_up_before_class()
     {
         if (self::$hasSetup) {
             return;

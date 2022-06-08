@@ -52,6 +52,4 @@ class Kind
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Kind::class, \Google\Cloud\ServiceManagement\V1\Diagnostic_Kind::class);
 

@@ -32,7 +32,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
     private $principal = '';
     /**
      * A Cloud Storage URI that specifies the path to a
-     * krb5.conf file. It is of the form gs://{bucket_name}/path/to/krb5.conf,
+     * krb5.conf file. It is of the form `gs://{bucket_name}/path/to/krb5.conf`,
      * although the file does not need to be named krb5.conf explicitly.
      *
      * Generated from protobuf field <code>string krb5_config_gcs_uri = 3;</code>
@@ -54,7 +54,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      *           `primary/instance&#64;REALM`, but there is no exact format.
      *     @type string $krb5_config_gcs_uri
      *           A Cloud Storage URI that specifies the path to a
-     *           krb5.conf file. It is of the form gs://{bucket_name}/path/to/krb5.conf,
+     *           krb5.conf file. It is of the form `gs://{bucket_name}/path/to/krb5.conf`,
      *           although the file does not need to be named krb5.conf explicitly.
      * }
      */
@@ -133,7 +133,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * A Cloud Storage URI that specifies the path to a
-     * krb5.conf file. It is of the form gs://{bucket_name}/path/to/krb5.conf,
+     * krb5.conf file. It is of the form `gs://{bucket_name}/path/to/krb5.conf`,
      * although the file does not need to be named krb5.conf explicitly.
      *
      * Generated from protobuf field <code>string krb5_config_gcs_uri = 3;</code>
@@ -146,7 +146,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * A Cloud Storage URI that specifies the path to a
-     * krb5.conf file. It is of the form gs://{bucket_name}/path/to/krb5.conf,
+     * krb5.conf file. It is of the form `gs://{bucket_name}/path/to/krb5.conf`,
      * although the file does not need to be named krb5.conf explicitly.
      *
      * Generated from protobuf field <code>string krb5_config_gcs_uri = 3;</code>

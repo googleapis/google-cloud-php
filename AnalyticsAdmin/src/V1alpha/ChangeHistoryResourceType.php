@@ -32,24 +32,6 @@ class ChangeHistoryResourceType
      */
     const PROPERTY = 2;
     /**
-     * WebDataStream resource
-     *
-     * Generated from protobuf enum <code>WEB_DATA_STREAM = 3;</code>
-     */
-    const WEB_DATA_STREAM = 3;
-    /**
-     * AndroidAppDataStream resource
-     *
-     * Generated from protobuf enum <code>ANDROID_APP_DATA_STREAM = 4;</code>
-     */
-    const ANDROID_APP_DATA_STREAM = 4;
-    /**
-     * IosAppDataStream resource
-     *
-     * Generated from protobuf enum <code>IOS_APP_DATA_STREAM = 5;</code>
-     */
-    const IOS_APP_DATA_STREAM = 5;
-    /**
      * FirebaseLink resource
      *
      * Generated from protobuf enum <code>FIREBASE_LINK = 6;</code>
@@ -91,14 +73,35 @@ class ChangeHistoryResourceType
      * Generated from protobuf enum <code>CUSTOM_METRIC = 12;</code>
      */
     const CUSTOM_METRIC = 12;
+    /**
+     * DataRetentionSettings resource
+     *
+     * Generated from protobuf enum <code>DATA_RETENTION_SETTINGS = 13;</code>
+     */
+    const DATA_RETENTION_SETTINGS = 13;
+    /**
+     * DisplayVideo360AdvertiserLink resource
+     *
+     * Generated from protobuf enum <code>DISPLAY_VIDEO_360_ADVERTISER_LINK = 14;</code>
+     */
+    const DISPLAY_VIDEO_360_ADVERTISER_LINK = 14;
+    /**
+     * DisplayVideo360AdvertiserLinkProposal resource
+     *
+     * Generated from protobuf enum <code>DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL = 15;</code>
+     */
+    const DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL = 15;
+    /**
+     * DataStream resource
+     *
+     * Generated from protobuf enum <code>DATA_STREAM = 18;</code>
+     */
+    const DATA_STREAM = 18;
 
     private static $valueToName = [
         self::CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED => 'CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED',
         self::ACCOUNT => 'ACCOUNT',
         self::PROPERTY => 'PROPERTY',
-        self::WEB_DATA_STREAM => 'WEB_DATA_STREAM',
-        self::ANDROID_APP_DATA_STREAM => 'ANDROID_APP_DATA_STREAM',
-        self::IOS_APP_DATA_STREAM => 'IOS_APP_DATA_STREAM',
         self::FIREBASE_LINK => 'FIREBASE_LINK',
         self::GOOGLE_ADS_LINK => 'GOOGLE_ADS_LINK',
         self::GOOGLE_SIGNALS_SETTINGS => 'GOOGLE_SIGNALS_SETTINGS',
@@ -106,6 +109,10 @@ class ChangeHistoryResourceType
         self::MEASUREMENT_PROTOCOL_SECRET => 'MEASUREMENT_PROTOCOL_SECRET',
         self::CUSTOM_DIMENSION => 'CUSTOM_DIMENSION',
         self::CUSTOM_METRIC => 'CUSTOM_METRIC',
+        self::DATA_RETENTION_SETTINGS => 'DATA_RETENTION_SETTINGS',
+        self::DISPLAY_VIDEO_360_ADVERTISER_LINK => 'DISPLAY_VIDEO_360_ADVERTISER_LINK',
+        self::DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL => 'DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL',
+        self::DATA_STREAM => 'DATA_STREAM',
     ];
 
     public static function name($value)

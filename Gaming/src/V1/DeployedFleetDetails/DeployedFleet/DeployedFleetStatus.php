@@ -176,6 +176,4 @@ class DeployedFleetStatus extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DeployedFleetStatus::class, \Google\Cloud\Gaming\V1\DeployedFleetDetails_DeployedFleet_DeployedFleetStatus::class);
 

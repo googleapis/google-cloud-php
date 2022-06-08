@@ -20,42 +20,62 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
+     * The Nanny is halted and we are performing tear down tasks like network deprogramming, releasing quota, IP, tearing down disks etc.
+     *
      * Generated from protobuf enum <code>DEPROVISIONING = 428935662;</code>
      */
     const DEPROVISIONING = 428935662;
     /**
+     * Resources are being allocated for the instance.
+     *
      * Generated from protobuf enum <code>PROVISIONING = 290896621;</code>
      */
     const PROVISIONING = 290896621;
     /**
+     * The instance is in repair.
+     *
      * Generated from protobuf enum <code>REPAIRING = 413483285;</code>
      */
     const REPAIRING = 413483285;
     /**
+     * The instance is running.
+     *
      * Generated from protobuf enum <code>RUNNING = 121282975;</code>
      */
     const RUNNING = 121282975;
     /**
+     * All required resources have been allocated and the instance is being started.
+     *
      * Generated from protobuf enum <code>STAGING = 431072283;</code>
      */
     const STAGING = 431072283;
     /**
+     * The instance has stopped successfully.
+     *
      * Generated from protobuf enum <code>STOPPED = 444276141;</code>
      */
     const STOPPED = 444276141;
     /**
+     * The instance is currently stopping (either being deleted or killed).
+     *
      * Generated from protobuf enum <code>STOPPING = 350791796;</code>
      */
     const STOPPING = 350791796;
     /**
+     * The instance has suspended.
+     *
      * Generated from protobuf enum <code>SUSPENDED = 51223995;</code>
      */
     const SUSPENDED = 51223995;
     /**
+     * The instance is suspending.
+     *
      * Generated from protobuf enum <code>SUSPENDING = 514206246;</code>
      */
     const SUSPENDING = 514206246;
     /**
+     * The instance has stopped (either by explicit action or underlying failure).
+     *
      * Generated from protobuf enum <code>TERMINATED = 250018339;</code>
      */
     const TERMINATED = 250018339;

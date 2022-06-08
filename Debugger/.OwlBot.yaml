@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/devtools/clouddebugger/(v2)/.*-php/(.*)
+      dest: /owl-bot-staging/Debugger/$1/$2
+api-name: Debugger

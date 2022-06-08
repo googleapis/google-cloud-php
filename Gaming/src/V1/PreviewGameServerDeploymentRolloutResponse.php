@@ -114,7 +114,7 @@ class PreviewGameServerDeploymentRolloutResponse extends \Google\Protobuf\Intern
      */
     public function getTargetState()
     {
-        return isset($this->target_state) ? $this->target_state : null;
+        return $this->target_state;
     }
 
     public function hasTargetState()

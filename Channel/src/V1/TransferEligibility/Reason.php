@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class Reason
 {
     /**
-     * Reason is not available.
+     * Not used.
      *
      * Generated from protobuf enum <code>REASON_UNSPECIFIED = 0;</code>
      */

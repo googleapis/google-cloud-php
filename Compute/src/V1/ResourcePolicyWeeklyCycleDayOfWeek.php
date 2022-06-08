@@ -16,20 +16,21 @@ class ResourcePolicyWeeklyCycleDayOfWeek extends \Google\Protobuf\Internal\Messa
 {
     /**
      * Defines a schedule that runs on specific days of the week. Specify one or more days. The following options are available: MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY.
+     * Check the Day enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyWeeklyCycleDayOfWeek.Day day = 99228;</code>
+     * Generated from protobuf field <code>optional string day = 99228;</code>
      */
     private $day = null;
     /**
      * [Output only] Duration of the time window, automatically chosen to be smallest possible in the given scenario.
      *
-     * Generated from protobuf field <code>string duration = 155471252;</code>
+     * Generated from protobuf field <code>optional string duration = 155471252;</code>
      */
     private $duration = null;
     /**
      * Time within the window to start the operations. It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
      *
-     * Generated from protobuf field <code>string start_time = 37467274;</code>
+     * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      */
     private $start_time = null;
 
@@ -39,8 +40,9 @@ class ResourcePolicyWeeklyCycleDayOfWeek extends \Google\Protobuf\Internal\Messa
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $day
+     *     @type string $day
      *           Defines a schedule that runs on specific days of the week. Specify one or more days. The following options are available: MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY.
+     *           Check the Day enum for the list of possible values.
      *     @type string $duration
      *           [Output only] Duration of the time window, automatically chosen to be smallest possible in the given scenario.
      *     @type string $start_time
@@ -54,13 +56,14 @@ class ResourcePolicyWeeklyCycleDayOfWeek extends \Google\Protobuf\Internal\Messa
 
     /**
      * Defines a schedule that runs on specific days of the week. Specify one or more days. The following options are available: MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY.
+     * Check the Day enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyWeeklyCycleDayOfWeek.Day day = 99228;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string day = 99228;</code>
+     * @return string
      */
     public function getDay()
     {
-        return isset($this->day) ? $this->day : 0;
+        return isset($this->day) ? $this->day : '';
     }
 
     public function hasDay()
@@ -75,14 +78,15 @@ class ResourcePolicyWeeklyCycleDayOfWeek extends \Google\Protobuf\Internal\Messa
 
     /**
      * Defines a schedule that runs on specific days of the week. Specify one or more days. The following options are available: MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY.
+     * Check the Day enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyWeeklyCycleDayOfWeek.Day day = 99228;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string day = 99228;</code>
+     * @param string $var
      * @return $this
      */
     public function setDay($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\ResourcePolicyWeeklyCycleDayOfWeek\Day::class);
+        GPBUtil::checkString($var, True);
         $this->day = $var;
 
         return $this;
@@ -91,7 +95,7 @@ class ResourcePolicyWeeklyCycleDayOfWeek extends \Google\Protobuf\Internal\Messa
     /**
      * [Output only] Duration of the time window, automatically chosen to be smallest possible in the given scenario.
      *
-     * Generated from protobuf field <code>string duration = 155471252;</code>
+     * Generated from protobuf field <code>optional string duration = 155471252;</code>
      * @return string
      */
     public function getDuration()
@@ -112,7 +116,7 @@ class ResourcePolicyWeeklyCycleDayOfWeek extends \Google\Protobuf\Internal\Messa
     /**
      * [Output only] Duration of the time window, automatically chosen to be smallest possible in the given scenario.
      *
-     * Generated from protobuf field <code>string duration = 155471252;</code>
+     * Generated from protobuf field <code>optional string duration = 155471252;</code>
      * @param string $var
      * @return $this
      */
@@ -127,7 +131,7 @@ class ResourcePolicyWeeklyCycleDayOfWeek extends \Google\Protobuf\Internal\Messa
     /**
      * Time within the window to start the operations. It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
      *
-     * Generated from protobuf field <code>string start_time = 37467274;</code>
+     * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      * @return string
      */
     public function getStartTime()
@@ -148,7 +152,7 @@ class ResourcePolicyWeeklyCycleDayOfWeek extends \Google\Protobuf\Internal\Messa
     /**
      * Time within the window to start the operations. It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
      *
-     * Generated from protobuf field <code>string start_time = 37467274;</code>
+     * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      * @param string $var
      * @return $this
      */

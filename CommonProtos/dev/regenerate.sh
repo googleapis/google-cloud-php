@@ -14,10 +14,15 @@
 # limitations under the License.
 
 # Protos to generate
-PROTOS_TO_GENERATE="google/cloud/audit/audit_log.proto google/devtools/source/v1/source_context.proto"
+PROTOS_TO_GENERATE=(
+  google/cloud/audit/audit_log.proto
+  google/devtools/source/v1/source_context.proto
+  google/cloud/common/operation_metadata.proto
+  google/rpc/context/attribute_context.proto
+)
 
 # Constants
-REQUIRED_PROTOC_VERSION="libprotoc 3.6.1"
+REQUIRED_PROTOC_VERSION="libprotoc 3.15.8"
 GOOGLEAPIS_REPO="https://github.com/googleapis/googleapis.git"
 
 # Directories
@@ -48,7 +53,7 @@ git clone ${GOOGLEAPIS_REPO} ${TEMP_COMMON_PROTOS_DIR}
 rm -rf ${PROTOC_OUT_DIR}
 mkdir ${PROTOC_OUT_DIR}
 
-PROTOC_ARGS="--php_out ${PROTOC_OUT_DIR} -I${TEMP_COMMON_PROTOS_DIR} ${PROTOS_TO_GENERATE}"
+PROTOC_ARGS="--php_out ${PROTOC_OUT_DIR} -I${TEMP_COMMON_PROTOS_DIR} ${PROTOS_TO_GENERATE[@]}"
 echo "Calling protoc with args: ${PROTOC_ARGS}"
 ${PROTOC_BIN} ${PROTOC_ARGS}
 

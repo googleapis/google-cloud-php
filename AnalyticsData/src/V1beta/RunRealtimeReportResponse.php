@@ -319,7 +319,7 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      */
     public function getPropertyQuota()
     {
-        return isset($this->property_quota) ? $this->property_quota : null;
+        return $this->property_quota;
     }
 
     public function hasPropertyQuota()

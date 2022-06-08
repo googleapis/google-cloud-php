@@ -9,9 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An [attestor public
- * key][google.cloud.binaryauthorization.v1beta1.AttestorPublicKey] that will be
- * used to verify attestations signed by this attestor.
+ * An [attestor public key][google.cloud.binaryauthorization.v1beta1.AttestorPublicKey] that will be used to verify
+ * attestations signed by this attestor.
  *
  * Generated from protobuf message <code>google.cloud.binaryauthorization.v1beta1.AttestorPublicKey</code>
  */

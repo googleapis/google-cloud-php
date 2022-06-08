@@ -61,6 +61,4 @@ class PayloadFormat
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PayloadFormat::class, \Google\Cloud\StorageTransfer\V1\NotificationConfig_PayloadFormat::class);
 

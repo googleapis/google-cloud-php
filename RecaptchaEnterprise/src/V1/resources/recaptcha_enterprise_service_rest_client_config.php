@@ -61,9 +61,66 @@ return [
                     ],
                 ],
             ],
+            'GetMetrics' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/keys/*/metrics}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListKeys' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*}/keys',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRelatedAccountGroupMemberships' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/relatedaccountgroups/*}/memberships',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRelatedAccountGroups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*}/relatedaccountgroups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'MigrateKey' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/keys/*}:migrate',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'SearchRelatedAccountGroupMemberships' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*}/relatedaccountgroupmemberships:search',
+                'body' => '*',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

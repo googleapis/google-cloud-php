@@ -7,8 +7,7 @@ namespace Google\Cloud\Compute\V1\AutoscalingPolicyCpuUtilization;
 use UnexpectedValueException;
 
 /**
- * Indicates whether predictive autoscaling based on CPU metric is enabled. Valid values are:
- * * NONE (default). No predictive method is used. The autoscaler scales the group to meet current demand based on real-time metrics. * OPTIMIZE_AVAILABILITY. Predictive autoscaling improves availability by monitoring daily and weekly load patterns and scaling out ahead of anticipated demand.
+ * Indicates whether predictive autoscaling based on CPU metric is enabled. Valid values are: * NONE (default). No predictive method is used. The autoscaler scales the group to meet current demand based on real-time metrics. * OPTIMIZE_AVAILABILITY. Predictive autoscaling improves availability by monitoring daily and weekly load patterns and scaling out ahead of anticipated demand.
  *
  * Protobuf type <code>google.cloud.compute.v1.AutoscalingPolicyCpuUtilization.PredictiveMethod</code>
  */
@@ -21,10 +20,14 @@ class PredictiveMethod
      */
     const UNDEFINED_PREDICTIVE_METHOD = 0;
     /**
+     * No predictive method is used. The autoscaler scales the group to meet current demand based on real-time metrics
+     *
      * Generated from protobuf enum <code>NONE = 2402104;</code>
      */
     const NONE = 2402104;
     /**
+     * Predictive autoscaling improves availability by monitoring daily and weekly load patterns and scaling out ahead of anticipated demand.
+     *
      * Generated from protobuf enum <code>OPTIMIZE_AVAILABILITY = 11629437;</code>
      */
     const OPTIMIZE_AVAILABILITY = 11629437;

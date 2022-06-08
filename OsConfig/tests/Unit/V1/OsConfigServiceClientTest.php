@@ -31,23 +31,15 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\OsConfig\V1\ListPatchDeploymentsResponse;
 use Google\Cloud\OsConfig\V1\ListPatchJobInstanceDetailsResponse;
 use Google\Cloud\OsConfig\V1\ListPatchJobsResponse;
-use Google\Cloud\OsConfig\V1\MonthlySchedule;
 use Google\Cloud\OsConfig\V1\OneTimeSchedule;
 use Google\Cloud\OsConfig\V1\OsConfigServiceClient;
 use Google\Cloud\OsConfig\V1\PatchDeployment;
 use Google\Cloud\OsConfig\V1\PatchInstanceFilter;
 use Google\Cloud\OsConfig\V1\PatchJob;
 use Google\Cloud\OsConfig\V1\PatchJobInstanceDetails;
-use Google\Cloud\OsConfig\V1\RecurringSchedule;
-use Google\Cloud\OsConfig\V1\RecurringSchedule\Frequency;
-use Google\Cloud\OsConfig\V1\WeekDayOfMonth;
-use Google\Cloud\OsConfig\V1\WeeklySchedule;
 use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Timestamp;
 use Google\Rpc\Code;
-use Google\Type\DayOfWeek;
-use Google\Type\TimeOfDay;
-use Google\Type\TimeZone;
 use stdClass;
 
 /**
@@ -187,28 +179,6 @@ class OsConfigServiceClientTest extends GeneratedTest
         $oneTimeScheduleExecuteTime = new Timestamp();
         $patchDeploymentOneTimeSchedule->setExecuteTime($oneTimeScheduleExecuteTime);
         $patchDeployment->setOneTimeSchedule($patchDeploymentOneTimeSchedule);
-        $patchDeploymentRecurringSchedule = new RecurringSchedule();
-        $recurringScheduleTimeZone = new TimeZone();
-        $patchDeploymentRecurringSchedule->setTimeZone($recurringScheduleTimeZone);
-        $recurringScheduleTimeOfDay = new TimeOfDay();
-        $patchDeploymentRecurringSchedule->setTimeOfDay($recurringScheduleTimeOfDay);
-        $recurringScheduleFrequency = Frequency::FREQUENCY_UNSPECIFIED;
-        $patchDeploymentRecurringSchedule->setFrequency($recurringScheduleFrequency);
-        $recurringScheduleWeekly = new WeeklySchedule();
-        $weeklyDayOfWeek = DayOfWeek::DAY_OF_WEEK_UNSPECIFIED;
-        $recurringScheduleWeekly->setDayOfWeek($weeklyDayOfWeek);
-        $patchDeploymentRecurringSchedule->setWeekly($recurringScheduleWeekly);
-        $recurringScheduleMonthly = new MonthlySchedule();
-        $monthlyWeekDayOfMonth = new WeekDayOfMonth();
-        $weekDayOfMonthWeekOrdinal = 1918414244;
-        $monthlyWeekDayOfMonth->setWeekOrdinal($weekDayOfMonthWeekOrdinal);
-        $weekDayOfMonthDayOfWeek = DayOfWeek::DAY_OF_WEEK_UNSPECIFIED;
-        $monthlyWeekDayOfMonth->setDayOfWeek($weekDayOfMonthDayOfWeek);
-        $recurringScheduleMonthly->setWeekDayOfMonth($monthlyWeekDayOfMonth);
-        $monthlyMonthDay = 1149931479;
-        $recurringScheduleMonthly->setMonthDay($monthlyMonthDay);
-        $patchDeploymentRecurringSchedule->setMonthly($recurringScheduleMonthly);
-        $patchDeployment->setRecurringSchedule($patchDeploymentRecurringSchedule);
         $response = $client->createPatchDeployment($formattedParent, $patchDeploymentId, $patchDeployment);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -255,28 +225,6 @@ class OsConfigServiceClientTest extends GeneratedTest
         $oneTimeScheduleExecuteTime = new Timestamp();
         $patchDeploymentOneTimeSchedule->setExecuteTime($oneTimeScheduleExecuteTime);
         $patchDeployment->setOneTimeSchedule($patchDeploymentOneTimeSchedule);
-        $patchDeploymentRecurringSchedule = new RecurringSchedule();
-        $recurringScheduleTimeZone = new TimeZone();
-        $patchDeploymentRecurringSchedule->setTimeZone($recurringScheduleTimeZone);
-        $recurringScheduleTimeOfDay = new TimeOfDay();
-        $patchDeploymentRecurringSchedule->setTimeOfDay($recurringScheduleTimeOfDay);
-        $recurringScheduleFrequency = Frequency::FREQUENCY_UNSPECIFIED;
-        $patchDeploymentRecurringSchedule->setFrequency($recurringScheduleFrequency);
-        $recurringScheduleWeekly = new WeeklySchedule();
-        $weeklyDayOfWeek = DayOfWeek::DAY_OF_WEEK_UNSPECIFIED;
-        $recurringScheduleWeekly->setDayOfWeek($weeklyDayOfWeek);
-        $patchDeploymentRecurringSchedule->setWeekly($recurringScheduleWeekly);
-        $recurringScheduleMonthly = new MonthlySchedule();
-        $monthlyWeekDayOfMonth = new WeekDayOfMonth();
-        $weekDayOfMonthWeekOrdinal = 1918414244;
-        $monthlyWeekDayOfMonth->setWeekOrdinal($weekDayOfMonthWeekOrdinal);
-        $weekDayOfMonthDayOfWeek = DayOfWeek::DAY_OF_WEEK_UNSPECIFIED;
-        $monthlyWeekDayOfMonth->setDayOfWeek($weekDayOfMonthDayOfWeek);
-        $recurringScheduleMonthly->setWeekDayOfMonth($monthlyWeekDayOfMonth);
-        $monthlyMonthDay = 1149931479;
-        $recurringScheduleMonthly->setMonthDay($monthlyMonthDay);
-        $patchDeploymentRecurringSchedule->setMonthly($recurringScheduleMonthly);
-        $patchDeployment->setRecurringSchedule($patchDeploymentRecurringSchedule);
         try {
             $client->createPatchDeployment($formattedParent, $patchDeploymentId, $patchDeployment);
             // If the $client method call did not throw, fail the test
@@ -778,6 +726,216 @@ class OsConfigServiceClientTest extends GeneratedTest
         $formattedParent = $client->projectName('[PROJECT]');
         try {
             $client->listPatchJobs($formattedParent);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function pausePatchDeploymentTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $expectedResponse = new PatchDeployment();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $client->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
+        $response = $client->pausePatchDeployment($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.osconfig.v1.OsConfigService/PausePatchDeployment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function pausePatchDeploymentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $client->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
+        try {
+            $client->pausePatchDeployment($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function resumePatchDeploymentTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $expectedResponse = new PatchDeployment();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $client->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
+        $response = $client->resumePatchDeployment($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.osconfig.v1.OsConfigService/ResumePatchDeployment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function resumePatchDeploymentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $client->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
+        try {
+            $client->resumePatchDeployment($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updatePatchDeploymentTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $description = 'description-1724546052';
+        $expectedResponse = new PatchDeployment();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDescription($description);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $patchDeployment = new PatchDeployment();
+        $patchDeploymentInstanceFilter = new PatchInstanceFilter();
+        $patchDeployment->setInstanceFilter($patchDeploymentInstanceFilter);
+        $patchDeploymentOneTimeSchedule = new OneTimeSchedule();
+        $oneTimeScheduleExecuteTime = new Timestamp();
+        $patchDeploymentOneTimeSchedule->setExecuteTime($oneTimeScheduleExecuteTime);
+        $patchDeployment->setOneTimeSchedule($patchDeploymentOneTimeSchedule);
+        $response = $client->updatePatchDeployment($patchDeployment);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.osconfig.v1.OsConfigService/UpdatePatchDeployment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getPatchDeployment();
+        $this->assertProtobufEquals($patchDeployment, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updatePatchDeploymentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $patchDeployment = new PatchDeployment();
+        $patchDeploymentInstanceFilter = new PatchInstanceFilter();
+        $patchDeployment->setInstanceFilter($patchDeploymentInstanceFilter);
+        $patchDeploymentOneTimeSchedule = new OneTimeSchedule();
+        $oneTimeScheduleExecuteTime = new Timestamp();
+        $patchDeploymentOneTimeSchedule->setExecuteTime($oneTimeScheduleExecuteTime);
+        $patchDeployment->setOneTimeSchedule($patchDeploymentOneTimeSchedule);
+        try {
+            $client->updatePatchDeployment($patchDeployment);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

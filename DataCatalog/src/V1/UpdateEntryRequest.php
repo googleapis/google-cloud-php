@@ -17,31 +17,33 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The updated entry. The "name" field must be set.
+     * Required. Updates for the entry. The `name` field must be set.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.Entry entry = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $entry = null;
     /**
-     * The fields to update on the entry. If absent or empty, all modifiable
-     * fields are updated.
-     * The following fields are modifiable:
-     * * For entries with type `DATA_STREAM`:
-     *    * `schema`
-     * * For entries with type `FILESET`
-     *    * `schema`
-     *    * `display_name`
-     *    * `description`
-     *    * `gcs_fileset_spec`
-     *    * `gcs_fileset_spec.file_patterns`
-     * * For entries with `user_specified_type`
-     *    * `schema`
-     *    * `display_name`
-     *    * `description`
-     *    * user_specified_type
-     *    * user_specified_system
-     *    * linked_resource
-     *    * source_system_timestamps
+     * Names of fields whose values to overwrite on an entry.
+     * If this parameter is absent or empty, all modifiable fields
+     * are overwritten. If such fields are non-required and omitted in the
+     * request body, their values are emptied.
+     * You can modify only the fields listed below.
+     * For entries with type `DATA_STREAM`:
+     * * `schema`
+     * For entries with type `FILESET`:
+     * * `schema`
+     * * `display_name`
+     * * `description`
+     * * `gcs_fileset_spec`
+     * * `gcs_fileset_spec.file_patterns`
+     * For entries with `user_specified_type`:
+     * * `schema`
+     * * `display_name`
+     * * `description`
+     * * `user_specified_type`
+     * * `user_specified_system`
+     * * `linked_resource`
+     * * `source_system_timestamps`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -54,27 +56,29 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DataCatalog\V1\Entry $entry
-     *           Required. The updated entry. The "name" field must be set.
+     *           Required. Updates for the entry. The `name` field must be set.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           The fields to update on the entry. If absent or empty, all modifiable
-     *           fields are updated.
-     *           The following fields are modifiable:
-     *           * For entries with type `DATA_STREAM`:
-     *              * `schema`
-     *           * For entries with type `FILESET`
-     *              * `schema`
-     *              * `display_name`
-     *              * `description`
-     *              * `gcs_fileset_spec`
-     *              * `gcs_fileset_spec.file_patterns`
-     *           * For entries with `user_specified_type`
-     *              * `schema`
-     *              * `display_name`
-     *              * `description`
-     *              * user_specified_type
-     *              * user_specified_system
-     *              * linked_resource
-     *              * source_system_timestamps
+     *           Names of fields whose values to overwrite on an entry.
+     *           If this parameter is absent or empty, all modifiable fields
+     *           are overwritten. If such fields are non-required and omitted in the
+     *           request body, their values are emptied.
+     *           You can modify only the fields listed below.
+     *           For entries with type `DATA_STREAM`:
+     *           * `schema`
+     *           For entries with type `FILESET`:
+     *           * `schema`
+     *           * `display_name`
+     *           * `description`
+     *           * `gcs_fileset_spec`
+     *           * `gcs_fileset_spec.file_patterns`
+     *           For entries with `user_specified_type`:
+     *           * `schema`
+     *           * `display_name`
+     *           * `description`
+     *           * `user_specified_type`
+     *           * `user_specified_system`
+     *           * `linked_resource`
+     *           * `source_system_timestamps`
      * }
      */
     public function __construct($data = NULL) {
@@ -83,14 +87,14 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The updated entry. The "name" field must be set.
+     * Required. Updates for the entry. The `name` field must be set.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.Entry entry = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\DataCatalog\V1\Entry|null
      */
     public function getEntry()
     {
-        return isset($this->entry) ? $this->entry : null;
+        return $this->entry;
     }
 
     public function hasEntry()
@@ -104,7 +108,7 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The updated entry. The "name" field must be set.
+     * Required. Updates for the entry. The `name` field must be set.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.Entry entry = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\DataCatalog\V1\Entry $var
@@ -119,32 +123,34 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fields to update on the entry. If absent or empty, all modifiable
-     * fields are updated.
-     * The following fields are modifiable:
-     * * For entries with type `DATA_STREAM`:
-     *    * `schema`
-     * * For entries with type `FILESET`
-     *    * `schema`
-     *    * `display_name`
-     *    * `description`
-     *    * `gcs_fileset_spec`
-     *    * `gcs_fileset_spec.file_patterns`
-     * * For entries with `user_specified_type`
-     *    * `schema`
-     *    * `display_name`
-     *    * `description`
-     *    * user_specified_type
-     *    * user_specified_system
-     *    * linked_resource
-     *    * source_system_timestamps
+     * Names of fields whose values to overwrite on an entry.
+     * If this parameter is absent or empty, all modifiable fields
+     * are overwritten. If such fields are non-required and omitted in the
+     * request body, their values are emptied.
+     * You can modify only the fields listed below.
+     * For entries with type `DATA_STREAM`:
+     * * `schema`
+     * For entries with type `FILESET`:
+     * * `schema`
+     * * `display_name`
+     * * `description`
+     * * `gcs_fileset_spec`
+     * * `gcs_fileset_spec.file_patterns`
+     * For entries with `user_specified_type`:
+     * * `schema`
+     * * `display_name`
+     * * `description`
+     * * `user_specified_type`
+     * * `user_specified_system`
+     * * `linked_resource`
+     * * `source_system_timestamps`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -158,25 +164,27 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The fields to update on the entry. If absent or empty, all modifiable
-     * fields are updated.
-     * The following fields are modifiable:
-     * * For entries with type `DATA_STREAM`:
-     *    * `schema`
-     * * For entries with type `FILESET`
-     *    * `schema`
-     *    * `display_name`
-     *    * `description`
-     *    * `gcs_fileset_spec`
-     *    * `gcs_fileset_spec.file_patterns`
-     * * For entries with `user_specified_type`
-     *    * `schema`
-     *    * `display_name`
-     *    * `description`
-     *    * user_specified_type
-     *    * user_specified_system
-     *    * linked_resource
-     *    * source_system_timestamps
+     * Names of fields whose values to overwrite on an entry.
+     * If this parameter is absent or empty, all modifiable fields
+     * are overwritten. If such fields are non-required and omitted in the
+     * request body, their values are emptied.
+     * You can modify only the fields listed below.
+     * For entries with type `DATA_STREAM`:
+     * * `schema`
+     * For entries with type `FILESET`:
+     * * `schema`
+     * * `display_name`
+     * * `description`
+     * * `gcs_fileset_spec`
+     * * `gcs_fileset_spec.file_patterns`
+     * For entries with `user_specified_type`:
+     * * `schema`
+     * * `display_name`
+     * * `description`
+     * * `user_specified_type`
+     * * `user_specified_system`
+     * * `linked_resource`
+     * * `source_system_timestamps`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

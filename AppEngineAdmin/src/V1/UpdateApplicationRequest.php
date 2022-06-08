@@ -28,7 +28,7 @@ class UpdateApplicationRequest extends \Google\Protobuf\Internal\Message
      */
     private $application = null;
     /**
-     * Standard field mask for the set of fields to be updated.
+     * Required. Standard field mask for the set of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
@@ -45,7 +45,7 @@ class UpdateApplicationRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AppEngine\V1\Application $application
      *           An Application containing the updated resource.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Standard field mask for the set of fields to be updated.
+     *           Required. Standard field mask for the set of fields to be updated.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,7 +116,7 @@ class UpdateApplicationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Standard field mask for the set of fields to be updated.
+     * Required. Standard field mask for the set of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -137,7 +137,7 @@ class UpdateApplicationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Standard field mask for the set of fields to be updated.
+     * Required. Standard field mask for the set of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      * @param \Google\Protobuf\FieldMask $var

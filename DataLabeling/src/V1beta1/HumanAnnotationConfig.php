@@ -322,7 +322,7 @@ class HumanAnnotationConfig extends \Google\Protobuf\Internal\Message
      */
     public function getQuestionDuration()
     {
-        return isset($this->question_duration) ? $this->question_duration : null;
+        return $this->question_duration;
     }
 
     public function hasQuestionDuration()

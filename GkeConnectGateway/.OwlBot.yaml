@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/gkeconnect/gateway/(v1beta1)/.*-php/(.*)
+      dest: /owl-bot-staging/GkeConnectGateway/$1/$2
+api-name: GkeConnectGateway

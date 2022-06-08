@@ -31,8 +31,10 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataproc\V1\AutoscalingPolicy;
 use Google\Cloud\Dataproc\V1\AutoscalingPolicyServiceClient;
 use Google\Cloud\Dataproc\V1\BasicAutoscalingAlgorithm;
+use Google\Cloud\Dataproc\V1\BasicYarnAutoscalingConfig;
 use Google\Cloud\Dataproc\V1\InstanceGroupAutoscalingPolicyConfig;
 use Google\Cloud\Dataproc\V1\ListAutoscalingPoliciesResponse;
+use Google\Protobuf\Duration;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -95,6 +97,16 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $workerConfigMaxInstances = 339756550;
         $policyWorkerConfig->setMaxInstances($workerConfigMaxInstances);
         $policy->setWorkerConfig($policyWorkerConfig);
+        $policyBasicAlgorithm = new BasicAutoscalingAlgorithm();
+        $basicAlgorithmYarnConfig = new BasicYarnAutoscalingConfig();
+        $yarnConfigGracefulDecommissionTimeout = new Duration();
+        $basicAlgorithmYarnConfig->setGracefulDecommissionTimeout($yarnConfigGracefulDecommissionTimeout);
+        $yarnConfigScaleUpFactor = -4.1551534E7;
+        $basicAlgorithmYarnConfig->setScaleUpFactor($yarnConfigScaleUpFactor);
+        $yarnConfigScaleDownFactor = -1.72221005E8;
+        $basicAlgorithmYarnConfig->setScaleDownFactor($yarnConfigScaleDownFactor);
+        $policyBasicAlgorithm->setYarnConfig($basicAlgorithmYarnConfig);
+        $policy->setBasicAlgorithm($policyBasicAlgorithm);
         $response = $client->createAutoscalingPolicy($formattedParent, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -136,6 +148,16 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $workerConfigMaxInstances = 339756550;
         $policyWorkerConfig->setMaxInstances($workerConfigMaxInstances);
         $policy->setWorkerConfig($policyWorkerConfig);
+        $policyBasicAlgorithm = new BasicAutoscalingAlgorithm();
+        $basicAlgorithmYarnConfig = new BasicYarnAutoscalingConfig();
+        $yarnConfigGracefulDecommissionTimeout = new Duration();
+        $basicAlgorithmYarnConfig->setGracefulDecommissionTimeout($yarnConfigGracefulDecommissionTimeout);
+        $yarnConfigScaleUpFactor = -4.1551534E7;
+        $basicAlgorithmYarnConfig->setScaleUpFactor($yarnConfigScaleUpFactor);
+        $yarnConfigScaleDownFactor = -1.72221005E8;
+        $basicAlgorithmYarnConfig->setScaleDownFactor($yarnConfigScaleDownFactor);
+        $policyBasicAlgorithm->setYarnConfig($basicAlgorithmYarnConfig);
+        $policy->setBasicAlgorithm($policyBasicAlgorithm);
         try {
             $client->createAutoscalingPolicy($formattedParent, $policy);
             // If the $client method call did not throw, fail the test
@@ -371,6 +393,16 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $workerConfigMaxInstances = 339756550;
         $policyWorkerConfig->setMaxInstances($workerConfigMaxInstances);
         $policy->setWorkerConfig($policyWorkerConfig);
+        $policyBasicAlgorithm = new BasicAutoscalingAlgorithm();
+        $basicAlgorithmYarnConfig = new BasicYarnAutoscalingConfig();
+        $yarnConfigGracefulDecommissionTimeout = new Duration();
+        $basicAlgorithmYarnConfig->setGracefulDecommissionTimeout($yarnConfigGracefulDecommissionTimeout);
+        $yarnConfigScaleUpFactor = -4.1551534E7;
+        $basicAlgorithmYarnConfig->setScaleUpFactor($yarnConfigScaleUpFactor);
+        $yarnConfigScaleDownFactor = -1.72221005E8;
+        $basicAlgorithmYarnConfig->setScaleDownFactor($yarnConfigScaleDownFactor);
+        $policyBasicAlgorithm->setYarnConfig($basicAlgorithmYarnConfig);
+        $policy->setBasicAlgorithm($policyBasicAlgorithm);
         $response = $client->updateAutoscalingPolicy($policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -409,6 +441,16 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $workerConfigMaxInstances = 339756550;
         $policyWorkerConfig->setMaxInstances($workerConfigMaxInstances);
         $policy->setWorkerConfig($policyWorkerConfig);
+        $policyBasicAlgorithm = new BasicAutoscalingAlgorithm();
+        $basicAlgorithmYarnConfig = new BasicYarnAutoscalingConfig();
+        $yarnConfigGracefulDecommissionTimeout = new Duration();
+        $basicAlgorithmYarnConfig->setGracefulDecommissionTimeout($yarnConfigGracefulDecommissionTimeout);
+        $yarnConfigScaleUpFactor = -4.1551534E7;
+        $basicAlgorithmYarnConfig->setScaleUpFactor($yarnConfigScaleUpFactor);
+        $yarnConfigScaleDownFactor = -1.72221005E8;
+        $basicAlgorithmYarnConfig->setScaleDownFactor($yarnConfigScaleDownFactor);
+        $policyBasicAlgorithm->setYarnConfig($basicAlgorithmYarnConfig);
+        $policy->setBasicAlgorithm($policyBasicAlgorithm);
         try {
             $client->updateAutoscalingPolicy($policy);
             // If the $client method call did not throw, fail the test

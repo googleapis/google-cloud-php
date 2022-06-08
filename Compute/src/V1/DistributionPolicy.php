@@ -16,8 +16,9 @@ class DistributionPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
      * The distribution shape to which the group converges either proactively or on resize events (depending on the value set in updatePolicy.instanceRedistributionType).
+     * Check the TargetShape enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DistributionPolicy.TargetShape target_shape = 338621299;</code>
+     * Generated from protobuf field <code>optional string target_shape = 338621299;</code>
      */
     private $target_shape = null;
     /**
@@ -33,8 +34,9 @@ class DistributionPolicy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $target_shape
+     *     @type string $target_shape
      *           The distribution shape to which the group converges either proactively or on resize events (depending on the value set in updatePolicy.instanceRedistributionType).
+     *           Check the TargetShape enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\DistributionPolicyZoneConfiguration[]|\Google\Protobuf\Internal\RepeatedField $zones
      *           Zones where the regional managed instance group will create and manage its instances.
      * }
@@ -46,13 +48,14 @@ class DistributionPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The distribution shape to which the group converges either proactively or on resize events (depending on the value set in updatePolicy.instanceRedistributionType).
+     * Check the TargetShape enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DistributionPolicy.TargetShape target_shape = 338621299;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string target_shape = 338621299;</code>
+     * @return string
      */
     public function getTargetShape()
     {
-        return isset($this->target_shape) ? $this->target_shape : 0;
+        return isset($this->target_shape) ? $this->target_shape : '';
     }
 
     public function hasTargetShape()
@@ -67,14 +70,15 @@ class DistributionPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The distribution shape to which the group converges either proactively or on resize events (depending on the value set in updatePolicy.instanceRedistributionType).
+     * Check the TargetShape enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DistributionPolicy.TargetShape target_shape = 338621299;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string target_shape = 338621299;</code>
+     * @param string $var
      * @return $this
      */
     public function setTargetShape($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\DistributionPolicy\TargetShape::class);
+        GPBUtil::checkString($var, True);
         $this->target_shape = $var;
 
         return $this;

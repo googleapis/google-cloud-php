@@ -30,7 +30,7 @@ class OffsetFilterTest extends SnippetTestCase
 {
     private $builder;
 
-    public function setUp()
+    public function set_up()
     {
         $this->builder = Filter::offset();
     }

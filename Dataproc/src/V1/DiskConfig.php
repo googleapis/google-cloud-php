@@ -42,6 +42,16 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 num_local_ssds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $num_local_ssds = 0;
+    /**
+     * Optional. Interface type of local SSDs (default is "scsi").
+     * Valid values: "scsi" (Small Computer System Interface),
+     * "nvme" (Non-Volatile Memory Express).
+     * See [local SSD
+     * performance](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
+     *
+     * Generated from protobuf field <code>string local_ssd_interface = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $local_ssd_interface = '';
 
     /**
      * Constructor.
@@ -64,6 +74,12 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      *           If one or more SSDs are attached, this runtime bulk
      *           data is spread across them, and the boot disk contains only basic
      *           config and installed binaries.
+     *     @type string $local_ssd_interface
+     *           Optional. Interface type of local SSDs (default is "scsi").
+     *           Valid values: "scsi" (Small Computer System Interface),
+     *           "nvme" (Non-Volatile Memory Express).
+     *           See [local SSD
+     *           performance](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
      * }
      */
     public function __construct($data = NULL) {
@@ -163,6 +179,40 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->num_local_ssds = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Interface type of local SSDs (default is "scsi").
+     * Valid values: "scsi" (Small Computer System Interface),
+     * "nvme" (Non-Volatile Memory Express).
+     * See [local SSD
+     * performance](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
+     *
+     * Generated from protobuf field <code>string local_ssd_interface = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLocalSsdInterface()
+    {
+        return $this->local_ssd_interface;
+    }
+
+    /**
+     * Optional. Interface type of local SSDs (default is "scsi").
+     * Valid values: "scsi" (Small Computer System Interface),
+     * "nvme" (Non-Volatile Memory Express).
+     * See [local SSD
+     * performance](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
+     *
+     * Generated from protobuf field <code>string local_ssd_interface = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocalSsdInterface($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->local_ssd_interface = $var;
 
         return $this;
     }

@@ -17,13 +17,13 @@ class ManagedInstanceVersion extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The intended template of the instance. This field is empty when current_action is one of { DELETING, ABANDONING }.
      *
-     * Generated from protobuf field <code>string instance_template = 309248228;</code>
+     * Generated from protobuf field <code>optional string instance_template = 309248228;</code>
      */
     private $instance_template = null;
     /**
      * [Output Only] Name of the version.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
 
@@ -47,7 +47,7 @@ class ManagedInstanceVersion extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The intended template of the instance. This field is empty when current_action is one of { DELETING, ABANDONING }.
      *
-     * Generated from protobuf field <code>string instance_template = 309248228;</code>
+     * Generated from protobuf field <code>optional string instance_template = 309248228;</code>
      * @return string
      */
     public function getInstanceTemplate()
@@ -68,7 +68,7 @@ class ManagedInstanceVersion extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The intended template of the instance. This field is empty when current_action is one of { DELETING, ABANDONING }.
      *
-     * Generated from protobuf field <code>string instance_template = 309248228;</code>
+     * Generated from protobuf field <code>optional string instance_template = 309248228;</code>
      * @param string $var
      * @return $this
      */
@@ -83,7 +83,7 @@ class ManagedInstanceVersion extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Name of the version.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -104,7 +104,7 @@ class ManagedInstanceVersion extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Name of the version.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
