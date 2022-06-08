@@ -883,7 +883,7 @@ class Subscription
      *        zero may immediately make the message available for another pull
      *        request.
      * @param array $options [optional] Configuration Options
-     * @return void
+     * @return void|array
      */
     public function modifyAckDeadlineBatch(array $messages, $seconds, array $options = [])
     {
@@ -920,6 +920,8 @@ class Subscription
      *        zero may immediately make the message available for another pull
      *        request.
      * @param array $options Configuration Options
+     * 
+     * @return array
      */
     private function modifyAckDeadlineBatchWithRetries(array $messages, int $seconds, array $options)
     {

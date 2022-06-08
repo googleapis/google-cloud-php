@@ -206,10 +206,10 @@ class PublishAndPullTest extends PubSubTestCase
         $eodSubscription = self::exactlyOnceSubscription($client, $topic, ['ackDeadlineSeconds' => 10]);
         $eodExpiry = $eodSubscription->info()['ackDeadlineSeconds'];
 
-        sleep($eodExpiry + 1);
-
         $topic->publish(['data'=>'test']);
         $messages = $eodSubscription->pull();
+
+        sleep($eodExpiry + 1);
 
         $failedMsgs = $eodSubscription->acknowledgeBatch($messages, ['returnFailures' => true]);
         // Since acknowledgeBatch was called after the expiry and with the `returnFailures` flag,
@@ -219,5 +219,25 @@ class PublishAndPullTest extends PubSubTestCase
         foreach ($failedMsgs as $msg) {
             $this->assertInstanceOf(Message::class, $msg);
         }
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testModifyAckDeadlineBatchContainsFailedMsgs($client)
+    {
+        $topic = self::topic($client);
+
+        // we keep a low ackDeadlineSeconds value
+        // as we need to `sleep` for more than this value to trigger an exception
+        $eodSubscription = self::exactlyOnceSubscription($client, $topic, ['ackDeadlineSeconds' => 10]);
+        $eodExpiry = $eodSubscription->info()['ackDeadlineSeconds'];
+
+        $topic->publish(['data'=>'test']);
+        $messages = $eodSubscription->pull();
+
+        sleep($eodExpiry + 1);
+
+        
     }
 }

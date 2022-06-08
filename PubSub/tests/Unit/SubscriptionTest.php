@@ -637,7 +637,7 @@ class SubscriptionTest extends TestCase
         $this->assertEquals(count($failedMsgs), 0);
     }
 
-    public function testAcknowledgeBatchNeverRetries()
+    public function testAcknowledgeBatchNeverRetriesOnSuccess()
     {
         $this->connection->acknowledge(Argument::any(
             Argument::withKey('ackIds'),
@@ -916,7 +916,7 @@ class SubscriptionTest extends TestCase
         $this->assertEquals(count($failedMsgs), 0);
     }
 
-    public function testModifyAckDeadlineBatchNeverRetries()
+    public function testModifyAckDeadlineBatchNeverRetriesOnSuccess()
     {
         $this->connection->modifyAckDeadline(Argument::any(
             Argument::withKey('ackIds'),
