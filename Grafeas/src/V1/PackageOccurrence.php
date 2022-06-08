@@ -16,18 +16,52 @@ use Google\Protobuf\Internal\GPBUtil;
 class PackageOccurrence extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The name of the installed package.
+     * The name of the installed package.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
-     * Required. All of the places within the filesystem versions of this package
+     * All of the places within the filesystem versions of this package
      * have been found.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Location location = 2;</code>
      */
     private $location;
+    /**
+     * The type of package; whether native or non native (e.g., ruby gems,
+     * node.js packages, etc.).
+     *
+     * Generated from protobuf field <code>string package_type = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $package_type = '';
+    /**
+     * The cpe_uri in [CPE format](https://cpe.mitre.org/specification/)
+     * denoting the package manager version distributing a package.
+     * The cpe_uri will be blank for language packages.
+     *
+     * Generated from protobuf field <code>string cpe_uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $cpe_uri = '';
+    /**
+     * The CPU architecture for which packages in this distribution channel were
+     * built. Architecture will be blank for language packages.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.Architecture architecture = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $architecture = 0;
+    /**
+     * Licenses that have been declared by the authors of the package.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.License license = 6;</code>
+     */
+    private $license = null;
+    /**
+     * The version of the package.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.Version version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $version = null;
 
     /**
      * Constructor.
@@ -36,10 +70,24 @@ class PackageOccurrence extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The name of the installed package.
+     *           The name of the installed package.
      *     @type \Grafeas\V1\Location[]|\Google\Protobuf\Internal\RepeatedField $location
-     *           Required. All of the places within the filesystem versions of this package
+     *           All of the places within the filesystem versions of this package
      *           have been found.
+     *     @type string $package_type
+     *           The type of package; whether native or non native (e.g., ruby gems,
+     *           node.js packages, etc.).
+     *     @type string $cpe_uri
+     *           The cpe_uri in [CPE format](https://cpe.mitre.org/specification/)
+     *           denoting the package manager version distributing a package.
+     *           The cpe_uri will be blank for language packages.
+     *     @type int $architecture
+     *           The CPU architecture for which packages in this distribution channel were
+     *           built. Architecture will be blank for language packages.
+     *     @type \Grafeas\V1\License $license
+     *           Licenses that have been declared by the authors of the package.
+     *     @type \Grafeas\V1\Version $version
+     *           The version of the package.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,9 +96,9 @@ class PackageOccurrence extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the installed package.
+     * The name of the installed package.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -59,9 +107,9 @@ class PackageOccurrence extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the installed package.
+     * The name of the installed package.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -74,7 +122,7 @@ class PackageOccurrence extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. All of the places within the filesystem versions of this package
+     * All of the places within the filesystem versions of this package
      * have been found.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Location location = 2;</code>
@@ -86,7 +134,7 @@ class PackageOccurrence extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. All of the places within the filesystem versions of this package
+     * All of the places within the filesystem versions of this package
      * have been found.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Location location = 2;</code>
@@ -97,6 +145,164 @@ class PackageOccurrence extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Grafeas\V1\Location::class);
         $this->location = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The type of package; whether native or non native (e.g., ruby gems,
+     * node.js packages, etc.).
+     *
+     * Generated from protobuf field <code>string package_type = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getPackageType()
+    {
+        return $this->package_type;
+    }
+
+    /**
+     * The type of package; whether native or non native (e.g., ruby gems,
+     * node.js packages, etc.).
+     *
+     * Generated from protobuf field <code>string package_type = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPackageType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->package_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The cpe_uri in [CPE format](https://cpe.mitre.org/specification/)
+     * denoting the package manager version distributing a package.
+     * The cpe_uri will be blank for language packages.
+     *
+     * Generated from protobuf field <code>string cpe_uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getCpeUri()
+    {
+        return $this->cpe_uri;
+    }
+
+    /**
+     * The cpe_uri in [CPE format](https://cpe.mitre.org/specification/)
+     * denoting the package manager version distributing a package.
+     * The cpe_uri will be blank for language packages.
+     *
+     * Generated from protobuf field <code>string cpe_uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCpeUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cpe_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * The CPU architecture for which packages in this distribution channel were
+     * built. Architecture will be blank for language packages.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.Architecture architecture = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getArchitecture()
+    {
+        return $this->architecture;
+    }
+
+    /**
+     * The CPU architecture for which packages in this distribution channel were
+     * built. Architecture will be blank for language packages.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.Architecture architecture = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setArchitecture($var)
+    {
+        GPBUtil::checkEnum($var, \Grafeas\V1\Architecture::class);
+        $this->architecture = $var;
+
+        return $this;
+    }
+
+    /**
+     * Licenses that have been declared by the authors of the package.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.License license = 6;</code>
+     * @return \Grafeas\V1\License|null
+     */
+    public function getLicense()
+    {
+        return $this->license;
+    }
+
+    public function hasLicense()
+    {
+        return isset($this->license);
+    }
+
+    public function clearLicense()
+    {
+        unset($this->license);
+    }
+
+    /**
+     * Licenses that have been declared by the authors of the package.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.License license = 6;</code>
+     * @param \Grafeas\V1\License $var
+     * @return $this
+     */
+    public function setLicense($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\License::class);
+        $this->license = $var;
+
+        return $this;
+    }
+
+    /**
+     * The version of the package.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.Version version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Grafeas\V1\Version|null
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    public function hasVersion()
+    {
+        return isset($this->version);
+    }
+
+    public function clearVersion()
+    {
+        unset($this->version);
+    }
+
+    /**
+     * The version of the package.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.Version version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Grafeas\V1\Version $var
+     * @return $this
+     */
+    public function setVersion($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\Version::class);
+        $this->version = $var;
 
         return $this;
     }
