@@ -37,6 +37,7 @@ class ListCollectionIdsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
+    protected $consistency_selector;
 
     /**
      * Constructor.
@@ -54,6 +55,9 @@ class ListCollectionIdsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           A page token. Must be a value from
      *           [ListCollectionIdsResponse][google.firestore.v1.ListCollectionIdsResponse].
+     *     @type \Google\Protobuf\Timestamp $read_time
+     *           Reads documents as they were at the given time.
+     *           This may not be older than 270 seconds.
      * }
      */
     public function __construct($data = NULL) {
@@ -145,6 +149,47 @@ class ListCollectionIdsRequest extends \Google\Protobuf\Internal\Message
         $this->page_token = $var;
 
         return $this;
+    }
+
+    /**
+     * Reads documents as they were at the given time.
+     * This may not be older than 270 seconds.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 4;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getReadTime()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasReadTime()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Reads documents as they were at the given time.
+     * This may not be older than 270 seconds.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 4;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setReadTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConsistencySelector()
+    {
+        return $this->whichOneof("consistency_selector");
     }
 
 }
