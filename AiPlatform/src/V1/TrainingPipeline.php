@@ -92,6 +92,22 @@ class TrainingPipeline extends \Google\Protobuf\Internal\Message
      */
     private $model_to_upload = null;
     /**
+     * Optional. The ID to use for the uploaded Model, which will become the final
+     * component of the model resource name.
+     * This value may be up to 63 characters, and valid characters are
+     * `[a-z0-9_-]`. The first character cannot be a number or hyphen.
+     *
+     * Generated from protobuf field <code>string model_id = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $model_id = '';
+    /**
+     * Optional. When specify this field, the `model_to_upload` will not be uploaded as a
+     * new model, instead, it will become a new version of this `parent_model`.
+     *
+     * Generated from protobuf field <code>string parent_model = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $parent_model = '';
+    /**
      * Output only. The detailed state of the pipeline.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineState state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -201,6 +217,14 @@ class TrainingPipeline extends \Google\Protobuf\Internal\Message
      *           model_to_upload's resource [name][google.cloud.aiplatform.v1.Model.name] is populated. The Model
      *           is always uploaded into the Project and Location in which this pipeline
      *           is.
+     *     @type string $model_id
+     *           Optional. The ID to use for the uploaded Model, which will become the final
+     *           component of the model resource name.
+     *           This value may be up to 63 characters, and valid characters are
+     *           `[a-z0-9_-]`. The first character cannot be a number or hyphen.
+     *     @type string $parent_model
+     *           Optional. When specify this field, the `model_to_upload` will not be uploaded as a
+     *           new model, instead, it will become a new version of this `parent_model`.
      *     @type int $state
      *           Output only. The detailed state of the pipeline.
      *     @type \Google\Rpc\Status $error
@@ -513,6 +537,66 @@ class TrainingPipeline extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Model::class);
         $this->model_to_upload = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The ID to use for the uploaded Model, which will become the final
+     * component of the model resource name.
+     * This value may be up to 63 characters, and valid characters are
+     * `[a-z0-9_-]`. The first character cannot be a number or hyphen.
+     *
+     * Generated from protobuf field <code>string model_id = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getModelId()
+    {
+        return $this->model_id;
+    }
+
+    /**
+     * Optional. The ID to use for the uploaded Model, which will become the final
+     * component of the model resource name.
+     * This value may be up to 63 characters, and valid characters are
+     * `[a-z0-9_-]`. The first character cannot be a number or hyphen.
+     *
+     * Generated from protobuf field <code>string model_id = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModelId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. When specify this field, the `model_to_upload` will not be uploaded as a
+     * new model, instead, it will become a new version of this `parent_model`.
+     *
+     * Generated from protobuf field <code>string parent_model = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getParentModel()
+    {
+        return $this->parent_model;
+    }
+
+    /**
+     * Optional. When specify this field, the `model_to_upload` will not be uploaded as a
+     * new model, instead, it will become a new version of this `parent_model`.
+     *
+     * Generated from protobuf field <code>string parent_model = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParentModel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->parent_model = $var;
 
         return $this;
     }

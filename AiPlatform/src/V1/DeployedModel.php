@@ -26,6 +26,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the Model that this is the deployment of. Note that
      * the Model may be in a different location than the DeployedModel's Endpoint.
+     * The resource name may contain version id or version alias to specify the
+     * version, if no version is specified, the default version will be deployed.
      *
      * Generated from protobuf field <code>string model = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -117,6 +119,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *     @type string $model
      *           Required. The resource name of the Model that this is the deployment of. Note that
      *           the Model may be in a different location than the DeployedModel's Endpoint.
+     *           The resource name may contain version id or version alias to specify the
+     *           version, if no version is specified, the default version will be deployed.
      *     @type string $display_name
      *           The display name of the DeployedModel. If not provided upon creation,
      *           the Model's display_name is used.
@@ -261,6 +265,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the Model that this is the deployment of. Note that
      * the Model may be in a different location than the DeployedModel's Endpoint.
+     * The resource name may contain version id or version alias to specify the
+     * version, if no version is specified, the default version will be deployed.
      *
      * Generated from protobuf field <code>string model = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -273,6 +279,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the Model that this is the deployment of. Note that
      * the Model may be in a different location than the DeployedModel's Endpoint.
+     * The resource name may contain version id or version alias to specify the
+     * version, if no version is specified, the default version will be deployed.
      *
      * Generated from protobuf field <code>string model = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
