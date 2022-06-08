@@ -911,7 +911,7 @@ class Subscription
 
     /**
      * Helper that sends a request to modify the ack deadline but with retries.
-     * 
+     *
      * @param Message[] $messages An array of messages
      * @param int $seconds The new ack deadline with respect to the time
      *        this request was sent to the Pub/Sub system. Must be >= 0. For
@@ -920,7 +920,7 @@ class Subscription
      *        zero may immediately make the message available for another pull
      *        request.
      * @param array $options Configuration Options
-     * 
+     *
      * @return array
      */
     private function modifyAckDeadlineBatchWithRetries(array $messages, int $seconds, array $options)
@@ -939,7 +939,7 @@ class Subscription
     /**
      * Helper function to retry an action for an EOD enabled subscription
      * with an ExponentionBackOff.
-     * 
+     *
      * @param callable $actionFunc The function to be retried
      * @param Messages[] $messages The messages to be passed on to the pubsub service
      * @param array $options The configuration options
