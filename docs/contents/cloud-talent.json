@@ -56,10 +56,6 @@
                     "type": "talent\/v4beta1\/jobserviceclient"
                 },
                 {
-                    "title": "ResumeServiceClient",
-                    "type": "talent\/v4beta1\/resumeserviceclient"
-                },
-                {
                     "title": "TenantServiceClient",
                     "type": "talent\/v4beta1\/tenantserviceclient"
                 }
