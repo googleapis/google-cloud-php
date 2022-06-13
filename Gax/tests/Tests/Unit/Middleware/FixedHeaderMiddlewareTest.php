@@ -44,7 +44,7 @@ class FixedHeaderMiddlewareTest extends TestCase
     {
         $call = $this->getMock(Call::class, [], [], '', false);
         $fixedHeader = [
-            'x-goog-api-client' => ['gl-php/5.5.0 gccl/0.0.0 gapic/0.9.0 gax/1.0.0 grpc/1.0.1']
+            'x-goog-api-client' => ['gl-php/5.5.0 gccl/0.0.0 gapic/0.9.0 gax/1.0.0 grpc/1.0.1 pb/6.6.6']
         ];
         $handlerCalled = false;
         $callable = function(Call $call, $options) use ($fixedHeader, &$handlerCalled) {

@@ -52,6 +52,10 @@ class AgentHeader
      *     @type string $grpcVersion the gRPC version.
      *     @type string $restVersion the REST transport version (typically same as the
      *           ApiCore version).
+     *     @type string $protobufVersion the protobuf version in format 'x.y.z+a' where both 'x.y.z'
+     *           and '+a' are optional, and where 'a' is a single letter representing the
+     *           implementation type of the protobuf runtime. It is recommended to use 'c' for a C
+     *           implementation, and 'n' for the native language implementation (PHP).
      * }
      * @return array Agent header array
      */
@@ -67,6 +71,7 @@ class AgentHeader
         //      - apiCoreVersion (gax/)
         //      - grpcVersion (grpc/)
         //      - restVersion (rest/)
+        //      - protobufVersion (pb/)
 
         $phpVersion = isset($headerInfo['phpVersion'])
             ? $headerInfo['phpVersion']
@@ -106,6 +111,13 @@ class AgentHeader
             ? $headerInfo['restVersion']
             : $apiCoreVersion;
         $metricsHeaders['rest'] = $restVersion;
+
+        // The native version is not set by default because it is complex and costly to retrieve.
+        // Users can override this default behavior if needed.
+        $protobufVersion = isset($headerInfo['protobufVersion'])
+            ? $headerInfo['protobufVersion']
+            : (phpversion('protobuf') ? phpversion('protobuf') . '+c' : '+n');
+        $metricsHeaders['pb'] = $protobufVersion;
 
         $metricsList = [];
         foreach ($metricsHeaders as $key => $value) {
