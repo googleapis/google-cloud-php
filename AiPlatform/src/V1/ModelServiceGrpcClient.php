@@ -78,6 +78,21 @@ class ModelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Lists versions of the specified model.
+     * @param \Google\Cloud\AIPlatform\V1\ListModelVersionsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListModelVersions(\Google\Cloud\AIPlatform\V1\ListModelVersionsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.ModelService/ListModelVersions',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\ListModelVersionsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Updates a Model.
      * @param \Google\Cloud\AIPlatform\V1\UpdateModelRequest $argument input argument
      * @param array $metadata metadata
@@ -108,6 +123,40 @@ class ModelServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.aiplatform.v1.ModelService/DeleteModel',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a Model version.
+     *
+     * Model version can only be deleted if there are no [DeployedModels][]
+     * created from it. Deleting the only version in the Model is not allowed. Use
+     * [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for deleting the Model instead.
+     * @param \Google\Cloud\AIPlatform\V1\DeleteModelVersionRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteModelVersion(\Google\Cloud\AIPlatform\V1\DeleteModelVersionRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.ModelService/DeleteModelVersion',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Merges a set of aliases for a Model version.
+     * @param \Google\Cloud\AIPlatform\V1\MergeVersionAliasesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function MergeVersionAliases(\Google\Cloud\AIPlatform\V1\MergeVersionAliasesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.ModelService/MergeVersionAliases',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\Model', 'decode'],
         $metadata, $options);
     }
 

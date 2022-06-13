@@ -27,11 +27,13 @@ class ModelService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¬,
-.google/cloud/aiplatform/v1/model_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/aiplatform/v1/io.proto&google/cloud/aiplatform/v1/model.proto1google/cloud/aiplatform/v1/model_evaluation.proto7google/cloud/aiplatform/v1/model_evaluation_slice.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"†
+Ñ5
+.google/cloud/aiplatform/v1/model_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/aiplatform/v1/io.proto&google/cloud/aiplatform/v1/model.proto1google/cloud/aiplatform/v1/model_evaluation.proto7google/cloud/aiplatform/v1/model_evaluation_slice.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"¸
 UploadModelRequest9
 parent (	B)àAúA#
-!locations.googleapis.com/Location5
+!locations.googleapis.com/Location
+parent_model (	BàA
+model_id (	BàA5
 model (2!.google.cloud.aiplatform.v1.ModelBàA"n
 UploadModelOperationMetadataN
 generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata"J
@@ -52,13 +54,31 @@ page_token (	-
 order_by (	"`
 ListModelsResponse1
 models (2!.google.cloud.aiplatform.v1.Model
+next_page_token (	"·
+ListModelVersionsRequest5
+name (	B\'àAúA!
+aiplatform.googleapis.com/Model
+	page_size (
+
+page_token (	
+filter (	-
+	read_mask (2.google.protobuf.FieldMask"g
+ListModelVersionsResponse1
+models (2!.google.cloud.aiplatform.v1.Model
 next_page_token (	"
 UpdateModelRequest5
 model (2!.google.cloud.aiplatform.v1.ModelBàA4
 update_mask (2.google.protobuf.FieldMaskBàA"K
 DeleteModelRequest5
 name (	B\'àAúA!
-aiplatform.googleapis.com/Model"î
+aiplatform.googleapis.com/Model"R
+DeleteModelVersionRequest5
+name (	B\'àAúA!
+aiplatform.googleapis.com/Model"q
+MergeVersionAliasesRequest5
+name (	B\'àAúA!
+aiplatform.googleapis.com/Model
+version_aliases (	BàA"î
 ExportModelRequest5
 name (	B\'àAúA!
 aiplatform.googleapis.com/ModelW
@@ -106,16 +126,20 @@ page_token (	-
 	read_mask (2.google.protobuf.FieldMask"
 !ListModelEvaluationSlicesResponseQ
 model_evaluation_slices (20.google.cloud.aiplatform.v1.ModelEvaluationSlice
-next_page_token (	2¾
+next_page_token (	2Ç
 ModelServiceà
 UploadModel..google.cloud.aiplatform.v1.UploadModelRequest.google.longrunning.Operation"‚Óä“6"1/v1/{parent=projects/*/locations/*}/models:upload:*ÚAparent,modelÊA3
 UploadModelResponseUploadModelOperationMetadata•
 GetModel+.google.cloud.aiplatform.v1.GetModelRequest!.google.cloud.aiplatform.v1.Model"9‚Óä“,*/v1/{name=projects/*/locations/*/models/*}ÚAname¨
 
-ListModels-.google.cloud.aiplatform.v1.ListModelsRequest..google.cloud.aiplatform.v1.ListModelsResponse";‚Óä“,*/v1/{parent=projects/*/locations/*}/modelsÚAparentµ
+ListModels-.google.cloud.aiplatform.v1.ListModelsRequest..google.cloud.aiplatform.v1.ListModelsResponse";‚Óä“,*/v1/{parent=projects/*/locations/*}/modelsÚAparentÈ
+ListModelVersions4.google.cloud.aiplatform.v1.ListModelVersionsRequest5.google.cloud.aiplatform.v1.ListModelVersionsResponse"F‚Óä“97/v1/{name=projects/*/locations/*/models/*}:listVersionsÚAnameµ
 UpdateModel..google.cloud.aiplatform.v1.UpdateModelRequest!.google.cloud.aiplatform.v1.Model"S‚Óä“920/v1/{model.name=projects/*/locations/*/models/*}:modelÚAmodel,update_maskÊ
 DeleteModel..google.cloud.aiplatform.v1.DeleteModelRequest.google.longrunning.Operation"l‚Óä“,**/v1/{name=projects/*/locations/*/models/*}ÚAnameÊA0
 google.protobuf.EmptyDeleteOperationMetadataæ
+DeleteModelVersion5.google.cloud.aiplatform.v1.DeleteModelVersionRequest.google.longrunning.Operation"z‚Óä“:*8/v1/{name=projects/*/locations/*/models/*}:deleteVersionÚAnameÊA0
+google.protobuf.EmptyDeleteOperationMetadataÒ
+MergeVersionAliases6.google.cloud.aiplatform.v1.MergeVersionAliasesRequest!.google.cloud.aiplatform.v1.Model"`‚Óä“C">/v1/{name=projects/*/locations/*/models/*}:mergeVersionAliases:*ÚAname,version_aliasesæ
 ExportModel..google.cloud.aiplatform.v1.ExportModelRequest.google.longrunning.Operation"‡‚Óä“6"1/v1/{name=projects/*/locations/*/models/*}:export:*ÚAname,output_configÊA3
 ExportModelResponseExportModelOperationMetadataä
 ImportModelEvaluation8.google.cloud.aiplatform.v1.ImportModelEvaluationRequest+.google.cloud.aiplatform.v1.ModelEvaluation"d‚Óä“D"?/v1/{parent=projects/*/locations/*/models/*}/evaluations:import:*ÚAparent,model_evaluationÁ
