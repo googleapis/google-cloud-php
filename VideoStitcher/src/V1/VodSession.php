@@ -77,6 +77,12 @@ class VodSession extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.ManifestOptions manifest_options = 9;</code>
      */
     private $manifest_options = null;
+    /**
+     * Output only. The generated ID of the VodSession's source media.
+     *
+     * Generated from protobuf field <code>string asset_id = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $asset_id = '';
 
     /**
      * Constructor.
@@ -114,6 +120,8 @@ class VodSession extends \Google\Protobuf\Internal\Message
      *           on behalf of the client player.
      *     @type \Google\Cloud\Video\Stitcher\V1\ManifestOptions $manifest_options
      *           Additional options that affect the output of the manifest.
+     *     @type string $asset_id
+     *           Output only. The generated ID of the VodSession's source media.
      * }
      */
     public function __construct($data = NULL) {
@@ -373,6 +381,32 @@ class VodSession extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\Stitcher\V1\ManifestOptions::class);
         $this->manifest_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The generated ID of the VodSession's source media.
+     *
+     * Generated from protobuf field <code>string asset_id = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getAssetId()
+    {
+        return $this->asset_id;
+    }
+
+    /**
+     * Output only. The generated ID of the VodSession's source media.
+     *
+     * Generated from protobuf field <code>string asset_id = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAssetId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->asset_id = $var;
 
         return $this;
     }

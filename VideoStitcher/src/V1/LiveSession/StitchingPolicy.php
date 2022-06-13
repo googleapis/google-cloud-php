@@ -27,12 +27,6 @@ class StitchingPolicy
      */
     const COMPLETE_AD = 1;
     /**
-     * Finishes stitching the current pod before returning to content.
-     *
-     * Generated from protobuf enum <code>COMPLETE_POD = 2;</code>
-     */
-    const COMPLETE_POD = 2;
-    /**
      * Cuts an ad short and returns to content in the middle of the ad.
      *
      * Generated from protobuf enum <code>CUT_CURRENT = 3;</code>
@@ -42,7 +36,6 @@ class StitchingPolicy
     private static $valueToName = [
         self::STITCHING_POLICY_UNSPECIFIED => 'STITCHING_POLICY_UNSPECIFIED',
         self::COMPLETE_AD => 'COMPLETE_AD',
-        self::COMPLETE_POD => 'COMPLETE_POD',
         self::CUT_CURRENT => 'CUT_CURRENT',
     ];
 

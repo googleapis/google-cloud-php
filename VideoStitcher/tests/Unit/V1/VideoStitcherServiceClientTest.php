@@ -171,6 +171,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $defaultAdTagId = 'defaultAdTagId1910479614';
         $clientAdTracking = false;
         $defaultSlateId = 'defaultSlateId-1589112385';
+        $streamId = 'streamId-315624902';
         $expectedResponse = new LiveSession();
         $expectedResponse->setName($name);
         $expectedResponse->setPlayUri($playUri);
@@ -178,6 +179,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setDefaultAdTagId($defaultAdTagId);
         $expectedResponse->setClientAdTracking($clientAdTracking);
         $expectedResponse->setDefaultSlateId($defaultSlateId);
+        $expectedResponse->setStreamId($streamId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
@@ -322,12 +324,14 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $sourceUri = 'sourceUri-1111107768';
         $adTagUri = 'adTagUri-1429194965';
         $clientAdTracking = false;
+        $assetId = 'assetId-373202742';
         $expectedResponse = new VodSession();
         $expectedResponse->setName($name);
         $expectedResponse->setPlayUri($playUri);
         $expectedResponse->setSourceUri($sourceUri);
         $expectedResponse->setAdTagUri($adTagUri);
         $expectedResponse->setClientAdTracking($clientAdTracking);
+        $expectedResponse->setAssetId($assetId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
@@ -659,6 +663,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $defaultAdTagId = 'defaultAdTagId1910479614';
         $clientAdTracking = false;
         $defaultSlateId = 'defaultSlateId-1589112385';
+        $streamId = 'streamId-315624902';
         $expectedResponse = new LiveSession();
         $expectedResponse->setName($name2);
         $expectedResponse->setPlayUri($playUri);
@@ -666,6 +671,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setDefaultAdTagId($defaultAdTagId);
         $expectedResponse->setClientAdTracking($clientAdTracking);
         $expectedResponse->setDefaultSlateId($defaultSlateId);
+        $expectedResponse->setStreamId($streamId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
@@ -862,12 +868,14 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $sourceUri = 'sourceUri-1111107768';
         $adTagUri = 'adTagUri-1429194965';
         $clientAdTracking = false;
+        $assetId = 'assetId-373202742';
         $expectedResponse = new VodSession();
         $expectedResponse->setName($name2);
         $expectedResponse->setPlayUri($playUri);
         $expectedResponse->setSourceUri($sourceUri);
         $expectedResponse->setAdTagUri($adTagUri);
         $expectedResponse->setClientAdTracking($clientAdTracking);
+        $expectedResponse->setAssetId($assetId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');

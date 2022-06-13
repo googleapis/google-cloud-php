@@ -23,14 +23,12 @@ class VideoStitcherService
         \GPBMetadata\Google\Cloud\Video\Stitcher\V1\Sessions::initOnce();
         \GPBMetadata\Google\Cloud\Video\Stitcher\V1\Slates::initOnce();
         \GPBMetadata\Google\Cloud\Video\Stitcher\V1\StitchDetails::initOnce();
-        \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
-        \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‘=
-;google/cloud/video/stitcher/v1/video_stitcher_service.protogoogle.cloud.video.stitcher.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto3google/cloud/video/stitcher/v1/ad_tag_details.proto-google/cloud/video/stitcher/v1/cdn_keys.proto-google/cloud/video/stitcher/v1/sessions.proto+google/cloud/video/stitcher/v1/slates.proto3google/cloud/video/stitcher/v1/stitch_details.protogoogle/protobuf/duration.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"©
+Ð<
+;google/cloud/video/stitcher/v1/video_stitcher_service.protogoogle.cloud.video.stitcher.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto3google/cloud/video/stitcher/v1/ad_tag_details.proto-google/cloud/video/stitcher/v1/cdn_keys.proto-google/cloud/video/stitcher/v1/sessions.proto+google/cloud/video/stitcher/v1/slates.proto3google/cloud/video/stitcher/v1/stitch_details.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"©
 CreateCdnKeyRequest;
 parent (	B+àAúA%#videostitcher.googleapis.com/CdnKey<
 cdn_key (2&.google.cloud.video.stitcher.v1.CdnKeyBàA
