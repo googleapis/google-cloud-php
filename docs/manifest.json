@@ -1968,6 +1968,14 @@
             ]
         },
         {
+            "id": "cloud-gke-multi-cloud",
+            "name": "google/cloud-gke-multi-cloud",
+            "defaultService": "gkemulticloud/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-iam-credentials",
             "name": "google/cloud-iam-credentials",
             "defaultService": "iamcredentials/readme",
