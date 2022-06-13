@@ -17,11 +17,10 @@ class Company
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Talent\V4Beta1\Common::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-·
-)google/cloud/talent/v4beta1/company.protogoogle.cloud.talent.v4beta1google/api/resource.proto(google/cloud/talent/v4beta1/common.protogoogle/api/annotations.proto"ü
+™
+)google/cloud/talent/v4beta1/company.protogoogle.cloud.talent.v4beta1google/api/resource.proto(google/cloud/talent/v4beta1/common.proto"ü
 Company
 name (	
 display_name (	BàA

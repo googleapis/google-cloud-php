@@ -65,9 +65,6 @@ class ClientEvent extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Talent\V4beta1\JobEvent $job_event
      *           An event issued when a job seeker interacts with the application that
      *           implements Cloud Talent Solution.
-     *     @type \Google\Cloud\Talent\V4beta1\ProfileEvent $profile_event
-     *           An event issued when a profile searcher interacts with the application
-     *           that implements Cloud Talent Solution.
      *     @type string $event_notes
      *           Notes about the event provided by recruiters or other users, for example,
      *           feedback on why a profile was bookmarked.
@@ -199,39 +196,6 @@ class ClientEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\JobEvent::class);
         $this->writeOneof(5, $var);
-
-        return $this;
-    }
-
-    /**
-     * An event issued when a profile searcher interacts with the application
-     * that implements Cloud Talent Solution.
-     *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileEvent profile_event = 6;</code>
-     * @return \Google\Cloud\Talent\V4beta1\ProfileEvent|null
-     */
-    public function getProfileEvent()
-    {
-        return $this->readOneof(6);
-    }
-
-    public function hasProfileEvent()
-    {
-        return $this->hasOneof(6);
-    }
-
-    /**
-     * An event issued when a profile searcher interacts with the application
-     * that implements Cloud Talent Solution.
-     *
-     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileEvent profile_event = 6;</code>
-     * @param \Google\Cloud\Talent\V4beta1\ProfileEvent $var
-     * @return $this
-     */
-    public function setProfileEvent($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\ProfileEvent::class);
-        $this->writeOneof(6, $var);
 
         return $this;
     }
