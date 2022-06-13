@@ -216,6 +216,33 @@ class QueryTest extends TestCase
         $this->assertEquals('EQUAL', $filters[0]['propertyFilter']['op']);
     }
 
+    public function testOperatorConstantsNotEquals()
+    {
+        $this->query->filter('propName', Query::OP_NOT_EQUALS, 'val');
+        $res = $this->query->queryObject();
+
+        $filters = $res['filter']['compositeFilter']['filters'];
+        $this->assertEquals('NOT_EQUAL', $filters[0]['propertyFilter']['op']);
+    }
+
+    public function testOperatorConstantsIn()
+    {
+        $this->query->filter('propName', Query::OP_IN, 'val');
+        $res = $this->query->queryObject();
+
+        $filters = $res['filter']['compositeFilter']['filters'];
+        $this->assertEquals('IN', $filters[0]['propertyFilter']['op']);
+    }
+
+    public function testOperatorConstantsNotIn()
+    {
+        $this->query->filter('propName', Query::OP_NOT_IN, 'val');
+        $res = $this->query->queryObject();
+
+        $filters = $res['filter']['compositeFilter']['filters'];
+        $this->assertEquals('NOT_IN', $filters[0]['propertyFilter']['op']);
+    }
+
     public function testOperatorConstantsHasAncestor()
     {
         $this->query->filter('propName', Query::OP_HAS_ANCESTOR, 'val');
@@ -268,6 +295,15 @@ class QueryTest extends TestCase
 
         $filters = $res['filter']['compositeFilter']['filters'];
         $this->assertEquals('EQUAL', $filters[0]['propertyFilter']['op']);
+    }
+
+    public function testShortOperatorNotEquals()
+    {
+        $this->query->filter('propName', '!=', 'val');
+        $res = $this->query->queryObject();
+
+        $filters = $res['filter']['compositeFilter']['filters'];
+        $this->assertEquals('NOT_EQUAL', $filters[0]['propertyFilter']['op']);
     }
 
     public function testOrder()
