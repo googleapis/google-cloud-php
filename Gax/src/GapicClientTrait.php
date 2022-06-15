@@ -183,7 +183,7 @@ trait GapicClientTrait
         // we will not encounter missing keys
         $options += $defaultOptions;
         $options['credentialsConfig'] += $defaultOptions['credentialsConfig'];
-        $options['transportConfig'] += $defaultOptions['transportConfig'];
+        $options['transportConfig'] += $defaultOptions['transportConfig'];  // @phpstan-ignore-line
         if (isset($options['transportConfig']['grpc'])) {
             $options['transportConfig']['grpc'] += $defaultOptions['transportConfig']['grpc'];
             $options['transportConfig']['grpc']['stubOpts'] += $defaultOptions['transportConfig']['grpc']['stubOpts'];
@@ -769,7 +769,7 @@ trait GapicClientTrait
         if (!defined('self::SERVICE_ADDRESS')) {
             return null;
         }
-        return 'https://' . self::SERVICE_ADDRESS . '/';
+        return 'https://' . self::SERVICE_ADDRESS . '/'; // @phpstan-ignore-line
     }
 
     /**

@@ -149,8 +149,8 @@ class RequestBuilder
     }
 
     /**
-     * @param $message
-     * @param $config
+     * @param Message $message
+     * @param array $config
      * @return array Tuple [$body, $queryParams]
      */
     private function constructBodyAndQueryParameters(Message $message, $config)
@@ -229,7 +229,7 @@ class RequestBuilder
     /**
      * Try to render the resource name. The rendered resource name will always contain a leading '/'
      *
-     * @param $uriTemplate
+     * @param string $uriTemplate
      * @param array $bindings
      * @return null|string
      * @throws ValidationException
@@ -246,8 +246,8 @@ class RequestBuilder
     }
 
     /**
-     * @param $path
-     * @param $queryParams
+     * @param string $path
+     * @param array $queryParams
      * @return UriInterface
      */
     private function buildUri($path, $queryParams)

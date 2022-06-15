@@ -39,10 +39,11 @@ interface ServerStreamingCallInterface
      * Start the call.
      *
      * @param mixed $data     The data to send
-     * @param array $metadata Metadata to send with the call, if applicable
+     * @param array<mixed> $metadata Metadata to send with the call, if applicable
      *                        (optional)
-     * @param array $options  An array of options, possible keys:
+     * @param array<mixed> $options  An array of options, possible keys:
      *                        'flags' => a number (optional)
+     * @return void
      */
     public function start($data, array $metadata = [], array $options = []);
 
@@ -75,6 +76,8 @@ interface ServerStreamingCallInterface
 
     /**
      * Cancels the call.
+     *
+     * @return void
      */
     public function cancel();
 
@@ -82,6 +85,8 @@ interface ServerStreamingCallInterface
      * Set the CallCredentials for the underlying Call.
      *
      * @param mixed $call_credentials The CallCredentials object
+     *
+     * @return void
      */
     public function setCallCredentials($call_credentials);
 }

@@ -33,6 +33,9 @@ namespace Google\ApiCore;
 
 class Version
 {
+    /**
+     * @var ?string
+     */
     private static $version = null;
 
     /**
@@ -57,7 +60,7 @@ class Version
     public static function readVersionFile($file)
     {
         $versionString = file_exists($file)
-            ? file_get_contents($file)
+            ? (string) file_get_contents($file)
             : "";
         return trim($versionString);
     }

@@ -183,7 +183,7 @@ class Segment
      * Check if $binding is a valid segment binding. Segment bindings may contain any characters
      * except a forward slash ('/'), and may not be empty.
      *
-     * @param $binding
+     * @param string $binding
      * @return bool
      */
     private static function isValidBinding($binding)
@@ -195,7 +195,7 @@ class Segment
      * Check if $binding is a valid double wildcard binding. Segment bindings may contain any
      * characters, but may not be empty.
      *
-     * @param $binding
+     * @param string $binding
      * @return bool
      */
     private static function isValidDoubleWildcardBinding($binding)

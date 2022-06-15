@@ -42,9 +42,9 @@ namespace Google\ApiCore\Transport\Grpc;
 interface UnaryInterceptorInterface
 {
     /**
-     * @param $method
-     * @param $argument
-     * @param $deserialize
+     * @param string $method
+     * @param \Google\Protobuf\Internal\Message $argument
+     * @param callable $deserialize
      * @param array $metadata
      * @param array $options
      * @param callable $continuation
