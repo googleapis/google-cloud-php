@@ -1,6 +1,6 @@
-# Google Cloud Gke Multi Cloud for PHP
+# Google Anthos Multi Cloud Client for PHP
 
-> Idiomatic PHP client for [Google Cloud Gke Multi Cloud](https://cloud.google.com/anthos).
+> Idiomatic PHP client for [Google Anthos Multi Cloud](https://cloud.google.com/anthos).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-gke-multi-cloud/v/stable)](https://packagist.org/packages/google/cloud-gke-multi-cloud) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-gke-multi-cloud.svg)](https://packagist.org/packages/google/cloud-gke-multi-cloud)
 

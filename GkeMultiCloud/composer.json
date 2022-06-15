@@ -1,6 +1,6 @@
 {
     "name": "google/cloud-gke-multi-cloud",
-    "description": "Google Cloud Gke Multi Cloud Client for PHP",
+    "description": "Google Anthos Multi Cloud Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {
