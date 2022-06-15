@@ -50,7 +50,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
     /**
      * Password leak verification info.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 8;</code>
      */
     private $private_password_leak_verification = null;
 
@@ -258,7 +258,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
     /**
      * Password leak verification info.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 8;</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\PrivatePasswordLeakVerification|null
      */
     public function getPrivatePasswordLeakVerification()
@@ -279,7 +279,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
     /**
      * Password leak verification info.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 8;</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\PrivatePasswordLeakVerification $var
      * @return $this
      */
