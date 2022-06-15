@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.184.0",
                 "v0.183.0",
                 "v0.182.0",
                 "v0.181.0",
@@ -308,6 +309,7 @@
             "name": "google/cloud-ai-platform",
             "defaultService": "aiplatform/readme",
             "versions": [
+                "v0.5.0",
                 "v0.4.0",
                 "v0.3.1",
                 "v0.3.0",
@@ -430,6 +432,7 @@
             "name": "google/cloud-assured-workloads",
             "defaultService": "assuredworkloads/readme",
             "versions": [
+                "v0.6.0",
                 "v0.5.3",
                 "v0.5.2",
                 "v0.5.1",
@@ -952,6 +955,7 @@
             "name": "google/cloud-contact-center-insights",
             "defaultService": "contactcenterinsights/readme",
             "versions": [
+                "v0.2.5",
                 "v0.2.4",
                 "v0.2.3",
                 "v0.2.2",
@@ -1045,6 +1049,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.46.1",
                 "v1.46.0",
                 "v1.45.0",
                 "v1.44.4",
@@ -1322,6 +1327,7 @@
             "name": "google/cloud-datastore",
             "defaultService": "datastore/datastoreclient",
             "versions": [
+                "v1.15.0",
                 "v1.14.2",
                 "v1.14.1",
                 "v1.14.0",
@@ -1814,6 +1820,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v1.24.0",
                 "v1.23.0",
                 "v1.22.1",
                 "v1.22.0",
@@ -1908,6 +1915,7 @@
             "name": "google/cloud-functions",
             "defaultService": "functions/readme",
             "versions": [
+                "v0.4.0",
                 "v0.3.2",
                 "v0.3.1",
                 "v0.3.0",
@@ -1972,6 +1980,7 @@
             "name": "google/cloud-gke-multi-cloud",
             "defaultService": "gkemulticloud/readme",
             "versions": [
+                "v0.1.0",
                 "main"
             ]
         },
@@ -2654,6 +2663,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v1.38.1",
                 "v1.38.0",
                 "v1.37.0",
                 "v1.36.1",
@@ -3143,6 +3153,7 @@
             "name": "google/cloud-shell",
             "defaultService": "shell/readme",
             "versions": [
+                "v0.2.0",
                 "v0.1.4",
                 "v0.1.3",
                 "v0.1.2",
@@ -3156,6 +3167,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.50.0",
                 "v1.49.2",
                 "v1.49.1",
                 "v1.49.0",
@@ -3460,6 +3472,7 @@
             "name": "google/cloud-talent",
             "defaultService": "talent/readme",
             "versions": [
+                "v0.18.0",
                 "v0.17.0",
                 "v0.16.6",
                 "v0.16.5",
@@ -3752,6 +3765,7 @@
             "name": "google/cloud-video-stitcher",
             "defaultService": "videostitcher/readme",
             "versions": [
+                "v0.2.0",
                 "v0.1.3",
                 "v0.1.2",
                 "v0.1.1",
@@ -4051,6 +4065,7 @@
             "name": "google/grafeas",
             "defaultService": "grafeas/readme",
             "versions": [
+                "v0.3.0",
                 "v0.2.4",
                 "v0.2.3",
                 "v0.2.2",
