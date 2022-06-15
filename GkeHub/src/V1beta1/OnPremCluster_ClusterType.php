@@ -12,5 +12,5 @@ if (false) {
     class OnPremCluster_ClusterType {}
 }
 class_exists(OnPremCluster\ClusterType::class);
-@trigger_error('Google\Cloud\GkeHub\V1beta1\OnPremCluster_ClusterType is deprecated and will be removed in the next major release. Use Google\Cloud\GkeHub\V1beta1\OnPremCluster\ClusterType instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\GkeHub\V1beta1\OnPremCluster_ClusterType is deprecated and will be removed in a future release. Use Google\Cloud\GkeHub\V1beta1\OnPremCluster\ClusterType instead', E_USER_DEPRECATED);
 
