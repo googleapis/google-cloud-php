@@ -30,7 +30,7 @@ class ServiceException extends GoogleException
     const ERRORINFO_TYPE_REST = 'type.googleapis.com/google.rpc.ErrorInfo';
 
     /**
-     * @var Exception
+     * @var Exception|null
      */
     private $serviceException;
 
@@ -90,7 +90,7 @@ class ServiceException extends GoogleException
     /**
      * Return the service exception object.
      *
-     * @return Exception
+     * @return Exception|null
      */
     public function getServiceException()
     {
