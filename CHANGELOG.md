@@ -1,5 +1,161 @@
 # Changelog
 
+## 0.184.0
+
+<details><summary>google/cloud-ai-platform 0.5.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add monitor_window to ModelDeploymentMonitoringScheduleConfig proto in aiplatform v1/v1beta1 model_deployment_monitoring_job.proto ([#5320](https://github.com/googleapis/google-cloud-php/issues/5320)) ([c92aa81](https://github.com/googleapis/google-cloud-php/commit/c92aa81ead0280562b4d923e1824b7c07b5d61fe))
+* [AiPlatform] add successful_forecast_point_count to CompletionStats in aiplatform v1 completion_stats.proto ([#5329](https://github.com/googleapis/google-cloud-php/issues/5329)) ([17a783d](https://github.com/googleapis/google-cloud-php/commit/17a783d81d46db0b45941e844275f75b806ab596))
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 0.6.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* * feat!: Removed _v1beta1 suffix from proto file names proto file name is changed from assuredworkloads_v1beta1.proto to assuredworkloads.proto
+
+### Features
+
+* [AssuredWorkloads] Removed _v1beta1 suffix from proto file names ([#5337](https://github.com/googleapis/google-cloud-php/issues/5337)) ([d0b3c9c](https://github.com/googleapis/google-cloud-php/commit/d0b3c9cc454c8aea3b17533c337eda2dfe75fa7f))
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 0.2.5</summary>
+
+
+
+### Documentation
+
+* [ContactCenterInsights] Updating comments ([#5319](https://github.com/googleapis/google-cloud-php/issues/5319)) ([9574294](https://github.com/googleapis/google-cloud-php/commit/957429495164efc545700d7aab3fc94640710bd6))
+
+</details>
+
+<details><summary>google/cloud-core 1.46.1</summary>
+
+
+
+### Bug Fixes
+
+* **core:** Fixed return type for service exception ([#5338](https://github.com/googleapis/google-cloud-php/issues/5338)) ([8e481b1](https://github.com/googleapis/google-cloud-php/commit/8e481b1918dfbae8a23b8fab2eed12327276b8b2))
+
+
+### Miscellaneous Chores
+
+* Raise minimum versions of Guzzle ([#5332](https://github.com/googleapis/google-cloud-php/issues/5332)) ([4356860](https://github.com/googleapis/google-cloud-php/commit/43568600229eb6378ce271130b6a1ccb50cc87d6))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.15.0</summary>
+
+
+
+### Features
+
+* support IN/NOT_IN/NOT_EQUAL operators ([#5198](https://github.com/googleapis/google-cloud-php/issues/5198)) ([8bdc637](https://github.com/googleapis/google-cloud-php/commit/8bdc637d0f5d3a01f5fdec7f2df531bb5304f174))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.24.0</summary>
+
+
+
+### Features
+
+* [Firestore] expose read_time fields in Firestore PartitionQuery and ListCollectionIds, currently only available in private preview ([#5328](https://github.com/googleapis/google-cloud-php/issues/5328)) ([2e14cf1](https://github.com/googleapis/google-cloud-php/commit/2e14cf1ab393d6da4e02b6ee325fb49180c15869))
+
+</details>
+
+<details><summary>google/cloud-functions 0.4.0</summary>
+
+
+
+### Features
+
+* [Functions] added support for CMEK ([#5321](https://github.com/googleapis/google-cloud-php/issues/5321)) ([65913d0](https://github.com/googleapis/google-cloud-php/commit/65913d04710d2fe031ceee43d4cb125be373e291))
+
+</details>
+
+<details><summary>google/cloud-gke-multi-cloud 0.1.0</summary>
+
+
+
+### Features
+
+* introduce gke multi cloud (anthos) ([#5336](https://github.com/googleapis/google-cloud-php/issues/5336)) ([02d85dd](https://github.com/googleapis/google-cloud-php/commit/02d85dd1905a538c9f1ab88088b79e18ce0b94c5))
+
+</details>
+
+<details><summary>google/grafeas 0.3.0</summary>
+
+
+
+### Features
+
+* [Grafeas]Import of Grafeas from Github ([#5326](https://github.com/googleapis/google-cloud-php/issues/5326)) ([688e3fb](https://github.com/googleapis/google-cloud-php/commit/688e3fbde53f20d82d6bf5b66ae5fec84a2a0a03))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.38.1</summary>
+
+
+
+### Bug Fixes
+
+* remove default value for deprecated option "returnImmediately" ([#4734](https://github.com/googleapis/google-cloud-php/issues/4734)) ([1416117](https://github.com/googleapis/google-cloud-php/commit/1416117b1057c3371cb4716ad0a1cfbb142f5ce9))
+
+</details>
+
+<details><summary>google/cloud-shell 0.2.0</summary>
+
+
+
+### Features
+
+* [Shell] expose clientCertSource option ([#4889](https://github.com/googleapis/google-cloud-php/issues/4889)) ([7326883](https://github.com/googleapis/google-cloud-php/commit/7326883999de2faf92b434892d4286afb9f5356b))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.50.0</summary>
+
+
+
+### Features
+
+* [Spanner] add Session creator role ([#5318](https://github.com/googleapis/google-cloud-php/issues/5318)) ([fb87e51](https://github.com/googleapis/google-cloud-php/commit/fb87e51c917e16709c03830a16d50ad372c5780f))
+
+</details>
+
+<details><summary>google/cloud-talent 0.18.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [Talent] remove Application and Profile services and and related protos, enums, and messages (#5322)
+
+### Bug Fixes
+
+* [Talent] remove Application and Profile services and and related protos, enums, and messages ([#5322](https://github.com/googleapis/google-cloud-php/issues/5322)) ([4866ee2](https://github.com/googleapis/google-cloud-php/commit/4866ee2caa9371da8eece6834555b0b47cadf132))
+
+</details>
+
+<details><summary>google/cloud-video-stitcher 0.2.0</summary>
+
+
+
+### Features
+
+* [VideoStitcher] add asset_id and stream_id fields to VodSession and LiveSession responses ([#5331](https://github.com/googleapis/google-cloud-php/issues/5331)) ([3c125a6](https://github.com/googleapis/google-cloud-php/commit/3c125a66ac84556314a3908f47b6ccb9948f330e))
+
+</details>
+
 ## 0.183.0
 
 <details><summary>google/cloud-ai-platform 0.4.0</summary>
