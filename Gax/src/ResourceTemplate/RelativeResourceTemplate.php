@@ -319,7 +319,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
     }
 
     /**
-     * @param array[] A list of [string, Segment] tuples
+     * @param array[] $keySegmentTuples A list of [string, Segment] tuples
      * @return array[] A list of [string, Segment] tuples
      */
     private static function flattenKeySegmentTuples(array $keySegmentTuples)

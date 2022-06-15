@@ -85,7 +85,7 @@ trait PollingTrait
     /**
      * Protected to allow overriding for tests
      *
-     * @param float $millis
+     * @param int $millis
      */
     protected function sleepMillis($millis)
     {

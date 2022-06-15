@@ -205,7 +205,7 @@ class Serializer
     /**
      * Decode an array of Any messages into a printable PHP array.
      *
-     * @param $anyArray
+     * @param iterable $anyArray
      * @return array
      */
     public static function decodeAnyMessages($anyArray)
@@ -231,8 +231,8 @@ class Serializer
 
     /**
      * @param FieldDescriptor $field
-     * @param $data
-     * @return mixed array
+     * @param array $data
+     * @return mixed
      * @throws \Exception
      */
     private function encodeElement(FieldDescriptor $field, $data)
@@ -395,7 +395,7 @@ class Serializer
                 ));
             }
 
-            /** @var $field FieldDescriptor */
+            /** @var FieldDescriptor $field */
             $field = $fieldsByName[$fieldName];
 
             if ($field->isMap()) {

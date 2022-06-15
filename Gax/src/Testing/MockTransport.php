@@ -45,7 +45,7 @@ class MockTransport implements TransportInterface
 {
     use MockStubTrait;
 
-    private $agentHeaderDescriptor;
+    private $agentHeaderDescriptor; // @phpstan-ignore-line
 
     public function setAgentHeaderDescriptor($agentHeaderDescriptor)
     {

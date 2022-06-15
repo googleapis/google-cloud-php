@@ -117,6 +117,7 @@ class Call
      */
     public function withMessage($message)
     {
+        // @phpstan-ignore-next-line
         return new static(
             $this->method,
             $this->decodeType,

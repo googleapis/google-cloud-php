@@ -179,7 +179,7 @@ class GrpcFallbackTransport implements TransportInterface
         }
 
         if ($this->clientCertSource) {
-            list($cert, $key) = self::loadClientCertSource();
+            list($cert, $key) = self::loadClientCertSource($this->clientCertSource);
             $callOptions['cert'] = $cert;
             $callOptions['key'] = $key;
         }

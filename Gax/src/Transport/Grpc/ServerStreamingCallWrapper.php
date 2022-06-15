@@ -48,7 +48,7 @@ class ServerStreamingCallWrapper implements ServerStreamingCallInterface
     private $stream;
 
     /**
-     * @param $stream ServerStreamingCall|GCPServerStreamCall
+     * @param ServerStreamingCall|GCPServerStreamCall $stream
      */
     public function __construct($stream)
     {

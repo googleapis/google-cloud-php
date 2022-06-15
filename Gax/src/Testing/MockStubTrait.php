@@ -50,7 +50,7 @@ trait MockStubTrait
     private $callObjects = [];
     private $deserialize;
 
-    public function __construct($deserialize = null)
+    public function __construct(callable $deserialize = null)
     {
         $this->deserialize = $deserialize;
     }
@@ -257,13 +257,13 @@ trait MockStubTrait
 
     /**
      * @param mixed $responseObject
-     * @param $status
+     * @param Status|null $status
      * @param callable $deserialize
      * @return static An instance of the current class type.
      */
     public static function create($responseObject, $status = null, $deserialize = null)
     {
-        $stub = new static($deserialize);
+        $stub = new static($deserialize); // @phpstan-ignore-line
         $stub->addResponse($responseObject, $status);
         return $stub;
     }
@@ -277,7 +277,7 @@ trait MockStubTrait
      */
     public static function createWithResponseSequence($sequence, $deserialize = null, $finalStatus = null)
     {
-        $stub = new static($deserialize);
+        $stub = new static($deserialize); // @phpstan-ignore-line
         foreach ($sequence as $elem) {
             if (count($elem) == 1) {
                 list($resp, $status) = [$elem, null];

@@ -41,6 +41,7 @@ use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
 use Google\Protobuf\Internal\Message;
 use GuzzleHttp\Exception\RequestException;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -54,6 +55,9 @@ class RestTransport implements TransportInterface
         startServerStreamingCall as protected unsupportedServerStreamingCall;
     }
 
+    /**
+     * @var RequestBuilder
+     */
     private $requestBuilder;
 
     /**
@@ -77,7 +81,7 @@ class RestTransport implements TransportInterface
      *        The address of the API remote host, for example "example.googleapis.com".
      * @param string $restConfigPath
      *        Path to rest config file.
-     * @param array $config {
+     * @param array<mixed> $config {
      *    Config options used to construct the gRPC transport.
      *
      *    @type callable $httpHandler A handler used to deliver PSR-7 requests.
@@ -147,7 +151,7 @@ class RestTransport implements TransportInterface
 
     /**
      * {@inheritdoc}
-     * @throws BadMethodCallException for forwards compatibility with older GAPIC clients
+     * @throws \BadMethodCallException for forwards compatibility with older GAPIC clients
      */
     public function startServerStreamingCall(Call $call, array $options)
     {
@@ -169,7 +173,7 @@ class RestTransport implements TransportInterface
             $call->getMessage()
             // Exclude headers here because they will be added in _serverStreamRequest().
         );
-        
+
         $decoderOptions = [];
         if (isset($options['decoderOptions'])) {
             $decoderOptions = $options['decoderOptions'];
@@ -193,11 +197,12 @@ class RestTransport implements TransportInterface
      *
      * @param callable $httpHandler The HTTP Handler to invoke the request with.
      * @param RequestInterface $request The request to invoke.
-     * @param array $headers The headers to include in the request.
+     * @param array<mixed> $headers The headers to include in the request.
      * @param string $decodeType The response stream message type to decode.
-     * @param array $callOptions The call options to use when making the call.
-     * @param array $decoderOptions The options to use for the JsonStreamDecoder.
+     * @param array<mixed> $callOptions The call options to use when making the call.
+     * @param array<mixed> $decoderOptions The options to use for the JsonStreamDecoder.
      *
+     * @return RestServerStreamingCall
      */
     private function _serverStreamRequest(
         $httpHandler,
@@ -217,6 +222,11 @@ class RestTransport implements TransportInterface
         return $call;
     }
 
+    /**
+     * @param array<mixed> $options
+     *
+     * @return array<mixed>
+     */
     private function getCallOptions(array $options)
     {
         $callOptions = isset($options['transportOptions']['restOptions'])
@@ -228,7 +238,7 @@ class RestTransport implements TransportInterface
         }
 
         if ($this->clientCertSource) {
-            list($cert, $key) = self::loadClientCertSource();
+            list($cert, $key) = self::loadClientCertSource($this->clientCertSource);
             $callOptions['cert'] = $cert;
             $callOptions['key'] = $key;
         }

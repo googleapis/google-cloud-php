@@ -284,7 +284,7 @@ class OperationResponse
             return null;
         }
 
-        /** @var Any $anyResponse */
+        /** @var Any|null $anyResponse */
         $anyResponse = $this->lastProtoResponse->getResponse();
         if (is_null($anyResponse)) {
             return null;
@@ -427,12 +427,17 @@ class OperationResponse
             return null;
         }
 
-        /** @var Any $any */
+        /** @var Any|null $any */
         $any = $this->lastProtoResponse->getMetadata();
         if (is_null($this->metadataReturnType)) {
             return $any;
         }
-        if (is_null($any) || is_null($any->getValue())) {
+        if (is_null($any)) {
+            return null;
+        }
+        // @TODO: This is probably not doing anything and can be removed in the next release.
+        // @phpstan-ignore-next-line
+        if (is_null($any->getValue())) {
             return null;
         }
         $metadataReturnType = $this->metadataReturnType;
