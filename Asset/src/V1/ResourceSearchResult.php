@@ -74,7 +74,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     private $organization = '';
     /**
      * The display name of this resource. This field is available only when the
-     * resource's proto contains it.
+     * resource's Protobuf contains it.
      * To search against the `display_name`:
      * * use a field query. Example: `displayName:"My Instance"`
      * * use a free text query. Example: `"My Instance"`
@@ -85,7 +85,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     /**
      * One or more paragraphs of text description of this resource. Maximum length
      * could be up to 1M bytes. This field is available only when the resource's
-     * proto contains it.
+     * Protobuf contains it.
      * To search against the `description`:
      * * use a field query. Example: `description:"important instance"`
      * * use a free text query. Example: `"important instance"`
@@ -95,7 +95,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     private $description = '';
     /**
      * Location can be `global`, regional like `us-east1`, or zonal like
-     * `us-west1-b`. This field is available only when the resource's proto
+     * `us-west1-b`. This field is available only when the resource's Protobuf
      * contains it.
      * To search against the `location`:
      * * use a field query. Example: `location:us-west*`
@@ -108,7 +108,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * Labels associated with this resource. See [Labelling and grouping GCP
      * resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      * for more information. This field is available only when the resource's
-     * proto contains it.
+     * Protobuf contains it.
      * To search against the `labels`:
      * * use a field query:
      *     - query on any label's key or value. Example: `labels:prod`
@@ -124,7 +124,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * type of annotations used to group GCP resources. See [Labelling GCP
      * resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      * for more information. This field is available only when the resource's
-     * proto contains it.
+     * Protobuf contains it.
      * To search against the `network_tags`:
      * * use a field query. Example: `networkTags:internal`
      * * use a free text query. Example: `internal`
@@ -134,10 +134,11 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     private $network_tags;
     /**
      * The Cloud KMS
-     * [CryptoKey](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys?hl=en)
+     * [CryptoKey](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys)
      * name or
-     * [CryptoKeyVersion](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions?hl=en)
-     * name. This field is available only when the resource's proto contains it.
+     * [CryptoKeyVersion](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions)
+     * name. This field is available only when the resource's Protobuf contains
+     * it.
      * To search against the `kms_key`:
      * * use a field query. Example: `kmsKey:key`
      * * use a free text query. Example: `key`
@@ -148,7 +149,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     /**
      * The create timestamp of this resource, at which the resource was created.
      * The granularity is in seconds. Timestamp.nanos will always be 0. This field
-     * is available only when the resource's proto contains it.
+     * is available only when the resource's Protobuf contains it.
      * To search against `create_time`:
      * * use a field query.
      *     - value in seconds since unix epoch. Example: `createTime > 1609459200`
@@ -162,7 +163,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     /**
      * The last update timestamp of this resource, at which the resource was last
      * modified or deleted. The granularity is in seconds. Timestamp.nanos will
-     * always be 0. This field is available only when the resource's proto
+     * always be 0. This field is available only when the resource's Protobuf
      * contains it.
      * To search against `update_time`:
      * * use a field query.
@@ -177,7 +178,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     /**
      * The state of this resource. Different resources types have different state
      * definitions that are mapped from various fields of different resource
-     * types. This field is available only when the resource's proto contains it.
+     * types. This field is available only when the resource's Protobuf contains
+     * it.
      * Example:
      * If the resource is an instance provided by Compute Engine,
      * its state will include PROVISIONING, STAGING, RUNNING, STOPPING,
@@ -261,6 +263,46 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     private $relationships;
     /**
+     * TagKey namespaced names, in the format of {ORG_ID}/{TAG_KEY_SHORT_NAME}.
+     * To search against the `tagKeys`:
+     * * use a field query. Example:
+     *     - `tagKeys:"123456789/env*"`
+     *     - `tagKeys="123456789/env"`
+     *     - `tagKeys:"env"`
+     * * use a free text query. Example:
+     *     - `env`
+     *
+     * Generated from protobuf field <code>repeated string tag_keys = 23;</code>
+     */
+    private $tag_keys;
+    /**
+     * TagValue namespaced names, in the format of
+     * {ORG_ID}/{TAG_KEY_SHORT_NAME}/{TAG_VALUE_SHORT_NAME}.
+     * To search against the `tagValues`:
+     * * use a field query. Example:
+     *     - `tagValues:"env"`
+     *     - `tagValues:"env/prod"`
+     *     - `tagValues:"123456789/env/prod*"`
+     *     - `tagValues="123456789/env/prod"`
+     * * use a free text query. Example:
+     *     - `prod`
+     *
+     * Generated from protobuf field <code>repeated string tag_values = 25;</code>
+     */
+    private $tag_values;
+    /**
+     * TagValue IDs, in the format of tagValues/{TAG_VALUE_ID}.
+     * To search against the `tagValueIds`:
+     * * use a field query. Example:
+     *     - `tagValueIds:"456"`
+     *     - `tagValueIds="tagValues/456"`
+     * * use a free text query. Example:
+     *     - `456`
+     *
+     * Generated from protobuf field <code>repeated string tag_value_ids = 26;</code>
+     */
+    private $tag_value_ids;
+    /**
      * The type of this resource's immediate parent, if there is one.
      * To search against the `parent_asset_type`:
      * * use a field query. Example:
@@ -317,20 +359,20 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           * specify the `scope` field as this organization in your search request.
      *     @type string $display_name
      *           The display name of this resource. This field is available only when the
-     *           resource's proto contains it.
+     *           resource's Protobuf contains it.
      *           To search against the `display_name`:
      *           * use a field query. Example: `displayName:"My Instance"`
      *           * use a free text query. Example: `"My Instance"`
      *     @type string $description
      *           One or more paragraphs of text description of this resource. Maximum length
      *           could be up to 1M bytes. This field is available only when the resource's
-     *           proto contains it.
+     *           Protobuf contains it.
      *           To search against the `description`:
      *           * use a field query. Example: `description:"important instance"`
      *           * use a free text query. Example: `"important instance"`
      *     @type string $location
      *           Location can be `global`, regional like `us-east1`, or zonal like
-     *           `us-west1-b`. This field is available only when the resource's proto
+     *           `us-west1-b`. This field is available only when the resource's Protobuf
      *           contains it.
      *           To search against the `location`:
      *           * use a field query. Example: `location:us-west*`
@@ -339,7 +381,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           Labels associated with this resource. See [Labelling and grouping GCP
      *           resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      *           for more information. This field is available only when the resource's
-     *           proto contains it.
+     *           Protobuf contains it.
      *           To search against the `labels`:
      *           * use a field query:
      *               - query on any label's key or value. Example: `labels:prod`
@@ -351,23 +393,24 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           type of annotations used to group GCP resources. See [Labelling GCP
      *           resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      *           for more information. This field is available only when the resource's
-     *           proto contains it.
+     *           Protobuf contains it.
      *           To search against the `network_tags`:
      *           * use a field query. Example: `networkTags:internal`
      *           * use a free text query. Example: `internal`
      *     @type string $kms_key
      *           The Cloud KMS
-     *           [CryptoKey](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys?hl=en)
+     *           [CryptoKey](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys)
      *           name or
-     *           [CryptoKeyVersion](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions?hl=en)
-     *           name. This field is available only when the resource's proto contains it.
+     *           [CryptoKeyVersion](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions)
+     *           name. This field is available only when the resource's Protobuf contains
+     *           it.
      *           To search against the `kms_key`:
      *           * use a field query. Example: `kmsKey:key`
      *           * use a free text query. Example: `key`
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The create timestamp of this resource, at which the resource was created.
      *           The granularity is in seconds. Timestamp.nanos will always be 0. This field
-     *           is available only when the resource's proto contains it.
+     *           is available only when the resource's Protobuf contains it.
      *           To search against `create_time`:
      *           * use a field query.
      *               - value in seconds since unix epoch. Example: `createTime > 1609459200`
@@ -377,7 +420,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           The last update timestamp of this resource, at which the resource was last
      *           modified or deleted. The granularity is in seconds. Timestamp.nanos will
-     *           always be 0. This field is available only when the resource's proto
+     *           always be 0. This field is available only when the resource's Protobuf
      *           contains it.
      *           To search against `update_time`:
      *           * use a field query.
@@ -388,7 +431,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     @type string $state
      *           The state of this resource. Different resources types have different state
      *           definitions that are mapped from various fields of different resource
-     *           types. This field is available only when the resource's proto contains it.
+     *           types. This field is available only when the resource's Protobuf contains
+     *           it.
      *           Example:
      *           If the resource is an instance provided by Compute Engine,
      *           its state will include PROVISIONING, STAGING, RUNNING, STOPPING,
@@ -447,6 +491,34 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           `DISK_TO_NETWORK`, `INSTANCE_TO_INSTANCEGROUP`.
      *           See [supported relationship
      *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#supported_relationship_types).
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tag_keys
+     *           TagKey namespaced names, in the format of {ORG_ID}/{TAG_KEY_SHORT_NAME}.
+     *           To search against the `tagKeys`:
+     *           * use a field query. Example:
+     *               - `tagKeys:"123456789/env*"`
+     *               - `tagKeys="123456789/env"`
+     *               - `tagKeys:"env"`
+     *           * use a free text query. Example:
+     *               - `env`
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tag_values
+     *           TagValue namespaced names, in the format of
+     *           {ORG_ID}/{TAG_KEY_SHORT_NAME}/{TAG_VALUE_SHORT_NAME}.
+     *           To search against the `tagValues`:
+     *           * use a field query. Example:
+     *               - `tagValues:"env"`
+     *               - `tagValues:"env/prod"`
+     *               - `tagValues:"123456789/env/prod*"`
+     *               - `tagValues="123456789/env/prod"`
+     *           * use a free text query. Example:
+     *               - `prod`
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tag_value_ids
+     *           TagValue IDs, in the format of tagValues/{TAG_VALUE_ID}.
+     *           To search against the `tagValueIds`:
+     *           * use a field query. Example:
+     *               - `tagValueIds:"456"`
+     *               - `tagValueIds="tagValues/456"`
+     *           * use a free text query. Example:
+     *               - `456`
      *     @type string $parent_asset_type
      *           The type of this resource's immediate parent, if there is one.
      *           To search against the `parent_asset_type`:
@@ -647,7 +719,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The display name of this resource. This field is available only when the
-     * resource's proto contains it.
+     * resource's Protobuf contains it.
      * To search against the `display_name`:
      * * use a field query. Example: `displayName:"My Instance"`
      * * use a free text query. Example: `"My Instance"`
@@ -662,7 +734,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The display name of this resource. This field is available only when the
-     * resource's proto contains it.
+     * resource's Protobuf contains it.
      * To search against the `display_name`:
      * * use a field query. Example: `displayName:"My Instance"`
      * * use a free text query. Example: `"My Instance"`
@@ -682,7 +754,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     /**
      * One or more paragraphs of text description of this resource. Maximum length
      * could be up to 1M bytes. This field is available only when the resource's
-     * proto contains it.
+     * Protobuf contains it.
      * To search against the `description`:
      * * use a field query. Example: `description:"important instance"`
      * * use a free text query. Example: `"important instance"`
@@ -698,7 +770,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     /**
      * One or more paragraphs of text description of this resource. Maximum length
      * could be up to 1M bytes. This field is available only when the resource's
-     * proto contains it.
+     * Protobuf contains it.
      * To search against the `description`:
      * * use a field query. Example: `description:"important instance"`
      * * use a free text query. Example: `"important instance"`
@@ -717,7 +789,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Location can be `global`, regional like `us-east1`, or zonal like
-     * `us-west1-b`. This field is available only when the resource's proto
+     * `us-west1-b`. This field is available only when the resource's Protobuf
      * contains it.
      * To search against the `location`:
      * * use a field query. Example: `location:us-west*`
@@ -733,7 +805,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Location can be `global`, regional like `us-east1`, or zonal like
-     * `us-west1-b`. This field is available only when the resource's proto
+     * `us-west1-b`. This field is available only when the resource's Protobuf
      * contains it.
      * To search against the `location`:
      * * use a field query. Example: `location:us-west*`
@@ -755,7 +827,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * Labels associated with this resource. See [Labelling and grouping GCP
      * resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      * for more information. This field is available only when the resource's
-     * proto contains it.
+     * Protobuf contains it.
      * To search against the `labels`:
      * * use a field query:
      *     - query on any label's key or value. Example: `labels:prod`
@@ -775,7 +847,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * Labels associated with this resource. See [Labelling and grouping GCP
      * resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      * for more information. This field is available only when the resource's
-     * proto contains it.
+     * Protobuf contains it.
      * To search against the `labels`:
      * * use a field query:
      *     - query on any label's key or value. Example: `labels:prod`
@@ -800,7 +872,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * type of annotations used to group GCP resources. See [Labelling GCP
      * resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      * for more information. This field is available only when the resource's
-     * proto contains it.
+     * Protobuf contains it.
      * To search against the `network_tags`:
      * * use a field query. Example: `networkTags:internal`
      * * use a free text query. Example: `internal`
@@ -818,7 +890,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * type of annotations used to group GCP resources. See [Labelling GCP
      * resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      * for more information. This field is available only when the resource's
-     * proto contains it.
+     * Protobuf contains it.
      * To search against the `network_tags`:
      * * use a field query. Example: `networkTags:internal`
      * * use a free text query. Example: `internal`
@@ -837,10 +909,11 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The Cloud KMS
-     * [CryptoKey](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys?hl=en)
+     * [CryptoKey](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys)
      * name or
-     * [CryptoKeyVersion](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions?hl=en)
-     * name. This field is available only when the resource's proto contains it.
+     * [CryptoKeyVersion](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions)
+     * name. This field is available only when the resource's Protobuf contains
+     * it.
      * To search against the `kms_key`:
      * * use a field query. Example: `kmsKey:key`
      * * use a free text query. Example: `key`
@@ -855,10 +928,11 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The Cloud KMS
-     * [CryptoKey](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys?hl=en)
+     * [CryptoKey](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys)
      * name or
-     * [CryptoKeyVersion](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions?hl=en)
-     * name. This field is available only when the resource's proto contains it.
+     * [CryptoKeyVersion](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions)
+     * name. This field is available only when the resource's Protobuf contains
+     * it.
      * To search against the `kms_key`:
      * * use a field query. Example: `kmsKey:key`
      * * use a free text query. Example: `key`
@@ -878,7 +952,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     /**
      * The create timestamp of this resource, at which the resource was created.
      * The granularity is in seconds. Timestamp.nanos will always be 0. This field
-     * is available only when the resource's proto contains it.
+     * is available only when the resource's Protobuf contains it.
      * To search against `create_time`:
      * * use a field query.
      *     - value in seconds since unix epoch. Example: `createTime > 1609459200`
@@ -907,7 +981,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     /**
      * The create timestamp of this resource, at which the resource was created.
      * The granularity is in seconds. Timestamp.nanos will always be 0. This field
-     * is available only when the resource's proto contains it.
+     * is available only when the resource's Protobuf contains it.
      * To search against `create_time`:
      * * use a field query.
      *     - value in seconds since unix epoch. Example: `createTime > 1609459200`
@@ -930,7 +1004,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     /**
      * The last update timestamp of this resource, at which the resource was last
      * modified or deleted. The granularity is in seconds. Timestamp.nanos will
-     * always be 0. This field is available only when the resource's proto
+     * always be 0. This field is available only when the resource's Protobuf
      * contains it.
      * To search against `update_time`:
      * * use a field query.
@@ -960,7 +1034,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     /**
      * The last update timestamp of this resource, at which the resource was last
      * modified or deleted. The granularity is in seconds. Timestamp.nanos will
-     * always be 0. This field is available only when the resource's proto
+     * always be 0. This field is available only when the resource's Protobuf
      * contains it.
      * To search against `update_time`:
      * * use a field query.
@@ -984,7 +1058,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     /**
      * The state of this resource. Different resources types have different state
      * definitions that are mapped from various fields of different resource
-     * types. This field is available only when the resource's proto contains it.
+     * types. This field is available only when the resource's Protobuf contains
+     * it.
      * Example:
      * If the resource is an instance provided by Compute Engine,
      * its state will include PROVISIONING, STAGING, RUNNING, STOPPING,
@@ -1010,7 +1085,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     /**
      * The state of this resource. Different resources types have different state
      * definitions that are mapped from various fields of different resource
-     * types. This field is available only when the resource's proto contains it.
+     * types. This field is available only when the resource's Protobuf contains
+     * it.
      * Example:
      * If the resource is an instance provided by Compute Engine,
      * its state will include PROVISIONING, STAGING, RUNNING, STOPPING,
@@ -1243,6 +1319,128 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Asset\V1\RelatedResources::class);
         $this->relationships = $arr;
+
+        return $this;
+    }
+
+    /**
+     * TagKey namespaced names, in the format of {ORG_ID}/{TAG_KEY_SHORT_NAME}.
+     * To search against the `tagKeys`:
+     * * use a field query. Example:
+     *     - `tagKeys:"123456789/env*"`
+     *     - `tagKeys="123456789/env"`
+     *     - `tagKeys:"env"`
+     * * use a free text query. Example:
+     *     - `env`
+     *
+     * Generated from protobuf field <code>repeated string tag_keys = 23;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTagKeys()
+    {
+        return $this->tag_keys;
+    }
+
+    /**
+     * TagKey namespaced names, in the format of {ORG_ID}/{TAG_KEY_SHORT_NAME}.
+     * To search against the `tagKeys`:
+     * * use a field query. Example:
+     *     - `tagKeys:"123456789/env*"`
+     *     - `tagKeys="123456789/env"`
+     *     - `tagKeys:"env"`
+     * * use a free text query. Example:
+     *     - `env`
+     *
+     * Generated from protobuf field <code>repeated string tag_keys = 23;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTagKeys($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tag_keys = $arr;
+
+        return $this;
+    }
+
+    /**
+     * TagValue namespaced names, in the format of
+     * {ORG_ID}/{TAG_KEY_SHORT_NAME}/{TAG_VALUE_SHORT_NAME}.
+     * To search against the `tagValues`:
+     * * use a field query. Example:
+     *     - `tagValues:"env"`
+     *     - `tagValues:"env/prod"`
+     *     - `tagValues:"123456789/env/prod*"`
+     *     - `tagValues="123456789/env/prod"`
+     * * use a free text query. Example:
+     *     - `prod`
+     *
+     * Generated from protobuf field <code>repeated string tag_values = 25;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTagValues()
+    {
+        return $this->tag_values;
+    }
+
+    /**
+     * TagValue namespaced names, in the format of
+     * {ORG_ID}/{TAG_KEY_SHORT_NAME}/{TAG_VALUE_SHORT_NAME}.
+     * To search against the `tagValues`:
+     * * use a field query. Example:
+     *     - `tagValues:"env"`
+     *     - `tagValues:"env/prod"`
+     *     - `tagValues:"123456789/env/prod*"`
+     *     - `tagValues="123456789/env/prod"`
+     * * use a free text query. Example:
+     *     - `prod`
+     *
+     * Generated from protobuf field <code>repeated string tag_values = 25;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTagValues($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tag_values = $arr;
+
+        return $this;
+    }
+
+    /**
+     * TagValue IDs, in the format of tagValues/{TAG_VALUE_ID}.
+     * To search against the `tagValueIds`:
+     * * use a field query. Example:
+     *     - `tagValueIds:"456"`
+     *     - `tagValueIds="tagValues/456"`
+     * * use a free text query. Example:
+     *     - `456`
+     *
+     * Generated from protobuf field <code>repeated string tag_value_ids = 26;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTagValueIds()
+    {
+        return $this->tag_value_ids;
+    }
+
+    /**
+     * TagValue IDs, in the format of tagValues/{TAG_VALUE_ID}.
+     * To search against the `tagValueIds`:
+     * * use a field query. Example:
+     *     - `tagValueIds:"456"`
+     *     - `tagValueIds="tagValues/456"`
+     * * use a free text query. Example:
+     *     - `456`
+     *
+     * Generated from protobuf field <code>repeated string tag_value_ids = 26;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTagValueIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tag_value_ids = $arr;
 
         return $this;
     }

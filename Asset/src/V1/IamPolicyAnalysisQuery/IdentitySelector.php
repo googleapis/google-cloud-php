@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class IdentitySelector extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The identity appear in the form of members in
+     * Required. The identity appear in the form of principals in
      * [IAM policy
      * binding](https://cloud.google.com/iam/reference/rest/v1/Binding).
      * The examples of supported forms are:
@@ -40,7 +40,7 @@ class IdentitySelector extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $identity
-     *           Required. The identity appear in the form of members in
+     *           Required. The identity appear in the form of principals in
      *           [IAM policy
      *           binding](https://cloud.google.com/iam/reference/rest/v1/Binding).
      *           The examples of supported forms are:
@@ -58,7 +58,7 @@ class IdentitySelector extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The identity appear in the form of members in
+     * Required. The identity appear in the form of principals in
      * [IAM policy
      * binding](https://cloud.google.com/iam/reference/rest/v1/Binding).
      * The examples of supported forms are:
@@ -78,7 +78,7 @@ class IdentitySelector extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The identity appear in the form of members in
+     * Required. The identity appear in the form of principals in
      * [IAM policy
      * binding](https://cloud.google.com/iam/reference/rest/v1/Binding).
      * The examples of supported forms are:

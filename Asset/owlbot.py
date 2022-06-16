@@ -54,57 +54,6 @@ s.replace(
     r'^(\s+\*\n)?\s+\*\s@experimental\n',
     '')
 
-# Fix missing formatting method
-s.replace(
-    'src/V1/Gapic/AssetServiceGapicClient.php',
-    r"private static \$feedNameTemplate;\n\s{4}private static \$folderFeedNameTemplate;",
-    """private static $feedNameTemplate;
-    private static $folderFeedNameTemplate;
-    private static $projectNameTemplate;"""
-)
-s.replace(
-    'src/V1/Gapic/AssetServiceGapicClient.php',
-    "private static function getPathTemplateMap",
-    """private static function getProjectNameTemplate()
-    {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
-        }
-
-        return self::$projectNameTemplate;
-    }
-
-    private static function getPathTemplateMap"""
-)
-s.replace(
-    'src/V1/Gapic/AssetServiceGapicClient.php',
-    r"'feed' => self::getFeedNameTemplate\(\),\n\s{0,}'folderFeed' => self::getFolderFeedNameTemplate\(\),",
-    """'feed' => self::getFeedNameTemplate(),
-                'folderFeed' => self::getFolderFeedNameTemplate(),
-                'project' => self::getProjectNameTemplate(),"""
-)
-s.replace(
-    'src/V1/Gapic/AssetServiceGapicClient.php',
-    r"\/\*\*\n\s{5}\* Parses a formatted name string and returns an",
-    """/**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Parses a formatted name string and returns an"""
-)
-
 ### [START] protoc backwards compatibility fixes
 
 # roll back to private properties.
@@ -150,6 +99,3 @@ subprocess.run([
     '--parser=php',
     '--single-quote',
     '--print-width=80'])
-
-# Address breaking changes
-subprocess.run('git show 1c9eabaf2124b21607f48b7e888cc3c017957ff8 | git apply', shell=True)

@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. A scope can be a project, a folder, or an organization. The search is
-     * limited to the resources within the `scope`. The caller must be granted the
+     * Required. A scope can be a project, a folder, or an organization. The
+     * search is limited to the resources within the `scope`. The caller must be
+     * granted the
      * [`cloudasset.assets.searchAllResources`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
      * permission on the desired scope.
      * The allowed values are:
@@ -73,8 +74,8 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      */
     private $query = '';
     /**
-     * Optional. A list of asset types that this request searches for. If empty, it will
-     * search all the [searchable asset
+     * Optional. A list of asset types that this request searches for. If empty,
+     * it will search all the [searchable asset
      * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
      * Regular expressions are also supported. For example:
      * * "compute.googleapis.com.*" snapshots resources whose asset type starts
@@ -89,27 +90,28 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      */
     private $asset_types;
     /**
-     * Optional. The page size for search result pagination. Page size is capped at 500 even
-     * if a larger value is given. If set to zero, server will pick an appropriate
-     * default. Returned results may be fewer than requested. When this happens,
-     * there could be more results as long as `next_page_token` is returned.
+     * Optional. The page size for search result pagination. Page size is capped
+     * at 500 even if a larger value is given. If set to zero, server will pick an
+     * appropriate default. Returned results may be fewer than requested. When
+     * this happens, there could be more results as long as `next_page_token` is
+     * returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. If present, then retrieve the next batch of results from the preceding call
-     * to this method. `page_token` must be the value of `next_page_token` from
-     * the previous response. The values of all other method parameters, must be
-     * identical to those in the previous call.
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. `page_token` must be the value of
+     * `next_page_token` from the previous response. The values of all other
+     * method parameters, must be identical to those in the previous call.
      *
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
     /**
-     * Optional. A comma-separated list of fields specifying the sorting order of the
-     * results. The default order is ascending. Add " DESC" after the field name
-     * to indicate descending order. Redundant space characters are ignored.
+     * Optional. A comma-separated list of fields specifying the sorting order of
+     * the results. The default order is ascending. Add " DESC" after the field
+     * name to indicate descending order. Redundant space characters are ignored.
      * Example: "location DESC, name".
      * Only singular primitive fields in the response are sortable:
      *   * name
@@ -132,10 +134,10 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      */
     private $order_by = '';
     /**
-     * Optional. A comma-separated list of fields specifying which fields to be returned in
-     * ResourceSearchResult. Only '*' or combination of top level fields can be
-     * specified. Field names of both snake_case and camelCase are supported.
-     * Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
+     * Optional. A comma-separated list of fields specifying which fields to be
+     * returned in ResourceSearchResult. Only '*' or combination of top level
+     * fields can be specified. Field names of both snake_case and camelCase are
+     * supported. Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
      * The read_mask paths must be valid field paths listed but not limited to
      * (both snake_case and camelCase are supported):
      *   * name
@@ -144,6 +146,9 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *   * displayName
      *   * description
      *   * location
+     *   * tagKeys
+     *   * tagValues
+     *   * tagValueIds
      *   * labels
      *   * networkTags
      *   * kmsKey
@@ -169,8 +174,9 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $scope
-     *           Required. A scope can be a project, a folder, or an organization. The search is
-     *           limited to the resources within the `scope`. The caller must be granted the
+     *           Required. A scope can be a project, a folder, or an organization. The
+     *           search is limited to the resources within the `scope`. The caller must be
+     *           granted the
      *           [`cloudasset.assets.searchAllResources`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
      *           permission on the desired scope.
      *           The allowed values are:
@@ -218,8 +224,8 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *             fields and are also located in the "us-west1" region or the "global"
      *             location.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
-     *           Optional. A list of asset types that this request searches for. If empty, it will
-     *           search all the [searchable asset
+     *           Optional. A list of asset types that this request searches for. If empty,
+     *           it will search all the [searchable asset
      *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
      *           Regular expressions are also supported. For example:
      *           * "compute.googleapis.com.*" snapshots resources whose asset type starts
@@ -230,19 +236,20 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *           regular expression syntax. If the regular expression does not match any
      *           supported asset type, an INVALID_ARGUMENT error will be returned.
      *     @type int $page_size
-     *           Optional. The page size for search result pagination. Page size is capped at 500 even
-     *           if a larger value is given. If set to zero, server will pick an appropriate
-     *           default. Returned results may be fewer than requested. When this happens,
-     *           there could be more results as long as `next_page_token` is returned.
+     *           Optional. The page size for search result pagination. Page size is capped
+     *           at 500 even if a larger value is given. If set to zero, server will pick an
+     *           appropriate default. Returned results may be fewer than requested. When
+     *           this happens, there could be more results as long as `next_page_token` is
+     *           returned.
      *     @type string $page_token
-     *           Optional. If present, then retrieve the next batch of results from the preceding call
-     *           to this method. `page_token` must be the value of `next_page_token` from
-     *           the previous response. The values of all other method parameters, must be
-     *           identical to those in the previous call.
+     *           Optional. If present, then retrieve the next batch of results from the
+     *           preceding call to this method. `page_token` must be the value of
+     *           `next_page_token` from the previous response. The values of all other
+     *           method parameters, must be identical to those in the previous call.
      *     @type string $order_by
-     *           Optional. A comma-separated list of fields specifying the sorting order of the
-     *           results. The default order is ascending. Add " DESC" after the field name
-     *           to indicate descending order. Redundant space characters are ignored.
+     *           Optional. A comma-separated list of fields specifying the sorting order of
+     *           the results. The default order is ascending. Add " DESC" after the field
+     *           name to indicate descending order. Redundant space characters are ignored.
      *           Example: "location DESC, name".
      *           Only singular primitive fields in the response are sortable:
      *             * name
@@ -261,10 +268,10 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *           fields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`)
      *           are not supported.
      *     @type \Google\Protobuf\FieldMask $read_mask
-     *           Optional. A comma-separated list of fields specifying which fields to be returned in
-     *           ResourceSearchResult. Only '*' or combination of top level fields can be
-     *           specified. Field names of both snake_case and camelCase are supported.
-     *           Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
+     *           Optional. A comma-separated list of fields specifying which fields to be
+     *           returned in ResourceSearchResult. Only '*' or combination of top level
+     *           fields can be specified. Field names of both snake_case and camelCase are
+     *           supported. Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
      *           The read_mask paths must be valid field paths listed but not limited to
      *           (both snake_case and camelCase are supported):
      *             * name
@@ -273,6 +280,9 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *             * displayName
      *             * description
      *             * location
+     *             * tagKeys
+     *             * tagValues
+     *             * tagValueIds
      *             * labels
      *             * networkTags
      *             * kmsKey
@@ -294,8 +304,9 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A scope can be a project, a folder, or an organization. The search is
-     * limited to the resources within the `scope`. The caller must be granted the
+     * Required. A scope can be a project, a folder, or an organization. The
+     * search is limited to the resources within the `scope`. The caller must be
+     * granted the
      * [`cloudasset.assets.searchAllResources`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
      * permission on the desired scope.
      * The allowed values are:
@@ -313,8 +324,9 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A scope can be a project, a folder, or an organization. The search is
-     * limited to the resources within the `scope`. The caller must be granted the
+     * Required. A scope can be a project, a folder, or an organization. The
+     * search is limited to the resources within the `scope`. The caller must be
+     * granted the
      * [`cloudasset.assets.searchAllResources`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
      * permission on the desired scope.
      * The allowed values are:
@@ -436,8 +448,8 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of asset types that this request searches for. If empty, it will
-     * search all the [searchable asset
+     * Optional. A list of asset types that this request searches for. If empty,
+     * it will search all the [searchable asset
      * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
      * Regular expressions are also supported. For example:
      * * "compute.googleapis.com.*" snapshots resources whose asset type starts
@@ -457,8 +469,8 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A list of asset types that this request searches for. If empty, it will
-     * search all the [searchable asset
+     * Optional. A list of asset types that this request searches for. If empty,
+     * it will search all the [searchable asset
      * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
      * Regular expressions are also supported. For example:
      * * "compute.googleapis.com.*" snapshots resources whose asset type starts
@@ -482,10 +494,11 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The page size for search result pagination. Page size is capped at 500 even
-     * if a larger value is given. If set to zero, server will pick an appropriate
-     * default. Returned results may be fewer than requested. When this happens,
-     * there could be more results as long as `next_page_token` is returned.
+     * Optional. The page size for search result pagination. Page size is capped
+     * at 500 even if a larger value is given. If set to zero, server will pick an
+     * appropriate default. Returned results may be fewer than requested. When
+     * this happens, there could be more results as long as `next_page_token` is
+     * returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -496,10 +509,11 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The page size for search result pagination. Page size is capped at 500 even
-     * if a larger value is given. If set to zero, server will pick an appropriate
-     * default. Returned results may be fewer than requested. When this happens,
-     * there could be more results as long as `next_page_token` is returned.
+     * Optional. The page size for search result pagination. Page size is capped
+     * at 500 even if a larger value is given. If set to zero, server will pick an
+     * appropriate default. Returned results may be fewer than requested. When
+     * this happens, there could be more results as long as `next_page_token` is
+     * returned.
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -514,10 +528,10 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If present, then retrieve the next batch of results from the preceding call
-     * to this method. `page_token` must be the value of `next_page_token` from
-     * the previous response. The values of all other method parameters, must be
-     * identical to those in the previous call.
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. `page_token` must be the value of
+     * `next_page_token` from the previous response. The values of all other
+     * method parameters, must be identical to those in the previous call.
      *
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -528,10 +542,10 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If present, then retrieve the next batch of results from the preceding call
-     * to this method. `page_token` must be the value of `next_page_token` from
-     * the previous response. The values of all other method parameters, must be
-     * identical to those in the previous call.
+     * Optional. If present, then retrieve the next batch of results from the
+     * preceding call to this method. `page_token` must be the value of
+     * `next_page_token` from the previous response. The values of all other
+     * method parameters, must be identical to those in the previous call.
      *
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -546,9 +560,9 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A comma-separated list of fields specifying the sorting order of the
-     * results. The default order is ascending. Add " DESC" after the field name
-     * to indicate descending order. Redundant space characters are ignored.
+     * Optional. A comma-separated list of fields specifying the sorting order of
+     * the results. The default order is ascending. Add " DESC" after the field
+     * name to indicate descending order. Redundant space characters are ignored.
      * Example: "location DESC, name".
      * Only singular primitive fields in the response are sortable:
      *   * name
@@ -576,9 +590,9 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A comma-separated list of fields specifying the sorting order of the
-     * results. The default order is ascending. Add " DESC" after the field name
-     * to indicate descending order. Redundant space characters are ignored.
+     * Optional. A comma-separated list of fields specifying the sorting order of
+     * the results. The default order is ascending. Add " DESC" after the field
+     * name to indicate descending order. Redundant space characters are ignored.
      * Example: "location DESC, name".
      * Only singular primitive fields in the response are sortable:
      *   * name
@@ -610,10 +624,10 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A comma-separated list of fields specifying which fields to be returned in
-     * ResourceSearchResult. Only '*' or combination of top level fields can be
-     * specified. Field names of both snake_case and camelCase are supported.
-     * Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
+     * Optional. A comma-separated list of fields specifying which fields to be
+     * returned in ResourceSearchResult. Only '*' or combination of top level
+     * fields can be specified. Field names of both snake_case and camelCase are
+     * supported. Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
      * The read_mask paths must be valid field paths listed but not limited to
      * (both snake_case and camelCase are supported):
      *   * name
@@ -622,6 +636,9 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *   * displayName
      *   * description
      *   * location
+     *   * tagKeys
+     *   * tagValues
+     *   * tagValueIds
      *   * labels
      *   * networkTags
      *   * kmsKey
@@ -655,10 +672,10 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A comma-separated list of fields specifying which fields to be returned in
-     * ResourceSearchResult. Only '*' or combination of top level fields can be
-     * specified. Field names of both snake_case and camelCase are supported.
-     * Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
+     * Optional. A comma-separated list of fields specifying which fields to be
+     * returned in ResourceSearchResult. Only '*' or combination of top level
+     * fields can be specified. Field names of both snake_case and camelCase are
+     * supported. Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
      * The read_mask paths must be valid field paths listed but not limited to
      * (both snake_case and camelCase are supported):
      *   * name
@@ -667,6 +684,9 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *   * displayName
      *   * description
      *   * location
+     *   * tagKeys
+     *   * tagValues
+     *   * tagValueIds
      *   * labels
      *   * networkTags
      *   * kmsKey
