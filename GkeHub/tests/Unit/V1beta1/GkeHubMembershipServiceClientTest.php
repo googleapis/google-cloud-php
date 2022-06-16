@@ -94,7 +94,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -122,10 +122,10 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $membershipId = 'membershipId-1132211676';
         $resource = new Membership();
-        $response = $client->createMembership($formattedParent, $membershipId, $resource);
+        $response = $gapicClient->createMembership($formattedParent, $membershipId, $resource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -172,7 +172,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -194,10 +194,10 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $membershipId = 'membershipId-1132211676';
         $resource = new Membership();
-        $response = $client->createMembership($formattedParent, $membershipId, $resource);
+        $response = $gapicClient->createMembership($formattedParent, $membershipId, $resource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -231,7 +231,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -251,8 +251,8 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
-        $response = $client->deleteMembership($formattedName);
+        $formattedName = $gapicClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
+        $response = $gapicClient->deleteMembership($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -295,7 +295,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -317,8 +317,8 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
-        $response = $client->deleteMembership($formattedName);
+        $formattedName = $gapicClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
+        $response = $gapicClient->deleteMembership($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -346,7 +346,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function generateConnectManifestTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -354,8 +354,8 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         $expectedResponse = new GenerateConnectManifestResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
-        $response = $client->generateConnectManifest($formattedName);
+        $formattedName = $gapicClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
+        $response = $gapicClient->generateConnectManifest($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -373,7 +373,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function generateConnectManifestExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -388,10 +388,10 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
+        $formattedName = $gapicClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
         try {
-            $client->generateConnectManifest($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->generateConnectManifest($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -408,7 +408,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function generateExclusivityManifestTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -420,8 +420,8 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         $expectedResponse->setCrManifest($crManifest2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
-        $response = $client->generateExclusivityManifest($formattedName);
+        $formattedName = $gapicClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
+        $response = $gapicClient->generateExclusivityManifest($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -439,7 +439,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function generateExclusivityManifestExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -454,10 +454,10 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
+        $formattedName = $gapicClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
         try {
-            $client->generateExclusivityManifest($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->generateExclusivityManifest($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -474,7 +474,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function getMembershipTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -490,8 +490,8 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         $expectedResponse->setUniqueId($uniqueId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
-        $response = $client->getMembership($formattedName);
+        $formattedName = $gapicClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
+        $response = $gapicClient->getMembership($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -509,7 +509,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function getMembershipExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -524,10 +524,10 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
+        $formattedName = $gapicClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
         try {
-            $client->getMembership($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getMembership($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -544,7 +544,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function listMembershipsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -559,8 +559,8 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         $expectedResponse->setResources($resources);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listMemberships($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listMemberships($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -581,7 +581,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function listMembershipsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -596,10 +596,10 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listMemberships($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listMemberships($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -622,7 +622,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -650,10 +650,10 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
+        $formattedName = $gapicClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
         $updateMask = new FieldMask();
         $resource = new Membership();
-        $response = $client->updateMembership($formattedName, $updateMask, $resource);
+        $response = $gapicClient->updateMembership($formattedName, $updateMask, $resource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -700,7 +700,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -722,10 +722,10 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
+        $formattedName = $gapicClient->membershipName('[PROJECT]', '[LOCATION]', '[MEMBERSHIP]');
         $updateMask = new FieldMask();
         $resource = new Membership();
-        $response = $client->updateMembership($formattedName, $updateMask, $resource);
+        $response = $gapicClient->updateMembership($formattedName, $updateMask, $resource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -753,7 +753,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function validateExclusivityTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -761,9 +761,9 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         $expectedResponse = new ValidateExclusivityResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $intendedMembership = 'intendedMembership1074975850';
-        $response = $client->validateExclusivity($formattedParent, $intendedMembership);
+        $response = $gapicClient->validateExclusivity($formattedParent, $intendedMembership);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -783,7 +783,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function validateExclusivityExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -798,11 +798,11 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $intendedMembership = 'intendedMembership1074975850';
         try {
-            $client->validateExclusivity($formattedParent, $intendedMembership);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->validateExclusivity($formattedParent, $intendedMembership);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -819,7 +819,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function getLocationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -832,7 +832,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $response = $client->getLocation();
+        $response = $gapicClient->getLocation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -848,7 +848,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -863,8 +863,8 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getLocation();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getLocation();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -881,7 +881,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -895,7 +895,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
         $transport->addResponse($expectedResponse);
-        $response = $client->listLocations();
+        $response = $gapicClient->listLocations();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -914,7 +914,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -929,8 +929,8 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listLocations();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listLocations();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -947,7 +947,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -960,7 +960,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $response = $client->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -978,7 +978,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -995,8 +995,8 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         try {
-            $client->getIamPolicy($resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIamPolicy($resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1013,7 +1013,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1027,7 +1027,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $response = $client->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1047,7 +1047,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1065,8 +1065,8 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $policy = new Policy();
         try {
-            $client->setIamPolicy($resource, $policy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setIamPolicy($resource, $policy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1083,7 +1083,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1093,7 +1093,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $response = $client->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1113,7 +1113,7 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1131,8 +1131,8 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $permissions = [];
         try {
-            $client->testIamPermissions($resource, $permissions);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->testIamPermissions($resource, $permissions);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
