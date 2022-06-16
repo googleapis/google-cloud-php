@@ -122,7 +122,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -149,7 +149,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $response = $client->activateEntitlement($name);
+        $response = $gapicClient->activateEntitlement($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -192,7 +192,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -215,7 +215,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $response = $client->activateEntitlement($name);
+        $response = $gapicClient->activateEntitlement($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -249,7 +249,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -270,7 +270,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $response = $client->cancelEntitlement($name);
+        $response = $gapicClient->cancelEntitlement($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -313,7 +313,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -336,7 +336,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $response = $client->cancelEntitlement($name);
+        $response = $gapicClient->cancelEntitlement($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -370,7 +370,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -397,8 +397,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $formattedOffer = $client->offerName('[ACCOUNT]', '[OFFER]');
-        $response = $client->changeOffer($name, $formattedOffer);
+        $formattedOffer = $gapicClient->offerName('[ACCOUNT]', '[OFFER]');
+        $response = $gapicClient->changeOffer($name, $formattedOffer);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -443,7 +443,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -466,8 +466,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $formattedOffer = $client->offerName('[ACCOUNT]', '[OFFER]');
-        $response = $client->changeOffer($name, $formattedOffer);
+        $formattedOffer = $gapicClient->offerName('[ACCOUNT]', '[OFFER]');
+        $response = $gapicClient->changeOffer($name, $formattedOffer);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -501,7 +501,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -529,7 +529,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $parameters = [];
-        $response = $client->changeParameters($name, $parameters);
+        $response = $gapicClient->changeParameters($name, $parameters);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -574,7 +574,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -598,7 +598,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $parameters = [];
-        $response = $client->changeParameters($name, $parameters);
+        $response = $gapicClient->changeParameters($name, $parameters);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -632,7 +632,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -660,7 +660,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $renewalSettings = new RenewalSettings();
-        $response = $client->changeRenewalSettings($name, $renewalSettings);
+        $response = $gapicClient->changeRenewalSettings($name, $renewalSettings);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -705,7 +705,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -729,7 +729,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $renewalSettings = new RenewalSettings();
-        $response = $client->changeRenewalSettings($name, $renewalSettings);
+        $response = $gapicClient->changeRenewalSettings($name, $renewalSettings);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -757,7 +757,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function checkCloudIdentityAccountsExistTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -767,7 +767,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $domain = 'domain-1326197564';
-        $response = $client->checkCloudIdentityAccountsExist($parent, $domain);
+        $response = $gapicClient->checkCloudIdentityAccountsExist($parent, $domain);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -787,7 +787,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function checkCloudIdentityAccountsExistExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -805,8 +805,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $parent = 'parent-995424086';
         $domain = 'domain-1326197564';
         try {
-            $client->checkCloudIdentityAccountsExist($parent, $domain);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->checkCloudIdentityAccountsExist($parent, $domain);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -823,7 +823,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function createChannelPartnerLinkTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -845,7 +845,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $channelPartnerLink->setResellerCloudIdentityId($channelPartnerLinkResellerCloudIdentityId);
         $channelPartnerLinkLinkState = ChannelPartnerLinkState::CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED;
         $channelPartnerLink->setLinkState($channelPartnerLinkLinkState);
-        $response = $client->createChannelPartnerLink($parent, $channelPartnerLink);
+        $response = $gapicClient->createChannelPartnerLink($parent, $channelPartnerLink);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -865,7 +865,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function createChannelPartnerLinkExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -887,8 +887,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $channelPartnerLinkLinkState = ChannelPartnerLinkState::CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED;
         $channelPartnerLink->setLinkState($channelPartnerLinkLinkState);
         try {
-            $client->createChannelPartnerLink($parent, $channelPartnerLink);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createChannelPartnerLink($parent, $channelPartnerLink);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -905,7 +905,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function createChannelPartnerRepricingConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -915,7 +915,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
+        $formattedParent = $gapicClient->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
         $channelPartnerRepricingConfig = new ChannelPartnerRepricingConfig();
         $channelPartnerRepricingConfigRepricingConfig = new RepricingConfig();
         $repricingConfigEffectiveInvoiceMonth = new Date();
@@ -925,7 +925,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
         $channelPartnerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
         $channelPartnerRepricingConfig->setRepricingConfig($channelPartnerRepricingConfigRepricingConfig);
-        $response = $client->createChannelPartnerRepricingConfig($formattedParent, $channelPartnerRepricingConfig);
+        $response = $gapicClient->createChannelPartnerRepricingConfig($formattedParent, $channelPartnerRepricingConfig);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -945,7 +945,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function createChannelPartnerRepricingConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -960,7 +960,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
+        $formattedParent = $gapicClient->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
         $channelPartnerRepricingConfig = new ChannelPartnerRepricingConfig();
         $channelPartnerRepricingConfigRepricingConfig = new RepricingConfig();
         $repricingConfigEffectiveInvoiceMonth = new Date();
@@ -971,8 +971,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $channelPartnerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
         $channelPartnerRepricingConfig->setRepricingConfig($channelPartnerRepricingConfigRepricingConfig);
         try {
-            $client->createChannelPartnerRepricingConfig($formattedParent, $channelPartnerRepricingConfig);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createChannelPartnerRepricingConfig($formattedParent, $channelPartnerRepricingConfig);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -989,7 +989,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function createCustomerTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1019,7 +1019,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $customer->setOrgPostalAddress($customerOrgPostalAddress);
         $customerDomain = 'customerDomain1489396290';
         $customer->setDomain($customerDomain);
-        $response = $client->createCustomer($parent, $customer);
+        $response = $gapicClient->createCustomer($parent, $customer);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1039,7 +1039,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function createCustomerExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1063,8 +1063,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $customerDomain = 'customerDomain1489396290';
         $customer->setDomain($customerDomain);
         try {
-            $client->createCustomer($parent, $customer);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createCustomer($parent, $customer);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1081,7 +1081,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function createCustomerRepricingConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1091,7 +1091,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
         $customerRepricingConfig = new CustomerRepricingConfig();
         $customerRepricingConfigRepricingConfig = new RepricingConfig();
         $repricingConfigEffectiveInvoiceMonth = new Date();
@@ -1101,7 +1101,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
         $customerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
         $customerRepricingConfig->setRepricingConfig($customerRepricingConfigRepricingConfig);
-        $response = $client->createCustomerRepricingConfig($formattedParent, $customerRepricingConfig);
+        $response = $gapicClient->createCustomerRepricingConfig($formattedParent, $customerRepricingConfig);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1121,7 +1121,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function createCustomerRepricingConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1136,7 +1136,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
         $customerRepricingConfig = new CustomerRepricingConfig();
         $customerRepricingConfigRepricingConfig = new RepricingConfig();
         $repricingConfigEffectiveInvoiceMonth = new Date();
@@ -1147,8 +1147,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $customerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
         $customerRepricingConfig->setRepricingConfig($customerRepricingConfigRepricingConfig);
         try {
-            $client->createCustomerRepricingConfig($formattedParent, $customerRepricingConfig);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createCustomerRepricingConfig($formattedParent, $customerRepricingConfig);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1171,7 +1171,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1197,11 +1197,11 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
         $entitlement = new Entitlement();
-        $entitlementOffer = $client->offerName('[ACCOUNT]', '[OFFER]');
+        $entitlementOffer = $gapicClient->offerName('[ACCOUNT]', '[OFFER]');
         $entitlement->setOffer($entitlementOffer);
-        $response = $client->createEntitlement($formattedParent, $entitlement);
+        $response = $gapicClient->createEntitlement($formattedParent, $entitlement);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1246,7 +1246,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1268,11 +1268,11 @@ class CloudChannelServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
         $entitlement = new Entitlement();
-        $entitlementOffer = $client->offerName('[ACCOUNT]', '[OFFER]');
+        $entitlementOffer = $gapicClient->offerName('[ACCOUNT]', '[OFFER]');
         $entitlement->setOffer($entitlementOffer);
-        $response = $client->createEntitlement($formattedParent, $entitlement);
+        $response = $gapicClient->createEntitlement($formattedParent, $entitlement);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1300,7 +1300,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function deleteChannelPartnerRepricingConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1308,8 +1308,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
-        $client->deleteChannelPartnerRepricingConfig($formattedName);
+        $formattedName = $gapicClient->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
+        $gapicClient->deleteChannelPartnerRepricingConfig($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -1326,7 +1326,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function deleteChannelPartnerRepricingConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1341,10 +1341,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
+        $formattedName = $gapicClient->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
         try {
-            $client->deleteChannelPartnerRepricingConfig($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteChannelPartnerRepricingConfig($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1361,7 +1361,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function deleteCustomerTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1369,8 +1369,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $client->deleteCustomer($formattedName);
+        $formattedName = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $gapicClient->deleteCustomer($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -1387,7 +1387,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function deleteCustomerExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1402,10 +1402,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $formattedName = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
         try {
-            $client->deleteCustomer($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteCustomer($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1422,7 +1422,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function deleteCustomerRepricingConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1430,8 +1430,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
-        $client->deleteCustomerRepricingConfig($formattedName);
+        $formattedName = $gapicClient->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
+        $gapicClient->deleteCustomerRepricingConfig($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -1448,7 +1448,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function deleteCustomerRepricingConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1463,10 +1463,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
+        $formattedName = $gapicClient->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
         try {
-            $client->deleteCustomerRepricingConfig($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteCustomerRepricingConfig($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1483,7 +1483,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function getChannelPartnerLinkTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1500,7 +1500,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $response = $client->getChannelPartnerLink($name);
+        $response = $gapicClient->getChannelPartnerLink($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1518,7 +1518,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function getChannelPartnerLinkExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1535,8 +1535,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         try {
-            $client->getChannelPartnerLink($name);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getChannelPartnerLink($name);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1553,7 +1553,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function getChannelPartnerRepricingConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1563,8 +1563,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
-        $response = $client->getChannelPartnerRepricingConfig($formattedName);
+        $formattedName = $gapicClient->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
+        $response = $gapicClient->getChannelPartnerRepricingConfig($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1582,7 +1582,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function getChannelPartnerRepricingConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1597,10 +1597,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
+        $formattedName = $gapicClient->channelPartnerRepricingConfigName('[ACCOUNT]', '[CHANNEL_PARTNER]', '[CHANNEL_PARTNER_REPRICING_CONFIG]');
         try {
-            $client->getChannelPartnerRepricingConfig($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getChannelPartnerRepricingConfig($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1617,7 +1617,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function getCustomerTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1639,8 +1639,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setChannelPartnerId($channelPartnerId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $response = $client->getCustomer($formattedName);
+        $formattedName = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $response = $gapicClient->getCustomer($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1658,7 +1658,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function getCustomerExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1673,10 +1673,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $formattedName = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
         try {
-            $client->getCustomer($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getCustomer($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1693,7 +1693,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function getCustomerRepricingConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1703,8 +1703,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
-        $response = $client->getCustomerRepricingConfig($formattedName);
+        $formattedName = $gapicClient->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
+        $response = $gapicClient->getCustomerRepricingConfig($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1722,7 +1722,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function getCustomerRepricingConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1737,10 +1737,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
+        $formattedName = $gapicClient->customerRepricingConfigName('[ACCOUNT]', '[CUSTOMER]', '[CUSTOMER_REPRICING_CONFIG]');
         try {
-            $client->getCustomerRepricingConfig($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getCustomerRepricingConfig($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1757,7 +1757,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function getEntitlementTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1771,8 +1771,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setPurchaseOrderId($purchaseOrderId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
-        $response = $client->getEntitlement($formattedName);
+        $formattedName = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
+        $response = $gapicClient->getEntitlement($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1790,7 +1790,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function getEntitlementExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1805,10 +1805,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
+        $formattedName = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
         try {
-            $client->getEntitlement($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getEntitlement($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1825,7 +1825,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function importCustomerTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1851,7 +1851,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $customerIdentity->setDomain('domain-1326197564');
         $parent = 'parent-995424086';
         $overwriteIfExists = true;
-        $response = $client->importCustomer($customerIdentity, $parent, $overwriteIfExists);
+        $response = $gapicClient->importCustomer($customerIdentity, $parent, $overwriteIfExists);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1873,7 +1873,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function importCustomerExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1893,8 +1893,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $parent = 'parent-995424086';
         $overwriteIfExists = true;
         try {
-            $client->importCustomer($customerIdentity, $parent, $overwriteIfExists);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->importCustomer($customerIdentity, $parent, $overwriteIfExists);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1911,7 +1911,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listChannelPartnerLinksTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1927,7 +1927,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $response = $client->listChannelPartnerLinks($parent);
+        $response = $gapicClient->listChannelPartnerLinks($parent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1948,7 +1948,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listChannelPartnerLinksExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1965,8 +1965,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         try {
-            $client->listChannelPartnerLinks($parent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listChannelPartnerLinks($parent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1983,7 +1983,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listChannelPartnerRepricingConfigsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1998,8 +1998,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setChannelPartnerRepricingConfigs($channelPartnerRepricingConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
-        $response = $client->listChannelPartnerRepricingConfigs($formattedParent);
+        $formattedParent = $gapicClient->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
+        $response = $gapicClient->listChannelPartnerRepricingConfigs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2020,7 +2020,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listChannelPartnerRepricingConfigsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2035,10 +2035,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
+        $formattedParent = $gapicClient->channelPartnerLinkName('[ACCOUNT]', '[CHANNEL_PARTNER_LINK]');
         try {
-            $client->listChannelPartnerRepricingConfigs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listChannelPartnerRepricingConfigs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2055,7 +2055,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listCustomerRepricingConfigsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2070,8 +2070,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setCustomerRepricingConfigs($customerRepricingConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $response = $client->listCustomerRepricingConfigs($formattedParent);
+        $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $response = $gapicClient->listCustomerRepricingConfigs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2092,7 +2092,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listCustomerRepricingConfigsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2107,10 +2107,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
         try {
-            $client->listCustomerRepricingConfigs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listCustomerRepricingConfigs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2127,7 +2127,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listCustomersTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2143,7 +2143,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $response = $client->listCustomers($parent);
+        $response = $gapicClient->listCustomers($parent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2164,7 +2164,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listCustomersExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2181,8 +2181,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         try {
-            $client->listCustomers($parent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listCustomers($parent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2199,7 +2199,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listEntitlementsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2214,8 +2214,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setEntitlements($entitlements);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $response = $client->listEntitlements($formattedParent);
+        $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $response = $gapicClient->listEntitlements($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2236,7 +2236,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listEntitlementsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2251,10 +2251,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $formattedParent = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
         try {
-            $client->listEntitlements($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listEntitlements($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2271,7 +2271,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listOffersTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2287,7 +2287,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $response = $client->listOffers($parent);
+        $response = $gapicClient->listOffers($parent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2308,7 +2308,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listOffersExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2325,8 +2325,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         try {
-            $client->listOffers($parent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listOffers($parent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2343,7 +2343,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listProductsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2359,7 +2359,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $account = 'account-1177318867';
-        $response = $client->listProducts($account);
+        $response = $gapicClient->listProducts($account);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2380,7 +2380,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listProductsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2397,8 +2397,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $account = 'account-1177318867';
         try {
-            $client->listProducts($account);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listProducts($account);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2415,7 +2415,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listPurchasableOffersTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2430,8 +2430,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setPurchasableOffers($purchasableOffers);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedCustomer = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $response = $client->listPurchasableOffers($formattedCustomer);
+        $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $response = $gapicClient->listPurchasableOffers($formattedCustomer);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2452,7 +2452,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listPurchasableOffersExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2467,10 +2467,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedCustomer = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
         try {
-            $client->listPurchasableOffers($formattedCustomer);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listPurchasableOffers($formattedCustomer);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2487,7 +2487,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listPurchasableSkusTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2502,8 +2502,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setPurchasableSkus($purchasableSkus);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedCustomer = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $response = $client->listPurchasableSkus($formattedCustomer);
+        $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $response = $gapicClient->listPurchasableSkus($formattedCustomer);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2524,7 +2524,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listPurchasableSkusExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2539,10 +2539,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedCustomer = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
         try {
-            $client->listPurchasableSkus($formattedCustomer);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listPurchasableSkus($formattedCustomer);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2559,7 +2559,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listSkusTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2574,9 +2574,9 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setSkus($skus);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->productName('[PRODUCT]');
+        $formattedParent = $gapicClient->productName('[PRODUCT]');
         $account = 'account-1177318867';
-        $response = $client->listSkus($formattedParent, $account);
+        $response = $gapicClient->listSkus($formattedParent, $account);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2599,7 +2599,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listSkusExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2614,11 +2614,11 @@ class CloudChannelServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->productName('[PRODUCT]');
+        $formattedParent = $gapicClient->productName('[PRODUCT]');
         $account = 'account-1177318867';
         try {
-            $client->listSkus($formattedParent, $account);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listSkus($formattedParent, $account);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2635,7 +2635,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listSubscribersTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2653,7 +2653,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $account = 'account-1177318867';
-        $response = $client->listSubscribers($account);
+        $response = $gapicClient->listSubscribers($account);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2674,7 +2674,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listSubscribersExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2691,8 +2691,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $account = 'account-1177318867';
         try {
-            $client->listSubscribers($account);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listSubscribers($account);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2709,7 +2709,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listTransferableOffersTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2726,7 +2726,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $sku = 'sku113949';
-        $response = $client->listTransferableOffers($parent, $sku);
+        $response = $gapicClient->listTransferableOffers($parent, $sku);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2749,7 +2749,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listTransferableOffersExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2767,8 +2767,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $parent = 'parent-995424086';
         $sku = 'sku113949';
         try {
-            $client->listTransferableOffers($parent, $sku);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listTransferableOffers($parent, $sku);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2785,7 +2785,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listTransferableSkusTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2801,7 +2801,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $response = $client->listTransferableSkus($parent);
+        $response = $gapicClient->listTransferableSkus($parent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2822,7 +2822,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function listTransferableSkusExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2839,8 +2839,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         try {
-            $client->listTransferableSkus($parent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listTransferableSkus($parent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2857,7 +2857,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function lookupOfferTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2867,8 +2867,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedEntitlement = $client->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
-        $response = $client->lookupOffer($formattedEntitlement);
+        $formattedEntitlement = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
+        $response = $gapicClient->lookupOffer($formattedEntitlement);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2886,7 +2886,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function lookupOfferExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2901,10 +2901,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedEntitlement = $client->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
+        $formattedEntitlement = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
         try {
-            $client->lookupOffer($formattedEntitlement);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->lookupOffer($formattedEntitlement);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2927,7 +2927,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2961,8 +2961,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedCustomer = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $response = $client->provisionCloudIdentity($formattedCustomer);
+        $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $response = $gapicClient->provisionCloudIdentity($formattedCustomer);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3005,7 +3005,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3027,8 +3027,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedCustomer = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
-        $response = $client->provisionCloudIdentity($formattedCustomer);
+        $formattedCustomer = $gapicClient->customerName('[ACCOUNT]', '[CUSTOMER]');
+        $response = $gapicClient->provisionCloudIdentity($formattedCustomer);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3056,7 +3056,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function registerSubscriberTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3068,7 +3068,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $account = 'account-1177318867';
         $serviceAccount = 'serviceAccount-1948028253';
-        $response = $client->registerSubscriber($account, $serviceAccount);
+        $response = $gapicClient->registerSubscriber($account, $serviceAccount);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -3088,7 +3088,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function registerSubscriberExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3106,8 +3106,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $account = 'account-1177318867';
         $serviceAccount = 'serviceAccount-1948028253';
         try {
-            $client->registerSubscriber($account, $serviceAccount);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->registerSubscriber($account, $serviceAccount);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -3130,7 +3130,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3157,7 +3157,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $response = $client->startPaidService($name);
+        $response = $gapicClient->startPaidService($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3200,7 +3200,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3223,7 +3223,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $response = $client->startPaidService($name);
+        $response = $gapicClient->startPaidService($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3257,7 +3257,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3284,7 +3284,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $response = $client->suspendEntitlement($name);
+        $response = $gapicClient->suspendEntitlement($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3327,7 +3327,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3350,7 +3350,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $response = $client->suspendEntitlement($name);
+        $response = $gapicClient->suspendEntitlement($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3384,7 +3384,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3406,7 +3406,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $entitlements = [];
-        $response = $client->transferEntitlements($parent, $entitlements);
+        $response = $gapicClient->transferEntitlements($parent, $entitlements);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3451,7 +3451,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3475,7 +3475,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $entitlements = [];
-        $response = $client->transferEntitlements($parent, $entitlements);
+        $response = $gapicClient->transferEntitlements($parent, $entitlements);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3509,7 +3509,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3531,7 +3531,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $entitlements = [];
-        $response = $client->transferEntitlementsToGoogle($parent, $entitlements);
+        $response = $gapicClient->transferEntitlementsToGoogle($parent, $entitlements);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3576,7 +3576,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3600,7 +3600,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $entitlements = [];
-        $response = $client->transferEntitlementsToGoogle($parent, $entitlements);
+        $response = $gapicClient->transferEntitlementsToGoogle($parent, $entitlements);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3628,7 +3628,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function unregisterSubscriberTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3640,7 +3640,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $account = 'account-1177318867';
         $serviceAccount = 'serviceAccount-1948028253';
-        $response = $client->unregisterSubscriber($account, $serviceAccount);
+        $response = $gapicClient->unregisterSubscriber($account, $serviceAccount);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -3660,7 +3660,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function unregisterSubscriberExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3678,8 +3678,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $account = 'account-1177318867';
         $serviceAccount = 'serviceAccount-1948028253';
         try {
-            $client->unregisterSubscriber($account, $serviceAccount);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->unregisterSubscriber($account, $serviceAccount);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -3696,7 +3696,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function updateChannelPartnerLinkTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3719,7 +3719,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $channelPartnerLinkLinkState = ChannelPartnerLinkState::CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED;
         $channelPartnerLink->setLinkState($channelPartnerLinkLinkState);
         $updateMask = new FieldMask();
-        $response = $client->updateChannelPartnerLink($name, $channelPartnerLink, $updateMask);
+        $response = $gapicClient->updateChannelPartnerLink($name, $channelPartnerLink, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -3741,7 +3741,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function updateChannelPartnerLinkExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3764,8 +3764,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $channelPartnerLink->setLinkState($channelPartnerLinkLinkState);
         $updateMask = new FieldMask();
         try {
-            $client->updateChannelPartnerLink($name, $channelPartnerLink, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateChannelPartnerLink($name, $channelPartnerLink, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -3782,7 +3782,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function updateChannelPartnerRepricingConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3801,7 +3801,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
         $channelPartnerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
         $channelPartnerRepricingConfig->setRepricingConfig($channelPartnerRepricingConfigRepricingConfig);
-        $response = $client->updateChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
+        $response = $gapicClient->updateChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -3819,7 +3819,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function updateChannelPartnerRepricingConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3844,8 +3844,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $channelPartnerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
         $channelPartnerRepricingConfig->setRepricingConfig($channelPartnerRepricingConfigRepricingConfig);
         try {
-            $client->updateChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateChannelPartnerRepricingConfig($channelPartnerRepricingConfig);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -3862,7 +3862,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function updateCustomerTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3891,7 +3891,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $customer->setOrgPostalAddress($customerOrgPostalAddress);
         $customerDomain = 'customerDomain1489396290';
         $customer->setDomain($customerDomain);
-        $response = $client->updateCustomer($customer);
+        $response = $gapicClient->updateCustomer($customer);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -3909,7 +3909,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function updateCustomerExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3932,8 +3932,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $customerDomain = 'customerDomain1489396290';
         $customer->setDomain($customerDomain);
         try {
-            $client->updateCustomer($customer);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateCustomer($customer);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -3950,7 +3950,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function updateCustomerRepricingConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3969,7 +3969,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $repricingConfigRebillingBasis = RebillingBasis::REBILLING_BASIS_UNSPECIFIED;
         $customerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
         $customerRepricingConfig->setRepricingConfig($customerRepricingConfigRepricingConfig);
-        $response = $client->updateCustomerRepricingConfig($customerRepricingConfig);
+        $response = $gapicClient->updateCustomerRepricingConfig($customerRepricingConfig);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -3987,7 +3987,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
     public function updateCustomerRepricingConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -4012,8 +4012,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $customerRepricingConfigRepricingConfig->setRebillingBasis($repricingConfigRebillingBasis);
         $customerRepricingConfig->setRepricingConfig($customerRepricingConfigRepricingConfig);
         try {
-            $client->updateCustomerRepricingConfig($customerRepricingConfig);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateCustomerRepricingConfig($customerRepricingConfig);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
