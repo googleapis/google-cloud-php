@@ -98,6 +98,7 @@
         "cloud-resource-manager",
         "cloud-resource-settings",
         "cloud-retail",
+        "cloud-run",
         "cloud-scheduler",
         "cloud-secret-manager",
         "cloud-security-center",
