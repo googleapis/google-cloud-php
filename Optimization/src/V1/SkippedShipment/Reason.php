@@ -176,6 +176,4 @@ class Reason extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Reason::class, \Google\Cloud\Optimization\V1\SkippedShipment_Reason::class);
 

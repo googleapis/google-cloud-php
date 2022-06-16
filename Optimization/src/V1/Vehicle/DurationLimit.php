@@ -354,6 +354,4 @@ class DurationLimit extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DurationLimit::class, \Google\Cloud\Optimization\V1\Vehicle_DurationLimit::class);
 

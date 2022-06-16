@@ -63,6 +63,4 @@ class UnloadingPolicy
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(UnloadingPolicy::class, \Google\Cloud\Optimization\V1\Vehicle_UnloadingPolicy::class);
 

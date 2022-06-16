@@ -77,6 +77,4 @@ class Level
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Level::class, \Google\Cloud\Optimization\V1\InjectedSolutionConstraint_ConstraintRelaxation_Relaxation_Level::class);
 

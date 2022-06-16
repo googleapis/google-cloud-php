@@ -22,21 +22,21 @@ class ServerTlsPolicy
         \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ç
-<google/cloud/networksecurity/v1beta1/server_tls_policy.proto$google.cloud.networksecurity.v1beta1google/api/resource.proto.google/cloud/networksecurity/v1beta1/tls.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.protogoogle/api/annotations.proto"Î
+ï
+<google/cloud/networksecurity/v1beta1/server_tls_policy.proto$google.cloud.networksecurity.v1beta1google/api/resource.proto.google/cloud/networksecurity/v1beta1/tls.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.protogoogle/api/annotations.proto"ì
 ServerTlsPolicy
-name (	BàA
-description (	4
+name (	BàA
+description (	BàA4
 create_time (2.google.protobuf.TimestampBàA4
-update_time (2.google.protobuf.TimestampBàAQ
-labels (2A.google.cloud.networksecurity.v1beta1.ServerTlsPolicy.LabelsEntry
+update_time (2.google.protobuf.TimestampBàAV
+labels (2A.google.cloud.networksecurity.v1beta1.ServerTlsPolicy.LabelsEntryBàA
 
-allow_open (U
-server_certificate (29.google.cloud.networksecurity.v1beta1.CertificateProviderU
-mtls_policy (2@.google.cloud.networksecurity.v1beta1.ServerTlsPolicy.MTLSPolicy^
+allow_open (BàAZ
+server_certificate (29.google.cloud.networksecurity.v1beta1.CertificateProviderBàAZ
+mtls_policy (2@.google.cloud.networksecurity.v1beta1.ServerTlsPolicy.MTLSPolicyBàAc
 
-MTLSPolicyP
-client_validation_ca (22.google.cloud.networksecurity.v1beta1.ValidationCA-
+MTLSPolicyU
+client_validation_ca (22.google.cloud.networksecurity.v1beta1.ValidationCABàA-
 LabelsEntry
 key (	
 value (	:8:‚êA
@@ -63,8 +63,8 @@ page_token (	"Œ
 server_tls_policy (25.google.cloud.networksecurity.v1beta1.ServerTlsPolicyBàA"d
 DeleteServerTlsPolicyRequestD
 name (	B6àAúA0
-.networksecurity.googleapis.com/ServerTlsPolicyB
-(com.google.cloud.networksecurity.v1beta1BServerTlsPolicyProtoPZSgoogle.golang.org/genproto/googleapis/cloud/networksecurity/v1beta1;networksecurityª$Google.Cloud.NetworkSecurity.V1Beta1Ê$Google\\Cloud\\NetworkSecurity\\V1beta1ê\'Google::Cloud::NetworkSecurity::V1beta1bproto3'
+.networksecurity.googleapis.com/ServerTlsPolicyBù
+(com.google.cloud.networksecurity.v1beta1PZSgoogle.golang.org/genproto/googleapis/cloud/networksecurity/v1beta1;networksecurityª$Google.Cloud.NetworkSecurity.V1Beta1Ê$Google\\Cloud\\NetworkSecurity\\V1beta1ê\'Google::Cloud::NetworkSecurity::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

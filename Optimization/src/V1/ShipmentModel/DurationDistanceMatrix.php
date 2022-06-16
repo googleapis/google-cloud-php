@@ -128,6 +128,4 @@ class DurationDistanceMatrix extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DurationDistanceMatrix::class, \Google\Cloud\Optimization\V1\ShipmentModel_DurationDistanceMatrix::class);
 

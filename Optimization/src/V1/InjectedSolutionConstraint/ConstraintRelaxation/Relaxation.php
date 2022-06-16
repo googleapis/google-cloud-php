@@ -199,6 +199,4 @@ class Relaxation extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Relaxation::class, \Google\Cloud\Optimization\V1\InjectedSolutionConstraint_ConstraintRelaxation_Relaxation::class);
 

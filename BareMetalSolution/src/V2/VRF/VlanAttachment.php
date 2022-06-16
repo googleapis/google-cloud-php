@@ -133,6 +133,4 @@ class VlanAttachment extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VlanAttachment::class, \Google\Cloud\BaremetalSolution\V2\VRF_VlanAttachment::class);
 

@@ -100,7 +100,7 @@ class AwsClustersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -136,7 +136,7 @@ class AwsClustersClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $awsCluster = new AwsCluster();
         $awsClusterNetworking = new AwsClusterNetworking();
         $networkingVpcId = 'networkingVpcId-1154507440';
@@ -173,7 +173,7 @@ class AwsClustersClientTest extends GeneratedTest
         $awsClusterAuthorization->setAdminUsers($authorizationAdminUsers);
         $awsCluster->setAuthorization($awsClusterAuthorization);
         $awsClusterId = 'awsClusterId938438658';
-        $response = $gapicClient->createAwsCluster($formattedParent, $awsCluster, $awsClusterId);
+        $response = $client->createAwsCluster($formattedParent, $awsCluster, $awsClusterId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -220,7 +220,7 @@ class AwsClustersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -242,7 +242,7 @@ class AwsClustersClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $awsCluster = new AwsCluster();
         $awsClusterNetworking = new AwsClusterNetworking();
         $networkingVpcId = 'networkingVpcId-1154507440';
@@ -279,7 +279,7 @@ class AwsClustersClientTest extends GeneratedTest
         $awsClusterAuthorization->setAdminUsers($authorizationAdminUsers);
         $awsCluster->setAuthorization($awsClusterAuthorization);
         $awsClusterId = 'awsClusterId938438658';
-        $response = $gapicClient->createAwsCluster($formattedParent, $awsCluster, $awsClusterId);
+        $response = $client->createAwsCluster($formattedParent, $awsCluster, $awsClusterId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -313,7 +313,7 @@ class AwsClustersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -345,7 +345,7 @@ class AwsClustersClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+        $formattedParent = $client->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
         $awsNodePool = new AwsNodePool();
         $awsNodePoolVersion = 'awsNodePoolVersion-617231107';
         $awsNodePool->setVersion($awsNodePoolVersion);
@@ -370,7 +370,7 @@ class AwsClustersClientTest extends GeneratedTest
         $awsNodePoolMaxPodsConstraint->setMaxPodsPerNode($maxPodsConstraintMaxPodsPerNode);
         $awsNodePool->setMaxPodsConstraint($awsNodePoolMaxPodsConstraint);
         $awsNodePoolId = 'awsNodePoolId1958033635';
-        $response = $gapicClient->createAwsNodePool($formattedParent, $awsNodePool, $awsNodePoolId);
+        $response = $client->createAwsNodePool($formattedParent, $awsNodePool, $awsNodePoolId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -417,7 +417,7 @@ class AwsClustersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -439,7 +439,7 @@ class AwsClustersClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+        $formattedParent = $client->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
         $awsNodePool = new AwsNodePool();
         $awsNodePoolVersion = 'awsNodePoolVersion-617231107';
         $awsNodePool->setVersion($awsNodePoolVersion);
@@ -464,7 +464,7 @@ class AwsClustersClientTest extends GeneratedTest
         $awsNodePoolMaxPodsConstraint->setMaxPodsPerNode($maxPodsConstraintMaxPodsPerNode);
         $awsNodePool->setMaxPodsConstraint($awsNodePoolMaxPodsConstraint);
         $awsNodePoolId = 'awsNodePoolId1958033635';
-        $response = $gapicClient->createAwsNodePool($formattedParent, $awsNodePool, $awsNodePoolId);
+        $response = $client->createAwsNodePool($formattedParent, $awsNodePool, $awsNodePoolId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -498,7 +498,7 @@ class AwsClustersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -518,8 +518,8 @@ class AwsClustersClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-        $response = $gapicClient->deleteAwsCluster($formattedName);
+        $formattedName = $client->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+        $response = $client->deleteAwsCluster($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -562,7 +562,7 @@ class AwsClustersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -584,8 +584,8 @@ class AwsClustersClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-        $response = $gapicClient->deleteAwsCluster($formattedName);
+        $formattedName = $client->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+        $response = $client->deleteAwsCluster($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -619,7 +619,7 @@ class AwsClustersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -639,8 +639,8 @@ class AwsClustersClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
-        $response = $gapicClient->deleteAwsNodePool($formattedName);
+        $formattedName = $client->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
+        $response = $client->deleteAwsNodePool($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -683,7 +683,7 @@ class AwsClustersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -705,8 +705,8 @@ class AwsClustersClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
-        $response = $gapicClient->deleteAwsNodePool($formattedName);
+        $formattedName = $client->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
+        $response = $client->deleteAwsNodePool($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -734,7 +734,7 @@ class AwsClustersClientTest extends GeneratedTest
     public function generateAwsAccessTokenTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -744,8 +744,8 @@ class AwsClustersClientTest extends GeneratedTest
         $expectedResponse->setAccessToken($accessToken);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedAwsCluster = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-        $response = $gapicClient->generateAwsAccessToken($formattedAwsCluster);
+        $formattedAwsCluster = $client->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+        $response = $client->generateAwsAccessToken($formattedAwsCluster);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -763,7 +763,7 @@ class AwsClustersClientTest extends GeneratedTest
     public function generateAwsAccessTokenExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -778,10 +778,10 @@ class AwsClustersClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedAwsCluster = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+        $formattedAwsCluster = $client->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
         try {
-            $gapicClient->generateAwsAccessToken($formattedAwsCluster);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->generateAwsAccessToken($formattedAwsCluster);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -798,7 +798,7 @@ class AwsClustersClientTest extends GeneratedTest
     public function getAwsClusterTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -822,8 +822,8 @@ class AwsClustersClientTest extends GeneratedTest
         $expectedResponse->setClusterCaCertificate($clusterCaCertificate);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-        $response = $gapicClient->getAwsCluster($formattedName);
+        $formattedName = $client->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+        $response = $client->getAwsCluster($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -841,7 +841,7 @@ class AwsClustersClientTest extends GeneratedTest
     public function getAwsClusterExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -856,10 +856,10 @@ class AwsClustersClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+        $formattedName = $client->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
         try {
-            $gapicClient->getAwsCluster($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->getAwsCluster($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -876,7 +876,7 @@ class AwsClustersClientTest extends GeneratedTest
     public function getAwsNodePoolTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -896,8 +896,8 @@ class AwsClustersClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
-        $response = $gapicClient->getAwsNodePool($formattedName);
+        $formattedName = $client->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
+        $response = $client->getAwsNodePool($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -915,7 +915,7 @@ class AwsClustersClientTest extends GeneratedTest
     public function getAwsNodePoolExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -930,10 +930,10 @@ class AwsClustersClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
+        $formattedName = $client->awsNodePoolName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]', '[AWS_NODE_POOL]');
         try {
-            $gapicClient->getAwsNodePool($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->getAwsNodePool($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -950,7 +950,7 @@ class AwsClustersClientTest extends GeneratedTest
     public function getAwsServerConfigTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -960,8 +960,8 @@ class AwsClustersClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->awsServerConfigName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->getAwsServerConfig($formattedName);
+        $formattedName = $client->awsServerConfigName('[PROJECT]', '[LOCATION]');
+        $response = $client->getAwsServerConfig($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -979,7 +979,7 @@ class AwsClustersClientTest extends GeneratedTest
     public function getAwsServerConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -994,10 +994,10 @@ class AwsClustersClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->awsServerConfigName('[PROJECT]', '[LOCATION]');
+        $formattedName = $client->awsServerConfigName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->getAwsServerConfig($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->getAwsServerConfig($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1014,7 +1014,7 @@ class AwsClustersClientTest extends GeneratedTest
     public function listAwsClustersTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1029,8 +1029,8 @@ class AwsClustersClientTest extends GeneratedTest
         $expectedResponse->setAwsClusters($awsClusters);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listAwsClusters($formattedParent);
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $response = $client->listAwsClusters($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1051,7 +1051,7 @@ class AwsClustersClientTest extends GeneratedTest
     public function listAwsClustersExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1066,10 +1066,10 @@ class AwsClustersClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listAwsClusters($formattedParent);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->listAwsClusters($formattedParent);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1086,7 +1086,7 @@ class AwsClustersClientTest extends GeneratedTest
     public function listAwsNodePoolsTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1101,8 +1101,8 @@ class AwsClustersClientTest extends GeneratedTest
         $expectedResponse->setAwsNodePools($awsNodePools);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
-        $response = $gapicClient->listAwsNodePools($formattedParent);
+        $formattedParent = $client->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+        $response = $client->listAwsNodePools($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1123,7 +1123,7 @@ class AwsClustersClientTest extends GeneratedTest
     public function listAwsNodePoolsExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1138,10 +1138,10 @@ class AwsClustersClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
+        $formattedParent = $client->awsClusterName('[PROJECT]', '[LOCATION]', '[AWS_CLUSTER]');
         try {
-            $gapicClient->listAwsNodePools($formattedParent);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->listAwsNodePools($formattedParent);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1164,7 +1164,7 @@ class AwsClustersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1236,7 +1236,7 @@ class AwsClustersClientTest extends GeneratedTest
         $awsClusterAuthorization->setAdminUsers($authorizationAdminUsers);
         $awsCluster->setAuthorization($awsClusterAuthorization);
         $updateMask = new FieldMask();
-        $response = $gapicClient->updateAwsCluster($awsCluster, $updateMask);
+        $response = $client->updateAwsCluster($awsCluster, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1281,7 +1281,7 @@ class AwsClustersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1339,7 +1339,7 @@ class AwsClustersClientTest extends GeneratedTest
         $awsClusterAuthorization->setAdminUsers($authorizationAdminUsers);
         $awsCluster->setAuthorization($awsClusterAuthorization);
         $updateMask = new FieldMask();
-        $response = $gapicClient->updateAwsCluster($awsCluster, $updateMask);
+        $response = $client->updateAwsCluster($awsCluster, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1373,7 +1373,7 @@ class AwsClustersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1429,7 +1429,7 @@ class AwsClustersClientTest extends GeneratedTest
         $awsNodePoolMaxPodsConstraint->setMaxPodsPerNode($maxPodsConstraintMaxPodsPerNode);
         $awsNodePool->setMaxPodsConstraint($awsNodePoolMaxPodsConstraint);
         $updateMask = new FieldMask();
-        $response = $gapicClient->updateAwsNodePool($awsNodePool, $updateMask);
+        $response = $client->updateAwsNodePool($awsNodePool, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1474,7 +1474,7 @@ class AwsClustersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1520,7 +1520,7 @@ class AwsClustersClientTest extends GeneratedTest
         $awsNodePoolMaxPodsConstraint->setMaxPodsPerNode($maxPodsConstraintMaxPodsPerNode);
         $awsNodePool->setMaxPodsConstraint($awsNodePoolMaxPodsConstraint);
         $updateMask = new FieldMask();
-        $response = $gapicClient->updateAwsNodePool($awsNodePool, $updateMask);
+        $response = $client->updateAwsNodePool($awsNodePool, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

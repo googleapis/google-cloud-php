@@ -119,6 +119,4 @@ class PBBreak extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PBBreak::class, \Google\Cloud\Optimization\V1\ShipmentRoute_Break::class);
 

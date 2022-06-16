@@ -77,7 +77,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function createServiceTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -91,7 +91,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $service = new Service();
-        $response = $gapicClient->createService($parent, $service);
+        $response = $client->createService($parent, $service);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -111,7 +111,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function createServiceExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -129,8 +129,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $parent = 'parent-995424086';
         $service = new Service();
         try {
-            $gapicClient->createService($parent, $service);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->createService($parent, $service);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -147,7 +147,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function createServiceLevelObjectiveTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -161,9 +161,9 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $expectedResponse->setGoal($goal);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
+        $formattedParent = $client->serviceName('[PROJECT]', '[SERVICE]');
         $serviceLevelObjective = new ServiceLevelObjective();
-        $response = $gapicClient->createServiceLevelObjective($formattedParent, $serviceLevelObjective);
+        $response = $client->createServiceLevelObjective($formattedParent, $serviceLevelObjective);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -183,7 +183,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function createServiceLevelObjectiveExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -198,11 +198,11 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
+        $formattedParent = $client->serviceName('[PROJECT]', '[SERVICE]');
         $serviceLevelObjective = new ServiceLevelObjective();
         try {
-            $gapicClient->createServiceLevelObjective($formattedParent, $serviceLevelObjective);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->createServiceLevelObjective($formattedParent, $serviceLevelObjective);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -219,7 +219,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function deleteServiceTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -227,8 +227,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
-        $gapicClient->deleteService($formattedName);
+        $formattedName = $client->serviceName('[PROJECT]', '[SERVICE]');
+        $client->deleteService($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -245,7 +245,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function deleteServiceExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -260,10 +260,10 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
+        $formattedName = $client->serviceName('[PROJECT]', '[SERVICE]');
         try {
-            $gapicClient->deleteService($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->deleteService($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -280,7 +280,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function deleteServiceLevelObjectiveTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -288,8 +288,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
-        $gapicClient->deleteServiceLevelObjective($formattedName);
+        $formattedName = $client->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
+        $client->deleteServiceLevelObjective($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -306,7 +306,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function deleteServiceLevelObjectiveExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -321,10 +321,10 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
+        $formattedName = $client->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
         try {
-            $gapicClient->deleteServiceLevelObjective($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->deleteServiceLevelObjective($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -341,7 +341,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function getServiceTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -353,8 +353,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
-        $response = $gapicClient->getService($formattedName);
+        $formattedName = $client->serviceName('[PROJECT]', '[SERVICE]');
+        $response = $client->getService($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -372,7 +372,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function getServiceExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -387,10 +387,10 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
+        $formattedName = $client->serviceName('[PROJECT]', '[SERVICE]');
         try {
-            $gapicClient->getService($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->getService($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -407,7 +407,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function getServiceLevelObjectiveTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -421,8 +421,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $expectedResponse->setGoal($goal);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
-        $response = $gapicClient->getServiceLevelObjective($formattedName);
+        $formattedName = $client->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
+        $response = $client->getServiceLevelObjective($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -440,7 +440,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function getServiceLevelObjectiveExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -455,10 +455,10 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
+        $formattedName = $client->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
         try {
-            $gapicClient->getServiceLevelObjective($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->getServiceLevelObjective($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -475,7 +475,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function listServiceLevelObjectivesTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -490,8 +490,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $expectedResponse->setServiceLevelObjectives($serviceLevelObjectives);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
-        $response = $gapicClient->listServiceLevelObjectives($formattedParent);
+        $formattedParent = $client->serviceName('[PROJECT]', '[SERVICE]');
+        $response = $client->listServiceLevelObjectives($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -512,7 +512,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function listServiceLevelObjectivesExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -527,10 +527,10 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[SERVICE]');
+        $formattedParent = $client->serviceName('[PROJECT]', '[SERVICE]');
         try {
-            $gapicClient->listServiceLevelObjectives($formattedParent);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->listServiceLevelObjectives($formattedParent);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -547,7 +547,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function listServicesTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -563,7 +563,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $response = $gapicClient->listServices($parent);
+        $response = $client->listServices($parent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -584,7 +584,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function listServicesExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -601,8 +601,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         try {
-            $gapicClient->listServices($parent);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->listServices($parent);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -619,7 +619,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function updateServiceTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -632,7 +632,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $service = new Service();
-        $response = $gapicClient->updateService($service);
+        $response = $client->updateService($service);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -650,7 +650,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function updateServiceExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -667,8 +667,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         // Mock request
         $service = new Service();
         try {
-            $gapicClient->updateService($service);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->updateService($service);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -685,7 +685,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function updateServiceLevelObjectiveTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -700,7 +700,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $serviceLevelObjective = new ServiceLevelObjective();
-        $response = $gapicClient->updateServiceLevelObjective($serviceLevelObjective);
+        $response = $client->updateServiceLevelObjective($serviceLevelObjective);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -718,7 +718,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
     public function updateServiceLevelObjectiveExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -735,8 +735,8 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         // Mock request
         $serviceLevelObjective = new ServiceLevelObjective();
         try {
-            $gapicClient->updateServiceLevelObjective($serviceLevelObjective);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->updateServiceLevelObjective($serviceLevelObjective);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

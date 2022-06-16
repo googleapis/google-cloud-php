@@ -192,6 +192,4 @@ class FieldReference extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FieldReference::class, \Google\Cloud\Optimization\V1\OptimizeToursValidationError_FieldReference::class);
 

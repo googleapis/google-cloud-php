@@ -91,7 +91,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -115,14 +115,14 @@ class NetworkSecurityClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $gapicClient->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
+        $formattedParent = $client->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
         $authorizationPolicyId = 'authorizationPolicyId-730349822';
         $authorizationPolicy = new AuthorizationPolicy();
         $authorizationPolicyName = 'authorizationPolicyName276096054';
         $authorizationPolicy->setName($authorizationPolicyName);
         $authorizationPolicyAction = Action::ACTION_UNSPECIFIED;
         $authorizationPolicy->setAction($authorizationPolicyAction);
-        $response = $gapicClient->createAuthorizationPolicy($formattedParent, $authorizationPolicyId, $authorizationPolicy);
+        $response = $client->createAuthorizationPolicy($formattedParent, $authorizationPolicyId, $authorizationPolicy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -169,7 +169,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -191,14 +191,14 @@ class NetworkSecurityClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
+        $formattedParent = $client->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
         $authorizationPolicyId = 'authorizationPolicyId-730349822';
         $authorizationPolicy = new AuthorizationPolicy();
         $authorizationPolicyName = 'authorizationPolicyName276096054';
         $authorizationPolicy->setName($authorizationPolicyName);
         $authorizationPolicyAction = Action::ACTION_UNSPECIFIED;
         $authorizationPolicy->setAction($authorizationPolicyAction);
-        $response = $gapicClient->createAuthorizationPolicy($formattedParent, $authorizationPolicyId, $authorizationPolicy);
+        $response = $client->createAuthorizationPolicy($formattedParent, $authorizationPolicyId, $authorizationPolicy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -232,7 +232,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -258,12 +258,12 @@ class NetworkSecurityClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $gapicClient->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
+        $formattedParent = $client->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
         $clientTlsPolicyId = 'clientTlsPolicyId244525968';
         $clientTlsPolicy = new ClientTlsPolicy();
         $clientTlsPolicyName = 'clientTlsPolicyName-1176139731';
         $clientTlsPolicy->setName($clientTlsPolicyName);
-        $response = $gapicClient->createClientTlsPolicy($formattedParent, $clientTlsPolicyId, $clientTlsPolicy);
+        $response = $client->createClientTlsPolicy($formattedParent, $clientTlsPolicyId, $clientTlsPolicy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -310,7 +310,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -332,12 +332,12 @@ class NetworkSecurityClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
+        $formattedParent = $client->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
         $clientTlsPolicyId = 'clientTlsPolicyId244525968';
         $clientTlsPolicy = new ClientTlsPolicy();
         $clientTlsPolicyName = 'clientTlsPolicyName-1176139731';
         $clientTlsPolicy->setName($clientTlsPolicyName);
-        $response = $gapicClient->createClientTlsPolicy($formattedParent, $clientTlsPolicyId, $clientTlsPolicy);
+        $response = $client->createClientTlsPolicy($formattedParent, $clientTlsPolicyId, $clientTlsPolicy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -371,7 +371,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -397,12 +397,12 @@ class NetworkSecurityClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $gapicClient->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
+        $formattedParent = $client->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
         $serverTlsPolicyId = 'serverTlsPolicyId-1952910072';
         $serverTlsPolicy = new ServerTlsPolicy();
         $serverTlsPolicyName = 'serverTlsPolicyName415543221';
         $serverTlsPolicy->setName($serverTlsPolicyName);
-        $response = $gapicClient->createServerTlsPolicy($formattedParent, $serverTlsPolicyId, $serverTlsPolicy);
+        $response = $client->createServerTlsPolicy($formattedParent, $serverTlsPolicyId, $serverTlsPolicy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -449,7 +449,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -471,12 +471,12 @@ class NetworkSecurityClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
+        $formattedParent = $client->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
         $serverTlsPolicyId = 'serverTlsPolicyId-1952910072';
         $serverTlsPolicy = new ServerTlsPolicy();
         $serverTlsPolicyName = 'serverTlsPolicyName415543221';
         $serverTlsPolicy->setName($serverTlsPolicyName);
-        $response = $gapicClient->createServerTlsPolicy($formattedParent, $serverTlsPolicyId, $serverTlsPolicy);
+        $response = $client->createServerTlsPolicy($formattedParent, $serverTlsPolicyId, $serverTlsPolicy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -510,7 +510,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -530,8 +530,8 @@ class NetworkSecurityClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
-        $response = $gapicClient->deleteAuthorizationPolicy($formattedName);
+        $formattedName = $client->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
+        $response = $client->deleteAuthorizationPolicy($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -574,7 +574,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -596,8 +596,8 @@ class NetworkSecurityClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
-        $response = $gapicClient->deleteAuthorizationPolicy($formattedName);
+        $formattedName = $client->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
+        $response = $client->deleteAuthorizationPolicy($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -631,7 +631,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -651,8 +651,8 @@ class NetworkSecurityClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
-        $response = $gapicClient->deleteClientTlsPolicy($formattedName);
+        $formattedName = $client->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
+        $response = $client->deleteClientTlsPolicy($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -695,7 +695,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -717,8 +717,8 @@ class NetworkSecurityClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
-        $response = $gapicClient->deleteClientTlsPolicy($formattedName);
+        $formattedName = $client->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
+        $response = $client->deleteClientTlsPolicy($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -752,7 +752,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -772,8 +772,8 @@ class NetworkSecurityClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
-        $response = $gapicClient->deleteServerTlsPolicy($formattedName);
+        $formattedName = $client->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
+        $response = $client->deleteServerTlsPolicy($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -816,7 +816,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -838,8 +838,8 @@ class NetworkSecurityClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
-        $response = $gapicClient->deleteServerTlsPolicy($formattedName);
+        $formattedName = $client->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
+        $response = $client->deleteServerTlsPolicy($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -867,7 +867,7 @@ class NetworkSecurityClientTest extends GeneratedTest
     public function getAuthorizationPolicyTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -879,8 +879,8 @@ class NetworkSecurityClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
-        $response = $gapicClient->getAuthorizationPolicy($formattedName);
+        $formattedName = $client->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
+        $response = $client->getAuthorizationPolicy($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -898,7 +898,7 @@ class NetworkSecurityClientTest extends GeneratedTest
     public function getAuthorizationPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -913,10 +913,10 @@ class NetworkSecurityClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
+        $formattedName = $client->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
         try {
-            $gapicClient->getAuthorizationPolicy($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->getAuthorizationPolicy($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -933,7 +933,7 @@ class NetworkSecurityClientTest extends GeneratedTest
     public function getClientTlsPolicyTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -947,8 +947,8 @@ class NetworkSecurityClientTest extends GeneratedTest
         $expectedResponse->setSni($sni);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
-        $response = $gapicClient->getClientTlsPolicy($formattedName);
+        $formattedName = $client->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
+        $response = $client->getClientTlsPolicy($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -966,7 +966,7 @@ class NetworkSecurityClientTest extends GeneratedTest
     public function getClientTlsPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -981,10 +981,10 @@ class NetworkSecurityClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
+        $formattedName = $client->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
         try {
-            $gapicClient->getClientTlsPolicy($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->getClientTlsPolicy($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1001,7 +1001,7 @@ class NetworkSecurityClientTest extends GeneratedTest
     public function getServerTlsPolicyTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1015,8 +1015,8 @@ class NetworkSecurityClientTest extends GeneratedTest
         $expectedResponse->setAllowOpen($allowOpen);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
-        $response = $gapicClient->getServerTlsPolicy($formattedName);
+        $formattedName = $client->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
+        $response = $client->getServerTlsPolicy($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1034,7 +1034,7 @@ class NetworkSecurityClientTest extends GeneratedTest
     public function getServerTlsPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1049,10 +1049,10 @@ class NetworkSecurityClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
+        $formattedName = $client->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
         try {
-            $gapicClient->getServerTlsPolicy($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->getServerTlsPolicy($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1069,7 +1069,7 @@ class NetworkSecurityClientTest extends GeneratedTest
     public function listAuthorizationPoliciesTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1084,8 +1084,8 @@ class NetworkSecurityClientTest extends GeneratedTest
         $expectedResponse->setAuthorizationPolicies($authorizationPolicies);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listAuthorizationPolicies($formattedParent);
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $response = $client->listAuthorizationPolicies($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1106,7 +1106,7 @@ class NetworkSecurityClientTest extends GeneratedTest
     public function listAuthorizationPoliciesExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1121,10 +1121,10 @@ class NetworkSecurityClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listAuthorizationPolicies($formattedParent);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->listAuthorizationPolicies($formattedParent);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1141,7 +1141,7 @@ class NetworkSecurityClientTest extends GeneratedTest
     public function listClientTlsPoliciesTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1156,8 +1156,8 @@ class NetworkSecurityClientTest extends GeneratedTest
         $expectedResponse->setClientTlsPolicies($clientTlsPolicies);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listClientTlsPolicies($formattedParent);
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $response = $client->listClientTlsPolicies($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1178,7 +1178,7 @@ class NetworkSecurityClientTest extends GeneratedTest
     public function listClientTlsPoliciesExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1193,10 +1193,10 @@ class NetworkSecurityClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listClientTlsPolicies($formattedParent);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->listClientTlsPolicies($formattedParent);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1213,7 +1213,7 @@ class NetworkSecurityClientTest extends GeneratedTest
     public function listServerTlsPoliciesTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1228,8 +1228,8 @@ class NetworkSecurityClientTest extends GeneratedTest
         $expectedResponse->setServerTlsPolicies($serverTlsPolicies);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listServerTlsPolicies($formattedParent);
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $response = $client->listServerTlsPolicies($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1250,7 +1250,7 @@ class NetworkSecurityClientTest extends GeneratedTest
     public function listServerTlsPoliciesExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1265,10 +1265,10 @@ class NetworkSecurityClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listServerTlsPolicies($formattedParent);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->listServerTlsPolicies($formattedParent);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1291,7 +1291,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1320,7 +1320,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $authorizationPolicy->setName($authorizationPolicyName);
         $authorizationPolicyAction = Action::ACTION_UNSPECIFIED;
         $authorizationPolicy->setAction($authorizationPolicyAction);
-        $response = $gapicClient->updateAuthorizationPolicy($authorizationPolicy);
+        $response = $client->updateAuthorizationPolicy($authorizationPolicy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1363,7 +1363,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1390,7 +1390,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $authorizationPolicy->setName($authorizationPolicyName);
         $authorizationPolicyAction = Action::ACTION_UNSPECIFIED;
         $authorizationPolicy->setAction($authorizationPolicyAction);
-        $response = $gapicClient->updateAuthorizationPolicy($authorizationPolicy);
+        $response = $client->updateAuthorizationPolicy($authorizationPolicy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1424,7 +1424,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1453,7 +1453,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $clientTlsPolicy = new ClientTlsPolicy();
         $clientTlsPolicyName = 'clientTlsPolicyName-1176139731';
         $clientTlsPolicy->setName($clientTlsPolicyName);
-        $response = $gapicClient->updateClientTlsPolicy($clientTlsPolicy);
+        $response = $client->updateClientTlsPolicy($clientTlsPolicy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1496,7 +1496,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1521,7 +1521,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $clientTlsPolicy = new ClientTlsPolicy();
         $clientTlsPolicyName = 'clientTlsPolicyName-1176139731';
         $clientTlsPolicy->setName($clientTlsPolicyName);
-        $response = $gapicClient->updateClientTlsPolicy($clientTlsPolicy);
+        $response = $client->updateClientTlsPolicy($clientTlsPolicy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1555,7 +1555,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1584,7 +1584,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $serverTlsPolicy = new ServerTlsPolicy();
         $serverTlsPolicyName = 'serverTlsPolicyName415543221';
         $serverTlsPolicy->setName($serverTlsPolicyName);
-        $response = $gapicClient->updateServerTlsPolicy($serverTlsPolicy);
+        $response = $client->updateServerTlsPolicy($serverTlsPolicy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1627,7 +1627,7 @@ class NetworkSecurityClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1652,7 +1652,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $serverTlsPolicy = new ServerTlsPolicy();
         $serverTlsPolicyName = 'serverTlsPolicyName415543221';
         $serverTlsPolicy->setName($serverTlsPolicyName);
-        $response = $gapicClient->updateServerTlsPolicy($serverTlsPolicy);
+        $response = $client->updateServerTlsPolicy($serverTlsPolicy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

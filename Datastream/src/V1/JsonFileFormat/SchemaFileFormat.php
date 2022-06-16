@@ -59,6 +59,4 @@ class SchemaFileFormat
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SchemaFileFormat::class, \Google\Cloud\Datastream\V1\JsonFileFormat_SchemaFileFormat::class);
 

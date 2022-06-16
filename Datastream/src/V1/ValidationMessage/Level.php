@@ -59,6 +59,4 @@ class Level
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Level::class, \Google\Cloud\Datastream\V1\ValidationMessage_Level::class);
 

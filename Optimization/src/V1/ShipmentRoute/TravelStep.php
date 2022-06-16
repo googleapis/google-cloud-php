@@ -229,6 +229,4 @@ class TravelStep extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TravelStep::class, \Google\Cloud\Optimization\V1\ShipmentRoute_TravelStep::class);
 

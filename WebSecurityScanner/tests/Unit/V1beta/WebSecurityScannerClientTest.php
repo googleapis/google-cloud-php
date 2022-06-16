@@ -83,7 +83,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function createScanConfigTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -97,13 +97,13 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $expectedResponse->setMaxQps($maxQps);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
         $scanConfig = new ScanConfig();
         $scanConfigDisplayName = 'scanConfigDisplayName-609132338';
         $scanConfig->setDisplayName($scanConfigDisplayName);
         $scanConfigStartingUrls = [];
         $scanConfig->setStartingUrls($scanConfigStartingUrls);
-        $response = $gapicClient->createScanConfig($formattedParent, $scanConfig);
+        $response = $client->createScanConfig($formattedParent, $scanConfig);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -123,7 +123,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function createScanConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -138,15 +138,15 @@ class WebSecurityScannerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
         $scanConfig = new ScanConfig();
         $scanConfigDisplayName = 'scanConfigDisplayName-609132338';
         $scanConfig->setDisplayName($scanConfigDisplayName);
         $scanConfigStartingUrls = [];
         $scanConfig->setStartingUrls($scanConfigStartingUrls);
         try {
-            $gapicClient->createScanConfig($formattedParent, $scanConfig);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->createScanConfig($formattedParent, $scanConfig);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -163,7 +163,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function deleteScanConfigTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -171,8 +171,8 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
-        $gapicClient->deleteScanConfig($formattedName);
+        $formattedName = $client->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
+        $client->deleteScanConfig($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -189,7 +189,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function deleteScanConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -204,10 +204,10 @@ class WebSecurityScannerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
+        $formattedName = $client->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
         try {
-            $gapicClient->deleteScanConfig($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->deleteScanConfig($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -224,7 +224,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function getFindingTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -252,8 +252,8 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $expectedResponse->setTrackingId($trackingId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->findingName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]', '[FINDING]');
-        $response = $gapicClient->getFinding($formattedName);
+        $formattedName = $client->findingName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]', '[FINDING]');
+        $response = $client->getFinding($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -271,7 +271,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function getFindingExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -286,10 +286,10 @@ class WebSecurityScannerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->findingName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]', '[FINDING]');
+        $formattedName = $client->findingName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]', '[FINDING]');
         try {
-            $gapicClient->getFinding($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->getFinding($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -306,7 +306,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function getScanConfigTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -320,8 +320,8 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $expectedResponse->setMaxQps($maxQps);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
-        $response = $gapicClient->getScanConfig($formattedName);
+        $formattedName = $client->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
+        $response = $client->getScanConfig($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -339,7 +339,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function getScanConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -354,10 +354,10 @@ class WebSecurityScannerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
+        $formattedName = $client->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
         try {
-            $gapicClient->getScanConfig($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->getScanConfig($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -374,7 +374,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function getScanRunTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -392,8 +392,8 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $expectedResponse->setProgressPercent($progressPercent);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
-        $response = $gapicClient->getScanRun($formattedName);
+        $formattedName = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        $response = $client->getScanRun($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -411,7 +411,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function getScanRunExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -426,10 +426,10 @@ class WebSecurityScannerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        $formattedName = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
         try {
-            $gapicClient->getScanRun($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->getScanRun($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -446,7 +446,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function listCrawledUrlsTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -461,8 +461,8 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $expectedResponse->setCrawledUrls($crawledUrls);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
-        $response = $gapicClient->listCrawledUrls($formattedParent);
+        $formattedParent = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        $response = $client->listCrawledUrls($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -483,7 +483,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function listCrawledUrlsExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -498,10 +498,10 @@ class WebSecurityScannerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        $formattedParent = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
         try {
-            $gapicClient->listCrawledUrls($formattedParent);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->listCrawledUrls($formattedParent);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -518,7 +518,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function listFindingTypeStatsTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -526,8 +526,8 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $expectedResponse = new ListFindingTypeStatsResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
-        $response = $gapicClient->listFindingTypeStats($formattedParent);
+        $formattedParent = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        $response = $client->listFindingTypeStats($formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -545,7 +545,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function listFindingTypeStatsExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -560,10 +560,10 @@ class WebSecurityScannerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        $formattedParent = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
         try {
-            $gapicClient->listFindingTypeStats($formattedParent);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->listFindingTypeStats($formattedParent);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -580,7 +580,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function listFindingsTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -595,9 +595,9 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $expectedResponse->setFindings($findings);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        $formattedParent = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
         $filter = 'filter-1274492040';
-        $response = $gapicClient->listFindings($formattedParent, $filter);
+        $response = $client->listFindings($formattedParent, $filter);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -620,7 +620,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function listFindingsExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -635,11 +635,11 @@ class WebSecurityScannerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        $formattedParent = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
         $filter = 'filter-1274492040';
         try {
-            $gapicClient->listFindings($formattedParent, $filter);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->listFindings($formattedParent, $filter);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -656,7 +656,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function listScanConfigsTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -671,8 +671,8 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $expectedResponse->setScanConfigs($scanConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $response = $gapicClient->listScanConfigs($formattedParent);
+        $formattedParent = $client->projectName('[PROJECT]');
+        $response = $client->listScanConfigs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -693,7 +693,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function listScanConfigsExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -708,10 +708,10 @@ class WebSecurityScannerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $formattedParent = $client->projectName('[PROJECT]');
         try {
-            $gapicClient->listScanConfigs($formattedParent);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->listScanConfigs($formattedParent);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -728,7 +728,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function listScanRunsTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -743,8 +743,8 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $expectedResponse->setScanRuns($scanRuns);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
-        $response = $gapicClient->listScanRuns($formattedParent);
+        $formattedParent = $client->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
+        $response = $client->listScanRuns($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -765,7 +765,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function listScanRunsExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -780,10 +780,10 @@ class WebSecurityScannerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
+        $formattedParent = $client->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
         try {
-            $gapicClient->listScanRuns($formattedParent);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->listScanRuns($formattedParent);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -800,7 +800,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function startScanRunTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -818,8 +818,8 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $expectedResponse->setProgressPercent($progressPercent);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
-        $response = $gapicClient->startScanRun($formattedName);
+        $formattedName = $client->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
+        $response = $client->startScanRun($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -837,7 +837,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function startScanRunExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -852,10 +852,10 @@ class WebSecurityScannerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
+        $formattedName = $client->scanConfigName('[PROJECT]', '[SCAN_CONFIG]');
         try {
-            $gapicClient->startScanRun($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->startScanRun($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -872,7 +872,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function stopScanRunTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -890,8 +890,8 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $expectedResponse->setProgressPercent($progressPercent);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
-        $response = $gapicClient->stopScanRun($formattedName);
+        $formattedName = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        $response = $client->stopScanRun($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -909,7 +909,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function stopScanRunExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -924,10 +924,10 @@ class WebSecurityScannerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
+        $formattedName = $client->scanRunName('[PROJECT]', '[SCAN_CONFIG]', '[SCAN_RUN]');
         try {
-            $gapicClient->stopScanRun($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->stopScanRun($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -944,7 +944,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function updateScanConfigTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -964,7 +964,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $scanConfigStartingUrls = [];
         $scanConfig->setStartingUrls($scanConfigStartingUrls);
         $updateMask = new FieldMask();
-        $response = $gapicClient->updateScanConfig($scanConfig, $updateMask);
+        $response = $client->updateScanConfig($scanConfig, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -984,7 +984,7 @@ class WebSecurityScannerClientTest extends GeneratedTest
     public function updateScanConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1006,8 +1006,8 @@ class WebSecurityScannerClientTest extends GeneratedTest
         $scanConfig->setStartingUrls($scanConfigStartingUrls);
         $updateMask = new FieldMask();
         try {
-            $gapicClient->updateScanConfig($scanConfig, $updateMask);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->updateScanConfig($scanConfig, $updateMask);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

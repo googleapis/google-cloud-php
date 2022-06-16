@@ -92,7 +92,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function createSnapshotSchedulePolicyTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -104,10 +104,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $snapshotSchedulePolicy = new SnapshotSchedulePolicy();
         $snapshotSchedulePolicyId = 'snapshotSchedulePolicyId63985147';
-        $response = $gapicClient->createSnapshotSchedulePolicy($formattedParent, $snapshotSchedulePolicy, $snapshotSchedulePolicyId);
+        $response = $client->createSnapshotSchedulePolicy($formattedParent, $snapshotSchedulePolicy, $snapshotSchedulePolicyId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -129,7 +129,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function createSnapshotSchedulePolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -144,12 +144,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $snapshotSchedulePolicy = new SnapshotSchedulePolicy();
         $snapshotSchedulePolicyId = 'snapshotSchedulePolicyId63985147';
         try {
-            $gapicClient->createSnapshotSchedulePolicy($formattedParent, $snapshotSchedulePolicy, $snapshotSchedulePolicyId);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->createSnapshotSchedulePolicy($formattedParent, $snapshotSchedulePolicy, $snapshotSchedulePolicyId);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -166,7 +166,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function createVolumeSnapshotTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -182,9 +182,9 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setStorageVolume($storageVolume);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $formattedParent = $client->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
         $volumeSnapshot = new VolumeSnapshot();
-        $response = $gapicClient->createVolumeSnapshot($formattedParent, $volumeSnapshot);
+        $response = $client->createVolumeSnapshot($formattedParent, $volumeSnapshot);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -204,7 +204,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function createVolumeSnapshotExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -219,11 +219,11 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $formattedParent = $client->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
         $volumeSnapshot = new VolumeSnapshot();
         try {
-            $gapicClient->createVolumeSnapshot($formattedParent, $volumeSnapshot);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->createVolumeSnapshot($formattedParent, $volumeSnapshot);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -240,7 +240,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function deleteSnapshotSchedulePolicyTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -248,8 +248,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->snapshotSchedulePolicyName('[PROJECT]', '[LOCATION]', '[SNAPSHOT_SCHEDULE_POLICY]');
-        $gapicClient->deleteSnapshotSchedulePolicy($formattedName);
+        $formattedName = $client->snapshotSchedulePolicyName('[PROJECT]', '[LOCATION]', '[SNAPSHOT_SCHEDULE_POLICY]');
+        $client->deleteSnapshotSchedulePolicy($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -266,7 +266,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function deleteSnapshotSchedulePolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -281,10 +281,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->snapshotSchedulePolicyName('[PROJECT]', '[LOCATION]', '[SNAPSHOT_SCHEDULE_POLICY]');
+        $formattedName = $client->snapshotSchedulePolicyName('[PROJECT]', '[LOCATION]', '[SNAPSHOT_SCHEDULE_POLICY]');
         try {
-            $gapicClient->deleteSnapshotSchedulePolicy($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->deleteSnapshotSchedulePolicy($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -301,7 +301,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function deleteVolumeSnapshotTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -309,8 +309,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $gapicClient->deleteVolumeSnapshot($formattedName);
+        $formattedName = $client->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
+        $client->deleteVolumeSnapshot($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -327,7 +327,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function deleteVolumeSnapshotExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -342,10 +342,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
+        $formattedName = $client->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
         try {
-            $gapicClient->deleteVolumeSnapshot($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->deleteVolumeSnapshot($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -362,7 +362,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getInstanceTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -378,8 +378,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setInteractiveSerialConsoleEnabled($interactiveSerialConsoleEnabled);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $gapicClient->getInstance($formattedName);
+        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $response = $client->getInstance($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -397,7 +397,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getInstanceExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -412,10 +412,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
         try {
-            $gapicClient->getInstance($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->getInstance($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -432,7 +432,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getLunTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -452,8 +452,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setWwid($wwid);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
-        $response = $gapicClient->getLun($formattedName);
+        $formattedName = $client->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+        $response = $client->getLun($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -471,7 +471,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getLunExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -486,10 +486,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+        $formattedName = $client->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
         try {
-            $gapicClient->getLun($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->getLun($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -506,7 +506,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getNetworkTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -524,8 +524,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setCidr($cidr);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
-        $response = $gapicClient->getNetwork($formattedName);
+        $formattedName = $client->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
+        $response = $client->getNetwork($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -543,7 +543,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getNetworkExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -558,10 +558,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
+        $formattedName = $client->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
         try {
-            $gapicClient->getNetwork($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->getNetwork($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -578,7 +578,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getSnapshotSchedulePolicyTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -590,8 +590,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->snapshotSchedulePolicyName('[PROJECT]', '[LOCATION]', '[SNAPSHOT_SCHEDULE_POLICY]');
-        $response = $gapicClient->getSnapshotSchedulePolicy($formattedName);
+        $formattedName = $client->snapshotSchedulePolicyName('[PROJECT]', '[LOCATION]', '[SNAPSHOT_SCHEDULE_POLICY]');
+        $response = $client->getSnapshotSchedulePolicy($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -609,7 +609,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getSnapshotSchedulePolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -624,10 +624,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->snapshotSchedulePolicyName('[PROJECT]', '[LOCATION]', '[SNAPSHOT_SCHEDULE_POLICY]');
+        $formattedName = $client->snapshotSchedulePolicyName('[PROJECT]', '[LOCATION]', '[SNAPSHOT_SCHEDULE_POLICY]');
         try {
-            $gapicClient->getSnapshotSchedulePolicy($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->getSnapshotSchedulePolicy($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -644,7 +644,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getVolumeTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -664,8 +664,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setSnapshotSchedulePolicy($snapshotSchedulePolicy);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $response = $gapicClient->getVolume($formattedName);
+        $formattedName = $client->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $response = $client->getVolume($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -683,7 +683,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getVolumeExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -698,10 +698,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $formattedName = $client->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
         try {
-            $gapicClient->getVolume($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->getVolume($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -718,7 +718,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getVolumeSnapshotTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -734,8 +734,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setStorageVolume($storageVolume);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $response = $gapicClient->getVolumeSnapshot($formattedName);
+        $formattedName = $client->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
+        $response = $client->getVolumeSnapshot($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -753,7 +753,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getVolumeSnapshotExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -768,10 +768,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
+        $formattedName = $client->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
         try {
-            $gapicClient->getVolumeSnapshot($formattedName);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->getVolumeSnapshot($formattedName);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -788,7 +788,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listInstancesTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -803,8 +803,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setInstances($instances);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listInstances($formattedParent);
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $response = $client->listInstances($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -825,7 +825,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listInstancesExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -840,10 +840,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listInstances($formattedParent);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->listInstances($formattedParent);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -860,7 +860,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listLunsTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -875,8 +875,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setLuns($luns);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $response = $gapicClient->listLuns($formattedParent);
+        $formattedParent = $client->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $response = $client->listLuns($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -897,7 +897,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listLunsExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -912,10 +912,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $formattedParent = $client->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
         try {
-            $gapicClient->listLuns($formattedParent);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->listLuns($formattedParent);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -932,7 +932,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listNetworksTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -947,8 +947,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setNetworks($networks);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listNetworks($formattedParent);
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $response = $client->listNetworks($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -969,7 +969,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listNetworksExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -984,10 +984,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listNetworks($formattedParent);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->listNetworks($formattedParent);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1004,7 +1004,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listSnapshotSchedulePoliciesTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1019,8 +1019,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setSnapshotSchedulePolicies($snapshotSchedulePolicies);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listSnapshotSchedulePolicies($formattedParent);
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $response = $client->listSnapshotSchedulePolicies($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1041,7 +1041,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listSnapshotSchedulePoliciesExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1056,10 +1056,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listSnapshotSchedulePolicies($formattedParent);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->listSnapshotSchedulePolicies($formattedParent);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1076,7 +1076,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listVolumeSnapshotsTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1091,8 +1091,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setVolumeSnapshots($volumeSnapshots);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $response = $gapicClient->listVolumeSnapshots($formattedParent);
+        $formattedParent = $client->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $response = $client->listVolumeSnapshots($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1113,7 +1113,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listVolumeSnapshotsExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1128,10 +1128,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $formattedParent = $client->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
         try {
-            $gapicClient->listVolumeSnapshots($formattedParent);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->listVolumeSnapshots($formattedParent);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1148,7 +1148,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listVolumesTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1163,8 +1163,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setVolumes($volumes);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listVolumes($formattedParent);
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $response = $client->listVolumes($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1185,7 +1185,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listVolumesExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1200,10 +1200,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $gapicClient->listVolumes($formattedParent);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->listVolumes($formattedParent);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1226,7 +1226,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1246,8 +1246,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $gapicClient->resetInstance($formattedName);
+        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $response = $client->resetInstance($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1290,7 +1290,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1312,8 +1312,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $gapicClient->resetInstance($formattedName);
+        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $response = $client->resetInstance($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1347,7 +1347,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1375,8 +1375,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedVolumeSnapshot = $gapicClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $response = $gapicClient->restoreVolumeSnapshot($formattedVolumeSnapshot);
+        $formattedVolumeSnapshot = $client->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
+        $response = $client->restoreVolumeSnapshot($formattedVolumeSnapshot);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1419,7 +1419,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1441,8 +1441,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedVolumeSnapshot = $gapicClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $response = $gapicClient->restoreVolumeSnapshot($formattedVolumeSnapshot);
+        $formattedVolumeSnapshot = $client->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
+        $response = $client->restoreVolumeSnapshot($formattedVolumeSnapshot);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1470,7 +1470,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function updateSnapshotSchedulePolicyTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1484,7 +1484,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         // Mock request
         $snapshotSchedulePolicy = new SnapshotSchedulePolicy();
         $updateMask = new FieldMask();
-        $response = $gapicClient->updateSnapshotSchedulePolicy($snapshotSchedulePolicy, $updateMask);
+        $response = $client->updateSnapshotSchedulePolicy($snapshotSchedulePolicy, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1504,7 +1504,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function updateSnapshotSchedulePolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1522,8 +1522,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $snapshotSchedulePolicy = new SnapshotSchedulePolicy();
         $updateMask = new FieldMask();
         try {
-            $gapicClient->updateSnapshotSchedulePolicy($snapshotSchedulePolicy, $updateMask);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->updateSnapshotSchedulePolicy($snapshotSchedulePolicy, $updateMask);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1546,7 +1546,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1579,7 +1579,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $volume = new Volume();
-        $response = $gapicClient->updateVolume($volume);
+        $response = $client->updateVolume($volume);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1622,7 +1622,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1645,7 +1645,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $volume = new Volume();
-        $response = $gapicClient->updateVolume($volume);
+        $response = $client->updateVolume($volume);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

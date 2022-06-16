@@ -25,10 +25,24 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Cloud\Monitoring\V3\Gapic\UptimeCheckServiceGapicClient;
+use Google\ApiCore\PathTemplate;
 
 /** {@inheritdoc} */
 class UptimeCheckServiceClient extends UptimeCheckServiceGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual additions to
-    // the generated {@see UptimeCheckServiceGapicClient} class.
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @deprecated
+     */
+    public static function projectName($project)
+    {
+        return (new PathTemplate('projects/{project}'))->render([
+            'project' => $project,
+        ]);
+    }
 }

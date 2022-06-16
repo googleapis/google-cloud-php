@@ -74,6 +74,4 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BigQueryDatasetSource::class, \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing_BigQueryDatasetSource::class);
 

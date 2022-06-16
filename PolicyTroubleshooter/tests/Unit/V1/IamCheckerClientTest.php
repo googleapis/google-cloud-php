@@ -72,14 +72,14 @@ class IamCheckerClientTest extends GeneratedTest
     public function troubleshootIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new TroubleshootIamPolicyResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->troubleshootIamPolicy();
+        $response = $client->troubleshootIamPolicy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -95,7 +95,7 @@ class IamCheckerClientTest extends GeneratedTest
     public function troubleshootIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -110,8 +110,8 @@ class IamCheckerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $gapicClient->troubleshootIamPolicy();
-            // If the $gapicClient method call did not throw, fail the test
+            $client->troubleshootIamPolicy();
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

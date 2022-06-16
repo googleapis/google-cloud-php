@@ -121,6 +121,4 @@ class Delay extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Delay::class, \Google\Cloud\Optimization\V1\ShipmentRoute_Delay::class);
 

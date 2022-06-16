@@ -31,6 +31,4 @@ class BackfillNoneStrategy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BackfillNoneStrategy::class, \Google\Cloud\Datastream\V1\Stream_BackfillNoneStrategy::class);
 

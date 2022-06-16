@@ -137,6 +137,4 @@ class Schedule extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Schedule::class, \Google\Cloud\BaremetalSolution\V2\SnapshotSchedulePolicy_Schedule::class);
 

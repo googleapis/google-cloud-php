@@ -149,6 +149,4 @@ class SnapshotReservationDetail extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SnapshotReservationDetail::class, \Google\Cloud\BaremetalSolution\V2\Volume_SnapshotReservationDetail::class);
 

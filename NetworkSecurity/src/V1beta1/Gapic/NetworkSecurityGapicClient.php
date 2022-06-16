@@ -65,9 +65,7 @@ use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
- * Service Description: Network Security API provides resources to configure authentication and
- * authorization policies. Refer to per API resource documentation for more
- * information.
+ * Service Description:
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:

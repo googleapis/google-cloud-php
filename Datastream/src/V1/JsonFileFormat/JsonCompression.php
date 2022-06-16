@@ -59,6 +59,4 @@ class JsonCompression
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(JsonCompression::class, \Google\Cloud\Datastream\V1\JsonFileFormat_JsonCompression::class);
 

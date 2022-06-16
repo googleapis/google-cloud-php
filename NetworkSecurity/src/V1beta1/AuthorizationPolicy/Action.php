@@ -27,8 +27,6 @@ class Action
     const ALLOW = 1;
     /**
      * Deny access.
-     * Deny rules should be avoided unless they are used to provide a default
-     * "deny all" fallback.
      *
      * Generated from protobuf enum <code>DENY = 2;</code>
      */

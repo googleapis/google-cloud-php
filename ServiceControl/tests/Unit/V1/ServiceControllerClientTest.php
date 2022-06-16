@@ -73,7 +73,7 @@ class ServiceControllerClientTest extends GeneratedTest
     public function checkTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -86,7 +86,7 @@ class ServiceControllerClientTest extends GeneratedTest
         $expectedResponse->setServiceConfigId($serviceConfigId2);
         $expectedResponse->setServiceRolloutId($serviceRolloutId);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->check();
+        $response = $client->check();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -102,7 +102,7 @@ class ServiceControllerClientTest extends GeneratedTest
     public function checkExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -117,8 +117,8 @@ class ServiceControllerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $gapicClient->check();
-            // If the $gapicClient method call did not throw, fail the test
+            $client->check();
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -135,7 +135,7 @@ class ServiceControllerClientTest extends GeneratedTest
     public function reportTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -146,7 +146,7 @@ class ServiceControllerClientTest extends GeneratedTest
         $expectedResponse->setServiceConfigId($serviceConfigId2);
         $expectedResponse->setServiceRolloutId($serviceRolloutId);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->report();
+        $response = $client->report();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -162,7 +162,7 @@ class ServiceControllerClientTest extends GeneratedTest
     public function reportExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -177,8 +177,8 @@ class ServiceControllerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $gapicClient->report();
-            // If the $gapicClient method call did not throw, fail the test
+            $client->report();
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

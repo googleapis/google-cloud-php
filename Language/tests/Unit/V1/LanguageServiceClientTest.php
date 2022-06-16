@@ -79,7 +79,7 @@ class LanguageServiceClientTest extends GeneratedTest
     public function analyzeEntitiesTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -90,7 +90,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $document = new Document();
-        $response = $gapicClient->analyzeEntities($document);
+        $response = $client->analyzeEntities($document);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -108,7 +108,7 @@ class LanguageServiceClientTest extends GeneratedTest
     public function analyzeEntitiesExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -125,8 +125,8 @@ class LanguageServiceClientTest extends GeneratedTest
         // Mock request
         $document = new Document();
         try {
-            $gapicClient->analyzeEntities($document);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->analyzeEntities($document);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -143,7 +143,7 @@ class LanguageServiceClientTest extends GeneratedTest
     public function analyzeEntitySentimentTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -154,7 +154,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $document = new Document();
-        $response = $gapicClient->analyzeEntitySentiment($document);
+        $response = $client->analyzeEntitySentiment($document);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -172,7 +172,7 @@ class LanguageServiceClientTest extends GeneratedTest
     public function analyzeEntitySentimentExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -189,8 +189,8 @@ class LanguageServiceClientTest extends GeneratedTest
         // Mock request
         $document = new Document();
         try {
-            $gapicClient->analyzeEntitySentiment($document);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->analyzeEntitySentiment($document);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -207,7 +207,7 @@ class LanguageServiceClientTest extends GeneratedTest
     public function analyzeSentimentTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -218,7 +218,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $document = new Document();
-        $response = $gapicClient->analyzeSentiment($document);
+        $response = $client->analyzeSentiment($document);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -236,7 +236,7 @@ class LanguageServiceClientTest extends GeneratedTest
     public function analyzeSentimentExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -253,8 +253,8 @@ class LanguageServiceClientTest extends GeneratedTest
         // Mock request
         $document = new Document();
         try {
-            $gapicClient->analyzeSentiment($document);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->analyzeSentiment($document);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -271,7 +271,7 @@ class LanguageServiceClientTest extends GeneratedTest
     public function analyzeSyntaxTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -282,7 +282,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $document = new Document();
-        $response = $gapicClient->analyzeSyntax($document);
+        $response = $client->analyzeSyntax($document);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -300,7 +300,7 @@ class LanguageServiceClientTest extends GeneratedTest
     public function analyzeSyntaxExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -317,8 +317,8 @@ class LanguageServiceClientTest extends GeneratedTest
         // Mock request
         $document = new Document();
         try {
-            $gapicClient->analyzeSyntax($document);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->analyzeSyntax($document);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -335,7 +335,7 @@ class LanguageServiceClientTest extends GeneratedTest
     public function annotateTextTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -347,7 +347,7 @@ class LanguageServiceClientTest extends GeneratedTest
         // Mock request
         $document = new Document();
         $features = new Features();
-        $response = $gapicClient->annotateText($document, $features);
+        $response = $client->annotateText($document, $features);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -367,7 +367,7 @@ class LanguageServiceClientTest extends GeneratedTest
     public function annotateTextExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -385,8 +385,8 @@ class LanguageServiceClientTest extends GeneratedTest
         $document = new Document();
         $features = new Features();
         try {
-            $gapicClient->annotateText($document, $features);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->annotateText($document, $features);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -403,7 +403,7 @@ class LanguageServiceClientTest extends GeneratedTest
     public function classifyTextTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -412,7 +412,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $document = new Document();
-        $response = $gapicClient->classifyText($document);
+        $response = $client->classifyText($document);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -430,7 +430,7 @@ class LanguageServiceClientTest extends GeneratedTest
     public function classifyTextExceptionTest()
     {
         $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
+        $client = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -447,8 +447,8 @@ class LanguageServiceClientTest extends GeneratedTest
         // Mock request
         $document = new Document();
         try {
-            $gapicClient->classifyText($document);
-            // If the $gapicClient method call did not throw, fail the test
+            $client->classifyText($document);
+            // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
