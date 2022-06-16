@@ -1098,7 +1098,6 @@ class Subscription
      * Returns the temporarily failed ackIds from the exception object
      *
      * @param BadRequestException
-     *
      * @return array
      */
     private function getRetryableAckIds(BadRequestException $e)
