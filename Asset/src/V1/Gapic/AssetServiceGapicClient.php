@@ -299,15 +299,6 @@ class AssetServiceGapicClient
         return self::$savedQueryNameTemplate;
     }
 
-    private static function getProjectNameTemplate()
-    {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
-        }
-
-        return self::$projectNameTemplate;
-    }
-
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -509,21 +500,6 @@ class AssetServiceGapicClient
         return self::getSavedQueryNameTemplate()->render([
             'project' => $project,
             'saved_query' => $savedQuery,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
         ]);
     }
 
