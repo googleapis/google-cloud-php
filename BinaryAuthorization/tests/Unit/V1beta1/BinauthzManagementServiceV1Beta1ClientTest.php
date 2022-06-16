@@ -79,7 +79,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
     public function createAttestorTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -91,12 +91,12 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $attestorId = 'attestorId-696764206';
         $attestor = new Attestor();
         $attestorName = 'attestorName-125367661';
         $attestor->setName($attestorName);
-        $response = $client->createAttestor($formattedParent, $attestorId, $attestor);
+        $response = $gapicClient->createAttestor($formattedParent, $attestorId, $attestor);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -118,7 +118,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
     public function createAttestorExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -133,14 +133,14 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $attestorId = 'attestorId-696764206';
         $attestor = new Attestor();
         $attestorName = 'attestorName-125367661';
         $attestor->setName($attestorName);
         try {
-            $client->createAttestor($formattedParent, $attestorId, $attestor);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createAttestor($formattedParent, $attestorId, $attestor);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -157,7 +157,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
     public function deleteAttestorTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -165,8 +165,8 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->attestorName('[PROJECT]', '[ATTESTOR]');
-        $client->deleteAttestor($formattedName);
+        $formattedName = $gapicClient->attestorName('[PROJECT]', '[ATTESTOR]');
+        $gapicClient->deleteAttestor($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -183,7 +183,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
     public function deleteAttestorExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -198,10 +198,10 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->attestorName('[PROJECT]', '[ATTESTOR]');
+        $formattedName = $gapicClient->attestorName('[PROJECT]', '[ATTESTOR]');
         try {
-            $client->deleteAttestor($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteAttestor($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -218,7 +218,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
     public function getAttestorTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -230,8 +230,8 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->attestorName('[PROJECT]', '[ATTESTOR]');
-        $response = $client->getAttestor($formattedName);
+        $formattedName = $gapicClient->attestorName('[PROJECT]', '[ATTESTOR]');
+        $response = $gapicClient->getAttestor($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -249,7 +249,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
     public function getAttestorExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -264,10 +264,10 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->attestorName('[PROJECT]', '[ATTESTOR]');
+        $formattedName = $gapicClient->attestorName('[PROJECT]', '[ATTESTOR]');
         try {
-            $client->getAttestor($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getAttestor($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -284,7 +284,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
     public function getPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -296,8 +296,8 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->policyName('[PROJECT]');
-        $response = $client->getPolicy($formattedName);
+        $formattedName = $gapicClient->policyName('[PROJECT]');
+        $response = $gapicClient->getPolicy($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -315,7 +315,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
     public function getPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -330,10 +330,10 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->policyName('[PROJECT]');
+        $formattedName = $gapicClient->policyName('[PROJECT]');
         try {
-            $client->getPolicy($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getPolicy($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -350,7 +350,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
     public function listAttestorsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -365,8 +365,8 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $expectedResponse->setAttestors($attestors);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
-        $response = $client->listAttestors($formattedParent);
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listAttestors($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -387,7 +387,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
     public function listAttestorsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -402,10 +402,10 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $client->listAttestors($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listAttestors($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -422,7 +422,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
     public function updateAttestorTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -437,7 +437,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $attestor = new Attestor();
         $attestorName = 'attestorName-125367661';
         $attestor->setName($attestorName);
-        $response = $client->updateAttestor($attestor);
+        $response = $gapicClient->updateAttestor($attestor);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -455,7 +455,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
     public function updateAttestorExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -474,8 +474,8 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $attestorName = 'attestorName-125367661';
         $attestor->setName($attestorName);
         try {
-            $client->updateAttestor($attestor);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateAttestor($attestor);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -492,7 +492,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
     public function updatePolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -511,7 +511,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $defaultAdmissionRuleEnforcementMode = EnforcementMode::ENFORCEMENT_MODE_UNSPECIFIED;
         $policyDefaultAdmissionRule->setEnforcementMode($defaultAdmissionRuleEnforcementMode);
         $policy->setDefaultAdmissionRule($policyDefaultAdmissionRule);
-        $response = $client->updatePolicy($policy);
+        $response = $gapicClient->updatePolicy($policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -529,7 +529,7 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
     public function updatePolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -552,8 +552,8 @@ class BinauthzManagementServiceV1Beta1ClientTest extends GeneratedTest
         $policyDefaultAdmissionRule->setEnforcementMode($defaultAdmissionRuleEnforcementMode);
         $policy->setDefaultAdmissionRule($policyDefaultAdmissionRule);
         try {
-            $client->updatePolicy($policy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updatePolicy($policy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
