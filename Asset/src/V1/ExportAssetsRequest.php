@@ -61,7 +61,8 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      */
     private $content_type = 0;
     /**
-     * Required. Output configuration indicating where the results will be output to.
+     * Required. Output configuration indicating where the results will be output
+     * to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -123,7 +124,8 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *           Asset content type. If not specified, no content but the asset name will be
      *           returned.
      *     @type \Google\Cloud\Asset\V1\OutputConfig $output_config
-     *           Required. Output configuration indicating where the results will be output to.
+     *           Required. Output configuration indicating where the results will be output
+     *           to.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $relationship_types
      *           A list of relationship types to export, for example:
      *           `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
@@ -304,7 +306,8 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Output configuration indicating where the results will be output to.
+     * Required. Output configuration indicating where the results will be output
+     * to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Asset\V1\OutputConfig|null
@@ -325,7 +328,8 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Output configuration indicating where the results will be output to.
+     * Required. Output configuration indicating where the results will be output
+     * to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Asset\V1\OutputConfig $var

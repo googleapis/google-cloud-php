@@ -36,13 +36,14 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * Exports assets with time and resource types to a given Cloud Storage
      * location/BigQuery table. For Cloud Storage location destinations, the
      * output format is newline-delimited JSON. Each line represents a
-     * [google.cloud.asset.v1.Asset][google.cloud.asset.v1.Asset] in the JSON format; for BigQuery table
-     * destinations, the output table stores the fields in asset proto as columns.
-     * This API implements the [google.longrunning.Operation][google.longrunning.Operation] API
-     * , which allows you to keep track of the export. We recommend intervals of
-     * at least 2 seconds with exponential retry to poll the export operation
-     * result. For regular-size resource parent, the export operation usually
-     * finishes within 5 minutes.
+     * [google.cloud.asset.v1.Asset][google.cloud.asset.v1.Asset] in the JSON
+     * format; for BigQuery table destinations, the output table stores the fields
+     * in asset Protobuf as columns. This API implements the
+     * [google.longrunning.Operation][google.longrunning.Operation] API, which
+     * allows you to keep track of the export. We recommend intervals of at least
+     * 2 seconds with exponential retry to poll the export operation result. For
+     * regular-size resource parent, the export operation usually finishes within
+     * 5 minutes.
      * @param \Google\Cloud\Asset\V1\ExportAssetsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -226,11 +227,12 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * accesses on which resources, and writes the analysis results to a Google
      * Cloud Storage or a BigQuery destination. For Cloud Storage destination, the
      * output format is the JSON format that represents a
-     * [AnalyzeIamPolicyResponse][google.cloud.asset.v1.AnalyzeIamPolicyResponse]. This method implements the
-     * [google.longrunning.Operation][google.longrunning.Operation], which allows you to track the operation
-     * status. We recommend intervals of at least 2 seconds with exponential
-     * backoff retry to poll the operation result. The metadata contains the
-     * metadata for the long-running operation.
+     * [AnalyzeIamPolicyResponse][google.cloud.asset.v1.AnalyzeIamPolicyResponse].
+     * This method implements the
+     * [google.longrunning.Operation][google.longrunning.Operation], which allows
+     * you to track the operation status. We recommend intervals of at least 2
+     * seconds with exponential backoff retry to poll the operation result. The
+     * metadata contains the metadata for the long-running operation.
      * @param \Google\Cloud\Asset\V1\AnalyzeIamPolicyLongrunningRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -260,6 +262,96 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/AnalyzeMove',
         $argument,
         ['\Google\Cloud\Asset\V1\AnalyzeMoveResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a saved query in a parent project/folder/organization.
+     * @param \Google\Cloud\Asset\V1\CreateSavedQueryRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateSavedQuery(\Google\Cloud\Asset\V1\CreateSavedQueryRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/CreateSavedQuery',
+        $argument,
+        ['\Google\Cloud\Asset\V1\SavedQuery', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets details about a saved query.
+     * @param \Google\Cloud\Asset\V1\GetSavedQueryRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetSavedQuery(\Google\Cloud\Asset\V1\GetSavedQueryRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/GetSavedQuery',
+        $argument,
+        ['\Google\Cloud\Asset\V1\SavedQuery', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists all saved queries in a parent project/folder/organization.
+     * @param \Google\Cloud\Asset\V1\ListSavedQueriesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListSavedQueries(\Google\Cloud\Asset\V1\ListSavedQueriesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/ListSavedQueries',
+        $argument,
+        ['\Google\Cloud\Asset\V1\ListSavedQueriesResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a saved query.
+     * @param \Google\Cloud\Asset\V1\UpdateSavedQueryRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateSavedQuery(\Google\Cloud\Asset\V1\UpdateSavedQueryRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/UpdateSavedQuery',
+        $argument,
+        ['\Google\Cloud\Asset\V1\SavedQuery', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a saved query.
+     * @param \Google\Cloud\Asset\V1\DeleteSavedQueryRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteSavedQuery(\Google\Cloud\Asset\V1\DeleteSavedQueryRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/DeleteSavedQuery',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets effective IAM policies for a batch of resources.
+     * @param \Google\Cloud\Asset\V1\BatchGetEffectiveIamPoliciesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function BatchGetEffectiveIamPolicies(\Google\Cloud\Asset\V1\BatchGetEffectiveIamPoliciesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/BatchGetEffectiveIamPolicies',
+        $argument,
+        ['\Google\Cloud\Asset\V1\BatchGetEffectiveIamPoliciesResponse', 'decode'],
         $metadata, $options);
     }
 
