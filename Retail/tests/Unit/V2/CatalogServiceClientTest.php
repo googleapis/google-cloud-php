@@ -77,7 +77,7 @@ class CatalogServiceClientTest extends GeneratedTest
     public function getDefaultBranchTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -88,7 +88,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse->setBranch($branch);
         $expectedResponse->setNote($note);
         $transport->addResponse($expectedResponse);
-        $response = $client->getDefaultBranch();
+        $response = $gapicClient->getDefaultBranch();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -104,7 +104,7 @@ class CatalogServiceClientTest extends GeneratedTest
     public function getDefaultBranchExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -119,8 +119,8 @@ class CatalogServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getDefaultBranch();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getDefaultBranch();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -137,7 +137,7 @@ class CatalogServiceClientTest extends GeneratedTest
     public function listCatalogsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -152,8 +152,8 @@ class CatalogServiceClientTest extends GeneratedTest
         $expectedResponse->setCatalogs($catalogs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listCatalogs($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listCatalogs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -174,7 +174,7 @@ class CatalogServiceClientTest extends GeneratedTest
     public function listCatalogsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -189,10 +189,10 @@ class CatalogServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listCatalogs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listCatalogs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -209,14 +209,14 @@ class CatalogServiceClientTest extends GeneratedTest
     public function setDefaultBranchTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $client->setDefaultBranch();
+        $gapicClient->setDefaultBranch();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -231,7 +231,7 @@ class CatalogServiceClientTest extends GeneratedTest
     public function setDefaultBranchExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -246,8 +246,8 @@ class CatalogServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->setDefaultBranch();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setDefaultBranch();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -264,7 +264,7 @@ class CatalogServiceClientTest extends GeneratedTest
     public function updateCatalogTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -283,7 +283,7 @@ class CatalogServiceClientTest extends GeneratedTest
         $catalog->setDisplayName($catalogDisplayName);
         $catalogProductLevelConfig = new ProductLevelConfig();
         $catalog->setProductLevelConfig($catalogProductLevelConfig);
-        $response = $client->updateCatalog($catalog);
+        $response = $gapicClient->updateCatalog($catalog);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -301,7 +301,7 @@ class CatalogServiceClientTest extends GeneratedTest
     public function updateCatalogExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -324,8 +324,8 @@ class CatalogServiceClientTest extends GeneratedTest
         $catalogProductLevelConfig = new ProductLevelConfig();
         $catalog->setProductLevelConfig($catalogProductLevelConfig);
         try {
-            $client->updateCatalog($catalog);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateCatalog($catalog);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

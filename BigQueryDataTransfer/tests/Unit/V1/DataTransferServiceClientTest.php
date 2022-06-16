@@ -86,7 +86,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function checkValidCredsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -96,8 +96,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setHasValidCreds($hasValidCreds);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->dataSourceName('[PROJECT]', '[DATA_SOURCE]');
-        $response = $client->checkValidCreds($formattedName);
+        $formattedName = $gapicClient->dataSourceName('[PROJECT]', '[DATA_SOURCE]');
+        $response = $gapicClient->checkValidCreds($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -115,7 +115,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function checkValidCredsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -130,10 +130,10 @@ class DataTransferServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->dataSourceName('[PROJECT]', '[DATA_SOURCE]');
+        $formattedName = $gapicClient->dataSourceName('[PROJECT]', '[DATA_SOURCE]');
         try {
-            $client->checkValidCreds($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->checkValidCreds($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -150,7 +150,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function createTransferConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -178,9 +178,9 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setNotificationPubsubTopic($notificationPubsubTopic);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $transferConfig = new TransferConfig();
-        $response = $client->createTransferConfig($formattedParent, $transferConfig);
+        $response = $gapicClient->createTransferConfig($formattedParent, $transferConfig);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -200,7 +200,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function createTransferConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -215,11 +215,11 @@ class DataTransferServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $transferConfig = new TransferConfig();
         try {
-            $client->createTransferConfig($formattedParent, $transferConfig);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createTransferConfig($formattedParent, $transferConfig);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -236,7 +236,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function deleteTransferConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -244,8 +244,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
-        $client->deleteTransferConfig($formattedName);
+        $formattedName = $gapicClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
+        $gapicClient->deleteTransferConfig($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -262,7 +262,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function deleteTransferConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -277,10 +277,10 @@ class DataTransferServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
+        $formattedName = $gapicClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
         try {
-            $client->deleteTransferConfig($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteTransferConfig($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -297,7 +297,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function deleteTransferRunTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -305,8 +305,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
-        $client->deleteTransferRun($formattedName);
+        $formattedName = $gapicClient->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
+        $gapicClient->deleteTransferRun($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -323,7 +323,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function deleteTransferRunExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -338,10 +338,10 @@ class DataTransferServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
+        $formattedName = $gapicClient->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
         try {
-            $client->deleteTransferRun($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteTransferRun($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -358,14 +358,14 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function enrollDataSourcesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $client->enrollDataSources();
+        $gapicClient->enrollDataSources();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -380,7 +380,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function enrollDataSourcesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -395,8 +395,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->enrollDataSources();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->enrollDataSources();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -413,7 +413,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function getDataSourceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -445,8 +445,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setManualRunsDisabled($manualRunsDisabled);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->dataSourceName('[PROJECT]', '[DATA_SOURCE]');
-        $response = $client->getDataSource($formattedName);
+        $formattedName = $gapicClient->dataSourceName('[PROJECT]', '[DATA_SOURCE]');
+        $response = $gapicClient->getDataSource($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -464,7 +464,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function getDataSourceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -479,10 +479,10 @@ class DataTransferServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->dataSourceName('[PROJECT]', '[DATA_SOURCE]');
+        $formattedName = $gapicClient->dataSourceName('[PROJECT]', '[DATA_SOURCE]');
         try {
-            $client->getDataSource($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getDataSource($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -499,7 +499,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function getTransferConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -527,8 +527,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setNotificationPubsubTopic($notificationPubsubTopic);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
-        $response = $client->getTransferConfig($formattedName);
+        $formattedName = $gapicClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
+        $response = $gapicClient->getTransferConfig($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -546,7 +546,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function getTransferConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -561,10 +561,10 @@ class DataTransferServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
+        $formattedName = $gapicClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
         try {
-            $client->getTransferConfig($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getTransferConfig($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -581,7 +581,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function getTransferRunTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -601,8 +601,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setNotificationPubsubTopic($notificationPubsubTopic);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
-        $response = $client->getTransferRun($formattedName);
+        $formattedName = $gapicClient->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
+        $response = $gapicClient->getTransferRun($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -620,7 +620,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function getTransferRunExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -635,10 +635,10 @@ class DataTransferServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
+        $formattedName = $gapicClient->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
         try {
-            $client->getTransferRun($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getTransferRun($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -655,7 +655,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function listDataSourcesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -670,8 +670,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setDataSources($dataSources);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
-        $response = $client->listDataSources($formattedParent);
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listDataSources($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -692,7 +692,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function listDataSourcesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -707,10 +707,10 @@ class DataTransferServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $client->listDataSources($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listDataSources($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -727,7 +727,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function listTransferConfigsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -742,8 +742,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setTransferConfigs($transferConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
-        $response = $client->listTransferConfigs($formattedParent);
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listTransferConfigs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -764,7 +764,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function listTransferConfigsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -779,10 +779,10 @@ class DataTransferServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $client->listTransferConfigs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listTransferConfigs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -799,7 +799,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function listTransferLogsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -814,8 +814,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setTransferMessages($transferMessages);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
-        $response = $client->listTransferLogs($formattedParent);
+        $formattedParent = $gapicClient->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
+        $response = $gapicClient->listTransferLogs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -836,7 +836,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function listTransferLogsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -851,10 +851,10 @@ class DataTransferServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
+        $formattedParent = $gapicClient->runName('[PROJECT]', '[TRANSFER_CONFIG]', '[RUN]');
         try {
-            $client->listTransferLogs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listTransferLogs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -871,7 +871,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function listTransferRunsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -886,8 +886,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse->setTransferRuns($transferRuns);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
-        $response = $client->listTransferRuns($formattedParent);
+        $formattedParent = $gapicClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
+        $response = $gapicClient->listTransferRuns($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -908,7 +908,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function listTransferRunsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -923,10 +923,10 @@ class DataTransferServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
+        $formattedParent = $gapicClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
         try {
-            $client->listTransferRuns($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listTransferRuns($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -943,7 +943,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function scheduleTransferRunsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -951,10 +951,10 @@ class DataTransferServiceClientTest extends GeneratedTest
         $expectedResponse = new ScheduleTransferRunsResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
+        $formattedParent = $gapicClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
         $startTime = new Timestamp();
         $endTime = new Timestamp();
-        $response = $client->scheduleTransferRuns($formattedParent, $startTime, $endTime);
+        $response = $gapicClient->scheduleTransferRuns($formattedParent, $startTime, $endTime);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -976,7 +976,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function scheduleTransferRunsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -991,12 +991,12 @@ class DataTransferServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
+        $formattedParent = $gapicClient->transferConfigName('[PROJECT]', '[TRANSFER_CONFIG]');
         $startTime = new Timestamp();
         $endTime = new Timestamp();
         try {
-            $client->scheduleTransferRuns($formattedParent, $startTime, $endTime);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->scheduleTransferRuns($formattedParent, $startTime, $endTime);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1013,14 +1013,14 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function startManualTransferRunsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new StartManualTransferRunsResponse();
         $transport->addResponse($expectedResponse);
-        $response = $client->startManualTransferRuns();
+        $response = $gapicClient->startManualTransferRuns();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1036,7 +1036,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function startManualTransferRunsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1051,8 +1051,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->startManualTransferRuns();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->startManualTransferRuns();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1069,7 +1069,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function updateTransferConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1099,7 +1099,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         // Mock request
         $transferConfig = new TransferConfig();
         $updateMask = new FieldMask();
-        $response = $client->updateTransferConfig($transferConfig, $updateMask);
+        $response = $gapicClient->updateTransferConfig($transferConfig, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1119,7 +1119,7 @@ class DataTransferServiceClientTest extends GeneratedTest
     public function updateTransferConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1137,8 +1137,8 @@ class DataTransferServiceClientTest extends GeneratedTest
         $transferConfig = new TransferConfig();
         $updateMask = new FieldMask();
         try {
-            $client->updateTransferConfig($transferConfig, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateTransferConfig($transferConfig, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

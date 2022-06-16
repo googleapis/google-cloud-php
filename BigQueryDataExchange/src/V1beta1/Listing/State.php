@@ -53,4 +53,6 @@ class State
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(State::class, \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing_State::class);
 

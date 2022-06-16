@@ -161,4 +161,6 @@ class FrequencyConstraint extends \Google\Protobuf\Internal\Message
 
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(FrequencyConstraint::class, \Google\Cloud\Optimization\V1\ShipmentModel_BreakRule_FrequencyConstraint::class);
 

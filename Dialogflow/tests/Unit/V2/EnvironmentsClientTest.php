@@ -78,7 +78,7 @@ class EnvironmentsClientTest extends GeneratedTest
     public function createEnvironmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -92,10 +92,10 @@ class EnvironmentsClientTest extends GeneratedTest
         $expectedResponse->setAgentVersion($agentVersion);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->agentName('[PROJECT]');
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
         $environment = new Environment();
         $environmentId = 'environmentId608412359';
-        $response = $client->createEnvironment($formattedParent, $environment, $environmentId);
+        $response = $gapicClient->createEnvironment($formattedParent, $environment, $environmentId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -117,7 +117,7 @@ class EnvironmentsClientTest extends GeneratedTest
     public function createEnvironmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -132,12 +132,12 @@ class EnvironmentsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->agentName('[PROJECT]');
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
         $environment = new Environment();
         $environmentId = 'environmentId608412359';
         try {
-            $client->createEnvironment($formattedParent, $environment, $environmentId);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createEnvironment($formattedParent, $environment, $environmentId);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -154,7 +154,7 @@ class EnvironmentsClientTest extends GeneratedTest
     public function deleteEnvironmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -162,8 +162,8 @@ class EnvironmentsClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->environmentName('[PROJECT]', '[ENVIRONMENT]');
-        $client->deleteEnvironment($formattedName);
+        $formattedName = $gapicClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
+        $gapicClient->deleteEnvironment($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -180,7 +180,7 @@ class EnvironmentsClientTest extends GeneratedTest
     public function deleteEnvironmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -195,10 +195,10 @@ class EnvironmentsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->environmentName('[PROJECT]', '[ENVIRONMENT]');
+        $formattedName = $gapicClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
         try {
-            $client->deleteEnvironment($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteEnvironment($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -215,7 +215,7 @@ class EnvironmentsClientTest extends GeneratedTest
     public function getEnvironmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -229,8 +229,8 @@ class EnvironmentsClientTest extends GeneratedTest
         $expectedResponse->setAgentVersion($agentVersion);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->environmentName('[PROJECT]', '[ENVIRONMENT]');
-        $response = $client->getEnvironment($formattedName);
+        $formattedName = $gapicClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
+        $response = $gapicClient->getEnvironment($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -248,7 +248,7 @@ class EnvironmentsClientTest extends GeneratedTest
     public function getEnvironmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -263,10 +263,10 @@ class EnvironmentsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->environmentName('[PROJECT]', '[ENVIRONMENT]');
+        $formattedName = $gapicClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
         try {
-            $client->getEnvironment($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getEnvironment($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -283,7 +283,7 @@ class EnvironmentsClientTest extends GeneratedTest
     public function getEnvironmentHistoryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -300,8 +300,8 @@ class EnvironmentsClientTest extends GeneratedTest
         $expectedResponse->setEntries($entries);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->environmentName('[PROJECT]', '[ENVIRONMENT]');
-        $response = $client->getEnvironmentHistory($formattedParent);
+        $formattedParent = $gapicClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
+        $response = $gapicClient->getEnvironmentHistory($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -322,7 +322,7 @@ class EnvironmentsClientTest extends GeneratedTest
     public function getEnvironmentHistoryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -337,10 +337,10 @@ class EnvironmentsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->environmentName('[PROJECT]', '[ENVIRONMENT]');
+        $formattedParent = $gapicClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
         try {
-            $client->getEnvironmentHistory($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getEnvironmentHistory($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -357,7 +357,7 @@ class EnvironmentsClientTest extends GeneratedTest
     public function listEnvironmentsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -372,8 +372,8 @@ class EnvironmentsClientTest extends GeneratedTest
         $expectedResponse->setEnvironments($environments);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->agentName('[PROJECT]');
-        $response = $client->listEnvironments($formattedParent);
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
+        $response = $gapicClient->listEnvironments($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -394,7 +394,7 @@ class EnvironmentsClientTest extends GeneratedTest
     public function listEnvironmentsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -409,10 +409,10 @@ class EnvironmentsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->agentName('[PROJECT]');
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
         try {
-            $client->listEnvironments($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listEnvironments($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -429,7 +429,7 @@ class EnvironmentsClientTest extends GeneratedTest
     public function updateEnvironmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -445,7 +445,7 @@ class EnvironmentsClientTest extends GeneratedTest
         // Mock request
         $environment = new Environment();
         $updateMask = new FieldMask();
-        $response = $client->updateEnvironment($environment, $updateMask);
+        $response = $gapicClient->updateEnvironment($environment, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -465,7 +465,7 @@ class EnvironmentsClientTest extends GeneratedTest
     public function updateEnvironmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -483,8 +483,8 @@ class EnvironmentsClientTest extends GeneratedTest
         $environment = new Environment();
         $updateMask = new FieldMask();
         try {
-            $client->updateEnvironment($environment, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateEnvironment($environment, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

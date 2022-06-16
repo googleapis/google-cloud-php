@@ -73,7 +73,7 @@ class FulfillmentsClientTest extends GeneratedTest
     public function getFulfillmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -87,8 +87,8 @@ class FulfillmentsClientTest extends GeneratedTest
         $expectedResponse->setEnabled($enabled);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->fulfillmentName('[PROJECT]');
-        $response = $client->getFulfillment($formattedName);
+        $formattedName = $gapicClient->fulfillmentName('[PROJECT]');
+        $response = $gapicClient->getFulfillment($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -106,7 +106,7 @@ class FulfillmentsClientTest extends GeneratedTest
     public function getFulfillmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -121,10 +121,10 @@ class FulfillmentsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->fulfillmentName('[PROJECT]');
+        $formattedName = $gapicClient->fulfillmentName('[PROJECT]');
         try {
-            $client->getFulfillment($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getFulfillment($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -141,7 +141,7 @@ class FulfillmentsClientTest extends GeneratedTest
     public function updateFulfillmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -159,7 +159,7 @@ class FulfillmentsClientTest extends GeneratedTest
         $fulfillmentName = 'fulfillmentName1097998729';
         $fulfillment->setName($fulfillmentName);
         $updateMask = new FieldMask();
-        $response = $client->updateFulfillment($fulfillment, $updateMask);
+        $response = $gapicClient->updateFulfillment($fulfillment, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -179,7 +179,7 @@ class FulfillmentsClientTest extends GeneratedTest
     public function updateFulfillmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -199,8 +199,8 @@ class FulfillmentsClientTest extends GeneratedTest
         $fulfillment->setName($fulfillmentName);
         $updateMask = new FieldMask();
         try {
-            $client->updateFulfillment($fulfillment, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateFulfillment($fulfillment, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

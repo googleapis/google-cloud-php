@@ -74,7 +74,7 @@ class TemplatesServiceClientTest extends GeneratedTest
     public function createJobFromTemplateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -101,7 +101,7 @@ class TemplatesServiceClientTest extends GeneratedTest
         $expectedResponse->setCreatedFromSnapshotId($createdFromSnapshotId);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
-        $response = $client->createJobFromTemplate();
+        $response = $gapicClient->createJobFromTemplate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -117,7 +117,7 @@ class TemplatesServiceClientTest extends GeneratedTest
     public function createJobFromTemplateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -132,8 +132,8 @@ class TemplatesServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->createJobFromTemplate();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createJobFromTemplate();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -150,14 +150,14 @@ class TemplatesServiceClientTest extends GeneratedTest
     public function getTemplateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new GetTemplateResponse();
         $transport->addResponse($expectedResponse);
-        $response = $client->getTemplate();
+        $response = $gapicClient->getTemplate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -173,7 +173,7 @@ class TemplatesServiceClientTest extends GeneratedTest
     public function getTemplateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -188,8 +188,8 @@ class TemplatesServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getTemplate();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getTemplate();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -206,14 +206,14 @@ class TemplatesServiceClientTest extends GeneratedTest
     public function launchTemplateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new LaunchTemplateResponse();
         $transport->addResponse($expectedResponse);
-        $response = $client->launchTemplate();
+        $response = $gapicClient->launchTemplate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -229,7 +229,7 @@ class TemplatesServiceClientTest extends GeneratedTest
     public function launchTemplateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -244,8 +244,8 @@ class TemplatesServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->launchTemplate();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->launchTemplate();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

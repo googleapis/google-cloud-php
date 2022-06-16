@@ -76,7 +76,7 @@ class ContentServiceClientTest extends GeneratedTest
     public function createContentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -94,13 +94,13 @@ class ContentServiceClientTest extends GeneratedTest
         $expectedResponse->setDataText($dataText);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
         $content = new Content();
         $contentPath = 'contentPath-389273538';
         $content->setPath($contentPath);
         $contentDataText = 'contentDataText-82259056';
         $content->setDataText($contentDataText);
-        $response = $client->createContent($formattedParent, $content);
+        $response = $gapicClient->createContent($formattedParent, $content);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -120,7 +120,7 @@ class ContentServiceClientTest extends GeneratedTest
     public function createContentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -135,15 +135,15 @@ class ContentServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
         $content = new Content();
         $contentPath = 'contentPath-389273538';
         $content->setPath($contentPath);
         $contentDataText = 'contentDataText-82259056';
         $content->setDataText($contentDataText);
         try {
-            $client->createContent($formattedParent, $content);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createContent($formattedParent, $content);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -160,7 +160,7 @@ class ContentServiceClientTest extends GeneratedTest
     public function deleteContentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -168,8 +168,8 @@ class ContentServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->contentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[CONTENT]');
-        $client->deleteContent($formattedName);
+        $formattedName = $gapicClient->contentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[CONTENT]');
+        $gapicClient->deleteContent($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -186,7 +186,7 @@ class ContentServiceClientTest extends GeneratedTest
     public function deleteContentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -201,10 +201,10 @@ class ContentServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->contentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[CONTENT]');
+        $formattedName = $gapicClient->contentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[CONTENT]');
         try {
-            $client->deleteContent($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteContent($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -221,7 +221,7 @@ class ContentServiceClientTest extends GeneratedTest
     public function getContentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -239,8 +239,8 @@ class ContentServiceClientTest extends GeneratedTest
         $expectedResponse->setDataText($dataText);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->contentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[CONTENT]');
-        $response = $client->getContent($formattedName);
+        $formattedName = $gapicClient->contentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[CONTENT]');
+        $response = $gapicClient->getContent($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -258,7 +258,7 @@ class ContentServiceClientTest extends GeneratedTest
     public function getContentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -273,10 +273,10 @@ class ContentServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->contentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[CONTENT]');
+        $formattedName = $gapicClient->contentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[CONTENT]');
         try {
-            $client->getContent($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getContent($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -293,7 +293,7 @@ class ContentServiceClientTest extends GeneratedTest
     public function listContentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -308,8 +308,8 @@ class ContentServiceClientTest extends GeneratedTest
         $expectedResponse->setContent($content);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $response = $client->listContent($formattedParent);
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $response = $gapicClient->listContent($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -330,7 +330,7 @@ class ContentServiceClientTest extends GeneratedTest
     public function listContentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -345,10 +345,10 @@ class ContentServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
         try {
-            $client->listContent($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listContent($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -365,7 +365,7 @@ class ContentServiceClientTest extends GeneratedTest
     public function updateContentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -389,7 +389,7 @@ class ContentServiceClientTest extends GeneratedTest
         $content->setPath($contentPath);
         $contentDataText = 'contentDataText-82259056';
         $content->setDataText($contentDataText);
-        $response = $client->updateContent($updateMask, $content);
+        $response = $gapicClient->updateContent($updateMask, $content);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -409,7 +409,7 @@ class ContentServiceClientTest extends GeneratedTest
     public function updateContentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -431,8 +431,8 @@ class ContentServiceClientTest extends GeneratedTest
         $contentDataText = 'contentDataText-82259056';
         $content->setDataText($contentDataText);
         try {
-            $client->updateContent($updateMask, $content);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateContent($updateMask, $content);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

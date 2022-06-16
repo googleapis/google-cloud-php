@@ -77,14 +77,14 @@ class TextToSpeechClientTest extends GeneratedTest
     public function listVoicesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new ListVoicesResponse();
         $transport->addResponse($expectedResponse);
-        $response = $client->listVoices();
+        $response = $gapicClient->listVoices();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -100,7 +100,7 @@ class TextToSpeechClientTest extends GeneratedTest
     public function listVoicesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -115,8 +115,8 @@ class TextToSpeechClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listVoices();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listVoices();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -133,7 +133,7 @@ class TextToSpeechClientTest extends GeneratedTest
     public function synthesizeSpeechTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -150,7 +150,7 @@ class TextToSpeechClientTest extends GeneratedTest
         $audioConfig = new AudioConfig();
         $audioConfigAudioEncoding = AudioEncoding::AUDIO_ENCODING_UNSPECIFIED;
         $audioConfig->setAudioEncoding($audioConfigAudioEncoding);
-        $response = $client->synthesizeSpeech($input, $voice, $audioConfig);
+        $response = $gapicClient->synthesizeSpeech($input, $voice, $audioConfig);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -172,7 +172,7 @@ class TextToSpeechClientTest extends GeneratedTest
     public function synthesizeSpeechExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -195,8 +195,8 @@ class TextToSpeechClientTest extends GeneratedTest
         $audioConfigAudioEncoding = AudioEncoding::AUDIO_ENCODING_UNSPECIFIED;
         $audioConfig->setAudioEncoding($audioConfigAudioEncoding);
         try {
-            $client->synthesizeSpeech($input, $voice, $audioConfig);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->synthesizeSpeech($input, $voice, $audioConfig);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

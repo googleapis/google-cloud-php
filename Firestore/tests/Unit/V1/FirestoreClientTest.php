@@ -94,7 +94,7 @@ class FirestoreClientTest extends GeneratedTest
     public function batchGetDocumentsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -120,7 +120,7 @@ class FirestoreClientTest extends GeneratedTest
         // Mock request
         $database = 'database1789464955';
         $documents = [];
-        $serverStream = $client->batchGetDocuments($database, $documents);
+        $serverStream = $gapicClient->batchGetDocuments($database, $documents);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
         $expectedResponses = [];
@@ -146,7 +146,7 @@ class FirestoreClientTest extends GeneratedTest
     public function batchGetDocumentsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $status = new stdClass();
@@ -163,7 +163,7 @@ class FirestoreClientTest extends GeneratedTest
         // Mock request
         $database = 'database1789464955';
         $documents = [];
-        $serverStream = $client->batchGetDocuments($database, $documents);
+        $serverStream = $gapicClient->batchGetDocuments($database, $documents);
         $results = $serverStream->readAll();
         try {
             iterator_to_array($results);
@@ -184,14 +184,14 @@ class FirestoreClientTest extends GeneratedTest
     public function batchWriteTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new BatchWriteResponse();
         $transport->addResponse($expectedResponse);
-        $response = $client->batchWrite();
+        $response = $gapicClient->batchWrite();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -207,7 +207,7 @@ class FirestoreClientTest extends GeneratedTest
     public function batchWriteExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -222,8 +222,8 @@ class FirestoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->batchWrite();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->batchWrite();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -240,7 +240,7 @@ class FirestoreClientTest extends GeneratedTest
     public function beginTransactionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -251,7 +251,7 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $database = 'database1789464955';
-        $response = $client->beginTransaction($database);
+        $response = $gapicClient->beginTransaction($database);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -269,7 +269,7 @@ class FirestoreClientTest extends GeneratedTest
     public function beginTransactionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -286,8 +286,8 @@ class FirestoreClientTest extends GeneratedTest
         // Mock request
         $database = 'database1789464955';
         try {
-            $client->beginTransaction($database);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->beginTransaction($database);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -304,7 +304,7 @@ class FirestoreClientTest extends GeneratedTest
     public function commitTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -314,7 +314,7 @@ class FirestoreClientTest extends GeneratedTest
         // Mock request
         $database = 'database1789464955';
         $writes = [];
-        $response = $client->commit($database, $writes);
+        $response = $gapicClient->commit($database, $writes);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -334,7 +334,7 @@ class FirestoreClientTest extends GeneratedTest
     public function commitExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -352,8 +352,8 @@ class FirestoreClientTest extends GeneratedTest
         $database = 'database1789464955';
         $writes = [];
         try {
-            $client->commit($database, $writes);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->commit($database, $writes);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -370,7 +370,7 @@ class FirestoreClientTest extends GeneratedTest
     public function createDocumentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -384,7 +384,7 @@ class FirestoreClientTest extends GeneratedTest
         $collectionId = 'collectionId-821242276';
         $documentId = 'documentId506676927';
         $document = new Document();
-        $response = $client->createDocument($parent, $collectionId, $documentId, $document);
+        $response = $gapicClient->createDocument($parent, $collectionId, $documentId, $document);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -408,7 +408,7 @@ class FirestoreClientTest extends GeneratedTest
     public function createDocumentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -428,8 +428,8 @@ class FirestoreClientTest extends GeneratedTest
         $documentId = 'documentId506676927';
         $document = new Document();
         try {
-            $client->createDocument($parent, $collectionId, $documentId, $document);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createDocument($parent, $collectionId, $documentId, $document);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -446,7 +446,7 @@ class FirestoreClientTest extends GeneratedTest
     public function deleteDocumentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -455,7 +455,7 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $client->deleteDocument($name);
+        $gapicClient->deleteDocument($name);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -472,7 +472,7 @@ class FirestoreClientTest extends GeneratedTest
     public function deleteDocumentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -489,8 +489,8 @@ class FirestoreClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         try {
-            $client->deleteDocument($name);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteDocument($name);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -507,7 +507,7 @@ class FirestoreClientTest extends GeneratedTest
     public function getDocumentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -518,7 +518,7 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $response = $client->getDocument($name);
+        $response = $gapicClient->getDocument($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -536,7 +536,7 @@ class FirestoreClientTest extends GeneratedTest
     public function getDocumentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -553,8 +553,8 @@ class FirestoreClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         try {
-            $client->getDocument($name);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getDocument($name);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -571,7 +571,7 @@ class FirestoreClientTest extends GeneratedTest
     public function listCollectionIdsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -587,7 +587,7 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $response = $client->listCollectionIds($parent);
+        $response = $gapicClient->listCollectionIds($parent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -608,7 +608,7 @@ class FirestoreClientTest extends GeneratedTest
     public function listCollectionIdsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -625,8 +625,8 @@ class FirestoreClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         try {
-            $client->listCollectionIds($parent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listCollectionIds($parent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -643,7 +643,7 @@ class FirestoreClientTest extends GeneratedTest
     public function listDocumentsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -660,7 +660,7 @@ class FirestoreClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $collectionId = 'collectionId-821242276';
-        $response = $client->listDocuments($parent, $collectionId);
+        $response = $gapicClient->listDocuments($parent, $collectionId);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -683,7 +683,7 @@ class FirestoreClientTest extends GeneratedTest
     public function listDocumentsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -701,8 +701,8 @@ class FirestoreClientTest extends GeneratedTest
         $parent = 'parent-995424086';
         $collectionId = 'collectionId-821242276';
         try {
-            $client->listDocuments($parent, $collectionId);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listDocuments($parent, $collectionId);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -719,7 +719,7 @@ class FirestoreClientTest extends GeneratedTest
     public function listenTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -740,7 +740,7 @@ class FirestoreClientTest extends GeneratedTest
         $database3 = 'database31688906351';
         $request3 = new ListenRequest();
         $request3->setDatabase($database3);
-        $bidi = $client->listen();
+        $bidi = $gapicClient->listen();
         $this->assertInstanceOf(BidiStream::class, $bidi);
         $bidi->write($request);
         $responses = [];
@@ -782,7 +782,7 @@ class FirestoreClientTest extends GeneratedTest
     public function listenExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $status = new stdClass();
@@ -796,7 +796,7 @@ class FirestoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
-        $bidi = $client->listen();
+        $bidi = $gapicClient->listen();
         $results = $bidi->closeWriteAndReadAll();
         try {
             iterator_to_array($results);
@@ -817,7 +817,7 @@ class FirestoreClientTest extends GeneratedTest
     public function partitionQueryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -831,7 +831,7 @@ class FirestoreClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPartitions($partitions);
         $transport->addResponse($expectedResponse);
-        $response = $client->partitionQueryPaginated();
+        $response = $gapicClient->partitionQueryPaginated();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -850,7 +850,7 @@ class FirestoreClientTest extends GeneratedTest
     public function partitionQueryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -865,8 +865,8 @@ class FirestoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->partitionQueryPaginated();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->partitionQueryPaginated();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -883,7 +883,7 @@ class FirestoreClientTest extends GeneratedTest
     public function rollbackTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -893,7 +893,7 @@ class FirestoreClientTest extends GeneratedTest
         // Mock request
         $database = 'database1789464955';
         $transaction = '-34';
-        $client->rollback($database, $transaction);
+        $gapicClient->rollback($database, $transaction);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -912,7 +912,7 @@ class FirestoreClientTest extends GeneratedTest
     public function rollbackExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -930,8 +930,8 @@ class FirestoreClientTest extends GeneratedTest
         $database = 'database1789464955';
         $transaction = '-34';
         try {
-            $client->rollback($database, $transaction);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->rollback($database, $transaction);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -948,7 +948,7 @@ class FirestoreClientTest extends GeneratedTest
     public function runQueryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -979,7 +979,7 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse3);
         // Mock request
         $parent = 'parent-995424086';
-        $serverStream = $client->runQuery($parent);
+        $serverStream = $gapicClient->runQuery($parent);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
         $expectedResponses = [];
@@ -1003,7 +1003,7 @@ class FirestoreClientTest extends GeneratedTest
     public function runQueryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $status = new stdClass();
@@ -1019,7 +1019,7 @@ class FirestoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock request
         $parent = 'parent-995424086';
-        $serverStream = $client->runQuery($parent);
+        $serverStream = $gapicClient->runQuery($parent);
         $results = $serverStream->readAll();
         try {
             iterator_to_array($results);
@@ -1040,7 +1040,7 @@ class FirestoreClientTest extends GeneratedTest
     public function updateDocumentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1052,7 +1052,7 @@ class FirestoreClientTest extends GeneratedTest
         // Mock request
         $document = new Document();
         $updateMask = new DocumentMask();
-        $response = $client->updateDocument($document, $updateMask);
+        $response = $gapicClient->updateDocument($document, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1072,7 +1072,7 @@ class FirestoreClientTest extends GeneratedTest
     public function updateDocumentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1090,8 +1090,8 @@ class FirestoreClientTest extends GeneratedTest
         $document = new Document();
         $updateMask = new DocumentMask();
         try {
-            $client->updateDocument($document, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateDocument($document, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1108,7 +1108,7 @@ class FirestoreClientTest extends GeneratedTest
     public function writeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1141,7 +1141,7 @@ class FirestoreClientTest extends GeneratedTest
         $database3 = 'database31688906351';
         $request3 = new WriteRequest();
         $request3->setDatabase($database3);
-        $bidi = $client->write();
+        $bidi = $gapicClient->write();
         $this->assertInstanceOf(BidiStream::class, $bidi);
         $bidi->write($request);
         $responses = [];
@@ -1183,7 +1183,7 @@ class FirestoreClientTest extends GeneratedTest
     public function writeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $status = new stdClass();
@@ -1197,7 +1197,7 @@ class FirestoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
-        $bidi = $client->write();
+        $bidi = $gapicClient->write();
         $results = $bidi->closeWriteAndReadAll();
         try {
             iterator_to_array($results);

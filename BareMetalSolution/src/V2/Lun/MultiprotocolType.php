@@ -52,4 +52,6 @@ class MultiprotocolType
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(MultiprotocolType::class, \Google\Cloud\BaremetalSolution\V2\Lun_MultiprotocolType::class);
 

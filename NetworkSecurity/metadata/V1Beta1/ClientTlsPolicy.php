@@ -22,7 +22,7 @@ class ClientTlsPolicy
         \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-þ
+”
 <google/cloud/networksecurity/v1beta1/client_tls_policy.proto$google.cloud.networksecurity.v1beta1google/api/resource.proto.google/cloud/networksecurity/v1beta1/tls.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.protogoogle/api/annotations.proto"û
 ClientTlsPolicy
 name (	BàA
@@ -59,8 +59,8 @@ page_token (	"Œ
 client_tls_policy (25.google.cloud.networksecurity.v1beta1.ClientTlsPolicyBàA"d
 DeleteClientTlsPolicyRequestD
 name (	B6àAúA0
-.networksecurity.googleapis.com/ClientTlsPolicyBù
-(com.google.cloud.networksecurity.v1beta1PZSgoogle.golang.org/genproto/googleapis/cloud/networksecurity/v1beta1;networksecurityª$Google.Cloud.NetworkSecurity.V1Beta1Ê$Google\\Cloud\\NetworkSecurity\\V1beta1ê\'Google::Cloud::NetworkSecurity::V1beta1bproto3'
+.networksecurity.googleapis.com/ClientTlsPolicyB
+(com.google.cloud.networksecurity.v1beta1BClientTlsPolicyProtoPZSgoogle.golang.org/genproto/googleapis/cloud/networksecurity/v1beta1;networksecurityª$Google.Cloud.NetworkSecurity.V1Beta1Ê$Google\\Cloud\\NetworkSecurity\\V1beta1ê\'Google::Cloud::NetworkSecurity::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

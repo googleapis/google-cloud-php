@@ -90,7 +90,7 @@ class PredictionServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -110,7 +110,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $inputConfig = new BatchPredictInputConfig();
         $inputConfigGcsSource = new GcsSource();
         $gcsSourceInputUris = [];
@@ -121,7 +121,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $gcsDestinationOutputUriPrefix = 'gcsDestinationOutputUriPrefix-335790682';
         $outputConfigGcsDestination->setOutputUriPrefix($gcsDestinationOutputUriPrefix);
         $outputConfig->setGcsDestination($outputConfigGcsDestination);
-        $response = $client->batchPredict($formattedName, $inputConfig, $outputConfig);
+        $response = $gapicClient->batchPredict($formattedName, $inputConfig, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -168,7 +168,7 @@ class PredictionServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -190,7 +190,7 @@ class PredictionServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $inputConfig = new BatchPredictInputConfig();
         $inputConfigGcsSource = new GcsSource();
         $gcsSourceInputUris = [];
@@ -201,7 +201,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $gcsDestinationOutputUriPrefix = 'gcsDestinationOutputUriPrefix-335790682';
         $outputConfigGcsDestination->setOutputUriPrefix($gcsDestinationOutputUriPrefix);
         $outputConfig->setGcsDestination($outputConfigGcsDestination);
-        $response = $client->batchPredict($formattedName, $inputConfig, $outputConfig);
+        $response = $gapicClient->batchPredict($formattedName, $inputConfig, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -229,7 +229,7 @@ class PredictionServiceClientTest extends GeneratedTest
     public function predictTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -237,9 +237,9 @@ class PredictionServiceClientTest extends GeneratedTest
         $expectedResponse = new PredictResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $payload = new ExamplePayload();
-        $response = $client->predict($formattedName, $payload);
+        $response = $gapicClient->predict($formattedName, $payload);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -259,7 +259,7 @@ class PredictionServiceClientTest extends GeneratedTest
     public function predictExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -274,11 +274,11 @@ class PredictionServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $payload = new ExamplePayload();
         try {
-            $client->predict($formattedName, $payload);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->predict($formattedName, $payload);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

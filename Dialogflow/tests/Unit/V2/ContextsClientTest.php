@@ -75,7 +75,7 @@ class ContextsClientTest extends GeneratedTest
     public function createContextTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -87,11 +87,11 @@ class ContextsClientTest extends GeneratedTest
         $expectedResponse->setLifespanCount($lifespanCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->sessionName('[PROJECT]', '[SESSION]');
+        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
         $context = new Context();
         $contextName = 'contextName-103041830';
         $context->setName($contextName);
-        $response = $client->createContext($formattedParent, $context);
+        $response = $gapicClient->createContext($formattedParent, $context);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -111,7 +111,7 @@ class ContextsClientTest extends GeneratedTest
     public function createContextExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -126,13 +126,13 @@ class ContextsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->sessionName('[PROJECT]', '[SESSION]');
+        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
         $context = new Context();
         $contextName = 'contextName-103041830';
         $context->setName($contextName);
         try {
-            $client->createContext($formattedParent, $context);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createContext($formattedParent, $context);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -149,7 +149,7 @@ class ContextsClientTest extends GeneratedTest
     public function deleteAllContextsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -157,8 +157,8 @@ class ContextsClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->sessionName('[PROJECT]', '[SESSION]');
-        $client->deleteAllContexts($formattedParent);
+        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
+        $gapicClient->deleteAllContexts($formattedParent);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -175,7 +175,7 @@ class ContextsClientTest extends GeneratedTest
     public function deleteAllContextsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -190,10 +190,10 @@ class ContextsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->sessionName('[PROJECT]', '[SESSION]');
+        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
         try {
-            $client->deleteAllContexts($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteAllContexts($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -210,7 +210,7 @@ class ContextsClientTest extends GeneratedTest
     public function deleteContextTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -218,8 +218,8 @@ class ContextsClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
-        $client->deleteContext($formattedName);
+        $formattedName = $gapicClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
+        $gapicClient->deleteContext($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -236,7 +236,7 @@ class ContextsClientTest extends GeneratedTest
     public function deleteContextExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -251,10 +251,10 @@ class ContextsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
+        $formattedName = $gapicClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
         try {
-            $client->deleteContext($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteContext($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -271,7 +271,7 @@ class ContextsClientTest extends GeneratedTest
     public function getContextTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -283,8 +283,8 @@ class ContextsClientTest extends GeneratedTest
         $expectedResponse->setLifespanCount($lifespanCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
-        $response = $client->getContext($formattedName);
+        $formattedName = $gapicClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
+        $response = $gapicClient->getContext($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -302,7 +302,7 @@ class ContextsClientTest extends GeneratedTest
     public function getContextExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -317,10 +317,10 @@ class ContextsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
+        $formattedName = $gapicClient->contextName('[PROJECT]', '[SESSION]', '[CONTEXT]');
         try {
-            $client->getContext($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getContext($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -337,7 +337,7 @@ class ContextsClientTest extends GeneratedTest
     public function listContextsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -352,8 +352,8 @@ class ContextsClientTest extends GeneratedTest
         $expectedResponse->setContexts($contexts);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->sessionName('[PROJECT]', '[SESSION]');
-        $response = $client->listContexts($formattedParent);
+        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
+        $response = $gapicClient->listContexts($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -374,7 +374,7 @@ class ContextsClientTest extends GeneratedTest
     public function listContextsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -389,10 +389,10 @@ class ContextsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->sessionName('[PROJECT]', '[SESSION]');
+        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
         try {
-            $client->listContexts($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listContexts($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -409,7 +409,7 @@ class ContextsClientTest extends GeneratedTest
     public function updateContextTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -424,7 +424,7 @@ class ContextsClientTest extends GeneratedTest
         $context = new Context();
         $contextName = 'contextName-103041830';
         $context->setName($contextName);
-        $response = $client->updateContext($context);
+        $response = $gapicClient->updateContext($context);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -442,7 +442,7 @@ class ContextsClientTest extends GeneratedTest
     public function updateContextExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -461,8 +461,8 @@ class ContextsClientTest extends GeneratedTest
         $contextName = 'contextName-103041830';
         $context->setName($contextName);
         try {
-            $client->updateContext($context);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateContext($context);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

@@ -89,7 +89,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -119,9 +119,9 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
+        $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
         $trust = new Trust();
-        $response = $client->attachTrust($formattedName, $trust);
+        $response = $gapicClient->attachTrust($formattedName, $trust);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -166,7 +166,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -188,9 +188,9 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
+        $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
         $trust = new Trust();
-        $response = $client->attachTrust($formattedName, $trust);
+        $response = $gapicClient->attachTrust($formattedName, $trust);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -224,7 +224,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -254,14 +254,14 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $domainName = 'domainName104118566';
         $domain = new Domain();
         $domainReservedIpRange = 'domainReservedIpRange1357926058';
         $domain->setReservedIpRange($domainReservedIpRange);
         $domainLocations = [];
         $domain->setLocations($domainLocations);
-        $response = $client->createMicrosoftAdDomain($formattedParent, $domainName, $domain);
+        $response = $gapicClient->createMicrosoftAdDomain($formattedParent, $domainName, $domain);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -308,7 +308,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -330,14 +330,14 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $domainName = 'domainName104118566';
         $domain = new Domain();
         $domainReservedIpRange = 'domainReservedIpRange1357926058';
         $domain->setReservedIpRange($domainReservedIpRange);
         $domainLocations = [];
         $domain->setLocations($domainLocations);
-        $response = $client->createMicrosoftAdDomain($formattedParent, $domainName, $domain);
+        $response = $gapicClient->createMicrosoftAdDomain($formattedParent, $domainName, $domain);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -371,7 +371,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -391,8 +391,8 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-        $response = $client->deleteDomain($formattedName);
+        $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
+        $response = $gapicClient->deleteDomain($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -435,7 +435,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -457,8 +457,8 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-        $response = $client->deleteDomain($formattedName);
+        $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
+        $response = $gapicClient->deleteDomain($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -492,7 +492,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -522,9 +522,9 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
+        $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
         $trust = new Trust();
-        $response = $client->detachTrust($formattedName, $trust);
+        $response = $gapicClient->detachTrust($formattedName, $trust);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -569,7 +569,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -591,9 +591,9 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
+        $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
         $trust = new Trust();
-        $response = $client->detachTrust($formattedName, $trust);
+        $response = $gapicClient->detachTrust($formattedName, $trust);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -621,7 +621,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
     public function getDomainTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -639,8 +639,8 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-        $response = $client->getDomain($formattedName);
+        $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
+        $response = $gapicClient->getDomain($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -658,7 +658,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
     public function getDomainExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -673,10 +673,10 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
+        $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
         try {
-            $client->getDomain($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getDomain($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -693,7 +693,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
     public function listDomainsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -708,8 +708,8 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $expectedResponse->setDomains($domains);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listDomains($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listDomains($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -730,7 +730,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
     public function listDomainsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -745,10 +745,10 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listDomains($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listDomains($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -771,7 +771,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -801,10 +801,10 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
+        $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
         $targetDomainName = 'targetDomainName1303689080';
         $targetDnsIpAddresses = [];
-        $response = $client->reconfigureTrust($formattedName, $targetDomainName, $targetDnsIpAddresses);
+        $response = $gapicClient->reconfigureTrust($formattedName, $targetDomainName, $targetDnsIpAddresses);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -851,7 +851,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -873,10 +873,10 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
+        $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
         $targetDomainName = 'targetDomainName1303689080';
         $targetDnsIpAddresses = [];
-        $response = $client->reconfigureTrust($formattedName, $targetDomainName, $targetDnsIpAddresses);
+        $response = $gapicClient->reconfigureTrust($formattedName, $targetDomainName, $targetDnsIpAddresses);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -904,7 +904,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
     public function resetAdminPasswordTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -914,8 +914,8 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $expectedResponse->setPassword($password);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
-        $response = $client->resetAdminPassword($formattedName);
+        $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
+        $response = $gapicClient->resetAdminPassword($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -933,7 +933,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
     public function resetAdminPasswordExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -948,10 +948,10 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
+        $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
         try {
-            $client->resetAdminPassword($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->resetAdminPassword($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -974,7 +974,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1010,7 +1010,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $domain->setReservedIpRange($domainReservedIpRange);
         $domainLocations = [];
         $domain->setLocations($domainLocations);
-        $response = $client->updateDomain($updateMask, $domain);
+        $response = $gapicClient->updateDomain($updateMask, $domain);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1055,7 +1055,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1083,7 +1083,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $domain->setReservedIpRange($domainReservedIpRange);
         $domainLocations = [];
         $domain->setLocations($domainLocations);
-        $response = $client->updateDomain($updateMask, $domain);
+        $response = $gapicClient->updateDomain($updateMask, $domain);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1117,7 +1117,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1147,9 +1147,9 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
+        $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
         $trust = new Trust();
-        $response = $client->validateTrust($formattedName, $trust);
+        $response = $gapicClient->validateTrust($formattedName, $trust);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1194,7 +1194,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1216,9 +1216,9 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
+        $formattedName = $gapicClient->domainName('[PROJECT]', '[LOCATION]', '[DOMAIN]');
         $trust = new Trust();
-        $response = $client->validateTrust($formattedName, $trust);
+        $response = $gapicClient->validateTrust($formattedName, $trust);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

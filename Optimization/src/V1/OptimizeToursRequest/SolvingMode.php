@@ -69,4 +69,6 @@ class SolvingMode
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(SolvingMode::class, \Google\Cloud\Optimization\V1\OptimizeToursRequest_SolvingMode::class);
 

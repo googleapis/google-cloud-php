@@ -72,7 +72,7 @@ class GatewayServiceClientTest extends GeneratedTest
     public function deleteResourceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -83,7 +83,7 @@ class GatewayServiceClientTest extends GeneratedTest
         $expectedResponse->setContentType($contentType2);
         $expectedResponse->setData($data2);
         $transport->addResponse($expectedResponse);
-        $response = $client->deleteResource();
+        $response = $gapicClient->deleteResource();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -99,7 +99,7 @@ class GatewayServiceClientTest extends GeneratedTest
     public function deleteResourceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -114,8 +114,8 @@ class GatewayServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->deleteResource();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteResource();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -132,7 +132,7 @@ class GatewayServiceClientTest extends GeneratedTest
     public function getResourceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -143,7 +143,7 @@ class GatewayServiceClientTest extends GeneratedTest
         $expectedResponse->setContentType($contentType2);
         $expectedResponse->setData($data2);
         $transport->addResponse($expectedResponse);
-        $response = $client->getResource();
+        $response = $gapicClient->getResource();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -159,7 +159,7 @@ class GatewayServiceClientTest extends GeneratedTest
     public function getResourceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -174,8 +174,8 @@ class GatewayServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getResource();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getResource();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -192,7 +192,7 @@ class GatewayServiceClientTest extends GeneratedTest
     public function patchResourceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -203,7 +203,7 @@ class GatewayServiceClientTest extends GeneratedTest
         $expectedResponse->setContentType($contentType2);
         $expectedResponse->setData($data2);
         $transport->addResponse($expectedResponse);
-        $response = $client->patchResource();
+        $response = $gapicClient->patchResource();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -219,7 +219,7 @@ class GatewayServiceClientTest extends GeneratedTest
     public function patchResourceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -234,8 +234,8 @@ class GatewayServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->patchResource();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->patchResource();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -252,7 +252,7 @@ class GatewayServiceClientTest extends GeneratedTest
     public function postResourceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -263,7 +263,7 @@ class GatewayServiceClientTest extends GeneratedTest
         $expectedResponse->setContentType($contentType2);
         $expectedResponse->setData($data2);
         $transport->addResponse($expectedResponse);
-        $response = $client->postResource();
+        $response = $gapicClient->postResource();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -279,7 +279,7 @@ class GatewayServiceClientTest extends GeneratedTest
     public function postResourceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -294,8 +294,8 @@ class GatewayServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->postResource();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->postResource();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -312,7 +312,7 @@ class GatewayServiceClientTest extends GeneratedTest
     public function putResourceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -323,7 +323,7 @@ class GatewayServiceClientTest extends GeneratedTest
         $expectedResponse->setContentType($contentType2);
         $expectedResponse->setData($data2);
         $transport->addResponse($expectedResponse);
-        $response = $client->putResource();
+        $response = $gapicClient->putResource();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -339,7 +339,7 @@ class GatewayServiceClientTest extends GeneratedTest
     public function putResourceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -354,8 +354,8 @@ class GatewayServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->putResource();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->putResource();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

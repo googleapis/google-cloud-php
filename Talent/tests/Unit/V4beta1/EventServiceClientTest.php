@@ -73,7 +73,7 @@ class EventServiceClientTest extends GeneratedTest
     public function createClientEventTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -87,13 +87,13 @@ class EventServiceClientTest extends GeneratedTest
         $expectedResponse->setEventNotes($eventNotes);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $clientEvent = new ClientEvent();
         $clientEventEventId = 'clientEventEventId319230150';
         $clientEvent->setEventId($clientEventEventId);
         $clientEventCreateTime = new Timestamp();
         $clientEvent->setCreateTime($clientEventCreateTime);
-        $response = $client->createClientEvent($formattedParent, $clientEvent);
+        $response = $gapicClient->createClientEvent($formattedParent, $clientEvent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -113,7 +113,7 @@ class EventServiceClientTest extends GeneratedTest
     public function createClientEventExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -128,15 +128,15 @@ class EventServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $clientEvent = new ClientEvent();
         $clientEventEventId = 'clientEventEventId319230150';
         $clientEvent->setEventId($clientEventEventId);
         $clientEventCreateTime = new Timestamp();
         $clientEvent->setCreateTime($clientEventCreateTime);
         try {
-            $client->createClientEvent($formattedParent, $clientEvent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createClientEvent($formattedParent, $clientEvent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
