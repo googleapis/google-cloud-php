@@ -90,6 +90,7 @@ class Subscription
     // The Error Info reason that is used to identify a subscription
     // with EOD enabled or not
     const EXACTLY_ONCE_FAILURE_REASON = 'EXACTLY_ONCE_ACKID_FAILURE';
+    const EXACTLY_ONCE_TRANSIENT_FAILURE_PREFIX = 'TRANSIENT_FAILURE';
 
     /**
      * @var ConnectionInterface
@@ -1088,5 +1089,30 @@ class Subscription
             'info' => $this->info,
             'connection' => get_class($this->connection)
         ];
+    }
+
+    /**
+     * Returns the temporarily failed ackIds from the exception object
+     *
+     * @param BadRequestException
+     * @return array
+     */
+    private function getRetryableAckIds(BadRequestException $e)
+    {
+        $metadata = $e->getErrorInfoMetadata();
+        $ackIds = [];
+
+        // EOD enabled subscription
+        if ($this->isExceptionExactlyOnce($e)) {
+            foreach ($metadata as $ackId => $failureReason) {
+                // check if the prefix of the failure reason is same as
+                // the transient failure for EOD enabled subscriptions
+                if (strpos($failureReason, self::EXACTLY_ONCE_TRANSIENT_FAILURE_PREFIX) === 0) {
+                    $ackIds[] = $ackId;
+                }
+            }
+        }
+
+        return $ackIds;
     }
 }
