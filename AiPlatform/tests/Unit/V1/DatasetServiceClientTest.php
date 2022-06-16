@@ -100,7 +100,7 @@ class DatasetServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -130,7 +130,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $dataset = new Dataset();
         $datasetDisplayName = 'datasetDisplayName1912393429';
         $dataset->setDisplayName($datasetDisplayName);
@@ -138,7 +138,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $dataset->setMetadataSchemaUri($datasetMetadataSchemaUri);
         $datasetMetadata = new Value();
         $dataset->setMetadata($datasetMetadata);
-        $response = $client->createDataset($formattedParent, $dataset);
+        $response = $gapicClient->createDataset($formattedParent, $dataset);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -183,7 +183,7 @@ class DatasetServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -205,7 +205,7 @@ class DatasetServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $dataset = new Dataset();
         $datasetDisplayName = 'datasetDisplayName1912393429';
         $dataset->setDisplayName($datasetDisplayName);
@@ -213,7 +213,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $dataset->setMetadataSchemaUri($datasetMetadataSchemaUri);
         $datasetMetadata = new Value();
         $dataset->setMetadata($datasetMetadata);
-        $response = $client->createDataset($formattedParent, $dataset);
+        $response = $gapicClient->createDataset($formattedParent, $dataset);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -247,7 +247,7 @@ class DatasetServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -267,8 +267,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $response = $client->deleteDataset($formattedName);
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $response = $gapicClient->deleteDataset($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -311,7 +311,7 @@ class DatasetServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -333,8 +333,8 @@ class DatasetServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $response = $client->deleteDataset($formattedName);
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $response = $gapicClient->deleteDataset($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -368,7 +368,7 @@ class DatasetServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -388,9 +388,9 @@ class DatasetServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $exportConfig = new ExportDataConfig();
-        $response = $client->exportData($formattedName, $exportConfig);
+        $response = $gapicClient->exportData($formattedName, $exportConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -435,7 +435,7 @@ class DatasetServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -457,9 +457,9 @@ class DatasetServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $exportConfig = new ExportDataConfig();
-        $response = $client->exportData($formattedName, $exportConfig);
+        $response = $gapicClient->exportData($formattedName, $exportConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -487,7 +487,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function getAnnotationSpecTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -501,8 +501,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
-        $response = $client->getAnnotationSpec($formattedName);
+        $formattedName = $gapicClient->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
+        $response = $gapicClient->getAnnotationSpec($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -520,7 +520,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function getAnnotationSpecExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -535,10 +535,10 @@ class DatasetServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
+        $formattedName = $gapicClient->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
         try {
-            $client->getAnnotationSpec($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getAnnotationSpec($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -555,7 +555,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function getDatasetTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -573,8 +573,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $response = $client->getDataset($formattedName);
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $response = $gapicClient->getDataset($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -592,7 +592,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function getDatasetExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -607,10 +607,10 @@ class DatasetServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         try {
-            $client->getDataset($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getDataset($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -633,7 +633,7 @@ class DatasetServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -653,9 +653,9 @@ class DatasetServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $importConfigs = [];
-        $response = $client->importData($formattedName, $importConfigs);
+        $response = $gapicClient->importData($formattedName, $importConfigs);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -700,7 +700,7 @@ class DatasetServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -722,9 +722,9 @@ class DatasetServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $importConfigs = [];
-        $response = $client->importData($formattedName, $importConfigs);
+        $response = $gapicClient->importData($formattedName, $importConfigs);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -752,7 +752,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function listAnnotationsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -767,8 +767,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setAnnotations($annotations);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->dataItemName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATA_ITEM]');
-        $response = $client->listAnnotations($formattedParent);
+        $formattedParent = $gapicClient->dataItemName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATA_ITEM]');
+        $response = $gapicClient->listAnnotations($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -789,7 +789,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function listAnnotationsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -804,10 +804,10 @@ class DatasetServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->dataItemName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATA_ITEM]');
+        $formattedParent = $gapicClient->dataItemName('[PROJECT]', '[LOCATION]', '[DATASET]', '[DATA_ITEM]');
         try {
-            $client->listAnnotations($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listAnnotations($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -824,7 +824,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function listDataItemsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -839,8 +839,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setDataItems($dataItems);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $response = $client->listDataItems($formattedParent);
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $response = $gapicClient->listDataItems($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -861,7 +861,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function listDataItemsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -876,10 +876,10 @@ class DatasetServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         try {
-            $client->listDataItems($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listDataItems($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -896,7 +896,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function listDatasetsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -911,8 +911,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setDatasets($datasets);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listDatasets($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listDatasets($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -933,7 +933,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function listDatasetsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -948,10 +948,10 @@ class DatasetServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listDatasets($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listDatasets($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -968,7 +968,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function updateDatasetTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -994,7 +994,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $datasetMetadata = new Value();
         $dataset->setMetadata($datasetMetadata);
         $updateMask = new FieldMask();
-        $response = $client->updateDataset($dataset, $updateMask);
+        $response = $gapicClient->updateDataset($dataset, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1014,7 +1014,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function updateDatasetExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1038,8 +1038,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $dataset->setMetadata($datasetMetadata);
         $updateMask = new FieldMask();
         try {
-            $client->updateDataset($dataset, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateDataset($dataset, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1056,7 +1056,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function getLocationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1069,7 +1069,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $response = $client->getLocation();
+        $response = $gapicClient->getLocation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1085,7 +1085,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1100,8 +1100,8 @@ class DatasetServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getLocation();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getLocation();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1118,7 +1118,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1132,7 +1132,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
         $transport->addResponse($expectedResponse);
-        $response = $client->listLocations();
+        $response = $gapicClient->listLocations();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1151,7 +1151,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1166,8 +1166,8 @@ class DatasetServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listLocations();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listLocations();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1184,7 +1184,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1197,7 +1197,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $response = $client->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1215,7 +1215,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1232,8 +1232,8 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         try {
-            $client->getIamPolicy($resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIamPolicy($resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1250,7 +1250,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1264,7 +1264,7 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $response = $client->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1284,7 +1284,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1302,8 +1302,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $policy = new Policy();
         try {
-            $client->setIamPolicy($resource, $policy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setIamPolicy($resource, $policy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1320,7 +1320,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1330,7 +1330,7 @@ class DatasetServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $response = $client->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1350,7 +1350,7 @@ class DatasetServiceClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1368,8 +1368,8 @@ class DatasetServiceClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $permissions = [];
         try {
-            $client->testIamPermissions($resource, $permissions);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->testIamPermissions($resource, $permissions);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

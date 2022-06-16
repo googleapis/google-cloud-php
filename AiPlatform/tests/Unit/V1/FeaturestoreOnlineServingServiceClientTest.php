@@ -80,7 +80,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
     public function readFeatureValuesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -88,14 +88,14 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
         $expectedResponse = new ReadFeatureValuesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedEntityType = $client->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
+        $formattedEntityType = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
         $entityId = 'entityId-740565257';
         $featureSelector = new FeatureSelector();
         $featureSelectorIdMatcher = new IdMatcher();
         $idMatcherIds = [];
         $featureSelectorIdMatcher->setIds($idMatcherIds);
         $featureSelector->setIdMatcher($featureSelectorIdMatcher);
-        $response = $client->readFeatureValues($formattedEntityType, $entityId, $featureSelector);
+        $response = $gapicClient->readFeatureValues($formattedEntityType, $entityId, $featureSelector);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -117,7 +117,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
     public function readFeatureValuesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -132,7 +132,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedEntityType = $client->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
+        $formattedEntityType = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
         $entityId = 'entityId-740565257';
         $featureSelector = new FeatureSelector();
         $featureSelectorIdMatcher = new IdMatcher();
@@ -140,8 +140,8 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
         $featureSelectorIdMatcher->setIds($idMatcherIds);
         $featureSelector->setIdMatcher($featureSelectorIdMatcher);
         try {
-            $client->readFeatureValues($formattedEntityType, $entityId, $featureSelector);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->readFeatureValues($formattedEntityType, $entityId, $featureSelector);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -158,7 +158,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
     public function streamingReadFeatureValuesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -170,14 +170,14 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
         $expectedResponse3 = new ReadFeatureValuesResponse();
         $transport->addResponse($expectedResponse3);
         // Mock request
-        $formattedEntityType = $client->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
+        $formattedEntityType = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
         $entityIds = [];
         $featureSelector = new FeatureSelector();
         $featureSelectorIdMatcher = new IdMatcher();
         $idMatcherIds = [];
         $featureSelectorIdMatcher->setIds($idMatcherIds);
         $featureSelector->setIdMatcher($featureSelectorIdMatcher);
-        $serverStream = $client->streamingReadFeatureValues($formattedEntityType, $entityIds, $featureSelector);
+        $serverStream = $gapicClient->streamingReadFeatureValues($formattedEntityType, $entityIds, $featureSelector);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
         $expectedResponses = [];
@@ -205,7 +205,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
     public function streamingReadFeatureValuesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $status = new stdClass();
@@ -220,14 +220,14 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
-        $formattedEntityType = $client->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
+        $formattedEntityType = $gapicClient->entityTypeName('[PROJECT]', '[LOCATION]', '[FEATURESTORE]', '[ENTITY_TYPE]');
         $entityIds = [];
         $featureSelector = new FeatureSelector();
         $featureSelectorIdMatcher = new IdMatcher();
         $idMatcherIds = [];
         $featureSelectorIdMatcher->setIds($idMatcherIds);
         $featureSelector->setIdMatcher($featureSelectorIdMatcher);
-        $serverStream = $client->streamingReadFeatureValues($formattedEntityType, $entityIds, $featureSelector);
+        $serverStream = $gapicClient->streamingReadFeatureValues($formattedEntityType, $entityIds, $featureSelector);
         $results = $serverStream->readAll();
         try {
             iterator_to_array($results);
@@ -248,7 +248,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
     public function getLocationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -261,7 +261,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $response = $client->getLocation();
+        $response = $gapicClient->getLocation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -277,7 +277,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -292,8 +292,8 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getLocation();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getLocation();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -310,7 +310,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -324,7 +324,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
         $transport->addResponse($expectedResponse);
-        $response = $client->listLocations();
+        $response = $gapicClient->listLocations();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -343,7 +343,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -358,8 +358,8 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listLocations();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listLocations();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -376,7 +376,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -389,7 +389,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $response = $client->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -407,7 +407,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -424,8 +424,8 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         try {
-            $client->getIamPolicy($resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIamPolicy($resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -442,7 +442,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -456,7 +456,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $response = $client->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -476,7 +476,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -494,8 +494,8 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $policy = new Policy();
         try {
-            $client->setIamPolicy($resource, $policy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setIamPolicy($resource, $policy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -512,7 +512,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -522,7 +522,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $response = $client->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -542,7 +542,7 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -560,8 +560,8 @@ class FeaturestoreOnlineServingServiceClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $permissions = [];
         try {
-            $client->testIamPermissions($resource, $permissions);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->testIamPermissions($resource, $permissions);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
