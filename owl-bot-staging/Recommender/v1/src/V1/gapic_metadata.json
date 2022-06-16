@@ -1,0 +1,58 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.recommender.v1",
+    "libraryPackage": "Google\\Cloud\\Recommender\\V1",
+    "services": {
+        "Recommender": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RecommenderGapicClient",
+                    "rpcs": {
+                        "GetInsight": {
+                            "methods": [
+                                "getInsight"
+                            ]
+                        },
+                        "GetRecommendation": {
+                            "methods": [
+                                "getRecommendation"
+                            ]
+                        },
+                        "ListInsights": {
+                            "methods": [
+                                "listInsights"
+                            ]
+                        },
+                        "ListRecommendations": {
+                            "methods": [
+                                "listRecommendations"
+                            ]
+                        },
+                        "MarkInsightAccepted": {
+                            "methods": [
+                                "markInsightAccepted"
+                            ]
+                        },
+                        "MarkRecommendationClaimed": {
+                            "methods": [
+                                "markRecommendationClaimed"
+                            ]
+                        },
+                        "MarkRecommendationFailed": {
+                            "methods": [
+                                "markRecommendationFailed"
+                            ]
+                        },
+                        "MarkRecommendationSucceeded": {
+                            "methods": [
+                                "markRecommendationSucceeded"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

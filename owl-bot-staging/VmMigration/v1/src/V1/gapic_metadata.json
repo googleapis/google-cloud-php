@@ -1,0 +1,233 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.vmmigration.v1",
+    "libraryPackage": "Google\\Cloud\\VMMigration\\V1",
+    "services": {
+        "VmMigration": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "VmMigrationGapicClient",
+                    "rpcs": {
+                        "AddGroupMigration": {
+                            "methods": [
+                                "addGroupMigration"
+                            ]
+                        },
+                        "CancelCloneJob": {
+                            "methods": [
+                                "cancelCloneJob"
+                            ]
+                        },
+                        "CancelCutoverJob": {
+                            "methods": [
+                                "cancelCutoverJob"
+                            ]
+                        },
+                        "CreateCloneJob": {
+                            "methods": [
+                                "createCloneJob"
+                            ]
+                        },
+                        "CreateCutoverJob": {
+                            "methods": [
+                                "createCutoverJob"
+                            ]
+                        },
+                        "CreateDatacenterConnector": {
+                            "methods": [
+                                "createDatacenterConnector"
+                            ]
+                        },
+                        "CreateGroup": {
+                            "methods": [
+                                "createGroup"
+                            ]
+                        },
+                        "CreateMigratingVm": {
+                            "methods": [
+                                "createMigratingVm"
+                            ]
+                        },
+                        "CreateSource": {
+                            "methods": [
+                                "createSource"
+                            ]
+                        },
+                        "CreateTargetProject": {
+                            "methods": [
+                                "createTargetProject"
+                            ]
+                        },
+                        "CreateUtilizationReport": {
+                            "methods": [
+                                "createUtilizationReport"
+                            ]
+                        },
+                        "DeleteDatacenterConnector": {
+                            "methods": [
+                                "deleteDatacenterConnector"
+                            ]
+                        },
+                        "DeleteGroup": {
+                            "methods": [
+                                "deleteGroup"
+                            ]
+                        },
+                        "DeleteMigratingVm": {
+                            "methods": [
+                                "deleteMigratingVm"
+                            ]
+                        },
+                        "DeleteSource": {
+                            "methods": [
+                                "deleteSource"
+                            ]
+                        },
+                        "DeleteTargetProject": {
+                            "methods": [
+                                "deleteTargetProject"
+                            ]
+                        },
+                        "DeleteUtilizationReport": {
+                            "methods": [
+                                "deleteUtilizationReport"
+                            ]
+                        },
+                        "FetchInventory": {
+                            "methods": [
+                                "fetchInventory"
+                            ]
+                        },
+                        "FinalizeMigration": {
+                            "methods": [
+                                "finalizeMigration"
+                            ]
+                        },
+                        "GetCloneJob": {
+                            "methods": [
+                                "getCloneJob"
+                            ]
+                        },
+                        "GetCutoverJob": {
+                            "methods": [
+                                "getCutoverJob"
+                            ]
+                        },
+                        "GetDatacenterConnector": {
+                            "methods": [
+                                "getDatacenterConnector"
+                            ]
+                        },
+                        "GetGroup": {
+                            "methods": [
+                                "getGroup"
+                            ]
+                        },
+                        "GetMigratingVm": {
+                            "methods": [
+                                "getMigratingVm"
+                            ]
+                        },
+                        "GetSource": {
+                            "methods": [
+                                "getSource"
+                            ]
+                        },
+                        "GetTargetProject": {
+                            "methods": [
+                                "getTargetProject"
+                            ]
+                        },
+                        "GetUtilizationReport": {
+                            "methods": [
+                                "getUtilizationReport"
+                            ]
+                        },
+                        "ListCloneJobs": {
+                            "methods": [
+                                "listCloneJobs"
+                            ]
+                        },
+                        "ListCutoverJobs": {
+                            "methods": [
+                                "listCutoverJobs"
+                            ]
+                        },
+                        "ListDatacenterConnectors": {
+                            "methods": [
+                                "listDatacenterConnectors"
+                            ]
+                        },
+                        "ListGroups": {
+                            "methods": [
+                                "listGroups"
+                            ]
+                        },
+                        "ListMigratingVms": {
+                            "methods": [
+                                "listMigratingVms"
+                            ]
+                        },
+                        "ListSources": {
+                            "methods": [
+                                "listSources"
+                            ]
+                        },
+                        "ListTargetProjects": {
+                            "methods": [
+                                "listTargetProjects"
+                            ]
+                        },
+                        "ListUtilizationReports": {
+                            "methods": [
+                                "listUtilizationReports"
+                            ]
+                        },
+                        "PauseMigration": {
+                            "methods": [
+                                "pauseMigration"
+                            ]
+                        },
+                        "RemoveGroupMigration": {
+                            "methods": [
+                                "removeGroupMigration"
+                            ]
+                        },
+                        "ResumeMigration": {
+                            "methods": [
+                                "resumeMigration"
+                            ]
+                        },
+                        "StartMigration": {
+                            "methods": [
+                                "startMigration"
+                            ]
+                        },
+                        "UpdateGroup": {
+                            "methods": [
+                                "updateGroup"
+                            ]
+                        },
+                        "UpdateMigratingVm": {
+                            "methods": [
+                                "updateMigratingVm"
+                            ]
+                        },
+                        "UpdateSource": {
+                            "methods": [
+                                "updateSource"
+                            ]
+                        },
+                        "UpdateTargetProject": {
+                            "methods": [
+                                "updateTargetProject"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
