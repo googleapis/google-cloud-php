@@ -103,7 +103,7 @@ class JobServiceClientTest extends GeneratedTest
     public function cancelBatchPredictionJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -111,8 +111,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
-        $client->cancelBatchPredictionJob($formattedName);
+        $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
+        $gapicClient->cancelBatchPredictionJob($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -129,7 +129,7 @@ class JobServiceClientTest extends GeneratedTest
     public function cancelBatchPredictionJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -144,10 +144,10 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
+        $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
         try {
-            $client->cancelBatchPredictionJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->cancelBatchPredictionJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -164,7 +164,7 @@ class JobServiceClientTest extends GeneratedTest
     public function cancelCustomJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -172,8 +172,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
-        $client->cancelCustomJob($formattedName);
+        $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
+        $gapicClient->cancelCustomJob($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -190,7 +190,7 @@ class JobServiceClientTest extends GeneratedTest
     public function cancelCustomJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -205,10 +205,10 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
+        $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
         try {
-            $client->cancelCustomJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->cancelCustomJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -225,7 +225,7 @@ class JobServiceClientTest extends GeneratedTest
     public function cancelDataLabelingJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -233,8 +233,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
-        $client->cancelDataLabelingJob($formattedName);
+        $formattedName = $gapicClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
+        $gapicClient->cancelDataLabelingJob($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -251,7 +251,7 @@ class JobServiceClientTest extends GeneratedTest
     public function cancelDataLabelingJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -266,10 +266,10 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
+        $formattedName = $gapicClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
         try {
-            $client->cancelDataLabelingJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->cancelDataLabelingJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -286,7 +286,7 @@ class JobServiceClientTest extends GeneratedTest
     public function cancelHyperparameterTuningJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -294,8 +294,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
-        $client->cancelHyperparameterTuningJob($formattedName);
+        $formattedName = $gapicClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
+        $gapicClient->cancelHyperparameterTuningJob($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -312,7 +312,7 @@ class JobServiceClientTest extends GeneratedTest
     public function cancelHyperparameterTuningJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -327,10 +327,10 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
+        $formattedName = $gapicClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
         try {
-            $client->cancelHyperparameterTuningJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->cancelHyperparameterTuningJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -347,7 +347,7 @@ class JobServiceClientTest extends GeneratedTest
     public function createBatchPredictionJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -363,7 +363,7 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setGenerateExplanation($generateExplanation);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $batchPredictionJob = new BatchPredictionJob();
         $batchPredictionJobDisplayName = 'batchPredictionJobDisplayName-916867527';
         $batchPredictionJob->setDisplayName($batchPredictionJobDisplayName);
@@ -375,7 +375,7 @@ class JobServiceClientTest extends GeneratedTest
         $outputConfigPredictionsFormat = 'outputConfigPredictionsFormat999432568';
         $batchPredictionJobOutputConfig->setPredictionsFormat($outputConfigPredictionsFormat);
         $batchPredictionJob->setOutputConfig($batchPredictionJobOutputConfig);
-        $response = $client->createBatchPredictionJob($formattedParent, $batchPredictionJob);
+        $response = $gapicClient->createBatchPredictionJob($formattedParent, $batchPredictionJob);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -395,7 +395,7 @@ class JobServiceClientTest extends GeneratedTest
     public function createBatchPredictionJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -410,7 +410,7 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $batchPredictionJob = new BatchPredictionJob();
         $batchPredictionJobDisplayName = 'batchPredictionJobDisplayName-916867527';
         $batchPredictionJob->setDisplayName($batchPredictionJobDisplayName);
@@ -423,8 +423,8 @@ class JobServiceClientTest extends GeneratedTest
         $batchPredictionJobOutputConfig->setPredictionsFormat($outputConfigPredictionsFormat);
         $batchPredictionJob->setOutputConfig($batchPredictionJobOutputConfig);
         try {
-            $client->createBatchPredictionJob($formattedParent, $batchPredictionJob);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createBatchPredictionJob($formattedParent, $batchPredictionJob);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -441,7 +441,7 @@ class JobServiceClientTest extends GeneratedTest
     public function createCustomJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -453,7 +453,7 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $customJob = new CustomJob();
         $customJobDisplayName = 'customJobDisplayName-299624383';
         $customJob->setDisplayName($customJobDisplayName);
@@ -461,7 +461,7 @@ class JobServiceClientTest extends GeneratedTest
         $jobSpecWorkerPoolSpecs = [];
         $customJobJobSpec->setWorkerPoolSpecs($jobSpecWorkerPoolSpecs);
         $customJob->setJobSpec($customJobJobSpec);
-        $response = $client->createCustomJob($formattedParent, $customJob);
+        $response = $gapicClient->createCustomJob($formattedParent, $customJob);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -481,7 +481,7 @@ class JobServiceClientTest extends GeneratedTest
     public function createCustomJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -496,7 +496,7 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $customJob = new CustomJob();
         $customJobDisplayName = 'customJobDisplayName-299624383';
         $customJob->setDisplayName($customJobDisplayName);
@@ -505,8 +505,8 @@ class JobServiceClientTest extends GeneratedTest
         $customJobJobSpec->setWorkerPoolSpecs($jobSpecWorkerPoolSpecs);
         $customJob->setJobSpec($customJobJobSpec);
         try {
-            $client->createCustomJob($formattedParent, $customJob);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createCustomJob($formattedParent, $customJob);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -523,7 +523,7 @@ class JobServiceClientTest extends GeneratedTest
     public function createDataLabelingJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -543,12 +543,12 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setLabelingProgress($labelingProgress);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $dataLabelingJob = new DataLabelingJob();
         $dataLabelingJobDisplayName = 'dataLabelingJobDisplayName708178632';
         $dataLabelingJob->setDisplayName($dataLabelingJobDisplayName);
         $dataLabelingJobDatasets = [
-            $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]'),
+            $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]'),
         ];
         $dataLabelingJob->setDatasets($dataLabelingJobDatasets);
         $dataLabelingJobLabelerCount = 500093453;
@@ -559,7 +559,7 @@ class JobServiceClientTest extends GeneratedTest
         $dataLabelingJob->setInputsSchemaUri($dataLabelingJobInputsSchemaUri);
         $dataLabelingJobInputs = new Value();
         $dataLabelingJob->setInputs($dataLabelingJobInputs);
-        $response = $client->createDataLabelingJob($formattedParent, $dataLabelingJob);
+        $response = $gapicClient->createDataLabelingJob($formattedParent, $dataLabelingJob);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -579,7 +579,7 @@ class JobServiceClientTest extends GeneratedTest
     public function createDataLabelingJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -594,12 +594,12 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $dataLabelingJob = new DataLabelingJob();
         $dataLabelingJobDisplayName = 'dataLabelingJobDisplayName708178632';
         $dataLabelingJob->setDisplayName($dataLabelingJobDisplayName);
         $dataLabelingJobDatasets = [
-            $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]'),
+            $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]'),
         ];
         $dataLabelingJob->setDatasets($dataLabelingJobDatasets);
         $dataLabelingJobLabelerCount = 500093453;
@@ -611,8 +611,8 @@ class JobServiceClientTest extends GeneratedTest
         $dataLabelingJobInputs = new Value();
         $dataLabelingJob->setInputs($dataLabelingJobInputs);
         try {
-            $client->createDataLabelingJob($formattedParent, $dataLabelingJob);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createDataLabelingJob($formattedParent, $dataLabelingJob);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -629,7 +629,7 @@ class JobServiceClientTest extends GeneratedTest
     public function createHyperparameterTuningJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -647,7 +647,7 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setMaxFailedTrialCount($maxFailedTrialCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $hyperparameterTuningJob = new HyperparameterTuningJob();
         $hyperparameterTuningJobDisplayName = 'hyperparameterTuningJobDisplayName279209698';
         $hyperparameterTuningJob->setDisplayName($hyperparameterTuningJobDisplayName);
@@ -665,7 +665,7 @@ class JobServiceClientTest extends GeneratedTest
         $trialJobSpecWorkerPoolSpecs = [];
         $hyperparameterTuningJobTrialJobSpec->setWorkerPoolSpecs($trialJobSpecWorkerPoolSpecs);
         $hyperparameterTuningJob->setTrialJobSpec($hyperparameterTuningJobTrialJobSpec);
-        $response = $client->createHyperparameterTuningJob($formattedParent, $hyperparameterTuningJob);
+        $response = $gapicClient->createHyperparameterTuningJob($formattedParent, $hyperparameterTuningJob);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -685,7 +685,7 @@ class JobServiceClientTest extends GeneratedTest
     public function createHyperparameterTuningJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -700,7 +700,7 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $hyperparameterTuningJob = new HyperparameterTuningJob();
         $hyperparameterTuningJobDisplayName = 'hyperparameterTuningJobDisplayName279209698';
         $hyperparameterTuningJob->setDisplayName($hyperparameterTuningJobDisplayName);
@@ -719,8 +719,8 @@ class JobServiceClientTest extends GeneratedTest
         $hyperparameterTuningJobTrialJobSpec->setWorkerPoolSpecs($trialJobSpecWorkerPoolSpecs);
         $hyperparameterTuningJob->setTrialJobSpec($hyperparameterTuningJobTrialJobSpec);
         try {
-            $client->createHyperparameterTuningJob($formattedParent, $hyperparameterTuningJob);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createHyperparameterTuningJob($formattedParent, $hyperparameterTuningJob);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -737,7 +737,7 @@ class JobServiceClientTest extends GeneratedTest
     public function createModelDeploymentMonitoringJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -757,11 +757,11 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setEnableMonitoringPipelineLogs($enableMonitoringPipelineLogs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $modelDeploymentMonitoringJob = new ModelDeploymentMonitoringJob();
         $modelDeploymentMonitoringJobDisplayName = 'modelDeploymentMonitoringJobDisplayName-563611194';
         $modelDeploymentMonitoringJob->setDisplayName($modelDeploymentMonitoringJobDisplayName);
-        $modelDeploymentMonitoringJobEndpoint = $client->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $modelDeploymentMonitoringJobEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         $modelDeploymentMonitoringJob->setEndpoint($modelDeploymentMonitoringJobEndpoint);
         $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs = [];
         $modelDeploymentMonitoringJob->setModelDeploymentMonitoringObjectiveConfigs($modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs);
@@ -771,7 +771,7 @@ class JobServiceClientTest extends GeneratedTest
         $modelDeploymentMonitoringJob->setModelDeploymentMonitoringScheduleConfig($modelDeploymentMonitoringJobModelDeploymentMonitoringScheduleConfig);
         $modelDeploymentMonitoringJobLoggingSamplingStrategy = new SamplingStrategy();
         $modelDeploymentMonitoringJob->setLoggingSamplingStrategy($modelDeploymentMonitoringJobLoggingSamplingStrategy);
-        $response = $client->createModelDeploymentMonitoringJob($formattedParent, $modelDeploymentMonitoringJob);
+        $response = $gapicClient->createModelDeploymentMonitoringJob($formattedParent, $modelDeploymentMonitoringJob);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -791,7 +791,7 @@ class JobServiceClientTest extends GeneratedTest
     public function createModelDeploymentMonitoringJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -806,11 +806,11 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $modelDeploymentMonitoringJob = new ModelDeploymentMonitoringJob();
         $modelDeploymentMonitoringJobDisplayName = 'modelDeploymentMonitoringJobDisplayName-563611194';
         $modelDeploymentMonitoringJob->setDisplayName($modelDeploymentMonitoringJobDisplayName);
-        $modelDeploymentMonitoringJobEndpoint = $client->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $modelDeploymentMonitoringJobEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         $modelDeploymentMonitoringJob->setEndpoint($modelDeploymentMonitoringJobEndpoint);
         $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs = [];
         $modelDeploymentMonitoringJob->setModelDeploymentMonitoringObjectiveConfigs($modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs);
@@ -821,8 +821,8 @@ class JobServiceClientTest extends GeneratedTest
         $modelDeploymentMonitoringJobLoggingSamplingStrategy = new SamplingStrategy();
         $modelDeploymentMonitoringJob->setLoggingSamplingStrategy($modelDeploymentMonitoringJobLoggingSamplingStrategy);
         try {
-            $client->createModelDeploymentMonitoringJob($formattedParent, $modelDeploymentMonitoringJob);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createModelDeploymentMonitoringJob($formattedParent, $modelDeploymentMonitoringJob);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -845,7 +845,7 @@ class JobServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -865,8 +865,8 @@ class JobServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
-        $response = $client->deleteBatchPredictionJob($formattedName);
+        $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
+        $response = $gapicClient->deleteBatchPredictionJob($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -909,7 +909,7 @@ class JobServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -931,8 +931,8 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
-        $response = $client->deleteBatchPredictionJob($formattedName);
+        $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
+        $response = $gapicClient->deleteBatchPredictionJob($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -966,7 +966,7 @@ class JobServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -986,8 +986,8 @@ class JobServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
-        $response = $client->deleteCustomJob($formattedName);
+        $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
+        $response = $gapicClient->deleteCustomJob($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1030,7 +1030,7 @@ class JobServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1052,8 +1052,8 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
-        $response = $client->deleteCustomJob($formattedName);
+        $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
+        $response = $gapicClient->deleteCustomJob($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1087,7 +1087,7 @@ class JobServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1107,8 +1107,8 @@ class JobServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
-        $response = $client->deleteDataLabelingJob($formattedName);
+        $formattedName = $gapicClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
+        $response = $gapicClient->deleteDataLabelingJob($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1151,7 +1151,7 @@ class JobServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1173,8 +1173,8 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
-        $response = $client->deleteDataLabelingJob($formattedName);
+        $formattedName = $gapicClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
+        $response = $gapicClient->deleteDataLabelingJob($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1208,7 +1208,7 @@ class JobServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1228,8 +1228,8 @@ class JobServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
-        $response = $client->deleteHyperparameterTuningJob($formattedName);
+        $formattedName = $gapicClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
+        $response = $gapicClient->deleteHyperparameterTuningJob($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1272,7 +1272,7 @@ class JobServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1294,8 +1294,8 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
-        $response = $client->deleteHyperparameterTuningJob($formattedName);
+        $formattedName = $gapicClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
+        $response = $gapicClient->deleteHyperparameterTuningJob($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1329,7 +1329,7 @@ class JobServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1349,8 +1349,8 @@ class JobServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
-        $response = $client->deleteModelDeploymentMonitoringJob($formattedName);
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $response = $gapicClient->deleteModelDeploymentMonitoringJob($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1393,7 +1393,7 @@ class JobServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1415,8 +1415,8 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
-        $response = $client->deleteModelDeploymentMonitoringJob($formattedName);
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $response = $gapicClient->deleteModelDeploymentMonitoringJob($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1444,7 +1444,7 @@ class JobServiceClientTest extends GeneratedTest
     public function getBatchPredictionJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1460,8 +1460,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setGenerateExplanation($generateExplanation);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
-        $response = $client->getBatchPredictionJob($formattedName);
+        $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
+        $response = $gapicClient->getBatchPredictionJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1479,7 +1479,7 @@ class JobServiceClientTest extends GeneratedTest
     public function getBatchPredictionJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1494,10 +1494,10 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
+        $formattedName = $gapicClient->batchPredictionJobName('[PROJECT]', '[LOCATION]', '[BATCH_PREDICTION_JOB]');
         try {
-            $client->getBatchPredictionJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getBatchPredictionJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1514,7 +1514,7 @@ class JobServiceClientTest extends GeneratedTest
     public function getCustomJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1526,8 +1526,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
-        $response = $client->getCustomJob($formattedName);
+        $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
+        $response = $gapicClient->getCustomJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1545,7 +1545,7 @@ class JobServiceClientTest extends GeneratedTest
     public function getCustomJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1560,10 +1560,10 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
+        $formattedName = $gapicClient->customJobName('[PROJECT]', '[LOCATION]', '[CUSTOM_JOB]');
         try {
-            $client->getCustomJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getCustomJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1580,7 +1580,7 @@ class JobServiceClientTest extends GeneratedTest
     public function getDataLabelingJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1600,8 +1600,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setLabelingProgress($labelingProgress);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
-        $response = $client->getDataLabelingJob($formattedName);
+        $formattedName = $gapicClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
+        $response = $gapicClient->getDataLabelingJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1619,7 +1619,7 @@ class JobServiceClientTest extends GeneratedTest
     public function getDataLabelingJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1634,10 +1634,10 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
+        $formattedName = $gapicClient->dataLabelingJobName('[PROJECT]', '[LOCATION]', '[DATA_LABELING_JOB]');
         try {
-            $client->getDataLabelingJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getDataLabelingJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1654,7 +1654,7 @@ class JobServiceClientTest extends GeneratedTest
     public function getHyperparameterTuningJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1672,8 +1672,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setMaxFailedTrialCount($maxFailedTrialCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
-        $response = $client->getHyperparameterTuningJob($formattedName);
+        $formattedName = $gapicClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
+        $response = $gapicClient->getHyperparameterTuningJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1691,7 +1691,7 @@ class JobServiceClientTest extends GeneratedTest
     public function getHyperparameterTuningJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1706,10 +1706,10 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
+        $formattedName = $gapicClient->hyperparameterTuningJobName('[PROJECT]', '[LOCATION]', '[HYPERPARAMETER_TUNING_JOB]');
         try {
-            $client->getHyperparameterTuningJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getHyperparameterTuningJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1726,7 +1726,7 @@ class JobServiceClientTest extends GeneratedTest
     public function getModelDeploymentMonitoringJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1746,8 +1746,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setEnableMonitoringPipelineLogs($enableMonitoringPipelineLogs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
-        $response = $client->getModelDeploymentMonitoringJob($formattedName);
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $response = $gapicClient->getModelDeploymentMonitoringJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1765,7 +1765,7 @@ class JobServiceClientTest extends GeneratedTest
     public function getModelDeploymentMonitoringJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1780,10 +1780,10 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
         try {
-            $client->getModelDeploymentMonitoringJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getModelDeploymentMonitoringJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1800,7 +1800,7 @@ class JobServiceClientTest extends GeneratedTest
     public function listBatchPredictionJobsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1815,8 +1815,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setBatchPredictionJobs($batchPredictionJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listBatchPredictionJobs($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listBatchPredictionJobs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1837,7 +1837,7 @@ class JobServiceClientTest extends GeneratedTest
     public function listBatchPredictionJobsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1852,10 +1852,10 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listBatchPredictionJobs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listBatchPredictionJobs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1872,7 +1872,7 @@ class JobServiceClientTest extends GeneratedTest
     public function listCustomJobsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1887,8 +1887,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setCustomJobs($customJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listCustomJobs($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listCustomJobs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1909,7 +1909,7 @@ class JobServiceClientTest extends GeneratedTest
     public function listCustomJobsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1924,10 +1924,10 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listCustomJobs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listCustomJobs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1944,7 +1944,7 @@ class JobServiceClientTest extends GeneratedTest
     public function listDataLabelingJobsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1959,8 +1959,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setDataLabelingJobs($dataLabelingJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listDataLabelingJobs($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listDataLabelingJobs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1981,7 +1981,7 @@ class JobServiceClientTest extends GeneratedTest
     public function listDataLabelingJobsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1996,10 +1996,10 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listDataLabelingJobs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listDataLabelingJobs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2016,7 +2016,7 @@ class JobServiceClientTest extends GeneratedTest
     public function listHyperparameterTuningJobsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2031,8 +2031,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setHyperparameterTuningJobs($hyperparameterTuningJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listHyperparameterTuningJobs($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listHyperparameterTuningJobs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2053,7 +2053,7 @@ class JobServiceClientTest extends GeneratedTest
     public function listHyperparameterTuningJobsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2068,10 +2068,10 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listHyperparameterTuningJobs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listHyperparameterTuningJobs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2088,7 +2088,7 @@ class JobServiceClientTest extends GeneratedTest
     public function listModelDeploymentMonitoringJobsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2103,8 +2103,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setModelDeploymentMonitoringJobs($modelDeploymentMonitoringJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listModelDeploymentMonitoringJobs($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listModelDeploymentMonitoringJobs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2125,7 +2125,7 @@ class JobServiceClientTest extends GeneratedTest
     public function listModelDeploymentMonitoringJobsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2140,10 +2140,10 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listModelDeploymentMonitoringJobs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listModelDeploymentMonitoringJobs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2160,7 +2160,7 @@ class JobServiceClientTest extends GeneratedTest
     public function pauseModelDeploymentMonitoringJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2168,8 +2168,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
-        $client->pauseModelDeploymentMonitoringJob($formattedName);
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $gapicClient->pauseModelDeploymentMonitoringJob($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -2186,7 +2186,7 @@ class JobServiceClientTest extends GeneratedTest
     public function pauseModelDeploymentMonitoringJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2201,10 +2201,10 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
         try {
-            $client->pauseModelDeploymentMonitoringJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->pauseModelDeploymentMonitoringJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2221,7 +2221,7 @@ class JobServiceClientTest extends GeneratedTest
     public function resumeModelDeploymentMonitoringJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2229,8 +2229,8 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
-        $client->resumeModelDeploymentMonitoringJob($formattedName);
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $gapicClient->resumeModelDeploymentMonitoringJob($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -2247,7 +2247,7 @@ class JobServiceClientTest extends GeneratedTest
     public function resumeModelDeploymentMonitoringJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2262,10 +2262,10 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $formattedName = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
         try {
-            $client->resumeModelDeploymentMonitoringJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->resumeModelDeploymentMonitoringJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2282,7 +2282,7 @@ class JobServiceClientTest extends GeneratedTest
     public function searchModelDeploymentMonitoringStatsAnomaliesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2297,10 +2297,10 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setMonitoringStats($monitoringStats);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedModelDeploymentMonitoringJob = $client->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $formattedModelDeploymentMonitoringJob = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
         $deployedModelId = 'deployedModelId866642506';
         $objectives = [];
-        $response = $client->searchModelDeploymentMonitoringStatsAnomalies($formattedModelDeploymentMonitoringJob, $deployedModelId, $objectives);
+        $response = $gapicClient->searchModelDeploymentMonitoringStatsAnomalies($formattedModelDeploymentMonitoringJob, $deployedModelId, $objectives);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2325,7 +2325,7 @@ class JobServiceClientTest extends GeneratedTest
     public function searchModelDeploymentMonitoringStatsAnomaliesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2340,12 +2340,12 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedModelDeploymentMonitoringJob = $client->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
+        $formattedModelDeploymentMonitoringJob = $gapicClient->modelDeploymentMonitoringJobName('[PROJECT]', '[LOCATION]', '[MODEL_DEPLOYMENT_MONITORING_JOB]');
         $deployedModelId = 'deployedModelId866642506';
         $objectives = [];
         try {
-            $client->searchModelDeploymentMonitoringStatsAnomalies($formattedModelDeploymentMonitoringJob, $deployedModelId, $objectives);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->searchModelDeploymentMonitoringStatsAnomalies($formattedModelDeploymentMonitoringJob, $deployedModelId, $objectives);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2368,7 +2368,7 @@ class JobServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2403,7 +2403,7 @@ class JobServiceClientTest extends GeneratedTest
         $modelDeploymentMonitoringJob = new ModelDeploymentMonitoringJob();
         $modelDeploymentMonitoringJobDisplayName = 'modelDeploymentMonitoringJobDisplayName-563611194';
         $modelDeploymentMonitoringJob->setDisplayName($modelDeploymentMonitoringJobDisplayName);
-        $modelDeploymentMonitoringJobEndpoint = $client->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $modelDeploymentMonitoringJobEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         $modelDeploymentMonitoringJob->setEndpoint($modelDeploymentMonitoringJobEndpoint);
         $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs = [];
         $modelDeploymentMonitoringJob->setModelDeploymentMonitoringObjectiveConfigs($modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs);
@@ -2414,7 +2414,7 @@ class JobServiceClientTest extends GeneratedTest
         $modelDeploymentMonitoringJobLoggingSamplingStrategy = new SamplingStrategy();
         $modelDeploymentMonitoringJob->setLoggingSamplingStrategy($modelDeploymentMonitoringJobLoggingSamplingStrategy);
         $updateMask = new FieldMask();
-        $response = $client->updateModelDeploymentMonitoringJob($modelDeploymentMonitoringJob, $updateMask);
+        $response = $gapicClient->updateModelDeploymentMonitoringJob($modelDeploymentMonitoringJob, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2459,7 +2459,7 @@ class JobServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2484,7 +2484,7 @@ class JobServiceClientTest extends GeneratedTest
         $modelDeploymentMonitoringJob = new ModelDeploymentMonitoringJob();
         $modelDeploymentMonitoringJobDisplayName = 'modelDeploymentMonitoringJobDisplayName-563611194';
         $modelDeploymentMonitoringJob->setDisplayName($modelDeploymentMonitoringJobDisplayName);
-        $modelDeploymentMonitoringJobEndpoint = $client->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $modelDeploymentMonitoringJobEndpoint = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         $modelDeploymentMonitoringJob->setEndpoint($modelDeploymentMonitoringJobEndpoint);
         $modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs = [];
         $modelDeploymentMonitoringJob->setModelDeploymentMonitoringObjectiveConfigs($modelDeploymentMonitoringJobModelDeploymentMonitoringObjectiveConfigs);
@@ -2495,7 +2495,7 @@ class JobServiceClientTest extends GeneratedTest
         $modelDeploymentMonitoringJobLoggingSamplingStrategy = new SamplingStrategy();
         $modelDeploymentMonitoringJob->setLoggingSamplingStrategy($modelDeploymentMonitoringJobLoggingSamplingStrategy);
         $updateMask = new FieldMask();
-        $response = $client->updateModelDeploymentMonitoringJob($modelDeploymentMonitoringJob, $updateMask);
+        $response = $gapicClient->updateModelDeploymentMonitoringJob($modelDeploymentMonitoringJob, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2523,7 +2523,7 @@ class JobServiceClientTest extends GeneratedTest
     public function getLocationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2536,7 +2536,7 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $response = $client->getLocation();
+        $response = $gapicClient->getLocation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2552,7 +2552,7 @@ class JobServiceClientTest extends GeneratedTest
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2567,8 +2567,8 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getLocation();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getLocation();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2585,7 +2585,7 @@ class JobServiceClientTest extends GeneratedTest
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2599,7 +2599,7 @@ class JobServiceClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
         $transport->addResponse($expectedResponse);
-        $response = $client->listLocations();
+        $response = $gapicClient->listLocations();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2618,7 +2618,7 @@ class JobServiceClientTest extends GeneratedTest
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2633,8 +2633,8 @@ class JobServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listLocations();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listLocations();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2651,7 +2651,7 @@ class JobServiceClientTest extends GeneratedTest
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2664,7 +2664,7 @@ class JobServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $response = $client->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2682,7 +2682,7 @@ class JobServiceClientTest extends GeneratedTest
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2699,8 +2699,8 @@ class JobServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         try {
-            $client->getIamPolicy($resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIamPolicy($resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2717,7 +2717,7 @@ class JobServiceClientTest extends GeneratedTest
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2731,7 +2731,7 @@ class JobServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $response = $client->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2751,7 +2751,7 @@ class JobServiceClientTest extends GeneratedTest
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2769,8 +2769,8 @@ class JobServiceClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $policy = new Policy();
         try {
-            $client->setIamPolicy($resource, $policy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setIamPolicy($resource, $policy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2787,7 +2787,7 @@ class JobServiceClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2797,7 +2797,7 @@ class JobServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $response = $client->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2817,7 +2817,7 @@ class JobServiceClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2835,8 +2835,8 @@ class JobServiceClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $permissions = [];
         try {
-            $client->testIamPermissions($resource, $permissions);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->testIamPermissions($resource, $permissions);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
