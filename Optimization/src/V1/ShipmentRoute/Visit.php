@@ -573,4 +573,6 @@ class Visit extends \Google\Protobuf\Internal\Message
 
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(Visit::class, \Google\Cloud\Optimization\V1\ShipmentRoute_Visit::class);
 

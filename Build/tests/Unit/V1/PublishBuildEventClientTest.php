@@ -79,7 +79,7 @@ class PublishBuildEventClientTest extends GeneratedTest
     public function publishBuildToolEventStreamTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -112,7 +112,7 @@ class PublishBuildEventClientTest extends GeneratedTest
         $request3 = new PublishBuildToolEventStreamRequest();
         $request3->setOrderedBuildEvent($orderedBuildEvent3);
         $request3->setProjectId($projectId3);
-        $bidi = $client->publishBuildToolEventStream();
+        $bidi = $gapicClient->publishBuildToolEventStream();
         $this->assertInstanceOf(BidiStream::class, $bidi);
         $bidi->write($request);
         $responses = [];
@@ -154,7 +154,7 @@ class PublishBuildEventClientTest extends GeneratedTest
     public function publishBuildToolEventStreamExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $status = new stdClass();
@@ -168,7 +168,7 @@ class PublishBuildEventClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
-        $bidi = $client->publishBuildToolEventStream();
+        $bidi = $gapicClient->publishBuildToolEventStream();
         $results = $bidi->closeWriteAndReadAll();
         try {
             iterator_to_array($results);
@@ -189,7 +189,7 @@ class PublishBuildEventClientTest extends GeneratedTest
     public function publishLifecycleEventTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -199,7 +199,7 @@ class PublishBuildEventClientTest extends GeneratedTest
         // Mock request
         $buildEvent = new OrderedBuildEvent();
         $projectId = 'projectId-1969970175';
-        $client->publishLifecycleEvent($buildEvent, $projectId);
+        $gapicClient->publishLifecycleEvent($buildEvent, $projectId);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -218,7 +218,7 @@ class PublishBuildEventClientTest extends GeneratedTest
     public function publishLifecycleEventExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -236,8 +236,8 @@ class PublishBuildEventClientTest extends GeneratedTest
         $buildEvent = new OrderedBuildEvent();
         $projectId = 'projectId-1969970175';
         try {
-            $client->publishLifecycleEvent($buildEvent, $projectId);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->publishLifecycleEvent($buildEvent, $projectId);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

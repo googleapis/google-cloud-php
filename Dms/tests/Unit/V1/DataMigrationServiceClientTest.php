@@ -91,7 +91,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -115,10 +115,10 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $formattedParent = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
         $connectionProfileId = 'connectionProfileId1179884402';
         $connectionProfile = new ConnectionProfile();
-        $response = $client->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
+        $response = $gapicClient->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -165,7 +165,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -187,10 +187,10 @@ class DataMigrationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $formattedParent = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
         $connectionProfileId = 'connectionProfileId1179884402';
         $connectionProfile = new ConnectionProfile();
-        $response = $client->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
+        $response = $gapicClient->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -224,7 +224,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -254,7 +254,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $migrationJobId = 'migrationJobId-641178002';
         $migrationJob = new MigrationJob();
         $migrationJobType = Type::TYPE_UNSPECIFIED;
@@ -263,7 +263,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $migrationJob->setSource($migrationJobSource);
         $migrationJobDestination = 'migrationJobDestination814598015';
         $migrationJob->setDestination($migrationJobDestination);
-        $response = $client->createMigrationJob($formattedParent, $migrationJobId, $migrationJob);
+        $response = $gapicClient->createMigrationJob($formattedParent, $migrationJobId, $migrationJob);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -310,7 +310,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -332,7 +332,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $migrationJobId = 'migrationJobId-641178002';
         $migrationJob = new MigrationJob();
         $migrationJobType = Type::TYPE_UNSPECIFIED;
@@ -341,7 +341,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $migrationJob->setSource($migrationJobSource);
         $migrationJobDestination = 'migrationJobDestination814598015';
         $migrationJob->setDestination($migrationJobDestination);
-        $response = $client->createMigrationJob($formattedParent, $migrationJobId, $migrationJob);
+        $response = $gapicClient->createMigrationJob($formattedParent, $migrationJobId, $migrationJob);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -375,7 +375,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -395,8 +395,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-        $response = $client->deleteConnectionProfile($formattedName);
+        $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $response = $gapicClient->deleteConnectionProfile($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -439,7 +439,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -461,8 +461,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-        $response = $client->deleteConnectionProfile($formattedName);
+        $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $response = $gapicClient->deleteConnectionProfile($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -496,7 +496,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -516,8 +516,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->migrationJobName('[PROJECT]', '[LOCATION]', '[MIGRATION_JOB]');
-        $response = $client->deleteMigrationJob($formattedName);
+        $formattedName = $gapicClient->migrationJobName('[PROJECT]', '[LOCATION]', '[MIGRATION_JOB]');
+        $response = $gapicClient->deleteMigrationJob($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -560,7 +560,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -582,8 +582,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->migrationJobName('[PROJECT]', '[LOCATION]', '[MIGRATION_JOB]');
-        $response = $client->deleteMigrationJob($formattedName);
+        $formattedName = $gapicClient->migrationJobName('[PROJECT]', '[LOCATION]', '[MIGRATION_JOB]');
+        $response = $gapicClient->deleteMigrationJob($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -611,7 +611,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
     public function generateSshScriptTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -622,7 +622,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $vm = 'vm3767';
-        $response = $client->generateSshScript($vm);
+        $response = $gapicClient->generateSshScript($vm);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -640,7 +640,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
     public function generateSshScriptExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -657,8 +657,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
         // Mock request
         $vm = 'vm3767';
         try {
-            $client->generateSshScript($vm);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->generateSshScript($vm);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -675,7 +675,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
     public function getConnectionProfileTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -687,8 +687,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-        $response = $client->getConnectionProfile($formattedName);
+        $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $response = $gapicClient->getConnectionProfile($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -706,7 +706,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
     public function getConnectionProfileExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -721,10 +721,10 @@ class DataMigrationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
         try {
-            $client->getConnectionProfile($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getConnectionProfile($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -741,7 +741,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
     public function getMigrationJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -759,8 +759,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setDestination($destination);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->migrationJobName('[PROJECT]', '[LOCATION]', '[MIGRATION_JOB]');
-        $response = $client->getMigrationJob($formattedName);
+        $formattedName = $gapicClient->migrationJobName('[PROJECT]', '[LOCATION]', '[MIGRATION_JOB]');
+        $response = $gapicClient->getMigrationJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -778,7 +778,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
     public function getMigrationJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -793,10 +793,10 @@ class DataMigrationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->migrationJobName('[PROJECT]', '[LOCATION]', '[MIGRATION_JOB]');
+        $formattedName = $gapicClient->migrationJobName('[PROJECT]', '[LOCATION]', '[MIGRATION_JOB]');
         try {
-            $client->getMigrationJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getMigrationJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -813,7 +813,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
     public function listConnectionProfilesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -828,8 +828,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setConnectionProfiles($connectionProfiles);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listConnectionProfiles($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listConnectionProfiles($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -850,7 +850,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
     public function listConnectionProfilesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -865,10 +865,10 @@ class DataMigrationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listConnectionProfiles($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listConnectionProfiles($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -885,7 +885,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
     public function listMigrationJobsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -900,8 +900,8 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $expectedResponse->setMigrationJobs($migrationJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listMigrationJobs($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listMigrationJobs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -922,7 +922,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
     public function listMigrationJobsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -937,10 +937,10 @@ class DataMigrationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listMigrationJobs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listMigrationJobs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -963,7 +963,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -992,7 +992,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->promoteMigrationJob();
+        $response = $gapicClient->promoteMigrationJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1033,7 +1033,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1054,7 +1054,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->promoteMigrationJob();
+        $response = $gapicClient->promoteMigrationJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1088,7 +1088,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1117,7 +1117,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->restartMigrationJob();
+        $response = $gapicClient->restartMigrationJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1158,7 +1158,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1179,7 +1179,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->restartMigrationJob();
+        $response = $gapicClient->restartMigrationJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1213,7 +1213,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1242,7 +1242,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->resumeMigrationJob();
+        $response = $gapicClient->resumeMigrationJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1283,7 +1283,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1304,7 +1304,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->resumeMigrationJob();
+        $response = $gapicClient->resumeMigrationJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1338,7 +1338,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1367,7 +1367,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->startMigrationJob();
+        $response = $gapicClient->startMigrationJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1408,7 +1408,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1429,7 +1429,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->startMigrationJob();
+        $response = $gapicClient->startMigrationJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1463,7 +1463,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1492,7 +1492,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->stopMigrationJob();
+        $response = $gapicClient->stopMigrationJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1533,7 +1533,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1554,7 +1554,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->stopMigrationJob();
+        $response = $gapicClient->stopMigrationJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1588,7 +1588,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1614,7 +1614,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $connectionProfile = new ConnectionProfile();
-        $response = $client->updateConnectionProfile($updateMask, $connectionProfile);
+        $response = $gapicClient->updateConnectionProfile($updateMask, $connectionProfile);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1659,7 +1659,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1683,7 +1683,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $connectionProfile = new ConnectionProfile();
-        $response = $client->updateConnectionProfile($updateMask, $connectionProfile);
+        $response = $gapicClient->updateConnectionProfile($updateMask, $connectionProfile);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1717,7 +1717,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1755,7 +1755,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $migrationJob->setSource($migrationJobSource);
         $migrationJobDestination = 'migrationJobDestination814598015';
         $migrationJob->setDestination($migrationJobDestination);
-        $response = $client->updateMigrationJob($updateMask, $migrationJob);
+        $response = $gapicClient->updateMigrationJob($updateMask, $migrationJob);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1800,7 +1800,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1830,7 +1830,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $migrationJob->setSource($migrationJobSource);
         $migrationJobDestination = 'migrationJobDestination814598015';
         $migrationJob->setDestination($migrationJobDestination);
-        $response = $client->updateMigrationJob($updateMask, $migrationJob);
+        $response = $gapicClient->updateMigrationJob($updateMask, $migrationJob);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1864,7 +1864,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1893,7 +1893,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->verifyMigrationJob();
+        $response = $gapicClient->verifyMigrationJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1934,7 +1934,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1955,7 +1955,7 @@ class DataMigrationServiceClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->verifyMigrationJob();
+        $response = $gapicClient->verifyMigrationJob();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

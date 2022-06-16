@@ -84,7 +84,7 @@ class InterconnectsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -102,7 +102,7 @@ class InterconnectsClientTest extends GeneratedTest
         // Mock request
         $interconnect = 'interconnect-849140594';
         $project = 'project-309310695';
-        $response = $client->delete($interconnect, $project);
+        $response = $gapicClient->delete($interconnect, $project);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -146,7 +146,7 @@ class InterconnectsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -170,7 +170,7 @@ class InterconnectsClientTest extends GeneratedTest
         // Mock request
         $interconnect = 'interconnect-849140594';
         $project = 'project-309310695';
-        $response = $client->delete($interconnect, $project);
+        $response = $gapicClient->delete($interconnect, $project);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -196,7 +196,7 @@ class InterconnectsClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -246,7 +246,7 @@ class InterconnectsClientTest extends GeneratedTest
         // Mock request
         $interconnect = 'interconnect-849140594';
         $project = 'project-309310695';
-        $response = $client->get($interconnect, $project);
+        $response = $gapicClient->get($interconnect, $project);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -266,7 +266,7 @@ class InterconnectsClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -284,8 +284,8 @@ class InterconnectsClientTest extends GeneratedTest
         $interconnect = 'interconnect-849140594';
         $project = 'project-309310695';
         try {
-            $client->get($interconnect, $project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($interconnect, $project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -302,7 +302,7 @@ class InterconnectsClientTest extends GeneratedTest
     public function getDiagnosticsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -312,7 +312,7 @@ class InterconnectsClientTest extends GeneratedTest
         // Mock request
         $interconnect = 'interconnect-849140594';
         $project = 'project-309310695';
-        $response = $client->getDiagnostics($interconnect, $project);
+        $response = $gapicClient->getDiagnostics($interconnect, $project);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -332,7 +332,7 @@ class InterconnectsClientTest extends GeneratedTest
     public function getDiagnosticsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -350,8 +350,8 @@ class InterconnectsClientTest extends GeneratedTest
         $interconnect = 'interconnect-849140594';
         $project = 'project-309310695';
         try {
-            $client->getDiagnostics($interconnect, $project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getDiagnostics($interconnect, $project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -374,7 +374,7 @@ class InterconnectsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -392,7 +392,7 @@ class InterconnectsClientTest extends GeneratedTest
         // Mock request
         $interconnectResource = new Interconnect();
         $project = 'project-309310695';
-        $response = $client->insert($interconnectResource, $project);
+        $response = $gapicClient->insert($interconnectResource, $project);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -436,7 +436,7 @@ class InterconnectsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -460,7 +460,7 @@ class InterconnectsClientTest extends GeneratedTest
         // Mock request
         $interconnectResource = new Interconnect();
         $project = 'project-309310695';
-        $response = $client->insert($interconnectResource, $project);
+        $response = $gapicClient->insert($interconnectResource, $project);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -486,7 +486,7 @@ class InterconnectsClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -508,7 +508,7 @@ class InterconnectsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->list($project);
+        $response = $gapicClient->list($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -529,7 +529,7 @@ class InterconnectsClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -546,8 +546,8 @@ class InterconnectsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->list($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -570,7 +570,7 @@ class InterconnectsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -589,7 +589,7 @@ class InterconnectsClientTest extends GeneratedTest
         $interconnect = 'interconnect-849140594';
         $interconnectResource = new Interconnect();
         $project = 'project-309310695';
-        $response = $client->patch($interconnect, $interconnectResource, $project);
+        $response = $gapicClient->patch($interconnect, $interconnectResource, $project);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -635,7 +635,7 @@ class InterconnectsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -660,7 +660,7 @@ class InterconnectsClientTest extends GeneratedTest
         $interconnect = 'interconnect-849140594';
         $interconnectResource = new Interconnect();
         $project = 'project-309310695';
-        $response = $client->patch($interconnect, $interconnectResource, $project);
+        $response = $gapicClient->patch($interconnect, $interconnectResource, $project);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

@@ -77,7 +77,7 @@ class PrivateCatalogClientTest extends GeneratedTest
     public function searchCatalogsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -93,7 +93,7 @@ class PrivateCatalogClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $response = $client->searchCatalogs($resource);
+        $response = $gapicClient->searchCatalogs($resource);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -114,7 +114,7 @@ class PrivateCatalogClientTest extends GeneratedTest
     public function searchCatalogsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -131,8 +131,8 @@ class PrivateCatalogClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         try {
-            $client->searchCatalogs($resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->searchCatalogs($resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -149,7 +149,7 @@ class PrivateCatalogClientTest extends GeneratedTest
     public function searchProductsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -165,7 +165,7 @@ class PrivateCatalogClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $response = $client->searchProducts($resource);
+        $response = $gapicClient->searchProducts($resource);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -186,7 +186,7 @@ class PrivateCatalogClientTest extends GeneratedTest
     public function searchProductsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -203,8 +203,8 @@ class PrivateCatalogClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         try {
-            $client->searchProducts($resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->searchProducts($resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -221,7 +221,7 @@ class PrivateCatalogClientTest extends GeneratedTest
     public function searchVersionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -238,7 +238,7 @@ class PrivateCatalogClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $query = 'query107944136';
-        $response = $client->searchVersions($resource, $query);
+        $response = $gapicClient->searchVersions($resource, $query);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -261,7 +261,7 @@ class PrivateCatalogClientTest extends GeneratedTest
     public function searchVersionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -279,8 +279,8 @@ class PrivateCatalogClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $query = 'query107944136';
         try {
-            $client->searchVersions($resource, $query);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->searchVersions($resource, $query);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

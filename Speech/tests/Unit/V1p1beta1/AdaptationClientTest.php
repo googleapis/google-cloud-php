@@ -77,7 +77,7 @@ class AdaptationClientTest extends GeneratedTest
     public function createCustomClassTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -89,10 +89,10 @@ class AdaptationClientTest extends GeneratedTest
         $expectedResponse->setCustomClassId($customClassId2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $customClassId = 'customClassId1554754128';
         $customClass = new CustomClass();
-        $response = $client->createCustomClass($formattedParent, $customClassId, $customClass);
+        $response = $gapicClient->createCustomClass($formattedParent, $customClassId, $customClass);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -114,7 +114,7 @@ class AdaptationClientTest extends GeneratedTest
     public function createCustomClassExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -129,12 +129,12 @@ class AdaptationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $customClassId = 'customClassId1554754128';
         $customClass = new CustomClass();
         try {
-            $client->createCustomClass($formattedParent, $customClassId, $customClass);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createCustomClass($formattedParent, $customClassId, $customClass);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -151,7 +151,7 @@ class AdaptationClientTest extends GeneratedTest
     public function createPhraseSetTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -163,10 +163,10 @@ class AdaptationClientTest extends GeneratedTest
         $expectedResponse->setBoost($boost);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $phraseSetId = 'phraseSetId1496370782';
         $phraseSet = new PhraseSet();
-        $response = $client->createPhraseSet($formattedParent, $phraseSetId, $phraseSet);
+        $response = $gapicClient->createPhraseSet($formattedParent, $phraseSetId, $phraseSet);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -188,7 +188,7 @@ class AdaptationClientTest extends GeneratedTest
     public function createPhraseSetExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -203,12 +203,12 @@ class AdaptationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $phraseSetId = 'phraseSetId1496370782';
         $phraseSet = new PhraseSet();
         try {
-            $client->createPhraseSet($formattedParent, $phraseSetId, $phraseSet);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createPhraseSet($formattedParent, $phraseSetId, $phraseSet);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -225,7 +225,7 @@ class AdaptationClientTest extends GeneratedTest
     public function deleteCustomClassTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -233,8 +233,8 @@ class AdaptationClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-        $client->deleteCustomClass($formattedName);
+        $formattedName = $gapicClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
+        $gapicClient->deleteCustomClass($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -251,7 +251,7 @@ class AdaptationClientTest extends GeneratedTest
     public function deleteCustomClassExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -266,10 +266,10 @@ class AdaptationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
+        $formattedName = $gapicClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
         try {
-            $client->deleteCustomClass($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteCustomClass($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -286,7 +286,7 @@ class AdaptationClientTest extends GeneratedTest
     public function deletePhraseSetTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -294,8 +294,8 @@ class AdaptationClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-        $client->deletePhraseSet($formattedName);
+        $formattedName = $gapicClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
+        $gapicClient->deletePhraseSet($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -312,7 +312,7 @@ class AdaptationClientTest extends GeneratedTest
     public function deletePhraseSetExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -327,10 +327,10 @@ class AdaptationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
+        $formattedName = $gapicClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
         try {
-            $client->deletePhraseSet($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deletePhraseSet($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -347,7 +347,7 @@ class AdaptationClientTest extends GeneratedTest
     public function getCustomClassTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -359,8 +359,8 @@ class AdaptationClientTest extends GeneratedTest
         $expectedResponse->setCustomClassId($customClassId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
-        $response = $client->getCustomClass($formattedName);
+        $formattedName = $gapicClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
+        $response = $gapicClient->getCustomClass($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -378,7 +378,7 @@ class AdaptationClientTest extends GeneratedTest
     public function getCustomClassExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -393,10 +393,10 @@ class AdaptationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
+        $formattedName = $gapicClient->customClassName('[PROJECT]', '[LOCATION]', '[CUSTOM_CLASS]');
         try {
-            $client->getCustomClass($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getCustomClass($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -413,7 +413,7 @@ class AdaptationClientTest extends GeneratedTest
     public function getPhraseSetTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -425,8 +425,8 @@ class AdaptationClientTest extends GeneratedTest
         $expectedResponse->setBoost($boost);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
-        $response = $client->getPhraseSet($formattedName);
+        $formattedName = $gapicClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
+        $response = $gapicClient->getPhraseSet($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -444,7 +444,7 @@ class AdaptationClientTest extends GeneratedTest
     public function getPhraseSetExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -459,10 +459,10 @@ class AdaptationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
+        $formattedName = $gapicClient->phraseSetName('[PROJECT]', '[LOCATION]', '[PHRASE_SET]');
         try {
-            $client->getPhraseSet($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getPhraseSet($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -479,7 +479,7 @@ class AdaptationClientTest extends GeneratedTest
     public function listCustomClassesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -494,8 +494,8 @@ class AdaptationClientTest extends GeneratedTest
         $expectedResponse->setCustomClasses($customClasses);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listCustomClasses($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listCustomClasses($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -516,7 +516,7 @@ class AdaptationClientTest extends GeneratedTest
     public function listCustomClassesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -531,10 +531,10 @@ class AdaptationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listCustomClasses($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listCustomClasses($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -551,7 +551,7 @@ class AdaptationClientTest extends GeneratedTest
     public function listPhraseSetTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -566,8 +566,8 @@ class AdaptationClientTest extends GeneratedTest
         $expectedResponse->setPhraseSets($phraseSets);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listPhraseSet($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listPhraseSet($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -588,7 +588,7 @@ class AdaptationClientTest extends GeneratedTest
     public function listPhraseSetExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -603,10 +603,10 @@ class AdaptationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listPhraseSet($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listPhraseSet($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -623,7 +623,7 @@ class AdaptationClientTest extends GeneratedTest
     public function updateCustomClassTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -636,7 +636,7 @@ class AdaptationClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $customClass = new CustomClass();
-        $response = $client->updateCustomClass($customClass);
+        $response = $gapicClient->updateCustomClass($customClass);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -654,7 +654,7 @@ class AdaptationClientTest extends GeneratedTest
     public function updateCustomClassExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -671,8 +671,8 @@ class AdaptationClientTest extends GeneratedTest
         // Mock request
         $customClass = new CustomClass();
         try {
-            $client->updateCustomClass($customClass);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateCustomClass($customClass);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -689,7 +689,7 @@ class AdaptationClientTest extends GeneratedTest
     public function updatePhraseSetTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -702,7 +702,7 @@ class AdaptationClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $phraseSet = new PhraseSet();
-        $response = $client->updatePhraseSet($phraseSet);
+        $response = $gapicClient->updatePhraseSet($phraseSet);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -720,7 +720,7 @@ class AdaptationClientTest extends GeneratedTest
     public function updatePhraseSetExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -737,8 +737,8 @@ class AdaptationClientTest extends GeneratedTest
         // Mock request
         $phraseSet = new PhraseSet();
         try {
-            $client->updatePhraseSet($phraseSet);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updatePhraseSet($phraseSet);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

@@ -83,7 +83,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -101,7 +101,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $publicAdvertisedPrefix = 'publicAdvertisedPrefix-1508738146';
-        $response = $client->delete($project, $publicAdvertisedPrefix);
+        $response = $gapicClient->delete($project, $publicAdvertisedPrefix);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -145,7 +145,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -169,7 +169,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $publicAdvertisedPrefix = 'publicAdvertisedPrefix-1508738146';
-        $response = $client->delete($project, $publicAdvertisedPrefix);
+        $response = $gapicClient->delete($project, $publicAdvertisedPrefix);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -195,7 +195,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -227,7 +227,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $publicAdvertisedPrefix = 'publicAdvertisedPrefix-1508738146';
-        $response = $client->get($project, $publicAdvertisedPrefix);
+        $response = $gapicClient->get($project, $publicAdvertisedPrefix);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -247,7 +247,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -265,8 +265,8 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $publicAdvertisedPrefix = 'publicAdvertisedPrefix-1508738146';
         try {
-            $client->get($project, $publicAdvertisedPrefix);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($project, $publicAdvertisedPrefix);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -289,7 +289,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -307,7 +307,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $publicAdvertisedPrefixResource = new PublicAdvertisedPrefix();
-        $response = $client->insert($project, $publicAdvertisedPrefixResource);
+        $response = $gapicClient->insert($project, $publicAdvertisedPrefixResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -351,7 +351,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -375,7 +375,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $publicAdvertisedPrefixResource = new PublicAdvertisedPrefix();
-        $response = $client->insert($project, $publicAdvertisedPrefixResource);
+        $response = $gapicClient->insert($project, $publicAdvertisedPrefixResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -401,7 +401,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -423,7 +423,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->list($project);
+        $response = $gapicClient->list($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -444,7 +444,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -461,8 +461,8 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->list($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -485,7 +485,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -504,7 +504,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $publicAdvertisedPrefix = 'publicAdvertisedPrefix-1508738146';
         $publicAdvertisedPrefixResource = new PublicAdvertisedPrefix();
-        $response = $client->patch($project, $publicAdvertisedPrefix, $publicAdvertisedPrefixResource);
+        $response = $gapicClient->patch($project, $publicAdvertisedPrefix, $publicAdvertisedPrefixResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -550,7 +550,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -575,7 +575,7 @@ class PublicAdvertisedPrefixesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $publicAdvertisedPrefix = 'publicAdvertisedPrefix-1508738146';
         $publicAdvertisedPrefixResource = new PublicAdvertisedPrefix();
-        $response = $client->patch($project, $publicAdvertisedPrefix, $publicAdvertisedPrefixResource);
+        $response = $gapicClient->patch($project, $publicAdvertisedPrefix, $publicAdvertisedPrefixResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

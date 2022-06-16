@@ -86,7 +86,7 @@ class BatchControllerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -116,9 +116,9 @@ class BatchControllerClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $batch = new Batch();
-        $response = $client->createBatch($formattedParent, $batch);
+        $response = $gapicClient->createBatch($formattedParent, $batch);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -163,7 +163,7 @@ class BatchControllerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -185,9 +185,9 @@ class BatchControllerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $batch = new Batch();
-        $response = $client->createBatch($formattedParent, $batch);
+        $response = $gapicClient->createBatch($formattedParent, $batch);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -215,7 +215,7 @@ class BatchControllerClientTest extends GeneratedTest
     public function deleteBatchTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -223,8 +223,8 @@ class BatchControllerClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->batchName('[PROJECT]', '[LOCATION]', '[BATCH]');
-        $client->deleteBatch($formattedName);
+        $formattedName = $gapicClient->batchName('[PROJECT]', '[LOCATION]', '[BATCH]');
+        $gapicClient->deleteBatch($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -241,7 +241,7 @@ class BatchControllerClientTest extends GeneratedTest
     public function deleteBatchExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -256,10 +256,10 @@ class BatchControllerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->batchName('[PROJECT]', '[LOCATION]', '[BATCH]');
+        $formattedName = $gapicClient->batchName('[PROJECT]', '[LOCATION]', '[BATCH]');
         try {
-            $client->deleteBatch($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteBatch($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -276,7 +276,7 @@ class BatchControllerClientTest extends GeneratedTest
     public function getBatchTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -294,8 +294,8 @@ class BatchControllerClientTest extends GeneratedTest
         $expectedResponse->setOperation($operation);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->batchName('[PROJECT]', '[LOCATION]', '[BATCH]');
-        $response = $client->getBatch($formattedName);
+        $formattedName = $gapicClient->batchName('[PROJECT]', '[LOCATION]', '[BATCH]');
+        $response = $gapicClient->getBatch($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -313,7 +313,7 @@ class BatchControllerClientTest extends GeneratedTest
     public function getBatchExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -328,10 +328,10 @@ class BatchControllerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->batchName('[PROJECT]', '[LOCATION]', '[BATCH]');
+        $formattedName = $gapicClient->batchName('[PROJECT]', '[LOCATION]', '[BATCH]');
         try {
-            $client->getBatch($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getBatch($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -348,7 +348,7 @@ class BatchControllerClientTest extends GeneratedTest
     public function listBatchesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -363,8 +363,8 @@ class BatchControllerClientTest extends GeneratedTest
         $expectedResponse->setBatches($batches);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listBatches($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listBatches($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -385,7 +385,7 @@ class BatchControllerClientTest extends GeneratedTest
     public function listBatchesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -400,10 +400,10 @@ class BatchControllerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listBatches($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listBatches($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

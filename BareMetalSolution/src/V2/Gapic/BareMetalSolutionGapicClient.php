@@ -156,16 +156,24 @@ class BareMetalSolutionGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/bare_metal_solution_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/bare_metal_solution_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/bare_metal_solution_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ .
+                '/../resources/bare_metal_solution_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ .
+                '/../resources/bare_metal_solution_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/bare_metal_solution_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/bare_metal_solution_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/bare_metal_solution_rest_client_config.php',
                 ],
             ],
         ];
@@ -174,7 +182,9 @@ class BareMetalSolutionGapicClient
     private static function getInstanceNameTemplate()
     {
         if (self::$instanceNameTemplate == null) {
-            self::$instanceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/instances/{instance}');
+            self::$instanceNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/instances/{instance}'
+            );
         }
 
         return self::$instanceNameTemplate;
@@ -183,7 +193,9 @@ class BareMetalSolutionGapicClient
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
-            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+            self::$locationNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}'
+            );
         }
 
         return self::$locationNameTemplate;
@@ -192,7 +204,9 @@ class BareMetalSolutionGapicClient
     private static function getLunNameTemplate()
     {
         if (self::$lunNameTemplate == null) {
-            self::$lunNameTemplate = new PathTemplate('projects/{project}/locations/{location}/volumes/{volume}/luns/{lun}');
+            self::$lunNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/volumes/{volume}/luns/{lun}'
+            );
         }
 
         return self::$lunNameTemplate;
@@ -201,7 +215,9 @@ class BareMetalSolutionGapicClient
     private static function getNetworkNameTemplate()
     {
         if (self::$networkNameTemplate == null) {
-            self::$networkNameTemplate = new PathTemplate('projects/{project}/locations/{location}/networks/{network}');
+            self::$networkNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/networks/{network}'
+            );
         }
 
         return self::$networkNameTemplate;
@@ -210,7 +226,9 @@ class BareMetalSolutionGapicClient
     private static function getSnapshotSchedulePolicyNameTemplate()
     {
         if (self::$snapshotSchedulePolicyNameTemplate == null) {
-            self::$snapshotSchedulePolicyNameTemplate = new PathTemplate('projects/{project}/locations/{location}/snapshotSchedulePolicies/{snapshot_schedule_policy}');
+            self::$snapshotSchedulePolicyNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/snapshotSchedulePolicies/{snapshot_schedule_policy}'
+            );
         }
 
         return self::$snapshotSchedulePolicyNameTemplate;
@@ -219,7 +237,9 @@ class BareMetalSolutionGapicClient
     private static function getVolumeNameTemplate()
     {
         if (self::$volumeNameTemplate == null) {
-            self::$volumeNameTemplate = new PathTemplate('projects/{project}/locations/{location}/volumes/{volume}');
+            self::$volumeNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/volumes/{volume}'
+            );
         }
 
         return self::$volumeNameTemplate;
@@ -228,7 +248,9 @@ class BareMetalSolutionGapicClient
     private static function getVolumeSnapshotNameTemplate()
     {
         if (self::$volumeSnapshotNameTemplate == null) {
-            self::$volumeSnapshotNameTemplate = new PathTemplate('projects/{project}/locations/{location}/volumes/{volume}/snapshots/{snapshot}');
+            self::$volumeSnapshotNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/volumes/{volume}/snapshots/{snapshot}'
+            );
         }
 
         return self::$volumeSnapshotNameTemplate;
@@ -337,8 +359,11 @@ class BareMetalSolutionGapicClient
      *
      * @return string The formatted snapshot_schedule_policy resource.
      */
-    public static function snapshotSchedulePolicyName($project, $location, $snapshotSchedulePolicy)
-    {
+    public static function snapshotSchedulePolicyName(
+        $project,
+        $location,
+        $snapshotSchedulePolicy
+    ) {
         return self::getSnapshotSchedulePolicyNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -376,8 +401,12 @@ class BareMetalSolutionGapicClient
      *
      * @return string The formatted volume_snapshot resource.
      */
-    public static function volumeSnapshotName($project, $location, $volume, $snapshot)
-    {
+    public static function volumeSnapshotName(
+        $project,
+        $location,
+        $volume,
+        $snapshot
+    ) {
         return self::getVolumeSnapshotNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -416,7 +445,9 @@ class BareMetalSolutionGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -430,7 +461,9 @@ class BareMetalSolutionGapicClient
             }
         }
 
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -456,8 +489,14 @@ class BareMetalSolutionGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse(
+            $operationName,
+            $this->getOperationsClient(),
+            $options
+        );
         $operation->reload();
         return $operation;
     }
@@ -559,17 +598,30 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSnapshotSchedulePolicy($parent, $snapshotSchedulePolicy, $snapshotSchedulePolicyId, array $optionalArgs = [])
-    {
+    public function createSnapshotSchedulePolicy(
+        $parent,
+        $snapshotSchedulePolicy,
+        $snapshotSchedulePolicyId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateSnapshotSchedulePolicyRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setSnapshotSchedulePolicy($snapshotSchedulePolicy);
         $request->setSnapshotSchedulePolicyId($snapshotSchedulePolicyId);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateSnapshotSchedulePolicy', SnapshotSchedulePolicy::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateSnapshotSchedulePolicy',
+            SnapshotSchedulePolicy::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -603,16 +655,28 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createVolumeSnapshot($parent, $volumeSnapshot, array $optionalArgs = [])
-    {
+    public function createVolumeSnapshot(
+        $parent,
+        $volumeSnapshot,
+        array $optionalArgs = []
+    ) {
         $request = new CreateVolumeSnapshotRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setVolumeSnapshot($volumeSnapshot);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateVolumeSnapshot', VolumeSnapshot::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateVolumeSnapshot',
+            VolumeSnapshot::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -642,15 +706,26 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteSnapshotSchedulePolicy($name, array $optionalArgs = [])
-    {
+    public function deleteSnapshotSchedulePolicy(
+        $name,
+        array $optionalArgs = []
+    ) {
         $request = new DeleteSnapshotSchedulePolicyRequest();
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteSnapshotSchedulePolicy', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteSnapshotSchedulePolicy',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -686,9 +761,18 @@ class BareMetalSolutionGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteVolumeSnapshot', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteVolumeSnapshot',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -726,9 +810,18 @@ class BareMetalSolutionGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetInstance', Instance::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetInstance',
+            Instance::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -766,9 +859,18 @@ class BareMetalSolutionGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetLun', Lun::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLun',
+            Lun::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -806,9 +908,18 @@ class BareMetalSolutionGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetNetwork', Network::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetNetwork',
+            Network::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -846,9 +957,18 @@ class BareMetalSolutionGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetSnapshotSchedulePolicy', SnapshotSchedulePolicy::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetSnapshotSchedulePolicy',
+            SnapshotSchedulePolicy::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -886,9 +1006,18 @@ class BareMetalSolutionGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetVolume', Volume::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetVolume',
+            Volume::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -926,9 +1055,18 @@ class BareMetalSolutionGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetVolumeSnapshot', VolumeSnapshot::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetVolumeSnapshot',
+            VolumeSnapshot::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -995,9 +1133,18 @@ class BareMetalSolutionGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListInstances', $optionalArgs, ListInstancesResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListInstances',
+            $optionalArgs,
+            ListInstancesResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1064,9 +1211,18 @@ class BareMetalSolutionGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListLuns', $optionalArgs, ListLunsResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLuns',
+            $optionalArgs,
+            ListLunsResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1133,9 +1289,18 @@ class BareMetalSolutionGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListNetworks', $optionalArgs, ListNetworksResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListNetworks',
+            $optionalArgs,
+            ListNetworksResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1188,8 +1353,10 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSnapshotSchedulePolicies($parent, array $optionalArgs = [])
-    {
+    public function listSnapshotSchedulePolicies(
+        $parent,
+        array $optionalArgs = []
+    ) {
         $request = new ListSnapshotSchedulePoliciesRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -1202,9 +1369,18 @@ class BareMetalSolutionGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListSnapshotSchedulePolicies', $optionalArgs, ListSnapshotSchedulePoliciesResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListSnapshotSchedulePolicies',
+            $optionalArgs,
+            ListSnapshotSchedulePoliciesResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1271,9 +1447,18 @@ class BareMetalSolutionGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListVolumeSnapshots', $optionalArgs, ListVolumeSnapshotsResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListVolumeSnapshots',
+            $optionalArgs,
+            ListVolumeSnapshotsResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1340,9 +1525,18 @@ class BareMetalSolutionGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListVolumes', $optionalArgs, ListVolumesResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListVolumes',
+            $optionalArgs,
+            ListVolumesResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1406,9 +1600,18 @@ class BareMetalSolutionGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('ResetInstance', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'ResetInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -1465,15 +1668,26 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function restoreVolumeSnapshot($volumeSnapshot, array $optionalArgs = [])
-    {
+    public function restoreVolumeSnapshot(
+        $volumeSnapshot,
+        array $optionalArgs = []
+    ) {
         $request = new RestoreVolumeSnapshotRequest();
         $requestParamHeaders = [];
         $request->setVolumeSnapshot($volumeSnapshot);
         $requestParamHeaders['volume_snapshot'] = $volumeSnapshot;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('RestoreVolumeSnapshot', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'RestoreVolumeSnapshot',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -1511,16 +1725,30 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSnapshotSchedulePolicy($snapshotSchedulePolicy, $updateMask, array $optionalArgs = [])
-    {
+    public function updateSnapshotSchedulePolicy(
+        $snapshotSchedulePolicy,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateSnapshotSchedulePolicyRequest();
         $requestParamHeaders = [];
         $request->setSnapshotSchedulePolicy($snapshotSchedulePolicy);
         $request->setUpdateMask($updateMask);
-        $requestParamHeaders['snapshot_schedule_policy.name'] = $snapshotSchedulePolicy->getName();
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateSnapshotSchedulePolicy', SnapshotSchedulePolicy::class, $optionalArgs, $request)->wait();
+        $requestParamHeaders[
+            'snapshot_schedule_policy.name'
+        ] = $snapshotSchedulePolicy->getName();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateSnapshotSchedulePolicy',
+            SnapshotSchedulePolicy::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1595,8 +1823,17 @@ class BareMetalSolutionGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('UpdateVolume', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateVolume',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 }

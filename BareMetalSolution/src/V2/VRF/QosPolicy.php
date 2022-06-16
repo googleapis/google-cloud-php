@@ -65,4 +65,6 @@ class QosPolicy extends \Google\Protobuf\Internal\Message
 
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(QosPolicy::class, \Google\Cloud\BaremetalSolution\V2\VRF_QosPolicy::class);
 

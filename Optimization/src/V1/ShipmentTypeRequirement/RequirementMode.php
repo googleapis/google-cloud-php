@@ -75,4 +75,6 @@ class RequirementMode
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(RequirementMode::class, \Google\Cloud\Optimization\V1\ShipmentTypeRequirement_RequirementMode::class);
 

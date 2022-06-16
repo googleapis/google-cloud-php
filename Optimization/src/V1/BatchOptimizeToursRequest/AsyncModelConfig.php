@@ -219,4 +219,6 @@ class AsyncModelConfig extends \Google\Protobuf\Internal\Message
 
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(AsyncModelConfig::class, \Google\Cloud\Optimization\V1\BatchOptimizeToursRequest_AsyncModelConfig::class);
 

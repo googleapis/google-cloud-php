@@ -75,7 +75,7 @@ class AnswerRecordsClientTest extends GeneratedTest
     public function listAnswerRecordsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -90,9 +90,9 @@ class AnswerRecordsClientTest extends GeneratedTest
         $expectedResponse->setAnswerRecords($answerRecords);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $filter = 'filter-1274492040';
-        $response = $client->listAnswerRecords($formattedParent, $filter);
+        $response = $gapicClient->listAnswerRecords($formattedParent, $filter);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -115,7 +115,7 @@ class AnswerRecordsClientTest extends GeneratedTest
     public function listAnswerRecordsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -130,11 +130,11 @@ class AnswerRecordsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $filter = 'filter-1274492040';
         try {
-            $client->listAnswerRecords($formattedParent, $filter);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listAnswerRecords($formattedParent, $filter);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -151,7 +151,7 @@ class AnswerRecordsClientTest extends GeneratedTest
     public function updateAnswerRecordTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -165,7 +165,7 @@ class AnswerRecordsClientTest extends GeneratedTest
         $answerRecordAnswerFeedback = new AnswerFeedback();
         $answerRecord->setAnswerFeedback($answerRecordAnswerFeedback);
         $updateMask = new FieldMask();
-        $response = $client->updateAnswerRecord($answerRecord, $updateMask);
+        $response = $gapicClient->updateAnswerRecord($answerRecord, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -185,7 +185,7 @@ class AnswerRecordsClientTest extends GeneratedTest
     public function updateAnswerRecordExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -205,8 +205,8 @@ class AnswerRecordsClientTest extends GeneratedTest
         $answerRecord->setAnswerFeedback($answerRecordAnswerFeedback);
         $updateMask = new FieldMask();
         try {
-            $client->updateAnswerRecord($answerRecord, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateAnswerRecord($answerRecord, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

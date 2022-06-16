@@ -76,7 +76,7 @@ class VersionsClientTest extends GeneratedTest
     public function createVersionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -90,9 +90,9 @@ class VersionsClientTest extends GeneratedTest
         $expectedResponse->setVersionNumber($versionNumber);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->agentName('[PROJECT]');
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
         $version = new Version();
-        $response = $client->createVersion($formattedParent, $version);
+        $response = $gapicClient->createVersion($formattedParent, $version);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -112,7 +112,7 @@ class VersionsClientTest extends GeneratedTest
     public function createVersionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -127,11 +127,11 @@ class VersionsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->agentName('[PROJECT]');
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
         $version = new Version();
         try {
-            $client->createVersion($formattedParent, $version);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createVersion($formattedParent, $version);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -148,7 +148,7 @@ class VersionsClientTest extends GeneratedTest
     public function deleteVersionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -156,8 +156,8 @@ class VersionsClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->versionName('[PROJECT]', '[VERSION]');
-        $client->deleteVersion($formattedName);
+        $formattedName = $gapicClient->versionName('[PROJECT]', '[VERSION]');
+        $gapicClient->deleteVersion($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -174,7 +174,7 @@ class VersionsClientTest extends GeneratedTest
     public function deleteVersionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -189,10 +189,10 @@ class VersionsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->versionName('[PROJECT]', '[VERSION]');
+        $formattedName = $gapicClient->versionName('[PROJECT]', '[VERSION]');
         try {
-            $client->deleteVersion($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteVersion($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -209,7 +209,7 @@ class VersionsClientTest extends GeneratedTest
     public function getVersionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -223,8 +223,8 @@ class VersionsClientTest extends GeneratedTest
         $expectedResponse->setVersionNumber($versionNumber);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->versionName('[PROJECT]', '[VERSION]');
-        $response = $client->getVersion($formattedName);
+        $formattedName = $gapicClient->versionName('[PROJECT]', '[VERSION]');
+        $response = $gapicClient->getVersion($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -242,7 +242,7 @@ class VersionsClientTest extends GeneratedTest
     public function getVersionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -257,10 +257,10 @@ class VersionsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->versionName('[PROJECT]', '[VERSION]');
+        $formattedName = $gapicClient->versionName('[PROJECT]', '[VERSION]');
         try {
-            $client->getVersion($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getVersion($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -277,7 +277,7 @@ class VersionsClientTest extends GeneratedTest
     public function listVersionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -292,8 +292,8 @@ class VersionsClientTest extends GeneratedTest
         $expectedResponse->setVersions($versions);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->agentName('[PROJECT]');
-        $response = $client->listVersions($formattedParent);
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
+        $response = $gapicClient->listVersions($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -314,7 +314,7 @@ class VersionsClientTest extends GeneratedTest
     public function listVersionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -329,10 +329,10 @@ class VersionsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->agentName('[PROJECT]');
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
         try {
-            $client->listVersions($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listVersions($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -349,7 +349,7 @@ class VersionsClientTest extends GeneratedTest
     public function updateVersionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -365,7 +365,7 @@ class VersionsClientTest extends GeneratedTest
         // Mock request
         $version = new Version();
         $updateMask = new FieldMask();
-        $response = $client->updateVersion($version, $updateMask);
+        $response = $gapicClient->updateVersion($version, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -385,7 +385,7 @@ class VersionsClientTest extends GeneratedTest
     public function updateVersionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -403,8 +403,8 @@ class VersionsClientTest extends GeneratedTest
         $version = new Version();
         $updateMask = new FieldMask();
         try {
-            $client->updateVersion($version, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateVersion($version, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

@@ -92,7 +92,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -124,7 +124,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[ORGANIZATION]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[ORGANIZATION]', '[LOCATION]');
         $workload = new Workload();
         $workloadDisplayName = 'workloadDisplayName191619702';
         $workload->setDisplayName($workloadDisplayName);
@@ -138,7 +138,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $il4SettingsKmsSettings->setRotationPeriod($kmsSettingsRotationPeriod);
         $workloadIl4Settings->setKmsSettings($il4SettingsKmsSettings);
         $workload->setIl4Settings($workloadIl4Settings);
-        $response = $client->createWorkload($formattedParent, $workload);
+        $response = $gapicClient->createWorkload($formattedParent, $workload);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -183,7 +183,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -205,7 +205,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[ORGANIZATION]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[ORGANIZATION]', '[LOCATION]');
         $workload = new Workload();
         $workloadDisplayName = 'workloadDisplayName191619702';
         $workload->setDisplayName($workloadDisplayName);
@@ -219,7 +219,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $il4SettingsKmsSettings->setRotationPeriod($kmsSettingsRotationPeriod);
         $workloadIl4Settings->setKmsSettings($il4SettingsKmsSettings);
         $workload->setIl4Settings($workloadIl4Settings);
-        $response = $client->createWorkload($formattedParent, $workload);
+        $response = $gapicClient->createWorkload($formattedParent, $workload);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -247,7 +247,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
     public function deleteWorkloadTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -255,8 +255,8 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->workloadName('[ORGANIZATION]', '[LOCATION]', '[WORKLOAD]');
-        $client->deleteWorkload($formattedName);
+        $formattedName = $gapicClient->workloadName('[ORGANIZATION]', '[LOCATION]', '[WORKLOAD]');
+        $gapicClient->deleteWorkload($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -273,7 +273,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
     public function deleteWorkloadExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -288,10 +288,10 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->workloadName('[ORGANIZATION]', '[LOCATION]', '[WORKLOAD]');
+        $formattedName = $gapicClient->workloadName('[ORGANIZATION]', '[LOCATION]', '[WORKLOAD]');
         try {
-            $client->deleteWorkload($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteWorkload($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -308,7 +308,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
     public function getWorkloadTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -328,8 +328,8 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $expectedResponse->setEnableSovereignControls($enableSovereignControls);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->workloadName('[ORGANIZATION]', '[LOCATION]', '[WORKLOAD]');
-        $response = $client->getWorkload($formattedName);
+        $formattedName = $gapicClient->workloadName('[ORGANIZATION]', '[LOCATION]', '[WORKLOAD]');
+        $response = $gapicClient->getWorkload($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -347,7 +347,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
     public function getWorkloadExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -362,10 +362,10 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->workloadName('[ORGANIZATION]', '[LOCATION]', '[WORKLOAD]');
+        $formattedName = $gapicClient->workloadName('[ORGANIZATION]', '[LOCATION]', '[WORKLOAD]');
         try {
-            $client->getWorkload($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getWorkload($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -382,7 +382,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
     public function listWorkloadsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -397,8 +397,8 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $expectedResponse->setWorkloads($workloads);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[ORGANIZATION]', '[LOCATION]');
-        $response = $client->listWorkloads($formattedParent);
+        $formattedParent = $gapicClient->locationName('[ORGANIZATION]', '[LOCATION]');
+        $response = $gapicClient->listWorkloads($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -419,7 +419,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
     public function listWorkloadsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -434,10 +434,10 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[ORGANIZATION]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[ORGANIZATION]', '[LOCATION]');
         try {
-            $client->listWorkloads($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listWorkloads($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -454,7 +454,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
     public function updateWorkloadTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -488,7 +488,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $workloadIl4Settings->setKmsSettings($il4SettingsKmsSettings);
         $workload->setIl4Settings($workloadIl4Settings);
         $updateMask = new FieldMask();
-        $response = $client->updateWorkload($workload, $updateMask);
+        $response = $gapicClient->updateWorkload($workload, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -508,7 +508,7 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
     public function updateWorkloadExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -538,8 +538,8 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $workload->setIl4Settings($workloadIl4Settings);
         $updateMask = new FieldMask();
         try {
-            $client->updateWorkload($workload, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateWorkload($workload, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

@@ -75,7 +75,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
     public function createKnowledgeBaseTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -89,11 +89,11 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $knowledgeBase = new KnowledgeBase();
         $knowledgeBaseDisplayName = 'knowledgeBaseDisplayName881802878';
         $knowledgeBase->setDisplayName($knowledgeBaseDisplayName);
-        $response = $client->createKnowledgeBase($formattedParent, $knowledgeBase);
+        $response = $gapicClient->createKnowledgeBase($formattedParent, $knowledgeBase);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -113,7 +113,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
     public function createKnowledgeBaseExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -128,13 +128,13 @@ class KnowledgeBasesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $knowledgeBase = new KnowledgeBase();
         $knowledgeBaseDisplayName = 'knowledgeBaseDisplayName881802878';
         $knowledgeBase->setDisplayName($knowledgeBaseDisplayName);
         try {
-            $client->createKnowledgeBase($formattedParent, $knowledgeBase);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createKnowledgeBase($formattedParent, $knowledgeBase);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -151,7 +151,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
     public function deleteKnowledgeBaseTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -159,8 +159,8 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
-        $client->deleteKnowledgeBase($formattedName);
+        $formattedName = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
+        $gapicClient->deleteKnowledgeBase($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -177,7 +177,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
     public function deleteKnowledgeBaseExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -192,10 +192,10 @@ class KnowledgeBasesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
+        $formattedName = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
         try {
-            $client->deleteKnowledgeBase($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteKnowledgeBase($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -212,7 +212,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
     public function getKnowledgeBaseTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -226,8 +226,8 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
-        $response = $client->getKnowledgeBase($formattedName);
+        $formattedName = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
+        $response = $gapicClient->getKnowledgeBase($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -245,7 +245,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
     public function getKnowledgeBaseExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -260,10 +260,10 @@ class KnowledgeBasesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
+        $formattedName = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
         try {
-            $client->getKnowledgeBase($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getKnowledgeBase($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -280,7 +280,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
     public function listKnowledgeBasesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -295,8 +295,8 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $expectedResponse->setKnowledgeBases($knowledgeBases);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
-        $response = $client->listKnowledgeBases($formattedParent);
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listKnowledgeBases($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -317,7 +317,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
     public function listKnowledgeBasesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -332,10 +332,10 @@ class KnowledgeBasesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $client->listKnowledgeBases($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listKnowledgeBases($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -352,7 +352,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
     public function updateKnowledgeBaseTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -369,7 +369,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $knowledgeBase = new KnowledgeBase();
         $knowledgeBaseDisplayName = 'knowledgeBaseDisplayName881802878';
         $knowledgeBase->setDisplayName($knowledgeBaseDisplayName);
-        $response = $client->updateKnowledgeBase($knowledgeBase);
+        $response = $gapicClient->updateKnowledgeBase($knowledgeBase);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -387,7 +387,7 @@ class KnowledgeBasesClientTest extends GeneratedTest
     public function updateKnowledgeBaseExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -406,8 +406,8 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $knowledgeBaseDisplayName = 'knowledgeBaseDisplayName881802878';
         $knowledgeBase->setDisplayName($knowledgeBaseDisplayName);
         try {
-            $client->updateKnowledgeBase($knowledgeBase);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateKnowledgeBase($knowledgeBase);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

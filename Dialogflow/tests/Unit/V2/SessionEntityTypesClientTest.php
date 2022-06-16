@@ -76,7 +76,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
     public function createSessionEntityTypeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -86,7 +86,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->sessionName('[PROJECT]', '[SESSION]');
+        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
         $sessionEntityType = new SessionEntityType();
         $sessionEntityTypeName = 'sessionEntityTypeName-916646370';
         $sessionEntityType->setName($sessionEntityTypeName);
@@ -94,7 +94,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $sessionEntityType->setEntityOverrideMode($sessionEntityTypeEntityOverrideMode);
         $sessionEntityTypeEntities = [];
         $sessionEntityType->setEntities($sessionEntityTypeEntities);
-        $response = $client->createSessionEntityType($formattedParent, $sessionEntityType);
+        $response = $gapicClient->createSessionEntityType($formattedParent, $sessionEntityType);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -114,7 +114,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
     public function createSessionEntityTypeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -129,7 +129,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->sessionName('[PROJECT]', '[SESSION]');
+        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
         $sessionEntityType = new SessionEntityType();
         $sessionEntityTypeName = 'sessionEntityTypeName-916646370';
         $sessionEntityType->setName($sessionEntityTypeName);
@@ -138,8 +138,8 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $sessionEntityTypeEntities = [];
         $sessionEntityType->setEntities($sessionEntityTypeEntities);
         try {
-            $client->createSessionEntityType($formattedParent, $sessionEntityType);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createSessionEntityType($formattedParent, $sessionEntityType);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -156,7 +156,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
     public function deleteSessionEntityTypeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -164,8 +164,8 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
-        $client->deleteSessionEntityType($formattedName);
+        $formattedName = $gapicClient->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
+        $gapicClient->deleteSessionEntityType($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -182,7 +182,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
     public function deleteSessionEntityTypeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -197,10 +197,10 @@ class SessionEntityTypesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
+        $formattedName = $gapicClient->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
         try {
-            $client->deleteSessionEntityType($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteSessionEntityType($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -217,7 +217,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
     public function getSessionEntityTypeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -227,8 +227,8 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
-        $response = $client->getSessionEntityType($formattedName);
+        $formattedName = $gapicClient->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
+        $response = $gapicClient->getSessionEntityType($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -246,7 +246,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
     public function getSessionEntityTypeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -261,10 +261,10 @@ class SessionEntityTypesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
+        $formattedName = $gapicClient->sessionEntityTypeName('[PROJECT]', '[SESSION]', '[ENTITY_TYPE]');
         try {
-            $client->getSessionEntityType($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getSessionEntityType($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -281,7 +281,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
     public function listSessionEntityTypesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -296,8 +296,8 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $expectedResponse->setSessionEntityTypes($sessionEntityTypes);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->sessionName('[PROJECT]', '[SESSION]');
-        $response = $client->listSessionEntityTypes($formattedParent);
+        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
+        $response = $gapicClient->listSessionEntityTypes($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -318,7 +318,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
     public function listSessionEntityTypesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -333,10 +333,10 @@ class SessionEntityTypesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->sessionName('[PROJECT]', '[SESSION]');
+        $formattedParent = $gapicClient->sessionName('[PROJECT]', '[SESSION]');
         try {
-            $client->listSessionEntityTypes($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listSessionEntityTypes($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -353,7 +353,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
     public function updateSessionEntityTypeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -370,7 +370,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $sessionEntityType->setEntityOverrideMode($sessionEntityTypeEntityOverrideMode);
         $sessionEntityTypeEntities = [];
         $sessionEntityType->setEntities($sessionEntityTypeEntities);
-        $response = $client->updateSessionEntityType($sessionEntityType);
+        $response = $gapicClient->updateSessionEntityType($sessionEntityType);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -388,7 +388,7 @@ class SessionEntityTypesClientTest extends GeneratedTest
     public function updateSessionEntityTypeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -411,8 +411,8 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $sessionEntityTypeEntities = [];
         $sessionEntityType->setEntities($sessionEntityTypeEntities);
         try {
-            $client->updateSessionEntityType($sessionEntityType);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateSessionEntityType($sessionEntityType);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

@@ -55,4 +55,6 @@ class TravelMode
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(TravelMode::class, \Google\Cloud\Optimization\V1\Vehicle_TravelMode::class);
 

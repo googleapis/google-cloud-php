@@ -88,7 +88,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -125,7 +125,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $resource->setSource($resourceSource);
         $resourceDestination = new Endpoint();
         $resource->setDestination($resourceDestination);
-        $response = $client->createConnectivityTest($parent, $testId, $resource);
+        $response = $gapicClient->createConnectivityTest($parent, $testId, $resource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -172,7 +172,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -203,7 +203,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $resource->setSource($resourceSource);
         $resourceDestination = new Endpoint();
         $resource->setDestination($resourceDestination);
-        $response = $client->createConnectivityTest($parent, $testId, $resource);
+        $response = $gapicClient->createConnectivityTest($parent, $testId, $resource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -237,7 +237,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -258,7 +258,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $response = $client->deleteConnectivityTest($name);
+        $response = $gapicClient->deleteConnectivityTest($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -301,7 +301,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -324,7 +324,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $response = $client->deleteConnectivityTest($name);
+        $response = $gapicClient->deleteConnectivityTest($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -352,7 +352,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
     public function getConnectivityTestTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -369,7 +369,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $response = $client->getConnectivityTest($name);
+        $response = $gapicClient->getConnectivityTest($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -387,7 +387,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
     public function getConnectivityTestExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -404,8 +404,8 @@ class ReachabilityServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         try {
-            $client->getConnectivityTest($name);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getConnectivityTest($name);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -422,7 +422,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
     public function listConnectivityTestsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -438,7 +438,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $response = $client->listConnectivityTests($parent);
+        $response = $gapicClient->listConnectivityTests($parent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -459,7 +459,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
     public function listConnectivityTestsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -476,8 +476,8 @@ class ReachabilityServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         try {
-            $client->listConnectivityTests($parent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listConnectivityTests($parent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -500,7 +500,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -529,7 +529,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $response = $client->rerunConnectivityTest($name);
+        $response = $gapicClient->rerunConnectivityTest($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -572,7 +572,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -595,7 +595,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $response = $client->rerunConnectivityTest($name);
+        $response = $gapicClient->rerunConnectivityTest($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -629,7 +629,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -665,7 +665,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $resource->setSource($resourceSource);
         $resourceDestination = new Endpoint();
         $resource->setDestination($resourceDestination);
-        $response = $client->updateConnectivityTest($updateMask, $resource);
+        $response = $gapicClient->updateConnectivityTest($updateMask, $resource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -710,7 +710,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -740,7 +740,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $resource->setSource($resourceSource);
         $resourceDestination = new Endpoint();
         $resource->setDestination($resourceDestination);
-        $response = $client->updateConnectivityTest($updateMask, $resource);
+        $response = $gapicClient->updateConnectivityTest($updateMask, $resource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

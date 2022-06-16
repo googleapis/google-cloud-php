@@ -82,7 +82,7 @@ class MetadataServiceClientTest extends GeneratedTest
     public function createEntityTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -108,7 +108,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setCatalogEntry($catalogEntry);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
         $entity = new Entity();
         $entityId = 'entityId-2102099874';
         $entity->setId($entityId);
@@ -128,7 +128,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $schemaUserManaged = false;
         $entitySchema->setUserManaged($schemaUserManaged);
         $entity->setSchema($entitySchema);
-        $response = $client->createEntity($formattedParent, $entity);
+        $response = $gapicClient->createEntity($formattedParent, $entity);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -148,7 +148,7 @@ class MetadataServiceClientTest extends GeneratedTest
     public function createEntityExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -163,7 +163,7 @@ class MetadataServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
         $entity = new Entity();
         $entityId = 'entityId-2102099874';
         $entity->setId($entityId);
@@ -184,8 +184,8 @@ class MetadataServiceClientTest extends GeneratedTest
         $entitySchema->setUserManaged($schemaUserManaged);
         $entity->setSchema($entitySchema);
         try {
-            $client->createEntity($formattedParent, $entity);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createEntity($formattedParent, $entity);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -202,7 +202,7 @@ class MetadataServiceClientTest extends GeneratedTest
     public function createPartitionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -216,13 +216,13 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
+        $formattedParent = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
         $partition = new Partition();
         $partitionValues = [];
         $partition->setValues($partitionValues);
         $partitionLocation = 'partitionLocation-1757508417';
         $partition->setLocation($partitionLocation);
-        $response = $client->createPartition($formattedParent, $partition);
+        $response = $gapicClient->createPartition($formattedParent, $partition);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -242,7 +242,7 @@ class MetadataServiceClientTest extends GeneratedTest
     public function createPartitionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -257,15 +257,15 @@ class MetadataServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
+        $formattedParent = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
         $partition = new Partition();
         $partitionValues = [];
         $partition->setValues($partitionValues);
         $partitionLocation = 'partitionLocation-1757508417';
         $partition->setLocation($partitionLocation);
         try {
-            $client->createPartition($formattedParent, $partition);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createPartition($formattedParent, $partition);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -282,7 +282,7 @@ class MetadataServiceClientTest extends GeneratedTest
     public function deleteEntityTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -290,9 +290,9 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
+        $formattedName = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
         $etag = 'etag3123477';
-        $client->deleteEntity($formattedName, $etag);
+        $gapicClient->deleteEntity($formattedName, $etag);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -311,7 +311,7 @@ class MetadataServiceClientTest extends GeneratedTest
     public function deleteEntityExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -326,11 +326,11 @@ class MetadataServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
+        $formattedName = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
         $etag = 'etag3123477';
         try {
-            $client->deleteEntity($formattedName, $etag);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteEntity($formattedName, $etag);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -347,7 +347,7 @@ class MetadataServiceClientTest extends GeneratedTest
     public function deletePartitionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -355,8 +355,8 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->partitionName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]', '[PARTITION]');
-        $client->deletePartition($formattedName);
+        $formattedName = $gapicClient->partitionName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]', '[PARTITION]');
+        $gapicClient->deletePartition($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -373,7 +373,7 @@ class MetadataServiceClientTest extends GeneratedTest
     public function deletePartitionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -388,10 +388,10 @@ class MetadataServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->partitionName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]', '[PARTITION]');
+        $formattedName = $gapicClient->partitionName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]', '[PARTITION]');
         try {
-            $client->deletePartition($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deletePartition($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -408,7 +408,7 @@ class MetadataServiceClientTest extends GeneratedTest
     public function getEntityTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -434,8 +434,8 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setCatalogEntry($catalogEntry);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
-        $response = $client->getEntity($formattedName);
+        $formattedName = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
+        $response = $gapicClient->getEntity($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -453,7 +453,7 @@ class MetadataServiceClientTest extends GeneratedTest
     public function getEntityExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -468,10 +468,10 @@ class MetadataServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
+        $formattedName = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
         try {
-            $client->getEntity($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getEntity($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -488,7 +488,7 @@ class MetadataServiceClientTest extends GeneratedTest
     public function getPartitionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -502,8 +502,8 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->partitionName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]', '[PARTITION]');
-        $response = $client->getPartition($formattedName);
+        $formattedName = $gapicClient->partitionName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]', '[PARTITION]');
+        $response = $gapicClient->getPartition($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -521,7 +521,7 @@ class MetadataServiceClientTest extends GeneratedTest
     public function getPartitionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -536,10 +536,10 @@ class MetadataServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->partitionName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]', '[PARTITION]');
+        $formattedName = $gapicClient->partitionName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]', '[PARTITION]');
         try {
-            $client->getPartition($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getPartition($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -556,7 +556,7 @@ class MetadataServiceClientTest extends GeneratedTest
     public function listEntitiesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -571,9 +571,9 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setEntities($entities);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
         $view = EntityView::ENTITY_VIEW_UNSPECIFIED;
-        $response = $client->listEntities($formattedParent, $view);
+        $response = $gapicClient->listEntities($formattedParent, $view);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -596,7 +596,7 @@ class MetadataServiceClientTest extends GeneratedTest
     public function listEntitiesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -611,11 +611,11 @@ class MetadataServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
         $view = EntityView::ENTITY_VIEW_UNSPECIFIED;
         try {
-            $client->listEntities($formattedParent, $view);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listEntities($formattedParent, $view);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -632,7 +632,7 @@ class MetadataServiceClientTest extends GeneratedTest
     public function listPartitionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -647,8 +647,8 @@ class MetadataServiceClientTest extends GeneratedTest
         $expectedResponse->setPartitions($partitions);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
-        $response = $client->listPartitions($formattedParent);
+        $formattedParent = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
+        $response = $gapicClient->listPartitions($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -669,7 +669,7 @@ class MetadataServiceClientTest extends GeneratedTest
     public function listPartitionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -684,10 +684,10 @@ class MetadataServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
+        $formattedParent = $gapicClient->entityName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ENTITY]');
         try {
-            $client->listPartitions($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listPartitions($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -704,7 +704,7 @@ class MetadataServiceClientTest extends GeneratedTest
     public function updateEntityTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -749,7 +749,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $schemaUserManaged = false;
         $entitySchema->setUserManaged($schemaUserManaged);
         $entity->setSchema($entitySchema);
-        $response = $client->updateEntity($entity);
+        $response = $gapicClient->updateEntity($entity);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -767,7 +767,7 @@ class MetadataServiceClientTest extends GeneratedTest
     public function updateEntityExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -802,8 +802,8 @@ class MetadataServiceClientTest extends GeneratedTest
         $entitySchema->setUserManaged($schemaUserManaged);
         $entity->setSchema($entitySchema);
         try {
-            $client->updateEntity($entity);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateEntity($entity);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

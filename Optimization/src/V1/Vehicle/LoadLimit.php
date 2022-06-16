@@ -244,4 +244,6 @@ class LoadLimit extends \Google\Protobuf\Internal\Message
 
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(LoadLimit::class, \Google\Cloud\Optimization\V1\Vehicle_LoadLimit::class);
 
