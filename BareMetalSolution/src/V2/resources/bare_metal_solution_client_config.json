@@ -26,22 +26,7 @@
                 }
             },
             "methods": {
-                "CreateSnapshotSchedulePolicy": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
-                },
-                "CreateVolumeSnapshot": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
-                },
-                "DeleteSnapshotSchedulePolicy": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
-                },
-                "DeleteVolumeSnapshot": {
+                "DetachLun": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
@@ -61,17 +46,12 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
-                "GetSnapshotSchedulePolicy": {
+                "GetNfsShare": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
                 "GetVolume": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
-                },
-                "GetVolumeSnapshot": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
@@ -86,17 +66,17 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "ListNetworkUsage": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
                 "ListNetworks": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
-                "ListSnapshotSchedulePolicies": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
-                },
-                "ListVolumeSnapshots": {
+                "ListNfsShares": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
@@ -111,12 +91,32 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
-                "RestoreVolumeSnapshot": {
+                "ResizeVolume": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
-                "UpdateSnapshotSchedulePolicy": {
+                "StartInstance": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "StopInstance": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "UpdateInstance": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "UpdateNetwork": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "UpdateNfsShare": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"

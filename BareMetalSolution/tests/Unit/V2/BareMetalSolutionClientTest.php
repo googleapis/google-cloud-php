@@ -20,35 +20,34 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\BaremetalSolution\Tests\Unit\V2;
+namespace Google\Cloud\BareMetalSolution\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
 
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
+
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\BaremetalSolution\V2\BareMetalSolutionClient;
-use Google\Cloud\BaremetalSolution\V2\Instance;
+use Google\Cloud\BareMetalSolution\V2\BareMetalSolutionClient;
 
-use Google\Cloud\BaremetalSolution\V2\ListInstancesResponse;
-use Google\Cloud\BaremetalSolution\V2\ListLunsResponse;
-use Google\Cloud\BaremetalSolution\V2\ListNetworksResponse;
-use Google\Cloud\BaremetalSolution\V2\ListSnapshotSchedulePoliciesResponse;
-use Google\Cloud\BaremetalSolution\V2\ListVolumeSnapshotsResponse;
-use Google\Cloud\BaremetalSolution\V2\ListVolumesResponse;
-use Google\Cloud\BaremetalSolution\V2\Lun;
-use Google\Cloud\BaremetalSolution\V2\Network;
-use Google\Cloud\BaremetalSolution\V2\ResetInstanceResponse;
-use Google\Cloud\BaremetalSolution\V2\SnapshotSchedulePolicy;
-use Google\Cloud\BaremetalSolution\V2\Volume;
-use Google\Cloud\BaremetalSolution\V2\VolumeSnapshot;
+use Google\Cloud\BareMetalSolution\V2\Instance;
+use Google\Cloud\BareMetalSolution\V2\ListInstancesResponse;
+use Google\Cloud\BareMetalSolution\V2\ListLunsResponse;
+use Google\Cloud\BareMetalSolution\V2\ListNetworksResponse;
+use Google\Cloud\BareMetalSolution\V2\ListNetworkUsageResponse;
+use Google\Cloud\BareMetalSolution\V2\ListNfsSharesResponse;
+use Google\Cloud\BareMetalSolution\V2\ListVolumesResponse;
+use Google\Cloud\BareMetalSolution\V2\Lun;
+use Google\Cloud\BareMetalSolution\V2\Network;
+use Google\Cloud\BareMetalSolution\V2\NfsShare;
+use Google\Cloud\BareMetalSolution\V2\ResetInstanceResponse;
+use Google\Cloud\BareMetalSolution\V2\StartInstanceResponse;
+use Google\Cloud\BareMetalSolution\V2\StopInstanceResponse;
+use Google\Cloud\BareMetalSolution\V2\Volume;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
-use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -89,271 +88,142 @@ class BareMetalSolutionClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function createSnapshotSchedulePolicyTest()
+    public function detachLunTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
+            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/detachLunTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
-        $description = 'description-1724546052';
-        $expectedResponse = new SnapshotSchedulePolicy();
+        $id = 'id3355';
+        $machineType = 'machineType1838323762';
+        $hyperthreadingEnabled = true;
+        $interactiveSerialConsoleEnabled = false;
+        $osImage = 'osImage1982209856';
+        $pod = 'pod111173';
+        $networkTemplate = 'networkTemplate215365483';
+        $expectedResponse = new Instance();
         $expectedResponse->setName($name);
-        $expectedResponse->setDescription($description);
-        $transport->addResponse($expectedResponse);
+        $expectedResponse->setId($id);
+        $expectedResponse->setMachineType($machineType);
+        $expectedResponse->setHyperthreadingEnabled($hyperthreadingEnabled);
+        $expectedResponse->setInteractiveSerialConsoleEnabled($interactiveSerialConsoleEnabled);
+        $expectedResponse->setOsImage($osImage);
+        $expectedResponse->setPod($pod);
+        $expectedResponse->setNetworkTemplate($networkTemplate);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/detachLunTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $snapshotSchedulePolicy = new SnapshotSchedulePolicy();
-        $snapshotSchedulePolicyId = 'snapshotSchedulePolicyId63985147';
-        $response = $client->createSnapshotSchedulePolicy($formattedParent, $snapshotSchedulePolicy, $snapshotSchedulePolicyId);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/CreateSnapshotSchedulePolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getSnapshotSchedulePolicy();
-        $this->assertProtobufEquals($snapshotSchedulePolicy, $actualValue);
-        $actualValue = $actualRequestObject->getSnapshotSchedulePolicyId();
-        $this->assertProtobufEquals($snapshotSchedulePolicyId, $actualValue);
+        $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $formattedLun = $gapicClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+        $response = $gapicClient->detachLun($formattedInstance, $formattedLun);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/DetachLun', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstance();
+        $this->assertProtobufEquals($formattedInstance, $actualValue);
+        $actualValue = $actualApiRequestObject->getLun();
+        $this->assertProtobufEquals($formattedLun, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/detachLunTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
      * @test
      */
-    public function createSnapshotSchedulePolicyExceptionTest()
+    public function detachLunExceptionTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
+            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $snapshotSchedulePolicy = new SnapshotSchedulePolicy();
-        $snapshotSchedulePolicyId = 'snapshotSchedulePolicyId63985147';
-        try {
-            $client->createSnapshotSchedulePolicy($formattedParent, $snapshotSchedulePolicy, $snapshotSchedulePolicyId);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function createVolumeSnapshotTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $name = 'name3373707';
-        $description = 'description-1724546052';
-        $sizeBytes = 1796325715;
-        $storageVolume = 'storageVolume-768806562';
-        $expectedResponse = new VolumeSnapshot();
-        $expectedResponse->setName($name);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setSizeBytes($sizeBytes);
-        $expectedResponse->setStorageVolume($storageVolume);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $client->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $volumeSnapshot = new VolumeSnapshot();
-        $response = $client->createVolumeSnapshot($formattedParent, $volumeSnapshot);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/CreateVolumeSnapshot', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getVolumeSnapshot();
-        $this->assertProtobufEquals($volumeSnapshot, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function createVolumeSnapshotExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/detachLunTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
+        $expectedExceptionMessage = json_encode([
             'message' => 'internal error',
             'code' => Code::DATA_LOSS,
             'status' => 'DATA_LOSS',
             'details' => [],
         ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
+        $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $volumeSnapshot = new VolumeSnapshot();
+        $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $formattedLun = $gapicClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+        $response = $gapicClient->detachLun($formattedInstance, $formattedLun);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/detachLunTest');
         try {
-            $client->createVolumeSnapshot($formattedParent, $volumeSnapshot);
-            // If the $client method call did not throw, fail the test
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-        // Call popReceivedCalls to ensure the stub is exhausted
+        // Call popReceivedCalls to ensure the stubs are exhausted
         $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteSnapshotSchedulePolicyTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $expectedResponse = new GPBEmpty();
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $client->snapshotSchedulePolicyName('[PROJECT]', '[LOCATION]', '[SNAPSHOT_SCHEDULE_POLICY]');
-        $client->deleteSnapshotSchedulePolicy($formattedName);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/DeleteSnapshotSchedulePolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteSnapshotSchedulePolicyExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $client->snapshotSchedulePolicyName('[PROJECT]', '[LOCATION]', '[SNAPSHOT_SCHEDULE_POLICY]');
-        try {
-            $client->deleteSnapshotSchedulePolicy($formattedName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteVolumeSnapshotTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $expectedResponse = new GPBEmpty();
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $client->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $client->deleteVolumeSnapshot($formattedName);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/DeleteVolumeSnapshot', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function deleteVolumeSnapshotExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $client->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        try {
-            $client->deleteVolumeSnapshot($formattedName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -362,24 +232,32 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getInstanceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $id = 'id3355';
         $machineType = 'machineType1838323762';
         $hyperthreadingEnabled = true;
         $interactiveSerialConsoleEnabled = false;
+        $osImage = 'osImage1982209856';
+        $pod = 'pod111173';
+        $networkTemplate = 'networkTemplate215365483';
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
+        $expectedResponse->setId($id);
         $expectedResponse->setMachineType($machineType);
         $expectedResponse->setHyperthreadingEnabled($hyperthreadingEnabled);
         $expectedResponse->setInteractiveSerialConsoleEnabled($interactiveSerialConsoleEnabled);
+        $expectedResponse->setOsImage($osImage);
+        $expectedResponse->setPod($pod);
+        $expectedResponse->setNetworkTemplate($networkTemplate);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $client->getInstance($formattedName);
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $response = $gapicClient->getInstance($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -397,7 +275,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getInstanceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -412,10 +290,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
         try {
-            $client->getInstance($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getInstance($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -432,12 +310,13 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getLunTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $id = 'id3355';
         $sizeGb = 2105542105;
         $storageVolume = 'storageVolume-768806562';
         $shareable = false;
@@ -445,6 +324,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $wwid = 'wwid3662843';
         $expectedResponse = new Lun();
         $expectedResponse->setName($name2);
+        $expectedResponse->setId($id);
         $expectedResponse->setSizeGb($sizeGb);
         $expectedResponse->setStorageVolume($storageVolume);
         $expectedResponse->setShareable($shareable);
@@ -452,8 +332,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setWwid($wwid);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
-        $response = $client->getLun($formattedName);
+        $formattedName = $gapicClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+        $response = $gapicClient->getLun($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -471,7 +351,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getLunExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -486,10 +366,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+        $formattedName = $gapicClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
         try {
-            $client->getLun($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getLun($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -506,26 +386,28 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getNetworkTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
-        $network = 'network1843485230';
+        $id = 'id3355';
         $ipAddress = 'ipAddress1480014044';
         $vlanId = 'vlanId536153463';
         $cidr = 'cidr3053428';
+        $servicesCidr = 'servicesCidr-1169831243';
         $expectedResponse = new Network();
         $expectedResponse->setName($name2);
-        $expectedResponse->setNetwork($network);
+        $expectedResponse->setId($id);
         $expectedResponse->setIpAddress($ipAddress);
         $expectedResponse->setVlanId($vlanId);
         $expectedResponse->setCidr($cidr);
+        $expectedResponse->setServicesCidr($servicesCidr);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
-        $response = $client->getNetwork($formattedName);
+        $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
+        $response = $gapicClient->getNetwork($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -543,7 +425,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getNetworkExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -558,10 +440,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
+        $formattedName = $gapicClient->networkName('[PROJECT]', '[LOCATION]', '[NETWORK]');
         try {
-            $client->getNetwork($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getNetwork($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -575,29 +457,31 @@ class BareMetalSolutionClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function getSnapshotSchedulePolicyTest()
+    public function getNfsShareTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
-        $description = 'description-1724546052';
-        $expectedResponse = new SnapshotSchedulePolicy();
+        $nfsShareId = 'nfsShareId931294079';
+        $volume = 'volume-810883302';
+        $expectedResponse = new NfsShare();
         $expectedResponse->setName($name2);
-        $expectedResponse->setDescription($description);
+        $expectedResponse->setNfsShareId($nfsShareId);
+        $expectedResponse->setVolume($volume);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->snapshotSchedulePolicyName('[PROJECT]', '[LOCATION]', '[SNAPSHOT_SCHEDULE_POLICY]');
-        $response = $client->getSnapshotSchedulePolicy($formattedName);
+        $formattedName = $gapicClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
+        $response = $gapicClient->getNfsShare($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/GetSnapshotSchedulePolicy', $actualFuncCall);
+        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/GetNfsShare', $actualFuncCall);
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -606,10 +490,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function getSnapshotSchedulePolicyExceptionTest()
+    public function getNfsShareExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -624,10 +508,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->snapshotSchedulePolicyName('[PROJECT]', '[LOCATION]', '[SNAPSHOT_SCHEDULE_POLICY]');
+        $formattedName = $gapicClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
         try {
-            $client->getSnapshotSchedulePolicy($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getNfsShare($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -644,28 +528,34 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getVolumeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $id = 'id3355';
         $requestedSizeGib = 525454387;
         $currentSizeGib = 72696456;
+        $emergencySizeGib = 1936971120;
         $autoGrownSizeGib = 1245638678;
         $remainingSpaceGib = 1423108606;
-        $snapshotSchedulePolicy = 'snapshotSchedulePolicy218131295';
+        $snapshotEnabled = true;
+        $pod = 'pod111173';
         $expectedResponse = new Volume();
         $expectedResponse->setName($name2);
+        $expectedResponse->setId($id);
         $expectedResponse->setRequestedSizeGib($requestedSizeGib);
         $expectedResponse->setCurrentSizeGib($currentSizeGib);
+        $expectedResponse->setEmergencySizeGib($emergencySizeGib);
         $expectedResponse->setAutoGrownSizeGib($autoGrownSizeGib);
         $expectedResponse->setRemainingSpaceGib($remainingSpaceGib);
-        $expectedResponse->setSnapshotSchedulePolicy($snapshotSchedulePolicy);
+        $expectedResponse->setSnapshotEnabled($snapshotEnabled);
+        $expectedResponse->setPod($pod);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $response = $client->getVolume($formattedName);
+        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $response = $gapicClient->getVolume($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -683,7 +573,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function getVolumeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -698,80 +588,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
         try {
-            $client->getVolume($formattedName);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getVolumeSnapshotTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $name2 = 'name2-1052831874';
-        $description = 'description-1724546052';
-        $sizeBytes = 1796325715;
-        $storageVolume = 'storageVolume-768806562';
-        $expectedResponse = new VolumeSnapshot();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setSizeBytes($sizeBytes);
-        $expectedResponse->setStorageVolume($storageVolume);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $client->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $response = $client->getVolumeSnapshot($formattedName);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/GetVolumeSnapshot', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getVolumeSnapshotExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $client->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        try {
-            $client->getVolumeSnapshot($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getVolume($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -788,7 +608,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listInstancesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -803,8 +623,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setInstances($instances);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listInstances($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listInstances($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -825,7 +645,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listInstancesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -840,10 +660,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listInstances($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listInstances($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -860,7 +680,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listLunsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -875,8 +695,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setLuns($luns);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $response = $client->listLuns($formattedParent);
+        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $response = $gapicClient->listLuns($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -897,7 +717,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listLunsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -912,10 +732,72 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $formattedParent = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
         try {
-            $client->listLuns($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listLuns($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listNetworkUsageTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ListNetworkUsageResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listNetworkUsage($formattedLocation);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/ListNetworkUsage', $actualFuncCall);
+        $actualValue = $actualRequestObject->getLocation();
+        $this->assertProtobufEquals($formattedLocation, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listNetworkUsageExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        try {
+            $gapicClient->listNetworkUsage($formattedLocation);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -932,7 +814,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listNetworksTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -947,8 +829,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setNetworks($networks);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listNetworks($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listNetworks($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -969,7 +851,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listNetworksExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -984,10 +866,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listNetworks($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listNetworks($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1001,35 +883,35 @@ class BareMetalSolutionClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function listSnapshotSchedulePoliciesTest()
+    public function listNfsSharesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $nextPageToken = '';
-        $snapshotSchedulePoliciesElement = new SnapshotSchedulePolicy();
-        $snapshotSchedulePolicies = [
-            $snapshotSchedulePoliciesElement,
+        $nfsSharesElement = new NfsShare();
+        $nfsShares = [
+            $nfsSharesElement,
         ];
-        $expectedResponse = new ListSnapshotSchedulePoliciesResponse();
+        $expectedResponse = new ListNfsSharesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setSnapshotSchedulePolicies($snapshotSchedulePolicies);
+        $expectedResponse->setNfsShares($nfsShares);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listSnapshotSchedulePolicies($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listNfsShares($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getSnapshotSchedulePolicies()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getNfsShares()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/ListSnapshotSchedulePolicies', $actualFuncCall);
+        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/ListNfsShares', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -1038,10 +920,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function listSnapshotSchedulePoliciesExceptionTest()
+    public function listNfsSharesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1056,82 +938,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listSnapshotSchedulePolicies($formattedParent);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listVolumeSnapshotsTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $nextPageToken = '';
-        $volumeSnapshotsElement = new VolumeSnapshot();
-        $volumeSnapshots = [
-            $volumeSnapshotsElement,
-        ];
-        $expectedResponse = new ListVolumeSnapshotsResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setVolumeSnapshots($volumeSnapshots);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $client->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        $response = $client->listVolumeSnapshots($formattedParent);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getVolumeSnapshots()[0], $resources[0]);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/ListVolumeSnapshots', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listVolumeSnapshotsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $client->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-        try {
-            $client->listVolumeSnapshots($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listNfsShares($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1148,7 +958,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listVolumesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1163,8 +973,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $expectedResponse->setVolumes($volumes);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listVolumes($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listVolumes($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1185,7 +995,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     public function listVolumesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1200,10 +1010,10 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listVolumes($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listVolumes($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1226,7 +1036,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1246,8 +1056,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $client->resetInstance($formattedName);
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $response = $gapicClient->resetInstance($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1290,7 +1100,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1312,8 +1122,8 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $client->resetInstance($formattedName);
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $response = $gapicClient->resetInstance($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1338,7 +1148,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function restoreVolumeSnapshotTest()
+    public function resizeVolumeTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -1347,7 +1157,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1355,28 +1165,38 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/restoreVolumeSnapshotTest');
+        $incompleteOperation->setName('operations/resizeVolumeTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
-        $description = 'description-1724546052';
-        $sizeBytes = 1796325715;
-        $storageVolume = 'storageVolume-768806562';
-        $expectedResponse = new VolumeSnapshot();
+        $id = 'id3355';
+        $requestedSizeGib = 525454387;
+        $currentSizeGib = 72696456;
+        $emergencySizeGib = 1936971120;
+        $autoGrownSizeGib = 1245638678;
+        $remainingSpaceGib = 1423108606;
+        $snapshotEnabled = true;
+        $pod = 'pod111173';
+        $expectedResponse = new Volume();
         $expectedResponse->setName($name);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setSizeBytes($sizeBytes);
-        $expectedResponse->setStorageVolume($storageVolume);
+        $expectedResponse->setId($id);
+        $expectedResponse->setRequestedSizeGib($requestedSizeGib);
+        $expectedResponse->setCurrentSizeGib($currentSizeGib);
+        $expectedResponse->setEmergencySizeGib($emergencySizeGib);
+        $expectedResponse->setAutoGrownSizeGib($autoGrownSizeGib);
+        $expectedResponse->setRemainingSpaceGib($remainingSpaceGib);
+        $expectedResponse->setSnapshotEnabled($snapshotEnabled);
+        $expectedResponse->setPod($pod);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/restoreVolumeSnapshotTest');
+        $completeOperation->setName('operations/resizeVolumeTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedVolumeSnapshot = $client->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $response = $client->restoreVolumeSnapshot($formattedVolumeSnapshot);
+        $formattedVolume = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $response = $gapicClient->resizeVolume($formattedVolume);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1385,11 +1205,11 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/RestoreVolumeSnapshot', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getVolumeSnapshot();
-        $this->assertProtobufEquals($formattedVolumeSnapshot, $actualValue);
+        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/ResizeVolume', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getVolume();
+        $this->assertProtobufEquals($formattedVolume, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/restoreVolumeSnapshotTest');
+        $expectedOperationsRequestObject->setName('operations/resizeVolumeTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1410,7 +1230,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function restoreVolumeSnapshotExceptionTest()
+    public function resizeVolumeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -1419,7 +1239,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1427,7 +1247,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/restoreVolumeSnapshotTest');
+        $incompleteOperation->setName('operations/resizeVolumeTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $status = new stdClass();
@@ -1441,12 +1261,12 @@ class BareMetalSolutionClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedVolumeSnapshot = $client->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-        $response = $client->restoreVolumeSnapshot($formattedVolumeSnapshot);
+        $formattedVolume = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $response = $gapicClient->resizeVolume($formattedVolume);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/restoreVolumeSnapshotTest');
+        $expectedOperationsRequestObject->setName('operations/resizeVolumeTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -1467,71 +1287,640 @@ class BareMetalSolutionClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function updateSnapshotSchedulePolicyTest()
+    public function startInstanceTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
+            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $name = 'name3373707';
-        $description = 'description-1724546052';
-        $expectedResponse = new SnapshotSchedulePolicy();
-        $expectedResponse->setName($name);
-        $expectedResponse->setDescription($description);
-        $transport->addResponse($expectedResponse);
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/startInstanceTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new StartInstanceResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/startInstanceTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $snapshotSchedulePolicy = new SnapshotSchedulePolicy();
-        $updateMask = new FieldMask();
-        $response = $client->updateSnapshotSchedulePolicy($snapshotSchedulePolicy, $updateMask);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateSnapshotSchedulePolicy', $actualFuncCall);
-        $actualValue = $actualRequestObject->getSnapshotSchedulePolicy();
-        $this->assertProtobufEquals($snapshotSchedulePolicy, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $response = $gapicClient->startInstance($formattedName);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/StartInstance', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/startInstanceTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
      * @test
      */
-    public function updateSnapshotSchedulePolicyExceptionTest()
+    public function startInstanceExceptionTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
+            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/startInstanceTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
+        $expectedExceptionMessage = json_encode([
             'message' => 'internal error',
             'code' => Code::DATA_LOSS,
             'status' => 'DATA_LOSS',
             'details' => [],
         ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
+        $operationsTransport->addResponse(null, $status);
         // Mock request
-        $snapshotSchedulePolicy = new SnapshotSchedulePolicy();
-        $updateMask = new FieldMask();
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $response = $gapicClient->startInstance($formattedName);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/startInstanceTest');
         try {
-            $client->updateSnapshotSchedulePolicy($snapshotSchedulePolicy, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-        // Call popReceivedCalls to ensure the stub is exhausted
+        // Call popReceivedCalls to ensure the stubs are exhausted
         $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function stopInstanceTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/stopInstanceTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new StopInstanceResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/stopInstanceTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $response = $gapicClient->stopInstance($formattedName);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/StopInstance', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/stopInstanceTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function stopInstanceExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/stopInstanceTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $response = $gapicClient->stopInstance($formattedName);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/stopInstanceTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateInstanceTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateInstanceTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $id = 'id3355';
+        $machineType = 'machineType1838323762';
+        $hyperthreadingEnabled = true;
+        $interactiveSerialConsoleEnabled = false;
+        $osImage = 'osImage1982209856';
+        $pod = 'pod111173';
+        $networkTemplate = 'networkTemplate215365483';
+        $expectedResponse = new Instance();
+        $expectedResponse->setName($name);
+        $expectedResponse->setId($id);
+        $expectedResponse->setMachineType($machineType);
+        $expectedResponse->setHyperthreadingEnabled($hyperthreadingEnabled);
+        $expectedResponse->setInteractiveSerialConsoleEnabled($interactiveSerialConsoleEnabled);
+        $expectedResponse->setOsImage($osImage);
+        $expectedResponse->setPod($pod);
+        $expectedResponse->setNetworkTemplate($networkTemplate);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateInstanceTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $instance = new Instance();
+        $response = $gapicClient->updateInstance($instance);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateInstance', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateInstanceTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateInstanceExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateInstanceTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $instance = new Instance();
+        $response = $gapicClient->updateInstance($instance);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateInstanceTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateNetworkTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateNetworkTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $id = 'id3355';
+        $ipAddress = 'ipAddress1480014044';
+        $vlanId = 'vlanId536153463';
+        $cidr = 'cidr3053428';
+        $servicesCidr = 'servicesCidr-1169831243';
+        $expectedResponse = new Network();
+        $expectedResponse->setName($name);
+        $expectedResponse->setId($id);
+        $expectedResponse->setIpAddress($ipAddress);
+        $expectedResponse->setVlanId($vlanId);
+        $expectedResponse->setCidr($cidr);
+        $expectedResponse->setServicesCidr($servicesCidr);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateNetworkTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $network = new Network();
+        $response = $gapicClient->updateNetwork($network);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateNetwork', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNetwork();
+        $this->assertProtobufEquals($network, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateNetworkTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateNetworkExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateNetworkTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $network = new Network();
+        $response = $gapicClient->updateNetwork($network);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateNetworkTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateNfsShareTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateNfsShareTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $nfsShareId = 'nfsShareId931294079';
+        $volume = 'volume-810883302';
+        $expectedResponse = new NfsShare();
+        $expectedResponse->setName($name);
+        $expectedResponse->setNfsShareId($nfsShareId);
+        $expectedResponse->setVolume($volume);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/updateNfsShareTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $nfsShare = new NfsShare();
+        $response = $gapicClient->updateNfsShare($nfsShare);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.baremetalsolution.v2.BareMetalSolution/UpdateNfsShare', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getNfsShare();
+        $this->assertProtobufEquals($nfsShare, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateNfsShareTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateNfsShareExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/updateNfsShareTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $nfsShare = new NfsShare();
+        $response = $gapicClient->updateNfsShare($nfsShare);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/updateNfsShareTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -1546,7 +1935,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1558,18 +1947,24 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
+        $id = 'id3355';
         $requestedSizeGib = 525454387;
         $currentSizeGib = 72696456;
+        $emergencySizeGib = 1936971120;
         $autoGrownSizeGib = 1245638678;
         $remainingSpaceGib = 1423108606;
-        $snapshotSchedulePolicy = 'snapshotSchedulePolicy218131295';
+        $snapshotEnabled = true;
+        $pod = 'pod111173';
         $expectedResponse = new Volume();
         $expectedResponse->setName($name);
+        $expectedResponse->setId($id);
         $expectedResponse->setRequestedSizeGib($requestedSizeGib);
         $expectedResponse->setCurrentSizeGib($currentSizeGib);
+        $expectedResponse->setEmergencySizeGib($emergencySizeGib);
         $expectedResponse->setAutoGrownSizeGib($autoGrownSizeGib);
         $expectedResponse->setRemainingSpaceGib($remainingSpaceGib);
-        $expectedResponse->setSnapshotSchedulePolicy($snapshotSchedulePolicy);
+        $expectedResponse->setSnapshotEnabled($snapshotEnabled);
+        $expectedResponse->setPod($pod);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1579,7 +1974,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $volume = new Volume();
-        $response = $client->updateVolume($volume);
+        $response = $gapicClient->updateVolume($volume);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1622,7 +2017,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1645,7 +2040,7 @@ class BareMetalSolutionClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $volume = new Volume();
-        $response = $client->updateVolume($volume);
+        $response = $gapicClient->updateVolume($volume);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

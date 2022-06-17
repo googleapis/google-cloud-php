@@ -3,31 +3,16 @@
     "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
     "language": "php",
     "protoPackage": "google.cloud.baremetalsolution.v2",
-    "libraryPackage": "Google\\Cloud\\BaremetalSolution\\V2",
+    "libraryPackage": "Google\\Cloud\\BareMetalSolution\\V2",
     "services": {
         "BareMetalSolution": {
             "clients": {
                 "grpc": {
                     "libraryClient": "BareMetalSolutionGapicClient",
                     "rpcs": {
-                        "CreateSnapshotSchedulePolicy": {
+                        "DetachLun": {
                             "methods": [
-                                "createSnapshotSchedulePolicy"
-                            ]
-                        },
-                        "CreateVolumeSnapshot": {
-                            "methods": [
-                                "createVolumeSnapshot"
-                            ]
-                        },
-                        "DeleteSnapshotSchedulePolicy": {
-                            "methods": [
-                                "deleteSnapshotSchedulePolicy"
-                            ]
-                        },
-                        "DeleteVolumeSnapshot": {
-                            "methods": [
-                                "deleteVolumeSnapshot"
+                                "detachLun"
                             ]
                         },
                         "GetInstance": {
@@ -45,19 +30,14 @@
                                 "getNetwork"
                             ]
                         },
-                        "GetSnapshotSchedulePolicy": {
+                        "GetNfsShare": {
                             "methods": [
-                                "getSnapshotSchedulePolicy"
+                                "getNfsShare"
                             ]
                         },
                         "GetVolume": {
                             "methods": [
                                 "getVolume"
-                            ]
-                        },
-                        "GetVolumeSnapshot": {
-                            "methods": [
-                                "getVolumeSnapshot"
                             ]
                         },
                         "ListInstances": {
@@ -70,19 +50,19 @@
                                 "listLuns"
                             ]
                         },
+                        "ListNetworkUsage": {
+                            "methods": [
+                                "listNetworkUsage"
+                            ]
+                        },
                         "ListNetworks": {
                             "methods": [
                                 "listNetworks"
                             ]
                         },
-                        "ListSnapshotSchedulePolicies": {
+                        "ListNfsShares": {
                             "methods": [
-                                "listSnapshotSchedulePolicies"
-                            ]
-                        },
-                        "ListVolumeSnapshots": {
-                            "methods": [
-                                "listVolumeSnapshots"
+                                "listNfsShares"
                             ]
                         },
                         "ListVolumes": {
@@ -95,14 +75,34 @@
                                 "resetInstance"
                             ]
                         },
-                        "RestoreVolumeSnapshot": {
+                        "ResizeVolume": {
                             "methods": [
-                                "restoreVolumeSnapshot"
+                                "resizeVolume"
                             ]
                         },
-                        "UpdateSnapshotSchedulePolicy": {
+                        "StartInstance": {
                             "methods": [
-                                "updateSnapshotSchedulePolicy"
+                                "startInstance"
+                            ]
+                        },
+                        "StopInstance": {
+                            "methods": [
+                                "stopInstance"
+                            ]
+                        },
+                        "UpdateInstance": {
+                            "methods": [
+                                "updateInstance"
+                            ]
+                        },
+                        "UpdateNetwork": {
+                            "methods": [
+                                "updateNetwork"
+                            ]
+                        },
+                        "UpdateNfsShare": {
+                            "methods": [
+                                "updateNfsShare"
                             ]
                         },
                         "UpdateVolume": {

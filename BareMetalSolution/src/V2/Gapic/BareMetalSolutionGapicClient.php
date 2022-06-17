@@ -22,56 +22,55 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Cloud\BaremetalSolution\V2\Gapic;
+namespace Google\Cloud\BareMetalSolution\V2\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
+
 use Google\ApiCore\PathTemplate;
+
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\BaremetalSolution\V2\CreateSnapshotSchedulePolicyRequest;
-use Google\Cloud\BaremetalSolution\V2\CreateVolumeSnapshotRequest;
-use Google\Cloud\BaremetalSolution\V2\DeleteSnapshotSchedulePolicyRequest;
-use Google\Cloud\BaremetalSolution\V2\DeleteVolumeSnapshotRequest;
-use Google\Cloud\BaremetalSolution\V2\GetInstanceRequest;
-use Google\Cloud\BaremetalSolution\V2\GetLunRequest;
-use Google\Cloud\BaremetalSolution\V2\GetNetworkRequest;
-use Google\Cloud\BaremetalSolution\V2\GetSnapshotSchedulePolicyRequest;
-use Google\Cloud\BaremetalSolution\V2\GetVolumeRequest;
-use Google\Cloud\BaremetalSolution\V2\GetVolumeSnapshotRequest;
-use Google\Cloud\BaremetalSolution\V2\Instance;
-use Google\Cloud\BaremetalSolution\V2\ListInstancesRequest;
-use Google\Cloud\BaremetalSolution\V2\ListInstancesResponse;
-use Google\Cloud\BaremetalSolution\V2\ListLunsRequest;
-use Google\Cloud\BaremetalSolution\V2\ListLunsResponse;
-use Google\Cloud\BaremetalSolution\V2\ListNetworksRequest;
-use Google\Cloud\BaremetalSolution\V2\ListNetworksResponse;
-use Google\Cloud\BaremetalSolution\V2\ListSnapshotSchedulePoliciesRequest;
-use Google\Cloud\BaremetalSolution\V2\ListSnapshotSchedulePoliciesResponse;
-use Google\Cloud\BaremetalSolution\V2\ListVolumeSnapshotsRequest;
-use Google\Cloud\BaremetalSolution\V2\ListVolumeSnapshotsResponse;
-use Google\Cloud\BaremetalSolution\V2\ListVolumesRequest;
-use Google\Cloud\BaremetalSolution\V2\ListVolumesResponse;
-use Google\Cloud\BaremetalSolution\V2\Lun;
-use Google\Cloud\BaremetalSolution\V2\Network;
-use Google\Cloud\BaremetalSolution\V2\ResetInstanceRequest;
-use Google\Cloud\BaremetalSolution\V2\RestoreVolumeSnapshotRequest;
-use Google\Cloud\BaremetalSolution\V2\SnapshotSchedulePolicy;
-use Google\Cloud\BaremetalSolution\V2\UpdateSnapshotSchedulePolicyRequest;
-use Google\Cloud\BaremetalSolution\V2\UpdateVolumeRequest;
-use Google\Cloud\BaremetalSolution\V2\Volume;
-use Google\Cloud\BaremetalSolution\V2\VolumeSnapshot;
+use Google\Cloud\BareMetalSolution\V2\DetachLunRequest;
+use Google\Cloud\BareMetalSolution\V2\GetInstanceRequest;
+use Google\Cloud\BareMetalSolution\V2\GetLunRequest;
+use Google\Cloud\BareMetalSolution\V2\GetNetworkRequest;
+use Google\Cloud\BareMetalSolution\V2\GetNfsShareRequest;
+use Google\Cloud\BareMetalSolution\V2\GetVolumeRequest;
+use Google\Cloud\BareMetalSolution\V2\Instance;
+use Google\Cloud\BareMetalSolution\V2\ListInstancesRequest;
+use Google\Cloud\BareMetalSolution\V2\ListInstancesResponse;
+use Google\Cloud\BareMetalSolution\V2\ListLunsRequest;
+use Google\Cloud\BareMetalSolution\V2\ListLunsResponse;
+use Google\Cloud\BareMetalSolution\V2\ListNetworksRequest;
+use Google\Cloud\BareMetalSolution\V2\ListNetworksResponse;
+use Google\Cloud\BareMetalSolution\V2\ListNetworkUsageRequest;
+use Google\Cloud\BareMetalSolution\V2\ListNetworkUsageResponse;
+use Google\Cloud\BareMetalSolution\V2\ListNfsSharesRequest;
+use Google\Cloud\BareMetalSolution\V2\ListNfsSharesResponse;
+use Google\Cloud\BareMetalSolution\V2\ListVolumesRequest;
+use Google\Cloud\BareMetalSolution\V2\ListVolumesResponse;
+use Google\Cloud\BareMetalSolution\V2\Lun;
+use Google\Cloud\BareMetalSolution\V2\Network;
+use Google\Cloud\BareMetalSolution\V2\NfsShare;
+use Google\Cloud\BareMetalSolution\V2\ResetInstanceRequest;
+use Google\Cloud\BareMetalSolution\V2\ResizeVolumeRequest;
+use Google\Cloud\BareMetalSolution\V2\StartInstanceRequest;
+use Google\Cloud\BareMetalSolution\V2\StopInstanceRequest;
+use Google\Cloud\BareMetalSolution\V2\UpdateInstanceRequest;
+use Google\Cloud\BareMetalSolution\V2\UpdateNetworkRequest;
+use Google\Cloud\BareMetalSolution\V2\UpdateNfsShareRequest;
+use Google\Cloud\BareMetalSolution\V2\UpdateVolumeRequest;
+use Google\Cloud\BareMetalSolution\V2\Volume;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
-use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description: Performs management operations on Bare Metal Solution servers.
@@ -89,10 +88,34 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $bareMetalSolutionClient = new BareMetalSolutionClient();
  * try {
- *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
- *     $snapshotSchedulePolicy = new SnapshotSchedulePolicy();
- *     $snapshotSchedulePolicyId = 'snapshot_schedule_policy_id';
- *     $response = $bareMetalSolutionClient->createSnapshotSchedulePolicy($formattedParent, $snapshotSchedulePolicy, $snapshotSchedulePolicyId);
+ *     $formattedInstance = $bareMetalSolutionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+ *     $formattedLun = $bareMetalSolutionClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+ *     $operationResponse = $bareMetalSolutionClient->detachLun($formattedInstance, $formattedLun);
+ *     $operationResponse->pollUntilComplete();
+ *     if ($operationResponse->operationSucceeded()) {
+ *         $result = $operationResponse->getResult();
+ *     // doSomethingWith($result)
+ *     } else {
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
+ *     }
+ *     // Alternatively:
+ *     // start the operation, keep the operation name, and resume later
+ *     $operationResponse = $bareMetalSolutionClient->detachLun($formattedInstance, $formattedLun);
+ *     $operationName = $operationResponse->getName();
+ *     // ... do other work
+ *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'detachLun');
+ *     while (!$newOperationResponse->isDone()) {
+ *         // ... do other work
+ *         $newOperationResponse->reload();
+ *     }
+ *     if ($newOperationResponse->operationSucceeded()) {
+ *         $result = $newOperationResponse->getResult();
+ *     // doSomethingWith($result)
+ *     } else {
+ *         $error = $newOperationResponse->getError();
+ *         // handleError($error)
+ *     }
  * } finally {
  *     $bareMetalSolutionClient->close();
  * }
@@ -140,13 +163,13 @@ class BareMetalSolutionGapicClient
 
     private static $lunNameTemplate;
 
+    private static $nFSShareNameTemplate;
+
     private static $networkNameTemplate;
 
-    private static $snapshotSchedulePolicyNameTemplate;
+    private static $serverNetworkTemplateNameTemplate;
 
     private static $volumeNameTemplate;
-
-    private static $volumeSnapshotNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -156,16 +179,24 @@ class BareMetalSolutionGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/bare_metal_solution_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/bare_metal_solution_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/bare_metal_solution_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ .
+                '/../resources/bare_metal_solution_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ .
+                '/../resources/bare_metal_solution_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/bare_metal_solution_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/bare_metal_solution_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/bare_metal_solution_rest_client_config.php',
                 ],
             ],
         ];
@@ -174,7 +205,9 @@ class BareMetalSolutionGapicClient
     private static function getInstanceNameTemplate()
     {
         if (self::$instanceNameTemplate == null) {
-            self::$instanceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/instances/{instance}');
+            self::$instanceNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/instances/{instance}'
+            );
         }
 
         return self::$instanceNameTemplate;
@@ -183,7 +216,9 @@ class BareMetalSolutionGapicClient
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
-            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+            self::$locationNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}'
+            );
         }
 
         return self::$locationNameTemplate;
@@ -192,46 +227,56 @@ class BareMetalSolutionGapicClient
     private static function getLunNameTemplate()
     {
         if (self::$lunNameTemplate == null) {
-            self::$lunNameTemplate = new PathTemplate('projects/{project}/locations/{location}/volumes/{volume}/luns/{lun}');
+            self::$lunNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/volumes/{volume}/luns/{lun}'
+            );
         }
 
         return self::$lunNameTemplate;
     }
 
+    private static function getNFSShareNameTemplate()
+    {
+        if (self::$nFSShareNameTemplate == null) {
+            self::$nFSShareNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/nfsShares/{nfs_share}'
+            );
+        }
+
+        return self::$nFSShareNameTemplate;
+    }
+
     private static function getNetworkNameTemplate()
     {
         if (self::$networkNameTemplate == null) {
-            self::$networkNameTemplate = new PathTemplate('projects/{project}/locations/{location}/networks/{network}');
+            self::$networkNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/networks/{network}'
+            );
         }
 
         return self::$networkNameTemplate;
     }
 
-    private static function getSnapshotSchedulePolicyNameTemplate()
+    private static function getServerNetworkTemplateNameTemplate()
     {
-        if (self::$snapshotSchedulePolicyNameTemplate == null) {
-            self::$snapshotSchedulePolicyNameTemplate = new PathTemplate('projects/{project}/locations/{location}/snapshotSchedulePolicies/{snapshot_schedule_policy}');
+        if (self::$serverNetworkTemplateNameTemplate == null) {
+            self::$serverNetworkTemplateNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/serverNetworkTemplate/{server_network_template}'
+            );
         }
 
-        return self::$snapshotSchedulePolicyNameTemplate;
+        return self::$serverNetworkTemplateNameTemplate;
     }
 
     private static function getVolumeNameTemplate()
     {
         if (self::$volumeNameTemplate == null) {
-            self::$volumeNameTemplate = new PathTemplate('projects/{project}/locations/{location}/volumes/{volume}');
+            self::$volumeNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/volumes/{volume}'
+            );
         }
 
         return self::$volumeNameTemplate;
-    }
-
-    private static function getVolumeSnapshotNameTemplate()
-    {
-        if (self::$volumeSnapshotNameTemplate == null) {
-            self::$volumeSnapshotNameTemplate = new PathTemplate('projects/{project}/locations/{location}/volumes/{volume}/snapshots/{snapshot}');
-        }
-
-        return self::$volumeSnapshotNameTemplate;
     }
 
     private static function getPathTemplateMap()
@@ -241,10 +286,10 @@ class BareMetalSolutionGapicClient
                 'instance' => self::getInstanceNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'lun' => self::getLunNameTemplate(),
+                'nFSShare' => self::getNFSShareNameTemplate(),
                 'network' => self::getNetworkNameTemplate(),
-                'snapshotSchedulePolicy' => self::getSnapshotSchedulePolicyNameTemplate(),
+                'serverNetworkTemplate' => self::getServerNetworkTemplateNameTemplate(),
                 'volume' => self::getVolumeNameTemplate(),
-                'volumeSnapshot' => self::getVolumeSnapshotNameTemplate(),
             ];
         }
 
@@ -309,6 +354,25 @@ class BareMetalSolutionGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a nfs_share
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $nfsShare
+     *
+     * @return string The formatted nfs_share resource.
+     */
+    public static function nFSShareName($project, $location, $nfsShare)
+    {
+        return self::getNFSShareNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'nfs_share' => $nfsShare,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a network
      * resource.
      *
@@ -329,20 +393,23 @@ class BareMetalSolutionGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
-     * snapshot_schedule_policy resource.
+     * server_network_template resource.
      *
      * @param string $project
      * @param string $location
-     * @param string $snapshotSchedulePolicy
+     * @param string $serverNetworkTemplate
      *
-     * @return string The formatted snapshot_schedule_policy resource.
+     * @return string The formatted server_network_template resource.
      */
-    public static function snapshotSchedulePolicyName($project, $location, $snapshotSchedulePolicy)
-    {
-        return self::getSnapshotSchedulePolicyNameTemplate()->render([
+    public static function serverNetworkTemplateName(
+        $project,
+        $location,
+        $serverNetworkTemplate
+    ) {
+        return self::getServerNetworkTemplateNameTemplate()->render([
             'project' => $project,
             'location' => $location,
-            'snapshot_schedule_policy' => $snapshotSchedulePolicy,
+            'server_network_template' => $serverNetworkTemplate,
         ]);
     }
 
@@ -366,37 +433,16 @@ class BareMetalSolutionGapicClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent a
-     * volume_snapshot resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $volume
-     * @param string $snapshot
-     *
-     * @return string The formatted volume_snapshot resource.
-     */
-    public static function volumeSnapshotName($project, $location, $volume, $snapshot)
-    {
-        return self::getVolumeSnapshotNameTemplate()->render([
-            'project' => $project,
-            'location' => $location,
-            'volume' => $volume,
-            'snapshot' => $snapshot,
-        ]);
-    }
-
-    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - instance: projects/{project}/locations/{location}/instances/{instance}
      * - location: projects/{project}/locations/{location}
      * - lun: projects/{project}/locations/{location}/volumes/{volume}/luns/{lun}
+     * - nFSShare: projects/{project}/locations/{location}/nfsShares/{nfs_share}
      * - network: projects/{project}/locations/{location}/networks/{network}
-     * - snapshotSchedulePolicy: projects/{project}/locations/{location}/snapshotSchedulePolicies/{snapshot_schedule_policy}
+     * - serverNetworkTemplate: projects/{project}/locations/{location}/serverNetworkTemplate/{server_network_template}
      * - volume: projects/{project}/locations/{location}/volumes/{volume}
-     * - volumeSnapshot: projects/{project}/locations/{location}/volumes/{volume}/snapshots/{snapshot}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -416,7 +462,9 @@ class BareMetalSolutionGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -430,7 +478,9 @@ class BareMetalSolutionGapicClient
             }
         }
 
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -456,8 +506,14 @@ class BareMetalSolutionGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse(
+            $operationName,
+            $this->getOperationsClient(),
+            $options
+        );
         $operation->reload();
         return $operation;
     }
@@ -527,109 +583,47 @@ class BareMetalSolutionGapicClient
     }
 
     /**
-     * Create a snapshot schedule policy in the specified project.
+     * Detach LUN from Instance.
      *
      * Sample code:
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
-     *     $snapshotSchedulePolicy = new SnapshotSchedulePolicy();
-     *     $snapshotSchedulePolicyId = 'snapshot_schedule_policy_id';
-     *     $response = $bareMetalSolutionClient->createSnapshotSchedulePolicy($formattedParent, $snapshotSchedulePolicy, $snapshotSchedulePolicyId);
+     *     $formattedInstance = $bareMetalSolutionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $formattedLun = $bareMetalSolutionClient->lunName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[LUN]');
+     *     $operationResponse = $bareMetalSolutionClient->detachLun($formattedInstance, $formattedLun);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bareMetalSolutionClient->detachLun($formattedInstance, $formattedLun);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'detachLun');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param string                 $parent                   Required. The parent project and location containing the SnapshotSchedulePolicy.
-     * @param SnapshotSchedulePolicy $snapshotSchedulePolicy   Required. The SnapshotSchedulePolicy to create.
-     * @param string                 $snapshotSchedulePolicyId Required. Snapshot policy ID
-     * @param array                  $optionalArgs             {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\BaremetalSolution\V2\SnapshotSchedulePolicy
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function createSnapshotSchedulePolicy($parent, $snapshotSchedulePolicy, $snapshotSchedulePolicyId, array $optionalArgs = [])
-    {
-        $request = new CreateSnapshotSchedulePolicyRequest();
-        $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setSnapshotSchedulePolicy($snapshotSchedulePolicy);
-        $request->setSnapshotSchedulePolicyId($snapshotSchedulePolicyId);
-        $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateSnapshotSchedulePolicy', SnapshotSchedulePolicy::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
-     * Create a storage volume snapshot in a containing volume.
-     *
-     * Sample code:
-     * ```
-     * $bareMetalSolutionClient = new BareMetalSolutionClient();
-     * try {
-     *     $formattedParent = $bareMetalSolutionClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-     *     $volumeSnapshot = new VolumeSnapshot();
-     *     $response = $bareMetalSolutionClient->createVolumeSnapshot($formattedParent, $volumeSnapshot);
-     * } finally {
-     *     $bareMetalSolutionClient->close();
-     * }
-     * ```
-     *
-     * @param string         $parent         Required. The volume to snapshot.
-     * @param VolumeSnapshot $volumeSnapshot Required. The volume snapshot to create. Only the description field may be specified.
-     * @param array          $optionalArgs   {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\BaremetalSolution\V2\VolumeSnapshot
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function createVolumeSnapshot($parent, $volumeSnapshot, array $optionalArgs = [])
-    {
-        $request = new CreateVolumeSnapshotRequest();
-        $requestParamHeaders = [];
-        $request->setParent($parent);
-        $request->setVolumeSnapshot($volumeSnapshot);
-        $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateVolumeSnapshot', VolumeSnapshot::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
-     * Delete a named snapshot schedule policy.
-     *
-     * Sample code:
-     * ```
-     * $bareMetalSolutionClient = new BareMetalSolutionClient();
-     * try {
-     *     $formattedName = $bareMetalSolutionClient->snapshotSchedulePolicyName('[PROJECT]', '[LOCATION]', '[SNAPSHOT_SCHEDULE_POLICY]');
-     *     $bareMetalSolutionClient->deleteSnapshotSchedulePolicy($formattedName);
-     * } finally {
-     *     $bareMetalSolutionClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The name of the snapshot schedule policy to delete.
+     * @param string $instance     Required. Name of the instance.
+     * @param string $lun          Required. Name of the Lun to detach.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -640,55 +634,29 @@ class BareMetalSolutionGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteSnapshotSchedulePolicy($name, array $optionalArgs = [])
-    {
-        $request = new DeleteSnapshotSchedulePolicyRequest();
-        $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteSnapshotSchedulePolicy', GPBEmpty::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
-     * Deletes a storage volume snapshot for a given volume.
-     *
-     * Sample code:
-     * ```
-     * $bareMetalSolutionClient = new BareMetalSolutionClient();
-     * try {
-     *     $formattedName = $bareMetalSolutionClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-     *     $bareMetalSolutionClient->deleteVolumeSnapshot($formattedName);
-     * } finally {
-     *     $bareMetalSolutionClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The name of the snapshot to delete.
-     * @param array  $optionalArgs {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
+     * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteVolumeSnapshot($name, array $optionalArgs = [])
+    public function detachLun($instance, $lun, array $optionalArgs = [])
     {
-        $request = new DeleteVolumeSnapshotRequest();
+        $request = new DetachLunRequest();
         $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteVolumeSnapshot', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $request->setInstance($instance);
+        $request->setLun($lun);
+        $requestParamHeaders['instance'] = $instance;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DetachLun',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -716,7 +684,7 @@ class BareMetalSolutionGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\BaremetalSolution\V2\Instance
+     * @return \Google\Cloud\BareMetalSolution\V2\Instance
      *
      * @throws ApiException if the remote call fails
      */
@@ -726,9 +694,18 @@ class BareMetalSolutionGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetInstance', Instance::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetInstance',
+            Instance::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -756,7 +733,7 @@ class BareMetalSolutionGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\BaremetalSolution\V2\Lun
+     * @return \Google\Cloud\BareMetalSolution\V2\Lun
      *
      * @throws ApiException if the remote call fails
      */
@@ -766,9 +743,18 @@ class BareMetalSolutionGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetLun', Lun::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLun',
+            Lun::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -796,7 +782,7 @@ class BareMetalSolutionGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\BaremetalSolution\V2\Network
+     * @return \Google\Cloud\BareMetalSolution\V2\Network
      *
      * @throws ApiException if the remote call fails
      */
@@ -806,20 +792,29 @@ class BareMetalSolutionGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetNetwork', Network::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetNetwork',
+            Network::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
-     * Get details of a single snapshot schedule policy.
+     * Get details of a single NFS share.
      *
      * Sample code:
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $formattedName = $bareMetalSolutionClient->snapshotSchedulePolicyName('[PROJECT]', '[LOCATION]', '[SNAPSHOT_SCHEDULE_POLICY]');
-     *     $response = $bareMetalSolutionClient->getSnapshotSchedulePolicy($formattedName);
+     *     $formattedName = $bareMetalSolutionClient->nFSShareName('[PROJECT]', '[LOCATION]', '[NFS_SHARE]');
+     *     $response = $bareMetalSolutionClient->getNfsShare($formattedName);
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
@@ -836,19 +831,28 @@ class BareMetalSolutionGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\BaremetalSolution\V2\SnapshotSchedulePolicy
+     * @return \Google\Cloud\BareMetalSolution\V2\NfsShare
      *
      * @throws ApiException if the remote call fails
      */
-    public function getSnapshotSchedulePolicy($name, array $optionalArgs = [])
+    public function getNfsShare($name, array $optionalArgs = [])
     {
-        $request = new GetSnapshotSchedulePolicyRequest();
+        $request = new GetNfsShareRequest();
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetSnapshotSchedulePolicy', SnapshotSchedulePolicy::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetNfsShare',
+            NfsShare::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -876,7 +880,7 @@ class BareMetalSolutionGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\BaremetalSolution\V2\Volume
+     * @return \Google\Cloud\BareMetalSolution\V2\Volume
      *
      * @throws ApiException if the remote call fails
      */
@@ -886,49 +890,18 @@ class BareMetalSolutionGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetVolume', Volume::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
-     * Get details of a single storage volume snapshot.
-     *
-     * Sample code:
-     * ```
-     * $bareMetalSolutionClient = new BareMetalSolutionClient();
-     * try {
-     *     $formattedName = $bareMetalSolutionClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-     *     $response = $bareMetalSolutionClient->getVolumeSnapshot($formattedName);
-     * } finally {
-     *     $bareMetalSolutionClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. Name of the resource.
-     * @param array  $optionalArgs {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\BaremetalSolution\V2\VolumeSnapshot
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function getVolumeSnapshot($name, array $optionalArgs = [])
-    {
-        $request = new GetVolumeSnapshotRequest();
-        $requestParamHeaders = [];
-        $request->setName($name);
-        $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetVolumeSnapshot', VolumeSnapshot::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetVolume',
+            Volume::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -970,6 +943,8 @@ class BareMetalSolutionGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           List filter.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -995,9 +970,22 @@ class BareMetalSolutionGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListInstances', $optionalArgs, ListInstancesResponse::class, $request);
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListInstances',
+            $optionalArgs,
+            ListInstancesResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1064,9 +1052,68 @@ class BareMetalSolutionGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListLuns', $optionalArgs, ListLunsResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLuns',
+            $optionalArgs,
+            ListLunsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * List all Networks (and used IPs for each Network) in the vendor account
+     * associated with the specified project.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedLocation = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $response = $bareMetalSolutionClient->listNetworkUsage($formattedLocation);
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $location     Required. Parent value (project and location).
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\BareMetalSolution\V2\ListNetworkUsageResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listNetworkUsage($location, array $optionalArgs = [])
+    {
+        $request = new ListNetworkUsageRequest();
+        $requestParamHeaders = [];
+        $request->setLocation($location);
+        $requestParamHeaders['location'] = $location;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ListNetworkUsage',
+            ListNetworkUsageResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1108,6 +1155,8 @@ class BareMetalSolutionGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           List filter.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1133,13 +1182,26 @@ class BareMetalSolutionGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListNetworks', $optionalArgs, ListNetworksResponse::class, $request);
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListNetworks',
+            $optionalArgs,
+            ListNetworksResponse::class,
+            $request
+        );
     }
 
     /**
-     * List snapshot schedule policies in a given project and location.
+     * List NFS shares.
      *
      * Sample code:
      * ```
@@ -1147,7 +1209,7 @@ class BareMetalSolutionGapicClient
      * try {
      *     $formattedParent = $bareMetalSolutionClient->locationName('[PROJECT]', '[LOCATION]');
      *     // Iterate over pages of elements
-     *     $pagedResponse = $bareMetalSolutionClient->listSnapshotSchedulePolicies($formattedParent);
+     *     $pagedResponse = $bareMetalSolutionClient->listNfsShares($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -1155,7 +1217,7 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $bareMetalSolutionClient->listSnapshotSchedulePolicies($formattedParent);
+     *     $pagedResponse = $bareMetalSolutionClient->listNfsShares($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -1164,7 +1226,7 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent project containing the Snapshot Schedule Policies.
+     * @param string $parent       Required. Parent value for ListNfsSharesRequest.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1177,6 +1239,8 @@ class BareMetalSolutionGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           List filter.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1188,9 +1252,9 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listSnapshotSchedulePolicies($parent, array $optionalArgs = [])
+    public function listNfsShares($parent, array $optionalArgs = [])
     {
-        $request = new ListSnapshotSchedulePoliciesRequest();
+        $request = new ListNfsSharesRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $requestParamHeaders['parent'] = $parent;
@@ -1202,78 +1266,22 @@ class BareMetalSolutionGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListSnapshotSchedulePolicies', $optionalArgs, ListSnapshotSchedulePoliciesResponse::class, $request);
-    }
-
-    /**
-     * List storage volume snapshots for given storage volume.
-     *
-     * Sample code:
-     * ```
-     * $bareMetalSolutionClient = new BareMetalSolutionClient();
-     * try {
-     *     $formattedParent = $bareMetalSolutionClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
-     *     // Iterate over pages of elements
-     *     $pagedResponse = $bareMetalSolutionClient->listVolumeSnapshots($formattedParent);
-     *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
-     *             // doSomethingWith($element);
-     *         }
-     *     }
-     *     // Alternatively:
-     *     // Iterate through all elements
-     *     $pagedResponse = $bareMetalSolutionClient->listVolumeSnapshots($formattedParent);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     * } finally {
-     *     $bareMetalSolutionClient->close();
-     * }
-     * ```
-     *
-     * @param string $parent       Required. Parent value for ListVolumesRequest.
-     * @param array  $optionalArgs {
-     *     Optional.
-     *
-     *     @type int $pageSize
-     *           The maximum number of resources contained in the underlying API
-     *           response. The API may return fewer values in a page, even if
-     *           there are additional values to be retrieved.
-     *     @type string $pageToken
-     *           A page token is used to specify a page of values to be returned.
-     *           If no page token is specified (the default), the first page
-     *           of values will be returned. Any page token used here must have
-     *           been generated by a previous call to the API.
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\ApiCore\PagedListResponse
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function listVolumeSnapshots($parent, array $optionalArgs = [])
-    {
-        $request = new ListVolumeSnapshotsRequest();
-        $requestParamHeaders = [];
-        $request->setParent($parent);
-        $requestParamHeaders['parent'] = $parent;
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
         }
 
-        if (isset($optionalArgs['pageToken'])) {
-            $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListVolumeSnapshots', $optionalArgs, ListVolumeSnapshotsResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListNfsShares',
+            $optionalArgs,
+            ListNfsSharesResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1315,6 +1323,8 @@ class BareMetalSolutionGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           List filter.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1340,9 +1350,22 @@ class BareMetalSolutionGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListVolumes', $optionalArgs, ListVolumesResponse::class, $request);
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListVolumes',
+            $optionalArgs,
+            ListVolumesResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1406,20 +1429,29 @@ class BareMetalSolutionGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('ResetInstance', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'ResetInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
-     * Restore a storage volume snapshot to its containing volume.
+     * Emergency Volume resize.
      *
      * Sample code:
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $formattedVolumeSnapshot = $bareMetalSolutionClient->volumeSnapshotName('[PROJECT]', '[LOCATION]', '[VOLUME]', '[SNAPSHOT]');
-     *     $operationResponse = $bareMetalSolutionClient->restoreVolumeSnapshot($formattedVolumeSnapshot);
+     *     $formattedVolume = $bareMetalSolutionClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+     *     $operationResponse = $bareMetalSolutionClient->resizeVolume($formattedVolume);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -1430,10 +1462,10 @@ class BareMetalSolutionGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bareMetalSolutionClient->restoreVolumeSnapshot($formattedVolumeSnapshot);
+     *     $operationResponse = $bareMetalSolutionClient->resizeVolume($formattedVolume);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
-     *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'restoreVolumeSnapshot');
+     *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'resizeVolume');
      *     while (!$newOperationResponse->isDone()) {
      *         // ... do other work
      *         $newOperationResponse->reload();
@@ -1450,8 +1482,88 @@ class BareMetalSolutionGapicClient
      * }
      * ```
      *
-     * @param string $volumeSnapshot Required. Name of the resource.
-     * @param array  $optionalArgs   {
+     * @param string $volume       Required. Volume to resize.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $sizeGib
+     *           New Volume size, in GiB.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function resizeVolume($volume, array $optionalArgs = [])
+    {
+        $request = new ResizeVolumeRequest();
+        $requestParamHeaders = [];
+        $request->setVolume($volume);
+        $requestParamHeaders['volume'] = $volume;
+        if (isset($optionalArgs['sizeGib'])) {
+            $request->setSizeGib($optionalArgs['sizeGib']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'ResizeVolume',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Starts a server that was shutdown.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $formattedName = $bareMetalSolutionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $operationResponse = $bareMetalSolutionClient->startInstance($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bareMetalSolutionClient->startInstance($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'startInstance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the resource.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -1465,39 +1577,67 @@ class BareMetalSolutionGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function restoreVolumeSnapshot($volumeSnapshot, array $optionalArgs = [])
+    public function startInstance($name, array $optionalArgs = [])
     {
-        $request = new RestoreVolumeSnapshotRequest();
+        $request = new StartInstanceRequest();
         $requestParamHeaders = [];
-        $request->setVolumeSnapshot($volumeSnapshot);
-        $requestParamHeaders['volume_snapshot'] = $volumeSnapshot;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('RestoreVolumeSnapshot', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'StartInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
-     * Update a snapshot schedule policy in the specified project.
+     * Stop a running server.
      *
      * Sample code:
      * ```
      * $bareMetalSolutionClient = new BareMetalSolutionClient();
      * try {
-     *     $snapshotSchedulePolicy = new SnapshotSchedulePolicy();
-     *     $updateMask = new FieldMask();
-     *     $response = $bareMetalSolutionClient->updateSnapshotSchedulePolicy($snapshotSchedulePolicy, $updateMask);
+     *     $formattedName = $bareMetalSolutionClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $operationResponse = $bareMetalSolutionClient->stopInstance($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bareMetalSolutionClient->stopInstance($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'stopInstance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
      * } finally {
      *     $bareMetalSolutionClient->close();
      * }
      * ```
      *
-     * @param SnapshotSchedulePolicy $snapshotSchedulePolicy Required. The snapshot schedule policy to update.
-     *
-     *                                                       The `name` field is used to identify the snapshot schedule policy to
-     *                                                       update. Format:
-     *                                                       projects/{project}/locations/global/snapshotSchedulePolicies/{policy}
-     * @param FieldMask              $updateMask             Required. The list of fields to update.
-     * @param array                  $optionalArgs           {
+     * @param string $name         Required. Name of the resource.
+     * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -1507,20 +1647,285 @@ class BareMetalSolutionGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\BaremetalSolution\V2\SnapshotSchedulePolicy
+     * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSnapshotSchedulePolicy($snapshotSchedulePolicy, $updateMask, array $optionalArgs = [])
+    public function stopInstance($name, array $optionalArgs = [])
     {
-        $request = new UpdateSnapshotSchedulePolicyRequest();
+        $request = new StopInstanceRequest();
         $requestParamHeaders = [];
-        $request->setSnapshotSchedulePolicy($snapshotSchedulePolicy);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['snapshot_schedule_policy.name'] = $snapshotSchedulePolicy->getName();
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateSnapshotSchedulePolicy', SnapshotSchedulePolicy::class, $optionalArgs, $request)->wait();
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'StopInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Update details of a single server.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $instance = new Instance();
+     *     $operationResponse = $bareMetalSolutionClient->updateInstance($instance);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bareMetalSolutionClient->updateInstance($instance);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'updateInstance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param Instance $instance     Required. The server to update.
+     *
+     *                               The `name` field is used to identify the instance to update.
+     *                               Format: projects/{project}/locations/{location}/instances/{instance}
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           The list of fields to update.
+     *           The currently supported fields are:
+     *           `labels`
+     *           `hyperthreading_enabled`
+     *           `os_image`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateInstance($instance, array $optionalArgs = [])
+    {
+        $request = new UpdateInstanceRequest();
+        $requestParamHeaders = [];
+        $request->setInstance($instance);
+        $requestParamHeaders['instance.name'] = $instance->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Update details of a single network.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $network = new Network();
+     *     $operationResponse = $bareMetalSolutionClient->updateNetwork($network);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bareMetalSolutionClient->updateNetwork($network);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'updateNetwork');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param Network $network      Required. The network to update.
+     *
+     *                              The `name` field is used to identify the instance to update.
+     *                              Format: projects/{project}/locations/{location}/networks/{network}
+     * @param array   $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           The list of fields to update.
+     *           The only currently supported fields are:
+     *           `labels`, `reservations`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateNetwork($network, array $optionalArgs = [])
+    {
+        $request = new UpdateNetworkRequest();
+        $requestParamHeaders = [];
+        $request->setNetwork($network);
+        $requestParamHeaders['network.name'] = $network->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateNetwork',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Update details of a single NFS share.
+     *
+     * Sample code:
+     * ```
+     * $bareMetalSolutionClient = new BareMetalSolutionClient();
+     * try {
+     *     $nfsShare = new NfsShare();
+     *     $operationResponse = $bareMetalSolutionClient->updateNfsShare($nfsShare);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bareMetalSolutionClient->updateNfsShare($nfsShare);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bareMetalSolutionClient->resumeOperation($operationName, 'updateNfsShare');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $bareMetalSolutionClient->close();
+     * }
+     * ```
+     *
+     * @param NfsShare $nfsShare     Required. The NFS share to update.
+     *
+     *                               The `name` field is used to identify the NFS share to update.
+     *                               Format: projects/{project}/locations/{location}/nfsShares/{nfs_share}
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           The list of fields to update.
+     *           The only currently supported fields are:
+     *           `labels`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateNfsShare($nfsShare, array $optionalArgs = [])
+    {
+        $request = new UpdateNfsShareRequest();
+        $requestParamHeaders = [];
+        $request->setNfsShare($nfsShare);
+        $requestParamHeaders['nfs_share.name'] = $nfsShare->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateNfsShare',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -1574,6 +1979,9 @@ class BareMetalSolutionGapicClient
      *           The only currently supported fields are:
      *           `snapshot_auto_delete_behavior`
      *           `snapshot_schedule_policy_name`
+     *           'labels'
+     *           'snapshot_enabled'
+     *           'snapshot_reservation_detail.reserved_space_percent'
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1595,8 +2003,17 @@ class BareMetalSolutionGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('UpdateVolume', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateVolume',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 }

@@ -22,9 +22,9 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Cloud\BaremetalSolution\V2;
+namespace Google\Cloud\BareMetalSolution\V2;
 
-use Google\Cloud\BaremetalSolution\V2\Gapic\BareMetalSolutionGapicClient;
+use Google\Cloud\BareMetalSolution\V2\Gapic\BareMetalSolutionGapicClient;
 
 /** {@inheritdoc} */
 class BareMetalSolutionClient extends BareMetalSolutionGapicClient

@@ -5,13 +5,13 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\BaremetalSolution\\": "src",
+            "Google\\Cloud\\BareMetalSolution\\": "src",
             "GPBMetadata\\Google\\Cloud\\Baremetalsolution\\": "metadata"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Google\\Cloud\\BaremetalSolution\\Tests\\": "tests"
+            "Google\\Cloud\\BareMetalSolution\\Tests\\": "tests"
         }
     },
     "extra": {

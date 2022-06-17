@@ -3,51 +3,14 @@
 return [
     'interfaces' => [
         'google.cloud.baremetalsolution.v2.BareMetalSolution' => [
-            'CreateSnapshotSchedulePolicy' => [
+            'DetachLun' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/snapshotSchedulePolicies',
-                'body' => 'snapshot_schedule_policy',
+                'uriTemplate' => '/v2/{instance=projects/*/locations/*/instances/*}:detachLun',
+                'body' => '*',
                 'placeholders' => [
-                    'parent' => [
+                    'instance' => [
                         'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-                'queryParams' => [
-                    'snapshot_schedule_policy_id',
-                ],
-            ],
-            'CreateVolumeSnapshot' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*/locations/*/volumes/*}/snapshots',
-                'body' => 'volume_snapshot',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteSnapshotSchedulePolicy' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=projects/*/locations/*/snapshotSchedulePolicies/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteVolumeSnapshot' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=projects/*/locations/*/volumes/*/snapshots/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
+                            'getInstance',
                         ],
                     ],
                 ],
@@ -85,9 +48,9 @@ return [
                     ],
                 ],
             ],
-            'GetSnapshotSchedulePolicy' => [
+            'GetNfsShare' => [
                 'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/locations/*/snapshotSchedulePolicies/*}',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/nfsShares/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -99,17 +62,6 @@ return [
             'GetVolume' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/locations/*/volumes/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetVolumeSnapshot' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/locations/*/volumes/*/snapshots/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -140,6 +92,17 @@ return [
                     ],
                 ],
             ],
+            'ListNetworkUsage' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{location=projects/*/locations/*}/networks:listNetworkUsage',
+                'placeholders' => [
+                    'location' => [
+                        'getters' => [
+                            'getLocation',
+                        ],
+                    ],
+                ],
+            ],
             'ListNetworks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/locations/*}/networks',
@@ -151,20 +114,9 @@ return [
                     ],
                 ],
             ],
-            'ListSnapshotSchedulePolicies' => [
+            'ListNfsShares' => [
                 'method' => 'get',
-                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/snapshotSchedulePolicies',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListVolumeSnapshots' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{parent=projects/*/locations/*/volumes/*}/snapshots',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/nfsShares',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -196,32 +148,79 @@ return [
                     ],
                 ],
             ],
-            'RestoreVolumeSnapshot' => [
+            'ResizeVolume' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{volume_snapshot=projects/*/locations/*/volumes/*/snapshots/*}:restoreVolumeSnapshot',
+                'uriTemplate' => '/v2/{volume=projects/*/locations/*/volumes/*}:resize',
                 'body' => '*',
                 'placeholders' => [
-                    'volume_snapshot' => [
+                    'volume' => [
                         'getters' => [
-                            'getVolumeSnapshot',
+                            'getVolume',
                         ],
                     ],
                 ],
             ],
-            'UpdateSnapshotSchedulePolicy' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v2/{snapshot_schedule_policy.name=projects/*/locations/*/snapshotSchedulePolicies/*}',
-                'body' => 'snapshot_schedule_policy',
+            'StartInstance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/instances/*}:start',
+                'body' => '*',
                 'placeholders' => [
-                    'snapshot_schedule_policy.name' => [
+                    'name' => [
                         'getters' => [
-                            'getSnapshotSchedulePolicy',
                             'getName',
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'update_mask',
+            ],
+            'StopInstance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/instances/*}:stop',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateInstance' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{instance.name=projects/*/locations/*/instances/*}',
+                'body' => 'instance',
+                'placeholders' => [
+                    'instance.name' => [
+                        'getters' => [
+                            'getInstance',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateNetwork' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{network.name=projects/*/locations/*/networks/*}',
+                'body' => 'network',
+                'placeholders' => [
+                    'network.name' => [
+                        'getters' => [
+                            'getNetwork',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateNfsShare' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{nfs_share.name=projects/*/locations/*/nfsShares/*}',
+                'body' => 'nfs_share',
+                'placeholders' => [
+                    'nfs_share.name' => [
+                        'getters' => [
+                            'getNfsShare',
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'UpdateVolume' => [
@@ -253,53 +252,6 @@ return [
             'ListLocations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*}/locations',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-        ],
-        'google.longrunning.Operations' => [
-            'CancelOperation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{name=projects/*/locations/*/operations/*}:cancel',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteOperation' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=projects/*/locations/*/operations/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/locations/*/operations/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListOperations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/locations/*}/operations',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
