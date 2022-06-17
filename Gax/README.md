@@ -17,7 +17,7 @@ more convenient and idiomatic API surface to callers.
 
 ## PHP Versions
 
-gax-php currently requires PHP 5.5 or higher.
+gax-php currently requires PHP 5.6 or higher.
 
 ## Contributing
 
