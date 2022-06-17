@@ -1232,8 +1232,10 @@ class ModelServiceClientTest extends GeneratedTest
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $model2 = 'model21226956956';
+        $modelVersionId = 'modelVersionId-1385431880';
         $expectedResponse = new UploadModelResponse();
         $expectedResponse->setModel($model2);
+        $expectedResponse->setModelVersionId($modelVersionId);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

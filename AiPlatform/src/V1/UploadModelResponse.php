@@ -22,6 +22,12 @@ class UploadModelResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string model = 1 [(.google.api.resource_reference) = {</code>
      */
     private $model = '';
+    /**
+     * Output only. The version ID of the model that is uploaded.
+     *
+     * Generated from protobuf field <code>string model_version_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $model_version_id = '';
 
     /**
      * Constructor.
@@ -32,6 +38,8 @@ class UploadModelResponse extends \Google\Protobuf\Internal\Message
      *     @type string $model
      *           The name of the uploaded Model resource.
      *           Format: `projects/{project}/locations/{location}/models/{model}`
+     *     @type string $model_version_id
+     *           Output only. The version ID of the model that is uploaded.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +71,32 @@ class UploadModelResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->model = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The version ID of the model that is uploaded.
+     *
+     * Generated from protobuf field <code>string model_version_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getModelVersionId()
+    {
+        return $this->model_version_id;
+    }
+
+    /**
+     * Output only. The version ID of the model that is uploaded.
+     *
+     * Generated from protobuf field <code>string model_version_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModelVersionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model_version_id = $var;
 
         return $this;
     }
