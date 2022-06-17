@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/usablesubnetwork\/stacktype","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\UsableSubnetwork\\StackType","name":"StackType","description":"<p>StackType contains string constants that represent the names of each value in\nthe google.cloud.compute.v1.UsableSubnetwork.StackType descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

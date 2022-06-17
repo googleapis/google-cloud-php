@@ -1,0 +1,1 @@
+{"id":"servicecontrol\/v1\/quotaoperation\/quotamode","type":"","title":"Google\\Cloud\\ServiceControl\\V1\\QuotaOperation\\QuotaMode","name":"QuotaMode","description":"<p>Supported quota modes.<\/p>\n<p>Protobuf type <code>google.api.servicecontrol.v1.QuotaOperation.QuotaMode<\/code><\/p>","examples":[],"resources":[],"methods":[]}

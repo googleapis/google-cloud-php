@@ -1,0 +1,1 @@
+{"id":"apigateway\/v1\/api_state","type":"","title":"Google\\Cloud\\ApiGateway\\V1\\Api_State","name":"Api_State","description":"<p>This class is deprecated. Use Google\\Cloud\\ApiGateway\\V1\\Api\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}

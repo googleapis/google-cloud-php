@@ -1,0 +1,1 @@
+{"id":"optimization\/v1\/asyncmodelmetadata\/state","type":"","title":"Google\\Cloud\\Optimization\\V1\\AsyncModelMetadata\\State","name":"State","description":"<p>Possible states of the operation.<\/p>\n<p>Protobuf type <code>google.cloud.optimization.v1.AsyncModelMetadata.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

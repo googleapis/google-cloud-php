@@ -1,0 +1,1 @@
+{"id":"securitycenter\/v1p1beta1\/notificationconfig\/eventtype","type":"","title":"Google\\Cloud\\SecurityCenter\\V1p1beta1\\NotificationConfig\\EventType","name":"EventType","description":"<p>The type of events.<\/p>\n<p>Protobuf type <code>google.cloud.securitycenter.v1p1beta1.NotificationConfig.EventType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

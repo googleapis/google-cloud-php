@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/resourcepolicy\/status","type":"","title":"Google\\Cloud\\Compute\\V1\\ResourcePolicy\\Status","name":"Status","description":"<p>[Output Only] The status of resource policy creation.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.ResourcePolicy.Status<\/code><\/p>","examples":[],"resources":[],"methods":[]}

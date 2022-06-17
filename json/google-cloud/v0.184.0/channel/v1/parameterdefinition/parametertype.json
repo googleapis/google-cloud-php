@@ -1,0 +1,1 @@
+{"id":"channel\/v1\/parameterdefinition\/parametertype","type":"","title":"Google\\Cloud\\Channel\\V1\\ParameterDefinition\\ParameterType","name":"ParameterType","description":"<p>Data type of the parameter.<\/p>\n<p>Protobuf type <code>google.cloud.channel.v1.ParameterDefinition.ParameterType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"bigtable\/admin\/v2\/restoresourcetype","type":"","title":"Google\\Cloud\\Bigtable\\Admin\\V2\\RestoreSourceType","name":"RestoreSourceType","description":"<p>Indicates the type of the restore source.<\/p>\n<p>Protobuf type <code>google.bigtable.admin.v2.RestoreSourceType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

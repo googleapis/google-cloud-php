@@ -1,0 +1,1 @@
+{"id":"dataproc\/v1\/clusterstatus_substate","type":"","title":"Google\\Cloud\\Dataproc\\V1\\ClusterStatus_Substate","name":"ClusterStatus_Substate","description":"<p>This class is deprecated. Use Google\\Cloud\\Dataproc\\V1\\ClusterStatus\\Substate instead.<\/p>","examples":[],"resources":[],"methods":[]}

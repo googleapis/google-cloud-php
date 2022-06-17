@@ -1,0 +1,1 @@
+{"id":"talent\/v4\/joblevel","type":"","title":"Google\\Cloud\\Talent\\V4\\JobLevel","name":"JobLevel","description":"<p>An enum that represents the required experience level required for the job.<\/p>\n<p>Protobuf type <code>google.cloud.talent.v4.JobLevel<\/code><\/p>","examples":[],"resources":[],"methods":[]}

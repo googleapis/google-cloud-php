@@ -1,0 +1,1 @@
+{"id":"networkmanagement\/v1\/routeinfo\/routetype","type":"","title":"Google\\Cloud\\NetworkManagement\\V1\\RouteInfo\\RouteType","name":"RouteType","description":"<p>Type of route:<\/p>\n<p>Protobuf type <code>google.cloud.networkmanagement.v1.RouteInfo.RouteType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

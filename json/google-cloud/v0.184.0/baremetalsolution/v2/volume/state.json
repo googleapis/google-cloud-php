@@ -1,0 +1,1 @@
+{"id":"baremetalsolution\/v2\/volume\/state","type":"","title":"Google\\Cloud\\BaremetalSolution\\V2\\Volume\\State","name":"State","description":"<p>The possible states for a storage volume.<\/p>\n<p>Protobuf type <code>google.cloud.baremetalsolution.v2.Volume.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

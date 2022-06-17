@@ -1,0 +1,1 @@
+{"id":"container\/v1\/databaseencryption_state","type":"","title":"Google\\Cloud\\Container\\V1\\DatabaseEncryption_State","name":"DatabaseEncryption_State","description":"<p>This class is deprecated. Use Google\\Cloud\\Container\\V1\\DatabaseEncryption\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}

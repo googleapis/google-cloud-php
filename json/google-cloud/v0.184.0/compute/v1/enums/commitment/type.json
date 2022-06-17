@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/commitment\/type","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\Commitment\\Type","name":"Type","description":"<p>Type contains string constants that represent the names of each value in the\ngoogle.cloud.compute.v1.Commitment.Type descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

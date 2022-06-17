@@ -1,0 +1,1 @@
+{"id":"dataproc\/v1\/workflowmetadata_state","type":"","title":"Google\\Cloud\\Dataproc\\V1\\WorkflowMetadata_State","name":"WorkflowMetadata_State","description":"<p>This class is deprecated. Use Google\\Cloud\\Dataproc\\V1\\WorkflowMetadata\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}

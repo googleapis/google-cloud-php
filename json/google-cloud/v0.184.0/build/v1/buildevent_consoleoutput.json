@@ -1,0 +1,1 @@
+{"id":"build\/v1\/buildevent_consoleoutput","type":"","title":"Google\\Cloud\\Build\\V1\\BuildEvent_ConsoleOutput","name":"BuildEvent_ConsoleOutput","description":"<p>This class is deprecated. Use Google\\Cloud\\Build\\V1\\BuildEvent\\ConsoleOutput instead.<\/p>","examples":[],"resources":[],"methods":[]}

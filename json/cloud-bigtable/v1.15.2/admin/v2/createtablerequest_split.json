@@ -1,0 +1,1 @@
+{"id":"bigtable\/admin\/v2\/createtablerequest_split","type":"","title":"Google\\Cloud\\Bigtable\\Admin\\V2\\CreateTableRequest_Split","name":"CreateTableRequest_Split","description":"<p>This class is deprecated. Use Google\\Cloud\\Bigtable\\Admin\\V2\\CreateTableRequest\\Split instead.<\/p>","examples":[],"resources":[],"methods":[]}

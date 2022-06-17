@@ -1,0 +1,1 @@
+{"id":"automl\/v1\/model_deploymentstate","type":"","title":"Google\\Cloud\\AutoMl\\V1\\Model_DeploymentState","name":"Model_DeploymentState","description":"<p>This class is deprecated. Use Google\\Cloud\\AutoMl\\V1\\Model\\DeploymentState instead.<\/p>","examples":[],"resources":[],"methods":[]}

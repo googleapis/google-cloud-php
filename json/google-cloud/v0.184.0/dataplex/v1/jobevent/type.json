@@ -1,0 +1,1 @@
+{"id":"dataplex\/v1\/jobevent\/type","type":"","title":"Google\\Cloud\\Dataplex\\V1\\JobEvent\\Type","name":"Type","description":"<p>The type of the job.<\/p>\n<p>Protobuf type <code>google.cloud.dataplex.v1.JobEvent.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"shell\/v1\/environment\/state","type":"","title":"Google\\Cloud\\Shell\\V1\\Environment\\State","name":"State","description":"<p>Possible execution states for an environment.<\/p>\n<p>Protobuf type <code>google.cloud.shell.v1.Environment.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

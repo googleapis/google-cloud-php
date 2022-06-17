@@ -1,0 +1,1 @@
+{"id":"analyticsadmin\/v1alpha\/custommetric\/metricscope","type":"","title":"Google\\Analytics\\Admin\\V1alpha\\CustomMetric\\MetricScope","name":"MetricScope","description":"<p>The scope of this metric.<\/p>\n<p>Protobuf type <code>google.analytics.admin.v1alpha.CustomMetric.MetricScope<\/code><\/p>","examples":[],"resources":[],"methods":[]}

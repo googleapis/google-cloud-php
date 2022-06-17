@@ -1,0 +1,1 @@
+{"id":"language\/v1\/partofspeech\/aspect","type":"","title":"Google\\Cloud\\Language\\V1\\PartOfSpeech\\Aspect","name":"Aspect","description":"<p>The characteristic of a verb that expresses time flow during an event.<\/p>\n<p>Protobuf type <code>google.cloud.language.v1.PartOfSpeech.Aspect<\/code><\/p>","examples":[],"resources":[],"methods":[]}
