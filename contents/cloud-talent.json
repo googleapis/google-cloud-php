@@ -40,10 +40,6 @@
             "type": "talent\/v4beta1\/readme",
             "nav": [
                 {
-                    "title": "ApplicationServiceClient",
-                    "type": "talent\/v4beta1\/applicationserviceclient"
-                },
-                {
                     "title": "CompanyServiceClient",
                     "type": "talent\/v4beta1\/companyserviceclient"
                 },
@@ -58,14 +54,6 @@
                 {
                     "title": "JobServiceClient",
                     "type": "talent\/v4beta1\/jobserviceclient"
-                },
-                {
-                    "title": "ProfileServiceClient",
-                    "type": "talent\/v4beta1\/profileserviceclient"
-                },
-                {
-                    "title": "ResumeServiceClient",
-                    "type": "talent\/v4beta1\/resumeserviceclient"
                 },
                 {
                     "title": "TenantServiceClient",
