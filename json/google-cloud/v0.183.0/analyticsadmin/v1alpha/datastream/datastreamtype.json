@@ -1,0 +1,1 @@
+{"id":"analyticsadmin\/v1alpha\/datastream\/datastreamtype","type":"","title":"Google\\Analytics\\Admin\\V1alpha\\DataStream\\DataStreamType","name":"DataStreamType","description":"<p>The type of the data stream.<\/p>\n<p>Protobuf type <code>google.analytics.admin.v1alpha.DataStream.DataStreamType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

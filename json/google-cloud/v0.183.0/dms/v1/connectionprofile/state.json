@@ -1,0 +1,1 @@
+{"id":"dms\/v1\/connectionprofile\/state","type":"","title":"Google\\Cloud\\CloudDms\\V1\\ConnectionProfile\\State","name":"State","description":"<p>The current connection profile state (e.g. DRAFT, READY, or FAILED).<\/p>\n<p>Protobuf type <code>google.cloud.clouddms.v1.ConnectionProfile.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

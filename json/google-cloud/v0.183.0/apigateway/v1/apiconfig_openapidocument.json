@@ -1,0 +1,1 @@
+{"id":"apigateway\/v1\/apiconfig_openapidocument","type":"","title":"Google\\Cloud\\ApiGateway\\V1\\ApiConfig_OpenApiDocument","name":"ApiConfig_OpenApiDocument","description":"<p>This class is deprecated. Use Google\\Cloud\\ApiGateway\\V1\\ApiConfig\\OpenApiDocument instead.<\/p>","examples":[],"resources":[],"methods":[]}

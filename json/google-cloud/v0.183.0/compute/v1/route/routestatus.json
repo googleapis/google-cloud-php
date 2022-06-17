@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/route\/routestatus","type":"","title":"Google\\Cloud\\Compute\\V1\\Route\\RouteStatus","name":"RouteStatus","description":"<p>[Output only] The status of the route.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.Route.RouteStatus<\/code><\/p>","examples":[],"resources":[],"methods":[]}

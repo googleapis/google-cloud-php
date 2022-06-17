@@ -1,0 +1,1 @@
+{"id":"datafusion\/v1\/accelerator\/state","type":"","title":"Google\\Cloud\\DataFusion\\V1\\Accelerator\\State","name":"State","description":"<p>Different values possible for the state of an accelerator<\/p>\n<p>Protobuf type <code>google.cloud.datafusion.v1.Accelerator.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

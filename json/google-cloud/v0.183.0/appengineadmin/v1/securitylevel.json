@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/securitylevel","type":"","title":"Google\\Cloud\\AppEngine\\V1\\SecurityLevel","name":"SecurityLevel","description":"<p>Methods to enforce security (HTTPS) on a URL.<\/p>\n<p>Protobuf type <code>google.appengine.v1.SecurityLevel<\/code><\/p>","examples":[],"resources":[],"methods":[]}

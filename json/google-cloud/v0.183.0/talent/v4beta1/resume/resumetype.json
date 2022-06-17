@@ -1,0 +1,1 @@
+{"id":"talent\/v4beta1\/resume\/resumetype","type":"","title":"Google\\Cloud\\Talent\\V4beta1\\Resume\\ResumeType","name":"ResumeType","description":"<p>The format of a structured resume.<\/p>\n<p>Protobuf type <code>google.cloud.talent.v4beta1.Resume.ResumeType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

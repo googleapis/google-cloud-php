@@ -1,0 +1,1 @@
+{"id":"talent\/v4beta1\/jobapplication\/applicationstatus","type":"","title":"Google\\Cloud\\Talent\\V4beta1\\JobApplication\\ApplicationStatus","name":"ApplicationStatus","description":"<p>Enum that represents the application status.<\/p>\n<p>Protobuf type <code>google.cloud.talent.v4beta1.JobApplication.ApplicationStatus<\/code><\/p>","examples":[],"resources":[],"methods":[]}

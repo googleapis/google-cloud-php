@@ -1,0 +1,1 @@
+{"id":"contactcenterinsights\/v1\/conversationparticipant\/role","type":"","title":"Google\\Cloud\\ContactCenterInsights\\V1\\ConversationParticipant\\Role","name":"Role","description":"<p>The role of the participant.<\/p>\n<p>Protobuf type <code>google.cloud.contactcenterinsights.v1.ConversationParticipant.Role<\/code><\/p>","examples":[],"resources":[],"methods":[]}

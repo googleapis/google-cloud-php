@@ -1,0 +1,1 @@
+{"id":"pubsub\/v1\/encoding","type":"","title":"Google\\Cloud\\PubSub\\V1\\Encoding","name":"Encoding","description":"<p>Possible encoding types for messages.<\/p>\n<p>Protobuf type <code>google.pubsub.v1.Encoding<\/code><\/p>","examples":[],"resources":[],"methods":[]}

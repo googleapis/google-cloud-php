@@ -1,0 +1,1 @@
+{"id":"spanner\/admin\/database\/v1\/backup_state","type":"","title":"Google\\Cloud\\Spanner\\Admin\\Database\\V1\\Backup_State","name":"Backup_State","description":"<p>This class is deprecated. Use Google\\Cloud\\Spanner\\Admin\\Database\\V1\\Backup\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}

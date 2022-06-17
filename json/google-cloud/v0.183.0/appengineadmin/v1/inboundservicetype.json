@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/inboundservicetype","type":"","title":"Google\\Cloud\\AppEngine\\V1\\InboundServiceType","name":"InboundServiceType","description":"<p>Available inbound services.<\/p>\n<p>Protobuf type <code>google.appengine.v1.InboundServiceType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/document\/knowledgetype","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Document\\KnowledgeType","name":"KnowledgeType","description":"<p>The knowledge type of document content.<\/p>\n<p>Protobuf type <code>google.cloud.dialogflow.v2.Document.KnowledgeType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"container\/v1\/cloudrunconfig\/loadbalancertype","type":"","title":"Google\\Cloud\\Container\\V1\\CloudRunConfig\\LoadBalancerType","name":"LoadBalancerType","description":"<p>Load balancer type of ingress service of Cloud Run.<\/p>\n<p>Protobuf type <code>google.container.v1.CloudRunConfig.LoadBalancerType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"dataprocmetastore\/v1\/locationmetadata_hivemetastoreversion","type":"","title":"Google\\Cloud\\Metastore\\V1\\LocationMetadata_HiveMetastoreVersion","name":"LocationMetadata_HiveMetastoreVersion","description":"<p>This class is deprecated. Use Google\\Cloud\\Metastore\\V1\\LocationMetadata\\HiveMetastoreVersion instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"dms\/v1\/cloudsqlsettings_sqldatabaseversion","type":"","title":"Google\\Cloud\\CloudDms\\V1\\CloudSqlSettings_SqlDatabaseVersion","name":"CloudSqlSettings_SqlDatabaseVersion","description":"<p>This class is deprecated. Use Google\\Cloud\\CloudDms\\V1\\CloudSqlSettings\\SqlDatabaseVersion instead.<\/p>","examples":[],"resources":[],"methods":[]}

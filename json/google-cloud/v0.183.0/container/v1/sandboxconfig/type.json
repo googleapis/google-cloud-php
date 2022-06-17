@@ -1,0 +1,1 @@
+{"id":"container\/v1\/sandboxconfig\/type","type":"","title":"Google\\Cloud\\Container\\V1\\SandboxConfig\\Type","name":"Type","description":"<p>Possible types of sandboxes.<\/p>\n<p>Protobuf type <code>google.container.v1.SandboxConfig.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

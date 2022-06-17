@@ -65,7 +65,6 @@
         "cloud-game-servers",
         "cloud-gke-connect-gateway",
         "cloud-gke-hub",
-        "cloud-gke-multi-cloud",
         "cloud-iam-credentials",
         "cloud-iap",
         "cloud-ids",

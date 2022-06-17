@@ -1,0 +1,1 @@
+{"id":"memcache\/v1\/instance_node_state","type":"","title":"Google\\Cloud\\Memcache\\V1\\Instance_Node_State","name":"Instance_Node_State","description":"<p>This class is deprecated. Use Google\\Cloud\\Memcache\\V1\\Instance\\Node\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}
