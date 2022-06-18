@@ -1,6 +1,6 @@
 # Google API Core for PHP
 
-![Build Status](https://github.com/googleapis/gax-php/actions/workflows/tests.yml/badge.svg))
+![Build Status](https://github.com/googleapis/gax-php/actions/workflows/tests.yml/badge.svg)
 
 -   [Documentation](http://googleapis.github.io/gax-php)
 
