@@ -146,7 +146,13 @@ class ManageBucketsTest extends StorageTestCase
 
             [['customTimeBefore' => (new \DateTime)->format("Y-m-d")]],
             [['customTimeBefore' => new \DateTime]],
-            [['customTimeBefore' => 'this is not a timestamp'], true], // error case
+            [['customTimeBefore' => 'this is not a timestamp'], true], // error case,
+
+            [['matchesPrefix' => 'some-prefix']],
+            [['matchesPrefix' => ''], true],    // empty strings not accepted as a prefix
+
+            [['matchesSuffix' => 'some-suffix']],
+            [['matchesSuffix' => ''], true],    // empty strings not accepted as a suffix
         ];
     }
 
