@@ -47,8 +47,14 @@ function buildDocs() {
   API_CORE_DOCS_VERSION=${GIT_TAG_NAME} php ${DOCTUM_EXECUTABLE} update ${DOCTUM_CONFIG} -v
 }
 
-downloadDoctum
+# Remove "v" from start of string if it exists
+if [[ ${GIT_TAG_NAME::1} == "v" ]]
+then
+  GIT_TAG_NAME="${GIT_TAG_NAME:1}"
+fi
+
 checkVersionFile ${GIT_TAG_NAME}
+downloadDoctum
 buildDocs ${GIT_TAG_NAME}
 
 # Construct the base index file to redirect to the latest version of the docs.
