@@ -1,1 +1,0 @@
-{"id":"exception\/badrequestexception","type":"","title":"Google\\Cloud\\Exception\\BadRequestException","name":"BadRequestException","description":"<p>Exception thrown when a request fails due to an error in the request.<\/p>\n<p>In REST context, this exception indicates a status code 400.<\/p>","examples":[],"resources":[],"methods":[]}
