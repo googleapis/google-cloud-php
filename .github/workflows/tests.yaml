@@ -3,10 +3,12 @@ on:
   push:
     branches: [ main ]
   pull_request:
+    types: [labeled, opened, synchronize, reopened]
   workflow_dispatch:
 
 jobs:
   test:
+    if: ${{ github.event.action != 'labeled' || github.event.label.name == 'gh:run-tests' }}
     strategy:
       matrix:
         platform: [ubuntu-latest, windows-latest]
@@ -25,6 +27,9 @@ jobs:
     name: PHP ${{ matrix.php }} Unit Test (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
     steps:
+    - uses: actions-ecosystem/action-remove-labels@v1
+      with:
+        labels: gh:run-tests
     - uses: actions/checkout@v3
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
@@ -46,6 +51,7 @@ jobs:
         vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}-snippets.xml.dist --verbose
 
   style:
+    if: ${{ github.event.action != 'labeled' || github.event.label.name == 'gh:run-tests' }}
     runs-on: ubuntu-latest
     name: PHP Style Check
     steps:
@@ -64,6 +70,7 @@ jobs:
       run: dev/sh/style
 
   docs:
+    if: ${{ github.event.action != 'labeled' || github.event.label.name == 'gh:run-tests' }}
     runs-on: ubuntu-latest
     name: Generate Documentation (Dry Run)
     steps:
