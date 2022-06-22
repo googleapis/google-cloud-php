@@ -881,6 +881,11 @@
                 "grpc": {
                     "libraryClient": "ModelServiceGapicClient",
                     "rpcs": {
+                        "BatchImportModelEvaluationSlices": {
+                            "methods": [
+                                "batchImportModelEvaluationSlices"
+                            ]
+                        },
                         "DeleteModel": {
                             "methods": [
                                 "deleteModel"

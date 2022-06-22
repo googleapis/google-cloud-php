@@ -38,6 +38,8 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesRequest;
+use Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesResponse;
 use Google\Cloud\AIPlatform\V1\DeleteModelRequest;
 use Google\Cloud\AIPlatform\V1\DeleteModelVersionRequest;
 use Google\Cloud\AIPlatform\V1\ExportModelRequest;
@@ -82,31 +84,9 @@ use Google\Protobuf\FieldMask;
  * ```
  * $modelServiceClient = new ModelServiceClient();
  * try {
- *     $formattedName = $modelServiceClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
- *     $operationResponse = $modelServiceClient->deleteModel($formattedName);
- *     $operationResponse->pollUntilComplete();
- *     if ($operationResponse->operationSucceeded()) {
- *         // operation succeeded and returns no value
- *     } else {
- *         $error = $operationResponse->getError();
- *         // handleError($error)
- *     }
- *     // Alternatively:
- *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $modelServiceClient->deleteModel($formattedName);
- *     $operationName = $operationResponse->getName();
- *     // ... do other work
- *     $newOperationResponse = $modelServiceClient->resumeOperation($operationName, 'deleteModel');
- *     while (!$newOperationResponse->isDone()) {
- *         // ... do other work
- *         $newOperationResponse->reload();
- *     }
- *     if ($newOperationResponse->operationSucceeded()) {
- *         // operation succeeded and returns no value
- *     } else {
- *         $error = $newOperationResponse->getError();
- *         // handleError($error)
- *     }
+ *     $formattedParent = $modelServiceClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
+ *     $modelEvaluationSlices = [];
+ *     $response = $modelServiceClient->batchImportModelEvaluationSlices($formattedParent, $modelEvaluationSlices);
  * } finally {
  *     $modelServiceClient->close();
  * }
@@ -514,6 +494,63 @@ class ModelServiceGapicClient
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
+    }
+
+    /**
+     * Imports a list of externally generated ModelEvaluationSlice.
+     *
+     * Sample code:
+     * ```
+     * $modelServiceClient = new ModelServiceClient();
+     * try {
+     *     $formattedParent = $modelServiceClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[EVALUATION]');
+     *     $modelEvaluationSlices = [];
+     *     $response = $modelServiceClient->batchImportModelEvaluationSlices($formattedParent, $modelEvaluationSlices);
+     * } finally {
+     *     $modelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string                 $parent                Required. The name of the parent ModelEvaluation resource.
+     *                                                      Format:
+     *                                                      `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
+     * @param ModelEvaluationSlice[] $modelEvaluationSlices Required. Model evaluation slice resource to be imported.
+     * @param array                  $optionalArgs          {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function batchImportModelEvaluationSlices(
+        $parent,
+        $modelEvaluationSlices,
+        array $optionalArgs = []
+    ) {
+        $request = new BatchImportModelEvaluationSlicesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setModelEvaluationSlices($modelEvaluationSlices);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'BatchImportModelEvaluationSlices',
+            BatchImportModelEvaluationSlicesResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**

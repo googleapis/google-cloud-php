@@ -22,7 +22,7 @@ class BatchImportModelEvaluationSlicesRequest extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $parent = '';
+    private $parent = '';
     /**
      * Required. Model evaluation slice resource to be imported.
      *

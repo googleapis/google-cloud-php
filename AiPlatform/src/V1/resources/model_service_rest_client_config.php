@@ -3,6 +3,18 @@
 return [
     'interfaces' => [
         'google.cloud.aiplatform.v1.ModelService' => [
+            'BatchImportModelEvaluationSlices' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/models/*/evaluations/*}/slices:batchImport',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteModel' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}',
