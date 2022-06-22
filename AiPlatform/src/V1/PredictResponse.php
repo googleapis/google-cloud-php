@@ -39,6 +39,13 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      */
     private $model = '';
     /**
+     * Output only. The version ID of the Model which is deployed as the DeployedModel that
+     * this prediction hits.
+     *
+     * Generated from protobuf field <code>string model_version_id = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $model_version_id = '';
+    /**
      * Output only. The [display name][google.cloud.aiplatform.v1.Model.display_name] of the Model which is deployed as
      * the DeployedModel that this prediction hits.
      *
@@ -62,6 +69,9 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      *           ID of the Endpoint's DeployedModel that served this prediction.
      *     @type string $model
      *           Output only. The resource name of the Model which is deployed as the DeployedModel that
+     *           this prediction hits.
+     *     @type string $model_version_id
+     *           Output only. The version ID of the Model which is deployed as the DeployedModel that
      *           this prediction hits.
      *     @type string $model_display_name
      *           Output only. The [display name][google.cloud.aiplatform.v1.Model.display_name] of the Model which is deployed as
@@ -157,6 +167,34 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->model = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The version ID of the Model which is deployed as the DeployedModel that
+     * this prediction hits.
+     *
+     * Generated from protobuf field <code>string model_version_id = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getModelVersionId()
+    {
+        return $this->model_version_id;
+    }
+
+    /**
+     * Output only. The version ID of the Model which is deployed as the DeployedModel that
+     * this prediction hits.
+     *
+     * Generated from protobuf field <code>string model_version_id = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModelVersionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model_version_id = $var;
 
         return $this;
     }

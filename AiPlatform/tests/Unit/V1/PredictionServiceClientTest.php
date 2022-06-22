@@ -153,10 +153,12 @@ class PredictionServiceClientTest extends GeneratedTest
         // Mock response
         $deployedModelId = 'deployedModelId866642506';
         $model = 'model104069929';
+        $modelVersionId = 'modelVersionId-1385431880';
         $modelDisplayName = 'modelDisplayName1757732158';
         $expectedResponse = new PredictResponse();
         $expectedResponse->setDeployedModelId($deployedModelId);
         $expectedResponse->setModel($model);
+        $expectedResponse->setModelVersionId($modelVersionId);
         $expectedResponse->setModelDisplayName($modelDisplayName);
         $transport->addResponse($expectedResponse);
         // Mock request
