@@ -1,1 +1,0 @@
-{"id":"exception\/conflictexception","type":"","title":"Google\\Cloud\\Exception\\ConflictException","name":"ConflictException","description":"<p>Exception thrown when a request fails due to a conflict.<\/p>\n<p>In REST context, this exception indicates a status code 409.<\/p>","examples":[],"resources":[],"methods":[]}
