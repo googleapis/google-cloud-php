@@ -2835,6 +2835,14 @@
             ]
         },
         {
+            "id": "cloud-run",
+            "name": "google/cloud-run",
+            "defaultService": "run/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-scheduler",
             "name": "google/cloud-scheduler",
             "defaultService": "scheduler/readme",
