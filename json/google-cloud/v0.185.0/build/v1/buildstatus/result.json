@@ -1,0 +1,1 @@
+{"id":"build\/v1\/buildstatus\/result","type":"","title":"Google\\Cloud\\Build\\V1\\BuildStatus\\Result","name":"Result","description":"<p>The end result of the Build.<\/p>\n<p>Protobuf type <code>google.devtools.build.v1.BuildStatus.Result<\/code><\/p>","examples":[],"resources":[],"methods":[]}

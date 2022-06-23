@@ -1,0 +1,1 @@
+{"id":"datacatalog\/v1\/physicalschema_thriftschema","type":"","title":"Google\\Cloud\\DataCatalog\\V1\\PhysicalSchema_ThriftSchema","name":"PhysicalSchema_ThriftSchema","description":"<p>This class is deprecated. Use Google\\Cloud\\DataCatalog\\V1\\PhysicalSchema\\ThriftSchema instead.<\/p>","examples":[],"resources":[],"methods":[]}

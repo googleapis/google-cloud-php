@@ -1,0 +1,1 @@
+{"id":"networkmanagement\/v1\/endpoint_networktype","type":"","title":"Google\\Cloud\\NetworkManagement\\V1\\Endpoint_NetworkType","name":"Endpoint_NetworkType","description":"<p>This class is deprecated. Use Google\\Cloud\\NetworkManagement\\V1\\Endpoint\\NetworkType instead.<\/p>","examples":[],"resources":[],"methods":[]}

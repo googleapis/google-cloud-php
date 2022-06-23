@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.185.0",
                 "v0.184.0",
                 "v0.183.0",
                 "v0.182.0",
@@ -186,6 +187,7 @@
             "name": "google/cloud-ai-platform",
             "defaultService": "aiplatform/readme",
             "versions": [
+                "v0.6.0",
                 "v0.5.0",
                 "v0.4.0",
                 "v0.3.1",
@@ -264,6 +266,7 @@
             "name": "google/cloud-asset",
             "defaultService": "asset/readme",
             "versions": [
+                "v1.7.0",
                 "v1.6.8",
                 "v1.6.7",
                 "v1.6.6",
@@ -371,6 +374,7 @@
             "name": "google/cloud-bare-metal-solution",
             "defaultService": "baremetalsolution/readme",
             "versions": [
+                "v0.2.0",
                 "v0.1.0",
                 "main"
             ]
@@ -723,6 +727,7 @@
             "name": "google/cloud-binary-authorization",
             "defaultService": "binaryauthorization/readme",
             "versions": [
+                "v0.5.0",
                 "v0.4.3",
                 "v0.4.2",
                 "v0.4.1",
@@ -909,6 +914,7 @@
             "name": "google/cloud-container-analysis",
             "defaultService": "containeranalysis/readme",
             "versions": [
+                "v0.2.3",
                 "v0.2.2",
                 "v0.2.1",
                 "v0.2.0",
@@ -1839,6 +1845,7 @@
             "name": "google/cloud-gke-hub",
             "defaultService": "gkehub/readme",
             "versions": [
+                "v0.5.0",
                 "v0.4.0",
                 "v0.3.2",
                 "v0.3.1",
@@ -2540,6 +2547,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v1.38.2",
                 "v1.38.1",
                 "v1.38.0",
                 "v1.37.0",
@@ -2839,6 +2847,7 @@
             "name": "google/cloud-run",
             "defaultService": "run/readme",
             "versions": [
+                "v0.1.0",
                 "main"
             ]
         },
@@ -3663,6 +3672,7 @@
             "name": "google/cloud-video-transcoder",
             "defaultService": "videotranscoder/readme",
             "versions": [
+                "v0.4.0",
                 "v0.3.5",
                 "v0.3.4",
                 "v0.3.3",

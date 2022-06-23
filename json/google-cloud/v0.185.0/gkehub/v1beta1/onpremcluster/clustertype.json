@@ -1,0 +1,1 @@
+{"id":"gkehub\/v1beta1\/onpremcluster\/clustertype","type":"","title":"Google\\Cloud\\GkeHub\\V1beta1\\OnPremCluster\\ClusterType","name":"ClusterType","description":"<p>ClusterType describes on prem cluster's type.<\/p>\n<p>Protobuf type <code>google.cloud.gkehub.v1beta1.OnPremCluster.ClusterType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

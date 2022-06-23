@@ -1,0 +1,1 @@
+{"id":"retail\/v2\/product\/availability","type":"","title":"Google\\Cloud\\Retail\\V2\\Product\\Availability","name":"Availability","description":"<p>Product availability. If this field is unspecified, the product is\nassumed to be in stock.<\/p>\n<p>Protobuf type <code>google.cloud.retail.v2.Product.Availability<\/code><\/p>","examples":[],"resources":[],"methods":[]}

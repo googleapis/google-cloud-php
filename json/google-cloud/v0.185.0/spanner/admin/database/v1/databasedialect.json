@@ -1,0 +1,1 @@
+{"id":"spanner\/admin\/database\/v1\/databasedialect","type":"","title":"Google\\Cloud\\Spanner\\Admin\\Database\\V1\\DatabaseDialect","name":"DatabaseDialect","description":"<p>Indicates the dialect type of a database.<\/p>\n<p>Protobuf type <code>google.spanner.admin.database.v1.DatabaseDialect<\/code><\/p>","examples":[],"resources":[],"methods":[]}

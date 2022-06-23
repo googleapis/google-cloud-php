@@ -1,0 +1,1 @@
+{"id":"secretmanager\/v1\/replication_automatic","type":"","title":"Google\\Cloud\\SecretManager\\V1\\Replication_Automatic","name":"Replication_Automatic","description":"<p>This class is deprecated. Use Google\\Cloud\\SecretManager\\V1\\Replication\\Automatic instead.<\/p>","examples":[],"resources":[],"methods":[]}

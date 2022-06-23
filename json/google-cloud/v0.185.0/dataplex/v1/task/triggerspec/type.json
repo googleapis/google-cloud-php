@@ -1,0 +1,1 @@
+{"id":"dataplex\/v1\/task\/triggerspec\/type","type":"","title":"Google\\Cloud\\Dataplex\\V1\\Task\\TriggerSpec\\Type","name":"Type","description":"<p>Determines how often and when the job will run.<\/p>\n<p>Protobuf type <code>google.cloud.dataplex.v1.Task.TriggerSpec.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

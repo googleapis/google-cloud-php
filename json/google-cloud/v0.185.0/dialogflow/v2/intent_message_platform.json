@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/intent_message_platform","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Intent_Message_Platform","name":"Intent_Message_Platform","description":"<p>This class is deprecated. Use Google\\Cloud\\Dialogflow\\V2\\Intent\\Message\\Platform instead.<\/p>","examples":[],"resources":[],"methods":[]}

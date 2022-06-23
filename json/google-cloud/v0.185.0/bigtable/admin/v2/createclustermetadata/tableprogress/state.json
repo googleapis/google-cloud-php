@@ -1,0 +1,1 @@
+{"id":"bigtable\/admin\/v2\/createclustermetadata\/tableprogress\/state","type":"","title":"Google\\Cloud\\Bigtable\\Admin\\V2\\CreateClusterMetadata\\TableProgress\\State","name":"State","description":"<p>Protobuf type <code>google.bigtable.admin.v2.CreateClusterMetadata.TableProgress.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"baremetalsolution\/v2\/nfsshare\/state","type":"","title":"Google\\Cloud\\BareMetalSolution\\V2\\NfsShare\\State","name":"State","description":"<p>The possible states for this NFS share.<\/p>\n<p>Protobuf type <code>google.cloud.baremetalsolution.v2.NfsShare.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

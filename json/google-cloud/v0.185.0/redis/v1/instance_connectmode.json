@@ -1,0 +1,1 @@
+{"id":"redis\/v1\/instance_connectmode","type":"","title":"Google\\Cloud\\Redis\\V1\\Instance_ConnectMode","name":"Instance_ConnectMode","description":"<p>This class is deprecated. Use Google\\Cloud\\Redis\\V1\\Instance\\ConnectMode instead.<\/p>","examples":[],"resources":[],"methods":[]}
