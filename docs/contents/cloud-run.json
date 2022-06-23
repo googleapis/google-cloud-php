@@ -1,0 +1,19 @@
+{
+    "title": "Run",
+    "defaultService": "run\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "run\/readme"
+        },
+        {
+            "title": "RevisionsClient (v2)",
+            "type": "run\/v2\/revisionsclient"
+        },
+        {
+            "title": "ServicesClient (v2)",
+            "type": "run\/v2\/servicesclient"
+        }
+    ],
+    "pattern": "run\/\\w{1,}"
+}
