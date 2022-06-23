@@ -1,5 +1,98 @@
 # Changelog
 
+## 0.185.0
+
+<details><summary>google/cloud-ai-platform 0.6.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add default_skew_threshold to TrainingPredictionSkewDetectionConfig in aiplatform v1beta1, v1 model_monitoring.proto ([#5340](https://github.com/googleapis/google-cloud-php/issues/5340)) ([d50cc87](https://github.com/googleapis/google-cloud-php/commit/d50cc8773d80e5fe6f9efd691ec5215795fefcff))
+* [AiPlatform] add model_version_id to UploadModelResponse in aiplatform v1 model_service.proto ([#5349](https://github.com/googleapis/google-cloud-php/issues/5349)) ([ed991d4](https://github.com/googleapis/google-cloud-php/commit/ed991d4985738276f2134ef69693a6e6a35ffe42))
+
+</details>
+
+<details><summary>google/cloud-asset 1.7.0</summary>
+
+
+
+### Features
+
+* [Asset] Add SavedQuery CURD support ([#5281](https://github.com/googleapis/google-cloud-php/issues/5281)) ([b245f01](https://github.com/googleapis/google-cloud-php/commit/b245f01d04e75d7e7a6951ed06503d4705b5c77c))
+
+</details>
+
+<details><summary>google/cloud-bare-metal-solution 0.2.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [BareMetalSolution] add support for new API methods (#5351)
+
+### Features
+
+* [BareMetalSolution] add support for new API methods ([#5351](https://github.com/googleapis/google-cloud-php/issues/5351)) ([7e00186](https://github.com/googleapis/google-cloud-php/commit/7e0018632d2a7e1669a4a10f8b9f9731c46bcdd0))
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 0.5.0</summary>
+
+
+
+### Features
+
+* [BinaryAuthorization] Adds a pod_namespace field to pod events created by Continuous Validation, to distinguish pods with the same name that run in different namespaces ([#5345](https://github.com/googleapis/google-cloud-php/issues/5345)) ([7e60301](https://github.com/googleapis/google-cloud-php/commit/7e6030104db85b95299230fcc42ef4e8b8916bec))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.2.3</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** update dependency google/grafeas to ^0.3.0 ([#5342](https://github.com/googleapis/google-cloud-php/issues/5342)) ([140917e](https://github.com/googleapis/google-cloud-php/commit/140917e6b98ccab4955d735c917d93c534b8cfa6))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 0.5.0</summary>
+
+
+
+### Features
+
+* [GkeHub] add ClusterType field in MembershipEndpoint.OnPremCluster ([#5339](https://github.com/googleapis/google-cloud-php/issues/5339)) ([367df64](https://github.com/googleapis/google-cloud-php/commit/367df64ca44a6b865ab902a0b1d5fee214428ed5))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.38.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-run 0.1.0</summary>
+
+
+
+### Features
+
+* introduce run ([#5346](https://github.com/googleapis/google-cloud-php/issues/5346)) ([8ad4552](https://github.com/googleapis/google-cloud-php/commit/8ad45520cb220766e4246a8d0fef89ed4ddbfb41))
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 0.4.0</summary>
+
+
+
+### Features
+
+* [VideoTranscoder] add support for user labels for job and job template ([#5343](https://github.com/googleapis/google-cloud-php/issues/5343)) ([8e1c07d](https://github.com/googleapis/google-cloud-php/commit/8e1c07d3d1ee3d2f3f15dd0a71621d458f5e6bbb))
+
+</details>
+
 ## 0.184.0
 
 <details><summary>google/cloud-ai-platform 0.5.0</summary>
