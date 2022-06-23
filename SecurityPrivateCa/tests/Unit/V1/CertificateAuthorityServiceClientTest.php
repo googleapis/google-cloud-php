@@ -111,7 +111,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -135,12 +135,12 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
+        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
         $pemCaCertificate = 'pemCaCertificate1041594685';
         $subordinateConfig = new SubordinateConfig();
-        $subordinateConfigCertificateAuthority = $client->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
+        $subordinateConfigCertificateAuthority = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
         $subordinateConfig->setCertificateAuthority($subordinateConfigCertificateAuthority);
-        $response = $client->activateCertificateAuthority($formattedName, $pemCaCertificate, $subordinateConfig);
+        $response = $gapicClient->activateCertificateAuthority($formattedName, $pemCaCertificate, $subordinateConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -187,7 +187,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -209,12 +209,12 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
+        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
         $pemCaCertificate = 'pemCaCertificate1041594685';
         $subordinateConfig = new SubordinateConfig();
-        $subordinateConfigCertificateAuthority = $client->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
+        $subordinateConfigCertificateAuthority = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
         $subordinateConfig->setCertificateAuthority($subordinateConfigCertificateAuthority);
-        $response = $client->activateCertificateAuthority($formattedName, $pemCaCertificate, $subordinateConfig);
+        $response = $gapicClient->activateCertificateAuthority($formattedName, $pemCaCertificate, $subordinateConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -248,7 +248,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -270,12 +270,12 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $caPoolId = 'caPoolId458688829';
         $caPool = new CaPool();
         $caPoolTier = Tier::TIER_UNSPECIFIED;
         $caPool->setTier($caPoolTier);
-        $response = $client->createCaPool($formattedParent, $caPoolId, $caPool);
+        $response = $gapicClient->createCaPool($formattedParent, $caPoolId, $caPool);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -322,7 +322,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -344,12 +344,12 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $caPoolId = 'caPoolId458688829';
         $caPool = new CaPool();
         $caPoolTier = Tier::TIER_UNSPECIFIED;
         $caPool->setTier($caPoolTier);
-        $response = $client->createCaPool($formattedParent, $caPoolId, $caPool);
+        $response = $gapicClient->createCaPool($formattedParent, $caPoolId, $caPool);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -377,7 +377,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function createCertificateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -395,11 +395,11 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setPemCertificate($pemCertificate);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
+        $formattedParent = $gapicClient->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
         $certificate = new Certificate();
         $certificateLifetime = new Duration();
         $certificate->setLifetime($certificateLifetime);
-        $response = $client->createCertificate($formattedParent, $certificate);
+        $response = $gapicClient->createCertificate($formattedParent, $certificate);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -419,7 +419,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function createCertificateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -434,13 +434,13 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
+        $formattedParent = $gapicClient->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
         $certificate = new Certificate();
         $certificateLifetime = new Duration();
         $certificate->setLifetime($certificateLifetime);
         try {
-            $client->createCertificate($formattedParent, $certificate);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createCertificate($formattedParent, $certificate);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -463,7 +463,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -487,7 +487,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
+        $formattedParent = $gapicClient->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
         $certificateAuthorityId = 'certificateAuthorityId561919295';
         $certificateAuthority = new CertificateAuthority();
         $certificateAuthorityType = Type::TYPE_UNSPECIFIED;
@@ -504,7 +504,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $certificateAuthority->setLifetime($certificateAuthorityLifetime);
         $certificateAuthorityKeySpec = new KeyVersionSpec();
         $certificateAuthority->setKeySpec($certificateAuthorityKeySpec);
-        $response = $client->createCertificateAuthority($formattedParent, $certificateAuthorityId, $certificateAuthority);
+        $response = $gapicClient->createCertificateAuthority($formattedParent, $certificateAuthorityId, $certificateAuthority);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -551,7 +551,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -573,7 +573,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
+        $formattedParent = $gapicClient->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
         $certificateAuthorityId = 'certificateAuthorityId561919295';
         $certificateAuthority = new CertificateAuthority();
         $certificateAuthorityType = Type::TYPE_UNSPECIFIED;
@@ -590,7 +590,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $certificateAuthority->setLifetime($certificateAuthorityLifetime);
         $certificateAuthorityKeySpec = new KeyVersionSpec();
         $certificateAuthority->setKeySpec($certificateAuthorityKeySpec);
-        $response = $client->createCertificateAuthority($formattedParent, $certificateAuthorityId, $certificateAuthority);
+        $response = $gapicClient->createCertificateAuthority($formattedParent, $certificateAuthorityId, $certificateAuthority);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -624,7 +624,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -648,10 +648,10 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $certificateTemplateId = 'certificateTemplateId372609112';
         $certificateTemplate = new CertificateTemplate();
-        $response = $client->createCertificateTemplate($formattedParent, $certificateTemplateId, $certificateTemplate);
+        $response = $gapicClient->createCertificateTemplate($formattedParent, $certificateTemplateId, $certificateTemplate);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -698,7 +698,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -720,10 +720,10 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $certificateTemplateId = 'certificateTemplateId372609112';
         $certificateTemplate = new CertificateTemplate();
-        $response = $client->createCertificateTemplate($formattedParent, $certificateTemplateId, $certificateTemplate);
+        $response = $gapicClient->createCertificateTemplate($formattedParent, $certificateTemplateId, $certificateTemplate);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -757,7 +757,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -777,8 +777,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
-        $response = $client->deleteCaPool($formattedName);
+        $formattedName = $gapicClient->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
+        $response = $gapicClient->deleteCaPool($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -821,7 +821,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -843,8 +843,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
-        $response = $client->deleteCaPool($formattedName);
+        $formattedName = $gapicClient->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
+        $response = $gapicClient->deleteCaPool($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -878,7 +878,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -902,8 +902,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
-        $response = $client->deleteCertificateAuthority($formattedName);
+        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
+        $response = $gapicClient->deleteCertificateAuthority($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -946,7 +946,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -968,8 +968,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
-        $response = $client->deleteCertificateAuthority($formattedName);
+        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
+        $response = $gapicClient->deleteCertificateAuthority($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1003,7 +1003,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1023,8 +1023,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->certificateTemplateName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_TEMPLATE]');
-        $response = $client->deleteCertificateTemplate($formattedName);
+        $formattedName = $gapicClient->certificateTemplateName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_TEMPLATE]');
+        $response = $gapicClient->deleteCertificateTemplate($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1067,7 +1067,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1089,8 +1089,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->certificateTemplateName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_TEMPLATE]');
-        $response = $client->deleteCertificateTemplate($formattedName);
+        $formattedName = $gapicClient->certificateTemplateName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_TEMPLATE]');
+        $response = $gapicClient->deleteCertificateTemplate($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1124,7 +1124,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1148,8 +1148,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
-        $response = $client->disableCertificateAuthority($formattedName);
+        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
+        $response = $gapicClient->disableCertificateAuthority($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1192,7 +1192,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1214,8 +1214,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
-        $response = $client->disableCertificateAuthority($formattedName);
+        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
+        $response = $gapicClient->disableCertificateAuthority($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1249,7 +1249,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1273,8 +1273,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
-        $response = $client->enableCertificateAuthority($formattedName);
+        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
+        $response = $gapicClient->enableCertificateAuthority($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1317,7 +1317,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1339,8 +1339,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
-        $response = $client->enableCertificateAuthority($formattedName);
+        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
+        $response = $gapicClient->enableCertificateAuthority($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1368,7 +1368,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function fetchCaCertsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1376,8 +1376,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse = new FetchCaCertsResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedCaPool = $client->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
-        $response = $client->fetchCaCerts($formattedCaPool);
+        $formattedCaPool = $gapicClient->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
+        $response = $gapicClient->fetchCaCerts($formattedCaPool);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1395,7 +1395,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function fetchCaCertsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1410,10 +1410,10 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedCaPool = $client->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
+        $formattedCaPool = $gapicClient->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
         try {
-            $client->fetchCaCerts($formattedCaPool);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->fetchCaCerts($formattedCaPool);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1430,7 +1430,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function fetchCertificateAuthorityCsrTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1440,8 +1440,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setPemCsr($pemCsr);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
-        $response = $client->fetchCertificateAuthorityCsr($formattedName);
+        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
+        $response = $gapicClient->fetchCertificateAuthorityCsr($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1459,7 +1459,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function fetchCertificateAuthorityCsrExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1474,10 +1474,10 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
+        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
         try {
-            $client->fetchCertificateAuthorityCsr($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->fetchCertificateAuthorityCsr($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1494,7 +1494,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function getCaPoolTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1504,8 +1504,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
-        $response = $client->getCaPool($formattedName);
+        $formattedName = $gapicClient->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
+        $response = $gapicClient->getCaPool($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1523,7 +1523,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function getCaPoolExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1538,10 +1538,10 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
+        $formattedName = $gapicClient->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
         try {
-            $client->getCaPool($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getCaPool($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1558,7 +1558,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function getCertificateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1576,8 +1576,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setPemCertificate($pemCertificate);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->certificateName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE]');
-        $response = $client->getCertificate($formattedName);
+        $formattedName = $gapicClient->certificateName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE]');
+        $response = $gapicClient->getCertificate($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1595,7 +1595,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function getCertificateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1610,10 +1610,10 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->certificateName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE]');
+        $formattedName = $gapicClient->certificateName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE]');
         try {
-            $client->getCertificate($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getCertificate($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1630,7 +1630,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function getCertificateAuthorityTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1642,8 +1642,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setGcsBucket($gcsBucket);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
-        $response = $client->getCertificateAuthority($formattedName);
+        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
+        $response = $gapicClient->getCertificateAuthority($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1661,7 +1661,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function getCertificateAuthorityExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1676,10 +1676,10 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
+        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
         try {
-            $client->getCertificateAuthority($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getCertificateAuthority($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1696,7 +1696,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function getCertificateRevocationListTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1714,8 +1714,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setRevisionId($revisionId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->certificateRevocationListName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]', '[CERTIFICATE_REVOCATION_LIST]');
-        $response = $client->getCertificateRevocationList($formattedName);
+        $formattedName = $gapicClient->certificateRevocationListName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]', '[CERTIFICATE_REVOCATION_LIST]');
+        $response = $gapicClient->getCertificateRevocationList($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1733,7 +1733,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function getCertificateRevocationListExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1748,10 +1748,10 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->certificateRevocationListName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]', '[CERTIFICATE_REVOCATION_LIST]');
+        $formattedName = $gapicClient->certificateRevocationListName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]', '[CERTIFICATE_REVOCATION_LIST]');
         try {
-            $client->getCertificateRevocationList($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getCertificateRevocationList($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1768,7 +1768,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function getCertificateTemplateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1780,8 +1780,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->certificateTemplateName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_TEMPLATE]');
-        $response = $client->getCertificateTemplate($formattedName);
+        $formattedName = $gapicClient->certificateTemplateName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_TEMPLATE]');
+        $response = $gapicClient->getCertificateTemplate($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1799,7 +1799,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function getCertificateTemplateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1814,10 +1814,10 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->certificateTemplateName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_TEMPLATE]');
+        $formattedName = $gapicClient->certificateTemplateName('[PROJECT]', '[LOCATION]', '[CERTIFICATE_TEMPLATE]');
         try {
-            $client->getCertificateTemplate($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getCertificateTemplate($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1834,7 +1834,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function listCaPoolsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1849,8 +1849,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setCaPools($caPools);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listCaPools($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listCaPools($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1871,7 +1871,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function listCaPoolsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1886,10 +1886,10 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listCaPools($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listCaPools($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1906,7 +1906,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function listCertificateAuthoritiesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1921,8 +1921,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setCertificateAuthorities($certificateAuthorities);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
-        $response = $client->listCertificateAuthorities($formattedParent);
+        $formattedParent = $gapicClient->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
+        $response = $gapicClient->listCertificateAuthorities($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1943,7 +1943,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function listCertificateAuthoritiesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1958,10 +1958,10 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
+        $formattedParent = $gapicClient->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
         try {
-            $client->listCertificateAuthorities($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listCertificateAuthorities($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1978,7 +1978,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function listCertificateRevocationListsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1993,8 +1993,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setCertificateRevocationLists($certificateRevocationLists);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
-        $response = $client->listCertificateRevocationLists($formattedParent);
+        $formattedParent = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
+        $response = $gapicClient->listCertificateRevocationLists($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2015,7 +2015,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function listCertificateRevocationListsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2030,10 +2030,10 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
+        $formattedParent = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
         try {
-            $client->listCertificateRevocationLists($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listCertificateRevocationLists($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2050,7 +2050,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function listCertificateTemplatesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2065,8 +2065,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setCertificateTemplates($certificateTemplates);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listCertificateTemplates($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listCertificateTemplates($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2087,7 +2087,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function listCertificateTemplatesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2102,10 +2102,10 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listCertificateTemplates($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listCertificateTemplates($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2122,7 +2122,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function listCertificatesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2137,8 +2137,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setCertificates($certificates);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
-        $response = $client->listCertificates($formattedParent);
+        $formattedParent = $gapicClient->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
+        $response = $gapicClient->listCertificates($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2159,7 +2159,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function listCertificatesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2174,10 +2174,10 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
+        $formattedParent = $gapicClient->caPoolName('[PROJECT]', '[LOCATION]', '[CA_POOL]');
         try {
-            $client->listCertificates($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listCertificates($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2194,7 +2194,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function revokeCertificateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2212,9 +2212,9 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $expectedResponse->setPemCertificate($pemCertificate);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->certificateName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE]');
+        $formattedName = $gapicClient->certificateName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE]');
         $reason = RevocationReason::REVOCATION_REASON_UNSPECIFIED;
-        $response = $client->revokeCertificate($formattedName, $reason);
+        $response = $gapicClient->revokeCertificate($formattedName, $reason);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2234,7 +2234,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function revokeCertificateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2249,11 +2249,11 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->certificateName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE]');
+        $formattedName = $gapicClient->certificateName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE]');
         $reason = RevocationReason::REVOCATION_REASON_UNSPECIFIED;
         try {
-            $client->revokeCertificate($formattedName, $reason);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->revokeCertificate($formattedName, $reason);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2276,7 +2276,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2300,8 +2300,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
-        $response = $client->undeleteCertificateAuthority($formattedName);
+        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
+        $response = $gapicClient->undeleteCertificateAuthority($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2344,7 +2344,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2366,8 +2366,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
-        $response = $client->undeleteCertificateAuthority($formattedName);
+        $formattedName = $gapicClient->certificateAuthorityName('[PROJECT]', '[LOCATION]', '[CA_POOL]', '[CERTIFICATE_AUTHORITY]');
+        $response = $gapicClient->undeleteCertificateAuthority($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2401,7 +2401,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2427,7 +2427,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $caPoolTier = Tier::TIER_UNSPECIFIED;
         $caPool->setTier($caPoolTier);
         $updateMask = new FieldMask();
-        $response = $client->updateCaPool($caPool, $updateMask);
+        $response = $gapicClient->updateCaPool($caPool, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2472,7 +2472,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2498,7 +2498,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $caPoolTier = Tier::TIER_UNSPECIFIED;
         $caPool->setTier($caPoolTier);
         $updateMask = new FieldMask();
-        $response = $client->updateCaPool($caPool, $updateMask);
+        $response = $gapicClient->updateCaPool($caPool, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2526,7 +2526,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function updateCertificateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2548,7 +2548,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $certificateLifetime = new Duration();
         $certificate->setLifetime($certificateLifetime);
         $updateMask = new FieldMask();
-        $response = $client->updateCertificate($certificate, $updateMask);
+        $response = $gapicClient->updateCertificate($certificate, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2568,7 +2568,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function updateCertificateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2588,8 +2588,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $certificate->setLifetime($certificateLifetime);
         $updateMask = new FieldMask();
         try {
-            $client->updateCertificate($certificate, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateCertificate($certificate, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2612,7 +2612,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2652,7 +2652,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $certificateAuthorityKeySpec = new KeyVersionSpec();
         $certificateAuthority->setKeySpec($certificateAuthorityKeySpec);
         $updateMask = new FieldMask();
-        $response = $client->updateCertificateAuthority($certificateAuthority, $updateMask);
+        $response = $gapicClient->updateCertificateAuthority($certificateAuthority, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2697,7 +2697,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2735,7 +2735,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $certificateAuthorityKeySpec = new KeyVersionSpec();
         $certificateAuthority->setKeySpec($certificateAuthorityKeySpec);
         $updateMask = new FieldMask();
-        $response = $client->updateCertificateAuthority($certificateAuthority, $updateMask);
+        $response = $gapicClient->updateCertificateAuthority($certificateAuthority, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2769,7 +2769,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2801,7 +2801,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         // Mock request
         $certificateRevocationList = new CertificateRevocationList();
         $updateMask = new FieldMask();
-        $response = $client->updateCertificateRevocationList($certificateRevocationList, $updateMask);
+        $response = $gapicClient->updateCertificateRevocationList($certificateRevocationList, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2846,7 +2846,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2870,7 +2870,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         // Mock request
         $certificateRevocationList = new CertificateRevocationList();
         $updateMask = new FieldMask();
-        $response = $client->updateCertificateRevocationList($certificateRevocationList, $updateMask);
+        $response = $gapicClient->updateCertificateRevocationList($certificateRevocationList, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2904,7 +2904,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2930,7 +2930,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         // Mock request
         $certificateTemplate = new CertificateTemplate();
         $updateMask = new FieldMask();
-        $response = $client->updateCertificateTemplate($certificateTemplate, $updateMask);
+        $response = $gapicClient->updateCertificateTemplate($certificateTemplate, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2975,7 +2975,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2999,7 +2999,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         // Mock request
         $certificateTemplate = new CertificateTemplate();
         $updateMask = new FieldMask();
-        $response = $client->updateCertificateTemplate($certificateTemplate, $updateMask);
+        $response = $gapicClient->updateCertificateTemplate($certificateTemplate, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3024,10 +3024,138 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function getLocationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $locationId = 'locationId552319461';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new Location();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setLocationId($locationId);
+        $expectedResponse->setDisplayName($displayName);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->getLocation();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.location.Locations/GetLocation', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getLocationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->getLocation();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listLocationsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $locationsElement = new Location();
+        $locations = [
+            $locationsElement,
+        ];
+        $expectedResponse = new ListLocationsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setLocations($locations);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->listLocations();
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getLocations()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.location.Locations/ListLocations', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listLocationsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->listLocations();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3040,7 +3168,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $response = $client->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -3058,7 +3186,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3075,8 +3203,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         try {
-            $client->getIamPolicy($resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIamPolicy($resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -3093,7 +3221,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3107,7 +3235,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $response = $client->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -3127,7 +3255,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3145,8 +3273,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $policy = new Policy();
         try {
-            $client->setIamPolicy($resource, $policy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setIamPolicy($resource, $policy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -3163,7 +3291,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3173,7 +3301,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $response = $client->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -3193,7 +3321,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3211,136 +3339,8 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $permissions = [];
         try {
-            $client->testIamPermissions($resource, $permissions);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getLocationTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $name2 = 'name2-1052831874';
-        $locationId = 'locationId552319461';
-        $displayName = 'displayName1615086568';
-        $expectedResponse = new Location();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setLocationId($locationId);
-        $expectedResponse->setDisplayName($displayName);
-        $transport->addResponse($expectedResponse);
-        $response = $client->getLocation();
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.location.Locations/GetLocation', $actualFuncCall);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function getLocationExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        try {
-            $client->getLocation();
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listLocationsTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $nextPageToken = '';
-        $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
-        $expectedResponse = new ListLocationsResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setLocations($locations);
-        $transport->addResponse($expectedResponse);
-        $response = $client->listLocations();
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getLocations()[0], $resources[0]);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.location.Locations/ListLocations', $actualFuncCall);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function listLocationsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        try {
-            $client->listLocations();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->testIamPermissions($resource, $permissions);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
