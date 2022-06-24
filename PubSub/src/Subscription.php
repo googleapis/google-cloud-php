@@ -705,18 +705,13 @@ class Subscription
      *     $subscription->acknowledge($message);
      * }
      * ```
-     *
-     * When the option `returnFailures` is set, and if a message is failed with a
-     * temporary failure code, it will be retried with an exponential delay. This will also make sure
-     * that the permanently failed message is returned to the caller. This is only true for a
-     * subscription with 'Exactly Once Delivery' enabled.
-     * Read more about EOD: https://cloud.google.com/pubsub/docs/exactly-once-delivery
-     * Example:
      * ```
      * $messages = $subscription->pull();
      *
      * foreach ($messages as $message) {
-     *     $subscription->acknowledge($message, ['returnFailures' => true]);
+     *     $failedMsgs = $subscription->acknowledge($message, ['returnFailures' => true]);
+     *
+     *     // Either log or store the $failedMsgs to be retried later
      * }
      * ```
      *
@@ -725,7 +720,15 @@ class Subscription
      * @codingStandardsIgnoreEnd
      *
      * @param Message $message A message object.
-     * @param array $options [optional] Configuration Options
+     * @param array $options [optional] {
+     *      Configuration Options
+     *
+     *      @type bool $returnFailures If set, and if a message is failed with a
+     *            temporary failure code, it will be retried with an exponential delay. This will also make sure
+     *            that the permanently failed message is returned to the caller. This is only true for a
+     *            subscription with 'Exactly Once Delivery' enabled.
+     *            Read more about EOD: https://cloud.google.com/pubsub/docs/exactly-once-delivery
+     * }
      * @return void|array
      */
     public function acknowledge(Message $message, array $options = [])
@@ -745,17 +748,12 @@ class Subscription
      *
      * $subscription->acknowledgeBatch($messages);
      * ```
-     *
-     * When the option `returnFailures` is set, and if a message(or messages) is failed with a
-     * temporary failure code, they will be retried with an exponential delay. This will also make sure
-     * that the permanently failed messages are returned to the caller. This is only true for a
-     * subscription with 'Exactly Once Delivery' enabled.
-     * Read more about EOD: https://cloud.google.com/pubsub/docs/exactly-once-delivery
-     * Example:
      * ```
      * $messages = $subscription->pull();
      *
      * $failedMsgs = $subscription->acknowledgeBatch($messages, ['returnFailures' => true]);
+     *
+     * // Either log or store the $failedMsgs to be retried later
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -763,14 +761,22 @@ class Subscription
      * @codingStandardsIgnoreEnd
      *
      * @param Message[] $messages An array of messages
-     * @param array $options Configuration Options
+     * @param array $options [optional] {
+     *      Configuration Options
+     *
+     *      @type bool $returnFailures If set, and if a message is failed with a
+     *            temporary failure code, it will be retried with an exponential delay. This will also make sure
+     *            that the permanently failed message is returned to the caller. This is only true for a
+     *            subscription with 'Exactly Once Delivery' enabled.
+     *            Read more about EOD: https://cloud.google.com/pubsub/docs/exactly-once-delivery
+     * }
      * @return void|array
      */
     public function acknowledgeBatch(array $messages, array $options = [])
     {
         $this->validateBatch($messages, Message::class);
 
-        if (isset($options['returnFailures'])) {
+        if (isset($options['returnFailures']) && $options['returnFailures']) {
             return $this->acknowledgeBatchWithRetries($messages, $options);
         }
 
@@ -787,8 +793,6 @@ class Subscription
                 throw $e;
             }
         }
-
-        return;
     }
 
     /**
@@ -796,7 +800,6 @@ class Subscription
      *
      * @param Message[] $messages An array of messages
      * @param array $options Configuration Options
-     *
      * @return array|void Array of messages which failed permanently
      */
     private function acknowledgeBatchWithRetries(array $messages, array $options = [])
