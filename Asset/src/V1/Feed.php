@@ -36,9 +36,8 @@ class Feed extends \Google\Protobuf\Internal\Message
      * specified asset_names or asset_types are exported to the feed.
      * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     * See [Resource
-     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-     * for more info.
+     * For a list of the full names for supported asset types, see [Resource
+     * name format](https://cloud.google.com/asset-inventory/docs/resource-name-format).
      *
      * Generated from protobuf field <code>repeated string asset_names = 2;</code>
      */
@@ -48,9 +47,8 @@ class Feed extends \Google\Protobuf\Internal\Message
      * or both of asset_names and asset_types. Only asset updates matching
      * specified asset_names or asset_types are exported to the feed.
      * Example: `"compute.googleapis.com/Disk"`
-     * See [this
-     * topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
-     * for a list of all supported asset types.
+     * For a list of all supported asset types, see
+     * [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      */
@@ -126,17 +124,15 @@ class Feed extends \Google\Protobuf\Internal\Message
      *           specified asset_names or asset_types are exported to the feed.
      *           Example:
      *           `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     *           See [Resource
-     *           Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-     *           for more info.
+     *           For a list of the full names for supported asset types, see [Resource
+     *           name format](https://cloud.google.com/asset-inventory/docs/resource-name-format).
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
      *           A list of types of the assets to receive updates. You must specify either
      *           or both of asset_names and asset_types. Only asset updates matching
      *           specified asset_names or asset_types are exported to the feed.
      *           Example: `"compute.googleapis.com/Disk"`
-     *           See [this
-     *           topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
-     *           for a list of all supported asset types.
+     *           For a list of all supported asset types, see
+     *           [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      *     @type int $content_type
      *           Asset content type. If not specified, no content but the asset name and
      *           type will be returned.
@@ -221,9 +217,8 @@ class Feed extends \Google\Protobuf\Internal\Message
      * specified asset_names or asset_types are exported to the feed.
      * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     * See [Resource
-     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-     * for more info.
+     * For a list of the full names for supported asset types, see [Resource
+     * name format](https://cloud.google.com/asset-inventory/docs/resource-name-format).
      *
      * Generated from protobuf field <code>repeated string asset_names = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -239,9 +234,8 @@ class Feed extends \Google\Protobuf\Internal\Message
      * specified asset_names or asset_types are exported to the feed.
      * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     * See [Resource
-     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-     * for more info.
+     * For a list of the full names for supported asset types, see [Resource
+     * name format](https://cloud.google.com/asset-inventory/docs/resource-name-format).
      *
      * Generated from protobuf field <code>repeated string asset_names = 2;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -260,9 +254,8 @@ class Feed extends \Google\Protobuf\Internal\Message
      * or both of asset_names and asset_types. Only asset updates matching
      * specified asset_names or asset_types are exported to the feed.
      * Example: `"compute.googleapis.com/Disk"`
-     * See [this
-     * topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
-     * for a list of all supported asset types.
+     * For a list of all supported asset types, see
+     * [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -277,9 +270,8 @@ class Feed extends \Google\Protobuf\Internal\Message
      * or both of asset_names and asset_types. Only asset updates matching
      * specified asset_names or asset_types are exported to the feed.
      * Example: `"compute.googleapis.com/Disk"`
-     * See [this
-     * topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
-     * for a list of all supported asset types.
+     * For a list of all supported asset types, see
+     * [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

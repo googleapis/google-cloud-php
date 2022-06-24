@@ -18,6 +18,15 @@ class GetModelRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the Model resource.
      * Format: `projects/{project}/locations/{location}/models/{model}`
+     * In order to retrieve a specific version of the model, also provide
+     * the version ID or version alias.
+     *   Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *              or
+     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * If no version ID or alias is specified, the "default" version will be
+     * returned. The "default" version alias is created for the first version of
+     * the model, and can be moved to other versions later on. There will be
+     * exactly one default version.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -32,6 +41,15 @@ class GetModelRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the Model resource.
      *           Format: `projects/{project}/locations/{location}/models/{model}`
+     *           In order to retrieve a specific version of the model, also provide
+     *           the version ID or version alias.
+     *             Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *                        or
+     *                      `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *           If no version ID or alias is specified, the "default" version will be
+     *           returned. The "default" version alias is created for the first version of
+     *           the model, and can be moved to other versions later on. There will be
+     *           exactly one default version.
      * }
      */
     public function __construct($data = NULL) {
@@ -42,6 +60,15 @@ class GetModelRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the Model resource.
      * Format: `projects/{project}/locations/{location}/models/{model}`
+     * In order to retrieve a specific version of the model, also provide
+     * the version ID or version alias.
+     *   Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *              or
+     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * If no version ID or alias is specified, the "default" version will be
+     * returned. The "default" version alias is created for the first version of
+     * the model, and can be moved to other versions later on. There will be
+     * exactly one default version.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -54,6 +81,15 @@ class GetModelRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the Model resource.
      * Format: `projects/{project}/locations/{location}/models/{model}`
+     * In order to retrieve a specific version of the model, also provide
+     * the version ID or version alias.
+     *   Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *              or
+     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * If no version ID or alias is specified, the "default" version will be
+     * returned. The "default" version alias is created for the first version of
+     * the model, and can be moved to other versions later on. There will be
+     * exactly one default version.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

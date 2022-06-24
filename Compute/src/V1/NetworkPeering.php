@@ -70,6 +70,13 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     private $peer_mtu = null;
     /**
+     * Which IP version(s) of traffic and routes are allowed to be imported or exported between peer networks. The default value is IPV4_ONLY.
+     * Check the StackType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
+     */
+    private $stack_type = null;
+    /**
      * [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The peering is `ACTIVE` when there's a matching configuration in the peer network.
      * Check the State enum for the list of possible values.
      *
@@ -107,6 +114,9 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *           The URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
      *     @type int $peer_mtu
      *           Maximum Transmission Unit in bytes.
+     *     @type string $stack_type
+     *           Which IP version(s) of traffic and routes are allowed to be imported or exported between peer networks. The default value is IPV4_ONLY.
+     *           Check the StackType enum for the list of possible values.
      *     @type string $state
      *           [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The peering is `ACTIVE` when there's a matching configuration in the peer network.
      *           Check the State enum for the list of possible values.
@@ -439,6 +449,44 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->peer_mtu = $var;
+
+        return $this;
+    }
+
+    /**
+     * Which IP version(s) of traffic and routes are allowed to be imported or exported between peer networks. The default value is IPV4_ONLY.
+     * Check the StackType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
+     * @return string
+     */
+    public function getStackType()
+    {
+        return isset($this->stack_type) ? $this->stack_type : '';
+    }
+
+    public function hasStackType()
+    {
+        return isset($this->stack_type);
+    }
+
+    public function clearStackType()
+    {
+        unset($this->stack_type);
+    }
+
+    /**
+     * Which IP version(s) of traffic and routes are allowed to be imported or exported between peer networks. The default value is IPV4_ONLY.
+     * Check the StackType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string stack_type = 425908881;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStackType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->stack_type = $var;
 
         return $this;
     }

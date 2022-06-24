@@ -19,7 +19,11 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      * Required. The BigQuery dataset in format
      * "projects/projectId/datasets/datasetId", to which the snapshot result
      * should be exported. If this dataset does not exist, the export call returns
-     * an INVALID_ARGUMENT error.
+     * an INVALID_ARGUMENT error. Setting the `contentType` for `exportAssets`
+     * determines the
+     * [schema](https://cloud.google.com/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
+     * of the BigQuery table. Setting `separateTablesPerAssetType` to `TRUE` also
+     * influences the schema.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -101,7 +105,11 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *           Required. The BigQuery dataset in format
      *           "projects/projectId/datasets/datasetId", to which the snapshot result
      *           should be exported. If this dataset does not exist, the export call returns
-     *           an INVALID_ARGUMENT error.
+     *           an INVALID_ARGUMENT error. Setting the `contentType` for `exportAssets`
+     *           determines the
+     *           [schema](https://cloud.google.com/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
+     *           of the BigQuery table. Setting `separateTablesPerAssetType` to `TRUE` also
+     *           influences the schema.
      *     @type string $table
      *           Required. The BigQuery table to which the snapshot result should be
      *           written. If this table does not exist, a new table with the given name
@@ -163,7 +171,11 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      * Required. The BigQuery dataset in format
      * "projects/projectId/datasets/datasetId", to which the snapshot result
      * should be exported. If this dataset does not exist, the export call returns
-     * an INVALID_ARGUMENT error.
+     * an INVALID_ARGUMENT error. Setting the `contentType` for `exportAssets`
+     * determines the
+     * [schema](https://cloud.google.com/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
+     * of the BigQuery table. Setting `separateTablesPerAssetType` to `TRUE` also
+     * influences the schema.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -177,7 +189,11 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      * Required. The BigQuery dataset in format
      * "projects/projectId/datasets/datasetId", to which the snapshot result
      * should be exported. If this dataset does not exist, the export call returns
-     * an INVALID_ARGUMENT error.
+     * an INVALID_ARGUMENT error. Setting the `contentType` for `exportAssets`
+     * determines the
+     * [schema](https://cloud.google.com/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
+     * of the BigQuery table. Setting `separateTablesPerAssetType` to `TRUE` also
+     * influences the schema.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

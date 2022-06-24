@@ -756,6 +756,24 @@ class CloudFunctionsServiceGapicClient
      *     @type string $parent
      *           The project and location in which the Google Cloud Storage signed URL
      *           should be generated, specified in the format `projects/&#42;/locations/*`.
+     *     @type string $kmsKeyName
+     *           Resource name of a KMS crypto key (managed by the user) used to
+     *           encrypt/decrypt function source code objects in staging Cloud Storage
+     *           buckets. When you generate an upload url and upload your source code, it
+     *           gets copied to a staging Cloud Storage bucket in an internal regional
+     *           project. The source code is then copied to a versioned directory in the
+     *           sources bucket in the consumer project during the function deployment.
+     *
+     *           It must match the pattern
+     *           `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
+     *
+     *           The Google Cloud Functions service account
+     *           (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) must be
+     *           granted the role 'Cloud KMS CryptoKey Encrypter/Decrypter
+     *           (roles/cloudkms.cryptoKeyEncrypterDecrypter)' on the
+     *           Key/KeyRing/Project/Organization (least access preferred). GCF will
+     *           delegate access to the Google Storage service account in the internal
+     *           project.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -774,6 +792,10 @@ class CloudFunctionsServiceGapicClient
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
             $requestParamHeaders['parent'] = $optionalArgs['parent'];
+        }
+
+        if (isset($optionalArgs['kmsKeyName'])) {
+            $request->setKmsKeyName($optionalArgs['kmsKeyName']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1157,7 +1179,7 @@ class CloudFunctionsServiceGapicClient
      *     Optional.
      *
      *     @type FieldMask $updateMask
-     *           Required list of fields to be updated in this request.
+     *           Required. The list of fields in `CloudFunction` that have to be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry

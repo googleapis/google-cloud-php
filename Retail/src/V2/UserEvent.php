@@ -37,10 +37,13 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * For example, this could be implemented with an HTTP cookie, which should be
      * able to uniquely identify a visitor on a single device. This unique
      * identifier should not change if the visitor log in/out of the website.
+     * Don't set the field to the same fixed ID for different users. This mixes
+     * the event history of those users together, which results in degraded model
+     * quality.
      * The field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
      * The field should not contain PII or user-data. We recommend to use Google
-     * Analystics [Client
+     * Analytics [Client
      * ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId)
      * for this field.
      *
@@ -104,11 +107,10 @@ class UserEvent extends \Google\Protobuf\Internal\Message
     private $attribution_token = '';
     /**
      * The main product details related to the event.
-     * This field is required for the following event types:
+     * This field is optional except for the following event types:
      * * `add-to-cart`
      * * `detail-page-view`
      * * `purchase-complete`
-     * * `search`
      * In a `search` event, this field represents the products returned to the end
      * user on the current page (the end user may have not finished browsing the
      * whole page yet). When a new page is returned to the end user, after
@@ -296,10 +298,13 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           For example, this could be implemented with an HTTP cookie, which should be
      *           able to uniquely identify a visitor on a single device. This unique
      *           identifier should not change if the visitor log in/out of the website.
+     *           Don't set the field to the same fixed ID for different users. This mixes
+     *           the event history of those users together, which results in degraded model
+     *           quality.
      *           The field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
      *           The field should not contain PII or user-data. We recommend to use Google
-     *           Analystics [Client
+     *           Analytics [Client
      *           ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId)
      *           for this field.
      *     @type string $session_id
@@ -343,11 +348,10 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           to this field.
      *     @type \Google\Cloud\Retail\V2\ProductDetail[]|\Google\Protobuf\Internal\RepeatedField $product_details
      *           The main product details related to the event.
-     *           This field is required for the following event types:
+     *           This field is optional except for the following event types:
      *           * `add-to-cart`
      *           * `detail-page-view`
      *           * `purchase-complete`
-     *           * `search`
      *           In a `search` event, this field represents the products returned to the end
      *           user on the current page (the end user may have not finished browsing the
      *           whole page yet). When a new page is returned to the end user, after
@@ -513,10 +517,13 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * For example, this could be implemented with an HTTP cookie, which should be
      * able to uniquely identify a visitor on a single device. This unique
      * identifier should not change if the visitor log in/out of the website.
+     * Don't set the field to the same fixed ID for different users. This mixes
+     * the event history of those users together, which results in degraded model
+     * quality.
      * The field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
      * The field should not contain PII or user-data. We recommend to use Google
-     * Analystics [Client
+     * Analytics [Client
      * ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId)
      * for this field.
      *
@@ -533,10 +540,13 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * For example, this could be implemented with an HTTP cookie, which should be
      * able to uniquely identify a visitor on a single device. This unique
      * identifier should not change if the visitor log in/out of the website.
+     * Don't set the field to the same fixed ID for different users. This mixes
+     * the event history of those users together, which results in degraded model
+     * quality.
      * The field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
      * The field should not contain PII or user-data. We recommend to use Google
-     * Analystics [Client
+     * Analytics [Client
      * ID](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#clientId)
      * for this field.
      *
@@ -730,11 +740,10 @@ class UserEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * The main product details related to the event.
-     * This field is required for the following event types:
+     * This field is optional except for the following event types:
      * * `add-to-cart`
      * * `detail-page-view`
      * * `purchase-complete`
-     * * `search`
      * In a `search` event, this field represents the products returned to the end
      * user on the current page (the end user may have not finished browsing the
      * whole page yet). When a new page is returned to the end user, after
@@ -753,11 +762,10 @@ class UserEvent extends \Google\Protobuf\Internal\Message
 
     /**
      * The main product details related to the event.
-     * This field is required for the following event types:
+     * This field is optional except for the following event types:
      * * `add-to-cart`
      * * `detail-page-view`
      * * `purchase-complete`
-     * * `search`
      * In a `search` event, this field represents the products returned to the end
      * user on the current page (the end user may have not finished browsing the
      * whole page yet). When a new page is returned to the end user, after

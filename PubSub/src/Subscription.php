@@ -671,9 +671,6 @@ class Subscription
     public function pull(array $options = [])
     {
         $messages = [];
-        $options['returnImmediately'] = isset($options['returnImmediately'])
-            ? $options['returnImmediately']
-            : false;
         $options['maxMessages'] = isset($options['maxMessages'])
             ? $options['maxMessages']
             : self::MAX_MESSAGES;
@@ -1225,7 +1222,6 @@ class Subscription
      * Returns the temporarily failed ackIds from the exception object
      *
      * @param BadRequestException
-     *
      * @return array
      */
     private function getRetryableAckIds(BadRequestException $e)

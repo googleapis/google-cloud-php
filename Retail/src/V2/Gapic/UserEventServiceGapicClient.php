@@ -502,9 +502,9 @@ class UserEventServiceGapicClient
      * ```
      * $userEventServiceClient = new UserEventServiceClient();
      * try {
-     *     $parent = 'parent';
+     *     $formattedParent = $userEventServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
      *     $filter = 'filter';
-     *     $operationResponse = $userEventServiceClient->purgeUserEvents($parent, $filter);
+     *     $operationResponse = $userEventServiceClient->purgeUserEvents($formattedParent, $filter);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -515,7 +515,7 @@ class UserEventServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $userEventServiceClient->purgeUserEvents($parent, $filter);
+     *     $operationResponse = $userEventServiceClient->purgeUserEvents($formattedParent, $filter);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $userEventServiceClient->resumeOperation($operationName, 'purgeUserEvents');

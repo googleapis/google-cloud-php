@@ -1,0 +1,23 @@
+{
+    "title": "GkeMultiCloud",
+    "defaultService": "gkemulticloud\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "gkemulticloud\/readme"
+        },
+        {
+            "title": "AwsClustersClient (v1)",
+            "type": "gkemulticloud\/v1\/awsclustersclient"
+        },
+        {
+            "title": "AzureClient (v1)",
+            "type": "gkemulticloud\/v1\/azureclient"
+        },
+        {
+            "title": "AzureClustersClient (v1)",
+            "type": "gkemulticloud\/v1\/azureclustersclient"
+        }
+    ],
+    "pattern": "gkemulticloud\/\\w{1,}"
+}

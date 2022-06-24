@@ -72,7 +72,7 @@ class SystemPolicyV1Beta1ClientTest extends GeneratedTest
     public function getSystemPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -84,8 +84,8 @@ class SystemPolicyV1Beta1ClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->policyName('[PROJECT]');
-        $response = $client->getSystemPolicy($formattedName);
+        $formattedName = $gapicClient->policyName('[PROJECT]');
+        $response = $gapicClient->getSystemPolicy($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -103,7 +103,7 @@ class SystemPolicyV1Beta1ClientTest extends GeneratedTest
     public function getSystemPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -118,10 +118,10 @@ class SystemPolicyV1Beta1ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->policyName('[PROJECT]');
+        $formattedName = $gapicClient->policyName('[PROJECT]');
         try {
-            $client->getSystemPolicy($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getSystemPolicy($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

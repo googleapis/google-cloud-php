@@ -32,6 +32,13 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      */
     private $enable_endpoint_independent_mapping = null;
     /**
+     * List of NAT-ted endpoint types supported by the Nat Gateway. If the list is empty, then it will be equivalent to include ENDPOINT_TYPE_VM
+     * Check the EndpointTypes enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string endpoint_types = 502633807;</code>
+     */
+    private $endpoint_types;
+    /**
      * Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.
      *
      * Generated from protobuf field <code>optional int32 icmp_idle_timeout_sec = 3647562;</code>
@@ -129,6 +136,9 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *     @type bool $enable_dynamic_port_allocation
      *           Enable Dynamic Port Allocation. If not specified, it is disabled by default. If set to true, - Dynamic Port Allocation will be enabled on this NAT config. - enableEndpointIndependentMapping cannot be set to true. - If minPorts is set, minPortsPerVm must be set to a power of two greater than or equal to 32. If minPortsPerVm is not set, a minimum of 32 ports will be allocated to a VM from this NAT config. 
      *     @type bool $enable_endpoint_independent_mapping
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $endpoint_types
+     *           List of NAT-ted endpoint types supported by the Nat Gateway. If the list is empty, then it will be equivalent to include ENDPOINT_TYPE_VM
+     *           Check the EndpointTypes enum for the list of possible values.
      *     @type int $icmp_idle_timeout_sec
      *           Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.
      *     @type \Google\Cloud\Compute\V1\RouterNatLogConfig $log_config
@@ -256,6 +266,34 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_endpoint_independent_mapping = $var;
+
+        return $this;
+    }
+
+    /**
+     * List of NAT-ted endpoint types supported by the Nat Gateway. If the list is empty, then it will be equivalent to include ENDPOINT_TYPE_VM
+     * Check the EndpointTypes enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string endpoint_types = 502633807;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getEndpointTypes()
+    {
+        return $this->endpoint_types;
+    }
+
+    /**
+     * List of NAT-ted endpoint types supported by the Nat Gateway. If the list is empty, then it will be equivalent to include ENDPOINT_TYPE_VM
+     * Check the EndpointTypes enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>repeated string endpoint_types = 502633807;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setEndpointTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->endpoint_types = $arr;
 
         return $this;
     }

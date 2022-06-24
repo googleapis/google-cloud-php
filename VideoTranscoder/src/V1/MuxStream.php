@@ -38,6 +38,9 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      * - `fmp4`- the corresponding file extension is `.m4s`
      * - `mp4`
      * - `vtt`
+     * See also:
+     * [Supported input and output
+     * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats)
      *
      * Generated from protobuf field <code>string container = 3;</code>
      */
@@ -76,6 +79,9 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      *           - `fmp4`- the corresponding file extension is `.m4s`
      *           - `mp4`
      *           - `vtt`
+     *           See also:
+     *           [Supported input and output
+     *           formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats)
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $elementary_streams
      *           List of `ElementaryStream.key`s multiplexed in this stream.
      *     @type \Google\Cloud\Video\Transcoder\V1\SegmentSettings $segment_settings
@@ -154,6 +160,9 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      * - `fmp4`- the corresponding file extension is `.m4s`
      * - `mp4`
      * - `vtt`
+     * See also:
+     * [Supported input and output
+     * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats)
      *
      * Generated from protobuf field <code>string container = 3;</code>
      * @return string
@@ -170,6 +179,9 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      * - `fmp4`- the corresponding file extension is `.m4s`
      * - `mp4`
      * - `vtt`
+     * See also:
+     * [Supported input and output
+     * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats)
      *
      * Generated from protobuf field <code>string container = 3;</code>
      * @param string $var

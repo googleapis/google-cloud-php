@@ -15,13 +15,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupManagerStatusStateful extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] A bit indicating whether the managed instance group has stateful configuration, that is, if you have configured any items in a stateful policy or in per-instance configs. The group might report that it has no stateful config even when there is still some preserved state on a managed instance, for example, if you have deleted all PICs but not yet applied those deletions.
+     * [Output Only] A bit indicating whether the managed instance group has stateful configuration, that is, if you have configured any items in a stateful policy or in per-instance configs. The group might report that it has no stateful configuration even when there is still some preserved state on a managed instance, for example, if you have deleted all PICs but not yet applied those deletions.
      *
      * Generated from protobuf field <code>optional bool has_stateful_config = 110474224;</code>
      */
     private $has_stateful_config = null;
     /**
-     * [Output Only] Status of per-instance configs on the instance.
+     * [Output Only] Status of per-instance configurations on the instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusStatefulPerInstanceConfigs per_instance_configs = 526265001;</code>
      */
@@ -34,9 +34,9 @@ class InstanceGroupManagerStatusStateful extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $has_stateful_config
-     *           [Output Only] A bit indicating whether the managed instance group has stateful configuration, that is, if you have configured any items in a stateful policy or in per-instance configs. The group might report that it has no stateful config even when there is still some preserved state on a managed instance, for example, if you have deleted all PICs but not yet applied those deletions.
+     *           [Output Only] A bit indicating whether the managed instance group has stateful configuration, that is, if you have configured any items in a stateful policy or in per-instance configs. The group might report that it has no stateful configuration even when there is still some preserved state on a managed instance, for example, if you have deleted all PICs but not yet applied those deletions.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStatusStatefulPerInstanceConfigs $per_instance_configs
-     *           [Output Only] Status of per-instance configs on the instance.
+     *           [Output Only] Status of per-instance configurations on the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +45,7 @@ class InstanceGroupManagerStatusStateful extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] A bit indicating whether the managed instance group has stateful configuration, that is, if you have configured any items in a stateful policy or in per-instance configs. The group might report that it has no stateful config even when there is still some preserved state on a managed instance, for example, if you have deleted all PICs but not yet applied those deletions.
+     * [Output Only] A bit indicating whether the managed instance group has stateful configuration, that is, if you have configured any items in a stateful policy or in per-instance configs. The group might report that it has no stateful configuration even when there is still some preserved state on a managed instance, for example, if you have deleted all PICs but not yet applied those deletions.
      *
      * Generated from protobuf field <code>optional bool has_stateful_config = 110474224;</code>
      * @return bool
@@ -66,7 +66,7 @@ class InstanceGroupManagerStatusStateful extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] A bit indicating whether the managed instance group has stateful configuration, that is, if you have configured any items in a stateful policy or in per-instance configs. The group might report that it has no stateful config even when there is still some preserved state on a managed instance, for example, if you have deleted all PICs but not yet applied those deletions.
+     * [Output Only] A bit indicating whether the managed instance group has stateful configuration, that is, if you have configured any items in a stateful policy or in per-instance configs. The group might report that it has no stateful configuration even when there is still some preserved state on a managed instance, for example, if you have deleted all PICs but not yet applied those deletions.
      *
      * Generated from protobuf field <code>optional bool has_stateful_config = 110474224;</code>
      * @param bool $var
@@ -81,7 +81,7 @@ class InstanceGroupManagerStatusStateful extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] Status of per-instance configs on the instance.
+     * [Output Only] Status of per-instance configurations on the instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusStatefulPerInstanceConfigs per_instance_configs = 526265001;</code>
      * @return \Google\Cloud\Compute\V1\InstanceGroupManagerStatusStatefulPerInstanceConfigs|null
@@ -102,7 +102,7 @@ class InstanceGroupManagerStatusStateful extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * [Output Only] Status of per-instance configs on the instance.
+     * [Output Only] Status of per-instance configurations on the instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusStatefulPerInstanceConfigs per_instance_configs = 526265001;</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagerStatusStatefulPerInstanceConfigs $var

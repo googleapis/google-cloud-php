@@ -39,25 +39,31 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      */
     private $numbers;
     /**
-     * This field will only be used when
+     * This field is normally ignored unless
      * [AttributesConfig.attribute_config_level][] of the
-     * [Catalog][google.cloud.retail.v2.Catalog] is
-     * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG', if true, custom attribute values are
-     * searchable by text queries in
+     * [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
+     * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level
+     * attribute configuration, see [Configuration
+     * modes](https://cloud.google.com/retail/docs/attribute-config#config-modes).
+     * If true, custom attribute values are searchable by text queries in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      * This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
      * Only set if type [text][google.cloud.retail.v2.CustomAttribute.text] is
      * set. Otherwise, a INVALID_ARGUMENT error is returned.
      *
-     * Generated from protobuf field <code>optional bool searchable = 3;</code>
+     * Generated from protobuf field <code>optional bool searchable = 3 [deprecated = true];</code>
+     * @deprecated
      */
-    private $searchable = null;
+    protected $searchable = null;
     /**
-     * This field will only be used when
+     * This field is normally ignored unless
      * [AttributesConfig.attribute_config_level][] of the
-     * [Catalog][google.cloud.retail.v2.Catalog] is
-     * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG', if true, custom attribute values are
-     * indexed, so that it can be filtered, faceted or boosted in
+     * [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
+     * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level
+     * attribute configuration, see [Configuration
+     * modes](https://cloud.google.com/retail/docs/attribute-config#config-modes).
+     * If true, custom attribute values are indexed, so that they can be filtered,
+     * faceted or boosted in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      * This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
      * See [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter],
@@ -66,9 +72,10 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * [SearchRequest.boost_spec][google.cloud.retail.v2.SearchRequest.boost_spec]
      * for more details.
      *
-     * Generated from protobuf field <code>optional bool indexable = 4;</code>
+     * Generated from protobuf field <code>optional bool indexable = 4 [deprecated = true];</code>
+     * @deprecated
      */
-    private $indexable = null;
+    protected $indexable = null;
 
     /**
      * Constructor.
@@ -91,21 +98,26 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      *           [numbers][google.cloud.retail.v2.CustomAttribute.numbers] should be set.
      *           Otherwise, an INVALID_ARGUMENT error is returned.
      *     @type bool $searchable
-     *           This field will only be used when
+     *           This field is normally ignored unless
      *           [AttributesConfig.attribute_config_level][] of the
-     *           [Catalog][google.cloud.retail.v2.Catalog] is
-     *           'PRODUCT_LEVEL_ATTRIBUTE_CONFIG', if true, custom attribute values are
-     *           searchable by text queries in
+     *           [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
+     *           'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level
+     *           attribute configuration, see [Configuration
+     *           modes](https://cloud.google.com/retail/docs/attribute-config#config-modes).
+     *           If true, custom attribute values are searchable by text queries in
      *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      *           This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
      *           Only set if type [text][google.cloud.retail.v2.CustomAttribute.text] is
      *           set. Otherwise, a INVALID_ARGUMENT error is returned.
      *     @type bool $indexable
-     *           This field will only be used when
+     *           This field is normally ignored unless
      *           [AttributesConfig.attribute_config_level][] of the
-     *           [Catalog][google.cloud.retail.v2.Catalog] is
-     *           'PRODUCT_LEVEL_ATTRIBUTE_CONFIG', if true, custom attribute values are
-     *           indexed, so that it can be filtered, faceted or boosted in
+     *           [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
+     *           'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level
+     *           attribute configuration, see [Configuration
+     *           modes](https://cloud.google.com/retail/docs/attribute-config#config-modes).
+     *           If true, custom attribute values are indexed, so that they can be filtered,
+     *           faceted or boosted in
      *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      *           This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
      *           See [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter],
@@ -193,51 +205,61 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field will only be used when
+     * This field is normally ignored unless
      * [AttributesConfig.attribute_config_level][] of the
-     * [Catalog][google.cloud.retail.v2.Catalog] is
-     * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG', if true, custom attribute values are
-     * searchable by text queries in
+     * [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
+     * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level
+     * attribute configuration, see [Configuration
+     * modes](https://cloud.google.com/retail/docs/attribute-config#config-modes).
+     * If true, custom attribute values are searchable by text queries in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      * This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
      * Only set if type [text][google.cloud.retail.v2.CustomAttribute.text] is
      * set. Otherwise, a INVALID_ARGUMENT error is returned.
      *
-     * Generated from protobuf field <code>optional bool searchable = 3;</code>
+     * Generated from protobuf field <code>optional bool searchable = 3 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getSearchable()
     {
+        @trigger_error('searchable is deprecated.', E_USER_DEPRECATED);
         return isset($this->searchable) ? $this->searchable : false;
     }
 
     public function hasSearchable()
     {
+        @trigger_error('searchable is deprecated.', E_USER_DEPRECATED);
         return isset($this->searchable);
     }
 
     public function clearSearchable()
     {
+        @trigger_error('searchable is deprecated.', E_USER_DEPRECATED);
         unset($this->searchable);
     }
 
     /**
-     * This field will only be used when
+     * This field is normally ignored unless
      * [AttributesConfig.attribute_config_level][] of the
-     * [Catalog][google.cloud.retail.v2.Catalog] is
-     * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG', if true, custom attribute values are
-     * searchable by text queries in
+     * [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
+     * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level
+     * attribute configuration, see [Configuration
+     * modes](https://cloud.google.com/retail/docs/attribute-config#config-modes).
+     * If true, custom attribute values are searchable by text queries in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      * This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
      * Only set if type [text][google.cloud.retail.v2.CustomAttribute.text] is
      * set. Otherwise, a INVALID_ARGUMENT error is returned.
      *
-     * Generated from protobuf field <code>optional bool searchable = 3;</code>
+     * Generated from protobuf field <code>optional bool searchable = 3 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setSearchable($var)
     {
+        @trigger_error('searchable is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->searchable = $var;
 
@@ -245,11 +267,14 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field will only be used when
+     * This field is normally ignored unless
      * [AttributesConfig.attribute_config_level][] of the
-     * [Catalog][google.cloud.retail.v2.Catalog] is
-     * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG', if true, custom attribute values are
-     * indexed, so that it can be filtered, faceted or boosted in
+     * [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
+     * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level
+     * attribute configuration, see [Configuration
+     * modes](https://cloud.google.com/retail/docs/attribute-config#config-modes).
+     * If true, custom attribute values are indexed, so that they can be filtered,
+     * faceted or boosted in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      * This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
      * See [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter],
@@ -258,30 +283,37 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * [SearchRequest.boost_spec][google.cloud.retail.v2.SearchRequest.boost_spec]
      * for more details.
      *
-     * Generated from protobuf field <code>optional bool indexable = 4;</code>
+     * Generated from protobuf field <code>optional bool indexable = 4 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getIndexable()
     {
+        @trigger_error('indexable is deprecated.', E_USER_DEPRECATED);
         return isset($this->indexable) ? $this->indexable : false;
     }
 
     public function hasIndexable()
     {
+        @trigger_error('indexable is deprecated.', E_USER_DEPRECATED);
         return isset($this->indexable);
     }
 
     public function clearIndexable()
     {
+        @trigger_error('indexable is deprecated.', E_USER_DEPRECATED);
         unset($this->indexable);
     }
 
     /**
-     * This field will only be used when
+     * This field is normally ignored unless
      * [AttributesConfig.attribute_config_level][] of the
-     * [Catalog][google.cloud.retail.v2.Catalog] is
-     * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG', if true, custom attribute values are
-     * indexed, so that it can be filtered, faceted or boosted in
+     * [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
+     * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level
+     * attribute configuration, see [Configuration
+     * modes](https://cloud.google.com/retail/docs/attribute-config#config-modes).
+     * If true, custom attribute values are indexed, so that they can be filtered,
+     * faceted or boosted in
      * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
      * This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
      * See [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter],
@@ -290,12 +322,14 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * [SearchRequest.boost_spec][google.cloud.retail.v2.SearchRequest.boost_spec]
      * for more details.
      *
-     * Generated from protobuf field <code>optional bool indexable = 4;</code>
+     * Generated from protobuf field <code>optional bool indexable = 4 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setIndexable($var)
     {
+        @trigger_error('indexable is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->indexable = $var;
 

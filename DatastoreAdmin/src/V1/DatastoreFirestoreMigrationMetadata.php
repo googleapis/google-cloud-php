@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * an explicit "creation" method. This is an intentional deviation from the LRO
  * design pattern.
  * This singleton resource can be accessed at:
- * `projects/{project_id}/datastore-firestore-migration`
+ * "projects/{project_id}/operations/datastore-firestore-migration"
  *
  * Generated from protobuf message <code>google.datastore.admin.v1.DatastoreFirestoreMigrationMetadata</code>
  */

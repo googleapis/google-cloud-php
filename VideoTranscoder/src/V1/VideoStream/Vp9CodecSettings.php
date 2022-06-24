@@ -70,7 +70,6 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      * Specify the `rate_control_mode`. The default is `vbr`.
      * Supported rate control modes:
      * - `vbr` - variable bitrate
-     * - `crf` - constant rate factor
      *
      * Generated from protobuf field <code>string rate_control_mode = 6;</code>
      */
@@ -78,6 +77,7 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
     /**
      * Target CRF level. Must be between 10 and 36, where 10 is the highest
      * quality and 36 is the most efficient compression. The default is 21.
+     * **Note:** This field is not supported.
      *
      * Generated from protobuf field <code>int32 crf_level = 7;</code>
      */
@@ -141,10 +141,10 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      *           Specify the `rate_control_mode`. The default is `vbr`.
      *           Supported rate control modes:
      *           - `vbr` - variable bitrate
-     *           - `crf` - constant rate factor
      *     @type int $crf_level
      *           Target CRF level. Must be between 10 and 36, where 10 is the highest
      *           quality and 36 is the most efficient compression. The default is 21.
+     *           **Note:** This field is not supported.
      *     @type int $gop_frame_count
      *           Select the GOP size based on the specified frame count. Must be greater
      *           than zero.
@@ -349,7 +349,6 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      * Specify the `rate_control_mode`. The default is `vbr`.
      * Supported rate control modes:
      * - `vbr` - variable bitrate
-     * - `crf` - constant rate factor
      *
      * Generated from protobuf field <code>string rate_control_mode = 6;</code>
      * @return string
@@ -363,7 +362,6 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      * Specify the `rate_control_mode`. The default is `vbr`.
      * Supported rate control modes:
      * - `vbr` - variable bitrate
-     * - `crf` - constant rate factor
      *
      * Generated from protobuf field <code>string rate_control_mode = 6;</code>
      * @param string $var
@@ -380,6 +378,7 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
     /**
      * Target CRF level. Must be between 10 and 36, where 10 is the highest
      * quality and 36 is the most efficient compression. The default is 21.
+     * **Note:** This field is not supported.
      *
      * Generated from protobuf field <code>int32 crf_level = 7;</code>
      * @return int
@@ -392,6 +391,7 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
     /**
      * Target CRF level. Must be between 10 and 36, where 10 is the highest
      * quality and 36 is the most efficient compression. The default is 21.
+     * **Note:** This field is not supported.
      *
      * Generated from protobuf field <code>int32 crf_level = 7;</code>
      * @param int $var

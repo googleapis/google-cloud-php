@@ -1,0 +1,6 @@
+{
+    "distribution_name": "google/cloud-bare-metal-solution",
+    "release_level": "beta",
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-bare-metal-solution/latest",
+    "library_type": "GAPIC_AUTO"
+}

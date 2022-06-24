@@ -35,6 +35,7 @@ class UpdateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      * Updatable fields:
      *   * `labels`
      *   * `online_serving_config.fixed_node_count`
+     *   * `online_serving_config.scaling`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -62,6 +63,7 @@ class UpdateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      *           Updatable fields:
      *             * `labels`
      *             * `online_serving_config.fixed_node_count`
+     *             * `online_serving_config.scaling`
      * }
      */
     public function __construct($data = NULL) {
@@ -122,6 +124,7 @@ class UpdateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      * Updatable fields:
      *   * `labels`
      *   * `online_serving_config.fixed_node_count`
+     *   * `online_serving_config.scaling`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -152,6 +155,7 @@ class UpdateFeaturestoreRequest extends \Google\Protobuf\Internal\Message
      * Updatable fields:
      *   * `labels`
      *   * `online_serving_config.fixed_node_count`
+     *   * `online_serving_config.scaling`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

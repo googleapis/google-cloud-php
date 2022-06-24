@@ -24,6 +24,13 @@ class ComplianceVersion extends \Google\Protobuf\Internal\Message
      */
     private $cpe_uri = '';
     /**
+     * The name of the document that defines this benchmark, e.g. "CIS
+     * Container-Optimized OS".
+     *
+     * Generated from protobuf field <code>string benchmark_document = 3;</code>
+     */
+    private $benchmark_document = '';
+    /**
      * The version of the benchmark. This is set to the version of the OS-specific
      * CIS document the benchmark is defined in.
      *
@@ -40,6 +47,9 @@ class ComplianceVersion extends \Google\Protobuf\Internal\Message
      *     @type string $cpe_uri
      *           The CPE URI (https://cpe.mitre.org/specification/) this benchmark is
      *           applicable to.
+     *     @type string $benchmark_document
+     *           The name of the document that defines this benchmark, e.g. "CIS
+     *           Container-Optimized OS".
      *     @type string $version
      *           The version of the benchmark. This is set to the version of the OS-specific
      *           CIS document the benchmark is defined in.
@@ -74,6 +84,34 @@ class ComplianceVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->cpe_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * The name of the document that defines this benchmark, e.g. "CIS
+     * Container-Optimized OS".
+     *
+     * Generated from protobuf field <code>string benchmark_document = 3;</code>
+     * @return string
+     */
+    public function getBenchmarkDocument()
+    {
+        return $this->benchmark_document;
+    }
+
+    /**
+     * The name of the document that defines this benchmark, e.g. "CIS
+     * Container-Optimized OS".
+     *
+     * Generated from protobuf field <code>string benchmark_document = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBenchmarkDocument($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->benchmark_document = $var;
 
         return $this;
     }

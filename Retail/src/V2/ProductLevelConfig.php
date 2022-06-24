@@ -25,10 +25,10 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      *   default to
      *   [Product.Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] if
      *   unset.
-     * * `variant`: You can only ingest
-     * [Product.Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]
-     * [Product][google.cloud.retail.v2.Product]s.
-     *   This means
+     * * `variant` (incompatible with Retail Search): You can only
+     *   ingest
+     *   [Product.Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]
+     *   [Product][google.cloud.retail.v2.Product]s. This means
      *   [Product.primary_product_id][google.cloud.retail.v2.Product.primary_product_id]
      *   cannot be empty.
      * If this field is set to an invalid value other than these, an
@@ -36,8 +36,8 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      * If this field is `variant` and
      * [merchant_center_product_id_field][google.cloud.retail.v2.ProductLevelConfig.merchant_center_product_id_field]
      * is `itemGroupId`, an INVALID_ARGUMENT error is returned.
-     * See [Using product
-     * levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#product-levels)
+     * See [Product
+     * levels](https://cloud.google.com/retail/docs/catalog#product-levels)
      * for more details.
      *
      * Generated from protobuf field <code>string ingestion_product_type = 1;</code>
@@ -57,8 +57,8 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      * If this field is `itemGroupId` and
      * [ingestion_product_type][google.cloud.retail.v2.ProductLevelConfig.ingestion_product_type]
      * is `variant`, an INVALID_ARGUMENT error is returned.
-     * See [Using product
-     * levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#product-levels)
+     * See [Product
+     * levels](https://cloud.google.com/retail/docs/catalog#product-levels)
      * for more details.
      *
      * Generated from protobuf field <code>string merchant_center_product_id_field = 2;</code>
@@ -80,10 +80,10 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      *             default to
      *             [Product.Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] if
      *             unset.
-     *           * `variant`: You can only ingest
-     *           [Product.Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]
-     *           [Product][google.cloud.retail.v2.Product]s.
-     *             This means
+     *           * `variant` (incompatible with Retail Search): You can only
+     *             ingest
+     *             [Product.Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]
+     *             [Product][google.cloud.retail.v2.Product]s. This means
      *             [Product.primary_product_id][google.cloud.retail.v2.Product.primary_product_id]
      *             cannot be empty.
      *           If this field is set to an invalid value other than these, an
@@ -91,8 +91,8 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      *           If this field is `variant` and
      *           [merchant_center_product_id_field][google.cloud.retail.v2.ProductLevelConfig.merchant_center_product_id_field]
      *           is `itemGroupId`, an INVALID_ARGUMENT error is returned.
-     *           See [Using product
-     *           levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#product-levels)
+     *           See [Product
+     *           levels](https://cloud.google.com/retail/docs/catalog#product-levels)
      *           for more details.
      *     @type string $merchant_center_product_id_field
      *           Which field of [Merchant Center
@@ -108,8 +108,8 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      *           If this field is `itemGroupId` and
      *           [ingestion_product_type][google.cloud.retail.v2.ProductLevelConfig.ingestion_product_type]
      *           is `variant`, an INVALID_ARGUMENT error is returned.
-     *           See [Using product
-     *           levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#product-levels)
+     *           See [Product
+     *           levels](https://cloud.google.com/retail/docs/catalog#product-levels)
      *           for more details.
      * }
      */
@@ -127,10 +127,10 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      *   default to
      *   [Product.Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] if
      *   unset.
-     * * `variant`: You can only ingest
-     * [Product.Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]
-     * [Product][google.cloud.retail.v2.Product]s.
-     *   This means
+     * * `variant` (incompatible with Retail Search): You can only
+     *   ingest
+     *   [Product.Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]
+     *   [Product][google.cloud.retail.v2.Product]s. This means
      *   [Product.primary_product_id][google.cloud.retail.v2.Product.primary_product_id]
      *   cannot be empty.
      * If this field is set to an invalid value other than these, an
@@ -138,8 +138,8 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      * If this field is `variant` and
      * [merchant_center_product_id_field][google.cloud.retail.v2.ProductLevelConfig.merchant_center_product_id_field]
      * is `itemGroupId`, an INVALID_ARGUMENT error is returned.
-     * See [Using product
-     * levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#product-levels)
+     * See [Product
+     * levels](https://cloud.google.com/retail/docs/catalog#product-levels)
      * for more details.
      *
      * Generated from protobuf field <code>string ingestion_product_type = 1;</code>
@@ -159,10 +159,10 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      *   default to
      *   [Product.Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] if
      *   unset.
-     * * `variant`: You can only ingest
-     * [Product.Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]
-     * [Product][google.cloud.retail.v2.Product]s.
-     *   This means
+     * * `variant` (incompatible with Retail Search): You can only
+     *   ingest
+     *   [Product.Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT]
+     *   [Product][google.cloud.retail.v2.Product]s. This means
      *   [Product.primary_product_id][google.cloud.retail.v2.Product.primary_product_id]
      *   cannot be empty.
      * If this field is set to an invalid value other than these, an
@@ -170,8 +170,8 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      * If this field is `variant` and
      * [merchant_center_product_id_field][google.cloud.retail.v2.ProductLevelConfig.merchant_center_product_id_field]
      * is `itemGroupId`, an INVALID_ARGUMENT error is returned.
-     * See [Using product
-     * levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#product-levels)
+     * See [Product
+     * levels](https://cloud.google.com/retail/docs/catalog#product-levels)
      * for more details.
      *
      * Generated from protobuf field <code>string ingestion_product_type = 1;</code>
@@ -200,8 +200,8 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      * If this field is `itemGroupId` and
      * [ingestion_product_type][google.cloud.retail.v2.ProductLevelConfig.ingestion_product_type]
      * is `variant`, an INVALID_ARGUMENT error is returned.
-     * See [Using product
-     * levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#product-levels)
+     * See [Product
+     * levels](https://cloud.google.com/retail/docs/catalog#product-levels)
      * for more details.
      *
      * Generated from protobuf field <code>string merchant_center_product_id_field = 2;</code>
@@ -226,8 +226,8 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      * If this field is `itemGroupId` and
      * [ingestion_product_type][google.cloud.retail.v2.ProductLevelConfig.ingestion_product_type]
      * is `variant`, an INVALID_ARGUMENT error is returned.
-     * See [Using product
-     * levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#product-levels)
+     * See [Product
+     * levels](https://cloud.google.com/retail/docs/catalog#product-levels)
      * for more details.
      *
      * Generated from protobuf field <code>string merchant_center_product_id_field = 2;</code>

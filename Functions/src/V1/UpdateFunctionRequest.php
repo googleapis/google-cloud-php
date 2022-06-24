@@ -22,7 +22,7 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
      */
     private $function = null;
     /**
-     * Required list of fields to be updated in this request.
+     * Required. The list of fields in `CloudFunction` that have to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
@@ -37,7 +37,7 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Functions\V1\CloudFunction $function
      *           Required. New version of the function.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required list of fields to be updated in this request.
+     *           Required. The list of fields in `CloudFunction` that have to be updated.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +82,7 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required list of fields to be updated in this request.
+     * Required. The list of fields in `CloudFunction` that have to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -103,7 +103,7 @@ class UpdateFunctionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required list of fields to be updated in this request.
+     * Required. The list of fields in `CloudFunction` that have to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

@@ -18,13 +18,6 @@ class CreateLiveSessionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The project and location in which the live session should be created,
      * in the form of `projects/{project_number}/locations/{location}`.
-     * Valid locations:
-     * * `-` (Video Stitcher API will pick a location that is closest to the
-     * caller.)
-     * * `us-east1`
-     * * `us-west1`
-     * * `us-central1`
-     * * `europe-west1`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -45,13 +38,6 @@ class CreateLiveSessionRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The project and location in which the live session should be created,
      *           in the form of `projects/{project_number}/locations/{location}`.
-     *           Valid locations:
-     *           * `-` (Video Stitcher API will pick a location that is closest to the
-     *           caller.)
-     *           * `us-east1`
-     *           * `us-west1`
-     *           * `us-central1`
-     *           * `europe-west1`
      *     @type \Google\Cloud\Video\Stitcher\V1\LiveSession $live_session
      *           Required. Parameters for creating a live session.
      * }
@@ -64,13 +50,6 @@ class CreateLiveSessionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The project and location in which the live session should be created,
      * in the form of `projects/{project_number}/locations/{location}`.
-     * Valid locations:
-     * * `-` (Video Stitcher API will pick a location that is closest to the
-     * caller.)
-     * * `us-east1`
-     * * `us-west1`
-     * * `us-central1`
-     * * `europe-west1`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -83,13 +62,6 @@ class CreateLiveSessionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The project and location in which the live session should be created,
      * in the form of `projects/{project_number}/locations/{location}`.
-     * Valid locations:
-     * * `-` (Video Stitcher API will pick a location that is closest to the
-     * caller.)
-     * * `us-east1`
-     * * `us-west1`
-     * * `us-central1`
-     * * `europe-west1`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -50,6 +50,12 @@ class Purpose
      */
     const PRIVATE_SERVICE_CONNECT = 48134724;
     /**
+     * A regional internal IP address range reserved for Serverless.
+     *
+     * Generated from protobuf enum <code>SERVERLESS = 270492508;</code>
+     */
+    const SERVERLESS = 270492508;
+    /**
      * A private network IP address that can be shared by multiple Internal Load Balancer forwarding rules.
      *
      * Generated from protobuf enum <code>SHARED_LOADBALANCER_VIP = 294447572;</code>
@@ -69,6 +75,7 @@ class Purpose
         self::IPSEC_INTERCONNECT => 'IPSEC_INTERCONNECT',
         self::NAT_AUTO => 'NAT_AUTO',
         self::PRIVATE_SERVICE_CONNECT => 'PRIVATE_SERVICE_CONNECT',
+        self::SERVERLESS => 'SERVERLESS',
         self::SHARED_LOADBALANCER_VIP => 'SHARED_LOADBALANCER_VIP',
         self::VPC_PEERING => 'VPC_PEERING',
     ];

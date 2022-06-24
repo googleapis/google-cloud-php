@@ -32,12 +32,14 @@ class Audio extends \Google\Protobuf\Internal\Message
     private $lufs = 0.0;
     /**
      * Enable boosting high frequency components. The default is `false`.
+     * **Note:** This field is not supported.
      *
      * Generated from protobuf field <code>bool high_boost = 2;</code>
      */
     private $high_boost = false;
     /**
      * Enable boosting low frequency components. The default is `false`.
+     * **Note:** This field is not supported.
      *
      * Generated from protobuf field <code>bool low_boost = 3;</code>
      */
@@ -62,8 +64,10 @@ class Audio extends \Google\Protobuf\Internal\Message
      *           *   0 disables normalization
      *     @type bool $high_boost
      *           Enable boosting high frequency components. The default is `false`.
+     *           **Note:** This field is not supported.
      *     @type bool $low_boost
      *           Enable boosting low frequency components. The default is `false`.
+     *           **Note:** This field is not supported.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,6 +121,7 @@ class Audio extends \Google\Protobuf\Internal\Message
 
     /**
      * Enable boosting high frequency components. The default is `false`.
+     * **Note:** This field is not supported.
      *
      * Generated from protobuf field <code>bool high_boost = 2;</code>
      * @return bool
@@ -128,6 +133,7 @@ class Audio extends \Google\Protobuf\Internal\Message
 
     /**
      * Enable boosting high frequency components. The default is `false`.
+     * **Note:** This field is not supported.
      *
      * Generated from protobuf field <code>bool high_boost = 2;</code>
      * @param bool $var
@@ -143,6 +149,7 @@ class Audio extends \Google\Protobuf\Internal\Message
 
     /**
      * Enable boosting low frequency components. The default is `false`.
+     * **Note:** This field is not supported.
      *
      * Generated from protobuf field <code>bool low_boost = 3;</code>
      * @return bool
@@ -154,6 +161,7 @@ class Audio extends \Google\Protobuf\Internal\Message
 
     /**
      * Enable boosting low frequency components. The default is `false`.
+     * **Note:** This field is not supported.
      *
      * Generated from protobuf field <code>bool low_boost = 3;</code>
      * @param bool $var

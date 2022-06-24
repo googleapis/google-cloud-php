@@ -3561,6 +3561,11 @@
                                 "patch"
                             ]
                         },
+                        "SetCertificateMap": {
+                            "methods": [
+                                "setCertificateMap"
+                            ]
+                        },
                         "SetQuicOverride": {
                             "methods": [
                                 "setQuicOverride"
@@ -3711,6 +3716,11 @@
                         "SetBackendService": {
                             "methods": [
                                 "setBackendService"
+                            ]
+                        },
+                        "SetCertificateMap": {
+                            "methods": [
+                                "setCertificateMap"
                             ]
                         },
                         "SetProxyHeader": {

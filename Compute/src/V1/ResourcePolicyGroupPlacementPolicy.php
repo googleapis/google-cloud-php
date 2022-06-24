@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The number of availability domains instances will be spread across. If two instances are in different availability domain, they will not be put in the same low latency network
+     * The number of availability domains to spread instances across. If two instances are in different availability domain, they are not in the same low latency network.
      *
      * Generated from protobuf field <code>optional int32 availability_domain_count = 12453432;</code>
      */
@@ -29,7 +29,7 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
      */
     private $collocation = null;
     /**
-     * Number of vms in this placement group
+     * Number of VMs in this placement group. Google does not recommend that you use this field unless you use a compact policy and you want your policy to work only if it contains this exact number of VMs.
      *
      * Generated from protobuf field <code>optional int32 vm_count = 261463431;</code>
      */
@@ -42,12 +42,12 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type int $availability_domain_count
-     *           The number of availability domains instances will be spread across. If two instances are in different availability domain, they will not be put in the same low latency network
+     *           The number of availability domains to spread instances across. If two instances are in different availability domain, they are not in the same low latency network.
      *     @type string $collocation
      *           Specifies network collocation
      *           Check the Collocation enum for the list of possible values.
      *     @type int $vm_count
-     *           Number of vms in this placement group
+     *           Number of VMs in this placement group. Google does not recommend that you use this field unless you use a compact policy and you want your policy to work only if it contains this exact number of VMs.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The number of availability domains instances will be spread across. If two instances are in different availability domain, they will not be put in the same low latency network
+     * The number of availability domains to spread instances across. If two instances are in different availability domain, they are not in the same low latency network.
      *
      * Generated from protobuf field <code>optional int32 availability_domain_count = 12453432;</code>
      * @return int
@@ -77,7 +77,7 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * The number of availability domains instances will be spread across. If two instances are in different availability domain, they will not be put in the same low latency network
+     * The number of availability domains to spread instances across. If two instances are in different availability domain, they are not in the same low latency network.
      *
      * Generated from protobuf field <code>optional int32 availability_domain_count = 12453432;</code>
      * @param int $var
@@ -130,7 +130,7 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Number of vms in this placement group
+     * Number of VMs in this placement group. Google does not recommend that you use this field unless you use a compact policy and you want your policy to work only if it contains this exact number of VMs.
      *
      * Generated from protobuf field <code>optional int32 vm_count = 261463431;</code>
      * @return int
@@ -151,7 +151,7 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Number of vms in this placement group
+     * Number of VMs in this placement group. Google does not recommend that you use this field unless you use a compact policy and you want your policy to work only if it contains this exact number of VMs.
      *
      * Generated from protobuf field <code>optional int32 vm_count = 261463431;</code>
      * @param int $var

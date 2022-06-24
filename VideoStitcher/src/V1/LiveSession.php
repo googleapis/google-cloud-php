@@ -95,6 +95,12 @@ class LiveSession extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.ManifestOptions manifest_options = 10;</code>
      */
     private $manifest_options = null;
+    /**
+     * Output only. The generated ID of the LiveSession's source stream.
+     *
+     * Generated from protobuf field <code>string stream_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $stream_id = '';
 
     /**
      * Constructor.
@@ -142,6 +148,8 @@ class LiveSession extends \Google\Protobuf\Internal\Message
      *           the ad break boundaries. If not specified, the default is `COMPLETE_AD`.
      *     @type \Google\Cloud\Video\Stitcher\V1\ManifestOptions $manifest_options
      *           Additional options that affect the output of the manifest.
+     *     @type string $stream_id
+     *           Output only. The generated ID of the LiveSession's source stream.
      * }
      */
     public function __construct($data = NULL) {
@@ -455,6 +463,32 @@ class LiveSession extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\Stitcher\V1\ManifestOptions::class);
         $this->manifest_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The generated ID of the LiveSession's source stream.
+     *
+     * Generated from protobuf field <code>string stream_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getStreamId()
+    {
+        return $this->stream_id;
+    }
+
+    /**
+     * Output only. The generated ID of the LiveSession's source stream.
+     *
+     * Generated from protobuf field <code>string stream_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStreamId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->stream_id = $var;
 
         return $this;
     }
