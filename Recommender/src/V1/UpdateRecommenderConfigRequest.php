@@ -9,31 +9,31 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for the `UpdateInsightTypeConfig` method.
+ * Request for the `UpdateRecommenderConfig` method.
  *
- * Generated from protobuf message <code>google.cloud.recommender.v1.UpdateInsightTypeConfigRequest</code>
+ * Generated from protobuf message <code>google.cloud.recommender.v1.UpdateRecommenderConfigRequest</code>
  */
-class UpdateInsightTypeConfigRequest extends \Google\Protobuf\Internal\Message
+class UpdateRecommenderConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The InsightTypeConfig to update.
+     * Required. The RecommenderConfig to update.
      *
-     * Generated from protobuf field <code>.google.cloud.recommender.v1.InsightTypeConfig insight_type_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.recommender.v1.RecommenderConfig recommender_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $insight_type_config = null;
+    private $recommender_config = null;
     /**
      * The list of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    protected $update_mask = null;
+    private $update_mask = null;
     /**
      * If true, validate the request and preview the change, but do not actually
      * update it.
      *
      * Generated from protobuf field <code>bool validate_only = 3;</code>
      */
-    protected $validate_only = false;
+    private $validate_only = false;
 
     /**
      * Constructor.
@@ -41,8 +41,8 @@ class UpdateInsightTypeConfigRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Recommender\V1\InsightTypeConfig $insight_type_config
-     *           Required. The InsightTypeConfig to update.
+     *     @type \Google\Cloud\Recommender\V1\RecommenderConfig $recommender_config
+     *           Required. The RecommenderConfig to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The list of fields to be updated.
      *     @type bool $validate_only
@@ -56,37 +56,37 @@ class UpdateInsightTypeConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The InsightTypeConfig to update.
+     * Required. The RecommenderConfig to update.
      *
-     * Generated from protobuf field <code>.google.cloud.recommender.v1.InsightTypeConfig insight_type_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Recommender\V1\InsightTypeConfig|null
+     * Generated from protobuf field <code>.google.cloud.recommender.v1.RecommenderConfig recommender_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Recommender\V1\RecommenderConfig|null
      */
-    public function getInsightTypeConfig()
+    public function getRecommenderConfig()
     {
-        return $this->insight_type_config;
+        return $this->recommender_config;
     }
 
-    public function hasInsightTypeConfig()
+    public function hasRecommenderConfig()
     {
-        return isset($this->insight_type_config);
+        return isset($this->recommender_config);
     }
 
-    public function clearInsightTypeConfig()
+    public function clearRecommenderConfig()
     {
-        unset($this->insight_type_config);
+        unset($this->recommender_config);
     }
 
     /**
-     * Required. The InsightTypeConfig to update.
+     * Required. The RecommenderConfig to update.
      *
-     * Generated from protobuf field <code>.google.cloud.recommender.v1.InsightTypeConfig insight_type_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Recommender\V1\InsightTypeConfig $var
+     * Generated from protobuf field <code>.google.cloud.recommender.v1.RecommenderConfig recommender_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param \Google\Cloud\Recommender\V1\RecommenderConfig $var
      * @return $this
      */
-    public function setInsightTypeConfig($var)
+    public function setRecommenderConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Recommender\V1\InsightTypeConfig::class);
-        $this->insight_type_config = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\Recommender\V1\RecommenderConfig::class);
+        $this->recommender_config = $var;
 
         return $this;
     }
