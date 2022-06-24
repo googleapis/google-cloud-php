@@ -73,6 +73,16 @@ return [
                     'resourcesGetMethod' => 'getDatasets',
                 ],
             ],
+            'ListSavedQueries' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSavedQueries',
+                ],
+            ],
             'ListLocations' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
