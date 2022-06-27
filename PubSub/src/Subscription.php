@@ -803,9 +803,6 @@ class Subscription
     {
         $failed = [];
         $eodEnabled = true;
-
-        // we don't need to forward the `returnFailures` flag to the pubsub service.
-        unset($options['returnFailures']);
         
         // min delay of 1 sec, max delay of 10 minutes
         // doubles on every attempt
