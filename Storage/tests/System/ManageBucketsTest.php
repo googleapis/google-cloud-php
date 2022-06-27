@@ -148,11 +148,11 @@ class ManageBucketsTest extends StorageTestCase
             [['customTimeBefore' => new \DateTime]],
             [['customTimeBefore' => 'this is not a timestamp'], true], // error case
 
-            [['matchesPrefix' => 'some-prefix']],
-            [['matchesPrefix' => ''], true],    // error: empty strings not accepted as a prefix
+            [['matchesPrefix' => ['some-prefix']]],
+            [['matchesPrefix' => ['']], true],    // error: empty strings not accepted as a prefix
 
-            [['matchesSuffix' => 'some-suffix']],
-            [['matchesSuffix' => ''], true],    // error: empty strings not accepted as a suffix
+            [['matchesSuffix' => ['some-suffix']]],
+            [['matchesSuffix' => ['']], true],    // error: empty strings not accepted as a suffix
         ];
     }
 
