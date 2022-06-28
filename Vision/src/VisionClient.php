@@ -94,7 +94,7 @@ class VisionClient
      *     @type string $quotaProject Specifies a user project to bill for
      *           access charges associated with the request.
      * }
-     * @throws Google\Cloud\Core\Exception\GoogleException
+     * @throws \Google\Cloud\Core\Exception\GoogleException
      */
     public function __construct(array $config = [])
     {
@@ -110,20 +110,20 @@ class VisionClient
     }
 
     /**
-     * Create an instance of {@see Google\Cloud\Vision\Image} with required features and options.
+     * Create an instance of {@see \Google\Cloud\Vision\Image} with required features and options.
      *
      * This method should be used to configure a single image, or when a set of
      * images requires different settings for each member of the set. If you
      * have a set of images which all will use the same settings,
-     * {@see Google\Cloud\Vision\VisionClient::images()} may be quicker and
+     * {@see \Google\Cloud\Vision\VisionClient::images()} may be quicker and
      * simpler to use.
      *
      * This method will not perform any service requests, and is meant to be
      * used to configure a request prior to calling
-     * {@see Google\Cloud\Vision\VisionClient::annotate()}.
+     * {@see \Google\Cloud\Vision\VisionClient::annotate()}.
      *
      * For more information, including best practices and examples detailing
-     * other usage such as `$imageContext`, see {@see Google\Cloud\Vision\Image::__construct()}.
+     * other usage such as `$imageContext`, see {@see \Google\Cloud\Vision\Image::__construct()}.
      *
      * Example:
      * ```
