@@ -33,16 +33,6 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'PurgeJobs' => [
-                'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Talent\V4\PurgeJobsResponse',
-                    'metadataReturnType' => '\Google\Cloud\Talent\V4\BatchOperationMetadata',
-                    'initialPollDelayMillis' => '500',
-                    'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
-                ],
-            ],
             'ListJobs' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

@@ -52,10 +52,6 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.talent.v4.SearchJobsResponse.CommuteInfo commute_info = 5;</code>
      */
     private $commute_info = null;
-    /**
-     * Generated from protobuf field <code>string debug_info = 6;</code>
-     */
-    private $debug_info = '';
 
     /**
      * Constructor.
@@ -80,7 +76,6 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Talent\V4\SearchJobsResponse\CommuteInfo $commute_info
      *           Commute information which is generated based on specified
      *            [CommuteFilter][google.cloud.talent.v4.CommuteFilter].
-     *     @type string $debug_info
      * }
      */
     public function __construct($data = NULL) {
@@ -248,28 +243,6 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4\SearchJobsResponse\CommuteInfo::class);
         $this->commute_info = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>string debug_info = 6;</code>
-     * @return string
-     */
-    public function getDebugInfo()
-    {
-        return $this->debug_info;
-    }
-
-    /**
-     * Generated from protobuf field <code>string debug_info = 6;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setDebugInfo($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->debug_info = $var;
 
         return $this;
     }

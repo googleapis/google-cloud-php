@@ -77,19 +77,6 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.talent.v4.DeviceInfo device_info = 5;</code>
      */
     private $device_info = null;
-    /**
-     * Delegated user information only used for internal purpose.
-     *
-     * Generated from protobuf field <code>.google.cloud.talent.v4.DelegatedUserInfo delegated_user_info = 6;</code>
-     */
-    private $delegated_user_info = null;
-    /**
-     * Enables debugging mode and controls various debug parameters in the search
-     * process. Internal only.
-     *
-     * Generated from protobuf field <code>.google.cloud.talent.v4.DebugOptions debug_options = 7;</code>
-     */
-    private $debug_options = null;
 
     /**
      * Constructor.
@@ -137,11 +124,6 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Talent\V4\DeviceInfo $device_info
      *           The type of device used by the job seeker at the time of the call to the
      *           service.
-     *     @type \Google\Cloud\Talent\V4\DelegatedUserInfo $delegated_user_info
-     *           Delegated user information only used for internal purpose.
-     *     @type \Google\Cloud\Talent\V4\DebugOptions $debug_options
-     *           Enables debugging mode and controls various debug parameters in the search
-     *           process. Internal only.
      * }
      */
     public function __construct($data = NULL) {
@@ -345,80 +327,6 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4\DeviceInfo::class);
         $this->device_info = $var;
-
-        return $this;
-    }
-
-    /**
-     * Delegated user information only used for internal purpose.
-     *
-     * Generated from protobuf field <code>.google.cloud.talent.v4.DelegatedUserInfo delegated_user_info = 6;</code>
-     * @return \Google\Cloud\Talent\V4\DelegatedUserInfo|null
-     */
-    public function getDelegatedUserInfo()
-    {
-        return $this->delegated_user_info;
-    }
-
-    public function hasDelegatedUserInfo()
-    {
-        return isset($this->delegated_user_info);
-    }
-
-    public function clearDelegatedUserInfo()
-    {
-        unset($this->delegated_user_info);
-    }
-
-    /**
-     * Delegated user information only used for internal purpose.
-     *
-     * Generated from protobuf field <code>.google.cloud.talent.v4.DelegatedUserInfo delegated_user_info = 6;</code>
-     * @param \Google\Cloud\Talent\V4\DelegatedUserInfo $var
-     * @return $this
-     */
-    public function setDelegatedUserInfo($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4\DelegatedUserInfo::class);
-        $this->delegated_user_info = $var;
-
-        return $this;
-    }
-
-    /**
-     * Enables debugging mode and controls various debug parameters in the search
-     * process. Internal only.
-     *
-     * Generated from protobuf field <code>.google.cloud.talent.v4.DebugOptions debug_options = 7;</code>
-     * @return \Google\Cloud\Talent\V4\DebugOptions|null
-     */
-    public function getDebugOptions()
-    {
-        return $this->debug_options;
-    }
-
-    public function hasDebugOptions()
-    {
-        return isset($this->debug_options);
-    }
-
-    public function clearDebugOptions()
-    {
-        unset($this->debug_options);
-    }
-
-    /**
-     * Enables debugging mode and controls various debug parameters in the search
-     * process. Internal only.
-     *
-     * Generated from protobuf field <code>.google.cloud.talent.v4.DebugOptions debug_options = 7;</code>
-     * @param \Google\Cloud\Talent\V4\DebugOptions $var
-     * @return $this
-     */
-    public function setDebugOptions($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4\DebugOptions::class);
-        $this->debug_options = $var;
 
         return $this;
     }

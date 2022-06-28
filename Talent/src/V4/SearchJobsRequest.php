@@ -251,14 +251,6 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $custom_ranking_info = null;
     /**
-     * Controls whether to add search debug information
-     * (sortExpr, partial expressions) into SearchResponse.
-     * Defaults to false.
-     *
-     * Generated from protobuf field <code>bool enable_debug_info = 15;</code>
-     */
-    private $enable_debug_info = false;
-    /**
      * This field is deprecated. Please use
      * [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4.SearchJobsRequest.keyword_match_mode] going forward.
      * To migrate, disable_keyword_match set to false maps to
@@ -295,13 +287,6 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode keyword_match_mode = 18;</code>
      */
     private $keyword_match_mode = 0;
-    /**
-     * This field allows us to pass in a MendelDebugInput proto to force mendel
-     * experiment traffic in FORCEABLE experiments.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Any mendel_debug_input = 17;</code>
-     */
-    private $mendel_debug_input = null;
 
     /**
      * Constructor.
@@ -492,10 +477,6 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Talent\V4\SearchJobsRequest\CustomRankingInfo $custom_ranking_info
      *           Controls over how job documents get ranked on top of existing relevance
      *           score (determined by API algorithm).
-     *     @type bool $enable_debug_info
-     *           Controls whether to add search debug information
-     *           (sortExpr, partial expressions) into SearchResponse.
-     *           Defaults to false.
      *     @type bool $disable_keyword_match
      *           This field is deprecated. Please use
      *           [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4.SearchJobsRequest.keyword_match_mode] going forward.
@@ -524,9 +505,6 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *           disable_keyword_match are set, keyword_match_mode will take precedence.
      *           Defaults to [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL] if no value
      *           is specified.
-     *     @type \Google\Protobuf\Any $mendel_debug_input
-     *           This field allows us to pass in a MendelDebugInput proto to force mendel
-     *           experiment traffic in FORCEABLE experiments.
      * }
      */
     public function __construct($data = NULL) {
@@ -1217,36 +1195,6 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Controls whether to add search debug information
-     * (sortExpr, partial expressions) into SearchResponse.
-     * Defaults to false.
-     *
-     * Generated from protobuf field <code>bool enable_debug_info = 15;</code>
-     * @return bool
-     */
-    public function getEnableDebugInfo()
-    {
-        return $this->enable_debug_info;
-    }
-
-    /**
-     * Controls whether to add search debug information
-     * (sortExpr, partial expressions) into SearchResponse.
-     * Defaults to false.
-     *
-     * Generated from protobuf field <code>bool enable_debug_info = 15;</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setEnableDebugInfo($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->enable_debug_info = $var;
-
-        return $this;
-    }
-
-    /**
      * This field is deprecated. Please use
      * [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4.SearchJobsRequest.keyword_match_mode] going forward.
      * To migrate, disable_keyword_match set to false maps to
@@ -1346,44 +1294,6 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4\SearchJobsRequest\KeywordMatchMode::class);
         $this->keyword_match_mode = $var;
-
-        return $this;
-    }
-
-    /**
-     * This field allows us to pass in a MendelDebugInput proto to force mendel
-     * experiment traffic in FORCEABLE experiments.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Any mendel_debug_input = 17;</code>
-     * @return \Google\Protobuf\Any|null
-     */
-    public function getMendelDebugInput()
-    {
-        return $this->mendel_debug_input;
-    }
-
-    public function hasMendelDebugInput()
-    {
-        return isset($this->mendel_debug_input);
-    }
-
-    public function clearMendelDebugInput()
-    {
-        unset($this->mendel_debug_input);
-    }
-
-    /**
-     * This field allows us to pass in a MendelDebugInput proto to force mendel
-     * experiment traffic in FORCEABLE experiments.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Any mendel_debug_input = 17;</code>
-     * @param \Google\Protobuf\Any $var
-     * @return $this
-     */
-    public function setMendelDebugInput($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Protobuf\Any::class);
-        $this->mendel_debug_input = $var;
 
         return $this;
     }

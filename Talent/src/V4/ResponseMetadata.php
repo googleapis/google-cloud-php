@@ -22,10 +22,6 @@ class ResponseMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_id = 1;</code>
      */
     private $request_id = '';
-    /**
-     * Generated from protobuf field <code>.google.cloud.talent.v4.DebugInfo debug_info = 2;</code>
-     */
-    private $debug_info = null;
 
     /**
      * Constructor.
@@ -36,7 +32,6 @@ class ResponseMetadata extends \Google\Protobuf\Internal\Message
      *     @type string $request_id
      *           A unique id associated with this call.
      *           This id is logged for tracking purposes.
-     *     @type \Google\Cloud\Talent\V4\DebugInfo $debug_info
      * }
      */
     public function __construct($data = NULL) {
@@ -68,38 +63,6 @@ class ResponseMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>.google.cloud.talent.v4.DebugInfo debug_info = 2;</code>
-     * @return \Google\Cloud\Talent\V4\DebugInfo|null
-     */
-    public function getDebugInfo()
-    {
-        return $this->debug_info;
-    }
-
-    public function hasDebugInfo()
-    {
-        return isset($this->debug_info);
-    }
-
-    public function clearDebugInfo()
-    {
-        unset($this->debug_info);
-    }
-
-    /**
-     * Generated from protobuf field <code>.google.cloud.talent.v4.DebugInfo debug_info = 2;</code>
-     * @param \Google\Cloud\Talent\V4\DebugInfo $var
-     * @return $this
-     */
-    public function setDebugInfo($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4\DebugInfo::class);
-        $this->debug_info = $var;
 
         return $this;
     }

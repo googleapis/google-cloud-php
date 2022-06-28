@@ -24,19 +24,6 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
      */
     private $locations;
     /**
-     * Structured street locations of the job.
-     * Unlike [locations][google.cloud.talent.v4.Job.DerivedInfo.locations], [street_locations][google.cloud.talent.v4.Job.DerivedInfo.street_locations] contains street locations
-     * inferred from job posting details, e.g. [Job.addresses][google.cloud.talent.v4.Job.addresses],
-     * [Job.company_display_name][google.cloud.talent.v4.Job.company_display_name], and so on.
-     * Note that the inference of [street_locations][google.cloud.talent.v4.Job.DerivedInfo.street_locations] isn't guaranteed to
-     * be 100% correct.
-     * [street_locations][google.cloud.talent.v4.Job.DerivedInfo.street_locations] are exactly matched to [Job.addresses][google.cloud.talent.v4.Job.addresses] in the same
-     * order.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.talent.v4.Location street_locations = 2;</code>
-     */
-    private $street_locations;
-    /**
      * Job categories derived from [Job.title][google.cloud.talent.v4.Job.title] and [Job.description][google.cloud.talent.v4.Job.description].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.JobCategory job_categories = 3;</code>
@@ -52,15 +39,6 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Talent\V4\Location[]|\Google\Protobuf\Internal\RepeatedField $locations
      *           Structured locations of the job, resolved from [Job.addresses][google.cloud.talent.v4.Job.addresses].
      *           [locations][google.cloud.talent.v4.Job.DerivedInfo.locations] are exactly matched to [Job.addresses][google.cloud.talent.v4.Job.addresses] in the same
-     *           order.
-     *     @type \Google\Cloud\Talent\V4\Location[]|\Google\Protobuf\Internal\RepeatedField $street_locations
-     *           Structured street locations of the job.
-     *           Unlike [locations][google.cloud.talent.v4.Job.DerivedInfo.locations], [street_locations][google.cloud.talent.v4.Job.DerivedInfo.street_locations] contains street locations
-     *           inferred from job posting details, e.g. [Job.addresses][google.cloud.talent.v4.Job.addresses],
-     *           [Job.company_display_name][google.cloud.talent.v4.Job.company_display_name], and so on.
-     *           Note that the inference of [street_locations][google.cloud.talent.v4.Job.DerivedInfo.street_locations] isn't guaranteed to
-     *           be 100% correct.
-     *           [street_locations][google.cloud.talent.v4.Job.DerivedInfo.street_locations] are exactly matched to [Job.addresses][google.cloud.talent.v4.Job.addresses] in the same
      *           order.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $job_categories
      *           Job categories derived from [Job.title][google.cloud.talent.v4.Job.title] and [Job.description][google.cloud.talent.v4.Job.description].
@@ -97,46 +75,6 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Talent\V4\Location::class);
         $this->locations = $arr;
-
-        return $this;
-    }
-
-    /**
-     * Structured street locations of the job.
-     * Unlike [locations][google.cloud.talent.v4.Job.DerivedInfo.locations], [street_locations][google.cloud.talent.v4.Job.DerivedInfo.street_locations] contains street locations
-     * inferred from job posting details, e.g. [Job.addresses][google.cloud.talent.v4.Job.addresses],
-     * [Job.company_display_name][google.cloud.talent.v4.Job.company_display_name], and so on.
-     * Note that the inference of [street_locations][google.cloud.talent.v4.Job.DerivedInfo.street_locations] isn't guaranteed to
-     * be 100% correct.
-     * [street_locations][google.cloud.talent.v4.Job.DerivedInfo.street_locations] are exactly matched to [Job.addresses][google.cloud.talent.v4.Job.addresses] in the same
-     * order.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.talent.v4.Location street_locations = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
-     */
-    public function getStreetLocations()
-    {
-        return $this->street_locations;
-    }
-
-    /**
-     * Structured street locations of the job.
-     * Unlike [locations][google.cloud.talent.v4.Job.DerivedInfo.locations], [street_locations][google.cloud.talent.v4.Job.DerivedInfo.street_locations] contains street locations
-     * inferred from job posting details, e.g. [Job.addresses][google.cloud.talent.v4.Job.addresses],
-     * [Job.company_display_name][google.cloud.talent.v4.Job.company_display_name], and so on.
-     * Note that the inference of [street_locations][google.cloud.talent.v4.Job.DerivedInfo.street_locations] isn't guaranteed to
-     * be 100% correct.
-     * [street_locations][google.cloud.talent.v4.Job.DerivedInfo.street_locations] are exactly matched to [Job.addresses][google.cloud.talent.v4.Job.addresses] in the same
-     * order.
-     *
-     * Generated from protobuf field <code>repeated .google.cloud.talent.v4.Location street_locations = 2;</code>
-     * @param \Google\Cloud\Talent\V4\Location[]|\Google\Protobuf\Internal\RepeatedField $var
-     * @return $this
-     */
-    public function setStreetLocations($var)
-    {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Talent\V4\Location::class);
-        $this->street_locations = $arr;
 
         return $this;
     }
