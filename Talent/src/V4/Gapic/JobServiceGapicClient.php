@@ -49,6 +49,7 @@ use Google\Cloud\Talent\V4\JobQuery;
 use Google\Cloud\Talent\V4\JobView;
 use Google\Cloud\Talent\V4\ListJobsRequest;
 use Google\Cloud\Talent\V4\ListJobsResponse;
+use Google\Cloud\Talent\V4\PurgeJobsRequest;
 use Google\Cloud\Talent\V4\RequestMetadata;
 use Google\Cloud\Talent\V4\SearchJobsRequest;
 use Google\Cloud\Talent\V4\SearchJobsRequest\CustomRankingInfo;
@@ -58,6 +59,7 @@ use Google\Cloud\Talent\V4\SearchJobsRequest\SearchMode;
 use Google\Cloud\Talent\V4\SearchJobsResponse;
 use Google\Cloud\Talent\V4\UpdateJobRequest;
 use Google\LongRunning\Operation;
+use Google\Protobuf\Any;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
@@ -144,6 +146,8 @@ class JobServiceGapicClient
 
     private static $jobNameTemplate;
 
+    private static $projectNameTemplate;
+
     private static $tenantNameTemplate;
 
     private static $pathTemplateMap;
@@ -187,6 +191,15 @@ class JobServiceGapicClient
         return self::$jobNameTemplate;
     }
 
+    private static function getProjectNameTemplate()
+    {
+        if (self::$projectNameTemplate == null) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
     private static function getTenantNameTemplate()
     {
         if (self::$tenantNameTemplate == null) {
@@ -202,6 +215,7 @@ class JobServiceGapicClient
             self::$pathTemplateMap = [
                 'company' => self::getCompanyNameTemplate(),
                 'job' => self::getJobNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
                 'tenant' => self::getTenantNameTemplate(),
             ];
         }
@@ -248,6 +262,21 @@ class JobServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a project
+     * resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a tenant
      * resource.
      *
@@ -270,6 +299,7 @@ class JobServiceGapicClient
      * Template: Pattern
      * - company: projects/{project}/tenants/{tenant}/companies/{company}
      * - job: projects/{project}/tenants/{tenant}/jobs/{job}
+     * - project: projects/{project}
      * - tenant: projects/{project}/tenants/{tenant}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -890,6 +920,101 @@ class JobServiceGapicClient
     }
 
     /**
+     * Purges all jobs associated with requested target.
+     *
+     * Note: Jobs in OPEN status remain searchable until the operation completes.
+     *
+     * Note: The operation returned may take hours or longer to complete,
+     * depending on the number of jobs that need to be deleted.
+     *
+     * Sample code:
+     * ```
+     * $jobServiceClient = new JobServiceClient();
+     * try {
+     *     $formattedParent = $jobServiceClient->projectName('[PROJECT]');
+     *     $filter = 'filter';
+     *     $operationResponse = $jobServiceClient->purgeJobs($formattedParent, $filter);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $jobServiceClient->purgeJobs($formattedParent, $filter);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $jobServiceClient->resumeOperation($operationName, 'purgeJobs');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $jobServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the project under which the jobs should be deleted.
+     *
+     *                             The format is "projects/{project_id}". For example, "projects/foo".
+     * @param string $filter       Required. A filter matching the jobs to be purged.
+     *
+     *                             The filter can be one of the following three parent resources.
+     *                             1. Company. Resource name of the company under which all the jobs should be
+     *                             deleted. The format is
+     *                             "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}". For
+     *                             example, "projects/foo/tenants/bar/companies/baz"
+     *                             2. Tenant. Resource name of the tenant under which all the jobs should be
+     *                             deleted. The format is "projects/{project_id}/tenants/{tenant_id}". For
+     *                             example, "projects/foo/tenants/bar".
+     *                             3. Project. Resource name of the project under which all the jobs should be
+     *                             deleted. The format is "projects/{project_id}". For example,
+     *                             "projects/foo/".
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type bool $force
+     *           Actually perform the purge.
+     *           If `force` is set to false, the method will return a sample of
+     *           resource names that will be deleted.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function purgeJobs($parent, $filter, array $optionalArgs = [])
+    {
+        $request = new PurgeJobsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setFilter($filter);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('PurgeJobs', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
      * Searches for jobs using the provided [SearchJobsRequest][google.cloud.talent.v4.SearchJobsRequest].
      *
      * This call constrains the [visibility][google.cloud.talent.v4.Job.visibility] of jobs
@@ -1116,6 +1241,11 @@ class JobServiceGapicClient
      *     @type CustomRankingInfo $customRankingInfo
      *           Controls over how job documents get ranked on top of existing relevance
      *           score (determined by API algorithm).
+     *     @type bool $enableDebugInfo
+     *           Controls whether to add search debug information
+     *           (sortExpr, partial expressions) into SearchResponse.
+     *
+     *           Defaults to false.
      *     @type bool $disableKeywordMatch
      *           This field is deprecated. Please use
      *           [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4.SearchJobsRequest.keyword_match_mode] going forward.
@@ -1151,6 +1281,9 @@ class JobServiceGapicClient
      *           Defaults to [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL] if no value
      *           is specified.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4\SearchJobsRequest\KeywordMatchMode}
+     *     @type Any $mendelDebugInput
+     *           This field allows us to pass in a MendelDebugInput proto to force mendel
+     *           experiment traffic in FORCEABLE experiments.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1213,12 +1346,20 @@ class JobServiceGapicClient
             $request->setCustomRankingInfo($optionalArgs['customRankingInfo']);
         }
 
+        if (isset($optionalArgs['enableDebugInfo'])) {
+            $request->setEnableDebugInfo($optionalArgs['enableDebugInfo']);
+        }
+
         if (isset($optionalArgs['disableKeywordMatch'])) {
             $request->setDisableKeywordMatch($optionalArgs['disableKeywordMatch']);
         }
 
         if (isset($optionalArgs['keywordMatchMode'])) {
             $request->setKeywordMatchMode($optionalArgs['keywordMatchMode']);
+        }
+
+        if (isset($optionalArgs['mendelDebugInput'])) {
+            $request->setMendelDebugInput($optionalArgs['mendelDebugInput']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
@@ -1458,6 +1599,11 @@ class JobServiceGapicClient
      *     @type CustomRankingInfo $customRankingInfo
      *           Controls over how job documents get ranked on top of existing relevance
      *           score (determined by API algorithm).
+     *     @type bool $enableDebugInfo
+     *           Controls whether to add search debug information
+     *           (sortExpr, partial expressions) into SearchResponse.
+     *
+     *           Defaults to false.
      *     @type bool $disableKeywordMatch
      *           This field is deprecated. Please use
      *           [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4.SearchJobsRequest.keyword_match_mode] going forward.
@@ -1493,6 +1639,9 @@ class JobServiceGapicClient
      *           Defaults to [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL] if no value
      *           is specified.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Talent\V4\SearchJobsRequest\KeywordMatchMode}
+     *     @type Any $mendelDebugInput
+     *           This field allows us to pass in a MendelDebugInput proto to force mendel
+     *           experiment traffic in FORCEABLE experiments.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1555,12 +1704,20 @@ class JobServiceGapicClient
             $request->setCustomRankingInfo($optionalArgs['customRankingInfo']);
         }
 
+        if (isset($optionalArgs['enableDebugInfo'])) {
+            $request->setEnableDebugInfo($optionalArgs['enableDebugInfo']);
+        }
+
         if (isset($optionalArgs['disableKeywordMatch'])) {
             $request->setDisableKeywordMatch($optionalArgs['disableKeywordMatch']);
         }
 
         if (isset($optionalArgs['keywordMatchMode'])) {
             $request->setKeywordMatchMode($optionalArgs['keywordMatchMode']);
+        }
+
+        if (isset($optionalArgs['mendelDebugInput'])) {
+            $request->setMendelDebugInput($optionalArgs['mendelDebugInput']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

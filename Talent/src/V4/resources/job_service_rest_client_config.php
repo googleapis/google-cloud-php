@@ -87,6 +87,18 @@ return [
                     'filter',
                 ],
             ],
+            'PurgeJobs' => [
+                'method' => 'post',
+                'uriTemplate' => '/v4/{parent=projects/*}/jobs:purge',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'SearchJobs' => [
                 'method' => 'post',
                 'uriTemplate' => '/v4/{parent=projects/*/tenants/*}/jobs:search',

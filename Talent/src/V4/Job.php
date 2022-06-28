@@ -326,6 +326,12 @@ class Job extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.talent.v4.Job.ProcessingOptions processing_options = 30;</code>
      */
     private $processing_options = null;
+    /**
+     * Debugging information for internal users.
+     *
+     * Generated from protobuf field <code>.google.cloud.talent.v4.Job.JobDebugInfo job_debug_info = 58;</code>
+     */
+    private $job_debug_info = null;
 
     /**
      * Constructor.
@@ -521,6 +527,8 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Output only. Derived details about the job posting.
      *     @type \Google\Cloud\Talent\V4\Job\ProcessingOptions $processing_options
      *           Options for job processing.
+     *     @type \Google\Cloud\Talent\V4\Job\JobDebugInfo $job_debug_info
+     *           Debugging information for internal users.
      * }
      */
     public function __construct($data = NULL) {
@@ -1664,6 +1672,42 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4\Job\ProcessingOptions::class);
         $this->processing_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Debugging information for internal users.
+     *
+     * Generated from protobuf field <code>.google.cloud.talent.v4.Job.JobDebugInfo job_debug_info = 58;</code>
+     * @return \Google\Cloud\Talent\V4\Job\JobDebugInfo|null
+     */
+    public function getJobDebugInfo()
+    {
+        return $this->job_debug_info;
+    }
+
+    public function hasJobDebugInfo()
+    {
+        return isset($this->job_debug_info);
+    }
+
+    public function clearJobDebugInfo()
+    {
+        unset($this->job_debug_info);
+    }
+
+    /**
+     * Debugging information for internal users.
+     *
+     * Generated from protobuf field <code>.google.cloud.talent.v4.Job.JobDebugInfo job_debug_info = 58;</code>
+     * @param \Google\Cloud\Talent\V4\Job\JobDebugInfo $var
+     * @return $this
+     */
+    public function setJobDebugInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4\Job\JobDebugInfo::class);
+        $this->job_debug_info = $var;
 
         return $this;
     }

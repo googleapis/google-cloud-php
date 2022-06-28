@@ -148,6 +148,26 @@ class JobServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Purges all jobs associated with requested target.
+     *
+     * Note: Jobs in OPEN status remain searchable until the operation completes.
+     *
+     * Note: The operation returned may take hours or longer to complete,
+     * depending on the number of jobs that need to be deleted.
+     * @param \Google\Cloud\Talent\V4\PurgeJobsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function PurgeJobs(\Google\Cloud\Talent\V4\PurgeJobsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.talent.v4.JobService/PurgeJobs',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Lists jobs by filter.
      * @param \Google\Cloud\Talent\V4\ListJobsRequest $argument input argument
      * @param array $metadata metadata
