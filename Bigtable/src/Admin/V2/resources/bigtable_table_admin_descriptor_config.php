@@ -43,6 +43,16 @@ return [
                     'totalPollTimeoutMillis' => '600000',
                 ],
             ],
+            'UndeleteTable' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Table',
+                    'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\UndeleteTableMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'ListBackups' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

@@ -10,24 +10,20 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Request message for
- * [google.bigtable.admin.v2.BigtableTableAdmin.GetSnapshot][google.bigtable.admin.v2.BigtableTableAdmin.GetSnapshot]
- * Note: This is a private alpha release of Cloud Bigtable snapshots. This
- * feature is not currently available to most Cloud Bigtable customers. This
- * feature might be changed in backward-incompatible ways and is not recommended
- * for production use. It is not subject to any SLA or deprecation policy.
+ * [google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable][google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable]
  *
- * Generated from protobuf message <code>google.bigtable.admin.v2.GetSnapshotRequest</code>
+ * Generated from protobuf message <code>google.bigtable.admin.v2.UndeleteTableRequest</code>
  */
-class GetSnapshotRequest extends \Google\Protobuf\Internal\Message
+class UndeleteTableRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The unique name of the requested snapshot.
+     * Required. The unique name of the table to be restored.
      * Values are of the form
-     * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
+     * `projects/{project}/instances/{instance}/tables/{table}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $name = '';
+    private $name = '';
 
     /**
      * Constructor.
@@ -36,9 +32,9 @@ class GetSnapshotRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The unique name of the requested snapshot.
+     *           Required. The unique name of the table to be restored.
      *           Values are of the form
-     *           `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
+     *           `projects/{project}/instances/{instance}/tables/{table}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -47,9 +43,9 @@ class GetSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the requested snapshot.
+     * Required. The unique name of the table to be restored.
      * Values are of the form
-     * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
+     * `projects/{project}/instances/{instance}/tables/{table}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -60,9 +56,9 @@ class GetSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The unique name of the requested snapshot.
+     * Required. The unique name of the table to be restored.
      * Values are of the form
-     * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
+     * `projects/{project}/instances/{instance}/tables/{table}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

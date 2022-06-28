@@ -125,6 +125,11 @@
                     "retry_codes_name": "non_idempotent",
                     "retry_params_name": "default"
                 },
+                "UndeleteTable": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
                 "UpdateBackup": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "non_idempotent",
