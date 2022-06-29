@@ -75,7 +75,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
     public function aggregatedListJobsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -89,7 +89,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setJobs($jobs);
         $transport->addResponse($expectedResponse);
-        $response = $client->aggregatedListJobs();
+        $response = $gapicClient->aggregatedListJobs();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -108,7 +108,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
     public function aggregatedListJobsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -123,8 +123,8 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->aggregatedListJobs();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->aggregatedListJobs();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -141,7 +141,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
     public function checkActiveJobsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -150,7 +150,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         $expectedResponse = new CheckActiveJobsResponse();
         $expectedResponse->setActiveJobsExist($activeJobsExist);
         $transport->addResponse($expectedResponse);
-        $response = $client->checkActiveJobs();
+        $response = $gapicClient->checkActiveJobs();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -166,7 +166,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
     public function checkActiveJobsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -181,8 +181,8 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->checkActiveJobs();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->checkActiveJobs();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -199,7 +199,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
     public function createJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -226,7 +226,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         $expectedResponse->setCreatedFromSnapshotId($createdFromSnapshotId);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
-        $response = $client->createJob();
+        $response = $gapicClient->createJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -242,7 +242,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
     public function createJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -257,8 +257,8 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->createJob();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createJob();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -275,7 +275,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
     public function getJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -302,7 +302,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         $expectedResponse->setCreatedFromSnapshotId($createdFromSnapshotId);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
-        $response = $client->getJob();
+        $response = $gapicClient->getJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -318,7 +318,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
     public function getJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -333,8 +333,8 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getJob();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getJob();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -351,7 +351,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
     public function listJobsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -365,7 +365,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setJobs($jobs);
         $transport->addResponse($expectedResponse);
-        $response = $client->listJobs();
+        $response = $gapicClient->listJobs();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -384,7 +384,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
     public function listJobsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -399,8 +399,8 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listJobs();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listJobs();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -417,7 +417,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
     public function snapshotJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -436,7 +436,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         $expectedResponse->setDiskSizeBytes($diskSizeBytes);
         $expectedResponse->setRegion($region);
         $transport->addResponse($expectedResponse);
-        $response = $client->snapshotJob();
+        $response = $gapicClient->snapshotJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -452,7 +452,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
     public function snapshotJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -467,8 +467,8 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->snapshotJob();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->snapshotJob();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -485,7 +485,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
     public function updateJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -512,7 +512,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         $expectedResponse->setCreatedFromSnapshotId($createdFromSnapshotId);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
-        $response = $client->updateJob();
+        $response = $gapicClient->updateJob();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -528,7 +528,7 @@ class JobsV1Beta3ClientTest extends GeneratedTest
     public function updateJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -543,8 +543,8 @@ class JobsV1Beta3ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->updateJob();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateJob();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

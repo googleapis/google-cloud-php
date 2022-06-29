@@ -72,14 +72,14 @@ class FlexTemplatesServiceClientTest extends GeneratedTest
     public function launchFlexTemplateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new LaunchFlexTemplateResponse();
         $transport->addResponse($expectedResponse);
-        $response = $client->launchFlexTemplate();
+        $response = $gapicClient->launchFlexTemplate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -95,7 +95,7 @@ class FlexTemplatesServiceClientTest extends GeneratedTest
     public function launchFlexTemplateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -110,8 +110,8 @@ class FlexTemplatesServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->launchFlexTemplate();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->launchFlexTemplate();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
