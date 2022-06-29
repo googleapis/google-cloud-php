@@ -110,7 +110,8 @@ class VisionClient
     }
 
     /**
-     * Create an instance of {@see Image} with required features and options.
+     * Create an instance of {@see \Google\Cloud\Vision\Image} with required
+     * features and options.
      *
      * This method should be used to configure a single image, or when a set of
      * images requires different settings for each member of the set. If you
@@ -166,8 +167,8 @@ class VisionClient
     }
 
     /**
-     * Create an array of type {@see Image} with required features and options set for
-     * each member of the set.
+     * Create an array of type {@see \Google\Cloud\Vision\Image} with required features and options
+     * set for each member of the set.
      *
      * This method is useful for quickly configuring every member of a set of
      * images with the same features and options. Should you need to provide
