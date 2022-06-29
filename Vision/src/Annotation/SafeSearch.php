@@ -111,7 +111,7 @@ class SafeSearch extends AbstractFeature
      *
      * This class is instantiated internally and is used to represent the result of Cloud Vision's SafeSearch annotation
      * feature. It should not be instantiated directly. For complete usage instructions, please refer to
-     * {@see Google\Cloud\Vision\Annotation::safeSearch()}.
+     * {@see \Google\Cloud\Vision\Annotation::safeSearch()}.
      *
      * @param array $info The SafeSearch annotation result
      */

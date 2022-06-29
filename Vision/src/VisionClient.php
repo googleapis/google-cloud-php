@@ -33,7 +33,7 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * Please note this client will be deprecated in our next release. In order
  * to receive the latest features and updates, please take
- * the time to familiarize yourself with {@see Google\Cloud\Vision\V1\ImageAnnotatorClient}.
+ * the time to familiarize yourself with {@see V1\ImageAnnotatorClient}.
  *
  * Example:
  * ```
@@ -94,7 +94,7 @@ class VisionClient
      *     @type string $quotaProject Specifies a user project to bill for
      *           access charges associated with the request.
      * }
-     * @throws Google\Cloud\Core\Exception\GoogleException
+     * @throws \Google\Cloud\Core\Exception\GoogleException
      */
     public function __construct(array $config = [])
     {
@@ -110,20 +110,21 @@ class VisionClient
     }
 
     /**
-     * Create an instance of {@see Google\Cloud\Vision\Image} with required features and options.
+     * Create an instance of {@see \Google\Cloud\Vision\Image} with required
+     * features and options.
      *
      * This method should be used to configure a single image, or when a set of
      * images requires different settings for each member of the set. If you
      * have a set of images which all will use the same settings,
-     * {@see Google\Cloud\Vision\VisionClient::images()} may be quicker and
+     * {@see VisionClient::images()} may be quicker and
      * simpler to use.
      *
      * This method will not perform any service requests, and is meant to be
      * used to configure a request prior to calling
-     * {@see Google\Cloud\Vision\VisionClient::annotate()}.
+     * {@see VisionClient::annotate()}.
      *
      * For more information, including best practices and examples detailing
-     * other usage such as `$imageContext`, see {@see Google\Cloud\Vision\Image::__construct()}.
+     * other usage such as `$imageContext`, see {@see Image::__construct()}.
      *
      * Example:
      * ```
@@ -151,11 +152,11 @@ class VisionClient
      * @param  resource|string|StorageObject $image An image to configure with
      *         the given settings. This parameter will accept a resource, a
      *         string of bytes, the URI of an image in a publicly-accessible
-     *         web location, or an instance of {@see Google\Cloud\Storage\StorageObject}.
+     *         web location, or an instance of {@see \Google\Cloud\Storage\StorageObject}.
      * @param  array $features A list of cloud vision
      *         [features](https://cloud.google.com/vision/reference/rest/v1/images/annotate#type)
      *         to apply to the image.
-     * @param  array $options See {@see Google\Cloud\Vision\Image::__construct()} for
+     * @param  array $options See {@see Image::__construct()} for
      *         configuration details.
      * @return Image
      * @throws InvalidArgumentException
@@ -166,20 +167,20 @@ class VisionClient
     }
 
     /**
-     * Create an array of type {@see Google\Cloud\Vision\Image} with required features and options set for
-     * each member of the set.
+     * Create an array of type {@see \Google\Cloud\Vision\Image} with required features and options
+     * set for each member of the set.
      *
      * This method is useful for quickly configuring every member of a set of
      * images with the same features and options. Should you need to provide
      * different features or options for one or more members of the set,
-     * {@see Google\Cloud\Vision\VisionClient::image()} is a better choice.
+     * {@see VisionClient::image()} is a better choice.
      *
      * This method will not perform any service requests, and is meant to be
      * used to configure a request prior to calling
-     * {@see Google\Cloud\Vision\VisionClient::annotateBatch()}.
+     * {@see VisionClient::annotateBatch()}.
      *
      * For more information, including best practices and examples detailing
-     * other usage such as `$imageContext`, see {@see Google\Cloud\Vision\Image::__construct()}.
+     * other usage such as `$imageContext`, see {@see Image::__construct()}.
      *
      * Example:
      * ```
@@ -202,9 +203,9 @@ class VisionClient
      *         to configure with the given settings. Each member of the set can
      *         be a resource, a string of bytes, the URI of an image in a
      *         publicly-accessible web location, or an instance of
-     *         {@see Google\Cloud\Storage\StorageObject}.
+     *         {@see \Google\Cloud\Storage\StorageObject}.
      * @param  array $features A list of cloud vision features to apply to each image.
-     * @param  array $options See {@see Google\Cloud\Vision\Image::__construct()} for
+     * @param  array $options See {@see Image::__construct()} for
      *         configuration details.
      * @return Image[]
      * @throws InvalidArgumentException
@@ -269,7 +270,7 @@ class VisionClient
      * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate Annotate API documentation
      *
      * @param  Image[] $images An array consisting of instances of
-     *         {@see Google\Cloud\Vision\Image}.
+     *         {@see Image}.
      * @param  array $options Configuration Options
      * @return Annotation[]
      */
