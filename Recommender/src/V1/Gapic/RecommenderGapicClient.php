@@ -33,11 +33,14 @@ use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
-
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Recommender\V1\GetInsightRequest;
+
+use Google\Cloud\Recommender\V1\GetInsightTypeConfigRequest;
 use Google\Cloud\Recommender\V1\GetRecommendationRequest;
+use Google\Cloud\Recommender\V1\GetRecommenderConfigRequest;
 use Google\Cloud\Recommender\V1\Insight;
+use Google\Cloud\Recommender\V1\InsightTypeConfig;
 use Google\Cloud\Recommender\V1\ListInsightsRequest;
 use Google\Cloud\Recommender\V1\ListInsightsResponse;
 use Google\Cloud\Recommender\V1\ListRecommendationsRequest;
@@ -47,6 +50,10 @@ use Google\Cloud\Recommender\V1\MarkRecommendationClaimedRequest;
 use Google\Cloud\Recommender\V1\MarkRecommendationFailedRequest;
 use Google\Cloud\Recommender\V1\MarkRecommendationSucceededRequest;
 use Google\Cloud\Recommender\V1\Recommendation;
+use Google\Cloud\Recommender\V1\RecommenderConfig;
+use Google\Cloud\Recommender\V1\UpdateInsightTypeConfigRequest;
+use Google\Cloud\Recommender\V1\UpdateRecommenderConfigRequest;
+use Google\Protobuf\FieldMask;
 
 /**
  * Service Description: Provides insights and recommendations for cloud customers for various
@@ -123,25 +130,37 @@ class RecommenderGapicClient
 
     private static $insightTypeNameTemplate;
 
+    private static $insightTypeConfigNameTemplate;
+
     private static $organizationLocationInsightTypeNameTemplate;
+
+    private static $organizationLocationInsightTypeConfigNameTemplate;
 
     private static $organizationLocationInsightTypeInsightNameTemplate;
 
     private static $organizationLocationRecommenderNameTemplate;
 
+    private static $organizationLocationRecommenderConfigNameTemplate;
+
     private static $organizationLocationRecommenderRecommendationNameTemplate;
 
     private static $projectLocationInsightTypeNameTemplate;
 
+    private static $projectLocationInsightTypeConfigNameTemplate;
+
     private static $projectLocationInsightTypeInsightNameTemplate;
 
     private static $projectLocationRecommenderNameTemplate;
+
+    private static $projectLocationRecommenderConfigNameTemplate;
 
     private static $projectLocationRecommenderRecommendationNameTemplate;
 
     private static $recommendationNameTemplate;
 
     private static $recommenderNameTemplate;
+
+    private static $recommenderConfigNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -254,6 +273,15 @@ class RecommenderGapicClient
         return self::$insightTypeNameTemplate;
     }
 
+    private static function getInsightTypeConfigNameTemplate()
+    {
+        if (self::$insightTypeConfigNameTemplate == null) {
+            self::$insightTypeConfigNameTemplate = new PathTemplate('projects/{project}/locations/{location}/insightTypes/{insight_type}/config');
+        }
+
+        return self::$insightTypeConfigNameTemplate;
+    }
+
     private static function getOrganizationLocationInsightTypeNameTemplate()
     {
         if (self::$organizationLocationInsightTypeNameTemplate == null) {
@@ -261,6 +289,15 @@ class RecommenderGapicClient
         }
 
         return self::$organizationLocationInsightTypeNameTemplate;
+    }
+
+    private static function getOrganizationLocationInsightTypeConfigNameTemplate()
+    {
+        if (self::$organizationLocationInsightTypeConfigNameTemplate == null) {
+            self::$organizationLocationInsightTypeConfigNameTemplate = new PathTemplate('organizations/{organization}/locations/{location}/insightTypes/{insight_type}/config');
+        }
+
+        return self::$organizationLocationInsightTypeConfigNameTemplate;
     }
 
     private static function getOrganizationLocationInsightTypeInsightNameTemplate()
@@ -281,6 +318,15 @@ class RecommenderGapicClient
         return self::$organizationLocationRecommenderNameTemplate;
     }
 
+    private static function getOrganizationLocationRecommenderConfigNameTemplate()
+    {
+        if (self::$organizationLocationRecommenderConfigNameTemplate == null) {
+            self::$organizationLocationRecommenderConfigNameTemplate = new PathTemplate('organizations/{organization}/locations/{location}/recommenders/{recommender}/config');
+        }
+
+        return self::$organizationLocationRecommenderConfigNameTemplate;
+    }
+
     private static function getOrganizationLocationRecommenderRecommendationNameTemplate()
     {
         if (self::$organizationLocationRecommenderRecommendationNameTemplate == null) {
@@ -299,6 +345,15 @@ class RecommenderGapicClient
         return self::$projectLocationInsightTypeNameTemplate;
     }
 
+    private static function getProjectLocationInsightTypeConfigNameTemplate()
+    {
+        if (self::$projectLocationInsightTypeConfigNameTemplate == null) {
+            self::$projectLocationInsightTypeConfigNameTemplate = new PathTemplate('projects/{project}/locations/{location}/insightTypes/{insight_type}/config');
+        }
+
+        return self::$projectLocationInsightTypeConfigNameTemplate;
+    }
+
     private static function getProjectLocationInsightTypeInsightNameTemplate()
     {
         if (self::$projectLocationInsightTypeInsightNameTemplate == null) {
@@ -315,6 +370,15 @@ class RecommenderGapicClient
         }
 
         return self::$projectLocationRecommenderNameTemplate;
+    }
+
+    private static function getProjectLocationRecommenderConfigNameTemplate()
+    {
+        if (self::$projectLocationRecommenderConfigNameTemplate == null) {
+            self::$projectLocationRecommenderConfigNameTemplate = new PathTemplate('projects/{project}/locations/{location}/recommenders/{recommender}/config');
+        }
+
+        return self::$projectLocationRecommenderConfigNameTemplate;
     }
 
     private static function getProjectLocationRecommenderRecommendationNameTemplate()
@@ -344,6 +408,15 @@ class RecommenderGapicClient
         return self::$recommenderNameTemplate;
     }
 
+    private static function getRecommenderConfigNameTemplate()
+    {
+        if (self::$recommenderConfigNameTemplate == null) {
+            self::$recommenderConfigNameTemplate = new PathTemplate('projects/{project}/locations/{location}/recommenders/{recommender}/config');
+        }
+
+        return self::$recommenderConfigNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -358,16 +431,22 @@ class RecommenderGapicClient
                 'folderLocationRecommenderRecommendation' => self::getFolderLocationRecommenderRecommendationNameTemplate(),
                 'insight' => self::getInsightNameTemplate(),
                 'insightType' => self::getInsightTypeNameTemplate(),
+                'insightTypeConfig' => self::getInsightTypeConfigNameTemplate(),
                 'organizationLocationInsightType' => self::getOrganizationLocationInsightTypeNameTemplate(),
+                'organizationLocationInsightTypeConfig' => self::getOrganizationLocationInsightTypeConfigNameTemplate(),
                 'organizationLocationInsightTypeInsight' => self::getOrganizationLocationInsightTypeInsightNameTemplate(),
                 'organizationLocationRecommender' => self::getOrganizationLocationRecommenderNameTemplate(),
+                'organizationLocationRecommenderConfig' => self::getOrganizationLocationRecommenderConfigNameTemplate(),
                 'organizationLocationRecommenderRecommendation' => self::getOrganizationLocationRecommenderRecommendationNameTemplate(),
                 'projectLocationInsightType' => self::getProjectLocationInsightTypeNameTemplate(),
+                'projectLocationInsightTypeConfig' => self::getProjectLocationInsightTypeConfigNameTemplate(),
                 'projectLocationInsightTypeInsight' => self::getProjectLocationInsightTypeInsightNameTemplate(),
                 'projectLocationRecommender' => self::getProjectLocationRecommenderNameTemplate(),
+                'projectLocationRecommenderConfig' => self::getProjectLocationRecommenderConfigNameTemplate(),
                 'projectLocationRecommenderRecommendation' => self::getProjectLocationRecommenderRecommendationNameTemplate(),
                 'recommendation' => self::getRecommendationNameTemplate(),
                 'recommender' => self::getRecommenderNameTemplate(),
+                'recommenderConfig' => self::getRecommenderConfigNameTemplate(),
             ];
         }
 
@@ -576,6 +655,25 @@ class RecommenderGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * insight_type_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $insightType
+     *
+     * @return string The formatted insight_type_config resource.
+     */
+    public static function insightTypeConfigName($project, $location, $insightType)
+    {
+        return self::getInsightTypeConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'insight_type' => $insightType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * organization_location_insight_type resource.
      *
      * @param string $organization
@@ -587,6 +685,25 @@ class RecommenderGapicClient
     public static function organizationLocationInsightTypeName($organization, $location, $insightType)
     {
         return self::getOrganizationLocationInsightTypeNameTemplate()->render([
+            'organization' => $organization,
+            'location' => $location,
+            'insight_type' => $insightType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_insight_type_config resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $insightType
+     *
+     * @return string The formatted organization_location_insight_type_config resource.
+     */
+    public static function organizationLocationInsightTypeConfigName($organization, $location, $insightType)
+    {
+        return self::getOrganizationLocationInsightTypeConfigNameTemplate()->render([
             'organization' => $organization,
             'location' => $location,
             'insight_type' => $insightType,
@@ -635,6 +752,25 @@ class RecommenderGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_location_recommender_config resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $recommender
+     *
+     * @return string The formatted organization_location_recommender_config resource.
+     */
+    public static function organizationLocationRecommenderConfigName($organization, $location, $recommender)
+    {
+        return self::getOrganizationLocationRecommenderConfigNameTemplate()->render([
+            'organization' => $organization,
+            'location' => $location,
+            'recommender' => $recommender,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * organization_location_recommender_recommendation resource.
      *
      * @param string $organization
@@ -675,6 +811,25 @@ class RecommenderGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_insight_type_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $insightType
+     *
+     * @return string The formatted project_location_insight_type_config resource.
+     */
+    public static function projectLocationInsightTypeConfigName($project, $location, $insightType)
+    {
+        return self::getProjectLocationInsightTypeConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'insight_type' => $insightType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_location_insight_type_insight resource.
      *
      * @param string $project
@@ -707,6 +862,25 @@ class RecommenderGapicClient
     public static function projectLocationRecommenderName($project, $location, $recommender)
     {
         return self::getProjectLocationRecommenderNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'recommender' => $recommender,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_recommender_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $recommender
+     *
+     * @return string The formatted project_location_recommender_config resource.
+     */
+    public static function projectLocationRecommenderConfigName($project, $location, $recommender)
+    {
+        return self::getProjectLocationRecommenderConfigNameTemplate()->render([
             'project' => $project,
             'location' => $location,
             'recommender' => $recommender,
@@ -775,6 +949,25 @@ class RecommenderGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * recommender_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $recommender
+     *
+     * @return string The formatted recommender_config resource.
+     */
+    public static function recommenderConfigName($project, $location, $recommender)
+    {
+        return self::getRecommenderConfigNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'recommender' => $recommender,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -788,16 +981,22 @@ class RecommenderGapicClient
      * - folderLocationRecommenderRecommendation: folders/{folder}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}
      * - insight: projects/{project}/locations/{location}/insightTypes/{insight_type}/insights/{insight}
      * - insightType: projects/{project}/locations/{location}/insightTypes/{insight_type}
+     * - insightTypeConfig: projects/{project}/locations/{location}/insightTypes/{insight_type}/config
      * - organizationLocationInsightType: organizations/{organization}/locations/{location}/insightTypes/{insight_type}
+     * - organizationLocationInsightTypeConfig: organizations/{organization}/locations/{location}/insightTypes/{insight_type}/config
      * - organizationLocationInsightTypeInsight: organizations/{organization}/locations/{location}/insightTypes/{insight_type}/insights/{insight}
      * - organizationLocationRecommender: organizations/{organization}/locations/{location}/recommenders/{recommender}
+     * - organizationLocationRecommenderConfig: organizations/{organization}/locations/{location}/recommenders/{recommender}/config
      * - organizationLocationRecommenderRecommendation: organizations/{organization}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}
      * - projectLocationInsightType: projects/{project}/locations/{location}/insightTypes/{insight_type}
+     * - projectLocationInsightTypeConfig: projects/{project}/locations/{location}/insightTypes/{insight_type}/config
      * - projectLocationInsightTypeInsight: projects/{project}/locations/{location}/insightTypes/{insight_type}/insights/{insight}
      * - projectLocationRecommender: projects/{project}/locations/{location}/recommenders/{recommender}
+     * - projectLocationRecommenderConfig: projects/{project}/locations/{location}/recommenders/{recommender}/config
      * - projectLocationRecommenderRecommendation: projects/{project}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}
      * - recommendation: projects/{project}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}
      * - recommender: projects/{project}/locations/{location}/recommenders/{recommender}
+     * - recommenderConfig: projects/{project}/locations/{location}/recommenders/{recommender}/config
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -939,6 +1138,55 @@ class RecommenderGapicClient
     }
 
     /**
+     * Gets the requested InsightTypeConfig. There is only one instance of the
+     * config for each InsightType.
+     *
+     * Sample code:
+     * ```
+     * $recommenderClient = new RecommenderClient();
+     * try {
+     *     $formattedName = $recommenderClient->insightTypeConfigName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
+     *     $response = $recommenderClient->getInsightTypeConfig($formattedName);
+     * } finally {
+     *     $recommenderClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the InsightTypeConfig to get.
+     *
+     *                             Acceptable formats:
+     *
+     *                             * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+     *
+     *                             * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+     *
+     *                             * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Recommender\V1\InsightTypeConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getInsightTypeConfig($name, array $optionalArgs = [])
+    {
+        $request = new GetInsightTypeConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetInsightTypeConfig', InsightTypeConfig::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Gets the requested recommendation. Requires the recommender.*.get
      * IAM permission for the specified recommender.
      *
@@ -977,6 +1225,55 @@ class RecommenderGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetRecommendation', Recommendation::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets the requested Recommender Config. There is only one instance of the
+     * config for each Recommender.
+     *
+     * Sample code:
+     * ```
+     * $recommenderClient = new RecommenderClient();
+     * try {
+     *     $formattedName = $recommenderClient->recommenderConfigName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
+     *     $response = $recommenderClient->getRecommenderConfig($formattedName);
+     * } finally {
+     *     $recommenderClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the Recommendation Config to get.
+     *
+     *                             Acceptable formats:
+     *
+     *                             * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+     *
+     *                             * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+     *
+     *                             * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Recommender\V1\RecommenderConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getRecommenderConfig($name, array $optionalArgs = [])
+    {
+        $request = new GetRecommenderConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetRecommenderConfig', RecommenderConfig::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1229,8 +1526,8 @@ class RecommenderGapicClient
      *     Optional.
      *
      *     @type array $stateMetadata
-     *           Optional. State properties user wish to include with this state.  Full replace of the
-     *           current state_metadata.
+     *           Optional. State properties user wish to include with this state.  Full
+     *           replace of the current state_metadata.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1441,5 +1738,113 @@ class RecommenderGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('MarkRecommendationSucceeded', Recommendation::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates an InsightTypeConfig change. This will create a new revision of the
+     * config.
+     *
+     * Sample code:
+     * ```
+     * $recommenderClient = new RecommenderClient();
+     * try {
+     *     $insightTypeConfig = new InsightTypeConfig();
+     *     $response = $recommenderClient->updateInsightTypeConfig($insightTypeConfig);
+     * } finally {
+     *     $recommenderClient->close();
+     * }
+     * ```
+     *
+     * @param InsightTypeConfig $insightTypeConfig Required. The InsightTypeConfig to update.
+     * @param array             $optionalArgs      {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           The list of fields to be updated.
+     *     @type bool $validateOnly
+     *           If true, validate the request and preview the change, but do not actually
+     *           update it.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Recommender\V1\InsightTypeConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateInsightTypeConfig($insightTypeConfig, array $optionalArgs = [])
+    {
+        $request = new UpdateInsightTypeConfigRequest();
+        $requestParamHeaders = [];
+        $request->setInsightTypeConfig($insightTypeConfig);
+        $requestParamHeaders['insight_type_config.name'] = $insightTypeConfig->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateInsightTypeConfig', InsightTypeConfig::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates a Recommender Config. This will create a new revision of the
+     * config.
+     *
+     * Sample code:
+     * ```
+     * $recommenderClient = new RecommenderClient();
+     * try {
+     *     $recommenderConfig = new RecommenderConfig();
+     *     $response = $recommenderClient->updateRecommenderConfig($recommenderConfig);
+     * } finally {
+     *     $recommenderClient->close();
+     * }
+     * ```
+     *
+     * @param RecommenderConfig $recommenderConfig Required. The RecommenderConfig to update.
+     * @param array             $optionalArgs      {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           The list of fields to be updated.
+     *     @type bool $validateOnly
+     *           If true, validate the request and preview the change, but do not actually
+     *           update it.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Recommender\V1\RecommenderConfig
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateRecommenderConfig($recommenderConfig, array $optionalArgs = [])
+    {
+        $request = new UpdateRecommenderConfigRequest();
+        $requestParamHeaders = [];
+        $request->setRecommenderConfig($recommenderConfig);
+        $requestParamHeaders['recommender_config.name'] = $recommenderConfig->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateRecommenderConfig', RecommenderConfig::class, $optionalArgs, $request)->wait();
     }
 }
