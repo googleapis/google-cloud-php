@@ -155,6 +155,16 @@
                                 "updateCertificateTemplate"
                             ]
                         },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
                         "GetIamPolicy": {
                             "methods": [
                                 "getIamPolicy"
@@ -168,16 +178,6 @@
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
-                            ]
-                        },
-                        "GetLocation": {
-                            "methods": [
-                                "getLocation"
-                            ]
-                        },
-                        "ListLocations": {
-                            "methods": [
-                                "listLocations"
                             ]
                         }
                     }
