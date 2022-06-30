@@ -73,7 +73,7 @@ class MessagesV1Beta3ClientTest extends GeneratedTest
     public function listJobMessagesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -87,7 +87,7 @@ class MessagesV1Beta3ClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setJobMessages($jobMessages);
         $transport->addResponse($expectedResponse);
-        $response = $client->listJobMessages();
+        $response = $gapicClient->listJobMessages();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -106,7 +106,7 @@ class MessagesV1Beta3ClientTest extends GeneratedTest
     public function listJobMessagesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -121,8 +121,8 @@ class MessagesV1Beta3ClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listJobMessages();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listJobMessages();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
