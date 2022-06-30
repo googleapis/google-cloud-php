@@ -23,12 +23,13 @@ class DatasetService
         \GPBMetadata\Google\Cloud\Aiplatform\V1\DataItem::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Dataset::initOnce();
         \GPBMetadata\Google\Cloud\Aiplatform\V1\Operation::initOnce();
+        \GPBMetadata\Google\Cloud\Aiplatform\V1\SavedQuery::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Œ(
-0google/cloud/aiplatform/v1/dataset_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto+google/cloud/aiplatform/v1/annotation.proto0google/cloud/aiplatform/v1/annotation_spec.proto*google/cloud/aiplatform/v1/data_item.proto(google/cloud/aiplatform/v1/dataset.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"Œ
+Ë,
+0google/cloud/aiplatform/v1/dataset_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto+google/cloud/aiplatform/v1/annotation.proto0google/cloud/aiplatform/v1/annotation_spec.proto*google/cloud/aiplatform/v1/data_item.proto(google/cloud/aiplatform/v1/dataset.proto*google/cloud/aiplatform/v1/operation.proto,google/cloud/aiplatform/v1/saved_query.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"Œ
 CreateDatasetRequest9
 parent (	B)àAúA#
 !locations.googleapis.com/Location9
@@ -85,6 +86,18 @@ page_token (	-
 ListDataItemsResponse8
 
 data_items (2$.google.cloud.aiplatform.v1.DataItem
+next_page_token (	"Ì
+ListSavedQueriesRequest9
+parent (	B)àAúA#
+!aiplatform.googleapis.com/Dataset
+filter (	
+	page_size (
+
+page_token (	-
+	read_mask (2.google.protobuf.FieldMask
+order_by (	"r
+ListSavedQueriesResponse=
+saved_queries (2&.google.cloud.aiplatform.v1.SavedQuery
 next_page_token (	"‰
 GetAnnotationSpecRequest>
 name (	B0àAúA*
@@ -101,7 +114,7 @@ page_token (	-
 order_by (	"o
 ListAnnotationsResponse;
 annotations (2&.google.cloud.aiplatform.v1.Annotation
-next_page_token (	2Ø
+next_page_token (	2¦
 DatasetServiceÜ
 CreateDataset0.google.cloud.aiplatform.v1.CreateDatasetRequest.google.longrunning.Operation"z‚Óä“7",/v1/{parent=projects/*/locations/*}/datasets:datasetÚAparent,datasetÊA)
 DatasetCreateDatasetOperationMetadata
@@ -117,7 +130,8 @@ ImportData-.google.cloud.aiplatform.v1.ImportDataRequest.google.longrunning.O
 
 ExportData-.google.cloud.aiplatform.v1.ExportDataRequest.google.longrunning.Operation"‡‚Óä“8"3/v1/{name=projects/*/locations/*/datasets/*}:export:*ÚAname,export_configÊA1
 ExportDataResponseExportDataOperationMetadata¿
-ListDataItems0.google.cloud.aiplatform.v1.ListDataItemsRequest1.google.cloud.aiplatform.v1.ListDataItemsResponse"I‚Óä“:8/v1/{parent=projects/*/locations/*/datasets/*}/dataItemsÚAparentÄ
+ListDataItems0.google.cloud.aiplatform.v1.ListDataItemsRequest1.google.cloud.aiplatform.v1.ListDataItemsResponse"I‚Óä“:8/v1/{parent=projects/*/locations/*/datasets/*}/dataItemsÚAparentË
+ListSavedQueries3.google.cloud.aiplatform.v1.ListSavedQueriesRequest4.google.cloud.aiplatform.v1.ListSavedQueriesResponse"L‚Óä“=;/v1/{parent=projects/*/locations/*/datasets/*}/savedQueriesÚAparentÄ
 GetAnnotationSpec4.google.cloud.aiplatform.v1.GetAnnotationSpecRequest*.google.cloud.aiplatform.v1.AnnotationSpec"M‚Óä“@>/v1/{name=projects/*/locations/*/datasets/*/annotationSpecs/*}ÚAnameÓ
 ListAnnotations2.google.cloud.aiplatform.v1.ListAnnotationsRequest3.google.cloud.aiplatform.v1.ListAnnotationsResponse"W‚Óä“HF/v1/{parent=projects/*/locations/*/datasets/*/dataItems/*}/annotationsÚAparentMÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB×
 com.google.cloud.aiplatform.v1BDatasetServiceProtoPZDgoogle.golang.org/genproto/googleapis/cloud/aiplatform/v1;aiplatformªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'

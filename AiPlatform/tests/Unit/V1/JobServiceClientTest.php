@@ -355,11 +355,13 @@ class JobServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $model = 'model104069929';
+        $modelVersionId = 'modelVersionId-1385431880';
         $generateExplanation = false;
         $expectedResponse = new BatchPredictionJob();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setModel($model);
+        $expectedResponse->setModelVersionId($modelVersionId);
         $expectedResponse->setGenerateExplanation($generateExplanation);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -1452,11 +1454,13 @@ class JobServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $model = 'model104069929';
+        $modelVersionId = 'modelVersionId-1385431880';
         $generateExplanation = false;
         $expectedResponse = new BatchPredictionJob();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setModel($model);
+        $expectedResponse->setModelVersionId($modelVersionId);
         $expectedResponse->setGenerateExplanation($generateExplanation);
         $transport->addResponse($expectedResponse);
         // Mock request

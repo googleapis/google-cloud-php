@@ -41,6 +41,8 @@ use Google\Cloud\AIPlatform\V1\ImportDataResponse;
 use Google\Cloud\AIPlatform\V1\ListAnnotationsResponse;
 use Google\Cloud\AIPlatform\V1\ListDataItemsResponse;
 use Google\Cloud\AIPlatform\V1\ListDatasetsResponse;
+use Google\Cloud\AIPlatform\V1\ListSavedQueriesResponse;
+use Google\Cloud\AIPlatform\V1\SavedQuery;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -951,6 +953,78 @@ class DatasetServiceClientTest extends GeneratedTest
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
             $gapicClient->listDatasets($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listSavedQueriesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $savedQueriesElement = new SavedQuery();
+        $savedQueries = [
+            $savedQueriesElement,
+        ];
+        $expectedResponse = new ListSavedQueriesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSavedQueries($savedQueries);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $response = $gapicClient->listSavedQueries($formattedParent);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSavedQueries()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/ListSavedQueries', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listSavedQueriesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        try {
+            $gapicClient->listSavedQueries($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

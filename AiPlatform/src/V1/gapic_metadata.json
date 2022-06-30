@@ -55,6 +55,11 @@
                                 "listDatasets"
                             ]
                         },
+                        "ListSavedQueries": {
+                            "methods": [
+                                "listSavedQueries"
+                            ]
+                        },
                         "UpdateDataset": {
                             "methods": [
                                 "updateDataset"
@@ -881,6 +886,11 @@
                 "grpc": {
                     "libraryClient": "ModelServiceGapicClient",
                     "rpcs": {
+                        "BatchImportModelEvaluationSlices": {
+                            "methods": [
+                                "batchImportModelEvaluationSlices"
+                            ]
+                        },
                         "DeleteModel": {
                             "methods": [
                                 "deleteModel"
