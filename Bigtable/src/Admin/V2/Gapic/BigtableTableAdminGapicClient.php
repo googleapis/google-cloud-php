@@ -69,6 +69,7 @@ use Google\Cloud\Bigtable\Admin\V2\Snapshot;
 use Google\Cloud\Bigtable\Admin\V2\SnapshotTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\Admin\V2\Table\View;
+use Google\Cloud\Bigtable\Admin\V2\UndeleteTableRequest;
 use Google\Cloud\Bigtable\Admin\V2\UpdateBackupRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
@@ -1807,6 +1808,73 @@ class BigtableTableAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Restores a specified table which was accidentally deleted.
+     *
+     * Sample code:
+     * ```
+     * $bigtableTableAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient();
+     * try {
+     *     $formattedName = $bigtableTableAdminClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
+     *     $operationResponse = $bigtableTableAdminClient->undeleteTable($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $bigtableTableAdminClient->undeleteTable($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $bigtableTableAdminClient->resumeOperation($operationName, 'undeleteTable');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $bigtableTableAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The unique name of the table to be restored.
+     *                             Values are of the form
+     *                             `projects/{project}/instances/{instance}/tables/{table}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function undeleteTable($name, array $optionalArgs = [])
+    {
+        $request = new UndeleteTableRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('UndeleteTable', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**

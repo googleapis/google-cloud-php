@@ -24,6 +24,17 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 cpu_utilization_percent = 2;</code>
      */
     private $cpu_utilization_percent = 0;
+    /**
+     * The storage utilization that the Autoscaler should be trying to achieve.
+     * This number is limited between 2560 (2.5TiB) and 5120 (5TiB) for a SSD
+     * cluster and between 8192 (8TiB) and 16384 (16TiB) for an HDD cluster;
+     * otherwise it will return INVALID_ARGUMENT error. If this value is set to 0,
+     * it will be treated as if it were set to the default value: 2560 for SSD,
+     * 8192 for HDD.
+     *
+     * Generated from protobuf field <code>int32 storage_utilization_gib_per_node = 3;</code>
+     */
+    private $storage_utilization_gib_per_node = 0;
 
     /**
      * Constructor.
@@ -36,6 +47,13 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
      *           This number is on a scale from 0 (no utilization) to
      *           100 (total utilization), and is limited between 10 and 80, otherwise it
      *           will return INVALID_ARGUMENT error.
+     *     @type int $storage_utilization_gib_per_node
+     *           The storage utilization that the Autoscaler should be trying to achieve.
+     *           This number is limited between 2560 (2.5TiB) and 5120 (5TiB) for a SSD
+     *           cluster and between 8192 (8TiB) and 16384 (16TiB) for an HDD cluster;
+     *           otherwise it will return INVALID_ARGUMENT error. If this value is set to 0,
+     *           it will be treated as if it were set to the default value: 2560 for SSD,
+     *           8192 for HDD.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,6 +89,42 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->cpu_utilization_percent = $var;
+
+        return $this;
+    }
+
+    /**
+     * The storage utilization that the Autoscaler should be trying to achieve.
+     * This number is limited between 2560 (2.5TiB) and 5120 (5TiB) for a SSD
+     * cluster and between 8192 (8TiB) and 16384 (16TiB) for an HDD cluster;
+     * otherwise it will return INVALID_ARGUMENT error. If this value is set to 0,
+     * it will be treated as if it were set to the default value: 2560 for SSD,
+     * 8192 for HDD.
+     *
+     * Generated from protobuf field <code>int32 storage_utilization_gib_per_node = 3;</code>
+     * @return int
+     */
+    public function getStorageUtilizationGibPerNode()
+    {
+        return $this->storage_utilization_gib_per_node;
+    }
+
+    /**
+     * The storage utilization that the Autoscaler should be trying to achieve.
+     * This number is limited between 2560 (2.5TiB) and 5120 (5TiB) for a SSD
+     * cluster and between 8192 (8TiB) and 16384 (16TiB) for an HDD cluster;
+     * otherwise it will return INVALID_ARGUMENT error. If this value is set to 0,
+     * it will be treated as if it were set to the default value: 2560 for SSD,
+     * 8192 for HDD.
+     *
+     * Generated from protobuf field <code>int32 storage_utilization_gib_per_node = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStorageUtilizationGibPerNode($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->storage_utilization_gib_per_node = $var;
 
         return $this;
     }

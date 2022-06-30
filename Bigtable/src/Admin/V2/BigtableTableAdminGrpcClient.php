@@ -121,6 +121,21 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Restores a specified table which was accidentally deleted.
+     * @param \Google\Cloud\Bigtable\Admin\V2\UndeleteTableRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UndeleteTable(\Google\Cloud\Bigtable\Admin\V2\UndeleteTableRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableTableAdmin/UndeleteTable',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Performs a series of column family modifications on the specified table.
      * Either all or none of the modifications will occur before this method
      * returns, but data requests received prior to that point may see a table
