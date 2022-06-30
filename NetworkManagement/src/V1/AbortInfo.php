@@ -27,6 +27,14 @@ class AbortInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      */
     private $resource_uri = '';
+    /**
+     * List of project IDs that the user has specified in the request but does
+     * not have permission to access network configs. Analysis is aborted in this
+     * case with the PERMISSION_DENIED cause.
+     *
+     * Generated from protobuf field <code>repeated string projects_missing_permission = 3;</code>
+     */
+    private $projects_missing_permission;
 
     /**
      * Constructor.
@@ -38,6 +46,10 @@ class AbortInfo extends \Google\Protobuf\Internal\Message
      *           Causes that the analysis is aborted.
      *     @type string $resource_uri
      *           URI of the resource that caused the abort.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $projects_missing_permission
+     *           List of project IDs that the user has specified in the request but does
+     *           not have permission to access network configs. Analysis is aborted in this
+     *           case with the PERMISSION_DENIED cause.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +105,36 @@ class AbortInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->resource_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * List of project IDs that the user has specified in the request but does
+     * not have permission to access network configs. Analysis is aborted in this
+     * case with the PERMISSION_DENIED cause.
+     *
+     * Generated from protobuf field <code>repeated string projects_missing_permission = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getProjectsMissingPermission()
+    {
+        return $this->projects_missing_permission;
+    }
+
+    /**
+     * List of project IDs that the user has specified in the request but does
+     * not have permission to access network configs. Analysis is aborted in this
+     * case with the PERMISSION_DENIED cause.
+     *
+     * Generated from protobuf field <code>repeated string projects_missing_permission = 3;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setProjectsMissingPermission($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->projects_missing_permission = $arr;
 
         return $this;
     }
