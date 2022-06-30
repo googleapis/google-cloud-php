@@ -9,15 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * ConfidentialNodes is configuration for the confidential nodes feature, which
- * makes nodes run on confidential VMs.
+ * IdentityServiceConfig is configuration for Identity Service which allows
+ * customers to use external identity providers with the K8S API
  *
- * Generated from protobuf message <code>google.container.v1.ConfidentialNodes</code>
+ * Generated from protobuf message <code>google.container.v1.IdentityServiceConfig</code>
  */
-class ConfidentialNodes extends \Google\Protobuf\Internal\Message
+class IdentityServiceConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Whether Confidential Nodes feature is enabled.
+     * Whether to enable the Identity Service component
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
@@ -30,7 +30,7 @@ class ConfidentialNodes extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enabled
-     *           Whether Confidential Nodes feature is enabled.
+     *           Whether to enable the Identity Service component
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +39,7 @@ class ConfidentialNodes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether Confidential Nodes feature is enabled.
+     * Whether to enable the Identity Service component
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      * @return bool
@@ -50,7 +50,7 @@ class ConfidentialNodes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether Confidential Nodes feature is enabled.
+     * Whether to enable the Identity Service component
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      * @param bool $var

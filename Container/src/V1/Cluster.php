@@ -299,11 +299,18 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $notification_config = null;
     /**
-     * Configuration of Confidential Nodes
+     * Configuration of Confidential Nodes.
+     * All the nodes in the cluster will be Confidential VM once enabled.
      *
      * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 50;</code>
      */
     private $confidential_nodes = null;
+    /**
+     * Configuration for Identity Service component.
+     *
+     * Generated from protobuf field <code>.google.container.v1.IdentityServiceConfig identity_service_config = 54;</code>
+     */
+    private $identity_service_config = null;
     /**
      * [Output only] Server-defined URL for the resource.
      *
@@ -486,6 +493,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.MonitoringConfig monitoring_config = 133;</code>
      */
     private $monitoring_config = null;
+    /**
+     * Node pool configs that apply to all auto-provisioned node pools
+     * in autopilot clusters and node auto-provisioning enabled clusters.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolAutoConfig node_pool_auto_config = 136;</code>
+     */
+    private $node_pool_auto_config = null;
 
     /**
      * Constructor.
@@ -635,7 +649,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\NotificationConfig $notification_config
      *           Notification configuration of the cluster.
      *     @type \Google\Cloud\Container\V1\ConfidentialNodes $confidential_nodes
-     *           Configuration of Confidential Nodes
+     *           Configuration of Confidential Nodes.
+     *           All the nodes in the cluster will be Confidential VM once enabled.
+     *     @type \Google\Cloud\Container\V1\IdentityServiceConfig $identity_service_config
+     *           Configuration for Identity Service component.
      *     @type string $self_link
      *           [Output only] Server-defined URL for the resource.
      *     @type string $zone
@@ -721,6 +738,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Logging configuration for the cluster.
      *     @type \Google\Cloud\Container\V1\MonitoringConfig $monitoring_config
      *           Monitoring configuration for the cluster.
+     *     @type \Google\Cloud\Container\V1\NodePoolAutoConfig $node_pool_auto_config
+     *           Node pool configs that apply to all auto-provisioned node pools
+     *           in autopilot clusters and node auto-provisioning enabled clusters.
      * }
      */
     public function __construct($data = NULL) {
@@ -2011,7 +2031,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration of Confidential Nodes
+     * Configuration of Confidential Nodes.
+     * All the nodes in the cluster will be Confidential VM once enabled.
      *
      * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 50;</code>
      * @return \Google\Cloud\Container\V1\ConfidentialNodes|null
@@ -2032,7 +2053,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration of Confidential Nodes
+     * Configuration of Confidential Nodes.
+     * All the nodes in the cluster will be Confidential VM once enabled.
      *
      * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 50;</code>
      * @param \Google\Cloud\Container\V1\ConfidentialNodes $var
@@ -2042,6 +2064,42 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ConfidentialNodes::class);
         $this->confidential_nodes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for Identity Service component.
+     *
+     * Generated from protobuf field <code>.google.container.v1.IdentityServiceConfig identity_service_config = 54;</code>
+     * @return \Google\Cloud\Container\V1\IdentityServiceConfig|null
+     */
+    public function getIdentityServiceConfig()
+    {
+        return $this->identity_service_config;
+    }
+
+    public function hasIdentityServiceConfig()
+    {
+        return isset($this->identity_service_config);
+    }
+
+    public function clearIdentityServiceConfig()
+    {
+        unset($this->identity_service_config);
+    }
+
+    /**
+     * Configuration for Identity Service component.
+     *
+     * Generated from protobuf field <code>.google.container.v1.IdentityServiceConfig identity_service_config = 54;</code>
+     * @param \Google\Cloud\Container\V1\IdentityServiceConfig $var
+     * @return $this
+     */
+    public function setIdentityServiceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\IdentityServiceConfig::class);
+        $this->identity_service_config = $var;
 
         return $this;
     }
@@ -2778,6 +2836,44 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\MonitoringConfig::class);
         $this->monitoring_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Node pool configs that apply to all auto-provisioned node pools
+     * in autopilot clusters and node auto-provisioning enabled clusters.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolAutoConfig node_pool_auto_config = 136;</code>
+     * @return \Google\Cloud\Container\V1\NodePoolAutoConfig|null
+     */
+    public function getNodePoolAutoConfig()
+    {
+        return $this->node_pool_auto_config;
+    }
+
+    public function hasNodePoolAutoConfig()
+    {
+        return isset($this->node_pool_auto_config);
+    }
+
+    public function clearNodePoolAutoConfig()
+    {
+        unset($this->node_pool_auto_config);
+    }
+
+    /**
+     * Node pool configs that apply to all auto-provisioned node pools
+     * in autopilot clusters and node auto-provisioning enabled clusters.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolAutoConfig node_pool_auto_config = 136;</code>
+     * @param \Google\Cloud\Container\V1\NodePoolAutoConfig $var
+     * @return $this
+     */
+    public function setNodePoolAutoConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePoolAutoConfig::class);
+        $this->node_pool_auto_config = $var;
 
         return $this;
     }

@@ -22,6 +22,14 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
     private $enabled = false;
+    /**
+     * Mode of operation for binauthz policy evaluation. Currently the only
+     * options are equivalent to enable/disable. If unspecified, defaults to
+     * DISABLED.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization.EvaluationMode evaluation_mode = 2;</code>
+     */
+    private $evaluation_mode = 0;
 
     /**
      * Constructor.
@@ -32,6 +40,10 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
      *     @type bool $enabled
      *           Enable Binary Authorization for this cluster. If enabled, all container
      *           images will be validated by Binary Authorization.
+     *     @type int $evaluation_mode
+     *           Mode of operation for binauthz policy evaluation. Currently the only
+     *           options are equivalent to enable/disable. If unspecified, defaults to
+     *           DISABLED.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +75,36 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Mode of operation for binauthz policy evaluation. Currently the only
+     * options are equivalent to enable/disable. If unspecified, defaults to
+     * DISABLED.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization.EvaluationMode evaluation_mode = 2;</code>
+     * @return int
+     */
+    public function getEvaluationMode()
+    {
+        return $this->evaluation_mode;
+    }
+
+    /**
+     * Mode of operation for binauthz policy evaluation. Currently the only
+     * options are equivalent to enable/disable. If unspecified, defaults to
+     * DISABLED.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization.EvaluationMode evaluation_mode = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEvaluationMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\BinaryAuthorization\EvaluationMode::class);
+        $this->evaluation_mode = $var;
 
         return $this;
     }

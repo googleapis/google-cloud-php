@@ -393,6 +393,22 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * CompleteNodePoolUpgrade will signal an on-going node pool upgrade to
+     * complete.
+     * @param \Google\Cloud\Container\V1\CompleteNodePoolUpgradeRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CompleteNodePoolUpgrade(\Google\Cloud\Container\V1\CompleteNodePoolUpgradeRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.container.v1.ClusterManager/CompleteNodePoolUpgrade',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Rolls back a previously Aborted or Failed NodePool upgrade.
      * This makes no changes if the last upgrade successfully completed.
      * @param \Google\Cloud\Container\V1\RollbackNodePoolUpgradeRequest $argument input argument
