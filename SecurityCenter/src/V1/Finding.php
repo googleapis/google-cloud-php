@@ -164,8 +164,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $mute_update_time = null;
     /**
-     * Output only. Third party SIEM/SOAR fields within SCC, contains external
-     * system information and external system finding fields.
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     * information and external system finding fields.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -205,6 +205,27 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Process processes = 30;</code>
      */
     private $processes;
+    /**
+     * Output only. Map containing the point of contacts for the given finding. The key
+     * represents the type of contact, while the value contains a list of all the
+     * contacts that pertain. Please refer to:
+     * https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
+     *     {
+     *       "security": {
+     *         "contacts": [
+     *           {
+     *             "email": "person1&#64;company.com"
+     *           },
+     *           {
+     *             "email": "person2&#64;company.com"
+     *           }
+     *         ]
+     *       }
+     *     }
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ContactDetails> contacts = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $contacts;
     /**
      * Contains compliance information for security standards associated to the
      * finding.
@@ -319,8 +340,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $mute_update_time
      *           Output only. The most recent time this finding was muted or unmuted.
      *     @type array|\Google\Protobuf\Internal\MapField $external_systems
-     *           Output only. Third party SIEM/SOAR fields within SCC, contains external
-     *           system information and external system finding fields.
+     *           Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     *           information and external system finding fields.
      *     @type \Google\Cloud\SecurityCenter\V1\MitreAttack $mitre_attack
      *           MITRE ATT&CK tactics and techniques related to this finding.
      *           See: https://attack.mitre.org
@@ -336,6 +357,23 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           shouldn't set the value of mute.
      *     @type \Google\Cloud\SecurityCenter\V1\Process[]|\Google\Protobuf\Internal\RepeatedField $processes
      *           Represents operating system processes associated with the Finding.
+     *     @type array|\Google\Protobuf\Internal\MapField $contacts
+     *           Output only. Map containing the point of contacts for the given finding. The key
+     *           represents the type of contact, while the value contains a list of all the
+     *           contacts that pertain. Please refer to:
+     *           https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
+     *               {
+     *                 "security": {
+     *                   "contacts": [
+     *                     {
+     *                       "email": "person1&#64;company.com"
+     *                     },
+     *                     {
+     *                       "email": "person2&#64;company.com"
+     *                     }
+     *                   ]
+     *                 }
+     *               }
      *     @type \Google\Cloud\SecurityCenter\V1\Compliance[]|\Google\Protobuf\Internal\RepeatedField $compliances
      *           Contains compliance information for security standards associated to the
      *           finding.
@@ -939,8 +977,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Third party SIEM/SOAR fields within SCC, contains external
-     * system information and external system finding fields.
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     * information and external system finding fields.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -951,8 +989,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Third party SIEM/SOAR fields within SCC, contains external
-     * system information and external system finding fields.
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     * information and external system finding fields.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -1122,6 +1160,62 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\Process::class);
         $this->processes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Map containing the point of contacts for the given finding. The key
+     * represents the type of contact, while the value contains a list of all the
+     * contacts that pertain. Please refer to:
+     * https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
+     *     {
+     *       "security": {
+     *         "contacts": [
+     *           {
+     *             "email": "person1&#64;company.com"
+     *           },
+     *           {
+     *             "email": "person2&#64;company.com"
+     *           }
+     *         ]
+     *       }
+     *     }
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ContactDetails> contacts = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
+
+    /**
+     * Output only. Map containing the point of contacts for the given finding. The key
+     * represents the type of contact, while the value contains a list of all the
+     * contacts that pertain. Please refer to:
+     * https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
+     *     {
+     *       "security": {
+     *         "contacts": [
+     *           {
+     *             "email": "person1&#64;company.com"
+     *           },
+     *           {
+     *             "email": "person2&#64;company.com"
+     *           }
+     *         ]
+     *       }
+     *     }
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ContactDetails> contacts = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setContacts($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\ContactDetails::class);
+        $this->contacts = $arr;
 
         return $this;
     }
