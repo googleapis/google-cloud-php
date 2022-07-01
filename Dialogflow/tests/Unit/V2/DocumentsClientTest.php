@@ -35,6 +35,8 @@ use Google\Cloud\Dialogflow\V2\DocumentsClient;
 use Google\Cloud\Dialogflow\V2\ImportDocumentsResponse;
 use Google\Cloud\Dialogflow\V2\ImportDocumentTemplate;
 use Google\Cloud\Dialogflow\V2\ListDocumentsResponse;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -88,7 +90,7 @@ class DocumentsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -118,7 +120,7 @@ class DocumentsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
+        $formattedParent = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
         $document = new Document();
         $documentDisplayName = 'documentDisplayName-59212206';
         $document->setDisplayName($documentDisplayName);
@@ -126,7 +128,7 @@ class DocumentsClientTest extends GeneratedTest
         $document->setMimeType($documentMimeType);
         $documentKnowledgeTypes = [];
         $document->setKnowledgeTypes($documentKnowledgeTypes);
-        $response = $client->createDocument($formattedParent, $document);
+        $response = $gapicClient->createDocument($formattedParent, $document);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -171,7 +173,7 @@ class DocumentsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -193,7 +195,7 @@ class DocumentsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
+        $formattedParent = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
         $document = new Document();
         $documentDisplayName = 'documentDisplayName-59212206';
         $document->setDisplayName($documentDisplayName);
@@ -201,7 +203,7 @@ class DocumentsClientTest extends GeneratedTest
         $document->setMimeType($documentMimeType);
         $documentKnowledgeTypes = [];
         $document->setKnowledgeTypes($documentKnowledgeTypes);
-        $response = $client->createDocument($formattedParent, $document);
+        $response = $gapicClient->createDocument($formattedParent, $document);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -235,7 +237,7 @@ class DocumentsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -255,8 +257,8 @@ class DocumentsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
-        $response = $client->deleteDocument($formattedName);
+        $formattedName = $gapicClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
+        $response = $gapicClient->deleteDocument($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -299,7 +301,7 @@ class DocumentsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -321,8 +323,8 @@ class DocumentsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
-        $response = $client->deleteDocument($formattedName);
+        $formattedName = $gapicClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
+        $response = $gapicClient->deleteDocument($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -356,7 +358,7 @@ class DocumentsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -386,8 +388,8 @@ class DocumentsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
-        $response = $client->exportDocument($formattedName);
+        $formattedName = $gapicClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
+        $response = $gapicClient->exportDocument($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -430,7 +432,7 @@ class DocumentsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -452,8 +454,8 @@ class DocumentsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
-        $response = $client->exportDocument($formattedName);
+        $formattedName = $gapicClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
+        $response = $gapicClient->exportDocument($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -481,7 +483,7 @@ class DocumentsClientTest extends GeneratedTest
     public function getDocumentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -499,8 +501,8 @@ class DocumentsClientTest extends GeneratedTest
         $expectedResponse->setEnableAutoReload($enableAutoReload);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
-        $response = $client->getDocument($formattedName);
+        $formattedName = $gapicClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
+        $response = $gapicClient->getDocument($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -518,7 +520,7 @@ class DocumentsClientTest extends GeneratedTest
     public function getDocumentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -533,10 +535,10 @@ class DocumentsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
+        $formattedName = $gapicClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
         try {
-            $client->getDocument($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getDocument($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -559,7 +561,7 @@ class DocumentsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -579,13 +581,13 @@ class DocumentsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
+        $formattedParent = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
         $documentTemplate = new ImportDocumentTemplate();
         $documentTemplateMimeType = 'documentTemplateMimeType-1300921501';
         $documentTemplate->setMimeType($documentTemplateMimeType);
         $documentTemplateKnowledgeTypes = [];
         $documentTemplate->setKnowledgeTypes($documentTemplateKnowledgeTypes);
-        $response = $client->importDocuments($formattedParent, $documentTemplate);
+        $response = $gapicClient->importDocuments($formattedParent, $documentTemplate);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -630,7 +632,7 @@ class DocumentsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -652,13 +654,13 @@ class DocumentsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
+        $formattedParent = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
         $documentTemplate = new ImportDocumentTemplate();
         $documentTemplateMimeType = 'documentTemplateMimeType-1300921501';
         $documentTemplate->setMimeType($documentTemplateMimeType);
         $documentTemplateKnowledgeTypes = [];
         $documentTemplate->setKnowledgeTypes($documentTemplateKnowledgeTypes);
-        $response = $client->importDocuments($formattedParent, $documentTemplate);
+        $response = $gapicClient->importDocuments($formattedParent, $documentTemplate);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -686,7 +688,7 @@ class DocumentsClientTest extends GeneratedTest
     public function listDocumentsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -701,8 +703,8 @@ class DocumentsClientTest extends GeneratedTest
         $expectedResponse->setDocuments($documents);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
-        $response = $client->listDocuments($formattedParent);
+        $formattedParent = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
+        $response = $gapicClient->listDocuments($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -723,7 +725,7 @@ class DocumentsClientTest extends GeneratedTest
     public function listDocumentsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -738,10 +740,10 @@ class DocumentsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
+        $formattedParent = $gapicClient->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
         try {
-            $client->listDocuments($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listDocuments($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -764,7 +766,7 @@ class DocumentsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -794,8 +796,8 @@ class DocumentsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
-        $response = $client->reloadDocument($formattedName);
+        $formattedName = $gapicClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
+        $response = $gapicClient->reloadDocument($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -838,7 +840,7 @@ class DocumentsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -860,8 +862,8 @@ class DocumentsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
-        $response = $client->reloadDocument($formattedName);
+        $formattedName = $gapicClient->documentName('[PROJECT]', '[KNOWLEDGE_BASE]', '[DOCUMENT]');
+        $response = $gapicClient->reloadDocument($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -895,7 +897,7 @@ class DocumentsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -932,7 +934,7 @@ class DocumentsClientTest extends GeneratedTest
         $document->setMimeType($documentMimeType);
         $documentKnowledgeTypes = [];
         $document->setKnowledgeTypes($documentKnowledgeTypes);
-        $response = $client->updateDocument($document);
+        $response = $gapicClient->updateDocument($document);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -975,7 +977,7 @@ class DocumentsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1004,7 +1006,7 @@ class DocumentsClientTest extends GeneratedTest
         $document->setMimeType($documentMimeType);
         $documentKnowledgeTypes = [];
         $document->setKnowledgeTypes($documentKnowledgeTypes);
-        $response = $client->updateDocument($document);
+        $response = $gapicClient->updateDocument($document);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1024,5 +1026,133 @@ class DocumentsClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getLocationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $locationId = 'locationId552319461';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new Location();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setLocationId($locationId);
+        $expectedResponse->setDisplayName($displayName);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->getLocation();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.location.Locations/GetLocation', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getLocationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->getLocation();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listLocationsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $locationsElement = new Location();
+        $locations = [
+            $locationsElement,
+        ];
+        $expectedResponse = new ListLocationsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setLocations($locations);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->listLocations();
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getLocations()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.location.Locations/ListLocations', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listLocationsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->listLocations();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }

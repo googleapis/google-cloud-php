@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * ============================================================================
+ * Auxiliary proto messages.
  * Represents the natural language text to be processed.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.TextInput</code>
