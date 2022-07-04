@@ -41,11 +41,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Required. The number of nodes allocated to this instance. This may be zero
-     * in API responses for instances that are not yet in state `READY`.
+     * The number of nodes allocated to this instance. At most one of either
+     * node_count or processing_units should be present in the message. This
+     * may be zero in API responses for instances that are not yet in state
+     * `READY`.
      * See [the
-     * documentation](https://cloud.google.com/spanner/docs/instances#node_count)
-     * for more information about nodes.
+     * documentation](https://cloud.google.com/spanner/docs/compute-capacity)
+     * for more information about nodes and processing units.
      *
      * Generated from protobuf field <code>int32 node_count = 5;</code>
      */
@@ -54,6 +56,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      * The number of processing units allocated to this instance. At most one of
      * processing_units or node_count should be present in the message. This may
      * be zero in API responses for instances that are not yet in state `READY`.
+     * See [the
+     * documentation](https://cloud.google.com/spanner/docs/compute-capacity)
+     * for more information about nodes and processing units.
      *
      * Generated from protobuf field <code>int32 processing_units = 9;</code>
      */
@@ -76,9 +81,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      * And they can be used as arguments to policy management rules (e.g. route,
      * firewall, load balancing, etc.).
      *  * Label keys must be between 1 and 63 characters long and must conform to
-     *    the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     *    the following regular expression: `[a-z][a-z0-9_-]{0,62}`.
      *  * Label values must be between 0 and 63 characters long and must conform
-     *    to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+     *    to the regular expression `[a-z0-9_-]{0,63}`.
      *  * No more than 64 labels can be associated with a given resource.
      * See https://goo.gl/xmQnxf for more information on and examples of labels.
      * If you plan to use labels in your own code, please note that additional
@@ -97,6 +102,18 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string endpoint_uris = 8;</code>
      */
     private $endpoint_uris;
+    /**
+     * Output only. The time at which the instance was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $create_time = null;
+    /**
+     * Output only. The time at which the instance was most recently updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $update_time = null;
 
     /**
      * Constructor.
@@ -118,15 +135,20 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Required. The descriptive name for this instance as it appears in UIs.
      *           Must be unique per project and between 4 and 30 characters in length.
      *     @type int $node_count
-     *           Required. The number of nodes allocated to this instance. This may be zero
-     *           in API responses for instances that are not yet in state `READY`.
+     *           The number of nodes allocated to this instance. At most one of either
+     *           node_count or processing_units should be present in the message. This
+     *           may be zero in API responses for instances that are not yet in state
+     *           `READY`.
      *           See [the
-     *           documentation](https://cloud.google.com/spanner/docs/instances#node_count)
-     *           for more information about nodes.
+     *           documentation](https://cloud.google.com/spanner/docs/compute-capacity)
+     *           for more information about nodes and processing units.
      *     @type int $processing_units
      *           The number of processing units allocated to this instance. At most one of
      *           processing_units or node_count should be present in the message. This may
      *           be zero in API responses for instances that are not yet in state `READY`.
+     *           See [the
+     *           documentation](https://cloud.google.com/spanner/docs/compute-capacity)
+     *           for more information about nodes and processing units.
      *     @type int $state
      *           Output only. The current instance state. For
      *           [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance], the state must be
@@ -141,9 +163,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           And they can be used as arguments to policy management rules (e.g. route,
      *           firewall, load balancing, etc.).
      *            * Label keys must be between 1 and 63 characters long and must conform to
-     *              the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     *              the following regular expression: `[a-z][a-z0-9_-]{0,62}`.
      *            * Label values must be between 0 and 63 characters long and must conform
-     *              to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+     *              to the regular expression `[a-z0-9_-]{0,63}`.
      *            * No more than 64 labels can be associated with a given resource.
      *           See https://goo.gl/xmQnxf for more information on and examples of labels.
      *           If you plan to use labels in your own code, please note that additional
@@ -154,6 +176,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           allow "_" in a future release.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $endpoint_uris
      *           Deprecated. This field is not populated.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. The time at which the instance was created.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. The time at which the instance was most recently updated.
      * }
      */
     public function __construct($data = NULL) {
@@ -254,11 +280,13 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The number of nodes allocated to this instance. This may be zero
-     * in API responses for instances that are not yet in state `READY`.
+     * The number of nodes allocated to this instance. At most one of either
+     * node_count or processing_units should be present in the message. This
+     * may be zero in API responses for instances that are not yet in state
+     * `READY`.
      * See [the
-     * documentation](https://cloud.google.com/spanner/docs/instances#node_count)
-     * for more information about nodes.
+     * documentation](https://cloud.google.com/spanner/docs/compute-capacity)
+     * for more information about nodes and processing units.
      *
      * Generated from protobuf field <code>int32 node_count = 5;</code>
      * @return int
@@ -269,11 +297,13 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The number of nodes allocated to this instance. This may be zero
-     * in API responses for instances that are not yet in state `READY`.
+     * The number of nodes allocated to this instance. At most one of either
+     * node_count or processing_units should be present in the message. This
+     * may be zero in API responses for instances that are not yet in state
+     * `READY`.
      * See [the
-     * documentation](https://cloud.google.com/spanner/docs/instances#node_count)
-     * for more information about nodes.
+     * documentation](https://cloud.google.com/spanner/docs/compute-capacity)
+     * for more information about nodes and processing units.
      *
      * Generated from protobuf field <code>int32 node_count = 5;</code>
      * @param int $var
@@ -291,6 +321,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      * The number of processing units allocated to this instance. At most one of
      * processing_units or node_count should be present in the message. This may
      * be zero in API responses for instances that are not yet in state `READY`.
+     * See [the
+     * documentation](https://cloud.google.com/spanner/docs/compute-capacity)
+     * for more information about nodes and processing units.
      *
      * Generated from protobuf field <code>int32 processing_units = 9;</code>
      * @return int
@@ -304,6 +337,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      * The number of processing units allocated to this instance. At most one of
      * processing_units or node_count should be present in the message. This may
      * be zero in API responses for instances that are not yet in state `READY`.
+     * See [the
+     * documentation](https://cloud.google.com/spanner/docs/compute-capacity)
+     * for more information about nodes and processing units.
      *
      * Generated from protobuf field <code>int32 processing_units = 9;</code>
      * @param int $var
@@ -359,9 +395,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      * And they can be used as arguments to policy management rules (e.g. route,
      * firewall, load balancing, etc.).
      *  * Label keys must be between 1 and 63 characters long and must conform to
-     *    the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     *    the following regular expression: `[a-z][a-z0-9_-]{0,62}`.
      *  * Label values must be between 0 and 63 characters long and must conform
-     *    to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+     *    to the regular expression `[a-z0-9_-]{0,63}`.
      *  * No more than 64 labels can be associated with a given resource.
      * See https://goo.gl/xmQnxf for more information on and examples of labels.
      * If you plan to use labels in your own code, please note that additional
@@ -387,9 +423,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      * And they can be used as arguments to policy management rules (e.g. route,
      * firewall, load balancing, etc.).
      *  * Label keys must be between 1 and 63 characters long and must conform to
-     *    the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?`.
+     *    the following regular expression: `[a-z][a-z0-9_-]{0,62}`.
      *  * Label values must be between 0 and 63 characters long and must conform
-     *    to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+     *    to the regular expression `[a-z0-9_-]{0,63}`.
      *  * No more than 64 labels can be associated with a given resource.
      * See https://goo.gl/xmQnxf for more information on and examples of labels.
      * If you plan to use labels in your own code, please note that additional
@@ -433,6 +469,78 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->endpoint_uris = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The time at which the instance was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * Output only. The time at which the instance was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The time at which the instance was most recently updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * Output only. The time at which the instance was most recently updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
 
         return $this;
     }
