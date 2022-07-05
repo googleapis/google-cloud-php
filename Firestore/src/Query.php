@@ -667,6 +667,17 @@ class Query
     }
 
     /**
+     * Returns the current query.
+     *
+     * @return array
+     * @access public
+     */
+    public function getQuery()
+    {
+        return $this->query;
+    }
+
+    /**
      * Builds a Firestore query position.
      *
      * @param string $key The query key.
