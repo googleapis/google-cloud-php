@@ -843,7 +843,15 @@ class Subscription
      *        seconds after the ModifyAckDeadline call was made. Specifying
      *        zero may immediately make the message available for another pull
      *        request.
-     * @param array $options [optional] Configuration Options
+     * @param array $options [optional] {
+     *      Configuration Options
+     *
+     *      @type bool $returnFailures If set, and if a message is failed with a
+     *            temporary failure code, it will be retried with an exponential delay. This will also make sure
+     *            that the permanently failed message is returned to the caller. This is only true for a
+     *            subscription with 'Exactly Once Delivery' enabled.
+     *            Read more about EOD: https://cloud.google.com/pubsub/docs/exactly-once-delivery
+     * }
      * @return void|array
      */
     public function modifyAckDeadline(Message $message, $seconds, array $options = [])
@@ -870,6 +878,12 @@ class Subscription
      * // Now we'll acknowledge
      * $subscription->acknowledgeBatch($messages);
      * ```
+     * ```
+     * $messages = $subscription->pull();
+     * $failedMsgs = $subscription->modifyAckDeadlineBatch($messages, 3, ['returnFailures' => true]);
+     * 
+     * // Either log or store the $failedMsgs to be retried later
+     * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/modifyAckDeadline Modify Ack Deadline
@@ -882,14 +896,22 @@ class Subscription
      *        seconds after the ModifyAckDeadline call was made. Specifying
      *        zero may immediately make the message available for another pull
      *        request.
-     * @param array $options [optional] Configuration Options
+     * @param array $options [optional] {
+     *      Configuration Options
+     *
+     *      @type bool $returnFailures If set, and if a message is failed with a
+     *            temporary failure code, it will be retried with an exponential delay. This will also make sure
+     *            that the permanently failed message is returned to the caller. This is only true for a
+     *            subscription with 'Exactly Once Delivery' enabled.
+     *            Read more about EOD: https://cloud.google.com/pubsub/docs/exactly-once-delivery
+     * }
      * @return void|array
      */
-    public function modifyAckDeadlineBatch(array $messages, $seconds, array $options = [])
+    public function modifyAckDeadlineBatch(array $messages, int $seconds, array $options = [])
     {
         $this->validateBatch($messages, Message::class);
 
-        if (isset($options['returnFailures'])) {
+        if (isset($options['returnFailures']) && $options['returnFailures']) {
             return $this->modifyAckDeadlineBatchWithRetries($messages, $seconds, $options);
         }
 
