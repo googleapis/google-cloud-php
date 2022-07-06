@@ -17,10 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class Distribution extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The cpe_uri in [CPE format](https://cpe.mitre.org/specification/)
+     * The cpe_uri in [CPE format](https://cpe.mitre.org/specification/)
      * denoting the package manager version distributing a package.
      *
-     * Generated from protobuf field <code>string cpe_uri = 1;</code>
+     * Generated from protobuf field <code>string cpe_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cpe_uri = '';
     /**
@@ -62,7 +62,7 @@ class Distribution extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $cpe_uri
-     *           Required. The cpe_uri in [CPE format](https://cpe.mitre.org/specification/)
+     *           The cpe_uri in [CPE format](https://cpe.mitre.org/specification/)
      *           denoting the package manager version distributing a package.
      *     @type int $architecture
      *           The CPU architecture for which packages in this distribution channel were
@@ -83,10 +83,10 @@ class Distribution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The cpe_uri in [CPE format](https://cpe.mitre.org/specification/)
+     * The cpe_uri in [CPE format](https://cpe.mitre.org/specification/)
      * denoting the package manager version distributing a package.
      *
-     * Generated from protobuf field <code>string cpe_uri = 1;</code>
+     * Generated from protobuf field <code>string cpe_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getCpeUri()
@@ -95,10 +95,10 @@ class Distribution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The cpe_uri in [CPE format](https://cpe.mitre.org/specification/)
+     * The cpe_uri in [CPE format](https://cpe.mitre.org/specification/)
      * denoting the package manager version distributing a package.
      *
-     * Generated from protobuf field <code>string cpe_uri = 1;</code>
+     * Generated from protobuf field <code>string cpe_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

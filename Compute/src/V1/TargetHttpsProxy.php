@@ -22,6 +22,12 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      */
     private $authorization_policy = null;
     /**
+     * URL of a certificate map that identifies a certificate map associated with the given target proxy. This field can only be set for global target proxies. If set, sslCertificates will be ignored.
+     *
+     * Generated from protobuf field <code>optional string certificate_map = 156463796;</code>
+     */
+    private $certificate_map = null;
+    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -115,6 +121,8 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *
      *     @type string $authorization_policy
      *           Optional. A URL referring to a networksecurity.AuthorizationPolicy resource that describes how the proxy should authorize inbound traffic. If left blank, access will not be restricted by an authorization policy. Refer to the AuthorizationPolicy resource for additional details. authorizationPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED. Note: This field currently has no impact.
+     *     @type string $certificate_map
+     *           URL of a certificate map that identifies a certificate map associated with the given target proxy. This field can only be set for global target proxies. If set, sslCertificates will be ignored.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
@@ -183,6 +191,42 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->authorization_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * URL of a certificate map that identifies a certificate map associated with the given target proxy. This field can only be set for global target proxies. If set, sslCertificates will be ignored.
+     *
+     * Generated from protobuf field <code>optional string certificate_map = 156463796;</code>
+     * @return string
+     */
+    public function getCertificateMap()
+    {
+        return isset($this->certificate_map) ? $this->certificate_map : '';
+    }
+
+    public function hasCertificateMap()
+    {
+        return isset($this->certificate_map);
+    }
+
+    public function clearCertificateMap()
+    {
+        unset($this->certificate_map);
+    }
+
+    /**
+     * URL of a certificate map that identifies a certificate map associated with the given target proxy. This field can only be set for global target proxies. If set, sslCertificates will be ignored.
+     *
+     * Generated from protobuf field <code>optional string certificate_map = 156463796;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCertificateMap($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->certificate_map = $var;
 
         return $this;
     }

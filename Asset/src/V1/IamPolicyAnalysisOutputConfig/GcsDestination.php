@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GcsDestination extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The uri of the Cloud Storage object. It's the same uri that is used by
-     * gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
+     * Required. The uri of the Cloud Storage object. It's the same uri that is
+     * used by gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
      * Editing Object
      * Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      * for more information.
@@ -36,8 +36,8 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uri
-     *           Required. The uri of the Cloud Storage object. It's the same uri that is used by
-     *           gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
+     *           Required. The uri of the Cloud Storage object. It's the same uri that is
+     *           used by gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
      *           Editing Object
      *           Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      *           for more information.
@@ -52,8 +52,8 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The uri of the Cloud Storage object. It's the same uri that is used by
-     * gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
+     * Required. The uri of the Cloud Storage object. It's the same uri that is
+     * used by gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
      * Editing Object
      * Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      * for more information.
@@ -70,8 +70,8 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The uri of the Cloud Storage object. It's the same uri that is used by
-     * gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
+     * Required. The uri of the Cloud Storage object. It's the same uri that is
+     * used by gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
      * Editing Object
      * Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      * for more information.

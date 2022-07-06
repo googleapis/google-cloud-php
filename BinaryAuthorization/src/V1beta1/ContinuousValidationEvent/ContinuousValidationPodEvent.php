@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class ContinuousValidationPodEvent extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The k8s namespace of the Pod.
+     *
+     * Generated from protobuf field <code>string pod_namespace = 7;</code>
+     */
+    private $pod_namespace = '';
+    /**
      * The name of the Pod.
      *
      * Generated from protobuf field <code>string pod = 1;</code>
@@ -52,6 +58,8 @@ class ContinuousValidationPodEvent extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $pod_namespace
+     *           The k8s namespace of the Pod.
      *     @type string $pod
      *           The name of the Pod.
      *     @type \Google\Protobuf\Timestamp $deploy_time
@@ -67,6 +75,32 @@ class ContinuousValidationPodEvent extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Binaryauthorization\V1Beta1\ContinuousValidationLogging::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The k8s namespace of the Pod.
+     *
+     * Generated from protobuf field <code>string pod_namespace = 7;</code>
+     * @return string
+     */
+    public function getPodNamespace()
+    {
+        return $this->pod_namespace;
+    }
+
+    /**
+     * The k8s namespace of the Pod.
+     *
+     * Generated from protobuf field <code>string pod_namespace = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPodNamespace($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->pod_namespace = $var;
+
+        return $this;
     }
 
     /**

@@ -16,10 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAssetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the organization or project the assets belong to. Format:
-     * "organizations/[organization-number]" (such as "organizations/123"),
-     * "projects/[project-id]" (such as "projects/my-project-id"), or
-     * "projects/[project-number]" (such as "projects/12345").
+     * Required. Name of the organization, folder, or project the assets belong
+     * to. Format: "organizations/[organization-number]" (such as
+     * "organizations/123"), "projects/[project-id]" (such as
+     * "projects/my-project-id"), "projects/[project-number]" (such as
+     * "projects/12345"), or "folders/[folder-number]" (such as "folders/12345").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -103,10 +104,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of the organization or project the assets belong to. Format:
-     *           "organizations/[organization-number]" (such as "organizations/123"),
-     *           "projects/[project-id]" (such as "projects/my-project-id"), or
-     *           "projects/[project-number]" (such as "projects/12345").
+     *           Required. Name of the organization, folder, or project the assets belong
+     *           to. Format: "organizations/[organization-number]" (such as
+     *           "organizations/123"), "projects/[project-id]" (such as
+     *           "projects/my-project-id"), "projects/[project-number]" (such as
+     *           "projects/12345"), or "folders/[folder-number]" (such as "folders/12345").
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Timestamp to take an asset snapshot. This can only be set to a timestamp
      *           between the current time and the current time minus 35 days (inclusive).
@@ -162,10 +164,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the organization or project the assets belong to. Format:
-     * "organizations/[organization-number]" (such as "organizations/123"),
-     * "projects/[project-id]" (such as "projects/my-project-id"), or
-     * "projects/[project-number]" (such as "projects/12345").
+     * Required. Name of the organization, folder, or project the assets belong
+     * to. Format: "organizations/[organization-number]" (such as
+     * "organizations/123"), "projects/[project-id]" (such as
+     * "projects/my-project-id"), "projects/[project-number]" (such as
+     * "projects/12345"), or "folders/[folder-number]" (such as "folders/12345").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -176,10 +179,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the organization or project the assets belong to. Format:
-     * "organizations/[organization-number]" (such as "organizations/123"),
-     * "projects/[project-id]" (such as "projects/my-project-id"), or
-     * "projects/[project-number]" (such as "projects/12345").
+     * Required. Name of the organization, folder, or project the assets belong
+     * to. Format: "organizations/[organization-number]" (such as
+     * "organizations/123"), "projects/[project-id]" (such as
+     * "projects/my-project-id"), "projects/[project-number]" (such as
+     * "projects/12345"), or "folders/[folder-number]" (such as "folders/12345").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

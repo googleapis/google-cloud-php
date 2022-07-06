@@ -31,6 +31,14 @@ class PredictionDriftDetectionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.ThresholdConfig> attribution_score_drift_thresholds = 2;</code>
      */
     private $attribution_score_drift_thresholds;
+    /**
+     * Drift anomaly detection threshold used by all features.
+     * When the per-feature thresholds are not set, this field can be used to
+     * specify a threshold for all features.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ThresholdConfig default_drift_threshold = 5;</code>
+     */
+    private $default_drift_threshold = null;
 
     /**
      * Constructor.
@@ -46,6 +54,10 @@ class PredictionDriftDetectionConfig extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $attribution_score_drift_thresholds
      *           Key is the feature name and value is the threshold. The threshold here is
      *           against attribution score distance between different time windows.
+     *     @type \Google\Cloud\AIPlatform\V1\ThresholdConfig $default_drift_threshold
+     *           Drift anomaly detection threshold used by all features.
+     *           When the per-feature thresholds are not set, this field can be used to
+     *           specify a threshold for all features.
      * }
      */
     public function __construct($data = NULL) {
@@ -109,6 +121,46 @@ class PredictionDriftDetectionConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\ThresholdConfig::class);
         $this->attribution_score_drift_thresholds = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Drift anomaly detection threshold used by all features.
+     * When the per-feature thresholds are not set, this field can be used to
+     * specify a threshold for all features.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ThresholdConfig default_drift_threshold = 5;</code>
+     * @return \Google\Cloud\AIPlatform\V1\ThresholdConfig|null
+     */
+    public function getDefaultDriftThreshold()
+    {
+        return $this->default_drift_threshold;
+    }
+
+    public function hasDefaultDriftThreshold()
+    {
+        return isset($this->default_drift_threshold);
+    }
+
+    public function clearDefaultDriftThreshold()
+    {
+        unset($this->default_drift_threshold);
+    }
+
+    /**
+     * Drift anomaly detection threshold used by all features.
+     * When the per-feature thresholds are not set, this field can be used to
+     * specify a threshold for all features.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ThresholdConfig default_drift_threshold = 5;</code>
+     * @param \Google\Cloud\AIPlatform\V1\ThresholdConfig $var
+     * @return $this
+     */
+    public function setDefaultDriftThreshold($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ThresholdConfig::class);
+        $this->default_drift_threshold = $var;
 
         return $this;
     }

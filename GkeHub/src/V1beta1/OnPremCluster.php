@@ -37,6 +37,12 @@ class OnPremCluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool admin_cluster = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $admin_cluster = false;
+    /**
+     * Immutable. The on prem cluster's type.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.v1beta1.OnPremCluster.ClusterType cluster_type = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $cluster_type = 0;
 
     /**
      * Constructor.
@@ -54,6 +60,8 @@ class OnPremCluster extends \Google\Protobuf\Internal\Message
      *           longer exists.
      *     @type bool $admin_cluster
      *           Immutable. Whether the cluster is an admin cluster.
+     *     @type int $cluster_type
+     *           Immutable. The on prem cluster's type.
      * }
      */
     public function __construct($data = NULL) {
@@ -143,6 +151,32 @@ class OnPremCluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->admin_cluster = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The on prem cluster's type.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.v1beta1.OnPremCluster.ClusterType cluster_type = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int
+     */
+    public function getClusterType()
+    {
+        return $this->cluster_type;
+    }
+
+    /**
+     * Immutable. The on prem cluster's type.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.v1beta1.OnPremCluster.ClusterType cluster_type = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setClusterType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\GkeHub\V1beta1\OnPremCluster\ClusterType::class);
+        $this->cluster_type = $var;
 
         return $this;
     }

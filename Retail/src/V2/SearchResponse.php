@@ -39,7 +39,9 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      */
     private $total_size = 0;
     /**
-     * If spell correction applies, the corrected query. Otherwise, empty.
+     * Contains the spell corrected query, if found. If the spell correction type
+     * is AUTOMATIC, then the search results are based on corrected_query.
+     * Otherwise the original query will be used for search.
      *
      * Generated from protobuf field <code>string corrected_query = 4;</code>
      */
@@ -69,10 +71,10 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     private $query_expansion_info = null;
     /**
      * The URI of a customer-defined redirect page. If redirect action is
-     * triggered, no search will be performed, and only
+     * triggered, no search is performed, and only
      * [redirect_uri][google.cloud.retail.v2.SearchResponse.redirect_uri] and
      * [attribution_token][google.cloud.retail.v2.SearchResponse.attribution_token]
-     * will be set in the response.
+     * are set in the response.
      *
      * Generated from protobuf field <code>string redirect_uri = 10;</code>
      */
@@ -110,7 +112,9 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           [total_size][google.cloud.retail.v2.SearchResponse.total_size] that
      *           matches.
      *     @type string $corrected_query
-     *           If spell correction applies, the corrected query. Otherwise, empty.
+     *           Contains the spell corrected query, if found. If the spell correction type
+     *           is AUTOMATIC, then the search results are based on corrected_query.
+     *           Otherwise the original query will be used for search.
      *     @type string $attribution_token
      *           A unique search token. This should be included in the
      *           [UserEvent][google.cloud.retail.v2.UserEvent] logs resulting from this
@@ -124,10 +128,10 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           Query expansion information for the returned results.
      *     @type string $redirect_uri
      *           The URI of a customer-defined redirect page. If redirect action is
-     *           triggered, no search will be performed, and only
+     *           triggered, no search is performed, and only
      *           [redirect_uri][google.cloud.retail.v2.SearchResponse.redirect_uri] and
      *           [attribution_token][google.cloud.retail.v2.SearchResponse.attribution_token]
-     *           will be set in the response.
+     *           are set in the response.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $applied_controls
      *           The fully qualified resource name of applied
      *           [controls](https://cloud.google.com/retail/docs/serving-control-rules).
@@ -229,7 +233,9 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If spell correction applies, the corrected query. Otherwise, empty.
+     * Contains the spell corrected query, if found. If the spell correction type
+     * is AUTOMATIC, then the search results are based on corrected_query.
+     * Otherwise the original query will be used for search.
      *
      * Generated from protobuf field <code>string corrected_query = 4;</code>
      * @return string
@@ -240,7 +246,9 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If spell correction applies, the corrected query. Otherwise, empty.
+     * Contains the spell corrected query, if found. If the spell correction type
+     * is AUTOMATIC, then the search results are based on corrected_query.
+     * Otherwise the original query will be used for search.
      *
      * Generated from protobuf field <code>string corrected_query = 4;</code>
      * @param string $var
@@ -354,10 +362,10 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The URI of a customer-defined redirect page. If redirect action is
-     * triggered, no search will be performed, and only
+     * triggered, no search is performed, and only
      * [redirect_uri][google.cloud.retail.v2.SearchResponse.redirect_uri] and
      * [attribution_token][google.cloud.retail.v2.SearchResponse.attribution_token]
-     * will be set in the response.
+     * are set in the response.
      *
      * Generated from protobuf field <code>string redirect_uri = 10;</code>
      * @return string
@@ -369,10 +377,10 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * The URI of a customer-defined redirect page. If redirect action is
-     * triggered, no search will be performed, and only
+     * triggered, no search is performed, and only
      * [redirect_uri][google.cloud.retail.v2.SearchResponse.redirect_uri] and
      * [attribution_token][google.cloud.retail.v2.SearchResponse.attribution_token]
-     * will be set in the response.
+     * are set in the response.
      *
      * Generated from protobuf field <code>string redirect_uri = 10;</code>
      * @param string $var

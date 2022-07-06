@@ -36,6 +36,8 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * Starting this job has no impact on any existing deployments of the Model
      * and their resources.
      * Exactly one of model and unmanaged_container_model must be set.
+     * The model resource name may contain version id or version alias to specify
+     * the version, if no version is specified, the default version will be used.
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      */
@@ -231,6 +233,8 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *           Starting this job has no impact on any existing deployments of the Model
      *           and their resources.
      *           Exactly one of model and unmanaged_container_model must be set.
+     *           The model resource name may contain version id or version alias to specify
+     *           the version, if no version is specified, the default version will be used.
      *     @type \Google\Cloud\AIPlatform\V1\UnmanagedContainerModel $unmanaged_container_model
      *           Contains model information necessary to perform batch prediction without
      *           requiring uploading to model registry.
@@ -390,6 +394,8 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * Starting this job has no impact on any existing deployments of the Model
      * and their resources.
      * Exactly one of model and unmanaged_container_model must be set.
+     * The model resource name may contain version id or version alias to specify
+     * the version, if no version is specified, the default version will be used.
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -405,6 +411,8 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * Starting this job has no impact on any existing deployments of the Model
      * and their resources.
      * Exactly one of model and unmanaged_container_model must be set.
+     * The model resource name may contain version id or version alias to specify
+     * the version, if no version is specified, the default version will be used.
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.resource_reference) = {</code>
      * @param string $var

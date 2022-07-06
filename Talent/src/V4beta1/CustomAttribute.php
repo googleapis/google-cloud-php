@@ -38,13 +38,23 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      */
     private $long_values;
     /**
-     * If the `filterable` flag is true, custom field values are searchable.
-     * If false, values are not searchable.
+     * If the `filterable` flag is true, the custom field values may be used for
+     * custom attribute filters [JobQuery.custom_attribute_filter][google.cloud.talent.v4beta1.JobQuery.custom_attribute_filter].
+     * If false, these values may not be used for custom attribute filters.
      * Default is false.
      *
      * Generated from protobuf field <code>bool filterable = 3;</code>
      */
     private $filterable = false;
+    /**
+     * If the `keyword_searchable` flag is true, the keywords in custom fields are
+     * searchable by keyword match.
+     * If false, the values are not searchable by keyword match.
+     * Default is false.
+     *
+     * Generated from protobuf field <code>bool keyword_searchable = 4;</code>
+     */
+    private $keyword_searchable = false;
 
     /**
      * Constructor.
@@ -67,8 +77,14 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      *           (`EQ`, `GT`, `GE`, `LE`, `LT`) over filterable `long_value`.
      *           Currently at most 1 [long_values][google.cloud.talent.v4beta1.CustomAttribute.long_values] is supported.
      *     @type bool $filterable
-     *           If the `filterable` flag is true, custom field values are searchable.
-     *           If false, values are not searchable.
+     *           If the `filterable` flag is true, the custom field values may be used for
+     *           custom attribute filters [JobQuery.custom_attribute_filter][google.cloud.talent.v4beta1.JobQuery.custom_attribute_filter].
+     *           If false, these values may not be used for custom attribute filters.
+     *           Default is false.
+     *     @type bool $keyword_searchable
+     *           If the `keyword_searchable` flag is true, the keywords in custom fields are
+     *           searchable by keyword match.
+     *           If false, the values are not searchable by keyword match.
      *           Default is false.
      * }
      */
@@ -150,8 +166,9 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the `filterable` flag is true, custom field values are searchable.
-     * If false, values are not searchable.
+     * If the `filterable` flag is true, the custom field values may be used for
+     * custom attribute filters [JobQuery.custom_attribute_filter][google.cloud.talent.v4beta1.JobQuery.custom_attribute_filter].
+     * If false, these values may not be used for custom attribute filters.
      * Default is false.
      *
      * Generated from protobuf field <code>bool filterable = 3;</code>
@@ -163,8 +180,9 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the `filterable` flag is true, custom field values are searchable.
-     * If false, values are not searchable.
+     * If the `filterable` flag is true, the custom field values may be used for
+     * custom attribute filters [JobQuery.custom_attribute_filter][google.cloud.talent.v4beta1.JobQuery.custom_attribute_filter].
+     * If false, these values may not be used for custom attribute filters.
      * Default is false.
      *
      * Generated from protobuf field <code>bool filterable = 3;</code>
@@ -175,6 +193,38 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->filterable = $var;
+
+        return $this;
+    }
+
+    /**
+     * If the `keyword_searchable` flag is true, the keywords in custom fields are
+     * searchable by keyword match.
+     * If false, the values are not searchable by keyword match.
+     * Default is false.
+     *
+     * Generated from protobuf field <code>bool keyword_searchable = 4;</code>
+     * @return bool
+     */
+    public function getKeywordSearchable()
+    {
+        return $this->keyword_searchable;
+    }
+
+    /**
+     * If the `keyword_searchable` flag is true, the keywords in custom fields are
+     * searchable by keyword match.
+     * If false, the values are not searchable by keyword match.
+     * Default is false.
+     *
+     * Generated from protobuf field <code>bool keyword_searchable = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setKeywordSearchable($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->keyword_searchable = $var;
 
         return $this;
     }

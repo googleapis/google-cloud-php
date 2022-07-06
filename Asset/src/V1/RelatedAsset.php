@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An asset identify in Google Cloud which contains its name, type and
+ * An asset identifier in Google Cloud which contains its name, type and
  * ancestors. An asset can be any resource in the Google Cloud [resource
  * hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
  * a resource outside the Google Cloud resource hierarchy (such as Google
@@ -51,6 +51,13 @@ class RelatedAsset extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string ancestors = 3;</code>
      */
     private $ancestors;
+    /**
+     * The unique identifier of the relationship type. Example:
+     * `INSTANCE_TO_INSTANCEGROUP`
+     *
+     * Generated from protobuf field <code>string relationship_type = 4;</code>
+     */
+    private $relationship_type = '';
 
     /**
      * Constructor.
@@ -75,6 +82,9 @@ class RelatedAsset extends \Google\Protobuf\Internal\Message
      *           represented as a list of relative resource names. An ancestry path starts
      *           with the closest ancestor in the hierarchy and ends at root.
      *           Example: `["projects/123456789", "folders/5432", "organizations/1234"]`
+     *     @type string $relationship_type
+     *           The unique identifier of the relationship type. Example:
+     *           `INSTANCE_TO_INSTANCEGROUP`
      * }
      */
     public function __construct($data = NULL) {
@@ -178,6 +188,34 @@ class RelatedAsset extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->ancestors = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The unique identifier of the relationship type. Example:
+     * `INSTANCE_TO_INSTANCEGROUP`
+     *
+     * Generated from protobuf field <code>string relationship_type = 4;</code>
+     * @return string
+     */
+    public function getRelationshipType()
+    {
+        return $this->relationship_type;
+    }
+
+    /**
+     * The unique identifier of the relationship type. Example:
+     * `INSTANCE_TO_INSTANCEGROUP`
+     *
+     * Generated from protobuf field <code>string relationship_type = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRelationshipType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->relationship_type = $var;
 
         return $this;
     }

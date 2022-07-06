@@ -11,8 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Configuration for a secret environment variable. It has the information
  * necessary to fetch the secret value from secret manager and expose it as an
- * environment variable. Secret value is not a part of the configuration. Secret
- * values are only fetched when a new clone starts.
+ * environment variable.
  *
  * Generated from protobuf message <code>google.cloud.functions.v1.SecretEnvVar</code>
  */
@@ -42,7 +41,7 @@ class SecretEnvVar extends \Google\Protobuf\Internal\Message
     /**
      * Version of the secret (version number or the string 'latest'). It is
      * recommended to use a numeric version for secret environment variables as
-     * any updates to the secret value is not reflected until new clones start.
+     * any updates to the secret value is not reflected until new instances start.
      *
      * Generated from protobuf field <code>string version = 4;</code>
      */
@@ -66,7 +65,7 @@ class SecretEnvVar extends \Google\Protobuf\Internal\Message
      *     @type string $version
      *           Version of the secret (version number or the string 'latest'). It is
      *           recommended to use a numeric version for secret environment variables as
-     *           any updates to the secret value is not reflected until new clones start.
+     *           any updates to the secret value is not reflected until new instances start.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,7 +160,7 @@ class SecretEnvVar extends \Google\Protobuf\Internal\Message
     /**
      * Version of the secret (version number or the string 'latest'). It is
      * recommended to use a numeric version for secret environment variables as
-     * any updates to the secret value is not reflected until new clones start.
+     * any updates to the secret value is not reflected until new instances start.
      *
      * Generated from protobuf field <code>string version = 4;</code>
      * @return string
@@ -174,7 +173,7 @@ class SecretEnvVar extends \Google\Protobuf\Internal\Message
     /**
      * Version of the secret (version number or the string 'latest'). It is
      * recommended to use a numeric version for secret environment variables as
-     * any updates to the secret value is not reflected until new clones start.
+     * any updates to the secret value is not reflected until new instances start.
      *
      * Generated from protobuf field <code>string version = 4;</code>
      * @param string $var

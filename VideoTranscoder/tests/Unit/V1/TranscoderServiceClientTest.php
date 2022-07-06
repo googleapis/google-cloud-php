@@ -77,7 +77,7 @@ class TranscoderServiceClientTest extends GeneratedTest
     public function createJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -95,9 +95,9 @@ class TranscoderServiceClientTest extends GeneratedTest
         $expectedResponse->setTtlAfterCompletionDays($ttlAfterCompletionDays);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $job = new Job();
-        $response = $client->createJob($formattedParent, $job);
+        $response = $gapicClient->createJob($formattedParent, $job);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -117,7 +117,7 @@ class TranscoderServiceClientTest extends GeneratedTest
     public function createJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -132,11 +132,11 @@ class TranscoderServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $job = new Job();
         try {
-            $client->createJob($formattedParent, $job);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createJob($formattedParent, $job);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -153,7 +153,7 @@ class TranscoderServiceClientTest extends GeneratedTest
     public function createJobTemplateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -163,10 +163,10 @@ class TranscoderServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $jobTemplate = new JobTemplate();
         $jobTemplateId = 'jobTemplateId-1231822466';
-        $response = $client->createJobTemplate($formattedParent, $jobTemplate, $jobTemplateId);
+        $response = $gapicClient->createJobTemplate($formattedParent, $jobTemplate, $jobTemplateId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -188,7 +188,7 @@ class TranscoderServiceClientTest extends GeneratedTest
     public function createJobTemplateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -203,12 +203,12 @@ class TranscoderServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $jobTemplate = new JobTemplate();
         $jobTemplateId = 'jobTemplateId-1231822466';
         try {
-            $client->createJobTemplate($formattedParent, $jobTemplate, $jobTemplateId);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createJobTemplate($formattedParent, $jobTemplate, $jobTemplateId);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -225,7 +225,7 @@ class TranscoderServiceClientTest extends GeneratedTest
     public function deleteJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -233,8 +233,8 @@ class TranscoderServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $client->deleteJob($formattedName);
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $gapicClient->deleteJob($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -251,7 +251,7 @@ class TranscoderServiceClientTest extends GeneratedTest
     public function deleteJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -266,10 +266,10 @@ class TranscoderServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
         try {
-            $client->deleteJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -286,7 +286,7 @@ class TranscoderServiceClientTest extends GeneratedTest
     public function deleteJobTemplateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -294,8 +294,8 @@ class TranscoderServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->jobTemplateName('[PROJECT]', '[LOCATION]', '[JOB_TEMPLATE]');
-        $client->deleteJobTemplate($formattedName);
+        $formattedName = $gapicClient->jobTemplateName('[PROJECT]', '[LOCATION]', '[JOB_TEMPLATE]');
+        $gapicClient->deleteJobTemplate($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -312,7 +312,7 @@ class TranscoderServiceClientTest extends GeneratedTest
     public function deleteJobTemplateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -327,10 +327,10 @@ class TranscoderServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->jobTemplateName('[PROJECT]', '[LOCATION]', '[JOB_TEMPLATE]');
+        $formattedName = $gapicClient->jobTemplateName('[PROJECT]', '[LOCATION]', '[JOB_TEMPLATE]');
         try {
-            $client->deleteJobTemplate($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteJobTemplate($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -347,7 +347,7 @@ class TranscoderServiceClientTest extends GeneratedTest
     public function getJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -365,8 +365,8 @@ class TranscoderServiceClientTest extends GeneratedTest
         $expectedResponse->setTtlAfterCompletionDays($ttlAfterCompletionDays);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $response = $client->getJob($formattedName);
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $response = $gapicClient->getJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -384,7 +384,7 @@ class TranscoderServiceClientTest extends GeneratedTest
     public function getJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -399,10 +399,10 @@ class TranscoderServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
         try {
-            $client->getJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -419,7 +419,7 @@ class TranscoderServiceClientTest extends GeneratedTest
     public function getJobTemplateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -429,8 +429,8 @@ class TranscoderServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->jobTemplateName('[PROJECT]', '[LOCATION]', '[JOB_TEMPLATE]');
-        $response = $client->getJobTemplate($formattedName);
+        $formattedName = $gapicClient->jobTemplateName('[PROJECT]', '[LOCATION]', '[JOB_TEMPLATE]');
+        $response = $gapicClient->getJobTemplate($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -448,7 +448,7 @@ class TranscoderServiceClientTest extends GeneratedTest
     public function getJobTemplateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -463,10 +463,10 @@ class TranscoderServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->jobTemplateName('[PROJECT]', '[LOCATION]', '[JOB_TEMPLATE]');
+        $formattedName = $gapicClient->jobTemplateName('[PROJECT]', '[LOCATION]', '[JOB_TEMPLATE]');
         try {
-            $client->getJobTemplate($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getJobTemplate($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -483,7 +483,7 @@ class TranscoderServiceClientTest extends GeneratedTest
     public function listJobTemplatesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -498,8 +498,8 @@ class TranscoderServiceClientTest extends GeneratedTest
         $expectedResponse->setJobTemplates($jobTemplates);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listJobTemplates($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listJobTemplates($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -520,7 +520,7 @@ class TranscoderServiceClientTest extends GeneratedTest
     public function listJobTemplatesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -535,10 +535,10 @@ class TranscoderServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listJobTemplates($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listJobTemplates($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -555,7 +555,7 @@ class TranscoderServiceClientTest extends GeneratedTest
     public function listJobsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -570,8 +570,8 @@ class TranscoderServiceClientTest extends GeneratedTest
         $expectedResponse->setJobs($jobs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listJobs($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listJobs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -592,7 +592,7 @@ class TranscoderServiceClientTest extends GeneratedTest
     public function listJobsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -607,10 +607,10 @@ class TranscoderServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listJobs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listJobs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

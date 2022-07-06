@@ -901,7 +901,7 @@ class ProductServiceGapicClient
     /**
      * Bulk import of multiple [Product][google.cloud.retail.v2.Product]s.
      *
-     * Request processing may be synchronous. No partial updating is supported.
+     * Request processing may be synchronous.
      * Non-existing items are created.
      *
      * Note that it is possible for a subset of the
@@ -966,11 +966,18 @@ class ProductServiceGapicClient
      *           [ReconciliationMode.INCREMENTAL][google.cloud.retail.v2.ImportProductsRequest.ReconciliationMode.INCREMENTAL].
      *           For allowed values, use constants defined on {@see \Google\Cloud\Retail\V2\ImportProductsRequest\ReconciliationMode}
      *     @type string $notificationPubsubTopic
-     *           Pub/Sub topic for receiving notification. If this field is set,
+     *           Full Pub/Sub topic name for receiving notification. If this field is set,
      *           when the import is finished, a notification will be sent to
      *           specified Pub/Sub topic. The message data will be JSON string of a
      *           [Operation][google.longrunning.Operation].
-     *           Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
+     *
+     *           Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`. It has
+     *           to be within the same project as
+     *           [ImportProductsRequest.parent][google.cloud.retail.v2.ImportProductsRequest.parent].
+     *           Make sure that both
+     *           `cloud-retail-customer-data-access&#64;system.gserviceaccount.com` and
+     *           `service-<project number>&#64;gcp-sa-retail.iam.gserviceaccount.com`
+     *           have the `pubsub.topics.publish` IAM permission on the topic.
      *
      *           Only supported when
      *           [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
@@ -1253,7 +1260,8 @@ class ProductServiceGapicClient
      *                               If this field is set to an invalid value other than these, an
      *                               INVALID_ARGUMENT error is returned.
      *
-     *                               This field directly corresponds to [Product.fulfillment_info.type][].
+     *                               This field directly corresponds to
+     *                               [Product.fulfillment_info.type][google.cloud.retail.v2.FulfillmentInfo.type].
      * @param string[] $placeIds     Required. The IDs for this
      *                               [type][google.cloud.retail.v2.RemoveFulfillmentPlacesRequest.type], such as
      *                               the store IDs for "pickup-in-store" or the region IDs for
@@ -1481,7 +1489,7 @@ class ProductServiceGapicClient
      *
      * Pre-existing inventory information can only be updated with
      * [SetInventory][google.cloud.retail.v2.ProductService.SetInventory],
-     * [AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces],
+     * [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces],
      * and
      * [RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces].
      *
@@ -1677,6 +1685,11 @@ class ProductServiceGapicClient
      *
      *           If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
      *           is returned.
+     *
+     *           The attribute key can be updated by setting the mask path as
+     *           "attributes.${key_name}". If a key name is present in the mask but not in
+     *           the patching product from the request, this key will be deleted after the
+     *           update.
      *     @type bool $allowMissing
      *           If set to true, and the [Product][google.cloud.retail.v2.Product] is not
      *           found, a new [Product][google.cloud.retail.v2.Product] will be created. In

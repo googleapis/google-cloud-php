@@ -30,6 +30,12 @@ class ExplanationSpecOverride extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationMetadataOverride metadata = 2;</code>
      */
     private $metadata = null;
+    /**
+     * The example-based explanations parameter overrides.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExamplesOverride examples_override = 3;</code>
+     */
+    private $examples_override = null;
 
     /**
      * Constructor.
@@ -43,6 +49,8 @@ class ExplanationSpecOverride extends \Google\Protobuf\Internal\Message
      *           no parameter is overridden.
      *     @type \Google\Cloud\AIPlatform\V1\ExplanationMetadataOverride $metadata
      *           The metadata to be overridden. If not specified, no metadata is overridden.
+     *     @type \Google\Cloud\AIPlatform\V1\ExamplesOverride $examples_override
+     *           The example-based explanations parameter overrides.
      * }
      */
     public function __construct($data = NULL) {
@@ -122,6 +130,42 @@ class ExplanationSpecOverride extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ExplanationMetadataOverride::class);
         $this->metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * The example-based explanations parameter overrides.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExamplesOverride examples_override = 3;</code>
+     * @return \Google\Cloud\AIPlatform\V1\ExamplesOverride|null
+     */
+    public function getExamplesOverride()
+    {
+        return $this->examples_override;
+    }
+
+    public function hasExamplesOverride()
+    {
+        return isset($this->examples_override);
+    }
+
+    public function clearExamplesOverride()
+    {
+        unset($this->examples_override);
+    }
+
+    /**
+     * The example-based explanations parameter overrides.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExamplesOverride examples_override = 3;</code>
+     * @param \Google\Cloud\AIPlatform\V1\ExamplesOverride $var
+     * @return $this
+     */
+    public function setExamplesOverride($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ExamplesOverride::class);
+        $this->examples_override = $var;
 
         return $this;
     }

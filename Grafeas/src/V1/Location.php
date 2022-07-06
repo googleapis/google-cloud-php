@@ -17,13 +17,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class Location extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The CPE URI in [CPE format](https://cpe.mitre.org/specification/)
-     * denoting the package manager version distributing a package.
+     * Deprecated.
+     * The CPE URI in [CPE format](https://cpe.mitre.org/specification/)
      *
      * Generated from protobuf field <code>string cpe_uri = 1;</code>
      */
     private $cpe_uri = '';
     /**
+     * Deprecated.
      * The version installed at this location.
      *
      * Generated from protobuf field <code>.grafeas.v1.Version version = 2;</code>
@@ -43,9 +44,10 @@ class Location extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $cpe_uri
-     *           Required. The CPE URI in [CPE format](https://cpe.mitre.org/specification/)
-     *           denoting the package manager version distributing a package.
+     *           Deprecated.
+     *           The CPE URI in [CPE format](https://cpe.mitre.org/specification/)
      *     @type \Grafeas\V1\Version $version
+     *           Deprecated.
      *           The version installed at this location.
      *     @type string $path
      *           The path from which we gathered that this package/version is installed.
@@ -57,8 +59,8 @@ class Location extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The CPE URI in [CPE format](https://cpe.mitre.org/specification/)
-     * denoting the package manager version distributing a package.
+     * Deprecated.
+     * The CPE URI in [CPE format](https://cpe.mitre.org/specification/)
      *
      * Generated from protobuf field <code>string cpe_uri = 1;</code>
      * @return string
@@ -69,8 +71,8 @@ class Location extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The CPE URI in [CPE format](https://cpe.mitre.org/specification/)
-     * denoting the package manager version distributing a package.
+     * Deprecated.
+     * The CPE URI in [CPE format](https://cpe.mitre.org/specification/)
      *
      * Generated from protobuf field <code>string cpe_uri = 1;</code>
      * @param string $var
@@ -85,6 +87,7 @@ class Location extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deprecated.
      * The version installed at this location.
      *
      * Generated from protobuf field <code>.grafeas.v1.Version version = 2;</code>
@@ -106,6 +109,7 @@ class Location extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deprecated.
      * The version installed at this location.
      *
      * Generated from protobuf field <code>.grafeas.v1.Version version = 2;</code>

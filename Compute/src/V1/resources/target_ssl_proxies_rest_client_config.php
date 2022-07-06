@@ -75,6 +75,23 @@ return [
                     ],
                 ],
             ],
+            'SetCertificateMap' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/targetSslProxies/{target_ssl_proxy}/setCertificateMap',
+                'body' => 'target_ssl_proxies_set_certificate_map_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'target_ssl_proxy' => [
+                        'getters' => [
+                            'getTargetSslProxy',
+                        ],
+                    ],
+                ],
+            ],
             'SetProxyHeader' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/targetSslProxies/{target_ssl_proxy}/setProxyHeader',

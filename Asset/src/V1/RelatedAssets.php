@@ -9,6 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * DEPRECATED. This message only presents for the purpose of
+ * backward-compatibility. The server will never populate this message in
+ * responses.
  * The detailed related assets with the `relationship_type`.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.RelatedAssets</code>

@@ -30,14 +30,29 @@
                                 "batchGetAssetsHistory"
                             ]
                         },
+                        "BatchGetEffectiveIamPolicies": {
+                            "methods": [
+                                "batchGetEffectiveIamPolicies"
+                            ]
+                        },
                         "CreateFeed": {
                             "methods": [
                                 "createFeed"
                             ]
                         },
+                        "CreateSavedQuery": {
+                            "methods": [
+                                "createSavedQuery"
+                            ]
+                        },
                         "DeleteFeed": {
                             "methods": [
                                 "deleteFeed"
+                            ]
+                        },
+                        "DeleteSavedQuery": {
+                            "methods": [
+                                "deleteSavedQuery"
                             ]
                         },
                         "ExportAssets": {
@@ -50,6 +65,11 @@
                                 "getFeed"
                             ]
                         },
+                        "GetSavedQuery": {
+                            "methods": [
+                                "getSavedQuery"
+                            ]
+                        },
                         "ListAssets": {
                             "methods": [
                                 "listAssets"
@@ -58,6 +78,11 @@
                         "ListFeeds": {
                             "methods": [
                                 "listFeeds"
+                            ]
+                        },
+                        "ListSavedQueries": {
+                            "methods": [
+                                "listSavedQueries"
                             ]
                         },
                         "SearchAllIamPolicies": {
@@ -73,6 +98,11 @@
                         "UpdateFeed": {
                             "methods": [
                                 "updateFeed"
+                            ]
+                        },
+                        "UpdateSavedQuery": {
+                            "methods": [
+                                "updateSavedQuery"
                             ]
                         }
                     }

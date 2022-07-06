@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A request message for [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy].
+ * A request message for
+ * [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy].
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.AnalyzeIamPolicyRequest</code>
  */
@@ -22,7 +23,26 @@ class AnalyzeIamPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     private $analysis_query = null;
     /**
-     * Optional. Amount of time executable has to complete.  See JSON representation of
+     * Optional. The name of a saved query, which must be in the format of:
+     * * projects/project_number/savedQueries/saved_query_id
+     * * folders/folder_number/savedQueries/saved_query_id
+     * * organizations/organization_number/savedQueries/saved_query_id
+     * If both `analysis_query` and `saved_analysis_query` are provided, they
+     * will be merged together with the `saved_analysis_query` as base and
+     * the `analysis_query` as overrides. For more details of the merge behavior,
+     * please refer to the
+     * [MergeFrom](https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message.MergeFrom.details)
+     * page.
+     * Note that you cannot override primitive fields with default value, such as
+     * 0 or empty string, etc., because we use proto3, which doesn't support field
+     * presence yet.
+     *
+     * Generated from protobuf field <code>string saved_analysis_query = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $saved_analysis_query = '';
+    /**
+     * Optional. Amount of time executable has to complete.  See JSON
+     * representation of
      * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).
      * If this field is set with a value less than the RPC deadline, and the
      * execution of your query hasn't finished in the specified
@@ -43,8 +63,23 @@ class AnalyzeIamPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery $analysis_query
      *           Required. The request query.
+     *     @type string $saved_analysis_query
+     *           Optional. The name of a saved query, which must be in the format of:
+     *           * projects/project_number/savedQueries/saved_query_id
+     *           * folders/folder_number/savedQueries/saved_query_id
+     *           * organizations/organization_number/savedQueries/saved_query_id
+     *           If both `analysis_query` and `saved_analysis_query` are provided, they
+     *           will be merged together with the `saved_analysis_query` as base and
+     *           the `analysis_query` as overrides. For more details of the merge behavior,
+     *           please refer to the
+     *           [MergeFrom](https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message.MergeFrom.details)
+     *           page.
+     *           Note that you cannot override primitive fields with default value, such as
+     *           0 or empty string, etc., because we use proto3, which doesn't support field
+     *           presence yet.
      *     @type \Google\Protobuf\Duration $execution_timeout
-     *           Optional. Amount of time executable has to complete.  See JSON representation of
+     *           Optional. Amount of time executable has to complete.  See JSON
+     *           representation of
      *           [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).
      *           If this field is set with a value less than the RPC deadline, and the
      *           execution of your query hasn't finished in the specified
@@ -96,7 +131,58 @@ class AnalyzeIamPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Amount of time executable has to complete.  See JSON representation of
+     * Optional. The name of a saved query, which must be in the format of:
+     * * projects/project_number/savedQueries/saved_query_id
+     * * folders/folder_number/savedQueries/saved_query_id
+     * * organizations/organization_number/savedQueries/saved_query_id
+     * If both `analysis_query` and `saved_analysis_query` are provided, they
+     * will be merged together with the `saved_analysis_query` as base and
+     * the `analysis_query` as overrides. For more details of the merge behavior,
+     * please refer to the
+     * [MergeFrom](https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message.MergeFrom.details)
+     * page.
+     * Note that you cannot override primitive fields with default value, such as
+     * 0 or empty string, etc., because we use proto3, which doesn't support field
+     * presence yet.
+     *
+     * Generated from protobuf field <code>string saved_analysis_query = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSavedAnalysisQuery()
+    {
+        return $this->saved_analysis_query;
+    }
+
+    /**
+     * Optional. The name of a saved query, which must be in the format of:
+     * * projects/project_number/savedQueries/saved_query_id
+     * * folders/folder_number/savedQueries/saved_query_id
+     * * organizations/organization_number/savedQueries/saved_query_id
+     * If both `analysis_query` and `saved_analysis_query` are provided, they
+     * will be merged together with the `saved_analysis_query` as base and
+     * the `analysis_query` as overrides. For more details of the merge behavior,
+     * please refer to the
+     * [MergeFrom](https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message.MergeFrom.details)
+     * page.
+     * Note that you cannot override primitive fields with default value, such as
+     * 0 or empty string, etc., because we use proto3, which doesn't support field
+     * presence yet.
+     *
+     * Generated from protobuf field <code>string saved_analysis_query = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSavedAnalysisQuery($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->saved_analysis_query = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Amount of time executable has to complete.  See JSON
+     * representation of
      * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).
      * If this field is set with a value less than the RPC deadline, and the
      * execution of your query hasn't finished in the specified
@@ -124,7 +210,8 @@ class AnalyzeIamPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Amount of time executable has to complete.  See JSON representation of
+     * Optional. Amount of time executable has to complete.  See JSON
+     * representation of
      * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).
      * If this field is set with a value less than the RPC deadline, and the
      * execution of your query hasn't finished in the specified

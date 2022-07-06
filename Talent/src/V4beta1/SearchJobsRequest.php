@@ -55,17 +55,12 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $enable_broadening = false;
     /**
-     * Controls if the search job request requires the return of a precise
-     * count of the first 300 results. Setting this to `true` ensures
-     * consistency in the number of results per page. Best practice is to set this
-     * value to true if a client allows users to jump directly to a
-     * non-sequential search results page.
-     * Enabling this flag may adversely impact performance.
-     * Defaults to false.
+     * This field is deprecated.
      *
-     * Generated from protobuf field <code>bool require_precise_result_size = 6;</code>
+     * Generated from protobuf field <code>bool require_precise_result_size = 6 [deprecated = true];</code>
+     * @deprecated
      */
-    private $require_precise_result_size = false;
+    protected $require_precise_result_size = false;
     /**
      * An expression specifies a histogram request against matching jobs.
      * Expression syntax is an aggregation function call with histogram facets and
@@ -75,6 +70,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * for each distinct attribute value.
      * * `count(numeric_histogram_facet, list of buckets)`: Count the number of
      * matching entities within each bucket.
+     * A maximum of 200 histogram buckets are supported.
      * Data types:
      * * Histogram facet: facet names with format `[a-zA-Z][a-zA-Z0-9_]+`.
      * * String: string like "any string with backslash escape for quote(\")."
@@ -94,6 +90,9 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *   "FULL_TIME", "PART_TIME".
      * * company_size: histogram by [CompanySize][google.cloud.talent.v4beta1.CompanySize], for example, "SMALL",
      * "MEDIUM", "BIG".
+     * * publish_time_in_day: histogram by the [Job.posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
+     *   in days.
+     *   Must specify list of numeric buckets in spec.
      * * publish_time_in_month: histogram by the [Job.posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
      *   in months.
      *   Must specify list of numeric buckets in spec.
@@ -145,7 +144,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * bucket(100000, MAX)])`
      * * `count(string_custom_attribute["some-string-custom-attribute"])`
      * * `count(numeric_custom_attribute["some-numeric-custom-attribute"],
-     *   [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative"])`
+     *   [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative")])`
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.HistogramQuery histogram_queries = 7;</code>
      */
@@ -260,6 +259,12 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $custom_ranking_info = null;
     /**
+     * This field is deprecated. Please use
+     * [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4beta1.SearchJobsRequest.keyword_match_mode] going forward.
+     * To migrate, disable_keyword_match set to false maps to
+     * [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL], and disable_keyword_match set to
+     * true maps to [KeywordMatchMode.KEYWORD_MATCH_DISABLED][google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_DISABLED]. If
+     * [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4beta1.SearchJobsRequest.keyword_match_mode] is set, this field is ignored.
      * Controls whether to disable exact keyword match on [Job.title][google.cloud.talent.v4beta1.Job.title],
      * [Job.description][google.cloud.talent.v4beta1.Job.description], [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name], [Job.addresses][google.cloud.talent.v4beta1.Job.addresses],
      * [Job.qualifications][google.cloud.talent.v4beta1.Job.qualifications]. When disable keyword match is turned off, a
@@ -280,6 +285,14 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool disable_keyword_match = 16;</code>
      */
     private $disable_keyword_match = false;
+    /**
+     * Controls what keyword match options to use.
+     * Defaults to [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL] if no value
+     * is specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode keyword_match_mode = 18;</code>
+     */
+    private $keyword_match_mode = 0;
 
     /**
      * Constructor.
@@ -307,13 +320,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *           list.
      *           Defaults to false.
      *     @type bool $require_precise_result_size
-     *           Controls if the search job request requires the return of a precise
-     *           count of the first 300 results. Setting this to `true` ensures
-     *           consistency in the number of results per page. Best practice is to set this
-     *           value to true if a client allows users to jump directly to a
-     *           non-sequential search results page.
-     *           Enabling this flag may adversely impact performance.
-     *           Defaults to false.
+     *           This field is deprecated.
      *     @type \Google\Cloud\Talent\V4beta1\HistogramQuery[]|\Google\Protobuf\Internal\RepeatedField $histogram_queries
      *           An expression specifies a histogram request against matching jobs.
      *           Expression syntax is an aggregation function call with histogram facets and
@@ -323,6 +330,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *           for each distinct attribute value.
      *           * `count(numeric_histogram_facet, list of buckets)`: Count the number of
      *           matching entities within each bucket.
+     *           A maximum of 200 histogram buckets are supported.
      *           Data types:
      *           * Histogram facet: facet names with format `[a-zA-Z][a-zA-Z0-9_]+`.
      *           * String: string like "any string with backslash escape for quote(\")."
@@ -342,6 +350,9 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *             "FULL_TIME", "PART_TIME".
      *           * company_size: histogram by [CompanySize][google.cloud.talent.v4beta1.CompanySize], for example, "SMALL",
      *           "MEDIUM", "BIG".
+     *           * publish_time_in_day: histogram by the [Job.posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
+     *             in days.
+     *             Must specify list of numeric buckets in spec.
      *           * publish_time_in_month: histogram by the [Job.posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
      *             in months.
      *             Must specify list of numeric buckets in spec.
@@ -393,7 +404,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *           bucket(100000, MAX)])`
      *           * `count(string_custom_attribute["some-string-custom-attribute"])`
      *           * `count(numeric_custom_attribute["some-numeric-custom-attribute"],
-     *             [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative"])`
+     *             [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative")])`
      *     @type int $job_view
      *           The desired job attributes returned for jobs in the search response.
      *           Defaults to [JobView.JOB_VIEW_SMALL][google.cloud.talent.v4beta1.JobView.JOB_VIEW_SMALL] if no value is specified.
@@ -476,6 +487,12 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *           Controls over how job documents get ranked on top of existing relevance
      *           score (determined by API algorithm).
      *     @type bool $disable_keyword_match
+     *           This field is deprecated. Please use
+     *           [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4beta1.SearchJobsRequest.keyword_match_mode] going forward.
+     *           To migrate, disable_keyword_match set to false maps to
+     *           [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL], and disable_keyword_match set to
+     *           true maps to [KeywordMatchMode.KEYWORD_MATCH_DISABLED][google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_DISABLED]. If
+     *           [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4beta1.SearchJobsRequest.keyword_match_mode] is set, this field is ignored.
      *           Controls whether to disable exact keyword match on [Job.title][google.cloud.talent.v4beta1.Job.title],
      *           [Job.description][google.cloud.talent.v4beta1.Job.description], [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name], [Job.addresses][google.cloud.talent.v4beta1.Job.addresses],
      *           [Job.qualifications][google.cloud.talent.v4beta1.Job.qualifications]. When disable keyword match is turned off, a
@@ -492,6 +509,10 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *           needed. Enabling keyword match improves recall of subsequent search
      *           requests.
      *           Defaults to false.
+     *     @type int $keyword_match_mode
+     *           Controls what keyword match options to use.
+     *           Defaults to [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL] if no value
+     *           is specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -668,37 +689,29 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Controls if the search job request requires the return of a precise
-     * count of the first 300 results. Setting this to `true` ensures
-     * consistency in the number of results per page. Best practice is to set this
-     * value to true if a client allows users to jump directly to a
-     * non-sequential search results page.
-     * Enabling this flag may adversely impact performance.
-     * Defaults to false.
+     * This field is deprecated.
      *
-     * Generated from protobuf field <code>bool require_precise_result_size = 6;</code>
+     * Generated from protobuf field <code>bool require_precise_result_size = 6 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getRequirePreciseResultSize()
     {
+        @trigger_error('require_precise_result_size is deprecated.', E_USER_DEPRECATED);
         return $this->require_precise_result_size;
     }
 
     /**
-     * Controls if the search job request requires the return of a precise
-     * count of the first 300 results. Setting this to `true` ensures
-     * consistency in the number of results per page. Best practice is to set this
-     * value to true if a client allows users to jump directly to a
-     * non-sequential search results page.
-     * Enabling this flag may adversely impact performance.
-     * Defaults to false.
+     * This field is deprecated.
      *
-     * Generated from protobuf field <code>bool require_precise_result_size = 6;</code>
+     * Generated from protobuf field <code>bool require_precise_result_size = 6 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setRequirePreciseResultSize($var)
     {
+        @trigger_error('require_precise_result_size is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->require_precise_result_size = $var;
 
@@ -714,6 +727,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * for each distinct attribute value.
      * * `count(numeric_histogram_facet, list of buckets)`: Count the number of
      * matching entities within each bucket.
+     * A maximum of 200 histogram buckets are supported.
      * Data types:
      * * Histogram facet: facet names with format `[a-zA-Z][a-zA-Z0-9_]+`.
      * * String: string like "any string with backslash escape for quote(\")."
@@ -733,6 +747,9 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *   "FULL_TIME", "PART_TIME".
      * * company_size: histogram by [CompanySize][google.cloud.talent.v4beta1.CompanySize], for example, "SMALL",
      * "MEDIUM", "BIG".
+     * * publish_time_in_day: histogram by the [Job.posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
+     *   in days.
+     *   Must specify list of numeric buckets in spec.
      * * publish_time_in_month: histogram by the [Job.posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
      *   in months.
      *   Must specify list of numeric buckets in spec.
@@ -784,7 +801,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * bucket(100000, MAX)])`
      * * `count(string_custom_attribute["some-string-custom-attribute"])`
      * * `count(numeric_custom_attribute["some-numeric-custom-attribute"],
-     *   [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative"])`
+     *   [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative")])`
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.HistogramQuery histogram_queries = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -803,6 +820,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * for each distinct attribute value.
      * * `count(numeric_histogram_facet, list of buckets)`: Count the number of
      * matching entities within each bucket.
+     * A maximum of 200 histogram buckets are supported.
      * Data types:
      * * Histogram facet: facet names with format `[a-zA-Z][a-zA-Z0-9_]+`.
      * * String: string like "any string with backslash escape for quote(\")."
@@ -822,6 +840,9 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *   "FULL_TIME", "PART_TIME".
      * * company_size: histogram by [CompanySize][google.cloud.talent.v4beta1.CompanySize], for example, "SMALL",
      * "MEDIUM", "BIG".
+     * * publish_time_in_day: histogram by the [Job.posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
+     *   in days.
+     *   Must specify list of numeric buckets in spec.
      * * publish_time_in_month: histogram by the [Job.posting_publish_time][google.cloud.talent.v4beta1.Job.posting_publish_time]
      *   in months.
      *   Must specify list of numeric buckets in spec.
@@ -873,7 +894,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * bucket(100000, MAX)])`
      * * `count(string_custom_attribute["some-string-custom-attribute"])`
      * * `count(numeric_custom_attribute["some-numeric-custom-attribute"],
-     *   [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative"])`
+     *   [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative")])`
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.HistogramQuery histogram_queries = 7;</code>
      * @param \Google\Cloud\Talent\V4beta1\HistogramQuery[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -1214,6 +1235,12 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * This field is deprecated. Please use
+     * [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4beta1.SearchJobsRequest.keyword_match_mode] going forward.
+     * To migrate, disable_keyword_match set to false maps to
+     * [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL], and disable_keyword_match set to
+     * true maps to [KeywordMatchMode.KEYWORD_MATCH_DISABLED][google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_DISABLED]. If
+     * [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4beta1.SearchJobsRequest.keyword_match_mode] is set, this field is ignored.
      * Controls whether to disable exact keyword match on [Job.title][google.cloud.talent.v4beta1.Job.title],
      * [Job.description][google.cloud.talent.v4beta1.Job.description], [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name], [Job.addresses][google.cloud.talent.v4beta1.Job.addresses],
      * [Job.qualifications][google.cloud.talent.v4beta1.Job.qualifications]. When disable keyword match is turned off, a
@@ -1240,6 +1267,12 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * This field is deprecated. Please use
+     * [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4beta1.SearchJobsRequest.keyword_match_mode] going forward.
+     * To migrate, disable_keyword_match set to false maps to
+     * [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL], and disable_keyword_match set to
+     * true maps to [KeywordMatchMode.KEYWORD_MATCH_DISABLED][google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_DISABLED]. If
+     * [SearchJobsRequest.keyword_match_mode][google.cloud.talent.v4beta1.SearchJobsRequest.keyword_match_mode] is set, this field is ignored.
      * Controls whether to disable exact keyword match on [Job.title][google.cloud.talent.v4beta1.Job.title],
      * [Job.description][google.cloud.talent.v4beta1.Job.description], [Job.company_display_name][google.cloud.talent.v4beta1.Job.company_display_name], [Job.addresses][google.cloud.talent.v4beta1.Job.addresses],
      * [Job.qualifications][google.cloud.talent.v4beta1.Job.qualifications]. When disable keyword match is turned off, a
@@ -1265,6 +1298,36 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->disable_keyword_match = $var;
+
+        return $this;
+    }
+
+    /**
+     * Controls what keyword match options to use.
+     * Defaults to [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL] if no value
+     * is specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode keyword_match_mode = 18;</code>
+     * @return int
+     */
+    public function getKeywordMatchMode()
+    {
+        return $this->keyword_match_mode;
+    }
+
+    /**
+     * Controls what keyword match options to use.
+     * Defaults to [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL] if no value
+     * is specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.talent.v4beta1.SearchJobsRequest.KeywordMatchMode keyword_match_mode = 18;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setKeywordMatchMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\SearchJobsRequest\KeywordMatchMode::class);
+        $this->keyword_match_mode = $var;
 
         return $this;
     }
