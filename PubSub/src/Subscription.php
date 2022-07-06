@@ -881,7 +881,7 @@ class Subscription
      * ```
      * $messages = $subscription->pull();
      * $failedMsgs = $subscription->modifyAckDeadlineBatch($messages, 3, ['returnFailures' => true]);
-     * 
+     *
      * // Either log or store the $failedMsgs to be retried later
      * ```
      *
