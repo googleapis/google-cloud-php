@@ -109,6 +109,16 @@
                             "methods": [
                                 "updateDnsAuthorization"
                             ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
                         }
                     }
                 }
