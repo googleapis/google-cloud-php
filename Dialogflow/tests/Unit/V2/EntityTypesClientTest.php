@@ -35,6 +35,8 @@ use Google\Cloud\Dialogflow\V2\EntityType;
 use Google\Cloud\Dialogflow\V2\EntityType\Kind;
 use Google\Cloud\Dialogflow\V2\EntityTypesClient;
 use Google\Cloud\Dialogflow\V2\ListEntityTypesResponse;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -88,7 +90,7 @@ class EntityTypesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -108,9 +110,9 @@ class EntityTypesClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
+        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
         $entities = [];
-        $response = $client->batchCreateEntities($formattedParent, $entities);
+        $response = $gapicClient->batchCreateEntities($formattedParent, $entities);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -155,7 +157,7 @@ class EntityTypesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -177,9 +179,9 @@ class EntityTypesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
+        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
         $entities = [];
-        $response = $client->batchCreateEntities($formattedParent, $entities);
+        $response = $gapicClient->batchCreateEntities($formattedParent, $entities);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -213,7 +215,7 @@ class EntityTypesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -233,9 +235,9 @@ class EntityTypesClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
+        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
         $entityValues = [];
-        $response = $client->batchDeleteEntities($formattedParent, $entityValues);
+        $response = $gapicClient->batchDeleteEntities($formattedParent, $entityValues);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -280,7 +282,7 @@ class EntityTypesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -302,9 +304,9 @@ class EntityTypesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
+        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
         $entityValues = [];
-        $response = $client->batchDeleteEntities($formattedParent, $entityValues);
+        $response = $gapicClient->batchDeleteEntities($formattedParent, $entityValues);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -338,7 +340,7 @@ class EntityTypesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -358,9 +360,9 @@ class EntityTypesClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->agentName('[PROJECT]');
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
         $entityTypeNames = [];
-        $response = $client->batchDeleteEntityTypes($formattedParent, $entityTypeNames);
+        $response = $gapicClient->batchDeleteEntityTypes($formattedParent, $entityTypeNames);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -405,7 +407,7 @@ class EntityTypesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -427,9 +429,9 @@ class EntityTypesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->agentName('[PROJECT]');
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
         $entityTypeNames = [];
-        $response = $client->batchDeleteEntityTypes($formattedParent, $entityTypeNames);
+        $response = $gapicClient->batchDeleteEntityTypes($formattedParent, $entityTypeNames);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -463,7 +465,7 @@ class EntityTypesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -483,9 +485,9 @@ class EntityTypesClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
+        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
         $entities = [];
-        $response = $client->batchUpdateEntities($formattedParent, $entities);
+        $response = $gapicClient->batchUpdateEntities($formattedParent, $entities);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -530,7 +532,7 @@ class EntityTypesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -552,9 +554,9 @@ class EntityTypesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
+        $formattedParent = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
         $entities = [];
-        $response = $client->batchUpdateEntities($formattedParent, $entities);
+        $response = $gapicClient->batchUpdateEntities($formattedParent, $entities);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -588,7 +590,7 @@ class EntityTypesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -608,8 +610,8 @@ class EntityTypesClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->agentName('[PROJECT]');
-        $response = $client->batchUpdateEntityTypes($formattedParent);
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
+        $response = $gapicClient->batchUpdateEntityTypes($formattedParent);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -652,7 +654,7 @@ class EntityTypesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -674,8 +676,8 @@ class EntityTypesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->agentName('[PROJECT]');
-        $response = $client->batchUpdateEntityTypes($formattedParent);
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
+        $response = $gapicClient->batchUpdateEntityTypes($formattedParent);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -703,7 +705,7 @@ class EntityTypesClientTest extends GeneratedTest
     public function createEntityTypeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -717,13 +719,13 @@ class EntityTypesClientTest extends GeneratedTest
         $expectedResponse->setEnableFuzzyExtraction($enableFuzzyExtraction);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->agentName('[PROJECT]');
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
         $entityType = new EntityType();
         $entityTypeDisplayName = 'entityTypeDisplayName-441894800';
         $entityType->setDisplayName($entityTypeDisplayName);
         $entityTypeKind = Kind::KIND_UNSPECIFIED;
         $entityType->setKind($entityTypeKind);
-        $response = $client->createEntityType($formattedParent, $entityType);
+        $response = $gapicClient->createEntityType($formattedParent, $entityType);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -743,7 +745,7 @@ class EntityTypesClientTest extends GeneratedTest
     public function createEntityTypeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -758,15 +760,15 @@ class EntityTypesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->agentName('[PROJECT]');
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
         $entityType = new EntityType();
         $entityTypeDisplayName = 'entityTypeDisplayName-441894800';
         $entityType->setDisplayName($entityTypeDisplayName);
         $entityTypeKind = Kind::KIND_UNSPECIFIED;
         $entityType->setKind($entityTypeKind);
         try {
-            $client->createEntityType($formattedParent, $entityType);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createEntityType($formattedParent, $entityType);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -783,7 +785,7 @@ class EntityTypesClientTest extends GeneratedTest
     public function deleteEntityTypeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -791,8 +793,8 @@ class EntityTypesClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-        $client->deleteEntityType($formattedName);
+        $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
+        $gapicClient->deleteEntityType($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -809,7 +811,7 @@ class EntityTypesClientTest extends GeneratedTest
     public function deleteEntityTypeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -824,10 +826,10 @@ class EntityTypesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
+        $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
         try {
-            $client->deleteEntityType($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteEntityType($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -844,7 +846,7 @@ class EntityTypesClientTest extends GeneratedTest
     public function getEntityTypeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -858,8 +860,8 @@ class EntityTypesClientTest extends GeneratedTest
         $expectedResponse->setEnableFuzzyExtraction($enableFuzzyExtraction);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
-        $response = $client->getEntityType($formattedName);
+        $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
+        $response = $gapicClient->getEntityType($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -877,7 +879,7 @@ class EntityTypesClientTest extends GeneratedTest
     public function getEntityTypeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -892,10 +894,10 @@ class EntityTypesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
+        $formattedName = $gapicClient->entityTypeName('[PROJECT]', '[ENTITY_TYPE]');
         try {
-            $client->getEntityType($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getEntityType($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -912,7 +914,7 @@ class EntityTypesClientTest extends GeneratedTest
     public function listEntityTypesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -927,8 +929,8 @@ class EntityTypesClientTest extends GeneratedTest
         $expectedResponse->setEntityTypes($entityTypes);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->agentName('[PROJECT]');
-        $response = $client->listEntityTypes($formattedParent);
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
+        $response = $gapicClient->listEntityTypes($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -949,7 +951,7 @@ class EntityTypesClientTest extends GeneratedTest
     public function listEntityTypesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -964,10 +966,10 @@ class EntityTypesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->agentName('[PROJECT]');
+        $formattedParent = $gapicClient->agentName('[PROJECT]');
         try {
-            $client->listEntityTypes($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listEntityTypes($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -984,7 +986,7 @@ class EntityTypesClientTest extends GeneratedTest
     public function updateEntityTypeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1003,7 +1005,7 @@ class EntityTypesClientTest extends GeneratedTest
         $entityType->setDisplayName($entityTypeDisplayName);
         $entityTypeKind = Kind::KIND_UNSPECIFIED;
         $entityType->setKind($entityTypeKind);
-        $response = $client->updateEntityType($entityType);
+        $response = $gapicClient->updateEntityType($entityType);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1021,7 +1023,7 @@ class EntityTypesClientTest extends GeneratedTest
     public function updateEntityTypeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1042,8 +1044,136 @@ class EntityTypesClientTest extends GeneratedTest
         $entityTypeKind = Kind::KIND_UNSPECIFIED;
         $entityType->setKind($entityTypeKind);
         try {
-            $client->updateEntityType($entityType);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateEntityType($entityType);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getLocationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $locationId = 'locationId552319461';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new Location();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setLocationId($locationId);
+        $expectedResponse->setDisplayName($displayName);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->getLocation();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.location.Locations/GetLocation', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getLocationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->getLocation();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listLocationsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $locationsElement = new Location();
+        $locations = [
+            $locationsElement,
+        ];
+        $expectedResponse = new ListLocationsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setLocations($locations);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->listLocations();
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getLocations()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.location.Locations/ListLocations', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listLocationsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->listLocations();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

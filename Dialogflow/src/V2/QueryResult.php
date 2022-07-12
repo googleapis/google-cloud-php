@@ -87,7 +87,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     private $all_required_params_present = false;
     /**
      * Indicates whether the conversational query triggers a cancellation for slot
-     * filling.
+     * filling. For more information, see the [cancel slot filling
+     * documentation](https://cloud.google.com/dialogflow/es/docs/intents-actions-parameters#cancel).
      *
      * Generated from protobuf field <code>bool cancels_slot_filling = 21;</code>
      */
@@ -222,7 +223,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *              matched intent doesn't contain any required parameters.
      *     @type bool $cancels_slot_filling
      *           Indicates whether the conversational query triggers a cancellation for slot
-     *           filling.
+     *           filling. For more information, see the [cancel slot filling
+     *           documentation](https://cloud.google.com/dialogflow/es/docs/intents-actions-parameters#cancel).
      *     @type string $fulfillment_text
      *           The text to be pronounced to the user or shown on the screen.
      *           Note: This is a legacy field, `fulfillment_messages` should be preferred.
@@ -505,7 +507,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Indicates whether the conversational query triggers a cancellation for slot
-     * filling.
+     * filling. For more information, see the [cancel slot filling
+     * documentation](https://cloud.google.com/dialogflow/es/docs/intents-actions-parameters#cancel).
      *
      * Generated from protobuf field <code>bool cancels_slot_filling = 21;</code>
      * @return bool
@@ -517,7 +520,8 @@ class QueryResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Indicates whether the conversational query triggers a cancellation for slot
-     * filling.
+     * filling. For more information, see the [cancel slot filling
+     * documentation](https://cloud.google.com/dialogflow/es/docs/intents-actions-parameters#cancel).
      *
      * Generated from protobuf field <code>bool cancels_slot_filling = 21;</code>
      * @param bool $var
