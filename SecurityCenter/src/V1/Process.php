@@ -16,6 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class Process extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The process name visible in utilities like `top` and `ps`; it can
+     * be accessed via `/proc/[pid]/comm` and changed with `prctl(PR_SET_NAME)`.
+     *
+     * Generated from protobuf field <code>string name = 12;</code>
+     */
+    private $name = '';
+    /**
      * File information for the process executable.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.File binary = 3;</code>
@@ -79,6 +86,9 @@ class Process extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $name
+     *           The process name visible in utilities like `top` and `ps`; it can
+     *           be accessed via `/proc/[pid]/comm` and changed with `prctl(PR_SET_NAME)`.
      *     @type \Google\Cloud\SecurityCenter\V1\File $binary
      *           File information for the process executable.
      *     @type \Google\Cloud\SecurityCenter\V1\File[]|\Google\Protobuf\Internal\RepeatedField $libraries
@@ -105,6 +115,34 @@ class Process extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Securitycenter\V1\Process::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The process name visible in utilities like `top` and `ps`; it can
+     * be accessed via `/proc/[pid]/comm` and changed with `prctl(PR_SET_NAME)`.
+     *
+     * Generated from protobuf field <code>string name = 12;</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * The process name visible in utilities like `top` and `ps`; it can
+     * be accessed via `/proc/[pid]/comm` and changed with `prctl(PR_SET_NAME)`.
+     *
+     * Generated from protobuf field <code>string name = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
+
+        return $this;
     }
 
     /**

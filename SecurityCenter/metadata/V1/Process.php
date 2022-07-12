@@ -17,9 +17,10 @@ class Process
         \GPBMetadata\Google\Cloud\Securitycenter\V1\File::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ý
-,google/cloud/securitycenter/v1/process.protogoogle.cloud.securitycenter.v1"ç
-Process4
+ë
+,google/cloud/securitycenter/v1/process.protogoogle.cloud.securitycenter.v1"õ
+Process
+name (	4
 binary (2$.google.cloud.securitycenter.v1.File7
 	libraries (2$.google.cloud.securitycenter.v1.File4
 script (2$.google.cloud.securitycenter.v1.File
