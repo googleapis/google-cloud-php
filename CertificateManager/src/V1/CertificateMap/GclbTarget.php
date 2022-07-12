@@ -31,11 +31,11 @@ class GclbTarget extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $target_https_proxy
-     *           A name must be in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;targetHttpsProxies/&#42;`.
+     *           This field returns the resource name in the following format:
+     *           `//compute.googleapis.com/projects/&#42;&#47;global/targetHttpsProxies/&#42;`.
      *     @type string $target_ssl_proxy
-     *           A name must be in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;targetSslProxies/&#42;`.
+     *           This field returns the resource name in the following format:
+     *           `//compute.googleapis.com/projects/&#42;&#47;global/targetSslProxies/&#42;`.
      *     @type \Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget\IpConfig[]|\Google\Protobuf\Internal\RepeatedField $ip_configs
      *           IP configurations for this Target Proxy where the
      *           Certificate Map is serving.
@@ -47,10 +47,10 @@ class GclbTarget extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A name must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;targetHttpsProxies/&#42;`.
+     * This field returns the resource name in the following format:
+     * `//compute.googleapis.com/projects/&#42;&#47;global/targetHttpsProxies/&#42;`.
      *
-     * Generated from protobuf field <code>string target_https_proxy = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string target_https_proxy = 1;</code>
      * @return string
      */
     public function getTargetHttpsProxy()
@@ -64,10 +64,10 @@ class GclbTarget extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A name must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;targetHttpsProxies/&#42;`.
+     * This field returns the resource name in the following format:
+     * `//compute.googleapis.com/projects/&#42;&#47;global/targetHttpsProxies/&#42;`.
      *
-     * Generated from protobuf field <code>string target_https_proxy = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string target_https_proxy = 1;</code>
      * @param string $var
      * @return $this
      */
@@ -80,10 +80,10 @@ class GclbTarget extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A name must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;targetSslProxies/&#42;`.
+     * This field returns the resource name in the following format:
+     * `//compute.googleapis.com/projects/&#42;&#47;global/targetSslProxies/&#42;`.
      *
-     * Generated from protobuf field <code>string target_ssl_proxy = 3 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string target_ssl_proxy = 3;</code>
      * @return string
      */
     public function getTargetSslProxy()
@@ -97,10 +97,10 @@ class GclbTarget extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A name must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;targetSslProxies/&#42;`.
+     * This field returns the resource name in the following format:
+     * `//compute.googleapis.com/projects/&#42;&#47;global/targetSslProxies/&#42;`.
      *
-     * Generated from protobuf field <code>string target_ssl_proxy = 3 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string target_ssl_proxy = 3;</code>
      * @param string $var
      * @return $this
      */
