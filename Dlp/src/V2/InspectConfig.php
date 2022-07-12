@@ -48,7 +48,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     private $limits = null;
     /**
      * When true, a contextual quote from the data that triggered a finding is
-     * included in the response; see Finding.quote.
+     * included in the response; see [Finding.quote][google.privacy.dlp.v2.Finding.quote].
      * This is not used for data profiling.
      *
      * Generated from protobuf field <code>bool include_quote = 4;</code>
@@ -108,7 +108,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      *           This is not used for data profiling.
      *     @type bool $include_quote
      *           When true, a contextual quote from the data that triggered a finding is
-     *           included in the response; see Finding.quote.
+     *           included in the response; see [Finding.quote][google.privacy.dlp.v2.Finding.quote].
      *           This is not used for data profiling.
      *     @type bool $exclude_info_types
      *           When true, excludes type information of the findings.
@@ -241,7 +241,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * When true, a contextual quote from the data that triggered a finding is
-     * included in the response; see Finding.quote.
+     * included in the response; see [Finding.quote][google.privacy.dlp.v2.Finding.quote].
      * This is not used for data profiling.
      *
      * Generated from protobuf field <code>bool include_quote = 4;</code>
@@ -254,7 +254,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * When true, a contextual quote from the data that triggered a finding is
-     * included in the response; see Finding.quote.
+     * included in the response; see [Finding.quote][google.privacy.dlp.v2.Finding.quote].
      * This is not used for data profiling.
      *
      * Generated from protobuf field <code>bool include_quote = 4;</code>

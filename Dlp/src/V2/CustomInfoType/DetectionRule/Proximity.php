@@ -17,7 +17,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class Proximity extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Number of characters before the finding to consider.
+     * Number of characters before the finding to consider. For tabular data,
+     * if you want to modify the likelihood of an entire column of findngs,
+     * set this to 1. For more information, see
+     * [Hotword example: Set the match likelihood of a table column]
+     * (https://cloud.google.com/dlp/docs/creating-custom-infotypes-likelihood#match-column-values).
      *
      * Generated from protobuf field <code>int32 window_before = 1;</code>
      */
@@ -36,7 +40,11 @@ class Proximity extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $window_before
-     *           Number of characters before the finding to consider.
+     *           Number of characters before the finding to consider. For tabular data,
+     *           if you want to modify the likelihood of an entire column of findngs,
+     *           set this to 1. For more information, see
+     *           [Hotword example: Set the match likelihood of a table column]
+     *           (https://cloud.google.com/dlp/docs/creating-custom-infotypes-likelihood#match-column-values).
      *     @type int $window_after
      *           Number of characters after the finding to consider.
      * }
@@ -47,7 +55,11 @@ class Proximity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of characters before the finding to consider.
+     * Number of characters before the finding to consider. For tabular data,
+     * if you want to modify the likelihood of an entire column of findngs,
+     * set this to 1. For more information, see
+     * [Hotword example: Set the match likelihood of a table column]
+     * (https://cloud.google.com/dlp/docs/creating-custom-infotypes-likelihood#match-column-values).
      *
      * Generated from protobuf field <code>int32 window_before = 1;</code>
      * @return int
@@ -58,7 +70,11 @@ class Proximity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Number of characters before the finding to consider.
+     * Number of characters before the finding to consider. For tabular data,
+     * if you want to modify the likelihood of an entire column of findngs,
+     * set this to 1. For more information, see
+     * [Hotword example: Set the match likelihood of a table column]
+     * (https://cloud.google.com/dlp/docs/creating-custom-infotypes-likelihood#match-column-values).
      *
      * Generated from protobuf field <code>int32 window_before = 1;</code>
      * @param int $var
