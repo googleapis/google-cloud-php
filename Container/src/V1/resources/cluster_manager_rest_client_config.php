@@ -71,6 +71,18 @@ return [
                     ],
                 ],
             ],
+            'CompleteNodePoolUpgrade' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*/nodePools/*}:completeUpgrade',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateCluster' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/clusters',

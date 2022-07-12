@@ -10,6 +10,10 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Parameters that describe the nodes in a cluster.
+ * GKE Autopilot clusters do not
+ * recognize parameters in `NodeConfig`. Use
+ * [AutoprovisioningNodePoolDefaults][google.container.v1.AutoprovisioningNodePoolDefaults]
+ * instead.
  *
  * Generated from protobuf message <code>google.container.v1.NodeConfig</code>
  */
@@ -249,6 +253,20 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.VirtualNIC gvnic = 29;</code>
      */
     private $gvnic = null;
+    /**
+     * Spot flag for enabling Spot VM, which is a rebrand of
+     * the existing preemptible flag.
+     *
+     * Generated from protobuf field <code>bool spot = 32;</code>
+     */
+    private $spot = false;
+    /**
+     * Confidential nodes config.
+     * All the nodes in the node pool will be Confidential VM once enabled.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 35;</code>
+     */
+    private $confidential_nodes = null;
 
     /**
      * Constructor.
@@ -390,6 +408,12 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           Advanced features for the Compute Engine VM.
      *     @type \Google\Cloud\Container\V1\VirtualNIC $gvnic
      *           Enable or disable gvnic in the node pool.
+     *     @type bool $spot
+     *           Spot flag for enabling Spot VM, which is a rebrand of
+     *           the existing preemptible flag.
+     *     @type \Google\Cloud\Container\V1\ConfidentialNodes $confidential_nodes
+     *           Confidential nodes config.
+     *           All the nodes in the node pool will be Confidential VM once enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -1301,6 +1325,72 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\VirtualNIC::class);
         $this->gvnic = $var;
+
+        return $this;
+    }
+
+    /**
+     * Spot flag for enabling Spot VM, which is a rebrand of
+     * the existing preemptible flag.
+     *
+     * Generated from protobuf field <code>bool spot = 32;</code>
+     * @return bool
+     */
+    public function getSpot()
+    {
+        return $this->spot;
+    }
+
+    /**
+     * Spot flag for enabling Spot VM, which is a rebrand of
+     * the existing preemptible flag.
+     *
+     * Generated from protobuf field <code>bool spot = 32;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSpot($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->spot = $var;
+
+        return $this;
+    }
+
+    /**
+     * Confidential nodes config.
+     * All the nodes in the node pool will be Confidential VM once enabled.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 35;</code>
+     * @return \Google\Cloud\Container\V1\ConfidentialNodes|null
+     */
+    public function getConfidentialNodes()
+    {
+        return $this->confidential_nodes;
+    }
+
+    public function hasConfidentialNodes()
+    {
+        return isset($this->confidential_nodes);
+    }
+
+    public function clearConfidentialNodes()
+    {
+        unset($this->confidential_nodes);
+    }
+
+    /**
+     * Confidential nodes config.
+     * All the nodes in the node pool will be Confidential VM once enabled.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 35;</code>
+     * @param \Google\Cloud\Container\V1\ConfidentialNodes $var
+     * @return $this
+     */
+    public function setConfidentialNodes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ConfidentialNodes::class);
+        $this->confidential_nodes = $var;
 
         return $this;
     }

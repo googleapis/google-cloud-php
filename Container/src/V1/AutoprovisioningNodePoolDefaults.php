@@ -41,19 +41,22 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      */
     private $management = null;
     /**
-     * Minimum CPU platform to be used for NAP created node pools.
+     * Deprecated. Minimum CPU platform to be used for NAP created node pools.
      * The instance may be scheduled on the specified or newer CPU platform.
      * Applicable values are the friendly names of CPU platforms, such as
      * minCpuPlatform: Intel Haswell or
      * minCpuPlatform: Intel Sandy Bridge. For more
      * information, read [how to specify min CPU
      * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     * This field is deprecated, min_cpu_platform should be specified using
+     * cloud.google.com/requested-min-cpu-platform label selector on the pod.
      * To unset the min cpu platform field pass "automatic"
      * as field value.
      *
-     * Generated from protobuf field <code>string min_cpu_platform = 5;</code>
+     * Generated from protobuf field <code>string min_cpu_platform = 5 [deprecated = true];</code>
+     * @deprecated
      */
-    private $min_cpu_platform = '';
+    protected $min_cpu_platform = '';
     /**
      * Size of the disk attached to each node, specified in GB.
      * The smallest allowed disk size is 10GB.
@@ -109,13 +112,15 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\NodeManagement $management
      *           Specifies the node management options for NAP created node-pools.
      *     @type string $min_cpu_platform
-     *           Minimum CPU platform to be used for NAP created node pools.
+     *           Deprecated. Minimum CPU platform to be used for NAP created node pools.
      *           The instance may be scheduled on the specified or newer CPU platform.
      *           Applicable values are the friendly names of CPU platforms, such as
      *           minCpuPlatform: Intel Haswell or
      *           minCpuPlatform: Intel Sandy Bridge. For more
      *           information, read [how to specify min CPU
      *           platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     *           This field is deprecated, min_cpu_platform should be specified using
+     *           cloud.google.com/requested-min-cpu-platform label selector on the pod.
      *           To unset the min cpu platform field pass "automatic"
      *           as field value.
      *     @type int $disk_size_gb
@@ -269,41 +274,49 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Minimum CPU platform to be used for NAP created node pools.
+     * Deprecated. Minimum CPU platform to be used for NAP created node pools.
      * The instance may be scheduled on the specified or newer CPU platform.
      * Applicable values are the friendly names of CPU platforms, such as
      * minCpuPlatform: Intel Haswell or
      * minCpuPlatform: Intel Sandy Bridge. For more
      * information, read [how to specify min CPU
      * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     * This field is deprecated, min_cpu_platform should be specified using
+     * cloud.google.com/requested-min-cpu-platform label selector on the pod.
      * To unset the min cpu platform field pass "automatic"
      * as field value.
      *
-     * Generated from protobuf field <code>string min_cpu_platform = 5;</code>
+     * Generated from protobuf field <code>string min_cpu_platform = 5 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getMinCpuPlatform()
     {
+        @trigger_error('min_cpu_platform is deprecated.', E_USER_DEPRECATED);
         return $this->min_cpu_platform;
     }
 
     /**
-     * Minimum CPU platform to be used for NAP created node pools.
+     * Deprecated. Minimum CPU platform to be used for NAP created node pools.
      * The instance may be scheduled on the specified or newer CPU platform.
      * Applicable values are the friendly names of CPU platforms, such as
      * minCpuPlatform: Intel Haswell or
      * minCpuPlatform: Intel Sandy Bridge. For more
      * information, read [how to specify min CPU
      * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     * This field is deprecated, min_cpu_platform should be specified using
+     * cloud.google.com/requested-min-cpu-platform label selector on the pod.
      * To unset the min cpu platform field pass "automatic"
      * as field value.
      *
-     * Generated from protobuf field <code>string min_cpu_platform = 5;</code>
+     * Generated from protobuf field <code>string min_cpu_platform = 5 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setMinCpuPlatform($var)
     {
+        @trigger_error('min_cpu_platform is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->min_cpu_platform = $var;
 

@@ -19,7 +19,7 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Deprecated. The Google Developers Console [project ID or project
-     * number](https://support.google.com/cloud/answer/6158840).
+     * number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      * This field has been deprecated and replaced by the name field.
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
@@ -60,6 +60,13 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 6;</code>
      */
     private $name = '';
+    /**
+     * Option for rollback to ignore the PodDisruptionBudget.
+     * Default value is false.
+     *
+     * Generated from protobuf field <code>bool respect_pdb = 7;</code>
+     */
+    private $respect_pdb = false;
 
     /**
      * Constructor.
@@ -69,7 +76,7 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $project_id
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -86,6 +93,9 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      *           The name (project, location, cluster, node pool id) of the node poll to
      *           rollback upgrade.
      *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     *     @type bool $respect_pdb
+     *           Option for rollback to ignore the PodDisruptionBudget.
+     *           Default value is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -95,7 +105,7 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The Google Developers Console [project ID or project
-     * number](https://support.google.com/cloud/answer/6158840).
+     * number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      * This field has been deprecated and replaced by the name field.
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
@@ -110,7 +120,7 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The Google Developers Console [project ID or project
-     * number](https://support.google.com/cloud/answer/6158840).
+     * number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      * This field has been deprecated and replaced by the name field.
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
@@ -253,6 +263,34 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Option for rollback to ignore the PodDisruptionBudget.
+     * Default value is false.
+     *
+     * Generated from protobuf field <code>bool respect_pdb = 7;</code>
+     * @return bool
+     */
+    public function getRespectPdb()
+    {
+        return $this->respect_pdb;
+    }
+
+    /**
+     * Option for rollback to ignore the PodDisruptionBudget.
+     * Default value is false.
+     *
+     * Generated from protobuf field <code>bool respect_pdb = 7;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRespectPdb($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->respect_pdb = $var;
 
         return $this;
     }

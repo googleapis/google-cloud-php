@@ -54,6 +54,12 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string pod_ipv4_cidr_block = 6;</code>
      */
     private $pod_ipv4_cidr_block = '';
+    /**
+     * Network bandwidth tier configuration.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.NodeNetworkConfig.NetworkPerformanceConfig network_performance_config = 11;</code>
+     */
+    private $network_performance_config = null;
 
     /**
      * Constructor.
@@ -88,6 +94,8 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *           notation (e.g. `10.96.0.0/14`) to pick a specific range to use.
      *           Only applicable if `ip_allocation_policy.use_ip_aliases` is true.
      *           This field cannot be changed after the node pool has been created.
+     *     @type \Google\Cloud\Container\V1\NodeNetworkConfig\NetworkPerformanceConfig $network_performance_config
+     *           Network bandwidth tier configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -211,6 +219,42 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->pod_ipv4_cidr_block = $var;
+
+        return $this;
+    }
+
+    /**
+     * Network bandwidth tier configuration.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.NodeNetworkConfig.NetworkPerformanceConfig network_performance_config = 11;</code>
+     * @return \Google\Cloud\Container\V1\NodeNetworkConfig\NetworkPerformanceConfig|null
+     */
+    public function getNetworkPerformanceConfig()
+    {
+        return $this->network_performance_config;
+    }
+
+    public function hasNetworkPerformanceConfig()
+    {
+        return isset($this->network_performance_config);
+    }
+
+    public function clearNetworkPerformanceConfig()
+    {
+        unset($this->network_performance_config);
+    }
+
+    /**
+     * Network bandwidth tier configuration.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.NodeNetworkConfig.NetworkPerformanceConfig network_performance_config = 11;</code>
+     * @param \Google\Cloud\Container\V1\NodeNetworkConfig\NetworkPerformanceConfig $var
+     * @return $this
+     */
+    public function setNetworkPerformanceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeNetworkConfig\NetworkPerformanceConfig::class);
+        $this->network_performance_config = $var;
 
         return $this;
     }
