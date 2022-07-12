@@ -73,6 +73,12 @@ class ComplianceRegime
      * Generated from protobuf enum <code>CA_REGIONS_AND_SUPPORT = 9;</code>
      */
     const CA_REGIONS_AND_SUPPORT = 9;
+    /**
+     * International Traffic in Arms Regulations
+     *
+     * Generated from protobuf enum <code>ITAR = 10;</code>
+     */
+    const ITAR = 10;
 
     private static $valueToName = [
         self::COMPLIANCE_REGIME_UNSPECIFIED => 'COMPLIANCE_REGIME_UNSPECIFIED',
@@ -85,6 +91,7 @@ class ComplianceRegime
         self::HITRUST => 'HITRUST',
         self::EU_REGIONS_AND_SUPPORT => 'EU_REGIONS_AND_SUPPORT',
         self::CA_REGIONS_AND_SUPPORT => 'CA_REGIONS_AND_SUPPORT',
+        self::ITAR => 'ITAR',
     ];
 
     public static function name($value)
