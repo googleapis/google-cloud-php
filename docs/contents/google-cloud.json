@@ -63,6 +63,7 @@
         "cloud-firestore",
         "cloud-functions",
         "cloud-game-servers",
+        "cloud-gke-backup",
         "cloud-gke-connect-gateway",
         "cloud-gke-hub",
         "cloud-gke-multi-cloud",
