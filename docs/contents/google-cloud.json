@@ -129,6 +129,7 @@
         "cloud-web-risk",
         "cloud-web-security-scanner",
         "cloud-workflows",
-        "grafeas"
+        "grafeas",
+        "longrunning"
     ]
 }

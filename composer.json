@@ -194,7 +194,8 @@
         "google/cloud-web-risk": "1.1.5",
         "google/cloud-web-security-scanner": "0.7.5",
         "google/cloud-workflows": "0.2.6",
-        "google/grafeas": "0.3.0"
+        "google/grafeas": "0.3.0",
+        "google/longrunning": "0.0.0"
     },
     "suggest": {
         "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
@@ -322,6 +323,7 @@
             "GPBMetadata\\Google\\Iam\\Credentials\\": "IamCredentials/metadata",
             "GPBMetadata\\Google\\Identity\\Accesscontextmanager\\": "AccessContextManager/metadata",
             "GPBMetadata\\Google\\Logging\\": "Logging/metadata",
+            "GPBMetadata\\Google\\Longrunning\\": "LongRunning/metadata",
             "GPBMetadata\\Google\\Monitoring\\": "Monitoring/metadata",
             "GPBMetadata\\Google\\Privacy\\Dlp\\": "Dlp/metadata",
             "GPBMetadata\\Google\\Pubsub\\": "PubSub/metadata",
@@ -457,6 +459,8 @@
             "Google\\Cloud\\WebSecurityScanner\\": "WebSecurityScanner/src",
             "Google\\Cloud\\Workflows\\": "Workflows/src",
             "Google\\Identity\\AccessContextManager\\": "AccessContextManager/src",
+            "Google\\ApiCore\\LongRunning\\": "LongRunning/src/ApiCore/LongRunning",
+            "Google\\LongRunning\\": "LongRunning/src/LongRunning",
             "Grafeas\\": "Grafeas/src"
         }
     },
@@ -587,6 +591,7 @@
             "Google\\Cloud\\WebSecurityScanner\\Tests\\": "WebSecurityScanner/tests",
             "Google\\Cloud\\Workflows\\Tests\\": "Workflows/tests",
             "Google\\Identity\\AccessContextManager\\Tests\\": "AccessContextManager/tests",
+            "Google\\ApiCore\\LongRunning\\Tests\\": "LongRunning/tests",
             "Grafeas\\Tests\\": "Grafeas/tests"
         },
         "files": [
