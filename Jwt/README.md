@@ -261,6 +261,11 @@ $decoded = json_decode(json_encode($decoded), true);
 Changelog
 ---------
 
+#### 6.2.0 / 2022-05-14
+
+ - Added `CachedKeySet` ([#397](https://github.com/firebase/php-jwt/pull/397))
+ - Added `$defaultAlg` parameter to `JWT::parseKey` and `JWT::parseKeySet` ([#426](https://github.com/firebase/php-jwt/pull/426)). 
+
 #### 6.1.0 / 2022-03-23
 
  - Drop support for PHP 5.3, 5.4, 5.5, 5.6, and 7.0
