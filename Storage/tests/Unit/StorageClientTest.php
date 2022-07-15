@@ -120,13 +120,13 @@ class StorageClientTest extends TestCase
             ->willReturn(self::PROJECT);
         $this->client->___setProperty('connection', $this->connection->reveal());
         $createdBucket = $this->client->createBucket(
-          'bucket',
-          [
-            'location' => 'US',
-            'customPlacementConfig' => [
-                'dataLocations' => ['US-EAST1', 'US-WEST1'],
+            'bucket',
+            [
+                'location' => 'US',
+                'customPlacementConfig' => [
+                    'dataLocations' => ['US-EAST1', 'US-WEST1'],
+                ]
             ]
-          ]
         );
 
         $this->assertInstanceOf(Bucket::class, $createdBucket);
