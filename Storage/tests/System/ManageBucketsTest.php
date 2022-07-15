@@ -76,6 +76,26 @@ class ManageBucketsTest extends StorageTestCase
         $this->assertEquals('multi-region', $bucket->info()['locationType']);
     }
 
+    public function testCreatesDualRegionBucket()
+    {
+        $name = uniqid(self::TESTING_PREFIX);
+        $options = [
+            'location' => 'US',
+            'customPlacementConfig' => [
+                'dataLocations' => ['US-EAST1', 'US-WEST1'],
+            ]
+        ];
+        $this->assertFalse(self::$client->bucket($name)->exists());
+
+        $bucket = self::createBucket(self::$client, $name, $options);
+        $bucket->reload();
+
+        $this->assertTrue(self::$client->bucket($name)->exists());
+        $this->assertEquals($name, $bucket->name());
+        $this->assertEquals($options['location'], $bucket->info()['location']);
+        $this->assertEquals($options['customPlacementConfig'], $bucket->info()['customPlacementConfig']);
+    }
+
     public function testUpdateBucket()
     {
         $options = [

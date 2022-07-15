@@ -113,6 +113,25 @@ class StorageClientTest extends TestCase
         $this->assertInstanceOf(Bucket::class, $this->client->createBucket('bucket'));
     }
 
+    public function testCreatesDualRegionBucket()
+    {
+        $this->connection->insertBucket(Argument::any())->willReturn(['name' => 'bucket']);
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $createdBucket = $this->client->createBucket(
+          'bucket',
+          [
+            'location' => 'US',
+            'customPlacementConfig' => [
+                'dataLocations' => ['US-EAST1', 'US-WEST1'],
+            ]
+          ]
+        );
+
+        $this->assertInstanceOf(Bucket::class, $createdBucket);
+    }
+
     public function testCreatesBucketWithLifecycleBuilder()
     {
         $bucket = 'bucket';
