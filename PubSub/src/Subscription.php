@@ -801,6 +801,173 @@ class Subscription
      */
     private function acknowledgeBatchWithRetries(array $messages, array $options = [])
     {
+        $actionFunc = function (&$messages, $options) {
+            $this->connection->acknowledge($options + [
+                'subscription' => $this->name,
+                'ackIds' => $this->getMessageAckIds($messages)
+            ]);
+        };
+
+        return $this->retryEodAction($actionFunc, $messages, $options);
+    }
+
+    /**
+     * Set the acknowledge deadline for a single ackId.
+     *
+     * Use {@see Google\Cloud\PubSub\Subscription::modifyAckDeadlineBatch()} to
+     * modify the ack deadline for multiple messages at once.
+     *
+     * Example:
+     * ```
+     * $messages = $subscription->pull();
+     *
+     * foreach ($messages as $message) {
+     *     $subscription->modifyAckDeadline($message, 3);
+     *     sleep(2);
+     *
+     *     // Now we'll acknowledge!
+     *     $subscription->acknowledge($message);
+     *
+     *     break;
+     * }
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/modifyAckDeadline Modify Ack Deadline
+     * @codingStandardsIgnoreEnd
+     *
+     * @param Message $message A message object
+     * @param int $seconds The new ack deadline with respect to the time
+     *        this request was sent to the Pub/Sub system. Must be >= 0. For
+     *        example, if the value is 10, the new ack deadline will expire 10
+     *        seconds after the ModifyAckDeadline call was made. Specifying
+     *        zero may immediately make the message available for another pull
+     *        request.
+     * @param array $options [optional] {
+     *      Configuration Options
+     *
+     *      @type bool $returnFailures If set, and if a message is failed with a
+     *            temporary failure code, it will be retried with an exponential delay. This will also make sure
+     *            that the permanently failed message is returned to the caller. This is only true for a
+     *            subscription with 'Exactly Once Delivery' enabled.
+     *            Read more about EOD: https://cloud.google.com/pubsub/docs/exactly-once-delivery
+     * }
+     * @return void|array
+     */
+    public function modifyAckDeadline(Message $message, $seconds, array $options = [])
+    {
+        return $this->modifyAckDeadlineBatch([$message], $seconds, $options);
+    }
+
+    /**
+     * Set the acknowledge deadline for multiple ackIds.
+     *
+     * Use {@see Google\Cloud\PubSub\Subscription::modifyAckDeadline()} to
+     * modify the ack deadline for a single message.
+     *
+     * Example:
+     * ```
+     * $messages = $subscription->pull();
+     *
+     * // Set the ack deadline to three seconds from now for every message
+     * $subscription->modifyAckDeadlineBatch($messages, 3);
+     *
+     * // Delay execution, or make a sandwich or something.
+     * sleep(2);
+     *
+     * // Now we'll acknowledge
+     * $subscription->acknowledgeBatch($messages);
+     * ```
+     * ```
+     * $messages = $subscription->pull();
+     * $failedMsgs = $subscription->modifyAckDeadlineBatch($messages, 3, ['returnFailures' => true]);
+     *
+     * // Either log or store the $failedMsgs to be retried later
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/modifyAckDeadline Modify Ack Deadline
+     * @codingStandardsIgnoreEnd
+     *
+     * @param Message[] $messages An array of messages
+     * @param int $seconds The new ack deadline with respect to the time
+     *        this request was sent to the Pub/Sub system. Must be >= 0. For
+     *        example, if the value is 10, the new ack deadline will expire 10
+     *        seconds after the ModifyAckDeadline call was made. Specifying
+     *        zero may immediately make the message available for another pull
+     *        request.
+     * @param array $options [optional] {
+     *      Configuration Options
+     *
+     *      @type bool $returnFailures If set, and if a message is failed with a
+     *            temporary failure code, it will be retried with an exponential delay. This will also make sure
+     *            that the permanently failed message is returned to the caller. This is only true for a
+     *            subscription with 'Exactly Once Delivery' enabled.
+     *            Read more about EOD: https://cloud.google.com/pubsub/docs/exactly-once-delivery
+     * }
+     * @return void|array
+     */
+    public function modifyAckDeadlineBatch(array $messages, int $seconds, array $options = [])
+    {
+        $this->validateBatch($messages, Message::class);
+
+        if (isset($options['returnFailures']) && $options['returnFailures']) {
+            return $this->modifyAckDeadlineBatchWithRetries($messages, $seconds, $options);
+        }
+
+        // the rpc may throw errors for a sub with EOD enabled
+        // but we don't act on the exception to maintain compatibility
+        try {
+            $this->connection->modifyAckDeadline($options + [
+                'subscription' => $this->name,
+                'ackIds' => $this->getMessageAckIds($messages),
+                'ackDeadlineSeconds' => $seconds
+            ]);
+        } catch (BadRequestException $e) {
+            // bubble up the error if the exception isn't an EOD exception
+            if (!$this->isExceptionExactlyOnce($e)) {
+                throw $e;
+            }
+        }
+    }
+
+    /**
+     * Helper that sends a request to modify the ack deadline but with retries.
+     *
+     * @param Message[] $messages An array of messages
+     * @param int $seconds The new ack deadline with respect to the time
+     *        this request was sent to the Pub/Sub system. Must be >= 0. For
+     *        example, if the value is 10, the new ack deadline will expire 10
+     *        seconds after the ModifyAckDeadline call was made. Specifying
+     *        zero may immediately make the message available for another pull
+     *        request.
+     * @param array $options Configuration Options
+     *
+     * @return array
+     */
+    private function modifyAckDeadlineBatchWithRetries(array $messages, int $seconds, array $options)
+    {
+        $actionFunc = function (&$messages, $options) use ($seconds) {
+            $this->connection->modifyAckDeadline($options + [
+                'subscription' => $this->name,
+                'ackIds' => $this->getMessageAckIds($messages),
+                'ackDeadlineSeconds' => $seconds
+            ]);
+        };
+
+        return $this->retryEodAction($actionFunc, $messages, $options);
+    }
+
+    /**
+     * Helper function to retry an action for an EOD enabled subscription
+     * with an ExponentionBackOff.
+     *
+     * @param callable $actionFunc The function to be retried
+     * @param Messages[] $messages The messages to be passed on to the pubsub service
+     * @param array $options The configuration options
+     */
+    private function retryEodAction(callable $actionFunc, array $messages, array $options)
+    {
         $failed = [];
         $eodEnabled = true;
         
@@ -852,12 +1019,7 @@ class Subscription
 
         // Try to ack the messages with an ExponentialBackoff
         try {
-            $backoff->execute(function () use ($options, &$messages) {
-                $this->connection->acknowledge($options + [
-                    'subscription' => $this->name,
-                    'ackIds' => $this->getMessageAckIds($messages)
-                ]);
-            });
+            $backoff->execute($actionFunc, [&$messages, $options]);
         } catch (BadRequestException $e) {
         }
 
@@ -865,100 +1027,6 @@ class Subscription
         // to make it behave like if the flag `returnFailures` wasn't set.
         if ($eodEnabled) {
             return $failed;
-        }
-    }
-
-    /**
-     * Set the acknowledge deadline for a single ackId.
-     *
-     * Use {@see Google\Cloud\PubSub\Subscription::modifyAckDeadlineBatch()} to
-     * modify the ack deadline for multiple messages at once.
-     *
-     * Example:
-     * ```
-     * $messages = $subscription->pull();
-     *
-     * foreach ($messages as $message) {
-     *     $subscription->modifyAckDeadline($message, 3);
-     *     sleep(2);
-     *
-     *     // Now we'll acknowledge!
-     *     $subscription->acknowledge($message);
-     *
-     *     break;
-     * }
-     * ```
-     *
-     * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/modifyAckDeadline Modify Ack Deadline
-     * @codingStandardsIgnoreEnd
-     *
-     * @param Message $message A message object
-     * @param int $seconds The new ack deadline with respect to the time
-     *        this request was sent to the Pub/Sub system. Must be >= 0. For
-     *        example, if the value is 10, the new ack deadline will expire 10
-     *        seconds after the ModifyAckDeadline call was made. Specifying
-     *        zero may immediately make the message available for another pull
-     *        request.
-     * @param array $options [optional] Configuration Options
-     * @return void
-     */
-    public function modifyAckDeadline(Message $message, $seconds, array $options = [])
-    {
-        $this->modifyAckDeadlineBatch([$message], $seconds, $options);
-    }
-
-    /**
-     * Set the acknowledge deadline for multiple ackIds.
-     *
-     * Use {@see Google\Cloud\PubSub\Subscription::modifyAckDeadline()} to
-     * modify the ack deadline for a single message.
-     *
-     * Example:
-     * ```
-     * $messages = $subscription->pull();
-     *
-     * // Set the ack deadline to three seconds from now for every message
-     * $subscription->modifyAckDeadlineBatch($messages, 3);
-     *
-     * // Delay execution, or make a sandwich or something.
-     * sleep(2);
-     *
-     * // Now we'll acknowledge
-     * $subscription->acknowledgeBatch($messages);
-     * ```
-     *
-     * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/modifyAckDeadline Modify Ack Deadline
-     * @codingStandardsIgnoreEnd
-     *
-     * @param Message[] $messages An array of messages
-     * @param int $seconds The new ack deadline with respect to the time
-     *        this request was sent to the Pub/Sub system. Must be >= 0. For
-     *        example, if the value is 10, the new ack deadline will expire 10
-     *        seconds after the ModifyAckDeadline call was made. Specifying
-     *        zero may immediately make the message available for another pull
-     *        request.
-     * @param array $options [optional] Configuration Options
-     * @return void
-     */
-    public function modifyAckDeadlineBatch(array $messages, $seconds, array $options = [])
-    {
-        $this->validateBatch($messages, Message::class);
-
-        // the rpc may throw errors for a sub with EOD enabled
-        // but we don't act on the exception to maintain compatibility
-        try {
-            $this->connection->modifyAckDeadline($options + [
-                'subscription' => $this->name,
-                'ackIds' => $this->getMessageAckIds($messages),
-                'ackDeadlineSeconds' => $seconds
-            ]);
-        } catch (BadRequestException $e) {
-            // bubble up the error if the exception isn't an EOD exception
-            if (!$this->isExceptionExactlyOnce($e)) {
-                throw $e;
-            }
         }
     }
 
