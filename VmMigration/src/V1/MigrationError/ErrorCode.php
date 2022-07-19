@@ -69,6 +69,12 @@ class ErrorCode
      * Generated from protobuf enum <code>UTILIZATION_REPORT_ERROR = 8;</code>
      */
     const UTILIZATION_REPORT_ERROR = 8;
+    /**
+     * Migrate for Compute encountered an error during appliance upgrade.
+     *
+     * Generated from protobuf enum <code>APPLIANCE_UPGRADE_ERROR = 9;</code>
+     */
+    const APPLIANCE_UPGRADE_ERROR = 9;
 
     private static $valueToName = [
         self::ERROR_CODE_UNSPECIFIED => 'ERROR_CODE_UNSPECIFIED',
@@ -80,6 +86,7 @@ class ErrorCode
         self::CLONE_ERROR => 'CLONE_ERROR',
         self::CUTOVER_ERROR => 'CUTOVER_ERROR',
         self::UTILIZATION_REPORT_ERROR => 'UTILIZATION_REPORT_ERROR',
+        self::APPLIANCE_UPGRADE_ERROR => 'APPLIANCE_UPGRADE_ERROR',
     ];
 
     public static function name($value)

@@ -20,25 +20,25 @@ class ApplianceVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 1;</code>
      */
-    protected $version = '';
+    private $version = '';
     /**
      * A link for downloading the version.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
-    protected $uri = '';
+    private $uri = '';
     /**
      * Determine whether it's critical to upgrade the appliance to this version.
      *
      * Generated from protobuf field <code>bool critical = 3;</code>
      */
-    protected $critical = false;
+    private $critical = false;
     /**
      * Link to a page that contains the version release notes.
      *
      * Generated from protobuf field <code>string release_notes_uri = 4;</code>
      */
-    protected $release_notes_uri = '';
+    private $release_notes_uri = '';
 
     /**
      * Constructor.

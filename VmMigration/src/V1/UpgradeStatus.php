@@ -20,31 +20,31 @@ class UpgradeStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string version = 1;</code>
      */
-    protected $version = '';
+    private $version = '';
     /**
      * The state of the upgradeAppliance operation.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.UpgradeStatus.State state = 2;</code>
      */
-    protected $state = 0;
+    private $state = 0;
     /**
      * Provides details on the state of the upgrade operation in case of an error.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 3;</code>
      */
-    protected $error = null;
+    private $error = null;
     /**
      * The time the operation was started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4;</code>
      */
-    protected $start_time = null;
+    private $start_time = null;
     /**
      * The version from which we upgraded.
      *
      * Generated from protobuf field <code>string previous_version = 5;</code>
      */
-    protected $previous_version = '';
+    private $previous_version = '';
 
     /**
      * Constructor.

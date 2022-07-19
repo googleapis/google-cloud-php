@@ -22,8 +22,8 @@ class ListMigratingVmsResponse extends \Google\Protobuf\Internal\Message
      */
     private $migrating_vms;
     /**
-     * Output only. A token, which can be sent as `page_token` to retrieve the next page.
-     * If this field is omitted, there are no subsequent pages.
+     * Output only. A token, which can be sent as `page_token` to retrieve the
+     * next page. If this field is omitted, there are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -44,8 +44,8 @@ class ListMigratingVmsResponse extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\VMMigration\V1\MigratingVm[]|\Google\Protobuf\Internal\RepeatedField $migrating_vms
      *           Output only. The list of Migrating VMs response.
      *     @type string $next_page_token
-     *           Output only. A token, which can be sent as `page_token` to retrieve the next page.
-     *           If this field is omitted, there are no subsequent pages.
+     *           Output only. A token, which can be sent as `page_token` to retrieve the
+     *           next page. If this field is omitted, there are no subsequent pages.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Output only. Locations that could not be reached.
      * }
@@ -82,8 +82,8 @@ class ListMigratingVmsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A token, which can be sent as `page_token` to retrieve the next page.
-     * If this field is omitted, there are no subsequent pages.
+     * Output only. A token, which can be sent as `page_token` to retrieve the
+     * next page. If this field is omitted, there are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -94,8 +94,8 @@ class ListMigratingVmsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A token, which can be sent as `page_token` to retrieve the next page.
-     * If this field is omitted, there are no subsequent pages.
+     * Output only. A token, which can be sent as `page_token` to retrieve the
+     * next page. If this field is omitted, there are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

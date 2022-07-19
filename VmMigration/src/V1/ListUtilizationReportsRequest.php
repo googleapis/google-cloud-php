@@ -38,8 +38,8 @@ class ListUtilizationReportsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
     /**
-     * Required. A page token, received from a previous `ListUtilizationReports` call.
-     * Provide this to retrieve the subsequent page.
+     * Required. A page token, received from a previous `ListUtilizationReports`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListUtilizationReports`
      * must match the call that provided the page token.
      *
@@ -76,8 +76,8 @@ class ListUtilizationReportsRequest extends \Google\Protobuf\Internal\Message
      *           returned. The maximum value is 1000; values above 1000 will be coerced to
      *           1000.
      *     @type string $page_token
-     *           Required. A page token, received from a previous `ListUtilizationReports` call.
-     *           Provide this to retrieve the subsequent page.
+     *           Required. A page token, received from a previous `ListUtilizationReports`
+     *           call. Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to `ListUtilizationReports`
      *           must match the call that provided the page token.
      *     @type string $filter
@@ -178,8 +178,8 @@ class ListUtilizationReportsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A page token, received from a previous `ListUtilizationReports` call.
-     * Provide this to retrieve the subsequent page.
+     * Required. A page token, received from a previous `ListUtilizationReports`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListUtilizationReports`
      * must match the call that provided the page token.
      *
@@ -192,8 +192,8 @@ class ListUtilizationReportsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A page token, received from a previous `ListUtilizationReports` call.
-     * Provide this to retrieve the subsequent page.
+     * Required. A page token, received from a previous `ListUtilizationReports`
+     * call. Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListUtilizationReports`
      * must match the call that provided the page token.
      *

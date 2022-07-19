@@ -91,13 +91,14 @@ use Google\Cloud\VMMigration\V1\PauseMigrationRequest;
 use Google\Cloud\VMMigration\V1\RemoveGroupMigrationRequest;
 use Google\Cloud\VMMigration\V1\ResumeMigrationRequest;
 use Google\Cloud\VMMigration\V1\Source;
-
 use Google\Cloud\VMMigration\V1\StartMigrationRequest;
+
 use Google\Cloud\VMMigration\V1\TargetProject;
 use Google\Cloud\VMMigration\V1\UpdateGroupRequest;
 use Google\Cloud\VMMigration\V1\UpdateMigratingVmRequest;
 use Google\Cloud\VMMigration\V1\UpdateSourceRequest;
 use Google\Cloud\VMMigration\V1\UpdateTargetProjectRequest;
+use Google\Cloud\VMMigration\V1\UpgradeApplianceRequest;
 use Google\Cloud\VMMigration\V1\UtilizationReport;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
@@ -1697,8 +1698,8 @@ class VmMigrationGapicClient
      *
      * @param string            $parent              Required. The Utilization Report's parent.
      * @param UtilizationReport $utilizationReport   Required. The report to create.
-     * @param string            $utilizationReportId Required. The ID to use for the report, which will become the final component of
-     *                                               the reports's resource name.
+     * @param string            $utilizationReportId Required. The ID to use for the report, which will become the final
+     *                                               component of the reports's resource name.
      *
      *                                               This value maximum length is 63 characters, and valid characters
      *                                               are /[a-z][0-9]-/. It must start with an english letter and must not
@@ -2635,6 +2636,9 @@ class VmMigrationGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type int $view
+     *           Optional. The level of details of the migrating VM.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\VMMigration\V1\MigratingVmView}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -2652,6 +2656,10 @@ class VmMigrationGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -3221,6 +3229,9 @@ class VmMigrationGapicClient
      *           Optional. The filter request.
      *     @type string $orderBy
      *           Optional. the order by fields for the result.
+     *     @type int $view
+     *           Optional. The level of details of each migrating VM.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\VMMigration\V1\MigratingVmView}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -3252,6 +3263,10 @@ class VmMigrationGapicClient
 
         if (isset($optionalArgs['orderBy'])) {
             $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -4261,6 +4276,101 @@ class VmMigrationGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'UpdateTargetProject',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Upgrades the appliance relate to this DatacenterConnector to the in-place
+     * updateable version.
+     *
+     * Sample code:
+     * ```
+     * $vmMigrationClient = new VmMigrationClient();
+     * try {
+     *     $formattedDatacenterConnector = $vmMigrationClient->datacenterConnectorName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[DATACENTER_CONNECTOR]');
+     *     $operationResponse = $vmMigrationClient->upgradeAppliance($formattedDatacenterConnector);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $vmMigrationClient->upgradeAppliance($formattedDatacenterConnector);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $vmMigrationClient->resumeOperation($operationName, 'upgradeAppliance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $vmMigrationClient->close();
+     * }
+     * ```
+     *
+     * @param string $datacenterConnector Required. The DatacenterConnector name.
+     * @param array  $optionalArgs        {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           A request ID to identify requests. Specify a unique request ID
+     *           so that if you must retry your request, the server will know to ignore
+     *           the request if it has already been completed. The server will guarantee
+     *           that for at least 60 minutes after the first request.
+     *
+     *           For example, consider a situation where you make an initial request and t
+     *           he request times out. If you make the request again with the same request
+     *           ID, the server can check if original operation with the same request ID
+     *           was received, and if so, will ignore the second request. This prevents
+     *           clients from accidentally creating duplicate commitments.
+     *
+     *           The request ID must be a valid UUID with the exception that zero UUID is
+     *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function upgradeAppliance(
+        $datacenterConnector,
+        array $optionalArgs = []
+    ) {
+        $request = new UpgradeApplianceRequest();
+        $requestParamHeaders = [];
+        $request->setDatacenterConnector($datacenterConnector);
+        $requestParamHeaders['datacenter_connector'] = $datacenterConnector;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpgradeAppliance',
             $optionalArgs,
             $request,
             $this->getOperationsClient()

@@ -36,7 +36,8 @@ class MigrationError extends \Google\Protobuf\Internal\Message
      */
     private $action_item = null;
     /**
-     * Output only. URL(s) pointing to additional information on handling the current error.
+     * Output only. URL(s) pointing to additional information on handling the
+     * current error.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Help.Link help_links = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -61,7 +62,8 @@ class MigrationError extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\LocalizedMessage $action_item
      *           Output only. Suggested action for solving the error.
      *     @type \Google\Rpc\Help\Link[]|\Google\Protobuf\Internal\RepeatedField $help_links
-     *           Output only. URL(s) pointing to additional information on handling the current error.
+     *           Output only. URL(s) pointing to additional information on handling the
+     *           current error.
      *     @type \Google\Protobuf\Timestamp $error_time
      *           Output only. The time the error occurred.
      * }
@@ -170,7 +172,8 @@ class MigrationError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. URL(s) pointing to additional information on handling the current error.
+     * Output only. URL(s) pointing to additional information on handling the
+     * current error.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Help.Link help_links = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -181,7 +184,8 @@ class MigrationError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. URL(s) pointing to additional information on handling the current error.
+     * Output only. URL(s) pointing to additional information on handling the
+     * current error.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Help.Link help_links = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Rpc\Help\Link[]|\Google\Protobuf\Internal\RepeatedField $var
