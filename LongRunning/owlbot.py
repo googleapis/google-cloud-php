@@ -30,17 +30,18 @@ dest = Path().resolve()
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
-php.owlbot_main(
+php.owlbot_copy_version(
     src=src,
     dest=dest,
     copy_excludes=[
         src / "**/[A-Z]*_*.php"
-    ]
+    ],
+    version_string="longrunning",
 )
 
 # remove class_alias code
 s.replace(
-    "src/V*/**/*.php",
+    "src/**/*.php",
     r"^// Adding a class alias for backwards compatibility with the previous class name.$"
     + "\n"
     + r"^class_alias\(.*\);$"
@@ -69,7 +70,7 @@ s.replace(
 
 # roll back to private properties.
 s.replace(
-    "src/**/V*/**/*.php",
+    "src/**/**/*.php",
     r"Generated from protobuf field ([^\n]{0,})\n\s{5}\*/\n\s{4}protected \$",
     r"""Generated from protobuf field \1
      */
@@ -77,7 +78,7 @@ s.replace(
 
 # prevent proto messages from being marked final
 s.replace(
-    "src/**/V*/**/*.php",
+    "src/**/**/*.php",
     r"final class",
     r"class")
 
@@ -85,7 +86,7 @@ s.replace(
 
 # fix relative cloud.google.com links
 s.replace(
-    "src/**/V*/**/*.php",
+    "src/**/**/*.php",
     r"(.{0,})\]\((/.{0,})\)",
     r"\1](https://cloud.google.com\2)"
 )

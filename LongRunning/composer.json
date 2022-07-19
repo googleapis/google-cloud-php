@@ -7,7 +7,7 @@
         "psr-4": {
             "Google\\ApiCore\\LongRunning\\": "src/ApiCore/LongRunning",
             "Google\\LongRunning\\": "src/LongRunning",
-            "GPBMetadata\\Google\\Longrunning\\": "metadata"
+            "GPBMetadata\\Google\\Longrunning\\": "metadata/Longrunning"
         }
    },
    "extra": {
