@@ -9,11 +9,6 @@
             "GPBMetadata\\Google\\Cloud\\Gkebackup\\": "metadata"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Google\\Cloud\\GkeBackup\\Tests\\": "tests"
-        }
-    },
     "extra": {
         "component": {
             "id": "cloud-gke-backup",
