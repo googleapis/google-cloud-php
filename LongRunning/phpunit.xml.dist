@@ -9,7 +9,8 @@
     <whitelist>
       <directory suffix=".php">src</directory>
       <exclude>
-        <directory suffix=".php">src/V[!a-zA-Z]*</directory>
+        <directory suffix=".php">src/ApiCore/LongRunning</directory>
+        <directory suffix=".php">src/LongRunning</directory>
       </exclude>
     </whitelist>
   </filter>

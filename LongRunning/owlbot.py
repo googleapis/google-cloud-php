@@ -30,6 +30,8 @@ dest = Path().resolve()
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
+# use owlbot_copy_version instead of owlbot_main and set "version_string"
+# manually because LongRunning does not have a version
 php.owlbot_copy_version(
     src=src,
     dest=dest,
