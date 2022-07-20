@@ -39,6 +39,22 @@ php.owlbot_copy_version(
     version_string="longrunning",
 )
 
+# Fix namespace for LongRunning GAPIC (ApiCore)
+# This is defined in longrunning_gapic.yaml, but not being used by
+# gapic-generator-php
+s.replace(
+    "src/ApiCore/**/*.php",
+    r"^namespace Google\\LongRunning(.*);$",
+    r"namespace Google\\ApiCore\\LongRunning\1;")
+s.replace(
+    "src/ApiCore/LongRunning/OperationsClient.php",
+    r"^use Google\\LongRunning\\Gapic\\OperationsGapicClient;$",
+    r"use Google\\ApiCore\\LongRunning\\Gapic\\OperationsGapicClient;")
+s.replace(
+    "tests/**/*.php",
+    r"\\Google\\LongRunning\\OperationsClient",
+    r"\\Google\\ApiCore\\LongRunning\\OperationsClient")
+
 # remove class_alias code
 s.replace(
     "src/**/*.php",
