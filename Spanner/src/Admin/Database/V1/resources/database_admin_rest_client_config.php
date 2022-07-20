@@ -219,6 +219,17 @@ return [
                     ],
                 ],
             ],
+            'ListDatabaseRoles' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*/databases/*}/databaseRoles',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListDatabases' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases',
@@ -269,6 +280,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/instances/*/backups/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/instances/*/databases/*/databaseRoles/*}:testIamPermissions',
                         'body' => '*',
                     ],
                 ],

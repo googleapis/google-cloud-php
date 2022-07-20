@@ -405,4 +405,19 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Lists Cloud Spanner database roles.
+     * @param \Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseRolesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListDatabaseRoles(\Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseRolesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/ListDatabaseRoles',
+        $argument,
+        ['\Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseRolesResponse', 'decode'],
+        $metadata, $options);
+    }
+
 }
