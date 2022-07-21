@@ -45,6 +45,10 @@ class RequestBuilderTest extends TestCase
             'www.example.com',
             __DIR__ . '/testdata/test_service_rest_client_config.php'
         );
+        $this->numericEnumsBuilder = new RequestBuilder(
+            'www.example.com',
+            __DIR__ . '/testdata/test_numeric_enums_rest_client_config.php'
+        );
     }
 
     public function testMethodWithUrlPlaceholder()
@@ -376,6 +380,14 @@ class RequestBuilderTest extends TestCase
         $query = Query::parse($request->getUri()->getQuery());
 
         $this->assertSame('some-value', $query['field1']);
+    }
+
+    public function testMethodWithNumericEnumsQueryParam()
+    {
+        $request = $this->numericEnumsBuilder->build(self::SERVICE_NAME . '/MethodWithNumericEnumsQueryParam', new MockRequestBody());
+        $query = Query::parse($request->getUri()->getQuery());
+
+        $this->assertEquals('json;enum-encoding=int', $query['$alt']);
     }
 
     public function testThrowsExceptionWithNonMatchingFormat()
