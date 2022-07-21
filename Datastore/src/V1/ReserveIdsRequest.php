@@ -22,7 +22,9 @@ class ReserveIdsRequest extends \Google\Protobuf\Internal\Message
      */
     private $project_id = '';
     /**
-     * If not empty, the ID of the database against which to make the request.
+     * The ID of the database against which to make the request.
+     * '(default)' is not allowed; please use empty string '' to refer the default
+     * database.
      *
      * Generated from protobuf field <code>string database_id = 9;</code>
      */
@@ -44,7 +46,9 @@ class ReserveIdsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $project_id
      *           Required. The ID of the project against which to make the request.
      *     @type string $database_id
-     *           If not empty, the ID of the database against which to make the request.
+     *           The ID of the database against which to make the request.
+     *           '(default)' is not allowed; please use empty string '' to refer the default
+     *           database.
      *     @type \Google\Cloud\Datastore\V1\Key[]|\Google\Protobuf\Internal\RepeatedField $keys
      *           Required. A list of keys with complete key paths whose numeric IDs should not be
      *           auto-allocated.
@@ -82,7 +86,9 @@ class ReserveIdsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If not empty, the ID of the database against which to make the request.
+     * The ID of the database against which to make the request.
+     * '(default)' is not allowed; please use empty string '' to refer the default
+     * database.
      *
      * Generated from protobuf field <code>string database_id = 9;</code>
      * @return string
@@ -93,7 +99,9 @@ class ReserveIdsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If not empty, the ID of the database against which to make the request.
+     * The ID of the database against which to make the request.
+     * '(default)' is not allowed; please use empty string '' to refer the default
+     * database.
      *
      * Generated from protobuf field <code>string database_id = 9;</code>
      * @param string $var
