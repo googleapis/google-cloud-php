@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Specification of HTTP header match atrributes.
+ * Specification of HTTP header match attributes.
  *
  * Generated from protobuf message <code>google.cloud.networksecurity.v1beta1.AuthorizationPolicy.Rule.Destination.HttpHeaderMatch</code>
  */

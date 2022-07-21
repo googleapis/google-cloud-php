@@ -16,18 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class Rule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. List of attributes for the traffic source. All of the sources must match.
-     * A source is a match if both principals and ip_blocks match. If not set,
-     * the action specified in the 'action' field will be applied without any
-     * rule checks for the source.
+     * Optional. List of attributes for the traffic source. All of the sources
+     * must match. A source is a match if both principals and ip_blocks match.
+     * If not set, the action specified in the 'action' field will be applied
+     * without any rule checks for the source.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1beta1.AuthorizationPolicy.Rule.Source sources = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $sources;
     /**
-     * Optional. List of attributes for the traffic destination. All of the destinations
-     * must match. A destination is a match if a request matches all the
-     * specified hosts, ports, methods and headers. If not set, the
+     * Optional. List of attributes for the traffic destination. All of the
+     * destinations must match. A destination is a match if a request matches
+     * all the specified hosts, ports, methods and headers. If not set, the
      * action specified in the 'action' field will be applied without any rule
      * checks for the destination.
      *
@@ -42,14 +42,14 @@ class Rule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy\Rule\Source[]|\Google\Protobuf\Internal\RepeatedField $sources
-     *           Optional. List of attributes for the traffic source. All of the sources must match.
-     *           A source is a match if both principals and ip_blocks match. If not set,
-     *           the action specified in the 'action' field will be applied without any
-     *           rule checks for the source.
+     *           Optional. List of attributes for the traffic source. All of the sources
+     *           must match. A source is a match if both principals and ip_blocks match.
+     *           If not set, the action specified in the 'action' field will be applied
+     *           without any rule checks for the source.
      *     @type \Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy\Rule\Destination[]|\Google\Protobuf\Internal\RepeatedField $destinations
-     *           Optional. List of attributes for the traffic destination. All of the destinations
-     *           must match. A destination is a match if a request matches all the
-     *           specified hosts, ports, methods and headers. If not set, the
+     *           Optional. List of attributes for the traffic destination. All of the
+     *           destinations must match. A destination is a match if a request matches
+     *           all the specified hosts, ports, methods and headers. If not set, the
      *           action specified in the 'action' field will be applied without any rule
      *           checks for the destination.
      * }
@@ -60,10 +60,10 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of attributes for the traffic source. All of the sources must match.
-     * A source is a match if both principals and ip_blocks match. If not set,
-     * the action specified in the 'action' field will be applied without any
-     * rule checks for the source.
+     * Optional. List of attributes for the traffic source. All of the sources
+     * must match. A source is a match if both principals and ip_blocks match.
+     * If not set, the action specified in the 'action' field will be applied
+     * without any rule checks for the source.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1beta1.AuthorizationPolicy.Rule.Source sources = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -74,10 +74,10 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of attributes for the traffic source. All of the sources must match.
-     * A source is a match if both principals and ip_blocks match. If not set,
-     * the action specified in the 'action' field will be applied without any
-     * rule checks for the source.
+     * Optional. List of attributes for the traffic source. All of the sources
+     * must match. A source is a match if both principals and ip_blocks match.
+     * If not set, the action specified in the 'action' field will be applied
+     * without any rule checks for the source.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1beta1.AuthorizationPolicy.Rule.Source sources = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy\Rule\Source[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -92,9 +92,9 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of attributes for the traffic destination. All of the destinations
-     * must match. A destination is a match if a request matches all the
-     * specified hosts, ports, methods and headers. If not set, the
+     * Optional. List of attributes for the traffic destination. All of the
+     * destinations must match. A destination is a match if a request matches
+     * all the specified hosts, ports, methods and headers. If not set, the
      * action specified in the 'action' field will be applied without any rule
      * checks for the destination.
      *
@@ -107,9 +107,9 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of attributes for the traffic destination. All of the destinations
-     * must match. A destination is a match if a request matches all the
-     * specified hosts, ports, methods and headers. If not set, the
+     * Optional. List of attributes for the traffic destination. All of the
+     * destinations must match. A destination is a match if a request matches
+     * all the specified hosts, ports, methods and headers. If not set, the
      * action specified in the 'action' field will be applied without any rule
      * checks for the destination.
      *
