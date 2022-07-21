@@ -41,10 +41,13 @@ use Google\Rpc\Status;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\BufferStream;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 
 class JsonStreamDecoderTest extends TestCase
 {
+    use ExpectException;
     use TestTrait;
 
     /**
@@ -167,14 +170,20 @@ class JsonStreamDecoderTest extends TestCase
 
     /**
      * @dataProvider buildBadPayloads
-     * @expectedException \RuntimeException
      */
     public function testJsonStreamDecoderBadClose($payload)
     {
         $stream = $this->initBufferStream($payload);
         $decoder = new JsonStreamDecoder($stream, Operation::class, ['readChunkSizeBytes' => 10]);
-        foreach($decoder->decode() as $op) {
-            $this->assertSame('foo', $op->getName());
+
+        $this->expectException(RuntimeException::class);
+
+        try {
+            // Just iterating the stream will throw the exception
+            foreach($decoder->decode() as $op) {
+
+            }
+        } finally {
             $stream->close();
         }
     }

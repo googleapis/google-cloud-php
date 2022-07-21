@@ -31,8 +31,8 @@
  */
 namespace Google\ApiCore\Middleware;
 
-use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
 
 /**
 * Middleware which adds a CredentialsWrapper object to the call options.

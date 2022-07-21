@@ -32,16 +32,19 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\Call;
-use Google\ApiCore\CallSettings;
-use Google\ApiCore\Page;
 use Google\ApiCore\FixedSizeCollection;
+use Google\ApiCore\Page;
 use Google\ApiCore\PageStreamingDescriptor;
 use Google\ApiCore\Testing\MockStatus;
 use Google\Rpc\Code;
+use InvalidArgumentException;
+use LengthException;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class FixedSizeCollectionTest extends TestCase
 {
+    use ExpectException;
     use TestTrait;
 
     private function createPage($responseSequence)
@@ -152,10 +155,6 @@ class FixedSizeCollectionTest extends TestCase
         $this->assertEquals(2, $iterations);
     }
 
-    /**
-     * @expectedException LengthException
-     * @expectedExceptionMessage API returned a number of elements exceeding the specified page size limit
-     */
     public function testApiReturningMoreElementsThanPageSize()
     {
         $responseA = $this->createMockResponse(
@@ -171,27 +170,25 @@ class FixedSizeCollectionTest extends TestCase
             [$responseB, new MockStatus(Code::OK, '')],
         ]);
 
-        $collection = new FixedSizeCollection($page, 3);
-        $collection->getNextCollection();
+        $this->expectException(LengthException::class);
+        $this->expectExceptionMessage('API returned a number of elements exceeding the specified page size limit');
+
+        new FixedSizeCollection($page, 3);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage collectionSize must be > 0.
-     */
     public function testEmptyCollectionThrowsException()
     {
         $collectionSize = 0;
         $page = $this->getMockBuilder(Page::class)
             ->disableOriginalConstructor()
             ->getMock();
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('collectionSize must be > 0.');
+
         new FixedSizeCollection($page, $collectionSize);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage collectionSize must be greater than or equal to the number of elements in initialPage
-     */
     public function testInvalidPageCount()
     {
         $collectionSize = 1;
@@ -201,6 +198,10 @@ class FixedSizeCollectionTest extends TestCase
         $page->expects($this->exactly(2))
             ->method('getPageElementCount')
             ->will($this->returnValue(2));
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('collectionSize must be greater than or equal to the number of elements in initialPage');
+
         new FixedSizeCollection($page, $collectionSize);
     }
 }

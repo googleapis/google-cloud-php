@@ -32,8 +32,8 @@
 namespace Google\ApiCore;
 
 use Generator;
-use Google\Protobuf\Internal\Message;
 use Google\Protobuf\Internal\MapField;
+use Google\Protobuf\Internal\Message;
 use IteratorAggregate;
 
 /**

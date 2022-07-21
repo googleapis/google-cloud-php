@@ -39,9 +39,8 @@ use Google\Auth\Cache\SysVCacheItemPool;
 use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Auth\UpdateMetadataInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
-use GPBMetadata\Google\Api\Auth;
+use Google\Auth\UpdateMetadataInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 

@@ -18,7 +18,9 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\ServiceAddressTrait;
+use Google\ApiCore\ValidationException;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @todo (dwsupplee) serviceAddress is deprecated now in favor of
@@ -26,6 +28,7 @@ use PHPUnit\Framework\TestCase;
  */
 class ServiceAddressTraitTest extends TestCase
 {
+    use ExpectException;
     use ServiceAddressTrait;
 
     /**
@@ -49,11 +52,12 @@ class ServiceAddressTraitTest extends TestCase
 
     /**
      * @dataProvider normalizeServiceAddressInvalidData
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Invalid apiEndpoint
      */
     public function testNormalizeServiceAddressInvalid($serviceAddressString)
     {
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Invalid apiEndpoint');
+
         self::normalizeServiceAddress($serviceAddressString);
     }
 

@@ -31,16 +31,19 @@
  */
 namespace Google\ApiCore\Tests\Unit;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\MockServerStreamingCall;
 use Google\ApiCore\Testing\MockStatus;
 use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\RepeatedField;
 use Google\Rpc\Code;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
-class ServerStreamTest extends PHPUnit_Framework_TestCase
+class ServerStreamTest extends TestCase
 {
+    use ExpectException;
     use TestTrait;
 
     public function testEmptySuccess()
@@ -52,16 +55,16 @@ class ServerStreamTest extends PHPUnit_Framework_TestCase
         $this->assertSame([], iterator_to_array($stream->readAll()));
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ApiException
-     * @expectedExceptionMessage empty failure
-     */
     public function testEmptyFailure()
     {
         $call = new MockServerStreamingCall([], null, new MockStatus(Code::INTERNAL, 'empty failure'));
         $stream = new ServerStream($call);
 
         $this->assertSame($call, $stream->getServerStreamingCall());
+
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('empty failure');
+
         iterator_to_array($stream->readAll());
     }
 
@@ -75,10 +78,6 @@ class ServerStreamTest extends PHPUnit_Framework_TestCase
         $this->assertSame($responses, iterator_to_array($stream->readAll()));
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ApiException
-     * @expectedExceptionMessage strings failure
-     */
     public function testStringsFailure()
     {
         $responses = ['abc', 'def'];
@@ -90,6 +89,10 @@ class ServerStreamTest extends PHPUnit_Framework_TestCase
         $stream = new ServerStream($call);
 
         $this->assertSame($call, $stream->getServerStreamingCall());
+
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('strings failure');
+
         $index = 0;
         try {
             foreach ($stream->readAll() as $response) {
@@ -118,10 +121,6 @@ class ServerStreamTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($responses, iterator_to_array($stream->readAll()));
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ApiException
-     * @expectedExceptionMessage objects failure
-     */
     public function testObjectsFailure()
     {
         $responses = [
@@ -140,6 +139,10 @@ class ServerStreamTest extends PHPUnit_Framework_TestCase
         $stream = new ServerStream($call);
 
         $this->assertSame($call, $stream->getServerStreamingCall());
+
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('objects failure');
+
         $index = 0;
         try {
             foreach ($stream->readAll() as $response) {
@@ -172,10 +175,6 @@ class ServerStreamTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($resources, iterator_to_array($stream->readAll()));
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ApiException
-     * @expectedExceptionMessage resources failure
-     */
     public function testResourcesFailure()
     {
         $resources = ['resource1', 'resource2', 'resource3'];
@@ -193,6 +192,10 @@ class ServerStreamTest extends PHPUnit_Framework_TestCase
         ]);
 
         $this->assertSame($call, $stream->getServerStreamingCall());
+
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('resources failure');
+
         $index = 0;
         try {
             foreach ($stream->readAll() as $response) {

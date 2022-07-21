@@ -31,6 +31,7 @@
  */
 namespace Google\ApiCore\Transport;
 
+use BadMethodCallException;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\RequestBuilder;

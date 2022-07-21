@@ -31,16 +31,20 @@
  */
 namespace Google\ApiCore\Tests\Unit;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
-use Google\ApiCore\Testing\MockStatus;
 use Google\ApiCore\Testing\MockBidiStreamingCall;
+use Google\ApiCore\Testing\MockStatus;
+use Google\ApiCore\ValidationException;
 use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\RepeatedField;
 use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class BidiStreamTest extends TestCase
 {
+    use ExpectException;
     use TestTrait;
 
     public function testEmptySuccess()
@@ -52,10 +56,6 @@ class BidiStreamTest extends TestCase
         $this->assertSame([], iterator_to_array($stream->closeWriteAndReadAll()));
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ApiException
-     * @expectedExceptionMessage empty failure read
-     */
     public function testEmptyFailureRead()
     {
         $call = new MockBidiStreamingCall([], null, new MockStatus(Code::INTERNAL, 'empty failure read'));
@@ -63,26 +63,26 @@ class BidiStreamTest extends TestCase
 
         $this->assertSame($call, $stream->getBidiStreamingCall());
         $stream->closeWrite();
+
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('empty failure read');
+
         $stream->read();
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ApiException
-     * @expectedExceptionMessage empty failure readall
-     */
     public function testEmptyFailureReadAll()
     {
         $call = new MockBidiStreamingCall([], null, new MockStatus(Code::INTERNAL, 'empty failure readall'));
         $stream = new BidiStream($call);
 
         $this->assertSame($call, $stream->getBidiStreamingCall());
+
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('empty failure readall');
+
         iterator_to_array($stream->closeWriteAndReadAll());
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Cannot call read() after streaming call is complete.
-     */
     public function testReadAfterComplete()
     {
         $call = new MockBidiStreamingCall([]);
@@ -91,13 +91,13 @@ class BidiStreamTest extends TestCase
         $this->assertSame($call, $stream->getBidiStreamingCall());
         $stream->closeWrite();
         $this->assertNull($stream->read());
+
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Cannot call read() after streaming call is complete.');
+
         $stream->read();
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Cannot call write() after streaming call is complete.
-     */
     public function testWriteAfterComplete()
     {
         $call = new MockBidiStreamingCall([]);
@@ -106,13 +106,13 @@ class BidiStreamTest extends TestCase
         $this->assertSame($call, $stream->getBidiStreamingCall());
         $stream->closeWrite();
         $this->assertNull($stream->read());
+
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Cannot call write() after streaming call is complete.');
+
         $stream->write('request');
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Cannot call write() after calling closeWrite().
-     */
     public function testWriteAfterCloseWrite()
     {
         $call = new MockBidiStreamingCall([]);
@@ -120,6 +120,10 @@ class BidiStreamTest extends TestCase
 
         $this->assertSame($call, $stream->getBidiStreamingCall());
         $stream->closeWrite();
+
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Cannot call write() after calling closeWrite().');
+
         $stream->write('request');
     }
 
@@ -174,10 +178,6 @@ class BidiStreamTest extends TestCase
         }
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ApiException
-     * @expectedExceptionMessage read failure
-     */
     public function testReadFailure()
     {
         $responses = ['abc', 'def'];
@@ -189,6 +189,10 @@ class BidiStreamTest extends TestCase
         $stream = new BidiStream($call);
 
         $this->assertSame($call, $stream->getBidiStreamingCall());
+
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('read failure');
+
         $index = 0;
         try {
             foreach ($stream->closeWriteAndReadAll() as $response) {
@@ -270,10 +274,6 @@ class BidiStreamTest extends TestCase
         $this->assertEquals($requests, $call->popReceivedCalls());
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ApiException
-     * @expectedExceptionMessage write failure without close
-     */
     public function testWriteFailureWithoutClose()
     {
         $request = 'request';
@@ -287,6 +287,9 @@ class BidiStreamTest extends TestCase
 
         $this->assertSame($call, $stream->getBidiStreamingCall());
         $stream->write($request);
+
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('write failure without close');
 
         try {
             $stream->read();

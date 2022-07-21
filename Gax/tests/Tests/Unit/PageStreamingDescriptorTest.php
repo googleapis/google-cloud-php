@@ -32,19 +32,19 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\PageStreamingDescriptor;
-use Google\Rpc\Code;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class PageStreamingDescriptorTest extends TestCase
 {
+    use ExpectException;
     use TestTrait;
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testMissingFields()
     {
-        $descriptor = new PageStreamingDescriptor([
+        $this->expectException(InvalidArgumentException::class);
+        new PageStreamingDescriptor([
             'requestPageTokenField' => 'getNextPageToken',
             // Missing field
             // 'responsePageTokenField' => 'getNextPageToken',

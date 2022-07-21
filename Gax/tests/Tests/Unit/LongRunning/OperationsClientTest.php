@@ -42,7 +42,6 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\LongRunning\ListOperationsResponse;
 use Google\LongRunning\Operation;
-use Google\Protobuf\Any;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;

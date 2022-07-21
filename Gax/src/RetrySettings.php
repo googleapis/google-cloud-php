@@ -60,7 +60,7 @@ namespace Google\ApiCore;
  * ```
  *
  * It is also possible to create a new RetrySettings object from an existing
- * object using the {@see Google\ApiCore\RetrySettings::with()} method.
+ * object using the {@see \Google\ApiCore\RetrySettings::with()} method.
  *
  * Example modifying an existing RetrySettings object using `with()`:
  * ```
@@ -175,8 +175,8 @@ namespace Google\ApiCore;
  * To configure the use of a logical timeout, where a logical timeout is the
  * duration a method is given to complete one or more RPC attempts, with each
  * attempt using only the time remaining in the logical timeout, use
- * {@see Google\ApiCore\RetrySettings::logicalTimeout()} combined with
- * {@see Google\ApiCore\RetrySettings::with()}.
+ * {@see \Google\ApiCore\RetrySettings::logicalTimeout()} combined with
+ * {@see \Google\ApiCore\RetrySettings::with()}.
  *
  * ```
  * $timeoutSettings = RetrySettings::logicalTimeout(30000);
@@ -188,7 +188,7 @@ namespace Google\ApiCore;
  * ]);
  * ```
  *
- * {@see Google\ApiCore\RetrySettings::logicalTimeout()} can also be used on a
+ * {@see \Google\ApiCore\RetrySettings::logicalTimeout()} can also be used on a
  * method call independent of a RetrySettings instance.
  *
  * ```
@@ -380,7 +380,7 @@ class RetrySettings
     }
 
     /**
-     * Creates an associative array of the {@see Google\ApiCore\RetrySettings} timeout fields configured
+     * Creates an associative array of the {@see \Google\ApiCore\RetrySettings} timeout fields configured
      * with the given timeout specified in the $timeout parameter interpreted as a logical timeout.
      *
      * @param int $timeout The timeout in milliseconds to be used as a logical call timeout.

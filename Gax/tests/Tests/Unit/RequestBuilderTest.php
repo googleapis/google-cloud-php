@@ -19,6 +19,7 @@ namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\Testing\MockRequestBody;
+use Google\ApiCore\ValidationException;
 use Google\Protobuf\BytesValue;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
@@ -28,9 +29,8 @@ use Google\Protobuf\StringValue;
 use Google\Protobuf\Struct;
 use Google\Protobuf\Timestamp;
 use Google\Protobuf\Value;
-use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Query;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -39,7 +39,7 @@ class RequestBuilderTest extends TestCase
 {
     const SERVICE_NAME = 'test.interface.v1.api';
 
-    public function setUp()
+    public function set_up()
     {
         $this->builder = new RequestBuilder(
             'www.example.com',
@@ -296,7 +296,7 @@ class RequestBuilderTest extends TestCase
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithSpecialJsonMapping', $message);
         $uri = $request->getUri();
 
-        $this->assertContains('listValue=val1&listValue=val2', (string) $uri);
+        $this->assertStringContainsString('listValue=val1&listValue=val2', (string) $uri);
 
         $query = Query::parse($uri->getQuery());
 
@@ -378,24 +378,24 @@ class RequestBuilderTest extends TestCase
         $this->assertSame('some-value', $query['field1']);
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Could not map bindings for test.interface.v1.api/MethodWithAdditionalBindings to any Uri template.
-     */
     public function testThrowsExceptionWithNonMatchingFormat()
     {
         $message = new MockRequestBody();
         $message->setName('invalid/name/format');
-        $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithAdditionalBindings', $message);
+
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Could not map bindings for test.interface.v1.api/MethodWithAdditionalBindings to any Uri template.');
+
+        $this->builder->build(self::SERVICE_NAME . '/MethodWithAdditionalBindings', $message);
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Failed to build request, as the provided path (myResource/doesntExist) was not found in the configuration.
-     */
     public function testThrowsExceptionWithNonExistantMethod()
     {
         $message = new MockRequestBody();
+
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Failed to build request, as the provided path (myResource/doesntExist) was not found in the configuration.');
+
         $this->builder->build('myResource/doesntExist', $message);
     }
 }
