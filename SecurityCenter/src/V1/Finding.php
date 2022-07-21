@@ -257,6 +257,19 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string next_steps = 40;</code>
      */
     private $next_steps = '';
+    /**
+     * Containers associated with the finding. containers provides information
+     * for both Kubernetes and non-Kubernetes containers.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Container containers = 42;</code>
+     */
+    private $containers;
+    /**
+     * Kubernetes resources associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Kubernetes kubernetes = 43;</code>
+     */
+    private $kubernetes = null;
 
     /**
      * Constructor.
@@ -385,6 +398,11 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Represents IAM bindings associated with the Finding.
      *     @type string $next_steps
      *           Next steps associate to the finding.
+     *     @type \Google\Cloud\SecurityCenter\V1\Container[]|\Google\Protobuf\Internal\RepeatedField $containers
+     *           Containers associated with the finding. containers provides information
+     *           for both Kubernetes and non-Kubernetes containers.
+     *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes $kubernetes
+     *           Kubernetes resources associated with the finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -1358,6 +1376,70 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_steps = $var;
+
+        return $this;
+    }
+
+    /**
+     * Containers associated with the finding. containers provides information
+     * for both Kubernetes and non-Kubernetes containers.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Container containers = 42;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getContainers()
+    {
+        return $this->containers;
+    }
+
+    /**
+     * Containers associated with the finding. containers provides information
+     * for both Kubernetes and non-Kubernetes containers.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Container containers = 42;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\Container[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setContainers($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\Container::class);
+        $this->containers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Kubernetes resources associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Kubernetes kubernetes = 43;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\Kubernetes|null
+     */
+    public function getKubernetes()
+    {
+        return $this->kubernetes;
+    }
+
+    public function hasKubernetes()
+    {
+        return isset($this->kubernetes);
+    }
+
+    public function clearKubernetes()
+    {
+        unset($this->kubernetes);
+    }
+
+    /**
+     * Kubernetes resources associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Kubernetes kubernetes = 43;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\Kubernetes $var
+     * @return $this
+     */
+    public function setKubernetes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Kubernetes::class);
+        $this->kubernetes = $var;
 
         return $this;
     }
