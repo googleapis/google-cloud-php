@@ -4,9 +4,8 @@
 
 namespace Google\ApiCore\Testing;
 
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use GPBMetadata\ApiCore\Testing\Mocks;
 
 /**
  * Generated from protobuf message <code>google.apicore.testing.MockRequest</code>
@@ -33,7 +32,7 @@ class MockRequest extends \Google\Protobuf\Internal\Message
      * }
      */
     public function __construct($data = NULL) {
-        \GPBMetadata\ApiCore\Testing\Mocks::initOnce();
+        Mocks::initOnce();
         parent::__construct($data);
     }
 

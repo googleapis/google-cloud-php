@@ -32,10 +32,14 @@
 namespace Google\ApiCore\Tests\Unit\ResourceTemplate;
 
 use Google\ApiCore\ResourceTemplate\RelativeResourceTemplate;
+use Google\ApiCore\ValidationException;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class RelativeResourceTemplateTest extends TestCase
 {
+    use ExpectException;
+
     /**
      * @dataProvider validPathProvider
      * @param string $path
@@ -70,13 +74,13 @@ class RelativeResourceTemplateTest extends TestCase
 
     /**
      * @dataProvider invalidPathProvider
-     * @expectedException \Google\ApiCore\ValidationException
      * @param string $path
      */
     public function testInvalidPaths($path, $expectedExceptionMessage = null)
     {
+        $this->expectException(ValidationException::class);
         if (isset($expectedExceptionMessage)) {
-            $this->setExpectedException($this->getExpectedException(), $expectedExceptionMessage);
+            $this->expectExceptionMessage($expectedExceptionMessage);
         }
         new RelativeResourceTemplate($path);
     }
@@ -229,11 +233,13 @@ class RelativeResourceTemplateTest extends TestCase
      * @param string $pathTemplate
      * @param string $path
      * @dataProvider invalidMatchData
-     * @expectedException \Google\ApiCore\ValidationException
      */
     public function testFailMatch($pathTemplate, $path)
     {
         $template = new RelativeResourceTemplate($pathTemplate);
+
+        $this->expectException(ValidationException::class);
+
         $template->match($path);
     }
 
@@ -290,13 +296,14 @@ class RelativeResourceTemplateTest extends TestCase
      * @param string $pathTemplate
      * @param array $bindings
      * @dataProvider invalidRenderData
-     * @expectedException \Google\ApiCore\ValidationException
      */
     public function testFailRender($pathTemplate, $bindings, $expectedExceptionMessage = null)
     {
+        $this->expectException(ValidationException::class);
         if (isset($expectedExceptionMessage)) {
-            $this->setExpectedException($this->getExpectedException(), $expectedExceptionMessage);
+            $this->expectExceptionMessage($expectedExceptionMessage);
         }
+
         $template = new RelativeResourceTemplate($pathTemplate);
         $template->render($bindings);
     }

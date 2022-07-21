@@ -33,8 +33,21 @@
 $loader = require_once __DIR__ . '/../vendor/autoload.php';
 
 use Google\ApiCore\Testing\MessageAwareArrayComparator;
-use Google\ApiCore\Testing\ProtobufMessageComparator;
 use Google\ApiCore\Testing\ProtobufGPBEmptyComparator;
+use Google\ApiCore\Testing\ProtobufMessageComparator;
+use Grpc\Interceptor;
+
+// This is a long line, but better not set some temporary variables that get picked up by something later
+if (
+    (new \ReflectionClass(Interceptor::class))
+        ->getMethod('interceptUnaryUnary')
+        ->getParameters()[3]
+        ->getName() === 'metadata'
+) {
+    require_once __DIR__ . '/bootstrap_deprecated_grpc_interceptors.php';
+} else {
+    require_once __DIR__ . '/bootstrap_grpc_interceptors.php';
+}
 
 date_default_timezone_set('UTC');
 ini_set('error_reporting', E_ALL);

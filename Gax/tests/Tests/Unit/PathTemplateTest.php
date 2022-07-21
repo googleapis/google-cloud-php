@@ -32,91 +32,89 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\PathTemplate;
+use Google\ApiCore\ValidationException;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class PathTemplateTest extends TestCase
 {
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Unexpected characters in literal segment
-     */
+    use ExpectException;
+
     public function testFailInvalidToken()
     {
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Unexpected characters in literal segment');
+
         new PathTemplate('hello/wor*ld');
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Could not match path
-     */
     public function testFailWhenImpossibleMatch01()
     {
         $template = new PathTemplate('hello/world');
+
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Could not match path');
+
         $template->match('hello');
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Could not match path
-     */
     public function testFailWhenImpossibleMatch02()
     {
         $template = new PathTemplate('hello/world');
+
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Could not match path');
+
         $template->match('hello/world/fail');
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Could not match path
-     */
     public function testFailMismatchedLiteral()
     {
         $template = new PathTemplate('hello/world');
+
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Could not match path');
+
         $template->match('hello/world2');
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Cannot parse
-     */
     public function testFailWhenMultiplePathWildcards()
     {
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Cannot parse');
+
         new PathTemplate('buckets/*/**/**/objects/*');
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Unexpected '{'
-     */
     public function testFailIfInnerBinding()
     {
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage("Unexpected '{'");
+
         new PathTemplate('buckets/{hello={world}}');
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Expected '}'
-     */
     public function testFailUnexpectedEof()
     {
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage("Expected '}'");
+
         new PathTemplate('a/{hello=world');
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Cannot construct PathTemplate from empty string
-     */
     public function testFailNullString()
     {
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Cannot construct PathTemplate from empty string');
+
         new PathTemplate(null);
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Cannot construct PathTemplate from empty string
-     */
     public function testFailEmptyString()
     {
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Cannot construct PathTemplate from empty string');
+
         new PathTemplate("");
     }
 
@@ -148,11 +146,10 @@ class PathTemplateTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     */
     public function testFailMatchWildcardWithColonInMiddle()
     {
+        $this->expectException(ValidationException::class);
+
         new PathTemplate('/buckets/*:action/objects');
     }
 
@@ -183,11 +180,10 @@ class PathTemplateTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     */
     public function testFailMatchUnboundedWildcardWithColonInMiddle()
     {
+        $this->expectException(ValidationException::class);
+
         new PathTemplate('/buckets/*/objects/**:action/path');
     }
 
@@ -218,12 +214,11 @@ class PathTemplateTest extends TestCase
         $this->assertEquals($url, 'buckets/f/o/o/objects/google.com:a-b');
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Error rendering
-     */
     public function testRenderFailWhenTooFewVariables()
     {
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Error rendering');
+
         $template = new PathTemplate('buckets/*/*/*/objects/*');
         $template->render(['$0' => 'f', '$1' => 'l', '$2' => 'o']);
     }

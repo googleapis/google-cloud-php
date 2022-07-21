@@ -155,14 +155,14 @@ class ApiException extends Exception
      * @param string $basicMessage
      * @param int $rpcCode
      * @param array|null $metadata
-     * @param \Exception $previous
+     * @param Exception $previous
      * @return ApiException
      */
     public static function createFromApiResponse(
         $basicMessage,
         $rpcCode,
         array $metadata = null,
-        \Exception $previous = null
+        Exception $previous = null
     ) {
         return self::create(
             $basicMessage,
@@ -179,14 +179,14 @@ class ApiException extends Exception
      * @param string $basicMessage
      * @param int $rpcCode
      * @param array|null $metadata
-     * @param \Exception $previous
+     * @param Exception $previous
      * @return ApiException
      */
     public static function createFromRestApiResponse(
         $basicMessage,
         $rpcCode,
         array $metadata = null,
-        \Exception $previous = null
+        Exception $previous = null
     ) {
         return self::create(
             $basicMessage,
@@ -234,7 +234,7 @@ class ApiException extends Exception
      * @param int $rpcCode
      * @param array<mixed>|RepeatedField $metadata
      * @param array $decodedMetadata
-     * @param \Exception|null $previous
+     * @param Exception|null $previous
      * @return ApiException
      */
     private static function create($basicMessage, $rpcCode, $metadata, array $decodedMetadata, $previous = null)
@@ -298,8 +298,9 @@ class ApiException extends Exception
             $decoded = $decoded[0];
         }
 
-        if ($error = $decoded['error']) {
-            $basicMessage = $error['message'];
+        if (isset($decoded['error']) && $decoded['error']) {
+            $error = $decoded['error'];
+            $basicMessage = isset($error['message']) ? $error['message'] : null;
             $code = isset($error['status'])
                 ? ApiStatus::rpcCodeFromStatus($error['status'])
                 : $ex->getCode();

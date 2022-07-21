@@ -18,10 +18,13 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\GrpcSupportTrait;
+use Google\ApiCore\ValidationException;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class GrpcSupportTraitTest extends TestCase
 {
+    use ExpectException;
     use GrpcSupportTrait;
 
     private static $hasGrpc;
@@ -32,13 +35,13 @@ class GrpcSupportTraitTest extends TestCase
         self::validateGrpcSupport();
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage gRPC support has been requested
-     */
     public function testValidateGrpcSupportFailure()
     {
         self::$hasGrpc = false;
+
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('gRPC support has been requested');
+
         self::validateGrpcSupport();
     }
 

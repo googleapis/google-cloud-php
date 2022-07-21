@@ -40,8 +40,8 @@ use Google\ApiCore\ClientStream;
 use Google\ApiCore\GrpcSupportTrait;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\ServiceAddressTrait;
-use Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface;
 use Google\ApiCore\Transport\Grpc\ServerStreamingCallWrapper;
+use Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface;
 use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
 use Google\Rpc\Code;
@@ -70,7 +70,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
      * @param Interceptor[]|UnaryInterceptorInterface[] $interceptors *EXPERIMENTAL*
      *        Interceptors used to intercept RPC invocations before a call starts.
      *        Please note that implementations of
-     *        {@see Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface} are
+     *        {@see \Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface} are
      *        considered deprecated and support will be removed in a future
      *        release. To prepare for this, please take the time to convert
      *        `UnaryInterceptorInterface` implementations over to a class which
@@ -103,7 +103,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
      *    @type Interceptor[]|UnaryInterceptorInterface[] $interceptors *EXPERIMENTAL*
      *          Interceptors used to intercept RPC invocations before a call starts.
      *          Please note that implementations of
-     *          {@see Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface} are
+     *          {@see \Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface} are
      *          considered deprecated and support will be removed in a future
      *          release. To prepare for this, please take the time to convert
      *          `UnaryInterceptorInterface` implementations over to a class which

@@ -48,7 +48,9 @@ class OperationsMiddlewareTest extends TestCase
             ->getMock();
         $operationsClient = $this->getMockBuilder(OperationsClient::class)
             ->disableOriginalConstructor()
+            ->setMethodsExcept(['validate'])
             ->getMock();
+
         $descriptor = [
             'operationNameMethod' => 'getNumber'
         ];

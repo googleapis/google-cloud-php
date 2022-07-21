@@ -32,9 +32,7 @@
 
 namespace Google\ApiCore\Tests\Unit\Middleware;
 
-use Google\ApiCore\AgentHeader;
 use Google\ApiCore\Call;
-use Google\ApiCore\Middleware\AgentHeaderMiddleware;
 use Google\ApiCore\Middleware\FixedHeaderMiddleware;
 use PHPUnit\Framework\TestCase;
 
@@ -42,7 +40,9 @@ class FixedHeaderMiddlewareTest extends TestCase
 {
     public function testCustomHeader()
     {
-        $call = $this->getMock(Call::class, [], [], '', false);
+        $call = $this->getMockBuilder(Call::class)
+            ->disableOriginalConstructor()
+            ->getMock();
         $fixedHeader = [
             'x-goog-api-client' => ['gl-php/5.5.0 gccl/0.0.0 gapic/0.9.0 gax/1.0.0 grpc/1.0.1 pb/6.6.6']
         ];
@@ -58,7 +58,9 @@ class FixedHeaderMiddlewareTest extends TestCase
 
     public function testCustomHeaderNoOverride()
     {
-        $call = $this->getMock(Call::class, [], [], '', false);
+        $call = $this->getMockBuilder(Call::class)
+            ->disableOriginalConstructor()
+            ->getMock();
         $fixedHeader = [
             'my-header' => ['some header string'],
             'fixed-only' => ['fixed header only'],
@@ -84,7 +86,9 @@ class FixedHeaderMiddlewareTest extends TestCase
 
     public function testCustomHeaderOverride()
     {
-        $call = $this->getMock(Call::class, [], [], '', false);
+        $call = $this->getMockBuilder(Call::class)
+            ->disableOriginalConstructor()
+            ->getMock();
         $fixedHeader = [
             'my-header' => ['some header string'],
             'fixed-only' => ['fixed header only'],

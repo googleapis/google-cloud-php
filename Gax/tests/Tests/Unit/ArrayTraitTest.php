@@ -33,13 +33,14 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\ArrayTrait;
-use PHPUnit\Framework\TestCase;
+use InvalidArgumentException;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 class ArrayTraitTest extends TestCase
 {
     private $implementation;
 
-    public function setUp()
+    public function set_up()
     {
         $this->implementation = new ArrayTraitStub();
     }
@@ -55,12 +56,10 @@ class ArrayTraitTest extends TestCase
         $this->assertEquals([], $array);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testPluckThrowsExceptionWithInvalidKey()
     {
         $array = [];
+        $this->expectException(InvalidArgumentException::class);
         $this->implementation->call('pluck', ['not_here', &$array]);
     }
 

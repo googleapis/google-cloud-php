@@ -31,11 +31,11 @@
  */
 namespace Google\ApiCore\Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 class ProtobufExtensionTest extends TestCase
 {
-    public function setUp()
+    public function set_up()
     {
         if (!extension_loaded('protobuf')) {
             $this->markTestSkipped('Must have the protobuf extension installed to run this test.');

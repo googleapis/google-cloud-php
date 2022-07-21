@@ -32,14 +32,13 @@
 
 namespace Google\ApiCore\Tests\Unit\Transport;
 
-use Google\ApiCore\CredentialsWrapper;
+use Exception;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
-use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\Testing\MockRequest;
 use Google\ApiCore\Testing\MockResponse;
 use Google\ApiCore\Transport\GrpcFallbackTransport;
-use Google\ApiCore\Transport\RestTransport;
-use Google\Auth\FetchAuthTokenInterface;
+use Google\ApiCore\ValidationException;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
@@ -47,14 +46,14 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 class GrpcFallbackTransportTest extends TestCase
 {
     private $call;
 
-    public function setUp()
+    public function set_up()
     {
         $this->call = new Call(
             'Testing123',
@@ -128,23 +127,19 @@ class GrpcFallbackTransportTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException \Exception
-     */
     public function testStartUnaryCallThrowsException()
     {
         $httpHandler = function (RequestInterface $request, array $options = []) {
-            return Promise\rejection_for(new \Exception());
+            return Promise\rejection_for(new Exception());
         };
+
+        $this->expectException(Exception::class);
 
         $this->getTransport($httpHandler)
             ->startUnaryCall($this->call, [])
             ->wait();
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ApiException
-     */
     public function testStartUnaryCallThrowsRequestException()
     {
         $httpHandler = function (RequestInterface $request, array $options = []) {
@@ -162,6 +157,9 @@ class GrpcFallbackTransportTest extends TestCase
                 )
             );
         };
+
+
+        $this->expectException(Exception::class);
 
         $this->getTransport($httpHandler)
             ->startUnaryCall($this->call, [])
@@ -198,13 +196,13 @@ class GrpcFallbackTransportTest extends TestCase
 
     /**
      * @dataProvider buildInvalidData
-     * @expectedException \Google\ApiCore\ValidationException
      * @param $apiEndpoint
      * @param $args
-     * @throws \Google\ApiCore\ValidationException
      */
     public function testBuildInvalid($apiEndpoint, $args)
     {
+        $this->expectException(ValidationException::class);
+
         GrpcFallbackTransport::build($apiEndpoint, $args);
     }
 
@@ -218,11 +216,6 @@ class GrpcFallbackTransportTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ApiException
-     * @expectedExceptionMessage <html><body>This is an HTML response<\/body><\/html>
-     * @expectedExceptionCode 5
-     */
     public function testNonBinaryProtobufResponseException()
     {
         $httpHandler = function (RequestInterface $request, array $options = []) {
@@ -237,6 +230,11 @@ class GrpcFallbackTransportTest extends TestCase
                 )
             );
         };
+
+
+        $this->expectException(ApiException::class);
+        $this->expectExceptionCode(5);
+        $this->expectExceptionMessage('<html><body>This is an HTML response<\/body><\/html>');
 
         $this->getTransport($httpHandler)
             ->startUnaryCall($this->call, [])

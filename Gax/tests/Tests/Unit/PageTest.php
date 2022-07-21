@@ -35,11 +35,14 @@ use Google\ApiCore\Call;
 use Google\ApiCore\Page;
 use Google\ApiCore\PageStreamingDescriptor;
 use Google\ApiCore\Testing\MockStatus;
+use Google\ApiCore\ValidationException;
 use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 class PageTest extends TestCase
 {
+    use ExpectException;
     use TestTrait;
 
     private function createPage($responseSequence)
@@ -96,10 +99,6 @@ class PageTest extends TestCase
         $newRequest->serializeToJsonString();
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage Could not complete getNextPage operation
-     */
     public function testNextPageMethodsFailWithNoNextPage()
     {
         $responseA = $this->createMockResponse('', ['resource1']);
@@ -108,13 +107,13 @@ class PageTest extends TestCase
         ]);
 
         $this->assertEquals($page->hasNextPage(), false);
+
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('Could not complete getNextPage operation');
+
         $page->getNextPage();
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ValidationException
-     * @expectedExceptionMessage pageSize argument was defined, but the method does not
-     */
     public function testNextPageMethodsFailWithPageSizeUnsupported()
     {
         $responseA = $this->createMockResponse('nextPageToken1', ['resource1']);
@@ -123,6 +122,9 @@ class PageTest extends TestCase
             [$responseA, new MockStatus(Code::OK, '')],
             [$responseB, new MockStatus(Code::OK, '')],
         ]);
+
+        $this->expectException(ValidationException::class);
+        $this->expectExceptionMessage('pageSize argument was defined, but the method does not');
 
         $page->getNextPage(3);
     }

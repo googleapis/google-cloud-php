@@ -32,13 +32,17 @@
 
 namespace Google\ApiCore\Tests\Unit\Transport;
 
-use Google\ApiCore\CredentialsWrapper;
+use BadMethodCallException;
+use Exception;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\RequestBuilder;
-use Google\ApiCore\Tests\Unit\TestTrait;
 use Google\ApiCore\Testing\MockRequest;
 use Google\ApiCore\Testing\MockResponse;
+use Google\ApiCore\Tests\Unit\TestTrait;
 use Google\ApiCore\Transport\RestTransport;
+use Google\ApiCore\ValidationException;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Protobuf\Any;
 use Google\Rpc\ErrorInfo;
@@ -46,8 +50,11 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
+use InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
+use TypeError;
+use UnexpectedValueException;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 class RestTransportTest extends TestCase
 {
@@ -55,7 +62,7 @@ class RestTransportTest extends TestCase
 
     private $call;
 
-    public function setUp()
+    public function set_up()
     {
         $this->call = new Call(
             'Testing123',
@@ -124,23 +131,19 @@ class RestTransportTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException \Exception
-     */
     public function testStartUnaryCallThrowsException()
     {
         $httpHandler = function (RequestInterface $request, array $options = []) {
-            return Create::rejectionFor(new \Exception());
+            return Create::rejectionFor(new Exception());
         };
+
+        $this->expectException(Exception::class);
 
         $this->getTransport($httpHandler)
             ->startUnaryCall($this->call, [])
             ->wait();
     }
 
-    /**
-     * @expectedException \BadMethodCallException
-     */
     public function testServerStreamingCallThrowsBadMethodCallException()
     {
         $request = new Request('POST', 'http://www.example.com');
@@ -152,12 +155,10 @@ class RestTransportTest extends TestCase
 
         $transport = new RestTransport($requestBuilder, HttpHandlerFactory::build());
 
+        $this->expectException(BadMethodCallException::class);
         $transport->startServerStreamingCall($this->call, []);
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ApiException
-     */
     public function testStartUnaryCallThrowsRequestException()
     {
         $httpHandler = function (RequestInterface $request, array $options = []) {
@@ -177,6 +178,8 @@ class RestTransportTest extends TestCase
                 )
             );
         };
+
+        $this->expectException(ApiException::class);
 
         $this->getTransport($httpHandler)
             ->startUnaryCall($this->call, [])
@@ -288,11 +291,6 @@ class RestTransportTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ApiException
-     * @expectedExceptionCode 5
-     * @expectedExceptionMessage Ruh-roh.
-     */
     public function testStartServerStreamingCallThrowsRequestException()
     {
         $apiEndpoint = 'http://www.example.com';
@@ -316,6 +314,10 @@ class RestTransportTest extends TestCase
                 )
             );
         };
+
+        $this->expectException(ApiException::class);
+        $this->expectExceptionCode(5);
+        $this->expectExceptionMessage('Ruh-roh');
 
         $this->getTransport($httpHandler, $apiEndpoint)
             ->startServerStreamingCall($this->call, []);
@@ -372,16 +374,16 @@ class RestTransportTest extends TestCase
         $this->assertEquals($mockClientCertSource, $actualClientCertSource);
     }
 
-    /**
-     * @expectedException TypeError
-     * @expectedExceptionMessage must be callable
-     */
     public function testClientCertSourceOptionInvalid()
     {
         $this->requiresPhp7();
 
         $mockClientCertSource = 'foo';
-        $transport = RestTransport::build(
+
+        $this->expectException(TypeError::class);
+        $this->expectExceptionMessageMatches('/must be.+callable/i');
+
+        RestTransport::build(
             'address.com:123',
             __DIR__ . '/../testdata/test_service_rest_client_config.php',
             ['clientCertSource' => $mockClientCertSource]
@@ -390,10 +392,11 @@ class RestTransportTest extends TestCase
 
     /**
      * @dataProvider buildInvalidData
-     * @expectedException \Google\ApiCore\ValidationException
      */
     public function testBuildInvalid($apiEndpoint, $restConfigPath, $args)
     {
+        $this->expectException(ValidationException::class);
+
         RestTransport::build($apiEndpoint, $restConfigPath, $args);
     }
 
@@ -414,11 +417,6 @@ class RestTransportTest extends TestCase
         ];
     }
 
-    /**
-     * @expectedException \Google\ApiCore\ApiException
-     * @expectedExceptionMessage <html><body>This is an HTML response<\/body><\/html>
-     * @expectedExceptionCode 5
-     */
     public function testNonJsonResponseException()
     {
         $httpHandler = function (RequestInterface $request, array $options = []) {
@@ -433,6 +431,10 @@ class RestTransportTest extends TestCase
                 )
             );
         };
+
+        $this->expectException(ApiException::class);
+        $this->expectExceptionCode(5);
+        $this->expectExceptionMessage('<html><body>This is an HTML response<\/body><\/html>');
 
         $this->getTransport($httpHandler)
             ->startUnaryCall($this->call, [])
@@ -462,24 +464,19 @@ class RestTransportTest extends TestCase
             ->wait();
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage The "headers" option must be an array
-     */
     public function testNonArrayHeadersThrowsException()
     {
         $options = [
             'headers' => 'not-an-array',
         ];
 
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('The "headers" option must be an array');
+
         $this->getTransport()
             ->startUnaryCall($this->call, $options);
     }
 
-    /**
-     * @expectedException \UnexpectedValueException
-     * @expectedExceptionMessage Expected array response from authorization header callback
-     */
     public function testNonArrayAuthorizationHeaderThrowsException()
     {
         $credentialsWrapper = $this->prophesize(CredentialsWrapper::class);
@@ -492,6 +489,9 @@ class RestTransportTest extends TestCase
         $options = [
             'credentialsWrapper' => $credentialsWrapper->reveal(),
         ];
+
+        $this->expectException(UnexpectedValueException::class);
+        $this->expectExceptionMessage('Expected array response from authorization header callback');
 
         $this->getTransport()
             ->startUnaryCall($this->call, $options);

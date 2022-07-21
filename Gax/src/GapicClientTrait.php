@@ -50,7 +50,6 @@ use Google\Protobuf\Internal\Message;
 use Grpc\Gcp\ApiConfig;
 use Grpc\Gcp\Config;
 use GuzzleHttp\Promise\PromiseInterface;
-use LogicException;
 
 /**
  * Common functions used to work with various clients.
@@ -663,7 +662,7 @@ trait GapicClientTrait
      * @param OperationsClient|object $client
      * @param string $interfaceName
      * @param string $operationClass If provided, will be used instead of the default
-     *                               operation response class of {@see Google\LongRunning\Operation}.
+     *                               operation response class of {@see \Google\LongRunning\Operation}.
      *
      * @return PromiseInterface
      */

@@ -31,13 +31,10 @@
  */
 namespace Google\ApiCore\Tests\Unit;
 
-use Grpc\UnaryCall;
-use Google\ApiCore\Testing\MockResponse;
-use Google\ApiCore\Testing\MockRequest;
-use Google\ApiCore\Testing\MockStatus;
 use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\Testing\MockRequest;
+use Google\ApiCore\Testing\MockResponse;
 use Google\Protobuf\Any;
-use Google\Rpc\Code;
 use Google\Rpc\Status;
 
 trait TestTrait

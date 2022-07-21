@@ -42,6 +42,9 @@ abstract class GeneratedTest extends TestCase
     public function assertProtobufEquals(&$expected, &$actual)
     {
         if ($expected === $actual) {
+            // This is not needed but reduces the number of "This test did not perform any assertions" messages
+            $this->assertSame($expected, $actual);
+
             return;
         }
 
