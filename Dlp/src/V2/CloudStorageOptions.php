@@ -85,7 +85,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      *           inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one
      *           of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
      *           Cannot be set if de-identification is requested.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $file_types
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $file_types
      *           List of file type groups to include in the scan.
      *           If empty, all files are scanned and available data format processors
      *           are applied. In addition, the binary content of the selected files
@@ -234,7 +234,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      * Image inspection is restricted to 'global', 'us', 'asia', and 'europe'.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileType file_types = 5;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFileTypes($var)

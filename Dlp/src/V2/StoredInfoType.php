@@ -46,7 +46,7 @@ class StoredInfoType extends \Google\Protobuf\Internal\Message
      *           Resource name.
      *     @type \Google\Cloud\Dlp\V2\StoredInfoTypeVersion $current_version
      *           Current version of the stored info type.
-     *     @type \Google\Cloud\Dlp\V2\StoredInfoTypeVersion[]|\Google\Protobuf\Internal\RepeatedField $pending_versions
+     *     @type array<\Google\Cloud\Dlp\V2\StoredInfoTypeVersion>|\Google\Protobuf\Internal\RepeatedField $pending_versions
      *           Pending versions of the stored info type. Empty if no versions are
      *           pending.
      * }
@@ -135,7 +135,7 @@ class StoredInfoType extends \Google\Protobuf\Internal\Message
      * pending.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.StoredInfoTypeVersion pending_versions = 3;</code>
-     * @param \Google\Cloud\Dlp\V2\StoredInfoTypeVersion[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\StoredInfoTypeVersion>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPendingVersions($var)

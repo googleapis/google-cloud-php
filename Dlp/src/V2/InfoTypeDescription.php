@@ -57,12 +57,12 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      *           Internal name of the infoType.
      *     @type string $display_name
      *           Human readable form of the infoType name.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $supported_by
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_by
      *           Which parts of the API supports this InfoType.
      *     @type string $description
      *           Description of the infotype. Translated when language is provided in the
      *           request.
-     *     @type \Google\Cloud\Dlp\V2\InfoTypeCategory[]|\Google\Protobuf\Internal\RepeatedField $categories
+     *     @type array<\Google\Cloud\Dlp\V2\InfoTypeCategory>|\Google\Protobuf\Internal\RepeatedField $categories
      *           The category of the infoType.
      * }
      */
@@ -138,7 +138,7 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      * Which parts of the API supports this InfoType.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeSupportedBy supported_by = 3;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedBy($var)
@@ -192,7 +192,7 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      * The category of the infoType.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeCategory categories = 10;</code>
-     * @param \Google\Cloud\Dlp\V2\InfoTypeCategory[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\InfoTypeCategory>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCategories($var)

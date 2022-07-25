@@ -65,7 +65,7 @@ class HybridOptions extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           A short description of where the data is coming from. Will be stored once
      *           in the job. 256 max length.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $required_finding_label_keys
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $required_finding_label_keys
      *           These are labels that each inspection request must include within their
      *           'finding_labels' map. Request may contain others, but any missing one of
      *           these will be rejected.
@@ -145,7 +145,7 @@ class HybridOptions extends \Google\Protobuf\Internal\Message
      * No more than 10 keys can be required.
      *
      * Generated from protobuf field <code>repeated string required_finding_label_keys = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRequiredFindingLabelKeys($var)

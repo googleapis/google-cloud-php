@@ -56,7 +56,7 @@ class InspectJobConfig extends \Google\Protobuf\Internal\Message
      *           If provided, will be used as the default for all values in InspectConfig.
      *           `inspect_config` will be merged into the values persisted as part of the
      *           template.
-     *     @type \Google\Cloud\Dlp\V2\Action[]|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type array<\Google\Cloud\Dlp\V2\Action>|\Google\Protobuf\Internal\RepeatedField $actions
      *           Actions to execute at the completion of the job.
      * }
      */
@@ -182,7 +182,7 @@ class InspectJobConfig extends \Google\Protobuf\Internal\Message
      * Actions to execute at the completion of the job.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Action actions = 4;</code>
-     * @param \Google\Cloud\Dlp\V2\Action[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\Action>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setActions($var)

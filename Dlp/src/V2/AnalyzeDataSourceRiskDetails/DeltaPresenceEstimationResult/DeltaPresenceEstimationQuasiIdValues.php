@@ -41,7 +41,7 @@ class DeltaPresenceEstimationQuasiIdValues extends \Google\Protobuf\Internal\Mes
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\Value[]|\Google\Protobuf\Internal\RepeatedField $quasi_ids_values
+     *     @type array<\Google\Cloud\Dlp\V2\Value>|\Google\Protobuf\Internal\RepeatedField $quasi_ids_values
      *           The quasi-identifier values.
      *     @type float $estimated_probability
      *           The estimated probability that a given individual sharing these
@@ -74,7 +74,7 @@ class DeltaPresenceEstimationQuasiIdValues extends \Google\Protobuf\Internal\Mes
      * The quasi-identifier values.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Value quasi_ids_values = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\Value[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\Value>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setQuasiIdsValues($var)

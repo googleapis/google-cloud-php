@@ -35,7 +35,7 @@ class ExcludeInfoTypes extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\InfoType[]|\Google\Protobuf\Internal\RepeatedField $info_types
+     *     @type array<\Google\Cloud\Dlp\V2\InfoType>|\Google\Protobuf\Internal\RepeatedField $info_types
      *           InfoType list in ExclusionRule rule drops a finding when it overlaps or
      *           contained within with a finding of an infoType from this list. For
      *           example, for `InspectionRuleSet.info_types` containing "PHONE_NUMBER"` and
@@ -80,7 +80,7 @@ class ExcludeInfoTypes extends \Google\Protobuf\Internal\Message
      * finding, namely email address.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\InfoType[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\InfoType>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInfoTypes($var)

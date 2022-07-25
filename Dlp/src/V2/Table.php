@@ -36,9 +36,9 @@ class Table extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $headers
+     *     @type array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $headers
      *           Headers of the table.
-     *     @type \Google\Cloud\Dlp\V2\Table\Row[]|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type array<\Google\Cloud\Dlp\V2\Table\Row>|\Google\Protobuf\Internal\RepeatedField $rows
      *           Rows of the table.
      * }
      */
@@ -62,7 +62,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * Headers of the table.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId headers = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHeaders($var)
@@ -88,7 +88,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * Rows of the table.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Table.Row rows = 2;</code>
-     * @param \Google\Cloud\Dlp\V2\Table\Row[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\Table\Row>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRows($var)

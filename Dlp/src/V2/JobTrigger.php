@@ -95,11 +95,11 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      *           User provided description (max 256 chars)
      *     @type \Google\Cloud\Dlp\V2\InspectJobConfig $inspect_job
      *           For inspect jobs, a snapshot of the configuration.
-     *     @type \Google\Cloud\Dlp\V2\JobTrigger\Trigger[]|\Google\Protobuf\Internal\RepeatedField $triggers
+     *     @type array<\Google\Cloud\Dlp\V2\JobTrigger\Trigger>|\Google\Protobuf\Internal\RepeatedField $triggers
      *           A list of triggers which will be OR'ed together. Only one in the list
      *           needs to trigger for a job to be started. The list may contain only
      *           a single Schedule trigger and must have at least one object.
-     *     @type \Google\Cloud\Dlp\V2\Error[]|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $errors
      *           Output only. A stream of errors encountered when the trigger was activated. Repeated
      *           errors may result in the JobTrigger automatically being paused.
      *           Will return the last 100 errors. Whenever the JobTrigger is modified
@@ -251,7 +251,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      * a single Schedule trigger and must have at least one object.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.JobTrigger.Trigger triggers = 5;</code>
-     * @param \Google\Cloud\Dlp\V2\JobTrigger\Trigger[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\JobTrigger\Trigger>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTriggers($var)
@@ -283,7 +283,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      * this list will be cleared.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Dlp\V2\Error[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setErrors($var)
