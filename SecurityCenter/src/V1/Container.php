@@ -58,7 +58,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *           Optional container image id, when provided by the container runtime.
      *           Uniquely identifies the container image launched using a container image
      *           digest.
-     *     @type \Google\Cloud\SecurityCenter\V1\Label[]|\Google\Protobuf\Internal\RepeatedField $labels
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Label>|\Google\Protobuf\Internal\RepeatedField $labels
      *           Container labels, as provided by the container runtime.
      * }
      */
@@ -166,7 +166,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * Container labels, as provided by the container runtime.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Label labels = 4;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Label[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Label>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLabels($var)

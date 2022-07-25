@@ -53,7 +53,7 @@ class Binding extends \Google\Protobuf\Internal\Message
      *           Name for binding.
      *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes\Role $role
      *           The Role or ClusterRole referenced by the binding.
-     *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes\Subject[]|\Google\Protobuf\Internal\RepeatedField $subjects
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Subject>|\Google\Protobuf\Internal\RepeatedField $subjects
      *           Represents the subjects(s) bound to the role. Not always available
      *           for PATCH requests.
      * }
@@ -168,7 +168,7 @@ class Binding extends \Google\Protobuf\Internal\Message
      * for PATCH requests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Subject subjects = 4;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Kubernetes\Subject[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Subject>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSubjects($var)

@@ -51,10 +51,10 @@ class Pod extends \Google\Protobuf\Internal\Message
      *           Kubernetes Pod namespace.
      *     @type string $name
      *           Kubernetes Pod name.
-     *     @type \Google\Cloud\SecurityCenter\V1\Label[]|\Google\Protobuf\Internal\RepeatedField $labels
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Label>|\Google\Protobuf\Internal\RepeatedField $labels
      *           Pod labels.  For Kubernetes containers, these are applied to the
      *           container.
-     *     @type \Google\Cloud\SecurityCenter\V1\Container[]|\Google\Protobuf\Internal\RepeatedField $containers
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Container>|\Google\Protobuf\Internal\RepeatedField $containers
      *           Pod containers associated with this finding, if any.
      * }
      */
@@ -132,7 +132,7 @@ class Pod extends \Google\Protobuf\Internal\Message
      * container.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Label labels = 3;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Label[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Label>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLabels($var)
@@ -158,7 +158,7 @@ class Pod extends \Google\Protobuf\Internal\Message
      * Pod containers associated with this finding, if any.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Container containers = 4;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Container[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Container>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setContainers($var)

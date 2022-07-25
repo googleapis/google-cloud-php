@@ -63,21 +63,21 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes\Pod[]|\Google\Protobuf\Internal\RepeatedField $pods
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Pod>|\Google\Protobuf\Internal\RepeatedField $pods
      *           Kubernetes Pods associated with the finding. This field will contain Pod
      *           records for each container that is owned by a Pod.
-     *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes\Node[]|\Google\Protobuf\Internal\RepeatedField $nodes
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Node>|\Google\Protobuf\Internal\RepeatedField $nodes
      *           Provides Kubernetes Node information.
-     *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes\NodePool[]|\Google\Protobuf\Internal\RepeatedField $node_pools
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\NodePool>|\Google\Protobuf\Internal\RepeatedField $node_pools
      *           GKE Node Pools associated with the finding. This field will
      *           contain NodePool information for each Node, when it is available.
-     *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes\Role[]|\Google\Protobuf\Internal\RepeatedField $roles
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Role>|\Google\Protobuf\Internal\RepeatedField $roles
      *           Provides Kubernetes role information for findings that involve
      *           Roles or ClusterRoles.
-     *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes\Binding[]|\Google\Protobuf\Internal\RepeatedField $bindings
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Binding>|\Google\Protobuf\Internal\RepeatedField $bindings
      *           Provides Kubernetes role binding information for findings that involve
      *           RoleBindings or ClusterRoleBindings.
-     *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes\AccessReview[]|\Google\Protobuf\Internal\RepeatedField $access_reviews
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\AccessReview>|\Google\Protobuf\Internal\RepeatedField $access_reviews
      *           Provides information on any Kubernetes access reviews (i.e. privilege
      *           checks) relevant to the finding.
      * }
@@ -104,7 +104,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * records for each container that is owned by a Pod.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Pod pods = 1;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Kubernetes\Pod[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Pod>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPods($var)
@@ -130,7 +130,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * Provides Kubernetes Node information.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Node nodes = 2;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Kubernetes\Node[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Node>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNodes($var)
@@ -158,7 +158,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * contain NodePool information for each Node, when it is available.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.NodePool node_pools = 3;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Kubernetes\NodePool[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\NodePool>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNodePools($var)
@@ -186,7 +186,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * Roles or ClusterRoles.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Role roles = 4;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Kubernetes\Role[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Role>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRoles($var)
@@ -214,7 +214,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * RoleBindings or ClusterRoleBindings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Binding bindings = 5;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Kubernetes\Binding[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Binding>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBindings($var)
@@ -242,7 +242,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * checks) relevant to the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.AccessReview access_reviews = 6;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Kubernetes\AccessReview[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\AccessReview>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAccessReviews($var)

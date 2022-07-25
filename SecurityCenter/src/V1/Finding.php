@@ -361,14 +361,14 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\SecurityCenter\V1\Access $access
      *           Access details associated to the Finding, such as more information on the
      *           caller, which method was accessed, from where, etc.
-     *     @type \Google\Cloud\SecurityCenter\V1\Connection[]|\Google\Protobuf\Internal\RepeatedField $connections
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Connection>|\Google\Protobuf\Internal\RepeatedField $connections
      *           Contains information about the IP connection associated with the finding.
      *     @type string $mute_initiator
      *           First known as mute_annotation. Records additional information about the
      *           mute operation e.g. mute config that muted the finding, user who muted the
      *           finding, etc. Unlike other attributes of a finding, a finding provider
      *           shouldn't set the value of mute.
-     *     @type \Google\Cloud\SecurityCenter\V1\Process[]|\Google\Protobuf\Internal\RepeatedField $processes
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Process>|\Google\Protobuf\Internal\RepeatedField $processes
      *           Represents operating system processes associated with the Finding.
      *     @type array|\Google\Protobuf\Internal\MapField $contacts
      *           Output only. Map containing the point of contacts for the given finding. The key
@@ -387,18 +387,18 @@ class Finding extends \Google\Protobuf\Internal\Message
      *                   ]
      *                 }
      *               }
-     *     @type \Google\Cloud\SecurityCenter\V1\Compliance[]|\Google\Protobuf\Internal\RepeatedField $compliances
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Compliance>|\Google\Protobuf\Internal\RepeatedField $compliances
      *           Contains compliance information for security standards associated to the
      *           finding.
      *     @type string $description
      *           Contains more detail about the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\Exfiltration $exfiltration
      *           Represents exfiltration associated with the Finding.
-     *     @type \Google\Cloud\SecurityCenter\V1\IamBinding[]|\Google\Protobuf\Internal\RepeatedField $iam_bindings
+     *     @type array<\Google\Cloud\SecurityCenter\V1\IamBinding>|\Google\Protobuf\Internal\RepeatedField $iam_bindings
      *           Represents IAM bindings associated with the Finding.
      *     @type string $next_steps
      *           Next steps associate to the finding.
-     *     @type \Google\Cloud\SecurityCenter\V1\Container[]|\Google\Protobuf\Internal\RepeatedField $containers
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Container>|\Google\Protobuf\Internal\RepeatedField $containers
      *           Containers associated with the finding. containers provides information
      *           for both Kubernetes and non-Kubernetes containers.
      *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes $kubernetes
@@ -1113,7 +1113,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Contains information about the IP connection associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Connection connections = 31;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Connection[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Connection>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConnections($var)
@@ -1171,7 +1171,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Represents operating system processes associated with the Finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Process processes = 30;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Process[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Process>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProcesses($var)
@@ -1255,7 +1255,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Compliance compliances = 34;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Compliance[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Compliance>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCompliances($var)
@@ -1343,7 +1343,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Represents IAM bindings associated with the Finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.IamBinding iam_bindings = 39;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\IamBinding[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\IamBinding>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIamBindings($var)
@@ -1397,7 +1397,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * for both Kubernetes and non-Kubernetes containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Container containers = 42;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Container[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Container>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setContainers($var)

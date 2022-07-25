@@ -36,7 +36,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Kubernetes Node pool name.
-     *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes\Node[]|\Google\Protobuf\Internal\RepeatedField $nodes
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Node>|\Google\Protobuf\Internal\RepeatedField $nodes
      *           Nodes associated with the finding.
      * }
      */
@@ -86,7 +86,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * Nodes associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Node nodes = 2;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Kubernetes\Node[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Node>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNodes($var)
