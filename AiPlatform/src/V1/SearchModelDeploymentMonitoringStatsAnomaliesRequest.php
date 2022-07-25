@@ -93,7 +93,7 @@ class SearchModelDeploymentMonitoringStatsAnomaliesRequest extends \Google\Proto
      *           this feature. Format:
      *           [ModelMonitoringStatsAnomalies.FeatureHistoricStatsAnomalies.feature_display_name][google.cloud.aiplatform.v1.ModelMonitoringStatsAnomalies.FeatureHistoricStatsAnomalies.feature_display_name],
      *           example: "user_destination".
-     *     @type \Google\Cloud\AIPlatform\V1\SearchModelDeploymentMonitoringStatsAnomaliesRequest\StatsAnomaliesObjective[]|\Google\Protobuf\Internal\RepeatedField $objectives
+     *     @type array<\Google\Cloud\AIPlatform\V1\SearchModelDeploymentMonitoringStatsAnomaliesRequest\StatsAnomaliesObjective>|\Google\Protobuf\Internal\RepeatedField $objectives
      *           Required. Objectives of the stats to retrieve.
      *     @type int $page_size
      *           The standard list page size.
@@ -219,7 +219,7 @@ class SearchModelDeploymentMonitoringStatsAnomaliesRequest extends \Google\Proto
      * Required. Objectives of the stats to retrieve.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SearchModelDeploymentMonitoringStatsAnomaliesRequest.StatsAnomaliesObjective objectives = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\AIPlatform\V1\SearchModelDeploymentMonitoringStatsAnomaliesRequest\StatsAnomaliesObjective[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\SearchModelDeploymentMonitoringStatsAnomaliesRequest\StatsAnomaliesObjective>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setObjectives($var)

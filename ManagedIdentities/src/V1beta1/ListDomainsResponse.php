@@ -42,12 +42,12 @@ class ListDomainsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ManagedIdentities\V1beta1\Domain[]|\Google\Protobuf\Internal\RepeatedField $domains
+     *     @type array<\Google\Cloud\ManagedIdentities\V1beta1\Domain>|\Google\Protobuf\Internal\RepeatedField $domains
      *           A list of Managed Identities Service domains in the project.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results, or empty if there are no more
      *           results in the list.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           A list of locations that could not be reached.
      * }
      */
@@ -71,7 +71,7 @@ class ListDomainsResponse extends \Google\Protobuf\Internal\Message
      * A list of Managed Identities Service domains in the project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedidentities.v1beta1.Domain domains = 1;</code>
-     * @param \Google\Cloud\ManagedIdentities\V1beta1\Domain[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ManagedIdentities\V1beta1\Domain>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDomains($var)
@@ -125,7 +125,7 @@ class ListDomainsResponse extends \Google\Protobuf\Internal\Message
      * A list of locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

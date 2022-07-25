@@ -39,7 +39,7 @@ class LinkedInterconnectAttachments extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris
      *           The URIs of linked interconnect attachment resources
      *     @type bool $site_to_site_data_transfer
      *           A value that controls whether site-to-site data transfer is enabled for
@@ -67,7 +67,7 @@ class LinkedInterconnectAttachments extends \Google\Protobuf\Internal\Message
      * The URIs of linked interconnect attachment resources
      *
      * Generated from protobuf field <code>repeated string uris = 1 [(.google.api.resource_reference) = {</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUris($var)

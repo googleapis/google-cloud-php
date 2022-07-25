@@ -36,7 +36,7 @@ class ListServiceLevelObjectivesResponse extends \Google\Protobuf\Internal\Messa
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Monitoring\V3\ServiceLevelObjective[]|\Google\Protobuf\Internal\RepeatedField $service_level_objectives
+     *     @type array<\Google\Cloud\Monitoring\V3\ServiceLevelObjective>|\Google\Protobuf\Internal\RepeatedField $service_level_objectives
      *           The `ServiceLevelObjective`s matching the specified filter.
      *     @type string $next_page_token
      *           If there are more results than have been returned, then this field is set
@@ -64,7 +64,7 @@ class ListServiceLevelObjectivesResponse extends \Google\Protobuf\Internal\Messa
      * The `ServiceLevelObjective`s matching the specified filter.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.ServiceLevelObjective service_level_objectives = 1;</code>
-     * @param \Google\Cloud\Monitoring\V3\ServiceLevelObjective[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Monitoring\V3\ServiceLevelObjective>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServiceLevelObjectives($var)

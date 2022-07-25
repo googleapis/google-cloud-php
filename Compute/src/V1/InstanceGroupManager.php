@@ -154,7 +154,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerAutoHealingPolicy[]|\Google\Protobuf\Internal\RepeatedField $auto_healing_policies
+     *     @type array<\Google\Cloud\Compute\V1\InstanceGroupManagerAutoHealingPolicy>|\Google\Protobuf\Internal\RepeatedField $auto_healing_policies
      *           The autohealing policy for this managed instance group. You can specify only one value.
      *     @type string $base_instance_name
      *           The base instance name to use for instances in this group. The value must be 1-58 characters long. Instances are named by appending a hyphen and a random four-character string to the base instance name. The base instance name must comply with RFC1035.
@@ -178,7 +178,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           [Output Only] The resource type, which is always compute#instanceGroupManager for managed instance groups.
      *     @type string $name
      *           The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
-     *     @type \Google\Cloud\Compute\V1\NamedPort[]|\Google\Protobuf\Internal\RepeatedField $named_ports
+     *     @type array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $named_ports
      *           Named ports configured for the Instance Groups complementary to this Instance Group Manager.
      *     @type string $region
      *           [Output Only] The URL of the region where the managed instance group resides (for regional resources).
@@ -188,13 +188,13 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           Stateful configuration for this Instanced Group Manager
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStatus $status
      *           [Output Only] The status of this managed instance group.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $target_pools
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_pools
      *           The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
      *     @type int $target_size
      *           The target number of running instances for this managed instance group. You can reduce this number by using the instanceGroupManager deleteInstances or abandonInstances methods. Resizing the group also changes this number.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerUpdatePolicy $update_policy
      *           The update policy for this managed instance group.
-     *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerVersion[]|\Google\Protobuf\Internal\RepeatedField $versions
+     *     @type array<\Google\Cloud\Compute\V1\InstanceGroupManagerVersion>|\Google\Protobuf\Internal\RepeatedField $versions
      *           Specifies the instance templates used by this managed instance group to create instances. Each version is defined by an instanceTemplate and a name. Every version can appear at most once per instance group. This field overrides the top-level instanceTemplate field. Read more about the relationships between these fields. Exactly one version must leave the targetSize field unset. That version will be applied to all remaining instances. For more information, read about canary updates.
      *     @type string $zone
      *           [Output Only] The URL of a zone where the managed instance group is located (for zonal resources).
@@ -220,7 +220,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * The autohealing policy for this managed instance group. You can specify only one value.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerAutoHealingPolicy auto_healing_policies = 456799109;</code>
-     * @param \Google\Cloud\Compute\V1\InstanceGroupManagerAutoHealingPolicy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\InstanceGroupManagerAutoHealingPolicy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAutoHealingPolicies($var)
@@ -642,7 +642,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * Named ports configured for the Instance Groups complementary to this Instance Group Manager.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
-     * @param \Google\Cloud\Compute\V1\NamedPort[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNamedPorts($var)
@@ -812,7 +812,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
      *
      * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetPools($var)
@@ -910,7 +910,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      * Specifies the instance templates used by this managed instance group to create instances. Each version is defined by an instanceTemplate and a name. Every version can appear at most once per instance group. This field overrides the top-level instanceTemplate field. Read more about the relationships between these fields. Exactly one version must leave the targetSize field unset. That version will be applied to all remaining instances. For more information, read about canary updates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManagerVersion versions = 162430619;</code>
-     * @param \Google\Cloud\Compute\V1\InstanceGroupManagerVersion[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\InstanceGroupManagerVersion>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVersions($var)

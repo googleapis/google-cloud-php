@@ -181,10 +181,10 @@ class Shipment extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Optimization\V1\Shipment\VisitRequest[]|\Google\Protobuf\Internal\RepeatedField $pickups
+     *     @type array<\Google\Cloud\Optimization\V1\Shipment\VisitRequest>|\Google\Protobuf\Internal\RepeatedField $pickups
      *           Set of pickup alternatives associated to the shipment. If not specified,
      *           the vehicle only needs to visit a location corresponding to the deliveries.
-     *     @type \Google\Cloud\Optimization\V1\Shipment\VisitRequest[]|\Google\Protobuf\Internal\RepeatedField $deliveries
+     *     @type array<\Google\Cloud\Optimization\V1\Shipment\VisitRequest>|\Google\Protobuf\Internal\RepeatedField $deliveries
      *           Set of delivery alternatives associated to the shipment. If not specified,
      *           the vehicle only needs to visit a location corresponding to the pickups.
      *     @type array|\Google\Protobuf\Internal\MapField $load_demands
@@ -202,11 +202,11 @@ class Shipment extends \Google\Protobuf\Internal\Message
      *           positive.
      *           *IMPORTANT*: If this penalty is not specified, it is considered infinite,
      *           i.e. the shipment must be completed.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $allowed_vehicle_indices
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $allowed_vehicle_indices
      *           The set of vehicles that may perform this shipment. If empty, all vehicles
      *           may perform it. Vehicles are given by their index in the `ShipmentModel`'s
      *           `vehicles` list.
-     *     @type float[]|\Google\Protobuf\Internal\RepeatedField $costs_per_vehicle
+     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $costs_per_vehicle
      *           Specifies the cost that is incurred when this shipment is delivered by each
      *           vehicle. If specified, it must have EITHER:
      *             * the same number of elements as `costs_per_vehicle_indices`.
@@ -216,7 +216,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      *               i-th element corresponds to vehicle #i of the model.
      *           These costs must be in the same unit as `penalty_cost` and must not be
      *           negative. Leave this field empty, if there are no such costs.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $costs_per_vehicle_indices
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $costs_per_vehicle_indices
      *           Indices of the vehicles to which `costs_per_vehicle` applies. If non-empty,
      *           it must have the same number of elements as `costs_per_vehicle`. A vehicle
      *           index may not be specified more than once. If a vehicle is excluded from
@@ -277,7 +277,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      *           or `injected_solution_constraint` is permitted; the solver removes the
      *           related pickup/delivery visits from the performing route.
      *           `precedence_rules` that reference ignored shipments will also be ignored.
-     *     @type \Google\Cloud\Optimization\V1\CapacityQuantity[]|\Google\Protobuf\Internal\RepeatedField $demands
+     *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $demands
      *           Deprecated: Use [Shipment.load_demands][] instead.
      * }
      */
@@ -303,7 +303,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      * the vehicle only needs to visit a location corresponding to the deliveries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.Shipment.VisitRequest pickups = 1;</code>
-     * @param \Google\Cloud\Optimization\V1\Shipment\VisitRequest[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\Shipment\VisitRequest>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPickups($var)
@@ -331,7 +331,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      * the vehicle only needs to visit a location corresponding to the pickups.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.Shipment.VisitRequest deliveries = 2;</code>
-     * @param \Google\Cloud\Optimization\V1\Shipment\VisitRequest[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\Shipment\VisitRequest>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeliveries($var)
@@ -445,7 +445,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      * `vehicles` list.
      *
      * Generated from protobuf field <code>repeated int32 allowed_vehicle_indices = 5;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedVehicleIndices($var)
@@ -487,7 +487,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      * negative. Leave this field empty, if there are no such costs.
      *
      * Generated from protobuf field <code>repeated double costs_per_vehicle = 6;</code>
-     * @param float[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCostsPerVehicle($var)
@@ -519,7 +519,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      * `costs_per_vehicle_indices`, its cost is zero.
      *
      * Generated from protobuf field <code>repeated int32 costs_per_vehicle_indices = 7;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCostsPerVehicleIndices($var)
@@ -821,7 +821,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      * Deprecated: Use [Shipment.load_demands][] instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 3 [deprecated = true];</code>
-     * @param \Google\Cloud\Optimization\V1\CapacityQuantity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */

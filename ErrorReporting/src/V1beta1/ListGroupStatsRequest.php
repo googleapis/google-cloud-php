@@ -108,7 +108,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      *           and `{projectNumber}` can be found in the
      *           [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
      *           Examples: `projects/my-project-123`, `projects/5551234`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $group_id
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $group_id
      *           Optional. List all <code>ErrorGroupStats</code> with these IDs.
      *     @type \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter $service_filter
      *           Optional. List only <code>ErrorGroupStats</code> which belong to a service
@@ -198,7 +198,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * Optional. List all <code>ErrorGroupStats</code> with these IDs.
      *
      * Generated from protobuf field <code>repeated string group_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGroupId($var)

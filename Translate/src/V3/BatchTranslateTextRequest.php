@@ -105,7 +105,7 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      *           error is returned.
      *     @type string $source_language_code
      *           Required. Source language code.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $target_language_codes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_language_codes
      *           Required. Specify up to 10 language codes here.
      *     @type array|\Google\Protobuf\Internal\MapField $models
      *           Optional. The models to use for translation. Map's key is target language
@@ -118,7 +118,7 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      *             `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
      *           If the map is empty or a specific model is
      *           not requested for a language pair, then default google model (nmt) is used.
-     *     @type \Google\Cloud\Translate\V3\InputConfig[]|\Google\Protobuf\Internal\RepeatedField $input_configs
+     *     @type array<\Google\Cloud\Translate\V3\InputConfig>|\Google\Protobuf\Internal\RepeatedField $input_configs
      *           Required. Input configurations.
      *           The total number of files matched should be <= 100.
      *           The total content size should be <= 100M Unicode codepoints.
@@ -222,7 +222,7 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      * Required. Specify up to 10 language codes here.
      *
      * Generated from protobuf field <code>repeated string target_language_codes = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetLanguageCodes($var)
@@ -298,7 +298,7 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      * The files must use UTF-8 encoding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.InputConfig input_configs = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Translate\V3\InputConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\InputConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInputConfigs($var)

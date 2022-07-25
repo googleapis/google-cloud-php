@@ -32,7 +32,7 @@ class MessageStoragePolicy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allowed_persistence_regions
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_persistence_regions
      *           A list of IDs of GCP regions where messages that are published to the topic
      *           may be persisted in storage. Messages published by publishers running in
      *           non-allowed GCP regions (or running outside of GCP altogether) will be
@@ -68,7 +68,7 @@ class MessageStoragePolicy extends \Google\Protobuf\Internal\Message
      * no regions are allowed, and is not a valid configuration.
      *
      * Generated from protobuf field <code>repeated string allowed_persistence_regions = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedPersistenceRegions($var)

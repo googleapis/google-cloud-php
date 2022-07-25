@@ -52,7 +52,7 @@ class ReportResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ServiceControl\V1\ReportResponse\ReportError[]|\Google\Protobuf\Internal\RepeatedField $report_errors
+     *     @type array<\Google\Cloud\ServiceControl\V1\ReportResponse\ReportError>|\Google\Protobuf\Internal\RepeatedField $report_errors
      *           Partial failures, one for each `Operation` in the request that failed
      *           processing. There are three possible combinations of the RPC status:
      *           1. The combination of a successful RPC status and an empty `report_errors`
@@ -116,7 +116,7 @@ class ReportResponse extends \Google\Protobuf\Internal\Message
      *    'Operations' in the request succeeded or failed.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.ReportResponse.ReportError report_errors = 1;</code>
-     * @param \Google\Cloud\ServiceControl\V1\ReportResponse\ReportError[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceControl\V1\ReportResponse\ReportError>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReportErrors($var)

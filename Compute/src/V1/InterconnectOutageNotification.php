@@ -73,7 +73,7 @@ class InterconnectOutageNotification extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $affected_circuits
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $affected_circuits
      *           If issue_type is IT_PARTIAL_OUTAGE, a list of the Google-side circuit IDs that will be affected.
      *     @type string $description
      *           A description about the purpose of the outage.
@@ -114,7 +114,7 @@ class InterconnectOutageNotification extends \Google\Protobuf\Internal\Message
      * If issue_type is IT_PARTIAL_OUTAGE, a list of the Google-side circuit IDs that will be affected.
      *
      * Generated from protobuf field <code>repeated string affected_circuits = 177717013;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAffectedCircuits($var)

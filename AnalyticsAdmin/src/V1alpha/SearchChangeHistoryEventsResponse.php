@@ -35,7 +35,7 @@ class SearchChangeHistoryEventsResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Admin\V1alpha\ChangeHistoryEvent[]|\Google\Protobuf\Internal\RepeatedField $change_history_events
+     *     @type array<\Google\Analytics\Admin\V1alpha\ChangeHistoryEvent>|\Google\Protobuf\Internal\RepeatedField $change_history_events
      *           Results that were accessible to the caller.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class SearchChangeHistoryEventsResponse extends \Google\Protobuf\Internal\Messag
      * Results that were accessible to the caller.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ChangeHistoryEvent change_history_events = 1;</code>
-     * @param \Google\Analytics\Admin\V1alpha\ChangeHistoryEvent[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Admin\V1alpha\ChangeHistoryEvent>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setChangeHistoryEvents($var)

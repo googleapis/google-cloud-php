@@ -40,9 +40,9 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $I_p_protocols
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $I_p_protocols
      *           Protocols that apply as filter on mirrored traffic. If no protocols are specified, all traffic that matches the specified CIDR ranges is mirrored. If neither cidrRanges nor IPProtocols is specified, all traffic is mirrored.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $cidr_ranges
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $cidr_ranges
      *           IP CIDR ranges that apply as filter on the source (ingress) or destination (egress) IP in the IP header. Only IPv4 is supported. If no ranges are specified, all traffic that matches the specified IPProtocols is mirrored. If neither cidrRanges nor IPProtocols is specified, all traffic is mirrored.
      *     @type string $direction
      *           Direction of traffic to mirror, either INGRESS, EGRESS, or BOTH. The default is BOTH.
@@ -69,7 +69,7 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
      * Protocols that apply as filter on mirrored traffic. If no protocols are specified, all traffic that matches the specified CIDR ranges is mirrored. If neither cidrRanges nor IPProtocols is specified, all traffic is mirrored.
      *
      * Generated from protobuf field <code>repeated string I_p_protocols = 98544854;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIPProtocols($var)
@@ -95,7 +95,7 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
      * IP CIDR ranges that apply as filter on the source (ingress) or destination (egress) IP in the IP header. Only IPv4 is supported. If no ranges are specified, all traffic that matches the specified IPProtocols is mirrored. If neither cidrRanges nor IPProtocols is specified, all traffic is mirrored.
      *
      * Generated from protobuf field <code>repeated string cidr_ranges = 487901697;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCidrRanges($var)

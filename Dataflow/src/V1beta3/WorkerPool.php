@@ -199,7 +199,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *           Number of Google Compute Engine workers in this pool needed to
      *           execute the job.  If zero or unspecified, the service will
      *           attempt to choose a reasonable default.
-     *     @type \Google\Cloud\Dataflow\V1beta3\Package[]|\Google\Protobuf\Internal\RepeatedField $packages
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\Package>|\Google\Protobuf\Internal\RepeatedField $packages
      *           Packages to be installed on workers.
      *     @type int $default_package_set
      *           The default package set to install.  This allows the service to
@@ -241,7 +241,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *     @type string $on_host_maintenance
      *           The action to take on host maintenance, as defined by the Google
      *           Compute Engine API.
-     *     @type \Google\Cloud\Dataflow\V1beta3\Disk[]|\Google\Protobuf\Internal\RepeatedField $data_disks
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\Disk>|\Google\Protobuf\Internal\RepeatedField $data_disks
      *           Data disks that are used by a VM in this workflow.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           Metadata to set on the Google Compute Engine VMs.
@@ -265,7 +265,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *           on the selected machine type for batch, or 1 by convention for streaming).
      *     @type int $ip_configuration
      *           Configuration for VM IPs.
-     *     @type \Google\Cloud\Dataflow\V1beta3\SdkHarnessContainerImage[]|\Google\Protobuf\Internal\RepeatedField $sdk_harness_container_images
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\SdkHarnessContainerImage>|\Google\Protobuf\Internal\RepeatedField $sdk_harness_container_images
      *           Set of SDK harness containers needed to execute this pipeline. This will
      *           only be set in the Fn API path. For non-cross-language pipelines this
      *           should have only one entry. Cross-language pipelines will have two or more
@@ -350,7 +350,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      * Packages to be installed on workers.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.Package packages = 3;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\Package[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\Package>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPackages($var)
@@ -664,7 +664,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      * Data disks that are used by a VM in this workflow.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.Disk data_disks = 12;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\Disk[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\Disk>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDataDisks($var)
@@ -936,7 +936,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      * entries.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.SdkHarnessContainerImage sdk_harness_container_images = 22;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\SdkHarnessContainerImage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\SdkHarnessContainerImage>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSdkHarnessContainerImages($var)

@@ -35,7 +35,7 @@ class ListViewsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ContactCenterInsights\V1\View[]|\Google\Protobuf\Internal\RepeatedField $views
+     *     @type array<\Google\Cloud\ContactCenterInsights\V1\View>|\Google\Protobuf\Internal\RepeatedField $views
      *           The views that match the request.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class ListViewsResponse extends \Google\Protobuf\Internal\Message
      * The views that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.View views = 1;</code>
-     * @param \Google\Cloud\ContactCenterInsights\V1\View[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ContactCenterInsights\V1\View>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setViews($var)

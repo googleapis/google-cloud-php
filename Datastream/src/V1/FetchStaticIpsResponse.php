@@ -35,7 +35,7 @@ class FetchStaticIpsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $static_ips
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $static_ips
      *           list of static ips by account
      *     @type string $next_page_token
      *           A token that can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class FetchStaticIpsResponse extends \Google\Protobuf\Internal\Message
      * list of static ips by account
      *
      * Generated from protobuf field <code>repeated string static_ips = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStaticIps($var)

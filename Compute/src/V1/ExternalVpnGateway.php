@@ -89,7 +89,7 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
-     *     @type \Google\Cloud\Compute\V1\ExternalVpnGatewayInterface[]|\Google\Protobuf\Internal\RepeatedField $interfaces
+     *     @type array<\Google\Cloud\Compute\V1\ExternalVpnGatewayInterface>|\Google\Protobuf\Internal\RepeatedField $interfaces
      *           A list of interfaces for this external VPN gateway. If your peer-side gateway is an on-premises gateway and non-AWS cloud providers' gateway, at most two interfaces can be provided for an external VPN gateway. If your peer side is an AWS virtual private gateway, four interfaces should be provided for an external VPN gateway.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#externalVpnGateway for externalVpnGateways.
@@ -234,7 +234,7 @@ class ExternalVpnGateway extends \Google\Protobuf\Internal\Message
      * A list of interfaces for this external VPN gateway. If your peer-side gateway is an on-premises gateway and non-AWS cloud providers' gateway, at most two interfaces can be provided for an external VPN gateway. If your peer side is an AWS virtual private gateway, four interfaces should be provided for an external VPN gateway.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ExternalVpnGatewayInterface interfaces = 12073562;</code>
-     * @param \Google\Cloud\Compute\V1\ExternalVpnGatewayInterface[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\ExternalVpnGatewayInterface>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInterfaces($var)

@@ -147,7 +147,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *           `TransferOperation`and the "last modification time" of the object
      *            is less than the value of max_time_elapsed_since_last_modification`.
      *           Objects that do not have a "last modification time" are also transferred.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $include_prefixes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_prefixes
      *           If you specify `include_prefixes`, Storage Transfer Service uses the items
      *           in the `include_prefixes` array to determine which objects to include in a
      *           transfer. Objects must start with one of the matching `include_prefixes`
@@ -169,7 +169,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      *           The max size of `include_prefixes` is 1000.
      *           For more information, see [Filtering objects from
      *           transfers](https://cloud.google.com/storage-transfer/docs/filtering-objects-from-transfers).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $exclude_prefixes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_prefixes
      *           If you specify `exclude_prefixes`, Storage Transfer Service uses the items
      *           in the `exclude_prefixes` array to determine which objects to exclude from
      *           a transfer. Objects must not start with one of the matching
@@ -367,7 +367,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      * transfers](https://cloud.google.com/storage-transfer/docs/filtering-objects-from-transfers).
      *
      * Generated from protobuf field <code>repeated string include_prefixes = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIncludePrefixes($var)
@@ -433,7 +433,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      * transfers](https://cloud.google.com/storage-transfer/docs/filtering-objects-from-transfers).
      *
      * Generated from protobuf field <code>repeated string exclude_prefixes = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExcludePrefixes($var)

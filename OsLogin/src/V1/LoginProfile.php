@@ -43,7 +43,7 @@ class LoginProfile extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. A unique user ID.
-     *     @type \Google\Cloud\OsLogin\Common\PosixAccount[]|\Google\Protobuf\Internal\RepeatedField $posix_accounts
+     *     @type array<\Google\Cloud\OsLogin\Common\PosixAccount>|\Google\Protobuf\Internal\RepeatedField $posix_accounts
      *           The list of POSIX accounts associated with the user.
      *     @type array|\Google\Protobuf\Internal\MapField $ssh_public_keys
      *           A map from SSH public key fingerprint to the associated key object.
@@ -95,7 +95,7 @@ class LoginProfile extends \Google\Protobuf\Internal\Message
      * The list of POSIX accounts associated with the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oslogin.common.PosixAccount posix_accounts = 2;</code>
-     * @param \Google\Cloud\OsLogin\Common\PosixAccount[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\OsLogin\Common\PosixAccount>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPosixAccounts($var)

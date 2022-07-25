@@ -45,7 +45,7 @@ class BatchCreateTensorboardRunsRequest extends \Google\Protobuf\Internal\Messag
      *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
      *           The parent field in the CreateTensorboardRunRequest messages must match
      *           this field.
-     *     @type \Google\Cloud\AIPlatform\V1\CreateTensorboardRunRequest[]|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type array<\Google\Cloud\AIPlatform\V1\CreateTensorboardRunRequest>|\Google\Protobuf\Internal\RepeatedField $requests
      *           Required. The request message specifying the TensorboardRuns to create.
      *           A maximum of 1000 TensorboardRuns can be created in a batch.
      * }
@@ -106,7 +106,7 @@ class BatchCreateTensorboardRunsRequest extends \Google\Protobuf\Internal\Messag
      * A maximum of 1000 TensorboardRuns can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.CreateTensorboardRunRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\AIPlatform\V1\CreateTensorboardRunRequest[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\CreateTensorboardRunRequest>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRequests($var)

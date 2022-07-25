@@ -235,7 +235,7 @@ class SqlOperationType
         self::DELETE_VOLUME => 'DELETE_VOLUME',
         self::RESTORE_VOLUME => 'RESTORE_VOLUME',
         self::INJECT_USER => 'INJECT_USER',
-        self::PBCLONE => 'PBCLONE',
+        self::PBCLONE => 'CLONE',
         self::STOP_REPLICA => 'STOP_REPLICA',
         self::START_REPLICA => 'START_REPLICA',
         self::PROMOTE_REPLICA => 'PROMOTE_REPLICA',
@@ -273,8 +273,12 @@ class SqlOperationType
     {
         $const = __CLASS__ . '::' . strtoupper($name);
         if (!defined($const)) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+            $pbconst =  __CLASS__. '::PB' . strtoupper($name);
+            if (!defined($pbconst)) {
+                throw new UnexpectedValueException(sprintf(
+                        'Enum %s has no value defined for name %s', __CLASS__, $name));
+            }
+            return constant($pbconst);
         }
         return constant($const);
     }

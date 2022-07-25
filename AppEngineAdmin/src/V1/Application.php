@@ -144,7 +144,7 @@ class Application extends \Google\Protobuf\Internal\Message
      *           to the project ID of the Google Cloud Platform project where you want to
      *           deploy your application.
      *           Example: `myapp`.
-     *     @type \Google\Cloud\AppEngine\V1\UrlDispatchRule[]|\Google\Protobuf\Internal\RepeatedField $dispatch_rules
+     *     @type array<\Google\Cloud\AppEngine\V1\UrlDispatchRule>|\Google\Protobuf\Internal\RepeatedField $dispatch_rules
      *           HTTP path dispatch rules for requests to the application that do not
      *           explicitly target a service or version. Rules are order-dependent.
      *           Up to 20 dispatch rules can be supported.
@@ -276,7 +276,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * Up to 20 dispatch rules can be supported.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.UrlDispatchRule dispatch_rules = 3;</code>
-     * @param \Google\Cloud\AppEngine\V1\UrlDispatchRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AppEngine\V1\UrlDispatchRule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDispatchRules($var)

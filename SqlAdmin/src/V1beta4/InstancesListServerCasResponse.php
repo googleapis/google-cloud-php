@@ -38,7 +38,7 @@ class InstancesListServerCasResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Sql\V1beta4\SslCert[]|\Google\Protobuf\Internal\RepeatedField $certs
+     *     @type array<\Google\Cloud\Sql\V1beta4\SslCert>|\Google\Protobuf\Internal\RepeatedField $certs
      *           List of server CA certificates for the instance.
      *     @type string $active_version
      *     @type string $kind
@@ -65,7 +65,7 @@ class InstancesListServerCasResponse extends \Google\Protobuf\Internal\Message
      * List of server CA certificates for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.SslCert certs = 1;</code>
-     * @param \Google\Cloud\Sql\V1beta4\SslCert[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Sql\V1beta4\SslCert>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCerts($var)

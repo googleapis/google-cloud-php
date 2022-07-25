@@ -33,7 +33,7 @@ class ForwardingRulesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\ForwardingRule[]|\Google\Protobuf\Internal\RepeatedField $forwarding_rules
+     *     @type array<\Google\Cloud\Compute\V1\ForwardingRule>|\Google\Protobuf\Internal\RepeatedField $forwarding_rules
      *           A list of forwarding rules contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of forwarding rules when the list is empty.
@@ -59,7 +59,7 @@ class ForwardingRulesScopedList extends \Google\Protobuf\Internal\Message
      * A list of forwarding rules contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ForwardingRule forwarding_rules = 315821365;</code>
-     * @param \Google\Cloud\Compute\V1\ForwardingRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\ForwardingRule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setForwardingRules($var)

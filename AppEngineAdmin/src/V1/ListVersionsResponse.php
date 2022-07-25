@@ -34,7 +34,7 @@ class ListVersionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AppEngine\V1\Version[]|\Google\Protobuf\Internal\RepeatedField $versions
+     *     @type array<\Google\Cloud\AppEngine\V1\Version>|\Google\Protobuf\Internal\RepeatedField $versions
      *           The versions belonging to the requested service.
      *     @type string $next_page_token
      *           Continuation token for fetching the next page of results.
@@ -60,7 +60,7 @@ class ListVersionsResponse extends \Google\Protobuf\Internal\Message
      * The versions belonging to the requested service.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.Version versions = 1;</code>
-     * @param \Google\Cloud\AppEngine\V1\Version[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AppEngine\V1\Version>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVersions($var)

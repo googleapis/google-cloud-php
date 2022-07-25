@@ -54,11 +54,11 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $log_actions
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $log_actions
      *           Specifies the actions to be logged. If empty, no logs are generated.
      *           Not supported for transfers with PosixFilesystem data sources; use
      *           [enable_onprem_gcs_transfer_logs][google.storagetransfer.v1.LoggingConfig.enable_onprem_gcs_transfer_logs] instead.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $log_action_states
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $log_action_states
      *           States in which `log_actions` are logged. If empty, no logs are generated.
      *           Not supported for transfers with PosixFilesystem data sources; use
      *           [enable_onprem_gcs_transfer_logs][google.storagetransfer.v1.LoggingConfig.enable_onprem_gcs_transfer_logs] instead.
@@ -91,7 +91,7 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      * [enable_onprem_gcs_transfer_logs][google.storagetransfer.v1.LoggingConfig.enable_onprem_gcs_transfer_logs] instead.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.LoggingConfig.LoggableAction log_actions = 1;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLogActions($var)
@@ -121,7 +121,7 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      * [enable_onprem_gcs_transfer_logs][google.storagetransfer.v1.LoggingConfig.enable_onprem_gcs_transfer_logs] instead.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.LoggingConfig.LoggableActionState log_action_states = 2;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLogActionStates($var)

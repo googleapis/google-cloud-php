@@ -45,7 +45,7 @@ class TroubleshootIamPolicyResponse extends \Google\Protobuf\Internal\Message
      *     @type int $access
      *           Indicates whether the member has the specified permission for the specified
      *           resource, based on evaluating all of the applicable IAM policies.
-     *     @type \Google\Cloud\PolicyTroubleshooter\V1\ExplainedPolicy[]|\Google\Protobuf\Internal\RepeatedField $explained_policies
+     *     @type array<\Google\Cloud\PolicyTroubleshooter\V1\ExplainedPolicy>|\Google\Protobuf\Internal\RepeatedField $explained_policies
      *           List of IAM policies that were evaluated to check the member's permissions,
      *           with annotations to indicate how each policy contributed to the final
      *           result.
@@ -118,7 +118,7 @@ class TroubleshootIamPolicyResponse extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/iam/help/resource-hierarchy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policytroubleshooter.v1.ExplainedPolicy explained_policies = 2;</code>
-     * @param \Google\Cloud\PolicyTroubleshooter\V1\ExplainedPolicy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\PolicyTroubleshooter\V1\ExplainedPolicy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExplainedPolicies($var)

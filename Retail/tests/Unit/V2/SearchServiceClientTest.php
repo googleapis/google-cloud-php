@@ -73,7 +73,7 @@ class SearchServiceClientTest extends GeneratedTest
     public function searchTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -98,7 +98,7 @@ class SearchServiceClientTest extends GeneratedTest
         // Mock request
         $placement = 'placement1792938725';
         $visitorId = 'visitorId-1832599924';
-        $response = $client->search($placement, $visitorId);
+        $response = $gapicClient->search($placement, $visitorId);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -121,7 +121,7 @@ class SearchServiceClientTest extends GeneratedTest
     public function searchExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -139,8 +139,8 @@ class SearchServiceClientTest extends GeneratedTest
         $placement = 'placement1792938725';
         $visitorId = 'visitorId-1832599924';
         try {
-            $client->search($placement, $visitorId);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->search($placement, $visitorId);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

@@ -51,7 +51,7 @@ class LongRunningRecognizeResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Speech\V1p1beta1\SpeechRecognitionResult[]|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type array<\Google\Cloud\Speech\V1p1beta1\SpeechRecognitionResult>|\Google\Protobuf\Internal\RepeatedField $results
      *           Sequential list of transcription results corresponding to
      *           sequential portions of audio.
      *     @type \Google\Protobuf\Duration $total_billed_time
@@ -84,7 +84,7 @@ class LongRunningRecognizeResponse extends \Google\Protobuf\Internal\Message
      * sequential portions of audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.SpeechRecognitionResult results = 2;</code>
-     * @param \Google\Cloud\Speech\V1p1beta1\SpeechRecognitionResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Speech\V1p1beta1\SpeechRecognitionResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResults($var)

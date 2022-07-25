@@ -52,13 +52,13 @@ class QueryTimeSeriesResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Monitoring\V3\TimeSeriesDescriptor $time_series_descriptor
      *           The descriptor for the time series data.
-     *     @type \Google\Cloud\Monitoring\V3\TimeSeriesData[]|\Google\Protobuf\Internal\RepeatedField $time_series_data
+     *     @type array<\Google\Cloud\Monitoring\V3\TimeSeriesData>|\Google\Protobuf\Internal\RepeatedField $time_series_data
      *           The time series data.
      *     @type string $next_page_token
      *           If there are more results than have been returned, then this field is set
      *           to a non-empty value.  To see the additional results, use that value as
      *           `page_token` in the next call to this method.
-     *     @type \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $partial_errors
+     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_errors
      *           Query execution errors that may have caused the time series data returned
      *           to be incomplete. The available data will be available in the
      *           response.
@@ -120,7 +120,7 @@ class QueryTimeSeriesResponse extends \Google\Protobuf\Internal\Message
      * The time series data.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.TimeSeriesData time_series_data = 9;</code>
-     * @param \Google\Cloud\Monitoring\V3\TimeSeriesData[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Monitoring\V3\TimeSeriesData>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTimeSeriesData($var)
@@ -180,7 +180,7 @@ class QueryTimeSeriesResponse extends \Google\Protobuf\Internal\Message
      * response.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 11;</code>
-     * @param \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPartialErrors($var)

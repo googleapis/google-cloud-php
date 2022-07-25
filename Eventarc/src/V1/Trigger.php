@@ -121,7 +121,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
      *           Output only. The creation time.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last-modified time.
-     *     @type \Google\Cloud\Eventarc\V1\EventFilter[]|\Google\Protobuf\Internal\RepeatedField $event_filters
+     *     @type array<\Google\Cloud\Eventarc\V1\EventFilter>|\Google\Protobuf\Internal\RepeatedField $event_filters
      *           Required. null The list of filters that applies to event attributes. Only events that
      *           match all the provided filters are sent to the destination.
      *     @type string $service_account
@@ -308,7 +308,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
      * match all the provided filters are sent to the destination.
      *
      * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.EventFilter event_filters = 8 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Eventarc\V1\EventFilter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Eventarc\V1\EventFilter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEventFilters($var)

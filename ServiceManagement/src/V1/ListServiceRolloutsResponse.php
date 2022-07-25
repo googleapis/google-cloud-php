@@ -34,7 +34,7 @@ class ListServiceRolloutsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ServiceManagement\V1\Rollout[]|\Google\Protobuf\Internal\RepeatedField $rollouts
+     *     @type array<\Google\Cloud\ServiceManagement\V1\Rollout>|\Google\Protobuf\Internal\RepeatedField $rollouts
      *           The list of rollout resources.
      *     @type string $next_page_token
      *           The token of the next page of results.
@@ -60,7 +60,7 @@ class ListServiceRolloutsResponse extends \Google\Protobuf\Internal\Message
      * The list of rollout resources.
      *
      * Generated from protobuf field <code>repeated .google.api.servicemanagement.v1.Rollout rollouts = 1;</code>
-     * @param \Google\Cloud\ServiceManagement\V1\Rollout[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceManagement\V1\Rollout>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRollouts($var)

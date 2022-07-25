@@ -102,7 +102,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *     @type string $image
      *           Required. URL of the Container image in Google Container Registry or Google Artifact
      *           Registry. More info: https://kubernetes.io/docs/concepts/containers/images
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $command
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $command
      *           Entrypoint array. Not executed within a shell.
      *           The docker image's ENTRYPOINT is used if this is not provided.
      *           Variable references $(VAR_NAME) are expanded using the container's
@@ -112,7 +112,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *           regardless of whether the variable exists or not.
      *           More info:
      *           https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
      *           Arguments to the entrypoint.
      *           The docker image's CMD is used if this is not provided.
      *           Variable references $(VAR_NAME) are expanded using the container's
@@ -122,19 +122,19 @@ class Container extends \Google\Protobuf\Internal\Message
      *           regardless of whether the variable exists or not.
      *           More info:
      *           https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
-     *     @type \Google\Cloud\Run\V2\EnvVar[]|\Google\Protobuf\Internal\RepeatedField $env
+     *     @type array<\Google\Cloud\Run\V2\EnvVar>|\Google\Protobuf\Internal\RepeatedField $env
      *           List of environment variables to set in the container.
      *     @type \Google\Cloud\Run\V2\ResourceRequirements $resources
      *           Compute Resource requirements by this container.
      *           More info:
      *           https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
-     *     @type \Google\Cloud\Run\V2\ContainerPort[]|\Google\Protobuf\Internal\RepeatedField $ports
+     *     @type array<\Google\Cloud\Run\V2\ContainerPort>|\Google\Protobuf\Internal\RepeatedField $ports
      *           List of ports to expose from the container. Only a single port can be
      *           specified. The specified ports must be listening on all interfaces
      *           (0.0.0.0) within the container to be accessible.
      *           If omitted, a port number will be chosen and passed to the container
      *           through the PORT environment variable for the container to listen on.
-     *     @type \Google\Cloud\Run\V2\VolumeMount[]|\Google\Protobuf\Internal\RepeatedField $volume_mounts
+     *     @type array<\Google\Cloud\Run\V2\VolumeMount>|\Google\Protobuf\Internal\RepeatedField $volume_mounts
      *           Volume to mount into the container's filesystem.
      * }
      */
@@ -228,7 +228,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
      *
      * Generated from protobuf field <code>repeated string command = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCommand($var)
@@ -270,7 +270,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
      *
      * Generated from protobuf field <code>repeated string args = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setArgs($var)
@@ -296,7 +296,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * List of environment variables to set in the container.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.EnvVar env = 5;</code>
-     * @param \Google\Cloud\Run\V2\EnvVar[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Run\V2\EnvVar>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEnv($var)
@@ -370,7 +370,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * through the PORT environment variable for the container to listen on.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.ContainerPort ports = 7;</code>
-     * @param \Google\Cloud\Run\V2\ContainerPort[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Run\V2\ContainerPort>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPorts($var)
@@ -396,7 +396,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * Volume to mount into the container's filesystem.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.VolumeMount volume_mounts = 8;</code>
-     * @param \Google\Cloud\Run\V2\VolumeMount[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Run\V2\VolumeMount>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVolumeMounts($var)

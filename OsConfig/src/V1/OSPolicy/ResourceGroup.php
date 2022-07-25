@@ -49,7 +49,7 @@ class ResourceGroup extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\OsConfig\V1\OSPolicy\InventoryFilter[]|\Google\Protobuf\Internal\RepeatedField $inventory_filters
+     *     @type array<\Google\Cloud\OsConfig\V1\OSPolicy\InventoryFilter>|\Google\Protobuf\Internal\RepeatedField $inventory_filters
      *           List of inventory filters for the resource group.
      *           The resources in this resource group are applied to the target VM if it
      *           satisfies at least one of the following inventory filters.
@@ -60,7 +60,7 @@ class ResourceGroup extends \Google\Protobuf\Internal\Message
      *           inventory_filters[1].os_short_name='centos'
      *           If the list is empty, this resource group will be applied to the target
      *           VM unconditionally.
-     *     @type \Google\Cloud\OsConfig\V1\OSPolicy\Resource[]|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type array<\Google\Cloud\OsConfig\V1\OSPolicy\Resource>|\Google\Protobuf\Internal\RepeatedField $resources
      *           Required. List of resources configured for this resource group.
      *           The resources are executed in the exact order specified here.
      * }
@@ -103,7 +103,7 @@ class ResourceGroup extends \Google\Protobuf\Internal\Message
      * VM unconditionally.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicy.InventoryFilter inventory_filters = 1;</code>
-     * @param \Google\Cloud\OsConfig\V1\OSPolicy\InventoryFilter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\OsConfig\V1\OSPolicy\InventoryFilter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInventoryFilters($var)
@@ -131,7 +131,7 @@ class ResourceGroup extends \Google\Protobuf\Internal\Message
      * The resources are executed in the exact order specified here.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicy.Resource resources = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\OsConfig\V1\OSPolicy\Resource[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\OsConfig\V1\OSPolicy\Resource>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResources($var)

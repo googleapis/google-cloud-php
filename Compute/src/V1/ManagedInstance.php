@@ -85,7 +85,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      *           [Output only] The unique identifier for this resource. This field is empty when instance does not exist.
      *     @type string $instance
      *           [Output Only] The URL of the instance. The URL can exist even if the instance has not yet been created.
-     *     @type \Google\Cloud\Compute\V1\ManagedInstanceInstanceHealth[]|\Google\Protobuf\Internal\RepeatedField $instance_health
+     *     @type array<\Google\Cloud\Compute\V1\ManagedInstanceInstanceHealth>|\Google\Protobuf\Internal\RepeatedField $instance_health
      *           [Output Only] Health state of the instance per health-check.
      *     @type string $instance_status
      *           [Output Only] The status of the instance. This field is empty when the instance does not exist.
@@ -230,7 +230,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      * [Output Only] Health state of the instance per health-check.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ManagedInstanceInstanceHealth instance_health = 382667078;</code>
-     * @param \Google\Cloud\Compute\V1\ManagedInstanceInstanceHealth[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\ManagedInstanceInstanceHealth>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstanceHealth($var)

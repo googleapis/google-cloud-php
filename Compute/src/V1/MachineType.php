@@ -118,7 +118,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\Accelerators[]|\Google\Protobuf\Internal\RepeatedField $accelerators
+     *     @type array<\Google\Cloud\Compute\V1\Accelerators>|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           [Output Only] A list of accelerator configurations assigned to this machine type.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
@@ -144,7 +144,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
      *           [Output Only] The amount of physical memory available to the instance, defined in MB.
      *     @type string $name
      *           [Output Only] Name of the resource.
-     *     @type \Google\Cloud\Compute\V1\ScratchDisks[]|\Google\Protobuf\Internal\RepeatedField $scratch_disks
+     *     @type array<\Google\Cloud\Compute\V1\ScratchDisks>|\Google\Protobuf\Internal\RepeatedField $scratch_disks
      *           [Output Only] A list of extended scratch disks assigned to the instance.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
@@ -172,7 +172,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of accelerator configurations assigned to this machine type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Accelerators accelerators = 269577064;</code>
-     * @param \Google\Cloud\Compute\V1\Accelerators[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Accelerators>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAccelerators($var)
@@ -630,7 +630,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of extended scratch disks assigned to the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ScratchDisks scratch_disks = 480778481;</code>
-     * @param \Google\Cloud\Compute\V1\ScratchDisks[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\ScratchDisks>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setScratchDisks($var)

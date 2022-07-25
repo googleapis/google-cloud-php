@@ -39,7 +39,7 @@ class GlobalOrganizationSetPolicyRequest extends \Google\Protobuf\Internal\Messa
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\Binding[]|\Google\Protobuf\Internal\RepeatedField $bindings
+     *     @type array<\Google\Cloud\Compute\V1\Binding>|\Google\Protobuf\Internal\RepeatedField $bindings
      *           Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify bindings.
      *     @type string $etag
      *           Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify the etag.
@@ -67,7 +67,7 @@ class GlobalOrganizationSetPolicyRequest extends \Google\Protobuf\Internal\Messa
      * Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify bindings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 403251854;</code>
-     * @param \Google\Cloud\Compute\V1\Binding[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Binding>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBindings($var)

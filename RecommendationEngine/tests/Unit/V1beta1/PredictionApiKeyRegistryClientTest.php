@@ -75,7 +75,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
     public function createPredictionApiKeyRegistrationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -85,9 +85,9 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $expectedResponse->setApiKey($apiKey);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
+        $formattedParent = $gapicClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
         $predictionApiKeyRegistration = new PredictionApiKeyRegistration();
-        $response = $client->createPredictionApiKeyRegistration($formattedParent, $predictionApiKeyRegistration);
+        $response = $gapicClient->createPredictionApiKeyRegistration($formattedParent, $predictionApiKeyRegistration);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -107,7 +107,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
     public function createPredictionApiKeyRegistrationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -122,11 +122,11 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
+        $formattedParent = $gapicClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
         $predictionApiKeyRegistration = new PredictionApiKeyRegistration();
         try {
-            $client->createPredictionApiKeyRegistration($formattedParent, $predictionApiKeyRegistration);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createPredictionApiKeyRegistration($formattedParent, $predictionApiKeyRegistration);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -143,7 +143,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
     public function deletePredictionApiKeyRegistrationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -151,8 +151,8 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->predictionApiKeyRegistrationName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PREDICTION_API_KEY_REGISTRATION]');
-        $client->deletePredictionApiKeyRegistration($formattedName);
+        $formattedName = $gapicClient->predictionApiKeyRegistrationName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PREDICTION_API_KEY_REGISTRATION]');
+        $gapicClient->deletePredictionApiKeyRegistration($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -169,7 +169,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
     public function deletePredictionApiKeyRegistrationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -184,10 +184,10 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->predictionApiKeyRegistrationName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PREDICTION_API_KEY_REGISTRATION]');
+        $formattedName = $gapicClient->predictionApiKeyRegistrationName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PREDICTION_API_KEY_REGISTRATION]');
         try {
-            $client->deletePredictionApiKeyRegistration($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deletePredictionApiKeyRegistration($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -204,7 +204,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
     public function listPredictionApiKeyRegistrationsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -219,8 +219,8 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         $expectedResponse->setPredictionApiKeyRegistrations($predictionApiKeyRegistrations);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
-        $response = $client->listPredictionApiKeyRegistrations($formattedParent);
+        $formattedParent = $gapicClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
+        $response = $gapicClient->listPredictionApiKeyRegistrations($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -241,7 +241,7 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
     public function listPredictionApiKeyRegistrationsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -256,10 +256,10 @@ class PredictionApiKeyRegistryClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
+        $formattedParent = $gapicClient->eventStoreName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]');
         try {
-            $client->listPredictionApiKeyRegistrations($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listPredictionApiKeyRegistrations($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

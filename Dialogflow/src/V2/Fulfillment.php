@@ -73,7 +73,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      *           Configuration for a generic web service.
      *     @type bool $enabled
      *           Optional. Whether fulfillment is enabled.
-     *     @type \Google\Cloud\Dialogflow\V2\Fulfillment\Feature[]|\Google\Protobuf\Internal\RepeatedField $features
+     *     @type array<\Google\Cloud\Dialogflow\V2\Fulfillment\Feature>|\Google\Protobuf\Internal\RepeatedField $features
      *           Optional. The field defines whether the fulfillment is enabled for certain features.
      * }
      */
@@ -216,7 +216,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      * Optional. The field defines whether the fulfillment is enabled for certain features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Fulfillment.Feature features = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Dialogflow\V2\Fulfillment\Feature[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Fulfillment\Feature>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFeatures($var)

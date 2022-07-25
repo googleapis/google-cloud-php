@@ -38,7 +38,7 @@ class DocumentTransform extends \Google\Protobuf\Internal\Message
      *
      *     @type string $document
      *           The name of the document to transform.
-     *     @type \Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform[]|\Google\Protobuf\Internal\RepeatedField $field_transforms
+     *     @type array<\Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform>|\Google\Protobuf\Internal\RepeatedField $field_transforms
      *           The list of transformations to apply to the fields of the document, in
      *           order.
      *           This must not be empty.
@@ -94,7 +94,7 @@ class DocumentTransform extends \Google\Protobuf\Internal\Message
      * This must not be empty.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.DocumentTransform.FieldTransform field_transforms = 2;</code>
-     * @param \Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFieldTransforms($var)

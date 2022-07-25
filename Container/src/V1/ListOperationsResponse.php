@@ -35,9 +35,9 @@ class ListOperationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Container\V1\Operation[]|\Google\Protobuf\Internal\RepeatedField $operations
+     *     @type array<\Google\Cloud\Container\V1\Operation>|\Google\Protobuf\Internal\RepeatedField $operations
      *           A list of operations in the project in the specified zone.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $missing_zones
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $missing_zones
      *           If any zones are listed here, the list of operations returned
      *           may be missing the operations from those zones.
      * }
@@ -62,7 +62,7 @@ class ListOperationsResponse extends \Google\Protobuf\Internal\Message
      * A list of operations in the project in the specified zone.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.Operation operations = 1;</code>
-     * @param \Google\Cloud\Container\V1\Operation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Container\V1\Operation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOperations($var)
@@ -90,7 +90,7 @@ class ListOperationsResponse extends \Google\Protobuf\Internal\Message
      * may be missing the operations from those zones.
      *
      * Generated from protobuf field <code>repeated string missing_zones = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMissingZones($var)

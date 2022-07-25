@@ -44,7 +44,7 @@ class MaintenancePolicy
 
     private static $valueToName = [
         self::UNDEFINED_MAINTENANCE_POLICY => 'UNDEFINED_MAINTENANCE_POLICY',
-        self::PBDEFAULT => 'PBDEFAULT',
+        self::PBDEFAULT => 'DEFAULT',
         self::MAINTENANCE_POLICY_UNSPECIFIED => 'MAINTENANCE_POLICY_UNSPECIFIED',
         self::MIGRATE_WITHIN_NODE_GROUP => 'MIGRATE_WITHIN_NODE_GROUP',
         self::RESTART_IN_PLACE => 'RESTART_IN_PLACE',
@@ -64,8 +64,12 @@ class MaintenancePolicy
     {
         $const = __CLASS__ . '::' . strtoupper($name);
         if (!defined($const)) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+            $pbconst =  __CLASS__. '::PB' . strtoupper($name);
+            if (!defined($pbconst)) {
+                throw new UnexpectedValueException(sprintf(
+                        'Enum %s has no value defined for name %s', __CLASS__, $name));
+            }
+            return constant($pbconst);
         }
         return constant($const);
     }

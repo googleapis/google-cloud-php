@@ -42,9 +42,9 @@ class AwsServerConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the config.
-     *     @type \Google\Cloud\GkeMultiCloud\V1\AwsK8sVersionInfo[]|\Google\Protobuf\Internal\RepeatedField $valid_versions
+     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AwsK8sVersionInfo>|\Google\Protobuf\Internal\RepeatedField $valid_versions
      *           List of valid Kubernetes versions.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $supported_aws_regions
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_aws_regions
      *           The list of supported AWS regions.
      * }
      */
@@ -94,7 +94,7 @@ class AwsServerConfig extends \Google\Protobuf\Internal\Message
      * List of valid Kubernetes versions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsK8sVersionInfo valid_versions = 2;</code>
-     * @param \Google\Cloud\GkeMultiCloud\V1\AwsK8sVersionInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\GkeMultiCloud\V1\AwsK8sVersionInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValidVersions($var)
@@ -120,7 +120,7 @@ class AwsServerConfig extends \Google\Protobuf\Internal\Message
      * The list of supported AWS regions.
      *
      * Generated from protobuf field <code>repeated string supported_aws_regions = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedAwsRegions($var)

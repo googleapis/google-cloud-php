@@ -42,7 +42,7 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec[]|\Google\Protobuf\Internal\RepeatedField $condition_boost_specs
+     *     @type array<\Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec>|\Google\Protobuf\Internal\RepeatedField $condition_boost_specs
      *           Condition boost specifications. If a product matches multiple conditions
      *           in the specifictions, boost scores from these specifications are all
      *           applied and combined in a non-linear way. Maximum number of
@@ -82,7 +82,7 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
      * specifications is 20.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchRequest.BoostSpec.ConditionBoostSpec condition_boost_specs = 1;</code>
-     * @param \Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConditionBoostSpecs($var)

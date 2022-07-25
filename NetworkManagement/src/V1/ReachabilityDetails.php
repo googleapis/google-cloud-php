@@ -54,7 +54,7 @@ class ReachabilityDetails extends \Google\Protobuf\Internal\Message
      *           The time of the configuration analysis.
      *     @type \Google\Rpc\Status $error
      *           The details of a failure or a cancellation of reachability analysis.
-     *     @type \Google\Cloud\NetworkManagement\V1\Trace[]|\Google\Protobuf\Internal\RepeatedField $traces
+     *     @type array<\Google\Cloud\NetworkManagement\V1\Trace>|\Google\Protobuf\Internal\RepeatedField $traces
      *           Result may contain a list of traces if a test has multiple possible
      *           paths in the network, such as when destination endpoint is a load balancer
      *           with multiple backends.
@@ -182,7 +182,7 @@ class ReachabilityDetails extends \Google\Protobuf\Internal\Message
      * with multiple backends.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.Trace traces = 5;</code>
-     * @param \Google\Cloud\NetworkManagement\V1\Trace[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\NetworkManagement\V1\Trace>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTraces($var)

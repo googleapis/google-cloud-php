@@ -79,7 +79,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      *           The number of seconds that the autoscaler waits before it starts collecting information from a new instance. This prevents the autoscaler from collecting information when the instance is initializing, during which the collected usage would not be reliable. The default time autoscaler waits is 60 seconds. Virtual machine initialization times might vary because of numerous factors. We recommend that you test how long an instance may take to initialize. To do this, create an instance and time the startup process.
      *     @type \Google\Cloud\Compute\V1\AutoscalingPolicyCpuUtilization $cpu_utilization
      *           Defines the CPU utilization policy that allows the autoscaler to scale based on the average CPU utilization of a managed instance group.
-     *     @type \Google\Cloud\Compute\V1\AutoscalingPolicyCustomMetricUtilization[]|\Google\Protobuf\Internal\RepeatedField $custom_metric_utilizations
+     *     @type array<\Google\Cloud\Compute\V1\AutoscalingPolicyCustomMetricUtilization>|\Google\Protobuf\Internal\RepeatedField $custom_metric_utilizations
      *           Configuration parameters of autoscaling based on a custom metric.
      *     @type \Google\Cloud\Compute\V1\AutoscalingPolicyLoadBalancingUtilization $load_balancing_utilization
      *           Configuration parameters of autoscaling based on load balancer.
@@ -187,7 +187,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      * Configuration parameters of autoscaling based on a custom metric.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AutoscalingPolicyCustomMetricUtilization custom_metric_utilizations = 131972850;</code>
-     * @param \Google\Cloud\Compute\V1\AutoscalingPolicyCustomMetricUtilization[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\AutoscalingPolicyCustomMetricUtilization>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCustomMetricUtilizations($var)

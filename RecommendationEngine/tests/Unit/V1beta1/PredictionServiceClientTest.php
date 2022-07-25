@@ -75,7 +75,7 @@ class PredictionServiceClientTest extends GeneratedTest
     public function predictTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -94,7 +94,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->placementName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PLACEMENT]');
+        $formattedName = $gapicClient->placementName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PLACEMENT]');
         $userEvent = new UserEvent();
         $userEventEventType = 'userEventEventType341658661';
         $userEvent->setEventType($userEventEventType);
@@ -102,7 +102,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $userInfoVisitorId = 'userInfoVisitorId-1297088752';
         $userEventUserInfo->setVisitorId($userInfoVisitorId);
         $userEvent->setUserInfo($userEventUserInfo);
-        $response = $client->predict($formattedName, $userEvent);
+        $response = $gapicClient->predict($formattedName, $userEvent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -125,7 +125,7 @@ class PredictionServiceClientTest extends GeneratedTest
     public function predictExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -140,7 +140,7 @@ class PredictionServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->placementName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PLACEMENT]');
+        $formattedName = $gapicClient->placementName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PLACEMENT]');
         $userEvent = new UserEvent();
         $userEventEventType = 'userEventEventType341658661';
         $userEvent->setEventType($userEventEventType);
@@ -149,8 +149,8 @@ class PredictionServiceClientTest extends GeneratedTest
         $userEventUserInfo->setVisitorId($userInfoVisitorId);
         $userEvent->setUserInfo($userEventUserInfo);
         try {
-            $client->predict($formattedName, $userEvent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->predict($formattedName, $userEvent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

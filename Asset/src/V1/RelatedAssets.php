@@ -39,7 +39,7 @@ class RelatedAssets extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Asset\V1\RelationshipAttributes $relationship_attributes
      *           The detailed relationship attributes.
-     *     @type \Google\Cloud\Asset\V1\RelatedAsset[]|\Google\Protobuf\Internal\RepeatedField $assets
+     *     @type array<\Google\Cloud\Asset\V1\RelatedAsset>|\Google\Protobuf\Internal\RepeatedField $assets
      *           The peer resources of the relationship.
      * }
      */
@@ -99,7 +99,7 @@ class RelatedAssets extends \Google\Protobuf\Internal\Message
      * The peer resources of the relationship.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.RelatedAsset assets = 2;</code>
-     * @param \Google\Cloud\Asset\V1\RelatedAsset[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Asset\V1\RelatedAsset>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssets($var)

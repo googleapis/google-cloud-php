@@ -55,7 +55,7 @@ class PrCurve extends \Google\Protobuf\Internal\Message
      *     @type float $area_under_curve
      *           Area under the precision-recall curve. Not to be confused with area under
      *           a receiver operating characteristic (ROC) curve.
-     *     @type \Google\Cloud\DataLabeling\V1beta1\PrCurve\ConfidenceMetricsEntry[]|\Google\Protobuf\Internal\RepeatedField $confidence_metrics_entries
+     *     @type array<\Google\Cloud\DataLabeling\V1beta1\PrCurve\ConfidenceMetricsEntry>|\Google\Protobuf\Internal\RepeatedField $confidence_metrics_entries
      *           Entries that make up the precision-recall graph. Each entry is a "point" on
      *           the graph drawn for a different `confidence_threshold`.
      *     @type float $mean_average_precision
@@ -152,7 +152,7 @@ class PrCurve extends \Google\Protobuf\Internal\Message
      * the graph drawn for a different `confidence_threshold`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.PrCurve.ConfidenceMetricsEntry confidence_metrics_entries = 3;</code>
-     * @param \Google\Cloud\DataLabeling\V1beta1\PrCurve\ConfidenceMetricsEntry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataLabeling\V1beta1\PrCurve\ConfidenceMetricsEntry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConfidenceMetricsEntries($var)

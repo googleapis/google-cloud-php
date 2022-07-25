@@ -29,7 +29,7 @@ class DetectLanguageResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Translate\V3\DetectedLanguage[]|\Google\Protobuf\Internal\RepeatedField $languages
+     *     @type array<\Google\Cloud\Translate\V3\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $languages
      *           The most probable language detected by the Translation API. For each
      *           request, the Translation API will always return only one result.
      * }
@@ -56,7 +56,7 @@ class DetectLanguageResponse extends \Google\Protobuf\Internal\Message
      * request, the Translation API will always return only one result.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.DetectedLanguage languages = 1;</code>
-     * @param \Google\Cloud\Translate\V3\DetectedLanguage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLanguages($var)

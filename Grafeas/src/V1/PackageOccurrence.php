@@ -71,7 +71,7 @@ class PackageOccurrence extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the installed package.
-     *     @type \Grafeas\V1\Location[]|\Google\Protobuf\Internal\RepeatedField $location
+     *     @type array<\Grafeas\V1\Location>|\Google\Protobuf\Internal\RepeatedField $location
      *           All of the places within the filesystem versions of this package
      *           have been found.
      *     @type string $package_type
@@ -138,7 +138,7 @@ class PackageOccurrence extends \Google\Protobuf\Internal\Message
      * have been found.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Location location = 2;</code>
-     * @param \Grafeas\V1\Location[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Grafeas\V1\Location>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLocation($var)

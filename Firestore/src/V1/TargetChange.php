@@ -65,7 +65,7 @@ class TargetChange extends \Google\Protobuf\Internal\Message
      *
      *     @type int $target_change_type
      *           The type of change that occurred.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $target_ids
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $target_ids
      *           The target IDs of targets that have changed.
      *           If empty, the change applies to all targets.
      *           The order of the target IDs is not defined.
@@ -136,7 +136,7 @@ class TargetChange extends \Google\Protobuf\Internal\Message
      * The order of the target IDs is not defined.
      *
      * Generated from protobuf field <code>repeated int32 target_ids = 2;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetIds($var)

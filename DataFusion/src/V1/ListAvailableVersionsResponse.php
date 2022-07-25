@@ -35,7 +35,7 @@ class ListAvailableVersionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DataFusion\V1\Version[]|\Google\Protobuf\Internal\RepeatedField $available_versions
+     *     @type array<\Google\Cloud\DataFusion\V1\Version>|\Google\Protobuf\Internal\RepeatedField $available_versions
      *           Represents a list of versions that are supported.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results or empty if there are no more
@@ -62,7 +62,7 @@ class ListAvailableVersionsResponse extends \Google\Protobuf\Internal\Message
      * Represents a list of versions that are supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datafusion.v1.Version available_versions = 1;</code>
-     * @param \Google\Cloud\DataFusion\V1\Version[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataFusion\V1\Version>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAvailableVersions($var)

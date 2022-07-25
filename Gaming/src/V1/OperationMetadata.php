@@ -99,7 +99,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *           corresponding to `Code.CANCELLED`.
      *     @type string $api_version
      *           Output only. API version used to start the operation.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Output only. List of Locations that could not be reached.
      *     @type array|\Google\Protobuf\Internal\MapField $operation_status
      *           Output only. Operation status for Game Services API operations. Operation status is in
@@ -336,7 +336,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. List of Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

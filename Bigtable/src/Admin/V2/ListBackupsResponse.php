@@ -36,7 +36,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Bigtable\Admin\V2\Backup[]|\Google\Protobuf\Internal\RepeatedField $backups
+     *     @type array<\Google\Cloud\Bigtable\Admin\V2\Backup>|\Google\Protobuf\Internal\RepeatedField $backups
      *           The list of matching backups.
      *     @type string $next_page_token
      *           `next_page_token` can be sent in a subsequent
@@ -64,7 +64,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * The list of matching backups.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.Backup backups = 1;</code>
-     * @param \Google\Cloud\Bigtable\Admin\V2\Backup[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Bigtable\Admin\V2\Backup>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBackups($var)

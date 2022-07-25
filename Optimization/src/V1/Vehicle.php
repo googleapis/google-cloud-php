@@ -322,13 +322,13 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *           when it completes its last `VisitRequest`.
      *           If the shipment model has duration and distance matrices, `end_waypoint`
      *           must not be specified.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $start_tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $start_tags
      *           Specifies tags attached to the start of the vehicle's route.
      *           Empty or duplicate strings are not allowed.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $end_tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $end_tags
      *           Specifies tags attached to the end of the vehicle's route.
      *           Empty or duplicate strings are not allowed.
-     *     @type \Google\Cloud\Optimization\V1\TimeWindow[]|\Google\Protobuf\Internal\RepeatedField $start_time_windows
+     *     @type array<\Google\Cloud\Optimization\V1\TimeWindow>|\Google\Protobuf\Internal\RepeatedField $start_time_windows
      *           Time windows during which the vehicle may depart its start location.
      *           They must be within the global time limits (see
      *           [ShipmentModel.global_*][google.cloud.optimization.v1.ShipmentModel.global_start_time]
@@ -339,7 +339,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *           chronological order.
      *           `cost_per_hour_after_soft_end_time` and `soft_end_time` can only be set if
      *           there is a single time window.
-     *     @type \Google\Cloud\Optimization\V1\TimeWindow[]|\Google\Protobuf\Internal\RepeatedField $end_time_windows
+     *     @type array<\Google\Cloud\Optimization\V1\TimeWindow>|\Google\Protobuf\Internal\RepeatedField $end_time_windows
      *           Time windows during which the vehicle may arrive at its end location.
      *           They must be within the global time limits (see
      *           [ShipmentModel.global_*][google.cloud.optimization.v1.ShipmentModel.global_start_time]
@@ -439,16 +439,16 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *           `RELAX_ALL_AFTER_THRESHOLD`), it is skipped in the response.
      *           If a shipment has a non-empty `allowed_vehicle_indices` field and all of
      *           the allowed vehicles are ignored, it is skipped in the response.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $break_rule_indices
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $break_rule_indices
      *           Deprecated: No longer used.
      *           Indices in the `break_rule` field in the source
      *           [ShipmentModel][]. They correspond to break rules enforced on the vehicle.
      *           As of 2018/03, at most one rule index per vehicle can be specified.
-     *     @type \Google\Cloud\Optimization\V1\CapacityQuantity[]|\Google\Protobuf\Internal\RepeatedField $capacities
+     *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $capacities
      *           Deprecated: Use [Vehicle.load_limits][] instead.
-     *     @type \Google\Cloud\Optimization\V1\CapacityQuantityInterval[]|\Google\Protobuf\Internal\RepeatedField $start_load_intervals
+     *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantityInterval>|\Google\Protobuf\Internal\RepeatedField $start_load_intervals
      *           Deprecated: Use [Vehicle.LoadLimit.start_load_interval][] instead.
-     *     @type \Google\Cloud\Optimization\V1\CapacityQuantityInterval[]|\Google\Protobuf\Internal\RepeatedField $end_load_intervals
+     *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantityInterval>|\Google\Protobuf\Internal\RepeatedField $end_load_intervals
      *           Deprecated: Use [Vehicle.LoadLimit.end_load_interval][] instead.
      * }
      */
@@ -678,7 +678,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * Empty or duplicate strings are not allowed.
      *
      * Generated from protobuf field <code>repeated string start_tags = 7;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStartTags($var)
@@ -706,7 +706,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * Empty or duplicate strings are not allowed.
      *
      * Generated from protobuf field <code>repeated string end_tags = 8;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEndTags($var)
@@ -750,7 +750,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * there is a single time window.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.TimeWindow start_time_windows = 9;</code>
-     * @param \Google\Cloud\Optimization\V1\TimeWindow[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\TimeWindow>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStartTimeWindows($var)
@@ -794,7 +794,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * there is a single time window.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.TimeWindow end_time_windows = 10;</code>
-     * @param \Google\Cloud\Optimization\V1\TimeWindow[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\TimeWindow>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEndTimeWindows($var)
@@ -1386,7 +1386,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * As of 2018/03, at most one rule index per vehicle can be specified.
      *
      * Generated from protobuf field <code>repeated int32 break_rule_indices = 29 [deprecated = true];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */
@@ -1416,7 +1416,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * Deprecated: Use [Vehicle.load_limits][] instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity capacities = 13 [deprecated = true];</code>
-     * @param \Google\Cloud\Optimization\V1\CapacityQuantity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */
@@ -1446,7 +1446,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * Deprecated: Use [Vehicle.LoadLimit.start_load_interval][] instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantityInterval start_load_intervals = 14 [deprecated = true];</code>
-     * @param \Google\Cloud\Optimization\V1\CapacityQuantityInterval[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\CapacityQuantityInterval>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */
@@ -1476,7 +1476,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * Deprecated: Use [Vehicle.LoadLimit.end_load_interval][] instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantityInterval end_load_intervals = 15 [deprecated = true];</code>
-     * @param \Google\Cloud\Optimization\V1\CapacityQuantityInterval[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\CapacityQuantityInterval>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */

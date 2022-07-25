@@ -90,13 +90,13 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $property
      *           Optional. Resource name for a child property. If set, only return changes
      *           made to this property or its child resources.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $resource_type
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $resource_type
      *           Optional. If set, only return changes if they are for a resource that matches at
      *           least one of these types.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $action
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $action
      *           Optional. If set, only return changes that match one or more of these types of
      *           actions.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $actor_email
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $actor_email
      *           Optional. If set, only return changes if they are made by a user in this list.
      *     @type \Google\Protobuf\Timestamp $earliest_change_time
      *           Optional. If set, only return changes made after this time (inclusive).
@@ -190,7 +190,7 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      * least one of these types.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ChangeHistoryResourceType resource_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourceType($var)
@@ -218,7 +218,7 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      * actions.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ActionType action = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAction($var)
@@ -244,7 +244,7 @@ class SearchChangeHistoryEventsRequest extends \Google\Protobuf\Internal\Message
      * Optional. If set, only return changes if they are made by a user in this list.
      *
      * Generated from protobuf field <code>repeated string actor_email = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setActorEmail($var)

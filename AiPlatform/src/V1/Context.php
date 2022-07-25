@@ -122,7 +122,7 @@ class Context extends \Google\Protobuf\Internal\Message
      *           Output only. Timestamp when this Context was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Timestamp when this Context was last updated.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $parent_contexts
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $parent_contexts
      *           Output only. A list of resource names of Contexts that are parents of this Context.
      *           A Context may have at most 10 parent_contexts.
      *     @type string $schema_title
@@ -354,7 +354,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * A Context may have at most 10 parent_contexts.
      *
      * Generated from protobuf field <code>repeated string parent_contexts = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParentContexts($var)

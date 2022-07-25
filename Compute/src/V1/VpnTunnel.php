@@ -167,7 +167,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      *           IKE protocol version to use when establishing the VPN tunnel with the peer VPN gateway. Acceptable IKE versions are 1 or 2. The default version is 2.
      *     @type string $kind
      *           [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $local_traffic_selector
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $local_traffic_selector
      *           Local traffic selector to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges must be disjoint. Only IPv4 is supported.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
@@ -181,7 +181,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      *           IP address of the peer VPN gateway. Only IPv4 is supported.
      *     @type string $region
      *           [Output Only] URL of the region where the VPN tunnel resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $remote_traffic_selector
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $remote_traffic_selector
      *           Remote traffic selectors to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported.
      *     @type string $router
      *           URL of the router resource to be used for dynamic routing.
@@ -438,7 +438,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      * Local traffic selector to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges must be disjoint. Only IPv4 is supported.
      *
      * Generated from protobuf field <code>repeated string local_traffic_selector = 317314613;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLocalTrafficSelector($var)
@@ -680,7 +680,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      * Remote traffic selectors to use when establishing the VPN tunnel with the peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported.
      *
      * Generated from protobuf field <code>repeated string remote_traffic_selector = 358887098;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRemoteTrafficSelector($var)

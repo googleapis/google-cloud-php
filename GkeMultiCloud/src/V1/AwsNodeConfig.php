@@ -117,7 +117,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *           Volumes will be provisioned in the availability zone assigned
      *           to the node pool subnet.
      *           When unspecified, it defaults to 32 GiB with the GP2 volume type.
-     *     @type \Google\Cloud\GkeMultiCloud\V1\NodeTaint[]|\Google\Protobuf\Internal\RepeatedField $taints
+     *     @type array<\Google\Cloud\GkeMultiCloud\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $taints
      *           Optional. The initial taints assigned to nodes of this node pool.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The initial labels assigned to nodes of this node pool. An object
@@ -137,7 +137,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      *           When unspecified, it defaults to `ubuntu`.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AwsSshConfig $ssh_config
      *           Optional. The SSH configuration.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $security_group_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $security_group_ids
      *           Optional. The IDs of additional security groups to add to nodes in this pool. The
      *           manager will automatically create security groups with minimum rules
      *           needed for a functioning cluster.
@@ -240,7 +240,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      * Optional. The initial taints assigned to nodes of this node pool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.NodeTaint taints = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\GkeMultiCloud\V1\NodeTaint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\GkeMultiCloud\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTaints($var)
@@ -426,7 +426,7 @@ class AwsNodeConfig extends \Google\Protobuf\Internal\Message
      * needed for a functioning cluster.
      *
      * Generated from protobuf field <code>repeated string security_group_ids = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSecurityGroupIds($var)

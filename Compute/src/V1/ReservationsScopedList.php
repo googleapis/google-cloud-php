@@ -33,7 +33,7 @@ class ReservationsScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\Reservation[]|\Google\Protobuf\Internal\RepeatedField $reservations
+     *     @type array<\Google\Cloud\Compute\V1\Reservation>|\Google\Protobuf\Internal\RepeatedField $reservations
      *           A list of reservations contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of reservations when the list is empty.
@@ -59,7 +59,7 @@ class ReservationsScopedList extends \Google\Protobuf\Internal\Message
      * A list of reservations contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
-     * @param \Google\Cloud\Compute\V1\Reservation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Reservation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReservations($var)

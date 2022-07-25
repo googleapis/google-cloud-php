@@ -51,7 +51,7 @@ class Exec extends \Google\Protobuf\Internal\Message
      *     @type string $script
      *           An inline script.
      *           The size of the script is limited to 1024 characters.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
      *           Optional arguments to pass to the source during execution.
      *     @type int $interpreter
      *           Required. The script interpreter to use.
@@ -148,7 +148,7 @@ class Exec extends \Google\Protobuf\Internal\Message
      * Optional arguments to pass to the source during execution.
      *
      * Generated from protobuf field <code>repeated string args = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setArgs($var)

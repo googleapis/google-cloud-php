@@ -51,7 +51,7 @@ class BatchRunReportsRequest extends \Google\Protobuf\Internal\Message
      *           RunReportRequest may either be unspecified or consistent with this
      *           property.
      *           Example: properties/1234
-     *     @type \Google\Analytics\Data\V1beta\RunReportRequest[]|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type array<\Google\Analytics\Data\V1beta\RunReportRequest>|\Google\Protobuf\Internal\RepeatedField $requests
      *           Individual requests. Each request has a separate report response. Each
      *           batch request is allowed up to 5 requests.
      * }
@@ -118,7 +118,7 @@ class BatchRunReportsRequest extends \Google\Protobuf\Internal\Message
      * batch request is allowed up to 5 requests.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.RunReportRequest requests = 2;</code>
-     * @param \Google\Analytics\Data\V1beta\RunReportRequest[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\RunReportRequest>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRequests($var)

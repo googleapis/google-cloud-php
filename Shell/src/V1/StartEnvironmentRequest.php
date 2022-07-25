@@ -55,7 +55,7 @@ class StartEnvironmentRequest extends \Google\Protobuf\Internal\Message
      *           valid, the environment will be pre-authenticated with gcloud so that the
      *           user can run gcloud commands in Cloud Shell without having to log in. This
      *           code can be updated later by calling AuthorizeEnvironment.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $public_keys
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $public_keys
      *           Public keys that should be added to the environment before it is started.
      * }
      */
@@ -141,7 +141,7 @@ class StartEnvironmentRequest extends \Google\Protobuf\Internal\Message
      * Public keys that should be added to the environment before it is started.
      *
      * Generated from protobuf field <code>repeated string public_keys = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPublicKeys($var)

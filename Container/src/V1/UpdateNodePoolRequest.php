@@ -199,7 +199,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           The name (project, location, cluster, node pool) of the node pool to
      *           update. Specified in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $locations
      *           The desired list of Google Compute Engine
      *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the
      *           node pool's nodes should be located. Changing the locations for a node pool
@@ -496,7 +496,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * depending on whether locations are being added or removed.
      *
      * Generated from protobuf field <code>repeated string locations = 13;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLocations($var)

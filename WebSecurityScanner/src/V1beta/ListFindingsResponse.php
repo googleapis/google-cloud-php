@@ -35,7 +35,7 @@ class ListFindingsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\WebSecurityScanner\V1beta\Finding[]|\Google\Protobuf\Internal\RepeatedField $findings
+     *     @type array<\Google\Cloud\WebSecurityScanner\V1beta\Finding>|\Google\Protobuf\Internal\RepeatedField $findings
      *           The list of Findings returned.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no
@@ -62,7 +62,7 @@ class ListFindingsResponse extends \Google\Protobuf\Internal\Message
      * The list of Findings returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.websecurityscanner.v1beta.Finding findings = 1;</code>
-     * @param \Google\Cloud\WebSecurityScanner\V1beta\Finding[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\WebSecurityScanner\V1beta\Finding>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFindings($var)

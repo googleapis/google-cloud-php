@@ -35,7 +35,7 @@ class ListDevicesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Iot\V1\Device[]|\Google\Protobuf\Internal\RepeatedField $devices
+     *     @type array<\Google\Cloud\Iot\V1\Device>|\Google\Protobuf\Internal\RepeatedField $devices
      *           The devices that match the request.
      *     @type string $next_page_token
      *           If not empty, indicates that there may be more devices that match the
@@ -62,7 +62,7 @@ class ListDevicesResponse extends \Google\Protobuf\Internal\Message
      * The devices that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iot.v1.Device devices = 1;</code>
-     * @param \Google\Cloud\Iot\V1\Device[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Iot\V1\Device>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDevices($var)

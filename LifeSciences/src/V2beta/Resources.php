@@ -43,10 +43,10 @@ class Resources extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $regions
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $regions
      *           The list of regions allowed for VM allocation. If set, the `zones` field
      *           must not be set.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $zones
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $zones
      *           The list of zones allowed for VM allocation. If set, the `regions` field
      *           must not be set.
      *     @type \Google\Cloud\LifeSciences\V2beta\VirtualMachine $virtual_machine
@@ -75,7 +75,7 @@ class Resources extends \Google\Protobuf\Internal\Message
      * must not be set.
      *
      * Generated from protobuf field <code>repeated string regions = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRegions($var)
@@ -103,7 +103,7 @@ class Resources extends \Google\Protobuf\Internal\Message
      * must not be set.
      *
      * Generated from protobuf field <code>repeated string zones = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setZones($var)

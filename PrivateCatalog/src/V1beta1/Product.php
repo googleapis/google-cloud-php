@@ -382,7 +382,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           additionalProperties: true
      *     @type string $icon_uri
      *           Output only. The icon URI of the product.
-     *     @type \Google\Cloud\PrivateCatalog\V1beta1\AssetReference[]|\Google\Protobuf\Internal\RepeatedField $asset_references
+     *     @type array<\Google\Cloud\PrivateCatalog\V1beta1\AssetReference>|\Google\Protobuf\Internal\RepeatedField $asset_references
      *           Output only. A collection of assets referred by a product.
      *           This field is set for Terraform Products only.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -835,7 +835,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * This field is set for Terraform Products only.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privatecatalog.v1beta1.AssetReference asset_references = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\PrivateCatalog\V1beta1\AssetReference[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\PrivateCatalog\V1beta1\AssetReference>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssetReferences($var)

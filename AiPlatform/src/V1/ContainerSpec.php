@@ -52,12 +52,12 @@ class ContainerSpec extends \Google\Protobuf\Internal\Message
      *     @type string $image_uri
      *           Required. The URI of a container image in the Container Registry that is to be run on
      *           each worker replica.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $command
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $command
      *           The command to be invoked when the container is started.
      *           It overrides the entrypoint instruction in Dockerfile when provided.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
      *           The arguments to be passed when starting the container.
-     *     @type \Google\Cloud\AIPlatform\V1\EnvVar[]|\Google\Protobuf\Internal\RepeatedField $env
+     *     @type array<\Google\Cloud\AIPlatform\V1\EnvVar>|\Google\Protobuf\Internal\RepeatedField $env
      *           Environment variables to be passed to the container.
      *           Maximum limit is 100.
      * }
@@ -112,7 +112,7 @@ class ContainerSpec extends \Google\Protobuf\Internal\Message
      * It overrides the entrypoint instruction in Dockerfile when provided.
      *
      * Generated from protobuf field <code>repeated string command = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCommand($var)
@@ -138,7 +138,7 @@ class ContainerSpec extends \Google\Protobuf\Internal\Message
      * The arguments to be passed when starting the container.
      *
      * Generated from protobuf field <code>repeated string args = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setArgs($var)
@@ -166,7 +166,7 @@ class ContainerSpec extends \Google\Protobuf\Internal\Message
      * Maximum limit is 100.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.EnvVar env = 4;</code>
-     * @param \Google\Cloud\AIPlatform\V1\EnvVar[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\EnvVar>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEnv($var)

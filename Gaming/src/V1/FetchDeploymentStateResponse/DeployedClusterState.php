@@ -37,7 +37,7 @@ class DeployedClusterState extends \Google\Protobuf\Internal\Message
      *
      *     @type string $cluster
      *           The name of the cluster.
-     *     @type \Google\Cloud\Gaming\V1\DeployedFleetDetails[]|\Google\Protobuf\Internal\RepeatedField $fleet_details
+     *     @type array<\Google\Cloud\Gaming\V1\DeployedFleetDetails>|\Google\Protobuf\Internal\RepeatedField $fleet_details
      *           The details about the Agones fleets and autoscalers created in the
      *           game server cluster.
      * }
@@ -90,7 +90,7 @@ class DeployedClusterState extends \Google\Protobuf\Internal\Message
      * game server cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gaming.v1.DeployedFleetDetails fleet_details = 2;</code>
-     * @param \Google\Cloud\Gaming\V1\DeployedFleetDetails[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Gaming\V1\DeployedFleetDetails>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFleetDetails($var)

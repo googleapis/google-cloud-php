@@ -40,11 +40,11 @@ class ListGatewaysResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ApiGateway\V1\Gateway[]|\Google\Protobuf\Internal\RepeatedField $gateways
+     *     @type array<\Google\Cloud\ApiGateway\V1\Gateway>|\Google\Protobuf\Internal\RepeatedField $gateways
      *           Gateways.
      *     @type string $next_page_token
      *           Next page token.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable_locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable_locations
      *           Locations that could not be reached.
      * }
      */
@@ -68,7 +68,7 @@ class ListGatewaysResponse extends \Google\Protobuf\Internal\Message
      * Gateways.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigateway.v1.Gateway gateways = 1;</code>
-     * @param \Google\Cloud\ApiGateway\V1\Gateway[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ApiGateway\V1\Gateway>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGateways($var)
@@ -120,7 +120,7 @@ class ListGatewaysResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable_locations = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachableLocations($var)

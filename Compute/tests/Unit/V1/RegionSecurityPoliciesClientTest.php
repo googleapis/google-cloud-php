@@ -83,7 +83,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -102,7 +102,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $securityPolicy = 'securityPolicy1781695249';
-        $response = $client->delete($project, $region, $securityPolicy);
+        $response = $gapicClient->delete($project, $region, $securityPolicy);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -149,7 +149,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -174,7 +174,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $securityPolicy = 'securityPolicy1781695249';
-        $response = $client->delete($project, $region, $securityPolicy);
+        $response = $gapicClient->delete($project, $region, $securityPolicy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -200,7 +200,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -229,7 +229,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $securityPolicy = 'securityPolicy1781695249';
-        $response = $client->get($project, $region, $securityPolicy);
+        $response = $gapicClient->get($project, $region, $securityPolicy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -251,7 +251,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -270,8 +270,8 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $region = 'region-934795532';
         $securityPolicy = 'securityPolicy1781695249';
         try {
-            $client->get($project, $region, $securityPolicy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($project, $region, $securityPolicy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -294,7 +294,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -313,7 +313,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $securityPolicyResource = new SecurityPolicy();
-        $response = $client->insert($project, $region, $securityPolicyResource);
+        $response = $gapicClient->insert($project, $region, $securityPolicyResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -360,7 +360,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -385,7 +385,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $securityPolicyResource = new SecurityPolicy();
-        $response = $client->insert($project, $region, $securityPolicyResource);
+        $response = $gapicClient->insert($project, $region, $securityPolicyResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -411,7 +411,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -432,7 +432,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->list($project, $region);
+        $response = $gapicClient->list($project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -455,7 +455,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -473,8 +473,8 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->list($project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -497,7 +497,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -517,7 +517,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $region = 'region-934795532';
         $securityPolicy = 'securityPolicy1781695249';
         $securityPolicyResource = new SecurityPolicy();
-        $response = $client->patch($project, $region, $securityPolicy, $securityPolicyResource);
+        $response = $gapicClient->patch($project, $region, $securityPolicy, $securityPolicyResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -566,7 +566,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -592,7 +592,7 @@ class RegionSecurityPoliciesClientTest extends GeneratedTest
         $region = 'region-934795532';
         $securityPolicy = 'securityPolicy1781695249';
         $securityPolicyResource = new SecurityPolicy();
-        $response = $client->patch($project, $region, $securityPolicy, $securityPolicyResource);
+        $response = $gapicClient->patch($project, $region, $securityPolicy, $securityPolicyResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

@@ -34,7 +34,7 @@ class ImportYumArtifactsGcsSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris
      *           Cloud Storage paths URI (e.g., gs://my_bucket//my_object).
      *     @type bool $use_wildcards
      *           Supports URI wildcards for matching multiple objects from a single URI.
@@ -60,7 +60,7 @@ class ImportYumArtifactsGcsSource extends \Google\Protobuf\Internal\Message
      * Cloud Storage paths URI (e.g., gs://my_bucket//my_object).
      *
      * Generated from protobuf field <code>repeated string uris = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUris($var)

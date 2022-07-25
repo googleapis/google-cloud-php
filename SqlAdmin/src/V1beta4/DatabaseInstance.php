@@ -294,7 +294,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *     @type string $master_instance_name
      *           The name of the instance which will act as primary in the replication
      *           setup.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $replica_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_names
      *           The replicas of the instance.
      *     @type \Google\Protobuf\Int64Value $max_disk_size
      *           The maximum disk size of the instance in bytes.
@@ -305,7 +305,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           Monitoring API instead. Please see [this
      *           announcement](https://groups.google.com/d/msg/google-cloud-sql-announce/I_7-F9EBhT0/BtvFtdFeAgAJ)
      *           for details.
-     *     @type \Google\Cloud\Sql\V1beta4\IpMapping[]|\Google\Protobuf\Internal\RepeatedField $ip_addresses
+     *     @type array<\Google\Cloud\Sql\V1beta4\IpMapping>|\Google\Protobuf\Internal\RepeatedField $ip_addresses
      *           The assigned IP addresses for the instance.
      *     @type \Google\Cloud\Sql\V1beta4\SslCert $server_ca_cert
      *           SSL configuration.
@@ -333,7 +333,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           object to determine the database type.
      *     @type string $self_link
      *           The URI of this resource.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $suspension_reason
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $suspension_reason
      *           If the instance state is SUSPENDED, the reason for the suspension.
      *     @type string $connection_name
      *           Connection name of the Cloud SQL instance used in connection strings.
@@ -381,7 +381,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           Output only. The time when the instance was created in
      *           [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
      *           `2012-11-15T16:19:00.094Z`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $available_maintenance_versions
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_maintenance_versions
      *           List all maintenance versions applicable on the instance
      *     @type string $maintenance_version
      *           The current software version on the instance.
@@ -615,7 +615,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * The replicas of the instance.
      *
      * Generated from protobuf field <code>repeated string replica_names = 8;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReplicaNames($var)
@@ -801,7 +801,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * The assigned IP addresses for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.IpMapping ip_addresses = 11;</code>
-     * @param \Google\Cloud\Sql\V1beta4\IpMapping[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Sql\V1beta4\IpMapping>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIpAddresses($var)
@@ -1111,7 +1111,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * If the instance state is SUSPENDED, the reason for the suspension.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.SqlSuspensionReason suspension_reason = 21;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSuspensionReason($var)
@@ -1604,7 +1604,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * List all maintenance versions applicable on the instance
      *
      * Generated from protobuf field <code>repeated string available_maintenance_versions = 41;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAvailableMaintenanceVersions($var)

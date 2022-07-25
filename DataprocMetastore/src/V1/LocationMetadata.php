@@ -30,7 +30,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Metastore\V1\LocationMetadata\HiveMetastoreVersion[]|\Google\Protobuf\Internal\RepeatedField $supported_hive_metastore_versions
+     *     @type array<\Google\Cloud\Metastore\V1\LocationMetadata\HiveMetastoreVersion>|\Google\Protobuf\Internal\RepeatedField $supported_hive_metastore_versions
      *           The versions of Hive Metastore that can be used when creating a new
      *           metastore service in this location. The server guarantees that exactly one
      *           `HiveMetastoreVersion` in the list will set `is_default`.
@@ -60,7 +60,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * `HiveMetastoreVersion` in the list will set `is_default`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1.LocationMetadata.HiveMetastoreVersion supported_hive_metastore_versions = 1;</code>
-     * @param \Google\Cloud\Metastore\V1\LocationMetadata\HiveMetastoreVersion[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Metastore\V1\LocationMetadata\HiveMetastoreVersion>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedHiveMetastoreVersions($var)

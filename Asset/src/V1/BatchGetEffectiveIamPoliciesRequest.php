@@ -55,7 +55,7 @@ class BatchGetEffectiveIamPoliciesRequest extends \Google\Protobuf\Internal\Mess
      *           ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).
      *           To know how to get folder or project id, visit [here
      *           ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
      *           Required. The names refer to the [full_resource_names]
      *           (https://cloud.google.com/asset-inventory/docs/resource-name-format)
      *           of [searchable asset
@@ -131,7 +131,7 @@ class BatchGetEffectiveIamPoliciesRequest extends \Google\Protobuf\Internal\Mess
      * A maximum of 20 resources' effective policies can be retrieved in a batch.
      *
      * Generated from protobuf field <code>repeated string names = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNames($var)

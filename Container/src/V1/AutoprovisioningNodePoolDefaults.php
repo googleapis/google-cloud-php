@@ -103,7 +103,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
      *           Scopes that are used by NAP when creating node pools.
      *     @type string $service_account
      *           The Google Cloud Platform Service Account to be used by the node VMs.
@@ -164,7 +164,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * Scopes that are used by NAP when creating node pools.
      *
      * Generated from protobuf field <code>repeated string oauth_scopes = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOauthScopes($var)

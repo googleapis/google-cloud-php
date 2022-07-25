@@ -42,13 +42,13 @@ class ListCertificatesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Security\PrivateCA\V1\Certificate[]|\Google\Protobuf\Internal\RepeatedField $certificates
+     *     @type array<\Google\Cloud\Security\PrivateCA\V1\Certificate>|\Google\Protobuf\Internal\RepeatedField $certificates
      *           The list of [Certificates][google.cloud.security.privateca.v1.Certificate].
      *     @type string $next_page_token
      *           A token to retrieve next page of results. Pass this value in
      *           [ListCertificatesRequest.next_page_token][] to retrieve the
      *           next page of results.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           A list of locations (e.g. "us-west1") that could not be reached.
      * }
      */
@@ -72,7 +72,7 @@ class ListCertificatesResponse extends \Google\Protobuf\Internal\Message
      * The list of [Certificates][google.cloud.security.privateca.v1.Certificate].
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.Certificate certificates = 1;</code>
-     * @param \Google\Cloud\Security\PrivateCA\V1\Certificate[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Security\PrivateCA\V1\Certificate>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCertificates($var)
@@ -128,7 +128,7 @@ class ListCertificatesResponse extends \Google\Protobuf\Internal\Message
      * A list of locations (e.g. "us-west1") that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

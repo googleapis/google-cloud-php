@@ -67,4 +67,6 @@ class IncompatibilityMode
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(IncompatibilityMode::class, \Google\Cloud\Optimization\V1\ShipmentTypeIncompatibility_IncompatibilityMode::class);
 

@@ -44,7 +44,7 @@ class Facet extends \Google\Protobuf\Internal\Message
      *     @type string $key
      *           The key for this facet. E.g., "colorFamilies" or "price" or
      *           "attributes.attr1".
-     *     @type \Google\Cloud\Retail\V2\SearchResponse\Facet\FacetValue[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<\Google\Cloud\Retail\V2\SearchResponse\Facet\FacetValue>|\Google\Protobuf\Internal\RepeatedField $values
      *           The facet values for this field.
      *     @type bool $dynamic_facet
      *           Whether the facet is dynamically generated.
@@ -98,7 +98,7 @@ class Facet extends \Google\Protobuf\Internal\Message
      * The facet values for this field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchResponse.Facet.FacetValue values = 2;</code>
-     * @param \Google\Cloud\Retail\V2\SearchResponse\Facet\FacetValue[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\SearchResponse\Facet\FacetValue>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

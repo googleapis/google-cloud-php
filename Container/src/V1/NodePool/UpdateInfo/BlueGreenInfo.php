@@ -59,11 +59,11 @@ class BlueGreenInfo extends \Google\Protobuf\Internal\Message
      *
      *     @type int $phase
      *           Current blue-green upgrade phase.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $blue_instance_group_urls
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $blue_instance_group_urls
      *           The resource URLs of the [managed instance groups]
      *           (/compute/docs/instance-groups/creating-groups-of-managed-instances)
      *           associated with blue pool.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $green_instance_group_urls
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $green_instance_group_urls
      *           The resource URLs of the [managed instance groups]
      *           (/compute/docs/instance-groups/creating-groups-of-managed-instances)
      *           associated with green pool.
@@ -124,7 +124,7 @@ class BlueGreenInfo extends \Google\Protobuf\Internal\Message
      * associated with blue pool.
      *
      * Generated from protobuf field <code>repeated string blue_instance_group_urls = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBlueInstanceGroupUrls($var)
@@ -154,7 +154,7 @@ class BlueGreenInfo extends \Google\Protobuf\Internal\Message
      * associated with green pool.
      *
      * Generated from protobuf field <code>repeated string green_instance_group_urls = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGreenInstanceGroupUrls($var)

@@ -312,7 +312,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *           Broadened queries append results to the end of the matching results
      *           list.
      *           Defaults to false.
-     *     @type \Google\Cloud\Talent\V4\HistogramQuery[]|\Google\Protobuf\Internal\RepeatedField $histogram_queries
+     *     @type array<\Google\Cloud\Talent\V4\HistogramQuery>|\Google\Protobuf\Internal\RepeatedField $histogram_queries
      *           An expression specifies a histogram request against matching jobs.
      *           Expression syntax is an aggregation function call with histogram facets and
      *           other options.
@@ -857,7 +857,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *   [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative")])`
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.HistogramQuery histogram_queries = 7;</code>
-     * @param \Google\Cloud\Talent\V4\HistogramQuery[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Talent\V4\HistogramQuery>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHistogramQueries($var)

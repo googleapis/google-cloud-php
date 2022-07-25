@@ -35,7 +35,7 @@ class ListPhraseSetResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Speech\V1\PhraseSet[]|\Google\Protobuf\Internal\RepeatedField $phrase_sets
+     *     @type array<\Google\Cloud\Speech\V1\PhraseSet>|\Google\Protobuf\Internal\RepeatedField $phrase_sets
      *           The phrase set.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class ListPhraseSetResponse extends \Google\Protobuf\Internal\Message
      * The phrase set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.PhraseSet phrase_sets = 1;</code>
-     * @param \Google\Cloud\Speech\V1\PhraseSet[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Speech\V1\PhraseSet>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPhraseSets($var)

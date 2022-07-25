@@ -36,7 +36,7 @@ class QuickReplies extends \Google\Protobuf\Internal\Message
      *
      *     @type string $title
      *           Optional. The title of the collection of quick replies.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $quick_replies
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $quick_replies
      *           Optional. The collection of quick replies.
      * }
      */
@@ -86,7 +86,7 @@ class QuickReplies extends \Google\Protobuf\Internal\Message
      * Optional. The collection of quick replies.
      *
      * Generated from protobuf field <code>repeated string quick_replies = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setQuickReplies($var)

@@ -52,7 +52,7 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
      *           Indication to perform a 'guest aware' snapshot.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels to apply to scheduled snapshots. These can be later modified by the setLabels method. Label values may be empty.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $storage_locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $storage_locations
      *           Cloud Storage bucket storage location of the auto snapshot (regional or multi-regional).
      * }
      */
@@ -174,7 +174,7 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
      * Cloud Storage bucket storage location of the auto snapshot (regional or multi-regional).
      *
      * Generated from protobuf field <code>repeated string storage_locations = 328005274;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStorageLocations($var)

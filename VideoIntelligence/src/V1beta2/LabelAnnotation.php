@@ -51,14 +51,14 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\VideoIntelligence\V1beta2\Entity $entity
      *           Detected entity.
-     *     @type \Google\Cloud\VideoIntelligence\V1beta2\Entity[]|\Google\Protobuf\Internal\RepeatedField $category_entities
+     *     @type array<\Google\Cloud\VideoIntelligence\V1beta2\Entity>|\Google\Protobuf\Internal\RepeatedField $category_entities
      *           Common categories for the detected entity.
      *           E.g. when the label is `Terrier` the category is likely `dog`. And in some
      *           cases there might be more than one categories e.g. `Terrier` could also be
      *           a `pet`.
-     *     @type \Google\Cloud\VideoIntelligence\V1beta2\LabelSegment[]|\Google\Protobuf\Internal\RepeatedField $segments
+     *     @type array<\Google\Cloud\VideoIntelligence\V1beta2\LabelSegment>|\Google\Protobuf\Internal\RepeatedField $segments
      *           All video segments where a label was detected.
-     *     @type \Google\Cloud\VideoIntelligence\V1beta2\LabelFrame[]|\Google\Protobuf\Internal\RepeatedField $frames
+     *     @type array<\Google\Cloud\VideoIntelligence\V1beta2\LabelFrame>|\Google\Protobuf\Internal\RepeatedField $frames
      *           All video frames where a label was detected.
      * }
      */
@@ -124,7 +124,7 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      * a `pet`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta2.Entity category_entities = 2;</code>
-     * @param \Google\Cloud\VideoIntelligence\V1beta2\Entity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VideoIntelligence\V1beta2\Entity>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCategoryEntities($var)
@@ -150,7 +150,7 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      * All video segments where a label was detected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta2.LabelSegment segments = 3;</code>
-     * @param \Google\Cloud\VideoIntelligence\V1beta2\LabelSegment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VideoIntelligence\V1beta2\LabelSegment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSegments($var)
@@ -176,7 +176,7 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      * All video frames where a label was detected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta2.LabelFrame frames = 4;</code>
-     * @param \Google\Cloud\VideoIntelligence\V1beta2\LabelFrame[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VideoIntelligence\V1beta2\LabelFrame>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFrames($var)

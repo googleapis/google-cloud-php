@@ -66,7 +66,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      *     @type string $sys
      *           This is deprecated and has no effect. Do not use.
      *           Check the Sys enum for the list of possible values.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
      *           This is deprecated and has no effect. Do not use.
      * }
      */
@@ -240,7 +240,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated string values = 249928994;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

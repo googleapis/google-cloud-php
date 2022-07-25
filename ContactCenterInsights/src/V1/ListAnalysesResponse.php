@@ -35,7 +35,7 @@ class ListAnalysesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ContactCenterInsights\V1\Analysis[]|\Google\Protobuf\Internal\RepeatedField $analyses
+     *     @type array<\Google\Cloud\ContactCenterInsights\V1\Analysis>|\Google\Protobuf\Internal\RepeatedField $analyses
      *           The analyses that match the request.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class ListAnalysesResponse extends \Google\Protobuf\Internal\Message
      * The analyses that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.Analysis analyses = 1;</code>
-     * @param \Google\Cloud\ContactCenterInsights\V1\Analysis[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ContactCenterInsights\V1\Analysis>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAnalyses($var)

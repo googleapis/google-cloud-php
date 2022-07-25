@@ -72,7 +72,7 @@ class ImageFamilyViewsClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -83,7 +83,7 @@ class ImageFamilyViewsClientTest extends GeneratedTest
         $family = 'family-1281860764';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->get($family, $project, $zone);
+        $response = $gapicClient->get($family, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -105,7 +105,7 @@ class ImageFamilyViewsClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -124,8 +124,8 @@ class ImageFamilyViewsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $zone = 'zone3744684';
         try {
-            $client->get($family, $project, $zone);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($family, $project, $zone);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

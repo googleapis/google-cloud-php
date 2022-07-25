@@ -60,7 +60,7 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
      *           "default" application profile will be used.
      *     @type string $row_key
      *           Required. The key of the row to which the mutation should be applied.
-     *     @type \Google\Cloud\Bigtable\V2\Mutation[]|\Google\Protobuf\Internal\RepeatedField $mutations
+     *     @type array<\Google\Cloud\Bigtable\V2\Mutation>|\Google\Protobuf\Internal\RepeatedField $mutations
      *           Required. Changes to be atomically applied to the specified row. Entries are applied
      *           in order, meaning that earlier mutations can be masked by later ones.
      *           Must contain at least one entry and at most 100000.
@@ -174,7 +174,7 @@ class MutateRowRequest extends \Google\Protobuf\Internal\Message
      * Must contain at least one entry and at most 100000.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Bigtable\V2\Mutation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Bigtable\V2\Mutation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMutations($var)

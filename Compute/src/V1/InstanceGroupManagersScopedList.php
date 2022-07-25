@@ -33,7 +33,7 @@ class InstanceGroupManagersScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\InstanceGroupManager[]|\Google\Protobuf\Internal\RepeatedField $instance_group_managers
+     *     @type array<\Google\Cloud\Compute\V1\InstanceGroupManager>|\Google\Protobuf\Internal\RepeatedField $instance_group_managers
      *           [Output Only] The list of managed instance groups that are contained in the specified project and zone.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] The warning that replaces the list of managed instance groups when the list is empty.
@@ -59,7 +59,7 @@ class InstanceGroupManagersScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] The list of managed instance groups that are contained in the specified project and zone.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroupManager instance_group_managers = 214072592;</code>
-     * @param \Google\Cloud\Compute\V1\InstanceGroupManager[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\InstanceGroupManager>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstanceGroupManagers($var)

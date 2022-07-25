@@ -30,7 +30,7 @@ class BatchUpdateJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Talent\V4\JobResult[]|\Google\Protobuf\Internal\RepeatedField $job_results
+     *     @type array<\Google\Cloud\Talent\V4\JobResult>|\Google\Protobuf\Internal\RepeatedField $job_results
      *           List of job mutation results from a batch update operation. It can change
      *           until operation status is FINISHED, FAILED or CANCELLED.
      * }
@@ -57,7 +57,7 @@ class BatchUpdateJobsResponse extends \Google\Protobuf\Internal\Message
      * until operation status is FINISHED, FAILED or CANCELLED.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.JobResult job_results = 1;</code>
-     * @param \Google\Cloud\Talent\V4\JobResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Talent\V4\JobResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJobResults($var)

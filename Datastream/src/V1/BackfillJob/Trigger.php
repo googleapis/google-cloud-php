@@ -60,4 +60,6 @@ class Trigger
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(Trigger::class, \Google\Cloud\Datastream\V1\BackfillJob_Trigger::class);
 

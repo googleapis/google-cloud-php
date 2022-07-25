@@ -42,7 +42,7 @@ class SearchFeaturesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\Feature[]|\Google\Protobuf\Internal\RepeatedField $features
+     *     @type array<\Google\Cloud\AIPlatform\V1\Feature>|\Google\Protobuf\Internal\RepeatedField $features
      *           The Features matching the request.
      *           Fields returned:
      *            * `name`
@@ -88,7 +88,7 @@ class SearchFeaturesResponse extends \Google\Protobuf\Internal\Message
      *  * `update_time`
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Feature features = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\Feature[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\Feature>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFeatures($var)

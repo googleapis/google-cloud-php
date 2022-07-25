@@ -36,7 +36,7 @@ class ListFoldersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ResourceManager\V3\Folder[]|\Google\Protobuf\Internal\RepeatedField $folders
+     *     @type array<\Google\Cloud\ResourceManager\V3\Folder>|\Google\Protobuf\Internal\RepeatedField $folders
      *           A possibly paginated list of folders that are direct descendants of
      *           the specified parent resource.
      *     @type string $next_page_token
@@ -66,7 +66,7 @@ class ListFoldersResponse extends \Google\Protobuf\Internal\Message
      * the specified parent resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.resourcemanager.v3.Folder folders = 1;</code>
-     * @param \Google\Cloud\ResourceManager\V3\Folder[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ResourceManager\V3\Folder>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFolders($var)

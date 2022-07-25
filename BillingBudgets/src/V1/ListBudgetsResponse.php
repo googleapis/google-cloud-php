@@ -35,7 +35,7 @@ class ListBudgetsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Billing\Budgets\V1\Budget[]|\Google\Protobuf\Internal\RepeatedField $budgets
+     *     @type array<\Google\Cloud\Billing\Budgets\V1\Budget>|\Google\Protobuf\Internal\RepeatedField $budgets
      *           List of the budgets owned by the requested billing account.
      *     @type string $next_page_token
      *           If not empty, indicates that there may be more budgets that match the
@@ -62,7 +62,7 @@ class ListBudgetsResponse extends \Google\Protobuf\Internal\Message
      * List of the budgets owned by the requested billing account.
      *
      * Generated from protobuf field <code>repeated .google.cloud.billing.budgets.v1.Budget budgets = 1;</code>
-     * @param \Google\Cloud\Billing\Budgets\V1\Budget[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Billing\Budgets\V1\Budget>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBudgets($var)

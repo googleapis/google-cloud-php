@@ -29,7 +29,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Metastore\V1alpha\NetworkConfig\Consumer[]|\Google\Protobuf\Internal\RepeatedField $consumers
+     *     @type array<\Google\Cloud\Metastore\V1alpha\NetworkConfig\Consumer>|\Google\Protobuf\Internal\RepeatedField $consumers
      *           Immutable. The consumer-side network configuration for the Dataproc Metastore
      *           instance.
      * }
@@ -56,7 +56,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1alpha.NetworkConfig.Consumer consumers = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param \Google\Cloud\Metastore\V1alpha\NetworkConfig\Consumer[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Metastore\V1alpha\NetworkConfig\Consumer>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConsumers($var)

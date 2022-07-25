@@ -29,7 +29,7 @@ class EvaluationConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dialogflow\V2\InputDataset[]|\Google\Protobuf\Internal\RepeatedField $datasets
+     *     @type array<\Google\Cloud\Dialogflow\V2\InputDataset>|\Google\Protobuf\Internal\RepeatedField $datasets
      *           Required. Datasets used for evaluation.
      *     @type \Google\Cloud\Dialogflow\V2\EvaluationConfig\SmartReplyConfig $smart_reply_config
      *           Configuration for smart reply model evalution.
@@ -57,7 +57,7 @@ class EvaluationConfig extends \Google\Protobuf\Internal\Message
      * Required. Datasets used for evaluation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.InputDataset datasets = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Dialogflow\V2\InputDataset[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\InputDataset>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDatasets($var)

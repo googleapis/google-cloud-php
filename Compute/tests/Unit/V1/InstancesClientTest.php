@@ -115,7 +115,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -136,7 +136,7 @@ class InstancesClientTest extends GeneratedTest
         $networkInterface = 'networkInterface902258792';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->addAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
+        $response = $gapicClient->addAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -187,7 +187,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -214,7 +214,7 @@ class InstancesClientTest extends GeneratedTest
         $networkInterface = 'networkInterface902258792';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->addAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
+        $response = $gapicClient->addAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -246,7 +246,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -266,7 +266,7 @@ class InstancesClientTest extends GeneratedTest
         $instancesAddResourcePoliciesRequestResource = new InstancesAddResourcePoliciesRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->addResourcePolicies($instance, $instancesAddResourcePoliciesRequestResource, $project, $zone);
+        $response = $gapicClient->addResourcePolicies($instance, $instancesAddResourcePoliciesRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -315,7 +315,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -341,7 +341,7 @@ class InstancesClientTest extends GeneratedTest
         $instancesAddResourcePoliciesRequestResource = new InstancesAddResourcePoliciesRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->addResourcePolicies($instance, $instancesAddResourcePoliciesRequestResource, $project, $zone);
+        $response = $gapicClient->addResourcePolicies($instance, $instancesAddResourcePoliciesRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -367,7 +367,7 @@ class InstancesClientTest extends GeneratedTest
     public function aggregatedListTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -388,7 +388,7 @@ class InstancesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->aggregatedList($project);
+        $response = $gapicClient->aggregatedList($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -411,7 +411,7 @@ class InstancesClientTest extends GeneratedTest
     public function aggregatedListExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -428,8 +428,8 @@ class InstancesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->aggregatedList($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->aggregatedList($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -452,7 +452,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -472,7 +472,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->attachDisk($attachedDiskResource, $instance, $project, $zone);
+        $response = $gapicClient->attachDisk($attachedDiskResource, $instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -521,7 +521,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -547,7 +547,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->attachDisk($attachedDiskResource, $instance, $project, $zone);
+        $response = $gapicClient->attachDisk($attachedDiskResource, $instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -579,7 +579,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -598,7 +598,7 @@ class InstancesClientTest extends GeneratedTest
         $bulkInsertInstanceResourceResource = new BulkInsertInstanceResource();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->bulkInsert($bulkInsertInstanceResourceResource, $project, $zone);
+        $response = $gapicClient->bulkInsert($bulkInsertInstanceResourceResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -645,7 +645,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -670,7 +670,7 @@ class InstancesClientTest extends GeneratedTest
         $bulkInsertInstanceResourceResource = new BulkInsertInstanceResource();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->bulkInsert($bulkInsertInstanceResourceResource, $project, $zone);
+        $response = $gapicClient->bulkInsert($bulkInsertInstanceResourceResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -702,7 +702,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -721,7 +721,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->delete($instance, $project, $zone);
+        $response = $gapicClient->delete($instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -768,7 +768,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -793,7 +793,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->delete($instance, $project, $zone);
+        $response = $gapicClient->delete($instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -825,7 +825,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -846,7 +846,7 @@ class InstancesClientTest extends GeneratedTest
         $networkInterface = 'networkInterface902258792';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->deleteAccessConfig($accessConfig, $instance, $networkInterface, $project, $zone);
+        $response = $gapicClient->deleteAccessConfig($accessConfig, $instance, $networkInterface, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -897,7 +897,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -924,7 +924,7 @@ class InstancesClientTest extends GeneratedTest
         $networkInterface = 'networkInterface902258792';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->deleteAccessConfig($accessConfig, $instance, $networkInterface, $project, $zone);
+        $response = $gapicClient->deleteAccessConfig($accessConfig, $instance, $networkInterface, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -956,7 +956,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -976,7 +976,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->detachDisk($deviceName, $instance, $project, $zone);
+        $response = $gapicClient->detachDisk($deviceName, $instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1025,7 +1025,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1051,7 +1051,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->detachDisk($deviceName, $instance, $project, $zone);
+        $response = $gapicClient->detachDisk($deviceName, $instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1077,7 +1077,7 @@ class InstancesClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1136,7 +1136,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->get($instance, $project, $zone);
+        $response = $gapicClient->get($instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1158,7 +1158,7 @@ class InstancesClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1177,8 +1177,8 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $zone = 'zone3744684';
         try {
-            $client->get($instance, $project, $zone);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($instance, $project, $zone);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1195,7 +1195,7 @@ class InstancesClientTest extends GeneratedTest
     public function getEffectiveFirewallsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1207,7 +1207,7 @@ class InstancesClientTest extends GeneratedTest
         $networkInterface = 'networkInterface902258792';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->getEffectiveFirewalls($instance, $networkInterface, $project, $zone);
+        $response = $gapicClient->getEffectiveFirewalls($instance, $networkInterface, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1231,7 +1231,7 @@ class InstancesClientTest extends GeneratedTest
     public function getEffectiveFirewallsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1251,8 +1251,8 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $zone = 'zone3744684';
         try {
-            $client->getEffectiveFirewalls($instance, $networkInterface, $project, $zone);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getEffectiveFirewalls($instance, $networkInterface, $project, $zone);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1269,7 +1269,7 @@ class InstancesClientTest extends GeneratedTest
     public function getGuestAttributesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1290,7 +1290,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->getGuestAttributes($instance, $project, $zone);
+        $response = $gapicClient->getGuestAttributes($instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1312,7 +1312,7 @@ class InstancesClientTest extends GeneratedTest
     public function getGuestAttributesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1331,8 +1331,8 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $zone = 'zone3744684';
         try {
-            $client->getGuestAttributes($instance, $project, $zone);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getGuestAttributes($instance, $project, $zone);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1349,7 +1349,7 @@ class InstancesClientTest extends GeneratedTest
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1366,7 +1366,7 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $resource = 'resource-341064690';
         $zone = 'zone3744684';
-        $response = $client->getIamPolicy($project, $resource, $zone);
+        $response = $gapicClient->getIamPolicy($project, $resource, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1388,7 +1388,7 @@ class InstancesClientTest extends GeneratedTest
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1407,8 +1407,8 @@ class InstancesClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $zone = 'zone3744684';
         try {
-            $client->getIamPolicy($project, $resource, $zone);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIamPolicy($project, $resource, $zone);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1425,7 +1425,7 @@ class InstancesClientTest extends GeneratedTest
     public function getScreenshotTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1440,7 +1440,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->getScreenshot($instance, $project, $zone);
+        $response = $gapicClient->getScreenshot($instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1462,7 +1462,7 @@ class InstancesClientTest extends GeneratedTest
     public function getScreenshotExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1481,8 +1481,8 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $zone = 'zone3744684';
         try {
-            $client->getScreenshot($instance, $project, $zone);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getScreenshot($instance, $project, $zone);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1499,7 +1499,7 @@ class InstancesClientTest extends GeneratedTest
     public function getSerialPortOutputTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1520,7 +1520,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->getSerialPortOutput($instance, $project, $zone);
+        $response = $gapicClient->getSerialPortOutput($instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1542,7 +1542,7 @@ class InstancesClientTest extends GeneratedTest
     public function getSerialPortOutputExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1561,8 +1561,8 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $zone = 'zone3744684';
         try {
-            $client->getSerialPortOutput($instance, $project, $zone);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getSerialPortOutput($instance, $project, $zone);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1579,7 +1579,7 @@ class InstancesClientTest extends GeneratedTest
     public function getShieldedInstanceIdentityTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1592,7 +1592,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->getShieldedInstanceIdentity($instance, $project, $zone);
+        $response = $gapicClient->getShieldedInstanceIdentity($instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1614,7 +1614,7 @@ class InstancesClientTest extends GeneratedTest
     public function getShieldedInstanceIdentityExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1633,8 +1633,8 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $zone = 'zone3744684';
         try {
-            $client->getShieldedInstanceIdentity($instance, $project, $zone);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getShieldedInstanceIdentity($instance, $project, $zone);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1657,7 +1657,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1676,7 +1676,7 @@ class InstancesClientTest extends GeneratedTest
         $instanceResource = new Instance();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->insert($instanceResource, $project, $zone);
+        $response = $gapicClient->insert($instanceResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1723,7 +1723,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1748,7 +1748,7 @@ class InstancesClientTest extends GeneratedTest
         $instanceResource = new Instance();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->insert($instanceResource, $project, $zone);
+        $response = $gapicClient->insert($instanceResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1774,7 +1774,7 @@ class InstancesClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1797,7 +1797,7 @@ class InstancesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->list($project, $zone);
+        $response = $gapicClient->list($project, $zone);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1820,7 +1820,7 @@ class InstancesClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1838,8 +1838,8 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $zone = 'zone3744684';
         try {
-            $client->list($project, $zone);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project, $zone);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1856,7 +1856,7 @@ class InstancesClientTest extends GeneratedTest
     public function listReferrersTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1880,7 +1880,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->listReferrers($instance, $project, $zone);
+        $response = $gapicClient->listReferrers($instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1905,7 +1905,7 @@ class InstancesClientTest extends GeneratedTest
     public function listReferrersExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1924,8 +1924,8 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $zone = 'zone3744684';
         try {
-            $client->listReferrers($instance, $project, $zone);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listReferrers($instance, $project, $zone);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1948,7 +1948,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1968,7 +1968,7 @@ class InstancesClientTest extends GeneratedTest
         $instancesRemoveResourcePoliciesRequestResource = new InstancesRemoveResourcePoliciesRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->removeResourcePolicies($instance, $instancesRemoveResourcePoliciesRequestResource, $project, $zone);
+        $response = $gapicClient->removeResourcePolicies($instance, $instancesRemoveResourcePoliciesRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -2017,7 +2017,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2043,7 +2043,7 @@ class InstancesClientTest extends GeneratedTest
         $instancesRemoveResourcePoliciesRequestResource = new InstancesRemoveResourcePoliciesRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->removeResourcePolicies($instance, $instancesRemoveResourcePoliciesRequestResource, $project, $zone);
+        $response = $gapicClient->removeResourcePolicies($instance, $instancesRemoveResourcePoliciesRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -2075,7 +2075,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2094,7 +2094,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->reset($instance, $project, $zone);
+        $response = $gapicClient->reset($instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -2141,7 +2141,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2166,7 +2166,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->reset($instance, $project, $zone);
+        $response = $gapicClient->reset($instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -2198,7 +2198,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2217,7 +2217,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->resume($instance, $project, $zone);
+        $response = $gapicClient->resume($instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -2264,7 +2264,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2289,7 +2289,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->resume($instance, $project, $zone);
+        $response = $gapicClient->resume($instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -2315,7 +2315,7 @@ class InstancesClientTest extends GeneratedTest
     public function sendDiagnosticInterruptTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2326,7 +2326,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->sendDiagnosticInterrupt($instance, $project, $zone);
+        $response = $gapicClient->sendDiagnosticInterrupt($instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2348,7 +2348,7 @@ class InstancesClientTest extends GeneratedTest
     public function sendDiagnosticInterruptExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2367,8 +2367,8 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $zone = 'zone3744684';
         try {
-            $client->sendDiagnosticInterrupt($instance, $project, $zone);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->sendDiagnosticInterrupt($instance, $project, $zone);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2391,7 +2391,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2410,7 +2410,7 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $resource = 'resource-341064690';
         $zone = 'zone3744684';
-        $response = $client->setDeletionProtection($project, $resource, $zone);
+        $response = $gapicClient->setDeletionProtection($project, $resource, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -2457,7 +2457,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2482,7 +2482,7 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $resource = 'resource-341064690';
         $zone = 'zone3744684';
-        $response = $client->setDeletionProtection($project, $resource, $zone);
+        $response = $gapicClient->setDeletionProtection($project, $resource, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -2514,7 +2514,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2535,7 +2535,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->setDiskAutoDelete($autoDelete, $deviceName, $instance, $project, $zone);
+        $response = $gapicClient->setDiskAutoDelete($autoDelete, $deviceName, $instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -2586,7 +2586,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2613,7 +2613,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->setDiskAutoDelete($autoDelete, $deviceName, $instance, $project, $zone);
+        $response = $gapicClient->setDiskAutoDelete($autoDelete, $deviceName, $instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -2639,7 +2639,7 @@ class InstancesClientTest extends GeneratedTest
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2657,7 +2657,7 @@ class InstancesClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $zone = 'zone3744684';
         $zoneSetPolicyRequestResource = new ZoneSetPolicyRequest();
-        $response = $client->setIamPolicy($project, $resource, $zone, $zoneSetPolicyRequestResource);
+        $response = $gapicClient->setIamPolicy($project, $resource, $zone, $zoneSetPolicyRequestResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2681,7 +2681,7 @@ class InstancesClientTest extends GeneratedTest
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2701,8 +2701,8 @@ class InstancesClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $zoneSetPolicyRequestResource = new ZoneSetPolicyRequest();
         try {
-            $client->setIamPolicy($project, $resource, $zone, $zoneSetPolicyRequestResource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setIamPolicy($project, $resource, $zone, $zoneSetPolicyRequestResource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2725,7 +2725,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2745,7 +2745,7 @@ class InstancesClientTest extends GeneratedTest
         $instancesSetLabelsRequestResource = new InstancesSetLabelsRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->setLabels($instance, $instancesSetLabelsRequestResource, $project, $zone);
+        $response = $gapicClient->setLabels($instance, $instancesSetLabelsRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -2794,7 +2794,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2820,7 +2820,7 @@ class InstancesClientTest extends GeneratedTest
         $instancesSetLabelsRequestResource = new InstancesSetLabelsRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->setLabels($instance, $instancesSetLabelsRequestResource, $project, $zone);
+        $response = $gapicClient->setLabels($instance, $instancesSetLabelsRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -2852,7 +2852,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2872,7 +2872,7 @@ class InstancesClientTest extends GeneratedTest
         $instancesSetMachineResourcesRequestResource = new InstancesSetMachineResourcesRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->setMachineResources($instance, $instancesSetMachineResourcesRequestResource, $project, $zone);
+        $response = $gapicClient->setMachineResources($instance, $instancesSetMachineResourcesRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -2921,7 +2921,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2947,7 +2947,7 @@ class InstancesClientTest extends GeneratedTest
         $instancesSetMachineResourcesRequestResource = new InstancesSetMachineResourcesRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->setMachineResources($instance, $instancesSetMachineResourcesRequestResource, $project, $zone);
+        $response = $gapicClient->setMachineResources($instance, $instancesSetMachineResourcesRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -2979,7 +2979,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2999,7 +2999,7 @@ class InstancesClientTest extends GeneratedTest
         $instancesSetMachineTypeRequestResource = new InstancesSetMachineTypeRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->setMachineType($instance, $instancesSetMachineTypeRequestResource, $project, $zone);
+        $response = $gapicClient->setMachineType($instance, $instancesSetMachineTypeRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -3048,7 +3048,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3074,7 +3074,7 @@ class InstancesClientTest extends GeneratedTest
         $instancesSetMachineTypeRequestResource = new InstancesSetMachineTypeRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->setMachineType($instance, $instancesSetMachineTypeRequestResource, $project, $zone);
+        $response = $gapicClient->setMachineType($instance, $instancesSetMachineTypeRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -3106,7 +3106,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3126,7 +3126,7 @@ class InstancesClientTest extends GeneratedTest
         $metadataResource = new Metadata();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->setMetadata($instance, $metadataResource, $project, $zone);
+        $response = $gapicClient->setMetadata($instance, $metadataResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -3175,7 +3175,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3201,7 +3201,7 @@ class InstancesClientTest extends GeneratedTest
         $metadataResource = new Metadata();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->setMetadata($instance, $metadataResource, $project, $zone);
+        $response = $gapicClient->setMetadata($instance, $metadataResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -3233,7 +3233,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3253,7 +3253,7 @@ class InstancesClientTest extends GeneratedTest
         $instancesSetMinCpuPlatformRequestResource = new InstancesSetMinCpuPlatformRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->setMinCpuPlatform($instance, $instancesSetMinCpuPlatformRequestResource, $project, $zone);
+        $response = $gapicClient->setMinCpuPlatform($instance, $instancesSetMinCpuPlatformRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -3302,7 +3302,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3328,7 +3328,7 @@ class InstancesClientTest extends GeneratedTest
         $instancesSetMinCpuPlatformRequestResource = new InstancesSetMinCpuPlatformRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->setMinCpuPlatform($instance, $instancesSetMinCpuPlatformRequestResource, $project, $zone);
+        $response = $gapicClient->setMinCpuPlatform($instance, $instancesSetMinCpuPlatformRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -3360,7 +3360,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3380,7 +3380,7 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $schedulingResource = new Scheduling();
         $zone = 'zone3744684';
-        $response = $client->setScheduling($instance, $project, $schedulingResource, $zone);
+        $response = $gapicClient->setScheduling($instance, $project, $schedulingResource, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -3429,7 +3429,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3455,7 +3455,7 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $schedulingResource = new Scheduling();
         $zone = 'zone3744684';
-        $response = $client->setScheduling($instance, $project, $schedulingResource, $zone);
+        $response = $gapicClient->setScheduling($instance, $project, $schedulingResource, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -3487,7 +3487,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3507,7 +3507,7 @@ class InstancesClientTest extends GeneratedTest
         $instancesSetServiceAccountRequestResource = new InstancesSetServiceAccountRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->setServiceAccount($instance, $instancesSetServiceAccountRequestResource, $project, $zone);
+        $response = $gapicClient->setServiceAccount($instance, $instancesSetServiceAccountRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -3556,7 +3556,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3582,7 +3582,7 @@ class InstancesClientTest extends GeneratedTest
         $instancesSetServiceAccountRequestResource = new InstancesSetServiceAccountRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->setServiceAccount($instance, $instancesSetServiceAccountRequestResource, $project, $zone);
+        $response = $gapicClient->setServiceAccount($instance, $instancesSetServiceAccountRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -3614,7 +3614,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3634,7 +3634,7 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $shieldedInstanceIntegrityPolicyResource = new ShieldedInstanceIntegrityPolicy();
         $zone = 'zone3744684';
-        $response = $client->setShieldedInstanceIntegrityPolicy($instance, $project, $shieldedInstanceIntegrityPolicyResource, $zone);
+        $response = $gapicClient->setShieldedInstanceIntegrityPolicy($instance, $project, $shieldedInstanceIntegrityPolicyResource, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -3683,7 +3683,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3709,7 +3709,7 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $shieldedInstanceIntegrityPolicyResource = new ShieldedInstanceIntegrityPolicy();
         $zone = 'zone3744684';
-        $response = $client->setShieldedInstanceIntegrityPolicy($instance, $project, $shieldedInstanceIntegrityPolicyResource, $zone);
+        $response = $gapicClient->setShieldedInstanceIntegrityPolicy($instance, $project, $shieldedInstanceIntegrityPolicyResource, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -3741,7 +3741,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3761,7 +3761,7 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $tagsResource = new Tags();
         $zone = 'zone3744684';
-        $response = $client->setTags($instance, $project, $tagsResource, $zone);
+        $response = $gapicClient->setTags($instance, $project, $tagsResource, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -3810,7 +3810,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3836,7 +3836,7 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $tagsResource = new Tags();
         $zone = 'zone3744684';
-        $response = $client->setTags($instance, $project, $tagsResource, $zone);
+        $response = $gapicClient->setTags($instance, $project, $tagsResource, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -3868,7 +3868,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3887,7 +3887,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->simulateMaintenanceEvent($instance, $project, $zone);
+        $response = $gapicClient->simulateMaintenanceEvent($instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -3934,7 +3934,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3959,7 +3959,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->simulateMaintenanceEvent($instance, $project, $zone);
+        $response = $gapicClient->simulateMaintenanceEvent($instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -3991,7 +3991,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4010,7 +4010,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->start($instance, $project, $zone);
+        $response = $gapicClient->start($instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -4057,7 +4057,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4082,7 +4082,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->start($instance, $project, $zone);
+        $response = $gapicClient->start($instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -4114,7 +4114,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4134,7 +4134,7 @@ class InstancesClientTest extends GeneratedTest
         $instancesStartWithEncryptionKeyRequestResource = new InstancesStartWithEncryptionKeyRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->startWithEncryptionKey($instance, $instancesStartWithEncryptionKeyRequestResource, $project, $zone);
+        $response = $gapicClient->startWithEncryptionKey($instance, $instancesStartWithEncryptionKeyRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -4183,7 +4183,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4209,7 +4209,7 @@ class InstancesClientTest extends GeneratedTest
         $instancesStartWithEncryptionKeyRequestResource = new InstancesStartWithEncryptionKeyRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->startWithEncryptionKey($instance, $instancesStartWithEncryptionKeyRequestResource, $project, $zone);
+        $response = $gapicClient->startWithEncryptionKey($instance, $instancesStartWithEncryptionKeyRequestResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -4241,7 +4241,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4260,7 +4260,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->stop($instance, $project, $zone);
+        $response = $gapicClient->stop($instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -4307,7 +4307,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4332,7 +4332,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->stop($instance, $project, $zone);
+        $response = $gapicClient->stop($instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -4364,7 +4364,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4383,7 +4383,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->suspend($instance, $project, $zone);
+        $response = $gapicClient->suspend($instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -4430,7 +4430,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4455,7 +4455,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->suspend($instance, $project, $zone);
+        $response = $gapicClient->suspend($instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -4481,7 +4481,7 @@ class InstancesClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -4493,7 +4493,7 @@ class InstancesClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
         $zone = 'zone3744684';
-        $response = $client->testIamPermissions($project, $resource, $testPermissionsRequestResource, $zone);
+        $response = $gapicClient->testIamPermissions($project, $resource, $testPermissionsRequestResource, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -4517,7 +4517,7 @@ class InstancesClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -4537,8 +4537,8 @@ class InstancesClientTest extends GeneratedTest
         $testPermissionsRequestResource = new TestPermissionsRequest();
         $zone = 'zone3744684';
         try {
-            $client->testIamPermissions($project, $resource, $testPermissionsRequestResource, $zone);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->testIamPermissions($project, $resource, $testPermissionsRequestResource, $zone);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -4561,7 +4561,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4581,7 +4581,7 @@ class InstancesClientTest extends GeneratedTest
         $instanceResource = new Instance();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->update($instance, $instanceResource, $project, $zone);
+        $response = $gapicClient->update($instance, $instanceResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -4630,7 +4630,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4656,7 +4656,7 @@ class InstancesClientTest extends GeneratedTest
         $instanceResource = new Instance();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->update($instance, $instanceResource, $project, $zone);
+        $response = $gapicClient->update($instance, $instanceResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -4688,7 +4688,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4709,7 +4709,7 @@ class InstancesClientTest extends GeneratedTest
         $networkInterface = 'networkInterface902258792';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->updateAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
+        $response = $gapicClient->updateAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -4760,7 +4760,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4787,7 +4787,7 @@ class InstancesClientTest extends GeneratedTest
         $networkInterface = 'networkInterface902258792';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->updateAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
+        $response = $gapicClient->updateAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -4819,7 +4819,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4839,7 +4839,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->updateDisplayDevice($displayDeviceResource, $instance, $project, $zone);
+        $response = $gapicClient->updateDisplayDevice($displayDeviceResource, $instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -4888,7 +4888,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4914,7 +4914,7 @@ class InstancesClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->updateDisplayDevice($displayDeviceResource, $instance, $project, $zone);
+        $response = $gapicClient->updateDisplayDevice($displayDeviceResource, $instance, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -4946,7 +4946,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4967,7 +4967,7 @@ class InstancesClientTest extends GeneratedTest
         $networkInterfaceResource = new NetworkInterface();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->updateNetworkInterface($instance, $networkInterface, $networkInterfaceResource, $project, $zone);
+        $response = $gapicClient->updateNetworkInterface($instance, $networkInterface, $networkInterfaceResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -5018,7 +5018,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -5045,7 +5045,7 @@ class InstancesClientTest extends GeneratedTest
         $networkInterfaceResource = new NetworkInterface();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->updateNetworkInterface($instance, $networkInterface, $networkInterfaceResource, $project, $zone);
+        $response = $gapicClient->updateNetworkInterface($instance, $networkInterface, $networkInterfaceResource, $project, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -5077,7 +5077,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -5097,7 +5097,7 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $shieldedInstanceConfigResource = new ShieldedInstanceConfig();
         $zone = 'zone3744684';
-        $response = $client->updateShieldedInstanceConfig($instance, $project, $shieldedInstanceConfigResource, $zone);
+        $response = $gapicClient->updateShieldedInstanceConfig($instance, $project, $shieldedInstanceConfigResource, $zone);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -5146,7 +5146,7 @@ class InstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -5172,7 +5172,7 @@ class InstancesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $shieldedInstanceConfigResource = new ShieldedInstanceConfig();
         $zone = 'zone3744684';
-        $response = $client->updateShieldedInstanceConfig($instance, $project, $shieldedInstanceConfigResource, $zone);
+        $response = $gapicClient->updateShieldedInstanceConfig($instance, $project, $shieldedInstanceConfigResource, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

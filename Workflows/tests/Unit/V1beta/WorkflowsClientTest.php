@@ -86,7 +86,7 @@ class WorkflowsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -116,10 +116,10 @@ class WorkflowsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $workflow = new Workflow();
         $workflowId = 'workflowId1712917915';
-        $response = $client->createWorkflow($formattedParent, $workflow, $workflowId);
+        $response = $gapicClient->createWorkflow($formattedParent, $workflow, $workflowId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -166,7 +166,7 @@ class WorkflowsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -188,10 +188,10 @@ class WorkflowsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $workflow = new Workflow();
         $workflowId = 'workflowId1712917915';
-        $response = $client->createWorkflow($formattedParent, $workflow, $workflowId);
+        $response = $gapicClient->createWorkflow($formattedParent, $workflow, $workflowId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -225,7 +225,7 @@ class WorkflowsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -245,8 +245,8 @@ class WorkflowsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
-        $response = $client->deleteWorkflow($formattedName);
+        $formattedName = $gapicClient->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
+        $response = $gapicClient->deleteWorkflow($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -289,7 +289,7 @@ class WorkflowsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -311,8 +311,8 @@ class WorkflowsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
-        $response = $client->deleteWorkflow($formattedName);
+        $formattedName = $gapicClient->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
+        $response = $gapicClient->deleteWorkflow($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -340,7 +340,7 @@ class WorkflowsClientTest extends GeneratedTest
     public function getWorkflowTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -358,8 +358,8 @@ class WorkflowsClientTest extends GeneratedTest
         $expectedResponse->setSourceContents($sourceContents);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
-        $response = $client->getWorkflow($formattedName);
+        $formattedName = $gapicClient->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
+        $response = $gapicClient->getWorkflow($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -377,7 +377,7 @@ class WorkflowsClientTest extends GeneratedTest
     public function getWorkflowExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -392,10 +392,10 @@ class WorkflowsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
+        $formattedName = $gapicClient->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
         try {
-            $client->getWorkflow($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getWorkflow($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -412,7 +412,7 @@ class WorkflowsClientTest extends GeneratedTest
     public function listWorkflowsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -427,8 +427,8 @@ class WorkflowsClientTest extends GeneratedTest
         $expectedResponse->setWorkflows($workflows);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listWorkflows($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listWorkflows($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -449,7 +449,7 @@ class WorkflowsClientTest extends GeneratedTest
     public function listWorkflowsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -464,10 +464,10 @@ class WorkflowsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listWorkflows($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listWorkflows($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -490,7 +490,7 @@ class WorkflowsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -521,7 +521,7 @@ class WorkflowsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $workflow = new Workflow();
-        $response = $client->updateWorkflow($workflow);
+        $response = $gapicClient->updateWorkflow($workflow);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -564,7 +564,7 @@ class WorkflowsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -587,7 +587,7 @@ class WorkflowsClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $workflow = new Workflow();
-        $response = $client->updateWorkflow($workflow);
+        $response = $gapicClient->updateWorkflow($workflow);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

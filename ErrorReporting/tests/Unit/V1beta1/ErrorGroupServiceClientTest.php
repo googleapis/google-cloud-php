@@ -72,7 +72,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
     public function getGroupTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -84,8 +84,8 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $expectedResponse->setGroupId($groupId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedGroupName = $client->errorGroupName('[PROJECT]', '[GROUP]');
-        $response = $client->getGroup($formattedGroupName);
+        $formattedGroupName = $gapicClient->errorGroupName('[PROJECT]', '[GROUP]');
+        $response = $gapicClient->getGroup($formattedGroupName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -103,7 +103,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
     public function getGroupExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -118,10 +118,10 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedGroupName = $client->errorGroupName('[PROJECT]', '[GROUP]');
+        $formattedGroupName = $gapicClient->errorGroupName('[PROJECT]', '[GROUP]');
         try {
-            $client->getGroup($formattedGroupName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getGroup($formattedGroupName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -138,7 +138,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
     public function updateGroupTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -151,7 +151,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $group = new ErrorGroup();
-        $response = $client->updateGroup($group);
+        $response = $gapicClient->updateGroup($group);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -169,7 +169,7 @@ class ErrorGroupServiceClientTest extends GeneratedTest
     public function updateGroupExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -186,8 +186,8 @@ class ErrorGroupServiceClientTest extends GeneratedTest
         // Mock request
         $group = new ErrorGroup();
         try {
-            $client->updateGroup($group);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateGroup($group);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

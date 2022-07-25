@@ -43,7 +43,7 @@ class ExecStepConfig extends \Google\Protobuf\Internal\Message
      *           An absolute path to the executable on the VM.
      *     @type \Google\Cloud\OsConfig\V1\GcsObject $gcs_object
      *           A Cloud Storage object containing the executable.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $allowed_success_codes
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $allowed_success_codes
      *           Defaults to [0]. A list of possible return values that the
      *           execution can return to indicate a success.
      *     @type int $interpreter
@@ -137,7 +137,7 @@ class ExecStepConfig extends \Google\Protobuf\Internal\Message
      * execution can return to indicate a success.
      *
      * Generated from protobuf field <code>repeated int32 allowed_success_codes = 3;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedSuccessCodes($var)

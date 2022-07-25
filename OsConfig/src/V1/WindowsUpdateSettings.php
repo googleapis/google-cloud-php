@@ -43,12 +43,12 @@ class WindowsUpdateSettings extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $classifications
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $classifications
      *           Only apply updates of these windows update classifications. If empty, all
      *           updates are applied.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $excludes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excludes
      *           List of KBs to exclude from update.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $exclusive_patches
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclusive_patches
      *           An exclusive list of kbs to be updated. These are the only patches
      *           that will be updated. This field must not be used with other
      *           patch configurations.
@@ -76,7 +76,7 @@ class WindowsUpdateSettings extends \Google\Protobuf\Internal\Message
      * updates are applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.WindowsUpdateSettings.Classification classifications = 1;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setClassifications($var)
@@ -102,7 +102,7 @@ class WindowsUpdateSettings extends \Google\Protobuf\Internal\Message
      * List of KBs to exclude from update.
      *
      * Generated from protobuf field <code>repeated string excludes = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExcludes($var)
@@ -132,7 +132,7 @@ class WindowsUpdateSettings extends \Google\Protobuf\Internal\Message
      * patch configurations.
      *
      * Generated from protobuf field <code>repeated string exclusive_patches = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExclusivePatches($var)

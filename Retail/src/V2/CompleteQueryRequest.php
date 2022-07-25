@@ -111,7 +111,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           should not change if the visitor logs in or out of the website.
      *           The field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $language_codes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_codes
      *           The language filters applied to the output suggestions. If set, it should
      *           contain the language of the query. If not set, suggestions are returned
      *           without considering language restrictions. This is the BCP-47 language
@@ -270,7 +270,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * number of language codes is 3.
      *
      * Generated from protobuf field <code>repeated string language_codes = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLanguageCodes($var)

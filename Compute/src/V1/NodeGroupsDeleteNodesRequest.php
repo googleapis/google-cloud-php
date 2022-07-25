@@ -27,7 +27,7 @@ class NodeGroupsDeleteNodesRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $nodes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $nodes
      *           Names of the nodes to delete.
      * }
      */
@@ -51,7 +51,7 @@ class NodeGroupsDeleteNodesRequest extends \Google\Protobuf\Internal\Message
      * Names of the nodes to delete.
      *
      * Generated from protobuf field <code>repeated string nodes = 104993457;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNodes($var)

@@ -155,7 +155,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *           specified, then `per_series_aligner` must be specified, and must not be
      *           `ALIGN_NONE`. An `alignment_period` must also be specified; otherwise, an
      *           error is returned.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $group_by_fields
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $group_by_fields
      *           The set of fields to preserve when `cross_series_reducer` is
      *           specified. The `group_by_fields` determine how the time series are
      *           partitioned into subsets prior to applying the aggregation
@@ -374,7 +374,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * defined, this field is ignored.
      *
      * Generated from protobuf field <code>repeated string group_by_fields = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGroupByFields($var)

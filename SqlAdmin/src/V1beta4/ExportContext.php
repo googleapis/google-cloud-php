@@ -86,7 +86,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      *           already exists, the request succeeds, but the operation fails. If
      *           `fileType` is `SQL` and the filename ends with .gz,
      *           the contents are compressed.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $databases
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $databases
      *           Databases to be exported. <br /> `MySQL instances:` If
      *           `fileType` is `SQL` and no database is specified, all
      *           databases are exported, except for the `mysql` system database.
@@ -188,7 +188,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      * `fileType` must be `BAK`.
      *
      * Generated from protobuf field <code>repeated string databases = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDatabases($var)

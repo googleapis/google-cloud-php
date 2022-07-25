@@ -35,7 +35,7 @@ class ListRevisionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Run\V2\Revision[]|\Google\Protobuf\Internal\RepeatedField $revisions
+     *     @type array<\Google\Cloud\Run\V2\Revision>|\Google\Protobuf\Internal\RepeatedField $revisions
      *           The resulting list of Revisions.
      *     @type string $next_page_token
      *           A token indicating there are more items than page_size. Use it in the next
@@ -62,7 +62,7 @@ class ListRevisionsResponse extends \Google\Protobuf\Internal\Message
      * The resulting list of Revisions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Revision revisions = 1;</code>
-     * @param \Google\Cloud\Run\V2\Revision[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Run\V2\Revision>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRevisions($var)

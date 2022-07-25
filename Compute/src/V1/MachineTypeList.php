@@ -60,7 +60,7 @@ class MachineTypeList extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type \Google\Cloud\Compute\V1\MachineType[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Compute\V1\MachineType>|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of MachineType resources.
      *     @type string $kind
      *           [Output Only] Type of resource. Always compute#machineTypeList for lists of machine types.
@@ -128,7 +128,7 @@ class MachineTypeList extends \Google\Protobuf\Internal\Message
      * A list of MachineType resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.MachineType items = 100526016;</code>
-     * @param \Google\Cloud\Compute\V1\MachineType[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\MachineType>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

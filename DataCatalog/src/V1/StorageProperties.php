@@ -51,7 +51,7 @@ class StorageProperties extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $file_pattern
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $file_pattern
      *           Patterns to identify a set of files for this fileset.
      *           Examples of a valid `file_pattern`:
      *            * `gs://bucket_name/dir/&#42;`: matches all files in the `bucket_name/dir`
@@ -128,7 +128,7 @@ class StorageProperties extends \Google\Protobuf\Internal\Message
      *  * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`
      *
      * Generated from protobuf field <code>repeated string file_pattern = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFilePattern($var)

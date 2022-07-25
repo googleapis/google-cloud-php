@@ -36,7 +36,7 @@ class Links extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Trace\V2\Span\Link[]|\Google\Protobuf\Internal\RepeatedField $link
+     *     @type array<\Google\Cloud\Trace\V2\Span\Link>|\Google\Protobuf\Internal\RepeatedField $link
      *           A collection of links.
      *     @type int $dropped_links_count
      *           The number of dropped links after the maximum size was enforced. If
@@ -63,7 +63,7 @@ class Links extends \Google\Protobuf\Internal\Message
      * A collection of links.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.Span.Link link = 1;</code>
-     * @param \Google\Cloud\Trace\V2\Span\Link[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Trace\V2\Span\Link>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLink($var)

@@ -33,7 +33,7 @@ class BackendServicesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\BackendService[]|\Google\Protobuf\Internal\RepeatedField $backend_services
+     *     @type array<\Google\Cloud\Compute\V1\BackendService>|\Google\Protobuf\Internal\RepeatedField $backend_services
      *           A list of BackendServices contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of backend services when the list is empty.
@@ -59,7 +59,7 @@ class BackendServicesScopedList extends \Google\Protobuf\Internal\Message
      * A list of BackendServices contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendService backend_services = 388522409;</code>
-     * @param \Google\Cloud\Compute\V1\BackendService[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\BackendService>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBackendServices($var)

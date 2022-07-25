@@ -131,7 +131,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *           processed). The filter must specify the metric type and the resource
      *           type. Optionally, it can specify resource labels and metric labels.
      *           This field must not exceed 2048 Unicode characters in length.
-     *     @type \Google\Cloud\Monitoring\V3\Aggregation[]|\Google\Protobuf\Internal\RepeatedField $aggregations
+     *     @type array<\Google\Cloud\Monitoring\V3\Aggregation>|\Google\Protobuf\Internal\RepeatedField $aggregations
      *           Specifies the alignment of data points in individual time series as
      *           well as how to combine the retrieved time series together (such as
      *           when aggregating multiple streams on each resource to a single
@@ -151,7 +151,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *           The filter must specify the metric type and optionally may contain
      *           restrictions on resource type, resource labels, and metric labels.
      *           This field may not exceed 2048 Unicode characters in length.
-     *     @type \Google\Cloud\Monitoring\V3\Aggregation[]|\Google\Protobuf\Internal\RepeatedField $denominator_aggregations
+     *     @type array<\Google\Cloud\Monitoring\V3\Aggregation>|\Google\Protobuf\Internal\RepeatedField $denominator_aggregations
      *           Specifies the alignment of data points in individual time series
      *           selected by `denominatorFilter` as
      *           well as how to combine the retrieved time series together (such as
@@ -269,7 +269,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * field.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Aggregation aggregations = 8;</code>
-     * @param \Google\Cloud\Monitoring\V3\Aggregation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Monitoring\V3\Aggregation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAggregations($var)
@@ -351,7 +351,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * and produce time series that have the same periodicity and labels.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Aggregation denominator_aggregations = 10;</code>
-     * @param \Google\Cloud\Monitoring\V3\Aggregation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Monitoring\V3\Aggregation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDenominatorAggregations($var)

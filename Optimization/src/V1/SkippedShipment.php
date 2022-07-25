@@ -51,7 +51,7 @@ class SkippedShipment extends \Google\Protobuf\Internal\Message
      *     @type string $label
      *           Copy of the corresponding [Shipment.label][google.cloud.optimization.v1.Shipment.label], if specified in the
      *           `Shipment`.
-     *     @type \Google\Cloud\Optimization\V1\SkippedShipment\Reason[]|\Google\Protobuf\Internal\RepeatedField $reasons
+     *     @type array<\Google\Cloud\Optimization\V1\SkippedShipment\Reason>|\Google\Protobuf\Internal\RepeatedField $reasons
      *           A list of reasons that explain why the shipment was skipped. See comment
      *           above `Reason`.
      * }
@@ -134,7 +134,7 @@ class SkippedShipment extends \Google\Protobuf\Internal\Message
      * above `Reason`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.SkippedShipment.Reason reasons = 3;</code>
-     * @param \Google\Cloud\Optimization\V1\SkippedShipment\Reason[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\SkippedShipment\Reason>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReasons($var)

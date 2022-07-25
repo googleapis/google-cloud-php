@@ -112,7 +112,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *           The type of this network.
      *     @type string $ip_address
      *           IP address configured.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $mac_address
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mac_address
      *           List of physical interfaces.
      *     @type int $state
      *           The Network state.
@@ -126,7 +126,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *           Labels as key value pairs.
      *     @type string $services_cidr
      *           IP range for reserved for services (e.g. NFS).
-     *     @type \Google\Cloud\BareMetalSolution\V2\NetworkAddressReservation[]|\Google\Protobuf\Internal\RepeatedField $reservations
+     *     @type array<\Google\Cloud\BareMetalSolution\V2\NetworkAddressReservation>|\Google\Protobuf\Internal\RepeatedField $reservations
      *           List of IP address reservations in this network.
      *           When updating this field, an error will be generated if a reservation
      *           conflicts with an IP address already allocated to a physical server.
@@ -264,7 +264,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * List of physical interfaces.
      *
      * Generated from protobuf field <code>repeated string mac_address = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMacAddress($var)
@@ -460,7 +460,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * conflicts with an IP address already allocated to a physical server.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NetworkAddressReservation reservations = 13;</code>
-     * @param \Google\Cloud\BareMetalSolution\V2\NetworkAddressReservation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BareMetalSolution\V2\NetworkAddressReservation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReservations($var)

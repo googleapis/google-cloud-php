@@ -194,11 +194,11 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *               * "inventory(place_id,price)"
      *               * "inventory(place_id,original_price)"
      *               * "inventory(place_id,attributes.key)"
-     *     @type \Google\Cloud\Retail\V2\Interval[]|\Google\Protobuf\Internal\RepeatedField $intervals
+     *     @type array<\Google\Cloud\Retail\V2\Interval>|\Google\Protobuf\Internal\RepeatedField $intervals
      *           Set only if values should be bucketized into intervals. Must be set
      *           for facets with numerical values. Must not be set for facet with text
      *           values. Maximum number of intervals is 30.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $restricted_values
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $restricted_values
      *           Only get facet for the given restricted values. For example, when using
      *           "pickupInStore" as key and set restricted values to
      *           ["store123", "store456"], only facets for "store123" and "store456" are
@@ -214,13 +214,13 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *           * customFulfillment3
      *           * customFulfillment4
      *           * customFulfillment5
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $prefixes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $prefixes
      *           Only get facet values that start with the given string prefix. For
      *           example, suppose "categories" has three values "Women > Shoe",
      *           "Women > Dress" and "Men > Shoe". If set "prefixes" to "Women", the
      *           "categories" facet will give only "Women > Shoe" and "Women > Dress".
      *           Only supported on textual fields. Maximum is 10.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $contains
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $contains
      *           Only get facet values that contains the given strings. For example,
      *           suppose "categories" has three values "Women > Shoe",
      *           "Women > Dress" and "Men > Shoe". If set "contains" to "Shoe", the
@@ -386,7 +386,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * values. Maximum number of intervals is 30.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Interval intervals = 2;</code>
-     * @param \Google\Cloud\Retail\V2\Interval[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\Interval>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIntervals($var)
@@ -440,7 +440,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * * customFulfillment5
      *
      * Generated from protobuf field <code>repeated string restricted_values = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRestrictedValues($var)
@@ -474,7 +474,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string prefixes = 8;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPrefixes($var)
@@ -508,7 +508,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string contains = 9;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setContains($var)

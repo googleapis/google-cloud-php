@@ -34,7 +34,7 @@ class ListIngressRulesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AppEngine\V1\FirewallRule[]|\Google\Protobuf\Internal\RepeatedField $ingress_rules
+     *     @type array<\Google\Cloud\AppEngine\V1\FirewallRule>|\Google\Protobuf\Internal\RepeatedField $ingress_rules
      *           The ingress FirewallRules for this application.
      *     @type string $next_page_token
      *           Continuation token for fetching the next page of results.
@@ -60,7 +60,7 @@ class ListIngressRulesResponse extends \Google\Protobuf\Internal\Message
      * The ingress FirewallRules for this application.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.FirewallRule ingress_rules = 1;</code>
-     * @param \Google\Cloud\AppEngine\V1\FirewallRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AppEngine\V1\FirewallRule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIngressRules($var)

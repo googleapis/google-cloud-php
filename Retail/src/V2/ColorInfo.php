@@ -53,7 +53,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $color_families
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $color_families
      *           The standard color families. Strongly recommended to use the following
      *           standard color groups: "Red", "Pink", "Orange", "Yellow", "Purple",
      *           "Green", "Cyan", "Blue", "Brown", "White", "Gray", "Black" and
@@ -65,7 +65,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      *           Google Merchant Center property
      *           [color](https://support.google.com/merchants/answer/6324487). Schema.org
      *           property [Product.color](https://schema.org/color).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $colors
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $colors
      *           The color display names, which may be different from standard color family
      *           names, such as the color aliases used in the website frontend. Normally
      *           it is expected to have only 1 color. May consider using single "Mixed"
@@ -118,7 +118,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      * property [Product.color](https://schema.org/color).
      *
      * Generated from protobuf field <code>repeated string color_families = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setColorFamilies($var)
@@ -162,7 +162,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      * property [Product.color](https://schema.org/color).
      *
      * Generated from protobuf field <code>repeated string colors = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setColors($var)

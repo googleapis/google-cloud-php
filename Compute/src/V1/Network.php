@@ -150,7 +150,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *     @type string $network_firewall_policy_enforcement_order
      *           The network firewall policy enforcement order. Can be either AFTER_CLASSIC_FIREWALL or BEFORE_CLASSIC_FIREWALL. Defaults to AFTER_CLASSIC_FIREWALL if the field is not specified.
      *           Check the NetworkFirewallPolicyEnforcementOrder enum for the list of possible values.
-     *     @type \Google\Cloud\Compute\V1\NetworkPeering[]|\Google\Protobuf\Internal\RepeatedField $peerings
+     *     @type array<\Google\Cloud\Compute\V1\NetworkPeering>|\Google\Protobuf\Internal\RepeatedField $peerings
      *           [Output Only] A list of network peerings for the resource.
      *     @type \Google\Cloud\Compute\V1\NetworkRoutingConfig $routing_config
      *           The network-level routing configuration for this network. Used by Cloud Router to determine what type of network-wide routing behavior to enforce.
@@ -158,7 +158,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
      *           [Output Only] Server-defined URL for this resource with the resource id.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $subnetworks
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnetworks
      *           [Output Only] Server-defined fully-qualified URLs for all subnetworks in this VPC network.
      * }
      */
@@ -616,7 +616,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of network peerings for the resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkPeering peerings = 69883187;</code>
-     * @param \Google\Cloud\Compute\V1\NetworkPeering[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\NetworkPeering>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPeerings($var)
@@ -750,7 +750,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * [Output Only] Server-defined fully-qualified URLs for all subnetworks in this VPC network.
      *
      * Generated from protobuf field <code>repeated string subnetworks = 415853125;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSubnetworks($var)

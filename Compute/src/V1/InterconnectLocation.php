@@ -145,7 +145,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *           [Output Only] Name of the resource.
      *     @type string $peeringdb_facility_id
      *           [Output Only] The peeringdb identifier for this facility (corresponding with a netfac type in peeringdb).
-     *     @type \Google\Cloud\Compute\V1\InterconnectLocationRegionInfo[]|\Google\Protobuf\Internal\RepeatedField $region_infos
+     *     @type array<\Google\Cloud\Compute\V1\InterconnectLocationRegionInfo>|\Google\Protobuf\Internal\RepeatedField $region_infos
      *           [Output Only] A list of InterconnectLocation.RegionInfo objects, that describe parameters pertaining to the relation between this InterconnectLocation and various Google Cloud regions.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
@@ -610,7 +610,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of InterconnectLocation.RegionInfo objects, that describe parameters pertaining to the relation between this InterconnectLocation and various Google Cloud regions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectLocationRegionInfo region_infos = 312194170;</code>
-     * @param \Google\Cloud\Compute\V1\InterconnectLocationRegionInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\InterconnectLocationRegionInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRegionInfos($var)

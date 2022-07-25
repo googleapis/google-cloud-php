@@ -106,9 +106,9 @@ class SourceInstanceProperties extends \Google\Protobuf\Internal\Message
      *           Whether the instance created from this machine image should be protected against deletion.
      *     @type string $description
      *           An optional text description for the instances that are created from this machine image.
-     *     @type \Google\Cloud\Compute\V1\SavedAttachedDisk[]|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type array<\Google\Cloud\Compute\V1\SavedAttachedDisk>|\Google\Protobuf\Internal\RepeatedField $disks
      *           An array of disks that are associated with the instances that are created from this machine image.
-     *     @type \Google\Cloud\Compute\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $guest_accelerators
+     *     @type array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $guest_accelerators
      *           A list of guest accelerator cards' type and count to use for instances created from this machine image.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels to apply to instances that are created from this machine image.
@@ -118,11 +118,11 @@ class SourceInstanceProperties extends \Google\Protobuf\Internal\Message
      *           The metadata key/value pairs to assign to instances that are created from this machine image. These pairs can consist of custom metadata or predefined keys. See Project and instance metadata for more information.
      *     @type string $min_cpu_platform
      *           Minimum cpu/platform to be used by instances created from this machine image. The instance may be scheduled on the specified or newer cpu/platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: "Intel Haswell" or minCpuPlatform: "Intel Sandy Bridge". For more information, read Specifying a Minimum CPU Platform.
-     *     @type \Google\Cloud\Compute\V1\NetworkInterface[]|\Google\Protobuf\Internal\RepeatedField $network_interfaces
+     *     @type array<\Google\Cloud\Compute\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $network_interfaces
      *           An array of network access configurations for this interface.
      *     @type \Google\Cloud\Compute\V1\Scheduling $scheduling
      *           Specifies the scheduling options for the instances that are created from this machine image.
-     *     @type \Google\Cloud\Compute\V1\ServiceAccount[]|\Google\Protobuf\Internal\RepeatedField $service_accounts
+     *     @type array<\Google\Cloud\Compute\V1\ServiceAccount>|\Google\Protobuf\Internal\RepeatedField $service_accounts
      *           A list of service accounts with specified scopes. Access tokens for these service accounts are available to the instances that are created from this machine image. Use metadata queries to obtain the access tokens for these instances.
      *     @type \Google\Cloud\Compute\V1\Tags $tags
      *           A list of tags to apply to the instances that are created from this machine image. The tags identify valid sources or targets for network firewalls. The setTags method can modify this list of tags. Each tag within the list must comply with RFC1035.
@@ -256,7 +256,7 @@ class SourceInstanceProperties extends \Google\Protobuf\Internal\Message
      * An array of disks that are associated with the instances that are created from this machine image.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SavedAttachedDisk disks = 95594102;</code>
-     * @param \Google\Cloud\Compute\V1\SavedAttachedDisk[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\SavedAttachedDisk>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDisks($var)
@@ -282,7 +282,7 @@ class SourceInstanceProperties extends \Google\Protobuf\Internal\Message
      * A list of guest accelerator cards' type and count to use for instances created from this machine image.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 463595119;</code>
-     * @param \Google\Cloud\Compute\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGuestAccelerators($var)
@@ -442,7 +442,7 @@ class SourceInstanceProperties extends \Google\Protobuf\Internal\Message
      * An array of network access configurations for this interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkInterface network_interfaces = 52735243;</code>
-     * @param \Google\Cloud\Compute\V1\NetworkInterface[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNetworkInterfaces($var)
@@ -504,7 +504,7 @@ class SourceInstanceProperties extends \Google\Protobuf\Internal\Message
      * A list of service accounts with specified scopes. Access tokens for these service accounts are available to the instances that are created from this machine image. Use metadata queries to obtain the access tokens for these instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAccount service_accounts = 277537328;</code>
-     * @param \Google\Cloud\Compute\V1\ServiceAccount[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\ServiceAccount>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServiceAccounts($var)

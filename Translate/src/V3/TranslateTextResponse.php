@@ -38,11 +38,11 @@ class TranslateTextResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Translate\V3\Translation[]|\Google\Protobuf\Internal\RepeatedField $translations
+     *     @type array<\Google\Cloud\Translate\V3\Translation>|\Google\Protobuf\Internal\RepeatedField $translations
      *           Text translation responses with no glossary applied.
      *           This field has the same length as
      *           [`contents`][google.cloud.translation.v3.TranslateTextRequest.contents].
-     *     @type \Google\Cloud\Translate\V3\Translation[]|\Google\Protobuf\Internal\RepeatedField $glossary_translations
+     *     @type array<\Google\Cloud\Translate\V3\Translation>|\Google\Protobuf\Internal\RepeatedField $glossary_translations
      *           Text translation responses if a glossary is provided in the request.
      *           This can be the same as
      *           [`translations`][google.cloud.translation.v3.TranslateTextResponse.translations]
@@ -74,7 +74,7 @@ class TranslateTextResponse extends \Google\Protobuf\Internal\Message
      * [`contents`][google.cloud.translation.v3.TranslateTextRequest.contents].
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.Translation translations = 1;</code>
-     * @param \Google\Cloud\Translate\V3\Translation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\Translation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTranslations($var)
@@ -108,7 +108,7 @@ class TranslateTextResponse extends \Google\Protobuf\Internal\Message
      * [`contents`][google.cloud.translation.v3.TranslateTextRequest.contents].
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.Translation glossary_translations = 3;</code>
-     * @param \Google\Cloud\Translate\V3\Translation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\Translation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGlossaryTranslations($var)

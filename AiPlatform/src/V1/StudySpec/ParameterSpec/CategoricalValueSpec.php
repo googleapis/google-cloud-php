@@ -38,7 +38,7 @@ class CategoricalValueSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
      *           Required. The list of possible categories.
      *     @type string $default_value
      *           A default value for a `CATEGORICAL` parameter that is assumed to be a
@@ -68,7 +68,7 @@ class CategoricalValueSpec extends \Google\Protobuf\Internal\Message
      * Required. The list of possible categories.
      *
      * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

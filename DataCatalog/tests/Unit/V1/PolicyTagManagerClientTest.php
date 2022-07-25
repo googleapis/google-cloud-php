@@ -79,7 +79,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function createPolicyTagTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -95,8 +95,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse->setParentPolicyTag($parentPolicyTag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
-        $response = $client->createPolicyTag($formattedParent);
+        $formattedParent = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $response = $gapicClient->createPolicyTag($formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -114,7 +114,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function createPolicyTagExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -129,10 +129,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $formattedParent = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
         try {
-            $client->createPolicyTag($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createPolicyTag($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -149,7 +149,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function createTaxonomyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -165,8 +165,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse->setPolicyTagCount($policyTagCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->createTaxonomy($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->createTaxonomy($formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -184,7 +184,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function createTaxonomyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -199,10 +199,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->createTaxonomy($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createTaxonomy($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -219,7 +219,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function deletePolicyTagTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -227,8 +227,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->policyTagName('[PROJECT]', '[LOCATION]', '[TAXONOMY]', '[POLICY_TAG]');
-        $client->deletePolicyTag($formattedName);
+        $formattedName = $gapicClient->policyTagName('[PROJECT]', '[LOCATION]', '[TAXONOMY]', '[POLICY_TAG]');
+        $gapicClient->deletePolicyTag($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -245,7 +245,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function deletePolicyTagExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -260,10 +260,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->policyTagName('[PROJECT]', '[LOCATION]', '[TAXONOMY]', '[POLICY_TAG]');
+        $formattedName = $gapicClient->policyTagName('[PROJECT]', '[LOCATION]', '[TAXONOMY]', '[POLICY_TAG]');
         try {
-            $client->deletePolicyTag($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deletePolicyTag($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -280,7 +280,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function deleteTaxonomyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -288,8 +288,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
-        $client->deleteTaxonomy($formattedName);
+        $formattedName = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $gapicClient->deleteTaxonomy($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -306,7 +306,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function deleteTaxonomyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -321,10 +321,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $formattedName = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
         try {
-            $client->deleteTaxonomy($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteTaxonomy($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -341,7 +341,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -354,7 +354,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $response = $client->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -372,7 +372,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -389,8 +389,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         try {
-            $client->getIamPolicy($resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIamPolicy($resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -407,7 +407,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function getPolicyTagTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -423,8 +423,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse->setParentPolicyTag($parentPolicyTag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->policyTagName('[PROJECT]', '[LOCATION]', '[TAXONOMY]', '[POLICY_TAG]');
-        $response = $client->getPolicyTag($formattedName);
+        $formattedName = $gapicClient->policyTagName('[PROJECT]', '[LOCATION]', '[TAXONOMY]', '[POLICY_TAG]');
+        $response = $gapicClient->getPolicyTag($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -442,7 +442,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function getPolicyTagExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -457,10 +457,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->policyTagName('[PROJECT]', '[LOCATION]', '[TAXONOMY]', '[POLICY_TAG]');
+        $formattedName = $gapicClient->policyTagName('[PROJECT]', '[LOCATION]', '[TAXONOMY]', '[POLICY_TAG]');
         try {
-            $client->getPolicyTag($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getPolicyTag($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -477,7 +477,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function getTaxonomyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -493,8 +493,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse->setPolicyTagCount($policyTagCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
-        $response = $client->getTaxonomy($formattedName);
+        $formattedName = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $response = $gapicClient->getTaxonomy($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -512,7 +512,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function getTaxonomyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -527,10 +527,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $formattedName = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
         try {
-            $client->getTaxonomy($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getTaxonomy($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -547,7 +547,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function listPolicyTagsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -562,8 +562,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse->setPolicyTags($policyTags);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
-        $response = $client->listPolicyTags($formattedParent);
+        $formattedParent = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $response = $gapicClient->listPolicyTags($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -584,7 +584,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function listPolicyTagsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -599,10 +599,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $formattedParent = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
         try {
-            $client->listPolicyTags($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listPolicyTags($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -619,7 +619,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function listTaxonomiesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -634,8 +634,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse->setTaxonomies($taxonomies);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listTaxonomies($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listTaxonomies($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -656,7 +656,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function listTaxonomiesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -671,10 +671,10 @@ class PolicyTagManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listTaxonomies($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listTaxonomies($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -691,7 +691,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -705,7 +705,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $response = $client->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -725,7 +725,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -743,8 +743,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $policy = new Policy();
         try {
-            $client->setIamPolicy($resource, $policy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setIamPolicy($resource, $policy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -761,7 +761,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -771,7 +771,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $response = $client->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -791,7 +791,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -809,8 +809,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $permissions = [];
         try {
-            $client->testIamPermissions($resource, $permissions);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->testIamPermissions($resource, $permissions);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -827,7 +827,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function updatePolicyTagTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -842,7 +842,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setParentPolicyTag($parentPolicyTag);
         $transport->addResponse($expectedResponse);
-        $response = $client->updatePolicyTag();
+        $response = $gapicClient->updatePolicyTag();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -858,7 +858,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function updatePolicyTagExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -873,8 +873,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->updatePolicyTag();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updatePolicyTag();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -891,7 +891,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function updateTaxonomyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -906,7 +906,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setPolicyTagCount($policyTagCount);
         $transport->addResponse($expectedResponse);
-        $response = $client->updateTaxonomy();
+        $response = $gapicClient->updateTaxonomy();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -922,7 +922,7 @@ class PolicyTagManagerClientTest extends GeneratedTest
     public function updateTaxonomyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -937,8 +937,8 @@ class PolicyTagManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->updateTaxonomy();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateTaxonomy();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

@@ -72,7 +72,7 @@ class GkeNodeConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The number of local SSD disks to attach to the node, which is limited by
      *           the maximum number of disks allowable per zone (see [Adding Local
      *           SSDs](https://cloud.google.com/compute/docs/disks/local-ssd)).
-     *     @type \Google\Cloud\Dataproc\V1\GkeNodePoolConfig\GkeNodePoolAcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $accelerators
+     *     @type array<\Google\Cloud\Dataproc\V1\GkeNodePoolConfig\GkeNodePoolAcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           Optional. A list of [hardware
      *           accelerators](https://cloud.google.com/compute/docs/gpus) to attach to
      *           each node.
@@ -194,7 +194,7 @@ class GkeNodeConfig extends \Google\Protobuf\Internal\Message
      * each node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodePoolAcceleratorConfig accelerators = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Dataproc\V1\GkeNodePoolConfig\GkeNodePoolAcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataproc\V1\GkeNodePoolConfig\GkeNodePoolAcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAccelerators($var)

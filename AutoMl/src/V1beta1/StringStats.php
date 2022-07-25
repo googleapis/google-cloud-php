@@ -29,7 +29,7 @@ class StringStats extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AutoMl\V1beta1\StringStats\UnigramStats[]|\Google\Protobuf\Internal\RepeatedField $top_unigram_stats
+     *     @type array<\Google\Cloud\AutoMl\V1beta1\StringStats\UnigramStats>|\Google\Protobuf\Internal\RepeatedField $top_unigram_stats
      *           The statistics of the top 20 unigrams, ordered by
      *           [count][google.cloud.automl.v1beta1.StringStats.UnigramStats.count].
      * }
@@ -56,7 +56,7 @@ class StringStats extends \Google\Protobuf\Internal\Message
      * [count][google.cloud.automl.v1beta1.StringStats.UnigramStats.count].
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.StringStats.UnigramStats top_unigram_stats = 1;</code>
-     * @param \Google\Cloud\AutoMl\V1beta1\StringStats\UnigramStats[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AutoMl\V1beta1\StringStats\UnigramStats>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTopUnigramStats($var)

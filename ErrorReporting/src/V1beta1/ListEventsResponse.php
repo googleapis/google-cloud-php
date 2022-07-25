@@ -42,7 +42,7 @@ class ListEventsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ErrorReporting\V1beta1\ErrorEvent[]|\Google\Protobuf\Internal\RepeatedField $error_events
+     *     @type array<\Google\Cloud\ErrorReporting\V1beta1\ErrorEvent>|\Google\Protobuf\Internal\RepeatedField $error_events
      *           The error events which match the given request.
      *     @type string $next_page_token
      *           If non-empty, more results are available.
@@ -72,7 +72,7 @@ class ListEventsResponse extends \Google\Protobuf\Internal\Message
      * The error events which match the given request.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouderrorreporting.v1beta1.ErrorEvent error_events = 1;</code>
-     * @param \Google\Cloud\ErrorReporting\V1beta1\ErrorEvent[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ErrorReporting\V1beta1\ErrorEvent>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setErrorEvents($var)

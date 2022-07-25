@@ -184,7 +184,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           a cluster's secondary worker instances
      *     @type \Google\Cloud\Dataproc\V1\SoftwareConfig $software_config
      *           Optional. The config settings for cluster software.
-     *     @type \Google\Cloud\Dataproc\V1\NodeInitializationAction[]|\Google\Protobuf\Internal\RepeatedField $initialization_actions
+     *     @type array<\Google\Cloud\Dataproc\V1\NodeInitializationAction>|\Google\Protobuf\Internal\RepeatedField $initialization_actions
      *           Optional. Commands to execute on each node after config is
      *           completed. By default, executables are run on master and all worker nodes.
      *           You can test a node's `role` metadata to run an executable on
@@ -538,7 +538,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *     fi
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.NodeInitializationAction initialization_actions = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Dataproc\V1\NodeInitializationAction[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataproc\V1\NodeInitializationAction>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInitializationActions($var)

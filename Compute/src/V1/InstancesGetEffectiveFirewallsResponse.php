@@ -33,9 +33,9 @@ class InstancesGetEffectiveFirewallsResponse extends \Google\Protobuf\Internal\M
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy[]|\Google\Protobuf\Internal\RepeatedField $firewall_policys
+     *     @type array<\Google\Cloud\Compute\V1\InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy>|\Google\Protobuf\Internal\RepeatedField $firewall_policys
      *           Effective firewalls from firewall policies.
-     *     @type \Google\Cloud\Compute\V1\Firewall[]|\Google\Protobuf\Internal\RepeatedField $firewalls
+     *     @type array<\Google\Cloud\Compute\V1\Firewall>|\Google\Protobuf\Internal\RepeatedField $firewalls
      *           Effective firewalls on the instance.
      * }
      */
@@ -59,7 +59,7 @@ class InstancesGetEffectiveFirewallsResponse extends \Google\Protobuf\Internal\M
      * Effective firewalls from firewall policies.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy firewall_policys = 410985794;</code>
-     * @param \Google\Cloud\Compute\V1\InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFirewallPolicys($var)
@@ -85,7 +85,7 @@ class InstancesGetEffectiveFirewallsResponse extends \Google\Protobuf\Internal\M
      * Effective firewalls on the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Firewall firewalls = 272245619;</code>
-     * @param \Google\Cloud\Compute\V1\Firewall[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Firewall>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFirewalls($var)

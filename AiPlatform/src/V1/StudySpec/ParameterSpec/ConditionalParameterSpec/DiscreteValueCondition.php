@@ -30,7 +30,7 @@ class DiscreteValueCondition extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type float[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $values
      *           Required. Matches values of the parent parameter of 'DISCRETE' type.
      *           All values must exist in `discrete_value_spec` of parent parameter.
      *           The Epsilon of the value matching is 1e-10.
@@ -60,7 +60,7 @@ class DiscreteValueCondition extends \Google\Protobuf\Internal\Message
      * The Epsilon of the value matching is 1e-10.
      *
      * Generated from protobuf field <code>repeated double values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param float[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

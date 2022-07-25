@@ -39,7 +39,7 @@ class LinkedRouterApplianceInstances extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\NetworkConnectivity\V1\RouterApplianceInstance[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type array<\Google\Cloud\NetworkConnectivity\V1\RouterApplianceInstance>|\Google\Protobuf\Internal\RepeatedField $instances
      *           The list of router appliance instances.
      *     @type bool $site_to_site_data_transfer
      *           A value that controls whether site-to-site data transfer is enabled for
@@ -67,7 +67,7 @@ class LinkedRouterApplianceInstances extends \Google\Protobuf\Internal\Message
      * The list of router appliance instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.RouterApplianceInstance instances = 1;</code>
-     * @param \Google\Cloud\NetworkConnectivity\V1\RouterApplianceInstance[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\NetworkConnectivity\V1\RouterApplianceInstance>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstances($var)

@@ -186,11 +186,11 @@ class Release extends \Google\Protobuf\Internal\Message
      *           Cloud Storage URI of tar.gz archive containing Skaffold configuration.
      *     @type string $skaffold_config_path
      *           Filepath of the Skaffold config inside of the config URI.
-     *     @type \Google\Cloud\Deploy\V1\BuildArtifact[]|\Google\Protobuf\Internal\RepeatedField $build_artifacts
+     *     @type array<\Google\Cloud\Deploy\V1\BuildArtifact>|\Google\Protobuf\Internal\RepeatedField $build_artifacts
      *           List of artifacts to pass through to Skaffold command.
      *     @type \Google\Cloud\Deploy\V1\DeliveryPipeline $delivery_pipeline_snapshot
      *           Output only. Snapshot of the parent pipeline taken at release creation time.
-     *     @type \Google\Cloud\Deploy\V1\Target[]|\Google\Protobuf\Internal\RepeatedField $target_snapshots
+     *     @type array<\Google\Cloud\Deploy\V1\Target>|\Google\Protobuf\Internal\RepeatedField $target_snapshots
      *           Output only. Snapshot of the targets taken at release creation time.
      *     @type int $render_state
      *           Output only. Current state of the render operation.
@@ -548,7 +548,7 @@ class Release extends \Google\Protobuf\Internal\Message
      * List of artifacts to pass through to Skaffold command.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.BuildArtifact build_artifacts = 10;</code>
-     * @param \Google\Cloud\Deploy\V1\BuildArtifact[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Deploy\V1\BuildArtifact>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBuildArtifacts($var)
@@ -610,7 +610,7 @@ class Release extends \Google\Protobuf\Internal\Message
      * Output only. Snapshot of the targets taken at release creation time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Target target_snapshots = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Deploy\V1\Target[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Deploy\V1\Target>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetSnapshots($var)

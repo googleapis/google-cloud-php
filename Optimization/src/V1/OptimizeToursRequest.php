@@ -269,7 +269,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *           This defaults to 100 and is capped at 10,000.
      *     @type int $search_mode
      *           Search mode used to solve the request.
-     *     @type \Google\Cloud\Optimization\V1\ShipmentRoute[]|\Google\Protobuf\Internal\RepeatedField $injected_first_solution_routes
+     *     @type array<\Google\Cloud\Optimization\V1\ShipmentRoute>|\Google\Protobuf\Internal\RepeatedField $injected_first_solution_routes
      *           Guide the optimization algorithm in finding a first solution that is
      *           similar to a previous solution.
      *           The model is constrained when the first solution is built.
@@ -302,7 +302,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *           If the injected solution is not feasible, a validation error is not
      *           necessarily returned and an error indicating infeasibility may be returned
      *           instead.
-     *     @type \Google\Cloud\Optimization\V1\ShipmentRoute[]|\Google\Protobuf\Internal\RepeatedField $refresh_details_routes
+     *     @type array<\Google\Cloud\Optimization\V1\ShipmentRoute>|\Google\Protobuf\Internal\RepeatedField $refresh_details_routes
      *           If non-empty, the given routes will be refreshed, without modifying their
      *           underlying sequence of visits or travel times: only other details will be
      *           updated. This does not solve the model.
@@ -672,7 +672,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentRoute injected_first_solution_routes = 7;</code>
-     * @param \Google\Cloud\Optimization\V1\ShipmentRoute[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\ShipmentRoute>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInjectedFirstSolutionRoutes($var)
@@ -768,7 +768,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      * regardless of whether the related shipments or vehicles are ignored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentRoute refresh_details_routes = 9;</code>
-     * @param \Google\Cloud\Optimization\V1\ShipmentRoute[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\ShipmentRoute>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRefreshDetailsRoutes($var)

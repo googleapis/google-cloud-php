@@ -55,7 +55,7 @@ class CohortSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Data\V1beta\Cohort[]|\Google\Protobuf\Internal\RepeatedField $cohorts
+     *     @type array<\Google\Analytics\Data\V1beta\Cohort>|\Google\Protobuf\Internal\RepeatedField $cohorts
      *           Defines the selection criteria to group users into cohorts.
      *           Most cohort reports define only a single cohort. If multiple cohorts are
      *           specified, each cohort can be recognized in the report by their name.
@@ -90,7 +90,7 @@ class CohortSpec extends \Google\Protobuf\Internal\Message
      * specified, each cohort can be recognized in the report by their name.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Cohort cohorts = 1;</code>
-     * @param \Google\Analytics\Data\V1beta\Cohort[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\Cohort>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCohorts($var)

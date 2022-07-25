@@ -76,12 +76,12 @@ class Scope extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $include_org_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_org_ids
      *           The list of organization IDs to search within.
      *           To find your organization ID, follow the steps from
      *           [Creating and managing organizations]
      *           (/resource-manager/docs/creating-managing-organization).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $include_project_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_project_ids
      *           The list of project IDs to search within.
      *           For more information on the distinction between project names, IDs, and
      *           numbers, see [Projects](https://cloud.google.com/docs/overview/#projects).
@@ -90,7 +90,7 @@ class Scope extends \Google\Protobuf\Internal\Message
      *           search results. By default, they are excluded.
      *           See [Google Cloud Public Datasets](https://cloud.google.com/public-datasets) for more
      *           information.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $restricted_locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $restricted_locations
      *           Optional. The list of locations to search within. If empty, all locations are
      *           searched.
      *           Returns an error if any location in the list isn't one of the [Supported
@@ -133,7 +133,7 @@ class Scope extends \Google\Protobuf\Internal\Message
      * (/resource-manager/docs/creating-managing-organization).
      *
      * Generated from protobuf field <code>repeated string include_org_ids = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIncludeOrgIds($var)
@@ -163,7 +163,7 @@ class Scope extends \Google\Protobuf\Internal\Message
      * numbers, see [Projects](https://cloud.google.com/docs/overview/#projects).
      *
      * Generated from protobuf field <code>repeated string include_project_ids = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIncludeProjectIds($var)
@@ -235,7 +235,7 @@ class Scope extends \Google\Protobuf\Internal\Message
      * value of this parameter.
      *
      * Generated from protobuf field <code>repeated string restricted_locations = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRestrictedLocations($var)

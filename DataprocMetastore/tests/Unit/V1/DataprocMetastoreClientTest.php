@@ -93,7 +93,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -117,10 +117,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
         $backupId = 'backupId1355353272';
         $backup = new Backup();
-        $response = $client->createBackup($formattedParent, $backupId, $backup);
+        $response = $gapicClient->createBackup($formattedParent, $backupId, $backup);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -167,7 +167,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -189,10 +189,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
         $backupId = 'backupId1355353272';
         $backup = new Backup();
-        $response = $client->createBackup($formattedParent, $backupId, $backup);
+        $response = $gapicClient->createBackup($formattedParent, $backupId, $backup);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -226,7 +226,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -250,10 +250,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
         $metadataImportId = 'metadataImportId-476076315';
         $metadataImport = new MetadataImport();
-        $response = $client->createMetadataImport($formattedParent, $metadataImportId, $metadataImport);
+        $response = $gapicClient->createMetadataImport($formattedParent, $metadataImportId, $metadataImport);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -300,7 +300,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -322,10 +322,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
         $metadataImportId = 'metadataImportId-476076315';
         $metadataImport = new MetadataImport();
-        $response = $client->createMetadataImport($formattedParent, $metadataImportId, $metadataImport);
+        $response = $gapicClient->createMetadataImport($formattedParent, $metadataImportId, $metadataImport);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -359,7 +359,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -393,10 +393,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $serviceId = 'serviceId-1724763419';
         $service = new Service();
-        $response = $client->createService($formattedParent, $serviceId, $service);
+        $response = $gapicClient->createService($formattedParent, $serviceId, $service);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -443,7 +443,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -465,10 +465,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $serviceId = 'serviceId-1724763419';
         $service = new Service();
-        $response = $client->createService($formattedParent, $serviceId, $service);
+        $response = $gapicClient->createService($formattedParent, $serviceId, $service);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -502,7 +502,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -522,8 +522,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
-        $response = $client->deleteBackup($formattedName);
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
+        $response = $gapicClient->deleteBackup($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -566,7 +566,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -588,8 +588,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
-        $response = $client->deleteBackup($formattedName);
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
+        $response = $gapicClient->deleteBackup($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -623,7 +623,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -643,8 +643,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $response = $client->deleteService($formattedName);
+        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $response = $gapicClient->deleteService($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -687,7 +687,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -709,8 +709,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $response = $client->deleteService($formattedName);
+        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $response = $gapicClient->deleteService($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -744,7 +744,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -766,8 +766,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedService = $client->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $response = $client->exportMetadata($formattedService);
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $response = $gapicClient->exportMetadata($formattedService);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -810,7 +810,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -832,8 +832,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedService = $client->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $response = $client->exportMetadata($formattedService);
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $response = $gapicClient->exportMetadata($formattedService);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -861,7 +861,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
     public function getBackupTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -873,8 +873,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
-        $response = $client->getBackup($formattedName);
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
+        $response = $gapicClient->getBackup($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -892,7 +892,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
     public function getBackupExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -907,10 +907,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
         try {
-            $client->getBackup($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getBackup($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -927,7 +927,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
     public function getMetadataImportTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -939,8 +939,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->metadataImportName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[METADATA_IMPORT]');
-        $response = $client->getMetadataImport($formattedName);
+        $formattedName = $gapicClient->metadataImportName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[METADATA_IMPORT]');
+        $response = $gapicClient->getMetadataImport($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -958,7 +958,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
     public function getMetadataImportExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -973,10 +973,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->metadataImportName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[METADATA_IMPORT]');
+        $formattedName = $gapicClient->metadataImportName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[METADATA_IMPORT]');
         try {
-            $client->getMetadataImport($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getMetadataImport($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -993,7 +993,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
     public function getServiceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1015,8 +1015,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $response = $client->getService($formattedName);
+        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $response = $gapicClient->getService($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1034,7 +1034,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
     public function getServiceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1049,10 +1049,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
         try {
-            $client->getService($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getService($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1069,7 +1069,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
     public function listBackupsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1084,8 +1084,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $expectedResponse->setBackups($backups);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $response = $client->listBackups($formattedParent);
+        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $response = $gapicClient->listBackups($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1106,7 +1106,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
     public function listBackupsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1121,10 +1121,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
         try {
-            $client->listBackups($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listBackups($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1141,7 +1141,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
     public function listMetadataImportsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1156,8 +1156,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $expectedResponse->setMetadataImports($metadataImports);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $response = $client->listMetadataImports($formattedParent);
+        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $response = $gapicClient->listMetadataImports($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1178,7 +1178,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
     public function listMetadataImportsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1193,10 +1193,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $formattedParent = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
         try {
-            $client->listMetadataImports($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listMetadataImports($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1213,7 +1213,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
     public function listServicesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1228,8 +1228,8 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $expectedResponse->setServices($services);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listServices($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listServices($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1250,7 +1250,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
     public function listServicesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1265,10 +1265,10 @@ class DataprocMetastoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listServices($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listServices($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1291,7 +1291,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1315,9 +1315,9 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedService = $client->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $formattedBackup = $client->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
-        $response = $client->restoreService($formattedService, $formattedBackup);
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $formattedBackup = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
+        $response = $gapicClient->restoreService($formattedService, $formattedBackup);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1362,7 +1362,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1384,9 +1384,9 @@ class DataprocMetastoreClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedService = $client->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
-        $formattedBackup = $client->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
-        $response = $client->restoreService($formattedService, $formattedBackup);
+        $formattedService = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+        $formattedBackup = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
+        $response = $gapicClient->restoreService($formattedService, $formattedBackup);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1420,7 +1420,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1446,7 +1446,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $metadataImport = new MetadataImport();
-        $response = $client->updateMetadataImport($updateMask, $metadataImport);
+        $response = $gapicClient->updateMetadataImport($updateMask, $metadataImport);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1491,7 +1491,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1515,7 +1515,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $metadataImport = new MetadataImport();
-        $response = $client->updateMetadataImport($updateMask, $metadataImport);
+        $response = $gapicClient->updateMetadataImport($updateMask, $metadataImport);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1549,7 +1549,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1585,7 +1585,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $service = new Service();
-        $response = $client->updateService($updateMask, $service);
+        $response = $gapicClient->updateService($updateMask, $service);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1630,7 +1630,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1654,7 +1654,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $service = new Service();
-        $response = $client->updateService($updateMask, $service);
+        $response = $gapicClient->updateService($updateMask, $service);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

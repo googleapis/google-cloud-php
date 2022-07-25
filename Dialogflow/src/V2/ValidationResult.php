@@ -28,7 +28,7 @@ class ValidationResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dialogflow\V2\ValidationError[]|\Google\Protobuf\Internal\RepeatedField $validation_errors
+     *     @type array<\Google\Cloud\Dialogflow\V2\ValidationError>|\Google\Protobuf\Internal\RepeatedField $validation_errors
      *           Contains all validation errors.
      * }
      */
@@ -52,7 +52,7 @@ class ValidationResult extends \Google\Protobuf\Internal\Message
      * Contains all validation errors.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.ValidationError validation_errors = 1;</code>
-     * @param \Google\Cloud\Dialogflow\V2\ValidationError[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\ValidationError>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValidationErrors($var)

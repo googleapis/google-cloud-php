@@ -529,7 +529,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           [item_group_id](https://support.google.com/merchants/answer/6324507).
      *           Schema.org property
      *           [Product.inProductGroupWithID](https://schema.org/inProductGroupWithID).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $collection_member_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $collection_member_ids
      *           The [id][google.cloud.retail.v2.Product.id] of the collection members when
      *           [type][google.cloud.retail.v2.Product.type] is
      *           [Type.COLLECTION][google.cloud.retail.v2.Product.Type.COLLECTION].
@@ -555,7 +555,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           [Product.gtin13](https://schema.org/gtin13), or
      *           [Product.gtin14](https://schema.org/gtin14).
      *           If the value is not a valid GTIN, an INVALID_ARGUMENT error is returned.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $categories
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $categories
      *           Product categories. This field is repeated for supporting one product
      *           belonging to several parallel categories. Strongly recommended using the
      *           full path for better search / recommendation quality.
@@ -589,7 +589,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           Corresponding properties: Google Merchant Center property
      *           [title](https://support.google.com/merchants/answer/6324415). Schema.org
      *           property [Product.name](https://schema.org/name).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $brands
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $brands
      *           The brands of the product.
      *           A maximum of 30 brands are allowed. Each brand must be a UTF-8 encoded
      *           string with a length limit of 1,000 characters. Otherwise, an
@@ -638,7 +638,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *             allowed. Each value must be a non-empty UTF-8 encoded string with a
      *             length limit of 256 characters.
      *           * For number attributes, at most 400 values are allowed.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
      *           Custom tags associated with the product.
      *           At most 250 values are allowed per
      *           [Product][google.cloud.retail.v2.Product]. This value must be a UTF-8
@@ -668,7 +668,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           Schema.org property [Offer.availability](https://schema.org/availability).
      *     @type \Google\Protobuf\Int32Value $available_quantity
      *           The available quantity of the item.
-     *     @type \Google\Cloud\Retail\V2\FulfillmentInfo[]|\Google\Protobuf\Internal\RepeatedField $fulfillment_info
+     *     @type array<\Google\Cloud\Retail\V2\FulfillmentInfo>|\Google\Protobuf\Internal\RepeatedField $fulfillment_info
      *           Fulfillment information, such as the store IDs for in-store pickup or
      *           region IDs for different shipping methods.
      *           All the elements must have distinct
@@ -683,7 +683,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           Corresponding properties: Google Merchant Center property
      *           [link](https://support.google.com/merchants/answer/6324416). Schema.org
      *           property [Offer.url](https://schema.org/url).
-     *     @type \Google\Cloud\Retail\V2\Image[]|\Google\Protobuf\Internal\RepeatedField $images
+     *     @type array<\Google\Cloud\Retail\V2\Image>|\Google\Protobuf\Internal\RepeatedField $images
      *           Product images for the product. We highly recommend putting the main
      *           image first.
      *           A maximum of 300 images are allowed.
@@ -698,7 +698,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           Corresponding properties: Google Merchant Center property
      *           [color](https://support.google.com/merchants/answer/6324487). Schema.org
      *           property [Product.color](https://schema.org/color).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $sizes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $sizes
      *           The size of the product. To represent different size systems or size types,
      *           consider using this format: [[[size_system:]size_type:]size_value].
      *           For example, in "US:MENS:M", "US" represents size system; "MENS" represents
@@ -714,7 +714,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           [size_type](https://support.google.com/merchants/answer/6324497), and
      *           [size_system](https://support.google.com/merchants/answer/6324502).
      *           Schema.org property [Product.size](https://schema.org/size).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $materials
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $materials
      *           The material of the product. For example, "leather", "wooden".
      *           A maximum of 20 values are allowed. Each value must be a UTF-8 encoded
      *           string with a length limit of 200 characters. Otherwise, an
@@ -722,7 +722,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           Corresponding properties: Google Merchant Center property
      *           [material](https://support.google.com/merchants/answer/6324410). Schema.org
      *           property [Product.material](https://schema.org/material).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $patterns
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $patterns
      *           The pattern or graphic print of the product. For example, "striped", "polka
      *           dot", "paisley".
      *           A maximum of 20 values are allowed per
@@ -732,7 +732,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           Corresponding properties: Google Merchant Center property
      *           [pattern](https://support.google.com/merchants/answer/6324483). Schema.org
      *           property [Product.pattern](https://schema.org/pattern).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $conditions
      *           The condition of the product. Strongly encouraged to use the standard
      *           values: "new", "refurbished", "used".
      *           A maximum of 1 value is allowed per
@@ -743,7 +743,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           [condition](https://support.google.com/merchants/answer/6324469).
      *           Schema.org property
      *           [Offer.itemCondition](https://schema.org/itemCondition).
-     *     @type \Google\Cloud\Retail\V2\Promotion[]|\Google\Protobuf\Internal\RepeatedField $promotions
+     *     @type array<\Google\Cloud\Retail\V2\Promotion>|\Google\Protobuf\Internal\RepeatedField $promotions
      *           The promotions applied to the product. A maximum of 10 values are allowed
      *           per [Product][google.cloud.retail.v2.Product]. Only
      *           [Promotion.promotion_id][google.cloud.retail.v2.Promotion.promotion_id]
@@ -800,7 +800,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           Note: Returning more fields in
      *           [SearchResponse][google.cloud.retail.v2.SearchResponse] can increase
      *           response payload size and serving latency.
-     *     @type \Google\Cloud\Retail\V2\Product[]|\Google\Protobuf\Internal\RepeatedField $variants
+     *     @type array<\Google\Cloud\Retail\V2\Product>|\Google\Protobuf\Internal\RepeatedField $variants
      *           Output only. Product variants grouped together on primary product which
      *           share similar product attributes. It's automatically grouped by
      *           [primary_product_id][google.cloud.retail.v2.Product.primary_product_id] for
@@ -1124,7 +1124,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * return.
      *
      * Generated from protobuf field <code>repeated string collection_member_ids = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCollectionMemberIds($var)
@@ -1252,7 +1252,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * https://support.google.com/merchants/answer/6324436
      *
      * Generated from protobuf field <code>repeated string categories = 7;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCategories($var)
@@ -1326,7 +1326,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * property [Product.brand](https://schema.org/brand).
      *
      * Generated from protobuf field <code>repeated string brands = 9;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBrands($var)
@@ -1518,7 +1518,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * [custom_label_0–4](https://support.google.com/merchants/answer/6324473).
      *
      * Generated from protobuf field <code>repeated string tags = 13;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTags($var)
@@ -1767,7 +1767,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * Otherwise, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.FulfillmentInfo fulfillment_info = 21;</code>
-     * @param \Google\Cloud\Retail\V2\FulfillmentInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\FulfillmentInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFulfillmentInfo($var)
@@ -1843,7 +1843,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * Schema.org property [Product.image](https://schema.org/image).
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Image images = 23;</code>
-     * @param \Google\Cloud\Retail\V2\Image[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\Image>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setImages($var)
@@ -1977,7 +1977,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * Schema.org property [Product.size](https://schema.org/size).
      *
      * Generated from protobuf field <code>repeated string sizes = 26;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSizes($var)
@@ -2015,7 +2015,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * property [Product.material](https://schema.org/material).
      *
      * Generated from protobuf field <code>repeated string materials = 27;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMaterials($var)
@@ -2057,7 +2057,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * property [Product.pattern](https://schema.org/pattern).
      *
      * Generated from protobuf field <code>repeated string patterns = 28;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPatterns($var)
@@ -2101,7 +2101,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * [Offer.itemCondition](https://schema.org/itemCondition).
      *
      * Generated from protobuf field <code>repeated string conditions = 29;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConditions($var)
@@ -2133,7 +2133,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * will be used, other fields will be ignored if set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Promotion promotions = 34;</code>
-     * @param \Google\Cloud\Retail\V2\Promotion[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\Promotion>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPromotions($var)
@@ -2343,7 +2343,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * Do not set this field in API requests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Product variants = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Retail\V2\Product[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\Product>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVariants($var)

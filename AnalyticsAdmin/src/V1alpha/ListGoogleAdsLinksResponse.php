@@ -35,7 +35,7 @@ class ListGoogleAdsLinksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Admin\V1alpha\GoogleAdsLink[]|\Google\Protobuf\Internal\RepeatedField $google_ads_links
+     *     @type array<\Google\Analytics\Admin\V1alpha\GoogleAdsLink>|\Google\Protobuf\Internal\RepeatedField $google_ads_links
      *           List of GoogleAdsLinks.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class ListGoogleAdsLinksResponse extends \Google\Protobuf\Internal\Message
      * List of GoogleAdsLinks.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.GoogleAdsLink google_ads_links = 1;</code>
-     * @param \Google\Analytics\Admin\V1alpha\GoogleAdsLink[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Admin\V1alpha\GoogleAdsLink>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGoogleAdsLinks($var)

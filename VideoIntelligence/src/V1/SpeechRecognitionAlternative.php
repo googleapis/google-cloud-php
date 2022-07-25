@@ -56,7 +56,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      *           This field is not guaranteed to be accurate and users should not rely on it
      *           to be always provided.
      *           The default of 0.0 is a sentinel value indicating `confidence` was not set.
-     *     @type \Google\Cloud\VideoIntelligence\V1\WordInfo[]|\Google\Protobuf\Internal\RepeatedField $words
+     *     @type array<\Google\Cloud\VideoIntelligence\V1\WordInfo>|\Google\Protobuf\Internal\RepeatedField $words
      *           Output only. A list of word-specific information for each recognized word.
      *           Note: When `enable_speaker_diarization` is set to true, you will see all
      *           the words from the beginning of the audio.
@@ -148,7 +148,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      * the words from the beginning of the audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.WordInfo words = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\VideoIntelligence\V1\WordInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VideoIntelligence\V1\WordInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWords($var)

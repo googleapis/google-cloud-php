@@ -53,7 +53,7 @@ class MigrateDataLabelingDatasetConfig extends \Google\Protobuf\Internal\Message
      *     @type string $dataset_display_name
      *           Optional. Display name of the Dataset in Vertex AI.
      *           System will pick a display name if unspecified.
-     *     @type \Google\Cloud\AIPlatform\V1\MigrateResourceRequest\MigrateDataLabelingDatasetConfig\MigrateDataLabelingAnnotatedDatasetConfig[]|\Google\Protobuf\Internal\RepeatedField $migrate_data_labeling_annotated_dataset_configs
+     *     @type array<\Google\Cloud\AIPlatform\V1\MigrateResourceRequest\MigrateDataLabelingDatasetConfig\MigrateDataLabelingAnnotatedDatasetConfig>|\Google\Protobuf\Internal\RepeatedField $migrate_data_labeling_annotated_dataset_configs
      *           Optional. Configs for migrating AnnotatedDataset in datalabeling.googleapis.com to
      *           Vertex AI's SavedQuery. The specified AnnotatedDatasets have to belong
      *           to the datalabeling Dataset.
@@ -141,7 +141,7 @@ class MigrateDataLabelingDatasetConfig extends \Google\Protobuf\Internal\Message
      * to the datalabeling Dataset.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.MigrateResourceRequest.MigrateDataLabelingDatasetConfig.MigrateDataLabelingAnnotatedDatasetConfig migrate_data_labeling_annotated_dataset_configs = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\AIPlatform\V1\MigrateResourceRequest\MigrateDataLabelingDatasetConfig\MigrateDataLabelingAnnotatedDatasetConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\MigrateResourceRequest\MigrateDataLabelingDatasetConfig\MigrateDataLabelingAnnotatedDatasetConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMigrateDataLabelingAnnotatedDatasetConfigs($var)

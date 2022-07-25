@@ -234,7 +234,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *           the Virtual Machine must have access to pull the images from GCR, or
      *           appropriate credentials must be specified in the
      *           [google.cloud.lifesciences.v2beta.Action.credentials][google.cloud.lifesciences.v2beta.Action.credentials] field.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $commands
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $commands
      *           If specified, overrides the `CMD` specified in the container. If the
      *           container also has an `ENTRYPOINT` the values are used as entrypoint
      *           arguments. Otherwise, they are used as a command and arguments to run
@@ -266,7 +266,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *           The host port number must be less than 65536. If it is zero, an unused
      *           random port is assigned. To determine the resulting port number, consult
      *           the `ContainerStartedEvent` in the operation metadata.
-     *     @type \Google\Cloud\LifeSciences\V2beta\Mount[]|\Google\Protobuf\Internal\RepeatedField $mounts
+     *     @type array<\Google\Cloud\LifeSciences\V2beta\Mount>|\Google\Protobuf\Internal\RepeatedField $mounts
      *           A list of mounts to make available to the action.
      *           In addition to the values specified here, every action has a special
      *           virtual disk mounted under `/google` that contains log files and other
@@ -442,7 +442,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * inside the container.
      *
      * Generated from protobuf field <code>repeated string commands = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCommands($var)
@@ -638,7 +638,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * </ul>
      *
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Mount mounts = 9;</code>
-     * @param \Google\Cloud\LifeSciences\V2beta\Mount[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\LifeSciences\V2beta\Mount>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMounts($var)

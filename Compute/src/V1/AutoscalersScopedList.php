@@ -33,7 +33,7 @@ class AutoscalersScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\Autoscaler[]|\Google\Protobuf\Internal\RepeatedField $autoscalers
+     *     @type array<\Google\Cloud\Compute\V1\Autoscaler>|\Google\Protobuf\Internal\RepeatedField $autoscalers
      *           [Output Only] A list of autoscalers contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning which replaces the list of autoscalers when the list is empty.
@@ -59,7 +59,7 @@ class AutoscalersScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of autoscalers contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Autoscaler autoscalers = 465771644;</code>
-     * @param \Google\Cloud\Compute\V1\Autoscaler[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Autoscaler>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAutoscalers($var)

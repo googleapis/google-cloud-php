@@ -29,7 +29,7 @@ class BatchReadTensorboardTimeSeriesDataResponse extends \Google\Protobuf\Intern
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\TimeSeriesData[]|\Google\Protobuf\Internal\RepeatedField $time_series_data
+     *     @type array<\Google\Cloud\AIPlatform\V1\TimeSeriesData>|\Google\Protobuf\Internal\RepeatedField $time_series_data
      *           The returned time series data.
      * }
      */
@@ -53,7 +53,7 @@ class BatchReadTensorboardTimeSeriesDataResponse extends \Google\Protobuf\Intern
      * The returned time series data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TimeSeriesData time_series_data = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\TimeSeriesData[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\TimeSeriesData>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTimeSeriesData($var)

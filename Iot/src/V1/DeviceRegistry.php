@@ -100,7 +100,7 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The resource path name. For example,
      *           `projects/example-project/locations/us-central1/registries/my-registry`.
-     *     @type \Google\Cloud\Iot\V1\EventNotificationConfig[]|\Google\Protobuf\Internal\RepeatedField $event_notification_configs
+     *     @type array<\Google\Cloud\Iot\V1\EventNotificationConfig>|\Google\Protobuf\Internal\RepeatedField $event_notification_configs
      *           The configuration for notification of telemetry events received from the
      *           device. All telemetry events that were successfully published by the
      *           device and acknowledged by Cloud IoT Core are guaranteed to be
@@ -125,7 +125,7 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
      *           **Beta Feature**
      *           The default logging verbosity for activity from devices in this registry.
      *           The verbosity level can be overridden by Device.log_level.
-     *     @type \Google\Cloud\Iot\V1\RegistryCredential[]|\Google\Protobuf\Internal\RepeatedField $credentials
+     *     @type array<\Google\Cloud\Iot\V1\RegistryCredential>|\Google\Protobuf\Internal\RepeatedField $credentials
      *           The credentials used to verify the device credentials. No more than 10
      *           credentials can be bound to a single registry at a time. The verification
      *           process occurs at the time of device creation or update. If this field is
@@ -228,7 +228,7 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
      * configurations may be provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iot.v1.EventNotificationConfig event_notification_configs = 10;</code>
-     * @param \Google\Cloud\Iot\V1\EventNotificationConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Iot\V1\EventNotificationConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEventNotificationConfigs($var)
@@ -420,7 +420,7 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
      * its registry credentials are revoked, deleted, or modified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iot.v1.RegistryCredential credentials = 8;</code>
-     * @param \Google\Cloud\Iot\V1\RegistryCredential[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Iot\V1\RegistryCredential>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCredentials($var)
