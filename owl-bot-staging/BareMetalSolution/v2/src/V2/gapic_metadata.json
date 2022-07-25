@@ -1,0 +1,118 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.baremetalsolution.v2",
+    "libraryPackage": "Google\\Cloud\\BareMetalSolution\\V2",
+    "services": {
+        "BareMetalSolution": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BareMetalSolutionGapicClient",
+                    "rpcs": {
+                        "DetachLun": {
+                            "methods": [
+                                "detachLun"
+                            ]
+                        },
+                        "GetInstance": {
+                            "methods": [
+                                "getInstance"
+                            ]
+                        },
+                        "GetLun": {
+                            "methods": [
+                                "getLun"
+                            ]
+                        },
+                        "GetNetwork": {
+                            "methods": [
+                                "getNetwork"
+                            ]
+                        },
+                        "GetNfsShare": {
+                            "methods": [
+                                "getNfsShare"
+                            ]
+                        },
+                        "GetVolume": {
+                            "methods": [
+                                "getVolume"
+                            ]
+                        },
+                        "ListInstances": {
+                            "methods": [
+                                "listInstances"
+                            ]
+                        },
+                        "ListLuns": {
+                            "methods": [
+                                "listLuns"
+                            ]
+                        },
+                        "ListNetworkUsage": {
+                            "methods": [
+                                "listNetworkUsage"
+                            ]
+                        },
+                        "ListNetworks": {
+                            "methods": [
+                                "listNetworks"
+                            ]
+                        },
+                        "ListNfsShares": {
+                            "methods": [
+                                "listNfsShares"
+                            ]
+                        },
+                        "ListVolumes": {
+                            "methods": [
+                                "listVolumes"
+                            ]
+                        },
+                        "ResetInstance": {
+                            "methods": [
+                                "resetInstance"
+                            ]
+                        },
+                        "ResizeVolume": {
+                            "methods": [
+                                "resizeVolume"
+                            ]
+                        },
+                        "StartInstance": {
+                            "methods": [
+                                "startInstance"
+                            ]
+                        },
+                        "StopInstance": {
+                            "methods": [
+                                "stopInstance"
+                            ]
+                        },
+                        "UpdateInstance": {
+                            "methods": [
+                                "updateInstance"
+                            ]
+                        },
+                        "UpdateNetwork": {
+                            "methods": [
+                                "updateNetwork"
+                            ]
+                        },
+                        "UpdateNfsShare": {
+                            "methods": [
+                                "updateNfsShare"
+                            ]
+                        },
+                        "UpdateVolume": {
+                            "methods": [
+                                "updateVolume"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

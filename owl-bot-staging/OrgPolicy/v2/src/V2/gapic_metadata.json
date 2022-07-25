@@ -1,0 +1,53 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.orgpolicy.v2",
+    "libraryPackage": "Google\\Cloud\\OrgPolicy\\V2",
+    "services": {
+        "OrgPolicy": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "OrgPolicyGapicClient",
+                    "rpcs": {
+                        "CreatePolicy": {
+                            "methods": [
+                                "createPolicy"
+                            ]
+                        },
+                        "DeletePolicy": {
+                            "methods": [
+                                "deletePolicy"
+                            ]
+                        },
+                        "GetEffectivePolicy": {
+                            "methods": [
+                                "getEffectivePolicy"
+                            ]
+                        },
+                        "GetPolicy": {
+                            "methods": [
+                                "getPolicy"
+                            ]
+                        },
+                        "ListConstraints": {
+                            "methods": [
+                                "listConstraints"
+                            ]
+                        },
+                        "ListPolicies": {
+                            "methods": [
+                                "listPolicies"
+                            ]
+                        },
+                        "UpdatePolicy": {
+                            "methods": [
+                                "updatePolicy"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
