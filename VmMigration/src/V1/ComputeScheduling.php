@@ -66,7 +66,7 @@ class ComputeScheduling extends \Google\Protobuf\Internal\Message
      *           Engine create instance under scheduling.
      *           It was changed to an enum (instead of a boolean) to match the default
      *           value in Compute Engine which is automatic restart.
-     *     @type \Google\Cloud\VMMigration\V1\SchedulingNodeAffinity[]|\Google\Protobuf\Internal\RepeatedField $node_affinities
+     *     @type array<\Google\Cloud\VMMigration\V1\SchedulingNodeAffinity>|\Google\Protobuf\Internal\RepeatedField $node_affinities
      *           A set of node affinity and anti-affinity configurations for sole tenant
      *           nodes.
      *     @type int $min_node_cpus
@@ -161,7 +161,7 @@ class ComputeScheduling extends \Google\Protobuf\Internal\Message
      * nodes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.SchedulingNodeAffinity node_affinities = 3;</code>
-     * @param \Google\Cloud\VMMigration\V1\SchedulingNodeAffinity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VMMigration\V1\SchedulingNodeAffinity>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNodeAffinities($var)

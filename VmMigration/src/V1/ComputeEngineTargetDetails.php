@@ -142,9 +142,9 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
      *           The machine type series to create the VM with.
      *     @type string $machine_type
      *           The machine type to create the VM with.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $network_tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
      *           A map of network tags to associate with the VM.
-     *     @type \Google\Cloud\VMMigration\V1\NetworkInterface[]|\Google\Protobuf\Internal\RepeatedField $network_interfaces
+     *     @type array<\Google\Cloud\VMMigration\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $network_interfaces
      *           List of NICs connected to this VM.
      *     @type string $service_account
      *           The service account to associate the VM with.
@@ -165,7 +165,7 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
      *           The VM Boot Option, as set in the source vm.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           The metadata key/value pairs to assign to the VM.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $additional_licenses
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $additional_licenses
      *           Additional licenses to assign to the VM.
      *     @type string $hostname
      *           The hostname to assign to the VM.
@@ -321,7 +321,7 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
      * A map of network tags to associate with the VM.
      *
      * Generated from protobuf field <code>repeated string network_tags = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNetworkTags($var)
@@ -347,7 +347,7 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
      * List of NICs connected to this VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.NetworkInterface network_interfaces = 7;</code>
-     * @param \Google\Cloud\VMMigration\V1\NetworkInterface[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VMMigration\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNetworkInterfaces($var)
@@ -629,7 +629,7 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
      * Additional licenses to assign to the VM.
      *
      * Generated from protobuf field <code>repeated string additional_licenses = 17;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdditionalLicenses($var)

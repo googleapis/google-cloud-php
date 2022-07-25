@@ -171,7 +171,7 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      *           [Group][google.cloud.vmmigration.v1.Group] resource.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           The labels of the migrating VM.
-     *     @type \Google\Cloud\VMMigration\V1\CloneJob[]|\Google\Protobuf\Internal\RepeatedField $recent_clone_jobs
+     *     @type array<\Google\Cloud\VMMigration\V1\CloneJob>|\Google\Protobuf\Internal\RepeatedField $recent_clone_jobs
      *           Output only. The recent [clone jobs][google.cloud.vmmigration.v1.CloneJob]
      *           performed on the migrating VM. This field holds the vm's last completed
      *           clone job and the vm's running clone job, if one exists.
@@ -180,7 +180,7 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Status $error
      *           Output only. Provides details on the state of the Migrating VM in case of
      *           an error in replication.
-     *     @type \Google\Cloud\VMMigration\V1\CutoverJob[]|\Google\Protobuf\Internal\RepeatedField $recent_cutover_jobs
+     *     @type array<\Google\Cloud\VMMigration\V1\CutoverJob>|\Google\Protobuf\Internal\RepeatedField $recent_cutover_jobs
      *           Output only. The recent cutover jobs performed on the migrating VM.
      *           This field holds the vm's last completed cutover job and the vm's
      *           running cutover job, if one exists.
@@ -659,7 +659,7 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      * the "view" parameter of the Get/List request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CloneJob recent_clone_jobs = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\VMMigration\V1\CloneJob[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VMMigration\V1\CloneJob>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRecentCloneJobs($var)
@@ -731,7 +731,7 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      * the "view" parameter of the Get/List request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CutoverJob recent_cutover_jobs = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\VMMigration\V1\CutoverJob[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VMMigration\V1\CutoverJob>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRecentCutoverJobs($var)
