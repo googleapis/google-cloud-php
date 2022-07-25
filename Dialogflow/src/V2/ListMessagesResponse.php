@@ -37,7 +37,7 @@ class ListMessagesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dialogflow\V2\Message[]|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type array<\Google\Cloud\Dialogflow\V2\Message>|\Google\Protobuf\Internal\RepeatedField $messages
      *           The list of messages. There will be a maximum number of items
      *           returned based on the page_size field in the request.
      *           `messages` is sorted by `create_time` in descending order.
@@ -70,7 +70,7 @@ class ListMessagesResponse extends \Google\Protobuf\Internal\Message
      * `messages` is sorted by `create_time` in descending order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Message messages = 1;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Message[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Message>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMessages($var)

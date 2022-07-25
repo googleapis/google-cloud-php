@@ -34,7 +34,7 @@ class ListSpecialistPoolsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\SpecialistPool[]|\Google\Protobuf\Internal\RepeatedField $specialist_pools
+     *     @type array<\Google\Cloud\AIPlatform\V1\SpecialistPool>|\Google\Protobuf\Internal\RepeatedField $specialist_pools
      *           A list of SpecialistPools that matches the specified filter in the request.
      *     @type string $next_page_token
      *           The standard List next-page token.
@@ -60,7 +60,7 @@ class ListSpecialistPoolsResponse extends \Google\Protobuf\Internal\Message
      * A list of SpecialistPools that matches the specified filter in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SpecialistPool specialist_pools = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\SpecialistPool[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\SpecialistPool>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSpecialistPools($var)

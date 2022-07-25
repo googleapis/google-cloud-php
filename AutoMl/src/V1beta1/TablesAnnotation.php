@@ -95,7 +95,7 @@ class TablesAnnotation extends \Google\Protobuf\Internal\Message
      *           * CATEGORY - the predicted (with the above confidence `score`) CATEGORY
      *             value.
      *           * FLOAT64 - the predicted (with above `prediction_interval`) FLOAT64 value.
-     *     @type \Google\Cloud\AutoMl\V1beta1\TablesModelColumnInfo[]|\Google\Protobuf\Internal\RepeatedField $tables_model_column_info
+     *     @type array<\Google\Cloud\AutoMl\V1beta1\TablesModelColumnInfo>|\Google\Protobuf\Internal\RepeatedField $tables_model_column_info
      *           Output only. Auxiliary information for each of the model's
      *           [input_feature_column_specs][google.cloud.automl.v1beta1.TablesModelMetadata.input_feature_column_specs]
      *           with respect to this particular prediction.
@@ -270,7 +270,7 @@ class TablesAnnotation extends \Google\Protobuf\Internal\Message
      * would be populated, then this whole field is not.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.TablesModelColumnInfo tables_model_column_info = 3;</code>
-     * @param \Google\Cloud\AutoMl\V1beta1\TablesModelColumnInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AutoMl\V1beta1\TablesModelColumnInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTablesModelColumnInfo($var)

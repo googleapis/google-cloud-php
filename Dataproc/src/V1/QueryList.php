@@ -40,7 +40,7 @@ class QueryList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $queries
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $queries
      *           Required. The queries to execute. You do not need to end a query expression
      *           with a semicolon. Multiple queries can be specified in one
      *           string by separating each with a semicolon. Here is an example of a
@@ -100,7 +100,7 @@ class QueryList extends \Google\Protobuf\Internal\Message
      *     }
      *
      * Generated from protobuf field <code>repeated string queries = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setQueries($var)

@@ -48,9 +48,9 @@ class DocumentChange extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Firestore\V1\Document $document
      *           The new state of the [Document][google.firestore.v1.Document].
      *           If `mask` is set, contains only fields that were updated or added.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $target_ids
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $target_ids
      *           A set of target IDs of targets that match this document.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $removed_target_ids
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $removed_target_ids
      *           A set of target IDs for targets that no longer match this document.
      * }
      */
@@ -112,7 +112,7 @@ class DocumentChange extends \Google\Protobuf\Internal\Message
      * A set of target IDs of targets that match this document.
      *
      * Generated from protobuf field <code>repeated int32 target_ids = 5;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetIds($var)
@@ -138,7 +138,7 @@ class DocumentChange extends \Google\Protobuf\Internal\Message
      * A set of target IDs for targets that no longer match this document.
      *
      * Generated from protobuf field <code>repeated int32 removed_target_ids = 6;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRemovedTargetIds($var)

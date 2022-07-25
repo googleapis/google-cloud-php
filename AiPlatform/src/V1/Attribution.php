@@ -153,7 +153,7 @@ class Attribution extends \Google\Protobuf\Internal\Message
      *           pointed to by the [ExplanationSpec][google.cloud.aiplatform.v1.ExplanationSpec] field of the
      *           [Endpoint.deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models] object, points to the schema file that
      *           describes the features and their attribution values (if it is populated).
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $output_index
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $output_index
      *           Output only. The index that locates the explained prediction output.
      *           If the prediction output is a scalar value, output_index is not populated.
      *           If the prediction output has multiple dimensions, the length of the
@@ -364,7 +364,7 @@ class Attribution extends \Google\Protobuf\Internal\Message
      * of the output vector. Indices start from 0.
      *
      * Generated from protobuf field <code>repeated int32 output_index = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOutputIndex($var)

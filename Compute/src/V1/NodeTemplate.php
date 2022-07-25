@@ -116,7 +116,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $accelerators
+     *     @type array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerators
      *     @type string $cpu_overcommit_type
      *           CPU overcommit.
      *           Check the CpuOvercommitType enum for the list of possible values.
@@ -124,7 +124,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
-     *     @type \Google\Cloud\Compute\V1\LocalDisk[]|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type array<\Google\Cloud\Compute\V1\LocalDisk>|\Google\Protobuf\Internal\RepeatedField $disks
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
@@ -166,7 +166,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig accelerators = 269577064;</code>
-     * @param \Google\Cloud\Compute\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAccelerators($var)
@@ -298,7 +298,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LocalDisk disks = 95594102;</code>
-     * @param \Google\Cloud\Compute\V1\LocalDisk[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\LocalDisk>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDisks($var)

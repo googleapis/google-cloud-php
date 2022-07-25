@@ -83,14 +83,14 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $accelerators
+     *     @type array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           Accelerators for this node.
      *     @type string $cpu_overcommit_type
      *           CPU overcommit.
      *           Check the CpuOvercommitType enum for the list of possible values.
-     *     @type \Google\Cloud\Compute\V1\LocalDisk[]|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type array<\Google\Cloud\Compute\V1\LocalDisk>|\Google\Protobuf\Internal\RepeatedField $disks
      *           Local disk configurations.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
      *           Instances scheduled on this node.
      *     @type string $name
      *           The name of the node.
@@ -127,7 +127,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      * Accelerators for this node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig accelerators = 269577064;</code>
-     * @param \Google\Cloud\Compute\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAccelerators($var)
@@ -191,7 +191,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      * Local disk configurations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LocalDisk disks = 95594102;</code>
-     * @param \Google\Cloud\Compute\V1\LocalDisk[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\LocalDisk>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDisks($var)
@@ -217,7 +217,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      * Instances scheduled on this node.
      *
      * Generated from protobuf field <code>repeated string instances = 29097598;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstances($var)

@@ -46,7 +46,7 @@ class ExportDataOperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type string $dataset
      *           Output only. The name of dataset to be exported.
      *           "projects/&#42;&#47;datasets/&#42;"
-     *     @type \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $partial_failures
+     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_failures
      *           Output only. Partial failures encountered.
      *           E.g. single files that couldn't be read.
      *           Status details field will contain standard GCP error details.
@@ -106,7 +106,7 @@ class ExportDataOperationMetadata extends \Google\Protobuf\Internal\Message
      * Status details field will contain standard GCP error details.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_failures = 2;</code>
-     * @param \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPartialFailures($var)

@@ -43,9 +43,9 @@ class BreakRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Optimization\V1\BreakRule\BreakRequest[]|\Google\Protobuf\Internal\RepeatedField $break_requests
+     *     @type array<\Google\Cloud\Optimization\V1\BreakRule\BreakRequest>|\Google\Protobuf\Internal\RepeatedField $break_requests
      *           Sequence of breaks. See the `BreakRequest` message.
-     *     @type \Google\Cloud\Optimization\V1\BreakRule\FrequencyConstraint[]|\Google\Protobuf\Internal\RepeatedField $frequency_constraints
+     *     @type array<\Google\Cloud\Optimization\V1\BreakRule\FrequencyConstraint>|\Google\Protobuf\Internal\RepeatedField $frequency_constraints
      *           Several `FrequencyConstraint` may apply. They must all be satisfied by
      *           the `BreakRequest`s of this `BreakRule`. See `FrequencyConstraint`.
      * }
@@ -70,7 +70,7 @@ class BreakRule extends \Google\Protobuf\Internal\Message
      * Sequence of breaks. See the `BreakRequest` message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.BreakRule.BreakRequest break_requests = 1;</code>
-     * @param \Google\Cloud\Optimization\V1\BreakRule\BreakRequest[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\BreakRule\BreakRequest>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBreakRequests($var)
@@ -98,7 +98,7 @@ class BreakRule extends \Google\Protobuf\Internal\Message
      * the `BreakRequest`s of this `BreakRule`. See `FrequencyConstraint`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.BreakRule.FrequencyConstraint frequency_constraints = 2;</code>
-     * @param \Google\Cloud\Optimization\V1\BreakRule\FrequencyConstraint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\BreakRule\FrequencyConstraint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFrequencyConstraints($var)

@@ -95,7 +95,7 @@ class TranslationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -131,12 +131,12 @@ class TranslationServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $sourceLanguageCode = 'sourceLanguageCode1687263568';
         $targetLanguageCodes = [];
         $inputConfigs = [];
         $outputConfig = new BatchDocumentOutputConfig();
-        $response = $client->batchTranslateDocument($formattedParent, $sourceLanguageCode, $targetLanguageCodes, $inputConfigs, $outputConfig);
+        $response = $gapicClient->batchTranslateDocument($formattedParent, $sourceLanguageCode, $targetLanguageCodes, $inputConfigs, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -187,7 +187,7 @@ class TranslationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -209,12 +209,12 @@ class TranslationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $sourceLanguageCode = 'sourceLanguageCode1687263568';
         $targetLanguageCodes = [];
         $inputConfigs = [];
         $outputConfig = new BatchDocumentOutputConfig();
-        $response = $client->batchTranslateDocument($formattedParent, $sourceLanguageCode, $targetLanguageCodes, $inputConfigs, $outputConfig);
+        $response = $gapicClient->batchTranslateDocument($formattedParent, $sourceLanguageCode, $targetLanguageCodes, $inputConfigs, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -248,7 +248,7 @@ class TranslationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -274,12 +274,12 @@ class TranslationServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $sourceLanguageCode = 'sourceLanguageCode1687263568';
         $targetLanguageCodes = [];
         $inputConfigs = [];
         $outputConfig = new OutputConfig();
-        $response = $client->batchTranslateText($formattedParent, $sourceLanguageCode, $targetLanguageCodes, $inputConfigs, $outputConfig);
+        $response = $gapicClient->batchTranslateText($formattedParent, $sourceLanguageCode, $targetLanguageCodes, $inputConfigs, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -330,7 +330,7 @@ class TranslationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -352,12 +352,12 @@ class TranslationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $sourceLanguageCode = 'sourceLanguageCode1687263568';
         $targetLanguageCodes = [];
         $inputConfigs = [];
         $outputConfig = new OutputConfig();
-        $response = $client->batchTranslateText($formattedParent, $sourceLanguageCode, $targetLanguageCodes, $inputConfigs, $outputConfig);
+        $response = $gapicClient->batchTranslateText($formattedParent, $sourceLanguageCode, $targetLanguageCodes, $inputConfigs, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -391,7 +391,7 @@ class TranslationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -415,11 +415,11 @@ class TranslationServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $glossary = new Glossary();
         $glossaryName = 'glossaryName-297469495';
         $glossary->setName($glossaryName);
-        $response = $client->createGlossary($formattedParent, $glossary);
+        $response = $gapicClient->createGlossary($formattedParent, $glossary);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -464,7 +464,7 @@ class TranslationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -486,11 +486,11 @@ class TranslationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $glossary = new Glossary();
         $glossaryName = 'glossaryName-297469495';
         $glossary->setName($glossaryName);
-        $response = $client->createGlossary($formattedParent, $glossary);
+        $response = $gapicClient->createGlossary($formattedParent, $glossary);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -524,7 +524,7 @@ class TranslationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -546,8 +546,8 @@ class TranslationServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');
-        $response = $client->deleteGlossary($formattedName);
+        $formattedName = $gapicClient->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');
+        $response = $gapicClient->deleteGlossary($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -590,7 +590,7 @@ class TranslationServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -612,8 +612,8 @@ class TranslationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');
-        $response = $client->deleteGlossary($formattedName);
+        $formattedName = $gapicClient->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');
+        $response = $gapicClient->deleteGlossary($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -641,7 +641,7 @@ class TranslationServiceClientTest extends GeneratedTest
     public function detectLanguageTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -649,8 +649,8 @@ class TranslationServiceClientTest extends GeneratedTest
         $expectedResponse = new DetectLanguageResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->detectLanguage($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->detectLanguage($formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -668,7 +668,7 @@ class TranslationServiceClientTest extends GeneratedTest
     public function detectLanguageExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -683,10 +683,10 @@ class TranslationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->detectLanguage($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->detectLanguage($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -703,7 +703,7 @@ class TranslationServiceClientTest extends GeneratedTest
     public function getGlossaryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -715,8 +715,8 @@ class TranslationServiceClientTest extends GeneratedTest
         $expectedResponse->setEntryCount($entryCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');
-        $response = $client->getGlossary($formattedName);
+        $formattedName = $gapicClient->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');
+        $response = $gapicClient->getGlossary($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -734,7 +734,7 @@ class TranslationServiceClientTest extends GeneratedTest
     public function getGlossaryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -749,10 +749,10 @@ class TranslationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');
+        $formattedName = $gapicClient->glossaryName('[PROJECT]', '[LOCATION]', '[GLOSSARY]');
         try {
-            $client->getGlossary($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getGlossary($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -769,7 +769,7 @@ class TranslationServiceClientTest extends GeneratedTest
     public function getSupportedLanguagesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -777,8 +777,8 @@ class TranslationServiceClientTest extends GeneratedTest
         $expectedResponse = new SupportedLanguages();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->getSupportedLanguages($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->getSupportedLanguages($formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -796,7 +796,7 @@ class TranslationServiceClientTest extends GeneratedTest
     public function getSupportedLanguagesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -811,10 +811,10 @@ class TranslationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->getSupportedLanguages($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getSupportedLanguages($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -831,7 +831,7 @@ class TranslationServiceClientTest extends GeneratedTest
     public function listGlossariesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -846,8 +846,8 @@ class TranslationServiceClientTest extends GeneratedTest
         $expectedResponse->setGlossaries($glossaries);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listGlossaries($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listGlossaries($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -868,7 +868,7 @@ class TranslationServiceClientTest extends GeneratedTest
     public function listGlossariesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -883,10 +883,10 @@ class TranslationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listGlossaries($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listGlossaries($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -903,7 +903,7 @@ class TranslationServiceClientTest extends GeneratedTest
     public function translateDocumentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -916,7 +916,7 @@ class TranslationServiceClientTest extends GeneratedTest
         $parent = 'parent-995424086';
         $targetLanguageCode = 'targetLanguageCode1323228230';
         $documentInputConfig = new DocumentInputConfig();
-        $response = $client->translateDocument($parent, $targetLanguageCode, $documentInputConfig);
+        $response = $gapicClient->translateDocument($parent, $targetLanguageCode, $documentInputConfig);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -938,7 +938,7 @@ class TranslationServiceClientTest extends GeneratedTest
     public function translateDocumentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -957,8 +957,8 @@ class TranslationServiceClientTest extends GeneratedTest
         $targetLanguageCode = 'targetLanguageCode1323228230';
         $documentInputConfig = new DocumentInputConfig();
         try {
-            $client->translateDocument($parent, $targetLanguageCode, $documentInputConfig);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->translateDocument($parent, $targetLanguageCode, $documentInputConfig);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -975,7 +975,7 @@ class TranslationServiceClientTest extends GeneratedTest
     public function translateTextTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -985,8 +985,8 @@ class TranslationServiceClientTest extends GeneratedTest
         // Mock request
         $contents = [];
         $targetLanguageCode = 'targetLanguageCode1323228230';
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->translateText($contents, $targetLanguageCode, $formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->translateText($contents, $targetLanguageCode, $formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1008,7 +1008,7 @@ class TranslationServiceClientTest extends GeneratedTest
     public function translateTextExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1025,10 +1025,10 @@ class TranslationServiceClientTest extends GeneratedTest
         // Mock request
         $contents = [];
         $targetLanguageCode = 'targetLanguageCode1323228230';
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->translateText($contents, $targetLanguageCode, $formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->translateText($contents, $targetLanguageCode, $formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

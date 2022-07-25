@@ -34,7 +34,7 @@ class ChangeReport extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Api\ConfigChange[]|\Google\Protobuf\Internal\RepeatedField $config_changes
+     *     @type array<\Google\Api\ConfigChange>|\Google\Protobuf\Internal\RepeatedField $config_changes
      *           List of changes between two service configurations.
      *           The changes will be alphabetically sorted based on the identifier
      *           of each change.
@@ -70,7 +70,7 @@ class ChangeReport extends \Google\Protobuf\Internal\Message
      * Example: visibility.rules[selector='LibraryService.CreateBook'].restriction
      *
      * Generated from protobuf field <code>repeated .google.api.ConfigChange config_changes = 1;</code>
-     * @param \Google\Api\ConfigChange[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Api\ConfigChange>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConfigChanges($var)

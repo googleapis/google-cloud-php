@@ -35,7 +35,7 @@ class SearchProductsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\PrivateCatalog\V1beta1\Product[]|\Google\Protobuf\Internal\RepeatedField $products
+     *     @type array<\Google\Cloud\PrivateCatalog\V1beta1\Product>|\Google\Protobuf\Internal\RepeatedField $products
      *           The `Product` resources computed from the resource context.
      *     @type string $next_page_token
      *           A pagination token returned from a previous call to SearchProducts that
@@ -62,7 +62,7 @@ class SearchProductsResponse extends \Google\Protobuf\Internal\Message
      * The `Product` resources computed from the resource context.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privatecatalog.v1beta1.Product products = 1;</code>
-     * @param \Google\Cloud\PrivateCatalog\V1beta1\Product[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\PrivateCatalog\V1beta1\Product>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProducts($var)

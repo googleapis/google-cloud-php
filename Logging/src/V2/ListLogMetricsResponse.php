@@ -36,7 +36,7 @@ class ListLogMetricsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Logging\V2\LogMetric[]|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type array<\Google\Cloud\Logging\V2\LogMetric>|\Google\Protobuf\Internal\RepeatedField $metrics
      *           A list of logs-based metrics.
      *     @type string $next_page_token
      *           If there might be more results than appear in this response, then
@@ -64,7 +64,7 @@ class ListLogMetricsResponse extends \Google\Protobuf\Internal\Message
      * A list of logs-based metrics.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.LogMetric metrics = 1;</code>
-     * @param \Google\Cloud\Logging\V2\LogMetric[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Logging\V2\LogMetric>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetrics($var)

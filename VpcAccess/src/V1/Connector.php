@@ -84,7 +84,7 @@ class Connector extends \Google\Protobuf\Internal\Message
      *           Minimum throughput of the connector in Mbps. Default and min is 200.
      *     @type int $max_throughput
      *           Maximum throughput of the connector in Mbps. Default is 200, max is 1000.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $connected_projects
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $connected_projects
      *           Output only. List of projects using the connector.
      *     @type \Google\Cloud\VpcAccess\V1\Connector\Subnet $subnet
      *           The subnet in which to house the VPC Access Connector.
@@ -268,7 +268,7 @@ class Connector extends \Google\Protobuf\Internal\Message
      * Output only. List of projects using the connector.
      *
      * Generated from protobuf field <code>repeated string connected_projects = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConnectedProjects($var)

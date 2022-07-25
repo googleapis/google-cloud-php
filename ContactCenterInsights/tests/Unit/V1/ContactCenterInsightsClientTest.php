@@ -98,7 +98,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function calculateIssueModelStatsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -106,8 +106,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse = new CalculateIssueModelStatsResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedIssueModel = $client->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $response = $client->calculateIssueModelStats($formattedIssueModel);
+        $formattedIssueModel = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
+        $response = $gapicClient->calculateIssueModelStats($formattedIssueModel);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -125,7 +125,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function calculateIssueModelStatsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -140,10 +140,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedIssueModel = $client->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
+        $formattedIssueModel = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
         try {
-            $client->calculateIssueModelStats($formattedIssueModel);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->calculateIssueModelStats($formattedIssueModel);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -160,7 +160,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function calculateStatsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -172,8 +172,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setConversationCount($conversationCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedLocation = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->calculateStats($formattedLocation);
+        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->calculateStats($formattedLocation);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -191,7 +191,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function calculateStatsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -206,10 +206,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedLocation = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->calculateStats($formattedLocation);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->calculateStats($formattedLocation);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -232,7 +232,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -254,9 +254,9 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
+        $formattedParent = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
         $analysis = new Analysis();
-        $response = $client->createAnalysis($formattedParent, $analysis);
+        $response = $gapicClient->createAnalysis($formattedParent, $analysis);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -301,7 +301,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -323,9 +323,9 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
+        $formattedParent = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
         $analysis = new Analysis();
-        $response = $client->createAnalysis($formattedParent, $analysis);
+        $response = $gapicClient->createAnalysis($formattedParent, $analysis);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -353,7 +353,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function createConversationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -371,9 +371,9 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setObfuscatedUserId($obfuscatedUserId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $conversation = new Conversation();
-        $response = $client->createConversation($formattedParent, $conversation);
+        $response = $gapicClient->createConversation($formattedParent, $conversation);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -393,7 +393,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function createConversationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -408,11 +408,11 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $conversation = new Conversation();
         try {
-            $client->createConversation($formattedParent, $conversation);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createConversation($formattedParent, $conversation);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -435,7 +435,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -459,9 +459,9 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $issueModel = new IssueModel();
-        $response = $client->createIssueModel($formattedParent, $issueModel);
+        $response = $gapicClient->createIssueModel($formattedParent, $issueModel);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -506,7 +506,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -528,9 +528,9 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $issueModel = new IssueModel();
-        $response = $client->createIssueModel($formattedParent, $issueModel);
+        $response = $gapicClient->createIssueModel($formattedParent, $issueModel);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -558,7 +558,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function createPhraseMatcherTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -576,11 +576,11 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setActive($active);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $phraseMatcher = new PhraseMatcher();
         $phraseMatcherType = PhraseMatcherType::PHRASE_MATCHER_TYPE_UNSPECIFIED;
         $phraseMatcher->setType($phraseMatcherType);
-        $response = $client->createPhraseMatcher($formattedParent, $phraseMatcher);
+        $response = $gapicClient->createPhraseMatcher($formattedParent, $phraseMatcher);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -600,7 +600,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function createPhraseMatcherExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -615,13 +615,13 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $phraseMatcher = new PhraseMatcher();
         $phraseMatcherType = PhraseMatcherType::PHRASE_MATCHER_TYPE_UNSPECIFIED;
         $phraseMatcher->setType($phraseMatcherType);
         try {
-            $client->createPhraseMatcher($formattedParent, $phraseMatcher);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createPhraseMatcher($formattedParent, $phraseMatcher);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -638,7 +638,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function createViewTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -652,9 +652,9 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setValue($value);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $view = new View();
-        $response = $client->createView($formattedParent, $view);
+        $response = $gapicClient->createView($formattedParent, $view);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -674,7 +674,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function createViewExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -689,11 +689,11 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $view = new View();
         try {
-            $client->createView($formattedParent, $view);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createView($formattedParent, $view);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -710,7 +710,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function deleteAnalysisTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -718,8 +718,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->analysisName('[PROJECT]', '[LOCATION]', '[CONVERSATION]', '[ANALYSIS]');
-        $client->deleteAnalysis($formattedName);
+        $formattedName = $gapicClient->analysisName('[PROJECT]', '[LOCATION]', '[CONVERSATION]', '[ANALYSIS]');
+        $gapicClient->deleteAnalysis($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -736,7 +736,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function deleteAnalysisExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -751,10 +751,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->analysisName('[PROJECT]', '[LOCATION]', '[CONVERSATION]', '[ANALYSIS]');
+        $formattedName = $gapicClient->analysisName('[PROJECT]', '[LOCATION]', '[CONVERSATION]', '[ANALYSIS]');
         try {
-            $client->deleteAnalysis($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteAnalysis($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -771,7 +771,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function deleteConversationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -779,8 +779,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
-        $client->deleteConversation($formattedName);
+        $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
+        $gapicClient->deleteConversation($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -797,7 +797,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function deleteConversationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -812,10 +812,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
+        $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
         try {
-            $client->deleteConversation($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteConversation($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -838,7 +838,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -858,8 +858,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $response = $client->deleteIssueModel($formattedName);
+        $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
+        $response = $gapicClient->deleteIssueModel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -902,7 +902,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -924,8 +924,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $response = $client->deleteIssueModel($formattedName);
+        $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
+        $response = $gapicClient->deleteIssueModel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -953,7 +953,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function deletePhraseMatcherTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -961,8 +961,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
-        $client->deletePhraseMatcher($formattedName);
+        $formattedName = $gapicClient->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
+        $gapicClient->deletePhraseMatcher($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -979,7 +979,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function deletePhraseMatcherExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -994,10 +994,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
+        $formattedName = $gapicClient->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
         try {
-            $client->deletePhraseMatcher($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deletePhraseMatcher($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1014,7 +1014,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function deleteViewTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1022,8 +1022,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
-        $client->deleteView($formattedName);
+        $formattedName = $gapicClient->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
+        $gapicClient->deleteView($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -1040,7 +1040,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function deleteViewExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1055,10 +1055,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
+        $formattedName = $gapicClient->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
         try {
-            $client->deleteView($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteView($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1081,7 +1081,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1101,8 +1101,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $response = $client->deployIssueModel($formattedName);
+        $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
+        $response = $gapicClient->deployIssueModel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1145,7 +1145,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1167,8 +1167,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $response = $client->deployIssueModel($formattedName);
+        $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
+        $response = $gapicClient->deployIssueModel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1202,7 +1202,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1222,8 +1222,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->exportInsightsData($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->exportInsightsData($formattedParent);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1266,7 +1266,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1288,8 +1288,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->exportInsightsData($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->exportInsightsData($formattedParent);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1317,7 +1317,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function getAnalysisTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1327,8 +1327,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->analysisName('[PROJECT]', '[LOCATION]', '[CONVERSATION]', '[ANALYSIS]');
-        $response = $client->getAnalysis($formattedName);
+        $formattedName = $gapicClient->analysisName('[PROJECT]', '[LOCATION]', '[CONVERSATION]', '[ANALYSIS]');
+        $response = $gapicClient->getAnalysis($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1346,7 +1346,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function getAnalysisExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1361,10 +1361,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->analysisName('[PROJECT]', '[LOCATION]', '[CONVERSATION]', '[ANALYSIS]');
+        $formattedName = $gapicClient->analysisName('[PROJECT]', '[LOCATION]', '[CONVERSATION]', '[ANALYSIS]');
         try {
-            $client->getAnalysis($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getAnalysis($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1381,7 +1381,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function getConversationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1399,8 +1399,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setObfuscatedUserId($obfuscatedUserId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
-        $response = $client->getConversation($formattedName);
+        $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
+        $response = $gapicClient->getConversation($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1418,7 +1418,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function getConversationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1433,10 +1433,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
+        $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
         try {
-            $client->getConversation($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getConversation($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1453,7 +1453,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function getIssueTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1465,8 +1465,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->issueName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]', '[ISSUE]');
-        $response = $client->getIssue($formattedName);
+        $formattedName = $gapicClient->issueName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]', '[ISSUE]');
+        $response = $gapicClient->getIssue($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1484,7 +1484,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function getIssueExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1499,10 +1499,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->issueName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]', '[ISSUE]');
+        $formattedName = $gapicClient->issueName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]', '[ISSUE]');
         try {
-            $client->getIssue($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIssue($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1519,7 +1519,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function getIssueModelTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1531,8 +1531,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $response = $client->getIssueModel($formattedName);
+        $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
+        $response = $gapicClient->getIssueModel($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1550,7 +1550,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function getIssueModelExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1565,10 +1565,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
+        $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
         try {
-            $client->getIssueModel($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIssueModel($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1585,7 +1585,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function getPhraseMatcherTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1603,8 +1603,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setActive($active);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
-        $response = $client->getPhraseMatcher($formattedName);
+        $formattedName = $gapicClient->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
+        $response = $gapicClient->getPhraseMatcher($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1622,7 +1622,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function getPhraseMatcherExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1637,10 +1637,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
+        $formattedName = $gapicClient->phraseMatcherName('[PROJECT]', '[LOCATION]', '[PHRASE_MATCHER]');
         try {
-            $client->getPhraseMatcher($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getPhraseMatcher($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1657,7 +1657,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function getSettingsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1669,8 +1669,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setLanguageCode($languageCode);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->settingsName('[PROJECT]', '[LOCATION]');
-        $response = $client->getSettings($formattedName);
+        $formattedName = $gapicClient->settingsName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->getSettings($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1688,7 +1688,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function getSettingsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1703,10 +1703,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->settingsName('[PROJECT]', '[LOCATION]');
+        $formattedName = $gapicClient->settingsName('[PROJECT]', '[LOCATION]');
         try {
-            $client->getSettings($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getSettings($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1723,7 +1723,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function getViewTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1737,8 +1737,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setValue($value);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
-        $response = $client->getView($formattedName);
+        $formattedName = $gapicClient->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
+        $response = $gapicClient->getView($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1756,7 +1756,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function getViewExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1771,10 +1771,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
+        $formattedName = $gapicClient->viewName('[PROJECT]', '[LOCATION]', '[VIEW]');
         try {
-            $client->getView($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getView($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1791,7 +1791,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function listAnalysesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1806,8 +1806,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setAnalyses($analyses);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
-        $response = $client->listAnalyses($formattedParent);
+        $formattedParent = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
+        $response = $gapicClient->listAnalyses($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1828,7 +1828,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function listAnalysesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1843,10 +1843,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
+        $formattedParent = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
         try {
-            $client->listAnalyses($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listAnalyses($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1863,7 +1863,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function listConversationsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1878,8 +1878,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setConversations($conversations);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listConversations($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listConversations($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1900,7 +1900,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function listConversationsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1915,10 +1915,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listConversations($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listConversations($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1935,7 +1935,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function listIssueModelsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1943,8 +1943,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse = new ListIssueModelsResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listIssueModels($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listIssueModels($formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1962,7 +1962,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function listIssueModelsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1977,10 +1977,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listIssueModels($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listIssueModels($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1997,7 +1997,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function listIssuesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2005,8 +2005,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse = new ListIssuesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $response = $client->listIssues($formattedParent);
+        $formattedParent = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
+        $response = $gapicClient->listIssues($formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2024,7 +2024,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function listIssuesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2039,10 +2039,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
+        $formattedParent = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
         try {
-            $client->listIssues($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listIssues($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2059,7 +2059,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function listPhraseMatchersTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2074,8 +2074,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setPhraseMatchers($phraseMatchers);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listPhraseMatchers($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listPhraseMatchers($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2096,7 +2096,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function listPhraseMatchersExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2111,10 +2111,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listPhraseMatchers($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listPhraseMatchers($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2131,7 +2131,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function listViewsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2146,8 +2146,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $expectedResponse->setViews($views);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listViews($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listViews($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2168,7 +2168,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function listViewsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2183,10 +2183,10 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listViews($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listViews($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2209,7 +2209,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2229,8 +2229,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $response = $client->undeployIssueModel($formattedName);
+        $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
+        $response = $gapicClient->undeployIssueModel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2273,7 +2273,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2295,8 +2295,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
-        $response = $client->undeployIssueModel($formattedName);
+        $formattedName = $gapicClient->issueModelName('[PROJECT]', '[LOCATION]', '[ISSUE_MODEL]');
+        $response = $gapicClient->undeployIssueModel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2324,7 +2324,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function updateConversationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2343,7 +2343,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $conversation = new Conversation();
-        $response = $client->updateConversation($conversation);
+        $response = $gapicClient->updateConversation($conversation);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2361,7 +2361,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function updateConversationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2378,8 +2378,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock request
         $conversation = new Conversation();
         try {
-            $client->updateConversation($conversation);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateConversation($conversation);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2396,7 +2396,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function updateIssueTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2409,7 +2409,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $issue = new Issue();
-        $response = $client->updateIssue($issue);
+        $response = $gapicClient->updateIssue($issue);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2427,7 +2427,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function updateIssueExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2444,8 +2444,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock request
         $issue = new Issue();
         try {
-            $client->updateIssue($issue);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateIssue($issue);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2462,7 +2462,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function updateIssueModelTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2475,7 +2475,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $issueModel = new IssueModel();
-        $response = $client->updateIssueModel($issueModel);
+        $response = $gapicClient->updateIssueModel($issueModel);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2493,7 +2493,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function updateIssueModelExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2510,8 +2510,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock request
         $issueModel = new IssueModel();
         try {
-            $client->updateIssueModel($issueModel);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateIssueModel($issueModel);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2528,7 +2528,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function updatePhraseMatcherTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2549,7 +2549,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $phraseMatcher = new PhraseMatcher();
         $phraseMatcherType = PhraseMatcherType::PHRASE_MATCHER_TYPE_UNSPECIFIED;
         $phraseMatcher->setType($phraseMatcherType);
-        $response = $client->updatePhraseMatcher($phraseMatcher);
+        $response = $gapicClient->updatePhraseMatcher($phraseMatcher);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2567,7 +2567,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function updatePhraseMatcherExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2586,8 +2586,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $phraseMatcherType = PhraseMatcherType::PHRASE_MATCHER_TYPE_UNSPECIFIED;
         $phraseMatcher->setType($phraseMatcherType);
         try {
-            $client->updatePhraseMatcher($phraseMatcher);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updatePhraseMatcher($phraseMatcher);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2604,7 +2604,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function updateSettingsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2618,7 +2618,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock request
         $settings = new Settings();
         $updateMask = new FieldMask();
-        $response = $client->updateSettings($settings, $updateMask);
+        $response = $gapicClient->updateSettings($settings, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2638,7 +2638,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function updateSettingsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2656,8 +2656,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $settings = new Settings();
         $updateMask = new FieldMask();
         try {
-            $client->updateSettings($settings, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateSettings($settings, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2674,7 +2674,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function updateViewTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2689,7 +2689,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $view = new View();
-        $response = $client->updateView($view);
+        $response = $gapicClient->updateView($view);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2707,7 +2707,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
     public function updateViewExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2724,8 +2724,8 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         // Mock request
         $view = new View();
         try {
-            $client->updateView($view);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateView($view);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

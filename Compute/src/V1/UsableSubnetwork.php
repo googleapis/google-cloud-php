@@ -103,7 +103,7 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
      *     @type string $role
      *           The role of subnetwork. Currently, this field is only used when purpose = INTERNAL_HTTPS_LOAD_BALANCER. The value can be set to ACTIVE or BACKUP. An ACTIVE subnetwork is one that is currently being used for Internal HTTP(S) Load Balancing. A BACKUP subnetwork is one that is ready to be promoted to ACTIVE or is currently draining. This field can be updated with a patch request.
      *           Check the Role enum for the list of possible values.
-     *     @type \Google\Cloud\Compute\V1\UsableSubnetworkSecondaryRange[]|\Google\Protobuf\Internal\RepeatedField $secondary_ip_ranges
+     *     @type array<\Google\Cloud\Compute\V1\UsableSubnetworkSecondaryRange>|\Google\Protobuf\Internal\RepeatedField $secondary_ip_ranges
      *           Secondary IP ranges.
      *     @type string $stack_type
      *           The stack type for the subnet. If set to IPV4_ONLY, new VMs in the subnet are assigned IPv4 addresses only. If set to IPV4_IPV6, new VMs in the subnet can be assigned both IPv4 and IPv6 addresses. If not specified, IPV4_ONLY is used. This field can be both set at resource creation time and updated using patch.
@@ -390,7 +390,7 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
      * Secondary IP ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.UsableSubnetworkSecondaryRange secondary_ip_ranges = 136658915;</code>
-     * @param \Google\Cloud\Compute\V1\UsableSubnetworkSecondaryRange[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\UsableSubnetworkSecondaryRange>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSecondaryIpRanges($var)

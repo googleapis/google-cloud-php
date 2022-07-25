@@ -377,7 +377,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           more details at this [user
      *           guide](https://cloud.google.com/retail/docs/filter-and-order#order).
      *           If this field is unrecognizable, an INVALID_ARGUMENT is returned.
-     *     @type \Google\Cloud\Retail\V2\SearchRequest\FacetSpec[]|\Google\Protobuf\Internal\RepeatedField $facet_specs
+     *     @type array<\Google\Cloud\Retail\V2\SearchRequest\FacetSpec>|\Google\Protobuf\Internal\RepeatedField $facet_specs
      *           Facet specifications for faceted search. If empty, no facets are returned.
      *           A maximum of 100 values are allowed. Otherwise, an INVALID_ARGUMENT error
      *           is returned.
@@ -398,7 +398,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           The query expansion specification that specifies the conditions under which
      *           query expansion will occur. See more details at this [user
      *           guide](https://cloud.google.com/retail/docs/result-size#query_expansion).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $variant_rollup_keys
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $variant_rollup_keys
      *           The keys to fetch and rollup the matching
      *           [variant][google.cloud.retail.v2.Product.Type.VARIANT]
      *           [Product][google.cloud.retail.v2.Product]s attributes,
@@ -465,7 +465,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *             "custom-type-5".
      *           If this field is set to an invalid value other than these, an
      *           INVALID_ARGUMENT error is returned.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $page_categories
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $page_categories
      *           The categories associated with a category page. Required for category
      *           navigation queries to achieve good search quality. The format should be
      *           the same as
@@ -924,7 +924,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * is returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchRequest.FacetSpec facet_specs = 12;</code>
-     * @param \Google\Cloud\Retail\V2\SearchRequest\FacetSpec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\SearchRequest\FacetSpec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFacetSpecs($var)
@@ -1216,7 +1216,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>repeated string variant_rollup_keys = 17;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVariantRollupKeys($var)
@@ -1260,7 +1260,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * "pageCategories" : ["Sales > 2017 Black Friday Deals"].
      *
      * Generated from protobuf field <code>repeated string page_categories = 23;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPageCategories($var)

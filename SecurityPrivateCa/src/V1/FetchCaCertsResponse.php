@@ -31,7 +31,7 @@ class FetchCaCertsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Security\PrivateCA\V1\FetchCaCertsResponse\CertChain[]|\Google\Protobuf\Internal\RepeatedField $ca_certs
+     *     @type array<\Google\Cloud\Security\PrivateCA\V1\FetchCaCertsResponse\CertChain>|\Google\Protobuf\Internal\RepeatedField $ca_certs
      *           The PEM encoded CA certificate chains of all
      *           [ACTIVE][CertificateAuthority.State.ACTIVE] [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
      *           resources in this [CaPool][google.cloud.security.privateca.v1.CaPool].
@@ -61,7 +61,7 @@ class FetchCaCertsResponse extends \Google\Protobuf\Internal\Message
      * resources in this [CaPool][google.cloud.security.privateca.v1.CaPool].
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.FetchCaCertsResponse.CertChain ca_certs = 1;</code>
-     * @param \Google\Cloud\Security\PrivateCA\V1\FetchCaCertsResponse\CertChain[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Security\PrivateCA\V1\FetchCaCertsResponse\CertChain>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCaCerts($var)

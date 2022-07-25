@@ -74,7 +74,7 @@ class Tenant extends \Google\Protobuf\Internal\Message
      *           Indicates whether data owned by this tenant may be used to provide product
      *           improvements across other tenants.
      *           Defaults behavior is [DataUsageType.ISOLATED][google.cloud.talent.v4beta1.Tenant.DataUsageType.ISOLATED] if it's unset.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $keyword_searchable_profile_custom_attributes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $keyword_searchable_profile_custom_attributes
      *           A list of keys of filterable [Profile.custom_attributes][google.cloud.talent.v4beta1.Profile.custom_attributes], whose
      *           corresponding `string_values` are used in keyword searches. Profiles with
      *           `string_values` under these specified field keys are returned if any
@@ -205,7 +205,7 @@ class Tenant extends \Google\Protobuf\Internal\Message
      * and must be surrounded by quotes.
      *
      * Generated from protobuf field <code>repeated string keyword_searchable_profile_custom_attributes = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setKeywordSearchableProfileCustomAttributes($var)

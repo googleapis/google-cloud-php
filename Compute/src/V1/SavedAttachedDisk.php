@@ -134,7 +134,7 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
      *           The size of the disk in base-2 GB.
      *     @type string $disk_type
      *           [Output Only] URL of the disk type resource. For example: projects/project /zones/zone/diskTypes/pd-standard or pd-ssd
-     *     @type \Google\Cloud\Compute\V1\GuestOsFeature[]|\Google\Protobuf\Internal\RepeatedField $guest_os_features
+     *     @type array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $guest_os_features
      *           A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *     @type int $index
      *           Specifies zero-based index of the disk that is attached to the source instance.
@@ -143,7 +143,7 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
      *           Check the Interface enum for the list of possible values.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#attachedDisk for attached disks.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $licenses
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $licenses
      *           [Output Only] Any valid publicly visible licenses.
      *     @type string $mode
      *           The mode in which this disk is attached to the source instance, either READ_WRITE or READ_ONLY.
@@ -396,7 +396,7 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
      * A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
-     * @param \Google\Cloud\Compute\V1\GuestOsFeature[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGuestOsFeatures($var)
@@ -532,7 +532,7 @@ class SavedAttachedDisk extends \Google\Protobuf\Internal\Message
      * [Output Only] Any valid publicly visible licenses.
      *
      * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLicenses($var)

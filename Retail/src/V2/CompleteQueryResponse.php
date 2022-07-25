@@ -58,7 +58,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Retail\V2\CompleteQueryResponse\CompletionResult[]|\Google\Protobuf\Internal\RepeatedField $completion_results
+     *     @type array<\Google\Cloud\Retail\V2\CompleteQueryResponse\CompletionResult>|\Google\Protobuf\Internal\RepeatedField $completion_results
      *           Results of the matching suggestions. The result list is ordered and the
      *           first result is top suggestion.
      *     @type string $attribution_token
@@ -66,7 +66,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      *           [UserEvent.completion_detail][google.cloud.retail.v2.UserEvent.completion_detail]
      *           for search events resulting from this completion, which enables accurate
      *           attribution of complete model performance.
-     *     @type \Google\Cloud\Retail\V2\CompleteQueryResponse\RecentSearchResult[]|\Google\Protobuf\Internal\RepeatedField $recent_search_results
+     *     @type array<\Google\Cloud\Retail\V2\CompleteQueryResponse\RecentSearchResult>|\Google\Protobuf\Internal\RepeatedField $recent_search_results
      *           Matched recent searches of this user. The maximum number of recent searches
      *           is 10. This field is a restricted feature. Contact Retail Search support
      *           team if you are interested in enabling it.
@@ -106,7 +106,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      * first result is top suggestion.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.CompleteQueryResponse.CompletionResult completion_results = 1;</code>
-     * @param \Google\Cloud\Retail\V2\CompleteQueryResponse\CompletionResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\CompleteQueryResponse\CompletionResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCompletionResults($var)
@@ -192,7 +192,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      * when duplication happens.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.CompleteQueryResponse.RecentSearchResult recent_search_results = 3;</code>
-     * @param \Google\Cloud\Retail\V2\CompleteQueryResponse\RecentSearchResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\CompleteQueryResponse\RecentSearchResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRecentSearchResults($var)

@@ -36,7 +36,7 @@ class AnalyzeEntitiesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Language\V1beta2\Entity[]|\Google\Protobuf\Internal\RepeatedField $entities
+     *     @type array<\Google\Cloud\Language\V1beta2\Entity>|\Google\Protobuf\Internal\RepeatedField $entities
      *           The recognized entities in the input document.
      *     @type string $language
      *           The language of the text, which will be the same as the language specified
@@ -64,7 +64,7 @@ class AnalyzeEntitiesResponse extends \Google\Protobuf\Internal\Message
      * The recognized entities in the input document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1beta2.Entity entities = 1;</code>
-     * @param \Google\Cloud\Language\V1beta2\Entity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Language\V1beta2\Entity>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntities($var)

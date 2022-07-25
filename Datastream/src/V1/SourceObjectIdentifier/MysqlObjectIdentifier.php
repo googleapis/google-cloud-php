@@ -99,4 +99,6 @@ class MysqlObjectIdentifier extends \Google\Protobuf\Internal\Message
 
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(MysqlObjectIdentifier::class, \Google\Cloud\Datastream\V1\SourceObjectIdentifier_MysqlObjectIdentifier::class);
 

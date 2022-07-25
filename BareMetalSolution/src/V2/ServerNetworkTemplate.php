@@ -48,9 +48,9 @@ class ServerNetworkTemplate extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/serverNetworkTemplate/{server_network_template}`
      *           Generally, the {server_network_template} follows the syntax of
      *           "bond<interface_type_index><bond_mode>" or "nic<interface_type_index>".
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $applicable_instance_types
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applicable_instance_types
      *           Instance types this template is applicable to.
-     *     @type \Google\Cloud\BareMetalSolution\V2\ServerNetworkTemplate\LogicalInterface[]|\Google\Protobuf\Internal\RepeatedField $logical_interfaces
+     *     @type array<\Google\Cloud\BareMetalSolution\V2\ServerNetworkTemplate\LogicalInterface>|\Google\Protobuf\Internal\RepeatedField $logical_interfaces
      *           Logical interfaces.
      * }
      */
@@ -106,7 +106,7 @@ class ServerNetworkTemplate extends \Google\Protobuf\Internal\Message
      * Instance types this template is applicable to.
      *
      * Generated from protobuf field <code>repeated string applicable_instance_types = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setApplicableInstanceTypes($var)
@@ -132,7 +132,7 @@ class ServerNetworkTemplate extends \Google\Protobuf\Internal\Message
      * Logical interfaces.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.ServerNetworkTemplate.LogicalInterface logical_interfaces = 3;</code>
-     * @param \Google\Cloud\BareMetalSolution\V2\ServerNetworkTemplate\LogicalInterface[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BareMetalSolution\V2\ServerNetworkTemplate\LogicalInterface>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLogicalInterfaces($var)

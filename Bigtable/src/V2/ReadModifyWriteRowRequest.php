@@ -62,7 +62,7 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
      *           "default" application profile will be used.
      *     @type string $row_key
      *           Required. The key of the row to which the read/modify/write rules should be applied.
-     *     @type \Google\Cloud\Bigtable\V2\ReadModifyWriteRule[]|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type array<\Google\Cloud\Bigtable\V2\ReadModifyWriteRule>|\Google\Protobuf\Internal\RepeatedField $rules
      *           Required. Rules specifying how the specified row's contents are to be transformed
      *           into writes. Entries are applied in order, meaning that earlier rules will
      *           affect the results of later ones.
@@ -178,7 +178,7 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
      * affect the results of later ones.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.ReadModifyWriteRule rules = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Bigtable\V2\ReadModifyWriteRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Bigtable\V2\ReadModifyWriteRule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRules($var)

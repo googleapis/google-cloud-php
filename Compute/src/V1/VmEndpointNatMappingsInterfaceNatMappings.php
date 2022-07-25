@@ -58,9 +58,9 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $drain_nat_ip_port_ranges
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $drain_nat_ip_port_ranges
      *           List of all drain IP:port-range mappings assigned to this interface. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $nat_ip_port_ranges
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $nat_ip_port_ranges
      *           A list of all IP:port-range mappings assigned to this interface. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
      *     @type int $num_total_drain_nat_ports
      *           Total number of drain ports across all NAT IPs allocated to this interface. It equals to the aggregated port number in the field drain_nat_ip_port_ranges.
@@ -92,7 +92,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
      * List of all drain IP:port-range mappings assigned to this interface. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
      *
      * Generated from protobuf field <code>repeated string drain_nat_ip_port_ranges = 395440577;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDrainNatIpPortRanges($var)
@@ -118,7 +118,7 @@ class VmEndpointNatMappingsInterfaceNatMappings extends \Google\Protobuf\Interna
      * A list of all IP:port-range mappings assigned to this interface. These ranges are inclusive, that is, both the first and the last ports can be used for NAT. Example: ["2.2.2.2:12345-12355", "1.1.1.1:2234-2234"].
      *
      * Generated from protobuf field <code>repeated string nat_ip_port_ranges = 531830810;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNatIpPortRanges($var)

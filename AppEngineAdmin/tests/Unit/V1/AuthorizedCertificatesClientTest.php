@@ -75,7 +75,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
     public function createAuthorizedCertificateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -90,7 +90,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDomainMappingsCount($domainMappingsCount);
         $transport->addResponse($expectedResponse);
-        $response = $client->createAuthorizedCertificate();
+        $response = $gapicClient->createAuthorizedCertificate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -106,7 +106,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
     public function createAuthorizedCertificateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -121,8 +121,8 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->createAuthorizedCertificate();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createAuthorizedCertificate();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -139,14 +139,14 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
     public function deleteAuthorizedCertificateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $client->deleteAuthorizedCertificate();
+        $gapicClient->deleteAuthorizedCertificate();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -161,7 +161,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
     public function deleteAuthorizedCertificateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -176,8 +176,8 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->deleteAuthorizedCertificate();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteAuthorizedCertificate();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -194,7 +194,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
     public function getAuthorizedCertificateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -209,7 +209,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDomainMappingsCount($domainMappingsCount);
         $transport->addResponse($expectedResponse);
-        $response = $client->getAuthorizedCertificate();
+        $response = $gapicClient->getAuthorizedCertificate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -225,7 +225,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
     public function getAuthorizedCertificateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -240,8 +240,8 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getAuthorizedCertificate();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getAuthorizedCertificate();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -258,7 +258,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
     public function listAuthorizedCertificatesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -272,7 +272,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCertificates($certificates);
         $transport->addResponse($expectedResponse);
-        $response = $client->listAuthorizedCertificates();
+        $response = $gapicClient->listAuthorizedCertificates();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -291,7 +291,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
     public function listAuthorizedCertificatesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -306,8 +306,8 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listAuthorizedCertificates();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listAuthorizedCertificates();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -324,7 +324,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
     public function updateAuthorizedCertificateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -339,7 +339,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDomainMappingsCount($domainMappingsCount);
         $transport->addResponse($expectedResponse);
-        $response = $client->updateAuthorizedCertificate();
+        $response = $gapicClient->updateAuthorizedCertificate();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -355,7 +355,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
     public function updateAuthorizedCertificateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -370,8 +370,8 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->updateAuthorizedCertificate();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateAuthorizedCertificate();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

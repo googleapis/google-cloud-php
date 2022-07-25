@@ -41,7 +41,7 @@ class GcipSettings extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tenant_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tenant_ids
      *           GCIP tenant ids that are linked to the IAP resource.
      *           tenant_ids could be a string beginning with a number character to indicate
      *           authenticating with GCIP tenant flow, or in the format of _<ProjectNumber>
@@ -84,7 +84,7 @@ class GcipSettings extends \Google\Protobuf\Internal\Message
      * while for tenant flow, tenant_ids can contain multiple elements.
      *
      * Generated from protobuf field <code>repeated string tenant_ids = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTenantIds($var)

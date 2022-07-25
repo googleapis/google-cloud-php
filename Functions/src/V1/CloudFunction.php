@@ -430,9 +430,9 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      *     @type string $build_name
      *           Output only. The Cloud Build Name of the function deployment.
      *           `projects/<project-number>/locations/<region>/builds/<build-id>`.
-     *     @type \Google\Cloud\Functions\V1\SecretEnvVar[]|\Google\Protobuf\Internal\RepeatedField $secret_environment_variables
+     *     @type array<\Google\Cloud\Functions\V1\SecretEnvVar>|\Google\Protobuf\Internal\RepeatedField $secret_environment_variables
      *           Secret environment variables configuration.
-     *     @type \Google\Cloud\Functions\V1\SecretVolume[]|\Google\Protobuf\Internal\RepeatedField $secret_volumes
+     *     @type array<\Google\Cloud\Functions\V1\SecretVolume>|\Google\Protobuf\Internal\RepeatedField $secret_volumes
      *           Secret volumes configuration.
      *     @type string $source_token
      *           Input only. An identifier for Firebase function sources. Disclaimer: This field is only
@@ -1422,7 +1422,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      * Secret environment variables configuration.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v1.SecretEnvVar secret_environment_variables = 29;</code>
-     * @param \Google\Cloud\Functions\V1\SecretEnvVar[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Functions\V1\SecretEnvVar>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSecretEnvironmentVariables($var)
@@ -1448,7 +1448,7 @@ class CloudFunction extends \Google\Protobuf\Internal\Message
      * Secret volumes configuration.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v1.SecretVolume secret_volumes = 30;</code>
-     * @param \Google\Cloud\Functions\V1\SecretVolume[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Functions\V1\SecretVolume>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSecretVolumes($var)

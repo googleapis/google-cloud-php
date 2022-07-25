@@ -115,7 +115,7 @@ class PricingExpression extends \Google\Protobuf\Internal\Message
      *           Example: If the unit_price is "0.0001 USD", the usage_unit is "GB" and
      *           the display_quantity is "1000" then the recommended way of displaying the
      *           pricing info is "0.10 USD per 1000 GB"
-     *     @type \Google\Cloud\Billing\V1\PricingExpression\TierRate[]|\Google\Protobuf\Internal\RepeatedField $tiered_rates
+     *     @type array<\Google\Cloud\Billing\V1\PricingExpression\TierRate>|\Google\Protobuf\Internal\RepeatedField $tiered_rates
      *           The list of tiered rates for this pricing. The total cost is computed by
      *           applying each of the tiered rates on usage. This repeated list is sorted
      *           by ascending order of start_usage_amount.
@@ -331,7 +331,7 @@ class PricingExpression extends \Google\Protobuf\Internal\Message
      * by ascending order of start_usage_amount.
      *
      * Generated from protobuf field <code>repeated .google.cloud.billing.v1.PricingExpression.TierRate tiered_rates = 3;</code>
-     * @param \Google\Cloud\Billing\V1\PricingExpression\TierRate[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Billing\V1\PricingExpression\TierRate>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTieredRates($var)

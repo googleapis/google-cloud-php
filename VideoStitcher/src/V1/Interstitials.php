@@ -34,7 +34,7 @@ class Interstitials extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Video\Stitcher\V1\VodSessionAdBreak[]|\Google\Protobuf\Internal\RepeatedField $ad_breaks
+     *     @type array<\Google\Cloud\Video\Stitcher\V1\VodSessionAdBreak>|\Google\Protobuf\Internal\RepeatedField $ad_breaks
      *           List of ad breaks ordered by time.
      *     @type \Google\Cloud\Video\Stitcher\V1\VodSessionContent $session_content
      *           Information related to the content of the VOD session.
@@ -60,7 +60,7 @@ class Interstitials extends \Google\Protobuf\Internal\Message
      * List of ad breaks ordered by time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.VodSessionAdBreak ad_breaks = 1;</code>
-     * @param \Google\Cloud\Video\Stitcher\V1\VodSessionAdBreak[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\Stitcher\V1\VodSessionAdBreak>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdBreaks($var)

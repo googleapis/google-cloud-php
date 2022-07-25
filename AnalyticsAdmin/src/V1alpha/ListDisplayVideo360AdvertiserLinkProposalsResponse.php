@@ -35,7 +35,7 @@ class ListDisplayVideo360AdvertiserLinkProposalsResponse extends \Google\Protobu
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal[]|\Google\Protobuf\Internal\RepeatedField $display_video_360_advertiser_link_proposals
+     *     @type array<\Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal>|\Google\Protobuf\Internal\RepeatedField $display_video_360_advertiser_link_proposals
      *           List of DisplayVideo360AdvertiserLinkProposals.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class ListDisplayVideo360AdvertiserLinkProposalsResponse extends \Google\Protobu
      * List of DisplayVideo360AdvertiserLinkProposals.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.DisplayVideo360AdvertiserLinkProposal display_video_360_advertiser_link_proposals = 1;</code>
-     * @param \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDisplayVideo360AdvertiserLinkProposals($var)

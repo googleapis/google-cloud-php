@@ -28,7 +28,7 @@ class BigQueryRoutineSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $imported_libraries
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $imported_libraries
      *           Paths of the imported libraries.
      * }
      */
@@ -52,7 +52,7 @@ class BigQueryRoutineSpec extends \Google\Protobuf\Internal\Message
      * Paths of the imported libraries.
      *
      * Generated from protobuf field <code>repeated string imported_libraries = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setImportedLibraries($var)

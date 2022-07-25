@@ -43,7 +43,7 @@ class BatchCreateFeaturesRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the EntityType to create the batch of Features under.
      *           Format:
      *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
-     *     @type \Google\Cloud\AIPlatform\V1\CreateFeatureRequest[]|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type array<\Google\Cloud\AIPlatform\V1\CreateFeatureRequest>|\Google\Protobuf\Internal\RepeatedField $requests
      *           Required. The request message specifying the Features to create. All Features must be
      *           created under the same parent EntityType. The `parent` field in each child
      *           request message can be omitted. If `parent` is set in a child request, then
@@ -106,7 +106,7 @@ class BatchCreateFeaturesRequest extends \Google\Protobuf\Internal\Message
      * the value must match the `parent` value in this request message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.CreateFeatureRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\AIPlatform\V1\CreateFeatureRequest[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\CreateFeatureRequest>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRequests($var)

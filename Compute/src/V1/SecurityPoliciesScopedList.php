@@ -33,7 +33,7 @@ class SecurityPoliciesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\SecurityPolicy[]|\Google\Protobuf\Internal\RepeatedField $security_policies
+     *     @type array<\Google\Cloud\Compute\V1\SecurityPolicy>|\Google\Protobuf\Internal\RepeatedField $security_policies
      *           A list of SecurityPolicies contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of security policies when the list is empty.
@@ -59,7 +59,7 @@ class SecurityPoliciesScopedList extends \Google\Protobuf\Internal\Message
      * A list of SecurityPolicies contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicy security_policies = 127783791;</code>
-     * @param \Google\Cloud\Compute\V1\SecurityPolicy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\SecurityPolicy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSecurityPolicies($var)

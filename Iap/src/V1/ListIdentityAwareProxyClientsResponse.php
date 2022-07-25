@@ -35,7 +35,7 @@ class ListIdentityAwareProxyClientsResponse extends \Google\Protobuf\Internal\Me
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Iap\V1\IdentityAwareProxyClient[]|\Google\Protobuf\Internal\RepeatedField $identity_aware_proxy_clients
+     *     @type array<\Google\Cloud\Iap\V1\IdentityAwareProxyClient>|\Google\Protobuf\Internal\RepeatedField $identity_aware_proxy_clients
      *           Clients existing in the brand.
      *     @type string $next_page_token
      *           A token, which can be send as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class ListIdentityAwareProxyClientsResponse extends \Google\Protobuf\Internal\Me
      * Clients existing in the brand.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iap.v1.IdentityAwareProxyClient identity_aware_proxy_clients = 1;</code>
-     * @param \Google\Cloud\Iap\V1\IdentityAwareProxyClient[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Iap\V1\IdentityAwareProxyClient>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIdentityAwareProxyClients($var)

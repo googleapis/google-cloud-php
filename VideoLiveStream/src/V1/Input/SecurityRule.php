@@ -32,7 +32,7 @@ class SecurityRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ip_ranges
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ip_ranges
      *           At least one ip range must match unless none specified. The IP range is
      *           defined by CIDR block: for example, `192.0.1.0/24` for a range and
      *           `192.0.1.0/32` for a single IP address.
@@ -62,7 +62,7 @@ class SecurityRule extends \Google\Protobuf\Internal\Message
      * `192.0.1.0/32` for a single IP address.
      *
      * Generated from protobuf field <code>repeated string ip_ranges = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIpRanges($var)

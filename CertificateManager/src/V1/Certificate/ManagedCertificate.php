@@ -56,16 +56,16 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $domains
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $domains
      *           Immutable. The domains for which a managed SSL certificate will be generated.
      *           Wildcard domains are only supported with DNS challenge resolution.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $dns_authorizations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dns_authorizations
      *           Immutable. Authorizations that will be used for performing domain authorization.
      *     @type int $state
      *           Output only. State of the managed certificate resource.
      *     @type \Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate\ProvisioningIssue $provisioning_issue
      *           Information about issues with provisioning a Managed Certificate.
-     *     @type \Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate\AuthorizationAttemptInfo[]|\Google\Protobuf\Internal\RepeatedField $authorization_attempt_info
+     *     @type array<\Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate\AuthorizationAttemptInfo>|\Google\Protobuf\Internal\RepeatedField $authorization_attempt_info
      *           Output only. Detailed state of the latest authorization attempt for each domain
      *           specified for managed certificate resource.
      * }
@@ -92,7 +92,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * Wildcard domains are only supported with DNS challenge resolution.
      *
      * Generated from protobuf field <code>repeated string domains = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDomains($var)
@@ -118,7 +118,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * Immutable. Authorizations that will be used for performing domain authorization.
      *
      * Generated from protobuf field <code>repeated string dns_authorizations = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDnsAuthorizations($var)
@@ -208,7 +208,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * specified for managed certificate resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo authorization_attempt_info = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate\AuthorizationAttemptInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate\AuthorizationAttemptInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAuthorizationAttemptInfo($var)

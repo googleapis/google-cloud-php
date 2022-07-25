@@ -28,7 +28,7 @@ class DoubleArray extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type float[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $values
      *           A list of bool values.
      * }
      */
@@ -52,7 +52,7 @@ class DoubleArray extends \Google\Protobuf\Internal\Message
      * A list of bool values.
      *
      * Generated from protobuf field <code>repeated double values = 1;</code>
-     * @param float[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

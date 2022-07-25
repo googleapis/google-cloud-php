@@ -39,7 +39,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      *     @type string $email
      *           Email address of the service account. If not specified, the default
      *           Compute Engine service account for the project will be used.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $scopes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
      *           List of scopes to be enabled for this service account on the VM, in
      *           addition to the cloud-platform API scope that will be added by default.
      * }
@@ -94,7 +94,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      * addition to the cloud-platform API scope that will be added by default.
      *
      * Generated from protobuf field <code>repeated string scopes = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setScopes($var)

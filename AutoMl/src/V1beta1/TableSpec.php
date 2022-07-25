@@ -106,7 +106,7 @@ class TableSpec extends \Google\Protobuf\Internal\Message
      *     @type int|string $column_count
      *           Output only. The number of columns of the table. That is, the number of
      *           child ColumnSpec-s.
-     *     @type \Google\Cloud\AutoMl\V1beta1\InputConfig[]|\Google\Protobuf\Internal\RepeatedField $input_configs
+     *     @type array<\Google\Cloud\AutoMl\V1beta1\InputConfig>|\Google\Protobuf\Internal\RepeatedField $input_configs
      *           Output only. Input configs via which data currently residing in the table
      *           had been imported.
      *     @type string $etag
@@ -288,7 +288,7 @@ class TableSpec extends \Google\Protobuf\Internal\Message
      * had been imported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.InputConfig input_configs = 5;</code>
-     * @param \Google\Cloud\AutoMl\V1beta1\InputConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AutoMl\V1beta1\InputConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInputConfigs($var)

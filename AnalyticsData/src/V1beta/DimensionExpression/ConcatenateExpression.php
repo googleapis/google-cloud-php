@@ -40,7 +40,7 @@ class ConcatenateExpression extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $dimension_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dimension_names
      *           Names of dimensions. The names must refer back to names in the dimensions
      *           field of the request.
      *     @type string $delimiter
@@ -74,7 +74,7 @@ class ConcatenateExpression extends \Google\Protobuf\Internal\Message
      * field of the request.
      *
      * Generated from protobuf field <code>repeated string dimension_names = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDimensionNames($var)

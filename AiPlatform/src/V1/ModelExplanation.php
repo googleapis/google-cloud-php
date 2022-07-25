@@ -42,7 +42,7 @@ class ModelExplanation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\Attribution[]|\Google\Protobuf\Internal\RepeatedField $mean_attributions
+     *     @type array<\Google\Cloud\AIPlatform\V1\Attribution>|\Google\Protobuf\Internal\RepeatedField $mean_attributions
      *           Output only. Aggregated attributions explaining the Model's prediction outputs over the
      *           set of instances. The attributions are grouped by outputs.
      *           For Models that predict only one output, such as regression Models that
@@ -108,7 +108,7 @@ class ModelExplanation extends \Google\Protobuf\Internal\Message
      * [Attribution.approximation_error][google.cloud.aiplatform.v1.Attribution.approximation_error] is not populated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Attribution mean_attributions = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\AIPlatform\V1\Attribution[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\Attribution>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMeanAttributions($var)

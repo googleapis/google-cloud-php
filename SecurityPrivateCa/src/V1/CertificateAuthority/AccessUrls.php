@@ -39,7 +39,7 @@ class AccessUrls extends \Google\Protobuf\Internal\Message
      *     @type string $ca_certificate_access_url
      *           The URL where this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s CA certificate is
      *           published. This will only be set for CAs that have been activated.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $crl_access_urls
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $crl_access_urls
      *           The URLs where this [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s CRLs are published. This
      *           will only be set for CAs that have been activated.
      * }
@@ -94,7 +94,7 @@ class AccessUrls extends \Google\Protobuf\Internal\Message
      * will only be set for CAs that have been activated.
      *
      * Generated from protobuf field <code>repeated string crl_access_urls = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCrlAccessUrls($var)

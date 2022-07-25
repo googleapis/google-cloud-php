@@ -48,7 +48,7 @@ class TextStream extends \Google\Protobuf\Internal\Message
      *           - `cea608`
      *           - `cea708`
      *           - `webvtt`
-     *     @type \Google\Cloud\Video\Transcoder\V1\TextStream\TextMapping[]|\Google\Protobuf\Internal\RepeatedField $mapping
+     *     @type array<\Google\Cloud\Video\Transcoder\V1\TextStream\TextMapping>|\Google\Protobuf\Internal\RepeatedField $mapping
      *           The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.
      * }
      */
@@ -110,7 +110,7 @@ class TextStream extends \Google\Protobuf\Internal\Message
      * The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.TextStream.TextMapping mapping = 3;</code>
-     * @param \Google\Cloud\Video\Transcoder\V1\TextStream\TextMapping[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\Transcoder\V1\TextStream\TextMapping>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMapping($var)

@@ -46,11 +46,11 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dataflow\V1beta3\Job[]|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\Job>|\Google\Protobuf\Internal\RepeatedField $jobs
      *           A subset of the requested job information.
      *     @type string $next_page_token
      *           Set if there may be more results than fit in this response.
-     *     @type \Google\Cloud\Dataflow\V1beta3\FailedLocation[]|\Google\Protobuf\Internal\RepeatedField $failed_location
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\FailedLocation>|\Google\Protobuf\Internal\RepeatedField $failed_location
      *           Zero or more messages describing the [regional endpoints]
      *           (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
      *           failed to respond.
@@ -76,7 +76,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * A subset of the requested job information.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.Job jobs = 1;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\Job[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\Job>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJobs($var)
@@ -132,7 +132,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * failed to respond.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.FailedLocation failed_location = 3;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\FailedLocation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\FailedLocation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFailedLocation($var)

@@ -40,9 +40,9 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\InterconnectDiagnosticsARPEntry[]|\Google\Protobuf\Internal\RepeatedField $arp_caches
+     *     @type array<\Google\Cloud\Compute\V1\InterconnectDiagnosticsARPEntry>|\Google\Protobuf\Internal\RepeatedField $arp_caches
      *           A list of InterconnectDiagnostics.ARPEntry objects, describing individual neighbors currently seen by the Google router in the ARP cache for the Interconnect. This will be empty when the Interconnect is not bundled.
-     *     @type \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkStatus[]|\Google\Protobuf\Internal\RepeatedField $links
+     *     @type array<\Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkStatus>|\Google\Protobuf\Internal\RepeatedField $links
      *           A list of InterconnectDiagnostics.LinkStatus objects, describing the status for each link on the Interconnect.
      *     @type string $mac_address
      *           The MAC address of the Interconnect's bundle interface.
@@ -68,7 +68,7 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
      * A list of InterconnectDiagnostics.ARPEntry objects, describing individual neighbors currently seen by the Google router in the ARP cache for the Interconnect. This will be empty when the Interconnect is not bundled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectDiagnosticsARPEntry arp_caches = 414591761;</code>
-     * @param \Google\Cloud\Compute\V1\InterconnectDiagnosticsARPEntry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\InterconnectDiagnosticsARPEntry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setArpCaches($var)
@@ -94,7 +94,7 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
      * A list of InterconnectDiagnostics.LinkStatus objects, describing the status for each link on the Interconnect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectDiagnosticsLinkStatus links = 102977465;</code>
-     * @param \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkStatus[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkStatus>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLinks($var)

@@ -37,9 +37,9 @@ class BatchEnableServicesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ServiceUsage\V1\Service[]|\Google\Protobuf\Internal\RepeatedField $services
+     *     @type array<\Google\Cloud\ServiceUsage\V1\Service>|\Google\Protobuf\Internal\RepeatedField $services
      *           The new state of the services after enabling.
-     *     @type \Google\Cloud\ServiceUsage\V1\BatchEnableServicesResponse\EnableFailure[]|\Google\Protobuf\Internal\RepeatedField $failures
+     *     @type array<\Google\Cloud\ServiceUsage\V1\BatchEnableServicesResponse\EnableFailure>|\Google\Protobuf\Internal\RepeatedField $failures
      *           If allow_partial_success is true, and one or more services could not be
      *           enabled, this field contains the details about each failure.
      * }
@@ -64,7 +64,7 @@ class BatchEnableServicesResponse extends \Google\Protobuf\Internal\Message
      * The new state of the services after enabling.
      *
      * Generated from protobuf field <code>repeated .google.api.serviceusage.v1.Service services = 1;</code>
-     * @param \Google\Cloud\ServiceUsage\V1\Service[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceUsage\V1\Service>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServices($var)
@@ -92,7 +92,7 @@ class BatchEnableServicesResponse extends \Google\Protobuf\Internal\Message
      * enabled, this field contains the details about each failure.
      *
      * Generated from protobuf field <code>repeated .google.api.serviceusage.v1.BatchEnableServicesResponse.EnableFailure failures = 2;</code>
-     * @param \Google\Cloud\ServiceUsage\V1\BatchEnableServicesResponse\EnableFailure[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceUsage\V1\BatchEnableServicesResponse\EnableFailure>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFailures($var)

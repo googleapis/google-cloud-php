@@ -40,7 +40,7 @@ class PurgeContextsResponse extends \Google\Protobuf\Internal\Message
      *     @type int|string $purge_count
      *           The number of Contexts that this request deleted (or, if `force` is false,
      *           the number of Contexts that will be deleted). This can be an estimate.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $purge_sample
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $purge_sample
      *           A sample of the Context names that will be deleted.
      *           Only populated if `force` is set to false. The maximum number of samples is
      *           100 (it is possible to return fewer).
@@ -98,7 +98,7 @@ class PurgeContextsResponse extends \Google\Protobuf\Internal\Message
      * 100 (it is possible to return fewer).
      *
      * Generated from protobuf field <code>repeated string purge_sample = 2 [(.google.api.resource_reference) = {</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPurgeSample($var)

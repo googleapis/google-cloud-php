@@ -41,7 +41,7 @@ class PivotOrderBy extends \Google\Protobuf\Internal\Message
      *     @type string $metric_name
      *           In the response to order by, order rows by this column. Must be a metric
      *           name from the request.
-     *     @type \Google\Analytics\Data\V1beta\OrderBy\PivotOrderBy\PivotSelection[]|\Google\Protobuf\Internal\RepeatedField $pivot_selections
+     *     @type array<\Google\Analytics\Data\V1beta\OrderBy\PivotOrderBy\PivotSelection>|\Google\Protobuf\Internal\RepeatedField $pivot_selections
      *           Used to select a dimension name and value pivot. If multiple pivot
      *           selections are given, the sort occurs on rows where all pivot selection
      *           dimension name and value pairs match the row's dimension name and value
@@ -102,7 +102,7 @@ class PivotOrderBy extends \Google\Protobuf\Internal\Message
      * pair.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.OrderBy.PivotOrderBy.PivotSelection pivot_selections = 2;</code>
-     * @param \Google\Analytics\Data\V1beta\OrderBy\PivotOrderBy\PivotSelection[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\OrderBy\PivotOrderBy\PivotSelection>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPivotSelections($var)

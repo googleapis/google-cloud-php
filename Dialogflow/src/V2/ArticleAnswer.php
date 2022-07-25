@@ -68,7 +68,7 @@ class ArticleAnswer extends \Google\Protobuf\Internal\Message
      *           The article title.
      *     @type string $uri
      *           The article URI.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $snippets
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $snippets
      *           Article snippets.
      *     @type float $confidence
      *           Article match confidence.
@@ -156,7 +156,7 @@ class ArticleAnswer extends \Google\Protobuf\Internal\Message
      * Article snippets.
      *
      * Generated from protobuf field <code>repeated string snippets = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSnippets($var)

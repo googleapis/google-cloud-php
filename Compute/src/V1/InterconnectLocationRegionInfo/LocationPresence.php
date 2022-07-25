@@ -46,7 +46,7 @@ class LocationPresence
 
     private static $valueToName = [
         self::UNDEFINED_LOCATION_PRESENCE => 'UNDEFINED_LOCATION_PRESENCE',
-        self::PBGLOBAL => 'PBGLOBAL',
+        self::PBGLOBAL => 'GLOBAL',
         self::LOCAL_REGION => 'LOCAL_REGION',
         self::LP_GLOBAL => 'LP_GLOBAL',
         self::LP_LOCAL_REGION => 'LP_LOCAL_REGION',
@@ -66,8 +66,12 @@ class LocationPresence
     {
         $const = __CLASS__ . '::' . strtoupper($name);
         if (!defined($const)) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+            $pbconst =  __CLASS__. '::PB' . strtoupper($name);
+            if (!defined($pbconst)) {
+                throw new UnexpectedValueException(sprintf(
+                        'Enum %s has no value defined for name %s', __CLASS__, $name));
+            }
+            return constant($pbconst);
         }
         return constant($const);
     }

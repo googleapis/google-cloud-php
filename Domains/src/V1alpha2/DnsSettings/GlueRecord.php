@@ -51,11 +51,11 @@ class GlueRecord extends \Google\Protobuf\Internal\Message
      *
      *     @type string $host_name
      *           Required. Domain name of the host in Punycode format.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ipv4_addresses
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ipv4_addresses
      *           List of IPv4 addresses corresponding to this host in the standard decimal
      *           format (e.g. `198.51.100.1`). At least one of `ipv4_address` and
      *           `ipv6_address` must be set.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ipv6_addresses
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ipv6_addresses
      *           List of IPv6 addresses corresponding to this host in the standard
      *           hexadecimal format (e.g. `2001:db8::`). At least one of
      *           `ipv4_address` and `ipv6_address` must be set.
@@ -111,7 +111,7 @@ class GlueRecord extends \Google\Protobuf\Internal\Message
      * `ipv6_address` must be set.
      *
      * Generated from protobuf field <code>repeated string ipv4_addresses = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIpv4Addresses($var)
@@ -141,7 +141,7 @@ class GlueRecord extends \Google\Protobuf\Internal\Message
      * `ipv4_address` and `ipv6_address` must be set.
      *
      * Generated from protobuf field <code>repeated string ipv6_addresses = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIpv6Addresses($var)

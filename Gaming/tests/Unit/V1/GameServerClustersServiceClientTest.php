@@ -90,7 +90,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -116,12 +116,12 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
+        $formattedParent = $gapicClient->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
         $gameServerClusterId = 'gameServerClusterId-858763025';
         $gameServerCluster = new GameServerCluster();
         $gameServerClusterName = 'gameServerClusterName-525342064';
         $gameServerCluster->setName($gameServerClusterName);
-        $response = $client->createGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
+        $response = $gapicClient->createGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -168,7 +168,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -190,12 +190,12 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
+        $formattedParent = $gapicClient->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
         $gameServerClusterId = 'gameServerClusterId-858763025';
         $gameServerCluster = new GameServerCluster();
         $gameServerClusterName = 'gameServerClusterName-525342064';
         $gameServerCluster->setName($gameServerClusterName);
-        $response = $client->createGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
+        $response = $gapicClient->createGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -229,7 +229,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -249,8 +249,8 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
-        $response = $client->deleteGameServerCluster($formattedName);
+        $formattedName = $gapicClient->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
+        $response = $gapicClient->deleteGameServerCluster($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -293,7 +293,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -315,8 +315,8 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
-        $response = $client->deleteGameServerCluster($formattedName);
+        $formattedName = $gapicClient->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
+        $response = $gapicClient->deleteGameServerCluster($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -344,7 +344,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
     public function getGameServerClusterTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -358,8 +358,8 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
-        $response = $client->getGameServerCluster($formattedName);
+        $formattedName = $gapicClient->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
+        $response = $gapicClient->getGameServerCluster($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -377,7 +377,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
     public function getGameServerClusterExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -392,10 +392,10 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
+        $formattedName = $gapicClient->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
         try {
-            $client->getGameServerCluster($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getGameServerCluster($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -412,7 +412,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
     public function listGameServerClustersTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -427,8 +427,8 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $expectedResponse->setGameServerClusters($gameServerClusters);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
-        $response = $client->listGameServerClusters($formattedParent);
+        $formattedParent = $gapicClient->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
+        $response = $gapicClient->listGameServerClusters($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -449,7 +449,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
     public function listGameServerClustersExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -464,10 +464,10 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
+        $formattedParent = $gapicClient->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
         try {
-            $client->listGameServerClusters($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listGameServerClusters($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -484,7 +484,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
     public function previewCreateGameServerClusterTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -494,12 +494,12 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
+        $formattedParent = $gapicClient->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
         $gameServerClusterId = 'gameServerClusterId-858763025';
         $gameServerCluster = new GameServerCluster();
         $gameServerClusterName = 'gameServerClusterName-525342064';
         $gameServerCluster->setName($gameServerClusterName);
-        $response = $client->previewCreateGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
+        $response = $gapicClient->previewCreateGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -521,7 +521,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
     public function previewCreateGameServerClusterExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -536,14 +536,14 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
+        $formattedParent = $gapicClient->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
         $gameServerClusterId = 'gameServerClusterId-858763025';
         $gameServerCluster = new GameServerCluster();
         $gameServerClusterName = 'gameServerClusterName-525342064';
         $gameServerCluster->setName($gameServerClusterName);
         try {
-            $client->previewCreateGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->previewCreateGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -560,7 +560,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
     public function previewDeleteGameServerClusterTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -570,8 +570,8 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
-        $response = $client->previewDeleteGameServerCluster($formattedName);
+        $formattedName = $gapicClient->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
+        $response = $gapicClient->previewDeleteGameServerCluster($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -589,7 +589,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
     public function previewDeleteGameServerClusterExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -604,10 +604,10 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
+        $formattedName = $gapicClient->gameServerClusterName('[PROJECT]', '[LOCATION]', '[REALM]', '[CLUSTER]');
         try {
-            $client->previewDeleteGameServerCluster($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->previewDeleteGameServerCluster($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -624,7 +624,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
     public function previewUpdateGameServerClusterTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -638,7 +638,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $gameServerClusterName = 'gameServerClusterName-525342064';
         $gameServerCluster->setName($gameServerClusterName);
         $updateMask = new FieldMask();
-        $response = $client->previewUpdateGameServerCluster($gameServerCluster, $updateMask);
+        $response = $gapicClient->previewUpdateGameServerCluster($gameServerCluster, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -658,7 +658,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
     public function previewUpdateGameServerClusterExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -678,8 +678,8 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $gameServerCluster->setName($gameServerClusterName);
         $updateMask = new FieldMask();
         try {
-            $client->previewUpdateGameServerCluster($gameServerCluster, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->previewUpdateGameServerCluster($gameServerCluster, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -702,7 +702,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -732,7 +732,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $gameServerClusterName = 'gameServerClusterName-525342064';
         $gameServerCluster->setName($gameServerClusterName);
         $updateMask = new FieldMask();
-        $response = $client->updateGameServerCluster($gameServerCluster, $updateMask);
+        $response = $gapicClient->updateGameServerCluster($gameServerCluster, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -777,7 +777,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -803,7 +803,7 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $gameServerClusterName = 'gameServerClusterName-525342064';
         $gameServerCluster->setName($gameServerClusterName);
         $updateMask = new FieldMask();
-        $response = $client->updateGameServerCluster($gameServerCluster, $updateMask);
+        $response = $gapicClient->updateGameServerCluster($gameServerCluster, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

@@ -111,7 +111,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      *           policy for common system-level images. Images not covered by the global
      *           policy will be subject to the project admission policy. This setting
      *           has no effect when specified inside a global admission policy.
-     *     @type \Google\Cloud\BinaryAuthorization\V1beta1\AdmissionWhitelistPattern[]|\Google\Protobuf\Internal\RepeatedField $admission_whitelist_patterns
+     *     @type array<\Google\Cloud\BinaryAuthorization\V1beta1\AdmissionWhitelistPattern>|\Google\Protobuf\Internal\RepeatedField $admission_whitelist_patterns
      *           Optional. Admission policy allowlisting. A matching admission request will
      *           always be permitted. This feature is typically used to exclude Google or
      *           third-party infrastructure images from Binary Authorization policies.
@@ -252,7 +252,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      * third-party infrastructure images from Binary Authorization policies.
      *
      * Generated from protobuf field <code>repeated .google.cloud.binaryauthorization.v1beta1.AdmissionWhitelistPattern admission_whitelist_patterns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\BinaryAuthorization\V1beta1\AdmissionWhitelistPattern[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BinaryAuthorization\V1beta1\AdmissionWhitelistPattern>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdmissionWhitelistPatterns($var)

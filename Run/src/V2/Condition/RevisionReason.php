@@ -128,4 +128,6 @@ class RevisionReason
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(RevisionReason::class, \Google\Cloud\Run\V2\Condition_RevisionReason::class);
 

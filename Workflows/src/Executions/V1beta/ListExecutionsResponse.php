@@ -37,7 +37,7 @@ class ListExecutionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Workflows\Executions\V1beta\Execution[]|\Google\Protobuf\Internal\RepeatedField $executions
+     *     @type array<\Google\Cloud\Workflows\Executions\V1beta\Execution>|\Google\Protobuf\Internal\RepeatedField $executions
      *           The executions which match the request.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -64,7 +64,7 @@ class ListExecutionsResponse extends \Google\Protobuf\Internal\Message
      * The executions which match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workflows.executions.v1beta.Execution executions = 1;</code>
-     * @param \Google\Cloud\Workflows\Executions\V1beta\Execution[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Workflows\Executions\V1beta\Execution>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExecutions($var)

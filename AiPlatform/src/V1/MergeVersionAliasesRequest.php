@@ -50,7 +50,7 @@ class MergeVersionAliasesRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the model version to merge aliases, with a version ID
      *           explicitly included.
      *           Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $version_aliases
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $version_aliases
      *           Required. The set of version aliases to merge.
      *           The alias should be at most 128 characters, and match
      *           `[a-z][a-z0-9-]{0,126}[a-z-0-9]`.
@@ -134,7 +134,7 @@ class MergeVersionAliasesRequest extends \Google\Protobuf\Internal\Message
      * cancelled out.
      *
      * Generated from protobuf field <code>repeated string version_aliases = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVersionAliases($var)

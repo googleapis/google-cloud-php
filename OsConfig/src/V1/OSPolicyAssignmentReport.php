@@ -79,7 +79,7 @@ class OSPolicyAssignmentReport extends \Google\Protobuf\Internal\Message
      *           belongs to.
      *           Format:
      *           `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id&#64;revision_id}`
-     *     @type \Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance[]|\Google\Protobuf\Internal\RepeatedField $os_policy_compliances
+     *     @type array<\Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance>|\Google\Protobuf\Internal\RepeatedField $os_policy_compliances
      *           Compliance data for each `OSPolicy` that is applied to the VM.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Timestamp for when the report was last generated.
@@ -200,7 +200,7 @@ class OSPolicyAssignmentReport extends \Google\Protobuf\Internal\Message
      * Compliance data for each `OSPolicy` that is applied to the VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicyAssignmentReport.OSPolicyCompliance os_policy_compliances = 4;</code>
-     * @param \Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOsPolicyCompliances($var)

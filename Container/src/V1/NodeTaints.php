@@ -29,7 +29,7 @@ class NodeTaints extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Container\V1\NodeTaint[]|\Google\Protobuf\Internal\RepeatedField $taints
+     *     @type array<\Google\Cloud\Container\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $taints
      *           List of node taints.
      * }
      */
@@ -53,7 +53,7 @@ class NodeTaints extends \Google\Protobuf\Internal\Message
      * List of node taints.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.NodeTaint taints = 1;</code>
-     * @param \Google\Cloud\Container\V1\NodeTaint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Container\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTaints($var)

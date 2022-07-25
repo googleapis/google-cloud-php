@@ -88,7 +88,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *     @type string $query
      *           Required. The query used to generate suggestions.
      *           The maximum number of allowed characters is 255.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $language_codes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_codes
      *           The list of languages of the query. This is
      *           the BCP-47 language code, such as "en-US" or "sr-Latn".
      *           For more information, see
@@ -200,7 +200,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of allowed characters is 255.
      *
      * Generated from protobuf field <code>repeated string language_codes = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLanguageCodes($var)

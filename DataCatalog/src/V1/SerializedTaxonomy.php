@@ -54,9 +54,9 @@ class SerializedTaxonomy extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Description of the serialized taxonomy. At most 2000 bytes when
      *           encoded in UTF-8. If not set, defaults to an empty description.
-     *     @type \Google\Cloud\DataCatalog\V1\SerializedPolicyTag[]|\Google\Protobuf\Internal\RepeatedField $policy_tags
+     *     @type array<\Google\Cloud\DataCatalog\V1\SerializedPolicyTag>|\Google\Protobuf\Internal\RepeatedField $policy_tags
      *           Top level policy tags associated with the taxonomy, if any.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $activated_policy_types
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $activated_policy_types
      *           A list of policy types that are activated per taxonomy.
      * }
      */
@@ -134,7 +134,7 @@ class SerializedTaxonomy extends \Google\Protobuf\Internal\Message
      * Top level policy tags associated with the taxonomy, if any.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.SerializedPolicyTag policy_tags = 3;</code>
-     * @param \Google\Cloud\DataCatalog\V1\SerializedPolicyTag[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataCatalog\V1\SerializedPolicyTag>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPolicyTags($var)
@@ -160,7 +160,7 @@ class SerializedTaxonomy extends \Google\Protobuf\Internal\Message
      * A list of policy types that are activated per taxonomy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Taxonomy.PolicyType activated_policy_types = 4;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setActivatedPolicyTypes($var)

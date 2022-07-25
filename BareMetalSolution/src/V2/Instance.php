@@ -155,9 +155,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           The default value is false.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels as key value pairs.
-     *     @type \Google\Cloud\BareMetalSolution\V2\Lun[]|\Google\Protobuf\Internal\RepeatedField $luns
+     *     @type array<\Google\Cloud\BareMetalSolution\V2\Lun>|\Google\Protobuf\Internal\RepeatedField $luns
      *           List of LUNs associated with this server.
-     *     @type \Google\Cloud\BareMetalSolution\V2\Network[]|\Google\Protobuf\Internal\RepeatedField $networks
+     *     @type array<\Google\Cloud\BareMetalSolution\V2\Network>|\Google\Protobuf\Internal\RepeatedField $networks
      *           List of networks associated with this server.
      *     @type bool $interactive_serial_console_enabled
      *           True if the interactive serial console feature is enabled for the instance,
@@ -174,7 +174,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Instance network template name. For eg, bondaa-bondaa, bondab-nic, etc.
      *           Generally, the template name follows the syntax of
      *           "bond<bond_mode>" or "nic".
-     *     @type \Google\Cloud\BareMetalSolution\V2\LogicalInterface[]|\Google\Protobuf\Internal\RepeatedField $logical_interfaces
+     *     @type array<\Google\Cloud\BareMetalSolution\V2\LogicalInterface>|\Google\Protobuf\Internal\RepeatedField $logical_interfaces
      *           List of logical interfaces for the instance. The number of logical
      *           interfaces will be the same as number of hardware bond/nic on the chosen
      *           network template. For the non-multivlan configurations (for eg, existing
@@ -446,7 +446,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * List of LUNs associated with this server.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.Lun luns = 8;</code>
-     * @param \Google\Cloud\BareMetalSolution\V2\Lun[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BareMetalSolution\V2\Lun>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLuns($var)
@@ -472,7 +472,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * List of networks associated with this server.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.Network networks = 9;</code>
-     * @param \Google\Cloud\BareMetalSolution\V2\Network[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BareMetalSolution\V2\Network>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNetworks($var)
@@ -628,7 +628,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Instance.logical_interfaces will be filled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.LogicalInterface logical_interfaces = 15;</code>
-     * @param \Google\Cloud\BareMetalSolution\V2\LogicalInterface[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BareMetalSolution\V2\LogicalInterface>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLogicalInterfaces($var)

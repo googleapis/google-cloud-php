@@ -46,14 +46,14 @@ class InjectedSolutionConstraint extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Optimization\V1\ShipmentRoute[]|\Google\Protobuf\Internal\RepeatedField $routes
+     *     @type array<\Google\Cloud\Optimization\V1\ShipmentRoute>|\Google\Protobuf\Internal\RepeatedField $routes
      *           Routes of the solution to inject. Some routes may be omitted from the
      *           original solution. The routes and skipped shipments must satisfy the basic
      *           validity assumptions listed for `injected_first_solution_routes`.
-     *     @type \Google\Cloud\Optimization\V1\SkippedShipment[]|\Google\Protobuf\Internal\RepeatedField $skipped_shipments
+     *     @type array<\Google\Cloud\Optimization\V1\SkippedShipment>|\Google\Protobuf\Internal\RepeatedField $skipped_shipments
      *           Skipped shipments of the solution to inject. Some may be omitted from the
      *           original solution. See the `routes` field.
-     *     @type \Google\Cloud\Optimization\V1\InjectedSolutionConstraint\ConstraintRelaxation[]|\Google\Protobuf\Internal\RepeatedField $constraint_relaxations
+     *     @type array<\Google\Cloud\Optimization\V1\InjectedSolutionConstraint\ConstraintRelaxation>|\Google\Protobuf\Internal\RepeatedField $constraint_relaxations
      *           For zero or more groups of vehicles, specifies when and how much to relax
      *           constraints. If this field is empty, all non-empty vehicle routes are
      *           fully constrained.
@@ -83,7 +83,7 @@ class InjectedSolutionConstraint extends \Google\Protobuf\Internal\Message
      * validity assumptions listed for `injected_first_solution_routes`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentRoute routes = 1;</code>
-     * @param \Google\Cloud\Optimization\V1\ShipmentRoute[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\ShipmentRoute>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRoutes($var)
@@ -111,7 +111,7 @@ class InjectedSolutionConstraint extends \Google\Protobuf\Internal\Message
      * original solution. See the `routes` field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.SkippedShipment skipped_shipments = 2;</code>
-     * @param \Google\Cloud\Optimization\V1\SkippedShipment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\SkippedShipment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSkippedShipments($var)
@@ -141,7 +141,7 @@ class InjectedSolutionConstraint extends \Google\Protobuf\Internal\Message
      * fully constrained.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.InjectedSolutionConstraint.ConstraintRelaxation constraint_relaxations = 3;</code>
-     * @param \Google\Cloud\Optimization\V1\InjectedSolutionConstraint\ConstraintRelaxation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\InjectedSolutionConstraint\ConstraintRelaxation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConstraintRelaxations($var)

@@ -91,7 +91,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -113,9 +113,9 @@ class FirestoreAdminClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
+        $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
         $index = new Index();
-        $response = $client->createIndexLRO($formattedParent, $index);
+        $response = $gapicClient->createIndexLRO($formattedParent, $index);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -160,7 +160,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -182,9 +182,9 @@ class FirestoreAdminClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
+        $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
         $index = new Index();
-        $response = $client->createIndexLRO($formattedParent, $index);
+        $response = $gapicClient->createIndexLRO($formattedParent, $index);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -212,7 +212,7 @@ class FirestoreAdminClientTest extends GeneratedTest
     public function deleteIndexTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -220,8 +220,8 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
-        $client->deleteIndex($formattedName);
+        $formattedName = $gapicClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
+        $gapicClient->deleteIndex($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -238,7 +238,7 @@ class FirestoreAdminClientTest extends GeneratedTest
     public function deleteIndexExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -253,10 +253,10 @@ class FirestoreAdminClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
+        $formattedName = $gapicClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
         try {
-            $client->deleteIndex($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteIndex($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -279,7 +279,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -301,8 +301,8 @@ class FirestoreAdminClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->databaseName('[PROJECT]', '[DATABASE]');
-        $response = $client->exportDocumentsLRO($formattedName);
+        $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
+        $response = $gapicClient->exportDocumentsLRO($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -345,7 +345,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -367,8 +367,8 @@ class FirestoreAdminClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->databaseName('[PROJECT]', '[DATABASE]');
-        $response = $client->exportDocumentsLRO($formattedName);
+        $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
+        $response = $gapicClient->exportDocumentsLRO($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -396,7 +396,7 @@ class FirestoreAdminClientTest extends GeneratedTest
     public function getDatabaseTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -412,8 +412,8 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->databaseName('[PROJECT]', '[DATABASE]');
-        $response = $client->getDatabase($formattedName);
+        $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
+        $response = $gapicClient->getDatabase($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -431,7 +431,7 @@ class FirestoreAdminClientTest extends GeneratedTest
     public function getDatabaseExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -446,10 +446,10 @@ class FirestoreAdminClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->databaseName('[PROJECT]', '[DATABASE]');
+        $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
         try {
-            $client->getDatabase($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getDatabase($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -466,7 +466,7 @@ class FirestoreAdminClientTest extends GeneratedTest
     public function getFieldTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -476,8 +476,8 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->fieldName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[FIELD]');
-        $response = $client->getField($formattedName);
+        $formattedName = $gapicClient->fieldName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[FIELD]');
+        $response = $gapicClient->getField($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -495,7 +495,7 @@ class FirestoreAdminClientTest extends GeneratedTest
     public function getFieldExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -510,10 +510,10 @@ class FirestoreAdminClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->fieldName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[FIELD]');
+        $formattedName = $gapicClient->fieldName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[FIELD]');
         try {
-            $client->getField($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getField($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -530,7 +530,7 @@ class FirestoreAdminClientTest extends GeneratedTest
     public function getIndexTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -540,8 +540,8 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
-        $response = $client->getIndex($formattedName);
+        $formattedName = $gapicClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
+        $response = $gapicClient->getIndex($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -559,7 +559,7 @@ class FirestoreAdminClientTest extends GeneratedTest
     public function getIndexExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -574,10 +574,10 @@ class FirestoreAdminClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
+        $formattedName = $gapicClient->indexName('[PROJECT]', '[DATABASE]', '[COLLECTION]', '[INDEX]');
         try {
-            $client->getIndex($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIndex($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -600,7 +600,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -620,8 +620,8 @@ class FirestoreAdminClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->databaseName('[PROJECT]', '[DATABASE]');
-        $response = $client->importDocumentsLRO($formattedName);
+        $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
+        $response = $gapicClient->importDocumentsLRO($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -664,7 +664,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -686,8 +686,8 @@ class FirestoreAdminClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->databaseName('[PROJECT]', '[DATABASE]');
-        $response = $client->importDocumentsLRO($formattedName);
+        $formattedName = $gapicClient->databaseName('[PROJECT]', '[DATABASE]');
+        $response = $gapicClient->importDocumentsLRO($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -715,7 +715,7 @@ class FirestoreAdminClientTest extends GeneratedTest
     public function listDatabasesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -723,8 +723,8 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse = new ListDatabasesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
-        $response = $client->listDatabases($formattedParent);
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listDatabases($formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -742,7 +742,7 @@ class FirestoreAdminClientTest extends GeneratedTest
     public function listDatabasesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -757,10 +757,10 @@ class FirestoreAdminClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $client->listDatabases($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listDatabases($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -777,7 +777,7 @@ class FirestoreAdminClientTest extends GeneratedTest
     public function listFieldsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -792,8 +792,8 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse->setFields($fields);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
-        $response = $client->listFields($formattedParent);
+        $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
+        $response = $gapicClient->listFields($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -814,7 +814,7 @@ class FirestoreAdminClientTest extends GeneratedTest
     public function listFieldsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -829,10 +829,10 @@ class FirestoreAdminClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
+        $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
         try {
-            $client->listFields($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listFields($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -849,7 +849,7 @@ class FirestoreAdminClientTest extends GeneratedTest
     public function listIndexesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -864,8 +864,8 @@ class FirestoreAdminClientTest extends GeneratedTest
         $expectedResponse->setIndexes($indexes);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
-        $response = $client->listIndexes($formattedParent);
+        $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
+        $response = $gapicClient->listIndexes($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -886,7 +886,7 @@ class FirestoreAdminClientTest extends GeneratedTest
     public function listIndexesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -901,10 +901,10 @@ class FirestoreAdminClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
+        $formattedParent = $gapicClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
         try {
-            $client->listIndexes($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listIndexes($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -927,7 +927,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -956,7 +956,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $database = new Database();
-        $response = $client->updateDatabase($database);
+        $response = $gapicClient->updateDatabase($database);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -999,7 +999,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1022,7 +1022,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $database = new Database();
-        $response = $client->updateDatabase($database);
+        $response = $gapicClient->updateDatabase($database);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1056,7 +1056,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1081,7 +1081,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $field = new Field();
         $fieldName = 'fieldName1265009317';
         $field->setName($fieldName);
-        $response = $client->updateFieldLRO($field);
+        $response = $gapicClient->updateFieldLRO($field);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1124,7 +1124,7 @@ class FirestoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1149,7 +1149,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $field = new Field();
         $fieldName = 'fieldName1265009317';
         $field->setName($fieldName);
-        $response = $client->updateFieldLRO($field);
+        $response = $gapicClient->updateFieldLRO($field);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

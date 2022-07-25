@@ -34,7 +34,7 @@ class ListListingsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing[]|\Google\Protobuf\Internal\RepeatedField $listings
+     *     @type array<\Google\Cloud\BigQuery\DataExchange\V1beta1\Listing>|\Google\Protobuf\Internal\RepeatedField $listings
      *           The list of Listing.
      *     @type string $next_page_token
      *           A token to request the next page of results.
@@ -60,7 +60,7 @@ class ListListingsResponse extends \Google\Protobuf\Internal\Message
      * The list of Listing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.dataexchange.v1beta1.Listing listings = 1;</code>
-     * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BigQuery\DataExchange\V1beta1\Listing>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setListings($var)

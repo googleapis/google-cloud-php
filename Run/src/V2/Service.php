@@ -324,7 +324,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Settings for the Binary Authorization feature.
      *     @type \Google\Cloud\Run\V2\RevisionTemplate $template
      *           Required. The template used to create revisions for this Service.
-     *     @type \Google\Cloud\Run\V2\TrafficTarget[]|\Google\Protobuf\Internal\RepeatedField $traffic
+     *     @type array<\Google\Cloud\Run\V2\TrafficTarget>|\Google\Protobuf\Internal\RepeatedField $traffic
      *           Specifies how to distribute traffic over a collection of Revisions
      *           belonging to the Service. If traffic is empty or not provided, defaults to
      *           100% traffic to the latest `Ready` Revision.
@@ -339,7 +339,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *           detailed error information in case it did not reach a serving state. See
      *           comments in `reconciling` for additional information on reconciliation
      *           process in Cloud Run.
-     *     @type \Google\Cloud\Run\V2\Condition[]|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
      *           Output only. The Conditions of all other associated sub-resources. They contain
      *           additional diagnostics information in case the Service does not reach its
      *           Serving state. See comments in `reconciling` for additional information on
@@ -351,7 +351,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *     @type string $latest_created_revision
      *           Output only. Name of the last created revision. See comments in `reconciling` for
      *           additional information on reconciliation process in Cloud Run.
-     *     @type \Google\Cloud\Run\V2\TrafficTargetStatus[]|\Google\Protobuf\Internal\RepeatedField $traffic_statuses
+     *     @type array<\Google\Cloud\Run\V2\TrafficTargetStatus>|\Google\Protobuf\Internal\RepeatedField $traffic_statuses
      *           Output only. Detailed status information for corresponding traffic targets. See comments
      *           in `reconciling` for additional information on reconciliation process in
      *           Cloud Run.
@@ -992,7 +992,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * 100% traffic to the latest `Ready` Revision.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTarget traffic = 19;</code>
-     * @param \Google\Cloud\Run\V2\TrafficTarget[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Run\V2\TrafficTarget>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTraffic($var)
@@ -1100,7 +1100,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Run\V2\Condition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConditions($var)
@@ -1188,7 +1188,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTargetStatus traffic_statuses = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Run\V2\TrafficTargetStatus[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Run\V2\TrafficTargetStatus>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTrafficStatuses($var)

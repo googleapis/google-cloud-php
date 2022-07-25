@@ -149,7 +149,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      *           the hierarchy. See
      *           [this topic](https://cloud.google.com/iam/docs/policies#inheritance) for
      *           more information.
-     *     @type \Google\Cloud\OrgPolicy\V1\Policy[]|\Google\Protobuf\Internal\RepeatedField $org_policy
+     *     @type array<\Google\Cloud\OrgPolicy\V1\Policy>|\Google\Protobuf\Internal\RepeatedField $org_policy
      *           A representation of an [organization
      *           policy](https://cloud.google.com/resource-manager/docs/organization-policy/overview#organization_policy).
      *           There can be more than one organization policy with different constraints
@@ -175,7 +175,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      *           only represents one type of relationship.
      *     @type \Google\Cloud\Asset\V1\RelatedAsset $related_asset
      *           One related asset of the current asset.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ancestors
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ancestors
      *           The ancestry path of an asset in Google Cloud [resource
      *           hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
      *           represented as a list of relative resource names. An ancestry path starts
@@ -403,7 +403,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * set on a given resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v1.Policy org_policy = 6;</code>
-     * @param \Google\Cloud\OrgPolicy\V1\Policy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\OrgPolicy\V1\Policy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOrgPolicy($var)
@@ -666,7 +666,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * Example: `["projects/123456789", "folders/5432", "organizations/1234"]`
      *
      * Generated from protobuf field <code>repeated string ancestors = 10;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAncestors($var)

@@ -35,7 +35,7 @@ class ListCustomDimensionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Admin\V1alpha\CustomDimension[]|\Google\Protobuf\Internal\RepeatedField $custom_dimensions
+     *     @type array<\Google\Analytics\Admin\V1alpha\CustomDimension>|\Google\Protobuf\Internal\RepeatedField $custom_dimensions
      *           List of CustomDimensions.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class ListCustomDimensionsResponse extends \Google\Protobuf\Internal\Message
      * List of CustomDimensions.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.CustomDimension custom_dimensions = 1;</code>
-     * @param \Google\Analytics\Admin\V1alpha\CustomDimension[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Admin\V1alpha\CustomDimension>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCustomDimensions($var)

@@ -72,7 +72,7 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
      *     @type string $metadata
      *           Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is EXCLUDE_ALL_METADATA.
      *           Check the Metadata enum for the list of possible values.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $metadata_fields
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $metadata_fields
      *           Can only be specified if VPC flow logs for this subnetwork is enabled and "metadata" was set to CUSTOM_METADATA.
      * }
      */
@@ -280,7 +280,7 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
      * Can only be specified if VPC flow logs for this subnetwork is enabled and "metadata" was set to CUSTOM_METADATA.
      *
      * Generated from protobuf field <code>repeated string metadata_fields = 378461641;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetadataFields($var)

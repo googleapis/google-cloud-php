@@ -46,13 +46,13 @@ class HttpHeaderAction extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\HttpHeaderOption[]|\Google\Protobuf\Internal\RepeatedField $request_headers_to_add
+     *     @type array<\Google\Cloud\Compute\V1\HttpHeaderOption>|\Google\Protobuf\Internal\RepeatedField $request_headers_to_add
      *           Headers to add to a matching request before forwarding the request to the backendService.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $request_headers_to_remove
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $request_headers_to_remove
      *           A list of header names for headers that need to be removed from the request before forwarding the request to the backendService.
-     *     @type \Google\Cloud\Compute\V1\HttpHeaderOption[]|\Google\Protobuf\Internal\RepeatedField $response_headers_to_add
+     *     @type array<\Google\Cloud\Compute\V1\HttpHeaderOption>|\Google\Protobuf\Internal\RepeatedField $response_headers_to_add
      *           Headers to add the response before sending the response back to the client.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $response_headers_to_remove
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $response_headers_to_remove
      *           A list of header names for headers that need to be removed from the response before sending the response back to the client.
      * }
      */
@@ -76,7 +76,7 @@ class HttpHeaderAction extends \Google\Protobuf\Internal\Message
      * Headers to add to a matching request before forwarding the request to the backendService.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpHeaderOption request_headers_to_add = 72111974;</code>
-     * @param \Google\Cloud\Compute\V1\HttpHeaderOption[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\HttpHeaderOption>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRequestHeadersToAdd($var)
@@ -102,7 +102,7 @@ class HttpHeaderAction extends \Google\Protobuf\Internal\Message
      * A list of header names for headers that need to be removed from the request before forwarding the request to the backendService.
      *
      * Generated from protobuf field <code>repeated string request_headers_to_remove = 218425247;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRequestHeadersToRemove($var)
@@ -128,7 +128,7 @@ class HttpHeaderAction extends \Google\Protobuf\Internal\Message
      * Headers to add the response before sending the response back to the client.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpHeaderOption response_headers_to_add = 32136052;</code>
-     * @param \Google\Cloud\Compute\V1\HttpHeaderOption[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\HttpHeaderOption>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResponseHeadersToAdd($var)
@@ -154,7 +154,7 @@ class HttpHeaderAction extends \Google\Protobuf\Internal\Message
      * A list of header names for headers that need to be removed from the response before sending the response back to the client.
      *
      * Generated from protobuf field <code>repeated string response_headers_to_remove = 75415761;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResponseHeadersToRemove($var)

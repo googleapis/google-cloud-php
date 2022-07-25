@@ -58,7 +58,7 @@ class PublishBuildToolEventStreamRequest extends \Google\Protobuf\Internal\Messa
      *     @type \Google\Cloud\Build\V1\OrderedBuildEvent $ordered_build_event
      *           Required. The build event with position info.
      *           New publishing clients should use this field rather than the 3 above.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $notification_keywords
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $notification_keywords
      *           The keywords to be attached to the notification which notifies the start
      *           of a new build event stream. BES only reads this field when sequence_number
      *           or ordered_build_event.sequence_number is 1 in this message. If this field
@@ -138,7 +138,7 @@ class PublishBuildToolEventStreamRequest extends \Google\Protobuf\Internal\Messa
      * is empty, BES will not publish notification messages for this stream.
      *
      * Generated from protobuf field <code>repeated string notification_keywords = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNotificationKeywords($var)

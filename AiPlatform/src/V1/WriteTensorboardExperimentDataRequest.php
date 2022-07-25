@@ -40,7 +40,7 @@ class WriteTensorboardExperimentDataRequest extends \Google\Protobuf\Internal\Me
      *           Required. The resource name of the TensorboardExperiment to write data to.
      *           Format:
      *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
-     *     @type \Google\Cloud\AIPlatform\V1\WriteTensorboardRunDataRequest[]|\Google\Protobuf\Internal\RepeatedField $write_run_data_requests
+     *     @type array<\Google\Cloud\AIPlatform\V1\WriteTensorboardRunDataRequest>|\Google\Protobuf\Internal\RepeatedField $write_run_data_requests
      *           Required. Requests containing per-run TensorboardTimeSeries data to write.
      * }
      */
@@ -94,7 +94,7 @@ class WriteTensorboardExperimentDataRequest extends \Google\Protobuf\Internal\Me
      * Required. Requests containing per-run TensorboardTimeSeries data to write.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.WriteTensorboardRunDataRequest write_run_data_requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\AIPlatform\V1\WriteTensorboardRunDataRequest[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\WriteTensorboardRunDataRequest>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWriteRunDataRequests($var)

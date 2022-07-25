@@ -61,7 +61,7 @@ class SerializedPolicyTag extends \Google\Protobuf\Internal\Message
      *           Description of the serialized policy tag. At most
      *           2000 bytes when encoded in UTF-8. If not set, defaults to an
      *           empty description.
-     *     @type \Google\Cloud\DataCatalog\V1\SerializedPolicyTag[]|\Google\Protobuf\Internal\RepeatedField $child_policy_tags
+     *     @type array<\Google\Cloud\DataCatalog\V1\SerializedPolicyTag>|\Google\Protobuf\Internal\RepeatedField $child_policy_tags
      *           Children of the policy tag, if any.
      * }
      */
@@ -171,7 +171,7 @@ class SerializedPolicyTag extends \Google\Protobuf\Internal\Message
      * Children of the policy tag, if any.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.SerializedPolicyTag child_policy_tags = 4;</code>
-     * @param \Google\Cloud\DataCatalog\V1\SerializedPolicyTag[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataCatalog\V1\SerializedPolicyTag>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setChildPolicyTags($var)

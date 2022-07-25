@@ -102,7 +102,7 @@ class Hub extends \Google\Protobuf\Internal\Message
      *           the new hub is assigned a different unique_id.
      *     @type int $state
      *           Output only. The current lifecycle state of this hub.
-     *     @type \Google\Cloud\NetworkConnectivity\V1\RoutingVPC[]|\Google\Protobuf\Internal\RepeatedField $routing_vpcs
+     *     @type array<\Google\Cloud\NetworkConnectivity\V1\RoutingVPC>|\Google\Protobuf\Internal\RepeatedField $routing_vpcs
      *           The VPC networks associated with this hub's spokes.
      *           This field is read-only. Network Connectivity Center automatically
      *           populates it based on the set of spokes attached to the hub.
@@ -346,7 +346,7 @@ class Hub extends \Google\Protobuf\Internal\Message
      * populates it based on the set of spokes attached to the hub.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.RoutingVPC routing_vpcs = 10;</code>
-     * @param \Google\Cloud\NetworkConnectivity\V1\RoutingVPC[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\NetworkConnectivity\V1\RoutingVPC>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRoutingVpcs($var)

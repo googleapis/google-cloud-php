@@ -78,7 +78,7 @@ class Version extends \Google\Protobuf\Internal\Message
      *           The time when the version was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           The time when the version was last updated.
-     *     @type \Google\Cloud\ArtifactRegistry\V1beta2\Tag[]|\Google\Protobuf\Internal\RepeatedField $related_tags
+     *     @type array<\Google\Cloud\ArtifactRegistry\V1beta2\Tag>|\Google\Protobuf\Internal\RepeatedField $related_tags
      *           Output only. A list of related tags. Will contain up to 100 tags that
      *           reference this version.
      *     @type \Google\Protobuf\Struct $metadata
@@ -240,7 +240,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * reference this version.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1beta2.Tag related_tags = 7;</code>
-     * @param \Google\Cloud\ArtifactRegistry\V1beta2\Tag[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ArtifactRegistry\V1beta2\Tag>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRelatedTags($var)

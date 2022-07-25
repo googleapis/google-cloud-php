@@ -34,7 +34,7 @@ class ListImageVersionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\ImageVersion[]|\Google\Protobuf\Internal\RepeatedField $image_versions
+     *     @type array<\Google\Cloud\Orchestration\Airflow\Service\V1\ImageVersion>|\Google\Protobuf\Internal\RepeatedField $image_versions
      *           The list of supported ImageVersions in a location.
      *     @type string $next_page_token
      *           The page token used to query for the next page if one exists.
@@ -60,7 +60,7 @@ class ListImageVersionsResponse extends \Google\Protobuf\Internal\Message
      * The list of supported ImageVersions in a location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orchestration.airflow.service.v1.ImageVersion image_versions = 1;</code>
-     * @param \Google\Cloud\Orchestration\Airflow\Service\V1\ImageVersion[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Orchestration\Airflow\Service\V1\ImageVersion>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setImageVersions($var)

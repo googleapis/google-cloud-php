@@ -33,7 +33,7 @@ class TargetHttpsProxiesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\TargetHttpsProxy[]|\Google\Protobuf\Internal\RepeatedField $target_https_proxies
+     *     @type array<\Google\Cloud\Compute\V1\TargetHttpsProxy>|\Google\Protobuf\Internal\RepeatedField $target_https_proxies
      *           A list of TargetHttpsProxies contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of backend services when the list is empty.
@@ -59,7 +59,7 @@ class TargetHttpsProxiesScopedList extends \Google\Protobuf\Internal\Message
      * A list of TargetHttpsProxies contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetHttpsProxy target_https_proxies = 366607882;</code>
-     * @param \Google\Cloud\Compute\V1\TargetHttpsProxy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\TargetHttpsProxy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetHttpsProxies($var)

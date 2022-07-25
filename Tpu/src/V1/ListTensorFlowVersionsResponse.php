@@ -40,11 +40,11 @@ class ListTensorFlowVersionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Tpu\V1\TensorFlowVersion[]|\Google\Protobuf\Internal\RepeatedField $tensorflow_versions
+     *     @type array<\Google\Cloud\Tpu\V1\TensorFlowVersion>|\Google\Protobuf\Internal\RepeatedField $tensorflow_versions
      *           The listed nodes.
      *     @type string $next_page_token
      *           The next page token or empty if none.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -68,7 +68,7 @@ class ListTensorFlowVersionsResponse extends \Google\Protobuf\Internal\Message
      * The listed nodes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v1.TensorFlowVersion tensorflow_versions = 1;</code>
-     * @param \Google\Cloud\Tpu\V1\TensorFlowVersion[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Tpu\V1\TensorFlowVersion>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTensorflowVersions($var)
@@ -120,7 +120,7 @@ class ListTensorFlowVersionsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

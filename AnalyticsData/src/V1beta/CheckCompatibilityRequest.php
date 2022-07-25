@@ -83,10 +83,10 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
      *           Set the Property ID to 0 for compatibility checking on dimensions and
      *           metrics common to all properties. In this special mode, this method will
      *           not return custom dimensions and metrics.
-     *     @type \Google\Analytics\Data\V1beta\Dimension[]|\Google\Protobuf\Internal\RepeatedField $dimensions
+     *     @type array<\Google\Analytics\Data\V1beta\Dimension>|\Google\Protobuf\Internal\RepeatedField $dimensions
      *           The dimensions in this report. `dimensions` should be the same value as in
      *           your `runReport` request.
-     *     @type \Google\Analytics\Data\V1beta\Metric[]|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type array<\Google\Analytics\Data\V1beta\Metric>|\Google\Protobuf\Internal\RepeatedField $metrics
      *           The metrics in this report. `metrics` should be the same value as in your
      *           `runReport` request.
      *     @type \Google\Analytics\Data\V1beta\FilterExpression $dimension_filter
@@ -163,7 +163,7 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
      * your `runReport` request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Dimension dimensions = 2;</code>
-     * @param \Google\Analytics\Data\V1beta\Dimension[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\Dimension>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDimensions($var)
@@ -191,7 +191,7 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
      * `runReport` request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Metric metrics = 3;</code>
-     * @param \Google\Analytics\Data\V1beta\Metric[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\Metric>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetrics($var)

@@ -108,7 +108,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $service
      *           URL to the BackendService resource.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ssl_certificates
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ssl_certificates
      *           URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
      *     @type string $ssl_policy
      *           URL of SslPolicy resource that will be associated with the TargetSslProxy resource. If not set, the TargetSslProxy resource will not have any SSL policy configured.
@@ -460,7 +460,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
      * URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates. sslCertificates do not apply when the load balancing scheme is set to INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSslCertificates($var)

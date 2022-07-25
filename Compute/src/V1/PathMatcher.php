@@ -82,9 +82,9 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      *           Specifies changes to request and response headers that need to take effect for the selected backend service. HeaderAction specified here are applied after the matching HttpRouteRule HeaderAction and before the HeaderAction in the UrlMap HeaderAction is not supported for load balancers that have their loadBalancingScheme set to EXTERNAL. Not supported when the URL map is bound to a target gRPC proxy that has validateForProxyless field set to true.
      *     @type string $name
      *           The name to which this PathMatcher is referred by the HostRule.
-     *     @type \Google\Cloud\Compute\V1\PathRule[]|\Google\Protobuf\Internal\RepeatedField $path_rules
+     *     @type array<\Google\Cloud\Compute\V1\PathRule>|\Google\Protobuf\Internal\RepeatedField $path_rules
      *           The list of path rules. Use this list instead of routeRules when routing based on simple path matching is all that's required. The order by which path rules are specified does not matter. Matches are always done on the longest-path-first basis. For example: a pathRule with a path /a/b/c/&#42; will match before /a/b/&#42; irrespective of the order in which those paths appear in this list. Within a given pathMatcher, only one of pathRules or routeRules must be set.
-     *     @type \Google\Cloud\Compute\V1\HttpRouteRule[]|\Google\Protobuf\Internal\RepeatedField $route_rules
+     *     @type array<\Google\Cloud\Compute\V1\HttpRouteRule>|\Google\Protobuf\Internal\RepeatedField $route_rules
      *           The list of HTTP route rules. Use this list instead of pathRules when advanced route matching and routing actions are desired. routeRules are evaluated in order of priority, from the lowest to highest number. Within a given pathMatcher, you can set only one of pathRules or routeRules.
      * }
      */
@@ -324,7 +324,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * The list of path rules. Use this list instead of routeRules when routing based on simple path matching is all that's required. The order by which path rules are specified does not matter. Matches are always done on the longest-path-first basis. For example: a pathRule with a path /a/b/c/&#42; will match before /a/b/&#42; irrespective of the order in which those paths appear in this list. Within a given pathMatcher, only one of pathRules or routeRules must be set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PathRule path_rules = 104439901;</code>
-     * @param \Google\Cloud\Compute\V1\PathRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\PathRule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPathRules($var)
@@ -350,7 +350,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * The list of HTTP route rules. Use this list instead of pathRules when advanced route matching and routing actions are desired. routeRules are evaluated in order of priority, from the lowest to highest number. Within a given pathMatcher, you can set only one of pathRules or routeRules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpRouteRule route_rules = 376292225;</code>
-     * @param \Google\Cloud\Compute\V1\HttpRouteRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\HttpRouteRule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRouteRules($var)

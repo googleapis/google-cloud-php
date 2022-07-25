@@ -89,7 +89,7 @@ class TranscriptSegment extends \Google\Protobuf\Internal\Message
      *     @type float $confidence
      *           A confidence estimate between 0.0 and 1.0 of the fidelity of this
      *           segment. A default value of 0.0 indicates that the value is unset.
-     *     @type \Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment\WordInfo[]|\Google\Protobuf\Internal\RepeatedField $words
+     *     @type array<\Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment\WordInfo>|\Google\Protobuf\Internal\RepeatedField $words
      *           A list of the word-specific information for each word in the segment.
      *     @type string $language_code
      *           The language code of this segment as a
@@ -218,7 +218,7 @@ class TranscriptSegment extends \Google\Protobuf\Internal\Message
      * A list of the word-specific information for each word in the segment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.Conversation.Transcript.TranscriptSegment.WordInfo words = 3;</code>
-     * @param \Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment\WordInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment\WordInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWords($var)

@@ -50,7 +50,7 @@ class Validation extends \Google\Protobuf\Internal\Message
      *           A short description of the validation.
      *     @type int $state
      *           Validation execution status.
-     *     @type \Google\Cloud\Datastream\V1\ValidationMessage[]|\Google\Protobuf\Internal\RepeatedField $message
+     *     @type array<\Google\Cloud\Datastream\V1\ValidationMessage>|\Google\Protobuf\Internal\RepeatedField $message
      *           Messages reflecting the validation results.
      *     @type string $code
      *           A custom code identifying this validation.
@@ -128,7 +128,7 @@ class Validation extends \Google\Protobuf\Internal\Message
      * Messages reflecting the validation results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.ValidationMessage message = 3;</code>
-     * @param \Google\Cloud\Datastream\V1\ValidationMessage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastream\V1\ValidationMessage>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMessage($var)

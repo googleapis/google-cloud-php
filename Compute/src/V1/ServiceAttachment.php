@@ -131,20 +131,20 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\ServiceAttachmentConnectedEndpoint[]|\Google\Protobuf\Internal\RepeatedField $connected_endpoints
+     *     @type array<\Google\Cloud\Compute\V1\ServiceAttachmentConnectedEndpoint>|\Google\Protobuf\Internal\RepeatedField $connected_endpoints
      *           [Output Only] An array of connections for all the consumers connected to this service attachment.
      *     @type string $connection_preference
      *           The connection preference of service attachment. The value can be set to ACCEPT_AUTOMATIC. An ACCEPT_AUTOMATIC service attachment is one that always accepts the connection from consumer forwarding rules.
      *           Check the ConnectionPreference enum for the list of possible values.
-     *     @type \Google\Cloud\Compute\V1\ServiceAttachmentConsumerProjectLimit[]|\Google\Protobuf\Internal\RepeatedField $consumer_accept_lists
+     *     @type array<\Google\Cloud\Compute\V1\ServiceAttachmentConsumerProjectLimit>|\Google\Protobuf\Internal\RepeatedField $consumer_accept_lists
      *           Projects that are allowed to connect to this service attachment.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $consumer_reject_lists
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $consumer_reject_lists
      *           Projects that are not allowed to connect to this service attachment. The project can be specified using its id or number.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $domain_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $domain_names
      *           If specified, the domain name will be used during the integration between the PSC connected endpoints and the Cloud DNS. For example, this is a valid domain name: "p.mycompany.com.". Current max number of domain names supported is 1.
      *     @type bool $enable_proxy_protocol
      *           If true, enable the proxy protocol which is for supplying client TCP/IP address data in TCP connections that traverse proxies on their way to destination servers.
@@ -156,7 +156,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      *           [Output Only] Type of the resource. Always compute#serviceAttachment for service attachments.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $nat_subnets
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $nat_subnets
      *           An array of URLs where each entry is the URL of a subnet provided by the service producer to use for NAT in this service attachment.
      *     @type string $producer_forwarding_rule
      *           The URL of a forwarding rule with loadBalancingScheme INTERNAL* that is serving the endpoint identified by this service attachment.
@@ -190,7 +190,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      * [Output Only] An array of connections for all the consumers connected to this service attachment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAttachmentConnectedEndpoint connected_endpoints = 72223688;</code>
-     * @param \Google\Cloud\Compute\V1\ServiceAttachmentConnectedEndpoint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\ServiceAttachmentConnectedEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConnectedEndpoints($var)
@@ -254,7 +254,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      * Projects that are allowed to connect to this service attachment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAttachmentConsumerProjectLimit consumer_accept_lists = 402725703;</code>
-     * @param \Google\Cloud\Compute\V1\ServiceAttachmentConsumerProjectLimit[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\ServiceAttachmentConsumerProjectLimit>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConsumerAcceptLists($var)
@@ -280,7 +280,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      * Projects that are not allowed to connect to this service attachment. The project can be specified using its id or number.
      *
      * Generated from protobuf field <code>repeated string consumer_reject_lists = 204033182;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConsumerRejectLists($var)
@@ -378,7 +378,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      * If specified, the domain name will be used during the integration between the PSC connected endpoints and the Cloud DNS. For example, this is a valid domain name: "p.mycompany.com.". Current max number of domain names supported is 1.
      *
      * Generated from protobuf field <code>repeated string domain_names = 6450189;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDomainNames($var)
@@ -584,7 +584,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      * An array of URLs where each entry is the URL of a subnet provided by the service producer to use for NAT in this service attachment.
      *
      * Generated from protobuf field <code>repeated string nat_subnets = 374785944;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNatSubnets($var)

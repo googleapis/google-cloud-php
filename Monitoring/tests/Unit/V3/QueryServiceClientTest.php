@@ -73,7 +73,7 @@ class QueryServiceClientTest extends GeneratedTest
     public function queryTimeSeriesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -90,7 +90,7 @@ class QueryServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $query = 'query107944136';
-        $response = $client->queryTimeSeries($name, $query);
+        $response = $gapicClient->queryTimeSeries($name, $query);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -113,7 +113,7 @@ class QueryServiceClientTest extends GeneratedTest
     public function queryTimeSeriesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -131,8 +131,8 @@ class QueryServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $query = 'query107944136';
         try {
-            $client->queryTimeSeries($name, $query);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->queryTimeSeries($name, $query);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

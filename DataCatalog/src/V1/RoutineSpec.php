@@ -65,7 +65,7 @@ class RoutineSpec extends \Google\Protobuf\Internal\Message
      *           source system. For BigQuery routines, possible values are:
      *           * `SQL`
      *           * `JAVASCRIPT`
-     *     @type \Google\Cloud\DataCatalog\V1\RoutineSpec\Argument[]|\Google\Protobuf\Internal\RepeatedField $routine_arguments
+     *     @type array<\Google\Cloud\DataCatalog\V1\RoutineSpec\Argument>|\Google\Protobuf\Internal\RepeatedField $routine_arguments
      *           Arguments of the routine.
      *     @type string $return_type
      *           Return type of the argument. The exact value depends on the source system
@@ -154,7 +154,7 @@ class RoutineSpec extends \Google\Protobuf\Internal\Message
      * Arguments of the routine.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.RoutineSpec.Argument routine_arguments = 3;</code>
-     * @param \Google\Cloud\DataCatalog\V1\RoutineSpec\Argument[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataCatalog\V1\RoutineSpec\Argument>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRoutineArguments($var)

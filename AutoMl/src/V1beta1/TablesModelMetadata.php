@@ -137,7 +137,7 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      *                  If neither is set, CreateModel will error.
      *           display_name - Output only.
      *           data_type - Output only.
-     *     @type \Google\Cloud\AutoMl\V1beta1\ColumnSpec[]|\Google\Protobuf\Internal\RepeatedField $input_feature_column_specs
+     *     @type array<\Google\Cloud\AutoMl\V1beta1\ColumnSpec>|\Google\Protobuf\Internal\RepeatedField $input_feature_column_specs
      *           Column specs of the dataset's primary table's columns, on which
      *           the model is trained and which are used as the input for predictions.
      *           The
@@ -174,7 +174,7 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      *             "MINIMIZE_RMSE" (default) - Minimize root-mean-squared error (RMSE).
      *             "MINIMIZE_MAE" - Minimize mean-absolute error (MAE).
      *             "MINIMIZE_RMSLE" - Minimize root-mean-squared log error (RMSLE).
-     *     @type \Google\Cloud\AutoMl\V1beta1\TablesModelColumnInfo[]|\Google\Protobuf\Internal\RepeatedField $tables_model_column_info
+     *     @type array<\Google\Cloud\AutoMl\V1beta1\TablesModelColumnInfo>|\Google\Protobuf\Internal\RepeatedField $tables_model_column_info
      *           Output only. Auxiliary information for each of the
      *           input_feature_column_specs with respect to this particular model.
      *     @type int|string $train_budget_milli_node_hours
@@ -365,7 +365,7 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      * * data_type - Output only.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.ColumnSpec input_feature_column_specs = 3;</code>
-     * @param \Google\Cloud\AutoMl\V1beta1\ColumnSpec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AutoMl\V1beta1\ColumnSpec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInputFeatureColumnSpecs($var)
@@ -457,7 +457,7 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      * input_feature_column_specs with respect to this particular model.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.TablesModelColumnInfo tables_model_column_info = 5;</code>
-     * @param \Google\Cloud\AutoMl\V1beta1\TablesModelColumnInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AutoMl\V1beta1\TablesModelColumnInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTablesModelColumnInfo($var)

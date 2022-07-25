@@ -149,11 +149,11 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      *           Within a batch request, this property should either be unspecified or
      *           consistent with the batch-level property.
      *           Example: properties/1234
-     *     @type \Google\Analytics\Data\V1beta\Dimension[]|\Google\Protobuf\Internal\RepeatedField $dimensions
+     *     @type array<\Google\Analytics\Data\V1beta\Dimension>|\Google\Protobuf\Internal\RepeatedField $dimensions
      *           The dimensions requested and displayed.
-     *     @type \Google\Analytics\Data\V1beta\Metric[]|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type array<\Google\Analytics\Data\V1beta\Metric>|\Google\Protobuf\Internal\RepeatedField $metrics
      *           The metrics requested and displayed.
-     *     @type \Google\Analytics\Data\V1beta\DateRange[]|\Google\Protobuf\Internal\RepeatedField $date_ranges
+     *     @type array<\Google\Analytics\Data\V1beta\DateRange>|\Google\Protobuf\Internal\RepeatedField $date_ranges
      *           Date ranges of data to read. If multiple date ranges are requested, each
      *           response row will contain a zero based date range index. If two date
      *           ranges overlap, the event data for the overlapping days is included in the
@@ -186,10 +186,10 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      *           set `limit` to a higher value.
      *           To learn more about this pagination parameter, see
      *           [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $metric_aggregations
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $metric_aggregations
      *           Aggregation of metrics. Aggregated metric values will be shown in rows
      *           where the dimension_values are set to "RESERVED_(MetricAggregation)".
-     *     @type \Google\Analytics\Data\V1beta\OrderBy[]|\Google\Protobuf\Internal\RepeatedField $order_bys
+     *     @type array<\Google\Analytics\Data\V1beta\OrderBy>|\Google\Protobuf\Internal\RepeatedField $order_bys
      *           Specifies how rows are ordered in the response.
      *     @type string $currency_code
      *           A currency code in ISO4217 format, such as "AED", "USD", "JPY".
@@ -264,7 +264,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      * The dimensions requested and displayed.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Dimension dimensions = 2;</code>
-     * @param \Google\Analytics\Data\V1beta\Dimension[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\Dimension>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDimensions($var)
@@ -290,7 +290,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      * The metrics requested and displayed.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Metric metrics = 3;</code>
-     * @param \Google\Analytics\Data\V1beta\Metric[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\Metric>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetrics($var)
@@ -324,7 +324,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      * must be unspecified.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.DateRange date_ranges = 4;</code>
-     * @param \Google\Analytics\Data\V1beta\DateRange[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\DateRange>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDateRanges($var)
@@ -514,7 +514,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      * where the dimension_values are set to "RESERVED_(MetricAggregation)".
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.MetricAggregation metric_aggregations = 9;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetricAggregations($var)
@@ -540,7 +540,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      * Specifies how rows are ordered in the response.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.OrderBy order_bys = 10;</code>
-     * @param \Google\Analytics\Data\V1beta\OrderBy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\OrderBy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOrderBys($var)

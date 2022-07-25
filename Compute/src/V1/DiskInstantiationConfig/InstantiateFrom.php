@@ -67,7 +67,7 @@ class InstantiateFrom
         self::ATTACH_READ_ONLY => 'ATTACH_READ_ONLY',
         self::BLANK => 'BLANK',
         self::CUSTOM_IMAGE => 'CUSTOM_IMAGE',
-        self::PBDEFAULT => 'PBDEFAULT',
+        self::PBDEFAULT => 'DEFAULT',
         self::DO_NOT_INCLUDE => 'DO_NOT_INCLUDE',
         self::SOURCE_IMAGE => 'SOURCE_IMAGE',
         self::SOURCE_IMAGE_FAMILY => 'SOURCE_IMAGE_FAMILY',
@@ -87,8 +87,12 @@ class InstantiateFrom
     {
         $const = __CLASS__ . '::' . strtoupper($name);
         if (!defined($const)) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+            $pbconst =  __CLASS__. '::PB' . strtoupper($name);
+            if (!defined($pbconst)) {
+                throw new UnexpectedValueException(sprintf(
+                        'Enum %s has no value defined for name %s', __CLASS__, $name));
+            }
+            return constant($pbconst);
         }
         return constant($const);
     }

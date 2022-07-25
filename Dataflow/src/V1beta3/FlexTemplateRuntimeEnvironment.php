@@ -216,7 +216,7 @@ class FlexTemplateRuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *     @type string $machine_type
      *           The machine type to use for the job. Defaults to the value from the
      *           template if not specified.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $additional_experiments
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $additional_experiments
      *           Additional experiment flags for the job.
      *     @type string $network
      *           Network to which VMs will be assigned.  If empty or unspecified,
@@ -472,7 +472,7 @@ class FlexTemplateRuntimeEnvironment extends \Google\Protobuf\Internal\Message
      * Additional experiment flags for the job.
      *
      * Generated from protobuf field <code>repeated string additional_experiments = 7;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdditionalExperiments($var)

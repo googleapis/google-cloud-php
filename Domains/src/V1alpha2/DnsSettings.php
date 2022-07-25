@@ -35,7 +35,7 @@ class DnsSettings extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Domains\V1alpha2\DnsSettings\GoogleDomainsDns $google_domains_dns
      *           The free DNS zone provided by
      *           [Google Domains](https://domains.google/).
-     *     @type \Google\Cloud\Domains\V1alpha2\DnsSettings\GlueRecord[]|\Google\Protobuf\Internal\RepeatedField $glue_records
+     *     @type array<\Google\Cloud\Domains\V1alpha2\DnsSettings\GlueRecord>|\Google\Protobuf\Internal\RepeatedField $glue_records
      *           The list of glue records for this `Registration`. Commonly empty.
      * }
      */
@@ -123,7 +123,7 @@ class DnsSettings extends \Google\Protobuf\Internal\Message
      * The list of glue records for this `Registration`. Commonly empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1alpha2.DnsSettings.GlueRecord glue_records = 4;</code>
-     * @param \Google\Cloud\Domains\V1alpha2\DnsSettings\GlueRecord[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Domains\V1alpha2\DnsSettings\GlueRecord>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGlueRecords($var)

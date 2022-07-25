@@ -33,7 +33,7 @@ class Attempt extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Timestamp $attempt_time
-     *     @type \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $partial_failures
+     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_failures
      *           Details of errors that occurred.
      * }
      */
@@ -89,7 +89,7 @@ class Attempt extends \Google\Protobuf\Internal\Message
      * Details of errors that occurred.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_failures = 2;</code>
-     * @param \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPartialFailures($var)

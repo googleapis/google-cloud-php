@@ -98,7 +98,7 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
      *           unspecified, defaults to 20. The maximum allowed value is 300. Values
      *           above 300 will be coerced to 300.
      *           If this field is negative, an INVALID_ARGUMENT is returned.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $excluded_filter_keys
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_filter_keys
      *           List of keys to exclude when faceting.
      *           By default,
      *           [FacetKey.key][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.key]
@@ -276,7 +276,7 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
      * is returned.
      *
      * Generated from protobuf field <code>repeated string excluded_filter_keys = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExcludedFilterKeys($var)

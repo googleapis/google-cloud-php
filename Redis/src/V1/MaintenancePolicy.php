@@ -56,7 +56,7 @@ class MaintenancePolicy extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Optional. Description of what this policy is for. Create/Update methods
      *           return INVALID_ARGUMENT if the length is greater than 512.
-     *     @type \Google\Cloud\Redis\V1\WeeklyMaintenanceWindow[]|\Google\Protobuf\Internal\RepeatedField $weekly_maintenance_window
+     *     @type array<\Google\Cloud\Redis\V1\WeeklyMaintenanceWindow>|\Google\Protobuf\Internal\RepeatedField $weekly_maintenance_window
      *           Optional. Maintenance window that is applied to resources covered by this
      *           policy. Minimum 1. For the current version, the maximum number of
      *           weekly_window is expected to be one.
@@ -186,7 +186,7 @@ class MaintenancePolicy extends \Google\Protobuf\Internal\Message
      * weekly_window is expected to be one.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.v1.WeeklyMaintenanceWindow weekly_maintenance_window = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Redis\V1\WeeklyMaintenanceWindow[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Redis\V1\WeeklyMaintenanceWindow>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWeeklyMaintenanceWindow($var)

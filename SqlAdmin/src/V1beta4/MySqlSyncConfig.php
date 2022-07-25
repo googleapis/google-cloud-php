@@ -28,7 +28,7 @@ class MySqlSyncConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Sql\V1beta4\SyncFlags[]|\Google\Protobuf\Internal\RepeatedField $initial_sync_flags
+     *     @type array<\Google\Cloud\Sql\V1beta4\SyncFlags>|\Google\Protobuf\Internal\RepeatedField $initial_sync_flags
      *           Flags to use for the initial dump.
      * }
      */
@@ -52,7 +52,7 @@ class MySqlSyncConfig extends \Google\Protobuf\Internal\Message
      * Flags to use for the initial dump.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.SyncFlags initial_sync_flags = 1;</code>
-     * @param \Google\Cloud\Sql\V1beta4\SyncFlags[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Sql\V1beta4\SyncFlags>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInitialSyncFlags($var)

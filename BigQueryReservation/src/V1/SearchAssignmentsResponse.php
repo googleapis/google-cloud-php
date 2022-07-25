@@ -35,7 +35,7 @@ class SearchAssignmentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\BigQuery\Reservation\V1\Assignment[]|\Google\Protobuf\Internal\RepeatedField $assignments
+     *     @type array<\Google\Cloud\BigQuery\Reservation\V1\Assignment>|\Google\Protobuf\Internal\RepeatedField $assignments
      *           List of assignments visible to the user.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no
@@ -62,7 +62,7 @@ class SearchAssignmentsResponse extends \Google\Protobuf\Internal\Message
      * List of assignments visible to the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.reservation.v1.Assignment assignments = 1;</code>
-     * @param \Google\Cloud\BigQuery\Reservation\V1\Assignment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BigQuery\Reservation\V1\Assignment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssignments($var)
