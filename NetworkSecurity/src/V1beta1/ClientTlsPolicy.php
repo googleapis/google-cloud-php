@@ -96,7 +96,7 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
      *           Optional. Defines a mechanism to provision client identity (public and
      *           private keys) for peer to peer authentication. The presence of this
      *           dictates mTLS.
-     *     @type \Google\Cloud\NetworkSecurity\V1beta1\ValidationCA[]|\Google\Protobuf\Internal\RepeatedField $server_validation_ca
+     *     @type array<\Google\Cloud\NetworkSecurity\V1beta1\ValidationCA>|\Google\Protobuf\Internal\RepeatedField $server_validation_ca
      *           Optional. Defines the mechanism to obtain the Certificate Authority
      *           certificate to validate the server certificate. If empty, client does not
      *           validate the server certificate.
@@ -346,7 +346,7 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
      * validate the server certificate.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1beta1.ValidationCA server_validation_ca = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\NetworkSecurity\V1beta1\ValidationCA[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\NetworkSecurity\V1beta1\ValidationCA>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServerValidationCa($var)
