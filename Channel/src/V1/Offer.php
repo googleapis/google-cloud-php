@@ -90,13 +90,13 @@ class Offer extends \Google\Protobuf\Internal\Message
      *           Describes the payment plan for the Offer.
      *     @type \Google\Cloud\Channel\V1\Constraints $constraints
      *           Constraints on transacting the Offer.
-     *     @type \Google\Cloud\Channel\V1\PriceByResource[]|\Google\Protobuf\Internal\RepeatedField $price_by_resources
+     *     @type array<\Google\Cloud\Channel\V1\PriceByResource>|\Google\Protobuf\Internal\RepeatedField $price_by_resources
      *           Price for each monetizable resource type.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Start of the Offer validity time.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Output only. End of the Offer validity time.
-     *     @type \Google\Cloud\Channel\V1\ParameterDefinition[]|\Google\Protobuf\Internal\RepeatedField $parameter_definitions
+     *     @type array<\Google\Cloud\Channel\V1\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $parameter_definitions
      *           Parameters required to use current Offer to purchase.
      * }
      */
@@ -292,7 +292,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Price for each monetizable resource type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.PriceByResource price_by_resources = 6;</code>
-     * @param \Google\Cloud\Channel\V1\PriceByResource[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\PriceByResource>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPriceByResources($var)
@@ -390,7 +390,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Parameters required to use current Offer to purchase.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ParameterDefinition parameter_definitions = 9;</code>
-     * @param \Google\Cloud\Channel\V1\ParameterDefinition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameterDefinitions($var)

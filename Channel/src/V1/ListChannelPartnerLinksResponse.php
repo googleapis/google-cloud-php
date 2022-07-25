@@ -35,7 +35,7 @@ class ListChannelPartnerLinksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Channel\V1\ChannelPartnerLink[]|\Google\Protobuf\Internal\RepeatedField $channel_partner_links
+     *     @type array<\Google\Cloud\Channel\V1\ChannelPartnerLink>|\Google\Protobuf\Internal\RepeatedField $channel_partner_links
      *           The Channel partner links for a reseller.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -62,7 +62,7 @@ class ListChannelPartnerLinksResponse extends \Google\Protobuf\Internal\Message
      * The Channel partner links for a reseller.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ChannelPartnerLink channel_partner_links = 1;</code>
-     * @param \Google\Cloud\Channel\V1\ChannelPartnerLink[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\ChannelPartnerLink>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setChannelPartnerLinks($var)

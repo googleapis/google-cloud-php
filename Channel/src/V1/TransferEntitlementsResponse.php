@@ -29,7 +29,7 @@ class TransferEntitlementsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Channel\V1\Entitlement[]|\Google\Protobuf\Internal\RepeatedField $entitlements
+     *     @type array<\Google\Cloud\Channel\V1\Entitlement>|\Google\Protobuf\Internal\RepeatedField $entitlements
      *           The transferred entitlements.
      * }
      */
@@ -53,7 +53,7 @@ class TransferEntitlementsResponse extends \Google\Protobuf\Internal\Message
      * The transferred entitlements.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Entitlement entitlements = 1;</code>
-     * @param \Google\Cloud\Channel\V1\Entitlement[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\Entitlement>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntitlements($var)

@@ -62,7 +62,7 @@ class ChangeParametersRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the entitlement to update.
      *           Name uses the format:
      *           accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
-     *     @type \Google\Cloud\Channel\V1\Parameter[]|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type array<\Google\Cloud\Channel\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $parameters
      *           Required. Entitlement parameters to update. You can only change editable parameters.
      *           To view the available Parameters for a request, refer to the
      *           [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions] from the desired offer.
@@ -134,7 +134,7 @@ class ChangeParametersRequest extends \Google\Protobuf\Internal\Message
      * [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions] from the desired offer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Channel\V1\Parameter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameters($var)

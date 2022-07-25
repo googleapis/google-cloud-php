@@ -37,7 +37,7 @@ class ListTransferableOffersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Channel\V1\TransferableOffer[]|\Google\Protobuf\Internal\RepeatedField $transferable_offers
+     *     @type array<\Google\Cloud\Channel\V1\TransferableOffer>|\Google\Protobuf\Internal\RepeatedField $transferable_offers
      *           Information about Offers for a customer that can be used for
      *           transfer.
      *     @type string $next_page_token
@@ -68,7 +68,7 @@ class ListTransferableOffersResponse extends \Google\Protobuf\Internal\Message
      * transfer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.TransferableOffer transferable_offers = 1;</code>
-     * @param \Google\Cloud\Channel\V1\TransferableOffer[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\TransferableOffer>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTransferableOffers($var)

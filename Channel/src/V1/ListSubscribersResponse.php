@@ -43,7 +43,7 @@ class ListSubscribersResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $topic
      *           Name of the topic registered with the reseller.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $service_accounts
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_accounts
      *           List of service accounts which have subscriber access to the topic.
      *     @type string $next_page_token
      *           A token that can be sent as `page_token` to retrieve the next page.
@@ -96,7 +96,7 @@ class ListSubscribersResponse extends \Google\Protobuf\Internal\Message
      * List of service accounts which have subscriber access to the topic.
      *
      * Generated from protobuf field <code>repeated string service_accounts = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServiceAccounts($var)

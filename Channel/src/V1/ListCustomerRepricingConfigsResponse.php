@@ -36,7 +36,7 @@ class ListCustomerRepricingConfigsResponse extends \Google\Protobuf\Internal\Mes
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Channel\V1\CustomerRepricingConfig[]|\Google\Protobuf\Internal\RepeatedField $customer_repricing_configs
+     *     @type array<\Google\Cloud\Channel\V1\CustomerRepricingConfig>|\Google\Protobuf\Internal\RepeatedField $customer_repricing_configs
      *           The repricing configs for this channel partner.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -64,7 +64,7 @@ class ListCustomerRepricingConfigsResponse extends \Google\Protobuf\Internal\Mes
      * The repricing configs for this channel partner.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.CustomerRepricingConfig customer_repricing_configs = 1;</code>
-     * @param \Google\Cloud\Channel\V1\CustomerRepricingConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\CustomerRepricingConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCustomerRepricingConfigs($var)

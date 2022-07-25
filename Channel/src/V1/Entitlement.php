@@ -124,7 +124,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      *           Output only. Current provisioning state of the entitlement.
      *     @type \Google\Cloud\Channel\V1\ProvisionedService $provisioned_service
      *           Output only. Service provisioning details for the entitlement.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $suspension_reasons
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $suspension_reasons
      *           Output only. Enumerable of all current suspension reasons for an entitlement.
      *     @type string $purchase_order_id
      *           Optional. This purchase order (PO) information is for resellers to use for their
@@ -136,7 +136,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      *           Output only. Settings for trial offers.
      *     @type \Google\Cloud\Channel\V1\AssociationInfo $association_info
      *           Association information to other entitlements.
-     *     @type \Google\Cloud\Channel\V1\Parameter[]|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type array<\Google\Cloud\Channel\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $parameters
      *           Extended entitlement parameters. When creating an entitlement, valid
      *           parameter names and values are defined in the
      *           [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions].
@@ -394,7 +394,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * Output only. Enumerable of all current suspension reasons for an entitlement.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Entitlement.SuspensionReason suspension_reasons = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSuspensionReasons($var)
@@ -538,7 +538,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * - num_units: The total commitment for commitment-based offers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 26;</code>
-     * @param \Google\Cloud\Channel\V1\Parameter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Channel\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameters($var)
